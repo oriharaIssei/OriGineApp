@@ -3,20 +3,35 @@
 /// ECS
 #include "ECS/ECSManager.h"
 // component
-#include "component/renderer/MeshRender.h"
-#include "component/transform/Transform.h"
+#include "component/BulletSpawner.h"
+#include "component/CharacterStatus.h"
 // system
-#include "system/render/TexturedMeshRenderSystem.h"
+#include "system/CharacterOnCollision.h"
+#include "system/DeleteCharacterEntitySystem.h"
+#include "system/PlayerInputSystem.h"
+#include "system/ShotBulletSystem.h"
 
 GameScene::GameScene()
     : IScene("GameScene") {}
 
 GameScene::~GameScene() {}
 
-void GameScene::Init() {
-    IScene::Init();
+void GameScene::registerComponents() {
+    IScene::registerComponents();
+
+    ECSManager* ecsManager = ECSManager::getInstance();
+    ecsManager->registerComponent<BulletSpawner>();
+    ecsManager->registerComponent<CharacterStatus>();
 }
 
-void GameScene::Finalize() {
-    IScene::Finalize();
+void GameScene::registerSystems() {
+    IScene::registerSystems();
+
+    ECSManager* ecsManager = ECSManager::getInstance();
+    ecsManager->registerSystem<CharacterOnCollision>();
+    ecsManager->registerSystem<ShotBulletSystem>();
+    ecsManager->registerSystem<PlayerInputSystem>();
+    ecsManager->registerSystem<DeleteCharacterEntitySystem>();
+
+    ecsManager->SortPriorityOrderSystems();
 }

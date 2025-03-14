@@ -11,15 +11,15 @@ MyGame::MyGame() {}
 
 MyGame::~MyGame() {}
 
-void MyGame::Init() {
+void MyGame::Initialize() {
     engine_ = Engine::getInstance();
 
     variables_    = GlobalVariables::getInstance();
     sceneManager_ = SceneManager::getInstance();
 
     variables_->LoadAllFile();
-    engine_->Init();
-    sceneManager_->Init();
+    engine_->Initialize();
+    sceneManager_->Initialize();
 
     // exe 上で 使用するscene
     sceneManager_->addScene("GameScene", []() { return std::make_unique<GameScene>(); });
@@ -33,7 +33,10 @@ void MyGame::Finalize() {
 }
 
 void MyGame::Run() {
-    while (!engine_->ProcessMessage()) {
+    while (true) {
+        if (engine_->ProcessMessage()) {
+            break;
+        }
         engine_->BeginFrame();
 
         variables_->Update();

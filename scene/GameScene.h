@@ -13,9 +13,9 @@ public:
     GameScene();
     ~GameScene();
 
-    void Init();
-    void Finalize() override;
-
 protected:
+    virtual void registerComponents();
+    virtual void registerSystems();
+
 private:
 };
