@@ -8,7 +8,13 @@
 #define ENGINE_ECS
 #include "EngineInclude.h"
 
+/// app
+// component
 #include "component/BulletSpawner.h"
+#include "component/CharacterStatus.h"
+// system
+#include "system/CharacterOnCollision.h"
+#include "system/DeleteCharacterEntitySystem.h"
 
 void ShotBulletSystem::Initialize() {}
 
@@ -36,7 +42,7 @@ void ShotBulletSystem::UpdateEntity(GameEntity* _entity) {
 
 void ShotBulletSystem::SpawnBullet(GameEntity* _entity, BulletSpawner* _spawner) {
     // ================================= Bullet Entityを 生成 ================================= //
-    GameEntity* bullet = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer>("Bullet", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer());
+    GameEntity* bullet = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, CharacterStatus>("Bullet", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), CharacterStatus());
 
     // ================================= Componentを初期化 ================================= //
     // Transform
@@ -57,5 +63,31 @@ void ShotBulletSystem::SpawnBullet(GameEntity* _entity, BulletSpawner* _spawner)
     // Model から MeshRenderer を作成
     CreateModelMeshRenderer(renderer, bullet, kApplicationResourceDirectory + "/Models", "sphere.obj");
 
+    // Status
+    CharacterStatus* status = getComponent<CharacterStatus>(bullet);
+    status->setHP(1);
+    status->setAttack(1);
+
     // ================================= System ================================= //
+    ECSManager* ecs = ECSManager::getInstance();
+
+    //------------------ Input
+    // None
+
+    //------------------ StateTransition
+    ecs->getSystem<DeleteCharacterEntitySystem>()->addEntity(bullet);
+
+    //------------------ Movement
+    ecs->getSystem<MoveSystemByRigidBody>()->addEntity(bullet);
+
+    //------------------ Collision
+    ecs->getSystem<CharacterOnCollision>()->addEntity(bullet);
+    ecs->getSystem<CollisionCheckSystem>()->addEntity(bullet);
+
+    //------------------ Physics
+    // None
+
+    //------------------ Render
+    ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(bullet);
+
 }
