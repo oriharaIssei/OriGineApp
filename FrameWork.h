@@ -8,7 +8,7 @@ public:
 	FrameWork();
 	virtual ~FrameWork();
 
-	virtual void Init();
+	virtual void Initialize();
 	virtual void Finalize();
 
 	virtual void Run() = 0;

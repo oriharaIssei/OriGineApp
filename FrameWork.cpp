@@ -7,12 +7,12 @@ FrameWork::FrameWork(){}
 
 FrameWork::~FrameWork(){}
 
-void FrameWork::Init(){
+void FrameWork::Initialize(){
 	variables_ = GlobalVariables::getInstance();
 	variables_->LoadAllFile();
 
 	engine_ = Engine::getInstance();
-	engine_->Init();
+	engine_->Initialize();
 }
 
 void FrameWork::Finalize(){

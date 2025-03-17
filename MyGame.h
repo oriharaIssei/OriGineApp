@@ -12,7 +12,7 @@ public:
 	MyGame();
 	~MyGame();
 
-	void Init()override;
+	void Initialize()override;
 	void Finalize()override;
 
 	void Run();

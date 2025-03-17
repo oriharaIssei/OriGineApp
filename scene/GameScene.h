@@ -13,7 +13,7 @@ public:
     GameScene();
     ~GameScene();
 
-    void Init();
+    void Initialize();
     void Finalize() override;
 
 protected:

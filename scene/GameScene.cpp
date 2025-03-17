@@ -13,8 +13,8 @@ GameScene::GameScene()
 
 GameScene::~GameScene() {}
 
-void GameScene::Init() {
-    IScene::Init();
+void GameScene::Initialize() {
+    IScene::Initialize();
 }
 
 void GameScene::Finalize() {
