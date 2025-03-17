@@ -33,7 +33,10 @@ void MyGame::Finalize() {
 }
 
 void MyGame::Run() {
-    while (!engine_->ProcessMessage()) {
+    while (true) {
+        if (engine_->ProcessMessage()) {
+            break;
+        }
         engine_->BeginFrame();
 
         variables_->Update();
