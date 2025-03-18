@@ -122,9 +122,6 @@
   <ItemGroup>
     <Text Include="component\ComponentTemplate.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="resource\scene\demo.scene" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

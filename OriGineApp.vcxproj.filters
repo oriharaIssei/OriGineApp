@@ -33,7 +33,4 @@
       <Filter>component</Filter>
     </Text>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="resource\scene\demo.scene" />
-  </ItemGroup>
 </Project>
