@@ -3,7 +3,7 @@
 /// externals
 #include "imgui/imgui.h"
 
-void CharacterStatus::Initialize(GameEntity* _entity) {}
+void CharacterStatus::Initialize([[maybe_unused]]GameEntity* _entity) {}
 
 bool CharacterStatus::Edit() {
     bool isChange = false;
