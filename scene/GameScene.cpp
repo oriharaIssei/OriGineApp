@@ -11,7 +11,6 @@ GameScene::~GameScene() {}
 void GameScene::registerComponents() {
     IScene::registerComponents();
 
-    ECSManager* ecsManager = ECSManager::getInstance();
 }
 
 void GameScene::registerSystems() {
