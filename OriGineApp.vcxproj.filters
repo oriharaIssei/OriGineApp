@@ -14,51 +14,19 @@
   <ItemGroup>
     <ClInclude Include="FrameWork.h" />
     <ClInclude Include="MyGame.h" />
-    <ClInclude Include="component\BulletSpawner.h">
-      <Filter>component</Filter>
-    </ClInclude>
-    <ClInclude Include="component\CharacterStatus.h">
-      <Filter>component</Filter>
-    </ClInclude>
     <ClInclude Include="scene\GameScene.h">
       <Filter>scene</Filter>
     </ClInclude>
-    <ClInclude Include="system\CharacterOnCollision.h">
-      <Filter>system</Filter>
-    </ClInclude>
-    <ClInclude Include="system\DeleteCharacterEntitySystem.h">
-      <Filter>system</Filter>
-    </ClInclude>
-    <ClInclude Include="system\PlayerInputSystem.h">
-      <Filter>system</Filter>
-    </ClInclude>
-    <ClInclude Include="system\ShotBulletSystem.h">
-      <Filter>system</Filter>
-    </ClInclude>
+    <ClInclude Include="system\SystemTemplate.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FrameWork.cpp" />
     <ClCompile Include="MyGame.cpp" />
-    <ClCompile Include="component\BulletSpawner.cpp">
-      <Filter>component</Filter>
-    </ClCompile>
-    <ClCompile Include="component\CharacterStatus.cpp">
-      <Filter>component</Filter>
-    </ClCompile>
     <ClCompile Include="scene\GameScene.cpp">
       <Filter>scene</Filter>
     </ClCompile>
-    <ClCompile Include="system\CharacterOnCollision.cpp">
-      <Filter>system</Filter>
-    </ClCompile>
-    <ClCompile Include="system\DeleteCharacterEntitySystem.cpp">
-      <Filter>system</Filter>
-    </ClCompile>
-    <ClCompile Include="system\PlayerInputSystem.cpp">
-      <Filter>system</Filter>
-    </ClCompile>
-    <ClCompile Include="system\ShotBulletSystem.cpp">
-      <Filter>system</Filter>
-    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="component\ComponentTemplate.txt" />
   </ItemGroup>
 </Project>
