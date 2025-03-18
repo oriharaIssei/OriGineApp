@@ -17,7 +17,9 @@
     <ClInclude Include="scene\GameScene.h">
       <Filter>scene</Filter>
     </ClInclude>
-    <ClInclude Include="system\SystemTemplate.txt" />
+    <ClInclude Include="system\SystemTemplate.txt">
+      <Filter>system</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FrameWork.cpp" />
@@ -27,6 +29,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="component\ComponentTemplate.txt" />
+    <Text Include="component\ComponentTemplate.txt">
+      <Filter>component</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\scene\demo.scene" />
   </ItemGroup>
 </Project>
