@@ -57,7 +57,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <PreprocessorDefinitions>DEBUG;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)application;$(SolutionDir)math;$(SolutionDir)lib;$(SolutionDir)engine\ECS;$(SolutionDir)engine;$(SolutionDir);$(SolutionDir)externals;$(SolutionDir)externals\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)application\code;$(SolutionDir)application;$(SolutionDir)math;$(SolutionDir)lib;$(SolutionDir)engine\code\ECS;$(SolutionDir)engine\code;$(SolutionDir)engine;$(SolutionDir);$(SolutionDir)externals;$(SolutionDir)externals\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -101,26 +101,26 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="FrameWork.h" />
-    <ClInclude Include="MyGame.h" />
-    <ClInclude Include="component\BulletSpawner.h" />
-    <ClInclude Include="component\CharacterStatus.h" />
-    <ClInclude Include="scene\GameScene.h" />
-    <ClInclude Include="system\CharacterOnCollision.h" />
-    <ClInclude Include="system\DeleteCharacterEntitySystem.h" />
-    <ClInclude Include="system\PlayerInputSystem.h" />
-    <ClInclude Include="system\ShotBulletSystem.h" />
+    <ClInclude Include="code\FrameWork.h" />
+    <ClInclude Include="code\MyGame.h" />
+    <ClInclude Include="code\component\BulletSpawner.h" />
+    <ClInclude Include="code\component\CharacterStatus.h" />
+    <ClInclude Include="code\scene\GameScene.h" />
+    <ClInclude Include="code\system\CharacterOnCollision.h" />
+    <ClInclude Include="code\system\DeleteCharacterEntitySystem.h" />
+    <ClInclude Include="code\system\PlayerInputSystem.h" />
+    <ClInclude Include="code\system\ShotBulletSystem.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FrameWork.cpp" />
-    <ClCompile Include="MyGame.cpp" />
-    <ClCompile Include="component\BulletSpawner.cpp" />
-    <ClCompile Include="component\CharacterStatus.cpp" />
-    <ClCompile Include="scene\GameScene.cpp" />
-    <ClCompile Include="system\CharacterOnCollision.cpp" />
-    <ClCompile Include="system\DeleteCharacterEntitySystem.cpp" />
-    <ClCompile Include="system\PlayerInputSystem.cpp" />
-    <ClCompile Include="system\ShotBulletSystem.cpp" />
+    <ClCompile Include="code\FrameWork.cpp" />
+    <ClCompile Include="code\MyGame.cpp" />
+    <ClCompile Include="code\component\BulletSpawner.cpp" />
+    <ClCompile Include="code\component\CharacterStatus.cpp" />
+    <ClCompile Include="code\scene\GameScene.cpp" />
+    <ClCompile Include="code\system\CharacterOnCollision.cpp" />
+    <ClCompile Include="code\system\DeleteCharacterEntitySystem.cpp" />
+    <ClCompile Include="code\system\PlayerInputSystem.cpp" />
+    <ClCompile Include="code\system\ShotBulletSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\externals\DirectXTex\DirectXTex.vcxproj">

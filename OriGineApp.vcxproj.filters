@@ -12,52 +12,52 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FrameWork.h" />
-    <ClInclude Include="MyGame.h" />
-    <ClInclude Include="component\BulletSpawner.h">
+    <ClInclude Include="code\FrameWork.h" />
+    <ClInclude Include="code\MyGame.h" />
+    <ClInclude Include="code\component\BulletSpawner.h">
       <Filter>component</Filter>
     </ClInclude>
-    <ClInclude Include="component\CharacterStatus.h">
+    <ClInclude Include="code\component\CharacterStatus.h">
       <Filter>component</Filter>
     </ClInclude>
-    <ClInclude Include="scene\GameScene.h">
+    <ClInclude Include="code\scene\GameScene.h">
       <Filter>scene</Filter>
     </ClInclude>
-    <ClInclude Include="system\CharacterOnCollision.h">
+    <ClInclude Include="code\system\CharacterOnCollision.h">
       <Filter>system</Filter>
     </ClInclude>
-    <ClInclude Include="system\DeleteCharacterEntitySystem.h">
+    <ClInclude Include="code\system\DeleteCharacterEntitySystem.h">
       <Filter>system</Filter>
     </ClInclude>
-    <ClInclude Include="system\PlayerInputSystem.h">
+    <ClInclude Include="code\system\PlayerInputSystem.h">
       <Filter>system</Filter>
     </ClInclude>
-    <ClInclude Include="system\ShotBulletSystem.h">
+    <ClInclude Include="code\system\ShotBulletSystem.h">
       <Filter>system</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FrameWork.cpp" />
-    <ClCompile Include="MyGame.cpp" />
-    <ClCompile Include="component\BulletSpawner.cpp">
+    <ClCompile Include="code\FrameWork.cpp" />
+    <ClCompile Include="code\MyGame.cpp" />
+    <ClCompile Include="code\component\BulletSpawner.cpp">
       <Filter>component</Filter>
     </ClCompile>
-    <ClCompile Include="component\CharacterStatus.cpp">
+    <ClCompile Include="code\component\CharacterStatus.cpp">
       <Filter>component</Filter>
     </ClCompile>
-    <ClCompile Include="scene\GameScene.cpp">
+    <ClCompile Include="code\scene\GameScene.cpp">
       <Filter>scene</Filter>
     </ClCompile>
-    <ClCompile Include="system\CharacterOnCollision.cpp">
+    <ClCompile Include="code\system\CharacterOnCollision.cpp">
       <Filter>system</Filter>
     </ClCompile>
-    <ClCompile Include="system\DeleteCharacterEntitySystem.cpp">
+    <ClCompile Include="code\system\DeleteCharacterEntitySystem.cpp">
       <Filter>system</Filter>
     </ClCompile>
-    <ClCompile Include="system\PlayerInputSystem.cpp">
+    <ClCompile Include="code\system\PlayerInputSystem.cpp">
       <Filter>system</Filter>
     </ClCompile>
-    <ClCompile Include="system\ShotBulletSystem.cpp">
+    <ClCompile Include="code\system\ShotBulletSystem.cpp">
       <Filter>system</Filter>
     </ClCompile>
   </ItemGroup>

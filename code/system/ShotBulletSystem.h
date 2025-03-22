@@ -1,6 +1,6 @@
 #pragma once
 
-#include "engine/system/ISystem.h"
+#include "system/ISystem.h"
 
 class BulletSpawner;
 

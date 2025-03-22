@@ -1,7 +1,7 @@
 #pragma once
 
 /// parent
-#include "engine/component/IComponent.h"
+#include "component/IComponent.h"
 
 /// math
 #include "math/Vector3.h"

@@ -5,7 +5,7 @@
 // component
 #include "component/CharacterStatus.h"
 
-#include "EngineInclude.h"
+#include "engine/EngineInclude.h"
 
 DeleteCharacterEntitySystem::DeleteCharacterEntitySystem() : ISystem(SystemType::StateTransition) {}
 
