@@ -12,25 +12,53 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FrameWork.h" />
-    <ClInclude Include="MyGame.h" />
-    <ClInclude Include="scene\GameScene.h">
+    <ClInclude Include="code\FrameWork.h" />
+    <ClInclude Include="code\MyGame.h" />
+    <ClInclude Include="code\component\BulletSpawner.h">
+      <Filter>component</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\CharacterStatus.h">
+      <Filter>component</Filter>
+    </ClInclude>
+    <ClInclude Include="code\scene\GameScene.h">
       <Filter>scene</Filter>
     </ClInclude>
-    <ClInclude Include="system\SystemTemplate.txt">
+    <ClInclude Include="code\system\CharacterOnCollision.h">
+      <Filter>system</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\DeleteCharacterEntitySystem.h">
+      <Filter>system</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\PlayerInputSystem.h">
+      <Filter>system</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\ShotBulletSystem.h">
       <Filter>system</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FrameWork.cpp" />
-    <ClCompile Include="MyGame.cpp" />
-    <ClCompile Include="scene\GameScene.cpp">
+    <ClCompile Include="code\FrameWork.cpp" />
+    <ClCompile Include="code\MyGame.cpp" />
+    <ClCompile Include="code\component\BulletSpawner.cpp">
+      <Filter>component</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\CharacterStatus.cpp">
+      <Filter>component</Filter>
+    </ClCompile>
+    <ClCompile Include="code\scene\GameScene.cpp">
       <Filter>scene</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="component\ComponentTemplate.txt">
-      <Filter>component</Filter>
-    </Text>
+    <ClCompile Include="code\system\CharacterOnCollision.cpp">
+      <Filter>system</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\DeleteCharacterEntitySystem.cpp">
+      <Filter>system</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\PlayerInputSystem.cpp">
+      <Filter>system</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\ShotBulletSystem.cpp">
+      <Filter>system</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
