@@ -10,7 +10,7 @@ GameScene::~GameScene() {}
 
 void GameScene::registerComponents() {
     IScene::registerComponents();
-
+   
 }
 
 void GameScene::registerSystems() {
