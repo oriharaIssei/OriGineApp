@@ -13,9 +13,10 @@ bool PlayerStates::Edit() {
     ImGui::Spacing();
 
     isChange |= ImGui::DragFloat("MoveSpeed", &moveSpeed_, 0.01f);
-    isChange |= ImGui::InputInt("SettingBomNum_", &settingBomNum_);
+    isChange |= ImGui::InputInt("SettingBomNum", &settingBomNum_);
 
     return isChange;
+
 }
 
 void PlayerStates::Save(BinaryWriter& _writer) {

@@ -101,16 +101,28 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="code\component\FloorAndPillerColum\FloorAndPillerColum.h" />
+    <ClInclude Include="code\component\Floor\FloorStates.h" />
+    <ClInclude Include="code\component\Piller\PillerStates.h" />
     <ClInclude Include="code\component\Player\PlayerStates.h" />
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\MyGame.h" />
     <ClInclude Include="code\scene\GameScene.h" />
+    <ClInclude Include="code\system\FloorAndPillerColum\CreateFloorAndPiller.h" />
+    <ClInclude Include="code\system\Floor\FloorPhysicsSystem.h" />
+    <ClInclude Include="code\system\Piller\PillerPhysicsSystem.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\component\FloorAndPillerColum\FloorAndPillerColum.cpp" />
+    <ClCompile Include="code\component\Floor\FloorStates.cpp" />
+    <ClCompile Include="code\component\Piller\PillerStates.cpp" />
     <ClCompile Include="code\component\Player\PlayerStates.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
     <ClCompile Include="code\scene\GameScene.cpp" />
+    <ClCompile Include="code\system\FloorAndPillerColum\CreateFloorAndPiller.cpp" />
+    <ClCompile Include="code\system\Floor\FloorPhysicsSystem.cpp" />
+    <ClCompile Include="code\system\Piller\PillerPhysicsSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\externals\DirectXTex\DirectXTex.vcxproj">
