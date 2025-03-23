@@ -35,6 +35,11 @@
     <ClInclude Include="code\system\ShotBulletSystem.h">
       <Filter>system</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\Button.h" />
+    <ClInclude Include="code\scene\TitleScene.h" />
+    <ClInclude Include="code\system\ButtonInputSystem.h" />
+    <ClInclude Include="code\system\UpdateButtonColorByState.h" />
+    <ClInclude Include="code\component\SceneChanger.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -60,5 +65,13 @@
     <ClCompile Include="code\system\ShotBulletSystem.cpp">
       <Filter>system</Filter>
     </ClCompile>
+    <ClCompile Include="code\component\Button.cpp" />
+    <ClCompile Include="code\scene\TitleScene.cpp" />
+    <ClCompile Include="code\system\ButtonInputSystem.cpp" />
+    <ClCompile Include="code\system\UpdateButtonColorByState.cpp" />
+    <ClCompile Include="code\component\SceneChanger.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="component\ComponentTemplate.txt" />
   </ItemGroup>
 </Project>

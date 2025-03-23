@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)application;$(SolutionDir)math;$(SolutionDir)lib;$(SolutionDir)engine\ECS;$(SolutionDir)engine;$(SolutionDir);$(SolutionDir)externals;$(SolutionDir)externals\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)application\code;$(SolutionDir)application;$(SolutionDir)math;$(SolutionDir)lib;$(SolutionDir)engine\code\ECS;$(SolutionDir)engine\code;$(SolutionDir)engine;$(SolutionDir);$(SolutionDir)externals;$(SolutionDir)externals\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -101,6 +101,8 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="code\system\ButtonInputSystem.h" />
+    <ClInclude Include="code\component\Button.h" />
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\MyGame.h" />
     <ClInclude Include="code\component\BulletSpawner.h" />
@@ -110,8 +112,13 @@
     <ClInclude Include="code\system\DeleteCharacterEntitySystem.h" />
     <ClInclude Include="code\system\PlayerInputSystem.h" />
     <ClInclude Include="code\system\ShotBulletSystem.h" />
+    <ClInclude Include="code\scene\TitleScene.h" />
+    <ClInclude Include="code\system\UpdateButtonColorByState.h" />
+    <ClInclude Include="code\component\SceneChanger.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\system\ButtonInputSystem.cpp" />
+    <ClCompile Include="code\component\Button.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
     <ClCompile Include="code\component\BulletSpawner.cpp" />
@@ -121,6 +128,9 @@
     <ClCompile Include="code\system\DeleteCharacterEntitySystem.cpp" />
     <ClCompile Include="code\system\PlayerInputSystem.cpp" />
     <ClCompile Include="code\system\ShotBulletSystem.cpp" />
+    <ClCompile Include="code\scene\TitleScene.cpp" />
+    <ClCompile Include="code\system\UpdateButtonColorByState.cpp" />
+    <ClCompile Include="code\component\SceneChanger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\externals\DirectXTex\DirectXTex.vcxproj">
