@@ -1,11 +1,15 @@
 #include "MyGame.h"
 
+/// engine
 #include "Engine.h"
-#include "globalVariables/GlobalVariables.h"
 
 // scene
+#include "scene/TitleScene.h"
 #include "scene/GameScene.h"
 #include "sceneManager/SceneManager.h"
+
+///lib
+#include "globalVariables/GlobalVariables.h"
 
 MyGame::MyGame() {}
 
@@ -22,9 +26,11 @@ void MyGame::Initialize() {
     sceneManager_->Initialize();
 
     // exe 上で 使用するscene
-    sceneManager_->addScene("GameScene", []() { return std::make_unique<GameScene>(); });
+    sceneManager_->addScene("Title", []() { return std::make_unique<TitleScene>(); });
+    sceneManager_->addScene("Game", []() { return std::make_unique<GameScene>(); });
 
-    sceneManager_->changeScene("GameScene");
+    SerializedField<std::string> startupSceneName{"Settings", "Scene", "StartupSceneName"};
+    sceneManager_->changeScene(startupSceneName);
 }
 
 void MyGame::Finalize() {
