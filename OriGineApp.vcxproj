@@ -113,10 +113,6 @@
     <ClInclude Include="code\system\FloorAndPillerColum\CreateFloorAndPiller.h" />
     <ClInclude Include="code\system\Floor\FloorPhysicsSystem.h" />
     <ClInclude Include="code\system\Piller\PillerPhysicsSystem.h" />
-    <ClInclude Include="code\system\CharacterOnCollision.h" />
-    <ClInclude Include="code\system\DeleteCharacterEntitySystem.h" />
-    <ClInclude Include="code\system\PlayerInputSystem.h" />
-    <ClInclude Include="code\system\ShotBulletSystem.h" />
     <ClInclude Include="code\scene\TitleScene.h" />
     <ClInclude Include="code\system\UpdateButtonColorByState.h" />
     <ClInclude Include="code\component\SceneChanger.h" />
@@ -134,10 +130,6 @@
     <ClCompile Include="code\system\FloorAndPillerColum\CreateFloorAndPiller.cpp" />
     <ClCompile Include="code\system\Floor\FloorPhysicsSystem.cpp" />
     <ClCompile Include="code\system\Piller\PillerPhysicsSystem.cpp" />
-    <ClCompile Include="code\system\CharacterOnCollision.cpp" />
-    <ClCompile Include="code\system\DeleteCharacterEntitySystem.cpp" />
-    <ClCompile Include="code\system\PlayerInputSystem.cpp" />
-    <ClCompile Include="code\system\ShotBulletSystem.cpp" />
     <ClCompile Include="code\scene\TitleScene.cpp" />
     <ClCompile Include="code\system\UpdateButtonColorByState.cpp" />
     <ClCompile Include="code\component\SceneChanger.cpp" />
