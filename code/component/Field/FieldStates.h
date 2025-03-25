@@ -2,20 +2,18 @@
 
 #include "component/IComponent.h"
 
-class PlayerStates
+class FieldStates
     : public IComponent {
 
 private: // variables
     bool isAlive_ = true;
 
-    float moveSpeed_;
-    int32_t settingBomNum_;
-
-    float theta_;
+    float fieldRadius_;
+    
 
 public:
-    PlayerStates() {}
-    virtual ~PlayerStates() = default;
+    FieldStates() {}
+    virtual ~FieldStates() = default;
 
     void Initialize(GameEntity* _entity) override;
     virtual bool Edit();
@@ -26,8 +24,7 @@ public:
 
 public: // accsessor
     /// getter
-    float GetMoveSpeed() const { return moveSpeed_; }
-    float GetTheta() const { return theta_; }
+    float GetFieldRadius() const { return fieldRadius_; }
+
     /// setter
-    void SetIncrementTheta(float _theta) { theta_ += _theta; }
 };

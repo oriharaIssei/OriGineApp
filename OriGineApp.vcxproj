@@ -101,6 +101,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="code\component\Field\FieldStates.h" />
     <ClInclude Include="code\component\FloorAndPillerColum\FloorAndPillerColum.h" />
     <ClInclude Include="code\component\Floor\FloorStates.h" />
     <ClInclude Include="code\component\Piller\PillerStates.h" />
@@ -114,10 +115,12 @@
     <ClInclude Include="code\system\Floor\FloorPhysicsSystem.h" />
     <ClInclude Include="code\system\Piller\PillerPhysicsSystem.h" />
     <ClInclude Include="code\scene\TitleScene.h" />
+    <ClInclude Include="code\system\Player\PlayerInput.h" />
     <ClInclude Include="code\system\UpdateButtonColorByState.h" />
     <ClInclude Include="code\component\SceneChanger.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\component\Field\FieldStates.cpp" />
     <ClCompile Include="code\component\FloorAndPillerColum\FloorAndPillerColum.cpp" />
     <ClCompile Include="code\component\Floor\FloorStates.cpp" />
     <ClCompile Include="code\component\Piller\PillerStates.cpp" />
@@ -131,6 +134,7 @@
     <ClCompile Include="code\system\Floor\FloorPhysicsSystem.cpp" />
     <ClCompile Include="code\system\Piller\PillerPhysicsSystem.cpp" />
     <ClCompile Include="code\scene\TitleScene.cpp" />
+    <ClCompile Include="code\system\Player\PlayerInput.cpp" />
     <ClCompile Include="code\system\UpdateButtonColorByState.cpp" />
     <ClCompile Include="code\component\SceneChanger.cpp" />
   </ItemGroup>

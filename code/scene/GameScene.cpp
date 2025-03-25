@@ -4,6 +4,10 @@
 #include "ECS/ECSManager.h"
 // component
 #include"Application/code/component/Player/PlayerStates.h"
+#include"Application/code/component/Field/FieldStates.h"
+
+//system
+#include"Application/code/system/Player/PlayerInput.h"
 
 GameScene::GameScene()
     : IScene("GameScene") {}
@@ -15,12 +19,14 @@ void GameScene::registerComponents() {
 
     ECSManager* ecsManager = ECSManager::getInstance();
     ecsManager->registerComponent<PlayerStates>();
+    ecsManager->registerComponent<FieldStates>();
 }
 
 void GameScene::registerSystems() {
     IScene::registerSystems();
 
     ECSManager* ecsManager = ECSManager::getInstance();
+    ecsManager->registerSystem<PlayerInputSystem>();
 
     ecsManager->SortPriorityOrderSystems();
 }

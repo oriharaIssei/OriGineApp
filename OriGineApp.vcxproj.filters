@@ -34,6 +34,9 @@
     <Filter Include="system\FloorAndPillerColum">
       <UniqueIdentifier>{f67cf5a1-51bd-4b81-983e-7a018469502c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\Field">
+      <UniqueIdentifier>{044d149b-73e1-4a0b-97ca-e8579c9869af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -69,6 +72,12 @@
     <ClInclude Include="code\scene\TitleScene.h">
       <Filter>scene</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Player\PlayerInput.h">
+      <Filter>system\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Field\FieldStates.h">
+      <Filter>component\Field</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -103,6 +112,12 @@
     <ClCompile Include="code\component\SceneChanger.cpp" />
     <ClCompile Include="code\scene\TitleScene.cpp">
       <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Player\PlayerInput.cpp">
+      <Filter>system\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Field\FieldStates.cpp">
+      <Filter>component\Field</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
