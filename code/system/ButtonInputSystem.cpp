@@ -28,11 +28,9 @@ void ButtonInputSystem::UpdateEntity(GameEntity* _entity) {
     for (auto key : button->getShortcutKey()) {
         if (input_->isPressKey(key)) {
             button->setPressed(true);
-            return;
         }
         if (input_->isReleaseKey(key)) {
             button->setReleased(true);
-            return;
         }
     }
 
@@ -40,11 +38,9 @@ void ButtonInputSystem::UpdateEntity(GameEntity* _entity) {
     for (auto padButton : button->getShortcutPadButton()) {
         if (input_->isPressButton(padButton)) {
             button->setPressed(true);
-            return;
         }
         if (input_->isReleaseButton(padButton)) {
             button->setReleased(true);
-            return;
         }
     }
 
@@ -64,8 +60,6 @@ void ButtonInputSystem::UpdateEntity(GameEntity* _entity) {
     button->setHovered(isMouseOverButton);
 
     if (!button->isHovered()) {
-        button->setPressed(false);
-        button->setReleased(false);
         return;
     }
     if (button->isPressed()) {
