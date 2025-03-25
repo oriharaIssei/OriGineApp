@@ -20,4 +20,8 @@ public:
 
 private:
     std::string nextSceneName_;
+
+public:
+    void setNextSceneName(const std::string& _nextSceneName) { nextSceneName_ = _nextSceneName; }
+    const std::string& getNextSceneName() const { return nextSceneName_; }
 };

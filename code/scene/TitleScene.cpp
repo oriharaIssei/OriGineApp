@@ -1,6 +1,6 @@
 #include "TitleScene.h"
 
-///engine
+/// engine
 // ECS
 #define ENGINE_ECS
 
@@ -9,7 +9,11 @@
 /// application
 // component
 #include "component/Button.h"
+#include "component/SceneChanger.h"
 // system
+#include "system/ButtonInputSystem.h"
+#include "system/ChangeSceneByButton.h"
+#include "system/UpdateButtonColorByState.h"
 
 TitleScene::TitleScene() : IScene("Title") {}
 
@@ -19,8 +23,13 @@ void TitleScene::registerComponents() {
     IScene::registerComponents();
     ECSManager* ecsManager = ECSManager::getInstance();
     ecsManager->registerComponent<Button>();
+    ecsManager->registerComponent<SceneChanger>();
 }
 
 void TitleScene::registerSystems() {
     IScene::registerSystems();
+    ECSManager* ecsManager = ECSManager::getInstance();
+    ecsManager->registerSystem<ButtonInputSystem>();
+    ecsManager->registerSystem<UpdateButtonColorByState>();
+    ecsManager->registerSystem<ChangeSceneByButton>();
 }

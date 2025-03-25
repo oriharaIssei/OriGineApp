@@ -40,17 +40,8 @@ private:
     Vec4f pressColor_   = Vec4f(0.6f, 0.6f, 0.6f, 1.0f);
     Vec4f releaseColor_ = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
 
-    SpriteRenderer* sprite_ = nullptr;
-
 public: // getter setter
-    void setSprite(SpriteRenderer* _sprite) {
-        sprite_ = _sprite;
-    }
-    SpriteRenderer* getSprite() const {
-        return sprite_;
-    }
-
-    const std::vector<PadButton>& getShortcutPadButton() const {
+   const std::vector<PadButton>& getShortcutPadButton() const {
         return shortcutPadButton_;
     }
     const std::vector<Key>& getShortcutKey() const {

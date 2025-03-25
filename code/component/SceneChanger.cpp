@@ -32,6 +32,7 @@ bool SceneChanger::Edit() {
                 ImGui::SetItemDefaultFocus();
             }
         }
+        ImGui::EndCombo();
     }
     return changed;
 }

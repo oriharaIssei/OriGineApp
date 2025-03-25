@@ -40,6 +40,7 @@
     <ClInclude Include="code\system\ButtonInputSystem.h" />
     <ClInclude Include="code\system\UpdateButtonColorByState.h" />
     <ClInclude Include="code\component\SceneChanger.h" />
+    <ClInclude Include="code\system\ChangeSceneByButton.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -70,6 +71,7 @@
     <ClCompile Include="code\system\ButtonInputSystem.cpp" />
     <ClCompile Include="code\system\UpdateButtonColorByState.cpp" />
     <ClCompile Include="code\component\SceneChanger.cpp" />
+    <ClCompile Include="code\system\ChangeSceneByButton.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="component\ComponentTemplate.txt" />
