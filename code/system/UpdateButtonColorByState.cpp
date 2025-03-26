@@ -19,7 +19,7 @@ void UpdateButtonColorByState::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    SpriteRenderer* sprite = button->getSprite();
+    SpriteRenderer* sprite = getComponent<SpriteRenderer>(_entity);
     if (sprite == nullptr) {
         return;
     }

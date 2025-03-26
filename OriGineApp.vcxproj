@@ -101,6 +101,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="code\system\ChangeSceneByButton.h" />
     <ClInclude Include="code\component\Field\FieldStates.h" />
     <ClInclude Include="code\component\FloorAndPillerColum\FloorAndPillerColum.h" />
     <ClInclude Include="code\component\Floor\FloorStates.h" />
@@ -120,6 +121,7 @@
     <ClInclude Include="code\component\SceneChanger.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\system\ChangeSceneByButton.cpp" />
     <ClCompile Include="code\component\Field\FieldStates.cpp" />
     <ClCompile Include="code\component\FloorAndPillerColum\FloorAndPillerColum.cpp" />
     <ClCompile Include="code\component\Floor\FloorStates.cpp" />

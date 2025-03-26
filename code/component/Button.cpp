@@ -15,34 +15,28 @@ Button::Button() {
 Button::~Button() {
 }
 
-void Button::Initialize(GameEntity* _entity) {
-    sprite_ = getComponent<SpriteRenderer>(_entity);
-
-#ifdef _DEBUG
-    if (sprite_ == nullptr) {
-        ECSManager::getInstance()->addComponent<SpriteRenderer>(_entity->getID(), SpriteRenderer());
-    }
-#endif
-}
+void Button::Initialize(GameEntity* /*_entity*/) {}
 
 bool Button::Edit() {
     bool isChanged = false;
 
-    if (ImGui::CollapsingHeader("Button Colors")) {
+    if (ImGui::TreeNode("Button Colors")) {
         isChanged |= ImGui::ColorEdit4("Normal Color", normalColor_.v);
         isChanged |= ImGui::ColorEdit4("Hover Color", hoverColor_.v);
         isChanged |= ImGui::ColorEdit4("Press Color", pressColor_.v);
         isChanged |= ImGui::ColorEdit4("Release Color", releaseColor_.v);
+
+        ImGui::TreePop();
     }
 
     // key
-    if (ImGui::CollapsingHeader("Shortcut Key")) {
+    if (ImGui::TreeNode("Shortcut Key")) {
         // key
         ImGui::Text("Key");
         std::string comboLabel = "";
         for (int i = 0; i < shortcutKey_.size(); ++i) {
             ImGui::PushID(i);
-            ImGui::Text("Key%d :: ",i);
+            ImGui::Text("Key%d :: ", i);
             ImGui::SameLine();
             comboLabel = "##Key" + std::to_string(i);
             if (ImGui::BeginCombo(comboLabel.c_str(), keyNameMap.find(shortcutKey_[i])->second.c_str())) {
@@ -73,10 +67,12 @@ bool Button::Edit() {
                 isChanged = true;
             }
         }
+
+        ImGui::TreePop();
     }
 
     // pad button
-    if (ImGui::CollapsingHeader("Shortcut PadButton")) {
+    if (ImGui::TreeNode("Shortcut PadButton")) {
         // pad button
         ImGui::Text("PadButton");
         std::string comboLabel = "";
@@ -113,6 +109,8 @@ bool Button::Edit() {
                 isChanged = true;
             }
         }
+
+        ImGui::TreePop();
     }
 
     return isChanged;
@@ -174,6 +172,4 @@ void Button::Load(BinaryReader& _reader) {
     }
 }
 
-void Button::Finalize() {
-    sprite_ = nullptr;
-}
+void Button::Finalize() {}

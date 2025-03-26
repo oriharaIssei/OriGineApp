@@ -45,8 +45,6 @@ void MyGame::Run() {
         }
         engine_->BeginFrame();
 
-        variables_->Update();
-
         sceneManager_->Update();
         sceneManager_->Draw();
 

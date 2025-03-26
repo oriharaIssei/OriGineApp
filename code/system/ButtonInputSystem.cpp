@@ -16,8 +16,9 @@ void ButtonInputSystem::Finalize() {
 }
 
 void ButtonInputSystem::UpdateEntity(GameEntity* _entity) {
-    Button* button = getComponent<Button>(_entity);
-    if (button == nullptr) {
+    Button* button               = getComponent<Button>(_entity);
+    SpriteRenderer* buttonSprite = getComponent<SpriteRenderer>(_entity);
+    if (button == nullptr || buttonSprite == nullptr) {
         return;
     }
 
@@ -25,7 +26,7 @@ void ButtonInputSystem::UpdateEntity(GameEntity* _entity) {
 
     //! Shortcut で キャンセルの方法が無い
     for (auto key : button->getShortcutKey()) {
-        if (input_->isTriggerKey(key)) {
+        if (input_->isPressKey(key)) {
             button->setPressed(true);
         }
         if (input_->isReleaseKey(key)) {
@@ -35,7 +36,7 @@ void ButtonInputSystem::UpdateEntity(GameEntity* _entity) {
 
     /// ====================== check Pad Input ====================== ///
     for (auto padButton : button->getShortcutPadButton()) {
-        if (input_->isTriggerButton(padButton)) {
+        if (input_->isPressButton(padButton)) {
             button->setPressed(true);
         }
         if (input_->isReleaseButton(padButton)) {
@@ -46,23 +47,19 @@ void ButtonInputSystem::UpdateEntity(GameEntity* _entity) {
     /// ====================== check Mouse Input ====================== ///
 
     const Vec2f& mousePos   = input_->getCurrentMousePos();
-    const Vec2f& buttonPos  = button->getSprite()->getSpriteBuff()->translate_;
-    const Vec2f& buttonSize = button->getSprite()->getSpriteBuff()->scale_;
-    const Vec2f& anchor     = button->getSprite()->getAnchorPoint();
+    const Vec2f& buttonPos  = buttonSprite->getTranslate();
+    const Vec2f& buttonSize = buttonSprite->getSpriteBuff()->scale_;
+    const Vec2f& anchor     = buttonSprite->getAnchorPoint();
 
     Vec2f buttonLeftTop     = buttonPos - buttonSize * anchor;
     Vec2f buttonRightBottom = buttonPos + buttonSize * (Vec2f(1.0f, 1.0f) - anchor);
 
-    /// 範囲内に カーソルがあるか
-    if (buttonLeftTop[X] <= mousePos[X] && mousePos[X] <= buttonRightBottom[X] && buttonLeftTop[Y] <= mousePos[Y] && mousePos[Y] <= buttonRightBottom[Y]) {
-        button->setHovered(true);
-    } else {
-        button->setHovered(false);
-    }
+    // マウスがボタンの範囲内にあるかどうかを判定
+    bool isMouseOverButton = (mousePos[X] >= buttonLeftTop[X] && mousePos[X] <= buttonRightBottom[X] && mousePos[Y] >= buttonLeftTop[Y] && mousePos[Y] <= buttonRightBottom[Y]);
+
+    button->setHovered(isMouseOverButton);
 
     if (!button->isHovered()) {
-        button->setPressed(false);
-        button->setReleased(false);
         return;
     }
     if (button->isPressed()) {

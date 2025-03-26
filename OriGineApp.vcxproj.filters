@@ -69,6 +69,7 @@
     <ClInclude Include="code\system\ButtonInputSystem.h" />
     <ClInclude Include="code\system\UpdateButtonColorByState.h" />
     <ClInclude Include="code\component\SceneChanger.h" />
+    <ClInclude Include="code\system\ChangeSceneByButton.h" />
     <ClInclude Include="code\scene\TitleScene.h">
       <Filter>scene</Filter>
     </ClInclude>
@@ -110,6 +111,7 @@
     <ClCompile Include="code\system\ButtonInputSystem.cpp" />
     <ClCompile Include="code\system\UpdateButtonColorByState.cpp" />
     <ClCompile Include="code\component\SceneChanger.cpp" />
+    <ClCompile Include="code\system\ChangeSceneByButton.cpp" />
     <ClCompile Include="code\scene\TitleScene.cpp">
       <Filter>scene</Filter>
     </ClCompile>
