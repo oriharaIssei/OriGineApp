@@ -336,9 +336,10 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/resource
-/LE2A_08_オリハライッセイ/02_ProjectFiles/resource/fence
-/LE2A_08_オリハライッセイ/02_ProjectFiles/resource/Map
+# 元々は以下の規則で resource フォルダーを無視していた:
+#/resource
+# 無視規則を無効にし、フォルダーを含めるために例外ルールを追加
+!/resource/
 /generated/outputs/(Configuration)
 /project/externals/DirectXTex/Bin/Desktop_2022_Win10/x64/Debug/BC.obj
 /project/externals/DirectXTex/Bin/Desktop_2022_Win10/x64/Debug/BC4BC5.obj
@@ -397,4 +398,3 @@ FodyWeavers.xsd
 /project/ImGui/x64/Debug
 /project/x64/Debug
 /project/x64/Release
-/project/OriGineApplication
