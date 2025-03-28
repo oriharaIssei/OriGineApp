@@ -7,12 +7,11 @@ class FloorAndPillerColum
     : public IComponent {
 
 private: // variables
+
     bool isAlive_ = true;
-
-    bool isCreated_ = false; // 生成されたかどうか;
-    int32_t columnHeight_ = 10; // デフォルトの段数
-
-    /// オフセット追加
+    float fallSpeed_;
+    int32_t columnHeight_; // デフォルトの段数
+    int32_t gridNum_;
 
 public:
     FloorAndPillerColum() {}
@@ -30,7 +29,6 @@ public: // accsessor
 
     /// getter
     int32_t GetColumnHeight() const { return columnHeight_; }
-    bool GetIsCreated() const { return isCreated_; }
       /// setter
     void SetColumnHeight(int32_t height) { columnHeight_ = height; }
   

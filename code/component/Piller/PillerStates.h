@@ -12,7 +12,6 @@ private: // variables
      int32_t pillarHP_;
  
 
-
 public:
     PillerStates() {}
     virtual ~PillerStates() = default;

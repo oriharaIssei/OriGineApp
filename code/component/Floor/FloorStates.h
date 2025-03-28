@@ -8,9 +8,9 @@ class FloorStates
 private: // variables
     bool isAlive_ = true;
 
-     bool isFalling_=false; // 落下中かどうか
-    float fallTimer_; // 落ちるまでの猶予時間
-
+    bool isFalling_=false;   // 落下中かどうか
+    float fallTimer_;         // 落ちるまでの猶予時間
+    bool haveInvincibleFloor_; // 無敵床を持っているかどうか
   
 public:
     FloorStates() {}

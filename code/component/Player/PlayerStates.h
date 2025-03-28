@@ -1,6 +1,7 @@
 #pragma once
 
 #include "component/IComponent.h"
+#include <cstdint>
 
 class PlayerStates
     : public IComponent {
@@ -8,10 +9,10 @@ class PlayerStates
 private: // variables
     bool isAlive_ = true;
 
-    float moveSpeed_;
-    int32_t settingBomNum_;
-
-    float theta_;
+    float moveSpeed_;       // 移動速度
+    float moveRadius_;      // 移動半径
+    float theta_;           // 現在の移動角度
+    int32_t settingBomNum_; // 設置爆弾数
 
 public:
     PlayerStates() {}
@@ -28,6 +29,8 @@ public: // accsessor
     /// getter
     float GetMoveSpeed() const { return moveSpeed_; }
     float GetTheta() const { return theta_; }
+    float GetMoveRadius() const { return moveRadius_; }
     /// setter
     void SetIncrementTheta(float _theta) { theta_ += _theta; }
+    void SetTheta(float _theta) { theta_ = _theta; }
 };
