@@ -12,7 +12,7 @@ bool FieldStates::Edit() {
 
     ImGui::Spacing();
 
-    isChange |= ImGui::DragFloat("MoveSpeed", &fieldRadius_, 0.01f);
+    isChange |= ImGui::DragFloat("FieldRadius", &fieldRadius_, 0.01f);
   
     return isChange;
 

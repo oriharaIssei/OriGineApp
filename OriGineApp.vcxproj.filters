@@ -37,6 +37,9 @@
     <Filter Include="component\Field">
       <UniqueIdentifier>{044d149b-73e1-4a0b-97ca-e8579c9869af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\ShockWave">
+      <UniqueIdentifier>{edac6470-6681-4ed5-b37b-66f36d95e14d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -79,6 +82,9 @@
     <ClInclude Include="code\component\Field\FieldStates.h">
       <Filter>component\Field</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\ShockWave\ShockWaveSpawner.h">
+      <Filter>component\ShockWave</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -120,6 +126,9 @@
     </ClCompile>
     <ClCompile Include="code\component\Field\FieldStates.cpp">
       <Filter>component\Field</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\ShockWave\ShockWaveSpawner.cpp">
+      <Filter>component\ShockWave</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -101,6 +101,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="code\component\ShockWave\ShockWaveSpawner.h" />
     <ClInclude Include="code\system\ChangeSceneByButton.h" />
     <ClInclude Include="code\component\Field\FieldStates.h" />
     <ClInclude Include="code\component\FloorAndPillerColum\FloorAndPillerColum.h" />
@@ -121,6 +122,7 @@
     <ClInclude Include="code\component\SceneChanger.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\component\ShockWave\ShockWaveSpawner.cpp" />
     <ClCompile Include="code\system\ChangeSceneByButton.cpp" />
     <ClCompile Include="code\component\Field\FieldStates.cpp" />
     <ClCompile Include="code\component\FloorAndPillerColum\FloorAndPillerColum.cpp" />
