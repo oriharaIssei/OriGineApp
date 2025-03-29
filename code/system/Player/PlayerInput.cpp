@@ -55,19 +55,21 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
     /// 入力で向き決定
     if (input_->isPressKey(DIK_D)) {
         inputDirection += 1.0f; // 反時計回り
+       
     }
     if (input_->isPressKey(DIK_A)) {
         inputDirection -= 1.0f; // 時計回り
     }
 
     // 移動方向をセット
-    entityPlayerStates->SetDirection(inputDirection);
-
+    if (inputDirection != 0.0f) {
+        entityPlayerStates->SetDirection(inputDirection);
+    }
     ///============================================================
     // Y軸回転のQuaternionを作成
     ///============================================================
     Quaternion rotateAxisY = Quaternion::RotateAxisAngle(Vec3f(0.0f, 1.0f, 0.0f),
-        entityPlayerStates->GetDirection() * moveSpeed * deltaTime);
+        inputDirection * moveSpeed * deltaTime);
 
     ///============================================================
     // 変換後の位置を計算
