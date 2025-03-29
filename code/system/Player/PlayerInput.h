@@ -17,7 +17,6 @@ public:
     void TransformInit(GameEntity* _entity);   
 
   
-    Quaternion QuaternionMultiply(const Quaternion& q1, const Quaternion& q2);
     protected:
     void UpdateEntity(GameEntity* _entity) override;
 

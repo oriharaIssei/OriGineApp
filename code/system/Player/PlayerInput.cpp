@@ -74,7 +74,7 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
     ///============================================================
 
     // 位置を適用
-    pivotTransform_->rotate = QuaternionMultiply(pivotTransform_->rotate, rotateAxisY);
+    pivotTransform_->rotate *= rotateAxisY;
 
     /// 更新
     pivotTransform_->Update();
@@ -117,7 +117,7 @@ void PlayerInputSystem::TransformInit(GameEntity* _entity) {
     // Y軸回転のQuaternionを作成
     ///============================================================
     Quaternion rotation     = Quaternion::RotateAxisAngle(Vec3f(0.0f, 1.0f, 0.0f), 0.0f);
-    pivotTransform_->rotate = QuaternionMultiply(pivotTransform_->rotate, rotation);
+    pivotTransform_->rotate *= rotation;
 
     pivotTransform_->Update();
     transform_->Update();
@@ -125,10 +125,3 @@ void PlayerInputSystem::TransformInit(GameEntity* _entity) {
     isInited_ = true;
 }
 
-Quaternion PlayerInputSystem::QuaternionMultiply(const Quaternion& q1, const Quaternion& q2) {
-    return {
-        q1[W] * q2[X] + q1[X] * q2[W] + q1[Y] * q2[Z] - q1[Z] * q2[Y],
-        q1[W] * q2[Y] + q1[Y] * q2[W] + q1[Z] * q2[X] - q1[X] * q2[Z],
-        q1[W] * q2[Z] + q1[Z] * q2[W] + q1[X] * q2[Y] - q1[Y] * q2[X],
-        q1[W] * q2[W] - q1[X] * q2[X] - q1[Y] * q2[Y] - q1[Z] * q2[Z]};
-}
