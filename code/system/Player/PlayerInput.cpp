@@ -75,6 +75,7 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
 
     // 位置を適用
     pivotTransform_->rotate *= rotateAxisY;
+    transform_->rotate = Quaternion::RotateAxisAngle({0.0f, 1.0f, 0.0f}, std::atan2(-entityPlayerStates->GetDirection(), 0.0f));
 
     /// 更新
     pivotTransform_->Update();
