@@ -10,7 +10,7 @@ private: // variables
 
     bool isFalling_=false;   // 落下中かどうか
     float fallTimer_;         // 落ちるまでの猶予時間
-    bool haveInvincibleFloor_; // 無敵床を持っているかどうか
+    bool haveSafeZone_; // 無敵床を持っているかどうか
   
 public:
     FloorStates() {}

@@ -6,6 +6,7 @@ class PillerStates
     : public IComponent {
 
 private: // variables
+
     bool isAlive_ = true;
     bool isBroken_ = false;
 

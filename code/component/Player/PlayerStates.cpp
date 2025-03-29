@@ -1,9 +1,33 @@
 #include "PlayerStates.h"
-
+/// Engine
+#define ENGINE_INCLUDE
+/// ECS
+// component
+#define ENGINE_COMPONENTS
+#include "engine/EngineInclude.h"
 /// externals
 #include "imgui/imgui.h"
 
-void PlayerStates::Initialize([[maybe_unused]] GameEntity* _entity) {}
+
+
+void PlayerStates::Initialize([[maybe_unused]] GameEntity* _entity) {
+   
+    /*transform_ = getComponent<Transform>(_entity,0);
+    pivotTransform_ = getComponent<Transform>(_entity,1);
+
+    if (!transform_) {
+        return;
+    }
+
+     if (!pivotTransform_) {
+        return;
+    }
+
+    transform_->parent       = pivotTransform_;
+    transform_->translate[Z] = moveRadius_;*/
+
+  
+}
 
 bool PlayerStates::Edit() {
     bool isChange = false;

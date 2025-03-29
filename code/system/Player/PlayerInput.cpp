@@ -8,11 +8,10 @@
 // lib
 #include "input/Input.h"
 // include
-#include "component/Field/FieldStates.h"
-#include "component/Player/PlayerStates.h"
+
 #include "engine/EngineInclude.h"
-#include<numbers>
-#include <iostream>
+#include <cmath>
+#include <numbers>
 
 PlayerInputSystem::PlayerInputSystem()
     : ISystem(SystemType::Input) {}
@@ -20,7 +19,8 @@ PlayerInputSystem::PlayerInputSystem()
 PlayerInputSystem::~PlayerInputSystem() {}
 
 void PlayerInputSystem::Initialize() {
-    input_ = Input::getInstance();
+    isInited_ = false;
+    input_    = Input::getInstance();
 }
 
 void PlayerInputSystem::Finalize() {}
@@ -37,40 +37,98 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
     if (!entityRigidbody) {
         return;
     }
-    PlayerStates* entityPlayerStates = getComponent<PlayerStates>(_entity);
+
+    entityPlayerStates = getComponent<PlayerStates>(_entity);
     if (!entityPlayerStates) {
         return;
     }
 
-    ///============================================================
-    // 円運動の更新
-    ///============================================================
-    float angularSpeed = 0.0f;
+    TransformInit(_entity);
 
+    ///============================================================
+    // 円運動の更新（Quaternionベース）
+    ///============================================================
+    float deltaTime      = Engine::getInstance()->getDeltaTime();
+    float moveSpeed      = entityPlayerStates->GetMoveSpeed();
+    float inputDirection = 0.0f;
+
+    /// 入力で向き決定
     if (input_->isPressKey(DIK_D)) {
-        angularSpeed += entityPlayerStates->GetMoveSpeed(); // 反時計回り
-    } else if (input_->isPressKey(DIK_A)) {
-        angularSpeed -= entityPlayerStates->GetMoveSpeed(); // 時計回り
+        inputDirection += 1.0f; // 反時計回り
+    }
+    if (input_->isPressKey(DIK_A)) {
+        inputDirection -= 1.0f; // 時計回り
     }
 
-    // 角度を更新
-    float deltaTime = Engine::getInstance()->getDeltaTime();
-    float newTheta  = entityPlayerStates->GetTheta() + (angularSpeed * deltaTime);
+    // 移動方向をセット
+    entityPlayerStates->SetDirection(inputDirection);
 
-    // 角度を 0 ~ 2π の範囲に収める
-    newTheta = std::fmod(newTheta, 2.0f * std::numbers::pi_v<float>);
-    entityPlayerStates->SetTheta(newTheta);
+    ///============================================================
+    // Y軸回転のQuaternionを作成
+    ///============================================================
+    Quaternion rotateAxisY = Quaternion::RotateAxisAngle(Vec3f(0.0f, 1.0f, 0.0f),
+        entityPlayerStates->GetDirection() * moveSpeed * deltaTime);
 
+    ///============================================================
+    // 変換後の位置を計算
+    ///============================================================
 
-    // 半径に基づいた新しい移動ベクトルを計算
-    float moveRadius = entityPlayerStates->GetMoveRadius();
+    // 位置を適用
+    pivotTransform_->rotate = QuaternionMultiply(pivotTransform_->rotate, rotateAxisY);
 
-    Vec3f moveDir3d = {
-        moveRadius * std::cos(newTheta),
-        0.0f,
-        moveRadius * std::sin(newTheta)};
+    /// 更新
+    pivotTransform_->Update();
+    transform_->Update();
+}
 
-   
-    // Rigidbody に適用
-    entityRigidbody->setVelocity(moveDir3d);
+void PlayerInputSystem::TransformInit(GameEntity* _entity) {
+    if (isInited_) {
+        return;
+    }
+
+    /// TransformをSet
+    entityPlayerStates->SetTransform(getComponent<Transform>(_entity, 0));
+    entityPlayerStates->SetPivotTransform(getComponent<Transform>(_entity, 1));
+
+    if (!entityPlayerStates->GetTransform()) {
+        return;
+    }
+    if (!entityPlayerStates->GetPivotTransform()) {
+        return;
+    }
+
+    transform_      = entityPlayerStates->GetTransform();
+    pivotTransform_ = entityPlayerStates->GetPivotTransform();
+    ///============================================================
+    // ピボットをワールド座標の(0,0,0)に設定
+    ///============================================================
+    pivotTransform_->translate = Vec3f(0.0f, 0.0f, 0.0f);
+    pivotTransform_->rotate    = Quaternion::Identity();
+    transform_->rotate         = Quaternion::Identity();
+    transform_->parent         = pivotTransform_;
+
+    ///============================================================
+    // Transformの初期位置を設定
+    ///============================================================
+    float moveRadius      = entityPlayerStates->GetMoveRadius();
+    transform_->translate = Vec3f(0.0f, 0.0f, moveRadius); // X軸上に配置
+
+    ///============================================================
+    // Y軸回転のQuaternionを作成
+    ///============================================================
+    Quaternion rotation     = Quaternion::RotateAxisAngle(Vec3f(0.0f, 1.0f, 0.0f), 0.0f);
+    pivotTransform_->rotate = QuaternionMultiply(pivotTransform_->rotate, rotation);
+
+    pivotTransform_->Update();
+    transform_->Update();
+
+    isInited_ = true;
+}
+
+Quaternion PlayerInputSystem::QuaternionMultiply(const Quaternion& q1, const Quaternion& q2) {
+    return {
+        q1[W] * q2[X] + q1[X] * q2[W] + q1[Y] * q2[Z] - q1[Z] * q2[Y],
+        q1[W] * q2[Y] + q1[Y] * q2[W] + q1[Z] * q2[X] - q1[X] * q2[Z],
+        q1[W] * q2[Z] + q1[Z] * q2[W] + q1[X] * q2[Y] - q1[Y] * q2[X],
+        q1[W] * q2[W] - q1[X] * q2[X] - q1[Y] * q2[Y] - q1[Z] * q2[Z]};
 }

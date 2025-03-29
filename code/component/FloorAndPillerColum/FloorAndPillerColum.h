@@ -11,7 +11,7 @@ private: // variables
     bool isAlive_ = true;
     float fallSpeed_;
     int32_t columnHeight_; // デフォルトの段数
-    int32_t gridNum_;
+    int32_t gridNum_;     // デフォルトのグリッド数
 
 public:
     FloorAndPillerColum() {}
