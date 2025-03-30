@@ -40,6 +40,12 @@
     <Filter Include="component\ShockWave">
       <UniqueIdentifier>{edac6470-6681-4ed5-b37b-66f36d95e14d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\Bom">
+      <UniqueIdentifier>{84344a41-1417-4f31-abc9-5145921e0284}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\Bom">
+      <UniqueIdentifier>{7b32cabe-ad52-4818-8c26-77146879c2bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -85,6 +91,15 @@
     <ClInclude Include="code\component\ShockWave\ShockWaveSpawner.h">
       <Filter>component\ShockWave</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\Bom\BomSpawner.h">
+      <Filter>component\Bom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Bom\PutBomSystem.h">
+      <Filter>system\Bom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Bom\BomStatus.h">
+      <Filter>component\Bom</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -129,6 +144,15 @@
     </ClCompile>
     <ClCompile Include="code\component\ShockWave\ShockWaveSpawner.cpp">
       <Filter>component\ShockWave</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Bom\BomSpawner.cpp">
+      <Filter>component\Bom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Bom\PutBomSystem.cpp">
+      <Filter>system\Bom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Bom\BomStatus.cpp">
+      <Filter>component\Bom</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

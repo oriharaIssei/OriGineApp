@@ -15,7 +15,7 @@ private: // variables
     float moveRadius_;      // 移動半径
     float theta_;           // 現在の移動角度
     float direction_;       // 移動方向
-    int32_t settingBomNum_; // 設置爆弾数
+   
 
     Transform* pivotTransform_ = nullptr; // 回転の中心となるオブジェクト
     Transform* transform_      = nullptr; // 自身のTransform
