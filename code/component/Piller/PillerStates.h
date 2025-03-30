@@ -1,6 +1,7 @@
 #pragma once
 
 #include "component/IComponent.h"
+#include <cstdint>
 
 class PillerStates
     : public IComponent {
@@ -11,7 +12,7 @@ private: // variables
     bool isBroken_ = false;
 
      int32_t pillarHP_;
- 
+    float collisionSize_;
 
 public:
     PillerStates() {}
@@ -26,6 +27,7 @@ public:
 
 public: // accsessor
     /// getter
-
+    float GetCollisionSize() const { return collisionSize_; }
+     
     /// setter
 };

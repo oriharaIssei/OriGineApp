@@ -63,7 +63,7 @@ void PutBomSystem::SpawnBom(GameEntity* _entity, BomStatus* _status) {
      // MeshRenderer
     ModelMeshRenderer* renderer = getComponent<ModelMeshRenderer>(bom);
     // Model から MeshRenderer を作成
-    CreateModelMeshRenderer(renderer, bom, kApplicationResourceDirectory + "/Models","/Bom/Bom.obj");
+    CreateModelMeshRenderer(renderer, bom, kApplicationResourceDirectory + "/Models/Bom","Bom.obj");
 
     /// States
     BomStatus* status = getComponent<BomStatus>(bom);

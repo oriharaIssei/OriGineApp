@@ -148,7 +148,7 @@ void PlayerInputSystem::PutBom(GameEntity* _entity) {
     entityBomSpawner->SetIsPut(false);
 
     // coolTimeが0以下になったら発射
-    if (currentCoolTime <= 0.f) {
+    if (currentCoolTime <= 0.0f) {
         entityBomSpawner->SetIsPut(input_->isPressKey(DIK_SPACE));
     } else {
         // coolTimeを減らす

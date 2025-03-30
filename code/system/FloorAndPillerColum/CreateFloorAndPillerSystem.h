@@ -6,13 +6,22 @@
 ///====================================================================
 // FloorSystem
 ///====================================================================
-class CreateFloorAndPiller : public ISystem {
+class FloorAndPillerSpawner;
+class FloorStates;
+class PillerStates;
+    class CreateFloorAndPillerSystem : public ISystem {
+private:
+    bool isCreated_;
+
 public:
-    CreateFloorAndPiller();
-    ~CreateFloorAndPiller();
+    CreateFloorAndPillerSystem();
+    ~CreateFloorAndPillerSystem();
 
     void Initialize() override;
     void Finalize() override;
+
+    void CreateFandP(GameEntity* _entity,const FloorAndPillerSpawner& fAndP,
+        FloorStates* floorStates, PillerStates* pillerStates);
 
 protected:
     void UpdateEntity(GameEntity* _entity) override;

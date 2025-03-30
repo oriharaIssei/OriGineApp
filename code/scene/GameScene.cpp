@@ -4,16 +4,17 @@
 #include "ECS/ECSManager.h"
 // component
 #include"Application/code/component/Player/PlayerStates.h"
-#include"Application/code/component/Field/FieldStates.h"
+#include"Application/code/component/Floor/BottomFloorStates.h"
 #include"Application/code/component/Floor/FloorStates.h"
 #include"Application/code/component/Piller/PillerStates.h"
-#include"Application/code/component/FloorAndPillerColum/FloorAndPillerColum.h"
+#include"Application/code/component/FloorAndPillerColum/FloorAndPillerSpawner.h"
 #include"Application/code/component/Bom/BomSpawner.h"
 #include"Application/code/component/Bom/BomStatus.h"
 
 //system
 #include"Application/code/system/Player/PlayerInput.h"
 #include"Application/code/system/Bom/PutBomSystem.h"
+#include"Application/code/system/FloorAndPillerColum/CreateFloorAndPillerSystem.h"
 
 GameScene::GameScene()
     : IScene("GameScene") {}
@@ -25,10 +26,10 @@ void GameScene::registerComponents() {
 
     ECSManager* ecsManager = ECSManager::getInstance();
     ecsManager->registerComponent<PlayerStates>();
-    ecsManager->registerComponent<FieldStates>();
+    ecsManager->registerComponent<BottomFloorStates>();
     ecsManager->registerComponent<FloorStates>();
     ecsManager->registerComponent<PillerStates>();
-    ecsManager->registerComponent<FloorAndPillerColum>();
+    ecsManager->registerComponent<FloorAndPillerSpawner>();
     ecsManager->registerComponent<BomSpawner>();
     ecsManager->registerComponent<BomStatus>();
 }
@@ -39,7 +40,7 @@ void GameScene::registerSystems() {
     ECSManager* ecsManager = ECSManager::getInstance();
     ecsManager->registerSystem<PlayerInputSystem>();
     ecsManager->registerSystem<PutBomSystem>();
-
+    ecsManager->registerSystem<CreateFloorAndPillerSystem>();
 
     ecsManager->SortPriorityOrderSystems();
 }

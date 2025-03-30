@@ -2,18 +2,20 @@
 
 #include "component/IComponent.h"
 
-class FieldStates
+
+class BottomFloorStates
     : public IComponent {
 
 private: // variables
     bool isAlive_ = true;
 
     float fieldRadius_;
-    
+    float settingAngle_;
+  
 
 public:
-    FieldStates() {}
-    virtual ~FieldStates() = default;
+    BottomFloorStates() {}
+    virtual ~BottomFloorStates() = default;
 
     void Initialize(GameEntity* _entity) override;
     virtual bool Edit();
