@@ -89,7 +89,7 @@ void BottomFloorPositionSet::CreateBottomFloor() {
         // Transformの初期位置を設定
         ///============================================================
         float moveRadius          = bottomFloorStates_->GetFieldRadius();
-        floorTransform->translate = Vec3f(0.0f, 0.0f, moveRadius); // X軸上に配置
+        floorTransform->translate = Vec3f(0.0f, 0.0f, -moveRadius); // X軸上に配置
 
         ///============================================================
         // Y軸回転のQuaternionを作成
@@ -117,6 +117,8 @@ void BottomFloorPositionSet::CreateBottomFloor() {
         pillerStates          = pillerStates_;
         floorAndPillerSpawner = floorAndPillerSpawner_;
         floorModeCreater      = floorModeCreater_[i];
+
+        
 
         // ================================= System ================================= //
         ECSManager* ecs = ECSManager::getInstance();

@@ -11,8 +11,7 @@ class FloorStates;
 class PillerStates;
     class CreateFloorAndPillerSystem : public ISystem {
 private:
-    bool isCreated_;
-
+  
 public:
     CreateFloorAndPillerSystem();
     ~CreateFloorAndPillerSystem();
@@ -20,7 +19,7 @@ public:
     void Initialize() override;
     void Finalize() override;
 
-    void CreateFandP(GameEntity* _entity,const FloorAndPillerSpawner& fAndP,
+    void CreateFandP(GameEntity* _entity, FloorAndPillerSpawner* fAndP,
         FloorStates* floorStates, PillerStates* pillerStates);
 
 protected:

@@ -7,6 +7,7 @@ void FloorAndPillerSpawner::Initialize([[maybe_unused]] GameEntity* _entity) {
     floorSpace_ = 11.0f;
     pillerSpace_ = 5.5f;
     columNum_    = 10;
+    isCreated_=false;
 }
 
 bool FloorAndPillerSpawner::Edit() {

@@ -20,7 +20,7 @@ CreateFloorAndPillerSystem::CreateFloorAndPillerSystem() : ISystem(SystemType::M
 CreateFloorAndPillerSystem::~CreateFloorAndPillerSystem() {}
 
 void CreateFloorAndPillerSystem::Initialize() {
-    isCreated_ = false;
+   
 }
 
 void CreateFloorAndPillerSystem::Finalize() {
@@ -37,21 +37,22 @@ void CreateFloorAndPillerSystem::UpdateEntity(GameEntity* _entity) {
     if (!entitySpawner   || !pillerStates || !floorStates) {
         return;
     }
-    if (isCreated_) {
+    if (entitySpawner->GetIsCreated()) {
         return;
     }
 
     // 建物を生成
-    CreateFandP(_entity, *entitySpawner, floorStates, pillerStates);
+    CreateFandP(_entity, entitySpawner, floorStates, pillerStates);
 
-    isCreated_ = true;
+    entitySpawner->SetIsCreated(true);
+   
 }
 
 void CreateFloorAndPillerSystem::CreateFandP(
-    GameEntity* _entity, const FloorAndPillerSpawner& fAndP,
+    GameEntity* _entity,  FloorAndPillerSpawner* fAndP,
     FloorStates* floorStates, PillerStates* pillerStates) {
 
-    for (size_t i = 0; i < fAndP.GetColumNum(); ++i) {
+    for (size_t i = 0; i < fAndP->GetColumNum(); ++i) {
 
         // ================================= Bullet Entityを 生成 ================================= //
         GameEntity* piller = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer>("Piller", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer());
@@ -70,8 +71,8 @@ void CreateFloorAndPillerSystem::CreateFandP(
         floorTransform->parent  = hostPivotTransform;
 
         // 　位置
-        pillerTransform->translate = Vec3f(hostTransform->translate) + Vec3f(0.0f, fAndP.GetPillerSpace() * float(i + 1), 0.0f);
-        floorTransform->translate  = Vec3f(hostTransform->translate) + Vec3f(0.0f, fAndP.GetFloorSpace() * float(i + 1), 0.0f);
+        pillerTransform->translate = Vec3f(hostTransform->translate) + Vec3f(0.0f, fAndP->GetPillerSpace() * float(i + 1), 0.0f);
+        floorTransform->translate  = Vec3f(hostTransform->translate) + Vec3f(0.0f, fAndP->GetFloorSpace() * float(i + 1), 0.0f);
    
         // Collider
         SphereCollider* collider           = getComponent<SphereCollider>(piller);
