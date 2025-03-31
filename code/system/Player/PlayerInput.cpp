@@ -75,11 +75,9 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
     // Y軸回転のQuaternionを作成
     ///============================================================
     Quaternion rotateAxisY = Quaternion::RotateAxisAngle(Vec3f(0.0f, 1.0f, 0.0f),
-        inputDirection*moveTime*deltaTime);
+        inputDirection * moveTime * deltaTime);
 
-    rotateAxisY = Quaternion::Normalize(rotateAxisY);
-
-    ImGui::DragFloat4("rotateAxis", rotateAxisY.v);
+   
 
     ///============================================================
     // 変換後の位置を計算
@@ -89,8 +87,9 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
     pivotTransform_->rotate *= rotateAxisY;
 
     // 進行方向よ
-    transform_->rotate = Quaternion::RotateAxisAngle({0.0f, 1.0f, 0.0f},
-        std::atan2(-entityPlayerStates_->GetDirection(), 0.0f));
+    transform_->rotate =
+        Quaternion::RotateAxisAngle({0.0f, 1.0f, 0.0f},
+            std::atan2(-entityPlayerStates_->GetDirection(), 0.0f));
 
     /// 更新
     pivotTransform_->Update();

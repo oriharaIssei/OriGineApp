@@ -3,7 +3,10 @@
 /// externals
 #include "imgui/imgui.h"
 
-void PillerStates::Initialize([[maybe_unused]] GameEntity* _entity) {}
+void PillerStates::Initialize([[maybe_unused]] GameEntity* _entity) {
+   /* pillarHP_ = 0;
+    collisionSize_ = 0.0f;*/
+}
 
 bool PillerStates::Edit() {
     bool isChange = false;

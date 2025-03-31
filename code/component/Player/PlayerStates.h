@@ -16,7 +16,6 @@ private: // variables
     float theta_;           // 現在の移動角度
     float direction_;       // 移動方向
    
-
     Transform* pivotTransform_ = nullptr; // 回転の中心となるオブジェクト
     Transform* transform_      = nullptr; // 自身のTransform
 

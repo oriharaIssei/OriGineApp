@@ -1,7 +1,8 @@
 #pragma once
 
 #include "component/IComponent.h"
-
+#include"component/transform/Transform.h"
+#include <cstdint>
 
 class BottomFloorStates
     : public IComponent {
@@ -11,7 +12,7 @@ private: // variables
 
     float fieldRadius_;
     float settingAngle_;
-  
+    int32_t floorNum_;
 
 public:
     BottomFloorStates() {}
@@ -27,6 +28,8 @@ public:
 public: // accsessor
     /// getter
     float GetFieldRadius() const { return fieldRadius_; }
-
+    float GetSettingAngle() const { return settingAngle_; }
+    int32_t GetFloorNum() const { return floorNum_; }
     /// setter
+   
 };

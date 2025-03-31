@@ -3,7 +3,9 @@
 /// externals
 #include "imgui/imgui.h"
 
-void FloorStates::Initialize([[maybe_unused]] GameEntity* _entity) {}
+void FloorStates::Initialize([[maybe_unused]] GameEntity* _entity) {
+  /*  fallTimer_ = 0.0f;*/
+}
 
 bool FloorStates::Edit() {
     bool isChange = false;

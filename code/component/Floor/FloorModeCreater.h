@@ -4,20 +4,18 @@
 #include<array>
 #include <cstdint>
 
-class FloorAndPillerSpawner
+class FloorModeCreater
     : public IComponent {
 
 private: // variables
 
     bool isAlive_ = true;
-    float pillerSpace_;
-    float floorSpace_;
-    int32_t columNum_;
-   
+ 
+    std::array<bool, 10> isAppearSafeZone_;
 
 public:
-    FloorAndPillerSpawner() {}
-    virtual ~FloorAndPillerSpawner() = default;
+    FloorModeCreater() {}
+    virtual ~FloorModeCreater() = default;
 
     void Initialize(GameEntity* _entity) override;
     bool Edit() override;
@@ -30,9 +28,9 @@ public:
 public: // accsessor
 
     /// getter
-    int32_t GetColumNum() const { return columNum_; }
-    float GetFloorSpace() const { return floorSpace_; }
-    float GetPillerSpace() const { return pillerSpace_; }
+  
+    bool GetAppearSafeZone(const int32_t& i) { return isAppearSafeZone_[i]; }
+  
       /// setter
  
   

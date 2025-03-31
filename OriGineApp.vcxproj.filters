@@ -59,7 +59,7 @@
     <ClInclude Include="code\component\Piller\PillerStates.h">
       <Filter>component\Piller</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Floor\FloorPhysicsSystem.h">
+    <ClInclude Include="code\system\Floor\BottomFloorPositionSet.h">
       <Filter>system\Floor</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Piller\PillerPhysicsSystem.h">
@@ -97,6 +97,9 @@
     <ClInclude Include="code\component\Floor\BottomFloorStates.h">
       <Filter>component\Floor</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\Floor\FloorModeCreater.h">
+      <Filter>component\Floor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -113,7 +116,7 @@
     <ClCompile Include="code\component\Piller\PillerStates.cpp">
       <Filter>component\Piller</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Floor\FloorPhysicsSystem.cpp">
+    <ClCompile Include="code\system\Floor\BottomFloorPositionSet.cpp">
       <Filter>system\Floor</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Piller\PillerPhysicsSystem.cpp">
@@ -149,6 +152,9 @@
       <Filter>component\Bom</Filter>
     </ClCompile>
     <ClCompile Include="code\component\Floor\BottomFloorStates.cpp">
+      <Filter>component\Floor</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Floor\FloorModeCreater.cpp">
       <Filter>component\Floor</Filter>
     </ClCompile>
   </ItemGroup>
