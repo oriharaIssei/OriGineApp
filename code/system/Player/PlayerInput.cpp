@@ -52,7 +52,8 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
     ///============================================================
     // 円運動の更新（Quaternionベース）
     ///============================================================
-  
+    float moveTime       = entityPlayerStates_->GetMoveSpeed();
+    float deltaTime      = Engine::getInstance()->getDeltaTime();
     float inputDirection = 0.0f;
 
     /// 入力で向き決定
@@ -74,7 +75,7 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
     // Y軸回転のQuaternionを作成
     ///============================================================
     Quaternion rotateAxisY = Quaternion::RotateAxisAngle(Vec3f(0.0f, 1.0f, 0.0f),
-        0.1f);
+        inputDirection*moveTime*deltaTime);
 
     rotateAxisY = Quaternion::Normalize(rotateAxisY);
 
