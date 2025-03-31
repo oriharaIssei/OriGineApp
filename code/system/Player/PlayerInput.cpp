@@ -8,10 +8,10 @@
 // lib
 #include "input/Input.h"
 // include
-#include <Vector3.h>
 #include <Quaternion.h>
+#include <Vector3.h>
 // component
-#include"component/Bom/BomSpawner.h"
+#include "component/Bom/BomSpawner.h"
 
 #include "engine/EngineInclude.h"
 #include <cmath>
@@ -65,9 +65,11 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     // 移動方向をセット
-    if (inputDirection != 0.0f) {
-        entityPlayerStates_->SetDirection(inputDirection);
+    if (inputDirection == 0.0f) {
+        return;
     }
+
+    entityPlayerStates_->SetDirection(inputDirection);
 
     ///============================================================
     // Y軸回転のQuaternionを作成
@@ -82,7 +84,7 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
     // 位置を適用
     pivotTransform_->rotate *= rotateAxisY;
 
-    //進行方向よ
+    // 進行方向よ
     transform_->rotate = Quaternion::RotateAxisAngle({0.0f, 1.0f, 0.0f},
         std::atan2(-entityPlayerStates_->GetDirection(), 0.0f));
 
