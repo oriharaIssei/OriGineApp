@@ -13,6 +13,7 @@ private: // variables
     bool isCreated_;
     float pillerSpace_;
     float floorSpace_;
+    float firstPillerOffset_;
     int32_t columNum_;
    
 
@@ -34,7 +35,9 @@ public: // accsessor
     int32_t GetColumNum() const { return columNum_; }
     float GetFloorSpace() const { return floorSpace_; }
     float GetPillerSpace() const { return pillerSpace_; }
+    float GetFirstPillerOffset() const { return firstPillerOffset_; }
     bool GetIsCreated() const { return isCreated_; }
+
       /// setter
     void SetIsCreated(const bool&is) {  isCreated_=is; }
  

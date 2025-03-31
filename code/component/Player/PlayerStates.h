@@ -15,6 +15,7 @@ private: // variables
     float moveRadius_;      // 移動半径
     float theta_;           // 現在の移動角度
     float direction_;       // 移動方向
+    float offSetY_;
    
     Transform* pivotTransform_ = nullptr; // 回転の中心となるオブジェクト
     Transform* transform_      = nullptr; // 自身のTransform
@@ -35,6 +36,7 @@ public: // accsessor
     float GetMoveSpeed() const { return moveSpeed_; }
     float GetTheta() const { return theta_; }
     float GetMoveRadius() const { return moveRadius_; }
+    float GetOffSetY() const { return offSetY_; }
     float GetDirection() const { return direction_; }
     Transform* GetPivotTransform() const { return pivotTransform_; }
     Transform* GetTransform() const { return transform_; }

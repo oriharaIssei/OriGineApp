@@ -131,7 +131,8 @@ void PlayerInputSystem::TransformInit(GameEntity* _entity) {
     // Transformの初期位置を設定
     ///============================================================
     float moveRadius      = entityPlayerStates_->GetMoveRadius();
-    transform_->translate = Vec3f(0.0f, 0.0f, moveRadius); // X軸上に配置
+    float offSetY         = entityPlayerStates_->GetOffSetY();
+    transform_->translate = Vec3f(0.0f, offSetY, moveRadius); // X軸上に配置
 
     ///============================================================
     // Y軸回転のQuaternionを作成

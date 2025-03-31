@@ -12,7 +12,7 @@
 
 void PlayerStates::Initialize([[maybe_unused]] GameEntity* _entity) {
    
-   
+   offSetY_ = 1.5f;
 }
 
 bool PlayerStates::Edit() {
@@ -24,7 +24,7 @@ bool PlayerStates::Edit() {
 
     isChange |= ImGui::DragFloat("MoveSpeed", &moveSpeed_, 0.01f);
     isChange |= ImGui::DragFloat("MoveRadius", &moveRadius_,0.01f);
-    
+    isChange |= ImGui::DragFloat("OffSetY", &offSetY_, 0.01f);
     return isChange;
 
 }
