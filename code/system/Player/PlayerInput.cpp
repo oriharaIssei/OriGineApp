@@ -58,10 +58,10 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
 
     /// 入力で向き決定
     if (input_->isPressKey(DIK_D)) {
-        inputDirection += 1.0f; // 反時計回り
+        inputDirection -= 1.0f; // 反時計回り
     }
     if (input_->isPressKey(DIK_A)) {
-        inputDirection -= 1.0f; // 時計回り
+        inputDirection += 1.0f; // 時計回り
     }
 
     // 移動方向をセット
