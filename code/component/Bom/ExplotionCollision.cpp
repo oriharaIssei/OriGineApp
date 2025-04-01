@@ -1,0 +1,47 @@
+#include "ExplotionCollision.h"
+/// engine
+#define ENGINE_INCLUDE
+
+#define RESOURCE_DIRECTORY // Resource の Directory
+// ECS
+#define ENGINE_ECS
+#include "engine/EngineInclude.h"
+/// externals
+#include "imgui/imgui.h"
+
+void ExplotionCollision::Initialize([[maybe_unused]] GameEntity* _entity) {}
+
+bool ExplotionCollision::Edit() {
+    bool isChange = false;
+
+    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+
+    ImGui::Spacing();
+
+      ImGui::Text("Offset");
+    isChange |= ImGui::InputFloat3("##BomOffset", positionOffset_.v);
+
+      ImGui::Text("etc");
+    isChange |= ImGui::DragFloat("explotionTime", &adaptTime_);
+    isChange |= ImGui::DragFloat("CollisionRadius", &collisionRadius_);
+
+    return isChange;
+}
+
+void ExplotionCollision::Save(BinaryWriter& _writer) {
+    _writer.Write(isAlive_);
+    _writer.Write(adaptTime_);
+    _writer.Write<3, float>(positionOffset_);
+}
+
+void ExplotionCollision::Load(BinaryReader& _reader) {
+    _reader.Read(isAlive_);
+    _reader.Read(adaptTime_);
+    _reader.Read<3, float>(positionOffset_);
+}
+
+void ExplotionCollision::Finalize() {}
+
+void ExplotionCollision::TimeDecrement() {
+    adaptTime_ -= Engine::getInstance()->getDeltaTime();
+  }

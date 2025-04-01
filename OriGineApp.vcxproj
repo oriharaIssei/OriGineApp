@@ -103,9 +103,13 @@
   <ItemGroup>
     <ClInclude Include="code\component\Bom\BomSpawner.h" />
     <ClInclude Include="code\component\Bom\BomStatus.h" />
+    <ClInclude Include="code\component\Bom\ExplotionCollision.h" />
     <ClInclude Include="code\component\Floor\BottomFloorStates.h" />
     <ClInclude Include="code\component\Floor\FloorModeCreater.h" />
     <ClInclude Include="code\component\ShockWave\ShockWaveSpawner.h" />
+    <ClInclude Include="code\system\Bom\BomExplotionSystem.h" />
+    <ClInclude Include="code\system\Bom\DeleteBomSystem.h" />
+    <ClInclude Include="code\system\Bom\DeleteExplotionCollision.h" />
     <ClInclude Include="code\system\Bom\PutBomSystem.h" />
     <ClInclude Include="code\system\ChangeSceneByButton.h" />
     <ClInclude Include="code\component\FloorAndPillerColum\FloorAndPillerSpawner.h" />
@@ -119,6 +123,8 @@
     <ClInclude Include="code\scene\GameScene.h" />
     <ClInclude Include="code\system\FloorAndPillerColum\CreateFloorAndPillerSystem.h" />
     <ClInclude Include="code\system\Floor\BottomFloorPositionSet.h" />
+    <ClInclude Include="code\system\Piller\DeletePillerSystem.h" />
+    <ClInclude Include="code\system\Piller\PillerDamageSystem.h" />
     <ClInclude Include="code\system\Piller\PillerPhysicsSystem.h" />
     <ClInclude Include="code\scene\TitleScene.h" />
     <ClInclude Include="code\system\Player\PlayerInput.h" />
@@ -128,9 +134,13 @@
   <ItemGroup>
     <ClCompile Include="code\component\Bom\BomSpawner.cpp" />
     <ClCompile Include="code\component\Bom\BomStatus.cpp" />
+    <ClCompile Include="code\component\Bom\ExplotionCollision.cpp" />
     <ClCompile Include="code\component\Floor\BottomFloorStates.cpp" />
     <ClCompile Include="code\component\Floor\FloorModeCreater.cpp" />
     <ClCompile Include="code\component\ShockWave\ShockWaveSpawner.cpp" />
+    <ClCompile Include="code\system\Bom\BomExplotionSystem.cpp" />
+    <ClCompile Include="code\system\Bom\DeleteBomSystem.cpp" />
+    <ClCompile Include="code\system\Bom\DeleteExplotionCollision.cpp" />
     <ClCompile Include="code\system\Bom\PutBomSystem.cpp" />
     <ClCompile Include="code\system\ChangeSceneByButton.cpp" />
     <ClCompile Include="code\component\FloorAndPillerColum\FloorAndPillerSpawner.cpp" />
@@ -144,6 +154,8 @@
     <ClCompile Include="code\scene\GameScene.cpp" />
     <ClCompile Include="code\system\FloorAndPillerColum\CreateFloorAndPillerSystem.cpp" />
     <ClCompile Include="code\system\Floor\BottomFloorPositionSet.cpp" />
+    <ClCompile Include="code\system\Piller\DeletePillerSystem.cpp" />
+    <ClCompile Include="code\system\Piller\PillerDamageSystem.cpp" />
     <ClCompile Include="code\system\Piller\PillerPhysicsSystem.cpp" />
     <ClCompile Include="code\scene\TitleScene.cpp" />
     <ClCompile Include="code\system\Player\PlayerInput.cpp" />

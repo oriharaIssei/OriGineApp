@@ -37,7 +37,11 @@ public: // accsessor
     float GetPutCoolTimeMax() const { return putCoolTimeMax_; }
     float GetCurrenPutCoolTime() const { return currentPutCoolTime_; } 
     bool GetIsPut() const { return isPut_; }
+    int32_t GetAblePutNum() const{ return ableSetBomNum_; }
+    int32_t GetPuttingNum() const { return puttingNum_; }
     /// setter
     void SetIsPut(const bool& is) {  isPut_ = is; }
     void SetPutCurrentCoolTime(const float& time) { currentPutCoolTime_ = time; }
+    void SetIncrementPuttingNum() { puttingNum_++; }
+    void SetDecrementPuttingNum() { puttingNum_--; }
 };

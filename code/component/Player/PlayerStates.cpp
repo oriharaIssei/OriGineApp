@@ -13,6 +13,7 @@
 void PlayerStates::Initialize([[maybe_unused]] GameEntity* _entity) {
    
    offSetY_ = 1.5f;
+   
 }
 
 bool PlayerStates::Edit() {

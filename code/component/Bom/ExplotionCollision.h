@@ -2,7 +2,7 @@
 
 #include "component/IComponent.h"
 #include <Vector3.h>
-class BomStatus
+class ExplotionCollision
     : public IComponent {
 
 private: // variables
@@ -10,17 +10,15 @@ private: // variables
     bool isAlive_ = true;
 
     /// time
-    float explotionTime_; // 爆発までの時間
-    float currentTime_;
+    float adaptTime_; // 当たり適応時間
     /// pos
     Vec3f positionOffset_;
     /// size
     float collisionRadius_;
-    
 
 public:
-    BomStatus() {}
-    virtual ~BomStatus() = default;
+    ExplotionCollision() {}
+    virtual ~ExplotionCollision() = default;
 
     void Initialize(GameEntity* _entity) override;
     virtual bool Edit();
@@ -29,13 +27,15 @@ public:
 
     virtual void Finalize();
 
+     void TimeDecrement();
+
 public: // accsessor
     /// getter
-    float GetExplotionTime() const { return explotionTime_; }
+    float GetAdaptTime() const { return adaptTime_; }
     float GetCollisionRadius() const { return collisionRadius_; }
-    float GetCurrentTimer() const { return currentTime_; }
     Vec3f GetPositionOffset() const { return positionOffset_; }
     /// setter
-    void CurrentTimeIncrement(const float& time) {currentTime_ += time;}
-   
+    void SetAdaptTime(const float& time) { adaptTime_ = time; }
+    void SetOffset(const Vec3f& time) { positionOffset_ = time; }
+    void SetCollisionRadius(const float& time) { collisionRadius_ = time; }
 };

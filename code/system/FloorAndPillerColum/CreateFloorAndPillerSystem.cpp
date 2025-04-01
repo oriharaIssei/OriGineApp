@@ -13,14 +13,16 @@
 #include "component/Floor/FloorStates.h"
 #include "component/FloorAndPillerColum/FloorAndPillerSpawner.h"
 #include "component/Piller/PillerStates.h"
+#include"component/Bom/ExplotionCollision.h"
 
 // system
+#include"system/Piller/PillerDamageSystem.h"
+#include"system/Piller/DeletePillerSystem.h"
 
 CreateFloorAndPillerSystem::CreateFloorAndPillerSystem() : ISystem(SystemType::Movement) {}
 CreateFloorAndPillerSystem::~CreateFloorAndPillerSystem() {}
 
 void CreateFloorAndPillerSystem::Initialize() {
-   
 }
 
 void CreateFloorAndPillerSystem::Finalize() {
@@ -30,11 +32,10 @@ void CreateFloorAndPillerSystem::Finalize() {
 void CreateFloorAndPillerSystem::UpdateEntity(GameEntity* _entity) {
 
     FloorAndPillerSpawner* entitySpawner = getComponent<FloorAndPillerSpawner>(_entity);
- /*   BottomFloorStates* bottomFloorStates = getComponent<BottomFloorStates>(_entity);*/
     PillerStates* pillerStates           = getComponent<PillerStates>(_entity);
     FloorStates* floorStates             = getComponent<FloorStates>(_entity);
 
-    if (!entitySpawner   || !pillerStates || !floorStates) {
+    if (!entitySpawner || !pillerStates || !floorStates) {
         return;
     }
     if (entitySpawner->GetIsCreated()) {
@@ -45,23 +46,22 @@ void CreateFloorAndPillerSystem::UpdateEntity(GameEntity* _entity) {
     CreateFandP(_entity, entitySpawner, floorStates, pillerStates);
 
     entitySpawner->SetIsCreated(true);
-   
 }
 
 void CreateFloorAndPillerSystem::CreateFandP(
-    GameEntity* _entity,  FloorAndPillerSpawner* fAndP,
+    GameEntity* _entity, FloorAndPillerSpawner* fAndP,
     FloorStates* floorStates, PillerStates* pillerStates) {
 
     for (size_t i = 0; i < size_t(fAndP->GetColumNum()); ++i) {
 
         // ================================= Bullet Entityを 生成 ================================= //
-        GameEntity* piller = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer>("Piller", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer());
-        GameEntity* floor  = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer>("Floor", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer());
+        GameEntity* piller = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, FloorStates>("Piller", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), FloorStates());
+        GameEntity* floor  = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, PillerStates>("Floor", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), PillerStates());
 
         // ================================= Componentを初期化 ================================= //
 
         // Transform
-        Transform* hostPivotTransform = getComponent<Transform>(_entity,1); // 設置元
+        Transform* hostPivotTransform = getComponent<Transform>(_entity, 1); // 設置元
         Transform* hostTransform      = getComponent<Transform>(_entity, 0); // 設置元
         Transform* pillerTransform    = getComponent<Transform>(piller); // 柱
         Transform* floorTransform     = getComponent<Transform>(floor); // 床
@@ -75,11 +75,11 @@ void CreateFloorAndPillerSystem::CreateFandP(
             pillerTransform->translate = Vec3f(hostTransform->translate) + Vec3f(0.0f, fAndP->GetFirstPillerOffset(), 0.0f);
         } else {
 
-            pillerTransform->translate = Vec3f(hostTransform->translate) + Vec3f(0.0f, fAndP->GetFirstPillerOffset() +(fAndP->GetPillerSpace() * float(i)), 0.0f);
+            pillerTransform->translate = Vec3f(hostTransform->translate) + Vec3f(0.0f, fAndP->GetFirstPillerOffset() + (fAndP->GetPillerSpace() * float(i)), 0.0f);
         }
 
-        floorTransform->translate  = Vec3f(hostTransform->translate) + Vec3f(0.0f, fAndP->GetFloorSpace() * float(i), 0.0f);
-   
+        floorTransform->translate = Vec3f(hostTransform->translate) + Vec3f(0.0f, fAndP->GetFloorSpace() * float(i), 0.0f);
+
         // Collider
         SphereCollider* collider           = getComponent<SphereCollider>(piller);
         collider->getLocalShape()->radius_ = pillerStates->GetCollisionSize();
@@ -98,6 +98,7 @@ void CreateFloorAndPillerSystem::CreateFandP(
 
         PillerStates* StatesPiller = getComponent<PillerStates>(floor);
         StatesPiller               = pillerStates;
+        StatesPiller->SetCurrentHp(pillerStates->GetHpMax());
 
         // ================================= System ================================= //
         ECSManager* ecs = ECSManager::getInstance();
@@ -105,7 +106,7 @@ void CreateFloorAndPillerSystem::CreateFandP(
         // None
 
         //------------------ StateTransition
-        /* ecs->getSystem<DeleteCharacterEntitySystem>()->addEntity(bullet);*/
+        ecs->getSystem<DeletePillerSystem>()->addEntity(piller);
 
         //------------------ Movement
         ecs->getSystem<MoveSystemByRigidBody>()->addEntity(piller);
@@ -114,6 +115,7 @@ void CreateFloorAndPillerSystem::CreateFandP(
         //------------------ Collision
         /*  ecs->getSystem<CharacterOnCollision>()->addEntity(bom);*/
         ecs->getSystem<CollisionCheckSystem>()->addEntity(piller);
+        ecs->getSystem<PillerDamageSystem>()->addEntity(piller);
         //------------------ Physics
         // None
 

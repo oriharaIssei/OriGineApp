@@ -7,6 +7,7 @@ void BomSpawner::Initialize([[maybe_unused]] GameEntity* _entity) {
 
     currentPutCoolTime_ = 0.0f;
     isPut_              = false;
+    puttingNum_         = 0;
 }
 
 bool BomSpawner::Edit() {

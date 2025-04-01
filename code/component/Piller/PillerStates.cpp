@@ -6,6 +6,7 @@
 void PillerStates::Initialize([[maybe_unused]] GameEntity* _entity) {
    /* pillarHP_ = 0;
     collisionSize_ = 0.0f;*/
+    currentHP_ = 0;
 }
 
 bool PillerStates::Edit() {
@@ -15,7 +16,7 @@ bool PillerStates::Edit() {
 
     ImGui::Spacing();
 
-    isChange |= ImGui::InputInt("pillarHP", &pillarHP_);
+    isChange |= ImGui::InputInt("pillarHP", &HPMax_);
     isChange |= ImGui::DragFloat("collisionSize", &collisionSize_,0.01f);
 
     return isChange;
@@ -23,14 +24,18 @@ bool PillerStates::Edit() {
 
 void PillerStates::Save(BinaryWriter& _writer) {
     _writer.Write(isAlive_);
-    _writer.Write(pillarHP_);
+    _writer.Write(HPMax_);
     _writer.Write(collisionSize_);
 }
 
 void PillerStates::Load(BinaryReader& _reader) {
     _reader.Read(isAlive_);
-    _reader.Read(pillarHP_);
+    _reader.Read(HPMax_);
     _reader.Read(collisionSize_);
 }
 
 void PillerStates::Finalize() {}
+
+void PillerStates::TakeDamage() {
+    currentHP_--;
+ }

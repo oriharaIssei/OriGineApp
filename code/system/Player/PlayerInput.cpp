@@ -49,6 +49,11 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
 
     TransformInit(_entity);
 
+    ///================================================================
+    // 爆弾の設置入力
+    ///================================================================
+    PutBom(_entity);
+
     ///============================================================
     // 円運動の更新（Quaternionベース）
     ///============================================================
@@ -77,8 +82,6 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
     Quaternion rotateAxisY = Quaternion::RotateAxisAngle(Vec3f(0.0f, 1.0f, 0.0f),
         inputDirection * moveTime * deltaTime);
 
-   
-
     ///============================================================
     // 変換後の位置を計算
     ///============================================================
@@ -94,11 +97,6 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
     /// 更新
     pivotTransform_->Update();
     transform_->Update();
-
-    ///================================================================
-    // 爆弾の設置入力
-    ///================================================================
-    PutBom(_entity);
 }
 
 void PlayerInputSystem::TransformInit(GameEntity* _entity) {
@@ -158,10 +156,15 @@ void PlayerInputSystem::PutBom(GameEntity* _entity) {
 
     // coolTimeが0以下になったら発射
     if (currentCoolTime <= 0.0f) {
-        entityBomSpawner->SetIsPut(input_->isPressKey(DIK_SPACE));
+
+        /// 置ける数だったらボタンで設置
+        if (entityBomSpawner->GetPuttingNum() < entityBomSpawner->GetAblePutNum()) {
+
+            entityBomSpawner->SetIsPut(input_->isTriggerKey(DIK_SPACE));
+        }
     } else {
         // coolTimeを減らす
         currentCoolTime -= Engine::getInstance()->getDeltaTime();
-        entityBomSpawner->SetPutCurrentCoolTime((std::min)(currentCoolTime, 0.f));
+        entityBomSpawner->SetPutCurrentCoolTime((std::max)(currentCoolTime, 0.f));
     }
 }

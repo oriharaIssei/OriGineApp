@@ -100,6 +100,24 @@
     <ClInclude Include="code\component\Floor\FloorModeCreater.h">
       <Filter>component\Floor</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Bom\BomExplotionSystem.h">
+      <Filter>system\Bom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Bom\ExplotionCollision.h">
+      <Filter>component\Bom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Bom\DeleteBomSystem.h">
+      <Filter>system\Bom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Piller\PillerDamageSystem.h">
+      <Filter>system\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Piller\DeletePillerSystem.h">
+      <Filter>system\Piller</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Bom\DeleteExplotionCollision.h">
+      <Filter>system\Bom</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -156,6 +174,24 @@
     </ClCompile>
     <ClCompile Include="code\component\Floor\FloorModeCreater.cpp">
       <Filter>component\Floor</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Bom\BomExplotionSystem.cpp">
+      <Filter>system\Bom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Bom\ExplotionCollision.cpp">
+      <Filter>component\Bom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Bom\DeleteBomSystem.cpp">
+      <Filter>system\Bom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Piller\PillerDamageSystem.cpp">
+      <Filter>system\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Piller\DeletePillerSystem.cpp">
+      <Filter>system\Piller</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Bom\DeleteExplotionCollision.cpp">
+      <Filter>system\Bom</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
