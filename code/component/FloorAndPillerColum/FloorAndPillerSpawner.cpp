@@ -4,6 +4,7 @@
 #include<string>
 
 void FloorAndPillerSpawner::Initialize([[maybe_unused]] GameEntity* _entity) {
+    /// 初期化でパラメータ編集してるから大丈夫、ここ消したら終わり
     floorSpace_ = 11.0f;
     pillerSpace_ = 10.0f;
     columNum_    = 5;

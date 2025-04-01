@@ -92,6 +92,8 @@ void CreateFloorAndPillerSystem::CreateFandP(
         CreateModelMeshRenderer(pillerRender, piller, kApplicationResourceDirectory + "/Models/Piller", "Piller.obj");
         CreateModelMeshRenderer(floorRender, floor, kApplicationResourceDirectory + "/Models/whiteFloor", "whiteFloor.obj");
 
+        //↓ここのパラメータコピーがエディターで設定した値にならない(初期化設定した値は問題なし)
+
         /// States
         FloorStates* StatesFloor = getComponent<FloorStates>(floor);
         StatesFloor              = floorStates;
