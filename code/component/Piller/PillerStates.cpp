@@ -39,3 +39,8 @@ void PillerStates::Finalize() {}
 void PillerStates::TakeDamage() {
     currentHP_--;
  }
+
+void PillerStates::SetColumAndRow(const int32_t& colum, const int32_t& row) {
+     rowNum_   = row;
+     columNum_ = colum;
+ }

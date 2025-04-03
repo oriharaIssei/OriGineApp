@@ -7,7 +7,7 @@ void FloorAndPillerSpawner::Initialize([[maybe_unused]] GameEntity* _entity) {
     /// 初期化でパラメータ編集してるから大丈夫、ここ消したら終わり
     floorSpace_ = 11.0f;
     pillerSpace_ = 10.0f;
-    columNum_    = 5;
+    columNumMax_    = 3;
     firstPillerOffset_ = 5.5f;
     isCreated_=false;
 }
@@ -23,7 +23,7 @@ bool FloorAndPillerSpawner::Edit() {
     isChange |= ImGui::DragFloat("floorSpace", &floorSpace_, 0.01f);
     isChange |= ImGui::DragFloat("pillerSpace", &pillerSpace_, 0.01f);
     isChange |= ImGui::DragFloat("firstPillerOffset", &firstPillerOffset_, 0.01f);
-    isChange |= ImGui::InputInt("ColumNum", &columNum_);
+    isChange |= ImGui::InputInt("columNumMax", &columNumMax_);
     
     return isChange;
 }
@@ -31,14 +31,14 @@ bool FloorAndPillerSpawner::Edit() {
 void FloorAndPillerSpawner::Save(BinaryWriter& _writer) {
     _writer.Write(pillerSpace_);
     _writer.Write(floorSpace_);
-    _writer.Write(columNum_);
+    _writer.Write(columNumMax_);
   
 }
 
 void FloorAndPillerSpawner::Load(BinaryReader& _reader) {
     _reader.Read(pillerSpace_);
     _reader.Read(floorSpace_);
-    _reader.Read(columNum_);
+    _reader.Read(columNumMax_);
  
 }
 

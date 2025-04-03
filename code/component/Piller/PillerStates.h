@@ -15,6 +15,9 @@ private: // variables
     int32_t currentHP_;
     float collisionSize_;
 
+     int32_t columNum_;
+     int32_t rowNum_;
+
 public:
     PillerStates() {}
     virtual ~PillerStates() = default;
@@ -34,6 +37,10 @@ public: // accsessor
     float GetCollisionSize() const { return collisionSize_; }
     int32_t GetHpMax() const { return HPMax_; }
     int32_t GetCurrentHp() const { return currentHP_; }
+    int32_t GetColumNum() const { return columNum_; }
+    int32_t GetRowNum() const { return rowNum_; }
     /// setter
     void SetCurrentHp(const int32_t& hp) { currentHP_ = hp; }
+    void SetColumAndRow(const int32_t& colum, const int32_t& row);
+ 
 };

@@ -14,6 +14,8 @@ private: // variables
     float settingAngle_;
     int32_t floorNum_;
 
+   
+
 public:
     BottomFloorStates() {}
     virtual ~BottomFloorStates() = default;
@@ -30,6 +32,9 @@ public: // accsessor
     float GetFieldRadius() const { return fieldRadius_; }
     float GetSettingAngle() const { return settingAngle_; }
     int32_t GetFloorNum() const { return floorNum_; }
+   
+
     /// setter
+   
    
 };

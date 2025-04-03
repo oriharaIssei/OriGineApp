@@ -4,9 +4,9 @@
 #include "imgui/imgui.h"
 
 void BottomFloorStates::Initialize([[maybe_unused]] GameEntity* _entity) {
- /*   fieldRadius_ = 0.0f;
-    settingAngle_ = 0.0f;
-    floorNum_     = 0;*/
+    fieldRadius_ = 30.0f;
+   /* settingAngle_ = 60.0f;*/
+    floorNum_     = 6;
 }
 
 bool BottomFloorStates::Edit() {

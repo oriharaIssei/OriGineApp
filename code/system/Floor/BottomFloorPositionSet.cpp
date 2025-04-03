@@ -118,6 +118,8 @@ void BottomFloorPositionSet::CreateBottomFloor() {
         floorAndPillerSpawner = floorAndPillerSpawner_;
         floorModeCreater      = floorModeCreater_[i];
 
+        //rowNumberをセット
+        floorAndPillerSpawner_->SetRowNumber(i);
         
 
         // ================================= System ================================= //

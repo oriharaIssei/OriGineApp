@@ -21,6 +21,8 @@ private:
    std::vector<FloorModeCreater*>floorModeCreater_;
     PillerStates* pillerStates_;
     FloorStates* floorStates_;
+
+ 
   
 public:
     BottomFloorPositionSet();

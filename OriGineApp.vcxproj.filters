@@ -118,6 +118,12 @@
     <ClInclude Include="code\system\Bom\DeleteExplotionCollision.h">
       <Filter>system\Bom</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\FloorAndPillerColum\FloorAndPillerrStatus.h">
+      <Filter>component\FloorAndPillerColum</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\FloorAndPillerColum\FloorAndPillerFallSystem.h">
+      <Filter>system\FloorAndPillerColum</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -192,6 +198,12 @@
     </ClCompile>
     <ClCompile Include="code\system\Bom\DeleteExplotionCollision.cpp">
       <Filter>system\Bom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\FloorAndPillerColum\FloorAndPillerrStatus.cpp">
+      <Filter>component\FloorAndPillerColum</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\FloorAndPillerColum\FloorAndPillerFallSystem.cpp">
+      <Filter>system\FloorAndPillerColum</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
