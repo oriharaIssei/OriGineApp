@@ -19,15 +19,15 @@ bool CharacterStatus::Edit() {
 }
 
 void CharacterStatus::Save(BinaryWriter& _writer) {
-    _writer.Write(isAlive_);
-    _writer.Write(life_);
-    _writer.Write(attack_);
+    _writer.Write("isAlive", isAlive_);
+    _writer.Write("life", life_);
+    _writer.Write("attack", attack_);
 }
 
 void CharacterStatus::Load(BinaryReader& _reader) {
-    _reader.Read(isAlive_);
-    _reader.Read(life_);
-    _reader.Read(attack_);
+    _reader.Read("isAlive", isAlive_);
+    _reader.Read("life", life_);
+    _reader.Read("attack", attack_);
 }
 
 void CharacterStatus::Finalize() {}

@@ -38,11 +38,11 @@ bool SceneChanger::Edit() {
 }
 
 void SceneChanger::Save(BinaryWriter& _writer) {
-    _writer.Write(nextSceneName_);
+    _writer.Write("nextSceneName",nextSceneName_);
 }
 
 void SceneChanger::Load(BinaryReader& _reader) {
-    _reader.Read(nextSceneName_);
+    _reader.Read("nextSceneName", nextSceneName_);
 }
 
 void SceneChanger::Finalize() {}

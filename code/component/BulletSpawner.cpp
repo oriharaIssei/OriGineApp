@@ -36,21 +36,21 @@ bool BulletSpawner::Edit() {
 }
 
 void BulletSpawner::Save(BinaryWriter& _writer) {
-    _writer.Write<3, float>(bulletOffset_);
-    _writer.Write(fireCoolTime_);
-    _writer.Write(fireCoolTimeMax_);
-    _writer.Write(bulletSpeed_);
-    _writer.Write(bulletLifeTime_);
-    _writer.Write(bulletSize_);
+    _writer.Write<3, float>("bulletOffset", bulletOffset_);
+    _writer.Write("fireCoolTime", fireCoolTime_);
+    _writer.Write("fireCoolTimeMax", fireCoolTimeMax_);
+    _writer.Write("bulletSpeed", bulletSpeed_);
+    _writer.Write("bulletLifeTime", bulletLifeTime_);
+    _writer.Write("bulletSize", bulletSize_);
 }
 
 void BulletSpawner::Load(BinaryReader& _reader) {
-    _reader.Read<3, float>(bulletOffset_);
-    _reader.Read(fireCoolTime_);
-    _reader.Read(fireCoolTimeMax_);
-    _reader.Read(bulletSpeed_);
-    _reader.Read(bulletLifeTime_);
-    _reader.Read(bulletSize_);
+    _reader.Read<3, float>("bulletOffset", bulletOffset_);
+    _reader.Read("fireCoolTime", fireCoolTime_);
+    _reader.Read("fireCoolTimeMax", fireCoolTimeMax_);
+    _reader.Read("bulletSpeed", bulletSpeed_);
+    _reader.Read("bulletLifeTime", bulletLifeTime_);
+    _reader.Read("bulletSize", bulletSize_);
 }
 
 void BulletSpawner::Finalize() {}

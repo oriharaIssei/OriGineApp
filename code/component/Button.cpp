@@ -118,57 +118,69 @@ bool Button::Edit() {
 
 void Button::Save(BinaryWriter& _writer) {
     /// ============ color ============ ///
-    _writer.Write<4, float>(normalColor_);
-    _writer.Write<4, float>(hoverColor_);
-    _writer.Write<4, float>(pressColor_);
-    _writer.Write<4, float>(releaseColor_);
+    _writer.Write<4, float>("normalColor", normalColor_);
+    _writer.Write<4, float>("hoverColor", hoverColor_);
+    _writer.Write<4, float>("pressColor", pressColor_);
+    _writer.Write<4, float>("releaseColor", releaseColor_);
 
     /// ============ shortcut key ============ ///
     // size
-    _writer.Write<1, uint32_t>(shortcutKey_.size());
-    // data
-    for (auto& key : shortcutKey_) {
-        _writer.Write<1, int32_t>(static_cast<int32_t>(key));
+    _writer.Write("shortcutKeySize", shortcutKey_.size());
+    std::string prevGroupName = _writer.getGroupName();
+
+    { // data
+        int32_t dataIndex = 0;
+        for (auto& key : shortcutKey_) {
+            _writer.Write<int32_t>("shortcutKey" + std::to_string(dataIndex++), static_cast<int32_t>(key));
+        }
     }
 
     /// ============ shortcut pad button ============ ///
     // size
-    _writer.Write<1, uint32_t>(shortcutPadButton_.size());
-    // data
-    for (auto& button : shortcutPadButton_) {
-        _writer.Write<1, int32_t>(static_cast<int32_t>(button));
+    _writer.Write("shortcutPadButtonSize", shortcutPadButton_.size());
+    { // data
+        int32_t dataIndex = 0;
+        for (auto& button : shortcutPadButton_) {
+            _writer.Write<int32_t>("shortCutButton" + std::to_string(dataIndex++), static_cast<int32_t>(button));
+        }
     }
 }
 
 void Button::Load(BinaryReader& _reader) {
     /// ============ color ============ ///
-    _reader.Read<4, float>(normalColor_);
-    _reader.Read<4, float>(hoverColor_);
-    _reader.Read<4, float>(pressColor_);
-    _reader.Read<4, float>(releaseColor_);
+    _reader.Read<4, float>("normalColor", normalColor_);
+    _reader.Read<4, float>("hoverColor", hoverColor_);
+    _reader.Read<4, float>("pressColor", pressColor_);
+    _reader.Read<4, float>("releaseColor", releaseColor_);
 
     /// ============ shortcut key ============ ///
     // size
-    uint32_t size = 0;
-    _reader.Read<uint32_t>(size);
+    size_t size = 0;
+    _reader.Read("shortcutKeySize", size);
     shortcutKey_.resize(size);
 
     // data
     int32_t dataInt = 0;
-    for (auto& key : shortcutKey_) {
-        _reader.Read<int32_t>(dataInt);
-        key = static_cast<Key>(dataInt);
+    {
+        int32_t dataIndex = 0;
+        for (auto& key : shortcutKey_) {
+            _reader.Read<int32_t>("shortcutKey" + std::to_string(dataIndex++), dataInt);
+            key = static_cast<Key>(dataInt);
+        }
     }
 
     /// ============ shortcut pad button ============ ///
     // size
-    _reader.Read<uint32_t>(size);
+    _reader.Read("shortcutPadButtonSize", size);
     shortcutPadButton_.resize(size);
 
     // data
-    for (auto& button : shortcutPadButton_) {
-        _reader.Read<int32_t>(dataInt);
-        button = static_cast<PadButton>(dataInt);
+    {
+        int32_t dataIndex = 0;
+        for (auto& button : shortcutPadButton_) {
+            _reader.Read<int32_t>("shortCutButton" + std::to_string(dataIndex++), dataInt);
+            button = static_cast<PadButton>(dataInt);
+        }
     }
 }
 
