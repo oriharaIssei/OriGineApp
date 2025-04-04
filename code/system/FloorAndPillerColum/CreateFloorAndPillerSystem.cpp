@@ -83,6 +83,8 @@ void CreateFloorAndPillerSystem::CreateFandP(
             fAndPTransform->translate = Vec3f(0.0f, fAndP->GetFirstPillerOffset() + (fAndP->GetPillerSpace() * float(i)), 0.0f);
         }
 
+        fAndPTransform->Update();
+
         //子の
         pillerTransform->translate = Vec3f(hostTransform->translate) + Vec3f(0.0f, fAndP->GetFirstPillerOffset(), 0.0f);
         floorTransform->translate  = Vec3f(hostTransform->translate) + Vec3f(0.0f, fAndP->GetFloorSpace(), 0.0f);
