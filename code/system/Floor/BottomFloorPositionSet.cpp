@@ -23,18 +23,18 @@
 #include <cmath>
 #include <numbers>
 
-BottomFloorPositionSet::BottomFloorPositionSet() : ISystem(SystemType::Initialize) {}
+BottomFloorPositionSet::BottomFloorPositionSet() : ISystem(SystemType::Movement) {}
 BottomFloorPositionSet::~BottomFloorPositionSet() {}
 
 void BottomFloorPositionSet::Initialize() {
-  
+    isInited_ = false;
 }
 
 void BottomFloorPositionSet::Finalize() {
 }
 
 void BottomFloorPositionSet::UpdateEntity(GameEntity* _entity) {
-    if (!_entity) {
+    if (!_entity||isInited_) {
         return;
     }
 
@@ -59,6 +59,7 @@ void BottomFloorPositionSet::UpdateEntity(GameEntity* _entity) {
 
     // 床生成
     CreateBottomFloor();
+    isInited_ = true;
 }
 
 void BottomFloorPositionSet::CreateBottomFloor() {
