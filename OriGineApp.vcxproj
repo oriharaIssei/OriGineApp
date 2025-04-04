@@ -122,9 +122,9 @@
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\MyGame.h" />
     <ClInclude Include="code\scene\GameScene.h" />
-    <ClInclude Include="code\system\FloorAndPillerColum\CreateFloorAndPillerSystem.h" />
-    <ClInclude Include="code\system\FloorAndPillerColum\FloorAndPillerFallSystem.h" />
-    <ClInclude Include="code\system\Floor\BottomFloorPositionSet.h" />
+    <ClInclude Include="code\system\FloorAndPiller\CreateFloorAndPillerSystem.h" />
+    <ClInclude Include="code\system\FloorAndPiller\FloorAndPillerFallSystem.h" />
+    <ClInclude Include="code\system\FloorAndPiller\TowerPositionSet.h" />
     <ClInclude Include="code\system\Piller\DeletePillerSystem.h" />
     <ClInclude Include="code\system\Piller\PillerDamageSystem.h" />
     <ClInclude Include="code\system\Piller\PillerPhysicsSystem.h" />
@@ -155,9 +155,9 @@
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
     <ClCompile Include="code\scene\GameScene.cpp" />
-    <ClCompile Include="code\system\FloorAndPillerColum\CreateFloorAndPillerSystem.cpp" />
-    <ClCompile Include="code\system\FloorAndPillerColum\FloorAndPillerFallSystem.cpp" />
-    <ClCompile Include="code\system\Floor\BottomFloorPositionSet.cpp" />
+    <ClCompile Include="code\system\FloorAndPiller\CreateFloorAndPillerSystem.cpp" />
+    <ClCompile Include="code\system\FloorAndPiller\FloorAndPillerFallSystem.cpp" />
+    <ClCompile Include="code\system\FloorAndPiller\TowerPositionSet.cpp" />
     <ClCompile Include="code\system\Piller\DeletePillerSystem.cpp" />
     <ClCompile Include="code\system\Piller\PillerDamageSystem.cpp" />
     <ClCompile Include="code\system\Piller\PillerPhysicsSystem.cpp" />

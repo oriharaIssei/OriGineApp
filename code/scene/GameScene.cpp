@@ -17,8 +17,8 @@
 //system
 #include"Application/code/system/Player/PlayerInput.h"
 #include"Application/code/system/Bom/PutBomSystem.h"
-#include"Application/code/system/FloorAndPillerColum/CreateFloorAndPillerSystem.h"
-#include"Application/code/system/Floor/BottomFloorPositionSet.h"
+#include"Application/code/system/FloorAndPiller/CreateFloorAndPillerSystem.h"
+#include"Application/code/system/FloorAndPiller/TowerPositionSet.h"
 #include"Application/code/system/Bom/BomExplotionSystem.h"
 #include"Application/code/system/Bom/DeleteBomSystem.h"
 #include"Application/code/system/Piller/PillerDamageSystem.h"
@@ -53,7 +53,7 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<PlayerInputSystem>();
     ecsManager->registerSystem<PutBomSystem>();
     ecsManager->registerSystem<CreateFloorAndPillerSystem>();
-    ecsManager->registerSystem<BottomFloorPositionSet>();
+    ecsManager->registerSystem<TowerPositionSet>();
     ecsManager->registerSystem<BomExplotionSystem>();
     ecsManager->registerSystem<DeleteBomSystem>();
     ecsManager->registerSystem<PillerDamageSystem>();

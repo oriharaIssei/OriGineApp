@@ -3,6 +3,7 @@
 #include"system/ISystem.h"
 
 #include<vector>
+#include <component/transform/Transform.h>
 
 ///====================================================================
 // FloorSystem
@@ -12,7 +13,8 @@ class FloorAndPillerSpawner;
 class PillerStates;
 class FloorStates;
 class FloorModeCreater;
-class BottomFloorPositionSet : public ISystem {
+
+class TowerPositionSet : public ISystem {
 private:
     bool isInited_;
 
@@ -25,13 +27,17 @@ private:
  
   
 public:
-    BottomFloorPositionSet();
-    ~BottomFloorPositionSet();
+    TowerPositionSet();
+    ~TowerPositionSet();
 
     void Initialize() override;
     void Finalize() override;
 
     void CreateBottomFloor();
+    void CreateTower();
+
+    void SetPivotQuaternion(Transform* pivotTransform,const int32_t &index);
+    void SetQuaternion(Transform*pivotTransform,Transform* Transform);
 
 protected:
     void UpdateEntity(GameEntity* _entity) override;
