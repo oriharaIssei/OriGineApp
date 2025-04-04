@@ -20,7 +20,7 @@
 #include "system/Piller/DeletePillerSystem.h"
 #include "system/Piller/PillerDamageSystem.h"
 
-CreateFloorAndPillerSystem::CreateFloorAndPillerSystem() : ISystem(SystemType::Initialize) {}
+CreateFloorAndPillerSystem::CreateFloorAndPillerSystem() : ISystem(SystemType::Movement) {}
 CreateFloorAndPillerSystem::~CreateFloorAndPillerSystem() {}
 
 void CreateFloorAndPillerSystem::Initialize() {
