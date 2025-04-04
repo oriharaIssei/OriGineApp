@@ -20,13 +20,13 @@ bool FloorStates::Edit() {
 }
 
 void FloorStates::Save(BinaryWriter& _writer) {
-    _writer.Write(isAlive_);
-    _writer.Write(fallTimer_);
+    _writer.Write("isAlive", isAlive_);
+    _writer.Write("fallTimer",fallTimer_);
 }
 
 void FloorStates::Load(BinaryReader& _reader) {
-    _reader.Read(isAlive_);
-    _reader.Read(fallTimer_);
+    _reader.Read("isAlive", isAlive_);
+    _reader.Read("fallTimer", fallTimer_);
 }
 
 void FloorStates::Finalize() {}

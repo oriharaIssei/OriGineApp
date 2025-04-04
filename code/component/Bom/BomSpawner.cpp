@@ -24,16 +24,16 @@ bool BomSpawner::Edit() {
 }
 
 void BomSpawner::Save(BinaryWriter& _writer) {
-    _writer.Write(isAlive_);
-    _writer.Write(ableSetBomNum_);
-    _writer.Write(putCoolTimeMax_);
+    _writer.Write("isAlive", isAlive_);
+    _writer.Write("ableSetBomNum", ableSetBomNum_);
+    _writer.Write("putCoolTimeMax", putCoolTimeMax_);
   
 }
 
 void BomSpawner::Load(BinaryReader& _reader) {
-    _reader.Read(isAlive_);
-    _reader.Read(ableSetBomNum_);
-    _reader.Read(putCoolTimeMax_);
+    _reader.Read("isAlive", isAlive_);
+    _reader.Read("ableSetBomNum", ableSetBomNum_);
+    _reader.Read("putCoolTimeMax", putCoolTimeMax_);
     
 
 }

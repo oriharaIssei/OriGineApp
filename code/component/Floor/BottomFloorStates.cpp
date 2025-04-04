@@ -24,18 +24,18 @@ bool BottomFloorStates::Edit() {
 }
 
 void BottomFloorStates::Save(BinaryWriter& _writer) {
-    _writer.Write(isAlive_);
-    _writer.Write(fieldRadius_);
-    _writer.Write(settingAngle_);
-    _writer.Write(floorNum_);
+    _writer.Write("isAlive", isAlive_);
+    _writer.Write("fieldRadius", fieldRadius_);
+    _writer.Write("settingAngle", settingAngle_);
+    _writer.Write("floorNum", floorNum_);
    
 }
 
 void BottomFloorStates::Load(BinaryReader& _reader) {
-    _reader.Read(isAlive_);
-    _reader.Read(fieldRadius_);
-    _reader.Read(settingAngle_);
-    _reader.Read(floorNum_);
+    _reader.Read("isAlive", isAlive_);
+    _reader.Read("fieldRadius", fieldRadius_);
+    _reader.Read("settingAngle", settingAngle_);
+    _reader.Read("floorNum", floorNum_);
 }
 
 void BottomFloorStates::Finalize() {}

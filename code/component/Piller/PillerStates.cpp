@@ -23,15 +23,15 @@ bool PillerStates::Edit() {
 }
 
 void PillerStates::Save(BinaryWriter& _writer) {
-    _writer.Write(isAlive_);
-    _writer.Write(HPMax_);
-    _writer.Write(collisionSize_);
+    _writer.Write("isAlive", isAlive_);
+    _writer.Write("HPMax", HPMax_);
+    _writer.Write("collisionSize", collisionSize_);
 }
 
 void PillerStates::Load(BinaryReader& _reader) {
-    _reader.Read(isAlive_);
-    _reader.Read(HPMax_);
-    _reader.Read(collisionSize_);
+    _reader.Read("isAlive", isAlive_);
+    _reader.Read("HPMax", HPMax_);
+    _reader.Read("collisionSize", collisionSize_);
 }
 
 void PillerStates::Finalize() {}

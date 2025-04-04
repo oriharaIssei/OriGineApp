@@ -26,7 +26,7 @@
 #include"Application/code/system/Bom/DeleteExplotionCollision.h"
 
 GameScene::GameScene()
-    : IScene("GameScene") {}
+    : IScene("Game") {}
 
 GameScene::~GameScene() {}
 

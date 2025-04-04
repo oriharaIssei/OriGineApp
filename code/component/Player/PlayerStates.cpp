@@ -31,15 +31,15 @@ bool PlayerStates::Edit() {
 }
 
 void PlayerStates::Save(BinaryWriter& _writer) {
-    _writer.Write(isAlive_);
-    _writer.Write(moveSpeed_);
-    _writer.Write(moveRadius_);
+    _writer.Write("isAlive", isAlive_);
+    _writer.Write("moveSpeed", moveSpeed_);
+    _writer.Write("moveRadius", moveRadius_);
 }
 
 void PlayerStates::Load(BinaryReader& _reader) {
-    _reader.Read(isAlive_);
-    _reader.Read(moveSpeed_);
-    _reader.Read(moveRadius_);
+    _reader.Read("isAlive", isAlive_);
+    _reader.Read("moveSpeed", moveSpeed_);
+    _reader.Read("moveRadius", moveRadius_);
 }
 
 void PlayerStates::Finalize() {}

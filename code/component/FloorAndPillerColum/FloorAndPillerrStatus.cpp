@@ -21,12 +21,12 @@ bool FloorAndPillerrStatus::Edit() {
 }
 
 void FloorAndPillerrStatus::Save(BinaryWriter& _writer) {
-    _writer.Write(isAlive_);
+    _writer.Write("isAlive", isAlive_);
   
 }
 
 void FloorAndPillerrStatus::Load(BinaryReader& _reader) {
-    _reader.Read(isAlive_);
+    _reader.Read("isAlive", isAlive_);
  
 }
 

@@ -29,15 +29,15 @@ bool ExplotionCollision::Edit() {
 }
 
 void ExplotionCollision::Save(BinaryWriter& _writer) {
-    _writer.Write(isAlive_);
-    _writer.Write(adaptTime_);
-    _writer.Write<3, float>(positionOffset_);
+    _writer.Write("isAlive", isAlive_);
+    _writer.Write("adaptTime", adaptTime_);
+    _writer.Write<3, float>("positionOffset", positionOffset_);
 }
 
 void ExplotionCollision::Load(BinaryReader& _reader) {
-    _reader.Read(isAlive_);
-    _reader.Read(adaptTime_);
-    _reader.Read<3, float>(positionOffset_);
+    _reader.Read("isAlive", isAlive_);
+    _reader.Read("adaptTime", adaptTime_);
+    _reader.Read<3, float>("positionOffset", positionOffset_);
 }
 
 void ExplotionCollision::Finalize() {}

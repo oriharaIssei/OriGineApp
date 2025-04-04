@@ -18,13 +18,13 @@ bool ShockWaveSpawner::Edit() {
 }
 
 void ShockWaveSpawner::Save(BinaryWriter& _writer) {
-    _writer.Write(isAlive_);
-    _writer.Write(moveSpeed_);
+    _writer.Write("isAlive", isAlive_);
+    _writer.Write("moveSpeed", moveSpeed_);
 }
 
 void ShockWaveSpawner::Load(BinaryReader& _reader) {
-    _reader.Read(isAlive_);
-    _reader.Read(moveSpeed_);
+    _reader.Read("isAlive", isAlive_);
+    _reader.Read("moveSpeed", moveSpeed_);
 }
 
 void ShockWaveSpawner::Finalize() {}
