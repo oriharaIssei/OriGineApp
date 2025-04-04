@@ -14,7 +14,7 @@ SceneChanger::SceneChanger() {
 SceneChanger::~SceneChanger() {
 }
 
-void SceneChanger::Initialize(GameEntity* /* _entity*/) {}
+void SceneChanger::Initialize(GameEntity* /*_entity*/) {}
 
 bool SceneChanger::Edit() {
     bool changed = false;

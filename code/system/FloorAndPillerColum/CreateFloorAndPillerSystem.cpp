@@ -20,7 +20,7 @@
 #include "system/Piller/DeletePillerSystem.h"
 #include "system/Piller/PillerDamageSystem.h"
 
-CreateFloorAndPillerSystem::CreateFloorAndPillerSystem() : ISystem(SystemType::Movement) {}
+CreateFloorAndPillerSystem::CreateFloorAndPillerSystem() : ISystem(SystemType::Initialize) {}
 CreateFloorAndPillerSystem::~CreateFloorAndPillerSystem() {}
 
 void CreateFloorAndPillerSystem::Initialize() {
@@ -42,6 +42,8 @@ void CreateFloorAndPillerSystem::UpdateEntity(GameEntity* _entity) {
     if (entitySpawner->GetIsCreated()) {
         return;
     }
+
+
 
     // 建物を生成
     CreateFandP(_entity, entitySpawner, floorStates, pillerStates);
