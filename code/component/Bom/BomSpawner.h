@@ -14,7 +14,7 @@ private: // variables
 
     /// num
     int32_t ableSetBomNum_; // 設置爆弾数
-    int32_t puttingNum_;    // 設置中の数
+    int32_t putTotalNum_;    // 設置中の数
 
     /// time
     float putCoolTimeMax_;   // 次に置くまでのクールタイム
@@ -38,10 +38,10 @@ public: // accsessor
     float GetCurrenPutCoolTime() const { return currentPutCoolTime_; } 
     bool GetIsPut() const { return isPut_; }
     int32_t GetAblePutNum() const{ return ableSetBomNum_; }
-    int32_t GetPuttingNum() const { return puttingNum_; }
+    int32_t GetPutTotalNum() const { return putTotalNum_; }
     /// setter
     void SetIsPut(const bool& is) {  isPut_ = is; }
     void SetPutCurrentCoolTime(const float& time) { currentPutCoolTime_ = time; }
-    void SetIncrementPuttingNum() { puttingNum_++; }
-    void SetDecrementPuttingNum() { puttingNum_--; }
+    void SetIncrementTotalNum() { putTotalNum_++; }
+    void SetDecrementPuttingNum() { putTotalNum_--; }
 };

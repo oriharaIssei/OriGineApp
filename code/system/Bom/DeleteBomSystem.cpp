@@ -3,8 +3,8 @@
 /// ECS
 #define ENGINE_ECS
 // component
-#include"component/Bom/BomStatus.h"
-#include"component/Bom/ExplotionCollision.h"
+#include "component/Bom/BomStatus.h"
+#include "component/Bom/ExplotionCollision.h"
 #include "engine/EngineInclude.h"
 
 DeleteBomSystem::DeleteBomSystem() : ISystem(SystemType::StateTransition) {}
@@ -14,21 +14,20 @@ void DeleteBomSystem::Initialize() {
 
 void DeleteBomSystem::Finalize() {
     /*  entities_.clear();*/
+    /*  if (status->GetCurrentTimer() >= status->GetExplotionTime()) {*/
 }
-
 
 DeleteBomSystem::~DeleteBomSystem() {}
 
 void DeleteBomSystem::UpdateEntity(GameEntity* _entity) {
-    auto status = getComponent<BomStatus>(_entity);
+    auto status       = getComponent<BomStatus>(_entity);
     auto addcollision = getComponent<ExplotionCollision>(_entity);
 
-    if (status->GetCurrentTimer() >= status->GetExplotionTime()) {
-        AddExplotionEntity(_entity, addcollision); //コリジョン追加
-        DestroyEntity(_entity);                    // 君消す
+    if (status->GetIsExplotion()) {
+        AddExplotionEntity(_entity, addcollision); // コリジョン追加
+        DestroyEntity(_entity); // 君消す
     }
 }
-
 
 void DeleteBomSystem::AddExplotionEntity(GameEntity* _entity, ExplotionCollision* _bomStates) {
     if (!_bomStates) {
@@ -43,7 +42,7 @@ void DeleteBomSystem::AddExplotionEntity(GameEntity* _entity, ExplotionCollision
     // Transform
     Transform* hostTransform = getComponent<Transform>(_entity); // 設置元
     Transform* bomTransform  = getComponent<Transform>(bomCollision); // ボム
-    bomTransform->translate  = Vec3f(hostTransform->worldMat[3])+Vec3f(_bomStates->GetPositionOffset());
+    bomTransform->translate  = Vec3f(hostTransform->worldMat[3]) + Vec3f(_bomStates->GetPositionOffset());
 
     // Collider
     SphereCollider* collider           = getComponent<SphereCollider>(bomCollision);
@@ -63,7 +62,6 @@ void DeleteBomSystem::AddExplotionEntity(GameEntity* _entity, ExplotionCollision
 
     //------------------ Movement
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(bomCollision);
-   
 
     //------------------ Collision
     ecs->getSystem<CollisionCheckSystem>()->addEntity(bomCollision);

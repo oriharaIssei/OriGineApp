@@ -20,6 +20,8 @@ private: // variables
     Transform* pivotTransform_ = nullptr; // 回転の中心となるオブジェクト
     Transform* transform_      = nullptr; // 自身のTransform
 
+    int32_t bomExplotionNum_; // 爆発数
+
 public:
     PlayerStates() {}
     virtual ~PlayerStates() = default;
@@ -40,10 +42,12 @@ public: // accsessor
     float GetDirection() const { return direction_; }
     Transform* GetPivotTransform() const { return pivotTransform_; }
     Transform* GetTransform() const { return transform_; }
+    int32_t GetBomExplotionNum() const { return bomExplotionNum_; }
     /// setter
     void SetIncrementTheta(float _theta) { theta_ += _theta; }
     void SetTheta(float _theta) { theta_ = _theta; }
     void SetDirection(float _direction) { direction_ = _direction; }
     void SetTransform(Transform* _transform) { transform_ = _transform; }
     void SetPivotTransform(Transform* _pivotTransform) { pivotTransform_ = _pivotTransform; }
+    void SetincrementBomExplotionNum() { bomExplotionNum_++; }
 };

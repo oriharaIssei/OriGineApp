@@ -3,6 +3,7 @@
 #include "system/ISystem.h"
 
 class BomStatus;
+class BomSpawner;
 
 class PutBomSystem
     : public ISystem {
@@ -17,4 +18,7 @@ public:
 protected:
     virtual void UpdateEntity(GameEntity* _entity) override;
     void SpawnBom(GameEntity* _entity, BomStatus* _spawner);
+
+private:
+    BomSpawner* bomSpawner_;
 };

@@ -3,14 +3,15 @@
 #include "system/ISystem.h"
 
 class BomStatus;
+class Input;
 class BomExplotionSystem
     : public ISystem {
 private:
 
-
+    Input* input_ = nullptr;
 
 public:
-    BomExplotionSystem() : ISystem(SystemType::Movement) {};
+    BomExplotionSystem() : ISystem(SystemType::Input) {};
     ~BomExplotionSystem() = default;
 
     void Initialize() override;
