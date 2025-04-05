@@ -37,27 +37,24 @@ void BomExplotionSystem::UpdateEntity(GameEntity* _entity) {
 
   /*  float deltaTime      = Engine::getInstance()->getDeltaTime();*/
     BomStatus* bomStates = getComponent<BomStatus>(_entity);
-    PlayerStates* playerStates = getComponent<PlayerStates>(playerEntity);
- 
+   
     if (!bomStates || !playerEntity) {
         return;
     }
+
+     PlayerStates* playerStates = getComponent<PlayerStates>(playerEntity);
 
     ///============================================================
     // 爆発していい爆弾なら起爆
     ///============================================================
     if (input_->isTriggerKey(DIK_B)) {
 
-        if (playerStates->GetBomExplotionNum() >= playerStates->GetBomExplotionNum()) {
-            playerStates->SetincrementBomExplotionNum();
+        if (playerStates->GetBomExplotionNum() >= bomStates->GetBomNumber()) {
+           
             bomStates->SetIsExplotion(true);
         }
     }
   /*  bomStates->CurrentTimeIncrement(deltaTime);*/
-
-    
-   
-   
 }
 
 

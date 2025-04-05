@@ -1,11 +1,18 @@
 #include "DeleteBomSystem.h"
 
-/// ECS
+/// engine
+#define ENGINE_INCLUDE
+
+#define RESOURCE_DIRECTORY // Resource の Directory
+// ECS
 #define ENGINE_ECS
+#include "engine/EngineInclude.h"
 // component
 #include "component/Bom/BomStatus.h"
+#include"component/Player/PlayerStates.h"
 #include "component/Bom/ExplotionCollision.h"
-#include "engine/EngineInclude.h"
+
+#include "system/Bom/BomExplotionSystem.h"
 
 DeleteBomSystem::DeleteBomSystem() : ISystem(SystemType::StateTransition) {}
 
@@ -20,12 +27,22 @@ void DeleteBomSystem::Finalize() {
 DeleteBomSystem::~DeleteBomSystem() {}
 
 void DeleteBomSystem::UpdateEntity(GameEntity* _entity) {
-    auto status       = getComponent<BomStatus>(_entity);
-    auto addcollision = getComponent<ExplotionCollision>(_entity);
+    BomStatus* status                = getComponent<BomStatus>(_entity);
+    ExplotionCollision* addcollision = getComponent<ExplotionCollision>(_entity);
+
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* playerEntity                 = ecsManager->getUniqueEntity("Player");
+
+    if (!status || !addcollision || !playerEntity) {
+        return;
+    }
+
+     PlayerStates* playerStates = getComponent<PlayerStates>(playerEntity);
 
     if (status->GetIsExplotion()) {
         AddExplotionEntity(_entity, addcollision); // コリジョン追加
         DestroyEntity(_entity); // 君消す
+        playerStates->SetincrementBomExplotionNum();
     }
 }
 
@@ -58,7 +75,7 @@ void DeleteBomSystem::AddExplotionEntity(GameEntity* _entity, ExplotionCollision
     // None
 
     //------------------ StateTransition
-    /* ecs->getSystem<DeleteCharacterEntitySystem>()->addEntity(bullet);*/
+    ecs->getSystem<BomExplotionSystem>()->addEntity(bomCollision);
 
     //------------------ Movement
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(bomCollision);

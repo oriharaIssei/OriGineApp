@@ -89,7 +89,7 @@ void PutBomSystem::SpawnBom(GameEntity* _entity, BomStatus* _status) {
     ecs->getSystem<BomExplotionSystem>()->addEntity(bom);
     //------------------ StateTransition
     ecs->getSystem<DeleteBomSystem>()->addEntity(bom);
-    ecs->getSystem<DeleteExplotionCollision>()->addEntity(bom);
+   
 
     //------------------ Movement
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(bom);
