@@ -30,6 +30,7 @@ void PillerDamageSystem::UpdateEntity(GameEntity* _entity) {
 
     // CharacterStatusを取得
     PillerStates* entityStatus = getComponent<PillerStates>(_entity);
+
     if (!entityStatus) {
         return;
     }

@@ -47,7 +47,13 @@ void TowerPositionSet::UpdateEntity(GameEntity* _entity) {
     pillerStates_          = getComponent<PillerStates>(_entity);
     floorAndPillerSpawner_ = getComponent<FloorAndPillerSpawner>(_entity);
 
-    floorModeCreater_.resize(bottomFloorStates_->GetFloorNum());
+  
+      if (!bottomFloorStates_ || !floorStates_ || !pillerStates_ || !floorAndPillerSpawner_) {
+        return;
+    }
+
+        floorModeCreater_.resize(bottomFloorStates_->GetFloorNum());
+
 
     for (int32_t i = 0; i < floorModeCreater_.size(); ++i) {
         floorModeCreater_[i] = getComponent<FloorModeCreater>(_entity);
@@ -56,10 +62,7 @@ void TowerPositionSet::UpdateEntity(GameEntity* _entity) {
         }
     }
 
-    if (!bottomFloorStates_ || !floorStates_ || !pillerStates_ || !floorAndPillerSpawner_) {
-        return;
-    }
-
+  
     // 床生成
     CreateBottomFloor();
     CreateTower();
@@ -70,11 +73,12 @@ void TowerPositionSet::CreateTower() {
     ECSManager* ecs = ECSManager::getInstance();
   
     for (int32_t i = 0; i < floorAndPillerSpawner_->GetColumNumMax(); ++i) {
+        CostInit();
         for (int32_t j = 0; j < bottomFloorStates_->GetFloorNum(); ++j) {
 
             // ================================= Bullet Entityを 生成 ================================= //
-            GameEntity* piller         = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, FloorStates>("Piller", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), FloorStates());
-            GameEntity* floor          = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, PillerStates>("Floor", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), PillerStates());
+            GameEntity* piller         = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, PillerStates>("Piller", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), PillerStates() );
+            GameEntity* floor          = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, FloorStates>("Floor", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), FloorStates());
             GameEntity* floorAndPiller = CreateEntity<Transform, Rigidbody, FloorAndPillerrStatus>("FAndP", Transform(), Rigidbody(), FloorAndPillerrStatus());
 
             // ================================= Componentを初期化 ================================= //
@@ -82,6 +86,12 @@ void TowerPositionSet::CreateTower() {
             Transform* fAndPTransform  = getComponent<Transform>(floorAndPiller);
             Transform* pillerTransform = getComponent<Transform>(piller); // 柱
             Transform* floorTransform  = getComponent<Transform>(floor); // 床
+
+            /// ランダムで床のサイズを変える（通常がコスト1,デカイのがコスト2）Maxコスト6
+
+
+            // ランダムでセーフゾーンがあるかを設定（セーフゾーンありがコスト1,セーフゾーンなしがコスト0）Maxコスト2
+
 
             // Transformの初期位置を設定
             SetPivotQuaternion(fAndPTransform, j);
@@ -103,6 +113,7 @@ void TowerPositionSet::CreateTower() {
             // Collider
             SphereCollider* collider           = getComponent<SphereCollider>(piller);
             collider->getLocalShape()->radius_ = pillerStates_->GetCollisionSize();
+            collider->getWorldShape()->radius_ = pillerStates_->GetCollisionSize();
 
             // MeshRenderer
             ModelMeshRenderer* pillerRender = getComponent<ModelMeshRenderer>(piller);
@@ -124,7 +135,7 @@ void TowerPositionSet::CreateTower() {
 
             // row,columNum
             FloorAndPillerrStatus* statusFandP = getComponent<FloorAndPillerrStatus>(floorAndPiller);
-            statusFandP->SetColumAndRow(i, floorAndPillerSpawner_->GetRowNumber());
+            statusFandP->SetColumAndRow(i, j);
             statusPiller->SetColumAndRow(statusFandP->GetColumNum(), statusFandP->GetRowNum());
 
             // ================================= System ================================= //
@@ -248,3 +259,8 @@ void TowerPositionSet::SetQuaternion(Transform* pivotTransform, Transform* Trans
 
     Transform->Update();
 }
+
+void TowerPositionSet::CostInit() {
+    safeCost_   = 0;
+    normalCost_ = 0;
+ }

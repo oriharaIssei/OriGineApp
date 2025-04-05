@@ -103,9 +103,6 @@
     <ClInclude Include="code\system\Bom\DeleteBomSystem.h">
       <Filter>system\Bom</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Piller\PillerDamageSystem.h">
-      <Filter>system\Player</Filter>
-    </ClInclude>
     <ClInclude Include="code\system\Piller\DeletePillerSystem.h">
       <Filter>system\Piller</Filter>
     </ClInclude>
@@ -123,6 +120,9 @@
     </ClInclude>
     <ClInclude Include="code\system\FloorAndPiller\FloorAndPillerFallSystem.h">
       <Filter>system\FloorAndPiller</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Piller\PillerDamageSystem.h">
+      <Filter>system\Piller</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -184,9 +184,6 @@
     <ClCompile Include="code\system\Bom\DeleteBomSystem.cpp">
       <Filter>system\Bom</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Piller\PillerDamageSystem.cpp">
-      <Filter>system\Player</Filter>
-    </ClCompile>
     <ClCompile Include="code\system\Piller\DeletePillerSystem.cpp">
       <Filter>system\Piller</Filter>
     </ClCompile>
@@ -204,6 +201,9 @@
     </ClCompile>
     <ClCompile Include="code\system\FloorAndPiller\FloorAndPillerFallSystem.cpp">
       <Filter>system\FloorAndPiller</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Piller\PillerDamageSystem.cpp">
+      <Filter>system\Piller</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

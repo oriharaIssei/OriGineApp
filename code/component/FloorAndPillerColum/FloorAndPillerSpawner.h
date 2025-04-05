@@ -14,9 +14,13 @@ private: // variables
     float pillerSpace_;
     float floorSpace_;
     float firstPillerOffset_;
-    int32_t columNumMax_;
 
+    int32_t columNumMax_;
     int32_t rowNumber_; // 列番号
+
+    int32_t safeZoneCostMax_;
+    int32_t normalCostMax_;
+
 
 public:
     FloorAndPillerSpawner() {}
@@ -28,8 +32,6 @@ public:
     void Load(BinaryReader& _reader) override;
     void Finalize() override;
 
- 
-
 public: // accsessor
 
     /// getter
@@ -39,6 +41,8 @@ public: // accsessor
     float GetFirstPillerOffset() const { return firstPillerOffset_; }
     bool GetIsCreated() const { return isCreated_; }
     int32_t GetRowNumber() const { return rowNumber_; }
+    int32_t GetSafeZoneCostMax() const { return safeZoneCostMax_; }
+    int32_t GetNormalCostMax() const { return normalCostMax_; }
 
       /// setter
     void SetIsCreated(const bool&is) {  isCreated_=is; }

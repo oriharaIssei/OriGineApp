@@ -6,7 +6,9 @@
 void PillerStates::Initialize([[maybe_unused]] GameEntity* _entity) {
    /* pillarHP_ = 0;
     collisionSize_ = 0.0f;*/
-    currentHP_ = 0;
+    currentHP_ = 2;
+   collisionSize_ = 3000.0f;
+    HPMax_         = 3;
 }
 
 bool PillerStates::Edit() {

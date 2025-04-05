@@ -1,9 +1,10 @@
 // FloorSystem.h
 #pragma once
-#include"system/ISystem.h"
+#include "system/ISystem.h"
 
-#include<vector>
 #include <component/transform/Transform.h>
+#include <cstdint>
+#include <vector>
 
 ///====================================================================
 // FloorSystem
@@ -19,13 +20,14 @@ private:
     bool isInited_;
 
     BottomFloorStates* bottomFloorStates_;
-   FloorAndPillerSpawner* floorAndPillerSpawner_;
-   std::vector<FloorModeCreater*>floorModeCreater_;
+    FloorAndPillerSpawner* floorAndPillerSpawner_;
+    std::vector<FloorModeCreater*> floorModeCreater_;
     PillerStates* pillerStates_;
     FloorStates* floorStates_;
 
- 
-  
+    int32_t normalCost_;
+    int32_t safeCost_;
+
 public:
     TowerPositionSet();
     ~TowerPositionSet();
@@ -36,8 +38,10 @@ public:
     void CreateBottomFloor();
     void CreateTower();
 
-    void SetPivotQuaternion(Transform* pivotTransform,const int32_t &index);
-    void SetQuaternion(Transform*pivotTransform,Transform* Transform);
+    void SetPivotQuaternion(Transform* pivotTransform, const int32_t& index);
+    void SetQuaternion(Transform* pivotTransform, Transform* Transform);
+
+    void CostInit();
 
 protected:
     void UpdateEntity(GameEntity* _entity) override;

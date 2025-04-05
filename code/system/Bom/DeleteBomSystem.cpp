@@ -13,6 +13,7 @@
 #include "component/Bom/ExplotionCollision.h"
 
 #include "system/Bom/BomExplotionSystem.h"
+#include"system/Bom/DeleteExplotionCollision.h"
 
 DeleteBomSystem::DeleteBomSystem() : ISystem(SystemType::StateTransition) {}
 
@@ -59,11 +60,12 @@ void DeleteBomSystem::AddExplotionEntity(GameEntity* _entity, ExplotionCollision
     // Transform
     Transform* hostTransform = getComponent<Transform>(_entity); // 設置元
     Transform* bomTransform  = getComponent<Transform>(bomCollision); // ボム
-    bomTransform->translate  = Vec3f(hostTransform->worldMat[3]) + Vec3f(_bomStates->GetPositionOffset());
+    bomTransform->translate  = Vec3f(hostTransform->worldMat[3]);
 
     // Collider
     SphereCollider* collider           = getComponent<SphereCollider>(bomCollision);
     collider->getLocalShape()->radius_ = _bomStates->GetCollisionRadius();
+    collider->getWorldShape()->radius_ = _bomStates->GetCollisionRadius();
 
     /// States
     ExplotionCollision* status = getComponent<ExplotionCollision>(bomCollision);
@@ -75,7 +77,8 @@ void DeleteBomSystem::AddExplotionEntity(GameEntity* _entity, ExplotionCollision
     // None
 
     //------------------ StateTransition
-    ecs->getSystem<BomExplotionSystem>()->addEntity(bomCollision);
+  /*  ecs->getSystem<BomExplotionSystem>()->addEntity(bomCollision);*/
+    ecs->getSystem<DeleteExplotionCollision>()->addEntity(bomCollision);
 
     //------------------ Movement
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(bomCollision);

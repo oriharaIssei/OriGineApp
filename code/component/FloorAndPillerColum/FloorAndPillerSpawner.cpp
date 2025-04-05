@@ -10,6 +10,8 @@ void FloorAndPillerSpawner::Initialize([[maybe_unused]] GameEntity* _entity) {
     columNumMax_    = 3;
     firstPillerOffset_ = 5.5f;
     isCreated_=false;
+    safeZoneCostMax_   = 2;
+    normalCostMax_     = 6;
 }
 
 bool FloorAndPillerSpawner::Edit() {
