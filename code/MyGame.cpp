@@ -67,8 +67,12 @@ void MyGame::Initialize() {
     ///=================================================================================================
     {
         DebuggerGroup* debuggerGroup                = DebuggerGroup::getInstance();
+
         std::unique_ptr<EntityDebugger> ecsDebugger = std::make_unique<EntityDebugger>();
         debuggerGroup->addDebugger(std::move(ecsDebugger));
+
+        std::unique_ptr<SystemDebugger> systemDebugger = std::make_unique<SystemDebugger>();
+        debuggerGroup->addDebugger(std::move(systemDebugger));
 
         // gorup Initialize
         debuggerGroup->Initialize();
