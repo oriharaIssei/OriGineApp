@@ -26,18 +26,18 @@
 #include <cmath>
 #include <numbers>
 
-TowerPositionSet::TowerPositionSet() : ISystem(SystemType::Initialize) {}
+TowerPositionSet::TowerPositionSet() : ISystem(SystemType::Movement) {}
 TowerPositionSet::~TowerPositionSet() {}
 
 void TowerPositionSet::Initialize() {
-    /* isInited_ = false;*/
+     isInited_ = false;
 }
 
 void TowerPositionSet::Finalize() {
 }
 
 void TowerPositionSet::UpdateEntity(GameEntity* _entity) {
-    if (!_entity) {
+    if (!_entity||isInited_) {
         return;
     }
 
@@ -62,15 +62,16 @@ void TowerPositionSet::UpdateEntity(GameEntity* _entity) {
         }
     }
 
-  
+   float moveRadius = bottomFloorStates_->GetFieldRadius();
     // 床生成
-    CreateBottomFloor();
-    CreateTower();
-    /*  isInited_ = true;*/
+   CreateBottomFloor(-moveRadius);
+   CreateTower(-moveRadius);
+   isInited_ = true;
 }
 
-void TowerPositionSet::CreateTower() {
+void TowerPositionSet::CreateTower(const float& Radius) {
     ECSManager* ecs = ECSManager::getInstance();
+   
   
     for (int32_t i = 0; i < floorAndPillerSpawner_->GetColumNumMax(); ++i) {
         CostInit();
@@ -95,20 +96,21 @@ void TowerPositionSet::CreateTower() {
 
             // Transformの初期位置を設定
             SetPivotQuaternion(fAndPTransform, j);
-            SetQuaternion(fAndPTransform, pillerTransform);
-            SetQuaternion(fAndPTransform, floorTransform);
-
+            
             // 　親のY位置を設定
             if (i == 0) {
-                fAndPTransform->translate = Vec3f(0.0f, floorAndPillerSpawner_->GetFirstPillerOffset(), 0.0f);
+                fAndPTransform->translate = Vec3f(0.0f, 0.0f, 0.0f);
 
             } else {
-                fAndPTransform->translate = Vec3f(0.0f, floorAndPillerSpawner_->GetFirstPillerOffset() + (floorAndPillerSpawner_->GetPillerSpace() * float(i)), 0.0f);
+                fAndPTransform->translate = Vec3f(0.0f, 0.0f + (floorAndPillerSpawner_->GetPillerSpace() * float(i)), 0.0f);
             }
-
+           /* Vec3f(fAndPTransform->translate) + Vec3f(fAndPTransform->translate) +*/
             // 子の
-            pillerTransform->translate = Vec3f(fAndPTransform->translate) + Vec3f(0.0f, floorAndPillerSpawner_->GetFirstPillerOffset(), 0.0f);
-            floorTransform->translate  = Vec3f(fAndPTransform->translate) + Vec3f(0.0f, floorAndPillerSpawner_->GetFloorSpace(), 0.0f);
+            pillerTransform->translate = Vec3f(0.0f, floorAndPillerSpawner_->GetFirstPillerOffset(), Radius);
+            floorTransform->translate  = Vec3f(0.0f, floorAndPillerSpawner_->GetFloorSpace(), Radius);
+
+            SetQuaternion(fAndPTransform, pillerTransform, pillerTransform->translate);
+            SetQuaternion(fAndPTransform, floorTransform, floorTransform->translate);
 
             // Collider
             SphereCollider* collider           = getComponent<SphereCollider>(piller);
@@ -167,7 +169,7 @@ void TowerPositionSet::CreateTower() {
     }
 }
 
-void TowerPositionSet::CreateBottomFloor() {
+void TowerPositionSet::CreateBottomFloor(const float& Radius) {
     ECSManager* ecs = ECSManager::getInstance();
     for (int32_t j = 0; j < bottomFloorStates_->GetFloorNum(); ++j) {
         // ================================= Bullet Entityを 生成 ================================= //
@@ -182,7 +184,7 @@ void TowerPositionSet::CreateBottomFloor() {
 
         // Transformの初期位置を設定
         SetPivotQuaternion(bottomFloorPivotTransform, j);
-        SetQuaternion(bottomFloorPivotTransform, bottomFloorTransform);
+        SetQuaternion(bottomFloorPivotTransform, bottomFloorTransform, Vec3f(0.0f, 0.0f, Radius));
 
         // MeshRenderer
         ModelMeshRenderer* bottomFloorRender = getComponent<ModelMeshRenderer>(bottomFloor);
@@ -246,7 +248,7 @@ void TowerPositionSet::SetPivotQuaternion(Transform* pivotTransform, const int32
     pivotTransform->Update();
 }
 
-void TowerPositionSet::SetQuaternion(Transform* pivotTransform, Transform* Transform) {
+void TowerPositionSet::SetQuaternion(Transform* pivotTransform, Transform* Transform, const Vec3f& offset) {
 
     Transform->rotate = Quaternion::Identity();
     Transform->parent = pivotTransform;
@@ -254,8 +256,8 @@ void TowerPositionSet::SetQuaternion(Transform* pivotTransform, Transform* Trans
     ///============================================================
     // Transformの初期位置を設定
     ///============================================================
-    float moveRadius     = bottomFloorStates_->GetFieldRadius();
-    Transform->translate = Vec3f(0.0f, 0.0f, -moveRadius); // X軸上に配置
+   
+    Transform->translate = offset;
 
     Transform->Update();
 }

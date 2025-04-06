@@ -5,6 +5,7 @@
 #include <component/transform/Transform.h>
 #include <cstdint>
 #include <vector>
+#include <Vector3.h>
 
 ///====================================================================
 // FloorSystem
@@ -35,11 +36,11 @@ public:
     void Initialize() override;
     void Finalize() override;
 
-    void CreateBottomFloor();
-    void CreateTower();
+    void CreateBottomFloor(const float&Radius);
+    void CreateTower(const float& Radius);
 
     void SetPivotQuaternion(Transform* pivotTransform, const int32_t& index);
-    void SetQuaternion(Transform* pivotTransform, Transform* Transform);
+    void SetQuaternion(Transform* pivotTransform, Transform* Transform,const Vec3f&offset);
 
     void CostInit();
 
