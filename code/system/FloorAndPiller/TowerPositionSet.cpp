@@ -164,7 +164,6 @@ void TowerPositionSet::CreateTower(const float& Radius) {
             //------------------ Render
             ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(piller);
             ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(floor);
-
         }
     }
 }
