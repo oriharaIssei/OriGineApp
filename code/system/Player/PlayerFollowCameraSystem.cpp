@@ -14,8 +14,7 @@
 #include "component/Player/PlayerStates.h"
 
 #include "engine/EngineInclude.h"
-#include <cmath>
-#include <numbers>
+
 
 PlayerFollowCameraSystem::PlayerFollowCameraSystem()
     : ISystem(SystemType::Movement) {}
@@ -67,6 +66,7 @@ void PlayerFollowCameraSystem::GetTransformForPlayer(GameEntity* _entity) {
     if (isInited_) {
         return;
     }
+
     cameraTransform_ = getComponent<CameraTransform>(_entity);
     entityPlayerStates_ = getComponent<PlayerStates>(_entity);
     
