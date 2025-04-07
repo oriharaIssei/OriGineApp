@@ -31,9 +31,10 @@ void DeletePillerSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     // HPゼロで破壊
-    if (status->GetCurrentHp() <= 0) {
-        // マスが同じentity取得してそのFloorAndPillerrStatusの落ちるフラグをtrue
-       /* fAndPStatus->SetIsFall(true);*/
-        DestroyEntity(_entity);
+    if (status->GetCurrentHp() > 0) {
+        return;
     }
+       
+        DestroyEntity(_entity);
+    
 }
