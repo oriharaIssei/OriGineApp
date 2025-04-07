@@ -24,7 +24,7 @@ void DeletePillerSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     PillerStates* status          = getComponent<PillerStates>(_entity);
-   /* FloorAndPillerrStatus* fAndPStatus = getComponent<FloorAndPillerrStatus>(_entity);*/
+    FloorAndPillerrStatus* fAndPStatus = getComponent<FloorAndPillerrStatus>(_entity);
 
     if (!status ) {
         return;
@@ -34,7 +34,14 @@ void DeletePillerSystem::UpdateEntity(GameEntity* _entity) {
     if (status->GetCurrentHp() > 0) {
         return;
     }
-       
+
+    // 破壊の前にーーー落とす床を決める
+    fAndPStatus->SetIsFall(true);
+
+    fAndPStatus->GetRowNum();
+    fAndPStatus->GetColumNum();
+
+    //破壊
         DestroyEntity(_entity);
     
 }
