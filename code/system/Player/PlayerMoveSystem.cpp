@@ -62,8 +62,7 @@ void PlayerMoveSystem::UpdateEntity(GameEntity* _entity) {
     pivotTransform_->rotate *= rotateAxisY;
 
     // 進行方向よ
-    transform_->rotate =
-        Quaternion::RotateAxisAngle({0.0f, 1.0f, 0.0f},
+    transform_->rotate = Quaternion::RotateAxisAngle({0.0f, 1.0f, 0.0f},
             std::atan2(-entityPlayerStates_->GetDirection(), 0.0f));
 
     /// 更新
@@ -73,8 +72,10 @@ void PlayerMoveSystem::UpdateEntity(GameEntity* _entity) {
 
 void PlayerMoveSystem::GetTransformForPlayer(GameEntity* _entity) {
     /// TransformをSet
-    entityPlayerStates_->SetTransform(getComponent<Transform>(_entity, 0));
-    entityPlayerStates_->SetPivotTransform(getComponent<Transform>(_entity, 1));
+    _entity;
+    if (isInited_) {
+        return;
+    }
 
     if (!entityPlayerStates_->GetTransform()) {
         return;
@@ -86,5 +87,5 @@ void PlayerMoveSystem::GetTransformForPlayer(GameEntity* _entity) {
     transform_      = entityPlayerStates_->GetTransform();
     pivotTransform_ = entityPlayerStates_->GetPivotTransform();
 
-   
+   isInited_ = true;
  }

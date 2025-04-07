@@ -9,6 +9,7 @@ private:
     PlayerStates* entityPlayerStates_=nullptr;
     Transform* transform_             = nullptr;
     Transform* pivotTransform_       = nullptr;
+    bool isInited_                    = false;
 
 public:
     PlayerMoveSystem();
