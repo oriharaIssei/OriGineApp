@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <Entity.h>
 #include <component/transform/Transform.h>
+#include <Vector3.h>
 
 class PlayerStates
     : public IComponent {
@@ -16,6 +17,7 @@ private: // variables
     float theta_;           // 現在の移動角度
     float direction_;       // 移動方向
     float offSetY_;
+    Vec3f followCameraOffset_;
    
     Transform* pivotTransform_ = nullptr; // 回転の中心となるオブジェクト
     Transform* transform_      = nullptr; // 自身のTransform
@@ -43,6 +45,7 @@ public: // accsessor
     Transform* GetPivotTransform() const { return pivotTransform_; }
     Transform* GetTransform() const { return transform_; }
     int32_t GetBomExplotionNum() const { return bomExplotionNum_; }
+    Vec3f GetFollowOffset() const { return followCameraOffset_; }
     /// setter
     void SetIncrementTheta(float _theta) { theta_ += _theta; }
     void SetTheta(float _theta) { theta_ = _theta; }

@@ -42,6 +42,6 @@ void DeletePillerSystem::UpdateEntity(GameEntity* _entity) {
     fAndPStatus->GetColumNum();
 
     //破壊
-        DestroyEntity(_entity);
+    DestroyEntity(_entity);
     
 }

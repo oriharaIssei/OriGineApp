@@ -26,6 +26,7 @@ bool PlayerStates::Edit() {
     isChange |= ImGui::DragFloat("MoveSpeed", &moveSpeed_, 0.01f);
     isChange |= ImGui::DragFloat("MoveRadius", &moveRadius_,0.01f);
     isChange |= ImGui::DragFloat("OffSetY", &offSetY_, 0.01f);
+    isChange |= ImGui::DragFloat3("followCameraOffset", followCameraOffset_.v, 0.01f);
     return isChange;
 
 }
@@ -34,12 +35,14 @@ void PlayerStates::Save(BinaryWriter& _writer) {
     _writer.Write("isAlive", isAlive_);
     _writer.Write("moveSpeed", moveSpeed_);
     _writer.Write("moveRadius", moveRadius_);
+    /*_writer.Write<3,float>("followCameraOffset", followCameraOffset_.v);*/
 }
 
 void PlayerStates::Load(BinaryReader& _reader) {
     _reader.Read("isAlive", isAlive_);
     _reader.Read("moveSpeed", moveSpeed_);
     _reader.Read("moveRadius", moveRadius_);
+   /* _reader.Read<3,float>("followCameraOffset", followCameraOffset_.v);*/
 }
 
 void PlayerStates::Finalize() {}
