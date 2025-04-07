@@ -115,7 +115,7 @@ void TowerPositionSet::CreateTower(const float& Radius) {
             // Collider
             SphereCollider* collider           = getComponent<SphereCollider>(piller);
             collider->getLocalShape()->radius_ = pillerStates_->GetCollisionSize();
-            collider->getWorldShape()->radius_ = pillerStates_->GetCollisionSize();
+           /* collider->getWorldShape()->radius_ = pillerStates_->GetCollisionSize();*/
 
             // MeshRenderer
             ModelMeshRenderer* pillerRender = getComponent<ModelMeshRenderer>(piller);

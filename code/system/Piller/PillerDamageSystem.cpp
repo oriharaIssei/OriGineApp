@@ -48,7 +48,7 @@ void PillerDamageSystem::UpdateEntity(GameEntity* _entity) {
                 }
 
                 // 衝突開始時の オブジェクトの Lifeを減らす
-                if (collisionState != CollisionState::Enter) {
+                if (collisionState != CollisionState::Stay) {
                     continue;
                 }
                 // CharacterStatusを取得

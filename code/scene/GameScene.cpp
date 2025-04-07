@@ -16,6 +16,7 @@
 
 //system
 #include"Application/code/system/Player/PlayerInput.h"
+#include"Application/code/system/Player/PlayerMoveSystem.h"
 #include"Application/code/system/Bom/PutBomSystem.h"
 #include"Application/code/system/FloorAndPiller/CreateFloorAndPillerSystem.h"
 #include"Application/code/system/FloorAndPiller/TowerPositionSet.h"
@@ -51,6 +52,7 @@ void GameScene::registerSystems() {
 
     ECSManager* ecsManager = ECSManager::getInstance();
     ecsManager->registerSystem<PlayerInputSystem>();
+    ecsManager->registerSystem<PlayerMoveSystem>();
     ecsManager->registerSystem<PutBomSystem>();
     ecsManager->registerSystem<CreateFloorAndPillerSystem>();
     ecsManager->registerSystem<TowerPositionSet>();

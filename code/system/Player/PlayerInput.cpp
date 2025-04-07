@@ -12,6 +12,7 @@
 #include <Vector3.h>
 // component
 #include "component/Bom/BomSpawner.h"
+#include "component/Player/PlayerStates.h"
 
 #include "engine/EngineInclude.h"
 #include <cmath>
@@ -37,10 +38,7 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
     ///============================================================
     // 必要なコンポーネントを取得
     ///============================================================
-    Rigidbody* entityRigidbody = getComponent<Rigidbody>(_entity);
-    if (!entityRigidbody) {
-        return;
-    }
+   
 
     entityPlayerStates_ = getComponent<PlayerStates>(_entity);
     if (!entityPlayerStates_) {
@@ -57,8 +55,7 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
     ///============================================================
     // 円運動の更新（Quaternionベース）
     ///============================================================
-    float moveTime       = entityPlayerStates_->GetMoveSpeed();
-    float deltaTime      = Engine::getInstance()->getDeltaTime();
+   
     float inputDirection = 0.0f;
 
     /// 入力で向き決定
@@ -69,34 +66,8 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
         inputDirection += 1.0f; // 時計回り
     }
 
-    // 移動方向をセット
-    if (inputDirection == 0.0f) {
-        return;
-    }
+      entityPlayerStates_->SetDirection(inputDirection);
 
-    entityPlayerStates_->SetDirection(inputDirection);
-
-    ///============================================================
-    // Y軸回転のQuaternionを作成
-    ///============================================================
-    Quaternion rotateAxisY = Quaternion::RotateAxisAngle(Vec3f(0.0f, 1.0f, 0.0f),
-        inputDirection * moveTime * deltaTime);
-
-    ///============================================================
-    // 変換後の位置を計算
-    ///============================================================
-
-    // 位置を適用
-    pivotTransform_->rotate *= rotateAxisY;
-
-    // 進行方向よ
-    transform_->rotate =
-        Quaternion::RotateAxisAngle({0.0f, 1.0f, 0.0f},
-            std::atan2(-entityPlayerStates_->GetDirection(), 0.0f));
-
-    /// 更新
-    pivotTransform_->Update();
-    transform_->Update();
 }
 
 void PlayerInputSystem::TransformInit(GameEntity* _entity) {
