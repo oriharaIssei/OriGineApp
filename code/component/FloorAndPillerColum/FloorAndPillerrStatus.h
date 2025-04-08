@@ -13,7 +13,7 @@ private: // variables
     bool isAlive_ = true;
 
     bool isFall_ = false;
-    bool isDestroy_;
+    bool isDestroy_=false;
 
     int32_t columNum_;
     int32_t rowNum_;

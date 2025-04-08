@@ -130,6 +130,7 @@
     <ClInclude Include="code\system\Piller\PillerDamageSystem.h" />
     <ClInclude Include="code\system\Piller\PillerPhysicsSystem.h" />
     <ClInclude Include="code\scene\TitleScene.h" />
+    <ClInclude Include="code\system\Piller\PillerUpdateMatrixSystem.h" />
     <ClInclude Include="code\system\Player\PlayerFollowCameraSystem.h" />
     <ClInclude Include="code\system\Player\PlayerInput.h" />
     <ClInclude Include="code\system\Player\PlayerMoveSystem.h" />
@@ -166,6 +167,7 @@
     <ClCompile Include="code\system\Piller\PillerDamageSystem.cpp" />
     <ClCompile Include="code\system\Piller\PillerPhysicsSystem.cpp" />
     <ClCompile Include="code\scene\TitleScene.cpp" />
+    <ClCompile Include="code\system\Piller\PillerUpdateMatrixSystem.cpp" />
     <ClCompile Include="code\system\Player\PlayerFollowCameraSystem.cpp" />
     <ClCompile Include="code\system\Player\PlayerInput.cpp" />
     <ClCompile Include="code\system\Player\PlayerMoveSystem.cpp" />

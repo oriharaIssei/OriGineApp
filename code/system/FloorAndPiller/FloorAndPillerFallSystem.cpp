@@ -36,7 +36,7 @@ void FloorAndPillerFallSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    Transform* entityTransform = getComponent<Transform>(_entity);
+    Transform* entityTransform = getComponent<Transform>(_entity,1);
 
     // フロアの落下処理
     entityStatus->SetIncrementFallEaseT(Engine::getInstance()->getDeltaTime() * entityStatus->GetFallSpeed());

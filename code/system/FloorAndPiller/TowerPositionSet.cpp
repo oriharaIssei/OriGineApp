@@ -25,6 +25,7 @@
 #include "system/FloorAndPiller/FloorAndPillerFallSystem.h"
 #include "system/Piller/DeletePillerSystem.h"
 #include "system/Piller/PillerDamageSystem.h"
+#include "system/Piller/pillerUpdateMatrixSystem.h"
 #include <cmath>
 #include <numbers>
 
@@ -77,14 +78,15 @@ void TowerPositionSet::CreateTower(const float& Radius) {
         for (int32_t j = 0; j < bottomFloorStates_->GetFloorNum(); ++j) {
 
             // ================================= Bullet Entityを 生成 ================================= //
-            GameEntity* piller         = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, PillerStates>("Piller", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), PillerStates());
-            GameEntity* floor          = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, FloorStates>("Floor", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), FloorStates());
-            GameEntity* floorAndPiller = CreateEntity<Transform, Rigidbody, FloorAndPillerrStatus>("FAndP", Transform(), Rigidbody(), FloorAndPillerrStatus());
+            GameEntity* piller = CreateEntity<Transform, Transform, SphereCollider, Rigidbody, ModelMeshRenderer, PillerStates, FloorAndPillerrStatus>("Piller", Transform(), Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), PillerStates(), FloorAndPillerrStatus());
+            GameEntity* floor  = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, FloorStates>("Floor", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), FloorStates());
+            /*GameEntity* floorAndPiller = CreateEntity<Transform, Rigidbody, FloorAndPillerrStatus>("FAndP", Transform(), Rigidbody(), FloorAndPillerrStatus());*/
 
             // ================================= Componentを初期化 ================================= //
 
-            Transform* fAndPTransform  = getComponent<Transform>(floorAndPiller);
+           
             Transform* pillerTransform = getComponent<Transform>(piller); // 柱
+             Transform* pillerBaseTransform  = getComponent<Transform>(piller,1);
             Transform* floorTransform  = getComponent<Transform>(floor); // 床
 
             /// ランダムで床のサイズを変える（通常がコスト1,デカイのがコスト2）Maxコスト6
@@ -92,22 +94,22 @@ void TowerPositionSet::CreateTower(const float& Radius) {
             // ランダムでセーフゾーンがあるかを設定（セーフゾーンありがコスト1,セーフゾーンなしがコスト0）Maxコスト2
 
             // Transformの初期位置を設定
-            SetPivotQuaternion(fAndPTransform, j);
+            SetPivotQuaternion(pillerBaseTransform, j);
 
             // 　親のY位置を設定
             if (i == 0) {
-                fAndPTransform->translate = Vec3f(0.0f, 0.0f, 0.0f);
+                pillerBaseTransform->translate = Vec3f(0.0f, 0.0f, 0.0f);
 
             } else {
-                fAndPTransform->translate = Vec3f(0.0f, 0.0f + (floorAndPillerSpawner_->GetPillerSpace() * float(i)), 0.0f);
+                pillerBaseTransform->translate = Vec3f(0.0f, 0.0f + (floorAndPillerSpawner_->GetPillerSpace() * float(i)), 0.0f);
             }
-            /* Vec3f(fAndPTransform->translate) + Vec3f(fAndPTransform->translate) +*/
+            
             // 子の
             pillerTransform->translate = Vec3f(0.0f, floorAndPillerSpawner_->GetFirstPillerOffset(), Radius);
             floorTransform->translate  = Vec3f(0.0f, floorAndPillerSpawner_->GetFloorSpace(), Radius);
 
-            SetQuaternion(fAndPTransform, pillerTransform, pillerTransform->translate);
-            SetQuaternion(fAndPTransform, floorTransform, floorTransform->translate);
+            SetQuaternion(pillerBaseTransform, pillerTransform, pillerTransform->translate);
+            SetQuaternion(pillerBaseTransform, floorTransform, floorTransform->translate);
 
             // Collider
             SphereCollider* collider           = getComponent<SphereCollider>(piller);
@@ -133,11 +135,11 @@ void TowerPositionSet::CreateTower(const float& Radius) {
             statusPiller->SetCurrentHp(pillerStates_->GetHpMax());
 
             // row,columNum
-            FloorAndPillerrStatus* statusFandP = getComponent<FloorAndPillerrStatus>(floorAndPiller);
+            FloorAndPillerrStatus* statusFandP = getComponent<FloorAndPillerrStatus>(piller);
             statusFandP->SetColumAndRow(i, j);
-            statusPiller->SetColumAndRow(statusFandP->GetColumNum(), statusFandP->GetRowNum());
+  
             // savePosを設定
-            statusFandP->SetSavePos(fAndPTransform->translate[Y]);
+            statusFandP->SetSavePos(pillerBaseTransform->translate[Y]);
             // 落ちるオフセットを決める
             statusFandP->SetFallValue(floorAndPillerSpawner_->GetPillerSpace());
 
@@ -156,8 +158,8 @@ void TowerPositionSet::CreateTower(const float& Radius) {
             //------------------ Movement
             ecs->getSystem<MoveSystemByRigidBody>()->addEntity(piller);
             ecs->getSystem<MoveSystemByRigidBody>()->addEntity(floor);
-            ecs->getSystem<MoveSystemByRigidBody>()->addEntity(floorAndPiller);
-            ecs->getSystem<FloorAndPillerFallSystem>()->addEntity(floorAndPiller);
+            ecs->getSystem<FloorAndPillerFallSystem>()->addEntity(piller);
+            ecs->getSystem<PillerUpdateMatrixSystem>()->addEntity(piller);
 
                 //------------------ Collision
                 /*  ecs->getSystem<CharacterOnCollision>()->addEntity(bom);*/

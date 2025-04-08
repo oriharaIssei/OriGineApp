@@ -28,6 +28,7 @@
 #include"Application/code/system/Player/PlayerFollowCameraSystem.h"
 #include"Application/code/system/FloorAndPiller/DeleteFloorAndPillerSystem.h"
 #include"Application/code/system/FloorAndPiller/FloorAndPillerFallSystem.h"
+#include"Application/code/system/Piller/PillerUpdateMatrixSystem.h"
 
 GameScene::GameScene()
     : IScene("Game") {}
@@ -67,5 +68,6 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<PlayerFollowCameraSystem>();
     ecsManager->registerSystem<DeleteFloorAndPillerSystem>();
     ecsManager->registerSystem<FloorAndPillerFallSystem>();
+    ecsManager->registerSystem<PillerUpdateMatrixSystem>();
     ecsManager->SortPriorityOrderSystems();
 }
