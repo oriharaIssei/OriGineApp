@@ -18,34 +18,6 @@ void DeletePillerSystem::Finalize() {
 
 DeletePillerSystem::~DeletePillerSystem() {}
 
- //void DeletePillerSystem::UpdateEntity(GameEntity* _entity) {
- //    if (!_entity) {
- //        return;
- //    }
-
- //    PillerStates* status          = getComponent<PillerStates>(_entity);
- //    FloorAndPillerrStatus* fAndPStatus = getComponent<FloorAndPillerrStatus>(_entity);
-
- //    if (!status ) {
- //        return;
- //    }
-
- //    // HPゼロで破壊
- //    if (status->GetCurrentHp() > 0) {
- //        return;
- //    }
-
- //    // 破壊の前にーーー落とす床を決める
- //    fAndPStatus->SetIsFall(true);
-
- //    fAndPStatus->GetRowNum();
- //    fAndPStatus->GetColumNum();
-
- //    //破壊
- //    DestroyEntity(_entity);
-
- //}
-
 
 void DeletePillerSystem::UpdateEntity(GameEntity* _entity) {
     if (!_entity) {
@@ -53,9 +25,9 @@ void DeletePillerSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     PillerStates* status               = getComponent<PillerStates>(_entity);
-    FloorAndPillerrStatus* fAndPStatus = getComponent<FloorAndPillerrStatus>(_entity);
+   /* FloorAndPillerrStatus* fAndPStatus = getComponent<FloorAndPillerrStatus>(_entity);*/
 
-    if (!status || !fAndPStatus) {
+    if (!status) {
         return;
     }
 
@@ -65,7 +37,7 @@ void DeletePillerSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     // 壊れた柱のRow番号を取得
-    int destroyedRow = fAndPStatus->GetRowNum();
+    int destroyedRow = status->GetRowNum();
 
     // **同じRowの床を落とす**
     for (GameEntity* entity : getEntities()) { // すべてのエンティティをチェック
@@ -87,12 +59,12 @@ void DeletePillerSystem::UpdateEntity(GameEntity* _entity) {
     //// 壊れた柱のRow番号を取得
     //int destroyedRow = fAndPStatus->GetRowNum();
 
-    //ComponentArray<FloorAndPillerrStatus>* fandp = dynamic_cast<ComponentArray<FloorAndPillerrStatus>*>
-    //    (ECSManager::getInstance()->getComponentArray(nameof<FloorAndPillerrStatus>()));
+   /* ComponentArray<FloorAndPillerrStatus>* fandp = ECSManager::getInstance()->getComponentArray<FloorAndPillerrStatus>();*/
 
     //if (fandp == nullptr) {
     //    return;
     //}
+    // 
     //FloorAndPillerrStatus* otherFAndP = ;
 
     //// 同じRowにある床の `IsFall` を `true` にする

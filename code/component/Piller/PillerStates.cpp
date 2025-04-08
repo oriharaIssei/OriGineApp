@@ -4,11 +4,9 @@
 #include "imgui/imgui.h"
 
 void PillerStates::Initialize([[maybe_unused]] GameEntity* _entity) {
-   /* pillarHP_ = 0;
-    collisionSize_ = 0.0f;*/
-    currentHP_ = 2;
-   collisionSize_ = 3000.0f;
-    HPMax_         = 3;
+    currentHP_     = 2;
+    collisionSize_ = 3000.0f;
+    HPMax_         = 2;
 }
 
 bool PillerStates::Edit() {
@@ -19,8 +17,9 @@ bool PillerStates::Edit() {
     ImGui::Spacing();
 
     isChange |= ImGui::InputInt("pillarHP", &HPMax_);
-    isChange |= ImGui::DragFloat("collisionSize", &collisionSize_,0.01f);
-
+    isChange |= ImGui::DragFloat("collisionSize", &collisionSize_, 0.01f);
+    isChange |= ImGui::DragInt("row:%d", &rowNum_);
+    isChange |= ImGui::DragInt("colum:%d", &columNum_);
     return isChange;
 }
 
@@ -40,9 +39,9 @@ void PillerStates::Finalize() {}
 
 void PillerStates::TakeDamage() {
     currentHP_--;
- }
+}
 
 void PillerStates::SetColumAndRow(const int32_t& colum, const int32_t& row) {
-     rowNum_   = row;
-     columNum_ = colum;
- }
+    rowNum_   = row;
+    columNum_ = colum;
+}

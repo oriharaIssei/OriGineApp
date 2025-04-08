@@ -136,11 +136,14 @@ void TowerPositionSet::CreateTower(const float& Radius) {
             FloorAndPillerrStatus* statusFandP = getComponent<FloorAndPillerrStatus>(floorAndPiller);
             statusFandP->SetColumAndRow(i, j);
             statusPiller->SetColumAndRow(statusFandP->GetColumNum(), statusFandP->GetRowNum());
-
             // savePosを設定
             statusFandP->SetSavePos(fAndPTransform->translate[Y]);
             // 落ちるオフセットを決める
             statusFandP->SetFallValue(floorAndPillerSpawner_->GetPillerSpace());
+
+            if (i == 0 && j == 0) {
+                statusPiller->SetCurrentHp(0);
+            }
             // ================================= System ================================= //
 
             //------------------ Input
