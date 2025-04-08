@@ -35,14 +35,14 @@ void PlayerStates::Save(BinaryWriter& _writer) {
     _writer.Write("isAlive", isAlive_);
     _writer.Write("moveSpeed", moveSpeed_);
     _writer.Write("moveRadius", moveRadius_);
-    /*_writer.Write<3,float>("followCameraOffset", followCameraOffset_.v);*/
+    _writer.Write<3,float>("followCameraOffset", followCameraOffset_);
 }
 
 void PlayerStates::Load(BinaryReader& _reader) {
     _reader.Read("isAlive", isAlive_);
     _reader.Read("moveSpeed", moveSpeed_);
     _reader.Read("moveRadius", moveRadius_);
-   /* _reader.Read<3,float>("followCameraOffset", followCameraOffset_.v);*/
+    _reader.Read<3,float>("followCameraOffset", followCameraOffset_);
 }
 
 void PlayerStates::Finalize() {}
