@@ -2,11 +2,11 @@
 
 #include "system/ISystem.h"
 
-class DeleteFloorAndPillerSystem
+class DeletePillerEntitySystem
     : public ISystem {
 public:
-        DeleteFloorAndPillerSystem();
-    ~DeleteFloorAndPillerSystem();
+        DeletePillerEntitySystem();
+    ~DeletePillerEntitySystem();
 
     void Initialize() override;
     // void Update()override;

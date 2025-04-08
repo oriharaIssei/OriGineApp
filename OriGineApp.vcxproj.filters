@@ -103,7 +103,7 @@
     <ClInclude Include="code\system\Bom\DeleteBomSystem.h">
       <Filter>system\Bom</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Piller\DeletePillerSystem.h">
+    <ClInclude Include="code\system\Piller\CanageStateFallSystem.h">
       <Filter>system\Piller</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Bom\DeleteExplotionCollision.h">
@@ -130,10 +130,10 @@
     <ClInclude Include="code\system\Player\PlayerMoveSystem.h">
       <Filter>system\Player</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\FloorAndPiller\DeleteFloorAndPillerSystem.h">
-      <Filter>system\FloorAndPiller</Filter>
-    </ClInclude>
     <ClInclude Include="code\system\Piller\PillerUpdateMatrixSystem.h">
+      <Filter>system\Piller</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Piller\DeletePillerEntitySystem.h">
       <Filter>system\Piller</Filter>
     </ClInclude>
   </ItemGroup>
@@ -196,7 +196,7 @@
     <ClCompile Include="code\system\Bom\DeleteBomSystem.cpp">
       <Filter>system\Bom</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Piller\DeletePillerSystem.cpp">
+    <ClCompile Include="code\system\Piller\CanageStateFallSystem.cpp">
       <Filter>system\Piller</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Bom\DeleteExplotionCollision.cpp">
@@ -223,10 +223,10 @@
     <ClCompile Include="code\system\Player\PlayerMoveSystem.cpp">
       <Filter>system\Player</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\FloorAndPiller\DeleteFloorAndPillerSystem.cpp">
-      <Filter>system\FloorAndPiller</Filter>
-    </ClCompile>
     <ClCompile Include="code\system\Piller\PillerUpdateMatrixSystem.cpp">
+      <Filter>system\Piller</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Piller\DeletePillerEntitySystem.cpp">
       <Filter>system\Piller</Filter>
     </ClCompile>
   </ItemGroup>

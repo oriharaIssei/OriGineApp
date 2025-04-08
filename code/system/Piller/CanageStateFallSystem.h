@@ -2,11 +2,11 @@
 
 #include "system/ISystem.h"
 
-class DeletePillerSystem
+class CanageStateFallSystem
     : public ISystem {
 public:
-    DeletePillerSystem();
-    ~DeletePillerSystem();
+    CanageStateFallSystem();
+    ~CanageStateFallSystem();
 
     void Initialize() override;
     // void Update()override;

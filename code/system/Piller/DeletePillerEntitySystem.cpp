@@ -1,4 +1,4 @@
-#include "DeleteFloorAndPillerSystem.h"
+#include "DeletePillerEntitySystem.h"
 
 /// ECS
 #define ENGINE_ECS
@@ -7,21 +7,21 @@
 #include "component/Piller/PillerStates.h"
 #include "engine/EngineInclude.h"
 
-DeleteFloorAndPillerSystem::DeleteFloorAndPillerSystem() : ISystem(SystemType::StateTransition) {}
+DeletePillerEntitySystem::DeletePillerEntitySystem() : ISystem(SystemType::StateTransition) {}
 
-void DeleteFloorAndPillerSystem::Initialize() {
+void DeletePillerEntitySystem::Initialize() {
 }
 
-void DeleteFloorAndPillerSystem::Finalize() {
+void DeletePillerEntitySystem::Finalize() {
     /*  entities_.clear();*/
 }
 
-DeleteFloorAndPillerSystem::~DeleteFloorAndPillerSystem() {}
+DeletePillerEntitySystem::~DeletePillerEntitySystem() {}
 
 
 
 
-void DeleteFloorAndPillerSystem::UpdateEntity(GameEntity* _entity) {
+void DeletePillerEntitySystem::UpdateEntity(GameEntity* _entity) {
     if (!_entity) {
         return;
     }

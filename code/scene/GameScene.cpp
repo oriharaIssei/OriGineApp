@@ -23,10 +23,10 @@
 #include"Application/code/system/Bom/BomExplotionSystem.h"
 #include"Application/code/system/Bom/DeleteBomSystem.h"
 #include"Application/code/system/Piller/PillerDamageSystem.h"
-#include"Application/code/system/Piller/DeletePillerSystem.h"
+#include"Application/code/system/Piller/CanageStateFallSystem.h"
 #include"Application/code/system/Bom/DeleteExplotionCollision.h"
 #include"Application/code/system/Player/PlayerFollowCameraSystem.h"
-#include"Application/code/system/FloorAndPiller/DeleteFloorAndPillerSystem.h"
+#include"Application/code/system/Piller/DeletePillerEntitySystem.h"
 #include"Application/code/system/FloorAndPiller/FloorAndPillerFallSystem.h"
 #include"Application/code/system/Piller/PillerUpdateMatrixSystem.h"
 
@@ -58,15 +58,15 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<PlayerInputSystem>();
     ecsManager->registerSystem<PlayerMoveSystem>();
     ecsManager->registerSystem<PutBomSystem>();
-    ecsManager->registerSystem<CreateFloorAndPillerSystem>();
+    /*ecsManager->registerSystem<CreateFloorAndPillerSystem>();*/
     ecsManager->registerSystem<TowerPositionSet>();
     ecsManager->registerSystem<BomExplotionSystem>();
     ecsManager->registerSystem<DeleteBomSystem>();
     ecsManager->registerSystem<PillerDamageSystem>();
-    ecsManager->registerSystem<DeletePillerSystem>();
+    ecsManager->registerSystem<CanageStateFallSystem>();
     ecsManager->registerSystem<DeleteExplotionCollision>();
     ecsManager->registerSystem<PlayerFollowCameraSystem>();
-    ecsManager->registerSystem<DeleteFloorAndPillerSystem>();
+    ecsManager->registerSystem<DeletePillerEntitySystem>();
     ecsManager->registerSystem<FloorAndPillerFallSystem>();
     ecsManager->registerSystem<PillerUpdateMatrixSystem>();
     ecsManager->SortPriorityOrderSystems();

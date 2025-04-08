@@ -123,10 +123,10 @@
     <ClInclude Include="code\MyGame.h" />
     <ClInclude Include="code\scene\GameScene.h" />
     <ClInclude Include="code\system\FloorAndPiller\CreateFloorAndPillerSystem.h" />
-    <ClInclude Include="code\system\FloorAndPiller\DeleteFloorAndPillerSystem.h" />
     <ClInclude Include="code\system\FloorAndPiller\FloorAndPillerFallSystem.h" />
     <ClInclude Include="code\system\FloorAndPiller\TowerPositionSet.h" />
-    <ClInclude Include="code\system\Piller\DeletePillerSystem.h" />
+    <ClInclude Include="code\system\Piller\CanageStateFallSystem.h" />
+    <ClInclude Include="code\system\Piller\DeletePillerEntitySystem.h" />
     <ClInclude Include="code\system\Piller\PillerDamageSystem.h" />
     <ClInclude Include="code\system\Piller\PillerPhysicsSystem.h" />
     <ClInclude Include="code\scene\TitleScene.h" />
@@ -160,10 +160,10 @@
     <ClCompile Include="code\MyGame.cpp" />
     <ClCompile Include="code\scene\GameScene.cpp" />
     <ClCompile Include="code\system\FloorAndPiller\CreateFloorAndPillerSystem.cpp" />
-    <ClCompile Include="code\system\FloorAndPiller\DeleteFloorAndPillerSystem.cpp" />
     <ClCompile Include="code\system\FloorAndPiller\FloorAndPillerFallSystem.cpp" />
     <ClCompile Include="code\system\FloorAndPiller\TowerPositionSet.cpp" />
-    <ClCompile Include="code\system\Piller\DeletePillerSystem.cpp" />
+    <ClCompile Include="code\system\Piller\CanageStateFallSystem.cpp" />
+    <ClCompile Include="code\system\Piller\DeletePillerEntitySystem.cpp" />
     <ClCompile Include="code\system\Piller\PillerDamageSystem.cpp" />
     <ClCompile Include="code\system\Piller\PillerPhysicsSystem.cpp" />
     <ClCompile Include="code\scene\TitleScene.cpp" />

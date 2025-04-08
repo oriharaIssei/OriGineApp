@@ -1,4 +1,4 @@
-#include "DeletePillerSystem.h"
+#include "CanageStateFallSystem.h"
 
 /// ECS
 #define ENGINE_ECS
@@ -7,25 +7,25 @@
 #include "component/Piller/PillerStates.h"
 #include "engine/EngineInclude.h"
 
-DeletePillerSystem::DeletePillerSystem() : ISystem(SystemType::StateTransition) {}
+CanageStateFallSystem::CanageStateFallSystem() : ISystem(SystemType::StateTransition) {}
 
-void DeletePillerSystem::Initialize() {
+void CanageStateFallSystem::Initialize() {
 }
 
-void DeletePillerSystem::Finalize() {
+void CanageStateFallSystem::Finalize() {
     /*  entities_.clear();*/
 }
 
-DeletePillerSystem::~DeletePillerSystem() {}
+CanageStateFallSystem::~CanageStateFallSystem() {}
 
 
-void DeletePillerSystem::UpdateEntity(GameEntity* _entity) {
+void CanageStateFallSystem::UpdateEntity(GameEntity* _entity) {
     if (!_entity) {
         return;
     }
 
     PillerStates* status               = getComponent<PillerStates>(_entity);
-   /* FloorAndPillerrStatus* fAndPStatus = getComponent<FloorAndPillerrStatus>(_entity);*/
+    FloorAndPillerrStatus* fAndPStatus = getComponent<FloorAndPillerrStatus>(_entity);
 
     if (!status) {
         return;
@@ -36,8 +36,15 @@ void DeletePillerSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
+    //  柱のスケールを0にする
+    Transform* entityTransform = getComponent<Transform>(_entity, 0);
+    if (!entityTransform) {
+        return;
+    }
+    entityTransform->scale = Vec3f(0.0f, 0.0f, 0.0f);/// スケールセロ
+
     // 壊れた柱のRow番号を取得
-    int destroyedRow = status->GetRowNum();
+    int destroyedRow = fAndPStatus->GetRowNum();
 
     // **同じRowの床を落とす**
     for (GameEntity* entity : getEntities()) { // すべてのエンティティをチェック
@@ -52,8 +59,8 @@ void DeletePillerSystem::UpdateEntity(GameEntity* _entity) {
         }
     }
 
-    // **壊れた柱を削除**
-    DestroyEntity(_entity);
+    //// **壊れた柱を削除**
+    //DestroyEntity(_entity);
 
 
     //// 壊れた柱のRow番号を取得

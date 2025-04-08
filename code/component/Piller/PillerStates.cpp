@@ -18,8 +18,7 @@ bool PillerStates::Edit() {
 
     isChange |= ImGui::InputInt("pillarHP", &HPMax_);
     isChange |= ImGui::DragFloat("collisionSize", &collisionSize_, 0.01f);
-    isChange |= ImGui::DragInt("row:%d", &rowNum_);
-    isChange |= ImGui::DragInt("colum:%d", &columNum_);
+   
     return isChange;
 }
 
@@ -41,7 +40,3 @@ void PillerStates::TakeDamage() {
     currentHP_--;
 }
 
-void PillerStates::SetColumAndRow(const int32_t& colum, const int32_t& row) {
-    rowNum_   = row;
-    columNum_ = colum;
-}

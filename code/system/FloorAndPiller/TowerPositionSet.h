@@ -22,7 +22,7 @@ private:
 
     BottomFloorStates* bottomFloorStates_;
     FloorAndPillerSpawner* floorAndPillerSpawner_;
-    std::vector<FloorModeCreater*> floorModeCreater_;
+    /*std::vector<FloorModeCreater*> floorModeCreater_;*/
     PillerStates* pillerStates_;
     FloorStates* floorStates_;
 

@@ -21,9 +21,9 @@
 #include "component/Piller/PillerStates.h"
 // system
 // #include "system/FloorAndPillerColum/CreateFloorAndPillerSystem.h"
-#include "system/FloorAndPiller/DeleteFloorAndPillerSystem.h"
+#include "system/Piller/DeletePillerEntitySystem.h"
 #include "system/FloorAndPiller/FloorAndPillerFallSystem.h"
-#include "system/Piller/DeletePillerSystem.h"
+#include "system/Piller/CanageStateFallSystem.h"
 #include "system/Piller/PillerDamageSystem.h"
 #include "system/Piller/pillerUpdateMatrixSystem.h"
 #include <cmath>
@@ -54,14 +54,14 @@ void TowerPositionSet::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    floorModeCreater_.resize(bottomFloorStates_->GetFloorNum());
+    /*floorModeCreater_.resize(bottomFloorStates_->GetFloorNum());
 
     for (int32_t i = 0; i < floorModeCreater_.size(); ++i) {
         floorModeCreater_[i] = getComponent<FloorModeCreater>(_entity);
         if (!floorModeCreater_[i]) {
             return;
         }
-    }
+    }*/
 
     float moveRadius = bottomFloorStates_->GetFieldRadius();
     // 床生成
@@ -152,8 +152,8 @@ void TowerPositionSet::CreateTower(const float& Radius) {
             // None
 
             //------------------ StateTransition
-            ecs->getSystem<DeletePillerSystem>()->addEntity(piller);
-            ecs->getSystem<DeleteFloorAndPillerSystem>()->addEntity(piller);
+            ecs->getSystem<CanageStateFallSystem>()->addEntity(piller);
+            ecs->getSystem<DeletePillerEntitySystem>()->addEntity(piller);
 
             //------------------ Movement
             ecs->getSystem<MoveSystemByRigidBody>()->addEntity(piller);
@@ -202,12 +202,12 @@ void TowerPositionSet::CreateBottomFloor(const float& Radius) {
         FloorStates* floorStates                     = getComponent<FloorStates>(bottomFloor); // 床
         PillerStates* pillerStates                   = getComponent<PillerStates>(bottomFloor); // 柱
         FloorAndPillerSpawner* floorAndPillerSpawner = getComponent<FloorAndPillerSpawner>(bottomFloor); // 床
-        FloorModeCreater* floorModeCreater           = getComponent<FloorModeCreater>(bottomFloor); // 床
+        //FloorModeCreater* floorModeCreater           = getComponent<FloorModeCreater>(bottomFloor); // 床
 
         floorStates           = floorStates_;
         pillerStates          = pillerStates_;
         floorAndPillerSpawner = floorAndPillerSpawner_;
-        floorModeCreater      = floorModeCreater_[j];
+      /*  floorModeCreater      = floorModeCreater_[j];*/
 
         // rowNumberをセット
         floorAndPillerSpawner_->SetRowNumber(j);
