@@ -19,7 +19,7 @@ public:
     void Initialize() override;
     void Finalize() override;
 
-    
+    float Lerp(const float& start, const float& end, float t);
 
   
 protected:

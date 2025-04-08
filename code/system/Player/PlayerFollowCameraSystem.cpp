@@ -92,8 +92,6 @@ void PlayerFollowCameraSystem::GetTransformForPlayer(GameEntity* _entity) {
     transform_      = entityPlayerStates_->GetTransform();
     pivotTransform_ = entityPlayerStates_->GetPivotTransform();
 
-   
-
     isInited_ = true;
 }
 

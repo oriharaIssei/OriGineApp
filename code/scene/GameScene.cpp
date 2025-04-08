@@ -26,6 +26,8 @@
 #include"Application/code/system/Piller/DeletePillerSystem.h"
 #include"Application/code/system/Bom/DeleteExplotionCollision.h"
 #include"Application/code/system/Player/PlayerFollowCameraSystem.h"
+#include"Application/code/system/FloorAndPiller/DeleteFloorAndPillerSystem.h"
+#include"Application/code/system/FloorAndPiller/FloorAndPillerFallSystem.h"
 
 GameScene::GameScene()
     : IScene("Game") {}
@@ -63,5 +65,7 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<DeletePillerSystem>();
     ecsManager->registerSystem<DeleteExplotionCollision>();
     ecsManager->registerSystem<PlayerFollowCameraSystem>();
+    ecsManager->registerSystem<DeleteFloorAndPillerSystem>();
+    ecsManager->registerSystem<FloorAndPillerFallSystem>();
     ecsManager->SortPriorityOrderSystems();
 }

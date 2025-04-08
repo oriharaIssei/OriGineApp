@@ -130,6 +130,9 @@
     <ClInclude Include="code\system\Player\PlayerMoveSystem.h">
       <Filter>system\Player</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\FloorAndPiller\DeleteFloorAndPillerSystem.h">
+      <Filter>system\FloorAndPiller</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -216,6 +219,9 @@
     </ClCompile>
     <ClCompile Include="code\system\Player\PlayerMoveSystem.cpp">
       <Filter>system\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\FloorAndPiller\DeleteFloorAndPillerSystem.cpp">
+      <Filter>system\FloorAndPiller</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

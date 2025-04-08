@@ -102,7 +102,4 @@ void DeletePillerSystem::UpdateEntity(GameEntity* _entity) {
 
     //// **壊れた柱を削除**
     //DestroyEntity(_entity);
-
-
-    
 }

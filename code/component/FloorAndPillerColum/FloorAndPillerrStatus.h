@@ -12,11 +12,16 @@ private: // variables
 
     bool isAlive_ = true;
 
-    bool isFall_;
+    bool isFall_ = false;
+    bool isDestroy_;
+
     int32_t columNum_;
     int32_t rowNum_;
     float savePosY_;
     float fallValue_;
+    float fallPosY_;
+    float fallspeed_;
+    float fallEaseT_;
 
 public:
     FloorAndPillerrStatus() {}
@@ -28,7 +33,8 @@ public:
     void Load(BinaryReader& _reader) override;
     void Finalize() override;
 
- 
+ void SetColumDecrement();
+   
 
 public: // accsessor
 
@@ -37,9 +43,21 @@ public: // accsessor
     int32_t GetRowNum() const { return rowNum_; }
     bool GetIsFall() const { return isFall_; }
     float GetSavePos() const { return savePosY_; }
+    float GetFallValue() const { return fallValue_; }
+    float GetFallPosY();
+    float GetFallEaseT() const { return fallEaseT_; }
+    float GetFallSpeed() const { return fallspeed_; }
+    bool GetIsDestroy() const { return isDestroy_; }
+
 
       /// setter
     void SetColumAndRow(const int32_t& colum, const int32_t& row);
     void SetIsFall(const bool& is) { isFall_ = is; }
     void SetSavePos(const float& pos) { savePosY_ = pos; }
+    void SetFallValue(const float& value) { fallValue_ = value; }
+    void SetFallPosY(const float& pos) { fallPosY_ = pos; }
+    void SetFallEaseT(const float& t) { fallEaseT_ = t; }
+    void SetIncrementFallEaseT(const float& t) { fallEaseT_ += t; }
+    void SetFallSpeed(const float& speed) { fallspeed_ = speed; }
+    void SetIsDestroy(const bool& is) { isDestroy_ = is; }
 };

@@ -10,12 +10,9 @@
 
 /// app
 // component
-
 #include "component/FloorAndPillerColum/FloorAndPillerrStatus.h"
 
 // system
-#include "system/Piller/DeletePillerSystem.h"
-#include "system/Piller/PillerDamageSystem.h"
 
 FloorAndPillerFallSystem::FloorAndPillerFallSystem() : ISystem(SystemType::Movement) {}
 FloorAndPillerFallSystem::~FloorAndPillerFallSystem() {}
@@ -30,7 +27,6 @@ void FloorAndPillerFallSystem::Finalize() {
 void FloorAndPillerFallSystem::UpdateEntity(GameEntity* _entity) {
 
     FloorAndPillerrStatus* entityStatus = getComponent<FloorAndPillerrStatus>(_entity);
-    /* FloorStates* floorStates             = getComponent<FloorStates>(_entity);*/
 
     if (!entityStatus) {
         return;
@@ -40,19 +36,36 @@ void FloorAndPillerFallSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    switch (entityStatus->GetColumNum()) {
+    Transform* entityTransform = getComponent<Transform>(_entity);
 
-    case 0:  /// 1段目(床だけが落ちる段)
-      
-        break;
+    // フロアの落下処理
+    entityStatus->SetIncrementFallEaseT(Engine::getInstance()->getDeltaTime() * entityStatus->GetFallSpeed());
 
-    case 1: /// 2段目
-        break;
+    // 落とす
+    entityTransform->translate[Y] = Lerp(entityStatus->GetSavePos(),entityStatus->GetFallPosY(),entityStatus->GetFallEaseT());
 
-    case 2:/// 3段目
-        break;
-
-    default:
-        break;
+    // 落ちた後の処理
+    if (entityStatus->GetFallEaseT() < 1.0f) {
+        return;
     }
+
+    /// columを下げる
+    entityStatus->SetColumDecrement();
+
+    // savePosY_を更新
+    entityTransform->translate[Y] = entityStatus->GetFallPosY();
+    entityStatus->SetSavePos(entityTransform->translate[Y]);
+    entityStatus->SetFallEaseT(0.0f);
+
+    // フラグ戻す
+    entityStatus->SetIsFall(false);
+
+    // 破壊条件
+    if (entityStatus->GetColumNum() < 0) {
+        entityStatus->SetIsDestroy(true);
+    }
+}
+
+float FloorAndPillerFallSystem::Lerp(const float& start, const float& end, float t) {
+    return (1.0f - t) * start + end * t;
 }
