@@ -18,34 +18,34 @@ void DeletePillerSystem::Finalize() {
 
 DeletePillerSystem::~DeletePillerSystem() {}
 
-// void DeletePillerSystem::UpdateEntity(GameEntity* _entity) {
-//     if (!_entity) {
-//         return;
-//     }
-//
-//     PillerStates* status          = getComponent<PillerStates>(_entity);
-//     FloorAndPillerrStatus* fAndPStatus = getComponent<FloorAndPillerrStatus>(_entity);
-//
-//     if (!status ) {
-//         return;
-//     }
-//
-//     // HPゼロで破壊
-//     if (status->GetCurrentHp() > 0) {
-//         return;
-//     }
-//
-//     // 破壊の前にーーー落とす床を決める
-//     fAndPStatus->SetIsFall(true);
-//
-//     fAndPStatus->GetRowNum();
-//     fAndPStatus->GetColumNum();
-//
-//     //破壊
-//     DestroyEntity(_entity);
-//
-// }
-//
+ //void DeletePillerSystem::UpdateEntity(GameEntity* _entity) {
+ //    if (!_entity) {
+ //        return;
+ //    }
+
+ //    PillerStates* status          = getComponent<PillerStates>(_entity);
+ //    FloorAndPillerrStatus* fAndPStatus = getComponent<FloorAndPillerrStatus>(_entity);
+
+ //    if (!status ) {
+ //        return;
+ //    }
+
+ //    // HPゼロで破壊
+ //    if (status->GetCurrentHp() > 0) {
+ //        return;
+ //    }
+
+ //    // 破壊の前にーーー落とす床を決める
+ //    fAndPStatus->SetIsFall(true);
+
+ //    fAndPStatus->GetRowNum();
+ //    fAndPStatus->GetColumNum();
+
+ //    //破壊
+ //    DestroyEntity(_entity);
+
+ //}
+
 
 void DeletePillerSystem::UpdateEntity(GameEntity* _entity) {
     if (!_entity) {
@@ -64,44 +64,45 @@ void DeletePillerSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    if (status->GetCurrentHp() > 0) {
-        return;
-    }
-
     // 壊れた柱のRow番号を取得
     int destroyedRow = fAndPStatus->GetRowNum();
 
-    ComponentArray<FloorAndPillerrStatus>* fandp = dynamic_cast<ComponentArray<FloorAndPillerrStatus>*>(ECSManager::getInstance()->getComponentArray(nameof<FloorAndPillerrStatus>()));
+    // **同じRowの床を落とす**
+    for (GameEntity* entity : getEntities()) { // すべてのエンティティをチェック
+        FloorAndPillerrStatus* otherFAndP = getComponent<FloorAndPillerrStatus>(entity);
+        if (!otherFAndP) {
+            continue;
+        }
 
-    if (fandp == nullptr) {
-        return;
+        // 同じRowにある床の `IsFall` を `true` にする
+        if (otherFAndP->GetRowNum() == destroyedRow) {
+            otherFAndP->SetIsFall(true);
+        }
     }
-
-    //// 同じRowにある床の `IsFall` を `true` にする
-    //if (fandp->GetRowNum() == destroyedRow) {
-    //    otherFAndP->SetIsFall(true);
-    //}
 
     // **壊れた柱を削除**
     DestroyEntity(_entity);
 
 
     //// 壊れた柱のRow番号を取得
-    // int destroyedRow = fAndPStatus->GetRowNum();
+    //int destroyedRow = fAndPStatus->GetRowNum();
 
-    //// **同じRowの床を落とす**
-    // for (GameEntity* entity : getEntities()) { // すべてのエンティティをチェック
-    //     FloorAndPillerrStatus* otherFAndP = getComponent<FloorAndPillerrStatus>(entity);
-    //     if (!otherFAndP) {
-    //         continue;
-    //     }
+    //ComponentArray<FloorAndPillerrStatus>* fandp = dynamic_cast<ComponentArray<FloorAndPillerrStatus>*>
+    //    (ECSManager::getInstance()->getComponentArray(nameof<FloorAndPillerrStatus>()));
 
-    //    // 同じRowにある床の `IsFall` を `true` にする
-    //    if (otherFAndP->GetRowNum() == destroyedRow) {
-    //        otherFAndP->SetIsFall(true);
-    //    }
+    //if (fandp == nullptr) {
+    //    return;
+    //}
+    //FloorAndPillerrStatus* otherFAndP = ;
+
+    //// 同じRowにある床の `IsFall` を `true` にする
+    //if (fandp->GetRowNum() == destroyedRow) {
+    //    otherFAndP->SetIsFall(true);
     //}
 
     //// **壊れた柱を削除**
-    // DestroyEntity(_entity);
+    //DestroyEntity(_entity);
+
+
+    
 }

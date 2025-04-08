@@ -44,7 +44,7 @@ void PlayerFollowCameraSystem::UpdateEntity(GameEntity* _entity) {
     /// カメラのオフセットを適用
     ///============================================================
     // カメラのオフセット（前方から見る場合、Z値を正にする）
-    Vec3f cameraOffset = {0.0f, 8.0f, 56.0f}; // 変更: Z を +30 に
+    Vec3f cameraOffset = entityPlayerStates_->GetFollowOffset(); /*{0.0f, 8.0f, 56.0f};*/ 
 
     // `pivotTransform_` の回転を考慮してカメラのオフセットを適用
     Matrix4x4 pivotRotationMatrix = MakeMatrix::RotateQuaternion(pivotTransform_->rotate);
