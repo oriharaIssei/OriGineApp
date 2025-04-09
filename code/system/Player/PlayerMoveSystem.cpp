@@ -23,7 +23,6 @@ PlayerMoveSystem::PlayerMoveSystem()
 PlayerMoveSystem::~PlayerMoveSystem() {}
 
 void PlayerMoveSystem::Initialize() {
-   
 }
 
 void PlayerMoveSystem::Finalize() {}
@@ -33,59 +32,41 @@ void PlayerMoveSystem::UpdateEntity(GameEntity* _entity) {
     if (!_entity) {
         return;
     }
+    PlayerStates* entityPlayerStates = getComponent<PlayerStates>(_entity);
 
-    entityPlayerStates_ = getComponent<PlayerStates>(_entity);
-    if (!entityPlayerStates_) {
+    if (!entityPlayerStates) {
         return;
     }
 
-    float moveTime  = entityPlayerStates_->GetMoveSpeed();
+    Transform* pivotTransform = getComponent<Transform>(_entity, 1);
+    Transform* transform      = getComponent<Transform>(_entity, 0);
+
+    float moveTime  = entityPlayerStates->GetMoveSpeed();
     float deltaTime = Engine::getInstance()->getDeltaTime();
-   GetTransformForPlayer(_entity);
 
     // 移動方向をセット
-   if (entityPlayerStates_->GetDirection() == 0.0f) {
-       return;
-   }
+    if (entityPlayerStates->GetDirection() == 0.0f) {
+        return;
+    }
 
     ///============================================================
     // Y軸回転のQuaternionを作成
     ///============================================================
     Quaternion rotateAxisY = Quaternion::RotateAxisAngle(Vec3f(0.0f, 1.0f, 0.0f),
-        entityPlayerStates_->GetDirection() * moveTime * deltaTime);
+        entityPlayerStates->GetDirection() * moveTime * deltaTime);
 
     ///============================================================
     // 変換後の位置を計算
     ///============================================================
 
     // 位置を適用
-    pivotTransform_->rotate *= rotateAxisY;
+    pivotTransform->rotate *= rotateAxisY;
 
     // 進行方向よ
-    transform_->rotate = Quaternion::RotateAxisAngle({0.0f, 1.0f, 0.0f},
-            std::atan2(-entityPlayerStates_->GetDirection(), 0.0f));
+    transform->rotate = Quaternion::RotateAxisAngle({0.0f, 1.0f, 0.0f},
+        std::atan2(-entityPlayerStates->GetDirection(), 0.0f));
 
     /// 更新
-    pivotTransform_->Update();
-    transform_->Update();
+    pivotTransform->Update();
+    transform->Update();
 }
-
-void PlayerMoveSystem::GetTransformForPlayer(GameEntity* _entity) {
-    /// TransformをSet
-    _entity;
-    if (isInited_) {
-        return;
-    }
-
-    if (!entityPlayerStates_->GetTransform()) {
-        return;
-    }
-    if (!entityPlayerStates_->GetPivotTransform()) {
-        return;
-    }
-
-    transform_      = entityPlayerStates_->GetTransform();
-    pivotTransform_ = entityPlayerStates_->GetPivotTransform();
-
-   isInited_ = true;
- }

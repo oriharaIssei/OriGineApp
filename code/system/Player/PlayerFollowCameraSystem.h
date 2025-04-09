@@ -9,11 +9,7 @@ class PlayerStates;
 class PlayerFollowCameraSystem
     : public ISystem {
 private:
-    PlayerStates* entityPlayerStates_ = nullptr;
-    Transform* transform_             = nullptr;
-    Transform* pivotTransform_        = nullptr;
-    CameraTransform* cameraTransform_ = nullptr;
-    bool isInited_                    = false;
+   
 
 public:
     PlayerFollowCameraSystem();

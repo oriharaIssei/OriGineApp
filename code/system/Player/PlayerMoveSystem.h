@@ -6,11 +6,7 @@ class PlayerStates;
 class PlayerMoveSystem
     : public ISystem {
 private:
-    PlayerStates* entityPlayerStates_=nullptr;
-    Transform* transform_             = nullptr;
-    Transform* pivotTransform_       = nullptr;
-    bool isInited_                    = false;
-
+   
 public:
     PlayerMoveSystem();
     ~PlayerMoveSystem();
@@ -19,8 +15,7 @@ public:
     // void Update() override;
     void Finalize() override;
 
-    void GetTransformForPlayer(GameEntity* _entity);
-  
+   
     protected:
     void UpdateEntity(GameEntity* _entity) override;
 

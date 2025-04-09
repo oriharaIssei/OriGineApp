@@ -32,7 +32,14 @@ void PlayerFollowCameraSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    GetTransformForPlayer(_entity);
+   CameraTransform* cameraTransform_ = getComponent<CameraTransform>(_entity);
+    Transform* pivotTransform_  = getComponent<Transform>(_entity,1);
+   PlayerStates* entityPlayerStates_ = getComponent<PlayerStates>(_entity);
+
+    if (!cameraTransform_ || !pivotTransform_ || !entityPlayerStates_) {
+        return;
+    }
+
     CameraManager::getInstance()->setTransform(*cameraTransform_);
 
     ///============================================================
@@ -70,30 +77,6 @@ void PlayerFollowCameraSystem::UpdateEntity(GameEntity* _entity) {
     cameraTransform_->UpdateMatrixQuaterion();
 }
 
-void PlayerFollowCameraSystem::GetTransformForPlayer(GameEntity* _entity) {
-    if (isInited_) {
-        return;
-    }
-
-    cameraTransform_ = getComponent<CameraTransform>(_entity);
-    entityPlayerStates_ = getComponent<PlayerStates>(_entity);
-    
-    if (!cameraTransform_ || !entityPlayerStates_) {
-        return;
-    }
-
-    if (!entityPlayerStates_->GetTransform()) {
-        return;
-    }
-    if (!entityPlayerStates_->GetPivotTransform()) {
-        return;
-    }
-
-    transform_      = entityPlayerStates_->GetTransform();
-    pivotTransform_ = entityPlayerStates_->GetPivotTransform();
-
-    isInited_ = true;
-}
 
 Vec3f PlayerFollowCameraSystem::Multiply(const Matrix4x4& rotationMatrix, const Vec3f& offset) {
     return Vec3f(
