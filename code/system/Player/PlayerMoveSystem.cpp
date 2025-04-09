@@ -6,7 +6,7 @@
 // component
 #define ENGINE_COMPONENTS
 // lib
-#include "input/Input.h"
+
 // include
 #include <Quaternion.h>
 #include <Vector3.h>
@@ -15,7 +15,6 @@
 
 #include "engine/EngineInclude.h"
 #include <cmath>
-#include <numbers>
 
 PlayerMoveSystem::PlayerMoveSystem()
     : ISystem(SystemType::Movement) {}

@@ -9,7 +9,9 @@
 /// externals
 #include "imgui/imgui.h"
 
-void ExplotionCollision::Initialize([[maybe_unused]] GameEntity* _entity) {}
+void ExplotionCollision::Initialize([[maybe_unused]] GameEntity* _entity) {
+    adaptTime_ = 1.0f;
+}
 
 bool ExplotionCollision::Edit() {
     bool isChange = false;
@@ -22,7 +24,7 @@ bool ExplotionCollision::Edit() {
     isChange |= ImGui::InputFloat3("##BomOffset", positionOffset_.v);
 
       ImGui::Text("etc");
-    isChange |= ImGui::DragFloat("explotionTime", &adaptTime_);
+    isChange |= ImGui::DragFloat("adaptTime", &adaptTime_);
     isChange |= ImGui::DragFloat("CollisionRadius", &collisionRadius_);
 
     return isChange;
