@@ -115,9 +115,6 @@
     <ClInclude Include="code\system\FloorAndPiller\TowerPositionSet.h">
       <Filter>system\FloorAndPiller</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\FloorAndPiller\CreateFloorAndPillerSystem.h">
-      <Filter>system\FloorAndPiller</Filter>
-    </ClInclude>
     <ClInclude Include="code\system\FloorAndPiller\FloorAndPillerFallSystem.h">
       <Filter>system\FloorAndPiller</Filter>
     </ClInclude>
@@ -206,9 +203,6 @@
       <Filter>component\FloorAndPillerColum</Filter>
     </ClCompile>
     <ClCompile Include="code\system\FloorAndPiller\TowerPositionSet.cpp">
-      <Filter>system\FloorAndPiller</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\FloorAndPiller\CreateFloorAndPillerSystem.cpp">
       <Filter>system\FloorAndPiller</Filter>
     </ClCompile>
     <ClCompile Include="code\system\FloorAndPiller\FloorAndPillerFallSystem.cpp">
