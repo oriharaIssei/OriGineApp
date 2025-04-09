@@ -17,5 +17,8 @@ public:
 
 protected:
     virtual void UpdateEntity(GameEntity* _entity) override;
+
+    private:
+    bool is = false;
    
 };

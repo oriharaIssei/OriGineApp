@@ -29,6 +29,7 @@
 #include"Application/code/system/FloorAndPiller/FloorAndPillerFallSystem.h"
 #include"Application/code/system/Piller/PillerUpdateMatrixSystem.h"
 #include"Application/code/system/Floor/DeleteFloorSystem.h"
+#include"Application/code/system/Floor/FloorUpdateMatrixSystem.h"
 
 GameScene::GameScene()
     : IScene("Game") {}
@@ -69,5 +70,6 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<FloorAndPillerFallSystem>();
     ecsManager->registerSystem<PillerUpdateMatrixSystem>();
     ecsManager->registerSystem<DeleteFloorSystem>();
+    ecsManager->registerSystem<FloorUpdateMatrixSystem>();
     ecsManager->SortPriorityOrderSystems();
 }

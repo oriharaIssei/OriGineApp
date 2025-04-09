@@ -136,6 +136,9 @@
     <ClInclude Include="code\system\Floor\DeleteFloorSystem.h">
       <Filter>system\Floor</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Floor\FloorUpdateMatrixSystem.h">
+      <Filter>system\Floor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -227,6 +230,9 @@
       <Filter>system\Piller</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Floor\DeleteFloorSystem.cpp">
+      <Filter>system\Floor</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Floor\FloorUpdateMatrixSystem.cpp">
       <Filter>system\Floor</Filter>
     </ClCompile>
   </ItemGroup>

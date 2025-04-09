@@ -30,6 +30,13 @@ void CanageStateFallSystem::UpdateEntity(GameEntity* _entity) {
     if (!status) {
         return;
     }
+    if (is) {
+        return;
+    }
+    if (fAndPStatus->GetRowNum() == 0 && fAndPStatus->GetColumNum() == 0) {
+        status->SetCurrentHp(0);
+        is = true;
+    }
 
     // HPが0以下なら破壊処理
     if (status->GetCurrentHp() > 0) {

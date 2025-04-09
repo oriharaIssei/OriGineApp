@@ -5,6 +5,7 @@
 // component
 #include "component/Floor/FloorStates.h"
 #include "engine/EngineInclude.h"
+#include <Vector.h>
 
 DeleteFloorSystem::DeleteFloorSystem() : ISystem(SystemType::StateTransition) {}
 
@@ -32,7 +33,8 @@ void DeleteFloorSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     // 床をデストロイ
-    if (!transform->parent) {
+    if (transform->parent->scale == Vec3f{0.0f,0.0f,0.0f}) {
+      
         DestroyEntity(_entity);
     }
 }

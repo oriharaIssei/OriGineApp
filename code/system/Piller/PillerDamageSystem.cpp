@@ -34,7 +34,7 @@ void PillerDamageSystem::UpdateEntity(GameEntity* _entity) {
     if (!entityStatus) {
         return;
     }
-
+   
     /// ====================================================
     /// 衝突判定の結果を使って CharacterStatus を更新
     /// ====================================================
@@ -44,6 +44,7 @@ void PillerDamageSystem::UpdateEntity(GameEntity* _entity) {
         for (auto& entityCollider : *entityColliders) {
             for (auto& [hitEntity, collisionState] : entityCollider.getCollisionStateMap()) {
 
+
                 if (_entity->getDataType() == hitEntity->getDataType()) {
                     continue;
                 }
@@ -52,6 +53,7 @@ void PillerDamageSystem::UpdateEntity(GameEntity* _entity) {
                 if (collisionState != CollisionState::Stay) {
                     continue;
                 }
+
                 // CharacterStatusを取得
                 ExplotionCollision* hitEntityStatus = getComponent<ExplotionCollision>(hitEntity);
                 if (!hitEntityStatus) {

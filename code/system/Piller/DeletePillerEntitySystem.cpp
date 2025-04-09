@@ -34,6 +34,9 @@ void DeletePillerEntitySystem::UpdateEntity(GameEntity* _entity) {
 
     // 柱床セットをデストロイ
     if (fAndPStatus->GetIsDestroy()) {
+        Transform* entityTransform = getComponent<Transform>(_entity, 1);
+        entityTransform->scale     = Vec3f(0.0f, 0.0f, 0.0f); /// スケールセロ
+        entityTransform->Update();
         DestroyEntity(_entity);
     }
     
