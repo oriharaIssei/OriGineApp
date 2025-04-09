@@ -28,7 +28,7 @@
 #include "system/Piller/pillerUpdateMatrixSystem.h"
 #include"system/Floor/DeleteFloorSystem.h"
 
-TowerPositionSet::TowerPositionSet() : ISystem(SystemType::Movement) {}
+TowerPositionSet::TowerPositionSet() : ISystem(SystemType::Initialize) {}
 TowerPositionSet::~TowerPositionSet() {}
 
 void TowerPositionSet::Initialize() {
