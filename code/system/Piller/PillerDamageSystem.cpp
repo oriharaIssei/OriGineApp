@@ -43,6 +43,7 @@ void PillerDamageSystem::UpdateEntity(GameEntity* _entity) {
         std::vector<SphereCollider>* entityColliders = getComponents<SphereCollider>(_entity);
         for (auto& entityCollider : *entityColliders) {
             for (auto& [hitEntity, collisionState] : entityCollider.getCollisionStateMap()) {
+
                 if (_entity->getDataType() == hitEntity->getDataType()) {
                     continue;
                 }

@@ -6,7 +6,7 @@
 void BomStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
     currentTime_ = 0.0f;
     explotionTime_   = 2.0f;
-    collisionRadius_ = 5.0f;
+    collisionRadius_ = 2.0f;
     positionOffset_  = Vec3f(0.0f, 0.0f, 0.0f);
 }
 
