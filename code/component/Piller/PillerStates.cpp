@@ -5,7 +5,7 @@
 
 void PillerStates::Initialize([[maybe_unused]] GameEntity* _entity) {
     currentHP_     = 2;
-    collisionSize_ = 3000.0f;
+    collisionSize_ = 5.0f;
     HPMax_         = 2;
 }
 
