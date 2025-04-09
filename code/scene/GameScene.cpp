@@ -28,6 +28,7 @@
 #include"Application/code/system/Piller/DeletePillerEntitySystem.h"
 #include"Application/code/system/FloorAndPiller/FloorAndPillerFallSystem.h"
 #include"Application/code/system/Piller/PillerUpdateMatrixSystem.h"
+#include"Application/code/system/Floor/DeleteFloorSystem.h"
 
 GameScene::GameScene()
     : IScene("Game") {}
@@ -67,5 +68,6 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<DeletePillerEntitySystem>();
     ecsManager->registerSystem<FloorAndPillerFallSystem>();
     ecsManager->registerSystem<PillerUpdateMatrixSystem>();
+    ecsManager->registerSystem<DeleteFloorSystem>();
     ecsManager->SortPriorityOrderSystems();
 }

@@ -4,7 +4,7 @@
 #include "imgui/imgui.h"
 
 void PillerStates::Initialize([[maybe_unused]] GameEntity* _entity) {
-    currentHP_     = 2;
+    currentHP_     = 0;
     collisionSize_ = 3000.0f;
     HPMax_         = 2;
 }

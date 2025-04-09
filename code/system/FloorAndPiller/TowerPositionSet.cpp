@@ -26,8 +26,7 @@
 #include "system/Piller/CanageStateFallSystem.h"
 #include "system/Piller/PillerDamageSystem.h"
 #include "system/Piller/pillerUpdateMatrixSystem.h"
-#include <cmath>
-#include <numbers>
+#include"system/Floor/DeleteFloorSystem.h"
 
 TowerPositionSet::TowerPositionSet() : ISystem(SystemType::Movement) {}
 TowerPositionSet::~TowerPositionSet() {}
@@ -154,7 +153,7 @@ void TowerPositionSet::CreateTower(const float& Radius) {
             //------------------ StateTransition
             ecs->getSystem<CanageStateFallSystem>()->addEntity(piller);
             ecs->getSystem<DeletePillerEntitySystem>()->addEntity(piller);
-
+            ecs->getSystem<DeleteFloorSystem>()->addEntity(floor);
             //------------------ Movement
             ecs->getSystem<MoveSystemByRigidBody>()->addEntity(piller);
             ecs->getSystem<MoveSystemByRigidBody>()->addEntity(floor);
