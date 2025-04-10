@@ -113,7 +113,7 @@ void TowerPositionSet::CreateTower(const float& Radius) {
 
             // Collider
             SphereCollider* collider           = getComponent<SphereCollider>(piller);
-            collider->getLocalShape()->radius_ = pillerStates_->GetCollisionSize();
+            collider->getLocalShapePtr()->radius_ = pillerStates_->GetCollisionSize();
             /* collider->getWorldShape()->radius_ = pillerStates_->GetCollisionSize();*/
 
             // MeshRenderer
@@ -132,7 +132,7 @@ void TowerPositionSet::CreateTower(const float& Radius) {
 
             PillerStates* statusPiller = getComponent<PillerStates>(piller);
             statusPiller               = pillerStates_;
-            statusPiller->SetCurrentHp(pillerStates_->GetHpMax());
+           
 
             // row,columNum
             FloorAndPillerrStatus* statusFandP = getComponent<FloorAndPillerrStatus>(piller);

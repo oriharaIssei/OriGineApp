@@ -9,6 +9,7 @@
 
 #include"component/Piller/PillerStates.h"
 #include"component/Bom/ExplotionCollision.h"
+#include"component/FloorAndPillerColum/FloorAndPillerrStatus.h"
 
 PillerDamageSystem::PillerDamageSystem() : ISystem(SystemType::Collision) {}
 PillerDamageSystem::~PillerDamageSystem() {}
@@ -30,10 +31,15 @@ void PillerDamageSystem::UpdateEntity(GameEntity* _entity) {
 
     // CharacterStatusを取得
     PillerStates* entityStatus = getComponent<PillerStates>(_entity);
+    FloorAndPillerrStatus* fAndPStatus = getComponent<FloorAndPillerrStatus>(_entity);
 
-    if (!entityStatus) {
+    if (!entityStatus||!fAndPStatus) {
         return;
     }
+
+   /* if (fAndPStatus->GetIsFall()) {
+        return;
+    }*/
    
     /// ====================================================
     /// 衝突判定の結果を使って CharacterStatus を更新
@@ -50,7 +56,7 @@ void PillerDamageSystem::UpdateEntity(GameEntity* _entity) {
                 }
 
                 // 衝突開始時の オブジェクトの Lifeを減らす
-                if (collisionState != CollisionState::Stay) {
+                if (collisionState != CollisionState::Enter) {
                     continue;
                 }
 

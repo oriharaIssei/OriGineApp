@@ -36,6 +36,7 @@ void PlayerStates::Save(BinaryWriter& _writer) {
     _writer.Write("moveSpeed", moveSpeed_);
     _writer.Write("moveRadius", moveRadius_);
     _writer.Write<3,float>("followCameraOffset", followCameraOffset_);
+    _writer.Write("OffSetY", offSetY_);
 }
 
 void PlayerStates::Load(BinaryReader& _reader) {
@@ -43,6 +44,7 @@ void PlayerStates::Load(BinaryReader& _reader) {
     _reader.Read("moveSpeed", moveSpeed_);
     _reader.Read("moveRadius", moveRadius_);
     _reader.Read<3,float>("followCameraOffset", followCameraOffset_);
+    _reader.Read("OffSetY", offSetY_);
 }
 
 void PlayerStates::Finalize() {}

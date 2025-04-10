@@ -31,12 +31,14 @@ void BomStatus::Save(BinaryWriter& _writer) {
     _writer.Write("isAlive", isAlive_);
     _writer.Write("explotionTime", explotionTime_);
     _writer.Write<3, float>("positionOffset", positionOffset_);
+    _writer.Write("CollisionRadius", collisionRadius_);
 }
 
 void BomStatus::Load(BinaryReader& _reader) {
     _reader.Read("isAlive", isAlive_);
     _reader.Read("explotionTime", explotionTime_);
     _reader.Read<3, float>("positionOffset", positionOffset_);
+    _reader.Read("CollisionRadius", collisionRadius_);
 }
 
 void BomStatus::Finalize() {}

@@ -64,7 +64,7 @@ void DeleteBomSystem::AddExplotionEntity(GameEntity* _entity, ExplotionCollision
 
     // Collider
     SphereCollider* collider           = getComponent<SphereCollider>(bomCollision);
-    collider->getLocalShape()->radius_ = _bomStates->GetCollisionRadius();
+    collider->getLocalShapePtr()->radius_ = _bomStates->GetCollisionRadius();
    /* collider->getWorldShape()->radius_ = _bomStates->GetCollisionRadius();*/
 
     /// States

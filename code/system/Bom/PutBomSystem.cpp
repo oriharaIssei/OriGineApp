@@ -62,7 +62,7 @@ void PutBomSystem::SpawnBom(GameEntity* _entity, BomStatus* _status) {
 
     // Collider
     SphereCollider* collider           = getComponent<SphereCollider>(bom);
-    collider->getLocalShape()->radius_ = _status->GetCollisionRadius();
+    collider->getLocalShapePtr()->radius_ = _status->GetCollisionRadius();
 
     // RigitBody
     /* Rigidbody* rigidbody = getComponent<Rigidbody>(bom);*/

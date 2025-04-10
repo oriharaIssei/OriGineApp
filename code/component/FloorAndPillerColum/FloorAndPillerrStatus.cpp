@@ -17,8 +17,8 @@ bool FloorAndPillerrStatus::Edit() {
     ImGui::Spacing();
 
     isChange |= ImGui::DragFloat("fallspeed", &fallspeed_,0.01f);
-    isChange |= ImGui::DragInt("row:%d",&rowNum_);
-    isChange |= ImGui::DragInt("colum:%d", &columNum_);
+   /* isChange |= ImGui::DragInt("row:%d",&rowNum_);
+    isChange |= ImGui::DragInt("colum:%d", &columNum_);*/
    
     return isChange;
 }

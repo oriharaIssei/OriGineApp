@@ -34,6 +34,7 @@ void FloorAndPillerSpawner::Save(BinaryWriter& _writer) {
     _writer.Write("pillerSpace", pillerSpace_);
     _writer.Write("floorSpace", floorSpace_);
     _writer.Write("columNumMax", columNumMax_);
+    _writer.Write("firstPillerOffset", firstPillerOffset_);
   
 }
 
@@ -41,7 +42,7 @@ void FloorAndPillerSpawner::Load(BinaryReader& _reader) {
     _reader.Read("pillerSpace", pillerSpace_);
     _reader.Read("floorSpace", floorSpace_);
     _reader.Read("columNumMax", columNumMax_);
- 
+    _reader.Read("firstPillerOffset", firstPillerOffset_);
 }
 
 void FloorAndPillerSpawner::Finalize() {}
