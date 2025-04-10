@@ -52,7 +52,7 @@ void PutBomSystem::SpawnBom(GameEntity* _entity, BomStatus* _status) {
     /*("Bom" + std::to_string(bomSpawner_->GetPutTotalNum())).c_str()*/
 
     // ================================= Bullet Entityを 生成 ================================= //
-    GameEntity* bom = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, BomStatus, ExplotionCollision>("Bom", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), BomStatus(), ExplotionCollision());
+    GameEntity* bom = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, BomStatus>("Bom", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), BomStatus());
     //  ================================= Componentを初期化 ================================= //
 
     // Transform
@@ -75,12 +75,13 @@ void PutBomSystem::SpawnBom(GameEntity* _entity, BomStatus* _status) {
     /// States
     BomStatus* status = getComponent<BomStatus>(bom);
     status->SetBomNumber(bomSpawner_->GetPutTotalNum());
-    ExplotionCollision* collisionState = getComponent<ExplotionCollision>(bom);
-
     status = _status;
-    collisionState->SetAdaptTime(0.5f);
-    collisionState->SetCollisionRadius(5.0f);
-    collisionState->SetOffset(Vec3f(0.0f, 0.0f, 0.0f));
+  /*  ExplotionCollision* collisionState = getComponent<ExplotionCollision>(bom);*/
+
+   
+    //collisionState->SetAdaptTime(0.5f);
+    //collisionState->SetCollisionRadius(5.0f);
+    //collisionState->SetOffset(Vec3f(0.0f, 0.0f, 0.0f));
 
     // ================================= System ================================= //
     ECSManager* ecs = ECSManager::getInstance();

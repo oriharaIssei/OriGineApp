@@ -10,7 +10,7 @@
 #include "imgui/imgui.h"
 
 void ExplotionCollision::Initialize([[maybe_unused]] GameEntity* _entity) {
-    adaptTime_ = 1.0f;
+    adaptTime_ = 0.1f;
 }
 
 bool ExplotionCollision::Edit() {
@@ -34,12 +34,14 @@ void ExplotionCollision::Save(BinaryWriter& _writer) {
     _writer.Write("isAlive", isAlive_);
     _writer.Write("adaptTime", adaptTime_);
     _writer.Write<3, float>("positionOffset", positionOffset_);
+    _writer.Write("CollisionRadius", collisionRadius_);
 }
 
 void ExplotionCollision::Load(BinaryReader& _reader) {
     _reader.Read("isAlive", isAlive_);
     _reader.Read("adaptTime", adaptTime_);
     _reader.Read<3, float>("positionOffset", positionOffset_);
+    _reader.Read("CollisionRadius", collisionRadius_);
 }
 
 void ExplotionCollision::Finalize() {}

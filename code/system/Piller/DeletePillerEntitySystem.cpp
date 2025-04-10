@@ -19,8 +19,6 @@ void DeletePillerEntitySystem::Finalize() {
 DeletePillerEntitySystem::~DeletePillerEntitySystem() {}
 
 
-
-
 void DeletePillerEntitySystem::UpdateEntity(GameEntity* _entity) {
     if (!_entity) {
         return;

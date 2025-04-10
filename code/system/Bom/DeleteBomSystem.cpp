@@ -29,10 +29,12 @@ DeleteBomSystem::~DeleteBomSystem() {}
 
 void DeleteBomSystem::UpdateEntity(GameEntity* _entity) {
     BomStatus* status                = getComponent<BomStatus>(_entity);
-    ExplotionCollision* addcollision = getComponent<ExplotionCollision>(_entity);
+  
 
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* playerEntity                 = ecsManager->getUniqueEntity("Player");
+
+      ExplotionCollision* addcollision = getComponent<ExplotionCollision>(playerEntity);
 
     if (!status || !addcollision || !playerEntity) {
         return;
