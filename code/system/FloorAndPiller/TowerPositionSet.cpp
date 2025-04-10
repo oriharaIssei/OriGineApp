@@ -122,8 +122,11 @@ void TowerPositionSet::CreateTower(const float& Radius) {
 
             // Model から MeshRenderer を作成
             CreateModelMeshRenderer(pillerRender, piller, kApplicationResourceDirectory + "/Models/Piller", "Piller.obj");
-            CreateModelMeshRenderer(floorRender, floor, kApplicationResourceDirectory + "/Models/whiteFloor", "whiteFloor.obj");
-
+            if (j %2== 0) {
+                CreateModelMeshRenderer(floorRender, floor, kApplicationResourceDirectory + "/Models/whiteFloor", "whiteFloor.obj");
+            } else {
+                CreateModelMeshRenderer(floorRender, floor, kApplicationResourceDirectory + "/Models/redFloor", "redFloor.obj");
+            }
             // ↓ここのパラメータコピーがエディターで設定した値にならない(初期化設定した値は問題なし)
 
             /// States
@@ -196,8 +199,11 @@ void TowerPositionSet::CreateBottomFloor(const float& Radius) {
         ModelMeshRenderer* bottomFloorRender = getComponent<ModelMeshRenderer>(bottomFloor);
 
         // Model から MeshRenderer を作成
-        CreateModelMeshRenderer(bottomFloorRender, bottomFloor, kApplicationResourceDirectory + "/Models/whiteFloor", "whiteFloor.obj");
-
+        if (j % 2 == 0) {
+            CreateModelMeshRenderer(bottomFloorRender, bottomFloor, kApplicationResourceDirectory + "/Models/whiteFloor", "whiteFloor.obj");
+        } else {
+            CreateModelMeshRenderer(bottomFloorRender, bottomFloor, kApplicationResourceDirectory + "/Models/redFloor", "redFloor.obj");
+        }
       
 
         // rowNumberをセット
