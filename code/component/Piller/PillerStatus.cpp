@@ -1,4 +1,4 @@
-#include "FloorAndPillerrStatus.h"
+#include "PillerStatus.h"
 /// externals
 #include "imgui/imgui.h"
 #include <string>
@@ -7,6 +7,8 @@ void FloorAndPillerrStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
     fallPosY_ = 0.0f;
     fallEaseT_ = 0.0f;
     fallspeed_ = 3.0f;
+    currentHP_     = 2;
+   /* collisionSize_ = 5.0f;*/
 }
 
 bool FloorAndPillerrStatus::Edit() {
@@ -16,9 +18,7 @@ bool FloorAndPillerrStatus::Edit() {
 
     ImGui::Spacing();
 
-    isChange |= ImGui::DragFloat("fallspeed", &fallspeed_,0.01f);
-   /* isChange |= ImGui::DragInt("row:%d",&rowNum_);
-    isChange |= ImGui::DragInt("colum:%d", &columNum_);*/
+    isChange |= ImGui::DragFloat("fallspeed", &fallspeed_, 0.01f);
    
     return isChange;
 }
@@ -26,11 +26,13 @@ bool FloorAndPillerrStatus::Edit() {
 void FloorAndPillerrStatus::Save(BinaryWriter& _writer) {
     _writer.Write("isAlive", isAlive_);
     _writer.Write("fallspeed", fallspeed_);
+   
 }
 
 void FloorAndPillerrStatus::Load(BinaryReader& _reader) {
     _reader.Read("isAlive", isAlive_);
     _reader.Read("fallspeed", fallspeed_);
+   
 }
 
 void FloorAndPillerrStatus::Finalize() {}
@@ -47,4 +49,8 @@ void FloorAndPillerrStatus::SetColumDecrement() {
 float FloorAndPillerrStatus::GetFallPosY()  {
     fallPosY_ = savePosY_ - fallValue_;
     return fallPosY_;
+}
+
+void FloorAndPillerrStatus::TakeDamage() {
+    currentHP_--;
 }

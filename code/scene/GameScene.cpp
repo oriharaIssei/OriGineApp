@@ -6,13 +6,13 @@
 #include"Application/code/component/Player/PlayerStates.h"
 #include"Application/code/component/Floor/BottomFloorStates.h"
 #include"Application/code/component/Floor/FloorStates.h"
-#include"Application/code/component/Piller/PillerStates.h"
-#include"Application/code/component/FloorAndPillerColum/FloorAndPillerSpawner.h"
+#include"Application/code/component/Piller/PillerStatus.h"
+#include"Application/code/component/Piller/PillerSpawner.h"
 #include"Application/code/component/Bom/BomSpawner.h"
 #include"Application/code/component/Floor/FloorModeCreater.h"
 #include"Application/code/component/Bom/BomStatus.h"
 #include"Application/code/component/Bom/ExplotionCollision.h"
-#include"Application/code/component/FloorAndPillerColum/FloorAndPillerrStatus.h"
+
 
 //system
 #include"Application/code/system/Player/PlayerInput.h"
@@ -43,7 +43,6 @@ void GameScene::registerComponents() {
     ecsManager->registerComponent<PlayerStates>();
     ecsManager->registerComponent<BottomFloorStates>();
     ecsManager->registerComponent<FloorStates>();
-    ecsManager->registerComponent<PillerStates>();
     ecsManager->registerComponent<FloorAndPillerSpawner>();
     ecsManager->registerComponent<BomSpawner>();
     ecsManager->registerComponent<BomStatus>();

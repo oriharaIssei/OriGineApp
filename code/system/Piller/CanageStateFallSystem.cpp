@@ -3,8 +3,7 @@
 /// ECS
 #define ENGINE_ECS
 // component
-#include "component/FloorAndPillerColum/FloorAndPillerrStatus.h"
-#include "component/Piller/PillerStates.h"
+#include "component/Piller/PillerStatus.h"
 #include "engine/EngineInclude.h"
 
 CanageStateFallSystem::CanageStateFallSystem() : ISystem(SystemType::StateTransition) {}
@@ -24,22 +23,21 @@ void CanageStateFallSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    PillerStates* status               = getComponent<PillerStates>(_entity);
     FloorAndPillerrStatus* fAndPStatus = getComponent<FloorAndPillerrStatus>(_entity);
 
-    if (!status) {
+    if (!fAndPStatus) {
         return;
     }
-   /* if (is) {
+  /*  if (is) {
         return;
     }
     if (fAndPStatus->GetRowNum() == 0 && fAndPStatus->GetColumNum() == 0) {
-        status->SetCurrentHp(0);
+        fAndPStatus->SetcurrentHP(0);
         is = true;
     }*/
 
     // HPが0以下なら破壊処理
-    if (status->GetCurrentHp() > 0) {
+    if (fAndPStatus->GetCurrentHP() > 0 ||fAndPStatus->GetColumNum()<0) {
         return;
     }
 

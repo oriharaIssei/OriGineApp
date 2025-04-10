@@ -16,9 +16,9 @@
 #include "component/Floor/BottomFloorStates.h"
 #include "component/Floor/FloorModeCreater.h"
 #include "component/Floor/FloorStates.h"
-#include "component/FloorAndPillerColum/FloorAndPillerrStatus.h"
-#include "component/FloorAndPillerColum/FloorAndPillerSpawner.h"
-#include "component/Piller/PillerStates.h"
+#include "component/Piller/PillerStatus.h"
+#include "component/Piller/PillerSpawner.h"
+//#include "component/Piller/PillerStates.h"
 // system
 // #include "system/FloorAndPillerColum/CreateFloorAndPillerSystem.h"
 #include "system/Piller/DeletePillerEntitySystem.h"
@@ -47,10 +47,10 @@ void TowerPositionSet::UpdateEntity(GameEntity* _entity) {
     bottomFloorStates_ = getComponent<BottomFloorStates>(_entity);
 
     floorStates_           = getComponent<FloorStates>(_entity);
-    pillerStates_          = getComponent<PillerStates>(_entity);
+   /* pillerStates_          = getComponent<PillerStates>(_entity);*/
     floorAndPillerSpawner_ = getComponent<FloorAndPillerSpawner>(_entity);
 
-    if (!bottomFloorStates_ || !floorStates_ || !pillerStates_ || !floorAndPillerSpawner_) {
+    if (!bottomFloorStates_ || !floorStates_  || !floorAndPillerSpawner_) {
         return;
     }
 
@@ -78,7 +78,7 @@ void TowerPositionSet::CreateTower(const float& Radius) {
         for (int32_t j = 0; j < bottomFloorStates_->GetFloorNum(); ++j) {
 
             // ================================= Bullet Entityを 生成 ================================= //
-            GameEntity* piller = CreateEntity<Transform, Transform, SphereCollider, Rigidbody, ModelMeshRenderer, PillerStates, FloorAndPillerrStatus>("Piller", Transform(), Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), PillerStates(), FloorAndPillerrStatus());
+            GameEntity* piller = CreateEntity<Transform, Transform, SphereCollider, Rigidbody, ModelMeshRenderer, FloorAndPillerrStatus>("Piller", Transform(), Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), FloorAndPillerrStatus());
             GameEntity* floor  = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, FloorStates>("Floor", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), FloorStates());
             /*GameEntity* floorAndPiller = CreateEntity<Transform, Rigidbody, FloorAndPillerrStatus>("FAndP", Transform(), Rigidbody(), FloorAndPillerrStatus());*/
 
@@ -86,7 +86,7 @@ void TowerPositionSet::CreateTower(const float& Radius) {
 
            
             Transform* pillerTransform = getComponent<Transform>(piller); // 柱
-             Transform* pillerBaseTransform  = getComponent<Transform>(piller,1);
+            Transform* pillerBaseTransform  = getComponent<Transform>(piller,1);
             Transform* floorTransform  = getComponent<Transform>(floor); // 床
 
             /// ランダムで床のサイズを変える（通常がコスト1,デカイのがコスト2）Maxコスト6
@@ -113,7 +113,7 @@ void TowerPositionSet::CreateTower(const float& Radius) {
 
             // Collider
             SphereCollider* collider           = getComponent<SphereCollider>(piller);
-            collider->getLocalShapePtr()->radius_ = pillerStates_->GetCollisionSize();
+            collider->getLocalShapePtr()->radius_ = floorAndPillerSpawner_->GetCollisionSize();
             /* collider->getWorldShape()->radius_ = pillerStates_->GetCollisionSize();*/
 
             // MeshRenderer
@@ -130,10 +130,6 @@ void TowerPositionSet::CreateTower(const float& Radius) {
             FloorStates* statusFloor = getComponent<FloorStates>(floor);
             statusFloor              = floorStates_;
 
-            PillerStates* statusPiller = getComponent<PillerStates>(piller);
-            statusPiller               = pillerStates_;
-           
-
             // row,columNum
             FloorAndPillerrStatus* statusFandP = getComponent<FloorAndPillerrStatus>(piller);
             statusFandP->SetColumAndRow(i, j);
@@ -142,9 +138,11 @@ void TowerPositionSet::CreateTower(const float& Radius) {
             statusFandP->SetSavePos(pillerBaseTransform->translate[Y]);
             // 落ちるオフセットを決める
             statusFandP->SetFallValue(floorAndPillerSpawner_->GetPillerSpace());
+            //hp
+            statusFandP->SetcurrentHP(floorAndPillerSpawner_->GetHpMax());
 
             if (i == 0 && j == 0) {
-                statusPiller->SetCurrentHp(0);
+                statusFandP->SetcurrentHP(0);
             }
             // ================================= System ================================= //
 
@@ -181,7 +179,7 @@ void TowerPositionSet::CreateBottomFloor(const float& Radius) {
     ECSManager* ecs = ECSManager::getInstance();
     for (int32_t j = 0; j < bottomFloorStates_->GetFloorNum(); ++j) {
         // ================================= Bullet Entityを 生成 ================================= //
-        GameEntity* bottomFloor = CreateEntity<Transform, Transform, Rigidbody, ModelMeshRenderer, FloorStates, FloorAndPillerSpawner, PillerStates, FloorModeCreater>("BFloor", Transform(), Transform(), Rigidbody(), ModelMeshRenderer(), FloorStates(), FloorAndPillerSpawner(), PillerStates(), FloorModeCreater());
+        GameEntity* bottomFloor = CreateEntity<Transform, Transform, Rigidbody, ModelMeshRenderer>("BFloor", Transform(), Transform(), Rigidbody(), ModelMeshRenderer());
 
         // ================================= Componentを初期化 ================================= //
 
@@ -200,19 +198,10 @@ void TowerPositionSet::CreateBottomFloor(const float& Radius) {
         // Model から MeshRenderer を作成
         CreateModelMeshRenderer(bottomFloorRender, bottomFloor, kApplicationResourceDirectory + "/Models/whiteFloor", "whiteFloor.obj");
 
-        /// States
-        FloorStates* floorStates                     = getComponent<FloorStates>(bottomFloor); // 床
-        PillerStates* pillerStates                   = getComponent<PillerStates>(bottomFloor); // 柱
-        FloorAndPillerSpawner* floorAndPillerSpawner = getComponent<FloorAndPillerSpawner>(bottomFloor); // 床
-        //FloorModeCreater* floorModeCreater           = getComponent<FloorModeCreater>(bottomFloor); // 床
-
-        floorStates           = floorStates_;
-        pillerStates          = pillerStates_;
-        floorAndPillerSpawner = floorAndPillerSpawner_;
-      /*  floorModeCreater      = floorModeCreater_[j];*/
+      
 
         // rowNumberをセット
-        floorAndPillerSpawner_->SetRowNumber(j);
+       /* floorAndPillerSpawner_->SetRowNumber(j);*/
 
         // ================================= System ================================= //
 

@@ -28,9 +28,6 @@
     <Filter Include="system\Player">
       <UniqueIdentifier>{95a74daa-d55e-4028-8a38-bdd24385a74c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="component\FloorAndPillerColum">
-      <UniqueIdentifier>{4d8a8d5b-8279-4eed-bd54-7addda32afa4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="component\ShockWave">
       <UniqueIdentifier>{edac6470-6681-4ed5-b37b-66f36d95e14d}</UniqueIdentifier>
     </Filter>
@@ -56,14 +53,8 @@
     <ClInclude Include="code\component\Floor\FloorStates.h">
       <Filter>component\Floor</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\Piller\PillerStates.h">
-      <Filter>component\Piller</Filter>
-    </ClInclude>
     <ClInclude Include="code\system\Piller\PillerPhysicsSystem.h">
       <Filter>system\Piller</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\FloorAndPillerColum\FloorAndPillerSpawner.h">
-      <Filter>component\FloorAndPillerColum</Filter>
     </ClInclude>
     <ClInclude Include="code\component\Button.h" />
     <ClInclude Include="code\system\ButtonInputSystem.h" />
@@ -109,9 +100,6 @@
     <ClInclude Include="code\system\Bom\DeleteExplotionCollision.h">
       <Filter>system\Bom</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\FloorAndPillerColum\FloorAndPillerrStatus.h">
-      <Filter>component\FloorAndPillerColum</Filter>
-    </ClInclude>
     <ClInclude Include="code\system\FloorAndPiller\TowerPositionSet.h">
       <Filter>system\FloorAndPiller</Filter>
     </ClInclude>
@@ -139,6 +127,12 @@
     <ClInclude Include="code\system\Floor\FloorUpdateMatrixSystem.h">
       <Filter>system\Floor</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\Piller\PillerStatus.h">
+      <Filter>component\Piller</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Piller\PillerSpawner.h">
+      <Filter>component\Piller</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -152,14 +146,8 @@
     <ClCompile Include="code\component\Floor\FloorStates.cpp">
       <Filter>component\Floor</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\Piller\PillerStates.cpp">
-      <Filter>component\Piller</Filter>
-    </ClCompile>
     <ClCompile Include="code\system\Piller\PillerPhysicsSystem.cpp">
       <Filter>system\Piller</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\FloorAndPillerColum\FloorAndPillerSpawner.cpp">
-      <Filter>component\FloorAndPillerColum</Filter>
     </ClCompile>
     <ClCompile Include="code\component\Button.cpp" />
     <ClCompile Include="code\system\ButtonInputSystem.cpp" />
@@ -205,9 +193,6 @@
     <ClCompile Include="code\system\Bom\DeleteExplotionCollision.cpp">
       <Filter>system\Bom</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\FloorAndPillerColum\FloorAndPillerrStatus.cpp">
-      <Filter>component\FloorAndPillerColum</Filter>
-    </ClCompile>
     <ClCompile Include="code\system\FloorAndPiller\TowerPositionSet.cpp">
       <Filter>system\FloorAndPiller</Filter>
     </ClCompile>
@@ -234,6 +219,12 @@
     </ClCompile>
     <ClCompile Include="code\system\Floor\FloorUpdateMatrixSystem.cpp">
       <Filter>system\Floor</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Piller\PillerStatus.cpp">
+      <Filter>component\Piller</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Piller\PillerSpawner.cpp">
+      <Filter>component\Piller</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

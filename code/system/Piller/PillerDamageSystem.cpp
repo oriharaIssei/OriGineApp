@@ -7,9 +7,8 @@
 #define ENGINE_ECS
 #include "engine/EngineInclude.h"
 
-#include"component/Piller/PillerStates.h"
 #include"component/Bom/ExplotionCollision.h"
-#include"component/FloorAndPillerColum/FloorAndPillerrStatus.h"
+#include"component/Piller/PillerStatus.h"
 
 PillerDamageSystem::PillerDamageSystem() : ISystem(SystemType::Collision) {}
 PillerDamageSystem::~PillerDamageSystem() {}
@@ -30,16 +29,16 @@ void PillerDamageSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     // CharacterStatusを取得
-    PillerStates* entityStatus = getComponent<PillerStates>(_entity);
+ 
     FloorAndPillerrStatus* fAndPStatus = getComponent<FloorAndPillerrStatus>(_entity);
 
-    if (!entityStatus||!fAndPStatus) {
+    if (!fAndPStatus) {
         return;
     }
 
-   /* if (fAndPStatus->GetIsFall()) {
+    if (fAndPStatus->GetIsFall()) {
         return;
-    }*/
+    }
    
     /// ====================================================
     /// 衝突判定の結果を使って CharacterStatus を更新
@@ -66,7 +65,7 @@ void PillerDamageSystem::UpdateEntity(GameEntity* _entity) {
                     continue;
                 }
                 // CharacterStatusを更新
-                entityStatus->TakeDamage();
+                fAndPStatus->TakeDamage();
             }
         }
     }

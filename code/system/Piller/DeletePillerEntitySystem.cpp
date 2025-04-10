@@ -3,8 +3,8 @@
 /// ECS
 #define ENGINE_ECS
 // component
-#include "component/FloorAndPillerColum/FloorAndPillerrStatus.h"
-#include "component/Piller/PillerStates.h"
+#include "component/Piller/PillerSpawner.h"
+#include "component/Piller/PillerStatus.h"
 #include "engine/EngineInclude.h"
 
 DeletePillerEntitySystem::DeletePillerEntitySystem() : ISystem(SystemType::StateTransition) {}

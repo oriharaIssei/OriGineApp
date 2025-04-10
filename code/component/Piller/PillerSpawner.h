@@ -21,6 +21,8 @@ private: // variables
     int32_t safeZoneCostMax_;
     int32_t normalCostMax_;
 
+     int32_t HPMax_;
+    float collisionSize_;
 
 public:
     FloorAndPillerSpawner() {}
@@ -43,9 +45,11 @@ public: // accsessor
     int32_t GetRowNumber() const { return rowNumber_; }
     int32_t GetSafeZoneCostMax() const { return safeZoneCostMax_; }
     int32_t GetNormalCostMax() const { return normalCostMax_; }
-
+    float GetCollisionSize() const { return collisionSize_; }
+    int32_t GetHpMax() const { return HPMax_; }
       /// setter
     void SetIsCreated(const bool&is) {  isCreated_=is; }
     void SetRowNumber(const int32_t& num) { rowNumber_ = num; }
   
+   
 };

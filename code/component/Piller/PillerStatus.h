@@ -22,6 +22,8 @@ private: // variables
     float fallPosY_;
     float fallspeed_;
     float fallEaseT_;
+    int32_t currentHP_;
+    
 
 public:
     FloorAndPillerrStatus() {}
@@ -33,6 +35,8 @@ public:
     void Load(BinaryReader& _reader) override;
     void Finalize() override;
 
+    void TakeDamage();
+
  void SetColumDecrement();
    
 
@@ -41,6 +45,7 @@ public: // accsessor
     /// getter
     int32_t GetColumNum() const { return columNum_; }
     int32_t GetRowNum() const { return rowNum_; }
+    int32_t GetCurrentHP() const { return currentHP_; }
     bool GetIsFall() const { return isFall_; }
     float GetSavePos() const { return savePosY_; }
     float GetFallValue() const { return fallValue_; }
@@ -60,4 +65,5 @@ public: // accsessor
     void SetIncrementFallEaseT(const float& t) { fallEaseT_ += t; }
     void SetFallSpeed(const float& speed) { fallspeed_ = speed; }
     void SetIsDestroy(const bool& is) { isDestroy_ = is; }
+    void SetcurrentHP(const int32_t& hp) { currentHP_ = hp; }
 };
