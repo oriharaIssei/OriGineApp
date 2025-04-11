@@ -52,7 +52,7 @@ void ShotBulletSystem::SpawnBullet(GameEntity* _entity, BulletSpawner* _spawner)
 
     // Collider
     SphereCollider* collider           = getComponent<SphereCollider>(bullet);
-    collider->getLocalShape()->radius_ = _spawner->getBulletSize();
+    collider->getLocalShapePtr()->radius_ = _spawner->getBulletSize();
 
     // Rigidbody
     Rigidbody* rigidbody = getComponent<Rigidbody>(bullet);
