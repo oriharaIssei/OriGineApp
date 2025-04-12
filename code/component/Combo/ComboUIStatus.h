@@ -20,6 +20,7 @@ public:
 private: // variables
     bool isAlive_ = true;
     ComboDigit comboDigit_; //コンボの桁
+    int32_t valueForDigit_;
   
 public:
     ComboUIStatus() {}
@@ -32,11 +33,12 @@ public:
 
     virtual void Finalize();
 
-    
+    int32_t GetValueForDigit(const int32_t&value);
 
 public: // accsessor
     /// getter
-    ComboDigit GetComboDidit()const  { return comboDigit_ };
+    ComboDigit GetComboDidit() const { return comboDigit_; }
+
     /// setter
    
 };

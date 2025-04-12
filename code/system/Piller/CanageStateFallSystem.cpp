@@ -66,28 +66,14 @@ void CanageStateFallSystem::UpdateEntity(GameEntity* _entity) {
         }
     }
 
-    //// **壊れた柱を削除**
-    //DestroyEntity(_entity);
-
-
-    //// 壊れた柱のRow番号を取得
-    //int destroyedRow = fAndPStatus->GetRowNum();
-
+   
    /* ComponentArray<FloorAndPillerrStatus>* fandp = ECSManager::getInstance()->getComponentArray<FloorAndPillerrStatus>();*/
 
     //if (fandp == nullptr) {
     //    return;
     //}
     // 
-    //FloorAndPillerrStatus* otherFAndP = ;
-
-    //// 同じRowにある床の `IsFall` を `true` にする
-    //if (fandp->GetRowNum() == destroyedRow) {
-    //    otherFAndP->SetIsFall(true);
-    //}
-
-    //// **壊れた柱を削除**
-    //DestroyEntity(_entity);
+ 
 }
 
 void CanageStateFallSystem::ComboCountIncrement() {
@@ -106,5 +92,7 @@ void CanageStateFallSystem::ComboCountIncrement() {
         return;
     }
 
+    comboStatus->SetCurrentTime(comboStatus->GetContinuationTime());
     comboStatus->SetComboIncrement(); // 現在のコンボ数をインクリメント
+    comboStatus->SetIsUpdateCombo(true); // コンボ更新フラグを立てる
 }

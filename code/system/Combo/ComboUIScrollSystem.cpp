@@ -16,6 +16,7 @@
 
 #include "engine/EngineInclude.h"
 #include <cmath>
+#include <cstdint>
 
 ComboUIScrollSystem::ComboUIScrollSystem()
     : ISystem(SystemType::Movement) {}
@@ -37,9 +38,21 @@ void ComboUIScrollSystem::UpdateEntity(GameEntity* _entity) {
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* ComboEntity                  = ecsManager->getUniqueEntity("Combo");
 
-    if (!ComboEntity) {
+    if (!ComboEntity) { // Entityが存在しない場合の早期リターン
         return;
     }
 
-    ComboStatus* comboStatus = getComponent<ComboStatus>(ComboEntity);
+    ComboStatus* comboStatus     = getComponent<ComboStatus>(ComboEntity);
+    ComboUIStatus* comboUIStatus = getComponent<ComboUIStatus>(_entity);
+    SpriteRenderer* spriteRenderer = getComponent<SpriteRenderer>(_entity);
+
+    if (!comboStatus || !comboUIStatus || !spriteRenderer) { // Componentが存在しない場合の早期リターン
+        return;
+    }
+
+    int32_t currentCombo           = comboStatus->GetCurrentComboNum();
+   
+
+     float uvoffset = static_cast<float>(comboUIStatus->GetValueForDigit(currentCombo)) * 0.1f; // 0.1fはUVのオフセット
+    spriteRenderer->setUVTranslate(Vec2f(uvoffset, 0.0f));
 }

@@ -13,12 +13,8 @@ public:
     void Finalize() override;
 
     
-    void AddExplotionEntity(GameEntity* _entity);
+    void ComboCountIncrement();
 
 protected:
     virtual void UpdateEntity(GameEntity* _entity) override;
-
-    private:
-    bool is = false;
-   
 };

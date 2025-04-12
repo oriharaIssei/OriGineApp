@@ -148,6 +148,9 @@
     <ClInclude Include="code\system\Combo\ComboUIScrollSystem.h">
       <Filter>system\Combo</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Combo\ComboSystem.h">
+      <Filter>system\Combo</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -248,6 +251,9 @@
       <Filter>component\Combo</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Combo\ComboUIScrollSystem.cpp">
+      <Filter>system\Combo</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Combo\ComboSystem.cpp">
       <Filter>system\Combo</Filter>
     </ClCompile>
   </ItemGroup>
