@@ -22,6 +22,8 @@ bool ComboUIStatus::Edit() {
 
     ImGui::Spacing();
 
+      isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+
     //isChange |= ImGui::DragFloat("MoveSpeed", &moveSpeed_, 0.01f);
   
     return isChange;
@@ -39,3 +41,7 @@ void ComboUIStatus::Load(BinaryReader& _reader) {
 }
 
 void ComboUIStatus::Finalize() {}
+
+int32_t ComboUIStatus::GetComboDidit(const ComboDigit& _ditit) {
+    return comboDigit_[static_cast<size_t>(_ditit)];
+ }
