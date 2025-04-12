@@ -12,6 +12,7 @@
 #include"Application/code/component/Floor/FloorModeCreater.h"
 #include"Application/code/component/Bom/BomStatus.h"
 #include"Application/code/component/Bom/ExplotionCollision.h"
+#include"Application/code/component/ComboUI/ComboUIStatus.h"
 
 
 //system
@@ -49,6 +50,7 @@ void GameScene::registerComponents() {
     ecsManager->registerComponent<FloorModeCreater>();
     ecsManager->registerComponent<ExplotionCollision>();
     ecsManager->registerComponent<FloorAndPillerrStatus>();
+    ecsManager->registerComponent<ComboUIStatus>();
 }
 
 void GameScene::registerSystems() {
