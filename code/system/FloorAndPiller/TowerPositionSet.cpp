@@ -147,6 +147,7 @@ void TowerPositionSet::CreateTower(const float& Radius) {
             if (i == 0 && j == 0) {
                 statusFandP->SetcurrentHP(0);
             }
+
             // ================================= System ================================= //
 
             //------------------ Input
