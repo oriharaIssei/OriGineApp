@@ -19,10 +19,8 @@ public:
 
 private: // variables
     bool isAlive_ = true;
-
-    int32_t currentComboNum_ = 0; // 現在のコンボ数
-    std::array<int32_t, static_cast<size_t>(ComboDigit::COUNT)> comboDigit_;
-
+    ComboDigit comboDigit_; //コンボの桁
+  
 public:
     ComboUIStatus() {}
     virtual ~ComboUIStatus() = default;
@@ -34,11 +32,11 @@ public:
 
     virtual void Finalize();
 
-      int32_t GetComboDidit(const ComboDigit& _ditit);
+    
 
 public: // accsessor
     /// getter
- 
+    ComboDigit GetComboDidit()const  { return comboDigit_ };
     /// setter
    
 };

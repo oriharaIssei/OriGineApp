@@ -24,7 +24,12 @@ bool ComboUIStatus::Edit() {
 
       isChange = ImGui::Checkbox("IsAlive", &isAlive_);
 
-    //isChange |= ImGui::DragFloat("MoveSpeed", &moveSpeed_, 0.01f);
+    // ComboDigit（桁数）のUI選択
+    static const char* digitLabels[] = {"ONE", "TWO", "THREE"};
+    int currentIndex                 = static_cast<int>(comboDigit_);
+    if (ImGui::Combo("Combo Digit", &currentIndex, digitLabels, static_cast<int>(ComboDigit::COUNT))) {
+        comboDigit_ = static_cast<ComboDigit>(currentIndex);
+    }
   
     return isChange;
 
@@ -32,16 +37,16 @@ bool ComboUIStatus::Edit() {
 
 void ComboUIStatus::Save(BinaryWriter& _writer) {
     _writer.Write("isAlive", isAlive_);
+    _writer.Write("comboDigit", static_cast<int32_t>(comboDigit_));
    
 }
 
 void ComboUIStatus::Load(BinaryReader& _reader) {
     _reader.Read("isAlive", isAlive_);
-   
+    int32_t digit = 0;
+    _reader.Read("comboDigit", digit);
+    comboDigit_ = static_cast<ComboDigit>(digit);
 }
 
 void ComboUIStatus::Finalize() {}
 
-int32_t ComboUIStatus::GetComboDidit(const ComboDigit& _ditit) {
-    return comboDigit_[static_cast<size_t>(_ditit)];
- }

@@ -40,7 +40,7 @@
     <Filter Include="system\FloorAndPiller">
       <UniqueIdentifier>{f67cf5a1-51bd-4b81-983e-7a018469502c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="component\ComboUI">
+    <Filter Include="component\Combo">
       <UniqueIdentifier>{1ef805d2-06e8-4a7d-9ce0-8b5ae99eb21a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -136,8 +136,11 @@
     <ClInclude Include="code\component\Piller\PillerSpawner.h">
       <Filter>component\Piller</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\ComboUI\ComboUIStatus.h">
-      <Filter>component\ComboUI</Filter>
+    <ClInclude Include="code\component\Combo\ComboStatus.h">
+      <Filter>component\Combo</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Combo\ComboUIStatus.h">
+      <Filter>component\Combo</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -232,8 +235,11 @@
     <ClCompile Include="code\component\Piller\PillerSpawner.cpp">
       <Filter>component\Piller</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\ComboUI\ComboUIStatus.cpp">
-      <Filter>component\ComboUI</Filter>
+    <ClCompile Include="code\component\Combo\ComboStatus.cpp">
+      <Filter>component\Combo</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Combo\ComboUIStatus.cpp">
+      <Filter>component\Combo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
