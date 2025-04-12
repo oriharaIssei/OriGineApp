@@ -29,7 +29,7 @@ public:
    
 public: // accsessor
     /// getter
- 
+    int32_t GetCurrentComboNum() const { return currentComboNum_; } // 現在のコンボ数
     /// setter
-   
+    void SetComboIncrement() { currentComboNum_++; } // 現在のコンボ数
 };

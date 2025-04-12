@@ -43,6 +43,9 @@
     <Filter Include="component\Combo">
       <UniqueIdentifier>{1ef805d2-06e8-4a7d-9ce0-8b5ae99eb21a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="system\Combo">
+      <UniqueIdentifier>{6048f786-db75-42d8-a089-3b16efdd8679}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -142,6 +145,9 @@
     <ClInclude Include="code\component\Combo\ComboUIStatus.h">
       <Filter>component\Combo</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Combo\ComboUIScrollSystem.h">
+      <Filter>system\Combo</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -240,6 +246,9 @@
     </ClCompile>
     <ClCompile Include="code\component\Combo\ComboUIStatus.cpp">
       <Filter>component\Combo</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Combo\ComboUIScrollSystem.cpp">
+      <Filter>system\Combo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

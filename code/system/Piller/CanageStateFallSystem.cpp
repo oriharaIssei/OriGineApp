@@ -1,10 +1,15 @@
 #include "CanageStateFallSystem.h"
 
-/// ECS
+/// engine
+#define ENGINE_INCLUDE
+
+#define RESOURCE_DIRECTORY // Resource の Directory
+// ECS
 #define ENGINE_ECS
+#include "engine/EngineInclude.h"
 // component
 #include "component/Piller/PillerStatus.h"
-#include "engine/EngineInclude.h"
+#include"component/Combo/ComboStatus.h"
 
 CanageStateFallSystem::CanageStateFallSystem() : ISystem(SystemType::StateTransition) {}
 
@@ -28,18 +33,15 @@ void CanageStateFallSystem::UpdateEntity(GameEntity* _entity) {
     if (!fAndPStatus) {
         return;
     }
-  /*  if (is) {
-        return;
-    }
-    if (fAndPStatus->GetRowNum() == 0 && fAndPStatus->GetColumNum() == 0) {
-        fAndPStatus->SetcurrentHP(0);
-        is = true;
-    }*/
+  
 
     // HPが0以下なら破壊処理
     if (fAndPStatus->GetCurrentHP() > 0 ||fAndPStatus->GetColumNum()<0) {
         return;
     }
+
+    // コンボ加算
+    ComboCountIncrement();
 
     //  柱のスケールを0にする
     Transform* entityTransform = getComponent<Transform>(_entity, 0);
@@ -86,4 +88,23 @@ void CanageStateFallSystem::UpdateEntity(GameEntity* _entity) {
 
     //// **壊れた柱を削除**
     //DestroyEntity(_entity);
+}
+
+void CanageStateFallSystem::ComboCountIncrement() {
+
+    // ComboEntityを取得
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* ComboEntity                  = ecsManager->getUniqueEntity("Combo");
+
+    if (!ComboEntity) {
+        return;
+    }
+
+    ComboStatus* comboStatus = getComponent<ComboStatus>(ComboEntity);
+
+    if (!comboStatus) {
+        return;
+    }
+
+    comboStatus->SetComboIncrement(); // 現在のコンボ数をインクリメント
 }

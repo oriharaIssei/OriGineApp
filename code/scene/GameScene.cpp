@@ -12,7 +12,8 @@
 #include"Application/code/component/Floor/FloorModeCreater.h"
 #include"Application/code/component/Bom/BomStatus.h"
 #include"Application/code/component/Bom/ExplotionCollision.h"
-#include"Application/code/component/ComboUI/ComboUIStatus.h"
+#include"Application/code/component/Combo/ComboStatus.h"
+#include "Application/code/component/Combo/ComboUIStatus.h"
 
 
 //system
@@ -31,6 +32,7 @@
 #include"Application/code/system/Piller/PillerUpdateMatrixSystem.h"
 #include"Application/code/system/Floor/DeleteFloorSystem.h"
 #include"Application/code/system/Floor/FloorUpdateMatrixSystem.h"
+#include"Application/code/system/Combo/ComboUIScrollSystem.h"
 
 GameScene::GameScene()
     : IScene("Game") {}
@@ -50,6 +52,7 @@ void GameScene::registerComponents() {
     ecsManager->registerComponent<FloorModeCreater>();
     ecsManager->registerComponent<ExplotionCollision>();
     ecsManager->registerComponent<FloorAndPillerrStatus>();
+    ecsManager->registerComponent<ComboStatus>();
     ecsManager->registerComponent<ComboUIStatus>();
 }
 
@@ -72,5 +75,6 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<PillerUpdateMatrixSystem>();
     ecsManager->registerSystem<DeleteFloorSystem>();
     ecsManager->registerSystem<FloorUpdateMatrixSystem>();
+    ecsManager->registerSystem<ComboUIScrollSystem>();
     ecsManager->SortPriorityOrderSystems();
 }
