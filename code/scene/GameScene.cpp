@@ -33,6 +33,7 @@
 #include"Application/code/system/Floor/DeleteFloorSystem.h"
 #include"Application/code/system/Floor/FloorUpdateMatrixSystem.h"
 #include"Application/code/system/Combo/ComboUIScrollSystem.h"
+#include"Application/code/system/Combo/ComboSystem.h"
 
 GameScene::GameScene()
     : IScene("Game") {}
@@ -76,5 +77,6 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<DeleteFloorSystem>();
     ecsManager->registerSystem<FloorUpdateMatrixSystem>();
     ecsManager->registerSystem<ComboUIScrollSystem>();
+    ecsManager->registerSystem<ComboSystem>();
     ecsManager->SortPriorityOrderSystems();
 }

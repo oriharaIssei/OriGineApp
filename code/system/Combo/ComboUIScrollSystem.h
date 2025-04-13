@@ -1,12 +1,14 @@
 #pragma once
 #include "system/ISystem.h"
 #include "component/transform/Transform.h"
-
+#include<array>
+#include<string>
 
 class ComboUIScrollSystem
     : public ISystem {
 private:
-   
+    std::array<std::string, 10> textureName_;
+
 public:
     ComboUIScrollSystem();
     ~ComboUIScrollSystem();

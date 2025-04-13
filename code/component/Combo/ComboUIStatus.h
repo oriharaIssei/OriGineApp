@@ -6,6 +6,7 @@
 #include <component/transform/Transform.h>
 #include <Vector3.h>
 #include<array>
+#include<string>
 
 class ComboUIStatus
     : public IComponent {
@@ -21,6 +22,7 @@ private: // variables
     bool isAlive_ = true;
     ComboDigit comboDigit_; //コンボの桁
     int32_t valueForDigit_;
+    std::string currentTextureName_;
   
 public:
     ComboUIStatus() {}
@@ -38,7 +40,7 @@ public:
 public: // accsessor
     /// getter
     ComboDigit GetComboDidit() const { return comboDigit_; }
-
+    std::string GetCurrentTextureName() const { return currentTextureName_; }
     /// setter
-   
+    void SetcurrentTextureName(const std::string& currentTextureName) { currentTextureName_ = currentTextureName; }
 };

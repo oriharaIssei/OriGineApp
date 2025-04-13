@@ -80,7 +80,7 @@ void CanageStateFallSystem::ComboCountIncrement() {
 
     // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
-    GameEntity* ComboEntity                  = ecsManager->getUniqueEntity("Combo");
+    GameEntity* ComboEntity                  = ecsManager->getEntity(96);
 
     if (!ComboEntity) {
         return;

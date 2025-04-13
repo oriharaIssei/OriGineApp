@@ -24,6 +24,9 @@ ComboUIScrollSystem::ComboUIScrollSystem()
 ComboUIScrollSystem::~ComboUIScrollSystem() {}
 
 void ComboUIScrollSystem::Initialize() {
+    for (int32_t i = 0; i < 10; ++i) {
+        textureName_[i] = "resource/Texture/Combo/ComboNumber" + std::to_string(i) + ".png";
+    };
 }
 
 void ComboUIScrollSystem::Finalize() {}
@@ -36,23 +39,27 @@ void ComboUIScrollSystem::UpdateEntity(GameEntity* _entity) {
 
     // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
-    GameEntity* ComboEntity                  = ecsManager->getUniqueEntity("Combo");
+    GameEntity* ComboEntity                  = ecsManager->getEntity(96);
 
     if (!ComboEntity) { // Entityが存在しない場合の早期リターン
         return;
     }
 
-    ComboStatus* comboStatus     = getComponent<ComboStatus>(ComboEntity);
-    ComboUIStatus* comboUIStatus = getComponent<ComboUIStatus>(_entity);
-    SpriteRenderer* spriteRenderer = getComponent<SpriteRenderer>(_entity);
+    ComboStatus* comboStatus         = getComponent<ComboStatus>(ComboEntity);
+    ComboUIStatus* comboUIStatus     = getComponent<ComboUIStatus>(_entity);
+    ModelMeshRenderer* modelRenderer = getComponent<ModelMeshRenderer>(_entity);
 
-    if (!comboStatus || !comboUIStatus || !spriteRenderer) { // Componentが存在しない場合の早期リターン
+    if (!comboStatus || !comboUIStatus || !modelRenderer) { // Componentが存在しない場合の早期リターン
         return;
     }
 
-    int32_t currentCombo           = comboStatus->GetCurrentComboNum();
-   
+    int32_t currentCombo = comboStatus->GetCurrentComboNum();
 
-     float uvoffset = static_cast<float>(comboUIStatus->GetValueForDigit(currentCombo)) * 0.1f; // 0.1fはUVのオフセット
-    spriteRenderer->setUVTranslate(Vec2f(uvoffset, 0.0f));
+    if (comboUIStatus->GetCurrentTextureName() == textureName_[comboUIStatus->GetValueForDigit(currentCombo)]) {
+        return; // すでに同じテクスチャが設定されている場合は何もしない
+    }
+    /// コンボの数字に合わせる
+    modelRenderer->setTexture(0, textureName_[comboUIStatus->GetValueForDigit(currentCombo)]);
+
+    comboUIStatus->SetcurrentTextureName(textureName_[comboUIStatus->GetValueForDigit(currentCombo)]);
 }
