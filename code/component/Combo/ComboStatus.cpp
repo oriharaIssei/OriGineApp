@@ -26,6 +26,7 @@ bool ComboStatus::Edit() {
 
    
     isChange |= ImGui::DragFloat("continuationTime", &continuationTime_, 0.01f);
+  /*  isChange |= ImGui::InputInt("d", &currentComboNum_);*/
   
     return isChange;
 
