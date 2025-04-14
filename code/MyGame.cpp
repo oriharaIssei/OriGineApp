@@ -10,6 +10,7 @@
 
 /// lib
 #include "globalVariables/GlobalVariables.h"
+#include "logger/Logger.h"
 
 #ifdef _DEBUG
 
@@ -73,6 +74,9 @@ void MyGame::Initialize() {
 
         std::unique_ptr<SystemDebugger> systemDebugger = std::make_unique<SystemDebugger>();
         debuggerGroup->addDebugger(std::move(systemDebugger));
+
+        std::unique_ptr<GuiLogger> loggerDebugger = std::make_unique<GuiLogger>();
+        debuggerGroup->addDebugger(std::move(loggerDebugger));
 
         // gorup Initialize
         debuggerGroup->Initialize();
