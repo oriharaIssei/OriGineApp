@@ -41,8 +41,8 @@ void ComboUIScrollSystem::UpdateEntity(GameEntity* _entity) {
 
     // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
-    GameEntity* ComboEntity                  = ecsManager->getEntity(96);//(今はidで対応)
-    //GameEntity* ComboEntity                  = ecsManager->getUniqueEntity("Combo"); //<-これが取得できない
+    //GameEntity* ComboEntity                  = ecsManager->getEntity(96);//(今はidで対応)
+    GameEntity* ComboEntity                  = ecsManager->getUniqueEntity("Combo"); //<-これが取得できない
 
     if (!ComboEntity) { // Entityが存在しない場合の早期リターン
         return;

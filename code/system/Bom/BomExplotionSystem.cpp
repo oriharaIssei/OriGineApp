@@ -47,7 +47,7 @@ void BomExplotionSystem::UpdateEntity(GameEntity* _entity) {
     ///============================================================
     // 爆発していい爆弾なら起爆
     ///============================================================
-    if (input_->isTriggerKey(DIK_B)) {
+    if (input_->isTriggerKey(DIK_J)) {
 
         if (playerStates->GetBomExplotionNum() >= bomStates->GetBomNumber()) {
            
