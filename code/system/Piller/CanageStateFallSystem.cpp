@@ -40,9 +40,6 @@ void CanageStateFallSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    // コンボ加算
-    ComboCountIncrement();
-
     //  柱のスケールを0にする
     Transform* entityTransform = getComponent<Transform>(_entity, 0);
     if (!entityTransform) {
@@ -66,6 +63,9 @@ void CanageStateFallSystem::UpdateEntity(GameEntity* _entity) {
         }
     }
 
+     // コンボ加算
+    ComboCountIncrement();
+
    
    /* ComponentArray<FloorAndPillerrStatus>* fandp = ECSManager::getInstance()->getComponentArray<FloorAndPillerrStatus>();*/
 
@@ -80,7 +80,7 @@ void CanageStateFallSystem::ComboCountIncrement() {
 
     // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
-    GameEntity* ComboEntity                  = ecsManager->getEntity(96);
+    GameEntity* ComboEntity                  = ecsManager->getUniqueEntity("Combo");
 
     if (!ComboEntity) {
         return;

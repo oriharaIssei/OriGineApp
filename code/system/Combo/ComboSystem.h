@@ -16,7 +16,7 @@ public:
     // void Update() override;
     void Finalize() override;
 
-   void ParmReset();
+   void ComboReset();
     protected:
     void UpdateEntity(GameEntity* _entity) override;
 

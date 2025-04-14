@@ -25,7 +25,7 @@ bool ComboStatus::Edit() {
     ImGui::Spacing();
 
    
-    isChange |= ImGui::DragFloat("currentTime", &currentTime_, 0.01f);
+    isChange |= ImGui::DragFloat("continuationTime", &continuationTime_, 0.01f);
   
     return isChange;
 
@@ -44,7 +44,7 @@ void ComboStatus::Load(BinaryReader& _reader) {
     _reader.Read("isAlive", isAlive_);
     _reader.Read("maxCombvoNum", maxCombvoNum_);
     _reader.Read("isUpdateCombo", isUpdateCombo_);
-    _reader.Read("continuationTime_", continuationTime_);
+    _reader.Read("continuationTime", continuationTime_);
     _reader.Read("currentTime", currentTime_);
    
 }

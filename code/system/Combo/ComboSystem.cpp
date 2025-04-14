@@ -36,24 +36,24 @@ void ComboSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    if (!comboStatus_->GetIsUpdateCombo()) {
+    if (!comboStatus_->GetIsUpdateCombo()) {//コンボ更新中じゃない時の早期リターン
         return;
     }
 
-    ///　コンボアニメーション関数
+    ///　コンボアニメーションとか追加
 
+    //タイム減算、0より大きい場合の早期リターン
     comboStatus_->SetCurerntTimeDecrement(Engine::getInstance()->getDeltaTime());
-
     if (comboStatus_->GetCurrentTimer() > 0.0f) {
         return;
     }
 
     //コンボリセット
-    ParmReset();
+    ComboReset();
    
 }
 
-void ComboSystem::ParmReset() {
+void ComboSystem::ComboReset() {
 
     if ((comboStatus_->GetMaxComboNum() <= comboStatus_->GetMaxComboNum())) {
         comboStatus_->SetMaxComboNum(comboStatus_->GetCurrentComboNum()); // MAXコンボをセット
@@ -62,4 +62,4 @@ void ComboSystem::ParmReset() {
     comboStatus_->SetCurrentCombo(0);
     comboStatus_->SetCurrentTime(0.0f);
     comboStatus_->SetIsUpdateCombo(false);
-  }
+ }

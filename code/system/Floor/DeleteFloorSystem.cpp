@@ -32,9 +32,13 @@ void DeleteFloorSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
+    if (!transform->parent) {
+        DestroyEntity(_entity);
+        return;
+    }
+
     // 床をデストロイ
-    if (transform->parent->scale == Vec3f{0.0f,0.0f,0.0f}) {
-      
+    if (transform->parent->scale == Vec3f{0.0f,0.0f,0.0f}) {  
         DestroyEntity(_entity);
     }
 }
