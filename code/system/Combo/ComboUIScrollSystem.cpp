@@ -14,6 +14,7 @@
 #include "component/Combo/ComboStatus.h"
 #include "component/Combo/ComboUIStatus.h"
 
+#define RESOURCE_DIRECTORY
 #include "engine/EngineInclude.h"
 #include <cmath>
 #include <cstdint>
@@ -26,7 +27,7 @@ ComboUIScrollSystem::~ComboUIScrollSystem() {}
 void ComboUIScrollSystem::Initialize() {
     // TextureNameの初期化
     for (int32_t i = 0; i < 10; ++i) {
-        textureName_[i] = "resource/Texture/Combo/ComboNumber" + std::to_string(i) + ".png";
+        textureName_[i] = "Texture/Combo/ComboNumber" + std::to_string(i) + ".png";
     };
 }
 
@@ -61,8 +62,10 @@ void ComboUIScrollSystem::UpdateEntity(GameEntity* _entity) {
     if (comboUIStatus->GetCurrentTextureName() == textureName_[comboUIStatus->GetValueForDigit(currentCombo)]) {
         return; // すでに同じテクスチャが設定されている場合は何もしない
     }
+ 
     /// コンボの数字よってTextureを変える
-    modelRenderer->setTexture(0, textureName_[comboUIStatus->GetValueForDigit(currentCombo)]);
+    
+    modelRenderer->setTexture(0, kApplicationResourceDirectory + "/" +textureName_[comboUIStatus->GetValueForDigit(currentCombo)]);
 
     // 現在のテクスチャ名を更新
     comboUIStatus->SetcurrentTextureName(textureName_[comboUIStatus->GetValueForDigit(currentCombo)]);
