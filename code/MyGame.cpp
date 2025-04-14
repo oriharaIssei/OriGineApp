@@ -18,6 +18,7 @@
 #include "module/editor/EditorGroup.h"
 /// debugger
 #include "ECSDebugger.h"
+#include "logger/Logger.h"
 #include "module/debugger/DebuggerGroup.h"
 
 #endif // DEBUG
@@ -66,13 +67,16 @@ void MyGame::Initialize() {
     // Debugger の初期化
     ///=================================================================================================
     {
-        DebuggerGroup* debuggerGroup                = DebuggerGroup::getInstance();
+        DebuggerGroup* debuggerGroup = DebuggerGroup::getInstance();
 
         std::unique_ptr<EntityDebugger> ecsDebugger = std::make_unique<EntityDebugger>();
         debuggerGroup->addDebugger(std::move(ecsDebugger));
 
         std::unique_ptr<SystemDebugger> systemDebugger = std::make_unique<SystemDebugger>();
         debuggerGroup->addDebugger(std::move(systemDebugger));
+
+        //std::unique_ptr<GuiLogger> logger = std::make_unique<GuiLogger>();
+        //debuggerGroup->addDebugger(std::move(logger));
 
         // gorup Initialize
         debuggerGroup->Initialize();
