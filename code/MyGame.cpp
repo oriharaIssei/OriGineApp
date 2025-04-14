@@ -75,8 +75,8 @@ void MyGame::Initialize() {
         std::unique_ptr<SystemDebugger> systemDebugger = std::make_unique<SystemDebugger>();
         debuggerGroup->addDebugger(std::move(systemDebugger));
 
-        //std::unique_ptr<GuiLogger> logger = std::make_unique<GuiLogger>();
-        //debuggerGroup->addDebugger(std::move(logger));
+        std::unique_ptr<GuiLogger> logger = std::make_unique<GuiLogger>();
+        debuggerGroup->addDebugger(std::move(logger));
 
         // gorup Initialize
         debuggerGroup->Initialize();
