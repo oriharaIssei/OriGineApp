@@ -8,15 +8,12 @@
 // lib
 
 // include
-#include <Quaternion.h>
-#include <Vector3.h>
 // component
 #include "component/Combo/ComboStatus.h"
 #include "component/Combo/ComboUIStatus.h"
 
 #define RESOURCE_DIRECTORY
 #include "engine/EngineInclude.h"
-#include <cmath>
 #include <cstdint>
 
 ComboUIScrollSystem::ComboUIScrollSystem()

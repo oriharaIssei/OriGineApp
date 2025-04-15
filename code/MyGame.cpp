@@ -67,7 +67,7 @@ void MyGame::Initialize() {
     // Debugger の初期化
     ///=================================================================================================
     {
-        DebuggerGroup* debuggerGroup                = DebuggerGroup::getInstance();
+        DebuggerGroup* debuggerGroup = DebuggerGroup::getInstance();
 
         std::unique_ptr<EntityDebugger> ecsDebugger = std::make_unique<EntityDebugger>();
         debuggerGroup->addDebugger(std::move(ecsDebugger));

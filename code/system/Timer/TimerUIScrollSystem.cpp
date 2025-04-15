@@ -8,7 +8,6 @@
 // lib
 
 // include
-#include <Quaternion.h>
 #include <Vector3.h>
 // component
 #include "component/Timer/TimerStatus.h"
@@ -16,7 +15,6 @@
 
 #define RESOURCE_DIRECTORY
 #include "engine/EngineInclude.h"
-#include <cmath>
 #include <cstdint>
 
 TimerUIScrollSystem::TimerUIScrollSystem()
@@ -60,5 +58,6 @@ void TimerUIScrollSystem::UpdateEntity(GameEntity* _entity) {
     float currentTime  = comboStatus->GetCurrentTimer();
     int32_t timerDigit = comboUIStatus->GetValueForDigit(currentTime);
 
+    //UV座標を設定
     spriteRender->setUVTranslate(Vec2f(float(timerDigit * 0.1f), 0.0f));
 }

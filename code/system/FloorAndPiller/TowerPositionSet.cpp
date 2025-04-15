@@ -166,7 +166,7 @@ void TowerPositionSet::CreateTower(const float& Radius) {
             ecs->getSystem<PillerUpdateMatrixSystem>()->addEntity(piller);
 
                 //------------------ Collision
-                /*  ecs->getSystem<CharacterOnCollision>()->addEntity(bom);*/
+            /*  ecs->getSystem<CharacterOnCollision>()->addEntity(bom);*/
             ecs->getSystem<CollisionCheckSystem>()->addEntity(piller);
             ecs->getSystem<PillerDamageSystem>()->addEntity(piller);
             //------------------ Physics
