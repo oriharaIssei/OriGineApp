@@ -79,9 +79,8 @@ void TowerPositionSet::CreateTower(const float& Radius) {
 
             // ================================= Bullet Entityを 生成 ================================= //
             GameEntity* piller = CreateEntity<Transform, Transform, SphereCollider, Rigidbody, ModelMeshRenderer, FloorAndPillerrStatus>("Piller", Transform(), Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), FloorAndPillerrStatus());
-            GameEntity* floor  = CreateEntity<Transform, AABBCollider, Rigidbody, ModelMeshRenderer, FloorStates>("Floor", Transform(), AABBCollider(), Rigidbody(), ModelMeshRenderer(), FloorStates());
+            GameEntity* floor  = CreateEntity<Transform, Rigidbody, ModelMeshRenderer, FloorStates>("Floor", Transform(), Rigidbody(), ModelMeshRenderer(), FloorStates());
             /*GameEntity* floorAndPiller = CreateEntity<Transform, Rigidbody, FloorAndPillerrStatus>("FAndP", Transform(), Rigidbody(), FloorAndPillerrStatus());*/
-
             // ================================= Componentを初期化 ================================= //
 
            
@@ -111,10 +110,11 @@ void TowerPositionSet::CreateTower(const float& Radius) {
             SetQuaternion(pillerBaseTransform, pillerTransform, pillerTransform->translate);
             SetQuaternion(pillerBaseTransform, floorTransform, floorTransform->translate);
 
-            // Collider
+            //* Collider
+
+            // piller
             SphereCollider* collider           = getComponent<SphereCollider>(piller);
             collider->getLocalShapePtr()->radius_ = floorAndPillerSpawner_->GetCollisionSize();
-            /* collider->getWorldShape()->radius_ = pillerStates_->GetCollisionSize();*/
 
             // MeshRenderer
             ModelMeshRenderer* pillerRender = getComponent<ModelMeshRenderer>(piller);
