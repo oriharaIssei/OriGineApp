@@ -19,6 +19,7 @@
 #include "module/editor/EditorGroup.h"
 /// debugger
 #include "ECSDebugger.h"
+#include "logger/Logger.h"
 #include "module/debugger/DebuggerGroup.h"
 
 #endif // DEBUG
