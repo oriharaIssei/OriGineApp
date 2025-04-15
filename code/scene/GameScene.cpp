@@ -14,7 +14,8 @@
 #include"Application/code/component/Bom/ExplotionCollision.h"
 #include"Application/code/component/Combo/ComboStatus.h"
 #include "Application/code/component/Combo/ComboUIStatus.h"
-
+#include"Application/code/component/Timer/TimerUIStatus.h"
+#include"Application/code/component/Timer/TimerStatus.h"
 
 //system
 #include"Application/code/system/Player/PlayerInput.h"
@@ -34,6 +35,8 @@
 #include"Application/code/system/Floor/FloorUpdateMatrixSystem.h"
 #include"Application/code/system/Combo/ComboUIScrollSystem.h"
 #include"Application/code/system/Combo/ComboSystem.h"
+#include "Application/code/system/Timer/TimerDecrementSystem.h"
+#include"Application/code/system/Timer/TimerUIScrollSystem.h"
 
 GameScene::GameScene()
     : IScene("Game") {}
@@ -55,6 +58,8 @@ void GameScene::registerComponents() {
     ecsManager->registerComponent<FloorAndPillerrStatus>();
     ecsManager->registerComponent<ComboStatus>();
     ecsManager->registerComponent<ComboUIStatus>();
+    ecsManager->registerComponent<TimerStatus>();
+    ecsManager->registerComponent<TimerUIStatus>();
 }
 
 void GameScene::registerSystems() {
@@ -78,5 +83,7 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<FloorUpdateMatrixSystem>();
     ecsManager->registerSystem<ComboUIScrollSystem>();
     ecsManager->registerSystem<ComboSystem>();
+    ecsManager->registerSystem<TimerDecrementSystem>();
+    ecsManager->registerSystem<TimerUIScrollSystem>();
     ecsManager->SortPriorityOrderSystems();
 }

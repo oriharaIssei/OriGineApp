@@ -1,32 +1,33 @@
 #pragma once
 
 #include "component/IComponent.h"
+#include <array>
+#include <component/transform/Transform.h>
 #include <cstdint>
 #include <Entity.h>
-#include <component/transform/Transform.h>
+#include <string>
 #include <Vector3.h>
-#include<array>
-#include<string>
 
-class ComboUIStatus
+class TimerUIStatus
     : public IComponent {
 public:
     enum class TimeDigit {
         ONE,
         TWO,
-        THREE,
+        DecimalONE,
+        DecimalTWO,
         COUNT,
     };
 
 private: // variables
     bool isAlive_ = true;
-    TimeDigit timeDigit_; //コンボの桁
+    TimeDigit digit_;        // 整数の桁
     int32_t valueForDigit_;
     std::string currentTextureName_;
-  
+
 public:
-    ComboUIStatus() {}
-    virtual ~ComboUIStatus() = default;
+    TimerUIStatus() {}
+    virtual ~TimerUIStatus() = default;
 
     void Initialize(GameEntity* _entity) override;
     virtual bool Edit();
@@ -35,11 +36,11 @@ public:
 
     virtual void Finalize();
 
-    int32_t GetValueForDigit(const int32_t&value);
+    int32_t GetValueForDigit(const float& value);
 
 public: // accsessor
     /// getter
-    TimeDigit GetTimeDigit() const { return timeDigit_; }
+    TimeDigit GetDigit() const { return digit_; }
     std::string GetCurrentTextureName() const { return currentTextureName_; }
     /// setter
     void SetcurrentTextureName(const std::string& currentTextureName) { currentTextureName_ = currentTextureName; }

@@ -46,6 +46,12 @@
     <Filter Include="system\Combo">
       <UniqueIdentifier>{6048f786-db75-42d8-a089-3b16efdd8679}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\Timer">
+      <UniqueIdentifier>{bbb940b0-b9fb-4174-a74f-b1575f98fdfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\Timer">
+      <UniqueIdentifier>{080da9ba-cb0f-4255-9752-16054164f894}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -151,6 +157,18 @@
     <ClInclude Include="code\system\Combo\ComboSystem.h">
       <Filter>system\Combo</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\Timer\TimerStatus.h">
+      <Filter>component\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Timer\TimerUIStatus.h">
+      <Filter>component\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Timer\TimerDecrementSystem.h">
+      <Filter>system\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Timer\TimerUIScrollSystem.h">
+      <Filter>system\Timer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -255,6 +273,18 @@
     </ClCompile>
     <ClCompile Include="code\system\Combo\ComboSystem.cpp">
       <Filter>system\Combo</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Timer\TimerStatus.cpp">
+      <Filter>component\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Timer\TimerUIStatus.cpp">
+      <Filter>component\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Timer\TimerDecrementSystem.cpp">
+      <Filter>system\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Timer\TimerUIScrollSystem.cpp">
+      <Filter>system\Timer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

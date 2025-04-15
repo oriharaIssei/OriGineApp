@@ -111,6 +111,8 @@
     <ClInclude Include="code\component\Piller\PillerSpawner.h" />
     <ClInclude Include="code\component\Piller\PillerStatus.h" />
     <ClInclude Include="code\component\ShockWave\ShockWaveSpawner.h" />
+    <ClInclude Include="code\component\Timer\TimerStatus.h" />
+    <ClInclude Include="code\component\Timer\TimerUIStatus.h" />
     <ClInclude Include="code\system\Bom\BomExplotionSystem.h" />
     <ClInclude Include="code\system\Bom\DeleteBomSystem.h" />
     <ClInclude Include="code\system\Bom\DeleteExplotionCollision.h" />
@@ -138,6 +140,8 @@
     <ClInclude Include="code\system\Player\PlayerFollowCameraSystem.h" />
     <ClInclude Include="code\system\Player\PlayerInput.h" />
     <ClInclude Include="code\system\Player\PlayerMoveSystem.h" />
+    <ClInclude Include="code\system\Timer\TimerDecrementSystem.h" />
+    <ClInclude Include="code\system\Timer\TimerUIScrollSystem.h" />
     <ClInclude Include="code\system\UpdateButtonColorByState.h" />
     <ClInclude Include="code\component\SceneChanger.h" />
   </ItemGroup>
@@ -152,6 +156,8 @@
     <ClCompile Include="code\component\Piller\PillerSpawner.cpp" />
     <ClCompile Include="code\component\Piller\PillerStatus.cpp" />
     <ClCompile Include="code\component\ShockWave\ShockWaveSpawner.cpp" />
+    <ClCompile Include="code\component\Timer\TimerStatus.cpp" />
+    <ClCompile Include="code\component\Timer\TimerUIStatus.cpp" />
     <ClCompile Include="code\system\Bom\BomExplotionSystem.cpp" />
     <ClCompile Include="code\system\Bom\DeleteBomSystem.cpp" />
     <ClCompile Include="code\system\Bom\DeleteExplotionCollision.cpp" />
@@ -179,6 +185,8 @@
     <ClCompile Include="code\system\Player\PlayerFollowCameraSystem.cpp" />
     <ClCompile Include="code\system\Player\PlayerInput.cpp" />
     <ClCompile Include="code\system\Player\PlayerMoveSystem.cpp" />
+    <ClCompile Include="code\system\Timer\TimerDecrementSystem.cpp" />
+    <ClCompile Include="code\system\Timer\TimerUIScrollSystem.cpp" />
     <ClCompile Include="code\system\UpdateButtonColorByState.cpp" />
     <ClCompile Include="code\component\SceneChanger.cpp" />
   </ItemGroup>
