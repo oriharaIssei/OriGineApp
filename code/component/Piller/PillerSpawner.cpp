@@ -29,7 +29,8 @@ bool FloorAndPillerSpawner::Edit() {
     isChange |= ImGui::InputInt("columNumMax", &columNumMax_);
     isChange |= ImGui::InputInt("pillarHP", &HPMax_);
     isChange |= ImGui::DragFloat("collisionSize", &collisionSize_, 0.01f);
-
+    isChange |= ImGui::DragFloat3("FallCollisionMin", fallCollisionSizeMin_.v, 0.01f);
+    isChange |= ImGui::DragFloat3("FallCollisionMax", fallCollisionSizeMax_.v, 0.01f);
     return isChange;
 }
 
@@ -40,6 +41,8 @@ void FloorAndPillerSpawner::Save(BinaryWriter& _writer) {
     _writer.Write("firstPillerOffset", firstPillerOffset_);
     _writer.Write("pillarHP", HPMax_);
     _writer.Write("collisionSize", collisionSize_);
+    _writer.Write<3, float>("FallCollisionMin", fallCollisionSizeMin_);
+    _writer.Write<3, float>("FallCollisionMax", fallCollisionSizeMax_);
 }
 
 void FloorAndPillerSpawner::Load(BinaryReader& _reader) {
@@ -49,6 +52,8 @@ void FloorAndPillerSpawner::Load(BinaryReader& _reader) {
     _reader.Read("firstPillerOffset", firstPillerOffset_);
     _reader.Read("pillarHP", HPMax_);
     _reader.Read("collisionSize", collisionSize_);
+    _reader.Read<3, float>("FallCollisionMin", fallCollisionSizeMin_);
+    _reader.Read<3, float>("FallCollisionMax", fallCollisionSizeMax_);
 }
 
 void FloorAndPillerSpawner::Finalize() {}

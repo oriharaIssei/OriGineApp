@@ -3,6 +3,7 @@
 #include "component/IComponent.h"
 #include<array>
 #include <cstdint>
+#include <Vector3.h>
 
 class FloorAndPillerSpawner
     : public IComponent {
@@ -23,6 +24,9 @@ private: // variables
 
      int32_t HPMax_;
     float collisionSize_;
+
+    Vec3f fallCollisionSizeMin_;
+    Vec3f fallCollisionSizeMax_;
 
 public:
     FloorAndPillerSpawner() {}
@@ -47,6 +51,8 @@ public: // accsessor
     int32_t GetNormalCostMax() const { return normalCostMax_; }
     float GetCollisionSize() const { return collisionSize_; }
     int32_t GetHpMax() const { return HPMax_; }
+    Vec3f GetFallCollisionSizeMin() const { return fallCollisionSizeMin_; }
+    Vec3f GetFallCollisionSizeMax() const { return fallCollisionSizeMax_; }
       /// setter
     void SetIsCreated(const bool&is) {  isCreated_=is; }
     void SetRowNumber(const int32_t& num) { rowNumber_ = num; }

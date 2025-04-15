@@ -78,7 +78,7 @@ void TowerPositionSet::CreateTower(const float& Radius) {
         for (int32_t j = 0; j < bottomFloorStates_->GetFloorNum(); ++j) {
 
             // ================================= Bullet Entityを 生成 ================================= //
-            GameEntity* piller = CreateEntity<Transform, Transform, SphereCollider, Rigidbody, ModelMeshRenderer, FloorAndPillerrStatus>("Piller", Transform(), Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), FloorAndPillerrStatus());
+            GameEntity* piller = CreateEntity<Transform, Transform, SphereCollider, AABBCollider, Rigidbody, ModelMeshRenderer, FloorAndPillerrStatus>("Piller", Transform(), Transform(), SphereCollider(), AABBCollider(), Rigidbody(), ModelMeshRenderer(), FloorAndPillerrStatus());
             GameEntity* floor  = CreateEntity<Transform, Rigidbody, ModelMeshRenderer, FloorStates>("Floor", Transform(), Rigidbody(), ModelMeshRenderer(), FloorStates());
             /*GameEntity* floorAndPiller = CreateEntity<Transform, Rigidbody, FloorAndPillerrStatus>("FAndP", Transform(), Rigidbody(), FloorAndPillerrStatus());*/
             // ================================= Componentを初期化 ================================= //
@@ -111,10 +111,13 @@ void TowerPositionSet::CreateTower(const float& Radius) {
             SetQuaternion(pillerBaseTransform, floorTransform, floorTransform->translate);
 
             //* Collider
-
-            // piller
+            // Sphere
             SphereCollider* collider           = getComponent<SphereCollider>(piller);
             collider->getLocalShapePtr()->radius_ = floorAndPillerSpawner_->GetCollisionSize();
+            // AABB
+            AABBCollider* aabbCollider = getComponent<AABBCollider>(piller);
+            aabbCollider->getLocalShape().min_
+            aabbCollider->getLocalShape().max_
 
             // MeshRenderer
             ModelMeshRenderer* pillerRender = getComponent<ModelMeshRenderer>(piller);
