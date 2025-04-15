@@ -34,14 +34,14 @@ void TimerStatus::Save(BinaryWriter& _writer) {
     _writer.Write("isAlive", isAlive_);
     _writer.Write("pulusTime", pulusTime_);
     _writer.Write("minusTime", minusTime_);
-   
+    _writer.Write("startTimer", currentTimer_);
 }
 
 void TimerStatus::Load(BinaryReader& _reader) {
     _reader.Read("isAlive", isAlive_);
     _reader.Read("pulusTime", pulusTime_);
     _reader.Read("minusTime", minusTime_);
-   
+    _reader.Read("startTimer", currentTimer_);
 }
 
 void TimerStatus::Finalize() {}
