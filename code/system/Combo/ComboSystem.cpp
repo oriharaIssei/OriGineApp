@@ -12,6 +12,7 @@
 
 // component
 #include "component/Combo/ComboStatus.h"
+#include"component/Timer/TimerStatus.h"
 
 
 
@@ -60,4 +61,24 @@ void ComboSystem::ComboReset() {
     comboStatus_->SetCurrentCombo(0);
     comboStatus_->SetCurrentTime(0.0f);
     comboStatus_->SetIsUpdateCombo(false);
+ }
+
+void ComboSystem::TimeUpdate() {
+     // ComboEntityを取得
+     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+     GameEntity* TimerEntity                  = ecsManager->getUniqueEntity("Timer");
+
+     if (!TimerEntity) { // Entityが存在しない場合の早期リターン
+         return;
+     }
+
+      /// component取得
+     TimerStatus* timeStatus     = getComponent<TimerStatus>(TimerEntity);
+   
+     if (!timeStatus) { // Componentが存在しない場合の早期リターン
+         return;
+     }
+
+     timeStatus->CurrentTimeUpdate(comboStatus_->GetCurrentComboNum());
+   
  }

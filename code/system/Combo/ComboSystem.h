@@ -17,6 +17,8 @@ public:
     void Finalize() override;
 
    void ComboReset();
+    void TimeUpdate();
+
     protected:
     void UpdateEntity(GameEntity* _entity) override;
 

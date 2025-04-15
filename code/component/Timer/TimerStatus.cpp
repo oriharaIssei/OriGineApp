@@ -25,6 +25,10 @@ bool TimerStatus::Edit() {
     isChange |= ImGui::DragFloat("startTimer", &currentTimer_, 0.01f);
     isChange |= ImGui::DragFloat("pulusTime", &pulusTime_, 0.01f);
     isChange |= ImGui::DragFloat("minusTime", &minusTime_, 0.01f);
+
+    ImGui::Text("NotChange");
+
+    isChange |= ImGui::DragFloat("currentPulusTime", &currentPulusTime_, 0.01f);
  
     return isChange;
 
@@ -35,6 +39,7 @@ void TimerStatus::Save(BinaryWriter& _writer) {
     _writer.Write("pulusTime", pulusTime_);
     _writer.Write("minusTime", minusTime_);
     _writer.Write("startTimer", currentTimer_);
+    _writer.Write("currentPulusTime", currentPulusTime_);
 }
 
 void TimerStatus::Load(BinaryReader& _reader) {
@@ -42,6 +47,7 @@ void TimerStatus::Load(BinaryReader& _reader) {
     _reader.Read("pulusTime", pulusTime_);
     _reader.Read("minusTime", minusTime_);
     _reader.Read("startTimer", currentTimer_);
+    _reader.Read("currentPulusTime", currentPulusTime_);
 }
 
 void TimerStatus::Finalize() {}
@@ -51,4 +57,8 @@ void TimerStatus::DecrementTimer() {
     if (currentTimer_ < 0.0f) {
         currentTimer_ = 0.0f;
     }
+}
+
+void TimerStatus::CurrentTimeUpdate(const int32_t& comboNum) {
+    currentPulusTime_ += pulusTime_*float(comboNum);
 }
