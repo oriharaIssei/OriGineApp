@@ -21,7 +21,7 @@ private:
     bool isInited_;
 
     BottomFloorStates* bottomFloorStates_;
-    FloorAndPillerSpawner* floorAndPillerSpawner_;
+    FloorAndPillerSpawner* pillerSpawner;
     /*std::vector<FloorModeCreater*> floorModeCreater_;*/
     PillerStates* pillerStates_;
     FloorStates* floorStates_;

@@ -49,6 +49,11 @@ int32_t TimerUIStatus::GetValueForDigit(const float& value) {
         int32_t intValue = static_cast<int32_t>(value) % 10;
         return intValue;
     }
+    case TimeDigit::TWO: {
+        // 整数部の第2位を取得
+        int32_t intValue = static_cast<int32_t>(value) / 10 % 10;
+        return intValue;
+    }
     case TimeDigit::DecimalONE: {
         // 小数点以下第1位を取得
         int32_t intValue = static_cast<int32_t>(value * 10) % 10;
@@ -59,11 +64,7 @@ int32_t TimerUIStatus::GetValueForDigit(const float& value) {
         int32_t intValue = static_cast<int32_t>(value * 100) % 10;
         return intValue;
     }
-    case TimeDigit::TWO: {
-        // 整数部の第2位を取得
-        int32_t intValue = static_cast<int32_t>(value) / 10 % 10;
-        return intValue;
-    }
+
     default:
         return 0;
     }

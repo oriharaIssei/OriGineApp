@@ -16,6 +16,7 @@ private: // variables
     float currentTimer_;
     float pulusTime_;
     float minusTime_;
+    bool isChanging_ = false;
 
 public:
     TimerStatus() {}
