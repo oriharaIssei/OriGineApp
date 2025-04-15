@@ -77,7 +77,7 @@ void TowerPositionSet::CreateTower(const float& Radius) {
         for (int32_t j = 0; j < bottomFloorStates_->GetFloorNum(); ++j) {
 
             // ================================= Bullet Entityを 生成 ================================= //
-            GameEntity* piller = CreateEntity<Transform, Transform, SphereCollider, AABBCollider, Rigidbody, ModelMeshRenderer, FloorAndPillerrStatus>("Piller", Transform(), Transform(), SphereCollider(), AABBCollider(), Rigidbody(), ModelMeshRenderer(), FloorAndPillerrStatus());
+            GameEntity* piller = CreateEntity<Transform, Transform, SphereCollider, Rigidbody, ModelMeshRenderer, FloorAndPillerrStatus>("Piller", Transform(), Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), FloorAndPillerrStatus());
             GameEntity* floor  = CreateEntity<Transform, Rigidbody, ModelMeshRenderer, FloorStates>("Floor", Transform(), Rigidbody(), ModelMeshRenderer(), FloorStates());
             /*GameEntity* floorAndPiller = CreateEntity<Transform, Rigidbody, FloorAndPillerrStatus>("FAndP", Transform(), Rigidbody(), FloorAndPillerrStatus());*/
             // ================================= Componentを初期化 ================================= //
@@ -113,10 +113,10 @@ void TowerPositionSet::CreateTower(const float& Radius) {
             SphereCollider* collider              = getComponent<SphereCollider>(piller);
             collider->getLocalShapePtr()->radius_ = pillerSpawner->GetCollisionSize();
             // AABB
-            AABBCollider* aabbCollider             = getComponent<AABBCollider>(piller);
-            aabbCollider->getLocalShapePtr()->min_ = pillerSpawner->GetFallCollisionSizeMin();
-            aabbCollider->getLocalShapePtr()->max_ = pillerSpawner->GetFallCollisionSizeMax();
-            aabbCollider->setActive(false);// 非アクティブにする
+            //AABBCollider* aabbCollider             = getComponent<AABBCollider>(piller);
+            //aabbCollider->getLocalShapePtr()->min_ = pillerSpawner->GetFallCollisionSizeMin();
+            //aabbCollider->getLocalShapePtr()->max_ = pillerSpawner->GetFallCollisionSizeMax();
+            //aabbCollider->setActive(false);// 非アクティブにする
 
             // MeshRenderer
             ModelMeshRenderer* pillerRender = getComponent<ModelMeshRenderer>(piller);

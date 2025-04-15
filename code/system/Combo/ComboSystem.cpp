@@ -47,8 +47,11 @@ void ComboSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
+    TimeUpdate();
+
     //コンボリセット
     ComboReset();
+
    
 }
 

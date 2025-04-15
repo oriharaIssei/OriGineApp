@@ -66,15 +66,6 @@ void CanageStateFallSystem::UpdateEntity(GameEntity* _entity) {
 
      // コンボ加算
     ComboCountIncrement();
-
-   
-   /* ComponentArray<FloorAndPillerrStatus>* fandp = ECSManager::getInstance()->getComponentArray<FloorAndPillerrStatus>();*/
-
-    //if (fandp == nullptr) {
-    //    return;
-    //}
-    // 
- 
 }
 
 void CanageStateFallSystem::ComboCountIncrement() {

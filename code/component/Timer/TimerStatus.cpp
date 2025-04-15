@@ -60,5 +60,5 @@ void TimerStatus::DecrementTimer() {
 }
 
 void TimerStatus::CurrentTimeUpdate(const int32_t& comboNum) {
-    currentPulusTime_ += pulusTime_*float(comboNum);
+    currentTimer_ += pulusTime_*float(comboNum);
 }
