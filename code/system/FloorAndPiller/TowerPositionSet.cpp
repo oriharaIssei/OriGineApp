@@ -79,7 +79,7 @@ void TowerPositionSet::CreateTower(const float& Radius) {
 
             // ================================= Bullet Entityを 生成 ================================= //
             GameEntity* piller = CreateEntity<Transform, Transform, SphereCollider, Rigidbody, ModelMeshRenderer, FloorAndPillerrStatus>("Piller", Transform(), Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), FloorAndPillerrStatus());
-            GameEntity* floor  = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, FloorStates>("Floor", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), FloorStates());
+            GameEntity* floor  = CreateEntity<Transform, AABBCollider, Rigidbody, ModelMeshRenderer, FloorStates>("Floor", Transform(), AABBCollider(), Rigidbody(), ModelMeshRenderer(), FloorStates());
             /*GameEntity* floorAndPiller = CreateEntity<Transform, Rigidbody, FloorAndPillerrStatus>("FAndP", Transform(), Rigidbody(), FloorAndPillerrStatus());*/
 
             // ================================= Componentを初期化 ================================= //

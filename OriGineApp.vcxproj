@@ -107,6 +107,7 @@
     <ClInclude Include="code\component\Combo\ComboStatus.h" />
     <ClInclude Include="code\component\Combo\ComboUIStatus.h" />
     <ClInclude Include="code\component\Floor\BottomFloorStates.h" />
+    <ClInclude Include="code\component\Floor\FloorFallCollision.h" />
     <ClInclude Include="code\component\Floor\FloorModeCreater.h" />
     <ClInclude Include="code\component\Piller\PillerSpawner.h" />
     <ClInclude Include="code\component\Piller\PillerStatus.h" />
@@ -152,6 +153,7 @@
     <ClCompile Include="code\component\Combo\ComboStatus.cpp" />
     <ClCompile Include="code\component\Combo\ComboUIStatus.cpp" />
     <ClCompile Include="code\component\Floor\BottomFloorStates.cpp" />
+    <ClCompile Include="code\component\Floor\FloorFallCollision.cpp" />
     <ClCompile Include="code\component\Floor\FloorModeCreater.cpp" />
     <ClCompile Include="code\component\Piller\PillerSpawner.cpp" />
     <ClCompile Include="code\component\Piller\PillerStatus.cpp" />
