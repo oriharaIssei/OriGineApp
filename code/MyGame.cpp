@@ -48,7 +48,7 @@ void MyGame::Initialize() {
     SerializedField<std::string> startupSceneName{"Settings", "Scene", "StartupSceneName"};
     sceneManager_->changeScene(startupSceneName);
     // シーンの変更を適応するために 一度更新
-    sceneManager_->Update();
+    sceneManager_->executeSceneChange();
 #ifdef _DEBUG
     ///=================================================================================================
     // Editor の初期化
@@ -103,7 +103,6 @@ void MyGame::Run() {
 #endif // DEBUG
 
         sceneManager_->Update();
-        sceneManager_->Draw();
 
         engine_->EndFrame();
     }
