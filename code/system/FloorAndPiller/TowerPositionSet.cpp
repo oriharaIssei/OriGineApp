@@ -112,7 +112,8 @@ void TowerPositionSet::CreateTower(const float& Radius) {
             // Sphere
             SphereCollider* collider              = getComponent<SphereCollider>(piller);
             collider->getLocalShapePtr()->radius_ = pillerSpawner->GetCollisionSize();
-            // AABB
+
+            //// AABB
             //AABBCollider* aabbCollider             = getComponent<AABBCollider>(piller);
             //aabbCollider->getLocalShapePtr()->min_ = pillerSpawner->GetFallCollisionSizeMin();
             //aabbCollider->getLocalShapePtr()->max_ = pillerSpawner->GetFallCollisionSizeMax();
@@ -138,6 +139,12 @@ void TowerPositionSet::CreateTower(const float& Radius) {
             // row,columNum
             FloorAndPillerrStatus* statusFandP = getComponent<FloorAndPillerrStatus>(piller);
             statusFandP->SetColumAndRow(i, j);
+
+            // ↓ここで isDestroy を共有する
+           
+          
+           /* statusFandP->SetIsDestroyPointer(statusFloor->GetIsDestroyPtr());*/
+            statusFandP->SetIsDestroy(false);
 
             // savePosを設定
             statusFandP->SetSavePos(pillerBaseTransform->translate[Y]);
@@ -175,6 +182,7 @@ void TowerPositionSet::CreateTower(const float& Radius) {
             // None
 
             //------------------ Render
+            ecs->getSystem<ColliderRenderingSystem>()->addEntity(piller);
             ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(piller);
             ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(floor);
         }

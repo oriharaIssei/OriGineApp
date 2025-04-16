@@ -11,6 +11,7 @@ private: // variables
     bool isFalling_=false;   // 落下中かどうか
     float fallTimer_;         // 落ちるまでの猶予時間
     bool haveSafeZone_; // 無敵床を持っているかどうか
+    bool isDestroy_ = false;
 
 public:
     FloorStates() {}
@@ -25,6 +26,10 @@ public:
 
 public: // accsessor
     /// getter
+    bool* GetIsDestroyPtr() { return &isDestroy_; }
+    bool GetIsDestory()const { return isDestroy_; }
 
+    bool* GetIsFallingPtr() { return &isFalling_; }
+    bool GetIsFalling() const { return isFalling_; }
     /// setter
 };

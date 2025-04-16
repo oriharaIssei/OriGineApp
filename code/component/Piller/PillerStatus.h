@@ -13,7 +13,8 @@ private: // variables
     bool isAlive_ = true;
 
     bool isFall_ = false;
-    bool isDestroy_=false;
+   /* bool isDestroy_=false;*/
+ 
 
     int32_t columNum_;
     int32_t rowNum_;
@@ -23,6 +24,7 @@ private: // variables
     float fallspeed_;
     float fallEaseT_;
     int32_t currentHP_;
+    bool isDestroy_ = false;
     
 
 public:
@@ -37,6 +39,7 @@ public:
 
     void TakeDamage();
 
+  
  void SetColumDecrement();
    
 
@@ -53,7 +56,7 @@ public: // accsessor
     float GetFallEaseT() const { return fallEaseT_; }
     float GetFallSpeed() const { return fallspeed_; }
     bool GetIsDestroy() const { return isDestroy_; }
-
+    
 
       /// setter
     void SetColumAndRow(const int32_t& colum, const int32_t& row);
@@ -64,6 +67,10 @@ public: // accsessor
     void SetFallEaseT(const float& t) { fallEaseT_ = t; }
     void SetIncrementFallEaseT(const float& t) { fallEaseT_ += t; }
     void SetFallSpeed(const float& speed) { fallspeed_ = speed; }
-    void SetIsDestroy(const bool& is) { isDestroy_ = is; }
     void SetcurrentHP(const int32_t& hp) { currentHP_ = hp; }
+    void SetIsDestroy(const bool& is) { isDestroy_ = is;}
+
+    /* void SetIsDestroyPointer(bool* ptr) {
+        isDestroy_ = ptr;
+    }*/
 };
