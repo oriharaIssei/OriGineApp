@@ -4,6 +4,7 @@
 #define ENGINE_ECS
 // component
 #include "component/Floor/FloorStates.h"
+#include"component/Piller/PillerStatus.h"
 #include "engine/EngineInclude.h"
 #include <Vector.h>
 
@@ -56,7 +57,7 @@ void DeleteFloorSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    if (floorStates->GetIsFalling()) {
+    if (floorStates->GetParentStatus()->GetIsFall()) {
         DestroyEntity(_entity);
     }
 }

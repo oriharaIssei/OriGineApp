@@ -5,7 +5,7 @@
 #include <cstdint>
 #include<Vector3.h>
 
-class FloorAndPillerrStatus
+class PillerStatus
     : public IComponent {
 
 private: // variables
@@ -28,8 +28,8 @@ private: // variables
     
 
 public:
-    FloorAndPillerrStatus() {}
-    virtual ~FloorAndPillerrStatus() = default;
+    PillerStatus() {}
+    virtual ~PillerStatus() = default;
 
     void Initialize(GameEntity* _entity) override;
     bool Edit() override;

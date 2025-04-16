@@ -77,7 +77,7 @@ void TowerPositionSet::CreateTower(const float& Radius) {
         for (int32_t j = 0; j < bottomFloorStates_->GetFloorNum(); ++j) {
 
             // ================================= Bullet Entityを 生成 ================================= //
-            GameEntity* piller = CreateEntity<Transform, Transform, SphereCollider, Rigidbody, ModelMeshRenderer, FloorAndPillerrStatus>("Piller", Transform(), Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), FloorAndPillerrStatus());
+            GameEntity* piller = CreateEntity<Transform, Transform, SphereCollider, Rigidbody, ModelMeshRenderer, PillerStatus>("Piller", Transform(), Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), PillerStatus());
             GameEntity* floor  = CreateEntity<Transform, Rigidbody, ModelMeshRenderer, FloorStates>("Floor", Transform(), Rigidbody(), ModelMeshRenderer(), FloorStates());
             /*GameEntity* floorAndPiller = CreateEntity<Transform, Rigidbody, FloorAndPillerrStatus>("FAndP", Transform(), Rigidbody(), FloorAndPillerrStatus());*/
             // ================================= Componentを初期化 ================================= //
@@ -134,15 +134,15 @@ void TowerPositionSet::CreateTower(const float& Radius) {
 
             /// States
             FloorStates* statusFloor = getComponent<FloorStates>(floor);
-            statusFloor              = floorStates_;
+           /* statusFloor              = floorStates_;*/
 
             // row,columNum
-            FloorAndPillerrStatus* statusFandP = getComponent<FloorAndPillerrStatus>(piller);
+            PillerStatus* statusFandP = getComponent<PillerStatus>(piller);
             statusFandP->SetColumAndRow(i, j);
 
-            // isFall の参照を floor に渡す
-            statusFloor->SetIsFallSource(&statusFandP->GetIsFall());
-            statusFandP->SetIsFall(false);
+            // 親ステータスをもらう
+            statusFloor->SetParentStatus(statusFandP);
+          
             // savePosを設定
             statusFandP->SetSavePos(pillerBaseTransform->translate[Y]);
             // 落ちるオフセットを決める

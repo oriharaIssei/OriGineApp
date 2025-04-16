@@ -26,7 +26,7 @@ void FloorAndPillerFallSystem::Finalize() {
 
 void FloorAndPillerFallSystem::UpdateEntity(GameEntity* _entity) {
 
-    FloorAndPillerrStatus* entityStatus = getComponent<FloorAndPillerrStatus>(_entity);
+    PillerStatus* entityStatus = getComponent<PillerStatus>(_entity);
 
     if (!entityStatus) {
         return;

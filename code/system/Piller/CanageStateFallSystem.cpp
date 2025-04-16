@@ -28,7 +28,7 @@ void CanageStateFallSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    FloorAndPillerrStatus* fAndPStatus = getComponent<FloorAndPillerrStatus>(_entity);
+    PillerStatus* fAndPStatus = getComponent<PillerStatus>(_entity);
 
     if (!fAndPStatus) {
         return;
@@ -53,7 +53,7 @@ void CanageStateFallSystem::UpdateEntity(GameEntity* _entity) {
 
     // **同じRowの床を落とす**
     for (GameEntity* entity : getEntities()) { // すべてのエンティティをチェック
-        FloorAndPillerrStatus* otherFAndP = getComponent<FloorAndPillerrStatus>(entity);
+        PillerStatus* otherFAndP = getComponent<PillerStatus>(entity);
         if (!otherFAndP) {
             continue;
         }

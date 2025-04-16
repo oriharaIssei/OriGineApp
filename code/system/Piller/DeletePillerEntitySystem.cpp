@@ -24,7 +24,7 @@ void DeletePillerEntitySystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    FloorAndPillerrStatus* fAndPStatus = getComponent<FloorAndPillerrStatus>(_entity);
+    PillerStatus* fAndPStatus = getComponent<PillerStatus>(_entity);
 
     if (!fAndPStatus) {
         return;

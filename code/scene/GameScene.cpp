@@ -55,7 +55,7 @@ void GameScene::registerComponents() {
     ecsManager->registerComponent<BomStatus>();
     ecsManager->registerComponent<FloorModeCreater>();
     ecsManager->registerComponent<ExplotionCollision>();
-    ecsManager->registerComponent<FloorAndPillerrStatus>();
+    ecsManager->registerComponent<PillerStatus>();
     ecsManager->registerComponent<ComboStatus>();
     ecsManager->registerComponent<ComboUIStatus>();
     ecsManager->registerComponent<TimerStatus>();
