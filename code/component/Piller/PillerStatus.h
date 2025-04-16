@@ -49,14 +49,13 @@ public: // accsessor
     int32_t GetColumNum() const { return columNum_; }
     int32_t GetRowNum() const { return rowNum_; }
     int32_t GetCurrentHP() const { return currentHP_; }
-    bool GetIsFall() const { return isFall_; }
     float GetSavePos() const { return savePosY_; }
     float GetFallValue() const { return fallValue_; }
     float GetFallPosY();
     float GetFallEaseT() const { return fallEaseT_; }
     float GetFallSpeed() const { return fallspeed_; }
     bool GetIsDestroy() const { return isDestroy_; }
-    
+    const bool& GetIsFall() const { return isFall_; }
 
       /// setter
     void SetColumAndRow(const int32_t& colum, const int32_t& row);

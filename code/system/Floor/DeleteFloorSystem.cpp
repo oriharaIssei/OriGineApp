@@ -56,7 +56,7 @@ void DeleteFloorSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    if (floorStates->GetIsDestory()) {
+    if (floorStates->GetIsFalling()) {
         DestroyEntity(_entity);
     }
 }

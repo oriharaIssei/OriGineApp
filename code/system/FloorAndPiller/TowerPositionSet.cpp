@@ -140,12 +140,9 @@ void TowerPositionSet::CreateTower(const float& Radius) {
             FloorAndPillerrStatus* statusFandP = getComponent<FloorAndPillerrStatus>(piller);
             statusFandP->SetColumAndRow(i, j);
 
-            // ↓ここで isDestroy を共有する
-           
-          
-           /* statusFandP->SetIsDestroyPointer(statusFloor->GetIsDestroyPtr());*/
-            statusFandP->SetIsDestroy(false);
-
+            // isFall の参照を floor に渡す
+            statusFloor->SetIsFallSource(&statusFandP->GetIsFall());
+            statusFandP->SetIsFall(false);
             // savePosを設定
             statusFandP->SetSavePos(pillerBaseTransform->translate[Y]);
             // 落ちるオフセットを決める

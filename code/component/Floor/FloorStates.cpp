@@ -30,3 +30,11 @@ void FloorStates::Load(BinaryReader& _reader) {
 }
 
 void FloorStates::Finalize() {}
+
+
+ bool FloorStates::GetIsFalling() const {
+    if (!isFalling_) {
+        return false;
+    }
+     return *isFalling_;
+ }
