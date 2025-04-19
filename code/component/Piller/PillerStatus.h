@@ -11,7 +11,6 @@ class PillerStatus
 private: // variables
 
     bool isAlive_ = true;
-
     bool isFall_ = false;
    /* bool isDestroy_=false;*/
  

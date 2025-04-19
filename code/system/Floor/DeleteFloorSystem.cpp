@@ -20,32 +20,6 @@ void DeleteFloorSystem::Finalize() {
 DeleteFloorSystem::~DeleteFloorSystem() {}
 
 
-
-
-//void DeleteFloorSystem::UpdateEntity(GameEntity* _entity) {
-//    if (!_entity) {
-//        return;
-//    }
-//
-//   Transform* transform = getComponent<Transform>(_entity);
-//    FloorStates* floorStates = getComponent<FloorStates>(_entity);
-//
-//    if (!transform) {
-//        return;
-//    }
-//
-//    if (!transform->parent) {
-//        DestroyEntity(_entity);
-//        return;
-//    }
-//
-//    // 床をデストロイ
-//    if (transform->parent->scale == Vec3f{0.0f,0.0f,0.0f}) {  
-//        DestroyEntity(_entity);
-//    }
-//
-//    
-//}
 void DeleteFloorSystem::UpdateEntity(GameEntity* _entity) {
     if (!_entity) {
         return;
@@ -57,7 +31,7 @@ void DeleteFloorSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    if (floorStates->GetParentStatus()->GetIsFall()) {
+    if (floorStates->GetParentStatus()->GetIsDestroy()) {
         DestroyEntity(_entity);
     }
 }

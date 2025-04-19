@@ -78,7 +78,7 @@ void TowerPositionSet::CreateTower(const float& Radius) {
 
             // ================================= Bullet Entityを 生成 ================================= //
             GameEntity* piller = CreateEntity<Transform, Transform, SphereCollider, Rigidbody, ModelMeshRenderer, PillerStatus>("Piller", Transform(), Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), PillerStatus());
-            GameEntity* floor  = CreateEntity<Transform, Rigidbody, ModelMeshRenderer, FloorStates>("Floor", Transform(), Rigidbody(), ModelMeshRenderer(), FloorStates());
+            GameEntity* floor  = CreateEntity<Transform, Rigidbody, AABBCollider, ModelMeshRenderer, FloorStates>("Floor", Transform(), Rigidbody(), AABBCollider(), ModelMeshRenderer(), FloorStates());
             /*GameEntity* floorAndPiller = CreateEntity<Transform, Rigidbody, FloorAndPillerrStatus>("FAndP", Transform(), Rigidbody(), FloorAndPillerrStatus());*/
             // ================================= Componentを初期化 ================================= //
 
@@ -114,10 +114,10 @@ void TowerPositionSet::CreateTower(const float& Radius) {
             collider->getLocalShapePtr()->radius_ = pillerSpawner->GetCollisionSize();
 
             //// AABB
-            //AABBCollider* aabbCollider             = getComponent<AABBCollider>(piller);
-            //aabbCollider->getLocalShapePtr()->min_ = pillerSpawner->GetFallCollisionSizeMin();
-            //aabbCollider->getLocalShapePtr()->max_ = pillerSpawner->GetFallCollisionSizeMax();
-            //aabbCollider->setActive(false);// 非アクティブにする
+            AABBCollider* aabbCollider             = getComponent<AABBCollider>(floor);
+            aabbCollider->getLocalShapePtr()->min_ = pillerSpawner->GetFallCollisionSizeMin();
+            aabbCollider->getLocalShapePtr()->max_ = pillerSpawner->GetFallCollisionSizeMax();
+            aabbCollider->setActive(false);// 非アクティブにする
 
             // MeshRenderer
             ModelMeshRenderer* pillerRender = getComponent<ModelMeshRenderer>(piller);
@@ -174,6 +174,7 @@ void TowerPositionSet::CreateTower(const float& Radius) {
             //------------------ Collision
             /*  ecs->getSystem<CharacterOnCollision>()->addEntity(bom);*/
             ecs->getSystem<CollisionCheckSystem>()->addEntity(piller);
+            ecs->getSystem<CollisionCheckSystem>()->addEntity(floor);
             ecs->getSystem<PillerDamageSystem>()->addEntity(piller);
             //------------------ Physics
             // None
