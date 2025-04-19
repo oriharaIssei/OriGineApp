@@ -1,0 +1,93 @@
+#pragma once
+/// parent
+#include "component/IComponent.h"
+
+/// stl
+#include <vector>
+
+/// engine
+// lib
+#include "input/Input.h"
+
+/// math
+#include "math/Vector2.h"
+#include "math/Vector3.h"
+
+/// <summary>
+/// プレイヤーの入力を管理するクラス
+/// </summary>
+class PlayerInput
+    : public IComponent {
+public:
+    PlayerInput() : IComponent() {}
+    ~PlayerInput() {}
+
+    void Initialize(GameEntity* _entity) override;
+    bool Edit() override;
+    void Save(BinaryWriter& _writer) override;
+    void Load(BinaryReader& _reader) override;
+    void Finalize() override;
+
+private:
+    Vec2f inputDirection_ = {0.0f, 0.0f};
+    bool isJump_          = false;
+
+    /// <summary>
+    /// 移動 キー (ゲームパッドは スティックだから必要なし)
+    /// </summary>
+    std::vector<Key> moveFrontKeys_ = {
+        Key::W,
+        Key::UP};
+    std::vector<Key> moveBackKeys_ = {
+        Key::S,
+        Key::DOWN};
+    std::vector<Key> moveLeftKeys_ = {
+        Key::A,
+        Key::LEFT};
+    std::vector<Key> moveRightKeys_ = {
+        Key::D,
+        Key::RIGHT};
+
+    std::vector<Key> jumpKeys_ = {
+        Key::SPACE,
+        Key::NUMPAD0};
+    std::vector<PadButton> jumpButton_ = {
+        PadButton::A,
+        PadButton::B};
+
+public:
+    const std::vector<Key>& getMoveFrontKeys() const {
+        return moveFrontKeys_;
+    }
+    const std::vector<Key>& getMoveBackKeys() const {
+        return moveBackKeys_;
+    }
+    const std::vector<Key>& getMoveLeftKeys() const {
+        return moveLeftKeys_;
+    }
+    const std::vector<Key>& getMoveRightKeys() const {
+        return moveRightKeys_;
+    }
+
+    const std::vector<Key>& getJumpKeys() const {
+        return jumpKeys_;
+    }
+
+    const std::vector<PadButton>& getJumpButton() const {
+        return jumpButton_;
+    }
+
+    const Vec2f& getInputDirection() const {
+        return inputDirection_;
+    }
+    void setInputDirection(const Vec2f& _inputDirection) {
+        inputDirection_ = _inputDirection;
+    }
+
+    bool isJump() const {
+        return isJump_;
+    }
+    void setJump(bool _isJump) {
+        isJump_ = _isJump;
+    }
+};

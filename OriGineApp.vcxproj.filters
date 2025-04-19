@@ -41,6 +41,10 @@
     <ClInclude Include="code\system\Transition\UpdateButtonColorByState.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\Player\PlayerInput.h" />
+    <ClInclude Include="code\component\Player\PlayerStatus.h" />
+    <ClInclude Include="code\system\Input\PlayerInputSystem.h" />
+    <ClInclude Include="code\system\Movement\PlayerMoveSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -66,5 +70,9 @@
     <ClCompile Include="code\system\Transition\UpdateButtonColorByState.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
+    <ClCompile Include="code\component\Player\PlayerInput.cpp" />
+    <ClCompile Include="code\component\Player\PlayerStatus.cpp" />
+    <ClCompile Include="code\system\Input\PlayerInputSystem.cpp" />
+    <ClCompile Include="code\system\Movement\PlayerMoveSystem.cpp" />
   </ItemGroup>
 </Project>
