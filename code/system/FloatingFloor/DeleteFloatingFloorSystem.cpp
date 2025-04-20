@@ -3,7 +3,7 @@
 /// ECS
 #define ENGINE_ECS
 // component
-#include "component/Piller/PillerSpawner.h"
+#include "component/Piller/FloatingFloorSpawner.h"
 #include "component/Piller/FloatingFloorStatus.h"
 #include "engine/EngineInclude.h"
 

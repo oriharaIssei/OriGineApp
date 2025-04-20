@@ -13,10 +13,8 @@
 #include <Quaternion.h>
 #include <Vector3.h>
 // component
-#include "component/Floor/BottomFloorStates.h"
-#include "component/Floor/FloorStates.h"
 #include "component/Piller/FloatingFloorStatus.h"
-#include "component/Piller/PillerSpawner.h"
+#include "component/Piller/FloatingFloorSpawner.h"
 // #include "component/Piller/PillerStates.h"
 //  system
 //  #include "system/FloorAndPillerColum/CreateFloorAndPillerSystem.h"

@@ -3,7 +3,6 @@
 /// ECS
 #define ENGINE_ECS
 // component
-#include "component/Floor/FloorStates.h"
 #include"component/Piller/FloatingFloorStatus.h"
 #include "engine/EngineInclude.h"
 #include <Vector.h>
@@ -25,7 +24,7 @@ void DeleteFloorSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    FloorStates* floorStates = getComponent<FloorStates>(_entity);
+   /* FloorStates* floorStates = getComponent<FloorStates>(_entity);
 
     if (!floorStates) {
         return;
@@ -33,5 +32,5 @@ void DeleteFloorSystem::UpdateEntity(GameEntity* _entity) {
 
     if (floorStates->GetParentStatus()->GetIsDestroy()) {
         DestroyEntity(_entity);
-    }
+    }*/
 }

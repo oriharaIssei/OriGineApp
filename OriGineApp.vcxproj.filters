@@ -16,9 +16,6 @@
     <Filter Include="component\Piller">
       <UniqueIdentifier>{c53cad7a-ce76-4868-ad03-8f44926c3b6b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="component\Floor">
-      <UniqueIdentifier>{038b10e6-4b3c-4d3e-876e-3da96a6e135c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="system\Floor">
       <UniqueIdentifier>{a5fbbbd1-5529-4545-b3a2-860f0d5e1f1c}</UniqueIdentifier>
     </Filter>
@@ -62,9 +59,6 @@
     <ClInclude Include="code\component\Player\PlayerStates.h">
       <Filter>component\Player</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\Floor\FloorStates.h">
-      <Filter>component\Floor</Filter>
-    </ClInclude>
     <ClInclude Include="code\component\Button.h" />
     <ClInclude Include="code\system\ButtonInputSystem.h" />
     <ClInclude Include="code\system\UpdateButtonColorByState.h" />
@@ -87,12 +81,6 @@
     </ClInclude>
     <ClInclude Include="code\component\Bom\BomStatus.h">
       <Filter>component\Bom</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\Floor\BottomFloorStates.h">
-      <Filter>component\Floor</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\Floor\FloorModeCreater.h">
-      <Filter>component\Floor</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Bom\BomExplotionSystem.h">
       <Filter>system\Bom</Filter>
@@ -121,7 +109,7 @@
     <ClInclude Include="code\component\Piller\FloatingFloorStatus.h">
       <Filter>component\Piller</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\Piller\PillerSpawner.h">
+    <ClInclude Include="code\component\Piller\FloatingFloorSpawner.h">
       <Filter>component\Piller</Filter>
     </ClInclude>
     <ClInclude Include="code\component\Combo\ComboStatus.h">
@@ -147,9 +135,6 @@
     </ClInclude>
     <ClInclude Include="code\system\Timer\TimerUIScrollSystem.h">
       <Filter>system\Timer</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\Floor\FloorFallCollision.h">
-      <Filter>component\Floor</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Matrix\UpdateMatrixSystem.h">
       <Filter>system\Matrix</Filter>
@@ -179,9 +164,6 @@
     <ClCompile Include="code\component\Player\PlayerStates.cpp">
       <Filter>component\Player</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\Floor\FloorStates.cpp">
-      <Filter>component\Floor</Filter>
-    </ClCompile>
     <ClCompile Include="code\component\Button.cpp" />
     <ClCompile Include="code\system\ButtonInputSystem.cpp" />
     <ClCompile Include="code\system\UpdateButtonColorByState.cpp" />
@@ -204,12 +186,6 @@
     </ClCompile>
     <ClCompile Include="code\component\Bom\BomStatus.cpp">
       <Filter>component\Bom</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\Floor\BottomFloorStates.cpp">
-      <Filter>component\Floor</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\Floor\FloorModeCreater.cpp">
-      <Filter>component\Floor</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Bom\BomExplotionSystem.cpp">
       <Filter>system\Bom</Filter>
@@ -238,7 +214,7 @@
     <ClCompile Include="code\component\Piller\FloatingFloorStatus.cpp">
       <Filter>component\Piller</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\Piller\PillerSpawner.cpp">
+    <ClCompile Include="code\component\Piller\FloatingFloorSpawner.cpp">
       <Filter>component\Piller</Filter>
     </ClCompile>
     <ClCompile Include="code\component\Combo\ComboStatus.cpp">
@@ -264,9 +240,6 @@
     </ClCompile>
     <ClCompile Include="code\system\Timer\TimerUIScrollSystem.cpp">
       <Filter>system\Timer</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\Floor\FloorFallCollision.cpp">
-      <Filter>component\Floor</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Matrix\UpdateMatrixSystem.cpp">
       <Filter>system\Matrix</Filter>

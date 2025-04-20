@@ -106,10 +106,7 @@
     <ClInclude Include="code\component\Bom\ExplotionCollision.h" />
     <ClInclude Include="code\component\Combo\ComboStatus.h" />
     <ClInclude Include="code\component\Combo\ComboUIStatus.h" />
-    <ClInclude Include="code\component\Floor\BottomFloorStates.h" />
-    <ClInclude Include="code\component\Floor\FloorFallCollision.h" />
-    <ClInclude Include="code\component\Floor\FloorModeCreater.h" />
-    <ClInclude Include="code\component\Piller\PillerSpawner.h" />
+    <ClInclude Include="code\component\Piller\FloatingFloorSpawner.h" />
     <ClInclude Include="code\component\Piller\FloatingFloorStatus.h" />
     <ClInclude Include="code\component\ShockWave\ShockWaveSpawner.h" />
     <ClInclude Include="code\component\Timer\TimerStatus.h" />
@@ -119,7 +116,6 @@
     <ClInclude Include="code\system\Bom\DeleteExplotionCollision.h" />
     <ClInclude Include="code\system\Bom\PutBomSystem.h" />
     <ClInclude Include="code\system\ChangeSceneByButton.h" />
-    <ClInclude Include="code\component\Floor\FloorStates.h" />
     <ClInclude Include="code\component\Player\PlayerStates.h" />
     <ClInclude Include="code\system\ButtonInputSystem.h" />
     <ClInclude Include="code\component\Button.h" />
@@ -151,10 +147,7 @@
     <ClCompile Include="code\component\Bom\ExplotionCollision.cpp" />
     <ClCompile Include="code\component\Combo\ComboStatus.cpp" />
     <ClCompile Include="code\component\Combo\ComboUIStatus.cpp" />
-    <ClCompile Include="code\component\Floor\BottomFloorStates.cpp" />
-    <ClCompile Include="code\component\Floor\FloorFallCollision.cpp" />
-    <ClCompile Include="code\component\Floor\FloorModeCreater.cpp" />
-    <ClCompile Include="code\component\Piller\PillerSpawner.cpp" />
+    <ClCompile Include="code\component\Piller\FloatingFloorSpawner.cpp" />
     <ClCompile Include="code\component\Piller\FloatingFloorStatus.cpp" />
     <ClCompile Include="code\component\ShockWave\ShockWaveSpawner.cpp" />
     <ClCompile Include="code\component\Timer\TimerStatus.cpp" />
@@ -164,7 +157,6 @@
     <ClCompile Include="code\system\Bom\DeleteExplotionCollision.cpp" />
     <ClCompile Include="code\system\Bom\PutBomSystem.cpp" />
     <ClCompile Include="code\system\ChangeSceneByButton.cpp" />
-    <ClCompile Include="code\component\Floor\FloorStates.cpp" />
     <ClCompile Include="code\component\Player\PlayerStates.cpp" />
     <ClCompile Include="code\system\ButtonInputSystem.cpp" />
     <ClCompile Include="code\component\Button.cpp" />

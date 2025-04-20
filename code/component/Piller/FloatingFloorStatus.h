@@ -16,6 +16,7 @@ private: // variables
 
     int32_t columNum_;
     int32_t rowNum_;
+
     float savePosY_;
     float fallValue_;
     float fallPosY_;

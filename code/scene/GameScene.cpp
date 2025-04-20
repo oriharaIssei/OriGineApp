@@ -4,18 +4,20 @@
 #include "ECS/ECSManager.h"
 // component
 #include"Application/code/component/Player/PlayerStates.h"
-#include"Application/code/component/Floor/BottomFloorStates.h"
-#include"Application/code/component/Floor/FloorStates.h"
+
 #include"Application/code/component/Piller/FloatingFloorStatus.h"
-#include"Application/code/component/Piller/PillerSpawner.h"
+#include"Application/code/component/Piller/FloatingFloorSpawner.h"
 #include"Application/code/component/Bom/BomSpawner.h"
-#include"Application/code/component/Floor/FloorModeCreater.h"
 #include"Application/code/component/Bom/BomStatus.h"
 #include"Application/code/component/Bom/ExplotionCollision.h"
 #include"Application/code/component/Combo/ComboStatus.h"
 #include "Application/code/component/Combo/ComboUIStatus.h"
 #include"Application/code/component/Timer/TimerUIStatus.h"
 #include"Application/code/component/Timer/TimerStatus.h"
+
+//#include"Application/code/component/Floor/FloorModeCreater.h"
+//#include"Application/code/component/Floor/BottomFloorStates.h"
+//#include"Application/code/component/Floor/FloorStates.h"
 
 //system
 #include"Application/code/system/Player/PlayerInput.h"
@@ -48,18 +50,19 @@ void GameScene::registerComponents() {
 
     ECSManager* ecsManager = ECSManager::getInstance();
     ecsManager->registerComponent<PlayerStates>();
-    ecsManager->registerComponent<BottomFloorStates>();
-    ecsManager->registerComponent<FloorStates>();
     ecsManager->registerComponent<FloatingFloorSpawner>();
     ecsManager->registerComponent<BomSpawner>();
     ecsManager->registerComponent<BomStatus>();
-    ecsManager->registerComponent<FloorModeCreater>();
     ecsManager->registerComponent<ExplotionCollision>();
     ecsManager->registerComponent<FloatingFloorStatus>();
     ecsManager->registerComponent<ComboStatus>();
     ecsManager->registerComponent<ComboUIStatus>();
     ecsManager->registerComponent<TimerStatus>();
     ecsManager->registerComponent<TimerUIStatus>();
+
+    /*ecsManager->registerComponent<BottomFloorStates>();
+    ecsManager->registerComponent<FloorStates>();
+    ecsManager->registerComponent<FloorModeCreater>();*/
 }
 
 void GameScene::registerSystems() {
