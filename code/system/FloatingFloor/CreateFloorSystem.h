@@ -11,7 +11,7 @@
 // FloorSystem
 ///====================================================================
 class BottomFloorStates;
-class FloorAndPillerSpawner;
+class FloatingFloorSpawner;
 class PillerStates;
 class FloorStates;
 class FloorModeCreater;
@@ -21,7 +21,7 @@ private:
     bool isInited_;
 
     BottomFloorStates* bottomFloorStates_;
-    FloorAndPillerSpawner* pillerSpawner;
+    FloatingFloorSpawner* floatFloorSpawner;
     /*std::vector<FloorModeCreater*> floorModeCreater_;*/
     PillerStates* pillerStates_;
     FloorStates* floorStates_;
@@ -36,13 +36,9 @@ public:
     void Initialize() override;
     void Finalize() override;
 
-    void CreateBottomFloor();
-    void CreateFloatingFloor();
+  
+    void CreateFloatingFloor(GameEntity*_entity);
 
-    void SetXPosition(Transform* baseTransform, Transform* childTransform,const Vec3f&offset,int32_t rowIndex);
-
-   /* void SetPivotQuaternion(Transform* pivotTransform, const int32_t& index);
-    void SetQuaternion(Transform* pivotTransform, Transform* Transform,const Vec3f&offset);*/
 
     void CostInit();
 

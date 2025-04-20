@@ -3,57 +3,55 @@
 #include "imgui/imgui.h"
 #include <string>
 
-void FloorAndPillerSpawner::Initialize([[maybe_unused]] GameEntity* _entity) {
-    /// 初期化でパラメータ編集してるから大丈夫、ここ消したら終わり
-    floorSpace_        = 11.0f;
-    pillerSpace_       = 10.0f;
-    columNumMax_       = 3;
-    firstPillerOffset_ = 5.5f;
-    isCreated_         = false;
-    safeZoneCostMax_   = 2;
-    normalCostMax_     = 6;
-    HPMax_             = 2;
-    collisionSize_     = 5.0f;
+void FloatingFloorSpawner::Initialize([[maybe_unused]] GameEntity* _entity) {
+    /// 初期化でパラメータ編集してるから大丈夫、ここ消したら未定義値が出る
+    sideSpace_      = 11.0f;
+    positionHeight_ = 10.0f;
+    columNumMax_    = 1;
+    isCreated_      = false;
+    HPMax_          = 2;
 }
 
-bool FloorAndPillerSpawner::Edit() {
+bool FloatingFloorSpawner::Edit() {
     bool isChange = false;
 
     isChange = ImGui::Checkbox("IsAlive", &isAlive_);
 
     ImGui::Spacing();
 
-    isChange |= ImGui::DragFloat("floorSpace", &floorSpace_, 0.01f);
-    isChange |= ImGui::DragFloat("pillerSpace", &pillerSpace_, 0.01f);
-    isChange |= ImGui::DragFloat("firstPillerOffset", &firstPillerOffset_, 0.01f);
-    isChange |= ImGui::InputInt("columNumMax", &columNumMax_);
     isChange |= ImGui::InputInt("pillarHP", &HPMax_);
-    isChange |= ImGui::DragFloat("collisionSize", &collisionSize_, 0.01f);
+    isChange |= ImGui::InputInt("rowNumber", &rowNumber_);
     isChange |= ImGui::DragFloat3("FallCollisionMin", fallCollisionSizeMin_.v, 0.01f);
     isChange |= ImGui::DragFloat3("FallCollisionMax", fallCollisionSizeMax_.v, 0.01f);
+    isChange |= ImGui::DragFloat("sideSpace", &sideSpace_, 0.01f);
+    isChange |= ImGui::DragFloat("positionHeight", &positionHeight_, 0.01f);
+    ImGui::Text("No Edit");
+   
+    isChange |= ImGui::InputInt("columNumMax", &columNumMax_);
     return isChange;
 }
 
-void FloorAndPillerSpawner::Save(BinaryWriter& _writer) {
-    _writer.Write("pillerSpace", pillerSpace_);
-    _writer.Write("floorSpace", floorSpace_);
+void FloatingFloorSpawner::Save(BinaryWriter& _writer) {
+    _writer.Write("pillerSpace", positionHeight_);
     _writer.Write("columNumMax", columNumMax_);
-    _writer.Write("firstPillerOffset", firstPillerOffset_);
     _writer.Write("pillarHP", HPMax_);
-    _writer.Write("collisionSize", collisionSize_);
     _writer.Write<3, float>("FallCollisionMin", fallCollisionSizeMin_);
     _writer.Write<3, float>("FallCollisionMax", fallCollisionSizeMax_);
+    _writer.Write("sideSpace", sideSpace_);
+    _writer.Write("rowNumber", rowNumber_);
+   
 }
 
-void FloorAndPillerSpawner::Load(BinaryReader& _reader) {
-    _reader.Read("pillerSpace", pillerSpace_);
-    _reader.Read("floorSpace", floorSpace_);
+void FloatingFloorSpawner::Load(BinaryReader& _reader) {
+    _reader.Read("pillerSpace", positionHeight_);
     _reader.Read("columNumMax", columNumMax_);
-    _reader.Read("firstPillerOffset", firstPillerOffset_);
     _reader.Read("pillarHP", HPMax_);
-    _reader.Read("collisionSize", collisionSize_);
     _reader.Read<3, float>("FallCollisionMin", fallCollisionSizeMin_);
     _reader.Read<3, float>("FallCollisionMax", fallCollisionSizeMax_);
+    _reader.Read("sideSpace", sideSpace_);
+    _reader.Read("rowNumber", rowNumber_);
 }
 
-void FloorAndPillerSpawner::Finalize() {}
+void FloatingFloorSpawner::Finalize() {}
+
+

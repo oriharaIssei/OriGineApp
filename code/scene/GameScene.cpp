@@ -50,7 +50,7 @@ void GameScene::registerComponents() {
     ecsManager->registerComponent<PlayerStates>();
     ecsManager->registerComponent<BottomFloorStates>();
     ecsManager->registerComponent<FloorStates>();
-    ecsManager->registerComponent<FloorAndPillerSpawner>();
+    ecsManager->registerComponent<FloatingFloorSpawner>();
     ecsManager->registerComponent<BomSpawner>();
     ecsManager->registerComponent<BomStatus>();
     ecsManager->registerComponent<FloorModeCreater>();

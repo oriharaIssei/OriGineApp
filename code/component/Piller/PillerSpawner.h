@@ -5,32 +5,30 @@
 #include <cstdint>
 #include <Vector3.h>
 
-class FloorAndPillerSpawner
+class FloatingFloorSpawner
     : public IComponent {
 
 private: // variables
 
     bool isAlive_ = true;
     bool isCreated_;
-    float pillerSpace_;
-    float floorSpace_;
-    float firstPillerOffset_;
 
+    float positionHeight_;
+    float sideSpace_;
+    
     int32_t columNumMax_;
     int32_t rowNumber_; // 列番号
 
-    int32_t safeZoneCostMax_;
-    int32_t normalCostMax_;
-
      int32_t HPMax_;
-    float collisionSize_;
-
+   
     Vec3f fallCollisionSizeMin_;
     Vec3f fallCollisionSizeMax_;
 
+  
+
 public:
-    FloorAndPillerSpawner() {}
-    virtual ~FloorAndPillerSpawner() = default;
+    FloatingFloorSpawner() {}
+    virtual ~FloatingFloorSpawner() = default;
 
     void Initialize(GameEntity* _entity) override;
     bool Edit() override;
@@ -38,18 +36,16 @@ public:
     void Load(BinaryReader& _reader) override;
     void Finalize() override;
 
+    void GetSideOffSet();
+
 public: // accsessor
 
     /// getter
     int32_t GetColumNumMax() const { return columNumMax_; }
-    float GetFloorSpace() const { return floorSpace_; }
-    float GetPillerSpace() const { return pillerSpace_; }
-    float GetFirstPillerOffset() const { return firstPillerOffset_; }
-    bool GetIsCreated() const { return isCreated_; }
     int32_t GetRowNumber() const { return rowNumber_; }
-    int32_t GetSafeZoneCostMax() const { return safeZoneCostMax_; }
-    int32_t GetNormalCostMax() const { return normalCostMax_; }
-    float GetCollisionSize() const { return collisionSize_; }
+    float GetPositionHeight() const { return positionHeight_; }
+    float GetPositionSideSpace() const { return sideSpace_; }
+    bool GetIsCreated() const { return isCreated_; }
     int32_t GetHpMax() const { return HPMax_; }
     Vec3f GetFallCollisionSizeMin() const { return fallCollisionSizeMin_; }
     Vec3f GetFallCollisionSizeMax() const { return fallCollisionSizeMax_; }

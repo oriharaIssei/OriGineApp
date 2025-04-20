@@ -6,7 +6,7 @@
 ///====================================================================
 // FloorSystem
 ///====================================================================
-class FloorAndPillerSpawner;
+class FloatingFloorSpawner;
 class FloorStates;
 class PillerStates;
 class FloatingFloorFallSystem : public ISystem {
