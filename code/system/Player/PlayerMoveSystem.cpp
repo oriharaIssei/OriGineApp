@@ -1,71 +1,74 @@
 #include "PlayerMoveSystem.h"
 
-/// Engine
 #define ENGINE_INCLUDE
-/// ECS
-// component
 #define ENGINE_COMPONENTS
-// lib
 
-// include
+#include "component/Player/PlayerStates.h"
+#include "engine/EngineInclude.h"
+
+#include <cmath>
+#include <numbers>
 #include <Quaternion.h>
 #include <Vector3.h>
-// component
-#include "component/Player/PlayerStates.h"
-
-#include "engine/EngineInclude.h"
-#include <cmath>
 
 PlayerMoveSystem::PlayerMoveSystem()
     : ISystem(SystemType::Movement) {}
 
 PlayerMoveSystem::~PlayerMoveSystem() {}
 
-void PlayerMoveSystem::Initialize() {
-}
-
+void PlayerMoveSystem::Initialize() {}
 void PlayerMoveSystem::Finalize() {}
 
+
 void PlayerMoveSystem::UpdateEntity(GameEntity* _entity) {
-
-    if (!_entity) {
+    if (!_entity)
         return;
-    }
-    PlayerStates* entityPlayerStates = getComponent<PlayerStates>(_entity);
 
-    if (!entityPlayerStates) {
+    PlayerStates* playerStates = getComponent<PlayerStates>(_entity);
+    if (!playerStates)
         return;
-    }
 
     Transform* pivotTransform = getComponent<Transform>(_entity, 1);
     Transform* transform      = getComponent<Transform>(_entity, 0);
 
-    float moveTime  = entityPlayerStates->GetMoveSpeed();
+    float direction = playerStates->GetDirection();
+    float speed     = playerStates->GetMoveSpeed();
     float deltaTime = Engine::getInstance()->getDeltaTime();
 
-    // 移動方向をセット
-    if (entityPlayerStates->GetDirection() == 0.0f) {
+    if (direction == 0.0f)
         return;
-    }
 
-    ///============================================================
-    // Y軸回転のQuaternionを作成
-    ///============================================================
-    Quaternion rotateAxisY = Quaternion::RotateAxisAngle(Vec3f(0.0f, 1.0f, 0.0f),
-        entityPlayerStates->GetDirection() * moveTime * deltaTime);
+    /// 移動ベクトル（左右）
+    Vec3f velocity = {direction, 0.0f, 0.0f};
 
-    ///============================================================
-    // 変換後の位置を計算
-    ///============================================================
+    /// 位置更新
+    pivotTransform->translate += velocity.normalize() * speed * deltaTime;
 
-    // 位置を適用
-    pivotTransform->rotate *= rotateAxisY;
+    /// 回転：進行方向に向ける
+    float targetAngle  = std::atan2(velocity[X], velocity[Z]); 
+    float currentAngle = transform->rotate.ToEulerAngles()[Y];
+    float newAngle     = LerpShortAngle(currentAngle, targetAngle, 0.5f);
 
-    // 進行方向よ
-    transform->rotate = Quaternion::RotateAxisAngle({0.0f, 1.0f, 0.0f},
-        std::atan2(-entityPlayerStates->GetDirection(), 0.0f));
+    transform->rotate = Quaternion::RotateAxisAngle({0.0f, 1.0f, 0.0f}, newAngle);
 
-    /// 更新
     pivotTransform->Update();
     transform->Update();
+}
+
+/// ===================================================
+/// 角度補間（[-π, π]の範囲で補間）
+/// ===================================================
+float PlayerMoveSystem::LerpShortAngle(float a, float b, float t) {
+    // 角度差分を求める
+    float diff = b - a;
+    float pi   = std::numbers::pi_v<float>;
+    // 角度を[-2PI,+2PI]に補正する
+    diff = std::fmodf(diff, 2.0f * pi);
+    // 角度を[-PI,PI]に補正する
+    if (diff > pi) {
+        diff -= 2.0f * pi;
+    } else if (diff < -pi) {
+        diff += 2.0f * pi;
+    }
+    return a + diff * t;
 }

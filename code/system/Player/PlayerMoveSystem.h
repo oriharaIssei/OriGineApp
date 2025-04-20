@@ -13,8 +13,8 @@ public:
 
     void Initialize() override;
     // void Update() override;
-    void Finalize() override;
-
+    void Finalize() override;;
+    float LerpShortAngle(float a, float b, float t);
    
     protected:
     void UpdateEntity(GameEntity* _entity) override;

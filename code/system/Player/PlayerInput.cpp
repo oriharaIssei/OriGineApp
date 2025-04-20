@@ -60,10 +60,10 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
 
     /// 入力で向き決定
     if (input_->isPressKey(DIK_D)) {
-        inputDirection -= 1.0f; // 反時計回り
+        inputDirection = 1.0f; // 反時計回り
     }
     if (input_->isPressKey(DIK_A)) {
-        inputDirection += 1.0f; // 時計回り
+        inputDirection -= 1.0f; // 時計回り
     }
 
       entityPlayerStates_->SetDirection(inputDirection);
@@ -71,48 +71,11 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
 }
 
 void PlayerInputSystem::TransformInit(GameEntity* _entity) {
-    if (isInited_) {
+    if (_entity) {
         return;
     }
 
-    /// TransformをSet
-    entityPlayerStates_->SetTransform(getComponent<Transform>(_entity, 0));
-    entityPlayerStates_->SetPivotTransform(getComponent<Transform>(_entity, 1));
-
-    if (!entityPlayerStates_->GetTransform()) {
-        return;
-    }
-    if (!entityPlayerStates_->GetPivotTransform()) {
-        return;
-    }
-
-    transform_      = entityPlayerStates_->GetTransform();
-    pivotTransform_ = entityPlayerStates_->GetPivotTransform();
-    ///============================================================
-    // ピボットをワールド座標の(0,0,0)に設定
-    ///============================================================
-    pivotTransform_->translate = Vec3f(0.0f, 0.0f, 0.0f);
-    pivotTransform_->rotate    = Quaternion::Identity();
-    transform_->rotate         = Quaternion::Identity();
-    transform_->parent         = pivotTransform_;
-
-    ///============================================================
-    // Transformの初期位置を設定
-    ///============================================================
-    float moveRadius      = entityPlayerStates_->GetMoveRadius();
-    float offSetY         = entityPlayerStates_->GetOffSetY();
-    transform_->translate = Vec3f(0.0f, offSetY, moveRadius); // X軸上に配置
-
-    ///============================================================
-    // Y軸回転のQuaternionを作成
-    ///============================================================
-    Quaternion rotation = Quaternion::RotateAxisAngle(Vec3f(0.0f, 1.0f, 0.0f), 0.0f);
-    pivotTransform_->rotate *= rotation;
-
-    pivotTransform_->Update();
-    transform_->Update();
-
-    isInited_ = true;
+  
 }
 
 void PlayerInputSystem::PutBom(GameEntity* _entity) {
