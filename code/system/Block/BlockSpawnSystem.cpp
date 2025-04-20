@@ -42,7 +42,7 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    float blockWidth_ = blockSpawner_->GetBlockSize()[X];
+    float blockWidth_ = blockSpawner_->GetBlockSize()[X]*2.0f;
     float nextPosition = blockSpawner_->GetNextCreatePositionX();
 
     if (!isInited_) {// 初回の生成
@@ -74,11 +74,11 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos
     // ================================= Componentを初期化 ================================= //
 
     Transform* transform = getComponent<Transform>(block); // 柱
-
+    float sizeY          = blockSpawner_->GetBlockSize()[Y] * 2.0f;
     // ランダムで
 
     //* Transform
-    transform->translate = Vec3f{xPos, blockSpawner_->GetBlockSize()[Y] * columIndex, 0.0f};
+    transform->translate = Vec3f{xPos, sizeY * columIndex, blockSpawner_->GetStartPositionZ()};
     transform->scale     = Vec3f(blockSpawner_->GetBlockSize()[X], blockSpawner_->GetBlockSize()[Y], 1.0f);
 
     //* Collider
@@ -115,8 +115,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos
 
     //------------------ Movement
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(block);
-    /*ecs->getSystem<BlockMoveSystem>()->addEntity(block);*/
-
+   
     //------------------ Collision
     ecs->getSystem<CollisionCheckSystem>()->addEntity(block);
 

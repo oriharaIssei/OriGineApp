@@ -26,10 +26,12 @@ bool BlockManager::Edit() {
     isChange |= ImGui::InputInt("columNumMax", &columNumMax_);
     isChange |= ImGui::DragFloat2("blockSize", blockSize_.v);
     isChange |= ImGui::DragFloat("collisionRadius", &collisionRadius_);
-    isChange |= ImGui::DragFloat("startPosition", &startPositionX_);
+    isChange |= ImGui::DragFloat("startPositionX", &startPositionX_);
+    isChange |= ImGui::DragFloat("startPositionZ", &startPositionZ_);
     isChange |= ImGui::DragFloat("nextCreatePositionX", &nextCreatePositionX_);
     isChange |= ImGui::DragFloat("basePosY", &basePosY_);
     isChange |= ImGui::DragFloat("moveSpeedStart", &moveSpeed_);
+
     return isChange;
 }
 
@@ -42,6 +44,7 @@ void BlockManager::Save(BinaryWriter& _writer) {
     _writer.Write("nextCreatePositionX", nextCreatePositionX_);
     _writer.Write("basePosY", basePosY_);
     _writer.Write("moveSpeed", moveSpeed_);
+    _writer.Write("startPositionZ", startPositionZ_);
 }
 
 void BlockManager::Load(BinaryReader& _reader) {
@@ -53,6 +56,7 @@ void BlockManager::Load(BinaryReader& _reader) {
     _reader.Read("nextCreatePositionX", nextCreatePositionX_);
     _reader.Read("basePosY", basePosY_);
     _reader.Read("moveSpeed", moveSpeed_);
+    _reader.Read("startPositionZ", startPositionZ_);
 }
 
 void BlockManager::Finalize() {}

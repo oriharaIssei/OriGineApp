@@ -31,6 +31,7 @@ private: // variables
 
     // pos
     float startPositionX_;
+    float startPositionZ_;
     float nextCreatePositionX_;
     float basePosY_;
 
@@ -60,6 +61,7 @@ public: // accsessor
     float GetCollisionRadius() const { return collisionRadius_; }
     Vec2f GetBlockSize() const { return blockSize_; }
     float GetStartPositionX() const { return startPositionX_; }
+    float GetStartPositionZ() const { return startPositionZ_; }
     float GetNextCreatePositionX() const { return nextCreatePositionX_; }
     float GetBasePosY() const { return basePosY_; }
     float GetMoveSpeed() const { return moveSpeed_; }
