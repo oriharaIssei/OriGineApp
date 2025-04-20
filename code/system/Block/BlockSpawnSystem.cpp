@@ -13,12 +13,12 @@
 #include <Quaternion.h>
 #include <Vector3.h>
 // component
-#include "component/Block/BlockSpawner.h"
+#include "component/Block/BlockManager.h"
 #include "component/Block/BlockStatus.h"
 #include "component/Piller/FloatingFloorStatus.h"
 // #include "component/Piller/PillerStates.h"
 //  system
-//  #include "system/FloorAndPillerColum/CreateFloorAndPillerSystem.h"
+#include"system/Block/BlockMoveSystem.h"
 #include "system/FloatingFloor/CanageStateFallSystem.h"
 
 BlockSpawnSystem::BlockSpawnSystem() : ISystem(SystemType::Movement) {}
@@ -36,7 +36,7 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    blockSpawner_ = getComponent<BlockSpawner>(_entity);
+    blockSpawner_ = getComponent<BlockManager>(_entity);
 
     if (!blockSpawner_) {
         return;
@@ -79,6 +79,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos
 
     //* Transform
     transform->translate = Vec3f{xPos, blockSpawner_->GetBlockSize()[Y] * columIndex, 0.0f};
+    transform->scale     = Vec3f(blockSpawner_->GetBlockSize()[X], blockSpawner_->GetBlockSize()[Y], 1.0f);
 
     //* Collider
     SphereCollider* collider              = getComponent<SphereCollider>(block);
@@ -111,10 +112,10 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos
     // None
 
     //------------------ StateTransition
-    ecs->getSystem<CanageStateFallSystem>()->addEntity(block);
 
     //------------------ Movement
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(block);
+    ecs->getSystem<BlockMoveSystem>()->addEntity(block);
 
     //------------------ Collision
     ecs->getSystem<CollisionCheckSystem>()->addEntity(block);

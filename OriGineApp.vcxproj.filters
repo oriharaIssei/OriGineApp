@@ -160,13 +160,16 @@
     <ClInclude Include="code\system\FloatingFloor\FloatingFloorFallSystem.h">
       <Filter>system\FloatingFloor</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\Block\BlockSpawner.h">
+    <ClInclude Include="code\component\Block\BlockManager.h">
       <Filter>component\Block</Filter>
     </ClInclude>
     <ClInclude Include="code\component\Block\BlockStatus.h">
       <Filter>component\Block</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Block\BlockSpawnSystem.h">
+      <Filter>system\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Block\BlockMoveSystem.h">
       <Filter>system\Block</Filter>
     </ClInclude>
   </ItemGroup>
@@ -274,13 +277,16 @@
     <ClCompile Include="code\system\FloatingFloor\FloatingFloorFallSystem.cpp">
       <Filter>system\FloatingFloor</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\Block\BlockSpawner.cpp">
+    <ClCompile Include="code\component\Block\BlockManager.cpp">
       <Filter>component\Block</Filter>
     </ClCompile>
     <ClCompile Include="code\component\Block\BlockStatus.cpp">
       <Filter>component\Block</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Block\BlockSpawnSystem.cpp">
+      <Filter>system\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Block\BlockMoveSystem.cpp">
       <Filter>system\Block</Filter>
     </ClCompile>
   </ItemGroup>

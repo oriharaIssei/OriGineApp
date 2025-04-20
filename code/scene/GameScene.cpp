@@ -14,7 +14,7 @@
 #include "Application/code/component/Combo/ComboUIStatus.h"
 #include"Application/code/component/Timer/TimerUIStatus.h"
 #include"Application/code/component/Timer/TimerStatus.h"
-#include"Application/code/component/Block/BlockSpawner.h"
+#include"Application/code/component/Block/BlockManager.h"
 #include"Application/code/component/Block/BlockStatus.h"
 
 //#include"Application/code/component/Floor/FloorModeCreater.h"
@@ -42,6 +42,7 @@
 #include"Application/code/system/FloatingFloor/CanageStateFallSystem.h"
 #include"Application/code/system/Matrix/UpdateMatrixSystem.h"
 #include"Application/code/system/Block/BlockSpawnSystem.h"
+#include"Application/code/system/Block/BlockMoveSystem.h"
 
 GameScene::GameScene()
     : IScene("Game") {}
@@ -62,7 +63,7 @@ void GameScene::registerComponents() {
     ecsManager->registerComponent<ComboUIStatus>();
     ecsManager->registerComponent<TimerStatus>();
     ecsManager->registerComponent<TimerUIStatus>();
-    ecsManager->registerComponent<BlockSpawner>();
+    ecsManager->registerComponent<BlockManager>();
     ecsManager->registerComponent<BlockStatus>();
 
     /*ecsManager->registerComponent<BottomFloorStates>();
@@ -94,5 +95,6 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<TimerDecrementSystem>();
     ecsManager->registerSystem<TimerUIScrollSystem>();
     ecsManager->registerSystem<BlockSpawnSystem>();
+    ecsManager->registerSystem<BlockMoveSystem>();
     ecsManager->SortPriorityOrderSystems();
 }

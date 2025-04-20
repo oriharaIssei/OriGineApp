@@ -1,20 +1,21 @@
-#include "BlockSpawner.h"
+#include "BlockManager.h"
 /// externals
 #include "imgui/imgui.h"
 #include <string>
 
-void BlockSpawner::Initialize([[maybe_unused]] GameEntity* _entity) {
+void BlockManager::Initialize([[maybe_unused]] GameEntity* _entity) {
     /// 初期化でパラメータ編集してるから大丈夫、ここ消したら未定義値が出る
-   
-    columNumMax_    = 1;
-    HPMax_          = 1;
-    collisionRadius_ = 1.0f;
-    startPositionX_   = 0.0f;
+
+    columNumMax_         = 1;
+    HPMax_               = 1;
+    collisionRadius_     = 1.0f;
+    startPositionX_      = 0.0f;
     nextCreatePositionX_ = 0.0f;
     basePosY_            = 0.0f;
+    moveSpeed_           = 0.0f;
 }
 
-bool BlockSpawner::Edit() {
+bool BlockManager::Edit() {
     bool isChange = false;
 
     isChange = ImGui::Checkbox("IsAlive", &isAlive_);
@@ -28,10 +29,11 @@ bool BlockSpawner::Edit() {
     isChange |= ImGui::DragFloat("startPosition", &startPositionX_);
     isChange |= ImGui::DragFloat("nextCreatePositionX", &nextCreatePositionX_);
     isChange |= ImGui::DragFloat("basePosY", &basePosY_);
+    isChange |= ImGui::DragFloat("moveSpeedStart", &moveSpeed_);
     return isChange;
 }
 
-void BlockSpawner::Save(BinaryWriter& _writer) {
+void BlockManager::Save(BinaryWriter& _writer) {
     _writer.Write("columNumMax", columNumMax_);
     _writer.Write("pillarHP", HPMax_);
     _writer.Write<2, float>("blockSize", blockSize_);
@@ -39,9 +41,10 @@ void BlockSpawner::Save(BinaryWriter& _writer) {
     _writer.Write("startPosition", startPositionX_);
     _writer.Write("nextCreatePositionX", nextCreatePositionX_);
     _writer.Write("basePosY", basePosY_);
+    _writer.Write("moveSpeed", moveSpeed_);
 }
 
-void BlockSpawner::Load(BinaryReader& _reader) {
+void BlockManager::Load(BinaryReader& _reader) {
     _reader.Read("columNumMax", columNumMax_);
     _reader.Read("pillarHP", HPMax_);
     _reader.Read<2, float>("blockSize", blockSize_);
@@ -49,14 +52,16 @@ void BlockSpawner::Load(BinaryReader& _reader) {
     _reader.Read("startPosition", startPositionX_);
     _reader.Read("nextCreatePositionX", nextCreatePositionX_);
     _reader.Read("basePosY", basePosY_);
+    _reader.Read("moveSpeed", moveSpeed_);
 }
 
+void BlockManager::Finalize() {}
 
-void BlockSpawner::Finalize() {}
-
-
-void BlockSpawner::CostReset() {
-    for (int32_t i=0; i < costs_.size(); ++i) {
+void BlockManager::CostReset() {
+    for (int32_t i = 0; i < costs_.size(); ++i) {
         costs_[i] = 0;
     }
+}
+
+void BlockManager::SpeedIncrementForTime() {
 }

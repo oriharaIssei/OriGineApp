@@ -12,7 +12,7 @@ enum class BlockType {
     COUNT
 };
 
-class BlockSpawner
+class BlockManager
     : public IComponent {
 
 
@@ -34,12 +34,15 @@ private: // variables
     float nextCreatePositionX_;
     float basePosY_;
 
+    float moveSpeed_;
+    float moveIncrementValue_;
+
      // cost
     std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> costs_;
 
 public:
-    BlockSpawner() {}
-    virtual ~BlockSpawner() = default;
+    BlockManager() {}
+    virtual ~BlockManager() = default;
 
     void Initialize(GameEntity* _entity) override;
     bool Edit() override;
@@ -48,6 +51,7 @@ public:
     void Finalize() override;
 
     void CostReset();
+    void SpeedIncrementForTime();
 
 public: // accsessor
     /// getter
@@ -58,6 +62,8 @@ public: // accsessor
     float GetStartPositionX() const { return startPositionX_; }
     float GetNextCreatePositionX() const { return nextCreatePositionX_; }
     float GetBasePosY() const { return basePosY_; }
+    float GetMoveSpeed() const { return moveSpeed_; }
+    float GetMoveIncrementSpeed() const { return moveIncrementValue_; }
     /// setter
   
 };

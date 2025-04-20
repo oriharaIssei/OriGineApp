@@ -11,11 +11,11 @@
 // FloorSystem
 ///====================================================================
 
-class BlockSpawner;
+class BlockManager;
 class BlockSpawnSystem : public ISystem {
 private:
     bool isInited_;
-    BlockSpawner* blockSpawner_;
+    BlockManager* blockSpawner_;
     Transform* lastTransform_ = nullptr;
 
 public:

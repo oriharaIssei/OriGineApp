@@ -27,55 +27,36 @@ void PlayerFollowCameraSystem::Initialize() {
 void PlayerFollowCameraSystem::Finalize() {}
 
 void PlayerFollowCameraSystem::UpdateEntity(GameEntity* _entity) {
-
-  if (!_entity) {
+    if (!_entity) {
         return;
     }
 
-   CameraTransform* cameraTransform_ = getComponent<CameraTransform>(_entity);
-    Transform* pivotTransform_  = getComponent<Transform>(_entity,1);
-   PlayerStates* entityPlayerStates_ = getComponent<PlayerStates>(_entity);
-
-    if (!cameraTransform_ || !pivotTransform_ || !entityPlayerStates_) {
+    CameraTransform* cameraTransform_ = getComponent<CameraTransform>(_entity);
+    if (!cameraTransform_) {
         return;
     }
 
     CameraManager::getInstance()->setTransform(*cameraTransform_);
 
     ///============================================================
-    /// プレイヤーのピボット位置を取得
+    /// 固定カメラ位置を設定
     ///============================================================
-    Vec3f pivotPosition = pivotTransform_->translate;
+    // 固定位置（例：シーンを斜め上から俯瞰する位置）
+    cameraTransform_->translate = Vec3f{0.0f, 10.0f, -30.0f};
 
     ///============================================================
-    /// カメラのオフセットを適用
+    /// 固定カメラ回転を設定
     ///============================================================
-    // カメラのオフセット（前方から見る場合、Z値を正にする）
-    Vec3f cameraOffset = entityPlayerStates_->GetFollowOffset(); /*{0.0f, 8.0f, 56.0f};*/ 
-
-    // `pivotTransform_` の回転を考慮してカメラのオフセットを適用
-    Matrix4x4 pivotRotationMatrix = MakeMatrix::RotateQuaternion(pivotTransform_->rotate);
-    Vec3f adjustedOffset          = Multiply(pivotRotationMatrix, cameraOffset);
-
-    // カメラの位置を更新
-    Vec3f cameraPosition        = pivotPosition + adjustedOffset;
-    cameraTransform_->translate = cameraPosition;
-
-    ///============================================================
-    /// カメラの回転をプレイヤーに向ける
-    ///============================================================
-    // ピボット方向を向くクォータニオンを計算
-    Vec3f direction         = Vec3f::Normalize(pivotPosition - cameraPosition); // カメラ → ピボット方向ベクトル
-    Quaternion lookRotation = LookAt(direction, Vec3f{0.0f, 1.0f, 0.0f});
-
-    // カメラの回転を設定
-    cameraTransform_->rotationQuaternion = lookRotation;
+    // 方向ベクトル（原点方向に向ける）
+   /* Vec3f direction                      = Vec3f::Normalize(Vec3f{0.0f, 0.0f, 0.0f} - cameraTransform_->translate);*/
+    cameraTransform_->rotationQuaternion = Quaternion::Identity();
 
     ///============================================================
     /// カメラの行列を更新
     ///============================================================
     cameraTransform_->UpdateMatrixQuaterion();
 }
+
 
 
 Vec3f PlayerFollowCameraSystem::Multiply(const Matrix4x4& rotationMatrix, const Vec3f& offset) {

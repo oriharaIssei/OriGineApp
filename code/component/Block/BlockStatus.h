@@ -1,7 +1,7 @@
 #pragma once
 
 #include "component/IComponent.h"
-#include"component/Block/BlockSpawner.h"
+#include"component/Block/BlockManager.h"
 #include<array>
 #include <cstdint>
 #include<Vector3.h>
