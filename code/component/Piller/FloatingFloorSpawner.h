@@ -23,6 +23,7 @@ private: // variables
    
     Vec3f fallCollisionSizeMin_;
     Vec3f fallCollisionSizeMax_;
+    Vec3f fallCollisionCenterPos_;
 
   
 
@@ -49,6 +50,7 @@ public: // accsessor
     int32_t GetHpMax() const { return HPMax_; }
     Vec3f GetFallCollisionSizeMin() const { return fallCollisionSizeMin_; }
     Vec3f GetFallCollisionSizeMax() const { return fallCollisionSizeMax_; }
+    Vec3f GetFallCollisionCenterPos() const { return fallCollisionCenterPos_; }
       /// setter
     void SetIsCreated(const bool&is) {  isCreated_=is; }
     void SetRowNumber(const int32_t& num) { rowNumber_ = num; }

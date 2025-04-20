@@ -36,33 +36,35 @@ void CanageStateFallSystem::UpdateEntity(GameEntity* _entity) {
   
 
     // HPが0以下なら破壊処理（ここ一回しか通らないように）
-    if (fAndPStatus->GetCurrentHP() > 0 ||fAndPStatus->GetColumNum()<0||
+    if (fAndPStatus->GetCurrentHP() > 0 ||
         fAndPStatus->GetIsFall()) {
         return;
     }
 
-    //  柱のスケールを0にする
-    Transform* entityTransform = getComponent<Transform>(_entity, 0);
-    if (!entityTransform) {
-        return;
-    }
-    entityTransform->scale = Vec3f(0.0f, 0.0f, 0.0f);/// スケールセロ
+    fAndPStatus->SetIsFall(true);
 
-    // 壊れた柱のRow番号を取得
-    int destroyedRow = fAndPStatus->GetRowNum();
+    ////  柱のスケールを0にする
+    //Transform* entityTransform = getComponent<Transform>(_entity, 0);
+    //if (!entityTransform) {
+    //    return;
+    //}
+    //entityTransform->scale = Vec3f(0.0f, 0.0f, 0.0f);/// スケールセロ
 
-    // **同じRowの床を落とす**
-    for (GameEntity* entity : getEntities()) { // すべてのエンティティをチェック
-        FloatingFloorStatus* otherFAndP = getComponent<FloatingFloorStatus>(entity);
-        if (!otherFAndP) {
-            continue;
-        }
+    //// 壊れた柱のRow番号を取得
+    //int destroyedRow = fAndPStatus->GetRowNum();
 
-        // 同じRowにある床の `IsFall` を `true` にする
-        if (otherFAndP->GetRowNum() == destroyedRow) {
-            otherFAndP->SetIsFall(true);
-        }
-    }
+    //// **同じRowの床を落とす**
+    //for (GameEntity* entity : getEntities()) { // すべてのエンティティをチェック
+    //    FloatingFloorStatus* otherFAndP = getComponent<FloatingFloorStatus>(entity);
+    //    if (!otherFAndP) {
+    //        continue;
+    //    }
+
+    //    // 同じRowにある床の `IsFall` を `true` にする
+    //    if (otherFAndP->GetRowNum() == destroyedRow) {
+    //        otherFAndP->SetIsFall(true);
+    //    }
+    //}
 
      // コンボ加算
     ComboCountIncrement();

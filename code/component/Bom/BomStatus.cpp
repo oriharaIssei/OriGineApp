@@ -8,7 +8,7 @@ void BomStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
     explotionTime_   = 2.0f;
     collisionRadius_ = 2.0f;
     positionOffset_  = Vec3f(0.0f, 0.0f, 0.0f);
-    launthSpeed_     = 5.0f;
+    launthSpeed_     = 9.0f;
 }
 
 bool BomStatus::Edit() {

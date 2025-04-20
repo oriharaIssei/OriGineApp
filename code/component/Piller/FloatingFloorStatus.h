@@ -50,7 +50,7 @@ public: // accsessor
     int32_t GetCurrentHP() const { return currentHP_; }
     float GetSavePos() const { return savePosY_; }
     float GetFallValue() const { return fallValue_; }
-    float GetFallPosY();
+    float GetFallPosY() const { return fallPosY_; }
     float GetFallEaseT() const { return fallEaseT_; }
     float GetFallSpeed() const { return fallspeed_; }
     bool GetIsDestroy() const { return isDestroy_; }

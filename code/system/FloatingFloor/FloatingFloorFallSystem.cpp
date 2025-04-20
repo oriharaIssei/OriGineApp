@@ -36,7 +36,7 @@ void FloatingFloorFallSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    Transform* entityTransform = getComponent<Transform>(_entity,1);
+    Transform* entityTransform = getComponent<Transform>(_entity);
 
     // フロアの落下処理
     entityStatus->SetIncrementFallEaseT(Engine::getInstance()->getDeltaTime() * entityStatus->GetFallSpeed());
@@ -49,8 +49,8 @@ void FloatingFloorFallSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    /// columを下げる
-    entityStatus->SetColumDecrement();
+    /*/// columを下げる
+    entityStatus->SetColumDecrement();*/
 
     // savePosY_を更新
     entityTransform->translate[Y] = entityStatus->GetFallPosY();
@@ -61,7 +61,7 @@ void FloatingFloorFallSystem::UpdateEntity(GameEntity* _entity) {
     entityStatus->SetIsFall(false);
 
     // 破壊条件
-    if (entityStatus->GetColumNum() < 0) {
+    if (entityTransform->translate[Y] < 0.0f) {
         entityStatus->SetIsDestroy(true);
     }
 }

@@ -7,7 +7,7 @@ void FloatingFloorStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
     fallPosY_ = 0.0f;
     fallEaseT_ = 0.0f;
     fallspeed_ = 3.0f;
-    currentHP_     = 2;
+    currentHP_     = 3;
    /* collisionSize_ = 5.0f;*/
 }
 
@@ -46,10 +46,6 @@ void FloatingFloorStatus::SetColumDecrement() {
     columNum_--;
 }
 
-float FloatingFloorStatus::GetFallPosY()  {
-    fallPosY_ = savePosY_ - fallValue_;
-    return fallPosY_;
-}
 
 void FloatingFloorStatus::TakeDamage() {
     currentHP_--;

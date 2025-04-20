@@ -64,7 +64,7 @@ void BomExplotionSystem::LaunchMethod(GameEntity* _entity) {
     Transform* transform = getComponent<Transform>(_entity);
 
     transform->translate[Y] += bomStates_->GetLaunghSpeed() * Engine::getInstance()->getDeltaTime();
-    transform->rotate[Z] += bomStates_->GetLaunghSpeed() * Engine::getInstance()->getDeltaTime();
+    /*transform->rotate[Z] += bomStates_->GetLaunghSpeed() * Engine::getInstance()->getDeltaTime();*/
 
 
  }

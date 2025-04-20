@@ -23,6 +23,7 @@ bool FloatingFloorSpawner::Edit() {
     isChange |= ImGui::InputInt("rowNumber", &rowNumber_);
     isChange |= ImGui::DragFloat3("FallCollisionMin", fallCollisionSizeMin_.v, 0.01f);
     isChange |= ImGui::DragFloat3("FallCollisionMax", fallCollisionSizeMax_.v, 0.01f);
+    isChange |= ImGui::DragFloat3("fallCollisionCenterPos", fallCollisionCenterPos_.v, 0.01f);
     isChange |= ImGui::DragFloat("sideSpace", &sideSpace_, 0.01f);
     isChange |= ImGui::DragFloat("positionHeight", &positionHeight_, 0.01f);
     ImGui::Text("No Edit");
@@ -37,6 +38,7 @@ void FloatingFloorSpawner::Save(BinaryWriter& _writer) {
     _writer.Write("pillarHP", HPMax_);
     _writer.Write<3, float>("FallCollisionMin", fallCollisionSizeMin_);
     _writer.Write<3, float>("FallCollisionMax", fallCollisionSizeMax_);
+    _writer.Write<3, float>("fallCollisionCenterPos", fallCollisionCenterPos_);
     _writer.Write("sideSpace", sideSpace_);
     _writer.Write("rowNumber", rowNumber_);
    
@@ -48,6 +50,7 @@ void FloatingFloorSpawner::Load(BinaryReader& _reader) {
     _reader.Read("pillarHP", HPMax_);
     _reader.Read<3, float>("FallCollisionMin", fallCollisionSizeMin_);
     _reader.Read<3, float>("FallCollisionMax", fallCollisionSizeMax_);
+    _reader.Read<3, float>("fallCollisionCenterPos", fallCollisionCenterPos_);
     _reader.Read("sideSpace", sideSpace_);
     _reader.Read("rowNumber", rowNumber_);
 }

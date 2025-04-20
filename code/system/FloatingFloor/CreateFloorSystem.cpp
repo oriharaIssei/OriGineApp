@@ -76,6 +76,7 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
 
         //// AABB
         AABBCollider* aabbCollider             = getComponent<AABBCollider>(floatingFloor);
+       /* aabbCollider->          = floatFloorSpawner->GetFallCollisionCenterPos();*/
         aabbCollider->getLocalShapePtr()->min_ = floatFloorSpawner->GetFallCollisionSizeMin();
         aabbCollider->getLocalShapePtr()->max_ = floatFloorSpawner->GetFallCollisionSizeMax();
         // aabbCollider->setActive(false);// 非アクティブにする
@@ -100,6 +101,12 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
 
         // hp
         floatingFloorStatus->SetcurrentHP(floatFloorSpawner->GetHpMax());
+        //prePos
+        floatingFloorStatus->SetSavePos(floatFloorSpawner->GetPositionHeight());
+        //fall
+        floatingFloorStatus->SetFallSpeed(1.0f);
+        floatingFloorStatus->SetFallPosY(-1.0f);
+        floatingFloorStatus->SetIncrementFallEaseT(0.0f);
 
         // ================================= System ================================= //
 
