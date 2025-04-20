@@ -22,7 +22,7 @@ private: // variables
     int32_t columNum_;
     int32_t currentHP_;
     bool isDestroy_ = false;
-
+    bool isbreak_   = false;
 
     BlockType blockType_;
 
@@ -47,6 +47,7 @@ public: // accsessor
     bool GetIsDestroy() const { return isDestroy_; }
     const bool& GetIsFall() const { return isFall_; }
     BlockType GetBlockType() const { return blockType_; }
+    bool GetIsBreak() const { return isbreak_; }
 
       /// setter
     void SetColum(const int32_t& colum);
@@ -54,4 +55,5 @@ public: // accsessor
     void SetcurrentHP(const int32_t& hp) { currentHP_ = hp; }
     void SetIsDestroy(const bool& is) { isDestroy_ = is;}
     void SetBlockType(const BlockType& type) { blockType_ = type; }
+    void SetIsBreak(const bool& is) { isbreak_ = is; }
 };

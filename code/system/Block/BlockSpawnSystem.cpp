@@ -20,7 +20,9 @@
 //  system
 #include "system/Block/BlockMoveSystem.h"
 #include "system/Block/DeleteBlockSystem.h"
-#include "system/FloatingFloor/CanageStateFallSystem.h"
+#include "system/Block/BreakBlockSystem.h"
+#include"system/Block/BlockExBomCollision.h"
+
 
 BlockSpawnSystem::BlockSpawnSystem() : ISystem(SystemType::Movement) {}
 BlockSpawnSystem::~BlockSpawnSystem() {}
@@ -114,13 +116,14 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos
 
     //------------------ StateTransition
     ecs->getSystem<DeleteBlockSystem>()->addEntity(block);
+    ecs->getSystem<BreakBlockSystem>()->addEntity(block);
     //------------------ Movement
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(block);
     ecs->getSystem<BlockMoveSystem>()->addEntity(block);
-
+    
     //------------------ Collision
     ecs->getSystem<CollisionCheckSystem>()->addEntity(block);
-
+    ecs->getSystem<BlockExBomCollision>()->addEntity(block);
     //------------------ Physics
     // None
 
