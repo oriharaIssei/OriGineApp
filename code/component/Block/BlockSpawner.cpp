@@ -56,7 +56,7 @@ void BlockSpawner::Finalize() {}
 
 
 void BlockSpawner::CostReset() {
-    for (int32_t i; i < costs_.size(); ++i) {
+    for (int32_t i=0; i < costs_.size(); ++i) {
         costs_[i] = 0;
     }
 }

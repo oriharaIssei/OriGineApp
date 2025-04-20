@@ -21,7 +21,7 @@
 //  #include "system/FloorAndPillerColum/CreateFloorAndPillerSystem.h"
 #include "system/FloatingFloor/CanageStateFallSystem.h"
 
-BlockSpawnSystem::BlockSpawnSystem() : ISystem(SystemType::Initialize) {}
+BlockSpawnSystem::BlockSpawnSystem() : ISystem(SystemType::Movement) {}
 BlockSpawnSystem::~BlockSpawnSystem() {}
 
 void BlockSpawnSystem::Initialize() {
@@ -48,7 +48,7 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
     if (!isInited_) {// 初回の生成
        
         for (int32_t i = 0; i < blockSpawner_->GetColumNumMax(); ++i) {
-            CreateBlocks(_entity, i, blockSpawner_->GetStartPositionX());
+            CreateBlocks( i, blockSpawner_->GetStartPositionX());
         }
         
     } else {
@@ -57,7 +57,7 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
         if (lastTransform_ && lastTransform_->translate[X] < nextPosition) {
             for (int32_t i = 0; i < blockSpawner_->GetColumNumMax(); ++i) {
                 float newX = lastTransform_->translate[X] + blockWidth_;
-                CreateBlocks(_entity, i, newX);
+                CreateBlocks( i, newX);
             }
         }
     }
@@ -65,10 +65,12 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
    isInited_ = true;
 }
 
-void BlockSpawnSystem::CreateBlocks(GameEntity* _entity, const int32_t& columIndex, const float& xPos) {
+void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos) {
+
     // ================================= Bullet Entityを 生成 ================================= //
     GameEntity* block = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, BlockStatus>(
-        "Floor", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), BlockStatus());
+        "Block", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), BlockStatus());
+
     // ================================= Componentを初期化 ================================= //
 
     Transform* transform = getComponent<Transform>(block); // 柱
@@ -115,7 +117,6 @@ void BlockSpawnSystem::CreateBlocks(GameEntity* _entity, const int32_t& columInd
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(block);
 
     //------------------ Collision
-    /*  ecs->getSystem<CharacterOnCollision>()->addEntity(bom);*/
     ecs->getSystem<CollisionCheckSystem>()->addEntity(block);
 
     //------------------ Physics
@@ -124,7 +125,7 @@ void BlockSpawnSystem::CreateBlocks(GameEntity* _entity, const int32_t& columInd
     //------------------ Render
     ecs->getSystem<ColliderRenderingSystem>()->addEntity(block);
     ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(block);
-    /*ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(floor);*/
+   
 }
 
 void BlockSpawnSystem::CostInit() {

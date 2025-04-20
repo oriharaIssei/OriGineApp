@@ -26,7 +26,7 @@ public:
     void Finalize() override;
 
   
-    void CreateBlocks(GameEntity* _entity, const int32_t& columIndex, const float& newPosX);
+    void CreateBlocks(const int32_t& columIndex, const float& newPosX);
 
 
     void CostInit();
