@@ -18,7 +18,8 @@
 #include "component/Piller/FloatingFloorStatus.h"
 // #include "component/Piller/PillerStates.h"
 //  system
-#include"system/Block/BlockMoveSystem.h"
+#include "system/Block/BlockMoveSystem.h"
+#include "system/Block/DeleteBlockSystem.h"
 #include "system/FloatingFloor/CanageStateFallSystem.h"
 
 BlockSpawnSystem::BlockSpawnSystem() : ISystem(SystemType::Movement) {}
@@ -42,27 +43,27 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    float blockWidth_ = blockSpawner_->GetBlockSize()[X]*2.0f;
+    float blockWidth_  = blockSpawner_->GetBlockSize()[X] * 2.0f;
     float nextPosition = blockSpawner_->GetNextCreatePositionX();
 
-    if (!isInited_) {// 初回の生成
-       
+    if (!isInited_) { // 初回の生成
+
         for (int32_t i = 0; i < blockSpawner_->GetColumNumMax(); ++i) {
-            CreateBlocks( i, blockSpawner_->GetStartPositionX());
+            CreateBlocks(i, blockSpawner_->GetStartPositionX());
         }
-        
+
     } else {
 
         // 2回目移行の生成
         if (lastTransform_ && lastTransform_->translate[X] < nextPosition) {
             for (int32_t i = 0; i < blockSpawner_->GetColumNumMax(); ++i) {
                 float newX = lastTransform_->translate[X] + blockWidth_;
-                CreateBlocks( i, newX);
+                CreateBlocks(i, newX);
             }
         }
     }
 
-   isInited_ = true;
+    isInited_ = true;
 }
 
 void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos) {
@@ -112,10 +113,11 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos
     // None
 
     //------------------ StateTransition
-
+    ecs->getSystem<DeleteBlockSystem>()->addEntity(block);
     //------------------ Movement
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(block);
-   
+    ecs->getSystem<BlockMoveSystem>()->addEntity(block);
+
     //------------------ Collision
     ecs->getSystem<CollisionCheckSystem>()->addEntity(block);
 
@@ -125,7 +127,6 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos
     //------------------ Render
     ecs->getSystem<ColliderRenderingSystem>()->addEntity(block);
     ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(block);
-   
 }
 
 void BlockSpawnSystem::CostInit() {

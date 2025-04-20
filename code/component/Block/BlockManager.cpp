@@ -13,6 +13,7 @@ void BlockManager::Initialize([[maybe_unused]] GameEntity* _entity) {
     nextCreatePositionX_ = 0.0f;
     basePosY_            = 0.0f;
     moveSpeed_           = 0.0f;
+    deadPositionX_       = 0.0f;
 }
 
 bool BlockManager::Edit() {
@@ -29,6 +30,7 @@ bool BlockManager::Edit() {
     isChange |= ImGui::DragFloat("startPositionX", &startPositionX_);
     isChange |= ImGui::DragFloat("startPositionZ", &startPositionZ_);
     isChange |= ImGui::DragFloat("nextCreatePositionX", &nextCreatePositionX_);
+    isChange |= ImGui::DragFloat("deadPositionX", &deadPositionX_);
     isChange |= ImGui::DragFloat("basePosY", &basePosY_);
     isChange |= ImGui::DragFloat("moveSpeedStart", &moveSpeed_);
 
@@ -45,6 +47,7 @@ void BlockManager::Save(BinaryWriter& _writer) {
     _writer.Write("basePosY", basePosY_);
     _writer.Write("moveSpeed", moveSpeed_);
     _writer.Write("startPositionZ", startPositionZ_);
+    _writer.Write("deadPositionX", deadPositionX_);
 }
 
 void BlockManager::Load(BinaryReader& _reader) {
@@ -57,6 +60,7 @@ void BlockManager::Load(BinaryReader& _reader) {
     _reader.Read("basePosY", basePosY_);
     _reader.Read("moveSpeed", moveSpeed_);
     _reader.Read("startPositionZ", startPositionZ_);
+    _reader.Read("deadPositionX", deadPositionX_);
 }
 
 void BlockManager::Finalize() {}

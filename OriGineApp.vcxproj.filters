@@ -172,6 +172,9 @@
     <ClInclude Include="code\system\Block\BlockMoveSystem.h">
       <Filter>system\Block</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Block\DeleteBlockSystem.h">
+      <Filter>system\Block</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -287,6 +290,9 @@
       <Filter>system\Block</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Block\BlockMoveSystem.cpp">
+      <Filter>system\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Block\DeleteBlockSystem.cpp">
       <Filter>system\Block</Filter>
     </ClCompile>
   </ItemGroup>

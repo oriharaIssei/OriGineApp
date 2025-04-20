@@ -33,6 +33,7 @@ private: // variables
     float startPositionX_;
     float startPositionZ_;
     float nextCreatePositionX_;
+    float deadPositionX_;
     float basePosY_;
 
     float moveSpeed_;
@@ -66,6 +67,7 @@ public: // accsessor
     float GetBasePosY() const { return basePosY_; }
     float GetMoveSpeed() const { return moveSpeed_; }
     float GetMoveIncrementSpeed() const { return moveIncrementValue_; }
+    float GetDeadPosition() const { return deadPositionX_; }
     /// setter
   
 };

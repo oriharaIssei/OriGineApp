@@ -43,6 +43,7 @@
 #include"Application/code/system/Matrix/UpdateMatrixSystem.h"
 #include"Application/code/system/Block/BlockSpawnSystem.h"
 #include"Application/code/system/Block/BlockMoveSystem.h"
+#include"Application/code/system/Block/DeleteBlockSystem.h"
 
 GameScene::GameScene()
     : IScene("Game") {}
@@ -96,5 +97,6 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<TimerUIScrollSystem>();
     ecsManager->registerSystem<BlockSpawnSystem>();
     ecsManager->registerSystem<BlockMoveSystem>();
+    ecsManager->registerSystem<DeleteBlockSystem>();
     ecsManager->SortPriorityOrderSystems();
 }
