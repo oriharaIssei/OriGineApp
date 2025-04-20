@@ -5,10 +5,10 @@
 ///====================================================================
 // PillerPhysicsSystem
 ///====================================================================
-class PillerDamageSystem : public ISystem {
+class UpdateMatrixSystem : public ISystem {
 public:
-    PillerDamageSystem();
-    ~PillerDamageSystem();
+    UpdateMatrixSystem();
+    ~UpdateMatrixSystem();
 
     void Initialize() override;
     void Finalize() override;

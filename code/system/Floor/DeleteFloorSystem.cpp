@@ -4,7 +4,7 @@
 #define ENGINE_ECS
 // component
 #include "component/Floor/FloorStates.h"
-#include"component/Piller/PillerStatus.h"
+#include"component/Piller/FloatingFloorStatus.h"
 #include "engine/EngineInclude.h"
 #include <Vector.h>
 

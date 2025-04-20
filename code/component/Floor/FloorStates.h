@@ -2,7 +2,7 @@
 
 #include "component/IComponent.h"
 
-class PillerStatus;
+class FloatingFloorStatus;
 class FloorStates
     : public IComponent {
 
@@ -13,7 +13,7 @@ private: // variables
     bool haveSafeZone_; // 無敵床を持っているかどうか
     bool isDestroy_ = false;
 
-    PillerStatus* parentStatus_ = nullptr;
+    FloatingFloorStatus* parentStatus_ = nullptr;
 
 public:
     FloorStates() {}
@@ -31,7 +31,7 @@ public: // accsessor
     bool* GetIsDestroyPtr() { return &isDestroy_; }
     bool GetIsDestory() const { return isDestroy_; }
     bool GetIsFalling() const;
-    PillerStatus* GetParentStatus() {return parentStatus_; }
+    FloatingFloorStatus* GetParentStatus() {return parentStatus_; }
     /// setter
-    void SetParentStatus(PillerStatus* status) { parentStatus_ = status; }
+    void SetParentStatus(FloatingFloorStatus* status) { parentStatus_ = status; }
 };

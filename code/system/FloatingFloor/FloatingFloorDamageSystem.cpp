@@ -1,4 +1,4 @@
-#include "PillerDamageSystem.h"
+#include "FloatingFloorDamageSystem.h"
 /// engine
 #define ENGINE_INCLUDE
 
@@ -8,21 +8,21 @@
 #include "engine/EngineInclude.h"
 
 #include"component/Bom/ExplotionCollision.h"
-#include"component/Piller/PillerStatus.h"
+#include"component/Piller/FloatingFloorStatus.h"
 
-PillerDamageSystem::PillerDamageSystem() : ISystem(SystemType::Collision) {}
-PillerDamageSystem::~PillerDamageSystem() {}
+FloatingFloorDamageSystem::FloatingFloorDamageSystem() : ISystem(SystemType::Collision) {}
+FloatingFloorDamageSystem::~FloatingFloorDamageSystem() {}
 
-void PillerDamageSystem::Initialize() {
-
-}
-
-void PillerDamageSystem::Finalize() {
+void FloatingFloorDamageSystem::Initialize() {
 
 }
 
+void FloatingFloorDamageSystem::Finalize() {
 
-void PillerDamageSystem::UpdateEntity(GameEntity* _entity) {
+}
+
+
+void FloatingFloorDamageSystem::UpdateEntity(GameEntity* _entity) {
   
     if (!_entity) {
         return;
@@ -30,7 +30,7 @@ void PillerDamageSystem::UpdateEntity(GameEntity* _entity) {
 
     // CharacterStatusを取得
  
-    PillerStatus* fAndPStatus = getComponent<PillerStatus>(_entity);
+    FloatingFloorStatus* fAndPStatus = getComponent<FloatingFloorStatus>(_entity);
 
     if (!fAndPStatus) {
         return;
@@ -45,7 +45,7 @@ void PillerDamageSystem::UpdateEntity(GameEntity* _entity) {
     /// ====================================================
     {
         // sphereのみ
-        std::vector<SphereCollider>* entityColliders = getComponents<SphereCollider>(_entity);
+        std::vector<AABBCollider>* entityColliders = getComponents<AABBCollider>(_entity);
         for (auto& entityCollider : *entityColliders) {
             for (auto& [hitEntity, collisionState] : entityCollider.getCollisionStateMap()) {
 

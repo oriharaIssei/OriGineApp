@@ -22,9 +22,6 @@
     <Filter Include="system\Floor">
       <UniqueIdentifier>{a5fbbbd1-5529-4545-b3a2-860f0d5e1f1c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="system\Piller">
-      <UniqueIdentifier>{0e007c2c-d9f3-4b52-b934-7c68aa10f810}</UniqueIdentifier>
-    </Filter>
     <Filter Include="system\Player">
       <UniqueIdentifier>{95a74daa-d55e-4028-8a38-bdd24385a74c}</UniqueIdentifier>
     </Filter>
@@ -36,9 +33,6 @@
     </Filter>
     <Filter Include="system\Bom">
       <UniqueIdentifier>{7b32cabe-ad52-4818-8c26-77146879c2bd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="system\FloorAndPiller">
-      <UniqueIdentifier>{f67cf5a1-51bd-4b81-983e-7a018469502c}</UniqueIdentifier>
     </Filter>
     <Filter Include="component\Combo">
       <UniqueIdentifier>{1ef805d2-06e8-4a7d-9ce0-8b5ae99eb21a}</UniqueIdentifier>
@@ -52,6 +46,12 @@
     <Filter Include="system\Timer">
       <UniqueIdentifier>{080da9ba-cb0f-4255-9752-16054164f894}</UniqueIdentifier>
     </Filter>
+    <Filter Include="system\FloatingFloor">
+      <UniqueIdentifier>{9729e93c-39a8-4839-bb2f-64ad537c5fff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\Matrix">
+      <UniqueIdentifier>{33f172e0-5c8f-4d4a-84a4-7aed5cf37ee3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -64,9 +64,6 @@
     </ClInclude>
     <ClInclude Include="code\component\Floor\FloorStates.h">
       <Filter>component\Floor</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Piller\PillerPhysicsSystem.h">
-      <Filter>system\Piller</Filter>
     </ClInclude>
     <ClInclude Include="code\component\Button.h" />
     <ClInclude Include="code\system\ButtonInputSystem.h" />
@@ -106,20 +103,8 @@
     <ClInclude Include="code\system\Bom\DeleteBomSystem.h">
       <Filter>system\Bom</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Piller\CanageStateFallSystem.h">
-      <Filter>system\Piller</Filter>
-    </ClInclude>
     <ClInclude Include="code\system\Bom\DeleteExplotionCollision.h">
       <Filter>system\Bom</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\FloorAndPiller\TowerPositionSet.h">
-      <Filter>system\FloorAndPiller</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\FloorAndPiller\FloorAndPillerFallSystem.h">
-      <Filter>system\FloorAndPiller</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Piller\PillerDamageSystem.h">
-      <Filter>system\Piller</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Player\PlayerFollowCameraSystem.h">
       <Filter>system\Player</Filter>
@@ -127,19 +112,13 @@
     <ClInclude Include="code\system\Player\PlayerMoveSystem.h">
       <Filter>system\Player</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Piller\PillerUpdateMatrixSystem.h">
-      <Filter>system\Piller</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Piller\DeletePillerEntitySystem.h">
-      <Filter>system\Piller</Filter>
-    </ClInclude>
     <ClInclude Include="code\system\Floor\DeleteFloorSystem.h">
       <Filter>system\Floor</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Floor\FloorUpdateMatrixSystem.h">
       <Filter>system\Floor</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\Piller\PillerStatus.h">
+    <ClInclude Include="code\component\Piller\FloatingFloorStatus.h">
       <Filter>component\Piller</Filter>
     </ClInclude>
     <ClInclude Include="code\component\Piller\PillerSpawner.h">
@@ -172,6 +151,24 @@
     <ClInclude Include="code\component\Floor\FloorFallCollision.h">
       <Filter>component\Floor</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Matrix\UpdateMatrixSystem.h">
+      <Filter>system\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\FloatingFloor\CanageStateFallSystem.h">
+      <Filter>system\FloatingFloor</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\FloatingFloor\CreateFloorSystem.h">
+      <Filter>system\FloatingFloor</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\FloatingFloor\DeleteFloatingFloorSystem.h">
+      <Filter>system\FloatingFloor</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\FloatingFloor\FloatingFloorDamageSystem.h">
+      <Filter>system\FloatingFloor</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\FloatingFloor\FloatingFloorFallSystem.h">
+      <Filter>system\FloatingFloor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -184,9 +181,6 @@
     </ClCompile>
     <ClCompile Include="code\component\Floor\FloorStates.cpp">
       <Filter>component\Floor</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Piller\PillerPhysicsSystem.cpp">
-      <Filter>system\Piller</Filter>
     </ClCompile>
     <ClCompile Include="code\component\Button.cpp" />
     <ClCompile Include="code\system\ButtonInputSystem.cpp" />
@@ -226,20 +220,8 @@
     <ClCompile Include="code\system\Bom\DeleteBomSystem.cpp">
       <Filter>system\Bom</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Piller\CanageStateFallSystem.cpp">
-      <Filter>system\Piller</Filter>
-    </ClCompile>
     <ClCompile Include="code\system\Bom\DeleteExplotionCollision.cpp">
       <Filter>system\Bom</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\FloorAndPiller\TowerPositionSet.cpp">
-      <Filter>system\FloorAndPiller</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\FloorAndPiller\FloorAndPillerFallSystem.cpp">
-      <Filter>system\FloorAndPiller</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Piller\PillerDamageSystem.cpp">
-      <Filter>system\Piller</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Player\PlayerFollowCameraSystem.cpp">
       <Filter>system\Player</Filter>
@@ -247,19 +229,13 @@
     <ClCompile Include="code\system\Player\PlayerMoveSystem.cpp">
       <Filter>system\Player</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Piller\PillerUpdateMatrixSystem.cpp">
-      <Filter>system\Piller</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Piller\DeletePillerEntitySystem.cpp">
-      <Filter>system\Piller</Filter>
-    </ClCompile>
     <ClCompile Include="code\system\Floor\DeleteFloorSystem.cpp">
       <Filter>system\Floor</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Floor\FloorUpdateMatrixSystem.cpp">
       <Filter>system\Floor</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\Piller\PillerStatus.cpp">
+    <ClCompile Include="code\component\Piller\FloatingFloorStatus.cpp">
       <Filter>component\Piller</Filter>
     </ClCompile>
     <ClCompile Include="code\component\Piller\PillerSpawner.cpp">
@@ -291,6 +267,24 @@
     </ClCompile>
     <ClCompile Include="code\component\Floor\FloorFallCollision.cpp">
       <Filter>component\Floor</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Matrix\UpdateMatrixSystem.cpp">
+      <Filter>system\Matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\FloatingFloor\CanageStateFallSystem.cpp">
+      <Filter>system\FloatingFloor</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\FloatingFloor\CreateFloorSystem.cpp">
+      <Filter>system\FloatingFloor</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\FloatingFloor\DeleteFloatingFloorSystem.cpp">
+      <Filter>system\FloatingFloor</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\FloatingFloor\FloatingFloorDamageSystem.cpp">
+      <Filter>system\FloatingFloor</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\FloatingFloor\FloatingFloorFallSystem.cpp">
+      <Filter>system\FloatingFloor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-#include "FloorAndPillerFallSystem.h"
+#include "FloatingFloorFallSystem.h"
 
 /// engine
 #define ENGINE_INCLUDE
@@ -10,23 +10,23 @@
 
 /// app
 // component
-#include "component/Piller/PillerStatus.h"
+#include "component/Piller/FloatingFloorStatus.h"
 
 // system
 
-FloorAndPillerFallSystem::FloorAndPillerFallSystem() : ISystem(SystemType::Movement) {}
-FloorAndPillerFallSystem::~FloorAndPillerFallSystem() {}
+FloatingFloorFallSystem::FloatingFloorFallSystem() : ISystem(SystemType::Movement) {}
+FloatingFloorFallSystem::~FloatingFloorFallSystem() {}
 
-void FloorAndPillerFallSystem::Initialize() {
+void FloatingFloorFallSystem::Initialize() {
 }
 
-void FloorAndPillerFallSystem::Finalize() {
+void FloatingFloorFallSystem::Finalize() {
     /*  entities_.clear();*/
 }
 
-void FloorAndPillerFallSystem::UpdateEntity(GameEntity* _entity) {
+void FloatingFloorFallSystem::UpdateEntity(GameEntity* _entity) {
 
-    PillerStatus* entityStatus = getComponent<PillerStatus>(_entity);
+    FloatingFloorStatus* entityStatus = getComponent<FloatingFloorStatus>(_entity);
 
     if (!entityStatus) {
         return;
@@ -66,6 +66,6 @@ void FloorAndPillerFallSystem::UpdateEntity(GameEntity* _entity) {
     }
 }
 
-float FloorAndPillerFallSystem::Lerp(const float& start, const float& end, float t) {
+float FloatingFloorFallSystem::Lerp(const float& start, const float& end, float t) {
     return (1.0f - t) * start + end * t;
 }

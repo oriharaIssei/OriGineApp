@@ -8,7 +8,7 @@
 #define ENGINE_ECS
 #include "engine/EngineInclude.h"
 // component
-#include "component/Piller/PillerStatus.h"
+#include "component/Piller/FloatingFloorStatus.h"
 #include"component/Combo/ComboStatus.h"
 
 CanageStateFallSystem::CanageStateFallSystem() : ISystem(SystemType::StateTransition) {}
@@ -28,7 +28,7 @@ void CanageStateFallSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    PillerStatus* fAndPStatus = getComponent<PillerStatus>(_entity);
+    FloatingFloorStatus* fAndPStatus = getComponent<FloatingFloorStatus>(_entity);
 
     if (!fAndPStatus) {
         return;
@@ -53,7 +53,7 @@ void CanageStateFallSystem::UpdateEntity(GameEntity* _entity) {
 
     // **同じRowの床を落とす**
     for (GameEntity* entity : getEntities()) { // すべてのエンティティをチェック
-        PillerStatus* otherFAndP = getComponent<PillerStatus>(entity);
+        FloatingFloorStatus* otherFAndP = getComponent<FloatingFloorStatus>(entity);
         if (!otherFAndP) {
             continue;
         }

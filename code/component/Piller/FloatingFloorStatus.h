@@ -5,15 +5,14 @@
 #include <cstdint>
 #include<Vector3.h>
 
-class PillerStatus
+class FloatingFloorStatus
     : public IComponent {
 
 private: // variables
 
     bool isAlive_ = true;
     bool isFall_ = false;
-   /* bool isDestroy_=false;*/
- 
+   
 
     int32_t columNum_;
     int32_t rowNum_;
@@ -27,8 +26,8 @@ private: // variables
     
 
 public:
-    PillerStatus() {}
-    virtual ~PillerStatus() = default;
+    FloatingFloorStatus() {}
+    virtual ~FloatingFloorStatus() = default;
 
     void Initialize(GameEntity* _entity) override;
     bool Edit() override;
@@ -67,8 +66,4 @@ public: // accsessor
     void SetFallSpeed(const float& speed) { fallspeed_ = speed; }
     void SetcurrentHP(const int32_t& hp) { currentHP_ = hp; }
     void SetIsDestroy(const bool& is) { isDestroy_ = is;}
-
-    /* void SetIsDestroyPointer(bool* ptr) {
-        isDestroy_ = ptr;
-    }*/
 };

@@ -36,11 +36,13 @@ public:
     void Initialize() override;
     void Finalize() override;
 
-    void CreateBottomFloor(const float&Radius);
-    void CreateTower(const float& Radius);
+    void CreateBottomFloor();
+    void CreateFloatingFloor();
 
-    void SetPivotQuaternion(Transform* pivotTransform, const int32_t& index);
-    void SetQuaternion(Transform* pivotTransform, Transform* Transform,const Vec3f&offset);
+    void SetXPosition(Transform* baseTransform, Transform* childTransform,const Vec3f&offset,int32_t rowIndex);
+
+   /* void SetPivotQuaternion(Transform* pivotTransform, const int32_t& index);
+    void SetQuaternion(Transform* pivotTransform, Transform* Transform,const Vec3f&offset);*/
 
     void CostInit();
 

@@ -1,9 +1,9 @@
-#include "PillerStatus.h"
+#include "FloatingFloorStatus.h"
 /// externals
 #include "imgui/imgui.h"
 #include <string>
 
-void PillerStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
+void FloatingFloorStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
     fallPosY_ = 0.0f;
     fallEaseT_ = 0.0f;
     fallspeed_ = 3.0f;
@@ -11,7 +11,7 @@ void PillerStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
    /* collisionSize_ = 5.0f;*/
 }
 
-bool PillerStatus::Edit() {
+bool FloatingFloorStatus::Edit() {
     bool isChange = false;
 
     isChange = ImGui::Checkbox("IsAlive", &isAlive_);
@@ -23,34 +23,34 @@ bool PillerStatus::Edit() {
     return isChange;
 }
 
-void PillerStatus::Save(BinaryWriter& _writer) {
+void FloatingFloorStatus::Save(BinaryWriter& _writer) {
     _writer.Write("isAlive", isAlive_);
     _writer.Write("fallspeed", fallspeed_);
    
 }
 
-void PillerStatus::Load(BinaryReader& _reader) {
+void FloatingFloorStatus::Load(BinaryReader& _reader) {
     _reader.Read("isAlive", isAlive_);
     _reader.Read("fallspeed", fallspeed_);
    
 }
 
-void PillerStatus::Finalize() {}
+void FloatingFloorStatus::Finalize() {}
 
-void PillerStatus::SetColumAndRow(const int32_t& colum, const int32_t& row) {
+void FloatingFloorStatus::SetColumAndRow(const int32_t& colum, const int32_t& row) {
     rowNum_   = row;
     columNum_ = colum;
 }
 
-void PillerStatus::SetColumDecrement() {
+void FloatingFloorStatus::SetColumDecrement() {
     columNum_--;
 }
 
-float PillerStatus::GetFallPosY()  {
+float FloatingFloorStatus::GetFallPosY()  {
     fallPosY_ = savePosY_ - fallValue_;
     return fallPosY_;
 }
 
-void PillerStatus::TakeDamage() {
+void FloatingFloorStatus::TakeDamage() {
     currentHP_--;
 }

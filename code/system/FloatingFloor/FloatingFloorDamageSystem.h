@@ -5,10 +5,10 @@
 ///====================================================================
 // PillerPhysicsSystem
 ///====================================================================
-class PillerPhysicsSystem : public ISystem {
+class FloatingFloorDamageSystem : public ISystem {
 public:
-    PillerPhysicsSystem();
-    ~PillerPhysicsSystem();
+    FloatingFloorDamageSystem();
+    ~FloatingFloorDamageSystem();
 
     void Initialize() override;
     void Finalize() override;
