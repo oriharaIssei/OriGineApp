@@ -100,6 +100,8 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     FloatingFloorStatus* floatingFloorStatus = getComponent<FloatingFloorStatus>(floatingFloor);
     floatingFloorStatus->SetColumAndRow(0, floatFloorSpawner->GetRowNumber());
 
+    ///*　パラメータべた書きゾーン
+
     // hp
     floatingFloorStatus->SetcurrentHP(floatFloorSpawner->GetHpMax());
     // prePos
