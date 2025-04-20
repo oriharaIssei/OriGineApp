@@ -101,6 +101,8 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="code\component\Block\BlockSpawner.h" />
+    <ClInclude Include="code\component\Block\BlockStatus.h" />
     <ClInclude Include="code\component\Bom\BomSpawner.h" />
     <ClInclude Include="code\component\Bom\BomStatus.h" />
     <ClInclude Include="code\component\Bom\ExplotionCollision.h" />
@@ -111,6 +113,7 @@
     <ClInclude Include="code\component\ShockWave\ShockWaveSpawner.h" />
     <ClInclude Include="code\component\Timer\TimerStatus.h" />
     <ClInclude Include="code\component\Timer\TimerUIStatus.h" />
+    <ClInclude Include="code\system\Block\BlockSpawnSystem.h" />
     <ClInclude Include="code\system\Bom\BomExplotionSystem.h" />
     <ClInclude Include="code\system\Bom\DeleteBomSystem.h" />
     <ClInclude Include="code\system\Bom\DeleteExplotionCollision.h" />
@@ -142,6 +145,8 @@
     <ClInclude Include="code\component\SceneChanger.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\component\Block\BlockSpawner.cpp" />
+    <ClCompile Include="code\component\Block\BlockStatus.cpp" />
     <ClCompile Include="code\component\Bom\BomSpawner.cpp" />
     <ClCompile Include="code\component\Bom\BomStatus.cpp" />
     <ClCompile Include="code\component\Bom\ExplotionCollision.cpp" />
@@ -152,6 +157,7 @@
     <ClCompile Include="code\component\ShockWave\ShockWaveSpawner.cpp" />
     <ClCompile Include="code\component\Timer\TimerStatus.cpp" />
     <ClCompile Include="code\component\Timer\TimerUIStatus.cpp" />
+    <ClCompile Include="code\system\Block\BlockSpawnSystem.cpp" />
     <ClCompile Include="code\system\Bom\BomExplotionSystem.cpp" />
     <ClCompile Include="code\system\Bom\DeleteBomSystem.cpp" />
     <ClCompile Include="code\system\Bom\DeleteExplotionCollision.cpp" />
