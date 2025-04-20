@@ -31,10 +31,22 @@ void PlayerFollowCameraSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    CameraTransform* cameraTransform_ = getComponent<CameraTransform>(_entity);
+     PlayerStates* entityPlayerStates_ = getComponent<PlayerStates>(_entity);
+
+    if ( !entityPlayerStates_) {
+        return;
+    }
+
+     CameraTransform* cameraTransform_ = getComponent<CameraTransform>(_entity);
     if (!cameraTransform_) {
         return;
     }
+
+    ///============================================================
+    /// カメラのオフセットを適用
+    ///============================================================
+    // カメラのオフセット（前方から見る場合、Z値を正にする）
+    Vec3f cameraOffset = entityPlayerStates_->GetFollowOffset(); /*{0.0f, 8.0f, 56.0f};*/ 
 
     CameraManager::getInstance()->setTransform(*cameraTransform_);
 
@@ -42,7 +54,7 @@ void PlayerFollowCameraSystem::UpdateEntity(GameEntity* _entity) {
     /// 固定カメラ位置を設定
     ///============================================================
     // 固定位置（例：シーンを斜め上から俯瞰する位置）
-    cameraTransform_->translate = Vec3f{0.0f, 10.0f, -30.0f};
+    cameraTransform_->translate = cameraOffset;
 
     ///============================================================
     /// 固定カメラ回転を設定

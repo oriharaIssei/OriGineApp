@@ -115,7 +115,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos
 
     //------------------ Movement
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(block);
-    ecs->getSystem<BlockMoveSystem>()->addEntity(block);
+    /*ecs->getSystem<BlockMoveSystem>()->addEntity(block);*/
 
     //------------------ Collision
     ecs->getSystem<CollisionCheckSystem>()->addEntity(block);

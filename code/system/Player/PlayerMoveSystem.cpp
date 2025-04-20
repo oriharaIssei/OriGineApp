@@ -30,6 +30,7 @@ void PlayerMoveSystem::UpdateEntity(GameEntity* _entity) {
 
     Transform* pivotTransform = getComponent<Transform>(_entity, 1);
     Transform* transform      = getComponent<Transform>(_entity, 0);
+    transform->parent         = pivotTransform;
 
     float direction = playerStates->GetDirection();
     float speed     = playerStates->GetMoveSpeed();
