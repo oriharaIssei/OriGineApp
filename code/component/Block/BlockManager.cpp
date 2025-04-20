@@ -34,6 +34,11 @@ bool BlockManager::Edit() {
     isChange |= ImGui::DragFloat("basePosY", &basePosY_);
     isChange |= ImGui::DragFloat("moveSpeedStart", &moveSpeed_);
 
+    for (int i = 0; i < moveSpeeds_.size(); ++i) {
+        std::string label = "moveSpeed[" + std::to_string(i) + "]";
+        ImGui::DragFloat(label.c_str(), &moveSpeeds_[i], 0.1f);
+    }
+
     return isChange;
 }
 
@@ -48,6 +53,9 @@ void BlockManager::Save(BinaryWriter& _writer) {
     _writer.Write("moveSpeed", moveSpeed_);
     _writer.Write("startPositionZ", startPositionZ_);
     _writer.Write("deadPositionX", deadPositionX_);
+    for (int i = 0; i < moveSpeeds_.size(); ++i) {
+        _writer.Write(("moveSpeeds" + std::to_string(i)).c_str(), moveSpeeds_);
+    }
 }
 
 void BlockManager::Load(BinaryReader& _reader) {
@@ -61,6 +69,9 @@ void BlockManager::Load(BinaryReader& _reader) {
     _reader.Read("moveSpeed", moveSpeed_);
     _reader.Read("startPositionZ", startPositionZ_);
     _reader.Read("deadPositionX", deadPositionX_);
+    for (int i = 0; i < moveSpeeds_.size(); ++i) {
+        _reader.Read(("moveSpeeds" + std::to_string(i)).c_str(), moveSpeeds_);
+    }
 }
 
 void BlockManager::Finalize() {}
@@ -71,5 +82,16 @@ void BlockManager::CostReset() {
     }
 }
 
-void BlockManager::SpeedIncrementForTime() {
+void BlockManager::SpeedChangeForTime(const float& time) {
+    // 各速度の切り替え間隔（例：10秒ごとに切り替え）
+    constexpr float interval = 10.0f;
+
+    // 現在のインデックスを計算
+    size_t index = static_cast<size_t>(time / interval);
+
+    // 範囲外対策（最大インデックスに固定）
+    index = std::min(index, moveSpeeds_.size() - 1);
+
+    // 現在の速度を設定
+    moveSpeed_ = moveSpeeds_[index];
 }

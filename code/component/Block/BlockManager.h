@@ -37,7 +37,7 @@ private: // variables
     float basePosY_;
 
     float moveSpeed_;
-    float moveIncrementValue_;
+    std::array<float, 6> moveSpeeds_;
 
      // cost
     std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> costs_;
@@ -53,7 +53,7 @@ public:
     void Finalize() override;
 
     void CostReset();
-    void SpeedIncrementForTime();
+    void SpeedChangeForTime(const float&time);
 
 public: // accsessor
     /// getter
@@ -66,8 +66,8 @@ public: // accsessor
     float GetNextCreatePositionX() const { return nextCreatePositionX_; }
     float GetBasePosY() const { return basePosY_; }
     float GetMoveSpeed() const { return moveSpeed_; }
-    float GetMoveIncrementSpeed() const { return moveIncrementValue_; }
     float GetDeadPosition() const { return deadPositionX_; }
+
     /// setter
   
 };

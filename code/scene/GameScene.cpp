@@ -44,6 +44,7 @@
 #include"Application/code/system/Block/BlockSpawnSystem.h"
 #include"Application/code/system/Block/BlockMoveSystem.h"
 #include"Application/code/system/Block/DeleteBlockSystem.h"
+#include"Application/code/system/Block/MoveSpeedChangeSystem.h"
 
 GameScene::GameScene()
     : IScene("Game") {}
@@ -98,5 +99,6 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<BlockSpawnSystem>();
     ecsManager->registerSystem<BlockMoveSystem>();
     ecsManager->registerSystem<DeleteBlockSystem>();
+    ecsManager->registerSystem<MoveSpeedChangeSystem>();
     ecsManager->SortPriorityOrderSystems();
 }
