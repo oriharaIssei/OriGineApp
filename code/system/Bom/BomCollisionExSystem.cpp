@@ -1,4 +1,4 @@
-#include "FloatingFloorDamageSystem.h"
+#include "BomCollisionExSystem.h"
 /// engine
 #define ENGINE_INCLUDE
 
@@ -7,23 +7,23 @@
 #define ENGINE_ECS
 #include "engine/EngineInclude.h"
 
+#include"component/Bom/BomStatus.h"
 #include"component/Bom/ExplotionCollision.h"
 #include"component/Piller/FloatingFloorStatus.h"
-#include"component/Player/PlayerStates.h"
 
-FloatingFloorDamageSystem::FloatingFloorDamageSystem() : ISystem(SystemType::Collision) {}
-FloatingFloorDamageSystem::~FloatingFloorDamageSystem() {}
+BomCollisionExSystem::BomCollisionExSystem() : ISystem(SystemType::Collision) {}
+BomCollisionExSystem::~BomCollisionExSystem() {}
 
-void FloatingFloorDamageSystem::Initialize() {
-
-}
-
-void FloatingFloorDamageSystem::Finalize() {
+void BomCollisionExSystem::Initialize() {
 
 }
 
+void BomCollisionExSystem::Finalize() {
 
-void FloatingFloorDamageSystem::UpdateEntity(GameEntity* _entity) {
+}
+
+
+void BomCollisionExSystem::UpdateEntity(GameEntity* _entity) {
   
     if (!_entity) {
         return;
@@ -31,13 +31,13 @@ void FloatingFloorDamageSystem::UpdateEntity(GameEntity* _entity) {
 
     // CharacterStatusを取得
  
-    FloatingFloorStatus* floatingFloorStatus = getComponent<FloatingFloorStatus>(_entity);
+    BomStatus* bomStatus= getComponent<BomStatus>(_entity);
 
-    if (!floatingFloorStatus) {
+    if (!bomStatus) {
         return;
     }
 
-    if (floatingFloorStatus->GetIsFall()) {
+    if (bomStatus->GetIsExplotion()) {
         return;
     }
    
@@ -46,7 +46,7 @@ void FloatingFloorDamageSystem::UpdateEntity(GameEntity* _entity) {
     /// ====================================================
     {
         // sphereのみ
-        std::vector<AABBCollider>* entityColliders = getComponents<AABBCollider>(_entity);
+        std::vector<SphereCollider>* entityColliders = getComponents<SphereCollider>(_entity);
         for (auto& entityCollider : *entityColliders) {
             for (auto& [hitEntity, collisionState] : entityCollider.getCollisionStateMap()) {
 
@@ -61,14 +61,12 @@ void FloatingFloorDamageSystem::UpdateEntity(GameEntity* _entity) {
                 }
 
                 // CharacterStatusを取得
-                ExplotionCollision* hitEntityStatus = getComponent<ExplotionCollision>(hitEntity);
-                PlayerStates* playerStatus          = getComponent<PlayerStates>(hitEntity);
-
-                if (!hitEntityStatus || playerStatus) {
+                FloatingFloorStatus* hitEntityStatus = getComponent<FloatingFloorStatus>(hitEntity);
+                if (!hitEntityStatus) {
                     continue;
                 }
                 // CharacterStatusを更新
-                floatingFloorStatus->TakeDamage();
+                bomStatus->SetIsExplotion(true);
             }
         }
     }

@@ -45,6 +45,7 @@
 #include"Application/code/system/Block/BlockMoveSystem.h"
 #include"Application/code/system/Block/DeleteBlockSystem.h"
 #include"Application/code/system/Block/MoveSpeedChangeSystem.h"
+#include"Application/code/system/Bom/BomCollisionExSystem.h"
 
 GameScene::GameScene()
     : IScene("Game") {}
@@ -100,5 +101,6 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<BlockMoveSystem>();
     ecsManager->registerSystem<DeleteBlockSystem>();
     ecsManager->registerSystem<MoveSpeedChangeSystem>();
+    ecsManager->registerSystem<BomCollisionExSystem>();
     ecsManager->SortPriorityOrderSystems();
 }

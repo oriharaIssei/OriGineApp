@@ -109,19 +109,15 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
         //------------------ StateTransition
         ecs->getSystem<CanageStateFallSystem>()->addEntity(floatingFloor);
         ecs->getSystem<DeleteFloatingFloorSystem>()->addEntity(floatingFloor);
-        /* ecs->getSystem<DeleteFloorSystem>()->addEntity(floor);*/
         //------------------ Movement
         ecs->getSystem<MoveSystemByRigidBody>()->addEntity(floatingFloor);
-        /* ecs->getSystem<MoveSystemByRigidBody>()->addEntity(floor);*/
         ecs->getSystem<FloatingFloorFallSystem>()->addEntity(floatingFloor);
 
-        /*ecs->getSystem<FloorUpdateMatrixSystem>()->addEntity(floor);*/
+       
         ecs->getSystem<UpdateMatrixSystem>()->addEntity(floatingFloor);
 
         //------------------ Collision
-        /*  ecs->getSystem<CharacterOnCollision>()->addEntity(bom);*/
         ecs->getSystem<CollisionCheckSystem>()->addEntity(floatingFloor);
-        /*ecs->getSystem<CollisionCheckSystem>()->addEntity(floor);*/
         ecs->getSystem<FloatingFloorDamageSystem>()->addEntity(floatingFloor);
         //------------------ Physics
         // None
@@ -129,7 +125,7 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
         //------------------ Render
         ecs->getSystem<ColliderRenderingSystem>()->addEntity(floatingFloor);
         ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(floatingFloor);
-        /*ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(floor);*/
+     
     
 }
 

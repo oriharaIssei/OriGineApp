@@ -178,6 +178,9 @@
     <ClInclude Include="code\system\Block\MoveSpeedChangeSystem.h">
       <Filter>system\Block</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Bom\BomCollisionExSystem.h">
+      <Filter>system\Bom</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -300,6 +303,9 @@
     </ClCompile>
     <ClCompile Include="code\system\Block\MoveSpeedChangeSystem.cpp">
       <Filter>system\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Bom\BomCollisionExSystem.cpp">
+      <Filter>system\Bom</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

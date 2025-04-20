@@ -18,6 +18,7 @@
 #include "system/Bom/BomExplotionSystem.h"
 #include "system/Bom/DeleteBomSystem.h"
 #include "system/Bom/DeleteExplotionCollision.h"
+#include"system/Bom/BomCollisionExSystem.h"
 
 void PutBomSystem::Initialize() {}
 
@@ -94,10 +95,10 @@ void PutBomSystem::SpawnBom(GameEntity* _entity, BomStatus* _status) {
 
     //------------------ Movement
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(bom);
-   
-
+  
     //------------------ Collision
     /*  ecs->getSystem<CharacterOnCollision>()->addEntity(bom);*/
+        ecs->getSystem<BomCollisionExSystem>()->addEntity(bom);
     ecs->getSystem<CollisionCheckSystem>()->addEntity(bom);
 
     //------------------ Physics
