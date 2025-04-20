@@ -26,13 +26,13 @@ bool BlockManager::Edit() {
     isChange |= ImGui::InputInt("pillarHP", &HPMax_);
     isChange |= ImGui::InputInt("columNumMax", &columNumMax_);
     isChange |= ImGui::DragFloat2("blockSize", blockSize_.v);
-    isChange |= ImGui::DragFloat("collisionRadius", &collisionRadius_);
-    isChange |= ImGui::DragFloat("startPositionX", &startPositionX_);
-    isChange |= ImGui::DragFloat("startPositionZ", &startPositionZ_);
-    isChange |= ImGui::DragFloat("nextCreatePositionX", &nextCreatePositionX_);
-    isChange |= ImGui::DragFloat("deadPositionX", &deadPositionX_);
-    isChange |= ImGui::DragFloat("basePosY", &basePosY_);
-    isChange |= ImGui::DragFloat("moveSpeedStart", &moveSpeed_);
+    isChange |= ImGui::DragFloat("collisionRadius", &collisionRadius_, 0.01f);
+    isChange |= ImGui::DragFloat("startPositionX", &startPositionX_, 0.01f);
+    isChange |= ImGui::DragFloat("startPositionZ", &startPositionZ_, 0.01f);
+    isChange |= ImGui::DragFloat("nextCreatePositionX", &nextCreatePositionX_, 0.01f);
+    isChange |= ImGui::DragFloat("deadPositionX", &deadPositionX_,0.01f);
+    isChange |= ImGui::DragFloat("basePosY", &basePosY_, 0.01f);
+    isChange |= ImGui::DragFloat("moveSpeedStart", &moveSpeed_, 0.01f);
 
     for (int i = 0; i < moveSpeeds_.size(); ++i) {
         std::string label = "moveSpeed[" + std::to_string(i) + "]";
