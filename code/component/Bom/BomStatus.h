@@ -20,6 +20,7 @@ private: // variables
 
     int32_t bomNumber_;
     bool isExplotion_=false;
+    float launthSpeed_;
 
 public:
     BomStatus() {}
@@ -40,6 +41,7 @@ public: // accsessor
     Vec3f GetPositionOffset() const { return positionOffset_; }
     int32_t GetBomNumber() const { return bomNumber_; }
     bool GetIsExplotion() const { return isExplotion_; }
+    float GetLaunghSpeed() const { return launthSpeed_; }
     /// setter
     void CurrentTimeIncrement(const float& time) {currentTime_ += time;}
     void SetBomNumber(const int32_t& num) { bomNumber_ = num; }

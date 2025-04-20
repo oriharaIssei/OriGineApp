@@ -9,6 +9,7 @@ class BomExplotionSystem
 private:
 
     Input* input_ = nullptr;
+    BomStatus* bomStates_;
 
 public:
     BomExplotionSystem() : ISystem(SystemType::Input) {};
@@ -17,6 +18,8 @@ public:
     void Initialize() override;
     // void Update()override;
     void Finalize() override;
+
+    void LaunchMethod(GameEntity* _entity);
 
 
 protected:

@@ -8,6 +8,7 @@ void BomStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
     explotionTime_   = 2.0f;
     collisionRadius_ = 2.0f;
     positionOffset_  = Vec3f(0.0f, 0.0f, 0.0f);
+    launthSpeed_     = 5.0f;
 }
 
 bool BomStatus::Edit() {
@@ -23,6 +24,7 @@ bool BomStatus::Edit() {
       ImGui::Text("etc");
     isChange |= ImGui::DragFloat("explotionTime", &explotionTime_);
     isChange |= ImGui::DragFloat("CollisionRadius", &collisionRadius_);
+    isChange |= ImGui::DragFloat("launthSpeed", &launthSpeed_);
 
     return isChange;
 }
@@ -32,6 +34,7 @@ void BomStatus::Save(BinaryWriter& _writer) {
     _writer.Write("explotionTime", explotionTime_);
     _writer.Write<3, float>("positionOffset", positionOffset_);
     _writer.Write("CollisionRadius", collisionRadius_);
+    _writer.Write("launthSpeed", launthSpeed_);
 }
 
 void BomStatus::Load(BinaryReader& _reader) {
@@ -39,6 +42,7 @@ void BomStatus::Load(BinaryReader& _reader) {
     _reader.Read("explotionTime", explotionTime_);
     _reader.Read<3, float>("positionOffset", positionOffset_);
     _reader.Read("CollisionRadius", collisionRadius_);
+    _reader.Read("launthSpeed", launthSpeed_);
 }
 
 void BomStatus::Finalize() {}
