@@ -18,27 +18,33 @@ void ScrapFallSystem::UpdateEntity(GameEntity* _entity) {
     if (!_entity)
         return;
 
-    ScrapStatus* scrapSystem = getComponent<ScrapStatus>(_entity); // status
+    ScrapStatus* scrapStatus = getComponent<ScrapStatus>(_entity); // status
     Rigidbody* rigitBody     = getComponent<Rigidbody>(_entity); // rigit
     Transform* transform     = getComponent<Transform>(_entity); // rigit
-    if (!scrapSystem || !rigitBody || !transform) {
+    if (!scrapStatus || !rigitBody || !transform) {
         return;
     }
   
     // 落ちてく(MovebyRigitBodyがやってくれてるでしょう)
 
     // 一定座標で止まる
-    if (transform->translate[Y] <= scrapSystem->GetFallStopPosY()) {
-        scrapSystem->SetIsStop(true);
+    if (transform->translate[Y] <= scrapStatus->GetFallStopPosY()) {
+        scrapStatus->SetIsStop(true);
     }
 
-    if (!scrapSystem->GetIsStop()) {
+    if (!scrapStatus->GetIsStop()) {
         return;
     }
 
     // 止まる処理
-    transform->translate[Y] = scrapSystem->GetFallStopPosY();
+    transform->translate[Y] = scrapStatus->GetFallStopPosY();
     rigitBody->setMass(0.0f);
     rigitBody->setUseGravity(false);
     rigitBody->setVelocity(Vec3f(0.0f, 0.0f, 0.0f));
+
+    //消滅までの時間
+    scrapStatus->LifeTimeDecrement(Engine::getInstance()->getDeltaTime());
+    if (scrapStatus->GetLifeTime() <= 0.0f) {
+        scrapStatus->SetIsDestroy(true);
+    }
 }

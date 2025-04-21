@@ -12,21 +12,19 @@ bool ScrapStatus::Edit() {
 
     ImGui::Spacing();
 
-  
-
     return isChange;
 }
 
 void ScrapStatus::Save(BinaryWriter& _writer) {
     _writer.Write("isAlive", isAlive_);
-   
 }
 
 void ScrapStatus::Load(BinaryReader& _reader) {
     _reader.Read("isAlive", isAlive_);
-    
 }
 
 void ScrapStatus::Finalize() {}
 
-/// setter
+void ScrapStatus::LifeTimeDecrement(const float& decrementValue) {
+    lifeTime_ -= decrementValue;
+}

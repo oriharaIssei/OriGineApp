@@ -4,6 +4,7 @@
 #define ENGINE_COMPONENTS
 
 #include "component/Player/PlayerStates.h"
+#include"component/Scrap/ScrapStatus.h"
 #include "engine/EngineInclude.h"
 
 
@@ -21,5 +22,16 @@ void ScrapDeleteSystem::UpdateEntity(GameEntity* _entity) {
     if (!_entity) {
         return;
     }
+
+    ScrapStatus* scrapStatus = getComponent<ScrapStatus>(_entity);
+    if (!scrapStatus) {
+        return;
+    }
+
+    if (scrapStatus->GetIsDestroy()) {
+        DestroyEntity(_entity);
+    }
+
+
 }
 

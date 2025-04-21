@@ -27,8 +27,9 @@ public:
     virtual bool Edit();
     virtual void Save(BinaryWriter& _writer);
     virtual void Load(BinaryReader& _reader);
-
     virtual void Finalize();
+
+    void LifeTimeDecrement(const float& decrementValue);
 
 public: // accessor
         /// getter
@@ -37,7 +38,6 @@ public: // accessor
     bool GetIsDestroy() const { return isDestroy_; }
     float GetLifeTime() const { return lifeTime_; }
     float GetFallStopPosY() const { return fallStopPosY_; }
-  
     BlowDirection GetBlowDirection() const { return blowDirection_; }
 
     /// setter
