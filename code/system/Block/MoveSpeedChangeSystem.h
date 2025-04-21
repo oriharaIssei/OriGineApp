@@ -16,5 +16,8 @@ public:
 
 protected:
     virtual void UpdateEntity(GameEntity* _entity) override;
+
+    private:
+    float timer_;
    
 };

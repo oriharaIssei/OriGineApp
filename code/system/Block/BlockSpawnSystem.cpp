@@ -87,7 +87,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos
     Transform* transform = getComponent<Transform>(block); // 柱
     float sizeY          = blockSpawner_->GetBlockSize()[Y] * 2.0f;
    
-    transform->translate = Vec3f{xPos, sizeY * columIndex, blockSpawner_->GetStartPositionZ()};
+    transform->translate = Vec3f{xPos, blockSpawner_->GetBasePosY()+( sizeY * columIndex), blockSpawner_->GetStartPositionZ()};
     transform->scale     = Vec3f(blockSpawner_->GetBlockSize()[X], blockSpawner_->GetBlockSize()[Y], 1.0f);
 
     //* Collider

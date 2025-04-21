@@ -133,7 +133,7 @@ void BlockManager::CostReset() {
 
 void BlockManager::SpeedChangeForTime(const float& time) {
     // 各速度の切り替え間隔（例：10秒ごとに切り替え）
-    const float interval = 10.0f;
+    const float interval = 20.0f;
 
     // 現在のインデックスを計算
     size_t index = static_cast<size_t>(time / interval);

@@ -11,6 +11,7 @@
 MoveSpeedChangeSystem::MoveSpeedChangeSystem() : ISystem(SystemType::Movement) {}
 
 void MoveSpeedChangeSystem::Initialize() {
+    timer_ = 0.0f;
 }
 
 void MoveSpeedChangeSystem::Finalize() {
@@ -25,23 +26,24 @@ void MoveSpeedChangeSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
+    timer_ += Engine::getInstance()->getDeltaTime();
 
-    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+   /* EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* timerManagerEntity           = ecsManager->getUniqueEntity("Timer");
 
     if (!timerManagerEntity) {
         return;
-    }
+    }*/
 
     BlockManager* blockManager  = getComponent<BlockManager>(_entity);
-    TimerStatus* timerStatus = getComponent<TimerStatus>(timerManagerEntity);
+   /* TimerStatus* timerStatus = getComponent<TimerStatus>(timerManagerEntity);*/
 
    
 
-    if (!blockManager || !timerStatus) {
+    if (!blockManager /*|| !timerStatus*/) {
         return;
     }
 
-    blockManager->SpeedChangeForTime(timerStatus->GetCurrentTimer());
+    blockManager->SpeedChangeForTime(timer_);
    
 }
