@@ -18,6 +18,8 @@ void ScrapDeleteSystem::Finalize() {}
 
 
 void ScrapDeleteSystem::UpdateEntity(GameEntity* _entity) {
-    
+    if (!_entity) {
+        return;
+    }
 }
 

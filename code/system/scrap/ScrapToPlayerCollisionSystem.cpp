@@ -1,4 +1,4 @@
-#include "ScrapGotDeleteSystem.h"
+#include "ScrapToPlayerCollisionSystem.h"
 
 #define ENGINE_INCLUDE
 #define ENGINE_COMPONENTS
@@ -18,6 +18,8 @@ void ScrapToPlayerCollisionSystem::Finalize() {}
 
 
 void ScrapToPlayerCollisionSystem::UpdateEntity(GameEntity* _entity) {
-    
+    if (!_entity) {
+        return;
+    }
 }
 

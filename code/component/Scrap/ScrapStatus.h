@@ -12,6 +12,7 @@ public:
 private: // variables
     bool isAlive_ = true;
     bool isStop_  = false;
+    bool isDestroy_ = false;
 
     float lifeTime_;
     float fallStopPosY_;
@@ -33,6 +34,7 @@ public: // accessor
         /// getter
     bool IsAlive() const { return isAlive_; }
     bool GetIsStop() const { return isStop_; }
+    bool GetIsDestroy() const { return isDestroy_; }
     float GetLifeTime() const { return lifeTime_; }
     float GetFallStopPosY() const { return fallStopPosY_; }
   
@@ -44,5 +46,5 @@ public: // accessor
     void SetLifeTime(const float& lifeTime) { lifeTime_ = lifeTime; }
     void SetFallStopPosY(const float& y) { fallStopPosY_ = y; }
     void SetBlowDirection(const BlowDirection& dir) { blowDirection_ = dir; }
-   
+    void SetIsDestroy(const bool& is) { isDestroy_ = is; }
 };
