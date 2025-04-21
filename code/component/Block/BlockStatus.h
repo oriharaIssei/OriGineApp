@@ -24,6 +24,10 @@ private: // variables
     bool isDestroy_ = false;
     bool isbreak_   = false;
 
+    //score
+    float ratio_=1.0f;
+    float baseScoreValue_=0.0f;
+
     BlockType blockType_;
 
 public:
@@ -48,6 +52,8 @@ public: // accsessor
     const bool& GetIsFall() const { return isFall_; }
     BlockType GetBlockType() const { return blockType_; }
     bool GetIsBreak() const { return isbreak_; }
+    float GetScoreRatio() const { return ratio_; }
+    float GetBaseScoreValue() const { return baseScoreValue_; }
 
       /// setter
     void SetColum(const int32_t& colum);
@@ -56,4 +62,6 @@ public: // accsessor
     void SetIsDestroy(const bool& is) { isDestroy_ = is;}
     void SetBlockType(const BlockType& type) { blockType_ = type; }
     void SetIsBreak(const bool& is) { isbreak_ = is; }
+    void SetRatio(const float& ratio) { ratio_ = ratio; }
+    void SetBaseScoreValue(const float& value) { baseScoreValue_ = value; }
 };

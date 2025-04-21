@@ -248,6 +248,9 @@
     <ClInclude Include="code\system\FloatingFloor\FloatingFloorRevivalSystem.h">
       <Filter>system\FloatingFloor</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Block\BlockFloorCollision.h">
+      <Filter>system\Block</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -425,6 +428,9 @@
     </ClCompile>
     <ClCompile Include="code\system\FloatingFloor\FloatingFloorRevivalSystem.cpp">
       <Filter>system\FloatingFloor</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Block\BlockFloorCollision.cpp">
+      <Filter>system\Block</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -23,6 +23,7 @@
 #include "system/Block/BlockMoveSystem.h"
 #include "system/Block/BreakBlockSystem.h"
 #include "system/Block/DeleteBlockSystem.h"
+#include"system/Block/BlockFloorCollision.h"
 
 BlockSpawnSystem::BlockSpawnSystem() : ISystem(SystemType::Movement) {}
 BlockSpawnSystem::~BlockSpawnSystem() {}
@@ -105,6 +106,9 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos
     BlockTypeSetting(blockStatus, BlockType::SKULL); // どくろの生成
     BlockTypeSetting(blockStatus, BlockType::ADVANTAGE); // アドバンテージブロックの生成
 
+    //ブロックタイプにより得られるスコアを設定
+    blockStatus->SetBaseScoreValue(blockSpawner_->GetScoreValue(blockStatus->GetBlockType()));
+
     //* MeshRenderer
     ModelMeshRenderer* blockRender = getComponent<ModelMeshRenderer>(block);
 
@@ -131,10 +135,11 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos
     //------------------ Movement
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(block);
     ecs->getSystem<BlockMoveSystem>()->addEntity(block);
-
+    
     //------------------ Collision
     ecs->getSystem<CollisionCheckSystem>()->addEntity(block);
     ecs->getSystem<BlockExBomCollision>()->addEntity(block);
+    ecs->getSystem<BlockFloorCollision>()->addEntity(block);
     //------------------ Physics
     // None
 

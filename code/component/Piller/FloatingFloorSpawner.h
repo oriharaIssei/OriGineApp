@@ -25,6 +25,8 @@ private: // variables
     Vec3f fallCollisionSizeMax_;
     Vec3f fallCollisionCenterPos_;
 
+    float ratio_;
+
   float revivalTime_;
 
 public:
@@ -47,6 +49,7 @@ public: // accsessor
     float GetPositionHeight() const { return positionHeight_; }
     float GetPositionSideSpace() const { return sideSpace_; }
     float GetRevivalTime() const { return revivalTime_; }
+    float GetRatio() const { return ratio_; }
     bool GetIsCreated() const { return isCreated_; }
     int32_t GetHpMax() const { return HPMax_; }
     Vec3f GetFallCollisionSizeMin() const { return fallCollisionSizeMin_; }
@@ -55,5 +58,5 @@ public: // accsessor
       /// setter
     void SetIsCreated(const bool&is) {  isCreated_=is; }
     void SetRowNumber(const int32_t& num) { rowNumber_ = num; }
-   
+
 };

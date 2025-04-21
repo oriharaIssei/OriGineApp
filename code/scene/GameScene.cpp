@@ -60,6 +60,7 @@
 #include"Application/code/system/BigBom/BigBomInputSystem.h"
 #include"Application/code/system/BigBom/BigBomLaunchSystem.h"
 #include"Application/code/system/FloatingFloor/FloatingFloorRevivalSystem.h"
+#include"Application/code/system/Block/BlockFloorCollision.h"
 
 GameScene::GameScene()
     : IScene("Game") {}
@@ -130,5 +131,6 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<BigBomInputSystem>();
     ecsManager->registerSystem<BigBomLaunchSystem>();
     ecsManager->registerSystem<FloatingFloorRevivalSystem>();
+    ecsManager->registerSystem<BlockFloorCollision>();
     ecsManager->SortPriorityOrderSystems();
 }

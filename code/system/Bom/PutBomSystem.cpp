@@ -79,7 +79,6 @@ void PutBomSystem::SpawnBom(GameEntity* _entity, BomStatus* _status) {
     status = _status;
   /*  ExplotionCollision* collisionState = getComponent<ExplotionCollision>(bom);*/
 
-   
     //collisionState->SetAdaptTime(0.5f);
     //collisionState->SetCollisionRadius(5.0f);
     //collisionState->SetOffset(Vec3f(0.0f, 0.0f, 0.0f));

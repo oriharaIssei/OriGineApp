@@ -44,7 +44,7 @@ private: // variables
     std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> currentCosts_;
     std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> generateInterval_{}; // 各BlockTypeの生成間隔（列ごと）
     std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> lineCounter_{};      // 現在の行数カウント
-
+    std::array<float, static_cast<int32_t>(BlockType::COUNT)> scoreValue_{}; // 現在の行数カウント
 
 public:
     BlockManager() {}
@@ -77,6 +77,7 @@ public: // accsessor
     int32_t GetCurrentCost(BlockType type) const { return currentCosts_[static_cast<int32_t>(type)]; }
     int32_t GetGenerateInterval(BlockType type) const { return generateInterval_[static_cast<int32_t>(type)]; }
     int32_t GetLineCounter(BlockType type) const { return lineCounter_[static_cast<int32_t>(type)]; }
+    float GetScoreValue(BlockType type) const { return scoreValue_[static_cast<int32_t>(type)]; }
    
 
     /// setter

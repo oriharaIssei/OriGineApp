@@ -29,6 +29,7 @@
 #include "system/Floor/FloorUpdateMatrixSystem.h"
 #include "system/Matrix/UpdateMatrixSystem.h"
 
+
 CreateFloorSystem::CreateFloorSystem() : ISystem(SystemType::Initialize) {}
 CreateFloorSystem::~CreateFloorSystem() {}
 
@@ -115,6 +116,9 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     floatingFloorStatus->SetFallPosY(-1.0f);
     floatingFloorStatus->SetIncrementFallEaseT(0.0f);
 
+    //ratio
+    floatingFloorStatus->SetRatio(floatFloorSpawner->GetRatio());
+
     // ================================= System ================================= //
 
     //------------------ Input
@@ -132,7 +136,7 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     //------------------ Collision
     ecs->getSystem<CollisionCheckSystem>()->addEntity(floatingFloor);
     ecs->getSystem<FloatingFloorDamageSystem>()->addEntity(floatingFloor);
-    //------------------ Physics
+     //------------------ Physics
     // None
     
     //------------------ Render

@@ -59,6 +59,12 @@ bool BlockManager::Edit() {
         isChange |= ImGui::InputInt(label.c_str(), &generateInterval_[i]);
     }
 
+     ImGui::Text("Score");
+    for (int i = 0; i < scoreValue_.size(); ++i) {
+        std::string label = "Interval[" + std::to_string(i) + "]";
+        isChange |= ImGui::DragFloat(label.c_str(), &scoreValue_[i]);
+    }
+
 
     return isChange;
 }
@@ -88,6 +94,9 @@ void BlockManager::Save(BinaryWriter& _writer) {
 
     for (int i = 0; i < generateInterval_.size(); ++i) {
         _writer.Write(("generateInterval_" + std::to_string(i)).c_str(), generateInterval_[i]);
+    }
+    for (int i = 0; i < scoreValue_.size(); ++i) {
+        _writer.Write(("scoreValue_" + std::to_string(i)).c_str(), scoreValue_[i]);
     }
    
 }
@@ -120,6 +129,9 @@ void BlockManager::Load(BinaryReader& _reader) {
         _reader.Read(("generateInterval_" + std::to_string(i)).c_str(), generateInterval_[i]);
     }
 
+    for (int i = 0; i < scoreValue_.size(); ++i) {
+        _reader.Read(("scoreValue_" + std::to_string(i)).c_str(), scoreValue_[i]);
+    }
    
 }
 
