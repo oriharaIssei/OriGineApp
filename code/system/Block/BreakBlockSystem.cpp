@@ -3,7 +3,7 @@
 /// ECS
 #define ENGINE_ECS
 // component
-#include"component/Block/BlockStatus.h"
+#include "component/Block/BlockStatus.h"
 #include "engine/EngineInclude.h"
 #include <Vector.h>
 
@@ -18,30 +18,47 @@ void BreakBlockSystem::Finalize() {
 
 BreakBlockSystem::~BreakBlockSystem() {}
 
-
 void BreakBlockSystem::UpdateEntity(GameEntity* _entity) {
     if (!_entity) {
         return;
     }
 
-
-   /*  EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
-    GameEntity* blockManagerEntity           = ecsManager->getUniqueEntity("BlockManager");
-
-    if (!blockManagerEntity) {
-        return;
-    }*/
-
     BlockStatus* blockStatus = getComponent<BlockStatus>(_entity);
-    /*BlockManager* blockManager = getComponent<BlockManager>(blockManagerEntity);*/
-
-   
 
     if (!blockStatus) {
         return;
     }
 
     if (blockStatus->GetIsBreak()) {
+        BlockReaction(blockStatus->GetBlockType());
         DestroyEntity(_entity);
+    }
+}
+
+void BreakBlockSystem::BlockReaction(BlockType blocktype) {
+    switch (blocktype) {
+        ///---------------------------------------------
+        /// Normal
+        ///---------------------------------------------
+    case BlockType::NORMAL:
+
+        break;
+
+        ///---------------------------------------------
+        /// Skull
+        ///---------------------------------------------
+    case BlockType::SKULL:
+
+        break;
+
+        ///---------------------------------------------
+        /// Advance
+        ///---------------------------------------------
+    case BlockType::ADVANTAGE:
+
+        break;
+
+    default:
+        break;
     }
 }
