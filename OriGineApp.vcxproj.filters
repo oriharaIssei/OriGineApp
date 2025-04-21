@@ -54,6 +54,11 @@
     </Filter>
     <Filter Include="system\Block">
       <UniqueIdentifier>{ca162b5b-6bdf-43c3-9e21-b81662fd6214}</UniqueIdentifier>
+    <Filter Include="system\Input">
+      <UniqueIdentifier>{09547867-F5B6-070C-9E3C-40C28A7ED38E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\Transition">
+      <UniqueIdentifier>{446DD6E9-B083-D47F-F9FA-5FA16550A507}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -186,6 +191,27 @@
     </ClInclude>
     <ClInclude Include="code\system\Block\BreakBlockSystem.h">
       <Filter>system\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Button.h">
+      <Filter>component</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\SceneChanger.h">
+      <Filter>component</Filter>
+    </ClInclude>
+    <ClInclude Include="code\scene\GameScene.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="code\scene\TitleScene.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Input\ButtonInputSystem.h">
+      <Filter>system\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Transition\ChangeSceneByButton.h">
+      <Filter>system\Transition</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Transition\UpdateButtonColorByState.h">
+      <Filter>system\Transition</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -322,5 +348,26 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="component\ComponentTemplate.txt" />
+    <ClCompile Include="code\component\Button.cpp">
+      <Filter>component</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\SceneChanger.cpp">
+      <Filter>component</Filter>
+    </ClCompile>
+    <ClCompile Include="code\scene\GameScene.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="code\scene\TitleScene.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Input\ButtonInputSystem.cpp">
+      <Filter>system\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Transition\ChangeSceneByButton.cpp">
+      <Filter>system\Transition</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Transition\UpdateButtonColorByState.cpp">
+      <Filter>system\Transition</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
