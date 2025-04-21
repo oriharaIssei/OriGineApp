@@ -35,3 +35,13 @@ void BigBomStatus::Load(BinaryReader& _reader) {
 }
 
 void BigBomStatus::Finalize() {}
+
+void BigBomStatus::IncrementLaunchDirectin(const float& value) {
+    launchDirection_[X] += value;
+    launchDirection_[Y] += value;
+    launchDirection_[Z] += value;
+   }
+
+void BigBomStatus::LaunchDirectionNormalize() {
+       launchDirection_.normalize();
+}

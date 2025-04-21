@@ -79,6 +79,22 @@ void PlayerInputSystem::TransformInit(GameEntity* _entity) {
 }
 
 void PlayerInputSystem::PutBom(GameEntity* _entity) {
+
+     // PlayerEntityを取得
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* playerEntity                 = ecsManager->getUniqueEntity("Player");
+
+   
+    if (!playerEntity) {
+        return;
+    }
+
+    PlayerStates* playerStates = getComponent<PlayerStates>(playerEntity);
+
+    if (playerStates->GetIsBigBomHaving()) {
+        return;
+    }
+
     BomSpawner* entityBomSpawner = getComponent<BomSpawner>(_entity);
     if (!entityBomSpawner) {
         return;

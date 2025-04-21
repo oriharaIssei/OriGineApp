@@ -67,6 +67,9 @@
     <Filter Include="component\BigBom">
       <UniqueIdentifier>{344f6976-9132-45ee-a6a9-94043d3982e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="system\BigBom">
+      <UniqueIdentifier>{173f64c8-99a3-4c5e-9f72-6618e7a59739}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -236,6 +239,12 @@
     <ClInclude Include="code\system\Player\PlayerCreateBigBomSystem.h">
       <Filter>system\Player</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\BigBom\BigBomInputSystem.h">
+      <Filter>system\BigBom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\BigBom\BigBomLaunchSystem.h">
+      <Filter>system\BigBom</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -404,6 +413,12 @@
     </ClCompile>
     <ClCompile Include="code\system\Player\PlayerCreateBigBomSystem.cpp">
       <Filter>system\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\BigBom\BigBomInputSystem.cpp">
+      <Filter>system\BigBom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\BigBom\BigBomLaunchSystem.cpp">
+      <Filter>system\BigBom</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

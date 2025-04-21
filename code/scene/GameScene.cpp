@@ -57,7 +57,8 @@
 #include"Application/code/system/scrap/ScrapFallSystem.h"
 #include"Application/code/system/scrap/ScrapDeleteSystem.h"
 #include"Application/code/system/scrap/ScrapToPlayerCollisionSystem.h"
-
+#include"Application/code/system/BigBom/BigBomInputSystem.h"
+#include"Application/code/system/BigBom/BigBomLaunchSystem.h"
 
 GameScene::GameScene()
     : IScene("Game") {}
@@ -125,5 +126,7 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<ScrapDeleteSystem>();
     ecsManager->registerSystem<ScrapToPlayerCollisionSystem>();
     ecsManager->registerSystem<PlayerCreateBigBomSystem>();
+    ecsManager->registerSystem<BigBomInputSystem>();
+    ecsManager->registerSystem<BigBomLaunchSystem>();
     ecsManager->SortPriorityOrderSystems();
 }

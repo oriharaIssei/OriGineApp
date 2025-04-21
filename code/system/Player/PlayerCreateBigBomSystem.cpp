@@ -12,6 +12,9 @@
 #include "component/BigBom/BigBomStatus.h"
 #include "component/Player/PlayerStates.h"
 
+#include"system/BigBom/BigBomInputSystem.h"
+#include"system/BigBom/BigBomLaunchSystem.h"
+
 #include <cmath>
 #include <numbers>
 #include <Quaternion.h>
@@ -72,20 +75,20 @@ void PlayerCreateBigBomSystem::UpdateEntity(GameEntity* _entity) {
 
     //*model
     ModelMeshRenderer* modelMesh = getComponent<ModelMeshRenderer>(bigBom);
-    CreateModelMeshRenderer(modelMesh, bigBom, kApplicationResourceDirectory + "/Models/Bom", "Bom.obj");
+    CreateModelMeshRenderer(modelMesh, bigBom, kApplicationResourceDirectory + "/Models/Player", "Player.obj");
 
     // ================================= System ================================= //
     ECSManager* ecs = ECSManager::getInstance();
 
     //------------------ Input
     // None
-
+    ecs->getSystem<BigBomInputSystem>()->addEntity(bigBom);
     //------------------ StateTransition
    
     //------------------ Movement
+  
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(bigBom);
-   
-
+    ecs->getSystem<BigBomLaunchSystem>()->addEntity(bigBom);
     //------------------ Collision
     ecs->getSystem<CollisionCheckSystem>()->addEntity(bigBom);
    
