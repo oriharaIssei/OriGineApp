@@ -5,11 +5,15 @@
 #define RESOURCE_DIRECTORY // Resource の Directory
 /// ECS
 #define ENGINE_ECS
+#include "engine/EngineInclude.h"
 // component
 #include "component/Block/BlockStatus.h"
 #include "component/Scrap/ScrapSpawner.h"
 #include "component/Scrap/ScrapStatus.h"
-#include "engine/EngineInclude.h"
+/// system
+#include"system/scrap/ScrapFallSystem.h"
+#include"system/scrap/ScrapDeleteSystem.h"
+#include"system/scrap/ScrapToPlayerCollisionSystem.h"
 #include <cstdint>
 #include <Vector.h>
 
@@ -88,6 +92,9 @@ void BreakBlockSystem::ScrapSpawn(GameEntity* _entity) {
 
         //*Status
         ScrapStatus* status = getComponent<ScrapStatus>(scrap);
+        status->SetFallStopPosY(scrapSpawner->GetFallStopPosY());//stopPos
+        status->SetLifeTime(scrapSpawner->GetLifeTime());        // lifeTime
+        //status->SetPointValue(scrapSpawner->GetPointValue());    // pointValue
         float blowValueX    = 0.0f;
         float blowValueY    = scrapSpawner->GetBlowValue()[Y];
 
@@ -119,7 +126,7 @@ void BreakBlockSystem::ScrapSpawn(GameEntity* _entity) {
 
         //*model
         ModelMeshRenderer* modelMesh = getComponent<ModelMeshRenderer>(scrap);
-        CreateModelMeshRenderer(modelMesh, scrap, kApplicationResourceDirectory + "/Models/Block", "Block.obj");
+        CreateModelMeshRenderer(modelMesh, scrap, kApplicationResourceDirectory + "/Models/Scrap", "Scrap.obj");
 
         // ================================= System ================================= //
         ECSManager* ecs = ECSManager::getInstance();
@@ -128,12 +135,14 @@ void BreakBlockSystem::ScrapSpawn(GameEntity* _entity) {
         // None
 
         //------------------ StateTransition
-
+        ecs->getSystem<ScrapDeleteSystem>()->addEntity(scrap);
         //------------------ Movement
         ecs->getSystem<MoveSystemByRigidBody>()->addEntity(scrap);
+        ecs->getSystem<ScrapFallSystem>()->addEntity(scrap);
 
         //------------------ Collision
         ecs->getSystem<CollisionCheckSystem>()->addEntity(scrap);
+        ecs->getSystem<ScrapToPlayerCollisionSystem>()->addEntity(scrap);
         //------------------ Physics
         // None
 

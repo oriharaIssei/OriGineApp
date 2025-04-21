@@ -3,13 +3,13 @@
 #include "component/transform/Transform.h"
 
 class PlayerStates;
-class ScrapGotDeleteSystem
+class ScrapToPlayerCollisionSystem
     : public ISystem {
 private:
    
 public:
-    ScrapGotDeleteSystem();
-    ~ScrapGotDeleteSystem();
+    ScrapToPlayerCollisionSystem();
+    ~ScrapToPlayerCollisionSystem();
 
     void Initialize() override;
     // void Update() override;

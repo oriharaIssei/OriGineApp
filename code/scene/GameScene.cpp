@@ -50,6 +50,9 @@
 #include"Application/code/system/Bom/BomCollisionExSystem.h"
 #include"Application/code/system/Block/BreakBlockSystem.h"
 #include"Application/code/system/Block/BlockExBomCollision.h"
+#include"Application/code/system/scrap/ScrapFallSystem.h"
+#include"Application/code/system/scrap/ScrapDeleteSystem.h"
+#include"Application/code/system/scrap/ScrapToPlayerCollisionSystem.h"
 
 GameScene::GameScene()
     : IScene("Game") {}
@@ -110,5 +113,8 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<BomCollisionExSystem>();
     ecsManager->registerSystem<BreakBlockSystem>();
     ecsManager->registerSystem<BlockExBomCollision>();
+    ecsManager->registerSystem<ScrapFallSystem>();
+    ecsManager->registerSystem<ScrapDeleteSystem>();
+    ecsManager->registerSystem<ScrapToPlayerCollisionSystem>();
     ecsManager->SortPriorityOrderSystems();
 }

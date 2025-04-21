@@ -25,7 +25,7 @@ void DeleteBlockSystem::UpdateEntity(GameEntity* _entity) {
     }
 
 
-     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* blockManagerEntity           = ecsManager->getUniqueEntity("BlockManager");
 
     if (!blockManagerEntity) {

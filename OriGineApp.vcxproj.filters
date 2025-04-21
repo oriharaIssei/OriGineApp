@@ -218,7 +218,7 @@
     <ClInclude Include="code\system\scrap\ScrapDeleteSystem.h">
       <Filter>system\scrap</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\scrap\ScrapGotDeleteSystem.h">
+    <ClInclude Include="code\system\scrap\ScrapToPlayerCollisionSystem.h">
       <Filter>system\scrap</Filter>
     </ClInclude>
   </ItemGroup>
@@ -375,7 +375,7 @@
     <ClCompile Include="code\system\scrap\ScrapDeleteSystem.cpp">
       <Filter>system\scrap</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\scrap\ScrapGotDeleteSystem.cpp">
+    <ClCompile Include="code\system\scrap\ScrapToPlayerCollisionSystem.cpp">
       <Filter>system\scrap</Filter>
     </ClCompile>
   </ItemGroup>

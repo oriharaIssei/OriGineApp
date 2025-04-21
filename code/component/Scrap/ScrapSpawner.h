@@ -20,8 +20,7 @@ private: // variables
     float lifeTime_;
     float fallStopPosY_;
     Vec2f blowValue_;
-    int32_t pointValue_;
-
+   
     //math
     float mass_;
     float colliderRadius_;
@@ -44,10 +43,10 @@ public: // accsessor
     Vec2f GetBlowValue() const { return blowValue_; }
     float GetFallStopPosY() const { return fallStopPosY_; }
     bool GetIsSpawn() const { return isSpawn_; }
-    int32_t GetPointValue() const { return pointValue_; }
     int32_t GetCreateNum() const { return createNum_; }
     float GetMass() const { return mass_; }
     float GetColliderRadius() const { return colliderRadius_; }
+    float GetLifeTime() const { return lifeTime_; }
     /// setter
     void SetIsSpawn(const bool& is) { isSpawn_ = is; }
 };
