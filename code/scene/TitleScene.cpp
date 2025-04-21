@@ -11,9 +11,9 @@
 #include "component/Button.h"
 #include "component/SceneChanger.h"
 // system
-#include "system/Input/ButtonInputSystem.h"
-#include "system/Transition/ChangeSceneByButton.h"
-#include "system/Transition/UpdateButtonColorByState.h"
+#include "system/ButtonInputSystem.h"
+#include "system/ChangeSceneByButton.h"
+#include "system/UpdateButtonColorByState.h"
 
 TitleScene::TitleScene() : IScene("Title") {}
 

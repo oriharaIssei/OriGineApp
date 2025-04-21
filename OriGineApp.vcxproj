@@ -57,7 +57,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <PreprocessorDefinitions>DEBUG;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)code;$(SolutionDir)application;$(SolutionDir)math;$(SolutionDir)lib;$(SolutionDir)engine\code\ECS;$(SolutionDir)engine\code;$(SolutionDir)engine;$(SolutionDir);$(SolutionDir)externals;$(SolutionDir)externals\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)code;$(ProjectDir);$(SolutionDir)math;$(SolutionDir)lib;$(SolutionDir)engine\code\ECS;$(SolutionDir)engine\code;$(SolutionDir)engine;$(SolutionDir);$(SolutionDir)externals;$(SolutionDir)externals\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)code;$(SolutionDir)application;$(SolutionDir)math;$(SolutionDir)lib;$(SolutionDir)engine\code\ECS;$(SolutionDir)engine\code;$(SolutionDir)engine;$(SolutionDir);$(SolutionDir)externals;$(SolutionDir)externals\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)code;$(ProjectDir);$(SolutionDir)math;$(SolutionDir)lib;$(SolutionDir)engine\code\ECS;$(SolutionDir)engine\code;$(SolutionDir)engine;$(SolutionDir);$(SolutionDir)externals;$(SolutionDir)externals\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -101,18 +101,25 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="code\FrameWork.h" />
+    <ClInclude Include="code\MyGame.h" />
     <ClInclude Include="code\component\Block\BlockManager.h" />
     <ClInclude Include="code\component\Block\BlockStatus.h" />
     <ClInclude Include="code\component\Bom\BomSpawner.h" />
     <ClInclude Include="code\component\Bom\BomStatus.h" />
     <ClInclude Include="code\component\Bom\ExplotionCollision.h" />
+    <ClInclude Include="code\component\Button.h" />
     <ClInclude Include="code\component\Combo\ComboStatus.h" />
     <ClInclude Include="code\component\Combo\ComboUIStatus.h" />
     <ClInclude Include="code\component\Piller\FloatingFloorSpawner.h" />
     <ClInclude Include="code\component\Piller\FloatingFloorStatus.h" />
+    <ClInclude Include="code\component\Player\PlayerStates.h" />
+    <ClInclude Include="code\component\SceneChanger.h" />
     <ClInclude Include="code\component\ShockWave\ShockWaveSpawner.h" />
     <ClInclude Include="code\component\Timer\TimerStatus.h" />
     <ClInclude Include="code\component\Timer\TimerUIStatus.h" />
+    <ClInclude Include="code\scene\GameScene.h" />
+    <ClInclude Include="code\scene\TitleScene.h" />
     <ClInclude Include="code\system\Block\BlockExBomCollision.h" />
     <ClInclude Include="code\system\Block\BlockMoveSystem.h" />
     <ClInclude Include="code\system\Block\BlockSpawnSystem.h" />
@@ -124,13 +131,8 @@
     <ClInclude Include="code\system\Bom\DeleteBomSystem.h" />
     <ClInclude Include="code\system\Bom\DeleteExplotionCollision.h" />
     <ClInclude Include="code\system\Bom\PutBomSystem.h" />
-    <ClInclude Include="code\system\ChangeSceneByButton.h" />
-    <ClInclude Include="code\component\Player\PlayerStates.h" />
     <ClInclude Include="code\system\ButtonInputSystem.h" />
-    <ClInclude Include="code\component\Button.h" />
-    <ClInclude Include="code\FrameWork.h" />
-    <ClInclude Include="code\MyGame.h" />
-    <ClInclude Include="code\scene\GameScene.h" />
+    <ClInclude Include="code\system\ChangeSceneByButton.h" />
     <ClInclude Include="code\system\Combo\ComboSystem.h" />
     <ClInclude Include="code\system\Combo\ComboUIScrollSystem.h" />
     <ClInclude Include="code\system\FloatingFloor\CanageStateFallSystem.h" />
@@ -140,7 +142,6 @@
     <ClInclude Include="code\system\FloatingFloor\FloatingFloorFallSystem.h" />
     <ClInclude Include="code\system\Floor\DeleteFloorSystem.h" />
     <ClInclude Include="code\system\Floor\FloorUpdateMatrixSystem.h" />
-    <ClInclude Include="code\scene\TitleScene.h" />
     <ClInclude Include="code\system\Matrix\UpdateMatrixSystem.h" />
     <ClInclude Include="code\system\Player\PlayerFollowCameraSystem.h" />
     <ClInclude Include="code\system\Player\PlayerInput.h" />
@@ -148,29 +149,27 @@
     <ClInclude Include="code\system\Timer\TimerDecrementSystem.h" />
     <ClInclude Include="code\system\Timer\TimerUIScrollSystem.h" />
     <ClInclude Include="code\system\UpdateButtonColorByState.h" />
-    <ClInclude Include="code\FrameWork.h" />
-    <ClInclude Include="code\MyGame.h" />
-    <ClInclude Include="code\component\Button.h" />
-    <ClInclude Include="code\component\SceneChanger.h" />
-    <ClInclude Include="code\scene\GameScene.h" />
-    <ClInclude Include="code\scene\TitleScene.h" />
-    <ClInclude Include="code\system\Input\ButtonInputSystem.h" />
-    <ClInclude Include="code\system\Transition\ChangeSceneByButton.h" />
-    <ClInclude Include="code\system\Transition\UpdateButtonColorByState.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\FrameWork.cpp" />
+    <ClCompile Include="code\MyGame.cpp" />
     <ClCompile Include="code\component\Block\BlockManager.cpp" />
     <ClCompile Include="code\component\Block\BlockStatus.cpp" />
     <ClCompile Include="code\component\Bom\BomSpawner.cpp" />
     <ClCompile Include="code\component\Bom\BomStatus.cpp" />
     <ClCompile Include="code\component\Bom\ExplotionCollision.cpp" />
+    <ClCompile Include="code\component\Button.cpp" />
     <ClCompile Include="code\component\Combo\ComboStatus.cpp" />
     <ClCompile Include="code\component\Combo\ComboUIStatus.cpp" />
     <ClCompile Include="code\component\Piller\FloatingFloorSpawner.cpp" />
     <ClCompile Include="code\component\Piller\FloatingFloorStatus.cpp" />
+    <ClCompile Include="code\component\Player\PlayerStates.cpp" />
+    <ClCompile Include="code\component\SceneChanger.cpp" />
     <ClCompile Include="code\component\ShockWave\ShockWaveSpawner.cpp" />
     <ClCompile Include="code\component\Timer\TimerStatus.cpp" />
     <ClCompile Include="code\component\Timer\TimerUIStatus.cpp" />
+    <ClCompile Include="code\scene\GameScene.cpp" />
+    <ClCompile Include="code\scene\TitleScene.cpp" />
     <ClCompile Include="code\system\Block\BlockExBomCollision.cpp" />
     <ClCompile Include="code\system\Block\BlockMoveSystem.cpp" />
     <ClCompile Include="code\system\Block\BlockSpawnSystem.cpp" />
@@ -182,13 +181,8 @@
     <ClCompile Include="code\system\Bom\DeleteBomSystem.cpp" />
     <ClCompile Include="code\system\Bom\DeleteExplotionCollision.cpp" />
     <ClCompile Include="code\system\Bom\PutBomSystem.cpp" />
-    <ClCompile Include="code\system\ChangeSceneByButton.cpp" />
-    <ClCompile Include="code\component\Player\PlayerStates.cpp" />
     <ClCompile Include="code\system\ButtonInputSystem.cpp" />
-    <ClCompile Include="code\component\Button.cpp" />
-    <ClCompile Include="code\FrameWork.cpp" />
-    <ClCompile Include="code\MyGame.cpp" />
-    <ClCompile Include="code\scene\GameScene.cpp" />
+    <ClCompile Include="code\system\ChangeSceneByButton.cpp" />
     <ClCompile Include="code\system\Combo\ComboSystem.cpp" />
     <ClCompile Include="code\system\Combo\ComboUIScrollSystem.cpp" />
     <ClCompile Include="code\system\FloatingFloor\CanageStateFallSystem.cpp" />
@@ -198,7 +192,6 @@
     <ClCompile Include="code\system\FloatingFloor\FloatingFloorFallSystem.cpp" />
     <ClCompile Include="code\system\Floor\DeleteFloorSystem.cpp" />
     <ClCompile Include="code\system\Floor\FloorUpdateMatrixSystem.cpp" />
-    <ClCompile Include="code\scene\TitleScene.cpp" />
     <ClCompile Include="code\system\Matrix\UpdateMatrixSystem.cpp" />
     <ClCompile Include="code\system\Player\PlayerFollowCameraSystem.cpp" />
     <ClCompile Include="code\system\Player\PlayerInput.cpp" />
@@ -206,15 +199,6 @@
     <ClCompile Include="code\system\Timer\TimerDecrementSystem.cpp" />
     <ClCompile Include="code\system\Timer\TimerUIScrollSystem.cpp" />
     <ClCompile Include="code\system\UpdateButtonColorByState.cpp" />
-    <ClCompile Include="code\FrameWork.cpp" />
-    <ClCompile Include="code\MyGame.cpp" />
-    <ClCompile Include="code\component\Button.cpp" />
-    <ClCompile Include="code\component\SceneChanger.cpp" />
-    <ClCompile Include="code\scene\GameScene.cpp" />
-    <ClCompile Include="code\scene\TitleScene.cpp" />
-    <ClCompile Include="code\system\Input\ButtonInputSystem.cpp" />
-    <ClCompile Include="code\system\Transition\ChangeSceneByButton.cpp" />
-    <ClCompile Include="code\system\Transition\UpdateButtonColorByState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\externals\DirectXTex\DirectXTex.vcxproj">
