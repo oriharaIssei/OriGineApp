@@ -24,7 +24,9 @@ private: // variables
     Transform* pivotTransform_ = nullptr; // 回転の中心となるオブジェクト
     Transform* transform_      = nullptr; // 自身のTransform
 
+    //bom
     int32_t bomExplotionNum_; // 爆発数
+    bool isBigBomHaving_ = false;
 
 public:
     PlayerStates() {}
@@ -38,6 +40,7 @@ public:
     virtual void Finalize();
 
     void IncrementCurrentBigBomPoint();
+    void ReSetCurrentBigBomPoint();
 
 public: // accsessor
     /// getter
@@ -52,6 +55,7 @@ public: // accsessor
     int32_t GetBigBomPointMax() const { return bigBomPointMax_; }
     int32_t GetCurrentBigBomPoint() const { return currentBigBomPoint_; }
     Vec3f GetFollowOffset() const { return followCameraOffset_; }
+    bool GetIsBigBomHaving() const { return isBigBomHaving_; }
     /// setter
     void SetIncrementTheta(float _theta) { theta_ += _theta; }
     void SetTheta(float _theta) { theta_ = _theta; }
@@ -59,4 +63,5 @@ public: // accsessor
     void SetTransform(Transform* _transform) { transform_ = _transform; }
     void SetPivotTransform(Transform* _pivotTransform) { pivotTransform_ = _pivotTransform; }
     void SetincrementBomExplotionNum() { bomExplotionNum_++; }
+    void SetIsBigBomHaving(const bool& is) { isBigBomHaving_ = is; }
 };

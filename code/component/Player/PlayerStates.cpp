@@ -53,3 +53,7 @@ void PlayerStates::Finalize() {}
 void PlayerStates::IncrementCurrentBigBomPoint() {
     currentBigBomPoint_++;
 }
+
+void PlayerStates::ReSetCurrentBigBomPoint() {
+    currentBigBomPoint_ = 0;
+ }

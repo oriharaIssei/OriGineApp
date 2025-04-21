@@ -101,6 +101,9 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="code\component\BigBom\BigBomSpawner.h" />
+    <ClInclude Include="code\component\BigBom\BigBomStatus.h" />
+    <ClInclude Include="code\component\BigBom\BigExplotionCollision.h" />
     <ClInclude Include="code\component\Scrap\ScrapSpawner.h" />
     <ClInclude Include="code\component\Scrap\ScrapStatus.h" />
     <ClInclude Include="code\FrameWork.h" />
@@ -145,6 +148,7 @@
     <ClInclude Include="code\system\Floor\DeleteFloorSystem.h" />
     <ClInclude Include="code\system\Floor\FloorUpdateMatrixSystem.h" />
     <ClInclude Include="code\system\Matrix\UpdateMatrixSystem.h" />
+    <ClInclude Include="code\system\Player\PlayerCreateBigBomSystem.h" />
     <ClInclude Include="code\system\Player\PlayerFollowCameraSystem.h" />
     <ClInclude Include="code\system\Player\PlayerInput.h" />
     <ClInclude Include="code\system\Player\PlayerMoveSystem.h" />
@@ -156,6 +160,9 @@
     <ClInclude Include="code\system\UpdateButtonColorByState.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\component\BigBom\BigBomSpawner.cpp" />
+    <ClCompile Include="code\component\BigBom\BigBomStatus.cpp" />
+    <ClCompile Include="code\component\BigBom\BigExplotionCollision.cpp" />
     <ClCompile Include="code\component\Scrap\ScrapSpawner.cpp" />
     <ClCompile Include="code\component\Scrap\ScrapStatus.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
@@ -200,6 +207,7 @@
     <ClCompile Include="code\system\Floor\DeleteFloorSystem.cpp" />
     <ClCompile Include="code\system\Floor\FloorUpdateMatrixSystem.cpp" />
     <ClCompile Include="code\system\Matrix\UpdateMatrixSystem.cpp" />
+    <ClCompile Include="code\system\Player\PlayerCreateBigBomSystem.cpp" />
     <ClCompile Include="code\system\Player\PlayerFollowCameraSystem.cpp" />
     <ClCompile Include="code\system\Player\PlayerInput.cpp" />
     <ClCompile Include="code\system\Player\PlayerMoveSystem.cpp" />

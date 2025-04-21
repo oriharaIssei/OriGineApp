@@ -64,6 +64,9 @@
     <Filter Include="system\scrap">
       <UniqueIdentifier>{991bf3cd-f194-4718-a592-c812f35ab967}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\BigBom">
+      <UniqueIdentifier>{344f6976-9132-45ee-a6a9-94043d3982e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -221,6 +224,18 @@
     <ClInclude Include="code\system\scrap\ScrapToPlayerCollisionSystem.h">
       <Filter>system\scrap</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\BigBom\BigBomSpawner.h">
+      <Filter>component\BigBom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\BigBom\BigBomStatus.h">
+      <Filter>component\BigBom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\BigBom\BigExplotionCollision.h">
+      <Filter>component\BigBom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Player\PlayerCreateBigBomSystem.h">
+      <Filter>system\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -377,6 +392,18 @@
     </ClCompile>
     <ClCompile Include="code\system\scrap\ScrapToPlayerCollisionSystem.cpp">
       <Filter>system\scrap</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\BigBom\BigBomSpawner.cpp">
+      <Filter>component\BigBom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\BigBom\BigBomStatus.cpp">
+      <Filter>component\BigBom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\BigBom\BigExplotionCollision.cpp">
+      <Filter>component\BigBom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Player\PlayerCreateBigBomSystem.cpp">
+      <Filter>system\Player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
