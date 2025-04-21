@@ -66,8 +66,8 @@ void TimerStatus::CurrentTimeUpdate(const int32_t& comboNum) {
 }
 
 void TimerStatus::TimerDecrement(const float& timer) {
-    currentTimer_ += timer;
+    currentTimer_ -= timer;
  }
 void TimerStatus::TimerIncrement(const float& timer) {
-     currentTimer_ -= timer;
+     currentTimer_ += timer;
  }
