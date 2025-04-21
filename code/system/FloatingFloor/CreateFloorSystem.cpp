@@ -132,7 +132,7 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     // None
 
     //------------------ Render
-    ecs->getSystem<ColliderRenderingSystem>()->addEntity(floatingFloor);
+    /*ecs->getSystem<ColliderRenderingSystem>()->addEntity(floatingFloor);*/
     ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(floatingFloor);
 }
 

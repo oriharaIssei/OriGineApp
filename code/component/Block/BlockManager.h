@@ -15,11 +15,9 @@ enum class BlockType {
 class BlockManager
     : public IComponent {
 
-
-
 private: // variables
     bool isAlive_ = true;
- 
+
     int32_t columNumMax_;
     int32_t HPMax_;
 
@@ -36,11 +34,17 @@ private: // variables
     float deadPositionX_;
     float basePosY_;
 
+    // speed
     float moveSpeed_;
     std::array<float, 6> moveSpeeds_;
 
-     // cost
+    // randomCreate
+    std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> randomPar_;
     std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> costs_;
+    std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> currentCosts_;
+    std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> generateInterval_{}; // 各BlockTypeの生成間隔（列ごと）
+    std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> lineCounter_{};      // 現在の行数カウント
+
 
 public:
     BlockManager() {}
@@ -53,7 +57,8 @@ public:
     void Finalize() override;
 
     void CostReset();
-    void SpeedChangeForTime(const float&time);
+    void ResetLineCounter(BlockType type);
+    void SpeedChangeForTime(const float& time);
 
 public: // accsessor
     /// getter
@@ -67,7 +72,14 @@ public: // accsessor
     float GetBasePosY() const { return basePosY_; }
     float GetMoveSpeed() const { return moveSpeed_; }
     float GetDeadPosition() const { return deadPositionX_; }
+    int32_t GetRandomPar(BlockType type) const { return randomPar_[static_cast<int32_t>(type)]; }
+    int32_t GetCost(BlockType type) const { return costs_[static_cast<int32_t>(type)]; }
+    int32_t GetCurrentCost(BlockType type) const { return currentCosts_[static_cast<int32_t>(type)]; }
+    int32_t GetGenerateInterval(BlockType type) const { return generateInterval_[static_cast<int32_t>(type)]; }
+    int32_t GetLineCounter(BlockType type) const { return lineCounter_[static_cast<int32_t>(type)]; }
+   
 
     /// setter
-  
+    void SetCurrentCostIncrement(BlockType type)  {  currentCosts_[static_cast<int32_t>(type)]++; }
+    void SetIncrementLineCounter(BlockType type) { lineCounter_[static_cast<int32_t>(type)]++; }
 };

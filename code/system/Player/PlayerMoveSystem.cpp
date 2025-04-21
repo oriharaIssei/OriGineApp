@@ -46,7 +46,7 @@ void PlayerMoveSystem::UpdateEntity(GameEntity* _entity) {
     pivotTransform->translate += velocity.normalize() * speed * deltaTime;
 
     /// 回転：進行方向に向ける
-    float targetAngle  = std::atan2(velocity[X], velocity[Z]); 
+    float targetAngle  = std::atan2(-velocity[X], -velocity[Z]); 
     float currentAngle = transform->rotate.ToEulerAngles()[Y];
     float newAngle     = LerpShortAngle(currentAngle, targetAngle, 0.5f);
 
