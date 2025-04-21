@@ -4,7 +4,7 @@
 #include "ECS/ECSManager.h"
 // component
 GameScene::GameScene()
-    : IScene("GameScene") {}
+    : IScene("Game") {}
 
 GameScene::~GameScene() {}
 
