@@ -70,6 +70,9 @@
     <Filter Include="system\BigBom">
       <UniqueIdentifier>{173f64c8-99a3-4c5e-9f72-6618e7a59739}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\Score">
+      <UniqueIdentifier>{00d42a14-d318-44b6-ab54-7770aed1f703}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -251,6 +254,12 @@
     <ClInclude Include="code\system\Block\BlockFloorCollision.h">
       <Filter>system\Block</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\Score\ScoreStatus.h">
+      <Filter>component\Score</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Score\ScoreUIStatus.h">
+      <Filter>component\Score</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -431,6 +440,12 @@
     </ClCompile>
     <ClCompile Include="code\system\Block\BlockFloorCollision.cpp">
       <Filter>system\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Score\ScoreStatus.cpp">
+      <Filter>component\Score</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Score\ScoreUIStatus.cpp">
+      <Filter>component\Score</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

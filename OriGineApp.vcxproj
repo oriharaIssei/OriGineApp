@@ -104,6 +104,8 @@
     <ClInclude Include="code\component\BigBom\BigBomSpawner.h" />
     <ClInclude Include="code\component\BigBom\BigBomStatus.h" />
     <ClInclude Include="code\component\BigBom\BigExplotionCollision.h" />
+    <ClInclude Include="code\component\Score\ScoreStatus.h" />
+    <ClInclude Include="code\component\Score\ScoreUIStatus.h" />
     <ClInclude Include="code\component\Scrap\ScrapSpawner.h" />
     <ClInclude Include="code\component\Scrap\ScrapStatus.h" />
     <ClInclude Include="code\FrameWork.h" />
@@ -167,6 +169,8 @@
     <ClCompile Include="code\component\BigBom\BigBomSpawner.cpp" />
     <ClCompile Include="code\component\BigBom\BigBomStatus.cpp" />
     <ClCompile Include="code\component\BigBom\BigExplotionCollision.cpp" />
+    <ClCompile Include="code\component\Score\ScoreStatus.cpp" />
+    <ClCompile Include="code\component\Score\ScoreUIStatus.cpp" />
     <ClCompile Include="code\component\Scrap\ScrapSpawner.cpp" />
     <ClCompile Include="code\component\Scrap\ScrapStatus.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
