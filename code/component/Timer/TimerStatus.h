@@ -16,6 +16,7 @@ private: // variables
     float currentTimer_;
     float pulusTime_;
     float minusTime_;
+    float minusTimeNormal_;
     float currentPulusTime_;
     bool isChanging_ = false;
 
@@ -45,6 +46,7 @@ public: // accsessor
     float GetPulusTime() const { return pulusTime_; }
     float GetMinusTime() const { return minusTime_; }
     float GetCurrentPulusTime() const { return currentPulusTime_; }
+    float GetMinusTimeNormal() const { return minusTimeNormal_; }
    
     /// setter
     void SetCurrentTimer(float currentTimer) { currentTimer_ = currentTimer; }
