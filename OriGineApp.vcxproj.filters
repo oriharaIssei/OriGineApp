@@ -245,6 +245,9 @@
     <ClInclude Include="code\system\BigBom\BigBomLaunchSystem.h">
       <Filter>system\BigBom</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\FloatingFloor\FloatingFloorRevivalSystem.h">
+      <Filter>system\FloatingFloor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -419,6 +422,9 @@
     </ClCompile>
     <ClCompile Include="code\system\BigBom\BigBomLaunchSystem.cpp">
       <Filter>system\BigBom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\FloatingFloor\FloatingFloorRevivalSystem.cpp">
+      <Filter>system\FloatingFloor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

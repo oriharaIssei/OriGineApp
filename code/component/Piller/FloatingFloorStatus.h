@@ -23,10 +23,13 @@ private: // variables
     float fallspeed_;
     float fallEaseT_;
     int32_t currentHP_;
+    int32_t HPMax_;
 
     bool isDestroy_ = false;
+    bool isRevivaling_ = false;
     float revivalTime_;
     float currentRevivalTimer_ = 0.0f;
+    Vec3f saveScale_           = {1.0f,1.0f,1.0f};
 
 public:
     FloatingFloorStatus() {}
@@ -57,13 +60,16 @@ public: // accsessor
     float GetFallEaseT() const { return fallEaseT_; }
     float GetFallSpeed() const { return fallspeed_; }
     bool GetIsDestroy() const { return isDestroy_; }
+    bool GetIsRevaviling() const { return isRevivaling_; }
     const bool& GetIsFall() const { return isFall_; }
     float GetRevivalTime() const { return revivalTime_; }
-    float GetCurrentRevivalTime() const { return revivalTime_; }
+    float GetCurrentRevivalTime() const { return currentRevivalTimer_; }
+    Vec3f GetSaveScale() const { return saveScale_; }
 
       /// setter
     void SetColumAndRow(const int32_t& colum, const int32_t& row);
     void SetIsFall(const bool& is) { isFall_ = is; }
+    void SetIsRevivaling(const bool& is) { isRevivaling_ = is; }
     void SetStartPosY(const float& pos) { startPosY_ = pos; }
     void SetFallValue(const float& value) { fallValue_ = value; }
     void SetFallPosY(const float& pos) { fallPosY_ = pos; }
@@ -74,4 +80,6 @@ public: // accsessor
     void SetIsDestroy(const bool& is) { isDestroy_ = is;}
     void SetRevivalTime(const float& speed) { revivalTime_ = speed; }
     void SetIncrementRevivalTime(const float& speed) { currentRevivalTimer_ += speed; }
+    void SetHPMax(const int32_t max) { HPMax_ = max; }
+    void SetSaveScale(const Vec3f& s) { saveScale_ = s; }
 };

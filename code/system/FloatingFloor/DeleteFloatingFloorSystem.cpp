@@ -31,9 +31,9 @@ void DeleteFloatingFloorSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     // 柱床セットをデストロイ
-    if (fAndPStatus->GetIsDestroy()) {
-        transform->scale = {0.0f, 0.0f, 0.0f};
-        transform->Update();
+    if (fAndPStatus->GetIsDestroy()&&!fAndPStatus->GetIsRevaviling()) {
+        fAndPStatus->SetIsRevivaling(true);
+       
     }
     
     

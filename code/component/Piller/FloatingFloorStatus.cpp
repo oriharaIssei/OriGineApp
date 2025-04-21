@@ -54,4 +54,7 @@ void FloatingFloorStatus::TakeDamage() {
 void FloatingFloorStatus::RevivalReset() {
     isDestroy_ = false;
     currentRevivalTimer_ = 0.0f;
+    currentHP_           = HPMax_;
+    isFall_              = false;
+    isRevivaling_        = false;
  }

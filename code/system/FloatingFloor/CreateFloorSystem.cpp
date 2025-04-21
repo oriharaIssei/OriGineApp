@@ -24,6 +24,7 @@
 #include "system/FloatingFloor/DeleteFloatingFloorSystem.h"
 #include "system/FloatingFloor/FloatingFloorDamageSystem.h"
 #include "system/FloatingFloor/FloatingFloorFallSystem.h"
+#include"system/FloatingFloor/FloatingFloorRevivalSystem.h"
 #include "system/Floor/DeleteFloorSystem.h"
 #include "system/Floor/FloorUpdateMatrixSystem.h"
 #include "system/Matrix/UpdateMatrixSystem.h"
@@ -105,8 +106,10 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
 
     // hp
     floatingFloorStatus->SetcurrentHP(floatFloorSpawner->GetHpMax());
-    // prePos
+    floatingFloorStatus->SetHPMax(floatFloorSpawner->GetHpMax());
+    // pretrasfnorm
     floatingFloorStatus->SetStartPosY(floatFloorSpawner->GetPositionHeight());
+    floatingFloorStatus->SetSaveScale(baseTransform->scale);
     // fall
     floatingFloorStatus->SetFallSpeed(1.0f);
     floatingFloorStatus->SetFallPosY(-1.0f);
@@ -123,7 +126,7 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     //------------------ Movement
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(floatingFloor);
     ecs->getSystem<FloatingFloorFallSystem>()->addEntity(floatingFloor);
-
+    ecs->getSystem<FloatingFloorRevivalSystem>()->addEntity(floatingFloor);
     ecs->getSystem<UpdateMatrixSystem>()->addEntity(floatingFloor);
 
     //------------------ Collision
@@ -131,7 +134,7 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     ecs->getSystem<FloatingFloorDamageSystem>()->addEntity(floatingFloor);
     //------------------ Physics
     // None
-
+    
     //------------------ Render
     /*ecs->getSystem<ColliderRenderingSystem>()->addEntity(floatingFloor);*/
     ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(floatingFloor);

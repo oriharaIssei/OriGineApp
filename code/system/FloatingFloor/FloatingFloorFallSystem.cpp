@@ -54,14 +54,14 @@ void FloatingFloorFallSystem::UpdateEntity(GameEntity* _entity) {
 
     // savePosY_を更新
     entityTransform->translate[Y] = entityStatus->GetFallPosY();
-    entityStatus->SetStartPosY(entityTransform->translate[Y]);
+  /*  entityStatus->SetStartPosY(entityTransform->translate[Y]);*/
     entityStatus->SetFallEaseT(0.0f);
 
     // フラグ戻す
     entityStatus->SetIsFall(false);
 
     // 破壊条件
-    if (entityTransform->translate[Y] < 0.0f) {
+    if (entityTransform->translate[Y] <= entityStatus->GetFallPosY()) {
         entityStatus->SetIsDestroy(true);
     }
 }

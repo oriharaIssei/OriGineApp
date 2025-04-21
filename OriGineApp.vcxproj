@@ -147,6 +147,7 @@
     <ClInclude Include="code\system\FloatingFloor\DeleteFloatingFloorSystem.h" />
     <ClInclude Include="code\system\FloatingFloor\FloatingFloorDamageSystem.h" />
     <ClInclude Include="code\system\FloatingFloor\FloatingFloorFallSystem.h" />
+    <ClInclude Include="code\system\FloatingFloor\FloatingFloorRevivalSystem.h" />
     <ClInclude Include="code\system\Floor\DeleteFloorSystem.h" />
     <ClInclude Include="code\system\Floor\FloorUpdateMatrixSystem.h" />
     <ClInclude Include="code\system\Matrix\UpdateMatrixSystem.h" />
@@ -208,6 +209,7 @@
     <ClCompile Include="code\system\FloatingFloor\DeleteFloatingFloorSystem.cpp" />
     <ClCompile Include="code\system\FloatingFloor\FloatingFloorDamageSystem.cpp" />
     <ClCompile Include="code\system\FloatingFloor\FloatingFloorFallSystem.cpp" />
+    <ClCompile Include="code\system\FloatingFloor\FloatingFloorRevivalSystem.cpp" />
     <ClCompile Include="code\system\Floor\DeleteFloorSystem.cpp" />
     <ClCompile Include="code\system\Floor\FloorUpdateMatrixSystem.cpp" />
     <ClCompile Include="code\system\Matrix\UpdateMatrixSystem.cpp" />
