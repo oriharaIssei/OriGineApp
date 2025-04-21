@@ -111,6 +111,7 @@ void BreakBlockSystem::ScrapSpawn(GameEntity* _entity) {
         Transform* transform = getComponent<Transform>(scrap);
         Transform* baseTransform = getComponent<Transform>(_entity);
         transform->translate     = baseTransform->translate;
+        transform->translate[Z]  = 0.0f;
 
         //* rigitBody
         // 初速、重力、massの設定

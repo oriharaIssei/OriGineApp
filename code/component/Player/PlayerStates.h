@@ -17,6 +17,8 @@ private: // variables
     float theta_;           // 現在の移動角度
     float direction_;       // 移動方向
     float offSetY_;
+    int32_t bigBomPointMax_;
+    int32_t currentBigBomPoint_ = 0;
     Vec3f followCameraOffset_;
    
     Transform* pivotTransform_ = nullptr; // 回転の中心となるオブジェクト
@@ -35,6 +37,8 @@ public:
 
     virtual void Finalize();
 
+    void IncrementCurrentBigBomPoint();
+
 public: // accsessor
     /// getter
     float GetMoveSpeed() const { return moveSpeed_; }
@@ -45,6 +49,8 @@ public: // accsessor
     Transform* GetPivotTransform() const { return pivotTransform_; }
     Transform* GetTransform() const { return transform_; }
     int32_t GetBomExplotionNum() const { return bomExplotionNum_; }
+    int32_t GetBigBomPointMax() const { return bigBomPointMax_; }
+    int32_t GetCurrentBigBomPoint() const { return currentBigBomPoint_; }
     Vec3f GetFollowOffset() const { return followCameraOffset_; }
     /// setter
     void SetIncrementTheta(float _theta) { theta_ += _theta; }
