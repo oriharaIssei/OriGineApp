@@ -37,7 +37,7 @@ void FloatingFloorDamageSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    if (floatingFloorStatus->GetIsFall()) {
+    if (floatingFloorStatus->GetIsFall() || floatingFloorStatus->GetIsDestroy()) {
         return;
     }
    

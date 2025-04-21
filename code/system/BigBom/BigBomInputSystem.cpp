@@ -43,6 +43,7 @@ void BigBomInputSystem::UpdateEntity(GameEntity* _entity) {
 
     PlayerStates* playerStates = getComponent<PlayerStates>(playerEntity);
     Transform* playerTransform = getComponent<Transform>(playerEntity);
+   /* Transform* childTransform = getComponent<Transform>(playerEntity,0);*/
 
     if (!playerStates->GetIsBigBomHaving())
         return;
@@ -103,6 +104,8 @@ void BigBomInputSystem::UpdateEntity(GameEntity* _entity) {
     bigBomStatus->LaunchDirectionNormalize();
     // Z成分を0に設定
     bigBomStatus->SetLaunchDirectionZ(0.0f);
+
+   
 
     ///============================================================
     /// スペースキーで発射

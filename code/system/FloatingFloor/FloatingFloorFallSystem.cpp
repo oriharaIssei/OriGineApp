@@ -32,7 +32,7 @@ void FloatingFloorFallSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    if (!entityStatus->GetIsFall()) {
+    if (!entityStatus->GetIsFall()||entityStatus->GetIsDestroy()) {
         return;
     }
 
@@ -42,7 +42,7 @@ void FloatingFloorFallSystem::UpdateEntity(GameEntity* _entity) {
     entityStatus->SetIncrementFallEaseT(Engine::getInstance()->getDeltaTime() * entityStatus->GetFallSpeed());
 
     // 落とす
-    entityTransform->translate[Y] = Lerp(entityStatus->GetSavePos(),entityStatus->GetFallPosY(),entityStatus->GetFallEaseT());
+    entityTransform->translate[Y] = Lerp(entityStatus->GetStartPosY(),entityStatus->GetFallPosY(),entityStatus->GetFallEaseT());
 
     // 落ちた後の処理
     if (entityStatus->GetFallEaseT() < 1.0f) {
@@ -54,7 +54,7 @@ void FloatingFloorFallSystem::UpdateEntity(GameEntity* _entity) {
 
     // savePosY_を更新
     entityTransform->translate[Y] = entityStatus->GetFallPosY();
-    entityStatus->SetSavePos(entityTransform->translate[Y]);
+    entityStatus->SetStartPosY(entityTransform->translate[Y]);
     entityStatus->SetFallEaseT(0.0f);
 
     // フラグ戻す

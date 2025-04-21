@@ -26,9 +26,10 @@ bool FloatingFloorSpawner::Edit() {
     isChange |= ImGui::DragFloat3("fallCollisionCenterPos", fallCollisionCenterPos_.v, 0.01f);
     isChange |= ImGui::DragFloat("sideSpace", &sideSpace_, 0.01f);
     isChange |= ImGui::DragFloat("positionHeight", &positionHeight_, 0.01f);
+    isChange |= ImGui::DragFloat("positionHeight", &positionHeight_, 0.01f);
     ImGui::Text("No Edit");
    
-    isChange |= ImGui::InputInt("columNumMax", &columNumMax_);
+    isChange |= ImGui::DragFloat("revivalTime", &revivalTime_);
     return isChange;
 }
 
@@ -41,7 +42,7 @@ void FloatingFloorSpawner::Save(BinaryWriter& _writer) {
     _writer.Write<3, float>("fallCollisionCenterPos", fallCollisionCenterPos_);
     _writer.Write("sideSpace", sideSpace_);
     _writer.Write("rowNumber", rowNumber_);
-   
+    _writer.Write("revivalTime", revivalTime_);
 }
 
 void FloatingFloorSpawner::Load(BinaryReader& _reader) {
@@ -53,6 +54,7 @@ void FloatingFloorSpawner::Load(BinaryReader& _reader) {
     _reader.Read<3, float>("fallCollisionCenterPos", fallCollisionCenterPos_);
     _reader.Read("sideSpace", sideSpace_);
     _reader.Read("rowNumber", rowNumber_);
+    _reader.Read("revivalTime", revivalTime_);
 }
 
 void FloatingFloorSpawner::Finalize() {}

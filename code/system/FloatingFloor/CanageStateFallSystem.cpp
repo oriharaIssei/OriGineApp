@@ -36,8 +36,11 @@ void CanageStateFallSystem::UpdateEntity(GameEntity* _entity) {
   
 
     // HPが0以下なら破壊処理（ここ一回しか通らないように）
-    if (fAndPStatus->GetCurrentHP() > 0 ||
-        fAndPStatus->GetIsFall()) {
+    if (fAndPStatus->GetCurrentHP() > 0 ||fAndPStatus->GetIsFall()) {
+        return;
+    }
+
+    if (fAndPStatus->GetIsDestroy()) {
         return;
     }
 

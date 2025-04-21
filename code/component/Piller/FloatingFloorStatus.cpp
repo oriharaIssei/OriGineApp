@@ -50,3 +50,8 @@ void FloatingFloorStatus::SetColumDecrement() {
 void FloatingFloorStatus::TakeDamage() {
     currentHP_--;
 }
+
+void FloatingFloorStatus::RevivalReset() {
+    isDestroy_ = false;
+    currentRevivalTimer_ = 0.0f;
+ }

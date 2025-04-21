@@ -17,14 +17,16 @@ private: // variables
     int32_t columNum_;
     int32_t rowNum_;
 
-    float savePosY_;
+    float startPosY_;
     float fallValue_;
     float fallPosY_;
     float fallspeed_;
     float fallEaseT_;
     int32_t currentHP_;
+
     bool isDestroy_ = false;
-    
+    float revivalTime_;
+    float currentRevivalTimer_ = 0.0f;
 
 public:
     FloatingFloorStatus() {}
@@ -37,6 +39,7 @@ public:
     void Finalize() override;
 
     void TakeDamage();
+    void RevivalReset();
 
   
  void SetColumDecrement();
@@ -48,18 +51,20 @@ public: // accsessor
     int32_t GetColumNum() const { return columNum_; }
     int32_t GetRowNum() const { return rowNum_; }
     int32_t GetCurrentHP() const { return currentHP_; }
-    float GetSavePos() const { return savePosY_; }
+    float GetStartPosY() const { return startPosY_; }
     float GetFallValue() const { return fallValue_; }
     float GetFallPosY() const { return fallPosY_; }
     float GetFallEaseT() const { return fallEaseT_; }
     float GetFallSpeed() const { return fallspeed_; }
     bool GetIsDestroy() const { return isDestroy_; }
     const bool& GetIsFall() const { return isFall_; }
+    float GetRevivalTime() const { return revivalTime_; }
+    float GetCurrentRevivalTime() const { return revivalTime_; }
 
       /// setter
     void SetColumAndRow(const int32_t& colum, const int32_t& row);
     void SetIsFall(const bool& is) { isFall_ = is; }
-    void SetSavePos(const float& pos) { savePosY_ = pos; }
+    void SetStartPosY(const float& pos) { startPosY_ = pos; }
     void SetFallValue(const float& value) { fallValue_ = value; }
     void SetFallPosY(const float& pos) { fallPosY_ = pos; }
     void SetFallEaseT(const float& t) { fallEaseT_ = t; }
@@ -67,4 +72,6 @@ public: // accsessor
     void SetFallSpeed(const float& speed) { fallspeed_ = speed; }
     void SetcurrentHP(const int32_t& hp) { currentHP_ = hp; }
     void SetIsDestroy(const bool& is) { isDestroy_ = is;}
+    void SetRevivalTime(const float& speed) { revivalTime_ = speed; }
+    void SetIncrementRevivalTime(const float& speed) { currentRevivalTimer_ += speed; }
 };

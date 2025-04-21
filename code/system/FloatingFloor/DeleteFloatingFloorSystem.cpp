@@ -25,15 +25,15 @@ void DeleteFloatingFloorSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     FloatingFloorStatus* fAndPStatus = getComponent<FloatingFloorStatus>(_entity);
-
-    if (!fAndPStatus) {
+    Transform* transform             = getComponent<Transform>(_entity);
+    if (!fAndPStatus || !transform) {
         return;
     }
 
     // 柱床セットをデストロイ
     if (fAndPStatus->GetIsDestroy()) {
-    
-        DestroyEntity(_entity);
+        transform->scale = {0.0f, 0.0f, 0.0f};
+        transform->Update();
     }
     
     

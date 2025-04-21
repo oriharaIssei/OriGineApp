@@ -99,13 +99,14 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     // row,columNum
     FloatingFloorStatus* floatingFloorStatus = getComponent<FloatingFloorStatus>(floatingFloor);
     floatingFloorStatus->SetColumAndRow(0, floatFloorSpawner->GetRowNumber());
+    floatingFloorStatus->SetRevivalTime(floatFloorSpawner->GetRevivalTime());
 
     ///*　パラメータべた書きゾーン
 
     // hp
     floatingFloorStatus->SetcurrentHP(floatFloorSpawner->GetHpMax());
     // prePos
-    floatingFloorStatus->SetSavePos(floatFloorSpawner->GetPositionHeight());
+    floatingFloorStatus->SetStartPosY(floatFloorSpawner->GetPositionHeight());
     // fall
     floatingFloorStatus->SetFallSpeed(1.0f);
     floatingFloorStatus->SetFallPosY(-1.0f);
