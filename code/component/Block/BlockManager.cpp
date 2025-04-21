@@ -61,7 +61,7 @@ bool BlockManager::Edit() {
 
      ImGui::Text("Score");
     for (int i = 0; i < scoreValue_.size(); ++i) {
-        std::string label = "Interval[" + std::to_string(i) + "]";
+        std::string label = "scoreValue[" + std::to_string(i) + "]";
         isChange |= ImGui::DragFloat(label.c_str(), &scoreValue_[i]);
     }
 
