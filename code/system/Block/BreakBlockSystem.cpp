@@ -8,12 +8,14 @@
 #include "engine/EngineInclude.h"
 // component
 #include "component/Block/BlockStatus.h"
+#include "component/Score/ScoreStatus.h"
 #include "component/Scrap/ScrapSpawner.h"
 #include "component/Scrap/ScrapStatus.h"
+#include "component/Timer/TimerStatus.h"
 /// system
-#include"system/scrap/ScrapFallSystem.h"
-#include"system/scrap/ScrapDeleteSystem.h"
-#include"system/scrap/ScrapToPlayerCollisionSystem.h"
+#include "system/scrap/ScrapDeleteSystem.h"
+#include "system/scrap/ScrapFallSystem.h"
+#include "system/scrap/ScrapToPlayerCollisionSystem.h"
 #include <cstdint>
 #include <Vector.h>
 
@@ -33,40 +35,63 @@ void BreakBlockSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    BlockStatus* blockStatus = getComponent<BlockStatus>(_entity);
+    blockStatus_ = getComponent<BlockStatus>(_entity);
 
-    if (!blockStatus) {
+    if (!blockStatus_) {
         return;
     }
 
-    if (blockStatus->GetIsBreak()) {
+    if (blockStatus_->GetIsBreak()) {
         ScrapSpawn(_entity);
-        BlockReaction(blockStatus->GetBlockType());
+        BlockReaction(blockStatus_->GetBlockType());
         DestroyEntity(_entity);
     }
 }
 
 void BreakBlockSystem::BlockReaction(BlockType blocktype) {
+
+    // ComboEntityを取得
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* scoreEntity                  = ecsManager->getUniqueEntity("Score");
+    GameEntity* timerEntity                  = ecsManager->getUniqueEntity("Timer");
+
+    if (!scoreEntity || !timerEntity) { // Entityが存在しない場合の早期リターン
+        return;
+    }
+
+    /// component取得
+    ScoreStatus* scoreStatus = getComponent<ScoreStatus>(scoreEntity);
+    TimerStatus* timerStatus = getComponent<TimerStatus>(timerEntity);
+
+    if (!scoreStatus || !timerStatus) { // Componentが存在しない場合の早期リターン
+        return;
+    }
+
+    float timerDecrementValue = timerStatus->GetPulusTime() * blockStatus_->GetRatio();
+    float timerIncrementValue = timerStatus->GetMinusTime() * blockStatus_->GetRatio();
+    float scoreValue          = blockStatus_->GetBaseScoreValue() * blockStatus_->GetRatio();
+
     switch (blocktype) {
         ///---------------------------------------------
         /// Normal
         ///---------------------------------------------
     case BlockType::NORMAL:
-
-        break;
+        scoreStatus->PlusScoreIncrement(scoreValue);
+        scoreStatus->SetScoreChangeTime(0.0f);
+            break;
 
         ///---------------------------------------------
         /// Skull
         ///---------------------------------------------
     case BlockType::SKULL:
-
+        timerStatus->TimerDecrement(timerDecrementValue);
         break;
 
         ///---------------------------------------------
         /// Advance
         ///---------------------------------------------
     case BlockType::ADVANTAGE:
-
+        timerStatus->TimerIncrement(timerIncrementValue);
         break;
 
     default:
@@ -92,11 +117,11 @@ void BreakBlockSystem::ScrapSpawn(GameEntity* _entity) {
 
         //*Status
         ScrapStatus* status = getComponent<ScrapStatus>(scrap);
-        status->SetFallStopPosY(scrapSpawner->GetFallStopPosY());//stopPos
-        status->SetLifeTime(scrapSpawner->GetLifeTime());        // lifeTime
-        //status->SetPointValue(scrapSpawner->GetPointValue());    // pointValue
-        float blowValueX    = 0.0f;
-        float blowValueY    = scrapSpawner->GetBlowValue()[Y];
+        status->SetFallStopPosY(scrapSpawner->GetFallStopPosY()); // stopPos
+        status->SetLifeTime(scrapSpawner->GetLifeTime()); // lifeTime
+        // status->SetPointValue(scrapSpawner->GetPointValue());    // pointValue
+        float blowValueX = 0.0f;
+        float blowValueY = scrapSpawner->GetBlowValue()[Y];
 
         // 吹っ飛び向きを決める
         if (i % 2 == 0) {
@@ -108,7 +133,7 @@ void BreakBlockSystem::ScrapSpawn(GameEntity* _entity) {
         }
 
         //* transform
-        Transform* transform = getComponent<Transform>(scrap);
+        Transform* transform     = getComponent<Transform>(scrap);
         Transform* baseTransform = getComponent<Transform>(_entity);
         transform->translate     = baseTransform->translate;
         transform->translate[Z]  = 0.0f;

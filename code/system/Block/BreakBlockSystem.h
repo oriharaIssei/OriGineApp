@@ -3,6 +3,7 @@
 #include "component/Block/BlockManager.h"
 #include "system/ISystem.h"
 
+class BlockStatus;
 class BreakBlockSystem
     : public ISystem {
 public:
@@ -18,4 +19,7 @@ public:
 
 protected:
     virtual void UpdateEntity(GameEntity* _entity) override;
+
+private:
+    BlockStatus* blockStatus_;
 };

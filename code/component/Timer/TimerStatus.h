@@ -19,6 +19,8 @@ private: // variables
     float currentPulusTime_;
     bool isChanging_ = false;
 
+ 
+
 public:
     TimerStatus() {}
     virtual ~TimerStatus() = default;
@@ -34,14 +36,19 @@ public:
     void CurrentTimeUpdate(const int32_t& time);
      void PlusTimeUpdate();
 
+     void TimerDecrement(const float& timer);
+     void TimerIncrement(const float& timer);
+
 public: // accsessor
     /// getter
     float GetCurrentTimer() const { return currentTimer_; }
     float GetPulusTime() const { return pulusTime_; }
     float GetMinusTime() const { return minusTime_; }
     float GetCurrentPulusTime() const { return currentPulusTime_; }
-  
+   
     /// setter
     void SetCurrentTimer(float currentTimer) { currentTimer_ = currentTimer; }
+   /* void SetDecrementTimer(const float& time) { decrementTimer_ = time; }
+    void SetIncrementTimer(const float& time) { incrementTimer_ = time; }*/
    
 };

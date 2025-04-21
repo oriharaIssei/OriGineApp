@@ -8,10 +8,7 @@
 /// externals
 #include "imgui/imgui.h"
 
-
-
 void ScoreStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
-    
 }
 
 bool ScoreStatus::Edit() {
@@ -21,22 +18,16 @@ bool ScoreStatus::Edit() {
 
     ImGui::Spacing();
 
-   
-    isChange |= ImGui::InputInt("currentScore", &currentScore_);
+    isChange |= ImGui::DragFloat("currentScore", &currentScore_);
     isChange |= ImGui::DragFloat("pulusScore", &pulusScore_);
-  
 
-  
- 
     return isChange;
-
 }
 
 void ScoreStatus::Save(BinaryWriter& _writer) {
     _writer.Write("isAlive", isAlive_);
     _writer.Write("currentScore", currentScore_);
     _writer.Write("pulusScore", pulusScore_);
-   
 }
 
 void ScoreStatus::Load(BinaryReader& _reader) {
@@ -47,3 +38,13 @@ void ScoreStatus::Load(BinaryReader& _reader) {
 
 void ScoreStatus::Finalize() {}
 
+void ScoreStatus::PlusScoreIncrement(const float& value) {
+    pulusScore_ += value;
+}
+
+void ScoreStatus::TimeIncrement(const float& value) {
+    scoreChangeTime_ += value;
+    if (scoreChangeTime_ >= 1.0f) {
+        scoreChangeTime_ = 1.0f;
+    }
+}

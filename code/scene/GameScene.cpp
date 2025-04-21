@@ -21,6 +21,8 @@
 #include"Application/code/component/BigBom/BigBomSpawner.h"
 #include"Application/code/component/BigBom/BigBomStatus.h"
 #include"Application/code/component/BigBom/BigExplotionCollision.h"
+#include"Application/code/component/Score/ScoreStatus.h"
+#include"Application/code/component/Score/ScoreUIStatus.h"
 
 //#include"Application/code/component/Floor/FloorModeCreater.h"
 //#include"Application/code/component/Floor/BottomFloorStates.h"
@@ -61,6 +63,8 @@
 #include"Application/code/system/BigBom/BigBomLaunchSystem.h"
 #include"Application/code/system/FloatingFloor/FloatingFloorRevivalSystem.h"
 #include"Application/code/system/Block/BlockFloorCollision.h"
+#include"Application/code/system/Score/ScoreIncrementSystem.h"
+#include"Application/code/system/Score/ScoreUIScrollSystem.h"
 
 GameScene::GameScene()
     : IScene("Game") {}
@@ -88,6 +92,8 @@ void GameScene::registerComponents() {
     ecsManager->registerComponent<BigBomSpawner>();
     ecsManager->registerComponent<BigBomStatus>();
     ecsManager->registerComponent<BigExplotionCollision>();
+    ecsManager->registerComponent<ScoreStatus>();
+    ecsManager->registerComponent<ScoreUIStatus>();
 
     /*ecsManager->registerComponent<BottomFloorStates>();
     ecsManager->registerComponent<FloorStates>();
@@ -132,5 +138,7 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<BigBomLaunchSystem>();
     ecsManager->registerSystem<FloatingFloorRevivalSystem>();
     ecsManager->registerSystem<BlockFloorCollision>();
+    ecsManager->registerSystem<ScoreIncrementSystem>();
+    ecsManager->registerSystem<ScoreUIScrollSystem>();
     ecsManager->SortPriorityOrderSystems();
 }

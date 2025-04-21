@@ -158,6 +158,8 @@
     <ClInclude Include="code\system\Player\PlayerFollowCameraSystem.h" />
     <ClInclude Include="code\system\Player\PlayerInput.h" />
     <ClInclude Include="code\system\Player\PlayerMoveSystem.h" />
+    <ClInclude Include="code\system\Score\ScoreIncrementSystem.h" />
+    <ClInclude Include="code\system\Score\ScoreUIScrollSystem.h" />
     <ClInclude Include="code\system\scrap\ScrapDeleteSystem.h" />
     <ClInclude Include="code\system\scrap\ScrapFallSystem.h" />
     <ClInclude Include="code\system\scrap\ScrapToPlayerCollisionSystem.h" />
@@ -223,6 +225,8 @@
     <ClCompile Include="code\system\Player\PlayerFollowCameraSystem.cpp" />
     <ClCompile Include="code\system\Player\PlayerInput.cpp" />
     <ClCompile Include="code\system\Player\PlayerMoveSystem.cpp" />
+    <ClCompile Include="code\system\Score\ScoreIncrementSystem.cpp" />
+    <ClCompile Include="code\system\Score\ScoreUIScrollSystem.cpp" />
     <ClCompile Include="code\system\scrap\ScrapDeleteSystem.cpp" />
     <ClCompile Include="code\system\scrap\ScrapFallSystem.cpp" />
     <ClCompile Include="code\system\scrap\ScrapToPlayerCollisionSystem.cpp" />

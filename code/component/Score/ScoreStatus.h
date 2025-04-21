@@ -13,9 +13,9 @@ class ScoreStatus
 private: // variables
     bool isAlive_ = true;
 
-    int32_t currentScore_;
+    float currentScore_;
     float pulusScore_ = 0.0f;
-  
+    float scoreChangeTime_=0.0f;
     bool isChanging_ = false;
 
 public:
@@ -29,15 +29,16 @@ public:
 
     virtual void Finalize();
 
-   
+   void PlusScoreIncrement(const float&value);
+    void TimeIncrement(const float& value);
 
 public: // accsessor
     /// getter
     float GetCurrentScore() const { return currentScore_; }
     float GetPulusScore() const { return pulusScore_; }
-   
+    float GetScoreChangeTIme() const { return scoreChangeTime_; }
   
     /// setter
-    void SetCurrentTimer(float currentTimer) { currentTimer_ = currentTimer; }
-   
+    void SetScoreChangeTime(const float& scoreChange) {  scoreChangeTime_ = scoreChange; }
+    void SetCurrentScore(const float& scoreChange) { currentScore_ = scoreChange; }
 };

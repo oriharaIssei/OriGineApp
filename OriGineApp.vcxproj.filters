@@ -73,6 +73,9 @@
     <Filter Include="component\Score">
       <UniqueIdentifier>{00d42a14-d318-44b6-ab54-7770aed1f703}</UniqueIdentifier>
     </Filter>
+    <Filter Include="system\Score">
+      <UniqueIdentifier>{ccf2ed44-29b0-4e54-b50f-4b7104347402}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -260,6 +263,12 @@
     <ClInclude Include="code\component\Score\ScoreUIStatus.h">
       <Filter>component\Score</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Score\ScoreIncrementSystem.h">
+      <Filter>system\Score</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Score\ScoreUIScrollSystem.h">
+      <Filter>system\Score</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -446,6 +455,12 @@
     </ClCompile>
     <ClCompile Include="code\component\Score\ScoreUIStatus.cpp">
       <Filter>component\Score</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Score\ScoreIncrementSystem.cpp">
+      <Filter>system\Score</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Score\ScoreUIScrollSystem.cpp">
+      <Filter>system\Score</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

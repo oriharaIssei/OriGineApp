@@ -52,7 +52,7 @@ public: // accsessor
     const bool& GetIsFall() const { return isFall_; }
     BlockType GetBlockType() const { return blockType_; }
     bool GetIsBreak() const { return isbreak_; }
-    float GetScoreRatio() const { return ratio_; }
+    float GetRatio() const { return ratio_; }
     float GetBaseScoreValue() const { return baseScoreValue_; }
 
       /// setter
