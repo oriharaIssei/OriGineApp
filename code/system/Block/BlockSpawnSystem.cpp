@@ -46,7 +46,7 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    blockSpawner_->CostReset();//コストリセット
+    blockSpawner_->CostReset(); // コストリセット
 
     float blockWidth_  = blockSpawner_->GetBlockSize()[X] * 2.0f;
     float nextPosition = blockSpawner_->GetNextCreatePositionX();
@@ -56,7 +56,7 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
         for (int32_t i = 0; i < blockSpawner_->GetColumNumMax(); ++i) {
             CreateBlocks(i, blockSpawner_->GetStartPositionX());
         }
-        //　行数カウンターを一応初期化
+        // 　行数カウンターを一応初期化
         for (int i = 0; i < static_cast<int32_t>(BlockType::COUNT); ++i) {
             blockSpawner_->ResetLineCounter(static_cast<BlockType>(i));
         }
@@ -82,12 +82,12 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos
         "Block", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), BlockStatus());
 
     // ================================= Componentを初期化 ================================= //
-    
+
     //* Transform
     Transform* transform = getComponent<Transform>(block); // 柱
     float sizeY          = blockSpawner_->GetBlockSize()[Y] * 2.0f;
-   
-    transform->translate = Vec3f{xPos, blockSpawner_->GetBasePosY()+( sizeY * columIndex), blockSpawner_->GetStartPositionZ()};
+
+    transform->translate = Vec3f{xPos, blockSpawner_->GetBasePosY() + (sizeY * columIndex), blockSpawner_->GetStartPositionZ()};
     transform->scale     = Vec3f(blockSpawner_->GetBlockSize()[X], blockSpawner_->GetBlockSize()[Y], 1.0f);
 
     //* Collider
@@ -99,15 +99,15 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos
     // row,columNum
     BlockStatus* blockStatus = getComponent<BlockStatus>(block);
     blockStatus->SetColum(columIndex);
-    blockStatus->SetBlockType(BlockType::NORMAL);// まずはノーマルにセット
+    blockStatus->SetBlockType(BlockType::NORMAL); // まずはノーマルにセット
 
     /// blockTypeCreater
-    BlockTypeSetting(blockStatus, BlockType::SKULL);//どくろの生成
+    BlockTypeSetting(blockStatus, BlockType::SKULL); // どくろの生成
     BlockTypeSetting(blockStatus, BlockType::ADVANTAGE); // アドバンテージブロックの生成
 
-      //* MeshRenderer
+    //* MeshRenderer
     ModelMeshRenderer* blockRender = getComponent<ModelMeshRenderer>(block);
-   
+
     //// Model から MeshRenderer を作成
     ModelSetForBlockType(blockRender, block, blockStatus->GetBlockType());
 
@@ -139,19 +139,19 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos
     // None
 
     //------------------ Render
-   /* ecs->getSystem<ColliderRenderingSystem>()->addEntity(block);*/
+    /* ecs->getSystem<ColliderRenderingSystem>()->addEntity(block);*/
     ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(block);
 }
 
 void BlockSpawnSystem::CostInit() {
 }
 
-void BlockSpawnSystem::BlockTypeSetting(BlockStatus*status,BlockType blocktype) {
+void BlockSpawnSystem::BlockTypeSetting(BlockStatus* status, BlockType blocktype) {
 
-     blockSpawner_->SetIncrementLineCounter(blocktype);
+    blockSpawner_->SetIncrementLineCounter(blocktype);
 
-     // 指定された行間隔に達していなければスキップ
-     if (blockSpawner_->GetLineCounter(blocktype) % blockSpawner_->GetGenerateInterval(blocktype) != 0) {
+    // 指定された行間隔に達していなければスキップ
+    if (blockSpawner_->GetLineCounter(blocktype) % blockSpawner_->GetGenerateInterval(blocktype) != 0) {
         return;
     }
     // コストチェック
@@ -159,14 +159,12 @@ void BlockSpawnSystem::BlockTypeSetting(BlockStatus*status,BlockType blocktype) 
         return;
     }
 
-    //指定の割合で別ブロックに変身
+    // 指定の割合で別ブロックに変身
     MyRandom::Int Random(0, 100);
     if (Random.get() <= blockSpawner_->GetRandomPar(blocktype)) {
         status->SetBlockType(blocktype);
         blockSpawner_->SetCurrentCostIncrement(blocktype);
     }
-
-   
 }
 
 void BlockSpawnSystem::ModelSetForBlockType(ModelMeshRenderer* render, GameEntity* entity, BlockType type) {
@@ -185,5 +183,4 @@ void BlockSpawnSystem::ModelSetForBlockType(ModelMeshRenderer* render, GameEntit
     default:
         break;
     }
-   
- }
+}

@@ -148,6 +148,9 @@
     <ClInclude Include="code\system\Player\PlayerFollowCameraSystem.h" />
     <ClInclude Include="code\system\Player\PlayerInput.h" />
     <ClInclude Include="code\system\Player\PlayerMoveSystem.h" />
+    <ClInclude Include="code\system\scrap\ScrapDeleteSystem.h" />
+    <ClInclude Include="code\system\scrap\ScrapFallSystem.h" />
+    <ClInclude Include="code\system\scrap\ScrapGotDeleteSystem.h" />
     <ClInclude Include="code\system\Timer\TimerDecrementSystem.h" />
     <ClInclude Include="code\system\Timer\TimerUIScrollSystem.h" />
     <ClInclude Include="code\system\UpdateButtonColorByState.h" />
@@ -200,6 +203,9 @@
     <ClCompile Include="code\system\Player\PlayerFollowCameraSystem.cpp" />
     <ClCompile Include="code\system\Player\PlayerInput.cpp" />
     <ClCompile Include="code\system\Player\PlayerMoveSystem.cpp" />
+    <ClCompile Include="code\system\scrap\ScrapDeleteSystem.cpp" />
+    <ClCompile Include="code\system\scrap\ScrapFallSystem.cpp" />
+    <ClCompile Include="code\system\scrap\ScrapGotDeleteSystem.cpp" />
     <ClCompile Include="code\system\Timer\TimerDecrementSystem.cpp" />
     <ClCompile Include="code\system\Timer\TimerUIScrollSystem.cpp" />
     <ClCompile Include="code\system\UpdateButtonColorByState.cpp" />

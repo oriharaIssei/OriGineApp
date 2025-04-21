@@ -1,7 +1,7 @@
 #pragma once
 
+#include "component/Block/BlockManager.h"
 #include "system/ISystem.h"
-#include"component/Block/BlockManager.h"
 
 class BreakBlockSystem
     : public ISystem {
@@ -14,9 +14,8 @@ public:
     void Finalize() override;
 
     void BlockReaction(BlockType blocktype);
-   
+    void ScrapSpawn(GameEntity* _entity);
 
 protected:
     virtual void UpdateEntity(GameEntity* _entity) override;
-   
 };

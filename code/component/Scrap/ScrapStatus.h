@@ -7,6 +7,7 @@
 class ScrapStatus
     : public IComponent {
 public:
+
 private: // variables
     bool isAlive_ = true;
     float lifeTime_;

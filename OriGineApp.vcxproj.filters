@@ -61,6 +61,9 @@
     <Filter Include="component\Scrap">
       <UniqueIdentifier>{818de68b-ec3f-4c9b-ad56-3f786849b122}</UniqueIdentifier>
     </Filter>
+    <Filter Include="system\scrap">
+      <UniqueIdentifier>{991bf3cd-f194-4718-a592-c812f35ab967}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -209,6 +212,15 @@
     <ClInclude Include="code\component\Scrap\ScrapStatus.h">
       <Filter>component\Scrap</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\scrap\ScrapFallSystem.h">
+      <Filter>system\scrap</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\scrap\ScrapDeleteSystem.h">
+      <Filter>system\scrap</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\scrap\ScrapGotDeleteSystem.h">
+      <Filter>system\scrap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -356,6 +368,15 @@
     </ClCompile>
     <ClCompile Include="code\component\Scrap\ScrapStatus.cpp">
       <Filter>component\Scrap</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\scrap\ScrapFallSystem.cpp">
+      <Filter>system\scrap</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\scrap\ScrapDeleteSystem.cpp">
+      <Filter>system\scrap</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\scrap\ScrapGotDeleteSystem.cpp">
+      <Filter>system\scrap</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

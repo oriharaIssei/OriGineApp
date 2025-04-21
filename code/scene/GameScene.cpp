@@ -16,6 +16,8 @@
 #include"Application/code/component/Timer/TimerStatus.h"
 #include"Application/code/component/Block/BlockManager.h"
 #include"Application/code/component/Block/BlockStatus.h"
+#include"Application/code/component/Scrap/ScrapSpawner.h"
+#include"Application/code/component/Scrap/ScrapStatus.h"
 
 //#include"Application/code/component/Floor/FloorModeCreater.h"
 //#include"Application/code/component/Floor/BottomFloorStates.h"
@@ -70,6 +72,8 @@ void GameScene::registerComponents() {
     ecsManager->registerComponent<TimerUIStatus>();
     ecsManager->registerComponent<BlockManager>();
     ecsManager->registerComponent<BlockStatus>();
+    ecsManager->registerComponent<ScrapSpawner>();
+    ecsManager->registerComponent<ScrapStatus>();
 
     /*ecsManager->registerComponent<BottomFloorStates>();
     ecsManager->registerComponent<FloorStates>();

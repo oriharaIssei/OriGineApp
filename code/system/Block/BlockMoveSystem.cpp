@@ -20,8 +20,9 @@ void BlockMoveSystem::Initialize() {}
 void BlockMoveSystem::Finalize() {}
 
 void BlockMoveSystem::UpdateEntity(GameEntity* _entity) {
-    if (!_entity)
+    if (!_entity) {
         return;
+    }
 
     BlockStatus* blockStatus = getComponent<BlockStatus>(_entity);
     if (!blockStatus) {
