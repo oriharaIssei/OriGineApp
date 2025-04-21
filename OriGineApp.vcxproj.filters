@@ -58,6 +58,9 @@
     <Filter Include="system\Timer">
       <UniqueIdentifier>{DA943C68-C6F7-CB0C-6F7D-04C35BBF978F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\Scrap">
+      <UniqueIdentifier>{818de68b-ec3f-4c9b-ad56-3f786849b122}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -200,6 +203,12 @@
     <ClInclude Include="code\system\UpdateButtonColorByState.h">
       <Filter>system</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\Scrap\ScrapSpawner.h">
+      <Filter>component\Scrap</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Scrap\ScrapStatus.h">
+      <Filter>component\Scrap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -341,6 +350,12 @@
     </ClCompile>
     <ClCompile Include="code\system\UpdateButtonColorByState.cpp">
       <Filter>system</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Scrap\ScrapSpawner.cpp">
+      <Filter>component\Scrap</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Scrap\ScrapStatus.cpp">
+      <Filter>component\Scrap</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
