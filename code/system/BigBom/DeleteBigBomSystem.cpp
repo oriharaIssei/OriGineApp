@@ -33,19 +33,18 @@ void DeleteBigBomSystem::UpdateEntity(GameEntity* _entity) {
 
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* playerEntity                 = ecsManager->getUniqueEntity("Player");
+    BigExplotionCollision* bigexCollision = getComponent<BigExplotionCollision>(playerEntity);
 
-      BigExplotionCollision* bigexCollision = getComponent<BigExplotionCollision>(playerEntity);
-
-    if (!status || !bigexCollision || !playerEntity) {
+    if (!status || !bigexCollision) {
         return;
     }
 
-     PlayerStates* playerStates = getComponent<PlayerStates>(playerEntity);
+   
 
     if (status->GetIsExplotion()) {
         AddExplotionEntity(_entity, bigexCollision); // コリジョン追加
-        DestroyEntity(_entity); // 君消す
-        playerStates->SetincrementBomExplotionNum();
+        DestroyEntity(_entity); // 
+ 
     }
 }
 
@@ -67,6 +66,7 @@ void DeleteBigBomSystem::AddExplotionEntity(GameEntity* _entity, BigExplotionCol
     // Collider
     SphereCollider* collider           = getComponent<SphereCollider>(bomCollision);
     collider->getLocalShapePtr()->radius_ = _bomStates->GetCollisionRadius();
+   /* collider->setActive(true);*/
    /* collider->getWorldShape()->radius_ = _bomStates->GetCollisionRadius();*/
 
     /// States

@@ -7,7 +7,7 @@
 #define ENGINE_ECS
 #include "engine/EngineInclude.h"
 
-#include"component/Bom/BomStatus.h"
+#include"component/BigBom/BigBomStatus.h"
 #include"component/Bom/ExplotionCollision.h"
 #include"component/Piller/FloatingFloorStatus.h"
 
@@ -31,13 +31,13 @@ void BigBomCollisionExSystem::UpdateEntity(GameEntity* _entity) {
 
     // CharacterStatusを取得
  
-    BomStatus* bomStatus= getComponent<BomStatus>(_entity);
+    BigBomStatus* bigBomStatus = getComponent<BigBomStatus>(_entity);
 
-    if (!bomStatus) {
+    if (!bigBomStatus) {
         return;
     }
 
-    if (bomStatus->GetIsExplotion()) {
+    if (bigBomStatus->GetIsExplotion()) {
         return;
     }
    
@@ -66,7 +66,7 @@ void BigBomCollisionExSystem::UpdateEntity(GameEntity* _entity) {
                     continue;
                 }
                 // CharacterStatusを更新
-                bomStatus->SetIsExplotion(true);
+                bigBomStatus->SetIsExplotion(true);
             }
         }
     }

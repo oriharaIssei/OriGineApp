@@ -70,7 +70,7 @@ void PlayerCreateBigBomSystem::UpdateEntity(GameEntity* _entity) {
     SphereCollider* collider              = getComponent<SphereCollider>(bigBom);
     collider->getLocalShapePtr()->radius_ = bigBomSpawner->GetCollisionRadius();
     collider->getLocalShapePtr()->center_ = bigBomSpawner->GetCollisionCenter();
-    collider->setActive(false);
+  /*  collider->setActive(false);*/
 
     //*model
     ModelMeshRenderer* modelMesh = getComponent<ModelMeshRenderer>(bigBom);

@@ -145,5 +145,6 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<ScoreUIScrollSystem>();
     ecsManager->registerSystem<BigBomCollisionExSystem>();
     ecsManager->registerSystem<DeleteBigBomSystem>();
+    ecsManager->registerSystem<DeleteBigExplotionCollision>();
     ecsManager->SortPriorityOrderSystems();
 }
