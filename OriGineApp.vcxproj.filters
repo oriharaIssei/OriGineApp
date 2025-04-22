@@ -284,6 +284,7 @@
     <ClInclude Include="code\component\Field\FieldStatus.h">
       <Filter>component\Field</Filter>
     </ClInclude>
+    <ClInclude Include="code\KetaEasing.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -489,5 +490,6 @@
     <ClCompile Include="code\component\Field\FieldStatus.cpp">
       <Filter>component\Field</Filter>
     </ClCompile>
+    <ClCompile Include="code\KetaEasing.cpp" />
   </ItemGroup>
 </Project>

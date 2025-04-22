@@ -4,6 +4,7 @@
 #define ENGINE_COMPONENTS
 
 #include "component/Scrap/ScrapStatus.h"
+#include"component/field/FieldStatus.h"
 #include "engine/EngineInclude.h"
 
 ScrapFallSystem::ScrapFallSystem()
@@ -26,6 +27,24 @@ void ScrapFallSystem::UpdateEntity(GameEntity* _entity) {
     }
   
     // 落ちてく(MovebyRigitBodyがやってくれてるでしょう)
+
+     // ComboEntityを取得
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* fieldEntity                  = ecsManager->getUniqueEntity("Field");
+
+    if (!fieldEntity) {
+        return;
+    }
+
+    /// component取得
+    FieldStatus* fieldStatus = getComponent<FieldStatus>(fieldEntity);
+
+    if (!fieldStatus) {
+        return;
+    }
+
+    //壁にぶち当たった時の反発
+
 
     // 一定座標で止まる
     if (transform->translate[Y] <= scrapStatus->GetFallStopPosY()) {

@@ -110,6 +110,7 @@
     <ClInclude Include="code\component\Scrap\ScrapSpawner.h" />
     <ClInclude Include="code\component\Scrap\ScrapStatus.h" />
     <ClInclude Include="code\FrameWork.h" />
+    <ClInclude Include="code\KetaEasing.h" />
     <ClInclude Include="code\MyGame.h" />
     <ClInclude Include="code\component\Block\BlockManager.h" />
     <ClInclude Include="code\component\Block\BlockStatus.h" />
@@ -181,6 +182,7 @@
     <ClCompile Include="code\component\Scrap\ScrapSpawner.cpp" />
     <ClCompile Include="code\component\Scrap\ScrapStatus.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
+    <ClCompile Include="code\KetaEasing.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
     <ClCompile Include="code\component\Block\BlockManager.cpp" />
     <ClCompile Include="code\component\Block\BlockStatus.cpp" />
