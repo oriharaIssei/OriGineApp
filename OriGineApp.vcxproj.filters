@@ -76,6 +76,9 @@
     <Filter Include="system\Score">
       <UniqueIdentifier>{ccf2ed44-29b0-4e54-b50f-4b7104347402}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\Field">
+      <UniqueIdentifier>{a46837b7-a0da-4c24-ba0b-b462a8adb78f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -278,6 +281,9 @@
     <ClInclude Include="code\system\BigBom\DeleteBigExplotionCollision.h">
       <Filter>system\BigBom</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\Field\FieldStatus.h">
+      <Filter>component\Field</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -479,6 +485,9 @@
     </ClCompile>
     <ClCompile Include="code\system\BigBom\DeleteBigExplotionCollision.cpp">
       <Filter>system\BigBom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Field\FieldStatus.cpp">
+      <Filter>component\Field</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

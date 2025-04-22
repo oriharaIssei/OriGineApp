@@ -4,7 +4,6 @@
 #include "ECS/ECSManager.h"
 // component
 #include"Application/code/component/Player/PlayerStates.h"
-
 #include"Application/code/component/Piller/FloatingFloorStatus.h"
 #include"Application/code/component/Piller/FloatingFloorSpawner.h"
 #include"Application/code/component/Bom/BomSpawner.h"
@@ -23,6 +22,7 @@
 #include"Application/code/component/BigBom/BigExplotionCollision.h"
 #include"Application/code/component/Score/ScoreStatus.h"
 #include"Application/code/component/Score/ScoreUIStatus.h"
+#include"Application/code/component/Field/FieldStatus.h"
 
 //#include"Application/code/component/Floor/FloorModeCreater.h"
 //#include"Application/code/component/Floor/BottomFloorStates.h"
@@ -69,6 +69,7 @@
 #include"Application/code/system/BigBom/BigBomLaunchSystem.h"
 #include"Application/code/system/BigBom/DeleteBigBomSystem.h"
 
+
 GameScene::GameScene()
     : IScene("Game") {}
 
@@ -97,6 +98,7 @@ void GameScene::registerComponents() {
     ecsManager->registerComponent<BigExplotionCollision>();
     ecsManager->registerComponent<ScoreStatus>();
     ecsManager->registerComponent<ScoreUIStatus>();
+    ecsManager->registerComponent<FieldStatus>();
 
     /*ecsManager->registerComponent<BottomFloorStates>();
     ecsManager->registerComponent<FloorStates>();

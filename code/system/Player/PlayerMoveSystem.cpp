@@ -2,9 +2,10 @@
 
 #define ENGINE_INCLUDE
 #define ENGINE_COMPONENTS
-
-#include "component/Player/PlayerStates.h"
 #include "engine/EngineInclude.h"
+
+#include "component/Field/FieldStatus.h"
+#include "component/Player/PlayerStates.h"
 
 #include <cmath>
 #include <numbers>
@@ -19,7 +20,6 @@ PlayerMoveSystem::~PlayerMoveSystem() {}
 void PlayerMoveSystem::Initialize() {}
 void PlayerMoveSystem::Finalize() {}
 
-
 void PlayerMoveSystem::UpdateEntity(GameEntity* _entity) {
     if (!_entity)
         return;
@@ -32,12 +32,28 @@ void PlayerMoveSystem::UpdateEntity(GameEntity* _entity) {
     Transform* transform      = getComponent<Transform>(_entity, 0);
     transform->parent         = pivotTransform;
 
+     // ComboEntityを取得
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* fieldEntity                  = ecsManager->getUniqueEntity("Field");
+
+    if (!fieldEntity) { 
+        return;
+    }
+
+    /// component取得
+    FieldStatus* fieldStatus = getComponent<FieldStatus>(fieldEntity);
+
+    if (!fieldStatus) {
+        return;
+    }
+
     float direction = playerStates->GetDirection();
     float speed     = playerStates->GetMoveSpeed();
     float deltaTime = Engine::getInstance()->getDeltaTime();
 
-    if (direction == 0.0f)
+    if (direction == 0.0f) {
         return;
+    }
 
     /// 移動ベクトル（左右）
     Vec3f velocity = {direction, 0.0f, 0.0f};
@@ -45,8 +61,12 @@ void PlayerMoveSystem::UpdateEntity(GameEntity* _entity) {
     /// 位置更新
     pivotTransform->translate += velocity.normalize() * speed * deltaTime;
 
+   
+
+    pivotTransform->translate[X] = std::clamp(pivotTransform->translate[X], fieldStatus->GetFieldLeftMax(), fieldStatus->GetFieldRightMax());
+
     /// 回転：進行方向に向ける
-    float targetAngle  = std::atan2(-velocity[X], -velocity[Z]); 
+    float targetAngle  = std::atan2(-velocity[X], -velocity[Z]);
     float currentAngle = transform->rotate.ToEulerAngles()[Y];
     float newAngle     = LerpShortAngle(currentAngle, targetAngle, 0.5f);
 
