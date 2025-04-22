@@ -14,10 +14,9 @@
 
 #include"system/BigBom/BigBomInputSystem.h"
 #include"system/BigBom/BigBomLaunchSystem.h"
+#include"system/BigBom/BigBomCollisionExSystem.h"
+#include"system/BigBom/DeleteBigBomSystem.h"
 
-#include <cmath>
-#include <numbers>
-#include <Quaternion.h>
 #include <Vector3.h>
 
 PlayerCreateBigBomSystem::PlayerCreateBigBomSystem()
@@ -83,15 +82,16 @@ void PlayerCreateBigBomSystem::UpdateEntity(GameEntity* _entity) {
     //------------------ Input
     // None
     ecs->getSystem<BigBomInputSystem>()->addEntity(bigBom);
-    //------------------ StateTransition
    
+    //------------------ StateTransition
+    ecs->getSystem<DeleteBigBomSystem>()->addEntity(bigBom);
     //------------------ Movement
   
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(bigBom);
     ecs->getSystem<BigBomLaunchSystem>()->addEntity(bigBom);
     //------------------ Collision
     ecs->getSystem<CollisionCheckSystem>()->addEntity(bigBom);
-   
+    ecs->getSystem<BigBomCollisionExSystem>()->addEntity(bigBom);
     //------------------ Physics
     // None
 

@@ -10,7 +10,8 @@ private: // variables
 
     /// frag
     bool isAlive_ = true;
-    bool isPut_;            // 設置フラグ
+    bool isLaunch_=false;            // 設置フラグ
+    bool isLaunched_=false;
 
     /// num
     int32_t ableSetBomNum_; // 設置爆弾数
@@ -36,11 +37,13 @@ public: // accsessor
   
     float GetPutCoolTimeMax() const { return putCoolTimeMax_; }
     float GetCurrenPutCoolTime() const { return currentPutCoolTime_; } 
-    bool GetIsPut() const { return isPut_; }
+    bool GetIsLaunch() const { return isLaunch_; }
+    bool GetIsLaunched() const { return isLaunched_; }
     int32_t GetAblePutNum() const{ return ableSetBomNum_; }
     int32_t GetPutTotalNum() const { return putTotalNum_; }
     /// setter
-    void SetIsPut(const bool& is) {  isPut_ = is; }
+    void SetIsLaunch(const bool& is) {  isLaunch_ = is; }
+    void SetIsLaunched(const bool& is) { isLaunched_ = is; }
     void SetPutCurrentCoolTime(const float& time) { currentPutCoolTime_ = time; }
     void SetIncrementTotalNum() { putTotalNum_++; }
     void SetDecrementPuttingNum() { putTotalNum_--; }

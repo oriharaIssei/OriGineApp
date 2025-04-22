@@ -59,12 +59,15 @@
 #include"Application/code/system/scrap/ScrapFallSystem.h"
 #include"Application/code/system/scrap/ScrapDeleteSystem.h"
 #include"Application/code/system/scrap/ScrapToPlayerCollisionSystem.h"
-#include"Application/code/system/BigBom/BigBomInputSystem.h"
-#include"Application/code/system/BigBom/BigBomLaunchSystem.h"
 #include"Application/code/system/FloatingFloor/FloatingFloorRevivalSystem.h"
 #include"Application/code/system/Block/BlockFloorCollision.h"
 #include"Application/code/system/Score/ScoreIncrementSystem.h"
 #include"Application/code/system/Score/ScoreUIScrollSystem.h"
+#include"Application/code/system/BigBom/BigBomCollisionExSystem.h"
+#include"Application/code/system/BigBom/DeleteBigExplotionCollision.h"
+#include"Application/code/system/BigBom/BigBomInputSystem.h"
+#include"Application/code/system/BigBom/BigBomLaunchSystem.h"
+#include"Application/code/system/BigBom/DeleteBigBomSystem.h"
 
 GameScene::GameScene()
     : IScene("Game") {}
@@ -140,5 +143,7 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<BlockFloorCollision>();
     ecsManager->registerSystem<ScoreIncrementSystem>();
     ecsManager->registerSystem<ScoreUIScrollSystem>();
+    ecsManager->registerSystem<BigBomCollisionExSystem>();
+    ecsManager->registerSystem<DeleteBigBomSystem>();
     ecsManager->SortPriorityOrderSystems();
 }

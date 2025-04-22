@@ -11,13 +11,11 @@
 #include <Vector3.h>
 // component
 #include "component/BigBom/BigBomStatus.h"
-#include "component/Bom/BomSpawner.h"
 #include "component/Player/PlayerStates.h"
 
 #include "engine/EngineInclude.h"
 #include <algorithm> // std::clamp
-#include <cmath>
-#include <numbers>
+
 
 BigBomInputSystem::BigBomInputSystem()
     : ISystem(SystemType::Input) {}

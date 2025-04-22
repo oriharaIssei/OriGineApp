@@ -127,8 +127,11 @@
     <ClInclude Include="code\component\Timer\TimerUIStatus.h" />
     <ClInclude Include="code\scene\GameScene.h" />
     <ClInclude Include="code\scene\TitleScene.h" />
+    <ClInclude Include="code\system\BigBom\BigBomCollisionExSystem.h" />
     <ClInclude Include="code\system\BigBom\BigBomInputSystem.h" />
     <ClInclude Include="code\system\BigBom\BigBomLaunchSystem.h" />
+    <ClInclude Include="code\system\BigBom\DeleteBigBomSystem.h" />
+    <ClInclude Include="code\system\BigBom\DeleteBigExplotionCollision.h" />
     <ClInclude Include="code\system\Block\BlockExBomCollision.h" />
     <ClInclude Include="code\system\Block\BlockFloorCollision.h" />
     <ClInclude Include="code\system\Block\BlockMoveSystem.h" />
@@ -194,8 +197,11 @@
     <ClCompile Include="code\component\Timer\TimerUIStatus.cpp" />
     <ClCompile Include="code\scene\GameScene.cpp" />
     <ClCompile Include="code\scene\TitleScene.cpp" />
+    <ClCompile Include="code\system\BigBom\BigBomCollisionExSystem.cpp" />
     <ClCompile Include="code\system\BigBom\BigBomInputSystem.cpp" />
     <ClCompile Include="code\system\BigBom\BigBomLaunchSystem.cpp" />
+    <ClCompile Include="code\system\BigBom\DeleteBigBomSystem.cpp" />
+    <ClCompile Include="code\system\BigBom\DeleteBigExplotionCollision.cpp" />
     <ClCompile Include="code\system\Block\BlockExBomCollision.cpp" />
     <ClCompile Include="code\system\Block\BlockFloorCollision.cpp" />
     <ClCompile Include="code\system\Block\BlockMoveSystem.cpp" />

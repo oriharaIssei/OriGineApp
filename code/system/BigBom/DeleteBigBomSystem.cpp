@@ -1,4 +1,4 @@
-#include "DeleteBomSystem.h"
+#include "DeleteBigBomSystem.h"
 
 /// engine
 #define ENGINE_INCLUDE
@@ -8,55 +8,54 @@
 #define ENGINE_ECS
 #include "engine/EngineInclude.h"
 // component
-#include "component/Bom/BomStatus.h"
-#include"component/Bom/BomSpawner.h"
-#include "component/Bom/ExplotionCollision.h"
+#include "component/BigBom/BigBomStatus.h"
+#include"component/Player/PlayerStates.h"
+#include "component/BigBom/BigExplotionCollision.h"
 
 #include "system/Bom/BomExplotionSystem.h"
-#include"system/Bom/DeleteExplotionCollision.h"
+#include"system/BigBom/DeleteBigExplotionCollision.h"
 
-DeleteBomSystem::DeleteBomSystem() : ISystem(SystemType::StateTransition) {}
+DeleteBigBomSystem::DeleteBigBomSystem() : ISystem(SystemType::StateTransition) {}
 
-void DeleteBomSystem::Initialize() {
+void DeleteBigBomSystem::Initialize() {
 }
 
-void DeleteBomSystem::Finalize() {
+void DeleteBigBomSystem::Finalize() {
     /*  entities_.clear();*/
     /*  if (status->GetCurrentTimer() >= status->GetExplotionTime()) {*/
 }
 
-DeleteBomSystem::~DeleteBomSystem() {}
+DeleteBigBomSystem::~DeleteBigBomSystem() {}
 
-void DeleteBomSystem::UpdateEntity(GameEntity* _entity) {
-    BomStatus* status                = getComponent<BomStatus>(_entity);
+void DeleteBigBomSystem::UpdateEntity(GameEntity* _entity) {
+    BigBomStatus* status = getComponent<BigBomStatus>(_entity);
   
 
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* playerEntity                 = ecsManager->getUniqueEntity("Player");
 
-      ExplotionCollision* addcollision = getComponent<ExplotionCollision>(playerEntity);
+      BigExplotionCollision* bigexCollision = getComponent<BigExplotionCollision>(playerEntity);
 
-    if (!status || !addcollision || !playerEntity) {
+    if (!status || !bigexCollision || !playerEntity) {
         return;
     }
 
-     BomSpawner* bomSpawner = getComponent<BomSpawner>(playerEntity);
+     PlayerStates* playerStates = getComponent<PlayerStates>(playerEntity);
 
     if (status->GetIsExplotion()) {
-        AddExplotionEntity(_entity, addcollision); // コリジョン追加
+        AddExplotionEntity(_entity, bigexCollision); // コリジョン追加
         DestroyEntity(_entity); // 君消す
-        bomSpawner->SetIsLaunched(false);
-        bomSpawner->SetPutCurrentCoolTime(bomSpawner->GetPutCoolTimeMax());
+        playerStates->SetincrementBomExplotionNum();
     }
 }
 
-void DeleteBomSystem::AddExplotionEntity(GameEntity* _entity, ExplotionCollision* _bomStates) {
+void DeleteBigBomSystem::AddExplotionEntity(GameEntity* _entity, BigExplotionCollision* _bomStates) {
     if (!_bomStates) {
         return;
     }
 
     // ================================= Bullet Entityを 生成 ================================= //
-    GameEntity* bomCollision = CreateEntity<Transform, SphereCollider, Rigidbody, ExplotionCollision>("ColliExp", Transform(), SphereCollider(), Rigidbody(), ExplotionCollision());
+    GameEntity* bomCollision = CreateEntity<Transform, SphereCollider, Rigidbody, BigExplotionCollision>("BigColliExp", Transform(), SphereCollider(), Rigidbody(), BigExplotionCollision());
 
     // ================================= Componentを初期化 ================================= //
 
@@ -71,7 +70,7 @@ void DeleteBomSystem::AddExplotionEntity(GameEntity* _entity, ExplotionCollision
    /* collider->getWorldShape()->radius_ = _bomStates->GetCollisionRadius();*/
 
     /// States
-    ExplotionCollision* status = getComponent<ExplotionCollision>(bomCollision);
+    BigExplotionCollision* status = getComponent<BigExplotionCollision>(bomCollision);
     status                     = _bomStates;
 
     // ================================= System ================================= //
@@ -81,7 +80,7 @@ void DeleteBomSystem::AddExplotionEntity(GameEntity* _entity, ExplotionCollision
 
     //------------------ StateTransition
   /*  ecs->getSystem<BomExplotionSystem>()->addEntity(bomCollision);*/
-    ecs->getSystem<DeleteExplotionCollision>()->addEntity(bomCollision);
+    ecs->getSystem<DeleteBigExplotionCollision>()->addEntity(bomCollision);
 
     //------------------ Movement
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(bomCollision);

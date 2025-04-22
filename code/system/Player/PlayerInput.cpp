@@ -96,18 +96,24 @@ void PlayerInputSystem::PutBom(GameEntity* _entity) {
     }
 
     BomSpawner* entityBomSpawner = getComponent<BomSpawner>(_entity);
+
     if (!entityBomSpawner) {
+        return;
+    }
+
+    // 発射済み＆BigBomがある場合
+    if (playerStates->GetIsBigBomHaving()||entityBomSpawner->GetIsLaunched()) {
         return;
     }
 
     // タイム取得
     float currentCoolTime = entityBomSpawner->GetCurrenPutCoolTime();
-    entityBomSpawner->SetIsPut(false);
+    entityBomSpawner->SetIsLaunch(false);
 
     // coolTimeが0以下になったら発射
     if (currentCoolTime <= 0.0f) {
 
-        entityBomSpawner->SetIsPut(input_->isTriggerKey(DIK_SPACE));
+        entityBomSpawner->SetIsLaunch(input_->isTriggerKey(DIK_SPACE));
 
     } else {
         // coolTimeを減らす

@@ -15,10 +15,10 @@
 #include "component/Bom/ExplotionCollision.h"
 
 // system
+#include "system/Bom/BomCollisionExSystem.h"
 #include "system/Bom/BomExplotionSystem.h"
 #include "system/Bom/DeleteBomSystem.h"
 #include "system/Bom/DeleteExplotionCollision.h"
-#include"system/Bom/BomCollisionExSystem.h"
 
 void PutBomSystem::Initialize() {}
 
@@ -34,23 +34,21 @@ void PutBomSystem::UpdateEntity(GameEntity* _entity) {
     if (!bomSpawner_ || !bomStates) {
         return;
     }
-
-    // 弾を発射できなければ Skip
-    if (!bomSpawner_->GetIsPut()) {
+    if (!bomSpawner_->GetIsLaunch()) {
         return;
     }
 
-    // 弾を発射
-    bomSpawner_->SetIsPut(false);
-    bomSpawner_->SetPutCurrentCoolTime(bomSpawner_->GetPutCoolTimeMax());
+    // 弾を発射  
     SpawnBom(_entity, bomStates);
-    bomSpawner_->SetIncrementTotalNum();
+    bomSpawner_->SetIsLaunch(false);
+    bomSpawner_->SetIsLaunched(true);
 }
 
 void PutBomSystem::SpawnBom(GameEntity* _entity, BomStatus* _status) {
 
-    /* EntityComponentSystemManager* ecsManager = ECSManager::getInstance();*/
-    /*("Bom" + std::to_string(bomSpawner_->GetPutTotalNum())).c_str()*/
+    if (bomSpawner_->GetIsLaunched()) {
+        return;
+    }
 
     // ================================= Bullet Entityを 生成 ================================= //
     GameEntity* bom = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, BomStatus>("Bom", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), BomStatus());
@@ -62,7 +60,7 @@ void PutBomSystem::SpawnBom(GameEntity* _entity, BomStatus* _status) {
     bomTransform->translate  = Vec3f(hostTransform->worldMat[3]) + _status->GetPositionOffset();
 
     // Collider
-    SphereCollider* collider           = getComponent<SphereCollider>(bom);
+    SphereCollider* collider              = getComponent<SphereCollider>(bom);
     collider->getLocalShapePtr()->radius_ = _status->GetCollisionRadius();
 
     // RigitBody
@@ -77,27 +75,26 @@ void PutBomSystem::SpawnBom(GameEntity* _entity, BomStatus* _status) {
     BomStatus* status = getComponent<BomStatus>(bom);
     status->SetBomNumber(bomSpawner_->GetPutTotalNum());
     status = _status;
-  /*  ExplotionCollision* collisionState = getComponent<ExplotionCollision>(bom);*/
+    /*  ExplotionCollision* collisionState = getComponent<ExplotionCollision>(bom);*/
 
-    //collisionState->SetAdaptTime(0.5f);
-    //collisionState->SetCollisionRadius(5.0f);
-    //collisionState->SetOffset(Vec3f(0.0f, 0.0f, 0.0f));
+    // collisionState->SetAdaptTime(0.5f);
+    // collisionState->SetCollisionRadius(5.0f);
+    // collisionState->SetOffset(Vec3f(0.0f, 0.0f, 0.0f));
 
     // ================================= System ================================= //
     ECSManager* ecs = ECSManager::getInstance();
     //------------------ Input
-   
+
     ecs->getSystem<BomExplotionSystem>()->addEntity(bom);
     //------------------ StateTransition
     ecs->getSystem<DeleteBomSystem>()->addEntity(bom);
-   
 
     //------------------ Movement
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(bom);
-  
+
     //------------------ Collision
     /*  ecs->getSystem<CharacterOnCollision>()->addEntity(bom);*/
-        ecs->getSystem<BomCollisionExSystem>()->addEntity(bom);
+    ecs->getSystem<BomCollisionExSystem>()->addEntity(bom);
     ecs->getSystem<CollisionCheckSystem>()->addEntity(bom);
 
     //------------------ Physics

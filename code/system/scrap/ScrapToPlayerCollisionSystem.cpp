@@ -51,6 +51,11 @@ void ScrapToPlayerCollisionSystem::UpdateEntity(GameEntity* _entity) {
                 if (!hitEntityStatus) {
                     continue;
                 }
+
+                if (hitEntityStatus->GetIsBigBomHaving()) {
+                    continue;
+                }
+
                 // プレイヤーポイントアップ
                 hitEntityStatus->IncrementCurrentBigBomPoint();
                 // スクラップは死ぬ

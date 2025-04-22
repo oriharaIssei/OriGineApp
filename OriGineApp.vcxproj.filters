@@ -269,6 +269,15 @@
     <ClInclude Include="code\system\Score\ScoreUIScrollSystem.h">
       <Filter>system\Score</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\BigBom\BigBomCollisionExSystem.h">
+      <Filter>system\BigBom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\BigBom\DeleteBigBomSystem.h">
+      <Filter>system\BigBom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\BigBom\DeleteBigExplotionCollision.h">
+      <Filter>system\BigBom</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -461,6 +470,15 @@
     </ClCompile>
     <ClCompile Include="code\system\Score\ScoreUIScrollSystem.cpp">
       <Filter>system\Score</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\BigBom\BigBomCollisionExSystem.cpp">
+      <Filter>system\BigBom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\BigBom\DeleteBigBomSystem.cpp">
+      <Filter>system\BigBom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\BigBom\DeleteBigExplotionCollision.cpp">
+      <Filter>system\BigBom</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
