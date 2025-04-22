@@ -175,13 +175,13 @@ void BlockSpawnSystem::BlockTypeSetting(BlockStatus* status, BlockType blocktype
 void BlockSpawnSystem::ModelSetForBlockType(ModelMeshRenderer* render, GameEntity* entity, BlockType type) {
     switch (type) {
     case BlockType::NORMAL:
-        CreateModelMeshRenderer(render, entity, kApplicationResourceDirectory + "/Models/Block", "Block.obj");
+        CreateModelMeshRenderer(render, entity, kApplicationResourceDirectory + "/Models/Block", "Block.gltf");
         break;
     case BlockType::SKULL:
-        CreateModelMeshRenderer(render, entity, kApplicationResourceDirectory + "/Models/SkullBlock", "SkullBlock.obj");
+        CreateModelMeshRenderer(render, entity, kApplicationResourceDirectory + "/Models/SkullBlock", "SkullBlock.gltf");
         break;
     case BlockType::ADVANTAGE:
-        CreateModelMeshRenderer(render, entity, kApplicationResourceDirectory + "/Models/AdvantageBlock", "AdvantageBlock.obj");
+        CreateModelMeshRenderer(render, entity, kApplicationResourceDirectory + "/Models/AdvantageBlock", "AdvantageBlock.gltf");
         break;
     case BlockType::COUNT:
         break;
