@@ -38,6 +38,7 @@ void BomExplotionSystem::UpdateEntity(GameEntity* _entity) {
     /*  float deltaTime      = Engine::getInstance()->getDeltaTime();*/
     bomStates_ = getComponent<BomStatus>(_entity);
     BomSpawner* bomSpawner = getComponent<BomSpawner>(playerEntity);
+    Audio* audio      = getComponent<Audio>(playerEntity);
 
     if (!bomStates_ || !playerEntity || !bomSpawner) {
         return;
@@ -53,7 +54,7 @@ void BomExplotionSystem::UpdateEntity(GameEntity* _entity) {
     ///============================================================
     if (input_->isTriggerKey(DIK_SPACE)) {
         bomStates_->SetIsExplotion(true);
-       
+        audio->Play();
     }
     /*  bomStates->CurrentTimeIncrement(deltaTime);*/
 }
