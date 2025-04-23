@@ -8,12 +8,13 @@
 #define ENGINE_ECS
 #include "engine/EngineInclude.h"
 // component
+#include "component/Bom/BomSpawner.h"
 #include "component/Bom/BomStatus.h"
-#include"component/Bom/BomSpawner.h"
 #include "component/Bom/ExplotionCollision.h"
+#include "component/OperateUI/OperateUIStatus.h"
 
 #include "system/Bom/BomExplotionSystem.h"
-#include"system/Bom/DeleteExplotionCollision.h"
+#include "system/Bom/DeleteExplotionCollision.h"
 
 DeleteBomSystem::DeleteBomSystem() : ISystem(SystemType::StateTransition) {}
 
@@ -28,22 +29,27 @@ void DeleteBomSystem::Finalize() {
 DeleteBomSystem::~DeleteBomSystem() {}
 
 void DeleteBomSystem::UpdateEntity(GameEntity* _entity) {
-    BomStatus* status                = getComponent<BomStatus>(_entity);
-  
+    BomStatus* status = getComponent<BomStatus>(_entity);
 
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* playerEntity                 = ecsManager->getUniqueEntity("Player");
 
-      ExplotionCollision* addcollision = getComponent<ExplotionCollision>(playerEntity);
+    ExplotionCollision* addcollision = getComponent<ExplotionCollision>(playerEntity);
 
-    if (!status || !addcollision || !playerEntity) {
+    GameEntity* operateUI = ecsManager->getUniqueEntity("OperateUI");
+
+    OperateUIStatus* operateUIStatus = getComponent<OperateUIStatus>(operateUI);
+   
+
+    if (!status || !addcollision || !playerEntity || !operateUIStatus) {
         return;
     }
 
-     BomSpawner* bomSpawner = getComponent<BomSpawner>(playerEntity);
+    BomSpawner* bomSpawner = getComponent<BomSpawner>(playerEntity);
 
     if (status->GetIsExplotion()) {
         AddExplotionEntity(_entity, addcollision); // コリジョン追加
+        operateUIStatus->ChangeInit(OperateMode::LAUNCH);
         DestroyEntity(_entity); // 君消す
         bomSpawner->SetIsLaunched(false);
         bomSpawner->SetPutCurrentCoolTime(bomSpawner->GetPutCoolTimeMax());
@@ -66,9 +72,9 @@ void DeleteBomSystem::AddExplotionEntity(GameEntity* _entity, ExplotionCollision
     bomTransform->translate  = Vec3f(hostTransform->worldMat[3]);
 
     // Collider
-    SphereCollider* collider           = getComponent<SphereCollider>(bomCollision);
+    SphereCollider* collider              = getComponent<SphereCollider>(bomCollision);
     collider->getLocalShapePtr()->radius_ = _bomStates->GetCollisionRadius();
-   /* collider->getWorldShape()->radius_ = _bomStates->GetCollisionRadius();*/
+    /* collider->getWorldShape()->radius_ = _bomStates->GetCollisionRadius();*/
 
     /// States
     ExplotionCollision* status = getComponent<ExplotionCollision>(bomCollision);
@@ -80,7 +86,7 @@ void DeleteBomSystem::AddExplotionEntity(GameEntity* _entity, ExplotionCollision
     // None
 
     //------------------ StateTransition
-  /*  ecs->getSystem<BomExplotionSystem>()->addEntity(bomCollision);*/
+    /*  ecs->getSystem<BomExplotionSystem>()->addEntity(bomCollision);*/
     ecs->getSystem<DeleteExplotionCollision>()->addEntity(bomCollision);
 
     //------------------ Movement

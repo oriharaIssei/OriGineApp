@@ -13,12 +13,14 @@
 #include "component/Bom/BomSpawner.h"
 #include "component/Bom/BomStatus.h"
 #include "component/Bom/ExplotionCollision.h"
+#include"component/OperateUI/OperateUIStatus.h"
 
 // system
 #include "system/Bom/BomCollisionExSystem.h"
 #include "system/Bom/BomExplotionSystem.h"
 #include "system/Bom/DeleteBomSystem.h"
 #include "system/Bom/DeleteExplotionCollision.h"
+
 
 void PutBomSystem::Initialize() {}
 
@@ -42,6 +44,15 @@ void PutBomSystem::UpdateEntity(GameEntity* _entity) {
     SpawnBom(_entity, bomStates);
     bomSpawner_->SetIsLaunch(false);
     bomSpawner_->SetIsLaunched(true);
+
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* operateUI           = ecsManager->getUniqueEntity("OperateUI");
+
+    if (!operateUI) {
+        return;
+    }
+    OperateUIStatus* operateUIStatus = getComponent<OperateUIStatus>(operateUI);
+    operateUIStatus->ChangeInit(OperateMode::EXPLOTION);
 }
 
 void PutBomSystem::SpawnBom(GameEntity* _entity, BomStatus* _status) {

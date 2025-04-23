@@ -1,4 +1,4 @@
-#include "ScoreUIStatus.h"
+#include "OperateUIStatus.h"
 /// Engine
 #define ENGINE_INCLUDE
 /// ECS
@@ -8,87 +8,71 @@
 /// externals
 #include "imgui/imgui.h"
 
-void ScoreUIStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
+void OperateUIStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 }
 
-bool ScoreUIStatus::Edit() {
+bool OperateUIStatus::Edit() {
     bool isChange = false;
 
     isChange = ImGui::Checkbox("IsAlive", &isAlive_);
 
     ImGui::Spacing();
-
-    // ComboDigit（桁数）のUI選択
-    static const char* digitLabels[] = {
-        "ONE",
-        "TWO",
-        "THREE",
-        "FOUR",
-        "FIVE",
-        "SIX",
-        "SEVEN"
-    };
-    int currentIndex                 = static_cast<int>(digit_);
-    if (ImGui::Combo("Timer Digit", &currentIndex, digitLabels, static_cast<int>(TimeDigit::COUNT))) {
-        digit_ = static_cast<TimeDigit>(currentIndex);
-    }
-
+    isChange = ImGui::DragFloat("scalingEase_.maxTime", &scalingEase_.maxTime);
+    isChange = ImGui::DragFloat("scalingEase_.period", &scalingEase_.period);
+    isChange = ImGui::DragFloat("scalingEase_.amplitude", &scalingEase_.amplitude);
+    isChange = ImGui::DragFloat2("startTextureSize_", startTextureSize_.v);
+    isChange = ImGui::DragFloat2("maxTextureSize_", maxTextureSize_.v);
+    isChange = ImGui::DragFloat2("resultTextureSize_", resultTextureSize_.v);
     return isChange;
 }
 
-void ScoreUIStatus::Save(BinaryWriter& _writer) {
+void OperateUIStatus::Save(BinaryWriter& _writer) {
     _writer.Write("isAlive", isAlive_);
-    _writer.Write("timerDigit", static_cast<int32_t>(digit_));
+    _writer.Write("scalingEase_.maxTime", scalingEase_.maxTime);
+    _writer.Write("scalingEase_.period", scalingEase_.period);
+    _writer.Write("scalingEase_.amplitude", scalingEase_.amplitude);
+
+    _writer.Write<2, float>("startTextureSize_", startTextureSize_);
+    _writer.Write<2, float>("maxTextureSize_", maxTextureSize_);
+    _writer.Write<2, float>("resultTextureSize_", resultTextureSize_);
 }
 
-void ScoreUIStatus::Load(BinaryReader& _reader) {
+void OperateUIStatus::Load(BinaryReader& _reader) {
     _reader.Read("isAlive", isAlive_);
-    int32_t digit = 0;
-    _reader.Read("timerDigit", digit);
-    digit_ = static_cast<TimeDigit>(digit);
+    _reader.Read("scalingEase_.maxTime", scalingEase_.maxTime);
+    _reader.Read("scalingEase_.period", scalingEase_.period);
+    _reader.Read("scalingEase_.amplitude", scalingEase_.amplitude);
+
+     _reader.Read<2, float>("startTextureSize_", startTextureSize_);
+     _reader.Read<2, float>("maxTextureSize_", maxTextureSize_);
+     _reader.Read<2, float>("resultTextureSize_", resultTextureSize_);
 }
 
-void ScoreUIStatus::Finalize() {}
+void OperateUIStatus::Finalize() {}
 
-int32_t ScoreUIStatus::GetValueForDigit(const float& value) {
-    switch (digit_) {
-    case TimeDigit::ONE: {
-        // 小数点以下第1位を取得
-        int32_t intValue = static_cast<int32_t>(value) % 10;
-        return intValue;
-    }
-    case TimeDigit::TWO: {
-        // 整数部の第2位を取得
-        int32_t intValue = static_cast<int32_t>(value) / 10 % 10;
-        return intValue;
-    }
-    case TimeDigit::THREE: {
-        // 整数部の第2位を取得
-        int32_t intValue = static_cast<int32_t>(value) / 100 % 10;
-        return intValue;
-    }
-    case TimeDigit::FOUR: {
-        // 整数部の第2位を取得
-        int32_t intValue = static_cast<int32_t>(value) / 1000 % 10;
-        return intValue;
-    }
-    case TimeDigit::FIVE: {
-        // 整数部の第2位を取得
-        int32_t intValue = static_cast<int32_t>(value) / 10000 % 10;
-        return intValue;
-    }
-    case TimeDigit::SIX: {
-        // 整数部の第2位を取得
-        int32_t intValue = static_cast<int32_t>(value) / 100000 % 10;
-        return intValue;
-    }
-    case TimeDigit::SEVEN: {
-        // 整数部の第2位を取得
-        int32_t intValue = static_cast<int32_t>(value) / 1000000 % 10;
-        return intValue;
-    }
+void OperateUIStatus::ChangeInit(const OperateMode& operateMOde) {
+    scalingEase_.time = 0.0f;
+    operateMode_      = operateMOde;
+    isChange_         = true;
+}
 
-    default:
-        return 0;
+void OperateUIStatus::ScalingEaseUpdate(const float& t) {
+    if (!isChange_) {
+        return;
     }
+      
+        scalingEase_.time += t;
+
+        /// スケーリングイージング
+        resultTextureSize_ = (EaseAmplitudeScale(startTextureSize_, scalingEase_.time, scalingEase_.maxTime,
+            scalingEase_.amplitude, scalingEase_.period));
+
+        // 事後処理
+        if (scalingEase_.time < scalingEase_.maxTime) {
+            return;
+        }
+        scalingEase_.time = scalingEase_.maxTime;
+        resultTextureSize_ = startTextureSize_;
+        isChange_         = false;
+        
 }

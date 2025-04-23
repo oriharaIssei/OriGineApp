@@ -107,6 +107,7 @@
     <ClInclude Include="code\component\EffectByBlock\EffectByBlockStatus.h" />
     <ClInclude Include="code\component\EffectByBlock\EffectByBlockUIStatus.h" />
     <ClInclude Include="code\component\Field\FieldStatus.h" />
+    <ClInclude Include="code\component\OperateUI\OperateUIStatus.h" />
     <ClInclude Include="code\component\Score\ScoreStatus.h" />
     <ClInclude Include="code\component\Score\ScoreUIStatus.h" />
     <ClInclude Include="code\component\Scrap\ScrapSpawner.h" />
@@ -163,6 +164,7 @@
     <ClInclude Include="code\system\Floor\DeleteFloorSystem.h" />
     <ClInclude Include="code\system\Floor\FloorUpdateMatrixSystem.h" />
     <ClInclude Include="code\system\Matrix\UpdateMatrixSystem.h" />
+    <ClInclude Include="code\system\OperateUI\OperateUISystem.h" />
     <ClInclude Include="code\system\Player\PlayerCreateBigBomSystem.h" />
     <ClInclude Include="code\system\Player\PlayerFollowCameraSystem.h" />
     <ClInclude Include="code\system\Player\PlayerInput.h" />
@@ -184,6 +186,7 @@
     <ClCompile Include="code\component\EffectByBlock\EffectByBlockStatus.cpp" />
     <ClCompile Include="code\component\EffectByBlock\EffectByBlockUIStatus.cpp" />
     <ClCompile Include="code\component\Field\FieldStatus.cpp" />
+    <ClCompile Include="code\component\OperateUI\OperateUIStatus.cpp" />
     <ClCompile Include="code\component\Score\ScoreStatus.cpp" />
     <ClCompile Include="code\component\Score\ScoreUIStatus.cpp" />
     <ClCompile Include="code\component\Scrap\ScrapSpawner.cpp" />
@@ -240,6 +243,7 @@
     <ClCompile Include="code\system\Floor\DeleteFloorSystem.cpp" />
     <ClCompile Include="code\system\Floor\FloorUpdateMatrixSystem.cpp" />
     <ClCompile Include="code\system\Matrix\UpdateMatrixSystem.cpp" />
+    <ClCompile Include="code\system\OperateUI\OperateUISystem.cpp" />
     <ClCompile Include="code\system\Player\PlayerCreateBigBomSystem.cpp" />
     <ClCompile Include="code\system\Player\PlayerFollowCameraSystem.cpp" />
     <ClCompile Include="code\system\Player\PlayerInput.cpp" />

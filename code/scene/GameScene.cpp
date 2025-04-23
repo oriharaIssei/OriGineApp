@@ -24,6 +24,7 @@
 #include"Application/code/component/Score/ScoreUIStatus.h"
 #include"Application/code/component/Field/FieldStatus.h"
 #include"Application/code/component/EffectByBlock/EffectByBlockUIStatus.h"
+#include"Application/code/component/OperateUI/OperateUIStatus.h"
 
 //#include"Application/code/component/Floor/FloorModeCreater.h"
 //#include"Application/code/component/Floor/BottomFloorStates.h"
@@ -71,7 +72,7 @@
 #include"Application/code/system/BigBom/DeleteBigBomSystem.h"
 #include"Application/code/system/EffectByBlock/EffectByBlockDrawSystem.h"
 #include"Application/code/system/EffectByBlock/EffectByBlockDeleteSystem.h"
-
+#include"Application/code/system/OperateUI/OperateUISystem.h"
 
 GameScene::GameScene()
     : IScene("Game") {}
@@ -103,6 +104,7 @@ void GameScene::registerComponents() {
     ecsManager->registerComponent<ScoreUIStatus>();
     ecsManager->registerComponent<FieldStatus>();
     ecsManager->registerComponent<EffectByBlockUIStatus>();
+    ecsManager->registerComponent<OperateUIStatus>();
 
     /*ecsManager->registerComponent<BottomFloorStates>();
     ecsManager->registerComponent<FloorStates>();
@@ -154,5 +156,6 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<DeleteBigExplotionCollision>();
     ecsManager->registerSystem<EffectByBlockDrawSystem>();
     ecsManager->registerSystem<EffectByBlockDeleteSystem>();
+    ecsManager->registerSystem<OperateUISystem>();
     ecsManager->SortPriorityOrderSystems();
 }

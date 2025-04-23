@@ -85,6 +85,12 @@
     <Filter Include="system\EffectByBlock">
       <UniqueIdentifier>{1c1185c8-147d-46cd-ab43-11deb21ccc77}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\OperateUI">
+      <UniqueIdentifier>{3370eef5-69a9-4db4-9681-20f707d558fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\OperateUI">
+      <UniqueIdentifier>{9ea86450-1e24-42e1-a8f3-a523f91e7583}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -304,6 +310,12 @@
       <Filter>system\EffectByBlock</Filter>
     </ClInclude>
     <ClInclude Include="code\system\UsingCameraSetSystem.h" />
+    <ClInclude Include="code\component\OperateUI\OperateUIStatus.h">
+      <Filter>component\OperateUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\OperateUI\OperateUISystem.h">
+      <Filter>system\OperateUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -523,5 +535,11 @@
       <Filter>system\EffectByBlock</Filter>
     </ClCompile>
     <ClCompile Include="code\system\UsingCameraSetSystem.cpp" />
+    <ClCompile Include="code\component\OperateUI\OperateUIStatus.cpp">
+      <Filter>component\OperateUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\OperateUI\OperateUISystem.cpp">
+      <Filter>system\OperateUI</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

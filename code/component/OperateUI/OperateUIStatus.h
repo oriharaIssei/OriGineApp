@@ -1,36 +1,29 @@
 #pragma once
 
 #include "component/IComponent.h"
-#include <array>
-#include <component/transform/Transform.h>
-#include <cstdint>
-#include <Entity.h>
-#include <string>
-#include <Vector3.h>
+#include"KetaEasing.h"
 
-class ScoreUIStatus
+enum class OperateMode {
+    LAUNCH,
+    EXPLOTION,
+};
+
+class OperateUIStatus
     : public IComponent {
-public:
-    enum class TimeDigit {
-        ONE,
-        TWO,
-        THREE,
-        FOUR,
-        FIVE,
-        SIX,
-        SEVEN,
-        COUNT,
-    };
 
 private: // variables
     bool isAlive_ = true;
-    TimeDigit digit_;        // 整数の桁
-    int32_t valueForDigit_;
-    std::string currentTextureName_;
+
+     Easing scalingEase_;
+    OperateMode operateMode_ = OperateMode::LAUNCH;
+     Vec2f startTextureSize_;
+     Vec2f maxTextureSize_;
+     Vec2f resultTextureSize_ = {0.0f, 0.0f};
+     bool isChange_ = false;
 
 public:
-    ScoreUIStatus() {}
-    virtual ~ScoreUIStatus() = default;
+    OperateUIStatus() {}
+    virtual ~OperateUIStatus() = default;
 
     void Initialize(GameEntity* _entity) override;
     virtual bool Edit();
@@ -39,12 +32,15 @@ public:
 
     virtual void Finalize();
 
-    int32_t GetValueForDigit(const float& value);
+    void ChangeInit(const OperateMode&operateMOde);
+    void ScalingEaseUpdate(const float& t);
 
 public: // accsessor
     /// getter
-    TimeDigit GetDigit() const { return digit_; }
-    std::string GetCurrentTextureName() const { return currentTextureName_; }
+    Vec2f GetREsultSize() const { return resultTextureSize_; }
+    OperateMode GetOperateMode() const { return operateMode_; }
+  
     /// setter
-    void SetcurrentTextureName(const std::string& currentTextureName) { currentTextureName_ = currentTextureName; }
+    void SetEasingTime(const float& time) { scalingEase_.time = time; }
+    void SetIsChange(const bool& is) { isChange_ = is; }
 };
