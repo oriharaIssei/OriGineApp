@@ -28,12 +28,12 @@ public:
 private:
     Transform* followTarget_ = nullptr;
 
-    Vec3f followOffset_        = {0.f, 0.f, 0.f};
-    Vec3f interTarget_         = {0.f, 0.f, 0.f};
-    Vec2f destinationAngleXY_  = {0.0f, 0.0f};
-    float rotateSpeedPadStick_ = 0.0f;
-    float rotateSpeedMouse_    = 0.0f;
-    float rotateSensitivity_   = 0.0f;
+    Vec3f followOffset_             = {0.f, 0.f, 0.f};
+    Vec3f interTarget_              = {0.f, 0.f, 0.f};
+    Vec2f destinationAngleXY_       = {0.0f, 0.0f};
+    float rotateSpeedPadStick_      = 0.0f;
+    float rotateSpeedMouse_         = 0.0f;
+    float rotateSensitivity_        = 0.0f;
     float interTargetInterpolation_ = 0.0f;
 
     float maxRotateX_ = 0.0f;

@@ -16,16 +16,16 @@ bool CameraController::Edit() {
 
     ImGui::Spacing();
 
-    isEdit |= ImGui::DragFloat("rotateSpeedPadStick", &rotateSpeedPadStick_, 0.01f, 0.0f, 100.0f);
-    isEdit |= ImGui::DragFloat("rotateSpeedMouse", &rotateSpeedMouse_, 0.01f, 0.0f, 100.0f);
+    isEdit |= ImGui::DragFloat("rotateSpeedPadStick", &rotateSpeedPadStick_, 0.01f, -100.0f, 100.0f);
+    isEdit |= ImGui::DragFloat("rotateSpeedMouse", &rotateSpeedMouse_, 0.01f, -100.0f, 100.0f);
 
-    isEdit |= ImGui::DragFloat("rotateSensitivity", &rotateSensitivity_, 0.01f, 0.0f, 100.0f);
-    isEdit |= ImGui::DragFloat("interTargetInterpolation", &interTargetInterpolation_, 0.01f, 0.0f, 1.0f);
+    isEdit |= ImGui::DragFloat("rotateSensitivity", &rotateSensitivity_, 0.01f, -1.f, 1.f);
+    isEdit |= ImGui::DragFloat("interTargetInterpolation", &interTargetInterpolation_, 0.01f, -1.f, 1.0f);
 
     ImGui::Spacing();
 
-    isEdit |= ImGui::DragFloat("maxRotateX", &maxRotateX_, 0.01f, 0.0f, 100.0f);
-    isEdit |= ImGui::DragFloat("minRotateX", &minRotateX_, 0.01f, 0.0f, 100.0f);
+    isEdit |= ImGui::DragFloat("maxRotateX", &maxRotateX_, 0.01f, -100.0f, 100.0f);
+    isEdit |= ImGui::DragFloat("minRotateX", &minRotateX_, 0.01f, -100.0f, 100.0f);
 
     return isEdit;
 #else

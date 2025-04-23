@@ -27,13 +27,14 @@ void CameraInputSystem::UpdateEntity(GameEntity* _entity) {
         } else { /// Mouse
             Vec2f rotateVelocity = input_->getMouseVelocity() * cameraController->getRotateSpeedMouse();
             // input の x,yをそれぞれの角度に変換
-            cameraController->setDestinationAngleXY(cameraController->getDestinationAngleXY() + Vec2f(-rotateVelocity[Y], rotateVelocity[X]));
+            cameraController->setDestinationAngleXY(cameraController->getDestinationAngleXY() + rotateVelocity);
         }
 
-        cameraController->setDestinationAngleXY(Vec2f(
-            std::clamp(cameraController->getDestinationAngleXY()[X], cameraController->getMinRotateX(), cameraController->getMaxRotateX()),
-            cameraController->getDestinationAngleXY()[Y]));
+        Vec2f destinationAngleXY = cameraController->getDestinationAngleXY();
+        destinationAngleXY[X]    = std::clamp(cameraController->getDestinationAngleXY()[X], cameraController->getMinRotateX(), cameraController->getMaxRotateX());
 
-        cameraController->setInterTarget(Lerp(cameraController->getFollowTarget()->translate, cameraController->getInterTarget(), cameraController->getInterTargetInterpolation()));
+        cameraController->setDestinationAngleXY(destinationAngleXY);
+
+        cameraController->setInterTarget(Lerp(Vec3f(cameraController->getFollowTarget()->worldMat[3]), cameraController->getInterTarget(), cameraController->getInterTargetInterpolation()));
     }
 }

@@ -19,26 +19,27 @@ void FollowCameraUpdateSystem::UpdateEntity(GameEntity* _entity) {
     CameraController* cameraController = getComponent<CameraController>(_entity);
     CameraTransform* cameraTransform   = getComponent<CameraTransform>(_entity);
     if (cameraController->getFollowTarget()) {
-
-        // ============= translate ============= //
-
-        Vec3f offset = cameraController->getFollowOffset() * MakeMatrix::RotateQuaternion(cameraTransform->rotate);
-
-        cameraTransform->translate = offset + cameraController->getInterTarget();
-
         // ============= rotate ============= //
-        Vec3f diff = -offset;
-        diff       = diff.normalize();
-        // Yaw（水平回転）を計算
-        float yaw = std::atan2(diff[X], diff[Z]);
-
-        // Pitch（垂直回転）を計算
-        float pitch = std::asin(-diff[Y]);
-
-        // 回転をクォータニオンとして設定
-        Quaternion newRotate = Quaternion::RotateAxisAngle({0.0f, 1.0f, 0.0f}, yaw) * Quaternion::RotateAxisAngle({1.0f, 0.0f, 0.0f}, pitch);
-
+        // Quaternion で 回転
+        Vec3f targetDirection   = Vec3f::Normalize(cameraController->getInterTarget() - cameraTransform->translate);
+        Vec3f targetDirectionXZ = Vec3f::Normalize(Vec3f(targetDirection[X], 0.0f, targetDirection[Z]));
+        float yaw               = atan2(targetDirectionXZ[X], targetDirectionXZ[Z]);
+        float pitch             = atan2(targetDirection[Y], Vec3f::Length(Vec3f(targetDirection[X], 0.0f, targetDirection[Z])));
+        Quaternion newRotate    = Quaternion::FromEulerAngles(pitch, yaw, 0.0f);
         cameraTransform->rotate = Lerp(cameraTransform->rotate, newRotate, cameraController->getRotateSensitivity());
+
+        
+         // ============= translate ============= //
+        // FollowTarget を中心に回転
+        Vec3f followTargetPosition = cameraController->getInterTarget();
+        Vec3f offset               = cameraController->getFollowOffset();
+
+        // 回転行列を適用
+        Vec3f rotatedOffset = offset * MakeMatrix::RotateQuaternion(cameraTransform->rotate);
+
+        // 新しいカメラ位置を計算
+        cameraTransform->translate = followTargetPosition + rotatedOffset;
+
     }
 
     cameraTransform->UpdateMatrix();

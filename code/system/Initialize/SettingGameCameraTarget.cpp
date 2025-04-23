@@ -22,5 +22,4 @@ void SettingGameCameraTarget::Update() {
     }
 }
 
-void SettingGameCameraTarget::Finalize() {
-}
+void SettingGameCameraTarget::Finalize() {}

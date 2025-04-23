@@ -20,20 +20,28 @@ void PlayerMoveSystem::UpdateEntity(GameEntity* _entity) {
     PlayerStatus* playerStatus = getComponent<PlayerStatus>(_entity);
     Rigidbody* rigidbody       = getComponent<Rigidbody>(_entity);
     Transform* transform       = getComponent<Transform>(_entity);
-
     if (playerInput->getInputDirection().lengthSq() <= 0.f) {
         rigidbody->setVelocity({0.f, 0.f, 0.f});
         return;
     }
     const float deltaTime = getMainDeltaTime();
 
-    // プレイヤーの向きを入力方向に向ける
-    Vector3f forward = Vec3f(playerInput->getInputDirection()[X], 0.f, playerInput->getInputDirection()[Y]);
+    // 入力方向を取得
+    Vec2f inputDirection    = playerInput->getInputDirection();
+    Vec3f movementDirection = Vec3f(inputDirection[X], 0.f, inputDirection[Y]);
 
-    Quaternion rotation = Quaternion::RotateAxisAngle(Vec3f(0.f, 1.f, 0.f), std::atan2(forward[Y], forward[X]));
+    // カメラの回転を取得
+    GameEntity* gameCamera    = getUniqueEntity("GameCamera");
+    Quaternion cameraRotation = getComponent<CameraTransform>(gameCamera)->rotate;
 
-    GameEntity* gameCamera = getUniqueEntity("GameCamera");
-    transform->rotate      = Slerp(transform->rotate, rotation * getComponent<CameraTransform>(gameCamera)->rotate, playerStatus->getDirectionInterpolateRate());
+    // 入力方向をカメラ基準に変換
+    movementDirection = cameraRotation.RotateVector(movementDirection);
+
+    // プレイヤーの回転を計算
+    Quaternion targetRotation = Quaternion::RotateAxisAngle(Vec3f(0.f, 1.f, 0.f), std::atan2(movementDirection[X], movementDirection[Z]));
+
+    // プレイヤーの回転を補間して設定
+    transform->rotate = Slerp(transform->rotate, targetRotation, playerStatus->getDirectionInterpolateRate());
 
     // gearLevel の更新
     playerStatus->minusGearUpCoolTime(deltaTime);
@@ -44,5 +52,5 @@ void PlayerMoveSystem::UpdateEntity(GameEntity* _entity) {
 
     // 移動速度の更新
     float playerSpeed = playerStatus->getBaseSpeed();
-    rigidbody->setVelocity(Vec3f(0.f, 0.f, (playerSpeed * deltaTime)) * MakeMatrix::RotateQuaternion(transform->rotate));
+    rigidbody->setVelocity(movementDirection * (playerSpeed * deltaTime));
 }
