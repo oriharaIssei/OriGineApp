@@ -8,6 +8,8 @@
 #include "engine/EngineInclude.h"
 // component
 #include "component/Block/BlockStatus.h"
+#include "component/EffectByBlock/EffectByBlockStatus.h"
+#include "component/EffectByBlock/EffectByBlockUIStatus.h"
 #include "component/Score/ScoreStatus.h"
 #include "component/Scrap/ScrapSpawner.h"
 #include "component/Scrap/ScrapStatus.h"
@@ -42,7 +44,7 @@ void BreakBlockSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     if (blockStatus_->GetIsBreak()) {
-       /* ScrapSpawn(_entity);*/
+        /* ScrapSpawn(_entity);*/
         BlockReaction(blockStatus_->GetBlockType());
         DestroyEntity(_entity);
     }
@@ -78,7 +80,7 @@ void BreakBlockSystem::BlockReaction(BlockType blocktype) {
     case BlockType::NORMAL:
         scoreStatus->PlusScoreIncrement(scoreValue);
         scoreStatus->SetScoreChangeTime(0.0f);
-            break;
+        break;
 
         ///---------------------------------------------
         /// Skull
@@ -97,6 +99,62 @@ void BreakBlockSystem::BlockReaction(BlockType blocktype) {
     default:
         break;
     }
+}
+
+void BreakBlockSystem::EffectUISpawn(GameEntity* _entity) {
+    _entity;
+
+   /*  EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+
+    GameEntity* effectByBlock = CreateEntity<Transform, Rigidbody, SpriteRenderer>("effectByBlock", Transform(), Rigidbody(), SpriteRenderer());*/
+
+    // ================================= Componentを初期化 ================================= //
+
+    
+  /*  Transform* baseTransform = getComponent<Transform>(_entity);*/
+  /*  transform->translate     = baseTransform->translate;
+    transform->translate[Z]  = 0.0f;*/
+
+    //* rigitBody
+    // 初速、重力、massの設定
+
+   /* Rigidbody* rigitBody = getComponent<Rigidbody>(scrap);
+    rigitBody->setMass(scrapSpawner->GetMass());
+    rigitBody->setVelocity(Vec3f(blowValueX, blowValueY, 0.0f));
+    rigitBody->setUseGravity(true);*/
+
+    //* collider
+    //SphereCollider* collider              = getComponent<SphereCollider>(scrap);
+    //collider->getLocalShapePtr()->radius_ = scrapSpawner->GetColliderRadius();
+
+    ////*model
+    //ModelMeshRenderer* modelMesh = getComponent<ModelMeshRenderer>(scrap);
+    //CreateModelMeshRenderer(modelMesh, scrap, kApplicationResourceDirectory + "/Models/Scrap", "Scrap.obj");
+
+    //// ================================= System ================================= //
+    //ECSManager* ecs = ECSManager::getInstance();
+
+    ////------------------ Input
+    //// None
+
+    ////------------------ StateTransition
+    //ecs->getSystem<ScrapDeleteSystem>()->addEntity(scrap);
+    ////------------------ Movement
+    //ecs->getSystem<MoveSystemByRigidBody>()->addEntity(scrap);
+    //ecs->getSystem<ScrapFallSystem>()->addEntity(scrap);
+
+    ////------------------ Collision
+    //ecs->getSystem<CollisionCheckSystem>()->addEntity(scrap);
+    //ecs->getSystem<ScrapToPlayerCollisionSystem>()->addEntity(scrap);
+    ////------------------ Physics
+    //// None
+
+    ////------------------ Render
+    ///* ecs->getSystem<ColliderRenderingSystem>()->addEntity(block);*/
+    //ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(scrap);
+
+
+    
 }
 
 void BreakBlockSystem::ScrapSpawn(GameEntity* _entity) {
@@ -177,3 +235,4 @@ void BreakBlockSystem::ScrapSpawn(GameEntity* _entity) {
         ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(scrap);
     }
 }
+

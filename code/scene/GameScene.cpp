@@ -23,7 +23,6 @@
 #include"Application/code/component/Score/ScoreStatus.h"
 #include"Application/code/component/Score/ScoreUIStatus.h"
 #include"Application/code/component/Field/FieldStatus.h"
-#include"Application/code/component/EffectByBlock/EffectByBlockStatus.h"
 #include"Application/code/component/EffectByBlock/EffectByBlockUIStatus.h"
 
 //#include"Application/code/component/Floor/FloorModeCreater.h"
@@ -102,7 +101,6 @@ void GameScene::registerComponents() {
     ecsManager->registerComponent<ScoreStatus>();
     ecsManager->registerComponent<ScoreUIStatus>();
     ecsManager->registerComponent<FieldStatus>();
-    ecsManager->registerComponent<EffectByBlockStatus>();
     ecsManager->registerComponent<EffectByBlockUIStatus>();
 
     /*ecsManager->registerComponent<BottomFloorStates>();

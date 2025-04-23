@@ -16,6 +16,7 @@ public:
 
     void BlockReaction(BlockType blocktype);
     void ScrapSpawn(GameEntity* _entity);
+    void EffectUISpawn(GameEntity* _entity);
 
 protected:
     virtual void UpdateEntity(GameEntity* _entity) override;

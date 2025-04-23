@@ -8,21 +8,35 @@
 #include <string>
 #include <Vector3.h>
 
+enum class EffectType {
+    SCORE,
+    TIME,
+};
+
+enum class UIDigit {
+    ONE,
+    TWO,
+    THREE,
+    FOUR,
+    FIVE,
+    ICON,
+    SIGN,
+    COUNT,
+};
+
 class EffectByBlockUIStatus
     : public IComponent {
 public:
-    enum class TimeDigit {
-        ONE,
-        TWO,
-        THREE,
-        FOUR,
-        FIVE,
-        COUNT,
-    };
-
 private: // variables
     bool isAlive_ = true;
-    TimeDigit digit_;        // 整数の桁
+
+    float settingValue_    = 0.0f; // 取得した値
+    EffectType effectType_ = EffectType::TIME; // エフェクトタイプ
+
+    //
+
+
+    UIDigit digit_; // 整数の桁
     int32_t valueForDigit_;
     std::string currentTextureName_;
 
@@ -37,12 +51,14 @@ public:
 
     virtual void Finalize();
 
-    int32_t GetValueForDigit(const float& value);
+    int32_t GetValueForDigit();
 
 public: // accsessor
     /// getter
-    TimeDigit GetDigit() const { return digit_; }
+    UIDigit GetDigit() const { return digit_; }
     std::string GetCurrentTextureName() const { return currentTextureName_; }
     /// setter
     void SetcurrentTextureName(const std::string& currentTextureName) { currentTextureName_ = currentTextureName; }
+    void SetValue(const float& scoreChange) { settingValue_ = scoreChange; }
+    void SetEffectType(const EffectType& type) { effectType_ = type; }
 };

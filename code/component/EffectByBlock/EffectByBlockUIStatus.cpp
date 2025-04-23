@@ -18,61 +18,61 @@ bool EffectByBlockUIStatus::Edit() {
 
     ImGui::Spacing();
 
-    // ComboDigit（桁数）のUI選択
-    static const char* digitLabels[] = {
-        "ONE",
-        "TWO",
-        "THREE",
-        "FOUR",
-        "FIVE",
-    };
-    int currentIndex                 = static_cast<int>(digit_);
-    if (ImGui::Combo("Timer Digit", &currentIndex, digitLabels, static_cast<int>(TimeDigit::COUNT))) {
-        digit_ = static_cast<TimeDigit>(currentIndex);
-    }
+    //// ComboDigit（桁数）のUI選択
+    //static const char* digitLabels[] = {
+    //    "ONE",
+    //    "TWO",
+    //    "THREE",
+    //    "FOUR",
+    //    "FIVE",
+    //};
+    //int currentIndex                 = static_cast<int>(digit_);
+    //if (ImGui::Combo("Timer Digit", &currentIndex, digitLabels, static_cast<int>(UIDigit::COUNT))) {
+    //    digit_ = static_cast<UIDigit>(currentIndex);
+    //}
 
     return isChange;
 }
 
 void EffectByBlockUIStatus::Save(BinaryWriter& _writer) {
     _writer.Write("isAlive", isAlive_);
-    _writer.Write("timerDigit", static_cast<int32_t>(digit_));
+   /* _writer.Write("timerDigit", static_cast<int32_t>(digit_));*/
 }
 
 void EffectByBlockUIStatus::Load(BinaryReader& _reader) {
     _reader.Read("isAlive", isAlive_);
-    int32_t digit = 0;
+  /*  int32_t digit = 0;
     _reader.Read("timerDigit", digit);
-    digit_ = static_cast<TimeDigit>(digit);
+    digit_ = static_cast<UIDigit>(digit);*/
 }
 
 void EffectByBlockUIStatus::Finalize() {}
 
-int32_t EffectByBlockUIStatus::GetValueForDigit(const float& value) {
+int32_t EffectByBlockUIStatus::GetValueForDigit() {
     switch (digit_) {
-    case TimeDigit::ONE: {
+    case UIDigit::ONE: {
         // 小数点以下第1位を取得
-        int32_t intValue = static_cast<int32_t>(value) % 10;
+        int32_t intValue = static_cast<int32_t>(settingValue_) % 10;
         return intValue;
     }
-    case TimeDigit::TWO: {
+    case UIDigit::TWO: {
         // 整数部の第2位を取得
-        int32_t intValue = static_cast<int32_t>(value) / 10 % 10;
+        int32_t intValue = static_cast<int32_t>(settingValue_) / 10 % 10;
         return intValue;
     }
-    case TimeDigit::THREE: {
+    case UIDigit::THREE: {
         // 整数部の第2位を取得
-        int32_t intValue = static_cast<int32_t>(value) / 100 % 10;
+        int32_t intValue = static_cast<int32_t>(settingValue_) / 100 % 10;
         return intValue;
     }
-    case TimeDigit::FOUR: {
+    case UIDigit::FOUR: {
         // 整数部の第2位を取得
-        int32_t intValue = static_cast<int32_t>(value) / 1000 % 10;
+        int32_t intValue = static_cast<int32_t>(settingValue_) / 1000 % 10;
         return intValue;
     }
-    case TimeDigit::FIVE: {
+    case UIDigit::FIVE: {
         // 整数部の第2位を取得
-        int32_t intValue = static_cast<int32_t>(value) / 10000 % 10;
+        int32_t intValue = static_cast<int32_t>(settingValue_) / 10000 % 10;
         return intValue;
     }
    
