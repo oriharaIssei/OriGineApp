@@ -113,105 +113,72 @@ void BreakBlockSystem::EffectUISpawn(GameEntity* _entity) {
     if (!_entity)
         return;
 
-   /* EntityComponentSystemManager* ecsManager = ECSManager::getInstance();*/
-
     Transform* hostTransform = getComponent<Transform>(_entity);
     if (!hostTransform)
         return;
 
-    // 値とタイプを保持（BlockReactionで設定されたもの）
     const float effectValue = tempValue_;
     const EffectType type   = effectType_;
 
-    // 数値を整数に変換（少数は不要なため丸め）
     int32_t intValue = static_cast<int32_t>(effectValue);
     int32_t absValue = std::abs(intValue);
 
-    // 桁数を計算
-    int32_t digitCount = 0;
-    if (absValue == 0) {
-        digitCount = 1;
-    } else {
-        digitCount = static_cast<int32_t>(std::log10(absValue)) + 1;
-    }
+    int32_t digitCount = (absValue == 0) ? 1 : static_cast<int32_t>(std::log10(absValue)) + 1;
 
-    // ICON → SIGN → 数字 の順に生成
-    for (int i = 0; i < digitCount; ++i) {
+    int32_t currentOffsetIndex = 0; // 数字用のオフセットインデックス
+
+    for (int i = 0; i < digitCount + 2; ++i) {
         GameEntity* uiEntity = CreateEntity<Transform, Rigidbody, ModelMeshRenderer, EffectByBlockUIStatus>(
             "EffectUI", Transform(), Rigidbody(), ModelMeshRenderer(), EffectByBlockUIStatus());
 
         Transform* trans = getComponent<Transform>(uiEntity);
-        trans->translate = Vec3f(hostTransform->worldMat[3]) + Vec3f(static_cast<float>(2*i), 0.0f, 6.0f); // 横並びに配置
         trans->scale     = Vec3f(2.0f, 2.0f, 2.0f);
 
         EffectByBlockUIStatus* status = getComponent<EffectByBlockUIStatus>(uiEntity);
-
-        ModelMeshRenderer* sprite = getComponent<ModelMeshRenderer>(uiEntity);
+        ModelMeshRenderer* sprite     = getComponent<ModelMeshRenderer>(uiEntity);
         CreateModelMeshRenderer(sprite, uiEntity, kApplicationResourceDirectory + "/Models/Plane", "Plane.obj");
 
         switch (i) {
-        case 0:
+        case 0: // アイコン
             status->SetEffectType(type);
             status->SetCurerntIconTexture();
             status->SetDigit(UIDigit::ICON);
-            if (status->GetCurrentTextureName() == "") {
-                break;
-            }
-                sprite->setTexture(0, kApplicationResourceDirectory + status->GetCurrentTextureName());
-            
+            trans->translate = Vec3f(hostTransform->worldMat[3]) + Vec3f(-5.0f, 0.0f, -6.0f); // 固定位置
             break;
-
-        case 1:
+        case 1: // 符号
             status->SetEffectType(type);
             status->SetCurerntSignTexture();
             status->SetDigit(UIDigit::SIGN);
-            if (status->GetCurrentTextureName() == "") {
-                break;
-            }
-            sprite->setTexture(0, kApplicationResourceDirectory + status->GetCurrentTextureName());
+            trans->translate = Vec3f(hostTransform->worldMat[3]) + Vec3f(-2.5f, 0.0f, -6.0f); // 固定位置
             break;
-        default:
+        default: // 数字
             status->SetEffectType(type);
+            status->SetValue(effectValue);
+            status->SetDigit(static_cast<UIDigit>(i));
             int32_t ditinum = status->GetValueForDigit();
             status->SetCurerntNumberTexture(ditinum);
-            status->SetDigit(static_cast<UIDigit>(2 + i));
-         
-            if (status->GetCurrentTextureName() == "") {
-                break;
-            }
-            sprite->setTexture(0, kApplicationResourceDirectory + status->GetCurrentTextureName());
-           /* sprite->setTextureSize(Vec2f(48.0f, 48.0f));
-            sprite->setUVScale(Vec2f(0.1f, 1.0f));
-            sprite->setUVTranslate(Vec2f(float(ditinum * 0.1f), 0.0f));*/
+
+            // 数字のみオフセットを加算
+            trans->translate = Vec3f(hostTransform->worldMat[3]) + Vec3f(static_cast<float>((-2.5f * currentOffsetIndex) + 3.0f), 0.0f, -6.0f);
+            ++currentOffsetIndex;
             break;
         }
 
-        if (status->GetCurrentTextureName() == "") {
+        std::string textureName = status->GetCurrentTextureName();
+
+        if (textureName.empty()) {
             trans->scale = Vec3f(0.0f, 0.0f, 0.0f);
+            continue;
         }
 
-        // ================================= System ================================= //
+        sprite->setTexture(0, kApplicationResourceDirectory + textureName);
+
         ECSManager* ecs = ECSManager::getInstance();
-
-        //------------------ Input
-        // None
-
-        //------------------ StateTransition
-        //------------------ Movement
         ecs->getSystem<MoveSystemByRigidBody>()->addEntity(uiEntity);
         ecs->getSystem<EffectByBlockDrawSystem>()->addEntity(uiEntity);
-     
-      
-        //------------------ Collision
-        //------------------ Physics
-        // None
-
-        //------------------ Render
-        /* ecs->getSystem<ColliderRenderingSystem>()->addEntity(block);*/
         ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(uiEntity);
     }
 }
-
 void BreakBlockSystem::ScrapSpawn(GameEntity* _entity) {
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* scrapEntity                  = ecsManager->getUniqueEntity("ScrapSpawner");
