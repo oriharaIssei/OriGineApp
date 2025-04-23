@@ -14,7 +14,6 @@ void BlockManager::Initialize([[maybe_unused]] GameEntity* _entity) {
     basePosY_            = 0.0f;
     moveTenpo_           = 0.0f;
     deadPositionX_       = 0.0f;
-    
 }
 
 bool BlockManager::Edit() {
@@ -34,7 +33,6 @@ bool BlockManager::Edit() {
     isChange |= ImGui::DragFloat("nextCreatePositionX", &nextCreatePositionX_, 0.01f);
     isChange |= ImGui::DragFloat("deadPositionX", &deadPositionX_, 0.01f);
     isChange |= ImGui::DragFloat("basePosY", &basePosY_, 0.01f);
-  
 
     // random create
     ImGui::Text("Random Parameters");
@@ -55,7 +53,7 @@ bool BlockManager::Edit() {
         isChange |= ImGui::InputInt(label.c_str(), &generateInterval_[i]);
     }
 
-     ImGui::Text("Score");
+    ImGui::Text("Score");
     for (int i = 0; i < scoreValue_.size(); ++i) {
         std::string label = "scoreValue[" + std::to_string(i) + "]";
         isChange |= ImGui::DragFloat(label.c_str(), &scoreValue_[i]);
@@ -65,19 +63,24 @@ bool BlockManager::Edit() {
     isChange |= ImGui::DragFloat("moveTenpo", &moveTenpo_, 0.01f);
     isChange |= ImGui::InputInt("movetenpoNum", &moveTenpoNum_);
 
-     for (int i = 0; i < moveTenpos_.size(); ++i) {
+    for (int i = 0; i < moveTenpos_.size(); ++i) {
         std::string label = "moveTenpos[" + std::to_string(i) + "]";
         ImGui::DragFloat(label.c_str(), &moveTenpos_[i], 0.1f);
     }
 
-    ImGui::Text("easing");
+    ImGui::Text("--------------easing---------------");
+    ImGui::Text("scalingEase");
     isChange |= ImGui::DragFloat("ScalingmaxTime", &scalingEase_.maxTime, 0.01f);
-    isChange |= ImGui::DragFloat("Scalingamplitude", &scalingEase_.amplitude, 0.01f);
-    isChange |= ImGui::DragFloat("Scalingperiod", &scalingEase_.period, 0.01f);
+    /* isChange |= ImGui::DragFloat("Scalingamplitude", &scalingEase_.amplitude, 0.01f);
+     isChange |= ImGui::DragFloat("Scalingperiod", &scalingEase_.period, 0.01f);*/
     isChange |= ImGui::DragFloat("ScalingbackRatio", &scalingEase_.backRatio, 0.01f);
+    ImGui::Text("scalingEase");
+    isChange |= ImGui::DragFloat("MoveScalingmaxTime", &moveScalingEase_.maxTime, 0.01f);
+    isChange |= ImGui::DragFloat("MoveScalingamplitude", &moveScalingEase_.amplitude, 0.01f);
+    isChange |= ImGui::DragFloat("MoveScalingperiod", &moveScalingEase_.period, 0.01f);
+    isChange |= ImGui::DragFloat("MoveScalingbackRatio", &moveScalingEase_.backRatio, 0.01f);
     ImGui::Text("moveEase");
     isChange |= ImGui::DragFloat("moveTimemax", &moveTimemax_, 0.01f);
-
 
     return isChange;
 }
@@ -101,9 +104,12 @@ void BlockManager::Save(BinaryWriter& _writer) {
     _writer.Write("Scalingperiod", scalingEase_.period);
     _writer.Write("ScalingbackRatio", scalingEase_.backRatio);
 
+    _writer.Write("MoveScalingmaxTime", moveScalingEase_.maxTime);
+    _writer.Write("MoveScalingamplitude", moveScalingEase_.amplitude);
+    _writer.Write("MoveScalingperiod", moveScalingEase_.period);
+    _writer.Write("MoveScalingbackRatio", moveScalingEase_.backRatio);
 
     _writer.Write("movetenpoNum", moveTenpoNum_);
-
 
     for (int i = 0; i < moveTenpos_.size(); ++i) {
         _writer.Write(("moveSpeeds" + std::to_string(i)).c_str(), moveTenpos_);
@@ -123,7 +129,6 @@ void BlockManager::Save(BinaryWriter& _writer) {
     for (int i = 0; i < scoreValue_.size(); ++i) {
         _writer.Write(("scoreValue_" + std::to_string(i)).c_str(), scoreValue_[i]);
     }
-   
 }
 
 void BlockManager::Load(BinaryReader& _reader) {
@@ -145,6 +150,11 @@ void BlockManager::Load(BinaryReader& _reader) {
     _reader.Read("Scalingperiod", scalingEase_.period);
     _reader.Read("ScalingbackRatio", scalingEase_.backRatio);
 
+    _reader.Read("MoveScalingmaxTime", moveScalingEase_.maxTime);
+    _reader.Read("MoveScalingamplitude", moveScalingEase_.amplitude);
+    _reader.Read("MoveScalingperiod", moveScalingEase_.period);
+    _reader.Read("MoveScalingbackRatio", moveScalingEase_.backRatio);
+
     _reader.Read("movetenpoNum", moveTenpoNum_);
 
     for (int i = 0; i < moveTenpos_.size(); ++i) {
@@ -159,7 +169,6 @@ void BlockManager::Load(BinaryReader& _reader) {
         _reader.Read(("costs_" + std::to_string(i)).c_str(), costs_[i]);
     }
 
-
     for (int i = 0; i < generateInterval_.size(); ++i) {
         _reader.Read(("generateInterval_" + std::to_string(i)).c_str(), generateInterval_[i]);
     }
@@ -167,7 +176,6 @@ void BlockManager::Load(BinaryReader& _reader) {
     for (int i = 0; i < scoreValue_.size(); ++i) {
         _reader.Read(("scoreValue_" + std::to_string(i)).c_str(), scoreValue_[i]);
     }
-   
 }
 
 void BlockManager::Finalize() {}
@@ -196,37 +204,55 @@ void BlockManager::ResetLineCounter(BlockType type) {
     lineCounter_[static_cast<int32_t>(type)] = 0;
 }
 
-
-void BlockManager::ScalingEaseUpdate(const float&t ) {
+void BlockManager::ScalingEaseUpdate(const float& t) {
     switch (easeType_) {
     case EaseType::NONE:
         return;
         break;
+        ///------------------------------------------------------------------------------------------
+        /// Scaling
+        ///-------------------------------------------------------------------------------------------
     case EaseType::SCALING:
 
-         scalingEase_.time += t;
+        scalingEase_.time += t;
 
         /// スケーリングイージング
         resultScale_ = (Back::InCubicZero(blockSize_, scalingSize_, scalingEase_.time, scalingEase_.maxTime,
             scalingEase_.backRatio));
 
+        // 事後処理
         if (scalingEase_.time < scalingEase_.maxTime) {
             break;
         }
-            scalingEase_.time = scalingEase_.maxTime;
-            resultScale_      = blockSize_;
-            easeType_         = EaseType::NONE;
+        scalingEase_.time = scalingEase_.maxTime;
+        resultScale_      = blockSize_;
+        easeType_         = EaseType::NONE;
 
         break;
+        ///------------------------------------------------------------------------------------------
+        /// MoveScaling
+        ///-------------------------------------------------------------------------------------------
     case EaseType::MOVESCALING:
+        moveScalingEase_.time += t;
+
+        /// スケーリングイージング
+        resultScale_ = EaseAmplitudeScale(blockSize_, moveScalingEase_.time, moveScalingEase_.maxTime,
+                                          moveScalingEase_.amplitude, moveScalingEase_.period);
+
+        //事後処理
+        if (moveScalingEase_.time < moveScalingEase_.maxTime) {
+            break;
+        }
+        moveScalingEase_.time = moveScalingEase_.maxTime;
+        resultScale_      = blockSize_;
+        easeType_         = EaseType::NONE;
         break;
     default:
         break;
     }
-
- }
-
+}
 
 void BlockManager::ResetScalingEase() {
-     scalingEase_.time = 0;
- }
+    scalingEase_.time = 0.0f;
+    moveScalingEase_.time = 0.0f;
+}

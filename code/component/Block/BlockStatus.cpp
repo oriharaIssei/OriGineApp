@@ -47,6 +47,7 @@ void BlockStatus::MoveUpdate(const float& time,Transform*transform,const float&m
         return;
     }
 
+    //移動位置
     float movepos = preMovePos_[X] - moveValue;
     moveEase_.time += time;
 

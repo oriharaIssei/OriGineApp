@@ -60,6 +60,7 @@ private: // variables
 
     // reaction
     Easing scalingEase_;
+    Easing moveScalingEase_;
     EaseType easeType_ = EaseType::SCALING;
     float moveTimemax_;
 
