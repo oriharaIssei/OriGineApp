@@ -171,6 +171,7 @@
     <ClInclude Include="code\system\Timer\TimerDecrementSystem.h" />
     <ClInclude Include="code\system\Timer\TimerUIScrollSystem.h" />
     <ClInclude Include="code\system\UpdateButtonColorByState.h" />
+    <ClInclude Include="code\system\UsingCameraSetSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\component\BigBom\BigBomSpawner.cpp" />
@@ -243,6 +244,7 @@
     <ClCompile Include="code\system\Timer\TimerDecrementSystem.cpp" />
     <ClCompile Include="code\system\Timer\TimerUIScrollSystem.cpp" />
     <ClCompile Include="code\system\UpdateButtonColorByState.cpp" />
+    <ClCompile Include="code\system\UsingCameraSetSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\externals\DirectXTex\DirectXTex.vcxproj">

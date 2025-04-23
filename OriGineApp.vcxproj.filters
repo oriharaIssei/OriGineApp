@@ -285,6 +285,7 @@
       <Filter>component\Field</Filter>
     </ClInclude>
     <ClInclude Include="code\KetaEasing.h" />
+    <ClInclude Include="code\system\UsingCameraSetSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -491,5 +492,6 @@
       <Filter>component\Field</Filter>
     </ClCompile>
     <ClCompile Include="code\KetaEasing.cpp" />
+    <ClCompile Include="code\system\UsingCameraSetSystem.cpp" />
   </ItemGroup>
 </Project>
