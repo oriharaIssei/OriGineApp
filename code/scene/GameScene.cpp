@@ -23,6 +23,8 @@
 #include"Application/code/component/Score/ScoreStatus.h"
 #include"Application/code/component/Score/ScoreUIStatus.h"
 #include"Application/code/component/Field/FieldStatus.h"
+#include"Application/code/component/EffectByBlock/EffectByBlockStatus.h"
+#include"Application/code/component/EffectByBlock/EffectByBlockUIStatus.h"
 
 //#include"Application/code/component/Floor/FloorModeCreater.h"
 //#include"Application/code/component/Floor/BottomFloorStates.h"
@@ -68,6 +70,7 @@
 #include"Application/code/system/BigBom/BigBomInputSystem.h"
 #include"Application/code/system/BigBom/BigBomLaunchSystem.h"
 #include"Application/code/system/BigBom/DeleteBigBomSystem.h"
+#include"Application/code/system/EffectByBlock/EffectByBlockDrawSystem.h"
 
 
 GameScene::GameScene()
@@ -99,6 +102,8 @@ void GameScene::registerComponents() {
     ecsManager->registerComponent<ScoreStatus>();
     ecsManager->registerComponent<ScoreUIStatus>();
     ecsManager->registerComponent<FieldStatus>();
+    ecsManager->registerComponent<EffectByBlockStatus>();
+    ecsManager->registerComponent<EffectByBlockUIStatus>();
 
     /*ecsManager->registerComponent<BottomFloorStates>();
     ecsManager->registerComponent<FloorStates>();

@@ -79,6 +79,12 @@
     <Filter Include="component\Field">
       <UniqueIdentifier>{a46837b7-a0da-4c24-ba0b-b462a8adb78f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\EffectByBLock">
+      <UniqueIdentifier>{ded069dd-a58f-4ab3-abfb-9fa0e1dfc9e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\EffectByBlock">
+      <UniqueIdentifier>{1c1185c8-147d-46cd-ab43-11deb21ccc77}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -285,7 +291,18 @@
       <Filter>component\Field</Filter>
     </ClInclude>
     <ClInclude Include="code\KetaEasing.h" />
-    <ClInclude Include="code\system\UsingCameraSetSystem.h" />
+    <ClInclude Include="code\component\EffectByBlock\EffectByBlockStatus.h">
+      <Filter>component\EffectByBLock</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\EffectByBlock\EffectByBlockUIStatus.h">
+      <Filter>component\EffectByBLock</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\EffectByBlock\EffectByBlockDrawSystem.h">
+      <Filter>system\EffectByBlock</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\EffectByBlock\EffectByBlockSystem.h">
+      <Filter>system\EffectByBlock</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -492,6 +509,17 @@
       <Filter>component\Field</Filter>
     </ClCompile>
     <ClCompile Include="code\KetaEasing.cpp" />
-    <ClCompile Include="code\system\UsingCameraSetSystem.cpp" />
+    <ClCompile Include="code\component\EffectByBlock\EffectByBlockStatus.cpp">
+      <Filter>component\EffectByBLock</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\EffectByBlock\EffectByBlockUIStatus.cpp">
+      <Filter>component\EffectByBLock</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\EffectByBlock\EffectByBlockDrawSystem.cpp">
+      <Filter>system\EffectByBlock</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\EffectByBlock\EffectByBlockSystem.cpp">
+      <Filter>system\EffectByBlock</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
