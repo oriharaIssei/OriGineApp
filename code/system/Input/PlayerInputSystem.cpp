@@ -20,10 +20,9 @@ void PlayerInputSystem::Finalize() {
 
 void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
     PlayerInput* playerInput   = getComponent<PlayerInput>(_entity);
-    PlayerStatus* playerStatus = getComponent<PlayerStatus>(_entity);
 
 #ifdef _DEBUG
-    if (playerInput == nullptr || playerStatus == nullptr) {
+    if (playerInput == nullptr ) {
         return;
     }
 #endif // _DEBUG

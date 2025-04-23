@@ -20,16 +20,28 @@ void PlayerMoveSystem::UpdateEntity(GameEntity* _entity) {
     PlayerStatus* playerStatus = getComponent<PlayerStatus>(_entity);
     Rigidbody* rigidbody       = getComponent<Rigidbody>(_entity);
     Transform* transform       = getComponent<Transform>(_entity);
-
     if (playerInput->getInputDirection().lengthSq() <= 0.f) {
         rigidbody->setVelocity({0.f, 0.f, 0.f});
         return;
     }
     const float deltaTime = getMainDeltaTime();
 
-    // プレイヤーの向きを入力方向に向ける
-    Vector3f forward = Vec3f(playerInput->getInputDirection()[X], 0.f, playerInput->getInputDirection()[Y]);
-    forward.normalize();
+    // 入力方向を取得
+    Vec2f inputDirection    = playerInput->getInputDirection();
+    Vec3f movementDirection = Vec3f(inputDirection[X], 0.f, inputDirection[Y]);
+
+    // カメラの回転を取得
+    GameEntity* gameCamera    = getUniqueEntity("GameCamera");
+    Quaternion cameraRotation = getComponent<CameraTransform>(gameCamera)->rotate;
+
+    // 入力方向をカメラ基準に変換
+    movementDirection = cameraRotation.RotateVector(movementDirection);
+
+    // プレイヤーの回転を計算
+    Quaternion targetRotation = Quaternion::RotateAxisAngle(Vec3f(0.f, 1.f, 0.f), std::atan2(movementDirection[X], movementDirection[Z]));
+
+    // プレイヤーの回転を補間して設定
+    transform->rotate = Slerp(transform->rotate, targetRotation, playerStatus->getDirectionInterpolateRate());
 
     // gearLevel の更新
     playerStatus->minusGearUpCoolTime(deltaTime);
@@ -40,10 +52,5 @@ void PlayerMoveSystem::UpdateEntity(GameEntity* _entity) {
 
     // 移動速度の更新
     float playerSpeed = playerStatus->getBaseSpeed();
-    rigidbody->setVelocity(forward * playerSpeed * deltaTime);
-
-    /// --------------------------------------- 位置の更新 --------------------------------------- ///
-    transform->translate += rigidbody->getVelocity() * deltaTime;
-    // worldMatの更新
-    transform->Update();
+    rigidbody->setVelocity(movementDirection * (playerSpeed * deltaTime));
 }
