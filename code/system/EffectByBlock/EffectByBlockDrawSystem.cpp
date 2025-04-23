@@ -65,14 +65,14 @@ void EffectByBlockDrawSystem::UpdateEntity(GameEntity* _entity) {
    // spriteRender->setTranslate(hpBarPosition);
 }
 
-
-Vec3f EffectByBlockDrawSystem::KScreenTransform(Vec3f worldPos, const CameraTransform& viewProjection) {
-    // ビューポート行列
-    Matrix4x4 matViewport = MakeMatrix::ViewPort(0.0f, 0.0f, 1280.0f,720.0f, 0.0f, 1.0f);
-    // ビュー行列とプロジェクション行列、ビューポート行列を合成する
-    Matrix4x4 matViewProjectionViewport = viewProjection.projectionMat * viewProjection.projectionMat * matViewport;
-    // ワールド→スクリーン変換
-    return KMatrixTransform(worldPos, matViewProjectionViewport);
-}
-
-
+//
+//Vec3f EffectByBlockDrawSystem::KScreenTransform(Vec3f worldPos, const CameraTransform& viewProjection) {
+//    // ビューポート行列
+//    Matrix4x4 matViewport = MakeMatrix::ViewPort(0.0f, 0.0f, 1280.0f,720.0f, 0.0f, 1.0f);
+//    // ビュー行列とプロジェクション行列、ビューポート行列を合成する
+//    Matrix4x4 matViewProjectionViewport = viewProjection.projectionMat * viewProjection.projectionMat * matViewport;
+//    // ワールド→スクリーン変換
+//    return KMatrixTransform(worldPos, matViewProjectionViewport);
+//}
+//
+//
