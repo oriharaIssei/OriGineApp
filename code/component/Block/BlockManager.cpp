@@ -75,6 +75,8 @@ bool BlockManager::Edit() {
     isChange |= ImGui::DragFloat("Scalingamplitude", &scalingEase_.amplitude, 0.01f);
     isChange |= ImGui::DragFloat("Scalingperiod", &scalingEase_.period, 0.01f);
     isChange |= ImGui::DragFloat("ScalingbackRatio", &scalingEase_.backRatio, 0.01f);
+    ImGui::Text("moveEase");
+    isChange |= ImGui::DragFloat("moveTimemax", &moveTimemax_, 0.01f);
 
 
     return isChange;
@@ -92,6 +94,7 @@ void BlockManager::Save(BinaryWriter& _writer) {
     _writer.Write("moveSpeed", moveTenpo_);
     _writer.Write("startPositionZ", startPositionZ_);
     _writer.Write("deadPositionX", deadPositionX_);
+    _writer.Write("moveTimemax", moveTimemax_);
 
     _writer.Write("ScalingmaxTime", scalingEase_.maxTime);
     _writer.Write("Scalingamplitude", scalingEase_.amplitude);
@@ -135,6 +138,7 @@ void BlockManager::Load(BinaryReader& _reader) {
     _reader.Read("moveSpeed", moveTenpo_);
     _reader.Read("startPositionZ", startPositionZ_);
     _reader.Read("deadPositionX", deadPositionX_);
+    _reader.Read("moveTimemax", moveTimemax_);
 
     _reader.Read("ScalingmaxTime", scalingEase_.maxTime);
     _reader.Read("Scalingamplitude", scalingEase_.amplitude);
@@ -206,11 +210,12 @@ void BlockManager::ScalingEaseUpdate(const float&t ) {
         resultScale_ = (Back::InCubicZero(blockSize_, scalingSize_, scalingEase_.time, scalingEase_.maxTime,
             scalingEase_.backRatio));
 
-        if (scalingEase_.time >= scalingEase_.maxTime) {
+        if (scalingEase_.time < scalingEase_.maxTime) {
+            break;
+        }
             scalingEase_.time = scalingEase_.maxTime;
             resultScale_      = blockSize_;
             easeType_         = EaseType::NONE;
-        }
 
         break;
     case EaseType::MOVESCALING:

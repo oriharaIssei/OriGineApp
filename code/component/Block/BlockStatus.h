@@ -6,14 +6,8 @@
 #include <cstdint>
 #include<Vector3.h>
 
-enum class MoveStep {
-    NONE,
-    INIT,
-    MOVE,
-    END,
-};
 
-
+struct Transform;
 class BlockStatus
     : public IComponent {
 public:
@@ -37,8 +31,10 @@ private: // variables
     BlockType blockType_;
 
    Vec3f preMovePos_ = {0.0f, 0.0f, 0.0f};
+    bool isMove_      = false;
+   Easing moveEase_;
 
-   MoveStep moveStep_ = MoveStep::NONE;
+ /*  MoveStep moveStep_ = MoveStep::NONE;*/
 
 public:
     BlockStatus() {}
@@ -51,6 +47,8 @@ public:
     void Finalize() override;
 
     void TakeDamage();
+
+    void MoveUpdate(const float& time, Transform* transform, const float& moveValue);
    
 
 public: // accsessor
@@ -64,7 +62,6 @@ public: // accsessor
     bool GetIsBreak() const { return isbreak_; }
     float GetRatio() const { return ratio_; }
     float GetBaseScoreValue() const { return baseScoreValue_; }
-    MoveStep GetMoveStep() const { return moveStep_; }
     Vec3f GetPreMovePos() const { preMovePos_; }
    
 
@@ -78,4 +75,6 @@ public: // accsessor
     void SetRatio(const float& ratio) { ratio_ = ratio; }
     void SetBaseScoreValue(const float& value) { baseScoreValue_ = value; }
     void SetPreMovePos(const Vec3f& offset) { preMovePos_ = offset; }
+    void SetIsMove(const bool& is) { isMove_ = is; }
+    void SetEaseTimeMax(const float& time) { moveEase_.maxTime = time; }
 };

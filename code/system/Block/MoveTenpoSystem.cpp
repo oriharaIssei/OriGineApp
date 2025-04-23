@@ -4,11 +4,11 @@
 #define ENGINE_ECS
 // component
 #include "component/Block/BlockManager.h"
-#include "component/Timer/TimerStatus.h"
+#include "component/Block/BlockStatus.h"
 #include "engine/EngineInclude.h"
 #include <Vector.h>
 
-#include"KetaEasing.h"
+#include "KetaEasing.h"
 
 MoveTenpoSystem::MoveTenpoSystem() : ISystem(SystemType::Movement) {}
 
@@ -38,7 +38,7 @@ void MoveTenpoSystem::UpdateEntity(GameEntity* _entity) {
 
     blockManager_->SpeedChangeForTime(timer_);
 
-    //イージングタイム更新
+    // イージングタイム更新
     blockManager_->ScalingEaseUpdate(Engine::getInstance()->getDeltaTime());
 
     // 1テンポ
@@ -59,7 +59,7 @@ void MoveTenpoSystem::OneTenpoMethod() {
     curerntTenpoTime_ = 0.0f;
     curentTempoNum_++; // テンポ加算
 
-    //移動するべき場合
+    // 移動するべき場合
     if (curentTempoNum_ < blockManager_->GetMoveTenpoNum()) {
         return;
     }
@@ -67,4 +67,18 @@ void MoveTenpoSystem::OneTenpoMethod() {
     blockManager_->SetIsMove(true);
     blockManager_->SetEaseType(EaseType::MOVESCALING);
     curentTempoNum_ = 0;
+
+ 
+    for (GameEntity* entity : getEntities()) { // すべてのエンティティをチェック
+        BlockStatus* block = getComponent<BlockStatus>(entity);
+        Transform* transform    = getComponent<Transform>(entity);
+
+        if (!block || !transform) {
+            continue;
+        }
+
+        // 座標取得
+        block->SetPreMovePos(transform->translate);
+        block->SetIsMove(true);
+    }
 }

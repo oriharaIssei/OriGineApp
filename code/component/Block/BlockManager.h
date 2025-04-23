@@ -6,6 +6,14 @@
 #include <cstdint>
 #include <Vector3.h>
 
+//enum class MoveStep {
+//    NONE,
+//    INIT,
+//    MOVE,
+//    END,
+//};
+//
+
 enum class BlockType {
     NORMAL,
     SKULL,
@@ -53,6 +61,7 @@ private: // variables
     // reaction
     Easing scalingEase_;
     EaseType easeType_ = EaseType::SCALING;
+    float moveTimemax_;
 
     //
     bool isMove_;
@@ -105,6 +114,7 @@ public: // accsessor
     Easing GetScalingEasing() const { return scalingEase_; }
     Vec3f GetResultScalle() const { return resultScale_; }
     bool GetIsMove() const { return isMove_; }
+    float GetMoveTime() const { return moveTimemax_; }
 
 
     /// setter

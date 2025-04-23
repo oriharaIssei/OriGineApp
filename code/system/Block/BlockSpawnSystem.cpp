@@ -101,6 +101,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos
     BlockStatus* blockStatus = getComponent<BlockStatus>(block);
     blockStatus->SetColum(columIndex);
     blockStatus->SetBlockType(BlockType::NORMAL); // まずはノーマルにセット
+    blockStatus->SetEaseTimeMax(blockSpawner_->GetMoveTime());
 
     /// blockTypeCreater
     BlockTypeSetting(blockStatus, BlockType::SKULL); // どくろの生成
