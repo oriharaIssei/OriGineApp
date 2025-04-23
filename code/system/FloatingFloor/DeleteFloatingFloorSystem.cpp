@@ -26,13 +26,15 @@ void DeleteFloatingFloorSystem::UpdateEntity(GameEntity* _entity) {
 
     FloatingFloorStatus* fAndPStatus = getComponent<FloatingFloorStatus>(_entity);
     Transform* transform             = getComponent<Transform>(_entity);
-    if (!fAndPStatus || !transform) {
+    AABBCollider* collider           = getComponent<AABBCollider>(_entity);
+    if (!fAndPStatus || !transform || !collider) {
         return;
     }
 
     // 柱床セットをデストロイ
     if (fAndPStatus->GetIsDestroy()&&!fAndPStatus->GetIsRevaviling()) {
         fAndPStatus->SetIsRevivaling(true);
+        collider->setActive(false);
        
     }
     

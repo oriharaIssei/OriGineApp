@@ -28,7 +28,8 @@ void FloatingFloorRevivalSystem::UpdateEntity(GameEntity* _entity) {
 
     FloatingFloorStatus* floatingStatus = getComponent<FloatingFloorStatus>(_entity);
     Transform* entityTransform          = getComponent<Transform>(_entity);
-    if (!floatingStatus || !entityTransform) {
+    AABBCollider* collider              = getComponent<AABBCollider>(_entity);
+    if (!floatingStatus || !entityTransform || !collider) {
         return;
     }
 
@@ -53,7 +54,7 @@ void FloatingFloorRevivalSystem::UpdateEntity(GameEntity* _entity) {
     floatingStatus->RevivalReset();
     entityTransform->translate[Y] = floatingStatus->GetStartPosY();
     entityTransform->scale = floatingStatus->GetSaveScale();
-
+    collider->setActive(true);
      entityTransform->Update();
 
 }
