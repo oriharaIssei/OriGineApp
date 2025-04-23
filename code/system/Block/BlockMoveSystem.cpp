@@ -42,6 +42,8 @@ void BlockMoveSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
+    transform->scale = blockManager->GetResultScalle();
+
     // 左に移動
-    transform->translate[X] -= blockManager->GetMoveSpeed() * Engine::getInstance()->getDeltaTime();
+    transform->translate[X] -= blockManager->GetMoveTenpo() * Engine::getInstance()->getDeltaTime();
 }

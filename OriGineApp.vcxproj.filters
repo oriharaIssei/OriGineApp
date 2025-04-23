@@ -149,7 +149,7 @@
     <ClInclude Include="code\system\Block\DeleteBlockSystem.h">
       <Filter>system\Block</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Block\MoveSpeedChangeSystem.h">
+    <ClInclude Include="code\system\Block\MoveTenpoSystem.h">
       <Filter>system\Block</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Bom\BomCollisionExSystem.h">
@@ -355,7 +355,7 @@
     <ClCompile Include="code\system\Block\DeleteBlockSystem.cpp">
       <Filter>system\Block</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Block\MoveSpeedChangeSystem.cpp">
+    <ClCompile Include="code\system\Block\MoveTenpoSystem.cpp">
       <Filter>system\Block</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Bom\BomCollisionExSystem.cpp">

@@ -10,9 +10,7 @@ struct Easing {
 	float period;
 };
 
-float Lerp(const float& start, const float& end, float t) {
-    return (1.0f - t) * start + end * t;
-}
+float Lerp(const float& start, const float& end, float t);
 
 Vec2f Lerp(const Vec2f& start, const Vec2f& end, float t);
 

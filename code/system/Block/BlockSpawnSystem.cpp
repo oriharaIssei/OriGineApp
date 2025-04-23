@@ -89,7 +89,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos
     float sizeY          = blockSpawner_->GetBlockSize()[Y] * 2.0f;
 
     transform->translate = Vec3f{xPos, blockSpawner_->GetBasePosY() + (sizeY * columIndex), blockSpawner_->GetStartPositionZ()};
-    transform->scale     = Vec3f(blockSpawner_->GetBlockSize()[X], blockSpawner_->GetBlockSize()[Y], 1.0f);
+    transform->scale     = blockSpawner_->GetBlockSize();
 
     //* Collider
     SphereCollider* collider              = getComponent<SphereCollider>(block);

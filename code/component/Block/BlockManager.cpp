@@ -12,7 +12,7 @@ void BlockManager::Initialize([[maybe_unused]] GameEntity* _entity) {
     startPositionX_      = 0.0f;
     nextCreatePositionX_ = 0.0f;
     basePosY_            = 0.0f;
-    moveSpeed_           = 0.0f;
+    moveTenpo_           = 0.0f;
     deadPositionX_       = 0.0f;
     
 }
@@ -26,19 +26,15 @@ bool BlockManager::Edit() {
 
     isChange |= ImGui::InputInt("pillarHP", &HPMax_);
     isChange |= ImGui::InputInt("columNumMax", &columNumMax_);
-    isChange |= ImGui::DragFloat2("blockSize", blockSize_.v);
+    isChange |= ImGui::DragFloat3("blockSize", blockSize_.v);
+    isChange |= ImGui::DragFloat3("scalingSize", scalingSize_.v);
     isChange |= ImGui::DragFloat("collisionRadius", &collisionRadius_, 0.01f);
     isChange |= ImGui::DragFloat("startPositionX", &startPositionX_, 0.01f);
     isChange |= ImGui::DragFloat("startPositionZ", &startPositionZ_, 0.01f);
     isChange |= ImGui::DragFloat("nextCreatePositionX", &nextCreatePositionX_, 0.01f);
     isChange |= ImGui::DragFloat("deadPositionX", &deadPositionX_, 0.01f);
     isChange |= ImGui::DragFloat("basePosY", &basePosY_, 0.01f);
-    isChange |= ImGui::DragFloat("moveSpeedStart", &moveSpeed_, 0.01f);
-
-    for (int i = 0; i < moveSpeeds_.size(); ++i) {
-        std::string label = "moveSpeed[" + std::to_string(i) + "]";
-        ImGui::DragFloat(label.c_str(), &moveSpeeds_[i], 0.1f);
-    }
+  
 
     // random create
     ImGui::Text("Random Parameters");
@@ -65,6 +61,21 @@ bool BlockManager::Edit() {
         isChange |= ImGui::DragFloat(label.c_str(), &scoreValue_[i]);
     }
 
+    ImGui::Text("tenpo");
+    isChange |= ImGui::DragFloat("moveTenpo", &moveTenpo_, 0.01f);
+    isChange |= ImGui::InputInt("movetenpoNum", &moveTenpoNum_);
+
+     for (int i = 0; i < moveTenpos_.size(); ++i) {
+        std::string label = "moveTenpos[" + std::to_string(i) + "]";
+        ImGui::DragFloat(label.c_str(), &moveTenpos_[i], 0.1f);
+    }
+
+    ImGui::Text("easing");
+    isChange |= ImGui::DragFloat("ScalingmaxTime", &scalingEase_.maxTime, 0.01f);
+    isChange |= ImGui::DragFloat("Scalingamplitude", &scalingEase_.amplitude, 0.01f);
+    isChange |= ImGui::DragFloat("Scalingperiod", &scalingEase_.period, 0.01f);
+    isChange |= ImGui::DragFloat("ScalingbackRatio", &scalingEase_.backRatio, 0.01f);
+
 
     return isChange;
 }
@@ -72,16 +83,27 @@ bool BlockManager::Edit() {
 void BlockManager::Save(BinaryWriter& _writer) {
     _writer.Write("columNumMax", columNumMax_);
     _writer.Write("pillarHP", HPMax_);
-    _writer.Write<2, float>("blockSize", blockSize_);
+    _writer.Write<3, float>("FirstblockSize", blockSize_);
+    _writer.Write<3, float>("scalingSize", scalingSize_);
     _writer.Write("collisionRadius", collisionRadius_);
     _writer.Write("startPosition", startPositionX_);
     _writer.Write("nextCreatePositionX", nextCreatePositionX_);
     _writer.Write("basePosY", basePosY_);
-    _writer.Write("moveSpeed", moveSpeed_);
+    _writer.Write("moveSpeed", moveTenpo_);
     _writer.Write("startPositionZ", startPositionZ_);
     _writer.Write("deadPositionX", deadPositionX_);
-    for (int i = 0; i < moveSpeeds_.size(); ++i) {
-        _writer.Write(("moveSpeeds" + std::to_string(i)).c_str(), moveSpeeds_);
+
+    _writer.Write("ScalingmaxTime", scalingEase_.maxTime);
+    _writer.Write("Scalingamplitude", scalingEase_.amplitude);
+    _writer.Write("Scalingperiod", scalingEase_.period);
+    _writer.Write("ScalingbackRatio", scalingEase_.backRatio);
+
+
+    _writer.Write("movetenpoNum", moveTenpoNum_);
+
+
+    for (int i = 0; i < moveTenpos_.size(); ++i) {
+        _writer.Write(("moveSpeeds" + std::to_string(i)).c_str(), moveTenpos_);
     }
 
     for (int i = 0; i < randomPar_.size(); ++i) {
@@ -104,16 +126,25 @@ void BlockManager::Save(BinaryWriter& _writer) {
 void BlockManager::Load(BinaryReader& _reader) {
     _reader.Read("columNumMax", columNumMax_);
     _reader.Read("pillarHP", HPMax_);
-    _reader.Read<2, float>("blockSize", blockSize_);
+    _reader.Read<3, float>("FirstblockSize", blockSize_);
+    _reader.Read<3, float>("scalingSize", scalingSize_);
     _reader.Read("collisionRadius", collisionRadius_);
     _reader.Read("startPosition", startPositionX_);
     _reader.Read("nextCreatePositionX", nextCreatePositionX_);
     _reader.Read("basePosY", basePosY_);
-    _reader.Read("moveSpeed", moveSpeed_);
+    _reader.Read("moveSpeed", moveTenpo_);
     _reader.Read("startPositionZ", startPositionZ_);
     _reader.Read("deadPositionX", deadPositionX_);
-    for (int i = 0; i < moveSpeeds_.size(); ++i) {
-        _reader.Read(("moveSpeeds" + std::to_string(i)).c_str(), moveSpeeds_);
+
+    _reader.Read("ScalingmaxTime", scalingEase_.maxTime);
+    _reader.Read("Scalingamplitude", scalingEase_.amplitude);
+    _reader.Read("Scalingperiod", scalingEase_.period);
+    _reader.Read("ScalingbackRatio", scalingEase_.backRatio);
+
+    _reader.Read("movetenpoNum", moveTenpoNum_);
+
+    for (int i = 0; i < moveTenpos_.size(); ++i) {
+        _reader.Read(("moveSpeeds" + std::to_string(i)).c_str(), moveTenpos_);
     }
 
     for (int i = 0; i < randomPar_.size(); ++i) {
@@ -151,12 +182,39 @@ void BlockManager::SpeedChangeForTime(const float& time) {
     size_t index = static_cast<size_t>(time / interval);
 
     // 範囲外対策（最大インデックスに固定）
-    index = std::min(index, moveSpeeds_.size() - 1);
+    index = std::min(index, moveTenpos_.size() - 1);
 
     // 現在の速度を設定
-    moveSpeed_ = moveSpeeds_[index];
+    moveTenpo_ = moveTenpos_[index];
 }
 
 void BlockManager::ResetLineCounter(BlockType type) {
     lineCounter_[static_cast<int32_t>(type)] = 0;
 }
+
+
+void BlockManager::ScalingEaseUpdate(const float&t ) {
+    if (!isScalingEase_) {
+        return;
+    }
+
+    scalingEase_.time += t;
+
+
+    /// スケーリングイージング
+    resultScale_ = (Back::InCubicZero(blockSize_, scalingSize_, scalingEase_.time, scalingEase_.maxTime,
+        scalingEase_.backRatio));
+
+
+    if (scalingEase_.time >= scalingEase_.maxTime) {
+        scalingEase_.time = scalingEase_.maxTime;
+        resultScale_      = blockSize_;
+        isScalingEase_    = false;
+    }
+
+ }
+
+
+void BlockManager::ResetScalingEase() {
+     scalingEase_.time = 0;
+ }

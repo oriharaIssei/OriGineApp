@@ -52,7 +52,7 @@
 #include"Application/code/system/Block/BlockSpawnSystem.h"
 #include"Application/code/system/Block/BlockMoveSystem.h"
 #include"Application/code/system/Block/DeleteBlockSystem.h"
-#include"Application/code/system/Block/MoveSpeedChangeSystem.h"
+#include"Application/code/system/Block/MoveTenpoSystem.h"
 #include"Application/code/system/Bom/BomCollisionExSystem.h"
 #include"Application/code/system/Block/BreakBlockSystem.h"
 #include"Application/code/system/Block/BlockExBomCollision.h"
@@ -131,7 +131,7 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<BlockSpawnSystem>();
     ecsManager->registerSystem<BlockMoveSystem>();
     ecsManager->registerSystem<DeleteBlockSystem>();
-    ecsManager->registerSystem<MoveSpeedChangeSystem>();
+    ecsManager->registerSystem<MoveTenpoSystem>();
     ecsManager->registerSystem<BomCollisionExSystem>();
     ecsManager->registerSystem<BreakBlockSystem>();
     ecsManager->registerSystem<BlockExBomCollision>();
