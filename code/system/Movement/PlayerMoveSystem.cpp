@@ -29,7 +29,11 @@ void PlayerMoveSystem::UpdateEntity(GameEntity* _entity) {
 
     // プレイヤーの向きを入力方向に向ける
     Vector3f forward = Vec3f(playerInput->getInputDirection()[X], 0.f, playerInput->getInputDirection()[Y]);
-    forward.normalize();
+
+    Quaternion rotation = Quaternion::RotateAxisAngle(Vec3f(0.f, 1.f, 0.f), std::atan2(forward[Y], forward[X]));
+
+    GameEntity* gameCamera = getUniqueEntity("GameCamera");
+    transform->rotate      = Slerp(transform->rotate, rotation * getComponent<CameraTransform>(gameCamera)->rotate, playerStatus->getDirectionInterpolateRate());
 
     // gearLevel の更新
     playerStatus->minusGearUpCoolTime(deltaTime);
@@ -40,10 +44,5 @@ void PlayerMoveSystem::UpdateEntity(GameEntity* _entity) {
 
     // 移動速度の更新
     float playerSpeed = playerStatus->getBaseSpeed();
-    rigidbody->setVelocity(forward * playerSpeed * deltaTime);
-
-    /// --------------------------------------- 位置の更新 --------------------------------------- ///
-    transform->translate += rigidbody->getVelocity() * deltaTime;
-    // worldMatの更新
-    transform->Update();
+    rigidbody->setVelocity(Vec3f(0.f, 0.f, (playerSpeed * deltaTime)) * MakeMatrix::RotateQuaternion(transform->rotate));
 }

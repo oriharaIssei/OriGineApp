@@ -101,6 +101,8 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="code\system\Input\CameraInputSystem.h" />
+    <ClInclude Include="code\component\cameraController\CameraController.h" />
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\MyGame.h" />
     <ClInclude Include="code\component\Button.h" />
@@ -114,8 +116,12 @@
     <ClInclude Include="code\component\Player\PlayerStatus.h" />
     <ClInclude Include="code\system\Input\PlayerInputSystem.h" />
     <ClInclude Include="code\system\Movement\PlayerMoveSystem.h" />
+    <ClInclude Include="code\system\Movement\FollowCameraUpdateSystem.h" />
+    <ClInclude Include="code\system\Initialize\SettingGameCameraTarget.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\system\Input\CameraInputSystem.cpp" />
+    <ClCompile Include="code\component\cameraController\CameraController.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
     <ClCompile Include="code\component\Button.cpp" />
@@ -129,6 +135,8 @@
     <ClCompile Include="code\component\Player\PlayerStatus.cpp" />
     <ClCompile Include="code\system\Input\PlayerInputSystem.cpp" />
     <ClCompile Include="code\system\Movement\PlayerMoveSystem.cpp" />
+    <ClCompile Include="code\system\Movement\FollowCameraUpdateSystem.cpp" />
+    <ClCompile Include="code\system\Initialize\SettingGameCameraTarget.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\externals\DirectXTex\DirectXTex.vcxproj">
