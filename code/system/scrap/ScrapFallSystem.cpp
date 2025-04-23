@@ -20,8 +20,8 @@ void ScrapFallSystem::UpdateEntity(GameEntity* _entity) {
         return;
 
     ScrapStatus* scrapStatus = getComponent<ScrapStatus>(_entity); // status
-    Rigidbody* rigitBody     = getComponent<Rigidbody>(_entity); // rigit
-    Transform* transform     = getComponent<Transform>(_entity); // rigit
+    Rigidbody* rigitBody     = getComponent<Rigidbody>(_entity);   // rigit
+    Transform* transform     = getComponent<Transform>(_entity);   // rigit
     if (!scrapStatus || !rigitBody || !transform) {
         return;
     }
