@@ -11,16 +11,17 @@
 enum class EffectType {
     SCORE,
     TIME,
+    MIMUSTIME,
 };
 
 enum class UIDigit {
+    ICON,
+    SIGN,
     ONE,
     TWO,
     THREE,
     FOUR,
     FIVE,
-    ICON,
-    SIGN,
     COUNT,
 };
 
@@ -32,9 +33,8 @@ private: // variables
 
     float settingValue_    = 0.0f; // 取得した値
     EffectType effectType_ = EffectType::TIME; // エフェクトタイプ
-
-    //
-
+    int32_t getDigitNum_;
+    
 
     UIDigit digit_; // 整数の桁
     int32_t valueForDigit_;
@@ -52,13 +52,19 @@ public:
     virtual void Finalize();
 
     int32_t GetValueForDigit();
+    void SetCurerntIconTexture();
+    void SetCurerntSignTexture();
+    void SetCurerntNumberTexture();
+
 
 public: // accsessor
     /// getter
     UIDigit GetDigit() const { return digit_; }
+    EffectType GetEffectType() const { return effectType_; }
     std::string GetCurrentTextureName() const { return currentTextureName_; }
     /// setter
     void SetcurrentTextureName(const std::string& currentTextureName) { currentTextureName_ = currentTextureName; }
     void SetValue(const float& scoreChange) { settingValue_ = scoreChange; }
     void SetEffectType(const EffectType& type) { effectType_ = type; }
+    void SetDigit(const UIDigit& type) { digit_ = type; }
 };

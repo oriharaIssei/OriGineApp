@@ -151,5 +151,6 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<BigBomCollisionExSystem>();
     ecsManager->registerSystem<DeleteBigBomSystem>();
     ecsManager->registerSystem<DeleteBigExplotionCollision>();
+    ecsManager->registerSystem<EffectByBlockDrawSystem>();
     ecsManager->SortPriorityOrderSystems();
 }

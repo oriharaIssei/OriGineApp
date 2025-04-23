@@ -19,31 +19,31 @@ bool EffectByBlockUIStatus::Edit() {
     ImGui::Spacing();
 
     //// ComboDigit（桁数）のUI選択
-    //static const char* digitLabels[] = {
-    //    "ONE",
-    //    "TWO",
-    //    "THREE",
-    //    "FOUR",
-    //    "FIVE",
-    //};
-    //int currentIndex                 = static_cast<int>(digit_);
-    //if (ImGui::Combo("Timer Digit", &currentIndex, digitLabels, static_cast<int>(UIDigit::COUNT))) {
-    //    digit_ = static_cast<UIDigit>(currentIndex);
-    //}
+    // static const char* digitLabels[] = {
+    //     "ONE",
+    //     "TWO",
+    //     "THREE",
+    //     "FOUR",
+    //     "FIVE",
+    // };
+    // int currentIndex                 = static_cast<int>(digit_);
+    // if (ImGui::Combo("Timer Digit", &currentIndex, digitLabels, static_cast<int>(UIDigit::COUNT))) {
+    //     digit_ = static_cast<UIDigit>(currentIndex);
+    // }
 
     return isChange;
 }
 
 void EffectByBlockUIStatus::Save(BinaryWriter& _writer) {
     _writer.Write("isAlive", isAlive_);
-   /* _writer.Write("timerDigit", static_cast<int32_t>(digit_));*/
+    /* _writer.Write("timerDigit", static_cast<int32_t>(digit_));*/
 }
 
 void EffectByBlockUIStatus::Load(BinaryReader& _reader) {
     _reader.Read("isAlive", isAlive_);
-  /*  int32_t digit = 0;
-    _reader.Read("timerDigit", digit);
-    digit_ = static_cast<UIDigit>(digit);*/
+    /*  int32_t digit = 0;
+      _reader.Read("timerDigit", digit);
+      digit_ = static_cast<UIDigit>(digit);*/
 }
 
 void EffectByBlockUIStatus::Finalize() {}
@@ -75,9 +75,61 @@ int32_t EffectByBlockUIStatus::GetValueForDigit() {
         int32_t intValue = static_cast<int32_t>(settingValue_) / 10000 % 10;
         return intValue;
     }
-   
 
     default:
         return 0;
     }
 }
+
+void EffectByBlockUIStatus::SetCurerntIconTexture() {
+
+    switch (effectType_) {
+    case EffectType::SCORE:
+        currentTextureName_ = "/Texture/UI/TimeIcom.png";
+        break;
+    case EffectType::TIME:
+        currentTextureName_ = "/Texture/UI/TimeIcom.png";
+        break;
+    case EffectType::MIMUSTIME:
+        currentTextureName_ = "/Texture/UI/TimeIcom.png";
+        break;
+    default:
+        break;
+    }
+
+}
+
+void EffectByBlockUIStatus::SetCurerntSignTexture() {
+
+    switch (effectType_) {
+    case EffectType::SCORE:
+        currentTextureName_ = "/Texture/UI/TimeIcom.png";
+        break;
+    case EffectType::TIME:
+        currentTextureName_ = "/Texture/UI/AddTimeUI.png";
+        break;
+    case EffectType::MIMUSTIME:
+        currentTextureName_ = "/Texture/UI/SubtractTimeUI.png";
+        break;
+    default:
+        break;
+    }
+}
+
+void EffectByBlockUIStatus::SetCurerntNumberTexture() {
+
+    switch (effectType_) {
+    case EffectType::SCORE:
+          currentTextureName_ = "/Texture/UI/Numbers.png";
+        break;
+    case EffectType::TIME:
+        currentTextureName_ = "/Texture/UI/Numbers_Green.png";
+        break;
+    case EffectType::MIMUSTIME:
+        currentTextureName_ = "/Texture/UI/Numbers_Blue.png";
+        break;
+    default:
+        break;
+    }
+}
+

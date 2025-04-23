@@ -8,12 +8,8 @@
 // lib
 
 // include
-#include <Vector3.h>
-// component
-#include "component/Score/ScoreStatus.h"
-#include "component/Score/ScoreUIStatus.h"
 
-#define RESOURCE_DIRECTORY
+#include"component/transform/CameraTransform.h"
 #include "engine/EngineInclude.h"
 #include <cstdint>
 
@@ -23,10 +19,7 @@ EffectByBlockDrawSystem::EffectByBlockDrawSystem()
 EffectByBlockDrawSystem::~EffectByBlockDrawSystem() {}
 
 void EffectByBlockDrawSystem::Initialize() {
-    //// TextureNameの初期化
-    // for (int32_t i = 0; i < 10; ++i) {
-    //     textureName_[i] = "Texture/Combo/ComboNumber" + std::to_string(i) + ".png";
-    // };
+  
 }
 
 void EffectByBlockDrawSystem::Finalize() {}
@@ -37,27 +30,49 @@ void EffectByBlockDrawSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    // ComboEntityを取得
-    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
-    GameEntity* scoreEntity                  = ecsManager->getUniqueEntity("Score");
+    /// component取得
+    Transform* transform     = getComponent<Transform>(_entity);
+    SpriteRenderer* spriteRender = getComponent<SpriteRenderer>(_entity);
 
-    if (!scoreEntity) { // Entityが存在しない場合の早期リターン
+    if (!transform || !spriteRender) { // Componentが存在しない場合の早期リターン
+        return;
+    }
+
+      // ComboEntityを取得
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* PlayerEntity                  = ecsManager->getUniqueEntity("Player");
+
+    if (!PlayerEntity) {
         return;
     }
 
     /// component取得
-    ScoreStatus* scoreStatus     = getComponent<ScoreStatus>(scoreEntity);
-    ScoreUIStatus* scoreUIStatus = getComponent<ScoreUIStatus>(_entity);
-    SpriteRenderer* spriteRender = getComponent<SpriteRenderer>(_entity);
+    CameraTransform* cameraStatus = getComponent<CameraTransform>(PlayerEntity);
 
-    if (!scoreStatus || !scoreUIStatus || !spriteRender) { // Componentが存在しない場合の早期リターン
+    if (!cameraStatus) {
         return;
     }
 
-    // 現在タイムの取得
-    float curerntScore  = scoreStatus->GetCurrentScore();
-    int32_t scoreDigit = scoreUIStatus->GetValueForDigit(curerntScore);
-
-    //UV座標を設定
-    spriteRender->setUVTranslate(Vec2f(float(scoreDigit * 0.1f), 0.0f));
+    // ワールド座標からスクリーン座標に変換
+    Vec3f positionScreen = KScreenTransform(transform->translate, *cameraStatus);
+    // Vector2に格納
+    Vec2f positionScreenV2(Vec2f(positionScreen[X] - 5.0f, positionScreen[Y] - 5.0f));
+    // Hpバーの座標確定
+    Vec2f hpBarPosition = positionScreenV2;
+    // Hpバーのサイズ
+   /* hpbar_->SetSize(hpbarSize_);*/
+    // HPBarスプライト
+    spriteRender->setTranslate(hpBarPosition);
 }
+
+
+Vec3f EffectByBlockDrawSystem::KScreenTransform(Vec3f worldPos, const CameraTransform& viewProjection) {
+    // ビューポート行列
+    Matrix4x4 matViewport = MakeMatrix::ViewPort(0.0f, 0.0f, 1280.0f,720.0f, 0.0f, 1.0f);
+    // ビュー行列とプロジェクション行列、ビューポート行列を合成する
+    Matrix4x4 matViewProjectionViewport = viewProjection.projectionMat * viewProjection.projectionMat * matViewport;
+    // ワールド→スクリーン変換
+    return KMatrixTransform(worldPos, matViewProjectionViewport);
+}
+
+

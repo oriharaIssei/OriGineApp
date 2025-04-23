@@ -1,9 +1,11 @@
 #pragma once
 #include "system/ISystem.h"
-#include "component/transform/Transform.h"
-#include<array>
-#include<string>
 
+#include <Vector3.h>
+#include <Matrix4x4.h>
+#include <Vector4.h>
+
+class CameraTransform;
 class EffectByBlockDrawSystem
     : public ISystem {
 private:
@@ -16,6 +18,8 @@ public:
     void Initialize() override;
     // void Update() override;
     void Finalize() override;
+
+    Vec3f KScreenTransform(Vec3f worldPos, const CameraTransform& viewProjection);
 
    
     protected:
