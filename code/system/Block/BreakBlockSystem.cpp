@@ -137,41 +137,57 @@ void BreakBlockSystem::EffectUISpawn(GameEntity* _entity) {
 
     // ICON → SIGN → 数字 の順に生成
     for (int i = 0; i < digitCount; ++i) {
-        GameEntity* uiEntity = CreateEntity<Transform, Rigidbody, SpriteRenderer, EffectByBlockUIStatus>(
-            "EffectUI", Transform(), Rigidbody(), SpriteRenderer(), EffectByBlockUIStatus());
+        GameEntity* uiEntity = CreateEntity<Transform, Rigidbody, ModelMeshRenderer, EffectByBlockUIStatus>(
+            "EffectUI", Transform(), Rigidbody(), ModelMeshRenderer(), EffectByBlockUIStatus());
 
         Transform* trans = getComponent<Transform>(uiEntity);
-        trans->translate = Vec3f(hostTransform->worldMat[3]) + Vec3f(static_cast<float>(3*i), 0.0f, 0.0f); // 横並びに配置
+        trans->translate = Vec3f(hostTransform->worldMat[3]) + Vec3f(static_cast<float>(2*i), 0.0f, 6.0f); // 横並びに配置
+        trans->scale     = Vec3f(2.0f, 2.0f, 2.0f);
 
         EffectByBlockUIStatus* status = getComponent<EffectByBlockUIStatus>(uiEntity);
 
-        SpriteRenderer* sprite = getComponent<SpriteRenderer>(uiEntity);
+        ModelMeshRenderer* sprite = getComponent<ModelMeshRenderer>(uiEntity);
+        CreateModelMeshRenderer(sprite, uiEntity, kApplicationResourceDirectory + "/Models/Plane", "Plane.obj");
 
         switch (i) {
         case 0:
             status->SetEffectType(type);
             status->SetCurerntIconTexture();
             status->SetDigit(UIDigit::ICON);
-            sprite->setTexture(kApplicationResourceDirectory +status->GetCurrentTextureName(), true);
+            if (status->GetCurrentTextureName() == "") {
+                break;
+            }
+                sprite->setTexture(0, kApplicationResourceDirectory + status->GetCurrentTextureName());
+            
             break;
 
         case 1:
             status->SetEffectType(type);
             status->SetCurerntSignTexture();
             status->SetDigit(UIDigit::SIGN);
-            sprite->setTexture(kApplicationResourceDirectory+status->GetCurrentTextureName(), true);
+            if (status->GetCurrentTextureName() == "") {
+                break;
+            }
+            sprite->setTexture(0, kApplicationResourceDirectory + status->GetCurrentTextureName());
             break;
         default:
             status->SetEffectType(type);
-            status->SetCurerntNumberTexture();
-            status->SetDigit(static_cast<UIDigit>(2 + i));
             int32_t ditinum = status->GetValueForDigit();
-
-            sprite->setTexture(kApplicationResourceDirectory +status->GetCurrentTextureName(), false);
-            sprite->setTextureSize(Vec2f(48.0f, 48.0f));
+            status->SetCurerntNumberTexture(ditinum);
+            status->SetDigit(static_cast<UIDigit>(2 + i));
+         
+            if (status->GetCurrentTextureName() == "") {
+                break;
+            }
+            sprite->setTexture(0, kApplicationResourceDirectory + status->GetCurrentTextureName());
+           /* sprite->setTextureSize(Vec2f(48.0f, 48.0f));
             sprite->setUVScale(Vec2f(0.1f, 1.0f));
-            sprite->setUVTranslate(Vec2f(float(ditinum * 0.1f), 0.0f));
+            sprite->setUVTranslate(Vec2f(float(ditinum * 0.1f), 0.0f));*/
             break;
+        }
+
+        if (status->GetCurrentTextureName() == "") {
+            trans->scale = Vec3f(0.0f, 0.0f, 0.0f);
         }
 
         // ================================= System ================================= //

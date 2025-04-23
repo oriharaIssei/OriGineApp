@@ -54,7 +54,7 @@ public:
     int32_t GetValueForDigit();
     void SetCurerntIconTexture();
     void SetCurerntSignTexture();
-    void SetCurerntNumberTexture();
+    void SetCurerntNumberTexture(const int32_t& num);
 
 
 public: // accsessor

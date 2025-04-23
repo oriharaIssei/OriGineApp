@@ -46,23 +46,23 @@ void EffectByBlockDrawSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    /// component取得
+    /*/// component取得
     CameraTransform* cameraStatus = getComponent<CameraTransform>(PlayerEntity);
 
     if (!cameraStatus) {
         return;
-    }
+    }*/
 
-    // ワールド座標からスクリーン座標に変換
-    Vec3f positionScreen = KScreenTransform(transform->translate, *cameraStatus);
-    // Vector2に格納
-    Vec2f positionScreenV2(Vec2f(positionScreen[X] - 5.0f, positionScreen[Y] - 5.0f));
-    // Hpバーの座標確定
-    Vec2f hpBarPosition = positionScreenV2;
-    // Hpバーのサイズ
-   /* hpbar_->SetSize(hpbarSize_);*/
-    // HPBarスプライト
-    spriteRender->setTranslate(hpBarPosition);
+   // // ワールド座標からスクリーン座標に変換
+   // Vec3f positionScreen = KScreenTransform(transform->translate, *cameraStatus);
+   // // Vector2に格納
+   // Vec2f positionScreenV2(Vec2f(positionScreen[X] - 5.0f, positionScreen[Y] - 5.0f));
+   // // Hpバーの座標確定
+   // Vec2f hpBarPosition = positionScreenV2;
+   // // Hpバーのサイズ
+   ///* hpbar_->SetSize(hpbarSize_);*/
+   // // HPBarスプライト
+   // spriteRender->setTranslate(hpBarPosition);
 }
 
 

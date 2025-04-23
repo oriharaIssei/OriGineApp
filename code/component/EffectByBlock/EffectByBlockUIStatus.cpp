@@ -116,17 +116,17 @@ void EffectByBlockUIStatus::SetCurerntSignTexture() {
     }
 }
 
-void EffectByBlockUIStatus::SetCurerntNumberTexture() {
-
+void EffectByBlockUIStatus::SetCurerntNumberTexture(const int32_t&num) {
+   
     switch (effectType_) {
     case EffectType::SCORE:
-          currentTextureName_ = "/Texture/UI/Numbers.png";
+        currentTextureName_ = ("/Texture/UI/Numbers" + std::to_string(num) +".png").c_str();
         break;
     case EffectType::TIME:
-        currentTextureName_ = "/Texture/UI/Numbers_Green.png";
+        currentTextureName_ = ("/Texture/UI/Numbers_Green" + std::to_string(num) + ".png").c_str();
         break;
     case EffectType::MIMUSTIME:
-        currentTextureName_ = "/Texture/UI/Numbers_Blue.png";
+        currentTextureName_ = ("/Texture/UI/Numbers_Blue" + std::to_string(num) + ".png").c_str();
         break;
     default:
         break;
