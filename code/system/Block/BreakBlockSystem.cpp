@@ -152,7 +152,7 @@ void BreakBlockSystem::EffectUISpawn(GameEntity* _entity) {
             status->SetEffectType(type);
             status->SetCurerntSignTexture();
             status->SetDigit(UIDigit::SIGN);
-            trans->translate = Vec3f(hostTransform->worldMat[3]) + Vec3f(-2.5f, 0.0f, -6.0f); // 固定位置
+            trans->translate = Vec3f(hostTransform->worldMat[3]) + Vec3f(-3.5f, 0.0f, -6.0f); // 固定位置
             break;
         default: // 数字
             status->SetEffectType(type);
@@ -162,7 +162,7 @@ void BreakBlockSystem::EffectUISpawn(GameEntity* _entity) {
             status->SetCurerntNumberTexture(ditinum);
 
             // 数字のみオフセットを加算
-            trans->translate = Vec3f(hostTransform->worldMat[3]) + Vec3f(static_cast<float>((-2.5f * currentOffsetIndex) + 3.0f), 0.0f, -6.0f);
+            trans->translate = Vec3f(hostTransform->worldMat[3]) + Vec3f(static_cast<float>((-2.5f * currentOffsetIndex) + 1.5f), 0.0f, -6.0f);
             ++currentOffsetIndex;
             break;
         }

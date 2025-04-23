@@ -123,10 +123,10 @@ void EffectByBlockUIStatus::SetCurerntNumberTexture(const int32_t&num) {
         currentTextureName_ = ("/Texture/UI/Numbers/Number" + std::to_string(num) +".png").c_str();
         break;
     case EffectType::TIME:
-        currentTextureName_ = ("/Texture/UI/Numbers_Green" + std::to_string(num) + ".png").c_str();
+        currentTextureName_ = ("/Texture/UI/GreenNumbers/greennumber" + std::to_string(num) + ".png").c_str();
         break;
     case EffectType::MIMUSTIME:
-        currentTextureName_ = ("/Texture/UI/Numbers_Blue" + std::to_string(num) + ".png").c_str();
+        currentTextureName_ = ("/Texture/UI/BlueNumbers/bluenumber" + std::to_string(num) + ".png").c_str();
         break;
     default:
         break;
