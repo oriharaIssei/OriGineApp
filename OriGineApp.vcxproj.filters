@@ -300,9 +300,10 @@
     <ClInclude Include="code\system\EffectByBlock\EffectByBlockDrawSystem.h">
       <Filter>system\EffectByBlock</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\EffectByBlock\EffectByBlockSystem.h">
+    <ClInclude Include="code\system\EffectByBlock\EffectByBlockDeleteSystem.h">
       <Filter>system\EffectByBlock</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\UsingCameraSetSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -518,8 +519,9 @@
     <ClCompile Include="code\system\EffectByBlock\EffectByBlockDrawSystem.cpp">
       <Filter>system\EffectByBlock</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\EffectByBlock\EffectByBlockSystem.cpp">
+    <ClCompile Include="code\system\EffectByBlock\EffectByBlockDeleteSystem.cpp">
       <Filter>system\EffectByBlock</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\UsingCameraSetSystem.cpp" />
   </ItemGroup>
 </Project>

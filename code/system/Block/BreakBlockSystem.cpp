@@ -19,6 +19,7 @@
 #include "system/scrap/ScrapFallSystem.h"
 #include "system/scrap/ScrapToPlayerCollisionSystem.h"
 #include"system/EffectByBlock/EffectByBlockDrawSystem.h"
+#include"system/EffectByBlock/EffectByBlockDeleteSystem.h"
 #include <cstdint>
 #include <Vector.h>
 
@@ -123,6 +124,8 @@ void BreakBlockSystem::EffectUISpawn(GameEntity* _entity) {
     int32_t intValue = static_cast<int32_t>(effectValue);
     int32_t absValue = std::abs(intValue);
 
+    	///*　パラメータべた書きゾーン
+
     int32_t digitCount = (absValue == 0) ? 1 : static_cast<int32_t>(std::log10(absValue)) + 1;
 
     int32_t currentOffsetIndex = 0; // 数字用のオフセットインデックス
@@ -173,10 +176,20 @@ void BreakBlockSystem::EffectUISpawn(GameEntity* _entity) {
 
         sprite->setTexture(0, kApplicationResourceDirectory + textureName);
 
+        //status
+        status->SetLifeTime(1.0f);
+
+        //rigit body
+        Rigidbody* rigit = getComponent<Rigidbody>(uiEntity);
+        rigit->setVelocity(Vec3f(0.0f, 1.0f, 0.0f));
+
         ECSManager* ecs = ECSManager::getInstance();
+        ecs->getSystem<EffectByBlockDeleteSystem>()->addEntity(uiEntity);
         ecs->getSystem<MoveSystemByRigidBody>()->addEntity(uiEntity);
         ecs->getSystem<EffectByBlockDrawSystem>()->addEntity(uiEntity);
+        
         ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(uiEntity);
+
     }
 }
 void BreakBlockSystem::ScrapSpawn(GameEntity* _entity) {
@@ -251,7 +264,7 @@ void BreakBlockSystem::ScrapSpawn(GameEntity* _entity) {
         ecs->getSystem<ScrapToPlayerCollisionSystem>()->addEntity(scrap);
         //------------------ Physics
         // None
-
+       
         //------------------ Render
         /* ecs->getSystem<ColliderRenderingSystem>()->addEntity(block);*/
         ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(scrap);

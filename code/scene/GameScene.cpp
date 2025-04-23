@@ -70,6 +70,7 @@
 #include"Application/code/system/BigBom/BigBomLaunchSystem.h"
 #include"Application/code/system/BigBom/DeleteBigBomSystem.h"
 #include"Application/code/system/EffectByBlock/EffectByBlockDrawSystem.h"
+#include"Application/code/system/EffectByBlock/EffectByBlockDeleteSystem.h"
 
 
 GameScene::GameScene()
@@ -152,5 +153,6 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<DeleteBigBomSystem>();
     ecsManager->registerSystem<DeleteBigExplotionCollision>();
     ecsManager->registerSystem<EffectByBlockDrawSystem>();
+    ecsManager->registerSystem<EffectByBlockDeleteSystem>();
     ecsManager->SortPriorityOrderSystems();
 }

@@ -39,6 +39,7 @@ private: // variables
     UIDigit digit_; // 整数の桁
     int32_t valueForDigit_;
     std::string currentTextureName_;
+    float lifeTime_;
 
 public:
     EffectByBlockUIStatus() {}
@@ -56,15 +57,18 @@ public:
     void SetCurerntSignTexture();
     void SetCurerntNumberTexture(const int32_t& num);
 
+    void DecrementCurrnetTime(const float&time);
 
 public: // accsessor
     /// getter
     UIDigit GetDigit() const { return digit_; }
     EffectType GetEffectType() const { return effectType_; }
     std::string GetCurrentTextureName() const { return currentTextureName_; }
+    float GetLifeTime() const { return lifeTime_; }
     /// setter
     void SetcurrentTextureName(const std::string& currentTextureName) { currentTextureName_ = currentTextureName; }
     void SetValue(const float& scoreChange) { settingValue_ = scoreChange; }
     void SetEffectType(const EffectType& type) { effectType_ = type; }
     void SetDigit(const UIDigit& type) { digit_ = type; }
+    void SetLifeTime(const float& time) { lifeTime_ = time; }
 };

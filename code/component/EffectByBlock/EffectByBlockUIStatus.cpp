@@ -85,7 +85,7 @@ void EffectByBlockUIStatus::SetCurerntIconTexture() {
 
     switch (effectType_) {
     case EffectType::SCORE:
-        currentTextureName_ = "/Texture/UI/TimeIcom.png";
+        currentTextureName_ ="";
         break;
     case EffectType::TIME:
         currentTextureName_ = "/Texture/UI/TimeIcom.png";
@@ -133,3 +133,6 @@ void EffectByBlockUIStatus::SetCurerntNumberTexture(const int32_t&num) {
     }
 }
 
+void EffectByBlockUIStatus::DecrementCurrnetTime(const float& time) {
+    lifeTime_ -= time;
+  }
