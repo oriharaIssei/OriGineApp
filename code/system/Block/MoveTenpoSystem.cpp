@@ -41,6 +41,7 @@ void MoveTenpoSystem::UpdateEntity(GameEntity* _entity) {
     // イージングタイム更新
     blockManager_->ScalingEaseUpdate(Engine::getInstance()->getDeltaTime());
 
+      blockManager_->SetIsMove(false);
     // 1テンポ
     OneTenpoMethod();
 }
@@ -69,16 +70,16 @@ void MoveTenpoSystem::OneTenpoMethod() {
     curentTempoNum_ = 0;
 
  
-    for (GameEntity* entity : getEntities()) { // すべてのエンティティをチェック
-        BlockStatus* block = getComponent<BlockStatus>(entity);
-        Transform* transform    = getComponent<Transform>(entity);
+    //for (GameEntity* entity : getEntities()) { // すべてのエンティティをチェック
+    //    BlockStatus* block = getComponent<BlockStatus>(entity);
+    //    Transform* transform    = getComponent<Transform>(entity);
 
-        if (!block || !transform) {
-            continue;
-        }
+    //    if (!block || !transform) {
+    //        continue;
+    //    }
 
-        // 座標取得
-        block->SetPreMovePos(transform->translate);
-        block->SetIsMove(true);
-    }
+    //    // 座標取得
+    //    block->SetPreMovePos(transform->translate);
+    //    block->SetIsMove(true);
+    //}
 }

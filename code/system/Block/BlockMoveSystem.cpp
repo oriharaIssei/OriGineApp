@@ -45,6 +45,12 @@ void BlockMoveSystem::UpdateEntity(GameEntity* _entity) {
     // スケール代入
     transform->scale = blockManager->GetResultScalle();
 
-    //移動
-    blockStatus->MoveUpdate(Engine::getInstance()->getDeltaTime(), transform, blockManager->GetBlockSize()[X]);
+    if (blockManager->GetIsMove()) {
+        blockStatus->SetIsMove(true);
+        blockStatus->SetPreMovePos(transform->translate);
+        blockStatus->TimeInit();
+    }
+        // 移動
+        blockStatus->MoveUpdate(Engine::getInstance()->getDeltaTime(), transform, blockManager->GetBlockSize()[X]);
+    
 }

@@ -64,7 +64,7 @@ private: // variables
     float moveTimemax_;
 
     //
-    bool isMove_;
+    bool isMove_=false;
 
     // randomCreate
     std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> randomPar_;

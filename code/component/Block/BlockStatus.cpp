@@ -61,3 +61,8 @@ void BlockStatus::MoveUpdate(const float& time,Transform*transform,const float&m
         isMove_                   = false;
     }
  }
+
+
+void BlockStatus::TimeInit() {
+     moveEase_.time = 0.0f;
+  }

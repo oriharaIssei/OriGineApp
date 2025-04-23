@@ -49,7 +49,7 @@ public:
     void TakeDamage();
 
     void MoveUpdate(const float& time, Transform* transform, const float& moveValue);
-   
+    void TimeInit();
 
 public: // accsessor
 
