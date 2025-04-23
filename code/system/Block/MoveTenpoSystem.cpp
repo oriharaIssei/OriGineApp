@@ -41,7 +41,6 @@ void MoveTenpoSystem::UpdateEntity(GameEntity* _entity) {
     //イージングタイム更新
     blockManager_->ScalingEaseUpdate(Engine::getInstance()->getDeltaTime());
 
-    
     // 1テンポ
     OneTenpoMethod();
 }
@@ -55,8 +54,17 @@ void MoveTenpoSystem::OneTenpoMethod() {
     // 音鳴らす
 
     ///
-    blockManager_->SetIsScalingEase(true);
+    blockManager_->SetEaseType(EaseType::SCALING);
     blockManager_->ResetScalingEase();
     curerntTenpoTime_ = 0.0f;
     curentTempoNum_++; // テンポ加算
+
+    //移動するべき場合
+    if (curentTempoNum_ < blockManager_->GetMoveTenpoNum()) {
+        return;
+    }
+
+    blockManager_->SetIsMove(true);
+    blockManager_->SetEaseType(EaseType::MOVESCALING);
+    curentTempoNum_ = 0;
 }

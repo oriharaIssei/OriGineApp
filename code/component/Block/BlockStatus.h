@@ -6,6 +6,12 @@
 #include <cstdint>
 #include<Vector3.h>
 
+enum class MoveStep {
+    NONE,
+    INIT,
+    MOVE,
+    END,
+};
 
 
 class BlockStatus
@@ -29,6 +35,10 @@ private: // variables
     float baseScoreValue_=0.0f;
 
     BlockType blockType_;
+
+   Vec3f preMovePos_ = {0.0f, 0.0f, 0.0f};
+
+   MoveStep moveStep_ = MoveStep::NONE;
 
 public:
     BlockStatus() {}
@@ -54,6 +64,9 @@ public: // accsessor
     bool GetIsBreak() const { return isbreak_; }
     float GetRatio() const { return ratio_; }
     float GetBaseScoreValue() const { return baseScoreValue_; }
+    MoveStep GetMoveStep() const { return moveStep_; }
+    Vec3f GetPreMovePos() const { preMovePos_; }
+   
 
       /// setter
     void SetColum(const int32_t& colum);
@@ -64,4 +77,5 @@ public: // accsessor
     void SetIsBreak(const bool& is) { isbreak_ = is; }
     void SetRatio(const float& ratio) { ratio_ = ratio; }
     void SetBaseScoreValue(const float& value) { baseScoreValue_ = value; }
+    void SetPreMovePos(const Vec3f& offset) { preMovePos_ = offset; }
 };

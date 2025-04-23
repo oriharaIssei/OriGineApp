@@ -35,15 +35,37 @@ void BlockMoveSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    Transform* transform = getComponent<Transform>(_entity);
+    Transform* transform       = getComponent<Transform>(_entity);
     BlockManager* blockManager = getComponent<BlockManager>(blockManagerEntity);
 
     if (!transform || !blockManager) {
         return;
     }
 
+    // スケール代入
     transform->scale = blockManager->GetResultScalle();
 
-    // 左に移動
-    transform->translate[X] -= blockManager->GetMoveTenpo() * Engine::getInstance()->getDeltaTime();
+    // 移動量計算
+    float moveValue = blockManager->GetBlockSize()[X];
+
+
+    //switch (blockStatus->GetMoveStep()) {
+    //case MoveStep::NONE:
+    //    break;
+
+    //case MoveStep::INIT:
+    //    blockStatus->SetPreMovePos(transform->translate);
+    //    break;
+
+    //case MoveStep::MOVE:
+    //    // 左に移動
+    //    transform->translate[X] -= blockManager->GetBlockSize()[X];
+    //    break;
+    //case MoveStep::END:
+    //  
+    //    blockStatus->SetPreMovePos(transform->translate);
+    //    break;
+    //default:
+    //    break;
+    //}
 }

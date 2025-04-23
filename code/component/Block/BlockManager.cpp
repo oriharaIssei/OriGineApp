@@ -194,22 +194,29 @@ void BlockManager::ResetLineCounter(BlockType type) {
 
 
 void BlockManager::ScalingEaseUpdate(const float&t ) {
-    if (!isScalingEase_) {
+    switch (easeType_) {
+    case EaseType::NONE:
         return;
-    }
+        break;
+    case EaseType::SCALING:
 
-    scalingEase_.time += t;
+         scalingEase_.time += t;
 
+        /// スケーリングイージング
+        resultScale_ = (Back::InCubicZero(blockSize_, scalingSize_, scalingEase_.time, scalingEase_.maxTime,
+            scalingEase_.backRatio));
 
-    /// スケーリングイージング
-    resultScale_ = (Back::InCubicZero(blockSize_, scalingSize_, scalingEase_.time, scalingEase_.maxTime,
-        scalingEase_.backRatio));
+        if (scalingEase_.time >= scalingEase_.maxTime) {
+            scalingEase_.time = scalingEase_.maxTime;
+            resultScale_      = blockSize_;
+            easeType_         = EaseType::NONE;
+        }
 
-
-    if (scalingEase_.time >= scalingEase_.maxTime) {
-        scalingEase_.time = scalingEase_.maxTime;
-        resultScale_      = blockSize_;
-        isScalingEase_    = false;
+        break;
+    case EaseType::MOVESCALING:
+        break;
+    default:
+        break;
     }
 
  }

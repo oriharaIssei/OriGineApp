@@ -13,6 +13,12 @@ enum class BlockType {
     COUNT
 };
 
+enum class EaseType {
+    NONE,
+    SCALING,
+    MOVESCALING,
+};
+
 class BlockManager
     : public IComponent {
 
@@ -46,7 +52,10 @@ private: // variables
 
     // reaction
     Easing scalingEase_;
-    bool isScalingEase_ = true;
+    EaseType easeType_ = EaseType::SCALING;
+
+    //
+    bool isMove_;
 
     // randomCreate
     std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> randomPar_;
@@ -95,6 +104,7 @@ public: // accsessor
     int32_t GetMoveTenpoNum() const { return moveTenpoNum_; }
     Easing GetScalingEasing() const { return scalingEase_; }
     Vec3f GetResultScalle() const { return resultScale_; }
+    bool GetIsMove() const { return isMove_; }
 
 
     /// setter
@@ -102,5 +112,6 @@ public: // accsessor
     void SetIncrementLineCounter(BlockType type) { lineCounter_[static_cast<int32_t>(type)]++; }
     void SetEaseTime(const float& time) { scalingEase_.time = time; }
     void SetResultScale(const Vec3f resullt)  { resultScale_ = resullt; }
-    void SetIsScalingEase(const bool& is) { isScalingEase_ = is; }
+    void SetEaseType(const EaseType& is) { easeType_ = is; }
+    void SetIsMove(const bool& is) { isMove_ = is; }
 };
