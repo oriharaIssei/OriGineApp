@@ -61,7 +61,7 @@ void PlayerFollowCameraSystem::UpdateEntity(GameEntity* _entity) {
     ///============================================================
     // 方向ベクトル（原点方向に向ける）
    /* Vec3f direction                      = Vec3f::Normalize(Vec3f{0.0f, 0.0f, 0.0f} - cameraTransform_->translate);*/
-    cameraTransform_->rotationQuaternion = Quaternion::Identity();
+    cameraTransform_->rotate = Quaternion::Identity();
 
     ///============================================================
     /// カメラの行列を更新
