@@ -13,6 +13,7 @@
 // component
 #include "component/Timer/TimerStatus.h"
 #include "component/Combo/ComboUIStatus.h"
+#include"component/GameEnd/GameEnd.h"
 
 #include "engine/EngineInclude.h"
 #include <cmath>
@@ -40,6 +41,7 @@ void TimerDecrementSystem::UpdateEntity(GameEntity* _entity) {
    //タイマー減算
    timerStauts_->DecrementTimer();
 
+  
    
 }
 

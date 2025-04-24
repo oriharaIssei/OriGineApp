@@ -91,6 +91,12 @@
     <Filter Include="system\OperateUI">
       <UniqueIdentifier>{9ea86450-1e24-42e1-a8f3-a523f91e7583}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\GameEnd">
+      <UniqueIdentifier>{40525bc1-9fcd-4ab0-a642-9cd230c49751}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\GameEnd">
+      <UniqueIdentifier>{d4cdb92d-5bac-450f-ae0c-8aafe0e6fe65}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -316,6 +322,12 @@
     <ClInclude Include="code\system\OperateUI\OperateUISystem.h">
       <Filter>system\OperateUI</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\GameEnd\GameEnd.h">
+      <Filter>component\GameEnd</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\GameEnd\GameEndSystem.h">
+      <Filter>system\GameEnd</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -540,6 +552,12 @@
     </ClCompile>
     <ClCompile Include="code\system\OperateUI\OperateUISystem.cpp">
       <Filter>system\OperateUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\GameEnd\GameEnd.cpp">
+      <Filter>component\GameEnd</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\GameEnd\GameEndSystem.cpp">
+      <Filter>system\GameEnd</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
