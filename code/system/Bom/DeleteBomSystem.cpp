@@ -33,15 +33,15 @@ void DeleteBomSystem::UpdateEntity(GameEntity* _entity) {
 
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* playerEntity                 = ecsManager->getUniqueEntity("Player");
+    GameEntity* operateUI                    = ecsManager->getUniqueEntity("OperateUI");
 
     ExplotionCollision* addcollision = getComponent<ExplotionCollision>(playerEntity);
-
-    GameEntity* operateUI = ecsManager->getUniqueEntity("OperateUI");
-
     OperateUIStatus* operateUIStatus = getComponent<OperateUIStatus>(operateUI);
+
+    Audio* audio = getComponent<Audio>(playerEntity);
    
 
-    if (!status || !addcollision || !playerEntity || !operateUIStatus) {
+    if (!status || !addcollision || !playerEntity || !operateUIStatus || !audio) {
         return;
     }
 
@@ -50,6 +50,7 @@ void DeleteBomSystem::UpdateEntity(GameEntity* _entity) {
     if (status->GetIsExplotion()) {
         AddExplotionEntity(_entity, addcollision); // コリジョン追加
         operateUIStatus->ChangeInit(OperateMode::LAUNCH);
+        audio->Play();
         DestroyEntity(_entity); // 君消す
         bomSpawner->SetIsLaunched(false);
         bomSpawner->SetPutCurrentCoolTime(bomSpawner->GetPutCoolTimeMax());

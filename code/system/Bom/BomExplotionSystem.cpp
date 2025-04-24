@@ -46,7 +46,7 @@ void BomExplotionSystem::UpdateEntity(GameEntity* _entity) {
     // 打ち上げ処理
     LaunchMethod(_entity);
 
-   /* PlayerStates* playerStates = getComponent<PlayerStates>(playerEntity);*/
+  /*  PlayerStates* playerStates = getComponent<PlayerStates>(playerEntity);*/
 
     ///============================================================
     // 爆発していい爆弾なら起爆
