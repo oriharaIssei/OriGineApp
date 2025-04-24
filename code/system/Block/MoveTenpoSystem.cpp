@@ -43,16 +43,20 @@ void MoveTenpoSystem::UpdateEntity(GameEntity* _entity) {
 
       blockManager_->SetIsMove(false);
     // 1テンポ
-    OneTenpoMethod();
+    OneTenpoMethod(_entity);
 }
 
-void MoveTenpoSystem::OneTenpoMethod() {
+void MoveTenpoSystem::OneTenpoMethod(GameEntity* _entity) {
     // 1テンポごとの処理
     if (curerntTenpoTime_ < blockManager_->GetMoveTenpo()) {
         return;
     }
 
     // 音鳴らす
+    Audio* audio = getComponent<Audio>(_entity);
+   
+    audio->Play();
+    
 
     ///
     blockManager_->SetEaseType(EaseType::SCALING);
@@ -69,7 +73,9 @@ void MoveTenpoSystem::OneTenpoMethod() {
     blockManager_->SetEaseType(EaseType::MOVESCALING);
     curentTempoNum_ = 0;
 
- 
+
+     Audio* audio2 = getComponent<Audio>(_entity, 1);
+ audio2->Play();
     //for (GameEntity* entity : getEntities()) { // すべてのエンティティをチェック
     //    BlockStatus* block = getComponent<BlockStatus>(entity);
     //    Transform* transform    = getComponent<Transform>(entity);
