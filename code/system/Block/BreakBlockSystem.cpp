@@ -9,7 +9,7 @@
 #define ENGINE_COMPONENTS
 // component
 #include "component/Block/BlockStatus.h"
-#include "component/EffectByBlock/EffectByBlockUIStatus.h"
+#include"component/EffectByBlock/EffectByBlockSpawner.h"
 #include "component/Score/ScoreStatus.h"
 #include "component/Scrap/ScrapSpawner.h"
 #include "component/Scrap/ScrapStatus.h"
@@ -18,8 +18,6 @@
 #include "system/scrap/ScrapDeleteSystem.h"
 #include "system/scrap/ScrapFallSystem.h"
 #include "system/scrap/ScrapToPlayerCollisionSystem.h"
-#include"system/EffectByBlock/EffectByBlockDrawSystem.h"
-#include"system/EffectByBlock/EffectByBlockDeleteSystem.h"
 #include <cstdint>
 #include <Vector.h>
 
@@ -47,18 +45,18 @@ void BreakBlockSystem::UpdateEntity(GameEntity* _entity) {
 
     if (blockStatus_->GetIsBreak()) {
         /* ScrapSpawn(_entity);*/
-        BlockReaction(blockStatus_->GetBlockType());
-        EffectUISpawn(_entity);
+        BlockReaction(_entity,blockStatus_->GetBlockType());
         DestroyEntity(_entity);
     }
 }
 
-void BreakBlockSystem::BlockReaction(BlockType blocktype) {
+void BreakBlockSystem::BlockReaction(GameEntity* _entity,BlockType blocktype) {
 
     // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* scoreEntity                  = ecsManager->getUniqueEntity("Score");
     GameEntity* timerEntity                  = ecsManager->getUniqueEntity("Timer");
+    GameEntity* effectByBlockSpawner                  = ecsManager->getUniqueEntity("effectByBlockSpawner");
 
     if (!scoreEntity || !timerEntity) { // Entityが存在しない場合の早期リターン
         return;
@@ -67,8 +65,8 @@ void BreakBlockSystem::BlockReaction(BlockType blocktype) {
     /// component取得
     ScoreStatus* scoreStatus = getComponent<ScoreStatus>(scoreEntity);
     TimerStatus* timerStatus = getComponent<TimerStatus>(timerEntity);
-
-    if (!scoreStatus || !timerStatus) { // Componentが存在しない場合の早期リターン
+    EffectByBlockSpawner* SpawnerStatus = getComponent<EffectByBlockSpawner>(effectByBlockSpawner);
+    if (!scoreStatus || !timerStatus || !SpawnerStatus) { // Componentが存在しない場合の早期リターン
         return;
     }
 
@@ -108,90 +106,11 @@ void BreakBlockSystem::BlockReaction(BlockType blocktype) {
     default:
         break;
     }
+
+    SpawnerStatus->EffectUISpawn(_entity, tempValue_, effectType_);
 }
 
-void BreakBlockSystem::EffectUISpawn(GameEntity* _entity) {
-    if (!_entity)
-        return;
 
-    Transform* hostTransform = getComponent<Transform>(_entity);
-    if (!hostTransform)
-        return;
-
-    const float effectValue = tempValue_;
-    const EffectType type   = effectType_;
-
-    int32_t intValue = static_cast<int32_t>(effectValue);
-    int32_t absValue = std::abs(intValue);
-
-    	///*　パラメータべた書きゾーン
-
-    int32_t digitCount = (absValue == 0) ? 1 : static_cast<int32_t>(std::log10(absValue)) + 1;
-
-    int32_t currentOffsetIndex = 0; // 数字用のオフセットインデックス
-
-    for (int i = 0; i < digitCount + 2; ++i) {
-        GameEntity* uiEntity = CreateEntity<Transform, Rigidbody, ModelMeshRenderer, EffectByBlockUIStatus>(
-            "EffectUI", Transform(), Rigidbody(), ModelMeshRenderer(), EffectByBlockUIStatus());
-
-        Transform* trans = getComponent<Transform>(uiEntity);
-        trans->scale     = Vec3f(2.0f, 2.0f, 2.0f);
-
-        EffectByBlockUIStatus* status = getComponent<EffectByBlockUIStatus>(uiEntity);
-        ModelMeshRenderer* sprite     = getComponent<ModelMeshRenderer>(uiEntity);
-        CreateModelMeshRenderer(sprite, uiEntity, kApplicationResourceDirectory + "/Models/Plane", "Plane.obj");
-
-        switch (i) {
-        case 0: // アイコン
-            status->SetEffectType(type);
-            status->SetCurerntIconTexture();
-            status->SetDigit(UIDigit::ICON);
-            trans->translate = Vec3f(hostTransform->worldMat[3]) + Vec3f(-5.0f, 0.0f, -6.0f); // 固定位置
-            break;
-        case 1: // 符号
-            status->SetEffectType(type);
-            status->SetCurerntSignTexture();
-            status->SetDigit(UIDigit::SIGN);
-            trans->translate = Vec3f(hostTransform->worldMat[3]) + Vec3f(-1.5f, 0.0f, -6.0f); // 固定位置
-            break;
-        default: // 数字
-            status->SetEffectType(type);
-            status->SetValue(effectValue);
-            status->SetDigit(static_cast<UIDigit>(i));
-            int32_t ditinum = status->GetValueForDigit();
-            status->SetCurerntNumberTexture(ditinum);
-
-            // 数字のみオフセットを加算
-            trans->translate = Vec3f(hostTransform->worldMat[3]) + Vec3f(static_cast<float>((-2.5f * currentOffsetIndex) + 1.5f), 0.0f, -6.0f);
-            ++currentOffsetIndex;
-            break;
-        }
-
-        std::string textureName = status->GetCurrentTextureName();
-
-        if (textureName.empty()) {
-            trans->scale = Vec3f(0.0f, 0.0f, 0.0f);
-            continue;
-        }
-
-        sprite->setTexture(0, kApplicationResourceDirectory + textureName);
-
-        //status
-        status->SetLifeTime(1.0f);
-
-        //rigit body
-        Rigidbody* rigit = getComponent<Rigidbody>(uiEntity);
-        rigit->setVelocity(Vec3f(0.0f, 1.0f, 0.0f));
-
-        ECSManager* ecs = ECSManager::getInstance();
-        ecs->getSystem<EffectByBlockDeleteSystem>()->addEntity(uiEntity);
-        ecs->getSystem<MoveSystemByRigidBody>()->addEntity(uiEntity);
-        ecs->getSystem<EffectByBlockDrawSystem>()->addEntity(uiEntity);
-        
-        ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(uiEntity);
-
-    }
-}
 void BreakBlockSystem::ScrapSpawn(GameEntity* _entity) {
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* scrapEntity                  = ecsManager->getUniqueEntity("ScrapSpawner");

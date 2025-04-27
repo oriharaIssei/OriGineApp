@@ -28,6 +28,7 @@
 #include"Application/code/component/GameEnd/GameEnd.h"
 #include"Application/code/component/Button.h"
 #include"Application/code/component/SceneChanger.h"
+#include"Application/code/component/EffectByBlock/EffectByBlockSpawner.h"
 //#include"Application/code/component/Floor/FloorModeCreater.h"
 //#include"Application/code/component/Floor/BottomFloorStates.h"
 //#include"Application/code/component/Floor/FloorStates.h"
@@ -111,10 +112,10 @@ void GameScene::registerComponents() {
     ecsManager->registerComponent<FieldStatus>();
     ecsManager->registerComponent<EffectByBlockUIStatus>();
     ecsManager->registerComponent<OperateUIStatus>();
+    ecsManager->registerComponent<EffectByBlockSpawner>();
     ecsManager->registerComponent<GameEnd>();
     ecsManager->registerComponent<Button>();
     ecsManager->registerComponent<SceneChanger>();
-
     /*ecsManager->registerComponent<BottomFloorStates>();
     ecsManager->registerComponent<FloorStates>();
     ecsManager->registerComponent<FloorModeCreater>();*/

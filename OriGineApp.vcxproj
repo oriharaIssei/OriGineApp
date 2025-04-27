@@ -104,7 +104,7 @@
     <ClInclude Include="code\component\BigBom\BigBomSpawner.h" />
     <ClInclude Include="code\component\BigBom\BigBomStatus.h" />
     <ClInclude Include="code\component\BigBom\BigExplotionCollision.h" />
-    <ClInclude Include="code\component\EffectByBlock\EffectByBlockStatus.h" />
+    <ClInclude Include="code\component\EffectByBlock\EffectByBlockSpawner.h" />
     <ClInclude Include="code\component\EffectByBlock\EffectByBlockUIStatus.h" />
     <ClInclude Include="code\component\Field\FieldStatus.h" />
     <ClInclude Include="code\component\GameEnd\GameEnd.h" />
@@ -185,7 +185,7 @@
     <ClCompile Include="code\component\BigBom\BigBomSpawner.cpp" />
     <ClCompile Include="code\component\BigBom\BigBomStatus.cpp" />
     <ClCompile Include="code\component\BigBom\BigExplotionCollision.cpp" />
-    <ClCompile Include="code\component\EffectByBlock\EffectByBlockStatus.cpp" />
+    <ClCompile Include="code\component\EffectByBlock\EffectByBlockSpawner.cpp" />
     <ClCompile Include="code\component\EffectByBlock\EffectByBlockUIStatus.cpp" />
     <ClCompile Include="code\component\Field\FieldStatus.cpp" />
     <ClCompile Include="code\component\GameEnd\GameEnd.cpp" />

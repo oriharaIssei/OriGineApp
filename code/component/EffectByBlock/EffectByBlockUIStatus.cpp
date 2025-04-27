@@ -1,12 +1,10 @@
 #include "EffectByBlockUIStatus.h"
-/// Engine
+/// engine
 #define ENGINE_INCLUDE
-/// ECS
-// component
-#define ENGINE_COMPONENTS
 #include "engine/EngineInclude.h"
 /// externals
 #include "imgui/imgui.h"
+
 
 void EffectByBlockUIStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 }
@@ -136,3 +134,5 @@ void EffectByBlockUIStatus::SetCurerntNumberTexture(const int32_t&num) {
 void EffectByBlockUIStatus::DecrementCurrnetTime(const float& time) {
     lifeTime_ -= time;
   }
+
+

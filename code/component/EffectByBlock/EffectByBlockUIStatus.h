@@ -59,6 +59,8 @@ public:
 
     void DecrementCurrnetTime(const float&time);
 
+    void EffectUISpawn(GameEntity* _entity,const float&value,const EffectType&type);
+
 public: // accsessor
     /// getter
     UIDigit GetDigit() const { return digit_; }

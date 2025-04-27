@@ -303,7 +303,7 @@
       <Filter>component\Field</Filter>
     </ClInclude>
     <ClInclude Include="code\KetaEasing.h" />
-    <ClInclude Include="code\component\EffectByBlock\EffectByBlockStatus.h">
+    <ClInclude Include="code\component\EffectByBlock\EffectByBlockSpawner.h">
       <Filter>component\EffectByBLock</Filter>
     </ClInclude>
     <ClInclude Include="code\component\EffectByBlock\EffectByBlockUIStatus.h">
@@ -534,7 +534,7 @@
       <Filter>component\Field</Filter>
     </ClCompile>
     <ClCompile Include="code\KetaEasing.cpp" />
-    <ClCompile Include="code\component\EffectByBlock\EffectByBlockStatus.cpp">
+    <ClCompile Include="code\component\EffectByBlock\EffectByBlockSpawner.cpp">
       <Filter>component\EffectByBLock</Filter>
     </ClCompile>
     <ClCompile Include="code\component\EffectByBlock\EffectByBlockUIStatus.cpp">
