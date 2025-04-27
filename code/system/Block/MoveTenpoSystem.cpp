@@ -41,7 +41,7 @@ void MoveTenpoSystem::UpdateEntity(GameEntity* _entity) {
     // イージングタイム更新
     blockManager_->ScalingEaseUpdate(Engine::getInstance()->getDeltaTime());
 
-      blockManager_->SetIsMove(false);
+    blockManager_->SetIsMove(false);
     // 1テンポ
     OneTenpoMethod(_entity);
 }
@@ -54,9 +54,6 @@ void MoveTenpoSystem::OneTenpoMethod(GameEntity* _entity) {
 
     // 音鳴らす
     Audio* audio = getComponent<Audio>(_entity);
-   
-    audio->Play();
-    
 
     ///
     blockManager_->SetEaseType(EaseType::SCALING);
@@ -66,6 +63,8 @@ void MoveTenpoSystem::OneTenpoMethod(GameEntity* _entity) {
 
     // 移動するべき場合
     if (curentTempoNum_ < blockManager_->GetMoveTenpoNum()) {
+
+        audio->Play();
         return;
     }
 
@@ -73,12 +72,11 @@ void MoveTenpoSystem::OneTenpoMethod(GameEntity* _entity) {
     blockManager_->SetEaseType(EaseType::MOVESCALING);
     curentTempoNum_ = 0;
 
-
-     Audio* audio2 = getComponent<Audio>(_entity, 1);
- audio2->Play();
-    //for (GameEntity* entity : getEntities()) { // すべてのエンティティをチェック
-    //    BlockStatus* block = getComponent<BlockStatus>(entity);
-    //    Transform* transform    = getComponent<Transform>(entity);
+    Audio* audio2 = getComponent<Audio>(_entity, 1);
+    audio2->Play();
+    // for (GameEntity* entity : getEntities()) { // すべてのエンティティをチェック
+    //     BlockStatus* block = getComponent<BlockStatus>(entity);
+    //     Transform* transform    = getComponent<Transform>(entity);
 
     //    if (!block || !transform) {
     //        continue;
