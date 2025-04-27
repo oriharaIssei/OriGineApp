@@ -66,6 +66,7 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity,BlockType blocktype) {
     ScoreStatus* scoreStatus = getComponent<ScoreStatus>(scoreEntity);
     TimerStatus* timerStatus = getComponent<TimerStatus>(timerEntity);
     EffectByBlockSpawner* SpawnerStatus = getComponent<EffectByBlockSpawner>(effectByBlockSpawner);
+
     if (!scoreStatus || !timerStatus || !SpawnerStatus) { // Componentが存在しない場合の早期リターン
         return;
     }

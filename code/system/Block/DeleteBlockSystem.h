@@ -1,6 +1,7 @@
 #pragma once
 
 #include "component/Block/BlockManager.h"
+#include "component/EffectByBlock/EffectByBlockUIStatus.h"
 #include "system/ISystem.h"
 
  class BlockStatus;
@@ -18,9 +19,11 @@ public:
 protected:
     virtual void UpdateEntity(GameEntity* _entity) override;
 
-    void BlockReaction(BlockType blockType);
+    void BlockReaction(GameEntity* _entity, BlockType blocktype);
 
     private:
     BlockStatus* blockStatus_;
+        EffectType effectType_;
+        float tempValue_;
    
 };

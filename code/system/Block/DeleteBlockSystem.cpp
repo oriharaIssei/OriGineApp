@@ -4,6 +4,7 @@
 #define ENGINE_ECS
 // component
 #include"component/Block/BlockStatus.h"
+#include"component/EffectByBlock/EffectByBlockSpawner.h"
 #include"component/Score/ScoreStatus.h"
 #include"component/Timer/TimerStatus.h"
 #include "engine/EngineInclude.h"
@@ -44,16 +45,17 @@ void DeleteBlockSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     if (transform->translate[X] <= blockManager->GetDeadPosition()) {
-        BlockReaction(blockStatus_->GetBlockType());
+        BlockReaction(_entity,blockStatus_->GetBlockType());
         DestroyEntity(_entity);
     }
 }
 
-void DeleteBlockSystem::BlockReaction(BlockType blockType) {
+void DeleteBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
     // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* scoreEntity                  = ecsManager->getUniqueEntity("Score");
     GameEntity* timerEntity                  = ecsManager->getUniqueEntity("Timer");
+    GameEntity* effectByBlockSpawner         = ecsManager->getUniqueEntity("effectByBlockSpawner");
 
     if (!scoreEntity || !timerEntity) { // Entityが存在しない場合の早期リターン
         return;
@@ -62,20 +64,23 @@ void DeleteBlockSystem::BlockReaction(BlockType blockType) {
     /// component取得
     ScoreStatus* scoreStatus = getComponent<ScoreStatus>(scoreEntity);
     TimerStatus* timerStatus = getComponent<TimerStatus>(timerEntity);
+    EffectByBlockSpawner* SpawnerStatus = getComponent<EffectByBlockSpawner>(effectByBlockSpawner);
 
-    if (!scoreStatus || !timerStatus) { // Componentが存在しない場合の早期リターン
+    if (!scoreStatus || !timerStatus || !SpawnerStatus) { // Componentが存在しない場合の早期リターン
         return;
     }
 
     float timerDecrementValue = timerStatus->GetMinusTimeNormal();
     float scoreValue          = blockStatus_->GetBaseScoreValue();
 
-    switch (blockType) {
+    switch (blocktype) {
         ///---------------------------------------------
         /// Normal
         ///---------------------------------------------
     case BlockType::NORMAL:
         timerStatus->TimerDecrement(timerDecrementValue);
+        effectType_ = EffectType::MIMUSTIME;
+        tempValue_  = timerDecrementValue;
         break;
 
         ///---------------------------------------------
@@ -84,6 +89,8 @@ void DeleteBlockSystem::BlockReaction(BlockType blockType) {
     case BlockType::SKULL:
         scoreStatus->PlusScoreIncrement(scoreValue);
         scoreStatus->SetScoreChangeTime(0.0f);
+        effectType_ = EffectType::SCORE;
+        tempValue_  = scoreValue;
         break;
 
         ///---------------------------------------------
@@ -92,9 +99,13 @@ void DeleteBlockSystem::BlockReaction(BlockType blockType) {
     case BlockType::ADVANTAGE:
         scoreStatus->PlusScoreIncrement(scoreValue);
         scoreStatus->SetScoreChangeTime(0.0f);
+        effectType_ = EffectType::SCORE;
+        tempValue_  = scoreValue;
         break;
 
     default:
         break;
     }
+
+       SpawnerStatus->EffectUISpawn(_entity, tempValue_, effectType_);
  }
