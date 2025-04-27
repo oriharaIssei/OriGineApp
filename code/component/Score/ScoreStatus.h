@@ -16,6 +16,7 @@ private: // variables
     float currentScore_;
     float pulusScore_ = 0.0f;
     float scoreChangeTime_=0.0f;
+    float scoreMax_  = 99999.0f;
     bool isChanging_ = false;
 
 public:
@@ -37,6 +38,7 @@ public: // accsessor
     float GetCurrentScore() const { return currentScore_; }
     float GetPulusScore() const { return pulusScore_; }
     float GetScoreChangeTIme() const { return scoreChangeTime_; }
+    const float GetScoreMax() const { return scoreMax_; }
   
     /// setter
     void SetScoreChangeTime(const float& scoreChange) {  scoreChangeTime_ = scoreChange; }

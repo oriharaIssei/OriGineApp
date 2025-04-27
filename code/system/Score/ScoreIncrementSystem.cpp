@@ -39,6 +39,12 @@ void ScoreIncrementSystem::UpdateEntity(GameEntity* _entity) {
 
     scoreStatus_->TimeIncrement(Engine::getInstance()->getDeltaTime());
     scoreStatus_->SetCurrentScore(Lerp(scoreStatus_->GetCurrentScore(), scoreStatus_->GetPulusScore(), scoreStatus_->GetScoreChangeTIme()));
+
+    if (scoreStatus_->GetCurrentScore() < scoreStatus_->GetScoreMax()) {
+        return;
+    }
+
+    scoreStatus_->SetCurrentScore(scoreStatus_->GetScoreMax());
 }
 
 void ScoreIncrementSystem::ComboReset() {
