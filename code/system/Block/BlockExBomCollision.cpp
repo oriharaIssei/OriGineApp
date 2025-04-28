@@ -7,31 +7,30 @@
 #define ENGINE_ECS
 #include "engine/EngineInclude.h"
 
-#include"component/Bom/ExplotionCollision.h"
-#include"component/Block/BlockStatus.h"
-#include"component/Player/PlayerStates.h"
+#include "component/Block/BlockManager.h"
+#include "component/Block/BlockStatus.h"
+#include "component/Bom/ExplotionCollision.h"
+#include "component/Player/PlayerStates.h"
 
 BlockExBomCollision::BlockExBomCollision() : ISystem(SystemType::Collision) {}
 BlockExBomCollision::~BlockExBomCollision() {}
 
 void BlockExBomCollision::Initialize() {
-
 }
 
 void BlockExBomCollision::Finalize() {
-
 }
 
-
 void BlockExBomCollision::UpdateEntity(GameEntity* _entity) {
-  
+
     if (!_entity) {
         return;
     }
 
     // CharacterStatusを取得
- 
-    BlockStatus* blockStatus = getComponent<BlockStatus>(_entity);
+
+    BlockStatus* blockStatus                 = getComponent<BlockStatus>(_entity);
+  
 
     if (!blockStatus) {
         return;
@@ -40,7 +39,7 @@ void BlockExBomCollision::UpdateEntity(GameEntity* _entity) {
     if (blockStatus->GetIsFall()) {
         return;
     }
-   
+
     /// ====================================================
     /// 衝突判定の結果を使って CharacterStatus を更新
     /// ====================================================
@@ -49,7 +48,6 @@ void BlockExBomCollision::UpdateEntity(GameEntity* _entity) {
         std::vector<SphereCollider>* entityColliders = getComponents<SphereCollider>(_entity);
         for (auto& entityCollider : *entityColliders) {
             for (auto& [hitEntity, collisionState] : entityCollider.getCollisionStateMap()) {
-
 
                 if (_entity->getDataType() == hitEntity->getDataType()) {
                     continue;
@@ -69,6 +67,8 @@ void BlockExBomCollision::UpdateEntity(GameEntity* _entity) {
                 }
                 // CharacterStatusを更新
                 blockStatus->SetIsBreak(true);
+
+              
             }
         }
     }

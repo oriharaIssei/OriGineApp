@@ -9,7 +9,7 @@
 #define ENGINE_COMPONENTS
 // component
 #include "component/Block/BlockStatus.h"
-#include"component/EffectByBlock/EffectByBlockSpawner.h"
+#include "component/EffectByBlock/EffectByBlockSpawner.h"
 #include "component/Score/ScoreStatus.h"
 #include "component/Scrap/ScrapSpawner.h"
 #include "component/Scrap/ScrapStatus.h"
@@ -45,26 +45,32 @@ void BreakBlockSystem::UpdateEntity(GameEntity* _entity) {
 
     if (blockStatus_->GetIsBreak()) {
         /* ScrapSpawn(_entity);*/
-        BlockReaction(_entity,blockStatus_->GetBlockType());
+        BlockReaction(_entity, blockStatus_->GetBlockType());
         DestroyEntity(_entity);
     }
 }
 
-void BreakBlockSystem::BlockReaction(GameEntity* _entity,BlockType blocktype) {
+void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
 
     // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* scoreEntity                  = ecsManager->getUniqueEntity("Score");
     GameEntity* timerEntity                  = ecsManager->getUniqueEntity("Timer");
-    GameEntity* effectByBlockSpawner                  = ecsManager->getUniqueEntity("effectByBlockSpawner");
+    GameEntity* effectByBlockSpawner         = ecsManager->getUniqueEntity("effectByBlockSpawner");
+
+    /// sound
+    GameEntity* blockManager = ecsManager->getUniqueEntity("BlockManager");
+    Audio* breakNormal       = getComponent<Audio>(blockManager, 2); // 落ちる音
+    Audio* breakSkull        = getComponent<Audio>(blockManager, 3); // 落ちる音
+    Audio* breakAdvance      = getComponent<Audio>(blockManager, 4); // 落ちる音
 
     if (!scoreEntity || !timerEntity) { // Entityが存在しない場合の早期リターン
         return;
     }
 
     /// component取得
-    ScoreStatus* scoreStatus = getComponent<ScoreStatus>(scoreEntity);
-    TimerStatus* timerStatus = getComponent<TimerStatus>(timerEntity);
+    ScoreStatus* scoreStatus            = getComponent<ScoreStatus>(scoreEntity);
+    TimerStatus* timerStatus            = getComponent<TimerStatus>(timerEntity);
     EffectByBlockSpawner* SpawnerStatus = getComponent<EffectByBlockSpawner>(effectByBlockSpawner);
 
     if (!scoreStatus || !timerStatus || !SpawnerStatus) { // Componentが存在しない場合の早期リターン
@@ -84,6 +90,9 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity,BlockType blocktype) {
         scoreStatus->SetScoreChangeTime(0.0f);
         effectType_ = EffectType::SCORE;
         tempValue_  = scoreValue;
+       /* if (!breakNormal->isPlaying()) {*/
+            breakNormal->Play();
+        /*}*/
         break;
 
         ///---------------------------------------------
@@ -93,6 +102,9 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity,BlockType blocktype) {
         timerStatus->TimerDecrement(timerDecrementValue);
         effectType_ = EffectType::MIMUSTIME;
         tempValue_  = timerDecrementValue;
+      /*  if (!breakSkull->isPlaying()) {*/
+            breakSkull->Play();
+       /* }*/
         break;
 
         ///---------------------------------------------
@@ -102,6 +114,9 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity,BlockType blocktype) {
         timerStatus->TimerIncrement(timerIncrementValue);
         effectType_ = EffectType::TIME;
         tempValue_  = timerIncrementValue;
+      /*  if (!breakAdvance->isPlaying()) {*/
+            breakAdvance->Play();
+       /* }*/
         break;
 
     default:
@@ -110,7 +125,6 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity,BlockType blocktype) {
 
     SpawnerStatus->EffectUISpawn(_entity, tempValue_, effectType_);
 }
-
 
 void BreakBlockSystem::ScrapSpawn(GameEntity* _entity) {
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
@@ -184,7 +198,7 @@ void BreakBlockSystem::ScrapSpawn(GameEntity* _entity) {
         ecs->getSystem<ScrapToPlayerCollisionSystem>()->addEntity(scrap);
         //------------------ Physics
         // None
-       
+
         //------------------ Render
         /* ecs->getSystem<ColliderRenderingSystem>()->addEntity(block);*/
         ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(scrap);

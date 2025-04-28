@@ -57,6 +57,13 @@ void DeleteBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) 
     GameEntity* timerEntity                  = ecsManager->getUniqueEntity("Timer");
     GameEntity* effectByBlockSpawner         = ecsManager->getUniqueEntity("effectByBlockSpawner");
 
+    
+    /// sound
+    GameEntity* blockManager = ecsManager->getUniqueEntity("BlockManager");
+    Audio* breakNormal       = getComponent<Audio>(blockManager,5); // 落ちる音
+    Audio* breakSkull        = getComponent<Audio>(blockManager, 6); // 落ちる音
+    Audio* breakAdvance      = getComponent<Audio>(blockManager, 7); // 落ちる音
+
     if (!scoreEntity || !timerEntity) { // Entityが存在しない場合の早期リターン
         return;
     }
@@ -81,6 +88,9 @@ void DeleteBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) 
         timerStatus->TimerDecrement(timerDecrementValue);
         effectType_ = EffectType::MIMUSTIME;
         tempValue_  = timerDecrementValue;
+        /* if (!breakNormal->isPlaying()) {*/
+        breakNormal->Play();
+        /*}*/
         break;
 
         ///---------------------------------------------
@@ -91,6 +101,9 @@ void DeleteBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) 
         scoreStatus->SetScoreChangeTime(0.0f);
         effectType_ = EffectType::SCORE;
         tempValue_  = scoreValue;
+        /* if (!breakNormal->isPlaying()) {*/
+        breakSkull->Play();
+        /*}*/
         break;
 
         ///---------------------------------------------
@@ -101,6 +114,9 @@ void DeleteBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) 
         scoreStatus->SetScoreChangeTime(0.0f);
         effectType_ = EffectType::SCORE;
         tempValue_  = scoreValue;
+        /* if (!breakNormal->isPlaying()) {*/
+        breakAdvance->Play();
+        /*}*/
         break;
 
     default:
