@@ -7,40 +7,38 @@
 #define ENGINE_ECS
 #include "engine/EngineInclude.h"
 
-#include"component/Bom/ExplotionCollision.h"
-#include"component/Piller/FloatingFloorStatus.h"
-#include"component/Player/PlayerStates.h"
+#include "component/Bom/ExplotionCollision.h"
+#include "component/Piller/FloatingFloorStatus.h"
+#include "component/Player/PlayerStates.h"
 
 FloatingFloorDamageSystem::FloatingFloorDamageSystem() : ISystem(SystemType::Collision) {}
 FloatingFloorDamageSystem::~FloatingFloorDamageSystem() {}
 
 void FloatingFloorDamageSystem::Initialize() {
-
 }
 
 void FloatingFloorDamageSystem::Finalize() {
-
 }
 
-
 void FloatingFloorDamageSystem::UpdateEntity(GameEntity* _entity) {
-  
+
     if (!_entity) {
         return;
     }
 
-    // CharacterStatusを取得
- 
+      EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+   
     FloatingFloorStatus* floatingFloorStatus = getComponent<FloatingFloorStatus>(_entity);
-
-    if (!floatingFloorStatus) {
+    GameEntity* FloorSound                   = ecsManager->getUniqueEntity("FloorSound");
+    Audio* damageSound                       = getComponent<Audio>(FloorSound, 4);
+    if (!floatingFloorStatus || !damageSound) {
         return;
     }
 
     if (floatingFloorStatus->GetIsFall() || floatingFloorStatus->GetIsDestroy()) {
         return;
     }
-   
+
     /// ====================================================
     /// 衝突判定の結果を使って CharacterStatus を更新
     /// ====================================================
@@ -49,7 +47,6 @@ void FloatingFloorDamageSystem::UpdateEntity(GameEntity* _entity) {
         std::vector<AABBCollider>* entityColliders = getComponents<AABBCollider>(_entity);
         for (auto& entityCollider : *entityColliders) {
             for (auto& [hitEntity, collisionState] : entityCollider.getCollisionStateMap()) {
-
 
                 if (_entity->getDataType() == hitEntity->getDataType()) {
                     continue;
@@ -67,6 +64,8 @@ void FloatingFloorDamageSystem::UpdateEntity(GameEntity* _entity) {
                 if (!hitEntityStatus || playerStatus) {
                     continue;
                 }
+                //ダメ―ジ音
+                damageSound->Play();
                 // CharacterStatusを更新
                 floatingFloorStatus->TakeDamage();
             }

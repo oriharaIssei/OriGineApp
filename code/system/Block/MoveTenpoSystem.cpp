@@ -64,7 +64,7 @@ void MoveTenpoSystem::OneTenpoMethod(GameEntity* _entity) {
     // 移動するべき場合
     if (curentTempoNum_ < blockManager_->GetMoveTenpoNum()) {
 
-        audio->Play();
+        audio->Play();//テンポ音
         return;
     }
 
@@ -72,8 +72,10 @@ void MoveTenpoSystem::OneTenpoMethod(GameEntity* _entity) {
     blockManager_->SetEaseType(EaseType::MOVESCALING);
     curentTempoNum_ = 0;
 
+    // 動く音
     Audio* audio2 = getComponent<Audio>(_entity, 1);
     audio2->Play();
+
     // for (GameEntity* entity : getEntities()) { // すべてのエンティティをチェック
     //     BlockStatus* block = getComponent<BlockStatus>(entity);
     //     Transform* transform    = getComponent<Transform>(entity);

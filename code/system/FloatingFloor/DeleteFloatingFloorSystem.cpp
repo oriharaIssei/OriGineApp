@@ -24,10 +24,15 @@ void DeleteFloatingFloorSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
+      EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+
     FloatingFloorStatus* fAndPStatus = getComponent<FloatingFloorStatus>(_entity);
     Transform* transform             = getComponent<Transform>(_entity);
     AABBCollider* collider           = getComponent<AABBCollider>(_entity);
-    if (!fAndPStatus || !transform || !collider) {
+    GameEntity* FloorSound           = ecsManager->getUniqueEntity("FloorSound");
+    Audio* breakSound               = getComponent<Audio>(FloorSound, 2);
+
+    if (!fAndPStatus || !transform || !collider || !breakSound) {
         return;
     }
 
@@ -35,6 +40,7 @@ void DeleteFloatingFloorSystem::UpdateEntity(GameEntity* _entity) {
     if (fAndPStatus->GetIsDestroy()&&!fAndPStatus->GetIsRevaviling()) {
         fAndPStatus->SetIsRevivaling(true);
         collider->setActive(false);
+        breakSound->Play();
        
     }
     

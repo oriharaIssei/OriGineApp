@@ -28,9 +28,13 @@ void CanageStateFallSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    FloatingFloorStatus* fAndPStatus = getComponent<FloatingFloorStatus>(_entity);
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
 
-    if (!fAndPStatus) {
+    FloatingFloorStatus* fAndPStatus = getComponent<FloatingFloorStatus>(_entity);
+    GameEntity* FloorSound            = ecsManager->getUniqueEntity("FloorSound");
+    Audio* fallSound                 = getComponent<Audio>(FloorSound, 0); // 落ちる音
+
+    if (!fAndPStatus || !fallSound) {
         return;
     }
   
@@ -40,56 +44,36 @@ void CanageStateFallSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
+    //死亡中は通らない
     if (fAndPStatus->GetIsDestroy()) {
         return;
     }
 
+    fallSound->Play();//再生
     fAndPStatus->SetIsFall(true);
 
-    ////  柱のスケールを0にする
-    //Transform* entityTransform = getComponent<Transform>(_entity, 0);
-    //if (!entityTransform) {
-    //    return;
-    //}
-    //entityTransform->scale = Vec3f(0.0f, 0.0f, 0.0f);/// スケールセロ
-
-    //// 壊れた柱のRow番号を取得
-    //int destroyedRow = fAndPStatus->GetRowNum();
-
-    //// **同じRowの床を落とす**
-    //for (GameEntity* entity : getEntities()) { // すべてのエンティティをチェック
-    //    FloatingFloorStatus* otherFAndP = getComponent<FloatingFloorStatus>(entity);
-    //    if (!otherFAndP) {
-    //        continue;
-    //    }
-
-    //    // 同じRowにある床の `IsFall` を `true` にする
-    //    if (otherFAndP->GetRowNum() == destroyedRow) {
-    //        otherFAndP->SetIsFall(true);
-    //    }
-    //}
-
+   
      // コンボ加算
-    ComboCountIncrement();
+   /* ComboCountIncrement();*/
 }
 
 void CanageStateFallSystem::ComboCountIncrement() {
 
-    // ComboEntityを取得
-    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
-    GameEntity* ComboEntity                  = ecsManager->getUniqueEntity("Combo");
+    //// ComboEntityを取得
+    //EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    //GameEntity* ComboEntity                  = ecsManager->getUniqueEntity("Combo");
 
-    if (!ComboEntity) {
-        return;
-    }
+    //if (!ComboEntity) {
+    //    return;
+    //}
 
-    ComboStatus* comboStatus = getComponent<ComboStatus>(ComboEntity);
+    //ComboStatus* comboStatus = getComponent<ComboStatus>(ComboEntity);
 
-    if (!comboStatus) {
-        return;
-    }
+    //if (!comboStatus) {
+    //    return;
+    //}
 
-    comboStatus->SetCurrentTime(comboStatus->GetContinuationTime());
-    comboStatus->SetComboIncrement(); // 現在のコンボ数をインクリメント
-    comboStatus->SetIsUpdateCombo(true); // コンボ更新フラグを立てる
+    //comboStatus->SetCurrentTime(comboStatus->GetContinuationTime());
+    //comboStatus->SetComboIncrement(); // 現在のコンボ数をインクリメント
+    //comboStatus->SetIsUpdateCombo(true); // コンボ更新フラグを立てる
 }

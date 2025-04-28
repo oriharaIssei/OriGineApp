@@ -24,11 +24,10 @@
 #include "system/FloatingFloor/DeleteFloatingFloorSystem.h"
 #include "system/FloatingFloor/FloatingFloorDamageSystem.h"
 #include "system/FloatingFloor/FloatingFloorFallSystem.h"
-#include"system/FloatingFloor/FloatingFloorRevivalSystem.h"
+#include "system/FloatingFloor/FloatingFloorRevivalSystem.h"
 #include "system/Floor/DeleteFloorSystem.h"
 #include "system/Floor/FloorUpdateMatrixSystem.h"
 #include "system/Matrix/UpdateMatrixSystem.h"
-
 
 CreateFloorSystem::CreateFloorSystem() : ISystem(SystemType::Initialize) {}
 CreateFloorSystem::~CreateFloorSystem() {}
@@ -61,7 +60,7 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     ECSManager* ecs = ECSManager::getInstance();
 
     // ================================= Bullet Entityを 生成 ================================= //
-    GameEntity* floatingFloor = CreateEntity<Transform, AABBCollider, Rigidbody, ModelMeshRenderer, FloatingFloorStatus>("Floor", Transform(), AABBCollider(), Rigidbody(), ModelMeshRenderer(), FloatingFloorStatus());
+    GameEntity* floatingFloor = CreateEntity<Transform, AABBCollider, Rigidbody, ModelMeshRenderer, FloatingFloorStatus, Audio, Audio, Audio, Audio>("Floor", Transform(), AABBCollider(), Rigidbody(), ModelMeshRenderer(), FloatingFloorStatus(), Audio(), Audio(), Audio(), Audio());
     // ================================= Componentを初期化 ================================= //
 
     Transform* transform     = getComponent<Transform>(floatingFloor); // 柱
@@ -116,8 +115,15 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     floatingFloorStatus->SetFallPosY(-1.0f);
     floatingFloorStatus->SetIncrementFallEaseT(0.0f);
 
-    //ratio
+    // ratio
     floatingFloorStatus->SetRatio(floatFloorSpawner->GetRatio());
+
+    for (int32_t i = 0; i < audios_.size(); ++i) {
+        audios_[i]  = getComponent<Audio>(_entity, i); // audio
+        faudios_[i] = getComponent<Audio>(floatingFloor, i); // audio
+
+        faudios_[i] = audios_[i];
+    }
 
     // ================================= System ================================= //
 
@@ -136,9 +142,9 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     //------------------ Collision
     ecs->getSystem<CollisionCheckSystem>()->addEntity(floatingFloor);
     ecs->getSystem<FloatingFloorDamageSystem>()->addEntity(floatingFloor);
-     //------------------ Physics
+    //------------------ Physics
     // None
-    
+
     //------------------ Render
     /*ecs->getSystem<ColliderRenderingSystem>()->addEntity(floatingFloor);*/
     ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(floatingFloor);

@@ -51,6 +51,11 @@ void PutBomSystem::UpdateEntity(GameEntity* _entity) {
     if (!operateUI) {
         return;
     }
+
+    // 発射音
+    Audio* launchSound = getComponent<Audio>(_entity, 1);
+    launchSound->Play();
+
     OperateUIStatus* operateUIStatus = getComponent<OperateUIStatus>(operateUI);
     operateUIStatus->ChangeInit(OperateMode::EXPLOTION);
 }

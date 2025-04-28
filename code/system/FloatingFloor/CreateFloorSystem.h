@@ -6,6 +6,7 @@
 #include <cstdint>
 #include <vector>
 #include <Vector3.h>
+#include <array>
 
 ///====================================================================
 // FloorSystem
@@ -15,6 +16,7 @@ class FloatingFloorSpawner;
 class PillerStates;
 class FloorStates;
 class FloorModeCreater;
+class Audio;
 
 class CreateFloorSystem : public ISystem {
 private:
@@ -28,6 +30,9 @@ private:
 
     int32_t normalCost_;
     int32_t safeCost_;
+
+    std::array<Audio*, 4> audios_;
+    std::array<Audio*, 4> faudios_;
 
 public:
     CreateFloorSystem();
