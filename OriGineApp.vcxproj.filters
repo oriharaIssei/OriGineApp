@@ -100,6 +100,9 @@
     <Filter Include="component\LevelUP">
       <UniqueIdentifier>{e938c1d1-664f-4787-a938-2d9cdc128034}</UniqueIdentifier>
     </Filter>
+    <Filter Include="system\LevelUp">
+      <UniqueIdentifier>{ba0cd23a-6631-46a5-b745-f0dc44585baf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -337,6 +340,12 @@
     <ClInclude Include="code\component\LevelUPUI\LevelUIStatus.h">
       <Filter>component\LevelUP</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\LeverlUP\LevelUIInitSystem.h">
+      <Filter>system\LevelUp</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\LeverlUP\LevelUIAnimationSystem.h">
+      <Filter>system\LevelUp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -573,6 +582,12 @@
     </ClCompile>
     <ClCompile Include="code\component\LevelUPUI\LevelUIStatus.cpp">
       <Filter>component\LevelUP</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\LeverlUP\LevelUIInitSystem.cpp">
+      <Filter>system\LevelUp</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\LeverlUP\LevelUIAnimationSystem.cpp">
+      <Filter>system\LevelUp</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

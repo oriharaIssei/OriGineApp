@@ -1,20 +1,19 @@
 #pragma once
 
 #include "component/IComponent.h"
+#include"component/LevelUPUI/LevelUIParentStatus.h"
 #include <cstdint>
 #include <Entity.h>
 #include<array>
 #include<string>
 #include <Vector3.h>
 
+
+
 class LevelUIStatus
     : public IComponent {
 public:
-    enum class LevelUIDigit {
-        ONE,
-        TWO,
-        COUNT,
-    };
+   
 
 private: // variables
     bool isAlive_ = true;
@@ -39,6 +38,7 @@ public: // accsessor
     /// getter
     LevelUIDigit GetLevelUIDigit() const { return levelUIDigit_; }
     Vec3f GetOffsetPos() const { return offsetPos_; }
+    
     /// setter
-
+   
 };
