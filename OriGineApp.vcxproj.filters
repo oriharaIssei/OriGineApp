@@ -97,6 +97,9 @@
     <Filter Include="system\GameEnd">
       <UniqueIdentifier>{d4cdb92d-5bac-450f-ae0c-8aafe0e6fe65}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\LevelUP">
+      <UniqueIdentifier>{e938c1d1-664f-4787-a938-2d9cdc128034}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -328,6 +331,12 @@
     <ClInclude Include="code\system\GameEnd\GameEndSystem.h">
       <Filter>system\GameEnd</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\LevelUPUI\LevelUIParentStatus.h">
+      <Filter>component\LevelUP</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\LevelUPUI\LevelUIStatus.h">
+      <Filter>component\LevelUP</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -558,6 +567,12 @@
     </ClCompile>
     <ClCompile Include="code\system\GameEnd\GameEndSystem.cpp">
       <Filter>system\GameEnd</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\LevelUPUI\LevelUIParentStatus.cpp">
+      <Filter>component\LevelUP</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\LevelUPUI\LevelUIStatus.cpp">
+      <Filter>component\LevelUP</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

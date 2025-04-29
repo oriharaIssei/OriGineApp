@@ -108,6 +108,8 @@
     <ClInclude Include="code\component\EffectByBlock\EffectByBlockUIStatus.h" />
     <ClInclude Include="code\component\Field\FieldStatus.h" />
     <ClInclude Include="code\component\GameEnd\GameEnd.h" />
+    <ClInclude Include="code\component\LevelUPUI\LevelUIParentStatus.h" />
+    <ClInclude Include="code\component\LevelUPUI\LevelUIStatus.h" />
     <ClInclude Include="code\component\OperateUI\OperateUIStatus.h" />
     <ClInclude Include="code\component\Score\ScoreStatus.h" />
     <ClInclude Include="code\component\Score\ScoreUIStatus.h" />
@@ -189,6 +191,8 @@
     <ClCompile Include="code\component\EffectByBlock\EffectByBlockUIStatus.cpp" />
     <ClCompile Include="code\component\Field\FieldStatus.cpp" />
     <ClCompile Include="code\component\GameEnd\GameEnd.cpp" />
+    <ClCompile Include="code\component\LevelUPUI\LevelUIParentStatus.cpp" />
+    <ClCompile Include="code\component\LevelUPUI\LevelUIStatus.cpp" />
     <ClCompile Include="code\component\OperateUI\OperateUIStatus.cpp" />
     <ClCompile Include="code\component\Score\ScoreStatus.cpp" />
     <ClCompile Include="code\component\Score\ScoreUIStatus.cpp" />
