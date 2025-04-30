@@ -83,9 +83,9 @@ void LevelUIParentStatus::MoveAnimation(const float& time) {
 
     moveEasing_.time += time;
 
-    basePos_   = EaseInCubic(initPos_, easePos_, moveEasing_.time, moveEasing_.maxTime);
-    baseScale_ = EaseInCubic(initScale_, easeScale_, moveEasing_.time, moveEasing_.maxTime);
-    currentmoveOffset_ = EaseInCubic(Vec3f(0.0f, 0.0f, 0.0f), moveOffset_, moveEasing_.time, moveEasing_.maxTime);
+    basePos_   = EaseOutBack(initPos_, easePos_, moveEasing_.time, moveEasing_.maxTime);
+    baseScale_         = EaseOutBack(initScale_, easeScale_, moveEasing_.time, moveEasing_.maxTime);
+    currentmoveOffset_ = EaseOutBack(Vec3f(0.0f, 0.0f, 0.0f), moveOffset_, moveEasing_.time, moveEasing_.maxTime);
 
     if (moveEasing_.time < moveEasing_.maxTime) {
         return;
@@ -136,9 +136,9 @@ void LevelUIParentStatus::ScalingAnimation(const float& time) {
 void LevelUIParentStatus::ReverseAnimation(const float& time) {
     moveEasing_.time -= time;
 
-    basePos_           = EaseOutBack(initPos_, easePos_, moveEasing_.time, moveEasing_.maxTime);
-    baseScale_         = EaseOutBack(initScale_, easeScale_, moveEasing_.time, moveEasing_.maxTime);
-    currentmoveOffset_ = EaseOutBack(Vec3f(0.0f, 0.0f, 0.0f), moveOffset_, moveEasing_.time, moveEasing_.maxTime);
+    basePos_           = EaseInBack(initPos_, easePos_, moveEasing_.time, moveEasing_.maxTime);
+    baseScale_         = EaseInBack(initScale_, easeScale_, moveEasing_.time, moveEasing_.maxTime);
+    currentmoveOffset_ = EaseInBack(Vec3f(0.0f, 0.0f, 0.0f), moveOffset_, moveEasing_.time, moveEasing_.maxTime);
 
 
     if (moveEasing_.time > 0.0f) {
