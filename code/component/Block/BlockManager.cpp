@@ -204,6 +204,10 @@ void BlockManager::CostReset() {
 
 void BlockManager::SpeedChangeForTime(float& time, LevelUIParentStatus* levelUI) {
 
+     if (moveTenpos_.size() - 1 < currentLevel_) {
+        return;
+    }
+
     if (time < nextLevelTime_[currentLevel_]) {
         return;
     }

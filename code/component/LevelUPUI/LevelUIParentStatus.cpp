@@ -19,6 +19,7 @@ bool LevelUIParentStatus::Edit() {
 
     ImGui::Spacing();
 
+    isChange |= ImGui::DragFloat3("initPos", initPos_.v);
     isChange |= ImGui::DragFloat3("easePos", easePos_.v);
     isChange |= ImGui::DragFloat2("easeScale", easeScale_.v);
     isChange |= ImGui::DragFloat2("changingEaseScale", changingEaseScale_.v);
@@ -26,18 +27,18 @@ bool LevelUIParentStatus::Edit() {
      isChange |= ImGui::DragFloat3("moveOffset", moveOffset_.v);
 
     ImGui::Text("moveEasing");
-    isChange |= ImGui::DragFloat("moveEasing.maxTime", &moveEasing_.maxTime);
+    isChange |= ImGui::DragFloat("moveEasing.maxTime", &moveEasing_.maxTime,0.01f);
     ImGui::Text("scaleEasing");
-    isChange |= ImGui::DragFloat("scaleEasing.maxTime", &scaleEasing_.maxTime);
-    isChange |= ImGui::DragFloat("scaleEasing.amplitude", &scaleEasing_.amplitude);
-    isChange |= ImGui::DragFloat("scaleEasing.period", &scaleEasing_.period);
-    isChange |= ImGui::DragFloat("scaleEasing.backRatio", &scaleEasing_.backRatio);
+    isChange |= ImGui::DragFloat("scaleEasing.maxTime", &scaleEasing_.maxTime, 0.01f);
+    isChange |= ImGui::DragFloat("scaleEasing.amplitude", &scaleEasing_.amplitude, 0.01f);
+    isChange |= ImGui::DragFloat("scaleEasing.period", &scaleEasing_.period, 0.01f);
+    isChange |= ImGui::DragFloat("scaleEasing.backRatio", &scaleEasing_.backRatio, 0.01f);
     ImGui::Text("uvScrollEasing");
-    isChange |= ImGui::DragFloat("uvScrollEasing.maxTime", &uvScrollEasing_.maxTime);
+    isChange |= ImGui::DragFloat("uvScrollEasing.maxTime", &uvScrollEasing_.maxTime, 0.01f);
 
       ImGui::Text("waitTime");
-    isChange |= ImGui::DragFloat("scrollWaitTime", &scrollWaitTime_);
-    isChange |= ImGui::DragFloat("reverseWaitTime", &reverseWaitTime_);
+    isChange |= ImGui::DragFloat("scrollWaitTime", &scrollWaitTime_, 0.01f);
+      isChange |= ImGui::DragFloat("reverseWaitTime", &reverseWaitTime_, 0.01f);
 
     return isChange;
 }
@@ -56,6 +57,7 @@ void LevelUIParentStatus::Save(BinaryWriter& _writer) {
     _writer.Write("scrollWaitTime", scrollWaitTime_);
     _writer.Write("reverseWaitTime", reverseWaitTime_);
     _writer.Write<3, float>("moveOffset", moveOffset_);
+    _writer.Write<3, float>("initPos", initPos_);
 }
 
 void LevelUIParentStatus::Load(BinaryReader& _reader) {
@@ -72,6 +74,7 @@ void LevelUIParentStatus::Load(BinaryReader& _reader) {
     _reader.Read("scrollWaitTime", scrollWaitTime_);
     _reader.Read("reverseWaitTime", reverseWaitTime_);
     _reader.Read<3, float>("moveOffset", moveOffset_);
+    _reader.Read<3, float>("initPos", initPos_);
 }
 
 void LevelUIParentStatus::Finalize() {}
@@ -97,7 +100,7 @@ void LevelUIParentStatus::MoveAnimation(const float& time) {
 
 void LevelUIParentStatus::ScrollAnimation(const float& time) {
     uvScrollEasing_.time += time;
-    currentLevelUV_ = EaseInCubic(preLevelUV_, nextLevelUV_, uvScrollEasing_.time, uvScrollEasing_.maxTime);
+    currentLevelUV_ = EaseOutBack(preLevelUV_, nextLevelUV_, uvScrollEasing_.time, uvScrollEasing_.maxTime);
 
     if (uvScrollEasing_.time < uvScrollEasing_.maxTime) {
         return;
@@ -125,9 +128,9 @@ void LevelUIParentStatus::ScalingAnimation(const float& time) {
 void LevelUIParentStatus::ReverseAnimation(const float& time) {
     moveEasing_.time -= time;
 
-    basePos_   = EaseInCubic(initPos_, easePos_, moveEasing_.time, moveEasing_.maxTime);
-    baseScale_ = EaseInCubic(initScale_, easeScale_, moveEasing_.time, moveEasing_.maxTime);
-    currentmoveOffset_ = EaseInCubic(Vec3f(0.0f, 0.0f, 0.0f), moveOffset_, moveEasing_.time, moveEasing_.maxTime);
+    basePos_           = EaseOutBack(initPos_, easePos_, moveEasing_.time, moveEasing_.maxTime);
+    baseScale_         = EaseOutBack(initScale_, easeScale_, moveEasing_.time, moveEasing_.maxTime);
+    currentmoveOffset_ = EaseOutBack(Vec3f(0.0f, 0.0f, 0.0f), moveOffset_, moveEasing_.time, moveEasing_.maxTime);
 
 
     if (moveEasing_.time > 0.0f) {
@@ -152,5 +155,6 @@ void LevelUIParentStatus::Init() {
     moveEasing_.time     = 0.0f;
     uvScrollEasing_.time = 0.0f;
     scaleEasing_.time    = 0.0f;
+    basePos_             = initPos_;
    
 }
