@@ -21,6 +21,7 @@ bool LevelUIParentStatus::Edit() {
 
     isChange |= ImGui::DragFloat3("easePos", easePos_.v);
     isChange |= ImGui::DragFloat2("easeScale", easeScale_.v);
+    isChange |= ImGui::DragFloat2("changingEaseScale", changingEaseScale_.v);
 
     ImGui::Text("moveEasing");
     isChange |= ImGui::DragFloat("moveEasing.maxTime", &moveEasing_.maxTime);
@@ -28,6 +29,7 @@ bool LevelUIParentStatus::Edit() {
     isChange |= ImGui::DragFloat("scaleEasing.maxTime", &scaleEasing_.maxTime);
     isChange |= ImGui::DragFloat("scaleEasing.amplitude", &scaleEasing_.amplitude);
     isChange |= ImGui::DragFloat("scaleEasing.period", &scaleEasing_.period);
+    isChange |= ImGui::DragFloat("scaleEasing.backRatio", &scaleEasing_.backRatio);
     ImGui::Text("uvScrollEasing");
     isChange |= ImGui::DragFloat("uvScrollEasing.maxTime", &uvScrollEasing_.maxTime);
 
@@ -43,6 +45,8 @@ void LevelUIParentStatus::Save(BinaryWriter& _writer) {
     _writer.Write("uvScrollEasing.maxTime", uvScrollEasing_.maxTime);
     _writer.Write<3,float>("easePos", easePos_);
     _writer.Write<2, float>("easeScale", easeScale_);
+    _writer.Write("scaleEasing.backRatio", scaleEasing_.backRatio);
+    _writer.Write<2, float>("changingEaseScale", changingEaseScale_);
 }
 
 void LevelUIParentStatus::Load(BinaryReader& _reader) {
@@ -54,6 +58,8 @@ void LevelUIParentStatus::Load(BinaryReader& _reader) {
     _reader.Read("uvScrollEasing.maxTime", uvScrollEasing_.maxTime);
     _reader.Read<3, float>("easePos", easePos_);
     _reader.Read<2, float>("easeScale", easeScale_);
+    _reader.Read("scaleEasing.backRatio", scaleEasing_.backRatio);
+    _reader.Read<2, float>("changingEaseScale", changingEaseScale_);
 }
 
 void LevelUIParentStatus::Finalize() {}
@@ -91,7 +97,7 @@ void LevelUIParentStatus::ScrollAnimation(const float& time) {
 
 void LevelUIParentStatus::ScalingAnimation(const float& time) {
     scaleEasing_.time += time;
-    baseScale_ = EaseInCubic(easeScale_, changingEaseScale_, scaleEasing_.time, scaleEasing_.maxTime);
+    baseScale_ = Back::InCubicZero(easeScale_, changingEaseScale_, scaleEasing_.time, scaleEasing_.maxTime, scaleEasing_.backRatio);
 
     if (scaleEasing_.time < scaleEasing_.maxTime) {
         return;

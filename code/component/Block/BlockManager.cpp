@@ -215,6 +215,10 @@ void BlockManager::SpeedChangeForTime(float& time, LevelUIParentStatus* levelUI)
 }
 
 void BlockManager::SetMoveTempoForLevel() {
+    if (moveTenpos_.size()-1 < currentLevel_) {
+        return;
+    }
+
     moveTenpo_ = moveTenpos_[currentLevel_];
  }
 
