@@ -122,7 +122,7 @@ void LevelUIParentStatus::ScrollAnimation(const float& time) {
 
 void LevelUIParentStatus::ScalingAnimation(const float& time) {
     scaleEasing_.time += time;
-    baseScale_ = Back::InCubicZero(easeScale_, changingEaseScale_, scaleEasing_.time, scaleEasing_.maxTime, scaleEasing_.backRatio);
+    baseScale_ = EaseAmplitudeScale(easeScale_, scaleEasing_.time, scaleEasing_.maxTime, scaleEasing_.amplitude, scaleEasing_.period);
 
     if (scaleEasing_.time < scaleEasing_.maxTime) {
         return;
