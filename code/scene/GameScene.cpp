@@ -29,6 +29,8 @@
 #include"Application/code/component/Button.h"
 #include"Application/code/component/SceneChanger.h"
 #include"Application/code/component/EffectByBlock/EffectByBlockSpawner.h"
+#include"Application/code/component/LevelUPUI/LevelUIParentStatus.h"
+#include"Application/code/component/LevelUPUI/LevelUIStatus.h"
 //#include"Application/code/component/Floor/FloorModeCreater.h"
 //#include"Application/code/component/Floor/BottomFloorStates.h"
 //#include"Application/code/component/Floor/FloorStates.h"
@@ -79,7 +81,9 @@
 #include"Application/code/system/GameEnd/GameEndSystem.h"
 #include"Application/code/system/ButtonInputSystem.h"
 #include"Application/code/system/ChangeSceneByButton.h"
-//#include"Application/code/system/GameEnd/"
+#include"Application/code/system/LeverlUP/LevelUIAdaptSystem.h"
+#include"Application/code/system/LeverlUP/LevelUIAnimationSystem.h"
+    //#include"Application/code/system/GameEnd/"
 
 GameScene::GameScene()
     : IScene("Game") {}
@@ -115,6 +119,8 @@ void GameScene::registerComponents() {
     ecsManager->registerComponent<EffectByBlockSpawner>();
     ecsManager->registerComponent<GameEnd>();
     ecsManager->registerComponent<Button>();
+    ecsManager->registerComponent<LevelUIStatus>();
+    ecsManager->registerComponent<LevelUIParentStatus>();
     ecsManager->registerComponent<SceneChanger>();
     /*ecsManager->registerComponent<BottomFloorStates>();
     ecsManager->registerComponent<FloorStates>();
@@ -170,5 +176,7 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<GameEndSystem>();
     ecsManager->registerSystem<ButtonInputSystem>();
     ecsManager->registerSystem<ChangeSceneByButton>();
+    ecsManager->registerSystem<LevelUIAdaptSystem>();
+    ecsManager->registerSystem<LevelUIAnimationSystem>();
     ecsManager->SortPriorityOrderSystems();
 }

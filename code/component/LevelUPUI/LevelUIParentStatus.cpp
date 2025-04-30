@@ -20,6 +20,7 @@ bool LevelUIParentStatus::Edit() {
     ImGui::Spacing();
 
     isChange |= ImGui::DragFloat3("easePos", easePos_.v);
+    isChange |= ImGui::DragFloat2("easeScale", easeScale_.v);
 
     ImGui::Text("moveEasing");
     isChange |= ImGui::DragFloat("moveEasing.maxTime", &moveEasing_.maxTime);
@@ -40,7 +41,8 @@ void LevelUIParentStatus::Save(BinaryWriter& _writer) {
     _writer.Write("scaleEasing.amplitude", scaleEasing_.amplitude);
     _writer.Write("scaleEasing.period", scaleEasing_.period);
     _writer.Write("uvScrollEasing.maxTime", uvScrollEasing_.maxTime);
-    _writer.Write("easePos", easePos_);
+    _writer.Write<3,float>("easePos", easePos_);
+    _writer.Write<2, float>("easeScale", easeScale_);
 }
 
 void LevelUIParentStatus::Load(BinaryReader& _reader) {
@@ -50,7 +52,8 @@ void LevelUIParentStatus::Load(BinaryReader& _reader) {
     _reader.Read("scaleEasing.amplitude", scaleEasing_.amplitude);
     _reader.Read("scaleEasing.period", scaleEasing_.period);
     _reader.Read("uvScrollEasing.maxTime", uvScrollEasing_.maxTime);
-    _reader.Read("easePos", easePos_);
+    _reader.Read<3, float>("easePos", easePos_);
+    _reader.Read<2, float>("easeScale", easeScale_);
 }
 
 void LevelUIParentStatus::Finalize() {}
@@ -59,8 +62,8 @@ void LevelUIParentStatus::MoveAnimation(const float& time) {
 
     moveEasing_.time += time;
 
-    basePos_   = EaseInCirc(initPos_, easePos_, moveEasing_.time, moveEasing_.maxTime);
-    baseScale_ = EaseInCirc(initScale_, easeScale_, moveEasing_.time, moveEasing_.maxTime);
+    basePos_   = EaseInCubic(initPos_, easePos_, moveEasing_.time, moveEasing_.maxTime);
+    baseScale_ = EaseInCubic(initScale_, easeScale_, moveEasing_.time, moveEasing_.maxTime);
 
     if (moveEasing_.time < moveEasing_.maxTime) {
         return;
@@ -74,20 +77,21 @@ void LevelUIParentStatus::MoveAnimation(const float& time) {
 
 void LevelUIParentStatus::ScrollAnimation(const float& time) {
     uvScrollEasing_.time += time;
-    currentUVPos_ = EaseInCirc(saveUVPos_, float(currentLevel_) * 0.1f, uvScrollEasing_.time, uvScrollEasing_.maxTime);
+    currentLevel_ = EaseInCubic(preLevel_, nextLevel_, uvScrollEasing_.time, uvScrollEasing_.maxTime);
 
     if (uvScrollEasing_.time < uvScrollEasing_.maxTime) {
         return;
     }
 
     uvScrollEasing_.time = uvScrollEasing_.maxTime;
-    currentUVPos_        = float(currentLevel_) * 0.1f;
+    currentLevel_        = nextLevel_;
+    preLevel_            = currentLevel_;
     curerntStep_         = AnimationStep::SCALING;
 }
 
 void LevelUIParentStatus::ScalingAnimation(const float& time) {
     scaleEasing_.time += time;
-    baseScale_ = EaseInCirc(easeScale_, changingEaseScale_, scaleEasing_.time, scaleEasing_.maxTime);
+    baseScale_ = EaseInCubic(easeScale_, changingEaseScale_, scaleEasing_.time, scaleEasing_.maxTime);
 
     if (scaleEasing_.time < scaleEasing_.maxTime) {
         return;
@@ -101,21 +105,22 @@ void LevelUIParentStatus::ScalingAnimation(const float& time) {
 void LevelUIParentStatus::ReverseAnimation(const float& time) {
     moveEasing_.time -= time;
 
-    basePos_   = EaseInCirc(initPos_, easePos_, moveEasing_.time, moveEasing_.maxTime);
-    baseScale_ = EaseInCirc(initScale_, easeScale_, moveEasing_.time, moveEasing_.maxTime);
+    basePos_   = EaseInCubic(initPos_, easePos_, moveEasing_.time, moveEasing_.maxTime);
+    baseScale_ = EaseInCubic(initScale_, easeScale_, moveEasing_.time, moveEasing_.maxTime);
 
     if (moveEasing_.time > 0.0f) {
         return;
     }
 
     Reset();
+    isLevelChange_ = false;
     curerntStep_ = AnimationStep::NONE;
  }
 
 void LevelUIParentStatus::Reset() {
     moveEasing_.time     = 0.0f;
     uvScrollEasing_.time = 0.0f;
+    scaleEasing_.time    = 0.0f;
     basePos_             = initPos_;
     baseScale_           = initScale_;
-    saveUVPos_           = currentUVPos_;
 }

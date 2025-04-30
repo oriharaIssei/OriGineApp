@@ -2,10 +2,11 @@
 
 /// ECS
 #define ENGINE_ECS
+#include "engine/EngineInclude.h"
 // component
 #include "component/Block/BlockManager.h"
 #include "component/Block/BlockStatus.h"
-#include "engine/EngineInclude.h"
+#include"component/LevelUPUI/LevelUIParentStatus.h"
 #include <Vector.h>
 
 #include "KetaEasing.h"
@@ -27,16 +28,26 @@ void MoveTenpoSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
+       // ComboEntityを取得
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* levelUI                  = ecsManager->getUniqueEntity("LevelUIParent");
+
+    if (!levelUI) { // Entityが存在しない場合の早期リターン
+        return;
+    }
+
     timer_ += Engine::getInstance()->getDeltaTime();
     curerntTenpoTime_ += Engine::getInstance()->getDeltaTime(); // easeTime
 
     blockManager_ = getComponent<BlockManager>(_entity);
+    LevelUIParentStatus* levelUIParentStatus = getComponent<LevelUIParentStatus>(levelUI);
 
-    if (!blockManager_) {
+    if (!blockManager_ || !levelUIParentStatus) {
         return;
     }
-
-    blockManager_->SpeedChangeForTime(timer_);
+   
+    blockManager_->SpeedChangeForTime(timer_, levelUIParentStatus);
+    blockManager_->SetMoveTempoForLevel();
 
     // イージングタイム更新
     blockManager_->ScalingEaseUpdate(Engine::getInstance()->getDeltaTime());

@@ -1,4 +1,7 @@
 #include "BlockManager.h"
+
+#include"component/LevelUPUI/LevelUIParentStatus.h"
+
 /// externals
 #include "imgui/imgui.h"
 #include <string>
@@ -68,6 +71,11 @@ bool BlockManager::Edit() {
         ImGui::DragFloat(label.c_str(), &moveTenpos_[i], 0.1f);
     }
 
+    for (int i = 0; i < nextLevelTime_.size(); ++i) {
+        std::string label = "nextLevelTime[" + std::to_string(i) + "]";
+        ImGui::DragFloat(label.c_str(), &nextLevelTime_[i], 0.1f);
+    }
+
     ImGui::Text("--------------easing---------------");
     ImGui::Text("scalingEase");
     isChange |= ImGui::DragFloat("ScalingmaxTime", &scalingEase_.maxTime, 0.01f);
@@ -129,6 +137,10 @@ void BlockManager::Save(BinaryWriter& _writer) {
     for (int i = 0; i < scoreValue_.size(); ++i) {
         _writer.Write(("scoreValue_" + std::to_string(i)).c_str(), scoreValue_[i]);
     }
+
+      for (int i = 0; i < nextLevelTime_.size(); ++i) {
+        _writer.Write(("nextLevelTime" + std::to_string(i)).c_str(), nextLevelTime_);
+    }
 }
 
 void BlockManager::Load(BinaryReader& _reader) {
@@ -176,6 +188,10 @@ void BlockManager::Load(BinaryReader& _reader) {
     for (int i = 0; i < scoreValue_.size(); ++i) {
         _reader.Read(("scoreValue_" + std::to_string(i)).c_str(), scoreValue_[i]);
     }
+
+    for (int i = 0; i < nextLevelTime_.size(); ++i) {
+        _reader.Read(("nextLevelTime" + std::to_string(i)).c_str(), nextLevelTime_);
+    }
 }
 
 void BlockManager::Finalize() {}
@@ -186,19 +202,21 @@ void BlockManager::CostReset() {
     }
 }
 
-void BlockManager::SpeedChangeForTime(const float& time) {
-    // 各速度の切り替え間隔（例：10秒ごとに切り替え）
-    const float interval = 20.0f;
+void BlockManager::SpeedChangeForTime(float& time, LevelUIParentStatus* levelUI) {
 
-    // 現在のインデックスを計算
-    size_t index = static_cast<size_t>(time / interval);
+    if (time < nextLevelTime_[currentLevel_]) {
+        return;
+    }
 
-    // 範囲外対策（最大インデックスに固定）
-    index = std::min(index, moveTenpos_.size() - 1);
-
-    // 現在の速度を設定
-    moveTenpo_ = moveTenpos_[index];
+    currentLevel_++;
+    levelUI->SetIsLevelChange(true);
+    levelUI->SetNextLevel(float(currentLevel_));
+    time = 0.0f;
 }
+
+void BlockManager::SetMoveTempoForLevel() {
+    moveTenpo_ = moveTenpos_[currentLevel_];
+ }
 
 void BlockManager::ResetLineCounter(BlockType type) {
     lineCounter_[static_cast<int32_t>(type)] = 0;

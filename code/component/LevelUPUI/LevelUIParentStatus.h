@@ -6,6 +6,7 @@
 #include <cstdint>
 #include <Entity.h>
 #include <Vector3.h>
+#include <Vector2.h>
 
 enum class LevelUIDigit {
     ICON,
@@ -28,19 +29,19 @@ class LevelUIParentStatus
 private: // variables
     bool isAlive_ = true;
 
-    int32_t currentLevel_ = 0; // 現在のレベル
+  
     bool isLevelChange_   = false;
 
     // pos
-    Vec3f basePos_ = {0, 0, 0};
-    Vec3f initPos_ = {0, 0, 0};
-    Vec3f easePos_ = {0, 0, 0};
+    Vec3f basePos_ = {0.0f, 0.0f, 0.0f};
+    Vec3f initPos_ = {0.0f, 0.0f, 0.0f};
+    Vec3f easePos_ = {0.0f, 0.0f, 0.0f};
 
     //scale
-    Vec3f baseScale_         = {1, 1, 1};
-    Vec3f easeScale_         = {1, 1, 1};
-    Vec3f changingEaseScale_ = {1, 1, 1};
-    Vec3f initScale_         = {1, 1, 1};
+    Vec2f baseScale_         = {1.0f, 1.0f};
+    Vec2f easeScale_         = {1.0f, 1.0f};
+    Vec2f changingEaseScale_ = {1.0f, 1.0f};
+    Vec2f initScale_         = {1.0f, 1.0f};
 
     // ease
     Easing moveEasing_;
@@ -48,8 +49,9 @@ private: // variables
     Easing uvScrollEasing_;
 
     // uv
-    float currentUVPos_ = 0.0f;
-    float saveUVPos_    = 0.0f;
+    float currentLevel_ = 0.0f; // 現在のレベル
+    float nextLevel_ = 0.0f;
+    float preLevel_     = 0.0f;
 
     // step
     AnimationStep curerntStep_ = AnimationStep::NONE;
@@ -75,17 +77,17 @@ public:
 
 public: // accsessor
     /// getter
-    int32_t GetCurrentLevel() const { return currentLevel_; } // 現在のコンボ数
+    float GetCurrentLevel() const { return currentLevel_; } // 現在のコンボ数
     bool GetIsLevelChange() const { return isLevelChange_; }
     Vec3f GetBasePos() const { return basePos_; }
     Vec3f GetInitPos() const { return initPos_; }
-    Vec3f GetEasePos() const { return easePos_; }
-    Vec3f GetBaseScale() const { return baseScale_; }
+    Vec2f GetBaseScale() const { return baseScale_; }
     AnimationStep GetAnimationStep() const { return curerntStep_; }
     /// setter
     void LlvelIncrement() { currentLevel_++; } // 現在のコンボ数
     void SetIsLevelChange(const bool& currentComboNum) { isLevelChange_ = currentComboNum; }
-    void SetbasePos(const Vec3f& pos) { basePos_ = pos; }
-    void SetInitPos(const Vec3f& pos) { initPos_ = pos; }
+   /* void SetbasePos(const Vec3f& pos) { basePos_ = pos; }
+    void SetInitPos(const Vec3f& pos) { initPos_ = pos; }*/
     void SetAnimationStep(const AnimationStep& step) { curerntStep_ = step; }
+    void SetNextLevel(const float& nextlevel) { nextLevel_ = nextlevel; }
 };

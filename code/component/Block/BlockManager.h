@@ -27,6 +27,7 @@ enum class EaseType {
     MOVESCALING,
 };
 
+class LevelUIParentStatus;
 class BlockManager
     : public IComponent {
 
@@ -67,6 +68,10 @@ private: // variables
     //
     bool isMove_=false;
 
+    //level
+    std::array<float, 6> nextLevelTime_;
+    int32_t currentLevel_ = 0;
+
     // randomCreate
     std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> randomPar_;
     std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> costs_;
@@ -87,10 +92,11 @@ public:
 
     void CostReset();
     void ResetLineCounter(BlockType type);
-    void SpeedChangeForTime(const float& time);
+    void SpeedChangeForTime(float& time, LevelUIParentStatus* levelUI);
 
     void ScalingEaseUpdate(const float& t);
     void ResetScalingEase();
+    void SetMoveTempoForLevel();
 
 public: // accsessor
     /// getter

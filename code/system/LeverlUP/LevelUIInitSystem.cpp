@@ -13,6 +13,7 @@
 #include <Vector3.h>
 // component
 #include"component/LevelUPUI/LevelUIParentStatus.h"
+#include"component/LevelUPUI/LevelUIStatus.h"
 
 
 
@@ -28,17 +29,16 @@ void LevelUIInitSystem::Finalize() {}
 
 void LevelUIInitSystem::UpdateEntity(GameEntity* _entity) {
 
+    _entity;
+  /*  SpriteRenderer* sprite = getComponent<SpriteRenderer>(_entity);
+    LevelUIStatus* levelUIStatus = getComponent<LevelUIStatus>(_entity);
 
-    SpriteRenderer* sprite = getComponent<SpriteRenderer>(_entity);
-    LevelUIParentStatus* parentUIStatus = getComponent<LevelUIParentStatus>(_entity);
-
-    if (!sprite || !parentUIStatus) {
+    if (!sprite || !levelUIStatus) {
         return;
-    }
+    }*/
 
     // savePos
-    parentUIStatus->SetbasePos(sprite->getTranslate());
-    parentUIStatus->SetInitPos(sprite->getTranslate());
+   /* levelUIStatus->SetTextureSize(sprite->getTextureSize());*/
 
 
    

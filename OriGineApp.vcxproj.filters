@@ -346,6 +346,9 @@
     <ClInclude Include="code\system\LeverlUP\LevelUIAnimationSystem.h">
       <Filter>system\LevelUp</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\LeverlUP\LevelUIAdaptSystem.h">
+      <Filter>system\LevelUp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -587,6 +590,9 @@
       <Filter>system\LevelUp</Filter>
     </ClCompile>
     <ClCompile Include="code\system\LeverlUP\LevelUIAnimationSystem.cpp">
+      <Filter>system\LevelUp</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\LeverlUP\LevelUIAdaptSystem.cpp">
       <Filter>system\LevelUp</Filter>
     </ClCompile>
   </ItemGroup>
