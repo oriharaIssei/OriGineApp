@@ -23,6 +23,8 @@ bool LevelUIParentStatus::Edit() {
     isChange |= ImGui::DragFloat2("easeScale", easeScale_.v);
     isChange |= ImGui::DragFloat2("changingEaseScale", changingEaseScale_.v);
 
+     isChange |= ImGui::DragFloat3("moveOffset", moveOffset_.v);
+
     ImGui::Text("moveEasing");
     isChange |= ImGui::DragFloat("moveEasing.maxTime", &moveEasing_.maxTime);
     ImGui::Text("scaleEasing");
@@ -32,6 +34,10 @@ bool LevelUIParentStatus::Edit() {
     isChange |= ImGui::DragFloat("scaleEasing.backRatio", &scaleEasing_.backRatio);
     ImGui::Text("uvScrollEasing");
     isChange |= ImGui::DragFloat("uvScrollEasing.maxTime", &uvScrollEasing_.maxTime);
+
+      ImGui::Text("waitTime");
+    isChange |= ImGui::DragFloat("scrollWaitTime", &scrollWaitTime_);
+    isChange |= ImGui::DragFloat("reverseWaitTime", &reverseWaitTime_);
 
     return isChange;
 }
@@ -47,6 +53,9 @@ void LevelUIParentStatus::Save(BinaryWriter& _writer) {
     _writer.Write<2, float>("easeScale", easeScale_);
     _writer.Write("scaleEasing.backRatio", scaleEasing_.backRatio);
     _writer.Write<2, float>("changingEaseScale", changingEaseScale_);
+    _writer.Write("scrollWaitTime", scrollWaitTime_);
+    _writer.Write("reverseWaitTime", reverseWaitTime_);
+    _writer.Write<3, float>("moveOffset", moveOffset_);
 }
 
 void LevelUIParentStatus::Load(BinaryReader& _reader) {
@@ -60,6 +69,9 @@ void LevelUIParentStatus::Load(BinaryReader& _reader) {
     _reader.Read<2, float>("easeScale", easeScale_);
     _reader.Read("scaleEasing.backRatio", scaleEasing_.backRatio);
     _reader.Read<2, float>("changingEaseScale", changingEaseScale_);
+    _reader.Read("scrollWaitTime", scrollWaitTime_);
+    _reader.Read("reverseWaitTime", reverseWaitTime_);
+    _reader.Read<3, float>("moveOffset", moveOffset_);
 }
 
 void LevelUIParentStatus::Finalize() {}
@@ -70,6 +82,7 @@ void LevelUIParentStatus::MoveAnimation(const float& time) {
 
     basePos_   = EaseInCubic(initPos_, easePos_, moveEasing_.time, moveEasing_.maxTime);
     baseScale_ = EaseInCubic(initScale_, easeScale_, moveEasing_.time, moveEasing_.maxTime);
+    currentmoveOffset_ = EaseInCubic(Vec3f(0.0f, 0.0f, 0.0f), moveOffset_, moveEasing_.time, moveEasing_.maxTime);
 
     if (moveEasing_.time < moveEasing_.maxTime) {
         return;
@@ -78,7 +91,8 @@ void LevelUIParentStatus::MoveAnimation(const float& time) {
     moveEasing_.time = moveEasing_.maxTime;
     basePos_         = easePos_;
     baseScale_       = easeScale_;
-    curerntStep_     = AnimationStep::SCROLL;
+    currentmoveOffset_ = moveOffset_;
+    curerntStep_     = AnimationStep::SCROLLWAIT;
 }
 
 void LevelUIParentStatus::ScrollAnimation(const float& time) {
@@ -105,7 +119,7 @@ void LevelUIParentStatus::ScalingAnimation(const float& time) {
 
     baseScale_        = easeScale_;
     scaleEasing_.time = scaleEasing_.maxTime;
-    curerntStep_      = AnimationStep::REVERSE;
+    curerntStep_      = AnimationStep::REVERSEWAIT;
 }
 
 void LevelUIParentStatus::ReverseAnimation(const float& time) {
@@ -113,6 +127,8 @@ void LevelUIParentStatus::ReverseAnimation(const float& time) {
 
     basePos_   = EaseInCubic(initPos_, easePos_, moveEasing_.time, moveEasing_.maxTime);
     baseScale_ = EaseInCubic(initScale_, easeScale_, moveEasing_.time, moveEasing_.maxTime);
+    currentmoveOffset_ = EaseInCubic(Vec3f(0.0f, 0.0f, 0.0f), moveOffset_, moveEasing_.time, moveEasing_.maxTime);
+
 
     if (moveEasing_.time > 0.0f) {
         return;
@@ -129,6 +145,7 @@ void LevelUIParentStatus::Reset() {
     scaleEasing_.time    = 0.0f;
     basePos_             = initPos_;
     baseScale_           = initScale_;
+    currentmoveOffset_   = Vec3f(0.0f, 0.0f, 0.0f);
 }
 
 void LevelUIParentStatus::Init() {

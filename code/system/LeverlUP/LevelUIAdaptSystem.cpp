@@ -48,12 +48,25 @@ void LevelUIAdaptSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    Vec3f basePos   = levelUIParentStatus->GetBasePos() + levelUIStatus->GetOffsetPos();
-    Vec2f baseSize = sprite->getTextureSize() *levelUIParentStatus->GetBaseScale();
+     ///* ------------------------------calucration------------------------------
+
+    Vec3f basePos   =  Vec3f(0.0f, 0.0f, 0.0f);
+    Vec2f baseSize = levelUIStatus->GetTextureSize() * levelUIParentStatus->GetBaseScale();
     float uvPos     = levelUIParentStatus->GetCurrentLevelUV() * 0.1f;
 
+    switch (levelUIStatus->GetLevelUIDigit()) {
+    case LevelUIDigit::ICON:
+         basePos = levelUIParentStatus->GetBasePos() + levelUIStatus->GetOffsetPos();
+        break;
+    default:
+         basePos = levelUIParentStatus->GetBasePos() + levelUIStatus->GetOffsetPos()+levelUIParentStatus->GetCurrentMoveOffset();
+        break;
+    }
+
+    ///* ------------------------------adapt------------------------------
+
     // pos
-    sprite->setTranslate(Vec2f(basePos[X] + levelUIStatus->GetOffsetPos()[X], basePos[Y] + levelUIStatus->GetOffsetPos()[Y]));
+    sprite->setTranslate(Vec2f(basePos[X], basePos[Y]));
     // scale
     sprite->setSize(baseSize);
     // uv

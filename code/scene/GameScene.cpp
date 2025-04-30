@@ -84,6 +84,7 @@
 #include"Application/code/system/LeverlUP/LevelUIAdaptSystem.h"
 #include"Application/code/system/LeverlUP/LevelUIAnimationSystem.h"
 #include"Application/code/system/LeverlUP/LevelUIInitSystem.h"
+#include"Application/code/system/LeverlUP/LevelUIParentInitSystem.h"
     //#include"Application/code/system/GameEnd/"
 
 GameScene::GameScene()
@@ -180,5 +181,6 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<LevelUIAdaptSystem>();
     ecsManager->registerSystem<LevelUIAnimationSystem>();
     ecsManager->registerSystem<LevelUIInitSystem>();
+    ecsManager->registerSystem<LevelUIParentInitSystem>();
     ecsManager->SortPriorityOrderSystems();
 }

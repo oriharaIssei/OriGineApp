@@ -7,6 +7,7 @@ class LevelUIAdaptSystem
     : public ISystem {
 private:
     LevelUIStatus* levelUIStatus_;
+    float cutNum_;
 
 public:
     LevelUIAdaptSystem();

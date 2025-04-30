@@ -170,6 +170,7 @@
     <ClInclude Include="code\system\LeverlUP\LevelUIAdaptSystem.h" />
     <ClInclude Include="code\system\LeverlUP\LevelUIAnimationSystem.h" />
     <ClInclude Include="code\system\LeverlUP\LevelUIInitSystem.h" />
+    <ClInclude Include="code\system\LeverlUP\LevelUIParentInitSystem.h" />
     <ClInclude Include="code\system\Matrix\UpdateMatrixSystem.h" />
     <ClInclude Include="code\system\OperateUI\OperateUISystem.h" />
     <ClInclude Include="code\system\Player\PlayerCreateBigBomSystem.h" />
@@ -256,6 +257,7 @@
     <ClCompile Include="code\system\LeverlUP\LevelUIAdaptSystem.cpp" />
     <ClCompile Include="code\system\LeverlUP\LevelUIAnimationSystem.cpp" />
     <ClCompile Include="code\system\LeverlUP\LevelUIInitSystem.cpp" />
+    <ClCompile Include="code\system\LeverlUP\LevelUIParentInitSystem.cpp" />
     <ClCompile Include="code\system\Matrix\UpdateMatrixSystem.cpp" />
     <ClCompile Include="code\system\OperateUI\OperateUISystem.cpp" />
     <ClCompile Include="code\system\Player\PlayerCreateBigBomSystem.cpp" />

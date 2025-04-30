@@ -22,7 +22,7 @@ private: // variables
     int32_t valueForDigit_;
     Vec3f offsetPos_;
 
-   /* Vec2f textureSize_;*/
+    Vec2f textureSize_;
   
 public:
     LevelUIStatus() {}
@@ -41,8 +41,8 @@ public: // accsessor
     /// getter
     LevelUIDigit GetLevelUIDigit() const { return levelUIDigit_; }
     Vec3f GetOffsetPos() const { return offsetPos_; }
-   /* Vec2f GetTextureSize() const { return textureSize_; }*/
+    Vec2f GetTextureSize() const { return textureSize_; }
     
     /// setter
-    /*void SetTextureSize(const Vec2f& size) { textureSize_ = size; }*/
+    void SetTextureSize(const Vec2f& size) { textureSize_ = size; }
 };

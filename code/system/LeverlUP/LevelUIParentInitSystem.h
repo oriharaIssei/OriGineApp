@@ -2,16 +2,15 @@
 #include "system/ISystem.h"
 #include "component/transform/Transform.h"
 
-class LevelUIParentStatus;
-class LevelUIAnimationSystem
+class TimerStatus;
+class LevelUIParentInitSystem
     : public ISystem {
 private:
-    LevelUIParentStatus* levelUIParentStatus_;
-    float time_;
-   
+    TimerStatus* timerStauts_;
+
 public:
-    LevelUIAnimationSystem();
-    ~LevelUIAnimationSystem();
+    LevelUIParentInitSystem();
+    ~LevelUIParentInitSystem();
 
     void Initialize() override;
     // void Update() override;

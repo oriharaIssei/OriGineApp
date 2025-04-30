@@ -18,8 +18,10 @@ enum class LevelUIDigit {
 enum class AnimationStep {
     NONE,
     MOVE, // スケールも同時にアップ
+    SCROLLWAIT,
     SCROLL,
     SCALING,
+    REVERSEWAIT,
     REVERSE, // スケールも同時にダウン
 };
 
@@ -36,6 +38,10 @@ private: // variables
     Vec3f basePos_ = {0.0f, 0.0f, 0.0f};
     Vec3f initPos_ = {0.0f, 0.0f, 0.0f};
     Vec3f easePos_ = {0.0f, 0.0f, 0.0f};
+
+    //offset
+    Vec3f moveOffset_ = {0.0f, 0.0f, 0.0f};
+    Vec3f currentmoveOffset_ = {0.0f, 0.0f, 0.0f};
 
     //scale
     Vec2f baseScale_         = {1.0f, 1.0f};
@@ -55,6 +61,10 @@ private: // variables
 
     // step
     AnimationStep curerntStep_ = AnimationStep::NONE;
+
+    //waitTime
+    float scrollWaitTime_;
+    float reverseWaitTime_;
 
 public:
     LevelUIParentStatus() {}
@@ -84,6 +94,9 @@ public: // accsessor
     Vec3f GetInitPos() const { return initPos_; }
     Vec2f GetBaseScale() const { return baseScale_; }
     AnimationStep GetAnimationStep() const { return curerntStep_; }
+    float GetScrollWaitTime() const { return scrollWaitTime_; }
+    float GetReverseWaitTime() const { return reverseWaitTime_; }
+    Vec3f GetCurrentMoveOffset() const { return currentmoveOffset_; }
     /// setter
     void LlvelIncrement() { currentLevelUV_++; } // 現在のコンボ数
     void SetIsLevelChange(const bool& currentComboNum) { isLevelChange_ = currentComboNum; }
