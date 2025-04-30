@@ -49,9 +49,9 @@ private: // variables
     Easing uvScrollEasing_;
 
     // uv
-    float currentLevel_ = 0.0f; // 現在のレベル
-    float nextLevel_ = 0.0f;
-    float preLevel_     = 0.0f;
+    float currentLevelUV_ = 0.0f; // 現在のレベル
+    float nextLevelUV_ = 0.0f;
+    float preLevelUV_     = 0.0f;
 
     // step
     AnimationStep curerntStep_ = AnimationStep::NONE;
@@ -74,20 +74,21 @@ public:
 
     //
     void Reset();
+    void Init();
 
 public: // accsessor
     /// getter
-    float GetCurrentLevel() const { return currentLevel_; } // 現在のコンボ数
+    float GetCurrentLevelUV() const { return currentLevelUV_; } // 現在のコンボ数
     bool GetIsLevelChange() const { return isLevelChange_; }
     Vec3f GetBasePos() const { return basePos_; }
     Vec3f GetInitPos() const { return initPos_; }
     Vec2f GetBaseScale() const { return baseScale_; }
     AnimationStep GetAnimationStep() const { return curerntStep_; }
     /// setter
-    void LlvelIncrement() { currentLevel_++; } // 現在のコンボ数
+    void LlvelIncrement() { currentLevelUV_++; } // 現在のコンボ数
     void SetIsLevelChange(const bool& currentComboNum) { isLevelChange_ = currentComboNum; }
    /* void SetbasePos(const Vec3f& pos) { basePos_ = pos; }
     void SetInitPos(const Vec3f& pos) { initPos_ = pos; }*/
     void SetAnimationStep(const AnimationStep& step) { curerntStep_ = step; }
-    void SetNextLevel(const float& nextlevel) { nextLevel_ = nextlevel; }
+    void SetNextLevelUV(const float& nextlevel) { nextLevelUV_ = nextlevel; }
 };

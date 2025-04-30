@@ -83,6 +83,7 @@
 #include"Application/code/system/ChangeSceneByButton.h"
 #include"Application/code/system/LeverlUP/LevelUIAdaptSystem.h"
 #include"Application/code/system/LeverlUP/LevelUIAnimationSystem.h"
+#include"Application/code/system/LeverlUP/LevelUIInitSystem.h"
     //#include"Application/code/system/GameEnd/"
 
 GameScene::GameScene()
@@ -178,5 +179,6 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<ChangeSceneByButton>();
     ecsManager->registerSystem<LevelUIAdaptSystem>();
     ecsManager->registerSystem<LevelUIAnimationSystem>();
+    ecsManager->registerSystem<LevelUIInitSystem>();
     ecsManager->SortPriorityOrderSystems();
 }

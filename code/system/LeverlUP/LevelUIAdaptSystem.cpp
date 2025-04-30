@@ -17,6 +17,7 @@
 
 #include "engine/EngineInclude.h"
 #include <Vector2.h>
+#include <Vector.h>
 
 LevelUIAdaptSystem::LevelUIAdaptSystem()
     : ISystem(SystemType::Movement) {}
@@ -47,9 +48,9 @@ void LevelUIAdaptSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    Vec3f basePos   = levelUIParentStatus->GetBasePos();
+    Vec3f basePos   = levelUIParentStatus->GetBasePos() + levelUIStatus->GetOffsetPos();
     Vec2f baseSize = sprite->getTextureSize() *levelUIParentStatus->GetBaseScale();
-    float uvPos     = levelUIParentStatus->GetCurrentLevel() * 0.1f;
+    float uvPos     = levelUIParentStatus->GetCurrentLevelUV() * 0.1f;
 
     // pos
     sprite->setTranslate(Vec2f(basePos[X] + levelUIStatus->GetOffsetPos()[X], basePos[Y] + levelUIStatus->GetOffsetPos()[Y]));

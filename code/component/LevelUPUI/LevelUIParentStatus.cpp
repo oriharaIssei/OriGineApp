@@ -9,7 +9,7 @@
 #include "imgui/imgui.h"
 
 void LevelUIParentStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
-    currentLevel_ = 0;
+    currentLevelUV_ = 0;
 }
 
 bool LevelUIParentStatus::Edit() {
@@ -77,15 +77,15 @@ void LevelUIParentStatus::MoveAnimation(const float& time) {
 
 void LevelUIParentStatus::ScrollAnimation(const float& time) {
     uvScrollEasing_.time += time;
-    currentLevel_ = EaseInCubic(preLevel_, nextLevel_, uvScrollEasing_.time, uvScrollEasing_.maxTime);
+    currentLevelUV_ = EaseInCubic(preLevelUV_, nextLevelUV_, uvScrollEasing_.time, uvScrollEasing_.maxTime);
 
     if (uvScrollEasing_.time < uvScrollEasing_.maxTime) {
         return;
     }
 
     uvScrollEasing_.time = uvScrollEasing_.maxTime;
-    currentLevel_        = nextLevel_;
-    preLevel_            = currentLevel_;
+    currentLevelUV_        = nextLevelUV_;
+    preLevelUV_            = currentLevelUV_;
     curerntStep_         = AnimationStep::SCALING;
 }
 
@@ -123,4 +123,11 @@ void LevelUIParentStatus::Reset() {
     scaleEasing_.time    = 0.0f;
     basePos_             = initPos_;
     baseScale_           = initScale_;
+}
+
+void LevelUIParentStatus::Init() {
+    moveEasing_.time     = 0.0f;
+    uvScrollEasing_.time = 0.0f;
+    scaleEasing_.time    = 0.0f;
+   
 }

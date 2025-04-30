@@ -29,13 +29,14 @@ void LevelUIInitSystem::Finalize() {}
 
 void LevelUIInitSystem::UpdateEntity(GameEntity* _entity) {
 
-    _entity;
-  /*  SpriteRenderer* sprite = getComponent<SpriteRenderer>(_entity);
-    LevelUIStatus* levelUIStatus = getComponent<LevelUIStatus>(_entity);
+   
+    LevelUIParentStatus* levelUIStatus = getComponent<LevelUIParentStatus>(_entity);
 
-    if (!sprite || !levelUIStatus) {
+    if ( !levelUIStatus) {
         return;
-    }*/
+    }
+
+    levelUIStatus->Init();
 
     // savePos
    /* levelUIStatus->SetTextureSize(sprite->getTextureSize());*/

@@ -19,11 +19,13 @@ bool LevelUIStatus::Edit() {
     ImGui::Spacing();
 
     // ComboDigit（桁数）のUI選択
-    static const char* digitLabels[] = {"ONE", "TWO"};
+    static const char* digitLabels[] = { "ICON", "ONE", "TWO"};
     int currentIndex                 = static_cast<int>(levelUIDigit_);
     if (ImGui::Combo("LevelUI Digit", &currentIndex, digitLabels, static_cast<int>(LevelUIDigit::COUNT))) {
         levelUIDigit_ = static_cast<LevelUIDigit>(currentIndex);
     }
+
+     isChange |= ImGui::DragFloat3("offsetPos", offsetPos_.v);
 
     return isChange;
 }
@@ -31,6 +33,7 @@ bool LevelUIStatus::Edit() {
 void LevelUIStatus::Save(BinaryWriter& _writer) {
     _writer.Write("isAlive", isAlive_);
     _writer.Write("levelUIDigit", static_cast<int32_t>(levelUIDigit_));
+    _writer.Write<3, float>("offsetPos", offsetPos_);
 }
 
 void LevelUIStatus::Load(BinaryReader& _reader) {
@@ -38,6 +41,8 @@ void LevelUIStatus::Load(BinaryReader& _reader) {
     int32_t digit = 0;
     _reader.Read("levelUIDigit", digit);
     levelUIDigit_ = static_cast<LevelUIDigit>(digit);
+
+    _reader.Read<3, float>("offsetPos", offsetPos_);
 }
 
 void LevelUIStatus::Finalize() {}

@@ -210,7 +210,7 @@ void BlockManager::SpeedChangeForTime(float& time, LevelUIParentStatus* levelUI)
 
     currentLevel_++;
     levelUI->SetIsLevelChange(true);
-    levelUI->SetNextLevel(float(currentLevel_));
+    levelUI->SetNextLevelUV(float(currentLevel_));
     time = 0.0f;
 }
 
