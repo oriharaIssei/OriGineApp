@@ -100,17 +100,25 @@ void LevelUIParentStatus::MoveAnimation(const float& time) {
 
 void LevelUIParentStatus::ScrollAnimation(const float& time) {
     uvScrollEasing_.time += time;
+
+    // 現在のUVを補間計算
     currentLevelUV_ = EaseOutBack(preLevelUV_, nextLevelUV_, uvScrollEasing_.time, uvScrollEasing_.maxTime);
 
+    if (!hasStartedScaling_ && uvScrollEasing_.time >= (uvScrollEasing_.maxTime - 0.2f)) {
+        hasStartedScaling_ = true; // フラグを立てて1回だけ起動させる
+        curerntStep_       = AnimationStep::SCALING; // 状態変更など必要に応じて
+    }
+
+    // UVスクロール完了時の後処理
     if (uvScrollEasing_.time < uvScrollEasing_.maxTime) {
         return;
     }
 
     uvScrollEasing_.time = uvScrollEasing_.maxTime;
-    currentLevelUV_        = nextLevelUV_;
-    preLevelUV_            = currentLevelUV_;
-    curerntStep_         = AnimationStep::SCALING;
+    currentLevelUV_      = nextLevelUV_;
+    preLevelUV_          = currentLevelUV_;
 }
+
 
 void LevelUIParentStatus::ScalingAnimation(const float& time) {
     scaleEasing_.time += time;
@@ -149,6 +157,7 @@ void LevelUIParentStatus::Reset() {
     basePos_             = initPos_;
     baseScale_           = initScale_;
     currentmoveOffset_   = Vec3f(0.0f, 0.0f, 0.0f);
+    hasStartedScaling_   = false;
 }
 
 void LevelUIParentStatus::Init() {
@@ -156,5 +165,6 @@ void LevelUIParentStatus::Init() {
     uvScrollEasing_.time = 0.0f;
     scaleEasing_.time    = 0.0f;
     basePos_             = initPos_;
+    hasStartedScaling_   = false;
    
 }

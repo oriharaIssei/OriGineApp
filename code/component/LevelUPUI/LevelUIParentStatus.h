@@ -66,6 +66,9 @@ private: // variables
     float scrollWaitTime_;
     float reverseWaitTime_;
 
+    //
+    bool hasStartedScaling_;
+
 public:
     LevelUIParentStatus() {}
     virtual ~LevelUIParentStatus() = default;

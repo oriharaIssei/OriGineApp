@@ -78,6 +78,7 @@ void LevelUIAnimationSystem::UpdateEntity(GameEntity* _entity) {
         /// Scaling Animation
         ///---------------------------------------------------------------- 
     case AnimationStep::SCALING:
+        levelUIParentStatus_->ScrollAnimation(deltaTIme);
         levelUIParentStatus_->ScalingAnimation(deltaTIme);
         break;
         ///----------------------------------------------------------------
