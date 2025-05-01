@@ -35,7 +35,7 @@ private: // variables
     // offset
 
     // scale
-    Vec2f baseScale_      = {1.0f, 1.0f};
+    Vec2f baseScale_      = {0.0f, 0.0f};
     Vec2f easeScale_ = {1.0f, 1.0f};
 
     // ease

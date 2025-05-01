@@ -80,10 +80,10 @@ void ResultFontStatus::MoveAnimation(const float& time, ResultUIParentStatus& pa
 
     moveEasing_.time += time;
 
-    basePos_   = EaseInCubic(initPos_, easePos_, moveEasing_.time, moveEasing_.maxTime);
+    basePos_   = EaseOutBack(initPos_, easePos_, moveEasing_.time, moveEasing_.maxTime);
     baseScale_ = EaseInCirc(easeScale_, Vec2f(1.0f, 1.0f), moveEasing_.time, moveEasing_.maxTime);
 
-    if (moveEasing_.time >= moveEasing_.maxTime - 0.3f) {
+    if (moveEasing_.time >= moveEasing_.maxTime - 0.6f) {
         parentStatus.SetIsAnimation(true);
     }
 
