@@ -40,6 +40,7 @@ void ResultUIParentSystem::UpdateEntity(GameEntity* _entity) {
 
     if (/*resultUIParent->GetIsAnimation() &&*/ resultUIParent->GetAnimationStep() == ResultStep::NONE) {
         time_ = 0.0f;
+        resultUIParent->SetResultScore(20000);
         // アニメーションリセット
         resultUIParent->Reset();
         resultUIParent->SetAnimationStep(ResultStep::ALPHA);
