@@ -74,8 +74,8 @@ void ResultUIParentStatus::MoveAnimation(const float& time) {
 
     moveEasing_.time += time;
 
-    basePos_    = EaseOutBack(initPos_, easePos_, moveEasing_.time, moveEasing_.maxTime);
-    scoreScale_ = EaseOutBack(scoreInitScale_, scoreEaseScale_, moveEasing_.time, moveEasing_.maxTime);
+    basePos_    = EaseInCubic(initPos_, easePos_, moveEasing_.time, moveEasing_.maxTime);
+   /* scoreScale_ = EaseInCubic(scoreInitScale_, scoreEaseScale_, moveEasing_.time, moveEasing_.maxTime);*/
 
     if (moveEasing_.time < moveEasing_.maxTime) {
         return;
@@ -83,7 +83,7 @@ void ResultUIParentStatus::MoveAnimation(const float& time) {
 
     moveEasing_.time = moveEasing_.maxTime;
     basePos_         = easePos_;
-    scoreScale_      = scoreEaseScale_;
+   /* scoreScale_      = scoreEaseScale_;*/
     curerntStep_     = ResultStep::SCOREUPWAIT;
 }
 
@@ -91,7 +91,7 @@ void ResultUIParentStatus::AlphaAnimation(const float& time) {
     alphaEasing_.time += time;
 
     // 現在のUVを補間計算
-    alpha_ = EaseOutBack(0.0f, 1.0f, alphaEasing_.time, alphaEasing_.maxTime);
+    alpha_ = EaseInCirc(0.0f, 1.0f, alphaEasing_.time, alphaEasing_.maxTime);
 
     // UVスクロール完了時の後処理
     if (alphaEasing_.time < alphaEasing_.maxTime) {
@@ -104,13 +104,13 @@ void ResultUIParentStatus::AlphaAnimation(const float& time) {
 
 void ResultUIParentStatus::ScoreScalingAnimation(const float& time) {
     scaleEasing_.time += time;
-    scoreScale_ = EaseAmplitudeScale(scoreEaseScale_, scaleEasing_.time, scaleEasing_.maxTime, scaleEasing_.amplitude, scaleEasing_.period);
+    scoreScale_ = Back::InCubicZero(Vec2f(1.0f,1.0f),scoreEaseScale_, scaleEasing_.time, scaleEasing_.maxTime, scaleEasing_.backRatio);
 
     if (scaleEasing_.time < scaleEasing_.maxTime) {
         return;
     }
 
-    scoreScale_       = scoreEaseScale_;
+    scoreScale_       = Vec2f(1.0f, 1.0f);
     scaleEasing_.time = scaleEasing_.maxTime;
     curerntStep_      = ResultStep::END;
 }

@@ -31,13 +31,14 @@ void ResultUIParentSystem::UpdateEntity(GameEntity* _entity) {
 
     // get timer component
     ResultUIParentStatus* resultUIParent = getComponent<ResultUIParentStatus>(_entity);
+    SpriteRenderer* sprite               = getComponent<SpriteRenderer>(_entity);
     float deltaTIme      = Engine::getInstance()->getDeltaTime();
 
     if (!resultUIParent) {
         return;
     }
 
-    if (resultUIParent->GetIsAnimation() && resultUIParent->GetAnimationStep() == ResultStep::NONE) {
+    if (/*resultUIParent->GetIsAnimation() &&*/ resultUIParent->GetAnimationStep() == ResultStep::NONE) {
         time_ = 0.0f;
         // アニメーションリセット
         resultUIParent->Reset();
@@ -91,6 +92,22 @@ void ResultUIParentSystem::UpdateEntity(GameEntity* _entity) {
     default:
         break;
     }
+
+
+     ///* ------------------------------calucration------------------------------
+
+    Vec3f basePos  = resultUIParent->GetBasePos();
+    Vec2f baseSize = sprite->getTextureSize() * resultUIParent->GetBaseScale();
+    /*  float uvPos    = resultUIParent->GetCurrentLevelUV() * 0.1f;*/
+
+    ///* ------------------------------adapt------------------------------
+
+    // pos
+    sprite->setTranslate(Vec2f(basePos[X], basePos[Y]));
+    // scale
+    sprite->setSize(baseSize);
+    // alpha
+    sprite->setColor(Vec4f(1.0f, 1.0f, 1.0f, resultUIParent->GetAlpha()));
 }
 
 void ResultUIParentSystem::ComboReset() {

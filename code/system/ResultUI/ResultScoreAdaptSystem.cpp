@@ -51,7 +51,7 @@ void ResultScoreAdaptSystem::UpdateEntity(GameEntity* _entity) {
     ///* ------------------------------calucration------------------------------
 
     Vec3f basePos  = resultUIParent->GetBasePos() + resultScoreUI->GetOffsetPos();
-    Vec2f baseSize = resultScoreUI->GetTextureSize() * resultUIParent->GetBaseScale();
+    Vec2f baseSize = resultScoreUI->GetTextureSize() * resultUIParent->GetScoreScale();
   /*  float uvPos    = resultUIParent->GetCurrentLevelUV() * 0.1f;*/
 
     ///* ------------------------------adapt------------------------------
@@ -60,8 +60,9 @@ void ResultScoreAdaptSystem::UpdateEntity(GameEntity* _entity) {
     sprite->setTranslate(Vec2f(basePos[X], basePos[Y]));
     // scale
     sprite->setSize(baseSize);
+    //alpha
+    sprite->setColor(Vec4f(1.0f, 1.0f, 1.0f, resultUIParent->GetAlpha()));
     // uv
-
      // 現在タイムの取得
     float curerntScore = resultUIParent->GetCurrentScore();
     int32_t scoreDigit = resultScoreUI->GetValueForDigit(int32_t(curerntScore));

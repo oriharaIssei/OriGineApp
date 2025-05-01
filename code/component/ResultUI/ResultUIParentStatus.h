@@ -33,8 +33,8 @@ private: // variables
     // offset
 
     // scale
-    Vec2f baseScale_     = {1.0f, 1.0f};
-    Vec2f scoreScale_ = {1.0f, 1.0f};
+    Vec2f baseScale_      = {1.0f, 1.0f};
+    Vec2f scoreScale_     = {1.0f, 1.0f};
     Vec2f scoreEaseScale_ = {1.0f, 1.0f};
     Vec2f scoreInitScale_ = {1.0f, 1.0f};
 
@@ -42,14 +42,13 @@ private: // variables
     Easing moveEasing_;
     Easing scaleEasing_;
     Easing alphaEasing_;
-    
 
     // uv
     float alpha_ = 0.0f; // 現在のレベル
 
-    //score
+    // score
     float currentScore_ = 0.0f;
-    float resultScore_ = 0.0f;
+    float resultScore_  = 0.0f;
     float scoreUpSpeed_;
 
     // step
@@ -91,7 +90,8 @@ public: // accsessor
     ResultStep GetAnimationStep() const { return curerntStep_; }
     float GetScoreWaitTime() const { return scoreWaitTime_; }
     float GetCurrentScore() const { return currentScore_; }
-   
+    float GetAlpha() const { return alpha_; }
+
     /// setter
 
     void SetIsAnimation(const bool& currentComboNum) { isAnimation_ = currentComboNum; }
