@@ -111,6 +111,7 @@
     <ClInclude Include="code\component\LevelUPUI\LevelUIParentStatus.h" />
     <ClInclude Include="code\component\LevelUPUI\LevelUIStatus.h" />
     <ClInclude Include="code\component\OperateUI\OperateUIStatus.h" />
+    <ClInclude Include="code\component\ResultUI\ResultFontStatus.h" />
     <ClInclude Include="code\component\ResultUI\ResultUIParentStatus.h" />
     <ClInclude Include="code\component\ResultUI\ResultUIRankStatus.h" />
     <ClInclude Include="code\component\ResultUI\ResultUIScoreStatus.h" />
@@ -181,6 +182,7 @@
     <ClInclude Include="code\system\Player\PlayerFollowCameraSystem.h" />
     <ClInclude Include="code\system\Player\PlayerInput.h" />
     <ClInclude Include="code\system\Player\PlayerMoveSystem.h" />
+    <ClInclude Include="code\system\ResultUI\ResultFontSystem.h" />
     <ClInclude Include="code\system\ResultUI\ResultScoreAdaptSystem.h" />
     <ClInclude Include="code\system\ResultUI\ResultUIParentSystem.h" />
     <ClInclude Include="code\system\Score\ScoreIncrementSystem.h" />
@@ -204,6 +206,7 @@
     <ClCompile Include="code\component\LevelUPUI\LevelUIParentStatus.cpp" />
     <ClCompile Include="code\component\LevelUPUI\LevelUIStatus.cpp" />
     <ClCompile Include="code\component\OperateUI\OperateUIStatus.cpp" />
+    <ClCompile Include="code\component\ResultUI\ResultFontStatus.cpp" />
     <ClCompile Include="code\component\ResultUI\ResultUIParentStatus.cpp" />
     <ClCompile Include="code\component\ResultUI\ResultUIRankStatus.cpp" />
     <ClCompile Include="code\component\ResultUI\ResultUIScoreStatus.cpp" />
@@ -274,6 +277,7 @@
     <ClCompile Include="code\system\Player\PlayerFollowCameraSystem.cpp" />
     <ClCompile Include="code\system\Player\PlayerInput.cpp" />
     <ClCompile Include="code\system\Player\PlayerMoveSystem.cpp" />
+    <ClCompile Include="code\system\ResultUI\ResultFontSystem.cpp" />
     <ClCompile Include="code\system\ResultUI\ResultScoreAdaptSystem.cpp" />
     <ClCompile Include="code\system\ResultUI\ResultUIParentSystem.cpp" />
     <ClCompile Include="code\system\Score\ScoreIncrementSystem.cpp" />

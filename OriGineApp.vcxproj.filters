@@ -376,6 +376,12 @@
     <ClInclude Include="code\system\ResultUI\ResultUIParentSystem.h">
       <Filter>system\ResultUI</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\ResultUI\ResultFontSystem.h">
+      <Filter>system\ResultUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\ResultUI\ResultFontStatus.h">
+      <Filter>component\ResultUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -642,6 +648,12 @@
     </ClCompile>
     <ClCompile Include="code\system\ResultUI\ResultUIParentSystem.cpp">
       <Filter>system\ResultUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\ResultUI\ResultFontSystem.cpp">
+      <Filter>system\ResultUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\ResultUI\ResultFontStatus.cpp">
+      <Filter>component\ResultUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

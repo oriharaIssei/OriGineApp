@@ -38,7 +38,7 @@ void ResultUIParentSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    if (/*resultUIParent->GetIsAnimation() &&*/ resultUIParent->GetAnimationStep() == ResultStep::NONE) {
+    if (resultUIParent->GetIsAnimation() && resultUIParent->GetAnimationStep() == ResultStep::NONE) {
         time_ = 0.0f;
         resultUIParent->SetResultScore(20000);
         // アニメーションリセット
@@ -87,7 +87,7 @@ void ResultUIParentSystem::UpdateEntity(GameEntity* _entity) {
         /// Reverse Wait
         ///---------------------------------------------------------------- 
     case ResultStep::END:
-      
+       
         break;
     
     default:

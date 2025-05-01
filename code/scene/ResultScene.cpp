@@ -13,6 +13,7 @@
 #include"component/ResultUI/ResultUIParentStatus.h"
 #include"component/ResultUI/ResultUIRankStatus.h"
 #include"component/ResultUI/ResultUIScoreStatus.h"
+#include"component/ResultUI/ResultFontStatus.h"
 // system
 #include "system/ButtonInputSystem.h"
 #include "system/ChangeSceneByButton.h"
@@ -20,6 +21,7 @@
 #include "system/UsingCameraSetSystem.h"
 #include"system/ResultUI/ResultScoreAdaptSystem.h"
 #include"system/ResultUI/ResultUIParentSystem.h"
+#include"system/ResultUI/ResultFontSystem.h"
 
 ResultScene::ResultScene() : IScene("Result") {}
 
@@ -33,6 +35,7 @@ void ResultScene::registerComponents() {
     ecsManager->registerComponent<ResultUIParentStatus>();
     ecsManager->registerComponent<ResultUIRankStatus>();
     ecsManager->registerComponent<ResultUIScoreStatus>();
+    ecsManager->registerComponent<ResultFontStatus>();
 }
 
 void ResultScene::registerSystems() {
@@ -45,5 +48,6 @@ void ResultScene::registerSystems() {
     ecsManager->registerSystem<UsingCameraSetSystem>();
     ecsManager->registerSystem<ResultScoreAdaptSystem>();
     ecsManager->registerSystem<ResultUIParentSystem>();
+    ecsManager->registerSystem<ResultFontSystem>();
     ecsManager->SortPriorityOrderSystems();
 }

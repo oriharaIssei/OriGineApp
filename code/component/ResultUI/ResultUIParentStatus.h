@@ -24,6 +24,7 @@ private: // variables
     bool isAlive_ = true;
 
     bool isAnimation_ = false;
+    bool isRankApeearAnimationStart_=false;
 
     // pos
     Vec3f basePos_ = {0.0f, 0.0f, 0.0f};
@@ -83,6 +84,7 @@ public: // accsessor
     /// getter
 
     bool GetIsAnimation() const { return isAnimation_; }
+    bool GetIsRankApeearAnimationStart() const { return isRankApeearAnimationStart_; }
     Vec3f GetBasePos() const { return basePos_; }
     Vec3f GetInitPos() const { return initPos_; }
     Vec2f GetScoreScale() const { return scoreScale_; }
@@ -98,4 +100,5 @@ public: // accsessor
     void SetInitPos(const Vec3f& pos) { initPos_ = pos; }
     void SetAnimationStep(const ResultStep& step) { curerntStep_ = step; }
     void SetResultScore(const float& score) { resultScore_ = score; }
+    void SetIsRankApeearAnimationStart(const bool& is) { isRankApeearAnimationStart_ = is; }
 };
