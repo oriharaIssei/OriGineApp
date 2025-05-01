@@ -90,19 +90,19 @@ void EffectByBlockSpawner::EffectUISpawn(GameEntity* _entity, const float& value
         case 0: // アイコン
             status->SetEffectType(type);
             status->SetCurerntIconTexture();
-            status->SetDigit(UIDigit::ICON);
+            status->SetDigit(BlockEffectUIDigit::ICON);
             trans->translate = Vec3f(hostTransform->worldMat[3]) + Vec3f(-5.0f, 0.0f, -6.0f); // 固定位置
             break;
         case 1: // 符号
             status->SetEffectType(type);
             status->SetCurerntSignTexture();
-            status->SetDigit(UIDigit::SIGN);
+            status->SetDigit(BlockEffectUIDigit::SIGN);
             trans->translate = Vec3f(hostTransform->worldMat[3]) + Vec3f(-1.5f, 0.0f, -6.0f); // 固定位置
             break;
         default: // 数字
             status->SetEffectType(type);
             status->SetValue(effectValue);
-            status->SetDigit(static_cast<UIDigit>(i));
+            status->SetDigit(static_cast<BlockEffectUIDigit>(i));
             int32_t ditinum = status->GetValueForDigit();
             status->SetCurerntNumberTexture(ditinum);
 

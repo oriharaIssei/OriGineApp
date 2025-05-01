@@ -10,11 +10,16 @@
 // component
 #include "component/Button.h"
 #include "component/SceneChanger.h"
+#include"component/ResultUI/ResultUIParentStatus.h"
+#include"component/ResultUI/ResultUIRankStatus.h"
+#include"component/ResultUI/ResultUIScoreStatus.h"
 // system
 #include "system/ButtonInputSystem.h"
 #include "system/ChangeSceneByButton.h"
 #include "system/UpdateButtonColorByState.h"
 #include "system/UsingCameraSetSystem.h"
+#include"system/ResultUI/ResultScoreAdaptSystem.h"
+#include"system/ResultUI/ResultUIParentSystem.h"
 
 ResultScene::ResultScene() : IScene("Result") {}
 
@@ -25,6 +30,9 @@ void ResultScene::registerComponents() {
     ECSManager* ecsManager = ECSManager::getInstance();
     ecsManager->registerComponent<Button>();
     ecsManager->registerComponent<SceneChanger>();
+    ecsManager->registerComponent<ResultUIParentStatus>();
+    ecsManager->registerComponent<ResultUIRankStatus>();
+    ecsManager->registerComponent<ResultUIScoreStatus>();
 }
 
 void ResultScene::registerSystems() {
@@ -32,10 +40,10 @@ void ResultScene::registerSystems() {
     ECSManager* ecsManager = ECSManager::getInstance();
 
     ecsManager->registerSystem<ButtonInputSystem>();
-
     ecsManager->registerSystem<UpdateButtonColorByState>();
     ecsManager->registerSystem<ChangeSceneByButton>();
     ecsManager->registerSystem<UsingCameraSetSystem>();
-
+    ecsManager->registerSystem<ResultScoreAdaptSystem>();
+    ecsManager->registerSystem<ResultUIParentSystem>();
     ecsManager->SortPriorityOrderSystems();
 }

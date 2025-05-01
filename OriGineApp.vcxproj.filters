@@ -103,6 +103,12 @@
     <Filter Include="system\LevelUp">
       <UniqueIdentifier>{ba0cd23a-6631-46a5-b745-f0dc44585baf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\ResultUI">
+      <UniqueIdentifier>{05cebea6-6e9d-419e-ba77-a91df9bd7bd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\ResultUI">
+      <UniqueIdentifier>{6b98bfba-a398-4fc3-8d2f-3fc603b65069}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -355,6 +361,21 @@
     <ClInclude Include="code\scene\ResultScene.h">
       <Filter>scene</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\ResultUI\ResultUIParentStatus.h">
+      <Filter>component\ResultUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\ResultUI\ResultUIScoreStatus.h">
+      <Filter>component\ResultUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\ResultUI\ResultUIRankStatus.h">
+      <Filter>component\ResultUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\ResultUI\ResultScoreAdaptSystem.h">
+      <Filter>system\ResultUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\ResultUI\ResultUIParentSystem.h">
+      <Filter>system\ResultUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -606,6 +627,21 @@
     </ClCompile>
     <ClCompile Include="code\scene\ResultScene.cpp">
       <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\ResultUI\ResultUIParentStatus.cpp">
+      <Filter>component\ResultUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\ResultUI\ResultUIScoreStatus.cpp">
+      <Filter>component\ResultUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\ResultUI\ResultUIRankStatus.cpp">
+      <Filter>component\ResultUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\ResultUI\ResultScoreAdaptSystem.cpp">
+      <Filter>system\ResultUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\ResultUI\ResultUIParentSystem.cpp">
+      <Filter>system\ResultUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

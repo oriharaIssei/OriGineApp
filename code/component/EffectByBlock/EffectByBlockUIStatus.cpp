@@ -48,27 +48,27 @@ void EffectByBlockUIStatus::Finalize() {}
 
 int32_t EffectByBlockUIStatus::GetValueForDigit() {
     switch (digit_) {
-    case UIDigit::ONE: {
+    case BlockEffectUIDigit::ONE: {
         // 小数点以下第1位を取得
         int32_t intValue = static_cast<int32_t>(settingValue_) % 10;
         return intValue;
     }
-    case UIDigit::TWO: {
+    case BlockEffectUIDigit::TWO: {
         // 整数部の第2位を取得
         int32_t intValue = static_cast<int32_t>(settingValue_) / 10 % 10;
         return intValue;
     }
-    case UIDigit::THREE: {
+    case BlockEffectUIDigit::THREE: {
         // 整数部の第2位を取得
         int32_t intValue = static_cast<int32_t>(settingValue_) / 100 % 10;
         return intValue;
     }
-    case UIDigit::FOUR: {
+    case BlockEffectUIDigit::FOUR: {
         // 整数部の第2位を取得
         int32_t intValue = static_cast<int32_t>(settingValue_) / 1000 % 10;
         return intValue;
     }
-    case UIDigit::FIVE: {
+    case BlockEffectUIDigit::FIVE: {
         // 整数部の第2位を取得
         int32_t intValue = static_cast<int32_t>(settingValue_) / 10000 % 10;
         return intValue;
