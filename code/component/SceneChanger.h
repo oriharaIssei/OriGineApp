@@ -7,14 +7,15 @@
 
 class SceneChanger
     : public IComponent {
+    friend void to_json(nlohmann::json& j, const SceneChanger& r);
+    friend void from_json(const nlohmann::json& j, SceneChanger& r);
+
 public:
     SceneChanger();
     virtual ~SceneChanger();
 
     virtual void Initialize(GameEntity* _entity) override;
     virtual bool Edit() override;
-    virtual void Save(BinaryWriter& _writer) override;
-    virtual void Load(BinaryReader& _reader) override;
 
     virtual void Finalize() override;
 
