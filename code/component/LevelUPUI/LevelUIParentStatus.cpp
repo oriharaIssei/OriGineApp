@@ -113,7 +113,7 @@ void LevelUIParentStatus::ScrollAnimation(const float& time) {
     if (uvScrollEasing_.time < uvScrollEasing_.maxTime) {
         return;
     }
-
+    
     uvScrollEasing_.time = uvScrollEasing_.maxTime;
     currentLevelUV_      = nextLevelUV_;
     preLevelUV_          = currentLevelUV_;

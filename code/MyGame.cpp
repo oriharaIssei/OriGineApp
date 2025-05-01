@@ -6,6 +6,7 @@
 // scene
 #include "scene/GameScene.h"
 #include "scene/TitleScene.h"
+#include"scene/ResultScene.h"
 #include "sceneManager/SceneManager.h"
 
 /// lib
@@ -44,6 +45,7 @@ void MyGame::Initialize() {
     // exe 上で 使用するscene
     sceneManager_->addScene("Title", []() { return std::make_unique<TitleScene>(); });
     sceneManager_->addScene("Game", []() { return std::make_unique<GameScene>(); });
+    sceneManager_->addScene("Result", []() { return std::make_unique<ResultScene>(); });
 
     SerializedField<std::string> startupSceneName{"Settings", "Scene", "StartupSceneName"};
     sceneManager_->changeScene(startupSceneName);
