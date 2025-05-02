@@ -17,16 +17,6 @@ bool ShockWaveSpawner::Edit() {
     return isChange;
 }
 
-void ShockWaveSpawner::Save(BinaryWriter& _writer) {
-    _writer.Write("isAlive", isAlive_);
-    _writer.Write("moveSpeed", moveSpeed_);
-}
-
-void ShockWaveSpawner::Load(BinaryReader& _reader) {
-    _reader.Read("isAlive", isAlive_);
-    _reader.Read("moveSpeed", moveSpeed_);
-}
-
 void ShockWaveSpawner::Finalize() {}
 
 /// setter
@@ -47,4 +37,14 @@ void ShockWaveSpawner::SetDirection(const Direction& _direction) {
         direction_ = 0.0f;
         break;
     }
+}
+
+void to_json(nlohmann::json& _json,const ShockWaveSpawner& _s) {
+    _json["isAlive"]   = _s.isAlive_;
+    _json["moveSpeed"] = _s.moveSpeed_;
+}
+
+void from_json(const nlohmann::json& _json, ShockWaveSpawner& _s) {
+    _json.at("isAlive").get_to(_s.isAlive_);
+    _json.at("moveSpeed").get_to(_s.moveSpeed_);
 }

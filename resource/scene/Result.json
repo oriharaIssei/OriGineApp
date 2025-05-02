@@ -1,0 +1,90 @@
+{
+    "Systems": [
+        {},
+        {
+            "ButtonInputSystem": {
+                "Priority": 0,
+                "isActive": true
+            }
+        },
+        {
+            "ChangeSceneByButton": {
+                "Priority": 0,
+                "isActive": true
+            },
+            "UpdateButtonColorByState": {
+                "Priority": 0,
+                "isActive": true
+            }
+        },
+        {
+            "MoveSystemByRigidBody": {
+                "Priority": 0,
+                "isActive": true
+            },
+            "ResultFontSystem": {
+                "Priority": 0,
+                "isActive": true
+            },
+            "ResultKeySystem": {
+                "Priority": 0,
+                "isActive": true
+            },
+            "ResultRankSystem": {
+                "Priority": 0,
+                "isActive": true
+            },
+            "ResultScoreAdaptSystem": {
+                "Priority": 0,
+                "isActive": true
+            },
+            "ResultUIParentSystem": {
+                "Priority": 0,
+                "isActive": true
+            },
+            "UsingCameraSetSystem": {
+                "Priority": 0,
+                "isActive": true
+            }
+        },
+        {
+            "CollisionCheckSystem": {
+                "Priority": 0,
+                "isActive": true
+            }
+        },
+        {
+            "EmitterWorkSystem": {
+                "Priority": 0,
+                "isActive": true
+            },
+            "PrimitiveNodeAnimationWorkSystem": {
+                "Priority": 0,
+                "isActive": true
+            }
+        },
+        {
+            "ColliderRenderingSystem": {
+                "Priority": 0,
+                "isActive": true
+            },
+            "LineRenderSystem": {
+                "Priority": 0,
+                "isActive": true
+            },
+            "ParticleRenderSystem": {
+                "Priority": 0,
+                "isActive": true
+            },
+            "SpriteRenderSystem": {
+                "Priority": 0,
+                "isActive": true
+            },
+            "TexturedMeshRenderSystem": {
+                "Priority": 0,
+                "isActive": true
+            }
+        },
+        {}
+    ]
+}

@@ -23,7 +23,7 @@ bool ResultUIRankStatus::Edit() {
     isChange |= ImGui::DragFloat3("position", position_.v);
 
     // 回転量（2種）
-    isChange |= ImGui::SliderAngle("rotateValue", &rotateValue_,0,1080);
+    isChange |= ImGui::SliderAngle("rotateValue", &rotateValue_, 0, 1080);
 
     // スケール
     isChange |= ImGui::DragFloat2("scale", scale_.v, 0.1f);
@@ -31,7 +31,7 @@ bool ResultUIRankStatus::Edit() {
 
     isChange |= ImGui::DragFloat2("textureSize", textureSize_.v, 0.01f);
 
-      ImGui::Text("moveEasing");
+    ImGui::Text("moveEasing");
     isChange |= ImGui::DragFloat("scalingEasing_.maxTime", &scalingEasing_.maxTime, 0.01f);
     ImGui::Text("scaleEasing");
     isChange |= ImGui::DragFloat("rotateEasing_.maxTime", &rotateEasing_.maxTime, 0.01f);
@@ -40,34 +40,6 @@ bool ResultUIRankStatus::Edit() {
         isChange |= ImGui::DragFloat(("rankValue" + std::to_string(i)).c_str(), &rankValue_[i]);
     }
     return isChange;
-}
-
-void ResultUIRankStatus::Save(BinaryWriter& _writer) {
-    _writer.Write("isAlive", isAlive_);
-    _writer.Write<3, float>("position", position_);
-    _writer.Write("rotateValue", rotateValue_);
-    _writer.Write<2, float>("scale", scale_);
-    _writer.Write<2, float>("easeScale", easeScale_);
-    _writer.Write<2, float>("textureSize", textureSize_);
-    for (int32_t i = 0; i < rankValue_.size(); ++i) {
-        _writer.Write(("rankValue" + std::to_string(i)).c_str(), rankValue_[i]);
-    }
-    _writer.Write("scalingEasing_.maxTime", scalingEasing_.maxTime);
-    _writer.Write("rotateEasing_.maxTime", rotateEasing_.maxTime);
-}
-
-void ResultUIRankStatus::Load(BinaryReader& _reader) {
-    _reader.Read("isAlive", isAlive_);
-    _reader.Read<3, float>("position", position_);
-    _reader.Read("rotateValue", rotateValue_);
-    _reader.Read<2, float>("scale", scale_);
-    _reader.Read<2, float>("easeScale", easeScale_);
-    _reader.Read<2, float>("textureSize", textureSize_);
-    for (int32_t i = 0; i < rankValue_.size(); ++i) {
-        _reader.Read(("rankValue" + std::to_string(i)).c_str(), rankValue_[i]);
-    }
-    _reader.Read("scalingEasing_.maxTime", scalingEasing_.maxTime);
-    _reader.Read("rotateEasing_.maxTime", rotateEasing_.maxTime);
 }
 
 void ResultUIRankStatus::Finalize() {}
@@ -140,4 +112,31 @@ void ResultUIRankStatus::RotateEasing(const float& time) {
 void ResultUIRankStatus::Reset() {
     rotateEasing_.time  = 0.0f;
     scalingEasing_.time = 0.0f;
+}
+
+void to_json(nlohmann::json& _json, const ResultUIRankStatus& _component) {
+    _json["isAlive"]     = _component.isAlive_;
+    _json["position"]    = _component.position_;
+    _json["rotateValue"] = _component.rotateValue_;
+    _json["scale"]       = _component.scale_;
+    _json["easeScale"]   = _component.easeScale_;
+    _json["textureSize"] = _component.textureSize_;
+    for (int32_t i = 0; i < _component.rankValue_.size(); ++i) {
+        _json["rankValue" + std::to_string(i)] = _component.rankValue_[i];
+    }
+    _json["scalingEasing.maxTime"] = _component.scalingEasing_.maxTime;
+    _json["rotateEasing.maxTime"]  = _component.rotateEasing_.maxTime;
+}
+void from_json(const nlohmann::json& _json, ResultUIRankStatus& _component) {
+    _json.at("isAlive").get_to(_component.isAlive_);
+    _json.at("position").get_to(_component.position_);
+    _json.at("rotateValue").get_to(_component.rotateValue_);
+    _json.at("scale").get_to(_component.scale_);
+    _json.at("easeScale").get_to(_component.easeScale_);
+    _json.at("textureSize").get_to(_component.textureSize_);
+    for (int32_t i = 0; i < _component.rankValue_.size(); ++i) {
+        _json.at("rankValue" + std::to_string(i)).get_to(_component.rankValue_[i]);
+    }
+    _json.at("scalingEasing.maxTime").get_to(_component.scalingEasing_.maxTime);
+    _json.at("rotateEasing.maxTime").get_to(_component.rotateEasing_.maxTime);
 }

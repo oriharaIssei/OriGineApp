@@ -12,6 +12,9 @@ enum class BlowDirection {
 
 class ScrapSpawner
     : public IComponent {
+    friend void to_json(nlohmann::json& _json, const ScrapSpawner& _component);
+    friend void from_json(const nlohmann::json& _json, ScrapSpawner& _component);
+
 public:
 private: // variables
     bool isAlive_ = true;
@@ -20,12 +23,12 @@ private: // variables
     float lifeTime_;
     float fallStopPosY_;
     Vec2f blowValue_;
-   
-    //math
+
+    // math
     float mass_;
     float colliderRadius_;
 
-    //生成数
+    // 生成数
     int32_t createNum_;
 
 public:
@@ -34,8 +37,6 @@ public:
 
     void Initialize(GameEntity* _entity) override;
     virtual bool Edit();
-    virtual void Save(BinaryWriter& _writer);
-    virtual void Load(BinaryReader& _reader);
     virtual void Finalize();
 
 public: // accsessor

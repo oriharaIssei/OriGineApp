@@ -26,28 +26,6 @@ bool OperateUIStatus::Edit() {
     return isChange;
 }
 
-void OperateUIStatus::Save(BinaryWriter& _writer) {
-    _writer.Write("isAlive", isAlive_);
-    _writer.Write("scalingEase_.maxTime", scalingEase_.maxTime);
-    _writer.Write("scalingEase_.period", scalingEase_.period);
-    _writer.Write("scalingEase_.amplitude", scalingEase_.amplitude);
-
-    _writer.Write<2, float>("startTextureSize_", startTextureSize_);
-    _writer.Write<2, float>("maxTextureSize_", maxTextureSize_);
-    _writer.Write<2, float>("resultTextureSize_", resultTextureSize_);
-}
-
-void OperateUIStatus::Load(BinaryReader& _reader) {
-    _reader.Read("isAlive", isAlive_);
-    _reader.Read("scalingEase_.maxTime", scalingEase_.maxTime);
-    _reader.Read("scalingEase_.period", scalingEase_.period);
-    _reader.Read("scalingEase_.amplitude", scalingEase_.amplitude);
-
-     _reader.Read<2, float>("startTextureSize_", startTextureSize_);
-     _reader.Read<2, float>("maxTextureSize_", maxTextureSize_);
-     _reader.Read<2, float>("resultTextureSize_", resultTextureSize_);
-}
-
 void OperateUIStatus::Finalize() {}
 
 void OperateUIStatus::ChangeInit(const OperateMode& operateMOde) {
@@ -75,4 +53,24 @@ void OperateUIStatus::ScalingEaseUpdate(const float& t) {
         resultTextureSize_ = startTextureSize_;
         isChange_         = false;
         
+}
+
+void to_json(nlohmann::json& j, const OperateUIStatus& l) {
+    j["isAlive"]                = l.isAlive_;
+    j["scalingEase_.maxTime"]   = l.scalingEase_.maxTime;
+    j["scalingEase_.period"]    = l.scalingEase_.period;
+    j["scalingEase_.amplitude"] = l.scalingEase_.amplitude;
+    j["startTextureSize_"]      = l.startTextureSize_;
+    j["maxTextureSize_"]        = l.maxTextureSize_;
+    j["resultTextureSize_"]     = l.resultTextureSize_;
+}
+
+void from_json(const nlohmann::json& j, OperateUIStatus& l) {
+    j.at("isAlive").get_to(l.isAlive_);
+    j.at("scalingEase_.maxTime").get_to(l.scalingEase_.maxTime);
+    j.at("scalingEase_.period").get_to(l.scalingEase_.period);
+    j.at("scalingEase_.amplitude").get_to(l.scalingEase_.amplitude);
+    j.at("startTextureSize_").get_to(l.startTextureSize_);
+    j.at("maxTextureSize_").get_to(l.maxTextureSize_);
+    j.at("resultTextureSize_").get_to(l.resultTextureSize_);
 }

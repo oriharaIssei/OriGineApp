@@ -20,21 +20,19 @@ bool FieldStatus::Edit() {
 
     isChange |= ImGui::DragFloat("fieldRightMax", &fieldRightMax_, 0.01f);
     isChange |= ImGui::DragFloat("fieldLeftMax", &fieldLeftMax_, 0.01f);
-   
+
     return isChange;
-}
-
-void FieldStatus::Save(BinaryWriter& _writer) {
-    _writer.Write("isAlive", isAlive_);
-    _writer.Write("fieldRightMax", fieldRightMax_);
-    _writer.Write("fieldLeftMax", fieldLeftMax_);
-}
-
-void FieldStatus::Load(BinaryReader& _reader) {
-    _reader.Read("isAlive", isAlive_);
-    _reader.Read("fieldRightMax", fieldRightMax_);
-    _reader.Read("fieldLeftMax", fieldLeftMax_);
 }
 
 void FieldStatus::Finalize() {}
 
+void to_json(nlohmann::json& _json, const FieldStatus& _component) {
+    _json["isAlive"]       = _component.isAlive_;
+    _json["fieldRightMax"] = _component.fieldRightMax_;
+    _json["fieldLeftMax"]  = _component.fieldLeftMax_;
+}
+void from_json(const nlohmann::json& _json, FieldStatus& _component) {
+    _json.at("isAlive").get_to(_component.isAlive_);
+    _json.at("fieldRightMax").get_to(_component.fieldRightMax_);
+    _json.at("fieldLeftMax").get_to(_component.fieldLeftMax_);
+}

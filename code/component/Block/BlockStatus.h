@@ -1,40 +1,39 @@
 #pragma once
 
+#include "component/Block/BlockManager.h"
 #include "component/IComponent.h"
-#include"component/Block/BlockManager.h"
-#include<array>
+#include <array>
 #include <cstdint>
-#include<Vector3.h>
-
+#include <Vector3.h>
 
 struct Transform;
 class BlockStatus
     : public IComponent {
 public:
-    
+    friend void to_json(nlohmann::json& _json, const BlockStatus& _block);
+    friend void from_json(const nlohmann::json& _json, BlockStatus& _block);
 
 private: // variables
-
     bool isAlive_ = true;
-    bool isFall_ = false;
-   
+    bool isFall_  = false;
+
     //
     int32_t columNum_;
     int32_t currentHP_;
     bool isDestroy_ = false;
     bool isbreak_   = false;
 
-    //score
-    float ratio_=1.0f;
-    float baseScoreValue_=0.0f;
+    // score
+    float ratio_          = 1.0f;
+    float baseScoreValue_ = 0.0f;
 
     BlockType blockType_;
 
-   Vec3f preMovePos_ = {0.0f, 0.0f, 0.0f};
+    Vec3f preMovePos_ = {0.0f, 0.0f, 0.0f};
     bool isMove_      = false;
-   Easing moveEase_;
+    Easing moveEase_;
 
- /*  MoveStep moveStep_ = MoveStep::NONE;*/
+    /*  MoveStep moveStep_ = MoveStep::NONE;*/
 
 public:
     BlockStatus() {}
@@ -42,8 +41,6 @@ public:
 
     void Initialize(GameEntity* _entity) override;
     bool Edit() override;
-    void Save(BinaryWriter& _writer) override;
-    void Load(BinaryReader& _reader) override;
     void Finalize() override;
 
     void TakeDamage();
@@ -52,7 +49,6 @@ public:
     void TimeInit();
 
 public: // accsessor
-
     /// getter
     int32_t GetColumNum() const { return columNum_; }
     int32_t GetCurrentHP() const { return currentHP_; }
@@ -63,13 +59,12 @@ public: // accsessor
     float GetRatio() const { return ratio_; }
     float GetBaseScoreValue() const { return baseScoreValue_; }
     Vec3f GetPreMovePos() const { preMovePos_; }
-   
 
-      /// setter
+    /// setter
     void SetColum(const int32_t& colum);
     void SetIsFall(const bool& is) { isFall_ = is; }
     void SetcurrentHP(const int32_t& hp) { currentHP_ = hp; }
-    void SetIsDestroy(const bool& is) { isDestroy_ = is;}
+    void SetIsDestroy(const bool& is) { isDestroy_ = is; }
     void SetBlockType(const BlockType& type) { blockType_ = type; }
     void SetIsBreak(const bool& is) { isbreak_ = is; }
     void SetRatio(const float& ratio) { ratio_ = ratio; }

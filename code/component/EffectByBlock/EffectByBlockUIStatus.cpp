@@ -5,6 +5,14 @@
 /// externals
 #include "imgui/imgui.h"
 
+void to_json(nlohmann::json& _json, const EffectByBlockUIStatus& _component) {
+    _json["isAlive"] = _component.isAlive_;
+    /*_json["timerDigit"] = static_cast<int32_t>(_component.digit_);*/
+}
+void from_json(const nlohmann::json& _json, EffectByBlockUIStatus& _component) {
+    _json.at("isAlive").get_to(_component.isAlive_);
+    /*_json.at("timerDigit").get_to(_component.digit_);*/
+}
 
 void EffectByBlockUIStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 }
@@ -30,18 +38,6 @@ bool EffectByBlockUIStatus::Edit() {
     // }
 
     return isChange;
-}
-
-void EffectByBlockUIStatus::Save(BinaryWriter& _writer) {
-    _writer.Write("isAlive", isAlive_);
-    /* _writer.Write("timerDigit", static_cast<int32_t>(digit_));*/
-}
-
-void EffectByBlockUIStatus::Load(BinaryReader& _reader) {
-    _reader.Read("isAlive", isAlive_);
-    /*  int32_t digit = 0;
-      _reader.Read("timerDigit", digit);
-      digit_ = static_cast<UIDigit>(digit);*/
 }
 
 void EffectByBlockUIStatus::Finalize() {}
@@ -83,7 +79,7 @@ void EffectByBlockUIStatus::SetCurerntIconTexture() {
 
     switch (effectType_) {
     case EffectType::SCORE:
-        currentTextureName_ ="";
+        currentTextureName_ = "";
         break;
     case EffectType::TIME:
         currentTextureName_ = "/Texture/UI/TimeIcom.png";
@@ -94,7 +90,6 @@ void EffectByBlockUIStatus::SetCurerntIconTexture() {
     default:
         break;
     }
-
 }
 
 void EffectByBlockUIStatus::SetCurerntSignTexture() {
@@ -114,11 +109,11 @@ void EffectByBlockUIStatus::SetCurerntSignTexture() {
     }
 }
 
-void EffectByBlockUIStatus::SetCurerntNumberTexture(const int32_t&num) {
-   
+void EffectByBlockUIStatus::SetCurerntNumberTexture(const int32_t& num) {
+
     switch (effectType_) {
     case EffectType::SCORE:
-        currentTextureName_ = ("/Texture/UI/Numbers/Number" + std::to_string(num) +".png").c_str();
+        currentTextureName_ = ("/Texture/UI/Numbers/Number" + std::to_string(num) + ".png").c_str();
         break;
     case EffectType::TIME:
         currentTextureName_ = ("/Texture/UI/GreenNumbers/greennumber" + std::to_string(num) + ".png").c_str();
@@ -133,6 +128,4 @@ void EffectByBlockUIStatus::SetCurerntNumberTexture(const int32_t&num) {
 
 void EffectByBlockUIStatus::DecrementCurrnetTime(const float& time) {
     lifeTime_ -= time;
-  }
-
-
+}

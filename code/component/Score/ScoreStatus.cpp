@@ -24,18 +24,6 @@ bool ScoreStatus::Edit() {
     return isChange;
 }
 
-void ScoreStatus::Save(BinaryWriter& _writer) {
-    _writer.Write("isAlive", isAlive_);
-    _writer.Write("currentScore", currentScore_);
-    _writer.Write("pulusScore", pulusScore_);
-}
-
-void ScoreStatus::Load(BinaryReader& _reader) {
-    _reader.Read("isAlive", isAlive_);
-    _reader.Read("currentScore", currentScore_);
-    _reader.Read("pulusScore", pulusScore_);
-}
-
 void ScoreStatus::Finalize() {}
 
 void ScoreStatus::PlusScoreIncrement(const float& value) {
@@ -47,4 +35,16 @@ void ScoreStatus::TimeIncrement(const float& value) {
     if (scoreChangeTime_ >= 1.0f) {
         scoreChangeTime_ = 1.0f;
     }
+}
+
+void to_json(nlohmann::json& _json, const ScoreStatus& _component) {
+    _json["isAlive"]      = _component.isAlive_;
+    _json["currentScore"] = _component.currentScore_;
+    _json["pulusScore"]   = _component.pulusScore_;
+}
+
+void from_json(const nlohmann::json& _json, ScoreStatus& _component) {
+    _json.at("isAlive").get_to(_component.isAlive_);
+    _json.at("currentScore").get_to(_component.currentScore_);
+    _json.at("pulusScore").get_to(_component.pulusScore_);
 }

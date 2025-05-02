@@ -8,6 +8,34 @@
 /// externals
 #include "imgui/imgui.h"
 
+void to_json(nlohmann::json& _json, const ResultUIParentStatus& _component) {
+    _json["isAlive"]               = _component.isAlive_;
+    _json["scoreUpSpeed"]          = _component.scoreUpSpeed_;
+    _json["scoreWaitTime"]         = _component.scoreWaitTime_;
+    _json["moveEasing.maxTime"]    = _component.moveEasing_.maxTime;
+    _json["scaleEasing.maxTime"]   = _component.scaleEasing_.maxTime;
+    _json["scaleEasing.amplitude"] = _component.scaleEasing_.amplitude;
+    _json["scaleEasing.period"]    = _component.scaleEasing_.period;
+    _json["scaleEasing.backRatio"] = _component.scaleEasing_.backRatio;
+    _json["alphaEasing.maxTime"]   = _component.alphaEasing_.maxTime;
+    _json["easePos"]               = _component.easePos_;
+    _json["easeScale"]             = _component.scoreEaseScale_;
+}
+
+void from_json(const nlohmann::json& _json, ResultUIParentStatus& _component) {
+    _json.at("isAlive").get_to(_component.isAlive_);
+    _json.at("scoreUpSpeed").get_to(_component.scoreUpSpeed_);
+    _json.at("scoreWaitTime").get_to(_component.scoreWaitTime_);
+    _json.at("moveEasing.maxTime").get_to(_component.moveEasing_.maxTime);
+    _json.at("scaleEasing.maxTime").get_to(_component.scaleEasing_.maxTime);
+    _json.at("scaleEasing.amplitude").get_to(_component.scaleEasing_.amplitude);
+    _json.at("scaleEasing.period").get_to(_component.scaleEasing_.period);
+    _json.at("scaleEasing.backRatio").get_to(_component.scaleEasing_.backRatio);
+    _json.at("alphaEasing.maxTime").get_to(_component.alphaEasing_.maxTime);
+    _json.at("easePos").get_to(_component.easePos_);
+    _json.at("easeScale").get_to(_component.scoreEaseScale_);
+}
+
 void ResultUIParentStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 }
 
@@ -38,44 +66,14 @@ bool ResultUIParentStatus::Edit() {
     return isChange;
 }
 
-void ResultUIParentStatus::Save(BinaryWriter& _writer) {
-    _writer.Write("isAlive", isAlive_);
-    _writer.Write("moveEasing.maxTime", moveEasing_.maxTime);
-    _writer.Write("scaleEasing.maxTime", scaleEasing_.maxTime);
-    _writer.Write("scaleEasing.amplitude", scaleEasing_.amplitude);
-    _writer.Write("scaleEasing.period", scaleEasing_.period);
-    _writer.Write<3, float>("easePos", easePos_);
-    _writer.Write<2, float>("easeScale", scoreEaseScale_);
-    _writer.Write("scaleEasing.backRatio", scaleEasing_.backRatio);
-    _writer.Write("scoreWaitTime", scoreWaitTime_);
-    _writer.Write<3, float>("initPos", initPos_);
-    _writer.Write("alphaEasing.maxTime", alphaEasing_.maxTime);
-    _writer.Write("scoreUpSpeed", scoreUpSpeed_);
-}
-
-void ResultUIParentStatus::Load(BinaryReader& _reader) {
-    _reader.Read("isAlive", isAlive_);
-    _reader.Read("moveEasing.maxTime", moveEasing_.maxTime);
-    _reader.Read("scaleEasing.maxTime", scaleEasing_.maxTime);
-    _reader.Read("scaleEasing.amplitude", scaleEasing_.amplitude);
-    _reader.Read("scaleEasing.period", scaleEasing_.period);
-    _reader.Read<3, float>("easePos", easePos_);
-    _reader.Read<2, float>("easeScale", scoreEaseScale_);
-    _reader.Read("scaleEasing.backRatio", scaleEasing_.backRatio);
-    _reader.Read("scoreWaitTime", scoreWaitTime_);
-    _reader.Read<3, float>("initPos", initPos_);
-    _reader.Read("alphaEasing.maxTime", alphaEasing_.maxTime);
-    _reader.Read("scoreUpSpeed", scoreUpSpeed_);
-}
-
 void ResultUIParentStatus::Finalize() {}
 
 void ResultUIParentStatus::MoveAnimation(const float& time) {
 
     moveEasing_.time += time;
 
-    basePos_    = EaseInCubic(initPos_, easePos_, moveEasing_.time, moveEasing_.maxTime);
-   /* scoreScale_ = EaseInCubic(scoreInitScale_, scoreEaseScale_, moveEasing_.time, moveEasing_.maxTime);*/
+    basePos_ = EaseInCubic(initPos_, easePos_, moveEasing_.time, moveEasing_.maxTime);
+    /* scoreScale_ = EaseInCubic(scoreInitScale_, scoreEaseScale_, moveEasing_.time, moveEasing_.maxTime);*/
 
     if (moveEasing_.time < moveEasing_.maxTime) {
         return;
@@ -83,8 +81,8 @@ void ResultUIParentStatus::MoveAnimation(const float& time) {
 
     moveEasing_.time = moveEasing_.maxTime;
     basePos_         = easePos_;
-   /* scoreScale_      = scoreEaseScale_;*/
-    curerntStep_     = ResultStep::SCOREUPWAIT;
+    /* scoreScale_      = scoreEaseScale_;*/
+    curerntStep_ = ResultStep::SCOREUPWAIT;
 }
 
 void ResultUIParentStatus::AlphaAnimation(const float& time) {
@@ -104,7 +102,7 @@ void ResultUIParentStatus::AlphaAnimation(const float& time) {
 
 void ResultUIParentStatus::ScoreScalingAnimation(const float& time) {
     scaleEasing_.time += time;
-    scoreScale_ = Back::InCubicZero(Vec2f(1.0f,1.0f),scoreEaseScale_, scaleEasing_.time, scaleEasing_.maxTime, scaleEasing_.backRatio);
+    scoreScale_ = Back::InCubicZero(Vec2f(1.0f, 1.0f), scoreEaseScale_, scaleEasing_.time, scaleEasing_.maxTime, scaleEasing_.backRatio);
 
     if (scaleEasing_.time < scaleEasing_.maxTime) {
         return;
@@ -124,14 +122,13 @@ void ResultUIParentStatus::ScoreUP(const float& time) {
 
     currentScore_ = resultScore_;
     curerntStep_  = ResultStep::SCOREUPSCALING;
-
 }
 
-    void ResultUIParentStatus::Reset() {
-        moveEasing_.time   = 0.0f;
-        scaleEasing_.time  = 0.0f;
-        alphaEasing_.time  = 0.0f;
-        basePos_           = initPos_;
-        scoreScale_        = scoreInitScale_;
-        hasStartedScaling_ = false;
-    }
+void ResultUIParentStatus::Reset() {
+    moveEasing_.time   = 0.0f;
+    scaleEasing_.time  = 0.0f;
+    alphaEasing_.time  = 0.0f;
+    basePos_           = initPos_;
+    scoreScale_        = scoreInitScale_;
+    hasStartedScaling_ = false;
+}

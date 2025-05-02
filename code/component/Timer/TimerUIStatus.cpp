@@ -28,18 +28,6 @@ bool TimerUIStatus::Edit() {
     return isChange;
 }
 
-void TimerUIStatus::Save(BinaryWriter& _writer) {
-    _writer.Write("isAlive", isAlive_);
-    _writer.Write("timerDigit", static_cast<int32_t>(digit_));
-}
-
-void TimerUIStatus::Load(BinaryReader& _reader) {
-    _reader.Read("isAlive", isAlive_);
-    int32_t digit = 0;
-    _reader.Read("timerDigit", digit);
-    digit_ = static_cast<TimeDigit>(digit);
-}
-
 void TimerUIStatus::Finalize() {}
 
 int32_t TimerUIStatus::GetValueForDigit(const float& value) {
@@ -68,4 +56,14 @@ int32_t TimerUIStatus::GetValueForDigit(const float& value) {
     default:
         return 0;
     }
+}
+
+void to_json(nlohmann::json& _json, const TimerUIStatus& _block) {
+    _json["isAlive"]    = _block.isAlive_;
+    _json["timerDigit"] = static_cast<int32_t>(_block.digit_);
+}
+
+void from_json(const nlohmann::json& _json, TimerUIStatus& _block) {
+    _json.at("isAlive").get_to(_block.isAlive_);
+    _json.at("timerDigit").get_to(_block.digit_);
 }

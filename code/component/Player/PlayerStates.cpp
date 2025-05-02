@@ -30,24 +30,6 @@ bool PlayerStates::Edit() {
     return isChange;
 }
 
-void PlayerStates::Save(BinaryWriter& _writer) {
-    _writer.Write("isAlive", isAlive_);
-    _writer.Write("moveSpeed", moveSpeed_);
-    _writer.Write("moveRadius", moveRadius_);
-    _writer.Write<3, float>("followCameraOffset", followCameraOffset_);
-    _writer.Write("OffSetY", offSetY_);
-    _writer.Write("bigBomPointMax", bigBomPointMax_);
-}
-
-void PlayerStates::Load(BinaryReader& _reader) {
-    _reader.Read("isAlive", isAlive_);
-    _reader.Read("moveSpeed", moveSpeed_);
-    _reader.Read("moveRadius", moveRadius_);
-    _reader.Read<3, float>("followCameraOffset", followCameraOffset_);
-    _reader.Read("OffSetY", offSetY_);
-    _reader.Read("bigBomPointMax", bigBomPointMax_);
-}
-
 void PlayerStates::Finalize() {}
 
 void PlayerStates::IncrementCurrentBigBomPoint() {
@@ -56,4 +38,22 @@ void PlayerStates::IncrementCurrentBigBomPoint() {
 
 void PlayerStates::ReSetCurrentBigBomPoint() {
     currentBigBomPoint_ = 0;
+ }
+
+void to_json(nlohmann::json& j, const PlayerStates& p) {
+     j["isAlive"]            = p.isAlive_;
+     j["moveSpeed"]          = p.moveSpeed_;
+     j["moveRadius"]         = p.moveRadius_;
+     j["OffSetY"]            = p.offSetY_;
+     j["bigBomPointMax"]     = p.bigBomPointMax_;
+     j["followCameraOffset"] = p.followCameraOffset_;
+ }
+
+ void from_json(const nlohmann::json& j, PlayerStates& p) {
+     j.at("isAlive").get_to(p.isAlive_);
+     j.at("moveSpeed").get_to(p.moveSpeed_);
+     j.at("moveRadius").get_to(p.moveRadius_);
+     j.at("OffSetY").get_to(p.offSetY_);
+     j.at("bigBomPointMax").get_to(p.bigBomPointMax_);
+     j.at("followCameraOffset").get_to(p.followCameraOffset_);
  }

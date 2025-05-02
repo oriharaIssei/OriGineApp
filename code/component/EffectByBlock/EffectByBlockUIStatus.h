@@ -27,6 +27,9 @@ enum class BlockEffectUIDigit {
 
 class EffectByBlockUIStatus
     : public IComponent {
+    friend void to_json(nlohmann::json& _json, const EffectByBlockUIStatus& _component);
+    friend void from_json(const nlohmann::json& _json, EffectByBlockUIStatus& _component);
+
 public:
 private: // variables
     bool isAlive_ = true;
@@ -34,7 +37,6 @@ private: // variables
     float settingValue_    = 0.0f; // 取得した値
     EffectType effectType_ = EffectType::TIME; // エフェクトタイプ
     int32_t getDigitNum_;
-    
 
     BlockEffectUIDigit digit_; // 整数の桁
     int32_t valueForDigit_;
@@ -47,8 +49,6 @@ public:
 
     void Initialize(GameEntity* _entity) override;
     virtual bool Edit();
-    virtual void Save(BinaryWriter& _writer);
-    virtual void Load(BinaryReader& _reader);
 
     virtual void Finalize();
 
@@ -57,9 +57,9 @@ public:
     void SetCurerntSignTexture();
     void SetCurerntNumberTexture(const int32_t& num);
 
-    void DecrementCurrnetTime(const float&time);
+    void DecrementCurrnetTime(const float& time);
 
-    void EffectUISpawn(GameEntity* _entity,const float&value,const EffectType&type);
+    void EffectUISpawn(GameEntity* _entity, const float& value, const EffectType& type);
 
 public: // accsessor
     /// getter

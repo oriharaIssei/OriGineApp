@@ -8,6 +8,21 @@
 /// externals
 #include "imgui/imgui.h"
 
+void to_json(nlohmann::json& _json, const ResultUIkeyStatus& _component) {
+    _json["isAlive"]             = _component.isAlive_;
+    _json["moveEasing.maxTime"]  = _component.moveEasing_.maxTime;
+    _json["alphaEasing.maxTime"] = _component.alphaEasing_.maxTime;
+    _json["easePos"]             = _component.easePos_;
+    _json["initPos"]             = _component.initPos_;
+}
+void from_json(const nlohmann::json& _json, ResultUIkeyStatus& _component) {
+    _json.at("isAlive").get_to(_component.isAlive_);
+    _json.at("moveEasing.maxTime").get_to(_component.moveEasing_.maxTime);
+    _json.at("alphaEasing.maxTime").get_to(_component.alphaEasing_.maxTime);
+    _json.at("easePos").get_to(_component.easePos_);
+    _json.at("initPos").get_to(_component.initPos_);
+}
+
 void ResultUIkeyStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 }
 
@@ -25,24 +40,8 @@ bool ResultUIkeyStatus::Edit() {
 
     ImGui::Text("AlphaEasing");
     isChange |= ImGui::DragFloat("alphaEasing.maxTime", &alphaEasing_.maxTime, 0.01f);
-  
+
     return isChange;
-}
-
-void ResultUIkeyStatus::Save(BinaryWriter& _writer) {
-    _writer.Write("isAlive", isAlive_);
-    _writer.Write("moveEasing.maxTime", moveEasing_.maxTime);
-    _writer.Write<3, float>("easePos", easePos_);
-    _writer.Write<3, float>("initPos", initPos_);
-    _writer.Write("alphaEasing.maxTime", alphaEasing_.maxTime);
-}
-
-void ResultUIkeyStatus::Load(BinaryReader& _reader) {
-    _reader.Read("isAlive", isAlive_);
-    _reader.Read("moveEasing.maxTime", moveEasing_.maxTime);
-    _reader.Read<3, float>("easePos", easePos_);
-    _reader.Read<3, float>("initPos", initPos_);
-    _reader.Read("alphaEasing.maxTime", alphaEasing_.maxTime);
 }
 
 void ResultUIkeyStatus::Finalize() {}
@@ -80,8 +79,8 @@ void ResultUIkeyStatus::AlphaAnimation(const float& time) {
 }
 
 void ResultUIkeyStatus::Reset() {
-    moveEasing_.time   = 0.0f;
-    alphaEasing_.time  = 0.0f;
-    basePos_           = initPos_;
-    alpha_             = 0.0f;
+    moveEasing_.time  = 0.0f;
+    alphaEasing_.time = 0.0f;
+    basePos_          = initPos_;
+    alpha_            = 0.0f;
 }

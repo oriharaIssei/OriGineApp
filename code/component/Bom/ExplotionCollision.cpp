@@ -20,32 +20,31 @@ bool ExplotionCollision::Edit() {
 
     ImGui::Spacing();
 
-      ImGui::Text("Offset");
+    ImGui::Text("Offset");
     isChange |= ImGui::InputFloat3("##BomOffset", positionOffset_.v);
 
-      ImGui::Text("etc");
+    ImGui::Text("etc");
     isChange |= ImGui::DragFloat("adaptTime", &adaptTime_);
     isChange |= ImGui::DragFloat("CollisionRadius", &collisionRadius_);
 
     return isChange;
 }
 
-void ExplotionCollision::Save(BinaryWriter& _writer) {
-    _writer.Write("isAlive", isAlive_);
-    _writer.Write("adaptTime", adaptTime_);
-    _writer.Write<3, float>("positionOffset", positionOffset_);
-    _writer.Write("CollisionRadius", collisionRadius_);
-}
-
-void ExplotionCollision::Load(BinaryReader& _reader) {
-    _reader.Read("isAlive", isAlive_);
-    _reader.Read("adaptTime", adaptTime_);
-    _reader.Read<3, float>("positionOffset", positionOffset_);
-    _reader.Read("CollisionRadius", collisionRadius_);
-}
-
 void ExplotionCollision::Finalize() {}
 
 void ExplotionCollision::TimeDecrement() {
     adaptTime_ -= Engine::getInstance()->getDeltaTime();
-  }
+}
+
+void to_json(nlohmann::json& _json, const ExplotionCollision& _explotionCollision) {
+    _json["isAlive"]         = _explotionCollision.isAlive_;
+    _json["adaptTime"]       = _explotionCollision.adaptTime_;
+    _json["positionOffset"]  = _explotionCollision.positionOffset_;
+    _json["CollisionRadius"] = _explotionCollision.collisionRadius_;
+}
+void from_json(const nlohmann::json& _json, ExplotionCollision& _explotionCollision) {
+    _json.at("isAlive").get_to(_explotionCollision.isAlive_);
+    _json.at("adaptTime").get_to(_explotionCollision.adaptTime_);
+    _json.at("positionOffset").get_to(_explotionCollision.positionOffset_);
+    _json.at("CollisionRadius").get_to(_explotionCollision.collisionRadius_);
+}

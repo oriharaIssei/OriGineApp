@@ -1,6 +1,6 @@
 #include "BlockManager.h"
 
-#include"component/LevelUPUI/LevelUIParentStatus.h"
+#include "component/LevelUPUI/LevelUIParentStatus.h"
 
 /// externals
 #include "imgui/imgui.h"
@@ -93,107 +93,6 @@ bool BlockManager::Edit() {
     return isChange;
 }
 
-void BlockManager::Save(BinaryWriter& _writer) {
-    _writer.Write("columNumMax", columNumMax_);
-    _writer.Write("pillarHP", HPMax_);
-    _writer.Write<3, float>("FirstblockSize", blockSize_);
-    _writer.Write<3, float>("scalingSize", scalingSize_);
-    _writer.Write("collisionRadius", collisionRadius_);
-    _writer.Write("startPosition", startPositionX_);
-    _writer.Write("nextCreatePositionX", nextCreatePositionX_);
-    _writer.Write("basePosY", basePosY_);
-    _writer.Write("moveSpeed", moveTenpo_);
-    _writer.Write("startPositionZ", startPositionZ_);
-    _writer.Write("deadPositionX", deadPositionX_);
-    _writer.Write("moveTimemax", moveTimemax_);
-
-    _writer.Write("ScalingmaxTime", scalingEase_.maxTime);
-    _writer.Write("Scalingamplitude", scalingEase_.amplitude);
-    _writer.Write("Scalingperiod", scalingEase_.period);
-    _writer.Write("ScalingbackRatio", scalingEase_.backRatio);
-
-    _writer.Write("MoveScalingmaxTime", moveScalingEase_.maxTime);
-    _writer.Write("MoveScalingamplitude", moveScalingEase_.amplitude);
-    _writer.Write("MoveScalingperiod", moveScalingEase_.period);
-    _writer.Write("MoveScalingbackRatio", moveScalingEase_.backRatio);
-
-    _writer.Write("movetenpoNum", moveTenpoNum_);
-
-    for (int i = 0; i < moveTenpos_.size(); ++i) {
-        _writer.Write(("moveSpeeds" + std::to_string(i)).c_str(), moveTenpos_);
-    }
-
-    for (int i = 0; i < randomPar_.size(); ++i) {
-        _writer.Write(("randomPar_" + std::to_string(i)).c_str(), randomPar_[i]);
-    }
-
-    for (int i = 0; i < costs_.size(); ++i) {
-        _writer.Write(("costs_" + std::to_string(i)).c_str(), costs_[i]);
-    }
-
-    for (int i = 0; i < generateInterval_.size(); ++i) {
-        _writer.Write(("generateInterval_" + std::to_string(i)).c_str(), generateInterval_[i]);
-    }
-    for (int i = 0; i < scoreValue_.size(); ++i) {
-        _writer.Write(("scoreValue_" + std::to_string(i)).c_str(), scoreValue_[i]);
-    }
-
-      for (int i = 0; i < nextLevelTime_.size(); ++i) {
-        _writer.Write(("nextLevelTime" + std::to_string(i)).c_str(), nextLevelTime_);
-    }
-}
-
-void BlockManager::Load(BinaryReader& _reader) {
-    _reader.Read("columNumMax", columNumMax_);
-    _reader.Read("pillarHP", HPMax_);
-    _reader.Read<3, float>("FirstblockSize", blockSize_);
-    _reader.Read<3, float>("scalingSize", scalingSize_);
-    _reader.Read("collisionRadius", collisionRadius_);
-    _reader.Read("startPosition", startPositionX_);
-    _reader.Read("nextCreatePositionX", nextCreatePositionX_);
-    _reader.Read("basePosY", basePosY_);
-    _reader.Read("moveSpeed", moveTenpo_);
-    _reader.Read("startPositionZ", startPositionZ_);
-    _reader.Read("deadPositionX", deadPositionX_);
-    _reader.Read("moveTimemax", moveTimemax_);
-
-    _reader.Read("ScalingmaxTime", scalingEase_.maxTime);
-    _reader.Read("Scalingamplitude", scalingEase_.amplitude);
-    _reader.Read("Scalingperiod", scalingEase_.period);
-    _reader.Read("ScalingbackRatio", scalingEase_.backRatio);
-
-    _reader.Read("MoveScalingmaxTime", moveScalingEase_.maxTime);
-    _reader.Read("MoveScalingamplitude", moveScalingEase_.amplitude);
-    _reader.Read("MoveScalingperiod", moveScalingEase_.period);
-    _reader.Read("MoveScalingbackRatio", moveScalingEase_.backRatio);
-
-    _reader.Read("movetenpoNum", moveTenpoNum_);
-
-    for (int i = 0; i < moveTenpos_.size(); ++i) {
-        _reader.Read(("moveSpeeds" + std::to_string(i)).c_str(), moveTenpos_);
-    }
-
-    for (int i = 0; i < randomPar_.size(); ++i) {
-        _reader.Read(("randomPar_" + std::to_string(i)).c_str(), randomPar_[i]);
-    }
-
-    for (int i = 0; i < costs_.size(); ++i) {
-        _reader.Read(("costs_" + std::to_string(i)).c_str(), costs_[i]);
-    }
-
-    for (int i = 0; i < generateInterval_.size(); ++i) {
-        _reader.Read(("generateInterval_" + std::to_string(i)).c_str(), generateInterval_[i]);
-    }
-
-    for (int i = 0; i < scoreValue_.size(); ++i) {
-        _reader.Read(("scoreValue_" + std::to_string(i)).c_str(), scoreValue_[i]);
-    }
-
-    for (int i = 0; i < nextLevelTime_.size(); ++i) {
-        _reader.Read(("nextLevelTime" + std::to_string(i)).c_str(), nextLevelTime_);
-    }
-}
-
 void BlockManager::Finalize() {}
 
 void BlockManager::CostReset() {
@@ -204,7 +103,7 @@ void BlockManager::CostReset() {
 
 void BlockManager::SpeedChangeForTime(float& time, LevelUIParentStatus* levelUI) {
 
-     if (moveTenpos_.size() - 1 < currentLevel_) {
+    if (moveTenpos_.size() - 1 < currentLevel_) {
         return;
     }
 
@@ -219,12 +118,12 @@ void BlockManager::SpeedChangeForTime(float& time, LevelUIParentStatus* levelUI)
 }
 
 void BlockManager::SetMoveTempoForLevel() {
-    if (moveTenpos_.size()-1 < currentLevel_) {
+    if (moveTenpos_.size() - 1 < currentLevel_) {
         return;
     }
 
     moveTenpo_ = moveTenpos_[currentLevel_];
- }
+}
 
 void BlockManager::ResetLineCounter(BlockType type) {
     lineCounter_[static_cast<int32_t>(type)] = 0;
@@ -263,15 +162,15 @@ void BlockManager::ScalingEaseUpdate(const float& t) {
 
         /// スケーリングイージング
         resultScale_ = EaseAmplitudeScale(blockSize_, moveScalingEase_.time, moveScalingEase_.maxTime,
-                                          moveScalingEase_.amplitude, moveScalingEase_.period);
+            moveScalingEase_.amplitude, moveScalingEase_.period);
 
-        //事後処理
+        // 事後処理
         if (moveScalingEase_.time < moveScalingEase_.maxTime) {
             break;
         }
         moveScalingEase_.time = moveScalingEase_.maxTime;
-        resultScale_      = blockSize_;
-        easeType_         = EaseType::NONE;
+        resultScale_          = blockSize_;
+        easeType_             = EaseType::NONE;
         break;
     default:
         break;
@@ -279,6 +178,67 @@ void BlockManager::ScalingEaseUpdate(const float& t) {
 }
 
 void BlockManager::ResetScalingEase() {
-    scalingEase_.time = 0.0f;
+    scalingEase_.time     = 0.0f;
     moveScalingEase_.time = 0.0f;
+}
+
+void to_json(nlohmann::json& _json, const BlockManager& _blockManager) {
+    _json["columNumMax"]          = _blockManager.columNumMax_;
+    _json["pillarHP"]             = _blockManager.HPMax_;
+    _json["FirstblockSize"]       = _blockManager.blockSize_;
+    _json["scalingSize"]          = _blockManager.scalingSize_;
+    _json["collisionRadius"]      = _blockManager.collisionRadius_;
+    _json["startPosition"]        = _blockManager.startPositionX_;
+    _json["nextCreatePositionX"]  = _blockManager.nextCreatePositionX_;
+    _json["basePosY"]             = _blockManager.basePosY_;
+    _json["moveSpeed"]            = _blockManager.moveTenpo_;
+    _json["startPositionZ"]       = _blockManager.startPositionZ_;
+    _json["deadPositionX"]        = _blockManager.deadPositionX_;
+    _json["moveTimemax"]          = _blockManager.moveTimemax_;
+    _json["ScalingmaxTime"]       = _blockManager.scalingEase_.maxTime;
+    _json["Scalingamplitude"]     = _blockManager.scalingEase_.amplitude;
+    _json["Scalingperiod"]        = _blockManager.scalingEase_.period;
+    _json["ScalingbackRatio"]     = _blockManager.scalingEase_.backRatio;
+    _json["MoveScalingmaxTime"]   = _blockManager.moveScalingEase_.maxTime;
+    _json["MoveScalingamplitude"] = _blockManager.moveScalingEase_.amplitude;
+    _json["MoveScalingperiod"]    = _blockManager.moveScalingEase_.period;
+    _json["MoveScalingbackRatio"] = _blockManager.moveScalingEase_.backRatio;
+    _json["movetenpoNum"]         = _blockManager.moveTenpoNum_;
+    _json["moveSpeeds"]           = _blockManager.moveTenpos_;
+    _json["randomPar"]            = _blockManager.randomPar_;
+    _json["costs"]                = _blockManager.costs_;
+
+    _json["generateInterval"] = _blockManager.generateInterval_;
+    _json["scoreValue"]       = _blockManager.scoreValue_;
+    _json["nextLevelTime"]    = _blockManager.nextLevelTime_;
+}
+
+void from_json(const nlohmann::json& _json, BlockManager& _blockManager) {
+    _json.at("columNumMax").get_to(_blockManager.columNumMax_);
+    _json.at("pillarHP").get_to(_blockManager.HPMax_);
+    _json.at("FirstblockSize").get_to(_blockManager.blockSize_);
+    _json.at("scalingSize").get_to(_blockManager.scalingSize_);
+    _json.at("collisionRadius").get_to(_blockManager.collisionRadius_);
+    _json.at("startPosition").get_to(_blockManager.startPositionX_);
+    _json.at("nextCreatePositionX").get_to(_blockManager.nextCreatePositionX_);
+    _json.at("basePosY").get_to(_blockManager.basePosY_);
+    _json.at("moveSpeed").get_to(_blockManager.moveTenpo_);
+    _json.at("startPositionZ").get_to(_blockManager.startPositionZ_);
+    _json.at("deadPositionX").get_to(_blockManager.deadPositionX_);
+    _json.at("moveTimemax").get_to(_blockManager.moveTimemax_);
+    _json.at("ScalingmaxTime").get_to(_blockManager.scalingEase_.maxTime);
+    _json.at("Scalingamplitude").get_to(_blockManager.scalingEase_.amplitude);
+    _json.at("Scalingperiod").get_to(_blockManager.scalingEase_.period);
+    _json.at("ScalingbackRatio").get_to(_blockManager.scalingEase_.backRatio);
+    _json.at("MoveScalingmaxTime").get_to(_blockManager.moveScalingEase_.maxTime);
+    _json.at("MoveScalingamplitude").get_to(_blockManager.moveScalingEase_.amplitude);
+    _json.at("MoveScalingperiod").get_to(_blockManager.moveScalingEase_.period);
+    _json.at("MoveScalingbackRatio").get_to(_blockManager.moveScalingEase_.backRatio);
+    _json.at("movetenpoNum").get_to(_blockManager.moveTenpoNum_);
+    _json.at("moveSpeeds").get_to(_blockManager.moveTenpos_);
+    _json.at("randomPar").get_to(_blockManager.randomPar_);
+    _json.at("costs").get_to(_blockManager.costs_);
+    _json.at("generateInterval").get_to(_blockManager.generateInterval_);
+    _json.at("scoreValue").get_to(_blockManager.scoreValue_);
+    _json.at("nextLevelTime").get_to(_blockManager.nextLevelTime_);
 }

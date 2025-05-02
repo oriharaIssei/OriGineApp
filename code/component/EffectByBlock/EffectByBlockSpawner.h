@@ -7,6 +7,9 @@ enum class EffectType;
 class GameEntity;
 class EffectByBlockSpawner
     : public IComponent {
+    friend void to_json(nlohmann::json& _json, const EffectByBlockSpawner& _e);
+    friend void from_json(const nlohmann::json& _json, EffectByBlockSpawner& _e);
+
 public:
 private: // variables
     bool isAlive_ = true;
@@ -17,8 +20,6 @@ public:
 
     void Initialize(GameEntity* _entity) override;
     virtual bool Edit();
-    virtual void Save(BinaryWriter& _writer);
-    virtual void Load(BinaryReader& _reader);
 
     virtual void Finalize();
 

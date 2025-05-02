@@ -5,8 +5,10 @@
 
 class ShockWaveSpawner
     : public IComponent {
-public:
+    friend void to_json(nlohmann::json& _json, const ShockWaveSpawner& _block);
+    friend void from_json(const nlohmann::json& _json, ShockWaveSpawner& _block);
 
+public:
     enum class Direction {
         Right,
         Left,
@@ -17,15 +19,13 @@ private: // variables
 
     float direction_;
     float moveSpeed_;
-  
+
 public:
     ShockWaveSpawner() {}
     virtual ~ShockWaveSpawner() = default;
 
     void Initialize(GameEntity* _entity) override;
     virtual bool Edit();
-    virtual void Save(BinaryWriter& _writer);
-    virtual void Load(BinaryReader& _reader);
 
     virtual void Finalize();
 
@@ -33,7 +33,7 @@ public: // accsessor
     /// getter
     float GetMoveSpeed() const { return moveSpeed_; }
     float GetDirection() const { return direction_; }
-  
+
     /// setter
     void SetDirection(const Direction& _direction);
 };

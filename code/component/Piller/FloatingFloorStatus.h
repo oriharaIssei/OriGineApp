@@ -1,18 +1,18 @@
 #pragma once
 
 #include "component/IComponent.h"
-#include<array>
+#include <array>
 #include <cstdint>
-#include<Vector3.h>
+#include <Vector3.h>
 
 class FloatingFloorStatus
     : public IComponent {
+    friend void to_json(nlohmann::json& _json, const FloatingFloorStatus& _block);
+    friend void from_json(const nlohmann::json& _json, FloatingFloorStatus& _block);
 
 private: // variables
-
     bool isAlive_ = true;
-    bool isFall_ = false;
-   
+    bool isFall_  = false;
 
     int32_t columNum_;
     int32_t rowNum_;
@@ -25,11 +25,11 @@ private: // variables
     int32_t currentHP_;
     int32_t HPMax_;
 
-    bool isDestroy_ = false;
+    bool isDestroy_    = false;
     bool isRevivaling_ = false;
     float revivalTime_;
     float currentRevivalTimer_ = 0.0f;
-    Vec3f saveScale_           = {1.0f,1.0f,1.0f};
+    Vec3f saveScale_           = {1.0f, 1.0f, 1.0f};
 
     float ratio_;
 
@@ -39,19 +39,14 @@ public:
 
     void Initialize(GameEntity* _entity) override;
     bool Edit() override;
-    void Save(BinaryWriter& _writer) override;
-    void Load(BinaryReader& _reader) override;
     void Finalize() override;
 
     void TakeDamage();
     void RevivalReset();
 
-  
- void SetColumDecrement();
-   
+    void SetColumDecrement();
 
 public: // accsessor
-
     /// getter
     int32_t GetColumNum() const { return columNum_; }
     int32_t GetRowNum() const { return rowNum_; }
@@ -69,7 +64,7 @@ public: // accsessor
     float GetCurrentRevivalTime() const { return currentRevivalTimer_; }
     Vec3f GetSaveScale() const { return saveScale_; }
 
-      /// setter
+    /// setter
     void SetColumAndRow(const int32_t& colum, const int32_t& row);
     void SetIsFall(const bool& is) { isFall_ = is; }
     void SetIsRevivaling(const bool& is) { isRevivaling_ = is; }
@@ -80,7 +75,7 @@ public: // accsessor
     void SetIncrementFallEaseT(const float& t) { fallEaseT_ += t; }
     void SetFallSpeed(const float& speed) { fallspeed_ = speed; }
     void SetcurrentHP(const int32_t& hp) { currentHP_ = hp; }
-    void SetIsDestroy(const bool& is) { isDestroy_ = is;}
+    void SetIsDestroy(const bool& is) { isDestroy_ = is; }
     void SetRevivalTime(const float& speed) { revivalTime_ = speed; }
     void SetIncrementRevivalTime(const float& speed) { currentRevivalTimer_ += speed; }
     void SetHPMax(const int32_t max) { HPMax_ = max; }
