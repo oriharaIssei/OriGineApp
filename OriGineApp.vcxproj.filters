@@ -385,6 +385,12 @@
     <ClInclude Include="code\system\ResultUI\ResultRankSystem.h">
       <Filter>system\ResultUI</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\ResultUI\ResultUIkeyStatus.h">
+      <Filter>component\ResultUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\ResultUI\ResultKeySystem.h">
+      <Filter>system\ResultUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -659,6 +665,12 @@
       <Filter>component\ResultUI</Filter>
     </ClCompile>
     <ClCompile Include="code\system\ResultUI\ResultRankSystem.cpp">
+      <Filter>system\ResultUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\ResultUI\ResultUIkeyStatus.cpp">
+      <Filter>component\ResultUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\ResultUI\ResultKeySystem.cpp">
       <Filter>system\ResultUI</Filter>
     </ClCompile>
   </ItemGroup>
