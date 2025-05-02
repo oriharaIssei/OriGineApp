@@ -382,6 +382,9 @@
     <ClInclude Include="code\component\ResultUI\ResultFontStatus.h">
       <Filter>component\ResultUI</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\ResultUI\ResultRankSystem.h">
+      <Filter>system\ResultUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -654,6 +657,9 @@
     </ClCompile>
     <ClCompile Include="code\component\ResultUI\ResultFontStatus.cpp">
       <Filter>component\ResultUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\ResultUI\ResultRankSystem.cpp">
+      <Filter>system\ResultUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

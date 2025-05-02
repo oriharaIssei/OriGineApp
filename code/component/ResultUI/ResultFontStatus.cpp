@@ -46,6 +46,7 @@ void ResultFontStatus::Save(BinaryWriter& _writer) {
     _writer.Write("reverseWaitTime", moveWaitTime_);
     _writer.Write("firstWaitTime", firstWaitTime_);
     _writer.Write<2, float>("easeScale", easeScale_);
+   
 }
 
 void ResultFontStatus::Load(BinaryReader& _reader) {

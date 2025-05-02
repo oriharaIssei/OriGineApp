@@ -14,6 +14,7 @@
 #include"component/ResultUI/ResultUIRankStatus.h"
 #include"component/ResultUI/ResultUIScoreStatus.h"
 #include"component/ResultUI/ResultFontStatus.h"
+
 // system
 #include "system/ButtonInputSystem.h"
 #include "system/ChangeSceneByButton.h"
@@ -22,6 +23,7 @@
 #include"system/ResultUI/ResultScoreAdaptSystem.h"
 #include"system/ResultUI/ResultUIParentSystem.h"
 #include"system/ResultUI/ResultFontSystem.h"
+#include"system/ResultUI/ResultRankSystem.h"
 
 ResultScene::ResultScene() : IScene("Result") {}
 
@@ -49,5 +51,6 @@ void ResultScene::registerSystems() {
     ecsManager->registerSystem<ResultScoreAdaptSystem>();
     ecsManager->registerSystem<ResultUIParentSystem>();
     ecsManager->registerSystem<ResultFontSystem>();
+    ecsManager->registerSystem<ResultRankSystem>();
     ecsManager->SortPriorityOrderSystems();
 }

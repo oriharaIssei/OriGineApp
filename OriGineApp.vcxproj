@@ -183,6 +183,7 @@
     <ClInclude Include="code\system\Player\PlayerInput.h" />
     <ClInclude Include="code\system\Player\PlayerMoveSystem.h" />
     <ClInclude Include="code\system\ResultUI\ResultFontSystem.h" />
+    <ClInclude Include="code\system\ResultUI\ResultRankSystem.h" />
     <ClInclude Include="code\system\ResultUI\ResultScoreAdaptSystem.h" />
     <ClInclude Include="code\system\ResultUI\ResultUIParentSystem.h" />
     <ClInclude Include="code\system\Score\ScoreIncrementSystem.h" />
@@ -278,6 +279,7 @@
     <ClCompile Include="code\system\Player\PlayerInput.cpp" />
     <ClCompile Include="code\system\Player\PlayerMoveSystem.cpp" />
     <ClCompile Include="code\system\ResultUI\ResultFontSystem.cpp" />
+    <ClCompile Include="code\system\ResultUI\ResultRankSystem.cpp" />
     <ClCompile Include="code\system\ResultUI\ResultScoreAdaptSystem.cpp" />
     <ClCompile Include="code\system\ResultUI\ResultUIParentSystem.cpp" />
     <ClCompile Include="code\system\Score\ScoreIncrementSystem.cpp" />
