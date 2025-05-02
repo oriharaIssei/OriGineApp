@@ -57,7 +57,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <PreprocessorDefinitions>DEBUG;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)code;$(SolutionDir)application;$(SolutionDir)math;$(SolutionDir)lib;$(SolutionDir)engine\code\ECS;$(SolutionDir)engine\code;$(SolutionDir)engine;$(SolutionDir);$(SolutionDir)externals;$(SolutionDir)externals\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)code;$(ProjectDir);$(SolutionDir)math;$(SolutionDir)lib;$(SolutionDir)engine\code\ECS;$(SolutionDir)engine\code;$(SolutionDir)engine;$(SolutionDir);$(SolutionDir)externals;$(SolutionDir)externals\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)code;$(SolutionDir)application;$(SolutionDir)math;$(SolutionDir)lib;$(SolutionDir)engine\code\ECS;$(SolutionDir)engine\code;$(SolutionDir)engine;$(SolutionDir);$(SolutionDir)externals;$(SolutionDir)externals\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)code;$(ProjectDir);$(SolutionDir)math;$(SolutionDir)lib;$(SolutionDir)engine\code\ECS;$(SolutionDir)engine\code;$(SolutionDir)engine;$(SolutionDir);$(SolutionDir)externals;$(SolutionDir)externals\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -101,26 +101,200 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="code\component\BigBom\BigBomSpawner.h" />
+    <ClInclude Include="code\component\BigBom\BigBomStatus.h" />
+    <ClInclude Include="code\component\BigBom\BigExplotionCollision.h" />
+    <ClInclude Include="code\component\EffectByBlock\EffectByBlockSpawner.h" />
+    <ClInclude Include="code\component\EffectByBlock\EffectByBlockUIStatus.h" />
+    <ClInclude Include="code\component\Field\FieldStatus.h" />
+    <ClInclude Include="code\component\GameEnd\GameEnd.h" />
+    <ClInclude Include="code\component\LevelUPUI\LevelUIParentStatus.h" />
+    <ClInclude Include="code\component\LevelUPUI\LevelUIStatus.h" />
+    <ClInclude Include="code\component\OperateUI\OperateUIStatus.h" />
+    <ClInclude Include="code\component\ResultUI\ResultFontStatus.h" />
+    <ClInclude Include="code\component\ResultUI\ResultUIkeyStatus.h" />
+    <ClInclude Include="code\component\ResultUI\ResultUIParentStatus.h" />
+    <ClInclude Include="code\component\ResultUI\ResultUIRankStatus.h" />
+    <ClInclude Include="code\component\ResultUI\ResultUIScoreStatus.h" />
+    <ClInclude Include="code\component\Score\ScoreStatus.h" />
+    <ClInclude Include="code\component\Score\ScoreUIStatus.h" />
+    <ClInclude Include="code\component\Scrap\ScrapSpawner.h" />
+    <ClInclude Include="code\component\Scrap\ScrapStatus.h" />
     <ClInclude Include="code\FrameWork.h" />
+    <ClInclude Include="code\KetaEasing.h" />
     <ClInclude Include="code\MyGame.h" />
+    <ClInclude Include="code\component\Block\BlockManager.h" />
+    <ClInclude Include="code\component\Block\BlockStatus.h" />
+    <ClInclude Include="code\component\Bom\BomSpawner.h" />
+    <ClInclude Include="code\component\Bom\BomStatus.h" />
+    <ClInclude Include="code\component\Bom\ExplotionCollision.h" />
     <ClInclude Include="code\component\Button.h" />
+    <ClInclude Include="code\component\Combo\ComboStatus.h" />
+    <ClInclude Include="code\component\Combo\ComboUIStatus.h" />
+    <ClInclude Include="code\component\Piller\FloatingFloorSpawner.h" />
+    <ClInclude Include="code\component\Piller\FloatingFloorStatus.h" />
+    <ClInclude Include="code\component\Player\PlayerStates.h" />
     <ClInclude Include="code\component\SceneChanger.h" />
+    <ClInclude Include="code\component\ShockWave\ShockWaveSpawner.h" />
+    <ClInclude Include="code\component\Timer\TimerStatus.h" />
+    <ClInclude Include="code\component\Timer\TimerUIStatus.h" />
     <ClInclude Include="code\scene\GameScene.h" />
+    <ClInclude Include="code\scene\ResultScene.h" />
     <ClInclude Include="code\scene\TitleScene.h" />
-    <ClInclude Include="code\system\Input\ButtonInputSystem.h" />
-    <ClInclude Include="code\system\Transition\ChangeSceneByButton.h" />
-    <ClInclude Include="code\system\Transition\UpdateButtonColorByState.h" />
+    <ClInclude Include="code\system\BigBom\BigBomCollisionExSystem.h" />
+    <ClInclude Include="code\system\BigBom\BigBomInputSystem.h" />
+    <ClInclude Include="code\system\BigBom\BigBomLaunchSystem.h" />
+    <ClInclude Include="code\system\BigBom\DeleteBigBomSystem.h" />
+    <ClInclude Include="code\system\BigBom\DeleteBigExplotionCollision.h" />
+    <ClInclude Include="code\system\Block\BlockExBomCollision.h" />
+    <ClInclude Include="code\system\Block\BlockFloorCollision.h" />
+    <ClInclude Include="code\system\Block\BlockMoveSystem.h" />
+    <ClInclude Include="code\system\Block\BlockSpawnSystem.h" />
+    <ClInclude Include="code\system\Block\BreakBlockSystem.h" />
+    <ClInclude Include="code\system\Block\DeleteBlockSystem.h" />
+    <ClInclude Include="code\system\Block\MoveTenpoSystem.h" />
+    <ClInclude Include="code\system\Bom\BomCollisionExSystem.h" />
+    <ClInclude Include="code\system\Bom\BomExplotionSystem.h" />
+    <ClInclude Include="code\system\Bom\DeleteBomSystem.h" />
+    <ClInclude Include="code\system\Bom\DeleteExplotionCollision.h" />
+    <ClInclude Include="code\system\Bom\PutBomSystem.h" />
+    <ClInclude Include="code\system\ButtonInputSystem.h" />
+    <ClInclude Include="code\system\ChangeSceneByButton.h" />
+    <ClInclude Include="code\system\Combo\ComboSystem.h" />
+    <ClInclude Include="code\system\Combo\ComboUIScrollSystem.h" />
+    <ClInclude Include="code\system\EffectByBlock\EffectByBlockDrawSystem.h" />
+    <ClInclude Include="code\system\EffectByBlock\EffectByBlockDeleteSystem.h" />
+    <ClInclude Include="code\system\FloatingFloor\CanageStateFallSystem.h" />
+    <ClInclude Include="code\system\FloatingFloor\CreateFloorSystem.h" />
+    <ClInclude Include="code\system\FloatingFloor\DeleteFloatingFloorSystem.h" />
+    <ClInclude Include="code\system\FloatingFloor\FloatingFloorDamageSystem.h" />
+    <ClInclude Include="code\system\FloatingFloor\FloatingFloorFallSystem.h" />
+    <ClInclude Include="code\system\FloatingFloor\FloatingFloorRevivalSystem.h" />
+    <ClInclude Include="code\system\Floor\DeleteFloorSystem.h" />
+    <ClInclude Include="code\system\Floor\FloorUpdateMatrixSystem.h" />
+    <ClInclude Include="code\system\GameEnd\GameEndSystem.h" />
+    <ClInclude Include="code\system\LeverlUP\LevelUIAdaptSystem.h" />
+    <ClInclude Include="code\system\LeverlUP\LevelUIAnimationSystem.h" />
+    <ClInclude Include="code\system\LeverlUP\LevelUIInitSystem.h" />
+    <ClInclude Include="code\system\LeverlUP\LevelUIParentInitSystem.h" />
+    <ClInclude Include="code\system\Matrix\UpdateMatrixSystem.h" />
+    <ClInclude Include="code\system\OperateUI\OperateUISystem.h" />
+    <ClInclude Include="code\system\Player\PlayerCreateBigBomSystem.h" />
+    <ClInclude Include="code\system\Player\PlayerFollowCameraSystem.h" />
+    <ClInclude Include="code\system\Player\PlayerInput.h" />
+    <ClInclude Include="code\system\Player\PlayerMoveSystem.h" />
+    <ClInclude Include="code\system\ResultUI\ResultFontSystem.h" />
+    <ClInclude Include="code\system\ResultUI\ResultKeySystem.h" />
+    <ClInclude Include="code\system\ResultUI\ResultRankSystem.h" />
+    <ClInclude Include="code\system\ResultUI\ResultScoreAdaptSystem.h" />
+    <ClInclude Include="code\system\ResultUI\ResultUIParentSystem.h" />
+    <ClInclude Include="code\system\Score\ScoreIncrementSystem.h" />
+    <ClInclude Include="code\system\Score\ScoreUIScrollSystem.h" />
+    <ClInclude Include="code\system\scrap\ScrapDeleteSystem.h" />
+    <ClInclude Include="code\system\scrap\ScrapFallSystem.h" />
+    <ClInclude Include="code\system\scrap\ScrapToPlayerCollisionSystem.h" />
+    <ClInclude Include="code\system\Timer\TimerDecrementSystem.h" />
+    <ClInclude Include="code\system\Timer\TimerUIScrollSystem.h" />
+    <ClInclude Include="code\system\UpdateButtonColorByState.h" />
+    <ClInclude Include="code\system\UsingCameraSetSystem.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\component\BigBom\BigBomSpawner.cpp" />
+    <ClCompile Include="code\component\BigBom\BigBomStatus.cpp" />
+    <ClCompile Include="code\component\BigBom\BigExplotionCollision.cpp" />
+    <ClCompile Include="code\component\EffectByBlock\EffectByBlockSpawner.cpp" />
+    <ClCompile Include="code\component\EffectByBlock\EffectByBlockUIStatus.cpp" />
+    <ClCompile Include="code\component\Field\FieldStatus.cpp" />
+    <ClCompile Include="code\component\GameEnd\GameEnd.cpp" />
+    <ClCompile Include="code\component\LevelUPUI\LevelUIParentStatus.cpp" />
+    <ClCompile Include="code\component\LevelUPUI\LevelUIStatus.cpp" />
+    <ClCompile Include="code\component\OperateUI\OperateUIStatus.cpp" />
+    <ClCompile Include="code\component\ResultUI\ResultFontStatus.cpp" />
+    <ClCompile Include="code\component\ResultUI\ResultUIkeyStatus.cpp" />
+    <ClCompile Include="code\component\ResultUI\ResultUIParentStatus.cpp" />
+    <ClCompile Include="code\component\ResultUI\ResultUIRankStatus.cpp" />
+    <ClCompile Include="code\component\ResultUI\ResultUIScoreStatus.cpp" />
+    <ClCompile Include="code\component\Score\ScoreStatus.cpp" />
+    <ClCompile Include="code\component\Score\ScoreUIStatus.cpp" />
+    <ClCompile Include="code\component\Scrap\ScrapSpawner.cpp" />
+    <ClCompile Include="code\component\Scrap\ScrapStatus.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
+    <ClCompile Include="code\KetaEasing.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
+    <ClCompile Include="code\component\Block\BlockManager.cpp" />
+    <ClCompile Include="code\component\Block\BlockStatus.cpp" />
+    <ClCompile Include="code\component\Bom\BomSpawner.cpp" />
+    <ClCompile Include="code\component\Bom\BomStatus.cpp" />
+    <ClCompile Include="code\component\Bom\ExplotionCollision.cpp" />
     <ClCompile Include="code\component\Button.cpp" />
+    <ClCompile Include="code\component\Combo\ComboStatus.cpp" />
+    <ClCompile Include="code\component\Combo\ComboUIStatus.cpp" />
+    <ClCompile Include="code\component\Piller\FloatingFloorSpawner.cpp" />
+    <ClCompile Include="code\component\Piller\FloatingFloorStatus.cpp" />
+    <ClCompile Include="code\component\Player\PlayerStates.cpp" />
     <ClCompile Include="code\component\SceneChanger.cpp" />
+    <ClCompile Include="code\component\ShockWave\ShockWaveSpawner.cpp" />
+    <ClCompile Include="code\component\Timer\TimerStatus.cpp" />
+    <ClCompile Include="code\component\Timer\TimerUIStatus.cpp" />
     <ClCompile Include="code\scene\GameScene.cpp" />
+    <ClCompile Include="code\scene\ResultScene.cpp" />
     <ClCompile Include="code\scene\TitleScene.cpp" />
-    <ClCompile Include="code\system\Input\ButtonInputSystem.cpp" />
-    <ClCompile Include="code\system\Transition\ChangeSceneByButton.cpp" />
-    <ClCompile Include="code\system\Transition\UpdateButtonColorByState.cpp" />
+    <ClCompile Include="code\system\BigBom\BigBomCollisionExSystem.cpp" />
+    <ClCompile Include="code\system\BigBom\BigBomInputSystem.cpp" />
+    <ClCompile Include="code\system\BigBom\BigBomLaunchSystem.cpp" />
+    <ClCompile Include="code\system\BigBom\DeleteBigBomSystem.cpp" />
+    <ClCompile Include="code\system\BigBom\DeleteBigExplotionCollision.cpp" />
+    <ClCompile Include="code\system\Block\BlockExBomCollision.cpp" />
+    <ClCompile Include="code\system\Block\BlockFloorCollision.cpp" />
+    <ClCompile Include="code\system\Block\BlockMoveSystem.cpp" />
+    <ClCompile Include="code\system\Block\BlockSpawnSystem.cpp" />
+    <ClCompile Include="code\system\Block\BreakBlockSystem.cpp" />
+    <ClCompile Include="code\system\Block\DeleteBlockSystem.cpp" />
+    <ClCompile Include="code\system\Block\MoveTenpoSystem.cpp" />
+    <ClCompile Include="code\system\Bom\BomCollisionExSystem.cpp" />
+    <ClCompile Include="code\system\Bom\BomExplotionSystem.cpp" />
+    <ClCompile Include="code\system\Bom\DeleteBomSystem.cpp" />
+    <ClCompile Include="code\system\Bom\DeleteExplotionCollision.cpp" />
+    <ClCompile Include="code\system\Bom\PutBomSystem.cpp" />
+    <ClCompile Include="code\system\ButtonInputSystem.cpp" />
+    <ClCompile Include="code\system\ChangeSceneByButton.cpp" />
+    <ClCompile Include="code\system\Combo\ComboSystem.cpp" />
+    <ClCompile Include="code\system\Combo\ComboUIScrollSystem.cpp" />
+    <ClCompile Include="code\system\EffectByBlock\EffectByBlockDrawSystem.cpp" />
+    <ClCompile Include="code\system\EffectByBlock\EffectByBlockDeleteSystem.cpp" />
+    <ClCompile Include="code\system\FloatingFloor\CanageStateFallSystem.cpp" />
+    <ClCompile Include="code\system\FloatingFloor\CreateFloorSystem.cpp" />
+    <ClCompile Include="code\system\FloatingFloor\DeleteFloatingFloorSystem.cpp" />
+    <ClCompile Include="code\system\FloatingFloor\FloatingFloorDamageSystem.cpp" />
+    <ClCompile Include="code\system\FloatingFloor\FloatingFloorFallSystem.cpp" />
+    <ClCompile Include="code\system\FloatingFloor\FloatingFloorRevivalSystem.cpp" />
+    <ClCompile Include="code\system\Floor\DeleteFloorSystem.cpp" />
+    <ClCompile Include="code\system\Floor\FloorUpdateMatrixSystem.cpp" />
+    <ClCompile Include="code\system\GameEnd\GameEndSystem.cpp" />
+    <ClCompile Include="code\system\LeverlUP\LevelUIAdaptSystem.cpp" />
+    <ClCompile Include="code\system\LeverlUP\LevelUIAnimationSystem.cpp" />
+    <ClCompile Include="code\system\LeverlUP\LevelUIInitSystem.cpp" />
+    <ClCompile Include="code\system\LeverlUP\LevelUIParentInitSystem.cpp" />
+    <ClCompile Include="code\system\Matrix\UpdateMatrixSystem.cpp" />
+    <ClCompile Include="code\system\OperateUI\OperateUISystem.cpp" />
+    <ClCompile Include="code\system\Player\PlayerCreateBigBomSystem.cpp" />
+    <ClCompile Include="code\system\Player\PlayerFollowCameraSystem.cpp" />
+    <ClCompile Include="code\system\Player\PlayerInput.cpp" />
+    <ClCompile Include="code\system\Player\PlayerMoveSystem.cpp" />
+    <ClCompile Include="code\system\ResultUI\ResultFontSystem.cpp" />
+    <ClCompile Include="code\system\ResultUI\ResultKeySystem.cpp" />
+    <ClCompile Include="code\system\ResultUI\ResultRankSystem.cpp" />
+    <ClCompile Include="code\system\ResultUI\ResultScoreAdaptSystem.cpp" />
+    <ClCompile Include="code\system\ResultUI\ResultUIParentSystem.cpp" />
+    <ClCompile Include="code\system\Score\ScoreIncrementSystem.cpp" />
+    <ClCompile Include="code\system\Score\ScoreUIScrollSystem.cpp" />
+    <ClCompile Include="code\system\scrap\ScrapDeleteSystem.cpp" />
+    <ClCompile Include="code\system\scrap\ScrapFallSystem.cpp" />
+    <ClCompile Include="code\system\scrap\ScrapToPlayerCollisionSystem.cpp" />
+    <ClCompile Include="code\system\Timer\TimerDecrementSystem.cpp" />
+    <ClCompile Include="code\system\Timer\TimerUIScrollSystem.cpp" />
+    <ClCompile Include="code\system\UpdateButtonColorByState.cpp" />
+    <ClCompile Include="code\system\UsingCameraSetSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\externals\DirectXTex\DirectXTex.vcxproj">

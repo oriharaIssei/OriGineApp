@@ -4,27 +4,159 @@
     <Filter Include="component">
       <UniqueIdentifier>{18DEAB42-8448-60B9-CD86-115F39303E0E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\Block">
+      <UniqueIdentifier>{32F59901-9E80-07C6-A791-8ABA139C63C6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\Bom">
+      <UniqueIdentifier>{65173853-D1D7-B389-9A12-FD060692F865}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\Combo">
+      <UniqueIdentifier>{37AAAD01-A335-1BC6-AC46-9EBA185177C6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\Piller">
+      <UniqueIdentifier>{8F0B4955-7B04-68A7-A436-4D2C908E47B3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\Player">
+      <UniqueIdentifier>{34847955-207D-98A7-49AF-7D2C350778B3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\ShockWave">
+      <UniqueIdentifier>{F2CC8286-5E2E-6094-E79B-A64653FC9653}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\Timer">
+      <UniqueIdentifier>{E800DE02-548C-4BC7-5D9D-CEBBC9A7A7C7}</UniqueIdentifier>
+    </Filter>
     <Filter Include="scene">
       <UniqueIdentifier>{D3075810-3F1C-80C1-089E-232174717CF2}</UniqueIdentifier>
     </Filter>
     <Filter Include="system">
       <UniqueIdentifier>{8AE4EE1C-7686-19F3-5F41-2D474B82A043}</UniqueIdentifier>
     </Filter>
-    <Filter Include="system\Input">
-      <UniqueIdentifier>{09547867-F5B6-070C-9E3C-40C28A7ED38E}</UniqueIdentifier>
+    <Filter Include="system\Block">
+      <UniqueIdentifier>{2489F866-10EC-870B-B971-C0C1A5B3538E}</UniqueIdentifier>
     </Filter>
-    <Filter Include="system\Transition">
-      <UniqueIdentifier>{446DD6E9-B083-D47F-F9FA-5FA16550A507}</UniqueIdentifier>
+    <Filter Include="system\Bom">
+      <UniqueIdentifier>{D7069D0B-C3BE-DE58-2CC6-B7B4189D7949}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\Combo">
+      <UniqueIdentifier>{293E0C67-15A1-9B0B-BE26-D4C1AA68678E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\FloatingFloor">
+      <UniqueIdentifier>{0F01B216-FB8F-3BE0-A4AE-4FDB901C4C86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\Floor">
+      <UniqueIdentifier>{BBEC4067-A74F-D00B-50D5-08C23C179C8E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\FloorAndPiller">
+      <UniqueIdentifier>{7625AA2C-E291-6527-AB85-FD8417B1878F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\Matrix">
+      <UniqueIdentifier>{EE5CEE5E-5A1D-6A95-2358-B3128FD7AE71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\Player">
+      <UniqueIdentifier>{6696AA66-D256-269D-9B91-6F1A07116B79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\Timer">
+      <UniqueIdentifier>{DA943C68-C6F7-CB0C-6F7D-04C35BBF978F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\Scrap">
+      <UniqueIdentifier>{818de68b-ec3f-4c9b-ad56-3f786849b122}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\scrap">
+      <UniqueIdentifier>{991bf3cd-f194-4718-a592-c812f35ab967}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\BigBom">
+      <UniqueIdentifier>{344f6976-9132-45ee-a6a9-94043d3982e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\BigBom">
+      <UniqueIdentifier>{173f64c8-99a3-4c5e-9f72-6618e7a59739}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\Score">
+      <UniqueIdentifier>{00d42a14-d318-44b6-ab54-7770aed1f703}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\Score">
+      <UniqueIdentifier>{ccf2ed44-29b0-4e54-b50f-4b7104347402}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\Field">
+      <UniqueIdentifier>{a46837b7-a0da-4c24-ba0b-b462a8adb78f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\EffectByBLock">
+      <UniqueIdentifier>{ded069dd-a58f-4ab3-abfb-9fa0e1dfc9e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\EffectByBlock">
+      <UniqueIdentifier>{1c1185c8-147d-46cd-ab43-11deb21ccc77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\OperateUI">
+      <UniqueIdentifier>{3370eef5-69a9-4db4-9681-20f707d558fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\OperateUI">
+      <UniqueIdentifier>{9ea86450-1e24-42e1-a8f3-a523f91e7583}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\GameEnd">
+      <UniqueIdentifier>{40525bc1-9fcd-4ab0-a642-9cd230c49751}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\GameEnd">
+      <UniqueIdentifier>{d4cdb92d-5bac-450f-ae0c-8aafe0e6fe65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\LevelUP">
+      <UniqueIdentifier>{e938c1d1-664f-4787-a938-2d9cdc128034}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\LevelUp">
+      <UniqueIdentifier>{ba0cd23a-6631-46a5-b745-f0dc44585baf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\ResultUI">
+      <UniqueIdentifier>{05cebea6-6e9d-419e-ba77-a91df9bd7bd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\ResultUI">
+      <UniqueIdentifier>{6b98bfba-a398-4fc3-8d2f-3fc603b65069}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\MyGame.h" />
+    <ClInclude Include="code\component\Block\BlockManager.h">
+      <Filter>component\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Block\BlockStatus.h">
+      <Filter>component\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Bom\BomSpawner.h">
+      <Filter>component\Bom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Bom\BomStatus.h">
+      <Filter>component\Bom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Bom\ExplotionCollision.h">
+      <Filter>component\Bom</Filter>
+    </ClInclude>
     <ClInclude Include="code\component\Button.h">
       <Filter>component</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\Combo\ComboStatus.h">
+      <Filter>component\Combo</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Combo\ComboUIStatus.h">
+      <Filter>component\Combo</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Piller\FloatingFloorSpawner.h">
+      <Filter>component\Piller</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Piller\FloatingFloorStatus.h">
+      <Filter>component\Piller</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Player\PlayerStates.h">
+      <Filter>component\Player</Filter>
+    </ClInclude>
     <ClInclude Include="code\component\SceneChanger.h">
       <Filter>component</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\ShockWave\ShockWaveSpawner.h">
+      <Filter>component\ShockWave</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Timer\TimerStatus.h">
+      <Filter>component\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Timer\TimerUIStatus.h">
+      <Filter>component\Timer</Filter>
     </ClInclude>
     <ClInclude Include="code\scene\GameScene.h">
       <Filter>scene</Filter>
@@ -32,24 +164,281 @@
     <ClInclude Include="code\scene\TitleScene.h">
       <Filter>scene</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Input\ButtonInputSystem.h">
-      <Filter>system\Input</Filter>
+    <ClInclude Include="code\system\Block\BlockExBomCollision.h">
+      <Filter>system\Block</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\ChangeSceneByButton.h">
-      <Filter>system\Transition</Filter>
+    <ClInclude Include="code\system\Block\BlockMoveSystem.h">
+      <Filter>system\Block</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\UpdateButtonColorByState.h">
-      <Filter>system\Transition</Filter>
+    <ClInclude Include="code\system\Block\BlockSpawnSystem.h">
+      <Filter>system\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Block\BreakBlockSystem.h">
+      <Filter>system\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Block\DeleteBlockSystem.h">
+      <Filter>system\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Block\MoveTenpoSystem.h">
+      <Filter>system\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Bom\BomCollisionExSystem.h">
+      <Filter>system\Bom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Bom\BomExplotionSystem.h">
+      <Filter>system\Bom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Bom\DeleteBomSystem.h">
+      <Filter>system\Bom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Bom\DeleteExplotionCollision.h">
+      <Filter>system\Bom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Bom\PutBomSystem.h">
+      <Filter>system\Bom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\ButtonInputSystem.h">
+      <Filter>system</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\ChangeSceneByButton.h">
+      <Filter>system</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Combo\ComboSystem.h">
+      <Filter>system\Combo</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Combo\ComboUIScrollSystem.h">
+      <Filter>system\Combo</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\FloatingFloor\CanageStateFallSystem.h">
+      <Filter>system\FloatingFloor</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\FloatingFloor\CreateFloorSystem.h">
+      <Filter>system\FloatingFloor</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\FloatingFloor\DeleteFloatingFloorSystem.h">
+      <Filter>system\FloatingFloor</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\FloatingFloor\FloatingFloorDamageSystem.h">
+      <Filter>system\FloatingFloor</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\FloatingFloor\FloatingFloorFallSystem.h">
+      <Filter>system\FloatingFloor</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Floor\DeleteFloorSystem.h">
+      <Filter>system\Floor</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Floor\FloorUpdateMatrixSystem.h">
+      <Filter>system\Floor</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Matrix\UpdateMatrixSystem.h">
+      <Filter>system\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Player\PlayerFollowCameraSystem.h">
+      <Filter>system\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Player\PlayerInput.h">
+      <Filter>system\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Player\PlayerMoveSystem.h">
+      <Filter>system\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Timer\TimerDecrementSystem.h">
+      <Filter>system\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Timer\TimerUIScrollSystem.h">
+      <Filter>system\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\UpdateButtonColorByState.h">
+      <Filter>system</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Scrap\ScrapSpawner.h">
+      <Filter>component\Scrap</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Scrap\ScrapStatus.h">
+      <Filter>component\Scrap</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\scrap\ScrapFallSystem.h">
+      <Filter>system\scrap</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\scrap\ScrapDeleteSystem.h">
+      <Filter>system\scrap</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\scrap\ScrapToPlayerCollisionSystem.h">
+      <Filter>system\scrap</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\BigBom\BigBomSpawner.h">
+      <Filter>component\BigBom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\BigBom\BigBomStatus.h">
+      <Filter>component\BigBom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\BigBom\BigExplotionCollision.h">
+      <Filter>component\BigBom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Player\PlayerCreateBigBomSystem.h">
+      <Filter>system\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\BigBom\BigBomInputSystem.h">
+      <Filter>system\BigBom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\BigBom\BigBomLaunchSystem.h">
+      <Filter>system\BigBom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\FloatingFloor\FloatingFloorRevivalSystem.h">
+      <Filter>system\FloatingFloor</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Block\BlockFloorCollision.h">
+      <Filter>system\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Score\ScoreStatus.h">
+      <Filter>component\Score</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Score\ScoreUIStatus.h">
+      <Filter>component\Score</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Score\ScoreIncrementSystem.h">
+      <Filter>system\Score</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Score\ScoreUIScrollSystem.h">
+      <Filter>system\Score</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\BigBom\BigBomCollisionExSystem.h">
+      <Filter>system\BigBom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\BigBom\DeleteBigBomSystem.h">
+      <Filter>system\BigBom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\BigBom\DeleteBigExplotionCollision.h">
+      <Filter>system\BigBom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Field\FieldStatus.h">
+      <Filter>component\Field</Filter>
+    </ClInclude>
+    <ClInclude Include="code\KetaEasing.h" />
+    <ClInclude Include="code\component\EffectByBlock\EffectByBlockSpawner.h">
+      <Filter>component\EffectByBLock</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\EffectByBlock\EffectByBlockUIStatus.h">
+      <Filter>component\EffectByBLock</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\EffectByBlock\EffectByBlockDrawSystem.h">
+      <Filter>system\EffectByBlock</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\EffectByBlock\EffectByBlockDeleteSystem.h">
+      <Filter>system\EffectByBlock</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\UsingCameraSetSystem.h" />
+    <ClInclude Include="code\component\OperateUI\OperateUIStatus.h">
+      <Filter>component\OperateUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\OperateUI\OperateUISystem.h">
+      <Filter>system\OperateUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\GameEnd\GameEnd.h">
+      <Filter>component\GameEnd</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\GameEnd\GameEndSystem.h">
+      <Filter>system\GameEnd</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\LevelUPUI\LevelUIParentStatus.h">
+      <Filter>component\LevelUP</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\LevelUPUI\LevelUIStatus.h">
+      <Filter>component\LevelUP</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\LeverlUP\LevelUIInitSystem.h">
+      <Filter>system\LevelUp</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\LeverlUP\LevelUIAnimationSystem.h">
+      <Filter>system\LevelUp</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\LeverlUP\LevelUIAdaptSystem.h">
+      <Filter>system\LevelUp</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\LeverlUP\LevelUIParentInitSystem.h">
+      <Filter>system\LevelUp</Filter>
+    </ClInclude>
+    <ClInclude Include="code\scene\ResultScene.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\ResultUI\ResultUIParentStatus.h">
+      <Filter>component\ResultUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\ResultUI\ResultUIScoreStatus.h">
+      <Filter>component\ResultUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\ResultUI\ResultUIRankStatus.h">
+      <Filter>component\ResultUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\ResultUI\ResultScoreAdaptSystem.h">
+      <Filter>system\ResultUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\ResultUI\ResultUIParentSystem.h">
+      <Filter>system\ResultUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\ResultUI\ResultFontSystem.h">
+      <Filter>system\ResultUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\ResultUI\ResultFontStatus.h">
+      <Filter>component\ResultUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\ResultUI\ResultRankSystem.h">
+      <Filter>system\ResultUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\ResultUI\ResultUIkeyStatus.h">
+      <Filter>component\ResultUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\ResultUI\ResultKeySystem.h">
+      <Filter>system\ResultUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
+    <ClCompile Include="code\component\Block\BlockManager.cpp">
+      <Filter>component\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Block\BlockStatus.cpp">
+      <Filter>component\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Bom\BomSpawner.cpp">
+      <Filter>component\Bom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Bom\BomStatus.cpp">
+      <Filter>component\Bom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Bom\ExplotionCollision.cpp">
+      <Filter>component\Bom</Filter>
+    </ClCompile>
     <ClCompile Include="code\component\Button.cpp">
       <Filter>component</Filter>
     </ClCompile>
+    <ClCompile Include="code\component\Combo\ComboStatus.cpp">
+      <Filter>component\Combo</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Combo\ComboUIStatus.cpp">
+      <Filter>component\Combo</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Piller\FloatingFloorSpawner.cpp">
+      <Filter>component\Piller</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Piller\FloatingFloorStatus.cpp">
+      <Filter>component\Piller</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Player\PlayerStates.cpp">
+      <Filter>component\Player</Filter>
+    </ClCompile>
     <ClCompile Include="code\component\SceneChanger.cpp">
       <Filter>component</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\ShockWave\ShockWaveSpawner.cpp">
+      <Filter>component\ShockWave</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Timer\TimerStatus.cpp">
+      <Filter>component\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Timer\TimerUIStatus.cpp">
+      <Filter>component\Timer</Filter>
     </ClCompile>
     <ClCompile Include="code\scene\GameScene.cpp">
       <Filter>scene</Filter>
@@ -57,14 +446,232 @@
     <ClCompile Include="code\scene\TitleScene.cpp">
       <Filter>scene</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Input\ButtonInputSystem.cpp">
-      <Filter>system\Input</Filter>
+    <ClCompile Include="code\system\Block\BlockExBomCollision.cpp">
+      <Filter>system\Block</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\ChangeSceneByButton.cpp">
-      <Filter>system\Transition</Filter>
+    <ClCompile Include="code\system\Block\BlockMoveSystem.cpp">
+      <Filter>system\Block</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\UpdateButtonColorByState.cpp">
-      <Filter>system\Transition</Filter>
+    <ClCompile Include="code\system\Block\BlockSpawnSystem.cpp">
+      <Filter>system\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Block\BreakBlockSystem.cpp">
+      <Filter>system\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Block\DeleteBlockSystem.cpp">
+      <Filter>system\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Block\MoveTenpoSystem.cpp">
+      <Filter>system\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Bom\BomCollisionExSystem.cpp">
+      <Filter>system\Bom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Bom\BomExplotionSystem.cpp">
+      <Filter>system\Bom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Bom\DeleteBomSystem.cpp">
+      <Filter>system\Bom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Bom\DeleteExplotionCollision.cpp">
+      <Filter>system\Bom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Bom\PutBomSystem.cpp">
+      <Filter>system\Bom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\ButtonInputSystem.cpp">
+      <Filter>system</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\ChangeSceneByButton.cpp">
+      <Filter>system</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Combo\ComboSystem.cpp">
+      <Filter>system\Combo</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Combo\ComboUIScrollSystem.cpp">
+      <Filter>system\Combo</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\FloatingFloor\CanageStateFallSystem.cpp">
+      <Filter>system\FloatingFloor</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\FloatingFloor\CreateFloorSystem.cpp">
+      <Filter>system\FloatingFloor</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\FloatingFloor\DeleteFloatingFloorSystem.cpp">
+      <Filter>system\FloatingFloor</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\FloatingFloor\FloatingFloorDamageSystem.cpp">
+      <Filter>system\FloatingFloor</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\FloatingFloor\FloatingFloorFallSystem.cpp">
+      <Filter>system\FloatingFloor</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Floor\DeleteFloorSystem.cpp">
+      <Filter>system\Floor</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Floor\FloorUpdateMatrixSystem.cpp">
+      <Filter>system\Floor</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Matrix\UpdateMatrixSystem.cpp">
+      <Filter>system\Matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Player\PlayerFollowCameraSystem.cpp">
+      <Filter>system\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Player\PlayerInput.cpp">
+      <Filter>system\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Player\PlayerMoveSystem.cpp">
+      <Filter>system\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Timer\TimerDecrementSystem.cpp">
+      <Filter>system\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Timer\TimerUIScrollSystem.cpp">
+      <Filter>system\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\UpdateButtonColorByState.cpp">
+      <Filter>system</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Scrap\ScrapSpawner.cpp">
+      <Filter>component\Scrap</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Scrap\ScrapStatus.cpp">
+      <Filter>component\Scrap</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\scrap\ScrapFallSystem.cpp">
+      <Filter>system\scrap</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\scrap\ScrapDeleteSystem.cpp">
+      <Filter>system\scrap</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\scrap\ScrapToPlayerCollisionSystem.cpp">
+      <Filter>system\scrap</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\BigBom\BigBomSpawner.cpp">
+      <Filter>component\BigBom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\BigBom\BigBomStatus.cpp">
+      <Filter>component\BigBom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\BigBom\BigExplotionCollision.cpp">
+      <Filter>component\BigBom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Player\PlayerCreateBigBomSystem.cpp">
+      <Filter>system\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\BigBom\BigBomInputSystem.cpp">
+      <Filter>system\BigBom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\BigBom\BigBomLaunchSystem.cpp">
+      <Filter>system\BigBom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\FloatingFloor\FloatingFloorRevivalSystem.cpp">
+      <Filter>system\FloatingFloor</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Block\BlockFloorCollision.cpp">
+      <Filter>system\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Score\ScoreStatus.cpp">
+      <Filter>component\Score</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Score\ScoreUIStatus.cpp">
+      <Filter>component\Score</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Score\ScoreIncrementSystem.cpp">
+      <Filter>system\Score</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Score\ScoreUIScrollSystem.cpp">
+      <Filter>system\Score</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\BigBom\BigBomCollisionExSystem.cpp">
+      <Filter>system\BigBom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\BigBom\DeleteBigBomSystem.cpp">
+      <Filter>system\BigBom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\BigBom\DeleteBigExplotionCollision.cpp">
+      <Filter>system\BigBom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Field\FieldStatus.cpp">
+      <Filter>component\Field</Filter>
+    </ClCompile>
+    <ClCompile Include="code\KetaEasing.cpp" />
+    <ClCompile Include="code\component\EffectByBlock\EffectByBlockSpawner.cpp">
+      <Filter>component\EffectByBLock</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\EffectByBlock\EffectByBlockUIStatus.cpp">
+      <Filter>component\EffectByBLock</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\EffectByBlock\EffectByBlockDrawSystem.cpp">
+      <Filter>system\EffectByBlock</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\EffectByBlock\EffectByBlockDeleteSystem.cpp">
+      <Filter>system\EffectByBlock</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\UsingCameraSetSystem.cpp" />
+    <ClCompile Include="code\component\OperateUI\OperateUIStatus.cpp">
+      <Filter>component\OperateUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\OperateUI\OperateUISystem.cpp">
+      <Filter>system\OperateUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\GameEnd\GameEnd.cpp">
+      <Filter>component\GameEnd</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\GameEnd\GameEndSystem.cpp">
+      <Filter>system\GameEnd</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\LevelUPUI\LevelUIParentStatus.cpp">
+      <Filter>component\LevelUP</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\LevelUPUI\LevelUIStatus.cpp">
+      <Filter>component\LevelUP</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\LeverlUP\LevelUIInitSystem.cpp">
+      <Filter>system\LevelUp</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\LeverlUP\LevelUIAnimationSystem.cpp">
+      <Filter>system\LevelUp</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\LeverlUP\LevelUIAdaptSystem.cpp">
+      <Filter>system\LevelUp</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\LeverlUP\LevelUIParentInitSystem.cpp">
+      <Filter>system\LevelUp</Filter>
+    </ClCompile>
+    <ClCompile Include="code\scene\ResultScene.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\ResultUI\ResultUIParentStatus.cpp">
+      <Filter>component\ResultUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\ResultUI\ResultUIScoreStatus.cpp">
+      <Filter>component\ResultUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\ResultUI\ResultUIRankStatus.cpp">
+      <Filter>component\ResultUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\ResultUI\ResultScoreAdaptSystem.cpp">
+      <Filter>system\ResultUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\ResultUI\ResultUIParentSystem.cpp">
+      <Filter>system\ResultUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\ResultUI\ResultFontSystem.cpp">
+      <Filter>system\ResultUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\ResultUI\ResultFontStatus.cpp">
+      <Filter>component\ResultUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\ResultUI\ResultRankSystem.cpp">
+      <Filter>system\ResultUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\ResultUI\ResultUIkeyStatus.cpp">
+      <Filter>component\ResultUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\ResultUI\ResultKeySystem.cpp">
+      <Filter>system\ResultUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

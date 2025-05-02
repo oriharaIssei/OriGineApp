@@ -11,9 +11,10 @@
 #include "component/Button.h"
 #include "component/SceneChanger.h"
 // system
-#include "system/Input/ButtonInputSystem.h"
-#include "system/Transition/ChangeSceneByButton.h"
-#include "system/Transition/UpdateButtonColorByState.h"
+#include "system/ButtonInputSystem.h"
+#include "system/ChangeSceneByButton.h"
+#include "system/UpdateButtonColorByState.h"
+#include "system/UsingCameraSetSystem.h"
 
 TitleScene::TitleScene() : IScene("Title") {}
 
@@ -29,7 +30,12 @@ void TitleScene::registerComponents() {
 void TitleScene::registerSystems() {
     IScene::registerSystems();
     ECSManager* ecsManager = ECSManager::getInstance();
+
     ecsManager->registerSystem<ButtonInputSystem>();
+
     ecsManager->registerSystem<UpdateButtonColorByState>();
     ecsManager->registerSystem<ChangeSceneByButton>();
+    ecsManager->registerSystem<UsingCameraSetSystem>();
+
+    ecsManager->SortPriorityOrderSystems();
 }

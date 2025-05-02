@@ -1,0 +1,71 @@
+#include "FloatingFloorFallSystem.h"
+
+/// engine
+#define ENGINE_INCLUDE
+
+#define RESOURCE_DIRECTORY // Resource の Directory
+// ECS
+#define ENGINE_ECS
+#include "engine/EngineInclude.h"
+
+/// app
+// component
+#include "component/Piller/FloatingFloorStatus.h"
+
+// system
+
+FloatingFloorFallSystem::FloatingFloorFallSystem() : ISystem(SystemType::Movement) {}
+FloatingFloorFallSystem::~FloatingFloorFallSystem() {}
+
+void FloatingFloorFallSystem::Initialize() {
+}
+
+void FloatingFloorFallSystem::Finalize() {
+    /*  entities_.clear();*/
+}
+
+void FloatingFloorFallSystem::UpdateEntity(GameEntity* _entity) {
+
+    FloatingFloorStatus* entityStatus = getComponent<FloatingFloorStatus>(_entity);
+
+    if (!entityStatus) {
+        return;
+    }
+
+    if (!entityStatus->GetIsFall()||entityStatus->GetIsDestroy()) {
+        return;
+    }
+
+    Transform* entityTransform = getComponent<Transform>(_entity);
+
+    // フロアの落下処理
+    entityStatus->SetIncrementFallEaseT(Engine::getInstance()->getDeltaTime() * entityStatus->GetFallSpeed());
+
+    // 落とす
+    entityTransform->translate[Y] = Lerp(entityStatus->GetStartPosY(),entityStatus->GetFallPosY(),entityStatus->GetFallEaseT());
+
+    // 落ちた後の処理
+    if (entityStatus->GetFallEaseT() < 1.0f) {
+        return;
+    }
+
+    /*/// columを下げる
+    entityStatus->SetColumDecrement();*/
+
+    // savePosY_を更新
+    entityTransform->translate[Y] = entityStatus->GetFallPosY();
+  /*  entityStatus->SetStartPosY(entityTransform->translate[Y]);*/
+    entityStatus->SetFallEaseT(0.0f);
+
+    // フラグ戻す
+    entityStatus->SetIsFall(false);
+
+    // 破壊条件
+    if (entityTransform->translate[Y] <= entityStatus->GetFallPosY()) {
+        entityStatus->SetIsDestroy(true);
+    }
+}
+
+float FloatingFloorFallSystem::Lerp(const float& start, const float& end, float t) {
+    return (1.0f - t) * start + end * t;
+}

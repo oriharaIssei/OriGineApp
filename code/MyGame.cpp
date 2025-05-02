@@ -6,10 +6,12 @@
 // scene
 #include "scene/GameScene.h"
 #include "scene/TitleScene.h"
+#include"scene/ResultScene.h"
 #include "sceneManager/SceneManager.h"
 
 /// lib
 #include "globalVariables/GlobalVariables.h"
+#include "logger/Logger.h"
 
 #ifdef _DEBUG
 
@@ -43,6 +45,7 @@ void MyGame::Initialize() {
     // exe 上で 使用するscene
     sceneManager_->addScene("Title", []() { return std::make_unique<TitleScene>(); });
     sceneManager_->addScene("Game", []() { return std::make_unique<GameScene>(); });
+    sceneManager_->addScene("Result", []() { return std::make_unique<ResultScene>(); });
 
     SerializedField<std::string> startupSceneName{"Settings", "Scene", "StartupSceneName"};
     sceneManager_->changeScene(startupSceneName);
@@ -75,8 +78,8 @@ void MyGame::Initialize() {
         std::unique_ptr<SystemDebugger> systemDebugger = std::make_unique<SystemDebugger>();
         debuggerGroup->addDebugger(std::move(systemDebugger));
 
-        std::unique_ptr<GuiLogger> logger = std::make_unique<GuiLogger>();
-        debuggerGroup->addDebugger(std::move(logger));
+        std::unique_ptr<GuiLogger> loggerDebugger = std::make_unique<GuiLogger>();
+        debuggerGroup->addDebugger(std::move(loggerDebugger));
 
         // gorup Initialize
         debuggerGroup->Initialize();
