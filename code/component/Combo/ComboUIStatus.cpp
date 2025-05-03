@@ -28,18 +28,6 @@ bool ComboUIStatus::Edit() {
     return isChange;
 }
 
-void ComboUIStatus::Save(BinaryWriter& _writer) {
-    _writer.Write("isAlive", isAlive_);
-    _writer.Write("comboDigit", static_cast<int32_t>(timeDigit_));
-}
-
-void ComboUIStatus::Load(BinaryReader& _reader) {
-    _reader.Read("isAlive", isAlive_);
-    int32_t digit = 0;
-    _reader.Read("comboDigit", digit);
-    timeDigit_ = static_cast<TimeDigit>(digit);
-}
-
 void ComboUIStatus::Finalize() {}
 
 int32_t ComboUIStatus::GetValueForDigit(const int32_t& value) {
@@ -58,4 +46,13 @@ int32_t ComboUIStatus::GetValueForDigit(const int32_t& value) {
         break;
     }
     return valueForDigit_;
+}
+
+void to_json(nlohmann::json& _json,const ComboUIStatus& _block) {
+    _json["isAlive"]    = _block.isAlive_;
+    _json["comboDigit"] = static_cast<int32_t>(_block.timeDigit_);
+}
+void from_json(const nlohmann::json& _json, ComboUIStatus& _block) {
+    _json.at("isAlive").get_to(_block.isAlive_);
+    _json.at("comboDigit").get_to(_block.timeDigit_);
 }

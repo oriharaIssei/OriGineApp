@@ -10,6 +10,8 @@ enum class OperateMode {
 
 class OperateUIStatus
     : public IComponent {
+    friend void to_json(nlohmann::json& j, const OperateUIStatus& l);
+    friend void from_json(const nlohmann::json& j, OperateUIStatus& l);
 
 private: // variables
     bool isAlive_ = true;
@@ -27,8 +29,6 @@ public:
 
     void Initialize(GameEntity* _entity) override;
     virtual bool Edit();
-    virtual void Save(BinaryWriter& _writer);
-    virtual void Load(BinaryReader& _reader);
 
     virtual void Finalize();
 

@@ -6,12 +6,12 @@
 #include <cstdint>
 #include <Vector3.h>
 
-//enum class MoveStep {
-//    NONE,
-//    INIT,
-//    MOVE,
-//    END,
-//};
+// enum class MoveStep {
+//     NONE,
+//     INIT,
+//     MOVE,
+//     END,
+// };
 //
 
 enum class BlockType {
@@ -30,6 +30,8 @@ enum class EaseType {
 class LevelUIParentStatus;
 class BlockManager
     : public IComponent {
+    friend void to_json(nlohmann::json& _json, const BlockManager& _blockManager);
+    friend void from_json(const nlohmann::json& _json, BlockManager& _blockManager);
 
 private: // variables
     bool isAlive_ = true;
@@ -41,7 +43,7 @@ private: // variables
     Vec3f blockSize_;
     Vec3f scalingSize_;
 
-    //result
+    // result
     Vec3f resultScale_;
 
     // collision
@@ -66,9 +68,9 @@ private: // variables
     float moveTimemax_;
 
     //
-    bool isMove_=false;
+    bool isMove_ = false;
 
-    //level
+    // level
     std::array<float, 6> nextLevelTime_;
     int32_t currentLevel_ = 0;
 
@@ -86,8 +88,6 @@ public:
 
     void Initialize(GameEntity* _entity) override;
     bool Edit() override;
-    void Save(BinaryWriter& _writer) override;
-    void Load(BinaryReader& _reader) override;
     void Finalize() override;
 
     void CostReset();
@@ -123,12 +123,11 @@ public: // accsessor
     bool GetIsMove() const { return isMove_; }
     float GetMoveTime() const { return moveTimemax_; }
 
-
     /// setter
     void SetCurrentCostIncrement(BlockType type) { currentCosts_[static_cast<int32_t>(type)]++; }
     void SetIncrementLineCounter(BlockType type) { lineCounter_[static_cast<int32_t>(type)]++; }
     void SetEaseTime(const float& time) { scalingEase_.time = time; }
-    void SetResultScale(const Vec3f resullt)  { resultScale_ = resullt; }
+    void SetResultScale(const Vec3f resullt) { resultScale_ = resullt; }
     void SetEaseType(const EaseType& is) { easeType_ = is; }
     void SetIsMove(const bool& is) { isMove_ = is; }
 };

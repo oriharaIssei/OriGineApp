@@ -1,4 +1,4 @@
-#include"EffectByBlockSpawner.h"
+#include "EffectByBlockSpawner.h"
 /// engine
 #define ENGINE_INCLUDE
 
@@ -40,20 +40,8 @@ bool EffectByBlockSpawner::Edit() {
     return isChange;
 }
 
-void EffectByBlockSpawner::Save(BinaryWriter& _writer) {
-    _writer.Write("isAlive", isAlive_);
-    /* _writer.Write("timerDigit", static_cast<int32_t>(digit_));*/
+void EffectByBlockSpawner::Finalize() {
 }
-
-void EffectByBlockSpawner::Load(BinaryReader& _reader) {
-    _reader.Read("isAlive", isAlive_);
-  
-}
-
- void EffectByBlockSpawner::Finalize() {
-
-  }
-
 
 void EffectByBlockSpawner::EffectUISpawn(GameEntity* _entity, const float& value, const EffectType& effectType) {
     if (!_entity)
@@ -135,4 +123,14 @@ void EffectByBlockSpawner::EffectUISpawn(GameEntity* _entity, const float& value
 
         ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(uiEntity);
     }
+}
+
+void to_json(nlohmann::json& _json, const EffectByBlockSpawner& _effectByBlockSpawner) {
+    _json["isAlive"] = _effectByBlockSpawner.isAlive_;
+    /*_json["timerDigit"] = static_cast<int32_t>(_block.digit_);*/
+}
+
+void from_json(const nlohmann::json& _json, EffectByBlockSpawner& _effectByBlockSpawner) {
+    _json.at("isAlive").get_to(_effectByBlockSpawner.isAlive_);
+    /*_json.at("timerDigit").get_to(_block.digit_);*/
 }

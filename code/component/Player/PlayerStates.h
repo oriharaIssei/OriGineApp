@@ -1,30 +1,32 @@
 #pragma once
 
 #include "component/IComponent.h"
+#include <component/transform/Transform.h>
 #include <cstdint>
 #include <Entity.h>
-#include <component/transform/Transform.h>
 #include <Vector3.h>
 
 class PlayerStates
     : public IComponent {
+    friend void to_json(nlohmann::json& j, const PlayerStates& p);
+    friend void from_json(const nlohmann::json& j, PlayerStates& p);
 
 private: // variables
     bool isAlive_ = true;
 
-    float moveSpeed_;       // 移動速度
-    float moveRadius_;      // 移動半径
-    float theta_;           // 現在の移動角度
-    float direction_;       // 移動方向
+    float moveSpeed_; // 移動速度
+    float moveRadius_; // 移動半径
+    float theta_; // 現在の移動角度
+    float direction_; // 移動方向
     float offSetY_;
     int32_t bigBomPointMax_;
     int32_t currentBigBomPoint_ = 0;
     Vec3f followCameraOffset_;
-   
+
     Transform* pivotTransform_ = nullptr; // 回転の中心となるオブジェクト
     Transform* transform_      = nullptr; // 自身のTransform
 
-    //bom
+    // bom
     int32_t bomExplotionNum_; // 爆発数
     bool isBigBomHaving_ = false;
 
@@ -34,8 +36,6 @@ public:
 
     void Initialize(GameEntity* _entity) override;
     virtual bool Edit();
-    virtual void Save(BinaryWriter& _writer);
-    virtual void Load(BinaryReader& _reader);
 
     virtual void Finalize();
 

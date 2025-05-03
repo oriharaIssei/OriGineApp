@@ -4,6 +4,8 @@
 #include <Vector3.h>
 class BigExplotionCollision
     : public IComponent {
+    friend void to_json(nlohmann::json& j, const BigExplotionCollision& b);
+    friend void from_json(const nlohmann::json& j, BigExplotionCollision& b);
 
 private: // variables
 
@@ -22,9 +24,6 @@ public:
 
     void Initialize(GameEntity* _entity) override;
     virtual bool Edit();
-    virtual void Save(BinaryWriter& _writer);
-    virtual void Load(BinaryReader& _reader);
-
     virtual void Finalize();
 
      void TimeDecrement();

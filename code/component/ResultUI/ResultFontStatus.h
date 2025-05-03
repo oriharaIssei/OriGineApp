@@ -19,6 +19,8 @@ enum class ResultFontStep {
 class ResultUIParentStatus;
 class ResultFontStatus
     : public IComponent {
+    friend void to_json(nlohmann::json& _json,const ResultFontStatus& _component);
+    friend void from_json(const nlohmann::json& _json,ResultFontStatus& _component);
 
 private: // variables
     bool isAlive_ = true;
@@ -55,8 +57,6 @@ public:
 
     void Initialize(GameEntity* _entity) override;
     virtual bool Edit();
-    virtual void Save(BinaryWriter& _writer);
-    virtual void Load(BinaryReader& _reader);
 
     virtual void Finalize();
 

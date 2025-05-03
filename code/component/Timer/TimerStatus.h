@@ -9,6 +9,8 @@
 
 class TimerStatus
     : public IComponent {
+    friend void to_json(nlohmann::json& _json, const TimerStatus& _timerStatus);
+    friend void from_json(const nlohmann::json& _json, TimerStatus& _timerStatus);
 
 private: // variables
     bool isAlive_ = true;
@@ -20,25 +22,20 @@ private: // variables
     float currentPulusTime_;
     bool isChanging_ = false;
 
- 
-
 public:
     TimerStatus() {}
     virtual ~TimerStatus() = default;
 
     void Initialize(GameEntity* _entity) override;
     virtual bool Edit();
-    virtual void Save(BinaryWriter& _writer);
-    virtual void Load(BinaryReader& _reader);
-
     virtual void Finalize();
 
-     void DecrementTimer();
+    void DecrementTimer();
     void CurrentTimeUpdate(const int32_t& time);
-     void PlusTimeUpdate();
+    void PlusTimeUpdate();
 
-     void TimerDecrement(const float& timer);
-     void TimerIncrement(const float& timer);
+    void TimerDecrement(const float& timer);
+    void TimerIncrement(const float& timer);
 
 public: // accsessor
     /// getter
@@ -47,10 +44,9 @@ public: // accsessor
     float GetMinusTime() const { return minusTime_; }
     float GetCurrentPulusTime() const { return currentPulusTime_; }
     float GetMinusTimeNormal() const { return minusTimeNormal_; }
-   
+
     /// setter
     void SetCurrentTimer(float currentTimer) { currentTimer_ = currentTimer; }
-   /* void SetDecrementTimer(const float& time) { decrementTimer_ = time; }
-    void SetIncrementTimer(const float& time) { incrementTimer_ = time; }*/
-   
+    /* void SetDecrementTimer(const float& time) { decrementTimer_ = time; }
+     void SetIncrementTimer(const float& time) { incrementTimer_ = time; }*/
 };

@@ -17,6 +17,9 @@ enum class RankAnimationStep {
 
 class ResultUIRankStatus
     : public IComponent {
+    friend void to_json(nlohmann::json& _json, const ResultUIRankStatus& _component);
+    friend void from_json(const nlohmann::json& _json, ResultUIRankStatus& _component);
+
 public:
     enum class RankType {
         B,
@@ -61,8 +64,6 @@ public:
 
     void Initialize(GameEntity* _entity) override;
     virtual bool Edit();
-    virtual void Save(BinaryWriter& _writer);
-    virtual void Load(BinaryReader& _reader);
 
     virtual void Finalize();
 

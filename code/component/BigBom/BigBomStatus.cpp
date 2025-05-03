@@ -24,15 +24,6 @@ bool BigBomStatus::Edit() {
     return isChange;
 }
 
-void BigBomStatus::Save(BinaryWriter& _writer) {
-    _writer.Write("isAlive", isAlive_); 
-    
-}
-
-void BigBomStatus::Load(BinaryReader& _reader) {
-    _reader.Read("isAlive", isAlive_);
-   
-}
 
 void BigBomStatus::Finalize() {}
 
@@ -44,4 +35,11 @@ void BigBomStatus::IncrementLaunchDirectin(const float& value) {
 
 void BigBomStatus::LaunchDirectionNormalize() {
        launchDirection_.normalize();
+}
+
+void to_json(nlohmann::json& j, const BigBomStatus& b) {
+    j["isAlive"]         = b.isAlive_;
+}
+void from_json(const nlohmann::json& j, BigBomStatus& b) {
+    j.at("isAlive").get_to(b.isAlive_);
 }

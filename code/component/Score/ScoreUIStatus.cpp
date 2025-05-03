@@ -26,26 +26,13 @@ bool ScoreUIStatus::Edit() {
         "FOUR",
         "FIVE",
         "SIX",
-        "SEVEN"
-    };
-    int currentIndex                 = static_cast<int>(digit_);
+        "SEVEN"};
+    int currentIndex = static_cast<int>(digit_);
     if (ImGui::Combo("Timer Digit", &currentIndex, digitLabels, static_cast<int>(TimeDigit::COUNT))) {
         digit_ = static_cast<TimeDigit>(currentIndex);
     }
 
     return isChange;
-}
-
-void ScoreUIStatus::Save(BinaryWriter& _writer) {
-    _writer.Write("isAlive", isAlive_);
-    _writer.Write("timerDigit", static_cast<int32_t>(digit_));
-}
-
-void ScoreUIStatus::Load(BinaryReader& _reader) {
-    _reader.Read("isAlive", isAlive_);
-    int32_t digit = 0;
-    _reader.Read("timerDigit", digit);
-    digit_ = static_cast<TimeDigit>(digit);
 }
 
 void ScoreUIStatus::Finalize() {}
@@ -91,4 +78,15 @@ int32_t ScoreUIStatus::GetValueForDigit(const float& value) {
     default:
         return 0;
     }
+}
+
+void to_json(nlohmann::json& _json, const ScoreUIStatus& _component) {
+    _json["isAlive"]      = _component.isAlive_;
+    _json["levelUIDigit"] = static_cast<int32_t>(_component.digit_);
+}
+void from_json(const nlohmann::json& _json, ScoreUIStatus& _component) {
+    _json.at("isAlive").get_to(_component.isAlive_);
+    int32_t digit = 0;
+    _json.at("levelUIDigit").get_to(digit);
+    _component.digit_ = static_cast<ScoreUIStatus::TimeDigit>(digit);
 }

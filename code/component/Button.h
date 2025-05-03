@@ -15,6 +15,9 @@
 ///=====================================================
 class Button
     : public IComponent {
+    friend void to_json(nlohmann::json& j, const Button& r);
+    friend void from_json(const nlohmann::json& j, Button& r);
+
 public:
     Button();
     ~Button();
@@ -22,8 +25,6 @@ public:
     void Initialize(GameEntity* _entity);
 
     bool Edit();
-    void Save(BinaryWriter& _writer);
-    void Load(BinaryReader& _reader);
 
     void Finalize();
 

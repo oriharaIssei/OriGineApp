@@ -8,16 +8,17 @@
 class ScrapStatus
     : public IComponent {
 public:
+    friend void to_json(nlohmann::json& _json, const ScrapStatus& _component);
+    friend void from_json(const nlohmann::json& _json, ScrapStatus& _component);
 
 private: // variables
-    bool isAlive_ = true;
-    bool isStop_  = false;
+    bool isAlive_   = true;
+    bool isStop_    = false;
     bool isDestroy_ = false;
 
     float lifeTime_;
     float fallStopPosY_;
     BlowDirection blowDirection_;
-    
 
 public:
     ScrapStatus() {}
@@ -25,8 +26,6 @@ public:
 
     void Initialize(GameEntity* _entity) override;
     virtual bool Edit();
-    virtual void Save(BinaryWriter& _writer);
-    virtual void Load(BinaryReader& _reader);
     virtual void Finalize();
 
     void LifeTimeDecrement(const float& decrementValue);
@@ -41,7 +40,7 @@ public: // accessor
     BlowDirection GetBlowDirection() const { return blowDirection_; }
 
     /// setter
-    void SetIsAlive( bool isAlive) { isAlive_ = isAlive; }
+    void SetIsAlive(bool isAlive) { isAlive_ = isAlive; }
     void SetIsStop(const bool& is) { isStop_ = is; }
     void SetLifeTime(const float& lifeTime) { lifeTime_ = lifeTime; }
     void SetFallStopPosY(const float& y) { fallStopPosY_ = y; }

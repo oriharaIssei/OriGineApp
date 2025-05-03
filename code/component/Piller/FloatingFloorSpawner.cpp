@@ -28,37 +28,35 @@ bool FloatingFloorSpawner::Edit() {
     isChange |= ImGui::DragFloat("positionHeight", &positionHeight_, 0.01f);
     isChange |= ImGui::DragFloat("ratio", &ratio_, 0.01f);
     ImGui::Text("No Edit");
-   
+
     isChange |= ImGui::DragFloat("revivalTime", &revivalTime_);
     return isChange;
 }
 
-void FloatingFloorSpawner::Save(BinaryWriter& _writer) {
-    _writer.Write("pillerSpace", positionHeight_);
-    _writer.Write("columNumMax", columNumMax_);
-    _writer.Write("pillarHP", HPMax_);
-    _writer.Write<3, float>("FallCollisionMin", fallCollisionSizeMin_);
-    _writer.Write<3, float>("FallCollisionMax", fallCollisionSizeMax_);
-    _writer.Write<3, float>("fallCollisionCenterPos", fallCollisionCenterPos_);
-    _writer.Write("sideSpace", sideSpace_);
-    _writer.Write("rowNumber", rowNumber_);
-    _writer.Write("revivalTime", revivalTime_);
-    _writer.Write("ratio", ratio_);
-}
-
-void FloatingFloorSpawner::Load(BinaryReader& _reader) {
-    _reader.Read("pillerSpace", positionHeight_);
-    _reader.Read("columNumMax", columNumMax_);
-    _reader.Read("pillarHP", HPMax_);
-    _reader.Read<3, float>("FallCollisionMin", fallCollisionSizeMin_);
-    _reader.Read<3, float>("FallCollisionMax", fallCollisionSizeMax_);
-    _reader.Read<3, float>("fallCollisionCenterPos", fallCollisionCenterPos_);
-    _reader.Read("sideSpace", sideSpace_);
-    _reader.Read("rowNumber", rowNumber_);
-    _reader.Read("revivalTime", revivalTime_);
-    _reader.Read("ratio", ratio_);
-}
-
 void FloatingFloorSpawner::Finalize() {}
 
+void to_json(nlohmann::json& _json, const FloatingFloorSpawner& _block) {
+    _json["pillerSpace"]            = _block.positionHeight_;
+    _json["columNumMax"]            = _block.columNumMax_;
+    _json["rowNum"]                 = _block.rowNumber_;
+    _json["pillarHP"]               = _block.HPMax_;
+    _json["FallCollisionMin"]       = _block.fallCollisionSizeMin_;
+    _json["FallCollisionMax"]       = _block.fallCollisionSizeMax_;
+    _json["fallCollisionCenterPos"] = _block.fallCollisionCenterPos_;
+    _json["sideSpace"]              = _block.sideSpace_;
+    _json["revivalTime"]            = _block.revivalTime_;
+    _json["ratio"]                  = _block.ratio_;
+}
 
+void from_json(const nlohmann::json& _json, FloatingFloorSpawner& _block) {
+    _json.at("pillerSpace").get_to(_block.positionHeight_);
+    _json.at("columNumMax").get_to(_block.columNumMax_);
+    _json.at("rowNum").get_to(_block.rowNumber_);
+    _json.at("pillarHP").get_to(_block.HPMax_);
+    _json.at("FallCollisionMin").get_to(_block.fallCollisionSizeMin_);
+    _json.at("FallCollisionMax").get_to(_block.fallCollisionSizeMax_);
+    _json.at("fallCollisionCenterPos").get_to(_block.fallCollisionCenterPos_);
+    _json.at("sideSpace").get_to(_block.sideSpace_);
+    _json.at("revivalTime").get_to(_block.revivalTime_);
+    _json.at("ratio").get_to(_block.ratio_);
+}

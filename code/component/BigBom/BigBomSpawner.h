@@ -6,6 +6,8 @@
 
 class BigBomSpawner
     : public IComponent {
+    friend void to_json(nlohmann::json& j, const BigBomSpawner& b);
+    friend void from_json(const nlohmann::json& j, BigBomSpawner& b);
 
 private: // variables
 
@@ -35,8 +37,6 @@ public:
 
     void Initialize(GameEntity* _entity) override;
     virtual bool Edit();
-    virtual void Save(BinaryWriter& _writer);
-    virtual void Load(BinaryReader& _reader);
 
     virtual void Finalize();
 

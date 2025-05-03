@@ -37,12 +37,12 @@ bool SceneChanger::Edit() {
     return changed;
 }
 
-void SceneChanger::Save(BinaryWriter& _writer) {
-    _writer.Write("nextSceneName", nextSceneName_);
-}
-
-void SceneChanger::Load(BinaryReader& _reader) {
-    _reader.Read("nextSceneName", nextSceneName_);
-}
-
 void SceneChanger::Finalize() {}
+
+void to_json(nlohmann::json& j, const SceneChanger& r) {
+    j["nextSceneName"] = r.nextSceneName_;
+}
+
+void from_json(const nlohmann::json& j, SceneChanger& r) {
+    j.at("nextSceneName").get_to(r.nextSceneName_);
+}

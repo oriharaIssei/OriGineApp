@@ -30,21 +30,6 @@ bool LevelUIStatus::Edit() {
     return isChange;
 }
 
-void LevelUIStatus::Save(BinaryWriter& _writer) {
-    _writer.Write("isAlive", isAlive_);
-    _writer.Write("levelUIDigit", static_cast<int32_t>(levelUIDigit_));
-    _writer.Write<3, float>("offsetPos", offsetPos_);
-}
-
-void LevelUIStatus::Load(BinaryReader& _reader) {
-    _reader.Read("isAlive", isAlive_);
-    int32_t digit = 0;
-    _reader.Read("levelUIDigit", digit);
-    levelUIDigit_ = static_cast<LevelUIDigit>(digit);
-
-    _reader.Read<3, float>("offsetPos", offsetPos_);
-}
-
 void LevelUIStatus::Finalize() {}
 
 int32_t LevelUIStatus::GetValueForDigit(const int32_t& value) {
@@ -60,4 +45,18 @@ int32_t LevelUIStatus::GetValueForDigit(const int32_t& value) {
         break;
     }
     return valueForDigit_;
+}
+
+void to_json(nlohmann::json& j, const LevelUIStatus& l) {
+    j["isAlive"]      = l.isAlive_;
+    j["levelUIDigit"] = static_cast<int32_t>(l.levelUIDigit_);
+    j["offsetPos"]    = l.offsetPos_;
+}
+
+void from_json(const nlohmann::json& j, LevelUIStatus& l) {
+    j.at("isAlive").get_to(l.isAlive_);
+    int32_t digit = 0;
+    j.at("levelUIDigit").get_to(digit);
+    l.levelUIDigit_ = static_cast<LevelUIDigit>(digit);
+    j.at("offsetPos").get_to(l.offsetPos_);
 }

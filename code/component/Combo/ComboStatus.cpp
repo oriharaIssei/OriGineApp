@@ -8,13 +8,11 @@
 /// externals
 #include "imgui/imgui.h"
 
-
-
 void ComboStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
     currentComboNum_ = 0;
     maxCombvoNum_    = 0;
     isUpdateCombo_   = false;
-    currentTime_      = 0.0f;
+    currentTime_     = 0.0f;
 }
 
 bool ComboStatus::Edit() {
@@ -24,31 +22,25 @@ bool ComboStatus::Edit() {
 
     ImGui::Spacing();
 
-   
     isChange |= ImGui::DragFloat("continuationTime", &continuationTime_, 0.01f);
-  /*  isChange |= ImGui::InputInt("d", &currentComboNum_);*/
-  
+    /*  isChange |= ImGui::InputInt("d", &currentComboNum_);*/
+
     return isChange;
-
-}
-
-void ComboStatus::Save(BinaryWriter& _writer) {
-    _writer.Write("isAlive", isAlive_);
-    _writer.Write("currentComboNum", currentComboNum_);
-    _writer.Write("maxCombvoNum", maxCombvoNum_);
-    _writer.Write("continuationTime", continuationTime_);
-    _writer.Write("currentTime", currentTime_);
-   
-}
-
-void ComboStatus::Load(BinaryReader& _reader) {
-    _reader.Read("isAlive", isAlive_);
-    _reader.Read("maxCombvoNum", maxCombvoNum_);
-    _reader.Read("isUpdateCombo", isUpdateCombo_);
-    _reader.Read("continuationTime", continuationTime_);
-    _reader.Read("currentTime", currentTime_);
-   
 }
 
 void ComboStatus::Finalize() {}
 
+void to_json(nlohmann::json& _json, const ComboStatus& _block) {
+    _json["isAlive"]          = _block.isAlive_;
+    _json["currentComboNum"]  = _block.currentComboNum_;
+    _json["maxCombvoNum"]     = _block.maxCombvoNum_;
+    _json["continuationTime"] = _block.continuationTime_;
+    _json["currentTime"]      = _block.currentTime_;
+}
+void from_json(const nlohmann::json& _json, ComboStatus& _block) {
+    _json.at("isAlive").get_to(_block.isAlive_);
+    _json.at("currentComboNum").get_to(_block.currentComboNum_);
+    _json.at("maxCombvoNum").get_to(_block.maxCombvoNum_);
+    _json.at("continuationTime").get_to(_block.continuationTime_);
+    _json.at("currentTime").get_to(_block.currentTime_);
+}

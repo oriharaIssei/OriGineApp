@@ -6,8 +6,8 @@
 #define ENGINE_COMPONENTS
 #include "engine/EngineInclude.h"
 /// externals
+#include "component/ResultUI/ResultUIParentStatus.h"
 #include "imgui/imgui.h"
-#include"component/ResultUI/ResultUIParentStatus.h"
 
 void ResultFontStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 }
@@ -33,33 +33,6 @@ bool ResultFontStatus::Edit() {
     isChange |= ImGui::DragFloat("firstWaitTime_", &firstWaitTime_, 0.01f);
 
     return isChange;
-}
-
-void ResultFontStatus::Save(BinaryWriter& _writer) {
-    _writer.Write("isAlive", isAlive_);
-    _writer.Write("moveEasing.maxTime", moveEasing_.maxTime);
-    _writer.Write<3, float>("easePos", easePos_);
-    _writer.Write("zoomEasing_.maxTime", zoomEasing_.maxTime);
-    _writer.Write("scoreWaitTime", moveWaitTime_);
-    _writer.Write<3, float>("initPos", initPos_);
-    _writer.Write("zoomValue", zoomValue_);
-    _writer.Write("reverseWaitTime", moveWaitTime_);
-    _writer.Write("firstWaitTime", firstWaitTime_);
-    _writer.Write<2, float>("easeScale", easeScale_);
-   
-}
-
-void ResultFontStatus::Load(BinaryReader& _reader) {
-    _reader.Read("isAlive", isAlive_);
-    _reader.Read("moveEasing.maxTime", moveEasing_.maxTime);
-    _reader.Read<3, float>("easePos", easePos_);
-    _reader.Read("zoomEasing_.maxTime", zoomEasing_.maxTime);
-    _reader.Read("scoreWaitTime", moveWaitTime_);
-    _reader.Read<3, float>("initPos", initPos_);
-    _reader.Read("zoomValue", zoomValue_);
-    _reader.Read("reverseWaitTime", moveWaitTime_);
-    _reader.Read("firstWaitTime", firstWaitTime_);
-    _reader.Read<2, float>("easeScale", easeScale_);
 }
 
 void ResultFontStatus::Finalize() {}
@@ -102,4 +75,30 @@ void ResultFontStatus::Reset() {
     moveEasing_.time = 0.0f;
     zoomEasing_.time = 0.0f;
     basePos_         = initPos_;
+}
+
+void to_json(nlohmann::json& _json, const ResultFontStatus& _component) {
+    _json["isAlive"]             = _component.isAlive_;
+    _json["moveEasing.maxTime"]  = _component.moveEasing_.maxTime;
+    _json["easePos"]             = _component.easePos_;
+    _json["zoomEasing_.maxTime"] = _component.zoomEasing_.maxTime;
+    _json["scoreWaitTime"]       = _component.moveWaitTime_;
+    _json["initPos"]             = _component.initPos_;
+    _json["zoomValue"]           = _component.zoomValue_;
+    _json["reverseWaitTime"]     = _component.moveWaitTime_;
+    _json["firstWaitTime"]       = _component.firstWaitTime_;
+    _json["easeScale"]           = _component.easeScale_;
+}
+
+void from_json(const nlohmann::json& _json, ResultFontStatus& _component) {
+    _json.at("isAlive").get_to(_component.isAlive_);
+    _json.at("moveEasing.maxTime").get_to(_component.moveEasing_.maxTime);
+    _json.at("easePos").get_to(_component.easePos_);
+    _json.at("zoomEasing_.maxTime").get_to(_component.zoomEasing_.maxTime);
+    _json.at("scoreWaitTime").get_to(_component.moveWaitTime_);
+    _json.at("initPos").get_to(_component.initPos_);
+    _json.at("zoomValue").get_to(_component.zoomValue_);
+    _json.at("reverseWaitTime").get_to(_component.moveWaitTime_);
+    _json.at("firstWaitTime").get_to(_component.firstWaitTime_);
+    _json.at("easeScale").get_to(_component.easeScale_);
 }

@@ -16,6 +16,8 @@ enum class KeyResultStep {
 
 class ResultUIkeyStatus
     : public IComponent {
+    friend void to_json(nlohmann::json& _json, const ResultUIkeyStatus& _component);
+    friend void from_json(const nlohmann::json& _json, ResultUIkeyStatus& _component);
 
 private: // variables
     bool isAlive_ = true;
@@ -39,22 +41,18 @@ private: // variables
     // step
     KeyResultStep curerntStep_ = KeyResultStep::NONE;
 
-   
-
 public:
     ResultUIkeyStatus() {}
     virtual ~ResultUIkeyStatus() = default;
 
     void Initialize(GameEntity* _entity) override;
     virtual bool Edit();
-    virtual void Save(BinaryWriter& _writer);
-    virtual void Load(BinaryReader& _reader);
 
     virtual void Finalize();
 
     void MoveAnimation(const float& time);
     void AlphaAnimation(const float& time);
-  
+
     //
     void Reset();
 
@@ -72,5 +70,4 @@ public: // accsessor
     void SetIsAnimation(const bool& currentComboNum) { isAnimation_ = currentComboNum; }
     void SetInitPos(const Vec3f& pos) { initPos_ = pos; }
     void SetAnimationStep(const KeyResultStep& step) { curerntStep_ = step; }
-
 };
