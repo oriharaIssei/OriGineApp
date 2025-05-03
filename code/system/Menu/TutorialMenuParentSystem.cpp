@@ -73,16 +73,18 @@ void TutorialMenuParentSystem::UpdateEntity(GameEntity* _entity) {
     case ScrollStep::PAUGESELECTION:
         //pauge up
         if (input_->isTriggerKey(DIK_D) || input_->isTriggerKey(DIK_RIGHT)) {
+            tutorialMenu->ScrollTimeReset();
             tutorialMenu->SetAnimationStep(ScrollStep::PAUGEUP);
 
             // pauge down
         } else if (input_->isTriggerKey(DIK_A) || input_->isTriggerKey(DIK_LEFT)) {
+            tutorialMenu->ScrollTimeReset();
             tutorialMenu->SetAnimationStep(ScrollStep::PAUGEDOWN);
         }
 
         //back
         else if (input_->isTriggerKey(DIK_ESCAPE)) {
-            tutorialMenu->SetAnimationStep(ScrollStep::END);
+            tutorialMenu->SetAnimationStep(ScrollStep::BACK);
         }
         break;
         ///----------------------------------------------------------------
@@ -106,7 +108,7 @@ void TutorialMenuParentSystem::UpdateEntity(GameEntity* _entity) {
         ///----------------------------------------------------------------
     case ScrollStep::BACK:
 
-        tutorialMenu->BackUVAnimation(deltaTIme);
+        tutorialMenu->BackSizeAnimation(deltaTIme);
 
         break;
     case ScrollStep::END:

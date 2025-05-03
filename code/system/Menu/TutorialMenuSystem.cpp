@@ -50,7 +50,9 @@ void TutorialMenuSystem::UpdateEntity(GameEntity* _entity) {
     ///* ------------------------------calucration------------------------------
 
     Vec2f basePos  = tutorialUIParent->GetBasePos() + tutorialMenu->GetOffsetPos();
-    Vec2f baseSize = sprite->getTextureSize(); /** resultRank->gets();*/
+    Vec2f baseSize = Vec2f(
+        sprite->getTextureSize()[X] * tutorialUIParent->GetScaleX(),
+        sprite->getTextureSize()[Y]); 
     /*  resultRank->SetRankForScore(resultUIParent->GetCurrentScore());*/
 
     ///* ------------------------------adapt------------------------------
@@ -58,7 +60,7 @@ void TutorialMenuSystem::UpdateEntity(GameEntity* _entity) {
     // pos
     sprite->setTranslate(basePos);
     sprite->setSize(baseSize);
-    sprite->setUVScale(Vec2f(tutorialUIParent->GetUVScale(), 1.0f));
+    sprite->setUVScale(Vec2f(tutorialUIParent->GetScaleX(), 1.0f));
 }
 
 void TutorialMenuSystem::ComboReset() {

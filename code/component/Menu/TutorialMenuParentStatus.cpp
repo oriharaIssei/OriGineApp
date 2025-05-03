@@ -58,6 +58,7 @@ void TutorialMenuParentStatus::MoveAnimation(const float& time) {
     switch (scrollStep_) {
     case ScrollStep::PAUGEUP:
         if (currentPauge_ >= maxPauge_) {
+            scrollStep_ = ScrollStep::PAUGESELECTION;
             return;
         }
         savePos_ = startPos_;
@@ -65,6 +66,7 @@ void TutorialMenuParentStatus::MoveAnimation(const float& time) {
         break;
     case ScrollStep::PAUGEDOWN:
         if (currentPauge_ <= 0) {
+            scrollStep_ = ScrollStep::PAUGESELECTION;
             return;
         }
         savePos_ = startPos_;
@@ -82,30 +84,44 @@ void TutorialMenuParentStatus::MoveAnimation(const float& time) {
     moveEasing_.time = moveEasing_.maxTime;
     position_        = endPos_;
     startPos_        = position_;
+
+     switch (scrollStep_) {
+    case ScrollStep::PAUGEUP:
+        currentPauge_++;
+        break;
+    case ScrollStep::PAUGEDOWN:
+        currentPauge_--;
+        break;
+    }
+
+
     scrollStep_      = ScrollStep::PAUGESELECTION;
+
+   
 }
 
 void TutorialMenuParentStatus::FirstMoveAnimation(const float& time) {
     apperUVEasing_.time += time;
 
-    uvScale_ = EaseOutBack(0.0f, 1.0f, apperUVEasing_.time, apperUVEasing_.maxTime);
+    scaleX_ = EaseInCubic(0.0f, 1.0f, apperUVEasing_.time, apperUVEasing_.maxTime);
 
     if (apperUVEasing_.time < apperUVEasing_.maxTime) {
         return;
     }
-    uvScale_            = 1.0f;
-    apperUVEasing_.time = apperUVEasing_.maxTime;
+    scaleX_             = 1.0f;
+    apperUVEasing_.time =0.0f;
     scrollStep_         = ScrollStep::PAUGESELECTION;
 }
-void TutorialMenuParentStatus::BackUVAnimation(const float& time) {
-    apperUVEasing_.time -= time;
 
-    uvScale_ = EaseOutBack(0.0f, 1.0f, apperUVEasing_.time, apperUVEasing_.maxTime);
+void TutorialMenuParentStatus::BackSizeAnimation(const float& time) {
+    apperUVEasing_.time += time;
 
-    if (apperUVEasing_.time > 0.0f) {
+    scaleX_ = EaseInCubic(1.0f,0.0f, apperUVEasing_.time, apperUVEasing_.maxTime);
+
+    if (apperUVEasing_.time < apperUVEasing_.maxTime) {
         return;
     }
-    uvScale_            = 0.0f;
+    scaleX_             = 0.0f;
     apperUVEasing_.time = 0.0f;
     scrollStep_         = ScrollStep::END;
 }
@@ -113,7 +129,12 @@ void TutorialMenuParentStatus::BackUVAnimation(const float& time) {
 void TutorialMenuParentStatus::Reset() {
     moveEasing_.time    = 0.0f;
     apperUVEasing_.time = 0.0f;
-    uvScale_            = 0.0f;
+    scaleX_             = 0.0f;
+    currentPauge_       = 0;
     position_           = initPos_;
     startPos_           = position_;
+}
+
+void TutorialMenuParentStatus::ScrollTimeReset() {
+    moveEasing_.time = 0.0f;
 }

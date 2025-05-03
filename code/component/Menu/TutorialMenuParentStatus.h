@@ -44,7 +44,7 @@ private: // variables
     Easing apperUVEasing_;
 
     /// uv
-    float uvScale_    = 0.0f;
+    float scaleX_    = 0.0f;
 
     /// pauge
     int32_t currentPauge_ = 0;
@@ -66,20 +66,23 @@ public:
 
     void MoveAnimation(const float& time);
     void FirstMoveAnimation(const float& time);
-    void BackUVAnimation(const float& time);
+    void BackSizeAnimation(const float& time);
     //
     void Reset();
+    void ScrollTimeReset();
 
 public: // accsessor
     /// getter
 
     bool GetIsAnimation() const { return isAnimation_; }
-    float GetUVScale() const { return uvScale_; }
+    float GetScaleX() const { return scaleX_; }
     Vec2f GetBasePos() const { return position_; }
     Vec2f GetBaseScale() const { return baseScale_; }
     ScrollStep GetAnimationStep() const { return scrollStep_; }
 
     /// setter
+   /* void CurrentPaugeIncrement() { currentPauge_++; }
+    void CurrentPaugeDecrement() { currentPauge_--; }*/
     void SetAnimationStep(const ScrollStep& step) { scrollStep_ = step; }
     void SetIsAnimation(const bool& is) { isAnimation_ = is; }
 };
