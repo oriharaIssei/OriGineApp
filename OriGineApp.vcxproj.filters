@@ -109,6 +109,12 @@
     <Filter Include="system\ResultUI">
       <UniqueIdentifier>{6b98bfba-a398-4fc3-8d2f-3fc603b65069}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\Menu">
+      <UniqueIdentifier>{64884dd8-e468-4402-bddb-fc16b0fb6793}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\Menu">
+      <UniqueIdentifier>{6d6bd17b-9c3a-4175-9d9c-b051716e29ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -391,6 +397,12 @@
     <ClInclude Include="code\system\ResultUI\ResultKeySystem.h">
       <Filter>system\ResultUI</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\Menu\TutorialMenuParentStatus.h">
+      <Filter>component\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Menu\TutorialMenuParentSystem.h">
+      <Filter>system\Menu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -672,6 +684,12 @@
     </ClCompile>
     <ClCompile Include="code\system\ResultUI\ResultKeySystem.cpp">
       <Filter>system\ResultUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Menu\TutorialMenuParentStatus.cpp">
+      <Filter>component\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Menu\TutorialMenuParentSystem.cpp">
+      <Filter>system\Menu</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
