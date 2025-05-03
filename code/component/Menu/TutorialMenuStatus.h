@@ -10,6 +10,9 @@
 
 class TutorialMenuStatus
     : public IComponent {
+    friend void to_json(nlohmann::json& j, const TutorialMenuStatus& m);
+    friend void from_json(const nlohmann::json& j, TutorialMenuStatus& m);
+
 public:
    
     enum class TutorialPauge {
@@ -21,7 +24,7 @@ public:
 
 private: // variables
     bool isAlive_ = true;
-    TutorialPauge uiDigit_; // コンボの桁
+    //TutorialPauge uiDigit_; // コンボの桁
     int32_t valueForDigit_;
     Vec2f offsetPos_;
 
@@ -33,14 +36,12 @@ public:
 
     void Initialize(GameEntity* _entity) override;
     virtual bool Edit();
-    virtual void Save(BinaryWriter& _writer);
-    virtual void Load(BinaryReader& _reader);
-
+   
     virtual void Finalize();
 
 public: // accsessor
     /// getter
-    TutorialPauge GetPaugeNum() const { return uiDigit_; }
+ /*   TutorialPauge GetPaugeNum() const { return uiDigit_; }*/
     Vec2f GetOffsetPos() const { return offsetPos_; }
     Vec2f GetTextureSize() const { return textureSize_; }
     

@@ -29,25 +29,26 @@ bool TutorialMenuParentStatus::Edit() {
     return isChange;
 }
 
-void TutorialMenuParentStatus::Save(BinaryWriter& _writer) {
-    _writer.Write("isAlive", isAlive_);
-    _writer.Write("moveEasing.maxTime", moveEasing_.maxTime);
-    _writer.Write("apperUVEasing.maxTime", apperUVEasing_.maxTime);
-    _writer.Write<2, float>("initPos", initPos_);
-    _writer.Write<2, float>("endPos", endPos_);
-    _writer.Write<2, float>("scrollValue", scrollValue_);
-    _writer.Write("maxPauge", maxPauge_);
+void to_json(nlohmann::json& j, const TutorialMenuParentStatus& m) {
+    j["isAlive"]               = m.isAlive_;
+    j["moveEasing.maxTime"]    = m.moveEasing_.maxTime;
+    j["apperUVEasing.maxTime"] = m.apperUVEasing_.maxTime;
+    j["initPos"]               = m.initPos_;
+    j["endPos"]                = m.endPos_;
+    j["scrollValue"]           = m.scrollValue_;
+    j["maxPauge"]              = m.maxPauge_;
 }
 
-void TutorialMenuParentStatus::Load(BinaryReader& _reader) {
-    _reader.Read("isAlive", isAlive_);
-    _reader.Read("moveEasing.maxTime", moveEasing_.maxTime);
-    _reader.Read("apperUVEasing.maxTime", apperUVEasing_.maxTime);
-    _reader.Read<2, float>("initPos", initPos_);
-    _reader.Read<2, float>("endPos", endPos_);
-    _reader.Read<2, float>("scrollValue", scrollValue_);
-    _reader.Read("maxPauge", maxPauge_);
+void from_json(const nlohmann::json& j, TutorialMenuParentStatus& m) {
+    j.at("isAlive").get_to(m.isAlive_);
+    j.at("moveEasing.maxTime").get_to(m.moveEasing_.maxTime);
+    j.at("apperUVEasing.maxTime").get_to(m.apperUVEasing_.maxTime);
+    j.at("initPos").get_to(m.initPos_);
+    j.at("endPos").get_to(m.endPos_);
+    j.at("scrollValue").get_to(m.scrollValue_);
+    j.at("maxPauge").get_to(m.maxPauge_);
 }
+
 
 void TutorialMenuParentStatus::Finalize() {
     // 必要ならリソース解放などを記述

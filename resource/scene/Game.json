@@ -69,7 +69,7 @@
                 ],
                 "BigExplotionCollision": [
                     {
-                        "adaptTime": 0.20000000298023224,
+                        "adaptTime": 0.10000000149011612,
                         "collisionRadius": 7.0,
                         "isAlive": true,
                         "positionOffset": [
@@ -91,7 +91,7 @@
                         "CollisionRadius": 2.0,
                         "explotionTime": 2.0,
                         "isAlive": true,
-                        "launthSpeed": 51.599998474121094,
+                        "launthSpeed": 21.0,
                         "positionOffset": [
                             0.0,
                             0.0,
@@ -121,7 +121,7 @@
                 "ExplotionCollision": [
                     {
                         "CollisionRadius": 9.0,
-                        "adaptTime": 0.20000000298023224,
+                        "adaptTime": 0.10000000149011612,
                         "isAlive": true,
                         "positionOffset": [
                             0.0,
@@ -2113,6 +2113,14 @@
                 "Priority": 0,
                 "isActive": true
             },
+            "MenuArrowSystem": {
+                "Priority": 0,
+                "isActive": true
+            },
+            "MenuSystem": {
+                "Priority": 0,
+                "isActive": true
+            },
             "MoveSystemByRigidBody": {
                 "Priority": 0,
                 "isActive": true
@@ -2158,6 +2166,14 @@
                 "isActive": true
             },
             "TimerUIScrollSystem": {
+                "Priority": 0,
+                "isActive": true
+            },
+            "TutorialMenuParentSystem": {
+                "Priority": 0,
+                "isActive": true
+            },
+            "TutorialMenuSystem": {
                 "Priority": 0,
                 "isActive": true
             },

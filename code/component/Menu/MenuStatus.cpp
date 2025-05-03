@@ -4,6 +4,26 @@
 #include "imgui/imgui.h"
 #include "input/Input.h"
 
+
+  void to_json(nlohmann::json& j, const MenuStatus& m){
+    j["isAlive"]               = m.isAlive_;
+    j["moveEasing.maxTime"]    = m.moveEasing_.maxTime;
+    j["apperUVEasing.maxTime"] = m.apperUVEasing_.maxTime;
+    j["position"]              = m.position_;
+    j["maxPauge"]              = m.maxCategoryNum_;
+    j["arrowPositions"]        = m.arrowPositions_;
+}
+
+void from_json(const nlohmann::json& j, MenuStatus& m) {
+    j.at("isAlive").get_to(m.isAlive_);
+    j.at("moveEasing.maxTime").get_to(m.moveEasing_.maxTime);
+    j.at("apperUVEasing.maxTime").get_to(m.apperUVEasing_.maxTime);
+    j.at("position").get_to(m.position_);
+    j.at("maxPauge").get_to(m.maxCategoryNum_);
+    j.at("arrowPositions").get_to(m.arrowPositions_);
+}
+
+
 void MenuStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
     // 必要であれば初期化処理をここに記述
 }
@@ -29,28 +49,6 @@ bool MenuStatus::Edit() {
     isChange |= ImGui::InputInt("maxPauge", &maxCategoryNum_);
 
     return isChange;
-}
-
-void MenuStatus::Save(BinaryWriter& _writer) {
-    _writer.Write("isAlive", isAlive_);
-    _writer.Write("moveEasing.maxTime", moveEasing_.maxTime);
-    _writer.Write("apperUVEasing.maxTime", apperUVEasing_.maxTime);
-    _writer.Write<2, float>("position", position_);
-    _writer.Write("maxPauge", maxCategoryNum_);
-    for (int32_t i = 0; i < arrowPositions_.size(); ++i) {
-        _writer.Write<2, float>(("positions" + std::to_string(i)).c_str(), arrowPositions_[i]);
-    }
-}
-
-void MenuStatus::Load(BinaryReader& _reader) {
-    _reader.Read("isAlive", isAlive_);
-    _reader.Read("moveEasing.maxTime", moveEasing_.maxTime);
-    _reader.Read("apperUVEasing.maxTime", apperUVEasing_.maxTime);
-    _reader.Read<2, float>("position", position_);
-    _reader.Read("maxPauge", maxCategoryNum_);
-    for (int32_t i = 0; i < arrowPositions_.size(); ++i) {
-        _reader.Read<2, float>(("positions" + std::to_string(i)).c_str(), arrowPositions_[i]);
-    }
 }
 
 void MenuStatus::Finalize() {

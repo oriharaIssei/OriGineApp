@@ -20,6 +20,7 @@ void to_json(nlohmann::json& _json, const ResultUIParentStatus& _component) {
     _json["alphaEasing.maxTime"]   = _component.alphaEasing_.maxTime;
     _json["easePos"]               = _component.easePos_;
     _json["easeScale"]             = _component.scoreEaseScale_;
+    _json["initPos"]               = _component.initPos_;
 }
 
 void from_json(const nlohmann::json& _json, ResultUIParentStatus& _component) {
@@ -34,6 +35,7 @@ void from_json(const nlohmann::json& _json, ResultUIParentStatus& _component) {
     _json.at("alphaEasing.maxTime").get_to(_component.alphaEasing_.maxTime);
     _json.at("easePos").get_to(_component.easePos_);
     _json.at("easeScale").get_to(_component.scoreEaseScale_);
+    _json.at("initPos").get_to(_component.initPos_);
 }
 
 void ResultUIParentStatus::Initialize([[maybe_unused]] GameEntity* _entity) {

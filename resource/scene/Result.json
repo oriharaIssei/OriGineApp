@@ -175,8 +175,8 @@
                 "SpriteRenderer": [
                     {
                         "anchorPoint": [
-                            0.0,
-                            0.0
+                            0.5,
+                            0.5
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -234,8 +234,8 @@
                 "SpriteRenderer": [
                     {
                         "anchorPoint": [
-                            0.0,
-                            0.0
+                            0.5,
+                            0.5
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -454,8 +454,8 @@
                 "SpriteRenderer": [
                     {
                         "anchorPoint": [
-                            0.0,
-                            0.0
+                            0.5,
+                            0.5
                         ],
                         "isFlipX": false,
                         "isFlipY": false,

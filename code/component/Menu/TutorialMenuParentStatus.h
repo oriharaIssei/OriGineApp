@@ -20,6 +20,8 @@ enum class ScrollStep {
 
 class TutorialMenuParentStatus
     : public IComponent {
+    friend void to_json(nlohmann::json& j, const TutorialMenuParentStatus& m);
+    friend void from_json(const nlohmann::json& j, TutorialMenuParentStatus& m);
 
 private: // variables
     bool isAlive_ = true;
@@ -59,8 +61,7 @@ public:
 
     void Initialize(GameEntity* _entity) override;
     virtual bool Edit();
-    virtual void Save(BinaryWriter& _writer);
-    virtual void Load(BinaryReader& _reader);
+  
 
     virtual void Finalize();
 
