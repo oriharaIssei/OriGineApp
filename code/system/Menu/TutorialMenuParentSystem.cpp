@@ -40,11 +40,11 @@ void TutorialMenuParentSystem::UpdateEntity(GameEntity* _entity) {
 
     // get timer component
     TutorialMenuParentStatus* tutorialMenu = getComponent<TutorialMenuParentStatus>(_entity);
-    SpriteRenderer* sprite                 = getComponent<SpriteRenderer>(_entity);
-    /*  ResultUIRankStatus* resultUIParent   = getComponent<ResultUIRankStatus>(rankEntity);*/
+  /*  SpriteRenderer* sprite                 = getComponent<SpriteRenderer>(_entity);
+  */  /*  ResultUIRankStatus* resultUIParent   = getComponent<ResultUIRankStatus>(rankEntity);*/
     float deltaTIme = Engine::getInstance()->getDeltaTime();
 
-    if (!tutorialMenu || !sprite) {
+    if (!tutorialMenu) {
         return;
     }
 
@@ -118,18 +118,18 @@ void TutorialMenuParentSystem::UpdateEntity(GameEntity* _entity) {
         break;
     }
 
-    ///* ------------------------------calucration------------------------------
+    /////* ------------------------------calucration------------------------------
 
-    Vec2f basePos  = tutorialMenu->GetBasePos();
-    Vec2f baseSize = sprite->getTextureSize(); /** resultRank->gets();*/
-    /*  resultRank->SetRankForScore(resultUIParent->GetCurrentScore());*/
+    //Vec2f basePos  = tutorialMenu->GetBasePos();
+    //Vec2f baseSize = sprite->getTextureSize(); /** resultRank->gets();*/
+    ///*  resultRank->SetRankForScore(resultUIParent->GetCurrentScore());*/
 
-    ///* ------------------------------adapt------------------------------
+    /////* ------------------------------adapt------------------------------
 
-    // pos
-    sprite->setTranslate(basePos);
-    sprite->setSize(baseSize);
-    sprite->setUVScale(Vec2f(tutorialMenu->GetUVScale(),1.0f));
+    //// pos
+    //sprite->setTranslate(basePos);
+    //sprite->setSize(baseSize);
+    //sprite->setUVScale(Vec2f(tutorialMenu->GetUVScale(),1.0f));
 }
 
 void TutorialMenuParentSystem::ComboReset() {
