@@ -33,6 +33,7 @@
 #include"Application/code/component/LevelUPUI/LevelUIStatus.h"
 #include"Application/code/component/Menu/TutorialMenuParentStatus.h"
 #include"Application/code/component/Menu/TutorialMenuStatus.h"
+#include"Application/code/component/Menu/MenuStatus.h"
 //#include"Application/code/component/Floor/FloorModeCreater.h"
 //#include"Application/code/component/Floor/BottomFloorStates.h"
 //#include"Application/code/component/Floor/FloorStates.h"
@@ -89,6 +90,8 @@
 #include"Application/code/system/LeverlUP/LevelUIParentInitSystem.h"
 #include"Application/code/system/Menu/TutorialMenuParentSystem.h"
 #include"Application/code/system/Menu/TutorialMenuSystem.h"
+#include"Application/code/system/Menu/MenuArrowSystem.h"
+#include"Application/code/system/Menu/MenuSystem.h"
     //#include"Application/code/system/GameEnd/"
 
 GameScene::GameScene()
@@ -130,6 +133,7 @@ void GameScene::registerComponents() {
     ecsManager->registerComponent<SceneChanger>();
     ecsManager->registerComponent<TutorialMenuParentStatus>();
     ecsManager->registerComponent<TutorialMenuStatus>();
+    ecsManager->registerComponent<MenuStatus>();
     /*ecsManager->registerComponent<BottomFloorStates>();
     ecsManager->registerComponent<FloorStates>();
     ecsManager->registerComponent<FloorModeCreater>();*/
@@ -190,5 +194,7 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<LevelUIParentInitSystem>();
     ecsManager->registerSystem<TutorialMenuParentSystem>();
     ecsManager->registerSystem<TutorialMenuSystem>();
+    ecsManager->registerSystem<MenuArrowSystem>();
+    ecsManager->registerSystem<MenuSystem>();
     ecsManager->SortPriorityOrderSystems();
 }

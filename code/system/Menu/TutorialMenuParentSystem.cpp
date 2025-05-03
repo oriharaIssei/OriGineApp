@@ -12,6 +12,7 @@
 #include <Vector3.h>
 // component
 #include "component/Menu/TutorialMenuParentStatus.h"
+#include"component/Menu/MenuStatus.h"
 
 #include "engine/EngineInclude.h"
 #include <Vector2.h>
@@ -29,35 +30,37 @@ void TutorialMenuParentSystem::Initialize() {
 void TutorialMenuParentSystem::Finalize() {}
 
 void TutorialMenuParentSystem::UpdateEntity(GameEntity* _entity) {
+    // ComboEntityを取得
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* menuEntity                   = ecsManager->getUniqueEntity("Menu");
 
-    //// ComboEntityを取得
-    //EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
-    //GameEntity* rankEntity                   = ecsManager->getUniqueEntity("ResultRank");
-
-    //if (!rankEntity) { // Entityが存在しない場合の早期リターン
-    //    return;
-    //}
+    if (!menuEntity) { // Entityが存在しない場合の早期リターン
+        return;
+    }
 
     // get timer component
     TutorialMenuParentStatus* tutorialMenu = getComponent<TutorialMenuParentStatus>(_entity);
   /*  SpriteRenderer* sprite                 = getComponent<SpriteRenderer>(_entity);
-  */  /*  ResultUIRankStatus* resultUIParent   = getComponent<ResultUIRankStatus>(rankEntity);*/
+     */
+    MenuStatus* menu = getComponent<MenuStatus>(menuEntity);
     float deltaTIme = Engine::getInstance()->getDeltaTime();
 
-    if (!tutorialMenu) {
+    if (!tutorialMenu||!menu) {
         return;
     }
 
-    if (tutorialMenu->GetIsAnimation()&&tutorialMenu->GetAnimationStep() == ScrollStep::NONE) {
-        time_ = 0.0f;
-        // アニメーションリセット
-        tutorialMenu->Reset();
-        tutorialMenu->SetAnimationStep(ScrollStep::FIRSTUVSCROLL);
-    }
+
 
     switch (tutorialMenu->GetAnimationStep()) {
     case ScrollStep::NONE:
-
+        if (!tutorialMenu->GetIsAnimation()) {
+            break;
+        }
+            time_ = 0.0f;
+            // アニメーションリセット
+            tutorialMenu->Reset();
+            tutorialMenu->SetAnimationStep(ScrollStep::FIRSTUVSCROLL);
+        
         break;
         ///----------------------------------------------------------------
         /// Move Animation
@@ -113,6 +116,7 @@ void TutorialMenuParentSystem::UpdateEntity(GameEntity* _entity) {
         break;
     case ScrollStep::END:
         tutorialMenu->SetIsAnimation(false);
+        menu->SetMenuMode(MenuMode::MENUSELECT);
         tutorialMenu->Reset();
        
         break;

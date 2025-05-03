@@ -409,6 +409,15 @@
     <ClInclude Include="code\system\Menu\TutorialMenuSystem.h">
       <Filter>system\Menu</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\Menu\MenuStatus.h">
+      <Filter>component\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Menu\MenuSystem.h">
+      <Filter>system\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Menu\MenuArrowSystem.h">
+      <Filter>system\Menu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -701,6 +710,15 @@
       <Filter>component\Menu</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Menu\TutorialMenuSystem.cpp">
+      <Filter>system\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Menu\MenuStatus.cpp">
+      <Filter>component\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Menu\MenuSystem.cpp">
+      <Filter>system\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Menu\MenuArrowSystem.cpp">
       <Filter>system\Menu</Filter>
     </ClCompile>
   </ItemGroup>
