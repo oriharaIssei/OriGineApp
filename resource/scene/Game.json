@@ -288,6 +288,40 @@
                 ]
             },
             "Name": "Player",
+            "Systems": [
+                {
+                    "SystemName": "PlayerInputSystem",
+                    "SystemType": 1
+                },
+                {
+                    "SystemName": "MoveSystemByRigidBody",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "PlayerCreateBigBomSystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "PlayerFollowCameraSystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "PlayerMoveSystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "PutBomSystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "CollisionCheckSystem",
+                    "SystemType": 4
+                },
+                {
+                    "SystemName": "TexturedMeshRenderSystem",
+                    "SystemType": 6
+                }
+            ],
             "isUnique": true
         },
         {
@@ -1667,7 +1701,7 @@
                             1.0
                         ],
                         "scale": [
-                            1.0,
+                            1.2999999523162842,
                             1.0,
                             1.0
                         ],
