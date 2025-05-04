@@ -6,7 +6,7 @@
 void FloatingFloorSpawner::Initialize([[maybe_unused]] GameEntity* _entity) {
     /// 初期化でパラメータ編集してるから大丈夫、ここ消したら未定義値が出る
     sideSpace_      = 11.0f;
-    positionHeight_ = 10.0f;
+    positionHeight_ = 48.0f;
     columNumMax_    = 1;
     isCreated_      = false;
     HPMax_          = 2;
@@ -46,6 +46,7 @@ void to_json(nlohmann::json& _json, const FloatingFloorSpawner& _block) {
     _json["sideSpace"]              = _block.sideSpace_;
     _json["revivalTime"]            = _block.revivalTime_;
     _json["ratio"]                  = _block.ratio_;
+    /*_json["positionHeight"]         = _block.positionHeight_;*/
 }
 
 void from_json(const nlohmann::json& _json, FloatingFloorSpawner& _block) {
@@ -59,4 +60,5 @@ void from_json(const nlohmann::json& _json, FloatingFloorSpawner& _block) {
     _json.at("sideSpace").get_to(_block.sideSpace_);
     _json.at("revivalTime").get_to(_block.revivalTime_);
     _json.at("ratio").get_to(_block.ratio_);
+   /* _json.at("positionHeight").get_to(_block.positionHeight_);*/
 }
