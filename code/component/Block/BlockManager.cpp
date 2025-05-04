@@ -9,14 +9,14 @@
 void BlockManager::Initialize([[maybe_unused]] GameEntity* _entity) {
     /// 初期化でパラメータ編集してるから大丈夫、ここ消したら未定義値が出る
 
-    columNumMax_         = 1;
+   /* columNumMax_         = 1;
     HPMax_               = 1;
     collisionRadius_     = 1.0f;
     startPositionX_      = 0.0f;
     nextCreatePositionX_ = 0.0f;
     basePosY_            = 0.0f;
     moveTenpo_           = 0.0f;
-    deadPositionX_       = 0.0f;
+    deadPositionX_       = 0.0f;*/
 }
 
 bool BlockManager::Edit() {
