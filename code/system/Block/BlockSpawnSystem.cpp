@@ -17,6 +17,7 @@
 
 #include "component/Block/BlockStatus.h"
 #include "component/Piller/FloatingFloorStatus.h"
+#include"component/Menu/MenuStatus.h"
 // #include "component/Piller/PillerStates.h"
 //  system
 #include "system/Block/BlockExBomCollision.h"
@@ -40,6 +41,25 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
     if (!_entity) {
         return;
     }
+
+      // ポーズ中は通さない
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* menuEntity                   = ecsManager->getUniqueEntity("Menu");
+
+    if (!menuEntity) {
+        return;
+    }
+
+    MenuStatus* menu = getComponent<MenuStatus>(menuEntity);
+
+    if (!menu) {
+        return;
+    }
+
+    if (menu->GetIsPose()) {
+        return;
+    }
+
 
     blockSpawner_ = getComponent<BlockManager>(_entity);
 

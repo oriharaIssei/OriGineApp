@@ -7,6 +7,7 @@
 #include "component/Block/BlockManager.h"
 #include "component/Block/BlockStatus.h"
 #include"component/LevelUPUI/LevelUIParentStatus.h"
+#include"component/Menu/MenuStatus.h"
 #include <Vector.h>
 
 #include "KetaEasing.h"
@@ -28,11 +29,25 @@ void MoveTenpoSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
+
+
        // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* levelUI                  = ecsManager->getUniqueEntity("LevelUIParent");
+    GameEntity* menuEntity                   = ecsManager->getUniqueEntity("Menu");
 
-    if (!levelUI) { // Entityが存在しない場合の早期リターン
+    if (!levelUI || !menuEntity) { // Entityが存在しない場合の早期リターン
+        return;
+    }
+
+    // ポーズ中は通さない
+    MenuStatus* menu = getComponent<MenuStatus>(menuEntity);
+
+    if (!menu) {
+        return;
+    }
+
+    if (menu->GetIsPose()) {
         return;
     }
 

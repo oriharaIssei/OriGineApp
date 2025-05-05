@@ -135,3 +135,7 @@ void MenuStatus::DesideForCategory(Input* input) {
         break;
     }
 }
+
+bool MenuStatus::GetIsPose() {
+    return !(scrollStep_ == MenuMode::NONE);
+ }

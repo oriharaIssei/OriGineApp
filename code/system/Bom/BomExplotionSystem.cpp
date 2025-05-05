@@ -14,6 +14,7 @@
 #include "component/Bom/BomStatus.h"
 #include "component/Player/PlayerStates.h"
 #include"component/Bom/BomSpawner.h"
+#include"component/Menu/MenuStatus.h"
 
 // system
 // #include "system/CharacterOnCollision.h"
@@ -29,11 +30,29 @@ void BomExplotionSystem::UpdateEntity(GameEntity* _entity) {
     if (!_entity) {
         return;
     }
+
+    // ポーズ中は通さない
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* menuEntity                   = ecsManager->getUniqueEntity("Menu");
+
+    if (!menuEntity) {
+        return;
+    }
+
+    MenuStatus* menu = getComponent<MenuStatus>(menuEntity);
+
+    if (!menu) {
+        return;
+    }
+
+    if (menu->GetIsPose()) {
+        return;
+    }
+
     input_ = Input::getInstance();
 
     // PlayerEntityを取得
-    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
-    GameEntity* playerEntity                 = ecsManager->getUniqueEntity("Player");
+     GameEntity* playerEntity                 = ecsManager->getUniqueEntity("Player");
 
     /*  float deltaTime      = Engine::getInstance()->getDeltaTime();*/
     bomStates_ = getComponent<BomStatus>(_entity);

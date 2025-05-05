@@ -26,7 +26,7 @@ class TutorialMenuParentStatus
 private: // variables
     bool isAlive_ = true;
 
-    bool isAnimation_;
+    bool isAnimation_ = false;
 
     // pos
     Vec2f position_    = {0.0f, 0.0f};

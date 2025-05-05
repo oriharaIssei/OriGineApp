@@ -14,6 +14,7 @@
 #include "component/Timer/TimerStatus.h"
 #include "component/Combo/ComboUIStatus.h"
 #include"component/GameEnd/GameEnd.h"
+#include"component/Menu/MenuStatus.h"
 
 #include "engine/EngineInclude.h"
 #include <cmath>
@@ -30,6 +31,27 @@ void TimerDecrementSystem::Initialize() {
 void TimerDecrementSystem::Finalize() {}
 
 void TimerDecrementSystem::UpdateEntity(GameEntity* _entity) {
+    if (_entity) {
+        return;
+    }
+
+    // ポーズ中は通さない
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* menuEntity                   = ecsManager->getUniqueEntity("Menu");
+
+    if (!menuEntity) {
+        return;
+    }
+
+    MenuStatus* menu = getComponent<MenuStatus>(menuEntity);
+
+    if (!menu) {
+        return;
+    }
+
+    if (menu->GetIsPose()) {
+        return;
+    }
 
     // get timer component 
    timerStauts_ = getComponent<TimerStatus>(_entity);

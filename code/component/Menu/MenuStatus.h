@@ -87,6 +87,7 @@ public:
 public: // accsessor
         /// getter
     bool GetIsAnimation() const { return isAnimation_; }
+    bool GetIsPose();
     float GetScaleX() const { return scaleX_; }
     Vec2f GetBasePos() const { return position_; }
     Vec2f GetArrowPos() const { return arrowPos_; }

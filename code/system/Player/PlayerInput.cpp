@@ -13,6 +13,7 @@
 // component
 #include "component/Bom/BomSpawner.h"
 #include "component/Player/PlayerStates.h"
+#include"component/Menu/MenuStatus.h"
 
 #include "engine/EngineInclude.h"
 #include <cmath>
@@ -34,6 +35,24 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
     if (!_entity) {
         return;
     }
+
+    // ポーズ中は通さない
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* menuEntity           = ecsManager->getUniqueEntity("Menu");
+
+    if (!menuEntity) {
+        return;
+    }
+
+     MenuStatus* menu = getComponent<MenuStatus>(menuEntity);
+
+     if (!menu) {
+         return;
+     }
+
+     if (menu->GetIsPose()) {
+         return;
+     }
 
     ///============================================================
     // 必要なコンポーネントを取得

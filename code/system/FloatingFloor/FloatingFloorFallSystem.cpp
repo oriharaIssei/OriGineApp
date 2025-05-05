@@ -11,6 +11,7 @@
 /// app
 // component
 #include "component/Piller/FloatingFloorStatus.h"
+#include"component/Menu/MenuStatus.h"
 
 // system
 
@@ -25,6 +26,24 @@ void FloatingFloorFallSystem::Finalize() {
 }
 
 void FloatingFloorFallSystem::UpdateEntity(GameEntity* _entity) {
+
+      // ポーズ中は通さない
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* menuEntity                   = ecsManager->getUniqueEntity("Menu");
+
+    if (!menuEntity) {
+        return;
+    }
+
+    MenuStatus* menu = getComponent<MenuStatus>(menuEntity);
+
+    if (!menu) {
+        return;
+    }
+
+    if (menu->GetIsPose()) {
+        return;
+    }
 
     FloatingFloorStatus* entityStatus = getComponent<FloatingFloorStatus>(_entity);
 
