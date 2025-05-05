@@ -14,6 +14,7 @@
 #include "component/LevelUPUI/LevelUIParentStatus.h"
 #include "component/LevelUPUI/LevelUIStatus.h"
 #include "component/Timer/TimerStatus.h"
+#include"component/Menu/MenuStatus.h"
 
 #include "engine/EngineInclude.h"
 
@@ -29,6 +30,24 @@ void LevelUIAnimationSystem::Initialize() {
 void LevelUIAnimationSystem::Finalize() {}
 
 void LevelUIAnimationSystem::UpdateEntity(GameEntity* _entity) {
+
+      // ポーズ中は通さない
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* menuEntity                   = ecsManager->getUniqueEntity("Menu");
+
+    if (!menuEntity) {
+        return;
+    }
+
+    MenuStatus* menu = getComponent<MenuStatus>(menuEntity);
+
+    if (!menu) {
+        return;
+    }
+
+    if (menu->GetIsPose()) {
+        return;
+    }
 
     // get timer component
     levelUIParentStatus_ = getComponent<LevelUIParentStatus>(_entity);

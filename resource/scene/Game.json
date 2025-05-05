@@ -5,6 +5,56 @@
                 "SpriteRenderer": [
                     {
                         "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            96.0,
+                            96.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI\\Time/TimeSymbol.png",
+                        "textureSize": [
+                            96.0,
+                            48.0
+                        ],
+                        "translate": [
+                            280.010009765625,
+                            533.7100219726563
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            0.5,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.5,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "TimerDot",
+            "Systems": [
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
                             0.5,
                             0.5
                         ],
@@ -1439,13 +1489,13 @@
                             0.0,
                             0.0
                         ],
-                        "texturePath": "application/resource/Texture\\UI/Numbers.png",
+                        "texturePath": "application/resource/Texture\\UI\\Time/TimeNum.png",
                         "textureSize": [
                             480.0,
                             48.0
                         ],
                         "translate": [
-                            200.0,
+                            210.0,
                             530.0
                         ],
                         "uvRotate": 0.0,
@@ -1499,13 +1549,13 @@
                             0.0,
                             0.0
                         ],
-                        "texturePath": "application/resource/Texture\\UI/Numbers.png",
+                        "texturePath": "application/resource/Texture\\UI\\Time/TimeNum.png",
                         "textureSize": [
                             480.0,
                             48.0
                         ],
                         "translate": [
-                            128.0,
+                            130.0,
                             530.0
                         ],
                         "uvRotate": 0.0,
@@ -1931,13 +1981,13 @@
                             0.0,
                             0.0
                         ],
-                        "texturePath": "application/resource/Texture\\UI/Numbers.png",
+                        "texturePath": "application/resource/Texture\\UI\\Time/TimeNum.png",
                         "textureSize": [
                             480.0,
                             48.0
                         ],
                         "translate": [
-                            300.0,
+                            320.0,
                             530.0
                         ],
                         "uvRotate": 0.0,
@@ -1992,13 +2042,13 @@
                             0.0,
                             0.0
                         ],
-                        "texturePath": "application/resource/Texture\\UI/Numbers.png",
+                        "texturePath": "application/resource/Texture\\UI\\Time/TimeNum.png",
                         "textureSize": [
                             480.0,
                             48.0
                         ],
                         "translate": [
-                            380.0,
+                            400.0,
                             530.0
                         ],
                         "uvRotate": 0.0,
@@ -2016,7 +2066,7 @@
                 "TimerUIStatus": [
                     {
                         "isAlive": true,
-                        "timerDigit": -842150451
+                        "timerDigit": 3
                     }
                 ]
             },

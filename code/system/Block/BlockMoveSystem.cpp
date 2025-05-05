@@ -10,6 +10,7 @@
 // component
 #include "component/Block/BlockManager.h"
 #include "component/Block/BlockStatus.h"
+#include"component/Menu/MenuStatus.h"
 
 BlockMoveSystem::BlockMoveSystem()
     : ISystem(SystemType::Movement) {}
@@ -24,23 +25,31 @@ void BlockMoveSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    BlockStatus* blockStatus = getComponent<BlockStatus>(_entity);
-    if (!blockStatus) {
-        return;
-    }
+   
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* blockManagerEntity           = ecsManager->getUniqueEntity("BlockManager");
+    GameEntity* menuEntity = ecsManager->getUniqueEntity("Menu");
 
-    if (!blockManagerEntity) {
+  
+    //no Entity
+    if (!blockManagerEntity || !menuEntity) {
         return;
     }
 
     Transform* transform       = getComponent<Transform>(_entity);
     BlockManager* blockManager = getComponent<BlockManager>(blockManagerEntity);
+    BlockStatus* blockStatus   = getComponent<BlockStatus>(_entity);
+    MenuStatus* menu           = getComponent<MenuStatus>(menuEntity);
 
-    if (!transform || !blockManager) {
+    // no Component
+    if (!transform || !blockManager || !blockStatus || !menu) {
         return;
     }
+
+    if (menu->GetIsPose()) {
+        return;
+    }
+
 
     // スケール代入
     transform->scale = blockManager->GetResultScalle();
