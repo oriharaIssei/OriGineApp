@@ -86,7 +86,7 @@ void TutorialMenuParentSystem::UpdateEntity(GameEntity* _entity) {
         }
 
         //back
-        else if (input_->isTriggerKey(DIK_ESCAPE)) {
+        else if (input_->isTriggerKey(DIK_ESCAPE) || input_->isTriggerKey(DIK_SPACE)) {
             tutorialMenu->SetAnimationStep(ScrollStep::BACK);
         }
         break;
@@ -117,6 +117,7 @@ void TutorialMenuParentSystem::UpdateEntity(GameEntity* _entity) {
     case ScrollStep::END:
         tutorialMenu->SetIsAnimation(false);
         menu->SetMenuMode(MenuMode::MENUSELECT);
+        tutorialMenu->SetAnimationStep(ScrollStep::NONE);
         tutorialMenu->Reset();
        
         break;

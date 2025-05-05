@@ -18,6 +18,7 @@ enum class MenuMode {
     GAMEEND,
 };
 
+class TutorialMenuParentStatus;
 class Input;
 class MenuStatus
     : public IComponent {
@@ -82,7 +83,7 @@ public:
     void SelectNextCategory();
 
    
-    void DesideForCategory(Input*input);
+    void DesideForCategory(Input* input, TutorialMenuParentStatus* tutorialStatus);
 
 public: // accsessor
         /// getter

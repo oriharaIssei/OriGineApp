@@ -49,7 +49,6 @@ void from_json(const nlohmann::json& j, TutorialMenuParentStatus& m) {
     j.at("maxPauge").get_to(m.maxPauge_);
 }
 
-
 void TutorialMenuParentStatus::Finalize() {
     // 必要ならリソース解放などを記述
 }
@@ -86,7 +85,7 @@ void TutorialMenuParentStatus::MoveAnimation(const float& time) {
     position_        = endPos_;
     startPos_        = position_;
 
-     switch (scrollStep_) {
+    switch (scrollStep_) {
     case ScrollStep::PAUGEUP:
         currentPauge_++;
         break;
@@ -95,29 +94,26 @@ void TutorialMenuParentStatus::MoveAnimation(const float& time) {
         break;
     }
 
-
-    scrollStep_      = ScrollStep::PAUGESELECTION;
-
-   
+    scrollStep_ = ScrollStep::PAUGESELECTION;
 }
 
 void TutorialMenuParentStatus::FirstMoveAnimation(const float& time) {
     apperUVEasing_.time += time;
 
-    scaleX_ = EaseInCubic(0.0f, 1.0f, apperUVEasing_.time, apperUVEasing_.maxTime);
+    scaleX_ = EaseOutQuad(0.0f, 1.0f, apperUVEasing_.time, apperUVEasing_.maxTime);
 
     if (apperUVEasing_.time < apperUVEasing_.maxTime) {
         return;
     }
     scaleX_             = 1.0f;
-    apperUVEasing_.time =0.0f;
+    apperUVEasing_.time = 0.0f;
     scrollStep_         = ScrollStep::PAUGESELECTION;
 }
 
 void TutorialMenuParentStatus::BackSizeAnimation(const float& time) {
     apperUVEasing_.time += time;
 
-    scaleX_ = EaseInCubic(1.0f,0.0f, apperUVEasing_.time, apperUVEasing_.maxTime);
+    scaleX_ = EaseOutQuad(1.0f, 0.0f, apperUVEasing_.time, apperUVEasing_.maxTime);
 
     if (apperUVEasing_.time < apperUVEasing_.maxTime) {
         return;

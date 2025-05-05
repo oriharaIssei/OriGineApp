@@ -1,4 +1,5 @@
 #include "MenuStatus.h"
+#include"TutorialMenuParentStatus.h"
 
 // 外部ライブラリなど
 #include "imgui/imgui.h"
@@ -88,7 +89,6 @@ void MenuStatus::SelectNextCategory() {
         next = 0;
     }
     currentCategory_ = static_cast<MenuCategory>(next);
-    UpdateArrowPos();
 }
 
 void MenuStatus::SelectPreviousCategory() {
@@ -97,7 +97,6 @@ void MenuStatus::SelectPreviousCategory() {
         prev = maxCategoryNum_ - 1;
     }
     currentCategory_ = static_cast<MenuCategory>(prev);
-    UpdateArrowPos();
 }
 
 void MenuStatus::UpdateArrowPos() {
@@ -109,6 +108,8 @@ void MenuStatus::Reset() {
     apperUVEasing_.time = 0.0f;
     scaleX_             = 0.0f;
     baseScale_          = {0.0f, 1.0f};
+    currentCategory_    = MenuCategory::RETURNGAME;
+   
 }
 
 void MenuStatus::ScrollTimeReset() {
@@ -116,7 +117,7 @@ void MenuStatus::ScrollTimeReset() {
   
 }
 
-void MenuStatus::DesideForCategory(Input* input) {
+void MenuStatus::DesideForCategory(Input* input, TutorialMenuParentStatus*tutorialStatus) {
 
     if (!input->isTriggerKey(DIK_SPACE)) {
         return;
@@ -127,6 +128,7 @@ void MenuStatus::DesideForCategory(Input* input) {
         scrollStep_ = MenuMode::CLOSEINIT;
         break;
     case MenuStatus::MenuCategory::OPENTUTORIAL:
+        tutorialStatus->SetIsAnimation(true);
         scrollStep_ = MenuMode::WATCHINGTUTORIAL;
         break;
     case MenuStatus::MenuCategory::RETURNTITLE:

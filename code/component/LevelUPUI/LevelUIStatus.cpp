@@ -19,13 +19,13 @@ bool LevelUIStatus::Edit() {
     ImGui::Spacing();
 
     // ComboDigit（桁数）のUI選択
-    static const char* digitLabels[] = { "ICON", "ONE", "TWO"};
+    static const char* digitLabels[] = {"ICON", "ONE", "TWO"};
     int currentIndex                 = static_cast<int>(levelUIDigit_);
     if (ImGui::Combo("LevelUI Digit", &currentIndex, digitLabels, static_cast<int>(LevelUIDigit::COUNT))) {
         levelUIDigit_ = static_cast<LevelUIDigit>(currentIndex);
     }
 
-     isChange |= ImGui::DragFloat3("offsetPos", offsetPos_.v);
+    isChange |= ImGui::DragFloat3("offsetPos", offsetPos_.v);
 
     return isChange;
 }
@@ -38,7 +38,7 @@ int32_t LevelUIStatus::GetValueForDigit(const int32_t& value) {
         valueForDigit_ = value % 10;
         break;
     case LevelUIDigit::TWO:
-        valueForDigit_ = (value/10)%10 ;
+        valueForDigit_ = (value / 10) % 10;
         break;
     default:
         valueForDigit_ = 0;

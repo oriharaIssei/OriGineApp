@@ -53,6 +53,7 @@ void MenuSystem::UpdateEntity(GameEntity* entity) {
     switch (menu->GetMenuMode()) {
     case MenuMode::NONE:
         if (input_->isTriggerKey(DIK_ESCAPE)) {
+            menu->Reset();
             menu->SetMenuMode(MenuMode::MENUSELECT);
         }
         break;
@@ -77,12 +78,13 @@ void MenuSystem::UpdateEntity(GameEntity* entity) {
             menu->SetMenuMode(MenuMode::CLOSEINIT);
         }
 
-        menu->DesideForCategory(input_);
+        menu->UpdateArrowPos();
+        menu->DesideForCategory(input_,tutorialUIParent);
 
         break;
 
     case MenuMode::WATCHINGTUTORIAL:
-        tutorialUIParent->SetIsAnimation(true);
+      /*  tutorialUIParent->SetIsAnimation(true);*/
         break;
 
     case MenuMode::CLOSEINIT:
