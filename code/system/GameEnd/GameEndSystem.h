@@ -3,6 +3,8 @@
 #include "system/ISystem.h"
 #include"sceneManager/SceneManager.h"
 
+class GameEnd;
+class TimerStatus;
 class GameEndSystem
     : public ISystem {
 public:
@@ -13,12 +15,15 @@ public:
     // void Update()override;
     void Finalize() override;
 
+    void ChangeSceneTitle();
+    void ChangeSceneResult(TimerStatus* timerstauts);
    
 
 protected:
     virtual void UpdateEntity(GameEntity* _entity) override;
 
     private:
+    GameEnd* gameEnd_=nullptr;
     SceneManager* sceneManager_ = nullptr;
    
 };

@@ -132,7 +132,7 @@ void MenuStatus::DesideForCategory(Input* input, TutorialMenuParentStatus*tutori
         scrollStep_ = MenuMode::WATCHINGTUTORIAL;
         break;
     case MenuStatus::MenuCategory::RETURNTITLE:
-        scrollStep_ = MenuMode::CLOSEINIT;
+        scrollStep_ = MenuMode::GAMEEND;
         break;
     default:
         break;

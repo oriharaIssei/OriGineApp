@@ -13,6 +13,7 @@
 // component
 #include "component/Menu/MenuStatus.h"
 #include"component/Menu/TutorialMenuParentStatus.h"
+#include"component/GameEnd/GameEnd.h"
 
 #include "engine/EngineInclude.h"
 #include <Vector2.h>
@@ -34,17 +35,20 @@ void MenuSystem::UpdateEntity(GameEntity* entity) {
      // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* tutorialParentEntity         = ecsManager->getUniqueEntity("TutorialMenuParent");
+    GameEntity* endEntity                    = ecsManager->getUniqueEntity("GameEnd");
 
-    if (!tutorialParentEntity) { // Entityが存在しない場合の早期リターン
+    
+    if (!tutorialParentEntity || !endEntity) { // Entityが存在しない場合の早期リターン
         return;
     }
 
     MenuStatus* menu       = getComponent<MenuStatus>(entity);
     SpriteRenderer* sprite = getComponent<SpriteRenderer>(entity);
     TutorialMenuParentStatus* tutorialUIParent = getComponent<TutorialMenuParentStatus>(tutorialParentEntity);
+    GameEnd* gameend                           = getComponent<GameEnd>(endEntity);
 
 
-    if (!menu || !sprite) {
+    if (!menu || !sprite || !tutorialUIParent) {
         return;
     }
 
@@ -102,6 +106,14 @@ void MenuSystem::UpdateEntity(GameEntity* entity) {
         break;
 
     case MenuMode::GAMEEND:
+        // ポーズ中は通さない
+
+        
+        if (!gameend) {
+            return;
+        }
+
+        gameend->SetIsBackTitle(true);
 
         break;
 

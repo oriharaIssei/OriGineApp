@@ -118,6 +118,7 @@ void TutorialMenuParentStatus::BackSizeAnimation(const float& time) {
     if (apperUVEasing_.time < apperUVEasing_.maxTime) {
         return;
     }
+
     scaleY_             = 0.0f;
     apperUVEasing_.time = 0.0f;
     scrollStep_         = ScrollStep::END;

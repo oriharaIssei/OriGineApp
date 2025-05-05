@@ -8,7 +8,6 @@
 #include <string>
 #include <Vector3.h>
 
-
 class GameEnd
     : public IComponent {
 public:
@@ -18,7 +17,8 @@ public:
 private: // variables
     bool isAlive_ = true;
 
-  bool isGameEnd_;
+    bool isGameEnd_   = false;
+    bool isBackTitle_ = false;
 
 public:
     GameEnd() {}
@@ -28,10 +28,11 @@ public:
     virtual bool Edit();
     virtual void Finalize();
 
-
 public: // accsessor
     /// getter
     bool GetIsGameEnd() const { return isGameEnd_; }
+    bool GetIsBackTitle() const { return isBackTitle_; }
 
-    void SetIsGameEnd(const bool& is) { isGameEnd_=is; }
+    void SetIsGameEnd(const bool& is) { isGameEnd_ = is; }
+    void SetIsBackTitle(const bool& is) { isBackTitle_ = is; }
 };

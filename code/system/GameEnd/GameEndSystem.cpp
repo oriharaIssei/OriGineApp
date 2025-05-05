@@ -8,7 +8,6 @@
 #include "engine/EngineInclude.h"
 #include <Vector.h>
 
-
 GameEndSystem::GameEndSystem() : ISystem(SystemType::StateTransition) {}
 
 void GameEndSystem::Initialize() {
@@ -25,7 +24,7 @@ void GameEndSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    GameEnd* gameEnd = getComponent<GameEnd>(_entity);
+     gameEnd_ = getComponent<GameEnd>(_entity);
 
     // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
@@ -37,19 +36,25 @@ void GameEndSystem::UpdateEntity(GameEntity* _entity) {
 
     TimerStatus* timerStatus = getComponent<TimerStatus>(timerEntity);
 
-    // タイマーゼロでゲームエンド
-    if (timerStatus->GetCurrentTimer() <= 0.0f) {
-        gameEnd->SetIsGameEnd(true);
-    }
-
-
-    if (!gameEnd->GetIsGameEnd()) {
-        return;
-    }
-
     //タイトル
-    if (Input::getInstance()->isTriggerKey(DIK_T)) {
-    
+    ChangeSceneTitle();
+    //リザルト
+    ChangeSceneResult(timerStatus);   
+}
+
+void GameEndSystem::ChangeSceneTitle() {
+    if (gameEnd_->GetIsBackTitle()) {
         sceneManager_->changeScene("TITLE");
     }
-}
+  }
+
+void GameEndSystem::ChangeSceneResult(TimerStatus* timerstauts) {
+    // タイマーゼロでゲームエンド
+    if (timerstauts->GetCurrentTimer() <= 0.0f) {
+        gameEnd_->SetIsGameEnd(true);
+    }
+
+    if (gameEnd_->GetIsGameEnd()) {
+        sceneManager_->changeScene("RESULT");
+    }
+ }

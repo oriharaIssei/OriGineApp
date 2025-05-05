@@ -47,7 +47,7 @@ void MenuFontSystem::UpdateEntity(GameEntity* _entity) {
 
     ///* ------------------------------calucration------------------------------
 
-  /*  Vec2f basePos  = menuStatus->GetArrowPos();*/
+    /*Vec2f basePos  = menuStatus->GetArrowPos();*/
     Vec2f baseSize = sprite->getTextureSize() * menuStatus->GetBaseScale();
     ///* ------------------------------adapt------------------------------
 

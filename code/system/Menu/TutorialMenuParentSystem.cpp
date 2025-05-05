@@ -8,8 +8,6 @@
 // lib
 
 // include
-#include <Quaternion.h>
-#include <Vector3.h>
 // component
 #include "component/Menu/TutorialMenuParentStatus.h"
 #include"component/Menu/MenuStatus.h"

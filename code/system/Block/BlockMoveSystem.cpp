@@ -50,7 +50,7 @@ void BlockMoveSystem::UpdateEntity(GameEntity* _entity) {
         blockStatus->SetPreMovePos(transform->translate);
         blockStatus->TimeInit();
     }
-        // 移動
-        blockStatus->MoveUpdate(Engine::getInstance()->getDeltaTime(), transform, blockManager->GetBlockSize()[X]);
-    
+
+    // 移動
+    blockStatus->MoveUpdate(Engine::getInstance()->getDeltaTime(), transform, blockManager->GetBlockSize()[X]);
 }
