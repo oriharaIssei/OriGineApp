@@ -31,7 +31,7 @@ void TimerDecrementSystem::Initialize() {
 void TimerDecrementSystem::Finalize() {}
 
 void TimerDecrementSystem::UpdateEntity(GameEntity* _entity) {
-    if (_entity) {
+    if (!_entity) {
         return;
     }
 

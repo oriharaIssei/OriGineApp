@@ -77,6 +77,8 @@ void MenuSystem::UpdateEntity(GameEntity* entity) {
             menu->SetMenuMode(MenuMode::CLOSEINIT);
         }
 
+        menu->DesideForCategory(input_);
+
         break;
 
     case MenuMode::WATCHINGTUTORIAL:

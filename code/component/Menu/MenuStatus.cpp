@@ -129,7 +129,7 @@ void MenuStatus::DesideForCategory(Input* input) {
         scrollStep_ = MenuMode::WATCHINGTUTORIAL;
         break;
     case MenuStatus::MenuCategory::RETURNTITLE:
-        scrollStep_ = MenuMode::END;
+        scrollStep_ = MenuMode::CLOSEINIT;
         break;
     default:
         break;
