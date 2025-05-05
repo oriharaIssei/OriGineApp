@@ -57,7 +57,7 @@ void TutorialMenuParentStatus::MoveAnimation(const float& time) {
 
     switch (scrollStep_) {
     case ScrollStep::PAUGEUP:
-        if (currentPauge_ >= maxPauge_) {
+        if (currentPauge_ >= maxPauge_-1) {
             scrollStep_ = ScrollStep::PAUGESELECTION;
             return;
         }

@@ -111,6 +111,7 @@
     <ClInclude Include="code\component\LevelUPUI\LevelUIParentStatus.h" />
     <ClInclude Include="code\component\LevelUPUI\LevelUIStatus.h" />
     <ClInclude Include="code\component\Menu\MenuStatus.h" />
+    <ClInclude Include="code\component\Menu\TutorialArrowStatus.h" />
     <ClInclude Include="code\component\Menu\TutorialMenuParentStatus.h" />
     <ClInclude Include="code\component\Menu\TutorialMenuStatus.h" />
     <ClInclude Include="code\component\OperateUI\OperateUIStatus.h" />
@@ -184,6 +185,7 @@
     <ClInclude Include="code\system\Menu\MenuArrowSystem.h" />
     <ClInclude Include="code\system\Menu\MenuFontSystem.h" />
     <ClInclude Include="code\system\Menu\MenuSystem.h" />
+    <ClInclude Include="code\system\Menu\TutorialArrowSystem.h" />
     <ClInclude Include="code\system\Menu\TutorialMenuParentSystem.h" />
     <ClInclude Include="code\system\Menu\TutorialMenuSystem.h" />
     <ClInclude Include="code\system\OperateUI\OperateUISystem.h" />
@@ -217,6 +219,7 @@
     <ClCompile Include="code\component\LevelUPUI\LevelUIParentStatus.cpp" />
     <ClCompile Include="code\component\LevelUPUI\LevelUIStatus.cpp" />
     <ClCompile Include="code\component\Menu\MenuStatus.cpp" />
+    <ClCompile Include="code\component\Menu\TutorialArrowStatus.cpp" />
     <ClCompile Include="code\component\Menu\TutorialMenuParentStatus.cpp" />
     <ClCompile Include="code\component\Menu\TutorialMenuStatus.cpp" />
     <ClCompile Include="code\component\OperateUI\OperateUIStatus.cpp" />
@@ -290,6 +293,7 @@
     <ClCompile Include="code\system\Menu\MenuArrowSystem.cpp" />
     <ClCompile Include="code\system\Menu\MenuFontSystem.cpp" />
     <ClCompile Include="code\system\Menu\MenuSystem.cpp" />
+    <ClCompile Include="code\system\Menu\TutorialArrowSystem.cpp" />
     <ClCompile Include="code\system\Menu\TutorialMenuParentSystem.cpp" />
     <ClCompile Include="code\system\Menu\TutorialMenuSystem.cpp" />
     <ClCompile Include="code\system\OperateUI\OperateUISystem.cpp" />
