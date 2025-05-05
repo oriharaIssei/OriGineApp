@@ -62,7 +62,7 @@ void TutorialMenuParentStatus::MoveAnimation(const float& time) {
             return;
         }
         savePos_ = startPos_;
-        endPos_  = startPos_ + scrollValue_;
+        endPos_  = startPos_ - scrollValue_;
         break;
     case ScrollStep::PAUGEDOWN:
         if (currentPauge_ <= 0) {
@@ -70,7 +70,7 @@ void TutorialMenuParentStatus::MoveAnimation(const float& time) {
             return;
         }
         savePos_ = startPos_;
-        endPos_  = startPos_ - scrollValue_;
+        endPos_  = startPos_ + scrollValue_;
         break;
     }
 
@@ -100,12 +100,12 @@ void TutorialMenuParentStatus::MoveAnimation(const float& time) {
 void TutorialMenuParentStatus::FirstMoveAnimation(const float& time) {
     apperUVEasing_.time += time;
 
-    scaleX_ = EaseOutQuad(0.0f, 1.0f, apperUVEasing_.time, apperUVEasing_.maxTime);
+    scaleY_ = EaseOutQuad(0.0f, 1.0f, apperUVEasing_.time, apperUVEasing_.maxTime);
 
     if (apperUVEasing_.time < apperUVEasing_.maxTime) {
         return;
     }
-    scaleX_             = 1.0f;
+    scaleY_             = 1.0f;
     apperUVEasing_.time = 0.0f;
     scrollStep_         = ScrollStep::PAUGESELECTION;
 }
@@ -113,12 +113,12 @@ void TutorialMenuParentStatus::FirstMoveAnimation(const float& time) {
 void TutorialMenuParentStatus::BackSizeAnimation(const float& time) {
     apperUVEasing_.time += time;
 
-    scaleX_ = EaseOutQuad(1.0f, 0.0f, apperUVEasing_.time, apperUVEasing_.maxTime);
+    scaleY_ = EaseOutQuad(1.0f, 0.0f, apperUVEasing_.time, apperUVEasing_.maxTime);
 
     if (apperUVEasing_.time < apperUVEasing_.maxTime) {
         return;
     }
-    scaleX_             = 0.0f;
+    scaleY_             = 0.0f;
     apperUVEasing_.time = 0.0f;
     scrollStep_         = ScrollStep::END;
 }
@@ -126,7 +126,7 @@ void TutorialMenuParentStatus::BackSizeAnimation(const float& time) {
 void TutorialMenuParentStatus::Reset() {
     moveEasing_.time    = 0.0f;
     apperUVEasing_.time = 0.0f;
-    scaleX_             = 0.0f;
+    scaleY_             = 0.0f;
     currentPauge_       = 0;
     position_           = initPos_;
     startPos_           = position_;

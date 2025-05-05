@@ -46,7 +46,7 @@ private: // variables
     Easing apperUVEasing_;
 
     /// uv
-    float scaleX_    = 0.0f;
+    float scaleY_    = 0.0f;
 
     /// pauge
     int32_t currentPauge_ = 0;
@@ -76,7 +76,7 @@ public: // accsessor
     /// getter
 
     bool GetIsAnimation() const { return isAnimation_; }
-    float GetScaleX() const { return scaleX_; }
+    float GetScaleY() const { return scaleY_; }
     Vec2f GetBasePos() const { return position_; }
     Vec2f GetBaseScale() const { return baseScale_; }
     ScrollStep GetAnimationStep() const { return scrollStep_; }

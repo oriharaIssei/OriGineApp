@@ -139,8 +139,8 @@
                 "SpriteRenderer": [
                     {
                         "anchorPoint": [
-                            0.0,
-                            0.0
+                            0.5,
+                            0.5
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -178,7 +178,7 @@
                     {
                         "isAlive": true,
                         "offsetPos": [
-                            500.0,
+                            800.0,
                             0.0
                         ],
                         "textureSize": [
@@ -206,8 +206,8 @@
                 "SpriteRenderer": [
                     {
                         "anchorPoint": [
-                            0.0,
-                            0.0
+                            0.5,
+                            0.5
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -2305,14 +2305,14 @@
                             0.0
                         ],
                         "initPos": [
-                            0.0,
-                            0.0
+                            640.0,
+                            320.0
                         ],
                         "isAlive": true,
                         "maxPauge": 3,
                         "moveEasing.maxTime": 0.14000000059604645,
                         "scrollValue": [
-                            500.0,
+                            800.0,
                             0.0
                         ]
                     }
@@ -2332,8 +2332,8 @@
                 "SpriteRenderer": [
                     {
                         "anchorPoint": [
-                            0.0,
-                            0.0
+                            0.5,
+                            0.5
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -2371,7 +2371,7 @@
                     {
                         "isAlive": true,
                         "offsetPos": [
-                            1000.0,
+                            1600.0,
                             0.0
                         ],
                         "textureSize": [
