@@ -44,7 +44,7 @@
                     {
                         "Direction": 1,
                         "endPos": [
-                            1100.0,
+                            1020.0,
                             320.0
                         ],
                         "isAlive": true,
@@ -114,7 +114,7 @@
                     {
                         "Direction": 0,
                         "endPos": [
-                            150.0,
+                            180.0,
                             320.0
                         ],
                         "isAlive": true,
@@ -132,6 +132,10 @@
                 {
                     "SystemName": "TutorialArrowSystem",
                     "SystemType": 3
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
                 }
             ],
             "isUnique": true

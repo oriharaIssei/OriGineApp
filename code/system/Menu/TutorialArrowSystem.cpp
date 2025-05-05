@@ -39,6 +39,8 @@ void TutorialArrowSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
+    deltaTime_ = Engine::getInstance()->getDeltaTime();
+
     // get timer component
     TutorialArrowStatus* arrowStatus          = getComponent<TutorialArrowStatus>(_entity);
     SpriteRenderer* sprite                     = getComponent<SpriteRenderer>(_entity);
