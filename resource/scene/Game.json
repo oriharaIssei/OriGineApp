@@ -10,7 +10,61 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
-                        "renderingPriority": 1,
+                        "renderingPriority": 5,
+                        "rotate": 0.0,
+                        "scale": [
+                            1280.0,
+                            100.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI/menuOperate.png",
+                        "textureSize": [
+                            1280.0,
+                            100.0
+                        ],
+                        "translate": [
+                            0.0,
+                            560.280029296875
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "MenuFontDown",
+            "Systems": [
+                {
+                    "SystemName": "MenuFontSystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 3,
                         "rotate": 0.0,
                         "scale": [
                             48.0,
@@ -64,7 +118,7 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
-                        "renderingPriority": 1,
+                        "renderingPriority": 5,
                         "rotate": 0.0,
                         "scale": [
                             320.0,
@@ -2190,7 +2244,7 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
-                        "renderingPriority": 1,
+                        "renderingPriority": 5,
                         "rotate": 0.0,
                         "scale": [
                             320.0,
@@ -2257,7 +2311,7 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
-                        "renderingPriority": 1,
+                        "renderingPriority": 5,
                         "rotate": 0.0,
                         "scale": [
                             320.0,
@@ -2350,7 +2404,7 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
-                        "renderingPriority": 1,
+                        "renderingPriority": 2,
                         "rotate": 0.0,
                         "scale": [
                             420.0,
@@ -2385,6 +2439,60 @@
             "Systems": [
                 {
                     "SystemName": "MenuSystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            1280.0,
+                            100.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI/menuUP.png",
+                        "textureSize": [
+                            1280.0,
+                            100.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "MenuFontUP",
+            "Systems": [
+                {
+                    "SystemName": "MenuFontSystem",
                     "SystemType": 3
                 },
                 {
@@ -2528,6 +2636,10 @@
                 "isActive": true
             },
             "MenuArrowSystem": {
+                "Priority": 0,
+                "isActive": true
+            },
+            "MenuFontSystem": {
                 "Priority": 0,
                 "isActive": true
             },

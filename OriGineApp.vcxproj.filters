@@ -418,6 +418,9 @@
     <ClInclude Include="code\system\Menu\MenuArrowSystem.h">
       <Filter>system\Menu</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Menu\MenuFontSystem.h">
+      <Filter>system\Menu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -719,6 +722,9 @@
       <Filter>system\Menu</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Menu\MenuArrowSystem.cpp">
+      <Filter>system\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Menu\MenuFontSystem.cpp">
       <Filter>system\Menu</Filter>
     </ClCompile>
   </ItemGroup>

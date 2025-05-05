@@ -92,6 +92,7 @@
 #include"Application/code/system/Menu/TutorialMenuSystem.h"
 #include"Application/code/system/Menu/MenuArrowSystem.h"
 #include"Application/code/system/Menu/MenuSystem.h"
+#include"Application/code/system/Menu/MenuFontSystem.h"
     //#include"Application/code/system/GameEnd/"
 
 GameScene::GameScene()
@@ -196,5 +197,6 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<TutorialMenuSystem>();
     ecsManager->registerSystem<MenuArrowSystem>();
     ecsManager->registerSystem<MenuSystem>();
+    ecsManager->registerSystem<MenuFontSystem>();
     ecsManager->SortPriorityOrderSystems();
 }
