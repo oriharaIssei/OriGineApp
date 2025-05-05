@@ -58,12 +58,12 @@ void MenuStatus::Finalize() {
 void MenuStatus::OpenMenuAnimation(const float& time) {
     apperUVEasing_.time += time;
 
-    scaleX_ = EaseInCubic(0.0f, 1.0f, apperUVEasing_.time, apperUVEasing_.maxTime);
+    baseScale_[X] = EaseInCubic(0.0f, 1.0f, apperUVEasing_.time, apperUVEasing_.maxTime);
 
     if (apperUVEasing_.time < apperUVEasing_.maxTime) {
         return;
     }
-    scaleX_             = 1.0f;
+    baseScale_[X]       = 1.0f;
     apperUVEasing_.time = 1.0f;
     /*  scrollStep_         = MenuMode::PAUGESELECTION;*/
 }
@@ -71,12 +71,12 @@ void MenuStatus::OpenMenuAnimation(const float& time) {
 void MenuStatus::CloseAnimation(const float& time) {
     apperUVEasing_.time += time;
 
-    scaleX_ = EaseInCubic(1.0f, 0.0f, apperUVEasing_.time, apperUVEasing_.maxTime);
+    baseScale_[X] = EaseInCubic(1.0f, 0.0f, apperUVEasing_.time, apperUVEasing_.maxTime);
 
     if (apperUVEasing_.time < apperUVEasing_.maxTime) {
         return;
     }
-    scaleX_             = 0.0f;
+    baseScale_[X]       = 0.0f;
     apperUVEasing_.time = 0.0f;
     scrollStep_         = MenuMode::END;
 }
@@ -107,7 +107,7 @@ void MenuStatus::Reset() {
     moveEasing_.time    = 0.0f;
     apperUVEasing_.time = 0.0f;
     scaleX_             = 0.0f;
-    baseScale_          = {0.0f, 0.0f};
+    baseScale_          = {0.0f, 1.0f};
 }
 
 void MenuStatus::ScrollTimeReset() {

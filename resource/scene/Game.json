@@ -4,7 +4,7 @@
             "Components": {
                 "MenuStatus": [
                     {
-                        "apperUVEasing.maxTime": 0.4300000071525574,
+                        "apperUVEasing.maxTime": 0.15000000596046448,
                         "arrowPositions": [
                             [
                                 500.0,
@@ -24,7 +24,7 @@
                         "moveEasing.maxTime": 0.30000001192092896,
                         "position": [
                             500.0,
-                            198.07000732421875
+                            120.0
                         ]
                     }
                 ],

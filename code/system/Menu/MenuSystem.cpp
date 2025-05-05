@@ -108,7 +108,7 @@ void MenuSystem::UpdateEntity(GameEntity* entity) {
     ///* ------------------------------calucration------------------------------
 
     Vec2f basePos  = menu->GetBasePos();
-    Vec2f baseSize = sprite->getTextureSize(); /** resultRank->gets();*/
+    Vec2f baseSize = sprite->getTextureSize() * menu->GetBaseScale();
     /*  resultRank->SetRankForScore(resultUIParent->GetCurrentScore());*/
 
     ///* ------------------------------adapt------------------------------
