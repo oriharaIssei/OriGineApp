@@ -44,7 +44,7 @@ void GameEndSystem::UpdateEntity(GameEntity* _entity) {
 
 void GameEndSystem::ChangeSceneTitle() {
     if (gameEnd_->GetIsBackTitle()) {
-        sceneManager_->changeScene("TITLE");
+        sceneManager_->changeScene("Title");
     }
   }
 
