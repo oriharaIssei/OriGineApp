@@ -95,7 +95,7 @@ void ResultRankSystem::UpdateEntity(GameEntity* _entity) {
     sprite->setTranslate(Vec2f(basePos[X], basePos[Y]));
     sprite->setRotate(resultRank->GetRotate());
     sprite->setSize(baseSize);
-    sprite->setUVTranslate(Vec2f(resultRank->GetUVPos(),0.0f));
+    sprite->setUVTranslate(Vec2f(0.0f, resultRank->GetUVPos()));
 
 }
 

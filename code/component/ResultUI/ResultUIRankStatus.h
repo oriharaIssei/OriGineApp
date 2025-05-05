@@ -22,6 +22,7 @@ class ResultUIRankStatus
 
 public:
     enum class RankType {
+        C,
         B,
         A,
         S,

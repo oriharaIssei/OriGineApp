@@ -46,8 +46,14 @@ void ResultUIRankStatus::Finalize() {}
 
 void ResultUIRankStatus::SetRankForScore(const float& score) {
 
+    
+    if (score < rankValue_[static_cast<int32_t>(RankType::C)]) {
+        rankType_ = RankType::C;
+        return;
+    }
+
     if (score < rankValue_[static_cast<int32_t>(RankType::B)]) {
-        rankType_ = RankType::B;
+        rankType_ = RankType::C;
         return;
     }
 
@@ -67,14 +73,17 @@ void ResultUIRankStatus::SetRankForScore(const float& score) {
 float ResultUIRankStatus::GetUVPos() {
 
     switch (rankType_) {
-    case RankType::B:
+    case RankType::C:
         uvPos_ = 0.0f;
         break;
+    case RankType::B:
+        uvPos_ = 0.25f;
+        break;
     case RankType::A:
-        uvPos_ = 0.1f;
+        uvPos_ = 0.5f;
         break;
     case RankType::S:
-        uvPos_ = 0.2f;
+        uvPos_ = 0.75f;
         break;
     default:
         uvPos_ = 0;
@@ -135,7 +144,9 @@ void from_json(const nlohmann::json& _json, ResultUIRankStatus& _component) {
     _json.at("easeScale").get_to(_component.easeScale_);
     _json.at("textureSize").get_to(_component.textureSize_);
     for (int32_t i = 0; i < _component.rankValue_.size(); ++i) {
-        _json.at("rankValue" + std::to_string(i)).get_to(_component.rankValue_[i]);
+        if (auto it = _json.find("rankValue" + std::to_string(i)); it != _json.end()) {
+            _json.at("rankValue" + std::to_string(i)).get_to(_component.rankValue_[i]);
+        }
     }
     _json.at("scalingEasing.maxTime").get_to(_component.scalingEasing_.maxTime);
     _json.at("rotateEasing.maxTime").get_to(_component.rotateEasing_.maxTime);
