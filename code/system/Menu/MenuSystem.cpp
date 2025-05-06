@@ -65,6 +65,7 @@ void MenuSystem::UpdateEntity(GameEntity* entity) {
     case MenuMode::MENUSELECT:
 
         menu->OpenMenuAnimation(deltaTime);
+        menu->ArrowMoveAnimation(deltaTime);
 
         // 下/右入力で次のカテゴリーへ
         if (input_->isTriggerKey(DIK_DOWN) || input_->isTriggerKey(DIK_S)) {

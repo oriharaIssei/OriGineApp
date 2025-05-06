@@ -42,6 +42,8 @@ private: // variables
     // pos
     Vec2f position_ = {0.0f, 0.0f};
     Vec2f arrowPos_ = {0.0f, 0.0f};
+    float arrowXOffset_;
+    float arrowOffsetValue_;
     std::array<Vec2f, 3> arrowPositions_;
 
     // offset
@@ -52,6 +54,7 @@ private: // variables
     // ease
     Easing moveEasing_;
     Easing apperUVEasing_;
+    Easing arrowMoveEasing_;
 
     /// uv
     float scaleX_ = 0.0f;
@@ -74,10 +77,11 @@ public:
 
     void OpenMenuAnimation(const float& time);
     void CloseAnimation(const float& time);
+    void ArrowMoveAnimation(const float& time);
     //
     void Reset();
     void ScrollTimeReset();
-
+    
     void UpdateArrowPos();
     void SelectPreviousCategory();
     void SelectNextCategory();
@@ -89,6 +93,7 @@ public: // accsessor
         /// getter
     bool GetIsAnimation() const { return isAnimation_; }
     bool GetIsPose();
+    float GetArrowOffset() const { return arrowXOffset_; }
     float GetScaleX() const { return scaleX_; }
     Vec2f GetBasePos() const { return position_; }
     Vec2f GetArrowPos() const { return arrowPos_; }

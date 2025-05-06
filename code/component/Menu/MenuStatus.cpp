@@ -6,13 +6,17 @@
 #include "input/Input.h"
 
 
-  void to_json(nlohmann::json& j, const MenuStatus& m){
+  void to_json(nlohmann::json& j, const MenuStatus& m) {
     j["isAlive"]               = m.isAlive_;
     j["moveEasing.maxTime"]    = m.moveEasing_.maxTime;
     j["apperUVEasing.maxTime"] = m.apperUVEasing_.maxTime;
     j["position"]              = m.position_;
     j["maxPauge"]              = m.maxCategoryNum_;
     j["arrowPositions"]        = m.arrowPositions_;
+    j["arrowMoveEasing.maxTime"] = m.arrowMoveEasing_.maxTime;
+    j["arrowMoveEasing.backRatio"] = m.arrowMoveEasing_.backRatio;
+    j["arrowOffsetValue"]          = m.arrowOffsetValue_;
+   
 }
 
 void from_json(const nlohmann::json& j, MenuStatus& m) {
@@ -22,6 +26,17 @@ void from_json(const nlohmann::json& j, MenuStatus& m) {
     j.at("position").get_to(m.position_);
     j.at("maxPauge").get_to(m.maxCategoryNum_);
     j.at("arrowPositions").get_to(m.arrowPositions_);
+    if (auto it = j.find("arrowMoveEasing.maxTime"); it != j.end()) {
+        j.at("arrowMoveEasing.maxTime").get_to(m.arrowMoveEasing_.maxTime);
+    }
+
+    if (auto it = j.find("arrowMoveEasing.backRatio"); it != j.end()) {
+        j.at("arrowMoveEasing.backRatio").get_to(m.arrowMoveEasing_.backRatio);
+    }
+
+     if (auto it = j.find("arrowOffsetValue"); it != j.end()) {
+        j.at("arrowOffsetValue").get_to(m.arrowOffsetValue_);
+    }
 }
 
 
@@ -39,12 +54,16 @@ bool MenuStatus::Edit() {
     ImGui::Text("pos");
     isChange |= ImGui::DragFloat2("position", position_.v, 0.01f);
     for (int32_t i = 0; i < arrowPositions_.size(); ++i) {
-        isChange |= ImGui::DragFloat2(("position" + std::to_string(i)).c_str(), arrowPositions_[i].v, 0.01f);
+        isChange |= ImGui::DragFloat2(("arrow position" + std::to_string(i)).c_str(), arrowPositions_[i].v, 0.01f);
     }
+    isChange |= ImGui::DragFloat("arrowOffsetValue", &arrowOffsetValue_, 0.01f);
 
     ImGui::Text("easing");
     isChange |= ImGui::DragFloat("moveEasing.maxTime", &moveEasing_.maxTime, 0.01f);
     isChange |= ImGui::DragFloat("apperUVAnimation.maxTime", &apperUVEasing_.maxTime, 0.01f);
+    isChange |= ImGui::DragFloat("arrowMoveEasing.maxTime", &arrowMoveEasing_.maxTime, 0.01f);
+    isChange |= ImGui::DragFloat("arrowMoveEasing.backRatio", &arrowMoveEasing_.backRatio, 0.01f);
+
 
     ImGui::Text("etc");
     isChange |= ImGui::InputInt("maxPauge", &maxCategoryNum_);
@@ -83,6 +102,18 @@ void MenuStatus::CloseAnimation(const float& time) {
     scrollStep_         = MenuMode::END;
 }
 
+void MenuStatus::ArrowMoveAnimation(const float& time) {
+    arrowMoveEasing_.time += time;
+
+   arrowXOffset_ = Back::InCubicZero(0.0f, arrowOffsetValue_, arrowMoveEasing_.time, arrowMoveEasing_.maxTime, arrowMoveEasing_.backRatio);
+
+    if (arrowMoveEasing_.time < arrowMoveEasing_.maxTime) {
+        return;
+    }
+    arrowXOffset_       = 0.0f;
+    arrowMoveEasing_.time = 0.0f;
+}
+
 void MenuStatus::SelectNextCategory() {
     int32_t next = static_cast<int32_t>(currentCategory_) + 1;
     if (next >= maxCategoryNum_) {
@@ -106,8 +137,10 @@ void MenuStatus::UpdateArrowPos() {
 void MenuStatus::Reset() {
     moveEasing_.time    = 0.0f;
     apperUVEasing_.time = 0.0f;
+    arrowMoveEasing_.time = 0.0f;
     scaleX_             = 0.0f;
     baseScale_          = {0.0f, 1.0f};
+    arrowXOffset_       = 0.0f;
     currentCategory_    = MenuCategory::RETURNGAME;
    
 }

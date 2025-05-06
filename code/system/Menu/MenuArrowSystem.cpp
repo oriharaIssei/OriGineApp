@@ -47,7 +47,7 @@ void MenuArrowSystem::UpdateEntity(GameEntity* _entity) {
 
     ///* ------------------------------calucration------------------------------
 
-    Vec2f basePos  = menuStatus->GetArrowPos();
+    Vec2f basePos  = Vec2f(menuStatus->GetArrowPos()[X] + menuStatus->GetArrowOffset(), menuStatus->GetArrowPos()[Y]);
     Vec2f baseSize = sprite->getTextureSize() * menuStatus->GetBaseScale();
     ///* ------------------------------adapt------------------------------
 
