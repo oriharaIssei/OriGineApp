@@ -31,9 +31,10 @@ void PutBomSystem::Finalize() {
 void PutBomSystem::UpdateEntity(GameEntity* _entity) {
 
     bomSpawner_          = getComponent<BomSpawner>(_entity);
+    bomExCollision_      = getComponent<ExplotionCollision>(_entity);
     BomStatus* bomStates = getComponent<BomStatus>(_entity);
 
-    if (!bomSpawner_ || !bomStates) {
+    if (!bomSpawner_ || !bomStates || !bomExCollision_) {
         return;
     }
     if (!bomSpawner_->GetIsLaunch()) {
@@ -67,7 +68,7 @@ void PutBomSystem::SpawnBom(GameEntity* _entity, BomStatus* _status) {
     }
 
     // ================================= Bullet Entityを 生成 ================================= //
-    GameEntity* bom = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, BomStatus>("Bom", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), BomStatus());
+    GameEntity* bom = CreateEntity<Transform, SphereCollider, SphereCollider, Rigidbody, ModelMeshRenderer, BomStatus>("Bom", Transform(), SphereCollider(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), BomStatus());
     //  ================================= Componentを初期化 ================================= //
 
     // Transform
@@ -77,7 +78,9 @@ void PutBomSystem::SpawnBom(GameEntity* _entity, BomStatus* _status) {
 
     // Collider
     SphereCollider* collider              = getComponent<SphereCollider>(bom);
+    SphereCollider* collider2              = getComponent<SphereCollider>(bom,1);
     collider->getLocalShapePtr()->radius_ = _status->GetCollisionRadius();
+    collider2->getLocalShapePtr()->radius_ = bomExCollision_->GetCollisionRadius();
 
     // RigitBody
 

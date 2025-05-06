@@ -13,17 +13,67 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            1280.0,
-                            100.0
+                            96.0,
+                            96.0
                         ],
                         "textureLeftTop": [
                             0.0,
                             0.0
                         ],
-                        "texturePath": "application/resource/Texture\\UI/menuUP.png",
+                        "texturePath": "application/resource/Texture\\UI\\Time/TimeSymbol.png",
                         "textureSize": [
-                            1280.0,
-                            100.0
+                            96.0,
+                            48.0
+                        ],
+                        "translate": [
+                            280.010009765625,
+                            533.7100219726563
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            0.5,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.5,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "TimerDot",
+            "Systems": [
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.5,
+                            0.5
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            48.0,
+                            48.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI/AddTimeUI.png",
+                        "textureSize": [
+                            48.0,
+                            48.0
                         ],
                         "translate": [
                             0.0,
@@ -39,9 +89,149 @@
                             0.0
                         ]
                     }
+                ],
+                "TutorialArrowStatus": [
+                    {
+                        "Direction": 1,
+                        "endPos": [
+                            1020.0,
+                            320.0
+                        ],
+                        "isAlive": true,
+                        "moveEasing.backRatio": 0.5,
+                        "moveEasing.maxTime": 1.0,
+                        "startPos": [
+                            1000.0,
+                            320.0
+                        ]
+                    }
                 ]
             },
-            "Name": "MenuFontUP",
+            "Name": "TutorialArrowRight",
+            "Systems": [
+                {
+                    "SystemName": "TutorialArrowSystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.5,
+                            0.5
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            48.0,
+                            48.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI/SubtractTimeUI.png",
+                        "textureSize": [
+                            48.0,
+                            48.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "TutorialArrowStatus": [
+                    {
+                        "Direction": 0,
+                        "endPos": [
+                            180.0,
+                            320.0
+                        ],
+                        "isAlive": true,
+                        "moveEasing.backRatio": 0.5,
+                        "moveEasing.maxTime": 1.0,
+                        "startPos": [
+                            200.0,
+                            320.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "TutorialArrowLeft",
+            "Systems": [
+                {
+                    "SystemName": "TutorialArrowSystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 5,
+                        "rotate": 0.0,
+                        "scale": [
+                            1280.0,
+                            100.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI/menuOperate.png",
+                        "textureSize": [
+                            1280.0,
+                            100.0
+                        ],
+                        "translate": [
+                            0.0,
+                            560.280029296875
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "MenuFontDown",
             "Systems": [
                 {
                     "SystemName": "MenuFontSystem",
@@ -56,146 +246,294 @@
         },
         {
             "Components": {
-                "MenuStatus": [
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 3,
+                        "rotate": 0.0,
+                        "scale": [
+                            48.0,
+                            48.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI/AddTimeUI.png",
+                        "textureSize": [
+                            48.0,
+                            48.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "MenuArrow",
+            "Systems": [
+                {
+                    "SystemName": "MenuArrowSystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.5,
+                            0.5
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 5,
+                        "rotate": 0.0,
+                        "scale": [
+                            320.0,
+                            320.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI/TutorialPauge3.png",
+                        "textureSize": [
+                            320.0,
+                            320.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "TutorialMenuStatus": [
+                    {
+                        "isAlive": true,
+                        "offsetPos": [
+                            1600.0,
+                            0.0
+                        ],
+                        "textureSize": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "TutorialMenu3",
+            "Systems": [
+                {
+                    "SystemName": "TutorialMenuSystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "TutorialMenuParentStatus": [
                     {
                         "apperUVEasing.maxTime": 0.15000000596046448,
-                        "arrowPositions": [
-                            [
-                                500.0,
-                                250.0
-                            ],
-                            [
-                                500.0,
-                                350.0
-                            ],
-                            [
-                                500.0,
-                                450.0
-                            ]
+                        "endPos": [
+                            0.0,
+                            0.0
+                        ],
+                        "initPos": [
+                            640.0,
+                            320.0
                         ],
                         "isAlive": true,
                         "maxPauge": 3,
-                        "moveEasing.maxTime": 0.30000001192092896,
-                        "position": [
-                            500.0,
-                            120.0
-                        ]
-                    }
-                ],
-                "SpriteRenderer": [
-                    {
-                        "anchorPoint": [
-                            0.0,
-                            0.0
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "renderingPriority": 2,
-                        "rotate": 0.0,
-                        "scale": [
-                            420.0,
-                            540.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "application/resource/Texture\\UI/result.png",
-                        "textureSize": [
-                            420.0,
-                            540.0
-                        ],
-                        "translate": [
-                            0.0,
-                            0.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "Menu",
-            "Systems": [
-                {
-                    "SystemName": "MenuSystem",
-                    "SystemType": 3
-                },
-                {
-                    "SystemName": "SpriteRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "SpriteRenderer": [
-                    {
-                        "anchorPoint": [
-                            0.5,
-                            0.5
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "renderingPriority": 5,
-                        "rotate": 0.0,
-                        "scale": [
-                            320.0,
-                            320.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "application/resource/Texture\\UI/TutorialPauge2.png",
-                        "textureSize": [
-                            320.0,
-                            320.0
-                        ],
-                        "translate": [
-                            0.0,
-                            0.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "TutorialMenuStatus": [
-                    {
-                        "isAlive": true,
-                        "offsetPos": [
+                        "moveEasing.maxTime": 0.14000000059604645,
+                        "scrollValue": [
                             800.0,
                             0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "TutorialMenuParent",
+            "Systems": [
+                {
+                    "SystemName": "TutorialMenuParentSystem",
+                    "SystemType": 3
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "FloatingFloorSpawner": [
+                    {
+                        "FallCollisionMax": [
+                            15.0,
+                            5.0,
+                            5.0
                         ],
-                        "textureSize": [
+                        "FallCollisionMin": [
+                            -15.0,
+                            0.0,
+                            0.0
+                        ],
+                        "columNumMax": 1,
+                        "fallCollisionCenterPos": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "pillarHP": 2,
+                        "pillerSpace": 48.0,
+                        "ratio": 1.0,
+                        "revivalTime": 5.0,
+                        "rowNum": 2,
+                        "sideSpace": 11.0
+                    }
+                ],
+                "ModelMeshRenderer": [
+                    {
+                        "blendMode": 1,
+                        "directory": "application/resource/Models\\RedFloor",
+                        "fileName": "RedFloor.obj",
+                        "isRender": true,
+                        "materialBufferDatas": [
+                            {
+                                "color": [
+                                    1.0,
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "enableLighting": false,
+                                "shininess": 0.0,
+                                "specularColor": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvRotate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "uvScale": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvTranslate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ],
+                        "transformBufferDatas": [
+                            {
+                                "rotate": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "scale": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "translate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "Rigidbody": [
+                    {
+                        "acceleration": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "mass": 1.0,
+                        "useGravity": false,
+                        "velocity": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            2.440000057220459,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            25.25,
                             0.0,
                             0.0
                         ]
                     }
                 ]
             },
-            "Name": "TutorialMenu2",
+            "Name": "BottomFloor3",
             "Systems": [
                 {
-                    "SystemName": "TutorialMenuSystem",
+                    "SystemName": "CreateFloorSystem",
+                    "SystemType": 0
+                },
+                {
+                    "SystemName": "MoveSystemByRigidBody",
                     "SystemType": 3
                 },
                 {
-                    "SystemName": "SpriteRenderSystem",
+                    "SystemName": "TexturedMeshRenderSystem",
                     "SystemType": 6
                 }
             ],
@@ -203,28 +541,484 @@
         },
         {
             "Components": {
+                "FloatingFloorSpawner": [
+                    {
+                        "FallCollisionMax": [
+                            9.0,
+                            5.0,
+                            5.0
+                        ],
+                        "FallCollisionMin": [
+                            -10.0,
+                            0.0,
+                            0.0
+                        ],
+                        "columNumMax": 1,
+                        "fallCollisionCenterPos": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "pillarHP": 2,
+                        "pillerSpace": 48.0,
+                        "ratio": 2.0,
+                        "revivalTime": 5.0,
+                        "rowNum": 1,
+                        "sideSpace": 11.0
+                    }
+                ],
+                "ModelMeshRenderer": [
+                    {
+                        "blendMode": 1,
+                        "directory": "application/resource/Models\\WhiteFloor",
+                        "fileName": "whiteFloor.obj",
+                        "isRender": true,
+                        "materialBufferDatas": [
+                            {
+                                "color": [
+                                    1.0,
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "enableLighting": false,
+                                "shininess": 0.0,
+                                "specularColor": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvRotate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "uvScale": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvTranslate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ],
+                        "transformBufferDatas": [
+                            {
+                                "rotate": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "scale": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "translate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "Rigidbody": [
+                    {
+                        "acceleration": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "mass": 1.0,
+                        "useGravity": false,
+                        "velocity": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.5499999523162842,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            -4.5,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "BottomFloor2",
+            "Systems": [
+                {
+                    "SystemName": "CreateFloorSystem",
+                    "SystemType": 0
+                },
+                {
+                    "SystemName": "MoveSystemByRigidBody",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "TexturedMeshRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "FloatingFloorSpawner": [
+                    {
+                        "FallCollisionMax": [
+                            9.0,
+                            5.0,
+                            5.0
+                        ],
+                        "FallCollisionMin": [
+                            -10.0,
+                            0.0,
+                            0.0
+                        ],
+                        "columNumMax": 1,
+                        "fallCollisionCenterPos": [
+                            -7.0,
+                            -7.0,
+                            -7.0
+                        ],
+                        "pillarHP": 2,
+                        "pillerSpace": 48.0,
+                        "ratio": 3.0,
+                        "revivalTime": 5.0,
+                        "rowNum": 0,
+                        "sideSpace": 11.0
+                    }
+                ],
+                "ModelMeshRenderer": [
+                    {
+                        "blendMode": 1,
+                        "directory": "application/resource/Models\\RedFloor",
+                        "fileName": "RedFloor.obj",
+                        "isRender": true,
+                        "materialBufferDatas": [
+                            {
+                                "color": [
+                                    1.0,
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "enableLighting": false,
+                                "shininess": 0.0,
+                                "specularColor": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvRotate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "uvScale": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvTranslate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ],
+                        "transformBufferDatas": [
+                            {
+                                "rotate": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "scale": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "translate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "Rigidbody": [
+                    {
+                        "acceleration": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "mass": 1.0,
+                        "useGravity": false,
+                        "velocity": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.2999999523162842,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            -27.600000381469727,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "BottomFloor1",
+            "Systems": [
+                {
+                    "SystemName": "CreateFloorSystem",
+                    "SystemType": 0
+                },
+                {
+                    "SystemName": "MoveSystemByRigidBody",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "TexturedMeshRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "Audio": [
+                    {
+                        "fileName": "application/resource/sound/tenpoSE.wav",
+                        "isLoop": false,
+                        "isPlay": false,
+                        "valume": 0.5
+                    },
+                    {
+                        "fileName": "application/resource/sound/TempoMoveSE.wav",
+                        "isLoop": false,
+                        "isPlay": false,
+                        "valume": 0.5
+                    },
+                    {
+                        "fileName": "application/resource/sound/Break_Block.wav",
+                        "isLoop": false,
+                        "isPlay": false,
+                        "valume": 0.5
+                    },
+                    {
+                        "fileName": "application/resource/sound/BreakFall.wav",
+                        "isLoop": false,
+                        "isPlay": false,
+                        "valume": 0.5
+                    },
+                    {
+                        "fileName": "application/resource/sound/BreakFall.wav",
+                        "isLoop": false,
+                        "isPlay": false,
+                        "valume": 0.5
+                    },
+                    {
+                        "fileName": "application/resource/sound/Break_Block.wav",
+                        "isLoop": false,
+                        "isPlay": false,
+                        "valume": 0.5
+                    },
+                    {
+                        "fileName": "application/resource/sound/Break_Block.wav",
+                        "isLoop": false,
+                        "isPlay": false,
+                        "valume": 0.5
+                    },
+                    {
+                        "fileName": "application/resource/sound/BreakFall.wav",
+                        "isLoop": false,
+                        "isPlay": false,
+                        "valume": 0.5
+                    }
+                ],
+                "BlockManager": [
+                    {
+                        "FirstblockSize": [
+                            4.5,
+                            4.5,
+                            4.5
+                        ],
+                        "MoveScalingamplitude": 1.149999976158142,
+                        "MoveScalingbackRatio": 0.20000000298023224,
+                        "MoveScalingmaxTime": 0.47999998927116394,
+                        "MoveScalingperiod": 0.2800000011920929,
+                        "Scalingamplitude": -431602080.0,
+                        "ScalingbackRatio": 0.5,
+                        "ScalingmaxTime": 0.25,
+                        "Scalingperiod": -431602080.0,
+                        "basePosY": 5.0,
+                        "collisionRadius": 1.0,
+                        "columNumMax": 5,
+                        "costs": [
+                            0,
+                            2,
+                            2
+                        ],
+                        "deadPositionX": -42.0,
+                        "generateInterval": [
+                            3,
+                            3,
+                            3
+                        ],
+                        "moveSpeed": 0.0,
+                        "moveSpeeds": [
+                            0.10000000149011612,
+                            0.5,
+                            0.4000000059604645,
+                            0.30000001192092896,
+                            0.25,
+                            0.20000000298023224
+                        ],
+                        "moveTimemax": 0.10000000149011612,
+                        "movetenpoNum": 4,
+                        "nextCreatePositionX": 51.0,
+                        "nextLevelTime": [
+                            2.799999952316284,
+                            5.0,
+                            5.0,
+                            5.0,
+                            5.0,
+                            5.0
+                        ],
+                        "pillarHP": 1,
+                        "randomPar": [
+                            0,
+                            20,
+                            20
+                        ],
+                        "scalingSize": [
+                            4.699999809265137,
+                            4.699999809265137,
+                            4.699999809265137
+                        ],
+                        "scoreValue": [
+                            100.0,
+                            1000.0,
+                            1000.0
+                        ],
+                        "startPosition": 54.0,
+                        "startPositionZ": 5.0
+                    }
+                ]
+            },
+            "Name": "BlockManager",
+            "Systems": [
+                {
+                    "SystemName": "BlockSpawnSystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "MoveTenpoSystem",
+                    "SystemType": 3
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "Button": [
+                    {
+                        "hoverColor": [
+                            0.800000011920929,
+                            0.800000011920929,
+                            0.800000011920929,
+                            1.0
+                        ],
+                        "normalColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "pressColor": [
+                            0.6000000238418579,
+                            0.6000000238418579,
+                            0.6000000238418579,
+                            1.0
+                        ],
+                        "releaseColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "shortKeys": [
+                            20
+                        ],
+                        "shortcutPadButton": []
+                    }
+                ],
+                "SceneChanger": [
+                    {
+                        "nextSceneName": "Title"
+                    }
+                ],
                 "SpriteRenderer": [
                     {
                         "anchorPoint": [
-                            0.5,
-                            0.5
+                            0.0,
+                            0.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
-                        "renderingPriority": 5,
+                        "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            320.0,
-                            320.0
+                            192.0,
+                            192.0
                         ],
                         "textureLeftTop": [
                             0.0,
                             0.0
                         ],
-                        "texturePath": "application/resource/Texture\\UI/TutorialPauge1.png",
+                        "texturePath": "application/resource/Texture\\UI/GameToTitleUI.png",
                         "textureSize": [
-                            320.0,
-                            320.0
+                            192.0,
+                            192.0
                         ],
                         "translate": [
                             0.0,
@@ -240,25 +1034,72 @@
                             0.0
                         ]
                     }
-                ],
-                "TutorialMenuStatus": [
+                ]
+            },
+            "Name": "BakcT",
+            "Systems": [
+                {
+                    "SystemName": "ButtonInputSystem",
+                    "SystemType": 1
+                },
+                {
+                    "SystemName": "ChangeSceneByButton",
+                    "SystemType": 2
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "ScoreUIStatus": [
                     {
                         "isAlive": true,
-                        "offsetPos": [
+                        "levelUIDigit": 4
+                    }
+                ],
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
                             0.0,
                             0.0
                         ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            128.0,
+                            128.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI/Numbers.png",
                         "textureSize": [
+                            480.0,
+                            48.0
+                        ],
+                        "translate": [
+                            780.0,
+                            530.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            0.10000000149011612,
+                            1.0
+                        ],
+                        "uvTranslate": [
                             0.0,
                             0.0
                         ]
                     }
                 ]
             },
-            "Name": "TutorialMenu1",
+            "Name": "ScoreUI5",
             "Systems": [
                 {
-                    "SystemName": "TutorialMenuSystem",
+                    "SystemName": "ScoreUIScrollSystem",
                     "SystemType": 3
                 },
                 {
@@ -270,15 +1111,976 @@
         },
         {
             "Components": {
-                "FieldStatus": [
+                "ScoreUIStatus": [
                     {
-                        "fieldLeftMax": -48.0,
-                        "fieldRightMax": 48.0,
+                        "isAlive": true,
+                        "levelUIDigit": 3
+                    }
+                ],
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            128.0,
+                            128.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI/Numbers.png",
+                        "textureSize": [
+                            480.0,
+                            48.0
+                        ],
+                        "translate": [
+                            860.0,
+                            530.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            0.10000000149011612,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "ScoreUI4",
+            "Systems": [
+                {
+                    "SystemName": "ScoreUIScrollSystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "ScoreUIStatus": [
+                    {
+                        "isAlive": true,
+                        "levelUIDigit": 2
+                    }
+                ],
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            128.0,
+                            128.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI/Numbers.png",
+                        "textureSize": [
+                            480.0,
+                            48.0
+                        ],
+                        "translate": [
+                            940.0,
+                            530.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            0.10000000149011612,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "ScoreUI3",
+            "Systems": [
+                {
+                    "SystemName": "ScoreUIScrollSystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "ScoreUIStatus": [
+                    {
+                        "isAlive": true,
+                        "levelUIDigit": 1
+                    }
+                ],
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            128.0,
+                            128.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI/Numbers.png",
+                        "textureSize": [
+                            480.0,
+                            48.0
+                        ],
+                        "translate": [
+                            1020.0,
+                            530.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            0.10000000149011612,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "ScoreUI2",
+            "Systems": [
+                {
+                    "SystemName": "ScoreUIScrollSystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "ScoreUIStatus": [
+                    {
+                        "isAlive": true,
+                        "levelUIDigit": 0
+                    }
+                ],
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            128.0,
+                            128.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI/Numbers.png",
+                        "textureSize": [
+                            480.0,
+                            48.0
+                        ],
+                        "translate": [
+                            1100.0,
+                            530.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            0.10000000149011612,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "ScoreUI1",
+            "Systems": [
+                {
+                    "SystemName": "ScoreUIScrollSystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            128.0,
+                            128.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI/ScoreIcom.png",
+                        "textureSize": [
+                            192.0,
+                            192.0
+                        ],
+                        "translate": [
+                            675.0,
+                            530.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "ScoreUIICON",
+            "Systems": [
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "ScrapSpawner": [
+                    {
+                        "blowValue": [
+                            14.0,
+                            -17.0
+                        ],
+                        "colliderRadius": 2.0,
+                        "createNum": 2,
+                        "fallStopPosY": 1.2000000476837158,
+                        "isAlive": true,
+                        "lifeTime": 5.0,
+                        "mass": 52.0
+                    }
+                ]
+            },
+            "Name": "ScrapSpawner",
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            128.0,
+                            128.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI/TimeIcom.png",
+                        "textureSize": [
+                            192.0,
+                            192.0
+                        ],
+                        "translate": [
+                            15.350000381469727,
+                            524.1300048828125
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "TimeUIICON",
+            "Systems": [
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            128.0,
+                            128.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI\\Time/TimeNum.png",
+                        "textureSize": [
+                            480.0,
+                            48.0
+                        ],
+                        "translate": [
+                            210.0,
+                            530.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            0.10000000149011612,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "TimerUIStatus": [
+                    {
+                        "isAlive": true,
+                        "timerDigit": 0
+                    }
+                ]
+            },
+            "Name": "TR1",
+            "Systems": [
+                {
+                    "SystemName": "TimerUIScrollSystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            128.0,
+                            128.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI\\Time/TimeNum.png",
+                        "textureSize": [
+                            480.0,
+                            48.0
+                        ],
+                        "translate": [
+                            130.0,
+                            530.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            0.10000000149011612,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "TimerUIStatus": [
+                    {
+                        "isAlive": true,
+                        "timerDigit": 1
+                    }
+                ]
+            },
+            "Name": "TR2",
+            "Systems": [
+                {
+                    "SystemName": "TimerUIScrollSystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "EffectByBlockSpawner": [
+                    {
                         "isAlive": true
                     }
                 ]
             },
-            "Name": "Field",
+            "Name": "effectByBlockSpawner",
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "Audio": [
+                    {
+                        "fileName": "application/resource/sound/BreakFall.wav",
+                        "isLoop": false,
+                        "isPlay": false,
+                        "valume": 0.5
+                    },
+                    {
+                        "fileName": "application/resource/sound/BreakFall.wav",
+                        "isLoop": false,
+                        "isPlay": false,
+                        "valume": 0.5
+                    },
+                    {
+                        "fileName": "application/resource/sound/BreakFall.wav",
+                        "isLoop": false,
+                        "isPlay": false,
+                        "valume": 0.5
+                    },
+                    {
+                        "fileName": "application/resource/sound/BreakFall.wav",
+                        "isLoop": false,
+                        "isPlay": false,
+                        "valume": 0.5
+                    },
+                    {
+                        "fileName": "application/resource/sound/BreakFall.wav",
+                        "isLoop": false,
+                        "isPlay": false,
+                        "valume": 0.5
+                    }
+                ]
+            },
+            "Name": "FloorSound",
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "GameEnd": [
+                    {
+                        "isAlive": true
+                    }
+                ]
+            },
+            "Name": "GameEnd",
+            "Systems": [
+                {
+                    "SystemName": "GameEndSystem",
+                    "SystemType": 2
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "LevelUIStatus": [
+                    {
+                        "isAlive": true,
+                        "levelUIDigit": 1,
+                        "offsetPos": [
+                            127.0,
+                            19.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.5,
+                            0.5
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            480.0,
+                            48.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI/Numbers.png",
+                        "textureSize": [
+                            480.0,
+                            48.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            0.10000000149011612,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "LevelUID1",
+            "Systems": [
+                {
+                    "SystemName": "LevelUIInitSystem",
+                    "SystemType": 0
+                },
+                {
+                    "SystemName": "LevelUIAdaptSystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "LevelUIStatus": [
+                    {
+                        "isAlive": true,
+                        "levelUIDigit": 0,
+                        "offsetPos": [
+                            12.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.5,
+                            0.5
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            192.0,
+                            192.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI/TimeIcom.png",
+                        "textureSize": [
+                            192.0,
+                            192.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "LevelUIICON",
+            "Systems": [
+                {
+                    "SystemName": "LevelUIInitSystem",
+                    "SystemType": 0
+                },
+                {
+                    "SystemName": "LevelUIAdaptSystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "LevelUIParentStatus": [
+                    {
+                        "changingEaseScale": [
+                            2.5,
+                            2.5
+                        ],
+                        "easePos": [
+                            500.0,
+                            200.0,
+                            0.0
+                        ],
+                        "easeScale": [
+                            2.0,
+                            2.0
+                        ],
+                        "initPos": [
+                            100.0,
+                            50.0,
+                            0.0
+                        ],
+                        "isAlive": true,
+                        "moveEasing.maxTime": 0.36000001430511475,
+                        "moveOffset": [
+                            118.0,
+                            0.0,
+                            0.0
+                        ],
+                        "reverseWaitTime": 0.20000000298023224,
+                        "scaleEasing.amplitude": 1.2000000476837158,
+                        "scaleEasing.backRatio": 0.5,
+                        "scaleEasing.maxTime": 0.3700000047683716,
+                        "scaleEasing.period": 0.20000000298023224,
+                        "scrollWaitTime": 0.5,
+                        "uvScrollEasing.maxTime": 0.1899999976158142
+                    }
+                ],
+                "SpriteRenderer": []
+            },
+            "Name": "LevelUIParent",
+            "Systems": [
+                {
+                    "SystemName": "LevelUIParentInitSystem",
+                    "SystemType": 0
+                },
+                {
+                    "SystemName": "LevelUIAnimationSystem",
+                    "SystemType": 3
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "OperateUIStatus": [
+                    {
+                        "isAlive": true,
+                        "maxTextureSize_": [
+                            0.0,
+                            0.0
+                        ],
+                        "resultTextureSize_": [
+                            128.0,
+                            128.0
+                        ],
+                        "scalingEase_.amplitude": 100.0,
+                        "scalingEase_.maxTime": 0.30000001192092896,
+                        "scalingEase_.period": 0.30000001192092896,
+                        "startTextureSize_": [
+                            128.0,
+                            128.0
+                        ]
+                    }
+                ],
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            128.0,
+                            128.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI/PlaySpaceUI-sheet.png",
+                        "textureSize": [
+                            384.0,
+                            192.0
+                        ],
+                        "translate": [
+                            524.280029296875,
+                            521.47998046875
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            0.5,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "OperateUI",
+            "Systems": [
+                {
+                    "SystemName": "OperateUISystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "ScoreStatus": [
+                    {
+                        "currentScore": 0.0,
+                        "isAlive": true,
+                        "pulusScore": 0.0
+                    }
+                ]
+            },
+            "Name": "Score",
+            "Systems": [
+                {
+                    "SystemName": "ScoreIncrementSystem",
+                    "SystemType": 3
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "TimerStatus": [
+                    {
+                        "currentPulusTime": 0.0,
+                        "isAlive": true,
+                        "minusTime": 5.0,
+                        "minusTimeNormal": 1.0,
+                        "pulusTime": 5.0,
+                        "startTimer": 60.0
+                    }
+                ]
+            },
+            "Name": "Timer",
+            "Systems": [
+                {
+                    "SystemName": "TimerDecrementSystem",
+                    "SystemType": 3
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            128.0,
+                            128.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI\\Time/TimeNum.png",
+                        "textureSize": [
+                            480.0,
+                            48.0
+                        ],
+                        "translate": [
+                            320.0,
+                            530.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            0.10000000149011612,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "TimerStatus": [],
+                "TimerUIStatus": [
+                    {
+                        "isAlive": true,
+                        "timerDigit": 2
+                    }
+                ]
+            },
+            "Name": "TRD1",
+            "Systems": [
+                {
+                    "SystemName": "TimerUIScrollSystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            128.0,
+                            128.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI\\Time/TimeNum.png",
+                        "textureSize": [
+                            480.0,
+                            48.0
+                        ],
+                        "translate": [
+                            400.0,
+                            530.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            0.10000000149011612,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "TimerStatus": [],
+                "TimerUIStatus": [
+                    {
+                        "isAlive": true,
+                        "timerDigit": 3
+                    }
+                ]
+            },
+            "Name": "TRD2",
+            "Systems": [
+                {
+                    "SystemName": "TimerUIScrollSystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
             "isUnique": true
         },
         {
@@ -607,1720 +2409,15 @@
         },
         {
             "Components": {
-                "SpriteRenderer": [
+                "FieldStatus": [
                     {
-                        "anchorPoint": [
-                            0.0,
-                            0.0
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "renderingPriority": 1,
-                        "rotate": 0.0,
-                        "scale": [
-                            128.0,
-                            128.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "application/resource/Texture\\UI\\Time/TimeNum.png",
-                        "textureSize": [
-                            480.0,
-                            48.0
-                        ],
-                        "translate": [
-                            400.0,
-                            530.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            0.10000000149011612,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "TimerStatus": [],
-                "TimerUIStatus": [
-                    {
-                        "isAlive": true,
-                        "timerDigit": 3
-                    }
-                ]
-            },
-            "Name": "TRD2",
-            "Systems": [
-                {
-                    "SystemName": "TimerUIScrollSystem",
-                    "SystemType": 3
-                },
-                {
-                    "SystemName": "SpriteRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "SpriteRenderer": [
-                    {
-                        "anchorPoint": [
-                            0.0,
-                            0.0
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "renderingPriority": 1,
-                        "rotate": 0.0,
-                        "scale": [
-                            128.0,
-                            128.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "application/resource/Texture\\UI\\Time/TimeNum.png",
-                        "textureSize": [
-                            480.0,
-                            48.0
-                        ],
-                        "translate": [
-                            320.0,
-                            530.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            0.10000000149011612,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "TimerStatus": [],
-                "TimerUIStatus": [
-                    {
-                        "isAlive": true,
-                        "timerDigit": 2
-                    }
-                ]
-            },
-            "Name": "TRD1",
-            "Systems": [
-                {
-                    "SystemName": "TimerUIScrollSystem",
-                    "SystemType": 3
-                },
-                {
-                    "SystemName": "SpriteRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "TimerStatus": [
-                    {
-                        "currentPulusTime": 0.0,
-                        "isAlive": true,
-                        "minusTime": 5.0,
-                        "minusTimeNormal": 1.0,
-                        "pulusTime": 5.0,
-                        "startTimer": 60.0
-                    }
-                ]
-            },
-            "Name": "Timer",
-            "Systems": [
-                {
-                    "SystemName": "TimerDecrementSystem",
-                    "SystemType": 3
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "ScoreStatus": [
-                    {
-                        "currentScore": 0.0,
-                        "isAlive": true,
-                        "pulusScore": 0.0
-                    }
-                ]
-            },
-            "Name": "Score",
-            "Systems": [
-                {
-                    "SystemName": "ScoreIncrementSystem",
-                    "SystemType": 3
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "OperateUIStatus": [
-                    {
-                        "isAlive": true,
-                        "maxTextureSize_": [
-                            0.0,
-                            0.0
-                        ],
-                        "resultTextureSize_": [
-                            128.0,
-                            128.0
-                        ],
-                        "scalingEase_.amplitude": 100.0,
-                        "scalingEase_.maxTime": 0.30000001192092896,
-                        "scalingEase_.period": 0.30000001192092896,
-                        "startTextureSize_": [
-                            128.0,
-                            128.0
-                        ]
-                    }
-                ],
-                "SpriteRenderer": [
-                    {
-                        "anchorPoint": [
-                            0.0,
-                            0.0
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "renderingPriority": 1,
-                        "rotate": 0.0,
-                        "scale": [
-                            128.0,
-                            128.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "application/resource/Texture\\UI/PlaySpaceUI-sheet.png",
-                        "textureSize": [
-                            384.0,
-                            192.0
-                        ],
-                        "translate": [
-                            524.280029296875,
-                            521.47998046875
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            0.5,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "OperateUI",
-            "Systems": [
-                {
-                    "SystemName": "OperateUISystem",
-                    "SystemType": 3
-                },
-                {
-                    "SystemName": "SpriteRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "LevelUIParentStatus": [
-                    {
-                        "changingEaseScale": [
-                            2.5,
-                            2.5
-                        ],
-                        "easePos": [
-                            500.0,
-                            200.0,
-                            0.0
-                        ],
-                        "easeScale": [
-                            2.0,
-                            2.0
-                        ],
-                        "initPos": [
-                            100.0,
-                            50.0,
-                            0.0
-                        ],
-                        "isAlive": true,
-                        "moveEasing.maxTime": 0.36000001430511475,
-                        "moveOffset": [
-                            118.0,
-                            0.0,
-                            0.0
-                        ],
-                        "reverseWaitTime": 0.20000000298023224,
-                        "scaleEasing.amplitude": 1.2000000476837158,
-                        "scaleEasing.backRatio": 0.5,
-                        "scaleEasing.maxTime": 0.3700000047683716,
-                        "scaleEasing.period": 0.20000000298023224,
-                        "scrollWaitTime": 0.5,
-                        "uvScrollEasing.maxTime": 0.1899999976158142
-                    }
-                ],
-                "SpriteRenderer": []
-            },
-            "Name": "LevelUIParent",
-            "Systems": [
-                {
-                    "SystemName": "LevelUIParentInitSystem",
-                    "SystemType": 0
-                },
-                {
-                    "SystemName": "LevelUIAnimationSystem",
-                    "SystemType": 3
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "LevelUIStatus": [
-                    {
-                        "isAlive": true,
-                        "levelUIDigit": 0,
-                        "offsetPos": [
-                            12.0,
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "SpriteRenderer": [
-                    {
-                        "anchorPoint": [
-                            0.5,
-                            0.5
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "renderingPriority": 1,
-                        "rotate": 0.0,
-                        "scale": [
-                            192.0,
-                            192.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "application/resource/Texture\\UI/TimeIcom.png",
-                        "textureSize": [
-                            192.0,
-                            192.0
-                        ],
-                        "translate": [
-                            0.0,
-                            0.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "LevelUIICON",
-            "Systems": [
-                {
-                    "SystemName": "LevelUIInitSystem",
-                    "SystemType": 0
-                },
-                {
-                    "SystemName": "LevelUIAdaptSystem",
-                    "SystemType": 3
-                },
-                {
-                    "SystemName": "SpriteRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "LevelUIStatus": [
-                    {
-                        "isAlive": true,
-                        "levelUIDigit": 1,
-                        "offsetPos": [
-                            127.0,
-                            19.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "SpriteRenderer": [
-                    {
-                        "anchorPoint": [
-                            0.5,
-                            0.5
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "renderingPriority": 1,
-                        "rotate": 0.0,
-                        "scale": [
-                            480.0,
-                            48.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "application/resource/Texture\\UI/Numbers.png",
-                        "textureSize": [
-                            480.0,
-                            48.0
-                        ],
-                        "translate": [
-                            0.0,
-                            0.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            0.10000000149011612,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "LevelUID1",
-            "Systems": [
-                {
-                    "SystemName": "LevelUIInitSystem",
-                    "SystemType": 0
-                },
-                {
-                    "SystemName": "LevelUIAdaptSystem",
-                    "SystemType": 3
-                },
-                {
-                    "SystemName": "SpriteRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "GameEnd": [
-                    {
+                        "fieldLeftMax": -48.0,
+                        "fieldRightMax": 48.0,
                         "isAlive": true
                     }
                 ]
             },
-            "Name": "GameEnd",
-            "Systems": [
-                {
-                    "SystemName": "GameEndSystem",
-                    "SystemType": 2
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "Audio": [
-                    {
-                        "fileName": "application/resource/sound/BreakFall.wav",
-                        "isLoop": false,
-                        "isPlay": false,
-                        "valume": 0.5
-                    },
-                    {
-                        "fileName": "application/resource/sound/BreakFall.wav",
-                        "isLoop": false,
-                        "isPlay": false,
-                        "valume": 0.5
-                    },
-                    {
-                        "fileName": "application/resource/sound/BreakFall.wav",
-                        "isLoop": false,
-                        "isPlay": false,
-                        "valume": 0.5
-                    },
-                    {
-                        "fileName": "application/resource/sound/BreakFall.wav",
-                        "isLoop": false,
-                        "isPlay": false,
-                        "valume": 0.5
-                    },
-                    {
-                        "fileName": "application/resource/sound/BreakFall.wav",
-                        "isLoop": false,
-                        "isPlay": false,
-                        "valume": 0.5
-                    }
-                ]
-            },
-            "Name": "FloorSound",
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "EffectByBlockSpawner": [
-                    {
-                        "isAlive": true
-                    }
-                ]
-            },
-            "Name": "effectByBlockSpawner",
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "SpriteRenderer": [
-                    {
-                        "anchorPoint": [
-                            0.0,
-                            0.0
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "renderingPriority": 1,
-                        "rotate": 0.0,
-                        "scale": [
-                            128.0,
-                            128.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "application/resource/Texture\\UI\\Time/TimeNum.png",
-                        "textureSize": [
-                            480.0,
-                            48.0
-                        ],
-                        "translate": [
-                            130.0,
-                            530.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            0.10000000149011612,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "TimerUIStatus": [
-                    {
-                        "isAlive": true,
-                        "timerDigit": 1
-                    }
-                ]
-            },
-            "Name": "TR2",
-            "Systems": [
-                {
-                    "SystemName": "TimerUIScrollSystem",
-                    "SystemType": 3
-                },
-                {
-                    "SystemName": "SpriteRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "SpriteRenderer": [
-                    {
-                        "anchorPoint": [
-                            0.0,
-                            0.0
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "renderingPriority": 1,
-                        "rotate": 0.0,
-                        "scale": [
-                            128.0,
-                            128.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "application/resource/Texture\\UI\\Time/TimeNum.png",
-                        "textureSize": [
-                            480.0,
-                            48.0
-                        ],
-                        "translate": [
-                            210.0,
-                            530.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            0.10000000149011612,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "TimerUIStatus": [
-                    {
-                        "isAlive": true,
-                        "timerDigit": 0
-                    }
-                ]
-            },
-            "Name": "TR1",
-            "Systems": [
-                {
-                    "SystemName": "TimerUIScrollSystem",
-                    "SystemType": 3
-                },
-                {
-                    "SystemName": "SpriteRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "SpriteRenderer": [
-                    {
-                        "anchorPoint": [
-                            0.0,
-                            0.0
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "renderingPriority": 1,
-                        "rotate": 0.0,
-                        "scale": [
-                            128.0,
-                            128.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "application/resource/Texture\\UI/TimeIcom.png",
-                        "textureSize": [
-                            192.0,
-                            192.0
-                        ],
-                        "translate": [
-                            15.350000381469727,
-                            524.1300048828125
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "TimeUIICON",
-            "Systems": [
-                {
-                    "SystemName": "SpriteRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "ScrapSpawner": [
-                    {
-                        "blowValue": [
-                            14.0,
-                            -17.0
-                        ],
-                        "colliderRadius": 2.0,
-                        "createNum": 2,
-                        "fallStopPosY": 1.2000000476837158,
-                        "isAlive": true,
-                        "lifeTime": 5.0,
-                        "mass": 52.0
-                    }
-                ]
-            },
-            "Name": "ScrapSpawner",
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "SpriteRenderer": [
-                    {
-                        "anchorPoint": [
-                            0.0,
-                            0.0
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "renderingPriority": 1,
-                        "rotate": 0.0,
-                        "scale": [
-                            128.0,
-                            128.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "application/resource/Texture\\UI/ScoreIcom.png",
-                        "textureSize": [
-                            192.0,
-                            192.0
-                        ],
-                        "translate": [
-                            675.0,
-                            530.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "ScoreUIICON",
-            "Systems": [
-                {
-                    "SystemName": "SpriteRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "ScoreUIStatus": [
-                    {
-                        "isAlive": true,
-                        "levelUIDigit": 0
-                    }
-                ],
-                "SpriteRenderer": [
-                    {
-                        "anchorPoint": [
-                            0.0,
-                            0.0
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "renderingPriority": 1,
-                        "rotate": 0.0,
-                        "scale": [
-                            128.0,
-                            128.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "application/resource/Texture\\UI/Numbers.png",
-                        "textureSize": [
-                            480.0,
-                            48.0
-                        ],
-                        "translate": [
-                            1100.0,
-                            530.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            0.10000000149011612,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "ScoreUI1",
-            "Systems": [
-                {
-                    "SystemName": "ScoreUIScrollSystem",
-                    "SystemType": 3
-                },
-                {
-                    "SystemName": "SpriteRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "ScoreUIStatus": [
-                    {
-                        "isAlive": true,
-                        "levelUIDigit": 1
-                    }
-                ],
-                "SpriteRenderer": [
-                    {
-                        "anchorPoint": [
-                            0.0,
-                            0.0
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "renderingPriority": 1,
-                        "rotate": 0.0,
-                        "scale": [
-                            128.0,
-                            128.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "application/resource/Texture\\UI/Numbers.png",
-                        "textureSize": [
-                            480.0,
-                            48.0
-                        ],
-                        "translate": [
-                            1020.0,
-                            530.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            0.10000000149011612,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "ScoreUI2",
-            "Systems": [
-                {
-                    "SystemName": "ScoreUIScrollSystem",
-                    "SystemType": 3
-                },
-                {
-                    "SystemName": "SpriteRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "ScoreUIStatus": [
-                    {
-                        "isAlive": true,
-                        "levelUIDigit": 2
-                    }
-                ],
-                "SpriteRenderer": [
-                    {
-                        "anchorPoint": [
-                            0.0,
-                            0.0
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "renderingPriority": 1,
-                        "rotate": 0.0,
-                        "scale": [
-                            128.0,
-                            128.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "application/resource/Texture\\UI/Numbers.png",
-                        "textureSize": [
-                            480.0,
-                            48.0
-                        ],
-                        "translate": [
-                            940.0,
-                            530.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            0.10000000149011612,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "ScoreUI3",
-            "Systems": [
-                {
-                    "SystemName": "ScoreUIScrollSystem",
-                    "SystemType": 3
-                },
-                {
-                    "SystemName": "SpriteRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "ScoreUIStatus": [
-                    {
-                        "isAlive": true,
-                        "levelUIDigit": 3
-                    }
-                ],
-                "SpriteRenderer": [
-                    {
-                        "anchorPoint": [
-                            0.0,
-                            0.0
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "renderingPriority": 1,
-                        "rotate": 0.0,
-                        "scale": [
-                            128.0,
-                            128.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "application/resource/Texture\\UI/Numbers.png",
-                        "textureSize": [
-                            480.0,
-                            48.0
-                        ],
-                        "translate": [
-                            860.0,
-                            530.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            0.10000000149011612,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "ScoreUI4",
-            "Systems": [
-                {
-                    "SystemName": "ScoreUIScrollSystem",
-                    "SystemType": 3
-                },
-                {
-                    "SystemName": "SpriteRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "ScoreUIStatus": [
-                    {
-                        "isAlive": true,
-                        "levelUIDigit": 4
-                    }
-                ],
-                "SpriteRenderer": [
-                    {
-                        "anchorPoint": [
-                            0.0,
-                            0.0
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "renderingPriority": 1,
-                        "rotate": 0.0,
-                        "scale": [
-                            128.0,
-                            128.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "application/resource/Texture\\UI/Numbers.png",
-                        "textureSize": [
-                            480.0,
-                            48.0
-                        ],
-                        "translate": [
-                            780.0,
-                            530.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            0.10000000149011612,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "ScoreUI5",
-            "Systems": [
-                {
-                    "SystemName": "ScoreUIScrollSystem",
-                    "SystemType": 3
-                },
-                {
-                    "SystemName": "SpriteRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "Button": [
-                    {
-                        "hoverColor": [
-                            0.800000011920929,
-                            0.800000011920929,
-                            0.800000011920929,
-                            1.0
-                        ],
-                        "normalColor": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "pressColor": [
-                            0.6000000238418579,
-                            0.6000000238418579,
-                            0.6000000238418579,
-                            1.0
-                        ],
-                        "releaseColor": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "shortKeys": [
-                            20
-                        ],
-                        "shortcutPadButton": []
-                    }
-                ],
-                "SceneChanger": [
-                    {
-                        "nextSceneName": "Title"
-                    }
-                ],
-                "SpriteRenderer": [
-                    {
-                        "anchorPoint": [
-                            0.0,
-                            0.0
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "renderingPriority": 1,
-                        "rotate": 0.0,
-                        "scale": [
-                            192.0,
-                            192.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "application/resource/Texture\\UI/GameToTitleUI.png",
-                        "textureSize": [
-                            192.0,
-                            192.0
-                        ],
-                        "translate": [
-                            0.0,
-                            0.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "BakcT",
-            "Systems": [
-                {
-                    "SystemName": "ButtonInputSystem",
-                    "SystemType": 1
-                },
-                {
-                    "SystemName": "ChangeSceneByButton",
-                    "SystemType": 2
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "Audio": [
-                    {
-                        "fileName": "application/resource/sound/tenpoSE.wav",
-                        "isLoop": false,
-                        "isPlay": false,
-                        "valume": 0.5
-                    },
-                    {
-                        "fileName": "application/resource/sound/TempoMoveSE.wav",
-                        "isLoop": false,
-                        "isPlay": false,
-                        "valume": 0.5
-                    },
-                    {
-                        "fileName": "application/resource/sound/Break_Block.wav",
-                        "isLoop": false,
-                        "isPlay": false,
-                        "valume": 0.5
-                    },
-                    {
-                        "fileName": "application/resource/sound/BreakFall.wav",
-                        "isLoop": false,
-                        "isPlay": false,
-                        "valume": 0.5
-                    },
-                    {
-                        "fileName": "application/resource/sound/BreakFall.wav",
-                        "isLoop": false,
-                        "isPlay": false,
-                        "valume": 0.5
-                    },
-                    {
-                        "fileName": "application/resource/sound/Break_Block.wav",
-                        "isLoop": false,
-                        "isPlay": false,
-                        "valume": 0.5
-                    },
-                    {
-                        "fileName": "application/resource/sound/Break_Block.wav",
-                        "isLoop": false,
-                        "isPlay": false,
-                        "valume": 0.5
-                    },
-                    {
-                        "fileName": "application/resource/sound/BreakFall.wav",
-                        "isLoop": false,
-                        "isPlay": false,
-                        "valume": 0.5
-                    }
-                ],
-                "BlockManager": [
-                    {
-                        "FirstblockSize": [
-                            4.5,
-                            4.5,
-                            4.5
-                        ],
-                        "MoveScalingamplitude": 1.149999976158142,
-                        "MoveScalingbackRatio": 0.20000000298023224,
-                        "MoveScalingmaxTime": 0.47999998927116394,
-                        "MoveScalingperiod": 0.2800000011920929,
-                        "Scalingamplitude": -431602080.0,
-                        "ScalingbackRatio": 0.5,
-                        "ScalingmaxTime": 0.25,
-                        "Scalingperiod": -431602080.0,
-                        "basePosY": 5.0,
-                        "collisionRadius": 1.0,
-                        "columNumMax": 5,
-                        "costs": [
-                            0,
-                            2,
-                            2
-                        ],
-                        "deadPositionX": -42.0,
-                        "generateInterval": [
-                            3,
-                            3,
-                            3
-                        ],
-                        "moveSpeed": 0.0,
-                        "moveSpeeds": [
-                            0.10000000149011612,
-                            0.5,
-                            0.4000000059604645,
-                            0.30000001192092896,
-                            0.25,
-                            0.20000000298023224
-                        ],
-                        "moveTimemax": 0.10000000149011612,
-                        "movetenpoNum": 4,
-                        "nextCreatePositionX": 51.0,
-                        "nextLevelTime": [
-                            2.799999952316284,
-                            5.0,
-                            5.0,
-                            5.0,
-                            5.0,
-                            5.0
-                        ],
-                        "pillarHP": 1,
-                        "randomPar": [
-                            0,
-                            20,
-                            20
-                        ],
-                        "scalingSize": [
-                            4.699999809265137,
-                            4.699999809265137,
-                            4.699999809265137
-                        ],
-                        "scoreValue": [
-                            100.0,
-                            1000.0,
-                            1000.0
-                        ],
-                        "startPosition": 54.0,
-                        "startPositionZ": 5.0
-                    }
-                ]
-            },
-            "Name": "BlockManager",
-            "Systems": [
-                {
-                    "SystemName": "BlockSpawnSystem",
-                    "SystemType": 3
-                },
-                {
-                    "SystemName": "MoveTenpoSystem",
-                    "SystemType": 3
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "FloatingFloorSpawner": [
-                    {
-                        "FallCollisionMax": [
-                            9.0,
-                            5.0,
-                            5.0
-                        ],
-                        "FallCollisionMin": [
-                            -10.0,
-                            0.0,
-                            0.0
-                        ],
-                        "columNumMax": 1,
-                        "fallCollisionCenterPos": [
-                            -7.0,
-                            -7.0,
-                            -7.0
-                        ],
-                        "pillarHP": 2,
-                        "pillerSpace": 48.0,
-                        "ratio": 3.0,
-                        "revivalTime": 5.0,
-                        "rowNum": 0,
-                        "sideSpace": 11.0
-                    }
-                ],
-                "ModelMeshRenderer": [
-                    {
-                        "blendMode": 1,
-                        "directory": "application/resource/Models\\RedFloor",
-                        "fileName": "RedFloor.obj",
-                        "isRender": true,
-                        "materialBufferDatas": [
-                            {
-                                "color": [
-                                    1.0,
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "enableLighting": false,
-                                "shininess": 0.0,
-                                "specularColor": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvRotate": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ],
-                                "uvScale": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvTranslate": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ],
-                        "transformBufferDatas": [
-                            {
-                                "rotate": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    1.0
-                                ],
-                                "scale": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "translate": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ]
-                    }
-                ],
-                "Rigidbody": [
-                    {
-                        "acceleration": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "mass": 1.0,
-                        "useGravity": false,
-                        "velocity": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "Transform": [
-                    {
-                        "rotate": [
-                            0.0,
-                            0.0,
-                            0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            1.2999999523162842,
-                            1.0,
-                            1.0
-                        ],
-                        "translate": [
-                            -27.600000381469727,
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "BottomFloor1",
-            "Systems": [
-                {
-                    "SystemName": "CreateFloorSystem",
-                    "SystemType": 0
-                },
-                {
-                    "SystemName": "MoveSystemByRigidBody",
-                    "SystemType": 3
-                },
-                {
-                    "SystemName": "TexturedMeshRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "FloatingFloorSpawner": [
-                    {
-                        "FallCollisionMax": [
-                            9.0,
-                            5.0,
-                            5.0
-                        ],
-                        "FallCollisionMin": [
-                            -10.0,
-                            0.0,
-                            0.0
-                        ],
-                        "columNumMax": 1,
-                        "fallCollisionCenterPos": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "pillarHP": 2,
-                        "pillerSpace": 48.0,
-                        "ratio": 2.0,
-                        "revivalTime": 5.0,
-                        "rowNum": 1,
-                        "sideSpace": 11.0
-                    }
-                ],
-                "ModelMeshRenderer": [
-                    {
-                        "blendMode": 1,
-                        "directory": "application/resource/Models\\WhiteFloor",
-                        "fileName": "whiteFloor.obj",
-                        "isRender": true,
-                        "materialBufferDatas": [
-                            {
-                                "color": [
-                                    1.0,
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "enableLighting": false,
-                                "shininess": 0.0,
-                                "specularColor": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvRotate": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ],
-                                "uvScale": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvTranslate": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ],
-                        "transformBufferDatas": [
-                            {
-                                "rotate": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    1.0
-                                ],
-                                "scale": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "translate": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ]
-                    }
-                ],
-                "Rigidbody": [
-                    {
-                        "acceleration": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "mass": 1.0,
-                        "useGravity": false,
-                        "velocity": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "Transform": [
-                    {
-                        "rotate": [
-                            0.0,
-                            0.0,
-                            0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            1.5499999523162842,
-                            1.0,
-                            1.0
-                        ],
-                        "translate": [
-                            -4.5,
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "BottomFloor2",
-            "Systems": [
-                {
-                    "SystemName": "CreateFloorSystem",
-                    "SystemType": 0
-                },
-                {
-                    "SystemName": "MoveSystemByRigidBody",
-                    "SystemType": 3
-                },
-                {
-                    "SystemName": "TexturedMeshRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "FloatingFloorSpawner": [
-                    {
-                        "FallCollisionMax": [
-                            15.0,
-                            5.0,
-                            5.0
-                        ],
-                        "FallCollisionMin": [
-                            -15.0,
-                            0.0,
-                            0.0
-                        ],
-                        "columNumMax": 1,
-                        "fallCollisionCenterPos": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "pillarHP": 2,
-                        "pillerSpace": 48.0,
-                        "ratio": 1.0,
-                        "revivalTime": 5.0,
-                        "rowNum": 2,
-                        "sideSpace": 11.0
-                    }
-                ],
-                "ModelMeshRenderer": [
-                    {
-                        "blendMode": 1,
-                        "directory": "application/resource/Models\\RedFloor",
-                        "fileName": "RedFloor.obj",
-                        "isRender": true,
-                        "materialBufferDatas": [
-                            {
-                                "color": [
-                                    1.0,
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "enableLighting": false,
-                                "shininess": 0.0,
-                                "specularColor": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvRotate": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ],
-                                "uvScale": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvTranslate": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ],
-                        "transformBufferDatas": [
-                            {
-                                "rotate": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    1.0
-                                ],
-                                "scale": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "translate": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ]
-                    }
-                ],
-                "Rigidbody": [
-                    {
-                        "acceleration": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "mass": 1.0,
-                        "useGravity": false,
-                        "velocity": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "Transform": [
-                    {
-                        "rotate": [
-                            0.0,
-                            0.0,
-                            0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            2.440000057220459,
-                            1.0,
-                            1.0
-                        ],
-                        "translate": [
-                            25.25,
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "BottomFloor3",
-            "Systems": [
-                {
-                    "SystemName": "CreateFloorSystem",
-                    "SystemType": 0
-                },
-                {
-                    "SystemName": "MoveSystemByRigidBody",
-                    "SystemType": 3
-                },
-                {
-                    "SystemName": "TexturedMeshRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "TutorialMenuParentStatus": [
-                    {
-                        "apperUVEasing.maxTime": 0.15000000596046448,
-                        "endPos": [
-                            0.0,
-                            0.0
-                        ],
-                        "initPos": [
-                            640.0,
-                            320.0
-                        ],
-                        "isAlive": true,
-                        "maxPauge": 3,
-                        "moveEasing.maxTime": 0.14000000059604645,
-                        "scrollValue": [
-                            800.0,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "TutorialMenuParent",
-            "Systems": [
-                {
-                    "SystemName": "TutorialMenuParentSystem",
-                    "SystemType": 3
-                }
-            ],
+            "Name": "Field",
             "isUnique": true
         },
         {
@@ -2343,7 +2440,7 @@
                             0.0,
                             0.0
                         ],
-                        "texturePath": "application/resource/Texture\\UI/TutorialPauge3.png",
+                        "texturePath": "application/resource/Texture\\UI/TutorialPauge1.png",
                         "textureSize": [
                             320.0,
                             320.0
@@ -2367,7 +2464,7 @@
                     {
                         "isAlive": true,
                         "offsetPos": [
-                            1600.0,
+                            0.0,
                             0.0
                         ],
                         "textureSize": [
@@ -2377,7 +2474,7 @@
                     }
                 ]
             },
-            "Name": "TutorialMenu3",
+            "Name": "TutorialMenu1",
             "Systems": [
                 {
                     "SystemName": "TutorialMenuSystem",
@@ -2395,83 +2492,122 @@
                 "SpriteRenderer": [
                     {
                         "anchorPoint": [
-                            0.0,
-                            0.0
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "renderingPriority": 3,
-                        "rotate": 0.0,
-                        "scale": [
-                            48.0,
-                            48.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "application/resource/Texture\\UI/AddTimeUI.png",
-                        "textureSize": [
-                            48.0,
-                            48.0
-                        ],
-                        "translate": [
-                            0.0,
-                            0.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "MenuArrow",
-            "Systems": [
-                {
-                    "SystemName": "MenuArrowSystem",
-                    "SystemType": 3
-                },
-                {
-                    "SystemName": "SpriteRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "SpriteRenderer": [
-                    {
-                        "anchorPoint": [
-                            0.0,
-                            0.0
+                            0.5,
+                            0.5
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
                         "renderingPriority": 5,
                         "rotate": 0.0,
                         "scale": [
-                            1280.0,
-                            100.0
+                            320.0,
+                            320.0
                         ],
                         "textureLeftTop": [
                             0.0,
                             0.0
                         ],
-                        "texturePath": "application/resource/Texture\\UI/menuOperate.png",
+                        "texturePath": "application/resource/Texture\\UI/TutorialPauge2.png",
                         "textureSize": [
-                            1280.0,
-                            100.0
+                            320.0,
+                            320.0
                         ],
                         "translate": [
                             0.0,
-                            560.280029296875
+                            0.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "TutorialMenuStatus": [
+                    {
+                        "isAlive": true,
+                        "offsetPos": [
+                            800.0,
+                            0.0
+                        ],
+                        "textureSize": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "TutorialMenu2",
+            "Systems": [
+                {
+                    "SystemName": "TutorialMenuSystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "MenuStatus": [
+                    {
+                        "apperUVEasing.maxTime": 0.15000000596046448,
+                        "arrowPositions": [
+                            [
+                                500.0,
+                                250.0
+                            ],
+                            [
+                                500.0,
+                                350.0
+                            ],
+                            [
+                                500.0,
+                                450.0
+                            ]
+                        ],
+                        "isAlive": true,
+                        "maxPauge": 3,
+                        "moveEasing.maxTime": 0.30000001192092896,
+                        "position": [
+                            500.0,
+                            120.0
+                        ]
+                    }
+                ],
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 2,
+                        "rotate": 0.0,
+                        "scale": [
+                            420.0,
+                            540.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI/result.png",
+                        "textureSize": [
+                            420.0,
+                            540.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -2485,202 +2621,66 @@
                     }
                 ]
             },
-            "Name": "MenuFontDown",
+            "Name": "Menu",
+            "Systems": [
+                {
+                    "SystemName": "MenuSystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            1280.0,
+                            100.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI/menuUP.png",
+                        "textureSize": [
+                            1280.0,
+                            100.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "MenuFontUP",
             "Systems": [
                 {
                     "SystemName": "MenuFontSystem",
                     "SystemType": 3
                 },
-                {
-                    "SystemName": "SpriteRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "SpriteRenderer": [
-                    {
-                        "anchorPoint": [
-                            0.5,
-                            0.5
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "renderingPriority": 1,
-                        "rotate": 0.0,
-                        "scale": [
-                            48.0,
-                            48.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "application/resource/Texture\\UI/SubtractTimeUI.png",
-                        "textureSize": [
-                            48.0,
-                            48.0
-                        ],
-                        "translate": [
-                            0.0,
-                            0.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "TutorialArrowStatus": [
-                    {
-                        "Direction": 0,
-                        "endPos": [
-                            180.0,
-                            320.0
-                        ],
-                        "isAlive": true,
-                        "moveEasing.backRatio": 0.5,
-                        "moveEasing.maxTime": 1.0,
-                        "startPos": [
-                            200.0,
-                            320.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "TutorialArrowLeft",
-            "Systems": [
-                {
-                    "SystemName": "TutorialArrowSystem",
-                    "SystemType": 3
-                },
-                {
-                    "SystemName": "SpriteRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "SpriteRenderer": [
-                    {
-                        "anchorPoint": [
-                            0.5,
-                            0.5
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "renderingPriority": 1,
-                        "rotate": 0.0,
-                        "scale": [
-                            48.0,
-                            48.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "application/resource/Texture\\UI/AddTimeUI.png",
-                        "textureSize": [
-                            48.0,
-                            48.0
-                        ],
-                        "translate": [
-                            0.0,
-                            0.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "TutorialArrowStatus": [
-                    {
-                        "Direction": 1,
-                        "endPos": [
-                            1020.0,
-                            320.0
-                        ],
-                        "isAlive": true,
-                        "moveEasing.backRatio": 0.5,
-                        "moveEasing.maxTime": 1.0,
-                        "startPos": [
-                            1000.0,
-                            320.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "TutorialArrowRight",
-            "Systems": [
-                {
-                    "SystemName": "TutorialArrowSystem",
-                    "SystemType": 3
-                },
-                {
-                    "SystemName": "SpriteRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "SpriteRenderer": [
-                    {
-                        "anchorPoint": [
-                            0.0,
-                            0.0
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "renderingPriority": 1,
-                        "rotate": 0.0,
-                        "scale": [
-                            96.0,
-                            96.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "application/resource/Texture\\UI\\Time/TimeSymbol.png",
-                        "textureSize": [
-                            96.0,
-                            48.0
-                        ],
-                        "translate": [
-                            280.010009765625,
-                            533.7100219726563
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            0.5,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.5,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "TimerDot",
-            "Systems": [
                 {
                     "SystemName": "SpriteRenderSystem",
                     "SystemType": 6
@@ -2900,6 +2900,10 @@
         },
         {
             "BigBomCollisionExSystem": {
+                "Priority": 0,
+                "isActive": true
+            },
+            "BlockColorChangeSystem": {
                 "Priority": 0,
                 "isActive": true
             },
