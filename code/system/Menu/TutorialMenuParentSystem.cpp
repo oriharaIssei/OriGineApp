@@ -38,15 +38,20 @@ void TutorialMenuParentSystem::UpdateEntity(GameEntity* _entity) {
 
     // get timer component
     TutorialMenuParentStatus* tutorialMenu = getComponent<TutorialMenuParentStatus>(_entity);
-  /*  SpriteRenderer* sprite                 = getComponent<SpriteRenderer>(_entity);
-     */
     MenuStatus* menu = getComponent<MenuStatus>(menuEntity);
-    float deltaTIme = Engine::getInstance()->getDeltaTime();
 
-    if (!tutorialMenu||!menu) {
+     // Audio
+    Audio* audioOpenTutorial = getComponent<Audio>(_entity);
+    Audio* selectPauge       = getComponent<Audio>(_entity, 1);
+    Audio* closeTutorial     = getComponent<Audio>(_entity, 2);
+   
+    if (!tutorialMenu || !menu || !audioOpenTutorial || !selectPauge || !closeTutorial) {
         return;
     }
 
+   
+
+     float deltaTIme = Engine::getInstance()->getDeltaTime();
 
 
     switch (tutorialMenu->GetAnimationStep()) {
@@ -57,6 +62,7 @@ void TutorialMenuParentSystem::UpdateEntity(GameEntity* _entity) {
             time_ = 0.0f;
             // アニメーションリセット
             tutorialMenu->Reset();
+            audioOpenTutorial->Play();
             tutorialMenu->SetAnimationStep(ScrollStep::FIRSTUVSCROLL);
         
         break;
@@ -74,17 +80,20 @@ void TutorialMenuParentSystem::UpdateEntity(GameEntity* _entity) {
     case ScrollStep::PAUGESELECTION:
         //pauge up
         if (input_->isTriggerKey(DIK_D) || input_->isTriggerKey(DIK_RIGHT)) {
+            selectPauge->Play();
             tutorialMenu->ScrollTimeReset();
             tutorialMenu->SetAnimationStep(ScrollStep::PAUGEUP);
 
             // pauge down
         } else if (input_->isTriggerKey(DIK_A) || input_->isTriggerKey(DIK_LEFT)) {
+            selectPauge->Play();
             tutorialMenu->ScrollTimeReset();
             tutorialMenu->SetAnimationStep(ScrollStep::PAUGEDOWN);
         }
 
         //back
         else if (input_->isTriggerKey(DIK_ESCAPE) || input_->isTriggerKey(DIK_SPACE)) {
+            closeTutorial->Play();
             tutorialMenu->SetAnimationStep(ScrollStep::BACK);
         }
         break;

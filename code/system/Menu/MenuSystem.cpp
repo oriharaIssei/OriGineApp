@@ -47,6 +47,10 @@ void MenuSystem::UpdateEntity(GameEntity* entity) {
     TutorialMenuParentStatus* tutorialUIParent = getComponent<TutorialMenuParentStatus>(tutorialParentEntity);
     GameEnd* gameend                           = getComponent<GameEnd>(endEntity);
 
+    //Audio
+    Audio* audioOpenMenu = getComponent<Audio>(entity);
+    Audio* selectCategory = getComponent<Audio>(entity,1);
+    Audio* closeMenu = getComponent<Audio>(entity,2);
 
     if (!menu || !sprite || !tutorialUIParent) {
         return;
@@ -57,6 +61,7 @@ void MenuSystem::UpdateEntity(GameEntity* entity) {
     switch (menu->GetMenuMode()) {
     case MenuMode::NONE:
         if (input_->isTriggerKey(DIK_ESCAPE)) {
+            audioOpenMenu->Play();
             menu->Reset();
             menu->SetMenuMode(MenuMode::MENUSELECT);
         }
@@ -69,18 +74,21 @@ void MenuSystem::UpdateEntity(GameEntity* entity) {
 
         // 下/右入力で次のカテゴリーへ
         if (input_->isTriggerKey(DIK_DOWN) || input_->isTriggerKey(DIK_S)) {
+            selectCategory->Play();
             menu->SelectNextCategory();
             /* moved = true;*/
         }
 
         // 上/左入力で前のカテゴリーへ
         else if (input_->isTriggerKey(DIK_UP) || input_->isTriggerKey(DIK_W)) {
+            selectCategory->Play();
             menu->SelectPreviousCategory();
             /* moved = true;*/
         }
 
         else if (input_->isTriggerKey(DIK_ESCAPE)) {
             menu->SetMenuMode(MenuMode::CLOSEINIT);
+            closeMenu->Play();
         }
 
         menu->UpdateArrowPos();
