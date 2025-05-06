@@ -15,6 +15,7 @@
 #include"component/ResultUI/ResultUIScoreStatus.h"
 #include"component/ResultUI/ResultFontStatus.h"
 #include"component/ResultUI/ResultUIkeyStatus.h"
+#include"component/Score/ScoreStatus.h"
 
 // system
 #include "system/ButtonInputSystem.h"
@@ -26,6 +27,7 @@
 #include"system/ResultUI/ResultFontSystem.h"
 #include"system/ResultUI/ResultRankSystem.h"
 #include"system/ResultUI/ResultKeySystem.h"
+
 
 ResultScene::ResultScene() : IScene("Result") {}
 
@@ -41,6 +43,7 @@ void ResultScene::registerComponents() {
     ecsManager->registerComponent<ResultUIScoreStatus>();
     ecsManager->registerComponent<ResultFontStatus>();
     ecsManager->registerComponent<ResultUIkeyStatus>();
+    ecsManager->registerComponent<ScoreStatus>();
 }
 
 void ResultScene::registerSystems() {

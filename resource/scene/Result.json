@@ -729,6 +729,11 @@
                 }
             ],
             "isUnique": true
+        },
+        {
+            "Components": null,
+            "Name": "Score",
+            "isUnique": true
         }
     ],
     "Systems": [
