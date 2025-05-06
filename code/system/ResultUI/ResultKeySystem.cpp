@@ -13,6 +13,7 @@
 // component
 #include "component/ResultUI/ResultUIkeyStatus.h"
 #include "component/ResultUI/ResultUIRankStatus.h"
+#include "sceneManager/SceneManager.h"
 
 #include "engine/EngineInclude.h"
 #include <Vector2.h>
@@ -24,6 +25,10 @@ ResultKeySystem::~ResultKeySystem() {}
 
 void ResultKeySystem::Initialize() {
     time_ = 0.0f;
+    isBackTitle_ = false;
+    input_       = Input::getInstance();
+    sceneManager_ = SceneManager::getInstance();
+  
 }
 
 void ResultKeySystem::Finalize() {}
@@ -36,6 +41,13 @@ void ResultKeySystem::UpdateEntity(GameEntity* _entity) {
 
     if (!rankEntity) { // Entityが存在しない場合の早期リターン
         return;
+    }
+
+    if (!isBackTitle_) {
+        if (input_->isTriggerKey(DIK_SPACE)) {
+            isBackTitle_ = true;
+            sceneManager_->changeScene("TITLE");
+        }
     }
 
     // get timer component

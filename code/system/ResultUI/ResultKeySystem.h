@@ -2,11 +2,15 @@
 #include "system/ISystem.h"
 #include "component/transform/Transform.h"
 
+class Input;
+class SceneManager;
 class ResultKeySystem
     : public ISystem {
 private:
-   
+    Input* input_;
     float time_;
+    bool isBackTitle_;
+    SceneManager* sceneManager_;
    
 public:
     ResultKeySystem();
