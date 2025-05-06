@@ -9,6 +9,69 @@
 // imgui
 #include "imgui/imgui.h"
 
+void to_json(nlohmann::json& j, const Button& r) {
+    /// ============ color ============ ///
+    nlohmann::json normalColorJson  = nlohmann::json::object();
+    nlohmann::json hoverColorJson   = nlohmann::json::object();
+    nlohmann::json pressColorJson   = nlohmann::json::object();
+    nlohmann::json releaseColorJson = nlohmann::json::object();
+
+    to_json<4, float>(normalColorJson, r.normalColor_);
+    to_json<4, float>(hoverColorJson, r.hoverColor_);
+    to_json<4, float>(pressColorJson, r.pressColor_);
+    to_json<4, float>(releaseColorJson, r.releaseColor_);
+
+    j["normalColor"]  = normalColorJson;
+    j["hoverColor"]   = hoverColorJson;
+    j["pressColor"]   = pressColorJson;
+    j["releaseColor"] = releaseColorJson;
+
+    /// ============ shortcut key ============ ///
+    nlohmann::json shortKeysJson = nlohmann::json::array();
+    for (auto& key : r.shortcutKey_) {
+        shortKeysJson.push_back(key);
+    }
+    j["shortKeys"] = shortKeysJson;
+
+    /// ============ shortcut pad button ============ ///
+    nlohmann::json shortcutPadButton = nlohmann::json::array();
+    for (auto& button : r.shortcutPadButton_) {
+        shortcutPadButton.push_back(button);
+    }
+    j["shortcutPadButton"] = shortcutPadButton;
+}
+void from_json(const nlohmann::json& j, Button& r) {
+    /// ============ color ============ ///
+    if (j.contains("normalColor")) {
+        from_json<4, float>(j.at("normalColor"), r.normalColor_);
+    }
+    if (j.contains("hoverColor")) {
+        from_json<4, float>(j.at("hoverColor"), r.hoverColor_);
+    }
+    if (j.contains("pressColor")) {
+        from_json<4, float>(j.at("pressColor"), r.pressColor_);
+    }
+    if (j.contains("releaseColor")) {
+        from_json<4, float>(j.at("releaseColor"), r.releaseColor_);
+    }
+
+    /// ============ shortcut key ============ ///
+    if (j.contains("shortKeys") && j.at("shortKeys").is_array()) {
+        r.shortcutKey_.clear();
+        for (const auto& key : j.at("shortKeys")) {
+            r.shortcutKey_.push_back(key.get<Key>());
+        }
+    }
+
+    /// ============ shortcut pad button ============ ///
+    if (j.contains("shortcutPadButton") && j.at("shortcutPadButton").is_array()) {
+        r.shortcutPadButton_.clear();
+        for (const auto& button : j.at("shortcutPadButton")) {
+            r.shortcutPadButton_.push_back(button.get<PadButton>());
+        }
+    }
+}
+
 Button::Button() {
 }
 
@@ -114,74 +177,6 @@ bool Button::Edit() {
     }
 
     return isChanged;
-}
-
-void Button::Save(BinaryWriter& _writer) {
-    /// ============ color ============ ///
-    _writer.Write<4, float>("normalColor", normalColor_);
-    _writer.Write<4, float>("hoverColor", hoverColor_);
-    _writer.Write<4, float>("pressColor", pressColor_);
-    _writer.Write<4, float>("releaseColor", releaseColor_);
-
-    /// ============ shortcut key ============ ///
-    // size
-    _writer.Write("shortcutKeySize", shortcutKey_.size());
-    std::string prevGroupName = _writer.getGroupName();
-
-    { // data
-        int32_t dataIndex = 0;
-        for (auto& key : shortcutKey_) {
-            _writer.Write<int32_t>("shortcutKey" + std::to_string(dataIndex++), static_cast<int32_t>(key));
-        }
-    }
-
-    /// ============ shortcut pad button ============ ///
-    // size
-    _writer.Write("shortcutPadButtonSize", shortcutPadButton_.size());
-    { // data
-        int32_t dataIndex = 0;
-        for (auto& button : shortcutPadButton_) {
-            _writer.Write<int32_t>("shortCutButton" + std::to_string(dataIndex++), static_cast<int32_t>(button));
-        }
-    }
-}
-
-void Button::Load(BinaryReader& _reader) {
-    /// ============ color ============ ///
-    _reader.Read<4, float>("normalColor", normalColor_);
-    _reader.Read<4, float>("hoverColor", hoverColor_);
-    _reader.Read<4, float>("pressColor", pressColor_);
-    _reader.Read<4, float>("releaseColor", releaseColor_);
-
-    /// ============ shortcut key ============ ///
-    // size
-    size_t size = 0;
-    _reader.Read("shortcutKeySize", size);
-    shortcutKey_.resize(size);
-
-    // data
-    int32_t dataInt = 0;
-    {
-        int32_t dataIndex = 0;
-        for (auto& key : shortcutKey_) {
-            _reader.Read<int32_t>("shortcutKey" + std::to_string(dataIndex++), dataInt);
-            key = static_cast<Key>(dataInt);
-        }
-    }
-
-    /// ============ shortcut pad button ============ ///
-    // size
-    _reader.Read("shortcutPadButtonSize", size);
-    shortcutPadButton_.resize(size);
-
-    // data
-    {
-        int32_t dataIndex = 0;
-        for (auto& button : shortcutPadButton_) {
-            _reader.Read<int32_t>("shortCutButton" + std::to_string(dataIndex++), dataInt);
-            button = static_cast<PadButton>(dataInt);
-        }
-    }
 }
 
 void Button::Finalize() {}
