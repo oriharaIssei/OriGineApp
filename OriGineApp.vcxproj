@@ -152,6 +152,7 @@
     <ClInclude Include="code\system\BigBom\DeleteBigExplotionCollision.h" />
     <ClInclude Include="code\system\Block\BlockExBomCollision.h" />
     <ClInclude Include="code\system\Block\BlockFloorCollision.h" />
+    <ClInclude Include="code\system\Block\BlockColorChangeSystem.h" />
     <ClInclude Include="code\system\Block\BlockMoveSystem.h" />
     <ClInclude Include="code\system\Block\BlockSpawnSystem.h" />
     <ClInclude Include="code\system\Block\BreakBlockSystem.h" />
@@ -260,6 +261,7 @@
     <ClCompile Include="code\system\BigBom\DeleteBigExplotionCollision.cpp" />
     <ClCompile Include="code\system\Block\BlockExBomCollision.cpp" />
     <ClCompile Include="code\system\Block\BlockFloorCollision.cpp" />
+    <ClCompile Include="code\system\Block\BlockColorChangeSystem.cpp" />
     <ClCompile Include="code\system\Block\BlockMoveSystem.cpp" />
     <ClCompile Include="code\system\Block\BlockSpawnSystem.cpp" />
     <ClCompile Include="code\system\Block\BreakBlockSystem.cpp" />

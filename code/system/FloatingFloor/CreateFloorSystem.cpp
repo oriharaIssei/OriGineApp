@@ -15,9 +15,8 @@
 // component
 #include "component/Piller/FloatingFloorSpawner.h"
 #include "component/Piller/FloatingFloorStatus.h"
-// #include "component/Piller/PillerStates.h"
+
 //  system
-//  #include "system/FloorAndPillerColum/CreateFloorAndPillerSystem.h"
 #include "system/Block/BlockExBomCollision.h"
 #include "system/Block/BreakBlockSystem.h"
 #include "system/FloatingFloor/CanageStateFallSystem.h"
@@ -88,10 +87,19 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
 
     //// Model から MeshRenderer を作成
     // CreateModelMeshRenderer(pillerRender, piller, kApplicationResourceDirectory + "/Models/Piller", "Piller.obj");
-    if (floatFloorSpawner->GetRowNumber() % 2 == 0) {
-        CreateModelMeshRenderer(pillerRender, floatingFloor, kApplicationResourceDirectory + "/Models/whiteFloor", "whiteFloor.obj");
-    } else {
-        CreateModelMeshRenderer(pillerRender, floatingFloor, kApplicationResourceDirectory + "/Models/redFloor", "redFloor.obj");
+    switch (floatFloorSpawner->GetRowNumber()) {
+    case 0:
+        CreateModelMeshRenderer(pillerRender, floatingFloor, kApplicationResourceDirectory + "/Models/Floor_Gold", "Floor_Gold.gltf");
+        break;
+    case 1:
+        CreateModelMeshRenderer(pillerRender, floatingFloor, kApplicationResourceDirectory + "/Models/FloorSilver", "FloorSilver.gltf");
+        break;
+    case 2:
+        CreateModelMeshRenderer(pillerRender, floatingFloor, kApplicationResourceDirectory + "/Models/Floor", "Floor.gltf");
+
+        break;
+    default:
+        break;
     }
     // ↓ここのパラメータコピーがエディターで設定した値にならない(初期化設定した値は問題なし)
 

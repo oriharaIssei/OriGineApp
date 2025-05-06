@@ -3,6 +3,7 @@
 #include "system/ISystem.h"
 
 class BomStatus;
+class ExplotionCollision;
 class BomSpawner;
 
 class PutBomSystem
@@ -20,5 +21,6 @@ protected:
     void SpawnBom(GameEntity* _entity, BomStatus* _spawner);
 
 private:
+    ExplotionCollision* bomExCollision_;
     BomSpawner* bomSpawner_;
 };

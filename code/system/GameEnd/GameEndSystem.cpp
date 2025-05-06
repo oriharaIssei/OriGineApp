@@ -11,10 +11,10 @@
 GameEndSystem::GameEndSystem() : ISystem(SystemType::StateTransition) {}
 
 void GameEndSystem::Initialize() {
+    sceneManager_ = SceneManager::getInstance();
 }
 
 void GameEndSystem::Finalize() {
-    sceneManager_ = SceneManager::getInstance();
 }
 
 GameEndSystem::~GameEndSystem() {}
@@ -55,6 +55,6 @@ void GameEndSystem::ChangeSceneResult(TimerStatus* timerstauts) {
     }
 
     if (gameEnd_->GetIsGameEnd()) {
-        sceneManager_->changeScene("RESULT");
+        sceneManager_->changeScene("Result");
     }
  }
