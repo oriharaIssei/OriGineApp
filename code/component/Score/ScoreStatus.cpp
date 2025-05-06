@@ -8,6 +8,8 @@
 /// externals
 #include "imgui/imgui.h"
 
+float ScoreStatus::currentScore_ = 0.0f;
+
 void ScoreStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 }
 

@@ -15,7 +15,7 @@ class ScoreStatus
 private: // variables
     bool isAlive_ = true;
 
-    float currentScore_;
+   static float currentScore_;
     float pulusScore_ = 0.0f;
     float scoreChangeTime_=0.0f;
     float scoreMax_  = 99999.0f;

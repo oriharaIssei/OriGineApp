@@ -12,6 +12,7 @@
 #include <Vector3.h>
 // component
 #include "component/ResultUI/ResultUIParentStatus.h"
+#include"component/Score/ScoreStatus.h"
 
 
 #include "engine/EngineInclude.h"
@@ -29,6 +30,16 @@ void ResultUIParentSystem::Finalize() {}
 
 void ResultUIParentSystem::UpdateEntity(GameEntity* _entity) {
 
+      // ComboEntityを取得
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* scoreEntity  = ecsManager->getUniqueEntity("Score");
+    if (!scoreEntity) {
+        return;
+    }
+
+    ScoreStatus* scoreStatus = getComponent<ScoreStatus>(scoreEntity);
+
+
     // get timer component
     ResultUIParentStatus* resultUIParent = getComponent<ResultUIParentStatus>(_entity);
     SpriteRenderer* sprite               = getComponent<SpriteRenderer>(_entity);
@@ -40,7 +51,7 @@ void ResultUIParentSystem::UpdateEntity(GameEntity* _entity) {
 
     if (resultUIParent->GetIsAnimation() && resultUIParent->GetAnimationStep() == ResultStep::NONE) {
         time_ = 0.0f;
-        resultUIParent->SetResultScore(20000);
+        resultUIParent->SetResultScore(scoreStatus->GetCurrentScore());
         // アニメーションリセット
         resultUIParent->Reset();
         resultUIParent->SetAnimationStep(ResultStep::ALPHA);
