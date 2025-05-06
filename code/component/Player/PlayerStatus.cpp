@@ -30,17 +30,16 @@ bool PlayerStatus::Edit() {
 #endif // _DEBUG
 }
 
-void PlayerStatus::Save(BinaryWriter& _writer) {
-    _writer.Write("baseSpeed", dashState_.baseSpeed_);
-    _writer.Write("gearUpCoolTime", dashState_.gearUpCoolTime_);
-    _writer.Write("directionInterpolateRate", directionInterpolateRate_);
-}
-
-void PlayerStatus::Load(BinaryReader& _reader) {
-    _reader.Read("baseSpeed", dashState_.baseSpeed_);
-    _reader.Read("gearUpCoolTime", dashState_.gearUpCoolTime_);
-    _reader.Read("directionInterpolateRate", directionInterpolateRate_);
-}
-
 void PlayerStatus::Finalize() {
+}
+
+void to_json(nlohmann::json& j, const PlayerStatus& _playerStatus) {
+    j["baseSpeed"]                = _playerStatus.dashState_.baseSpeed_;
+    j["gearUpCoolTime"]           = _playerStatus.dashState_.gearUpCoolTime_;
+    j["directionInterpolateRate"] = _playerStatus.directionInterpolateRate_;
+}
+void from_json(const nlohmann::json& j, PlayerStatus& _playerStatus) {
+    j.at("baseSpeed").get_to(_playerStatus.dashState_.baseSpeed_);
+    j.at("gearUpCoolTime").get_to(_playerStatus.dashState_.gearUpCoolTime_);
+    j.at("directionInterpolateRate").get_to(_playerStatus.directionInterpolateRate_);
 }

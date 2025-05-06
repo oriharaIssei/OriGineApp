@@ -13,6 +13,9 @@
 
 class CameraController
     : public IComponent {
+    friend void to_json(nlohmann::json& j, const CameraController& _cameraController);
+    friend void from_json(const nlohmann::json& j, CameraController& _cameraController);
+
 public:
     CameraController() {}
     ~CameraController() override {}
@@ -20,8 +23,6 @@ public:
     void Initialize(GameEntity* _entity) override;
 
     bool Edit() override;
-    void Save(BinaryWriter& _writer) override;
-    void Load(BinaryReader& _reader) override;
 
     void Finalize() override;
 

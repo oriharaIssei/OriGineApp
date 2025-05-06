@@ -3,14 +3,15 @@
 
 class PlayerStatus
     : public IComponent {
+    friend void to_json(nlohmann::json& j, const PlayerStatus& _playerStatus);
+    friend void from_json(const nlohmann::json& j, PlayerStatus& _playerStatus);
+
 public:
     PlayerStatus() : IComponent() {}
     ~PlayerStatus() {}
 
     void Initialize(GameEntity* _entity) override;
     bool Edit() override;
-    void Save(BinaryWriter& _writer) override;
-    void Load(BinaryReader& _reader) override;
     void Finalize() override;
 
 public:

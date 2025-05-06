@@ -33,25 +33,25 @@ bool CameraController::Edit() {
 #endif // _DEBUG
 }
 
-void CameraController::Save(BinaryWriter& _writer) {
-    _writer.Write<3, float>("followOffset", followOffset_);
-    _writer.Write<float>("rotateSpeedPadStick", rotateSpeedPadStick_);
-    _writer.Write<float>("rotateSpeedMouse", rotateSpeedMouse_);
-    _writer.Write<float>("rotateSensitivity", rotateSensitivity_);
-    _writer.Write<float>("interTargetInterpolation", interTargetInterpolation_);
-    _writer.Write<float>("maxRotateX", maxRotateX_);
-    _writer.Write<float>("minRotateX", minRotateX_);
-}
-
-void CameraController::Load(BinaryReader& _reader) {
-    _reader.Read<3, float>("followOffset", followOffset_);
-    _reader.Read<float>("rotateSpeedPadStick", rotateSpeedPadStick_);
-    _reader.Read<float>("rotateSpeedMouse", rotateSpeedMouse_);
-    _reader.Read<float>("rotateSensitivity", rotateSensitivity_);
-    _reader.Read<float>("interTargetInterpolation", interTargetInterpolation_);
-    _reader.Read<float>("maxRotateX", maxRotateX_);
-    _reader.Read<float>("minRotateX", minRotateX_);
-}
-
 void CameraController::Finalize() {
+}
+
+void to_json(nlohmann::json& j, const CameraController& c) {
+    j["followOffset"]             = c.followOffset_;
+    j["rotateSpeedPadStick"]      = c.rotateSpeedPadStick_;
+    j["rotateSpeedMouse"]         = c.rotateSpeedMouse_;
+    j["rotateSensitivity"]        = c.rotateSensitivity_;
+    j["interTargetInterpolation"] = c.interTargetInterpolation_;
+    j["maxRotateX"]               = c.maxRotateX_;
+    j["minRotateX"]               = c.minRotateX_;
+}
+
+void from_json(const nlohmann::json& j, CameraController& c) {
+    j.at("followOffset").get_to(c.followOffset_);
+    j.at("rotateSpeedPadStick").get_to(c.rotateSpeedPadStick_);
+    j.at("rotateSpeedMouse").get_to(c.rotateSpeedMouse_);
+    j.at("rotateSensitivity").get_to(c.rotateSensitivity_);
+    j.at("interTargetInterpolation").get_to(c.interTargetInterpolation_);
+    j.at("maxRotateX").get_to(c.maxRotateX_);
+    j.at("minRotateX").get_to(c.minRotateX_);
 }

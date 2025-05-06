@@ -1,0 +1,74 @@
+{
+    "Systems": [
+        {
+            "SettingGameCameraTarget": {
+                "Priority": 0,
+                "isActive": true
+            }
+        },
+        {
+            "CameraInputSystem": {
+                "Priority": 0,
+                "isActive": true
+            },
+            "PlayerInputSystem": {
+                "Priority": 0,
+                "isActive": true
+            }
+        },
+        {},
+        {
+            "FollowCameraUpdateSystem": {
+                "Priority": 0,
+                "isActive": true
+            },
+            "MoveSystemByRigidBody": {
+                "Priority": 0,
+                "isActive": true
+            },
+            "PlayerMoveSystem": {
+                "Priority": 0,
+                "isActive": true
+            }
+        },
+        {
+            "CollisionCheckSystem": {
+                "Priority": 0,
+                "isActive": true
+            }
+        },
+        {
+            "EmitterWorkSystem": {
+                "Priority": 0,
+                "isActive": true
+            },
+            "PrimitiveNodeAnimationWorkSystem": {
+                "Priority": 0,
+                "isActive": true
+            }
+        },
+        {
+            "ColliderRenderingSystem": {
+                "Priority": 0,
+                "isActive": true
+            },
+            "LineRenderSystem": {
+                "Priority": 0,
+                "isActive": true
+            },
+            "ParticleRenderSystem": {
+                "Priority": 0,
+                "isActive": true
+            },
+            "SpriteRenderSystem": {
+                "Priority": 0,
+                "isActive": true
+            },
+            "TexturedMeshRenderSystem": {
+                "Priority": 0,
+                "isActive": true
+            }
+        },
+        {}
+    ]
+}

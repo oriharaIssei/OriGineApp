@@ -18,14 +18,15 @@
 /// </summary>
 class PlayerInput
     : public IComponent {
+    friend void to_json(nlohmann::json& j, const PlayerInput& _playerInput);
+    friend void from_json(const nlohmann::json& j, PlayerInput& _playerInput);
+
 public:
     PlayerInput() : IComponent() {}
     ~PlayerInput() {}
 
     void Initialize(GameEntity* _entity) override;
     bool Edit() override;
-    void Save(BinaryWriter& _writer) override;
-    void Load(BinaryReader& _reader) override;
     void Finalize() override;
 
 private:

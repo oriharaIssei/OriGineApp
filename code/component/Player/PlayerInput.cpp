@@ -12,12 +12,12 @@ bool PlayerInput::Edit() {
     return false;
 }
 
-void PlayerInput::Save(BinaryWriter& /*_writer*/) {
-}
-
-void PlayerInput::Load(BinaryReader& /* _reader*/) {
-}
-
 void PlayerInput::Finalize() {
     // 何もしない
+}
+
+void to_json(nlohmann::json& , const PlayerInput& ) {
+}
+
+void from_json(const nlohmann::json& , PlayerInput& ) {
 }
