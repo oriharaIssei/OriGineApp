@@ -5,6 +5,7 @@
 #include <array>
 #include <cstdint>
 #include <Vector3.h>
+#include <Vector4.h>
 
 struct Transform;
 class BlockStatus
@@ -22,6 +23,9 @@ private: // variables
     int32_t currentHP_;
     bool isDestroy_ = false;
     bool isbreak_   = false;
+
+    // color
+    Vec4f changeColor_ = {1.0f, 0.0f, 0.0f, 1.0f};
 
     // score
     float ratio_          = 1.0f;
@@ -59,6 +63,7 @@ public: // accsessor
     float GetRatio() const { return ratio_; }
     float GetBaseScoreValue() const { return baseScoreValue_; }
     Vec3f GetPreMovePos() const { preMovePos_; }
+    Vec4f GetChangeColor() const { return changeColor_; }
 
     /// setter
     void SetColum(const int32_t& colum);
@@ -72,4 +77,5 @@ public: // accsessor
     void SetPreMovePos(const Vec3f& offset) { preMovePos_ = offset; }
     void SetIsMove(const bool& is) { isMove_ = is; }
     void SetEaseTimeMax(const float& time) { moveEase_.maxTime = time; }
+    
 };

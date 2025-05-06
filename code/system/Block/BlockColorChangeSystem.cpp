@@ -9,6 +9,7 @@
 
 #include "component/Block/BlockManager.h"
 #include "component/Block/BlockStatus.h"
+#include"component/Bom/BomStatus.h"
 #include "component/Bom/ExplotionCollision.h"
 #include "component/Player/PlayerStates.h"
 
@@ -30,7 +31,7 @@ void BlockColorChangeSystem::UpdateEntity(GameEntity* _entity) {
     // CharacterStatusを取得
 
     BlockStatus* blockStatus     = getComponent<BlockStatus>(_entity);
-   /* ModelMeshRenderer* modelMesh = getComponent<ModelMeshRenderer>(_entity);*/
+    ModelMeshRenderer* modelMesh = getComponent<ModelMeshRenderer>(_entity);
     /* ModelMeshRenderer* modelMesh = getComponent<ModelMeshRenderer>(_entity);*/
 
     if (!blockStatus) {
@@ -40,6 +41,9 @@ void BlockColorChangeSystem::UpdateEntity(GameEntity* _entity) {
     if (blockStatus->GetIsFall()) {
         return;
     }
+
+    //白
+     modelMesh->getMaterialBuff(0)->color_ = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
 
     /// ====================================================
     /// 衝突判定の結果を使って CharacterStatus を更新
@@ -55,21 +59,20 @@ void BlockColorChangeSystem::UpdateEntity(GameEntity* _entity) {
                 }
 
                 // 衝突開始時の オブジェクトの Lifeを減らす
-                if (collisionState != CollisionState::Enter) {
+                if (collisionState != CollisionState::Stay) {
                     continue;
                 }
 
                 // CharacterStatusを取得
-                ExplotionCollision* hitEntityStatus  = getComponent<ExplotionCollision>(hitEntity);
+                BomStatus* hitEntityStatus           = getComponent<BomStatus>(hitEntity);
                 SphereCollider* preBomshepreCollider = getComponent<SphereCollider>(hitEntity, 1);
 
                 if (!hitEntityStatus || !preBomshepreCollider) {
                     continue;
                 }
-                //// 色変え
-                //Material* mate;
-                //mate->color_ = Vec4f(1.0f, 1.0f, 0.0f, 1.0f);
-                //modelMesh->setMaterialBuff(0,*mate);
+
+                modelMesh->getMaterialBuff(0)->color_ = blockStatus->GetChangeColor();
+                
             }
         }
     }

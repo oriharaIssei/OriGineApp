@@ -25,6 +25,7 @@
 #include "system/Block/BreakBlockSystem.h"
 #include "system/Block/DeleteBlockSystem.h"
 #include"system/Block/BlockFloorCollision.h"
+#include"system/Block/BlockColorChangeSystem.h"
 
 BlockSpawnSystem::BlockSpawnSystem() : ISystem(SystemType::Movement) {}
 BlockSpawnSystem::~BlockSpawnSystem() {}
@@ -161,6 +162,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos
     ecs->getSystem<CollisionCheckSystem>()->addEntity(block);
     ecs->getSystem<BlockExBomCollision>()->addEntity(block);
     ecs->getSystem<BlockFloorCollision>()->addEntity(block);
+    ecs->getSystem<BlockColorChangeSystem>()->addEntity(block);
     //------------------ Physics
     // None
 
