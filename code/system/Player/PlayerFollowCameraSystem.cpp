@@ -66,7 +66,7 @@ void PlayerFollowCameraSystem::UpdateEntity(GameEntity* _entity) {
     ///============================================================
     /// カメラの行列を更新
     ///============================================================
-    cameraTransform_->UpdateMatrixQuaterion();
+    cameraTransform_->UpdateMatrix();
 }
 
 
