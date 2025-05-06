@@ -8,6 +8,7 @@
 /// externals
 #include "imgui/imgui.h"
 
+
 void to_json(nlohmann::json& _json, const ResultUIParentStatus& _component) {
     _json["isAlive"]               = _component.isAlive_;
     _json["scoreUpSpeed"]          = _component.scoreUpSpeed_;

@@ -93,9 +93,9 @@ public: // accsessor
     float GetScoreWaitTime() const { return scoreWaitTime_; }
     float GetCurrentScore() const { return currentScore_; }
     float GetAlpha() const { return alpha_; }
+    float GetResultScore() const { return resultScore_; }
 
     /// setter
-
     void SetIsAnimation(const bool& currentComboNum) { isAnimation_ = currentComboNum; }
     void SetInitPos(const Vec3f& pos) { initPos_ = pos; }
     void SetAnimationStep(const ResultStep& step) { curerntStep_ = step; }

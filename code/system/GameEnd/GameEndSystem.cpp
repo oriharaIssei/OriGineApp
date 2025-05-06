@@ -24,7 +24,7 @@ void GameEndSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-     gameEnd_ = getComponent<GameEnd>(_entity);
+    gameEnd_ = getComponent<GameEnd>(_entity);
 
     // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
@@ -36,17 +36,17 @@ void GameEndSystem::UpdateEntity(GameEntity* _entity) {
 
     TimerStatus* timerStatus = getComponent<TimerStatus>(timerEntity);
 
-    //タイトル
+    // タイトル
     ChangeSceneTitle();
-    //リザルト
-    ChangeSceneResult(timerStatus);   
+    // リザルト
+    ChangeSceneResult(timerStatus);
 }
 
 void GameEndSystem::ChangeSceneTitle() {
     if (gameEnd_->GetIsBackTitle()) {
-        sceneManager_->changeScene("Title");
+        sceneManager_->changeScene("TITLE");
     }
-  }
+}
 
 void GameEndSystem::ChangeSceneResult(TimerStatus* timerstauts) {
     // タイマーゼロでゲームエンド
@@ -55,6 +55,7 @@ void GameEndSystem::ChangeSceneResult(TimerStatus* timerstauts) {
     }
 
     if (gameEnd_->GetIsGameEnd()) {
+
         sceneManager_->changeScene("RESULT");
     }
- }
+}

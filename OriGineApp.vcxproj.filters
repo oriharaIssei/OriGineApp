@@ -46,9 +46,6 @@
     <Filter Include="system\Floor">
       <UniqueIdentifier>{BBEC4067-A74F-D00B-50D5-08C23C179C8E}</UniqueIdentifier>
     </Filter>
-    <Filter Include="system\FloorAndPiller">
-      <UniqueIdentifier>{7625AA2C-E291-6527-AB85-FD8417B1878F}</UniqueIdentifier>
-    </Filter>
     <Filter Include="system\Matrix">
       <UniqueIdentifier>{EE5CEE5E-5A1D-6A95-2358-B3128FD7AE71}</UniqueIdentifier>
     </Filter>

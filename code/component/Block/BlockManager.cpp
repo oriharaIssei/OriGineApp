@@ -17,6 +17,8 @@ void BlockManager::Initialize([[maybe_unused]] GameEntity* _entity) {
     basePosY_            = 0.0f;
     moveTenpo_           = 0.0f;
     deadPositionX_       = 0.0f;*/
+
+    currentLevel_ = 0;
 }
 
 bool BlockManager::Edit() {
