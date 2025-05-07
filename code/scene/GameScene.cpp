@@ -99,6 +99,7 @@
 #include"Application/code/system/Menu/TutorialArrowSystem.h"
 #include"Application/code/system/Block/BlockColorChangeSystem.h"
 #include"Application/code/system/SceneTransitionSystem/SceneTransitionSystem.h"
+#include"Application/code/system/Menu/MenutextSystem.h"
     //#include"Application/code/system/GameEnd/"
 
 GameScene::GameScene()
@@ -209,5 +210,6 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<TutorialArrowSystem>();
     ecsManager->registerSystem<BlockColorChangeSystem>();
     ecsManager->registerSystem<SceneTransitionSystem>();
+    ecsManager->registerSystem<MenutextSystem>();
     ecsManager->SortPriorityOrderSystems();
 }
