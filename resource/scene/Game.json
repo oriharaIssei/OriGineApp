@@ -1298,15 +1298,15 @@
                 "ScrapSpawner": [
                     {
                         "blowValue": [
-                            14.0,
-                            -17.0
+                            9.270000457763672,
+                            -15.34000015258789
                         ],
                         "colliderRadius": 2.0,
                         "createNum": 2,
                         "fallStopPosY": 1.2000000476837158,
                         "isAlive": true,
                         "lifeTime": 5.0,
-                        "mass": 52.0
+                        "mass": 67.81999969482422
                     }
                 ]
             },
