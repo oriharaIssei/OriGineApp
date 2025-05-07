@@ -64,29 +64,29 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":1544,
+			"count":1550,
 			"max":[
-				1,
+				1.717510461807251,
 				1.3124945163726807,
-				1.717510461807251
+				1.0000001192092896
 			],
 			"min":[
-				-1.000000238418579,
+				-1.717510461807251,
 				-0.34648948907852173,
-				-1.717510461807251
+				-1.0000003576278687
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":1544,
+			"count":1550,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":1544,
+			"count":1550,
 			"type":"VEC2"
 		},
 		{
@@ -99,26 +99,26 @@
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":18528,
+			"byteLength":18600,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":18528,
-			"byteOffset":18528,
+			"byteLength":18600,
+			"byteOffset":18600,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":12352,
-			"byteOffset":37056,
+			"byteLength":12400,
+			"byteOffset":37200,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":9024,
-			"byteOffset":49408,
+			"byteOffset":49600,
 			"target":34963
 		}
 	],
@@ -130,7 +130,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":58432,
+			"byteLength":58624,
 			"uri":"Floor_Gold.bin"
 		}
 	]

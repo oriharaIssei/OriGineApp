@@ -44,7 +44,7 @@ void ResultKeySystem::UpdateEntity(GameEntity* _entity) {
     }
 
     if (!isBackTitle_) {
-        if (input_->isTriggerKey(DIK_SPACE)) {
+        if (input_->isTriggerKey(DIK_T)) {
             isBackTitle_ = true;
             sceneManager_->changeScene("TITLE");
         }
