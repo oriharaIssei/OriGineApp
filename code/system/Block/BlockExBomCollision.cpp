@@ -10,6 +10,7 @@
 #include "component/Block/BlockManager.h"
 #include "component/Block/BlockStatus.h"
 #include "component/Bom/ExplotionCollision.h"
+#include"component/BigBom/BigExplotionCollision.h"
 #include "component/Player/PlayerStates.h"
 
 BlockExBomCollision::BlockExBomCollision() : ISystem(SystemType::Collision) {}
@@ -60,9 +61,10 @@ void BlockExBomCollision::UpdateEntity(GameEntity* _entity) {
 
                 // CharacterStatusを取得
                 ExplotionCollision* hitEntityStatus = getComponent<ExplotionCollision>(hitEntity);
+                BigExplotionCollision* bigBomExCollision = getComponent<BigExplotionCollision>(hitEntity);
                 PlayerStates* playerStatus          = getComponent<PlayerStates>(hitEntity);
 
-                if (!hitEntityStatus || playerStatus) {
+                if (playerStatus || (!hitEntityStatus && !bigBomExCollision)) {
                     continue;
                 }
                 // CharacterStatusを更新

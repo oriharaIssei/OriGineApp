@@ -374,7 +374,7 @@
                 "BigExplotionCollision": [
                     {
                         "adaptTime": 0.10000000149011612,
-                        "collisionRadius": 7.0,
+                        "collisionRadius": 12.0,
                         "isAlive": true,
                         "positionOffset": [
                             0.0,
