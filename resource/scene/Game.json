@@ -1846,7 +1846,7 @@
                         ],
                         "moveTimemax": 0.10000000149011612,
                         "movetenpoNum": 4,
-                        "nextCreatePositionX": 51.0,
+                        "nextCreatePositionX": 61.0,
                         "nextLevelTime": [
                             2.799999952316284,
                             5.0,
@@ -1871,7 +1871,7 @@
                             1000.0,
                             1000.0
                         ],
-                        "startPosition": 54.0,
+                        "startPosition": 64.0,
                         "startPositionZ": 5.0
                     }
                 ]
@@ -3008,6 +3008,15 @@
                 "isActive": true
             }
         },
-        {}
+        {
+            "GrayscaleEffect": {
+                "Priority": 0,
+                "isActive": false
+            },
+            "SmoothingEffect": {
+                "Priority": 0,
+                "isActive": false
+            }
+        }
     ]
 }
