@@ -5,6 +5,7 @@
 
 class GameEnd;
 class TimerStatus;
+class Input;
 class GameEndSystem
     : public ISystem {
 public:
@@ -16,6 +17,8 @@ public:
     void Finalize() override;
 
     void AnimationChangeGameToResult();
+    void ResultTransitionAnimation();
+    void TitleTransitionAnimation();
 
     void ChangeSceneTitle();
     void ChangeSceneResult();
@@ -25,6 +28,7 @@ protected:
     virtual void UpdateEntity(GameEntity* _entity) override;
 
     private:
+    Input* input_               = nullptr;
     GameEnd* gameEnd_=nullptr;
     SceneManager* sceneManager_ = nullptr;
    

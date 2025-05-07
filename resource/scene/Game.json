@@ -3276,7 +3276,7 @@
             },
             "SpriteRenderSystem": {
                 "Priority": 0,
-                "isActive": false
+                "isActive": true
             },
             "TexturedMeshRenderSystem": {
                 "Priority": 0,

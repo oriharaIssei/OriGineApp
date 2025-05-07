@@ -13,6 +13,7 @@
 // component
 #include "component/ResultUI/ResultFontStatus.h"
 #include "component/ResultUI/ResultUIParentStatus.h"
+#include"component/SceneTransition/SceneTransition.h"
 
 #include "engine/EngineInclude.h"
 #include <Vector2.h>
@@ -33,8 +34,9 @@ void ResultFontSystem::UpdateEntity(GameEntity* _entity) {
     // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* levelUIParent                = ecsManager->getUniqueEntity("ResultUIParent");
+    GameEntity* resultOutEntity              = ecsManager->getUniqueEntity("ResultOut");
 
-    if (!levelUIParent) { // Entityが存在しない場合の早期リターン
+    if (!levelUIParent || !resultOutEntity) { // Entityが存在しない場合の早期リターン
         return;
     }
 
@@ -44,21 +46,28 @@ void ResultFontSystem::UpdateEntity(GameEntity* _entity) {
     ResultUIParentStatus* resultUIParent = getComponent<ResultUIParentStatus>(levelUIParent);
     float deltaTIme                      = Engine::getInstance()->getDeltaTime();
 
+     
+    
+
     if (!resultFont || !resultUIParent || !sprite) {
         return;
     }
+  
+  
 
-    if (resultFont->GetAnimationStep() == ResultFontStep::NONE) {
+    SceneTransition* transition = getComponent<SceneTransition>(resultOutEntity);
+    if (!transition->IsAnimationEnd()) {
+        return;
+    }
+  
+
+    switch (resultFont->GetAnimationStep()) {
+    case ResultFontStep::NONE:
         time_ = 0.0f;
 
         // アニメーションリセット
         resultFont->Reset();
         resultFont->SetAnimationStep(ResultFontStep::FIRSTWAIT);
-    }
-
-    switch (resultFont->GetAnimationStep()) {
-    case ResultFontStep::NONE:
-
         break;
         ///----------------------------------------------------------------
         /// Move Animation

@@ -54,7 +54,7 @@ void SceneTransitionSystem::UpdateEntity(GameEntity* entity) {
     //ステップに基づく動き
     switch (sceneTransition->GetTransitionStep()) {
     case TransitonStep::NONE:
-        if (sceneTransition->GetTransitionnMode() == TransitionMode::FadeIN &&!sceneTransition->GetIsTransitionIn()) {
+        if (!sceneTransition->IsAbleAnimationStart()||!sceneTransition->IsAbleTitleOutAnimationStart()) {
             sceneTransition->TransitionInit();
             break;
         }

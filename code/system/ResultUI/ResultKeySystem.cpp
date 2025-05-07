@@ -43,12 +43,12 @@ void ResultKeySystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    if (!isBackTitle_) {
+   /* if (!isBackTitle_) {
         if (input_->isTriggerKey(DIK_T)) {
             isBackTitle_ = true;
             sceneManager_->changeScene("TITLE");
         }
-    }
+    }*/
 
     // get timer component
     ResultUIkeyStatus* resultRank        = getComponent<ResultUIkeyStatus>(_entity);

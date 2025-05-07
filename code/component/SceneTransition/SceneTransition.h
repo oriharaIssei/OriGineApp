@@ -43,6 +43,11 @@ public:
     void WaitUpdate(const float& deltaTime);
     void Reset();
 
+    bool IsAnimationEnd();
+
+    bool IsAbleAnimationStart();
+    bool IsAbleTitleOutAnimationStart();
+
 private:
     TransitionMode transitionMode_;
     TransitionScene currentScene_  = TransitionScene::TITLE;
@@ -60,6 +65,8 @@ private:
     float currentWaitTime_;
 
     bool isGoTitleFromMenu_ = false;
+    bool isRetry_           = false;
+    static bool isTitleTransitionOut_;
 
     Vec2f scale_ = {0.0f,0.0f};
 
@@ -69,6 +76,8 @@ private:
     void SetTransitionStep(const TransitonStep& step) { transitionStep_ = step; }
     void GoToNextScene(GameEnd*gameend);
     void SetIsGoTitleFromMenu(const bool& is) { isGoTitleFromMenu_ = is; }
+    void SetIsRetry(const bool& is) { isRetry_ = is; }
+    void SettIsTitleTransitionOut(const bool& is) { isTitleTransitionOut_ = is; }
 
     // カメラなどの取得に使用
     bool GetIsTransitionIn() const { return isTransitionIn_; }
@@ -77,4 +86,6 @@ private:
     TransitonStep GetTransitionStep() const { return transitionStep_; }
     TransitionMode GetTransitionnMode() const { return transitionMode_; }
     Vec2f GetScale() const { return scale_; }
+    bool GetIsRetry() const { return isRetry_; }
+    bool GetIsTitleTransitionOut() const { return isTitleTransitionOut_; }
 };
