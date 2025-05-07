@@ -73,6 +73,8 @@ void DeleteBigBomSystem::AddExplotionEntity(GameEntity* _entity, BigExplotionCol
     /// States
     BigExplotionCollision* status = getComponent<BigExplotionCollision>(bomCollision);
     status                     = _bomStates;
+   /* status->SetAdaptTime(_bomStates->GetAdaptTime());
+    status->SetPlusScoreRatio(_bomStates->GetPlusScoreRatio());*/
 
     // ================================= System ================================= //
     ECSManager* ecs = ECSManager::getInstance();

@@ -124,7 +124,7 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     floatingFloorStatus->SetIncrementFallEaseT(0.0f);
 
     // ratio
-    floatingFloorStatus->SetRatio(floatFloorSpawner->GetRatio());
+    floatingFloorStatus->SetScoreUpRatio(floatFloorSpawner->GetRatio());
 
     for (int32_t i = 0; i < audios_.size(); ++i) {
         audios_[i]  = getComponent<Audio>(_entity, i); // audio

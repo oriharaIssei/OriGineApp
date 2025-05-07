@@ -11,6 +11,7 @@
 
 void BigExplotionCollision::Initialize([[maybe_unused]] GameEntity* _entity) {
     adaptTime_ = 0.1f;
+    plusScoreRatio_ = 3.0f;
 }
 
 bool BigExplotionCollision::Edit() {
@@ -27,6 +28,7 @@ bool BigExplotionCollision::Edit() {
     isChange |= ImGui::DragFloat("adaptTime", &adaptTime_);
     isChange |= ImGui::DragFloat("CollisionRadius", &collisionRadius_);
 
+    isChange |= ImGui::DragFloat("plusScoreRatio", &plusScoreRatio_);
     return isChange;
 }
 
@@ -41,10 +43,14 @@ void to_json(nlohmann::json& j, const BigExplotionCollision& b) {
     j["adaptTime"]       = b.adaptTime_;
     j["positionOffset"]  = b.positionOffset_;
     j["collisionRadius"] = b.collisionRadius_;
+    j["plusScoreRatio"]  = b.plusScoreRatio_;
 }
 void from_json(const nlohmann::json& j, BigExplotionCollision& b) {
     j.at("isAlive").get_to(b.isAlive_);
     j.at("adaptTime").get_to(b.adaptTime_);
     j.at("positionOffset").get_to(b.positionOffset_);
     j.at("collisionRadius").get_to(b.collisionRadius_);
+    if (auto it = j.find("plusScoreRatio"); it != j.end()) {
+        j.at("plusScoreRatio").get_to(b.plusScoreRatio_);
+    }
 }

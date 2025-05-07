@@ -8,6 +8,7 @@
 #include "engine/EngineInclude.h"
 
 #include "component/Bom/ExplotionCollision.h"
+#include"component/BigBom/BigExplotionCollision.h"
 #include "component/Piller/FloatingFloorStatus.h"
 #include "component/Player/PlayerStates.h"
 
@@ -59,15 +60,22 @@ void FloatingFloorDamageSystem::UpdateEntity(GameEntity* _entity) {
 
                 // CharacterStatusを取得
                 ExplotionCollision* hitEntityStatus = getComponent<ExplotionCollision>(hitEntity);
+                BigExplotionCollision* hitEntityBigStatus = getComponent<BigExplotionCollision>(hitEntity);
                 PlayerStates* playerStatus          = getComponent<PlayerStates>(hitEntity);
 
-                if (!hitEntityStatus || playerStatus) {
+                if (playerStatus || (!hitEntityBigStatus && !hitEntityStatus)) {
                     continue;
                 }
                 //ダメ―ジ音
                 damageSound->Play();
-                // CharacterStatusを更新
-                floatingFloorStatus->TakeDamage();
+
+                if (hitEntityBigStatus) {
+                    float ratio = floatingFloorStatus->GetScoreUPRatio() * hitEntityBigStatus->GetPlusScoreRatio();
+                    floatingFloorStatus->SetScoreUpRatio(ratio);
+                    floatingFloorStatus->TakeBigDamage();
+                } else {
+                    floatingFloorStatus->TakeDamage();
+                }
             }
         }
     }

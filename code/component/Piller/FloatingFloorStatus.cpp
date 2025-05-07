@@ -38,6 +38,10 @@ void FloatingFloorStatus::TakeDamage() {
     currentHP_--;
 }
 
+void FloatingFloorStatus::TakeBigDamage() {
+    currentHP_ = 0;
+ }
+
 void FloatingFloorStatus::RevivalReset() {
     isDestroy_           = false;
     currentRevivalTimer_ = 0.0f;

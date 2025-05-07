@@ -67,6 +67,11 @@ void BlockExBomCollision::UpdateEntity(GameEntity* _entity) {
                 if (playerStatus || (!hitEntityStatus && !bigBomExCollision)) {
                     continue;
                 }
+
+                if (bigBomExCollision) {
+                    blockStatus->SetPlusScoreRatio(bigBomExCollision->GetPlusScoreRatio());
+                }
+
                 // CharacterStatusを更新
                 blockStatus->SetIsBreak(true);
 

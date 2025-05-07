@@ -376,6 +376,7 @@
                         "adaptTime": 0.10000000149011612,
                         "collisionRadius": 12.0,
                         "isAlive": true,
+                        "plusScoreRatio": 3.0,
                         "positionOffset": [
                             0.0,
                             0.0,

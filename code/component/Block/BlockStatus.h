@@ -28,7 +28,6 @@ private: // variables
     Vec4f changeColor_ = {1.0f, 0.0f, 0.0f, 1.0f};
 
     // score
-    float ratio_          = 1.0f;
     float baseScoreValue_ = 0.0f;
 
     BlockType blockType_;
@@ -36,6 +35,9 @@ private: // variables
     Vec3f preMovePos_ = {0.0f, 0.0f, 0.0f};
     bool isMove_      = false;
     Easing moveEase_;
+
+    //
+    float plusScoreRatio_=1.0f;
 
     /*  MoveStep moveStep_ = MoveStep::NONE;*/
 
@@ -60,8 +62,8 @@ public: // accsessor
     const bool& GetIsFall() const { return isFall_; }
     BlockType GetBlockType() const { return blockType_; }
     bool GetIsBreak() const { return isbreak_; }
-    float GetRatio() const { return ratio_; }
-    float GetBaseScoreValue() const { return baseScoreValue_; }
+     float GetBaseScoreValue() const { return baseScoreValue_; }
+    float GetPlusScoreRatio() const { return plusScoreRatio_; }
     Vec3f GetPreMovePos() const { preMovePos_; }
     Vec4f GetChangeColor() const { return changeColor_; }
 
@@ -72,10 +74,10 @@ public: // accsessor
     void SetIsDestroy(const bool& is) { isDestroy_ = is; }
     void SetBlockType(const BlockType& type) { blockType_ = type; }
     void SetIsBreak(const bool& is) { isbreak_ = is; }
-    void SetRatio(const float& ratio) { ratio_ = ratio; }
     void SetBaseScoreValue(const float& value) { baseScoreValue_ = value; }
     void SetPreMovePos(const Vec3f& offset) { preMovePos_ = offset; }
     void SetIsMove(const bool& is) { isMove_ = is; }
     void SetEaseTimeMax(const float& time) { moveEase_.maxTime = time; }
+    void SetPlusScoreRatio(const float& ratio) {  plusScoreRatio_ = ratio; }
     
 };

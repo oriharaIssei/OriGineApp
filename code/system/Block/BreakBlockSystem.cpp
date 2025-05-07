@@ -77,9 +77,9 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
         return;
     }
 
-    float timerDecrementValue = timerStatus->GetPulusTime() * blockStatus_->GetRatio();
-    float timerIncrementValue = timerStatus->GetMinusTime() * blockStatus_->GetRatio();
-    float scoreValue          = blockStatus_->GetBaseScoreValue() * blockStatus_->GetRatio();
+    float timerDecrementValue = timerStatus->GetPulusTime() * blockStatus_->GetPlusScoreRatio();
+    float timerIncrementValue = timerStatus->GetMinusTime() * blockStatus_->GetPlusScoreRatio();
+    float scoreValue          = blockStatus_->GetBaseScoreValue() * blockStatus_->GetPlusScoreRatio();
 
     switch (blocktype) {
         ///---------------------------------------------

@@ -18,6 +18,8 @@ private: // variables
     /// size
     float collisionRadius_;
 
+    float plusScoreRatio_;
+
 public:
     BigExplotionCollision() {}
     virtual ~BigExplotionCollision() = default;
@@ -33,8 +35,10 @@ public: // accsessor
     float GetAdaptTime() const { return adaptTime_; }
     float GetCollisionRadius() const { return collisionRadius_; }
     Vec3f GetPositionOffset() const { return positionOffset_; }
+    float GetPlusScoreRatio() const { return plusScoreRatio_; }
     /// setter
     void SetAdaptTime(const float& time) { adaptTime_ = time; }
     void SetOffset(const Vec3f& time) { positionOffset_ = time; }
     void SetCollisionRadius(const float& time) { collisionRadius_ = time; }
+    void SetPlusScoreRatio(const float& ratio) { plusScoreRatio_ = ratio; }
 };
