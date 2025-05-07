@@ -7,11 +7,10 @@
 #define ENGINE_ECS
 #include "engine/EngineInclude.h"
 
+#include "component/BigBom/BigBomStatus.h"
 #include "component/Block/BlockManager.h"
 #include "component/Block/BlockStatus.h"
-#include"component/Bom/BomStatus.h"
-#include "component/Bom/ExplotionCollision.h"
-#include "component/Player/PlayerStates.h"
+#include "component/Bom/BomStatus.h"
 
 BlockColorChangeSystem::BlockColorChangeSystem() : ISystem(SystemType::Collision) {}
 BlockColorChangeSystem::~BlockColorChangeSystem() {}
@@ -42,8 +41,8 @@ void BlockColorChangeSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    //白
-     modelMesh->getMaterialBuff(0)->color_ = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
+    // 白
+    modelMesh->getMaterialBuff(0)->color_ = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
 
     /// ====================================================
     /// 衝突判定の結果を使って CharacterStatus を更新
@@ -64,15 +63,24 @@ void BlockColorChangeSystem::UpdateEntity(GameEntity* _entity) {
                 }
 
                 // CharacterStatusを取得
-                BomStatus* hitEntityStatus           = getComponent<BomStatus>(hitEntity);
-                SphereCollider* preBomshepreCollider = getComponent<SphereCollider>(hitEntity, 1);
+                BomStatus* hitEntityStatus = getComponent<BomStatus>(hitEntity);
+                /// BigBom
+                BigBomStatus* bigbomStatus = getComponent<BigBomStatus>(hitEntity);
 
-                if (!hitEntityStatus || !preBomshepreCollider) {
-                    continue;
+                SphereCollider* sphereCollider = getComponent<SphereCollider>(hitEntity, 1);
+
+                if (!sphereCollider) {
+                    return;
                 }
 
-                modelMesh->getMaterialBuff(0)->color_ = blockStatus->GetChangeColor();
-                
+                if (hitEntityStatus) {
+
+                    modelMesh->getMaterialBuff(0)->color_ = blockStatus->GetChangeColor();
+                } else if (bigbomStatus) {
+                    if (bigbomStatus->GetIsLaunch()) {
+                        modelMesh->getMaterialBuff(0)->color_ = blockStatus->GetChangeColor();
+                    }
+                }
             }
         }
     }

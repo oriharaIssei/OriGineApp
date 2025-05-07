@@ -11,6 +11,7 @@
 #include "component/BigBom/BigBomSpawner.h"
 #include "component/BigBom/BigBomStatus.h"
 #include "component/Player/PlayerStates.h"
+#include"component/BigBom/BigExplotionCollision.h"
 
 #include"system/BigBom/BigBomInputSystem.h"
 #include"system/BigBom/BigBomLaunchSystem.h"
@@ -32,8 +33,9 @@ void PlayerCreateBigBomSystem::UpdateEntity(GameEntity* _entity) {
         return;
 
     PlayerStates* playerStautus  = getComponent<PlayerStates>(_entity);
+    BigExplotionCollision* bigBomExSpawner = getComponent<BigExplotionCollision>(_entity);
     BigBomSpawner* bigBomSpawner = getComponent<BigBomSpawner>(_entity);
-    if (!playerStautus || !bigBomSpawner) {
+    if (!playerStautus || !bigBomSpawner || !bigBomExSpawner) {
         return;
     }
 
@@ -43,14 +45,14 @@ void PlayerCreateBigBomSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    // プレイヤーの状態乞更新
+    // プレイヤーの状態更新
     playerStautus->SetIsBigBomHaving(true);
     playerStautus->ReSetCurrentBigBomPoint();
 
     // BigBomを実際に生成
 
 
-    GameEntity* bigBom = CreateEntity<Transform, Rigidbody, SphereCollider, ModelMeshRenderer, BigBomStatus>("bigBom", Transform(), Rigidbody(), SphereCollider(), ModelMeshRenderer(), BigBomStatus());
+    GameEntity* bigBom = CreateEntity<Transform, Rigidbody, SphereCollider, SphereCollider, ModelMeshRenderer, BigBomStatus>("bigBom", Transform(), Rigidbody(), SphereCollider(), SphereCollider(), ModelMeshRenderer(), BigBomStatus());
 
     // ================================= Componentを初期化 ================================= //
     //*Status
@@ -70,8 +72,11 @@ void PlayerCreateBigBomSystem::UpdateEntity(GameEntity* _entity) {
     SphereCollider* collider              = getComponent<SphereCollider>(bigBom);
     collider->getLocalShapePtr()->radius_ = bigBomSpawner->GetCollisionRadius();
     collider->getLocalShapePtr()->center_ = bigBomSpawner->GetCollisionCenter();
-  /*  collider->setActive(false);*/
 
+    ///* collider2
+     SphereCollider* preExCollider = getComponent<SphereCollider>(bigBom,1);
+    preExCollider->getLocalShapePtr()->radius_ = bigBomExSpawner->GetCollisionRadius();
+ 
     //*model
     ModelMeshRenderer* modelMesh = getComponent<ModelMeshRenderer>(bigBom);
     CreateModelMeshRenderer(modelMesh, bigBom, kApplicationResourceDirectory + "/Models/Player", "Player.obj");
