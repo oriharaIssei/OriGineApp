@@ -7,8 +7,6 @@
 #define ENGINE_COMPONENTS
 // lib
 #include "input/Input.h"
-#include <Quaternion.h>
-#include <Vector3.h>
 // component
 #include "component/BigBom/BigBomStatus.h"
 #include "component/Player/PlayerStates.h"
@@ -103,7 +101,20 @@ void BigBomInputSystem::UpdateEntity(GameEntity* _entity) {
     // Z成分を0に設定
     bigBomStatus->SetLaunchDirectionZ(0.0f);
 
-   
+   // LaunchDirection に基づいて回転を設定する処理
+    if (bigBomStatus->GetLaunchDirection().lengthSq() > 0.0f) {
+        Vec3f forward = bigBomStatus->GetLaunchDirection(); // 進行方向
+        Vec3f up      = Vec3f(0.0f, 1.0f, 0.0f); // ワールドの上方向
+
+        // 進行方向が上向きに近い場合の up ベクトル補正（ジンバルロック対策）
+        if (std::abs(forward.dot(up)) > 0.99f) {
+            up = Vec3f(0.0f, 0.0f, 1.0f); // 他の軸を使う
+        }
+
+        // 回転クォータニオンの計算
+        Quaternion rotation = LookRotation(forward, up);
+        transform->rotate   = rotation;
+    }
 
     ///============================================================
     /// スペースキーで発射
@@ -112,4 +123,47 @@ void BigBomInputSystem::UpdateEntity(GameEntity* _entity) {
         bigBomStatus->SetIsLaunch(true);
         playerStates->SetIsBigBomHaving(false);
     }
+}
+
+
+Quaternion BigBomInputSystem::LookRotation(const Vec3f& forward, const Vec3f& up) {
+    Vec3f f = forward.normalize();
+    Vec3f r = up.cross(f).normalize(); // 右ベクトル
+    Vec3f u = f.cross(r); // 補正された上ベクトル
+
+    // 回転行列をクォータニオンに変換
+    float m00 = r[X], m01 = u[X], m02 = f[X];
+    float m10 = r[Y], m11 = u[Y], m12 = f[Y];
+    float m20 = r[Z], m21 = u[Z], m22 = f[Z];
+
+    float trace = m00 + m11 + m22;
+    Quaternion q;
+
+    if (trace > 0.0f) {
+        float s = 0.5f / std::sqrt(trace + 1.0f);
+        q[W]     = 0.25f / s;
+        q[X]     = (m21 - m12) * s;
+        q[Y]     = (m02 - m20) * s;
+        q[Z]     = (m10 - m01) * s;
+    } else if (m00 > m11 && m00 > m22) {
+        float s = 2.0f * std::sqrt(1.0f + m00 - m11 - m22);
+        q[W]     = (m21 - m12) / s;
+        q[X]     = 0.25f * s;
+        q[Y]     = (m01 + m10) / s;
+        q[Z]     = (m02 + m20) / s;
+    } else if (m11 > m22) {
+        float s = 2.0f * std::sqrt(1.0f + m11 - m00 - m22);
+        q[W]     = (m02 - m20) / s;
+        q[X]     = (m01 + m10) / s;
+        q[Y]     = 0.25f * s;
+        q[Z]     = (m12 + m21) / s;
+    } else {
+        float s = 2.0f * std::sqrt(1.0f + m22 - m00 - m11);
+        q[W]     = (m10 - m01) / s;
+        q[X]     = (m02 + m20) / s;
+        q[Y]     = (m12 + m21) / s;
+        q[Z]     = 0.25f * s;
+    }
+
+    return q;
 }
