@@ -26,6 +26,7 @@ bool LevelUIStatus::Edit() {
     }
 
     isChange |= ImGui::DragFloat3("offsetPos", offsetPos_.v);
+    isChange |= ImGui::DragFloat2("textureSize", textureSize_.v);
 
     return isChange;
 }
@@ -51,6 +52,7 @@ void to_json(nlohmann::json& j, const LevelUIStatus& l) {
     j["isAlive"]      = l.isAlive_;
     j["levelUIDigit"] = static_cast<int32_t>(l.levelUIDigit_);
     j["offsetPos"]    = l.offsetPos_;
+    j["textureSize"]  = l.textureSize_;
 }
 
 void from_json(const nlohmann::json& j, LevelUIStatus& l) {
@@ -59,4 +61,8 @@ void from_json(const nlohmann::json& j, LevelUIStatus& l) {
     j.at("levelUIDigit").get_to(digit);
     l.levelUIDigit_ = static_cast<LevelUIDigit>(digit);
     j.at("offsetPos").get_to(l.offsetPos_);
+    if (auto it = j.find("textureSize"); it != j.end()) {
+        j.at("textureSize").get_to(l.textureSize_);
+    }
+
 }

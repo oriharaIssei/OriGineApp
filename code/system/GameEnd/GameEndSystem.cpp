@@ -4,6 +4,7 @@
 #define ENGINE_ECS
 // component
 #include "component/GameEnd/GameEnd.h"
+#include "component/ResultUI/ResultUIRankStatus.h"
 #include "component/SceneTransition/SceneTransition.h"
 #include "component/Timer/TimerStatus.h"
 #include "engine/EngineInclude.h"
@@ -12,6 +13,7 @@
 GameEndSystem::GameEndSystem() : ISystem(SystemType::StateTransition) {}
 
 void GameEndSystem::Initialize() {
+    input_        = Input::getInstance();
     sceneManager_ = SceneManager::getInstance();
 }
 
@@ -28,7 +30,8 @@ void GameEndSystem::UpdateEntity(GameEntity* _entity) {
     gameEnd_ = getComponent<GameEnd>(_entity);
 
     AnimationChangeGameToResult();
-
+    ResultTransitionAnimation();
+    TitleTransitionAnimation();
     ///*シーン切り替え
 
     // タイトル
@@ -41,7 +44,7 @@ void GameEndSystem::UpdateEntity(GameEntity* _entity) {
 
 void GameEndSystem::ChangeSceneTitle() {
     if (gameEnd_->GetIsBackTitle()) {
-        sceneManager_->changeScene("TITLE");
+        sceneManager_->changeScene("Title");
     }
 }
 
@@ -54,7 +57,7 @@ void GameEndSystem::ChangeSceneResult() {
 
 void GameEndSystem::ChangeSceneGame() {
     if (gameEnd_->GetIsGoToGame()) {
-        sceneManager_->changeScene("GAME");
+        sceneManager_->changeScene("Game");
     }
 }
 
@@ -68,7 +71,7 @@ void GameEndSystem::AnimationChangeGameToResult() {
         return;
     }
 
-    TimerStatus* timerStatus = getComponent<TimerStatus>(timerEntity);
+    TimerStatus* timerStatus          = getComponent<TimerStatus>(timerEntity);
     SceneTransition* transitionStatus = getComponent<SceneTransition>(GameToResultEntity);
 
     if (!transitionStatus || !timerStatus) {
@@ -76,7 +79,61 @@ void GameEndSystem::AnimationChangeGameToResult() {
     }
 
     // シーン遷移アニメーション切り替え
-    if (timerStatus->GetCurrentTimer() <= 0.0f && transitionStatus->GetIsTransitionIn()==false) {
+    if (timerStatus->GetCurrentTimer() <= 0.0f && transitionStatus->GetIsTransitionIn() == false) {
+        transitionStatus->SetIsTransitionIn(true);
+    }
+}
+
+void GameEndSystem::ResultTransitionAnimation() {
+    // ComboEntityを取得
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* resultRankEntity             = ecsManager->getUniqueEntity("ResultRank");
+    GameEntity* resultTransitionEntity       = ecsManager->getUniqueEntity("ResultTransitionIN");
+    GameEntity* titleTransitionOutEntity     = ecsManager->getUniqueEntity("TitleOutTransition");
+
+    if (!resultRankEntity || !resultTransitionEntity || !titleTransitionOutEntity) { // Entityが存在しない場合の早期リターン
+        return;
+    }
+
+    ResultUIRankStatus* rankStatus         = getComponent<ResultUIRankStatus>(resultRankEntity);
+    SceneTransition* transitionStatus      = getComponent<SceneTransition>(resultTransitionEntity);
+    SceneTransition* titleTransitionStatus = getComponent<SceneTransition>(titleTransitionOutEntity);
+
+    if (!transitionStatus || !rankStatus) {
+        return;
+    }
+
+    if (rankStatus->GetAnimationStep() != RankAnimationStep::END) {
+        return;
+    }
+
+    // retry
+    if (input_->isTriggerKey(DIK_R)) {
+        transitionStatus->SetIsTransitionIn(true);
+        transitionStatus->SetIsRetry(true);
+        //back titmle
+    } else if (input_->isTriggerKey(DIK_T)) {
+        transitionStatus->SetIsTransitionIn(true);
+        titleTransitionStatus->SettIsTitleTransitionOut(true);
+    }
+}
+
+void GameEndSystem::TitleTransitionAnimation() {
+    // ComboEntityを取得
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* resultTransitionEntity       = ecsManager->getUniqueEntity("TitleTransitionIN");
+
+    if (!resultTransitionEntity) { // Entityが存在しない場合の早期リターン
+        return;
+    }
+
+    SceneTransition* transitionStatus = getComponent<SceneTransition>(resultTransitionEntity);
+
+    if (!transitionStatus) {
+        return;
+    }
+
+    if (input_->isTriggerKey(DIK_SPACE)) {
         transitionStatus->SetIsTransitionIn(true);
     }
 }

@@ -439,6 +439,9 @@
     <ClInclude Include="code\component\GameEnd\GameEnd.h">
       <Filter>component\GameEnd</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Menu\MenutextSystem.h">
+      <Filter>system\Menu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -759,6 +762,9 @@
     </ClCompile>
     <ClCompile Include="code\component\GameEnd\GameEnd.cpp">
       <Filter>component\GameEnd</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Menu\MenutextSystem.cpp">
+      <Filter>system\Menu</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

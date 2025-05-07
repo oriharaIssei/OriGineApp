@@ -1,6 +1,8 @@
 #include "SceneTransition.h"
-#include"component/GameEnd/GameEnd.h"
+#include "component/GameEnd/GameEnd.h"
 #include "imgui/imgui.h"
+
+bool SceneTransition::isTitleTransitionOut_ = false;
 
 void to_json(nlohmann::json& j, const SceneTransition& s) {
     j["TransitionMode"]   = static_cast<int32_t>(s.transitionMode_);
@@ -85,9 +87,9 @@ void SceneTransition::UpdateTransition(const float& deltaTime) {
         return;
     }
 
-    sceneEase_.time  = sceneEase_.maxTime;
+    sceneEase_.time = sceneEase_.maxTime;
     transitionPosX_ = endPos_;
-    transitionStep_  = TransitonStep::WAIT;
+    transitionStep_ = TransitonStep::WAIT;
 }
 
 void SceneTransition::WaitUpdate(const float& deltaTime) {
@@ -97,8 +99,7 @@ void SceneTransition::WaitUpdate(const float& deltaTime) {
         return;
     }
 
-     transitionStep_ = TransitonStep::END;
-
+    transitionStep_ = TransitonStep::END;
 }
 
 void SceneTransition::GoToNextScene(GameEnd* SceneChanger) {
@@ -106,9 +107,10 @@ void SceneTransition::GoToNextScene(GameEnd* SceneChanger) {
         return;
     }
 
-    //シーンによって動きを帰る
+    // シーンによって動きを帰る
     switch (currentScene_) {
     case TransitionScene::TITLE:
+        isTitleTransitionOut_ = false;
         SceneChanger->SetIsGoToGame(true);
         break;
     case TransitionScene::GAME:
@@ -119,7 +121,12 @@ void SceneTransition::GoToNextScene(GameEnd* SceneChanger) {
         }
         break;
     case TransitionScene::RESLUT:
-        SceneChanger->SetIsBackTitle(true);
+        if (isRetry_) {
+            SceneChanger->SetIsGoToGame(true);
+        } else {
+
+            SceneChanger->SetIsBackTitle(true);
+        }
         break;
     default:
         break;
@@ -131,4 +138,24 @@ void SceneTransition::Reset() {
     sceneEase_.time  = 0.0f;
     currentWaitTime_ = 0.0f;
     scale_           = Vec2f(1.0f, 1.0f);
+}
+
+bool SceneTransition::IsAnimationEnd() {
+    return (transitionStep_ == TransitonStep::END);
+}
+
+bool SceneTransition::IsAbleAnimationStart() {
+    return !(GetTransitionnMode() == TransitionMode::FadeIN && !GetIsTransitionIn());
+}
+bool SceneTransition::IsAbleTitleOutAnimationStart() {
+    if (currentScene_ == TransitionScene::TITLE && transitionMode_ == TransitionMode::FadeOUT) {
+
+        if (!isTitleTransitionOut_) {
+            return false;
+        } else {
+            return true;
+        }
+    } else {
+        return true;
+    }
 }

@@ -184,6 +184,7 @@
     <ClInclude Include="code\system\LeverlUP\LevelUIInitSystem.h" />
     <ClInclude Include="code\system\LeverlUP\LevelUIParentInitSystem.h" />
     <ClInclude Include="code\system\Matrix\UpdateMatrixSystem.h" />
+    <ClInclude Include="code\system\Menu\MenutextSystem.h" />
     <ClInclude Include="code\system\Menu\MenuArrowSystem.h" />
     <ClInclude Include="code\system\Menu\MenuFontSystem.h" />
     <ClInclude Include="code\system\Menu\MenuSystem.h" />
@@ -295,6 +296,7 @@
     <ClCompile Include="code\system\LeverlUP\LevelUIInitSystem.cpp" />
     <ClCompile Include="code\system\LeverlUP\LevelUIParentInitSystem.cpp" />
     <ClCompile Include="code\system\Matrix\UpdateMatrixSystem.cpp" />
+    <ClCompile Include="code\system\Menu\MenutextSystem.cpp" />
     <ClCompile Include="code\system\Menu\MenuArrowSystem.cpp" />
     <ClCompile Include="code\system\Menu\MenuFontSystem.cpp" />
     <ClCompile Include="code\system\Menu\MenuSystem.cpp" />

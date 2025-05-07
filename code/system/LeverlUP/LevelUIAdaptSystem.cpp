@@ -71,7 +71,7 @@ void LevelUIAdaptSystem::UpdateEntity(GameEntity* _entity) {
     sprite->setSize(baseSize);
     // uv
     if (levelUIStatus->GetLevelUIDigit() != LevelUIDigit::ICON) {
-        sprite->setUVTranslate(Vec2f(uvPos, 0.0f));
+        sprite->setUVTranslate(Vec2f(0.0f, uvPos));
     }
 }
 
