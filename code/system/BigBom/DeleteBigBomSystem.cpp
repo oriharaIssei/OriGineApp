@@ -28,20 +28,21 @@ void DeleteBigBomSystem::Finalize() {
 DeleteBigBomSystem::~DeleteBigBomSystem() {}
 
 void DeleteBigBomSystem::UpdateEntity(GameEntity* _entity) {
-    BigBomStatus* status = getComponent<BigBomStatus>(_entity);
-  
+   
 
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* playerEntity                 = ecsManager->getUniqueEntity("Player");
+
+     BigBomStatus* status = getComponent<BigBomStatus>(_entity);
     BigExplotionCollision* bigexCollision = getComponent<BigExplotionCollision>(playerEntity);
+    PlayerStates* playerStatus               = getComponent<PlayerStates>(playerEntity);
 
-    if (!status || !bigexCollision) {
+    if (!status || !bigexCollision || !playerStatus) {
         return;
-    }
-
-   
+    }  
 
     if (status->GetIsExplotion()) {
+        playerStatus->SetIsBigBomHaving(false);
         AddExplotionEntity(_entity, bigexCollision); // コリジョン追加
         DestroyEntity(_entity); // 
  

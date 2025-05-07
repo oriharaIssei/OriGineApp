@@ -20,7 +20,9 @@
 // #include "system/CharacterOnCollision.h"
 // #include "system/DeleteCharacterEntitySystem.h"
 
-void BomExplotionSystem::Initialize() {}
+void BomExplotionSystem::Initialize() {
+    input_ = Input::getInstance();
+}
 
 void BomExplotionSystem::Finalize() {
     entities_.clear();
@@ -49,7 +51,7 @@ void BomExplotionSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    input_ = Input::getInstance();
+    
 
     // PlayerEntityを取得
      GameEntity* playerEntity                 = ecsManager->getUniqueEntity("Player");

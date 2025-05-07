@@ -2,11 +2,13 @@
 #include "system/ISystem.h"
 #include "component/transform/Transform.h"
 
+class Input;
 class PlayerStates;
 class BigBomLaunchSystem
     : public ISystem {
 private:
-   
+    Input* input_;
+
 public:
     BigBomLaunchSystem();
     ~BigBomLaunchSystem();

@@ -50,6 +50,17 @@ void BigBomInputSystem::UpdateEntity(GameEntity* _entity) {
     if (!transform || !bigBomStatus)
         return;
 
+     // スペースで死亡
+    if (input_->isTriggerKey(DIK_SPACE)) {
+        if (bigBomStatus->GetIsLaunch()) {
+            bigBomStatus->SetIsExplotion(true);
+        }
+    }
+
+    if (bigBomStatus->GetIsLaunch()) {
+        return;
+    }
+
     ///============================================================
     /// 位置更新：プレイヤー位置 + オフセット
     ///============================================================
@@ -119,10 +130,13 @@ void BigBomInputSystem::UpdateEntity(GameEntity* _entity) {
     ///============================================================
     /// スペースキーで発射
     ///============================================================
+    ///
+
     if (input_->isTriggerKey(DIK_SPACE)) {
         bigBomStatus->SetIsLaunch(true);
-        playerStates->SetIsBigBomHaving(false);
     }
+
+    
 }
 
 
