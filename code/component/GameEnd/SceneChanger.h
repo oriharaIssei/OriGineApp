@@ -8,22 +8,21 @@
 #include <string>
 #include <Vector3.h>
 
-class GameEnd
+class SceneChanger
     : public IComponent {
 public:
-    friend void to_json(nlohmann::json& j, const GameEnd& g);
-    friend void from_json(const nlohmann::json& j, GameEnd& g);
+    friend void to_json(nlohmann::json& j, const SceneChanger& g);
+    friend void from_json(const nlohmann::json& j, SceneChanger& g);
 
 private: // variables
     bool isAlive_ = true;
 
-    bool isGotoResult_   = false;
+    bool isGameEnd_   = false;
     bool isBackTitle_ = false;
-    bool isGotoGame_ = false;
 
 public:
-    GameEnd() {}
-    virtual ~GameEnd() = default;
+    SceneChanger() {}
+    virtual ~SceneChanger() = default;
 
     void Initialize(GameEntity* _entity) override;
     virtual bool Edit();
@@ -31,11 +30,9 @@ public:
 
 public: // accsessor
     /// getter
-    bool GetIsGoToResult() const { return isGotoResult_; }
+    bool GetIsGameEnd() const { return isGameEnd_; }
     bool GetIsBackTitle() const { return isBackTitle_; }
-    bool GetIsGoToGame() const { return isGotoGame_; }
 
-    void SetIsGoToResult(const bool& is) { isGotoResult_ = is; }
+    void SetIsGameEnd(const bool& is) { isGameEnd_ = is; }
     void SetIsBackTitle(const bool& is) { isBackTitle_ = is; }
-    void SetIsGoToGame(const bool& is) { isGotoGame_ = is; }
 };
