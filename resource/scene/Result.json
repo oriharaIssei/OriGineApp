@@ -779,6 +779,10 @@
                 "Priority": 0,
                 "isActive": true
             },
+            "SceneTransitionSystem": {
+                "Priority": 0,
+                "isActive": true
+            },
             "UsingCameraSetSystem": {
                 "Priority": 0,
                 "isActive": true
@@ -822,6 +826,15 @@
                 "isActive": true
             }
         },
-        {}
+        {
+            "GrayscaleEffect": {
+                "Priority": 0,
+                "isActive": false
+            },
+            "SmoothingEffect": {
+                "Priority": 0,
+                "isActive": false
+            }
+        }
     ]
 }

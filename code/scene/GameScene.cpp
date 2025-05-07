@@ -35,6 +35,7 @@
 #include"Application/code/component/Menu/TutorialMenuStatus.h"
 #include"Application/code/component/Menu/MenuStatus.h"
 #include"Application/code/component/Menu/TutorialArrowStatus.h"
+#include"Application/code/component/SceneTransition/SceneTransition.h"
 
 //#include"Application/code/component/Floor/FloorModeCreater.h"
 //#include"Application/code/component/Floor/BottomFloorStates.h"
@@ -97,6 +98,7 @@
 #include"Application/code/system/Menu/MenuFontSystem.h"
 #include"Application/code/system/Menu/TutorialArrowSystem.h"
 #include"Application/code/system/Block/BlockColorChangeSystem.h"
+#include"Application/code/system/SceneTransitionSystem/SceneTransitionSystem.h"
     //#include"Application/code/system/GameEnd/"
 
 GameScene::GameScene()
@@ -140,6 +142,7 @@ void GameScene::registerComponents() {
     ecsManager->registerComponent<TutorialMenuStatus>();
     ecsManager->registerComponent<MenuStatus>();
     ecsManager->registerComponent<TutorialArrowStatus>();
+    ecsManager->registerComponent<SceneTransition>();
     /*ecsManager->registerComponent<BottomFloorStates>();
     ecsManager->registerComponent<FloorStates>();
     ecsManager->registerComponent<FloorModeCreater>();*/
@@ -205,5 +208,6 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<MenuFontSystem>();
     ecsManager->registerSystem<TutorialArrowSystem>();
     ecsManager->registerSystem<BlockColorChangeSystem>();
+    ecsManager->registerSystem<SceneTransitionSystem>();
     ecsManager->SortPriorityOrderSystems();
 }

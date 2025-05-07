@@ -112,6 +112,12 @@
     <Filter Include="system\Menu">
       <UniqueIdentifier>{6d6bd17b-9c3a-4175-9d9c-b051716e29ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\SceneTransition">
+      <UniqueIdentifier>{0142a74e-75b1-47b6-8bc3-58f6c6c5cf0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\SceneTransition">
+      <UniqueIdentifier>{36583fe7-dc6f-468a-b3e3-bf69321265d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -337,9 +343,6 @@
     <ClInclude Include="code\system\OperateUI\OperateUISystem.h">
       <Filter>system\OperateUI</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\GameEnd\GameEnd.h">
-      <Filter>component\GameEnd</Filter>
-    </ClInclude>
     <ClInclude Include="code\system\GameEnd\GameEndSystem.h">
       <Filter>system\GameEnd</Filter>
     </ClInclude>
@@ -426,6 +429,15 @@
     </ClInclude>
     <ClInclude Include="code\system\Block\BlockColorChangeSystem.h">
       <Filter>system\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\SceneTransition\SceneTransition.h">
+      <Filter>component\SceneTransition</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\SceneTransitionSystem\SceneTransitionSystem.h">
+      <Filter>system\SceneTransition</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\GameEnd\GameEnd.h">
+      <Filter>component\GameEnd</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -652,9 +664,6 @@
     <ClCompile Include="code\system\OperateUI\OperateUISystem.cpp">
       <Filter>system\OperateUI</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\GameEnd\GameEnd.cpp">
-      <Filter>component\GameEnd</Filter>
-    </ClCompile>
     <ClCompile Include="code\system\GameEnd\GameEndSystem.cpp">
       <Filter>system\GameEnd</Filter>
     </ClCompile>
@@ -741,6 +750,15 @@
     </ClCompile>
     <ClCompile Include="code\system\Block\BlockColorChangeSystem.cpp">
       <Filter>system\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\SceneTransition\SceneTransition.cpp">
+      <Filter>component\SceneTransition</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\SceneTransitionSystem\SceneTransitionSystem.cpp">
+      <Filter>system\SceneTransition</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\GameEnd\GameEnd.cpp">
+      <Filter>component\GameEnd</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

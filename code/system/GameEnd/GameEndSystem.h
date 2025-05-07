@@ -15,9 +15,11 @@ public:
     // void Update()override;
     void Finalize() override;
 
+    void AnimationChangeGameToResult();
+
     void ChangeSceneTitle();
-    void ChangeSceneResult(TimerStatus* timerstauts);
-   
+    void ChangeSceneResult();
+    void ChangeSceneGame();
 
 protected:
     virtual void UpdateEntity(GameEntity* _entity) override;

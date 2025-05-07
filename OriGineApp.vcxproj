@@ -120,6 +120,7 @@
     <ClInclude Include="code\component\ResultUI\ResultUIParentStatus.h" />
     <ClInclude Include="code\component\ResultUI\ResultUIRankStatus.h" />
     <ClInclude Include="code\component\ResultUI\ResultUIScoreStatus.h" />
+    <ClInclude Include="code\component\SceneTransition\SceneTransition.h" />
     <ClInclude Include="code\component\Score\ScoreStatus.h" />
     <ClInclude Include="code\component\Score\ScoreUIStatus.h" />
     <ClInclude Include="code\component\Scrap\ScrapSpawner.h" />
@@ -199,6 +200,7 @@
     <ClInclude Include="code\system\ResultUI\ResultRankSystem.h" />
     <ClInclude Include="code\system\ResultUI\ResultScoreAdaptSystem.h" />
     <ClInclude Include="code\system\ResultUI\ResultUIParentSystem.h" />
+    <ClInclude Include="code\system\SceneTransitionSystem\SceneTransitionSystem.h" />
     <ClInclude Include="code\system\Score\ScoreIncrementSystem.h" />
     <ClInclude Include="code\system\Score\ScoreUIScrollSystem.h" />
     <ClInclude Include="code\system\scrap\ScrapDeleteSystem.h" />
@@ -229,6 +231,7 @@
     <ClCompile Include="code\component\ResultUI\ResultUIParentStatus.cpp" />
     <ClCompile Include="code\component\ResultUI\ResultUIRankStatus.cpp" />
     <ClCompile Include="code\component\ResultUI\ResultUIScoreStatus.cpp" />
+    <ClCompile Include="code\component\SceneTransition\SceneTransition.cpp" />
     <ClCompile Include="code\component\Score\ScoreStatus.cpp" />
     <ClCompile Include="code\component\Score\ScoreUIStatus.cpp" />
     <ClCompile Include="code\component\Scrap\ScrapSpawner.cpp" />
@@ -308,6 +311,7 @@
     <ClCompile Include="code\system\ResultUI\ResultRankSystem.cpp" />
     <ClCompile Include="code\system\ResultUI\ResultScoreAdaptSystem.cpp" />
     <ClCompile Include="code\system\ResultUI\ResultUIParentSystem.cpp" />
+    <ClCompile Include="code\system\SceneTransitionSystem\SceneTransitionSystem.cpp" />
     <ClCompile Include="code\system\Score\ScoreIncrementSystem.cpp" />
     <ClCompile Include="code\system\Score\ScoreUIScrollSystem.cpp" />
     <ClCompile Include="code\system\scrap\ScrapDeleteSystem.cpp" />
