@@ -15,13 +15,13 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"\u30c6\u30ad\u30b9\u30c8"
+			"name":"\u7403"
 		}
 	],
 	"materials":[
 		{
 			"doubleSided":true,
-			"name":"Material.001",
+			"name":"\u30de\u30c6\u30ea\u30a2\u30eb",
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
 					"index":0
@@ -33,7 +33,7 @@
 	],
 	"meshes":[
 		{
-			"name":"\u30ab\u30fc\u30d6",
+			"name":"\u7403",
 			"primitives":[
 				{
 					"attributes":{
@@ -56,69 +56,69 @@
 	"images":[
 		{
 			"mimeType":"image/png",
-			"name":"Floor_Gold",
-			"uri":"Floor_Gold.png"
+			"name":"BigBomb",
+			"uri":"BigBomb.png"
 		}
 	],
 	"accessors":[
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":1544,
+			"count":2144,
 			"max":[
-				1,
-				1.3124945163726807,
-				1.717510461807251
+				1.0570086240768433,
+				1.6722530126571655,
+				1.0570085048675537
 			],
 			"min":[
-				-1.000000238418579,
-				-0.34648948907852173,
-				-1.717510461807251
+				-1.0570083856582642,
+				-1.5273765325546265,
+				-1.057007908821106
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":1544,
+			"count":2144,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":1544,
+			"count":2144,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5123,
-			"count":4512,
+			"count":3120,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":18528,
+			"byteLength":25728,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":18528,
-			"byteOffset":18528,
+			"byteLength":25728,
+			"byteOffset":25728,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":12352,
-			"byteOffset":37056,
+			"byteLength":17152,
+			"byteOffset":51456,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":9024,
-			"byteOffset":49408,
+			"byteLength":6240,
+			"byteOffset":68608,
 			"target":34963
 		}
 	],
@@ -130,8 +130,8 @@
 	],
 	"buffers":[
 		{
-			"byteLength":58432,
-			"uri":"Floor_Gold.bin"
+			"byteLength":74848,
+			"uri":"BigBomb.bin"
 		}
 	]
 }
