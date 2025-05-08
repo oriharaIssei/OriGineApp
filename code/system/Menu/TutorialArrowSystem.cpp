@@ -39,7 +39,7 @@ void TutorialArrowSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    deltaTime_ = Engine::getInstance()->getDeltaTime();
+    const float deltaTime = Engine::getInstance()->getDeltaTime();
 
     // get timer component
     TutorialArrowStatus* arrowStatus          = getComponent<TutorialArrowStatus>(_entity);
@@ -56,7 +56,7 @@ void TutorialArrowSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     //イージング
-    arrowStatus->ArrowMoveEasing(deltaTime_);
+    arrowStatus->ArrowMoveEasing(deltaTime);
 
     ///* ------------------------------calucration------------------------------
 
