@@ -79,7 +79,7 @@ void PlayerCreateBigBomSystem::UpdateEntity(GameEntity* _entity) {
  
     //*model
     ModelMeshRenderer* modelMesh = getComponent<ModelMeshRenderer>(bigBom);
-    CreateModelMeshRenderer(modelMesh, bigBom, kApplicationResourceDirectory + "/Models/BigBom", "BigBomb.obj");
+    CreateModelMeshRenderer(modelMesh, bigBom, kApplicationResourceDirectory + "/Models/BigBomb", "BigBomb.obj");
 
     // ================================= System ================================= //
     ECSManager* ecs = ECSManager::getInstance();

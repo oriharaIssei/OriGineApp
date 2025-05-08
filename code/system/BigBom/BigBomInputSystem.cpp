@@ -112,20 +112,25 @@ void BigBomInputSystem::UpdateEntity(GameEntity* _entity) {
     // Z成分を0に設定
     bigBomStatus->SetLaunchDirectionZ(0.0f);
 
-   // LaunchDirection に基づいて回転を設定する処理
-    if (bigBomStatus->GetLaunchDirection().lengthSq() > 0.0f) {
-        Vec3f forward = bigBomStatus->GetLaunchDirection(); // 進行方向
-        Vec3f up      = Vec3f(0.0f, 1.0f, 0.0f); // ワールドの上方向
+   //// LaunchDirection に基づいて回転を設定する処理
+   // if (bigBomStatus->GetLaunchDirection().lengthSq() > 0.0f) {
+   //     Vec3f forward = bigBomStatus->GetLaunchDirection(); // 進行方向
+   //     Vec3f up      = Vec3f(0.0f, 1.0f, 0.0f); // ワールドの上方向
 
-        // 進行方向が上向きに近い場合の up ベクトル補正（ジンバルロック対策）
-        if (std::abs(forward.dot(up)) > 0.99f) {
-            up = Vec3f(0.0f, 0.0f, 1.0f); // 他の軸を使う
-        }
+   //     // LookRotationで基本の向きを作る
+   //     Quaternion baseRotation = LookRotation(forward, up);
 
-        // 回転クォータニオンの計算
-        Quaternion rotation = LookRotation(forward, up);
-        transform->rotate   = rotation;
-    }
+   //     // Z軸まわりのロール角（例として時間によって回転）
+   //     float time      = Engine::getInstance()->getDeltaTime(); // 経過時間を取得（適宜関数は差し替えてください）
+   //     float rollAngle = time * 2.0f * std::numbers::pi_v<float>; // 1秒で1回転の例（必要に応じて変更）
+
+   //     // Z軸回転のクォータニオンを生成
+   //     Quaternion roll = Quaternion::RotateAxisAngle(Vec3f(0.0f, 0.0f, 1.0f), rollAngle);
+
+   //     // Z軸回転を合成（先に方向を向いて、その後Z軸ロール）
+   //     transform->rotate = baseRotation * roll;
+   // }
+
 
     ///============================================================
     /// スペースキーで発射

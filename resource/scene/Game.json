@@ -306,38 +306,7 @@
         },
         {
             "Components": {
-                "AABBCollider": [
-                    {
-                        "max": [
-                            555.0,
-                            555.0,
-                            555.0
-                        ],
-                        "min": [
-                            2.0,
-                            2.0,
-                            2.0
-                        ],
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
+                "AABBCollider": [],
                 "Audio": [
                     {
                         "fileName": "application/resource/sound/Explosion.wav",
@@ -497,7 +466,7 @@
                 ],
                 "PlayerStates": [
                     {
-                        "OffSetY": 1.5,
+                        "OffSetY": -3.0,
                         "bigBomPointMax": 10,
                         "followCameraOffset": [
                             0.0,
@@ -568,7 +537,7 @@
                         ],
                         "translate": [
                             0.0,
-                            4.0,
+                            -1.4299999475479126,
                             0.0
                         ]
                     },
@@ -1311,7 +1280,7 @@
                         ],
                         "colliderRadius": 2.0,
                         "createNum": 2,
-                        "fallStopPosY": 1.2000000476837158,
+                        "fallStopPosY": -3.0,
                         "isAlive": true,
                         "lifeTime": 5.0,
                         "mass": 67.81999969482422
@@ -1829,7 +1798,7 @@
                         "ScalingbackRatio": 0.5,
                         "ScalingmaxTime": 0.25,
                         "Scalingperiod": -431602080.0,
-                        "basePosY": 5.0,
+                        "basePosY": -1.5,
                         "collisionRadius": 1.0,
                         "columNumMax": 5,
                         "costs": [
@@ -1915,10 +1884,10 @@
                         "fallCollisionCenterPos": [
                             -7.0,
                             -7.0,
-                            -7.0
+                            -1.0
                         ],
                         "pillarHP": 2,
-                        "pillerSpace": 48.0,
+                        "pillerSpace": 40.0,
                         "ratio": 3.0,
                         "revivalTime": 5.0,
                         "rowNum": 0,
@@ -1997,7 +1966,7 @@
                             0.0
                         ],
                         "pillarHP": 2,
-                        "pillerSpace": 48.0,
+                        "pillerSpace": 40.0,
                         "ratio": 2.0,
                         "revivalTime": 5.0,
                         "rowNum": 1,
@@ -2076,7 +2045,7 @@
                             0.0
                         ],
                         "pillarHP": 2,
-                        "pillerSpace": 48.0,
+                        "pillerSpace": 40.0,
                         "ratio": 1.0,
                         "revivalTime": 5.0,
                         "rowNum": 2,
@@ -2768,7 +2737,7 @@
                         ],
                         "translate": [
                             0.0,
-                            -1.4500000476837158,
+                            -8.020000457763672,
                             0.0
                         ]
                     }

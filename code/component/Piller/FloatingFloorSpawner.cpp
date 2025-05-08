@@ -6,7 +6,7 @@
 void FloatingFloorSpawner::Initialize([[maybe_unused]] GameEntity* _entity) {
     /// 初期化でパラメータ編集してるから大丈夫、ここ消したら未定義値が出る
     sideSpace_      = 11.0f;
-    positionHeight_ = 48.0f;
+    positionHeight_ = 40.0f;
     columNumMax_    = 1;
     isCreated_      = false;
     HPMax_          = 2;
