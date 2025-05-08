@@ -89,13 +89,13 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     // CreateModelMeshRenderer(pillerRender, piller, kApplicationResourceDirectory + "/Models/Piller", "Piller.obj");
     switch (floatFloorSpawner->GetRowNumber()) {
     case 0:
-        CreateModelMeshRenderer(pillerRender, floatingFloor, kApplicationResourceDirectory + "/Models/Floor_Gold", "Floor_Gold.gltf");
+        CreateModelMeshRenderer(pillerRender, floatingFloor, kApplicationResourceDirectory + "/Models/Floor_Gold", "Floor_Gold.obj");
         break;
     case 1:
-        CreateModelMeshRenderer(pillerRender, floatingFloor, kApplicationResourceDirectory + "/Models/FloorSilver", "FloorSilver.gltf");
+        CreateModelMeshRenderer(pillerRender, floatingFloor, kApplicationResourceDirectory + "/Models/FloorSilver", "FloorSilver.obj");
         break;
     case 2:
-        CreateModelMeshRenderer(pillerRender, floatingFloor, kApplicationResourceDirectory + "/Models/Floor", "Floor.gltf");
+        CreateModelMeshRenderer(pillerRender, floatingFloor, kApplicationResourceDirectory + "/Models/Floor", "Floor.obj");
 
         break;
     default:
