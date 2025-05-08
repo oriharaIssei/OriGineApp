@@ -712,10 +712,6 @@
             "UsingCameraSetSystem": {
                 "Priority": 0,
                 "isActive": true
-            },
-            "UsingCameraSetSystem": {
-                "Priority": 0,
-                "isActive": true
             }
         },
         {
@@ -737,7 +733,7 @@
         {
             "ColliderRenderingSystem": {
                 "Priority": 0,
-                "isActive": true
+                "isActive": false
             },
             "LineRenderSystem": {
                 "Priority": 0,
@@ -756,16 +752,6 @@
                 "isActive": true
             }
         },
-        {
-            "GrayscaleEffect": {
-                "Priority": 0,
-                "isActive": true
-            },
-            "SmoothingEffect": {
-                "Priority": 0,
-                "isActive": true
-            }
-        }
         {
             "GrayscaleEffect": {
                 "Priority": 0,

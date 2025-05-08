@@ -49,7 +49,6 @@ void GameEndSystem::ChangeSceneTitle() {
 }
 
 void GameEndSystem::ChangeSceneResult() {
-
     if (gameEnd_->GetIsGoToResult()) {
         sceneManager_->changeScene("Result");
     }
