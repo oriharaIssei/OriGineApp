@@ -225,10 +225,10 @@
                             591.0,
                             0.0
                         ],
-                        "rankValue0": 100.0,
-                        "rankValue1": 2000.0,
-                        "rankValue2": 3000.0,
-                        "rankValue3": 4000.0,
+                        "rankValue0": 1000.0,
+                        "rankValue1": 3000.0,
+                        "rankValue2": 6000.0,
+                        "rankValue3": 10000.0,
                         "rotateEasing.maxTime": 1.190000057220459,
                         "rotateValue": 12.583824157714844,
                         "scale": [
