@@ -24,6 +24,7 @@ public:
     void TransformInit(GameEntity* _entity);
 
     Quaternion LookRotation(const Vec3f& forward, const Vec3f& up);
+    Quaternion LookRotationWithRoll(const Vec3f& forward, const Vec3f& up, float rollRad);
 
     //爆弾置く
     void PutBom(GameEntity* _entity);

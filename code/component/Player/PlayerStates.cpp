@@ -10,9 +10,9 @@
 
 void PlayerStates::Initialize([[maybe_unused]] GameEntity* _entity) {
 
-    offSetY_            = 1.5f;
+  /*  offSetY_            = 1.5f;
     bomExplotionNum_    = 0;
-    currentBigBomPoint_ = 0;
+    currentBigBomPoint_ = 0;*/
 }
 
 bool PlayerStates::Edit() {
