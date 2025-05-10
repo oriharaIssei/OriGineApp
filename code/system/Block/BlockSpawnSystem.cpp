@@ -73,6 +73,10 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
     float blockWidth_  = blockSpawner_->GetBlockSize()[X] * 2.0f;
     float nextPosition = blockSpawner_->GetNextCreatePositionX();
 
+    if (blockSpawner_->GetIsMove()) {
+        return;
+    }
+
     if (!isInited_) { // 初回の生成
 
         for (int32_t i = 0; i < blockSpawner_->GetColumNumMax(); ++i) {
