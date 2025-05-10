@@ -1,24 +1,24 @@
 #pragma once
 
+#include "sceneManager/SceneManager.h"
 #include "system/ISystem.h"
-#include"sceneManager/SceneManager.h"
 
-class GameEnd;
+class SceneChangerStatus;
 class TimerStatus;
 class Input;
-class GameEndSystem
+class SceneChangerSystem
     : public ISystem {
 public:
-    GameEndSystem();
-    ~GameEndSystem();
+    SceneChangerSystem();
+    ~SceneChangerSystem();
 
     void Initialize() override;
     // void Update()override;
     void Finalize() override;
 
     void AnimationChangeGameToResult();
-    void ResultTransitionAnimation();
-    void TitleTransitionAnimation();
+    void ResultTransition();
+    void TitleTransition();
 
     void ChangeSceneTitle();
     void ChangeSceneResult();
@@ -27,9 +27,8 @@ public:
 protected:
     virtual void UpdateEntity(GameEntity* _entity) override;
 
-    private:
-    Input* input_               = nullptr;
-    GameEnd* gameEnd_=nullptr;
-    SceneManager* sceneManager_ = nullptr;
-   
+private:
+    Input* input_                = nullptr;
+    SceneChangerStatus* gameEnd_ = nullptr;
+    SceneManager* sceneManager_  = nullptr;
 };

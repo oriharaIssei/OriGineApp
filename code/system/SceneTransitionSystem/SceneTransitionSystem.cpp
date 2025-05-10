@@ -10,7 +10,7 @@
 // include
 
 // component
-#include "component/GameEnd/GameEnd.h"
+#include "component/GameEnd/SceneChangerStatus.h"
 #include "component/SceneTransition/SceneTransition.h"
 
 #include "engine/EngineInclude.h"
@@ -40,7 +40,7 @@ void SceneTransitionSystem::UpdateEntity(GameEntity* entity) {
 
     SpriteRenderer* sprite            = getComponent<SpriteRenderer>(entity);
     SceneTransition* sceneTransition = getComponent<SceneTransition>(entity);
-    GameEnd* gameend                  = getComponent<GameEnd>(endEntity);
+    SceneChangerStatus* gameend       = getComponent<SceneChangerStatus>(endEntity);
 
    
     if (!gameend || !sprite || !sceneTransition) {

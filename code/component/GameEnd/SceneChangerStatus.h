@@ -1,18 +1,14 @@
 #pragma once
 
 #include "component/IComponent.h"
-#include <array>
-#include <component/transform/Transform.h>
-#include <cstdint>
 #include <Entity.h>
-#include <string>
-#include <Vector3.h>
 
-class GameEnd
+
+class SceneChangerStatus
     : public IComponent {
 public:
-    friend void to_json(nlohmann::json& j, const GameEnd& g);
-    friend void from_json(const nlohmann::json& j, GameEnd& g);
+    friend void to_json(nlohmann::json& j, const SceneChangerStatus& g);
+    friend void from_json(const nlohmann::json& j, SceneChangerStatus& g);
 
 private: // variables
     bool isAlive_ = true;
@@ -22,8 +18,8 @@ private: // variables
     bool isGotoGame_ = false;
 
 public:
-    GameEnd() {}
-    virtual ~GameEnd() = default;
+    SceneChangerStatus() {}
+    virtual ~SceneChangerStatus() = default;
 
     void Initialize(GameEntity* _entity) override;
     virtual bool Edit();

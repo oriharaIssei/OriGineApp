@@ -1,5 +1,5 @@
 #include "SceneTransition.h"
-#include "component/GameEnd/GameEnd.h"
+#include "component/GameEnd/SceneChangerStatus.h"
 #include "imgui/imgui.h"
 
 bool SceneTransition::isTitleTransitionOut_ = false;
@@ -102,7 +102,7 @@ void SceneTransition::WaitUpdate(const float& deltaTime) {
     transitionStep_ = TransitonStep::END;
 }
 
-void SceneTransition::GoToNextScene(GameEnd* SceneChanger) {
+void SceneTransition::GoToNextScene(SceneChangerStatus* SceneChanger) {
     if (transitionMode_ == TransitionMode::FadeOUT) {
         return;
     }
@@ -148,6 +148,7 @@ bool SceneTransition::IsAbleAnimationStart() {
     return !(GetTransitionnMode() == TransitionMode::FadeIN && !GetIsTransitionIn());
 }
 bool SceneTransition::IsAbleTitleOutAnimationStart() {
+    //タイトルのフェードアウト用
     if (currentScene_ == TransitionScene::TITLE && transitionMode_ == TransitionMode::FadeOUT) {
 
         if (!isTitleTransitionOut_) {

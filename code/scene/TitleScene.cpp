@@ -11,14 +11,14 @@
 #include "component/Button.h"
 #include "component/SceneChanger.h"
 #include"Application/code/component/SceneTransition/SceneTransition.h"
-#include"Application/code/component/GameEnd/GameEnd.h"
+#include"Application/code/component/GameEnd/SceneChangerStatus.h"
 // system
 #include "system/ButtonInputSystem.h"
 #include "system/ChangeSceneByButton.h"
 #include "system/UpdateButtonColorByState.h"
 #include "system/UsingCameraSetSystem.h"
 #include"Application/code/system/SceneTransitionSystem/SceneTransitionSystem.h"
-#include"Application/code/system/GameEnd/GameEndSystem.h"
+#include"Application/code/system/GameEnd/SceneChangerSystem.h"
 
 TitleScene::TitleScene() : IScene("Title") {}
 
@@ -30,7 +30,7 @@ void TitleScene::registerComponents() {
     ecsManager->registerComponent<Button>();
     ecsManager->registerComponent<SceneChanger>();
     ecsManager->registerComponent<SceneTransition>();
-    ecsManager->registerComponent<GameEnd>();
+    ecsManager->registerComponent<SceneChangerStatus>();
 }
 
 void TitleScene::registerSystems() {
@@ -43,7 +43,7 @@ void TitleScene::registerSystems() {
     ecsManager->registerSystem<ChangeSceneByButton>();
     ecsManager->registerSystem<UsingCameraSetSystem>();
     ecsManager->registerSystem<SceneTransitionSystem>();
-    ecsManager->registerSystem<GameEndSystem>();
+    ecsManager->registerSystem<SceneChangerSystem>();
 
     ecsManager->SortPriorityOrderSystems();
 }

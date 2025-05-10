@@ -25,7 +25,7 @@
 #include"Application/code/component/Field/FieldStatus.h"
 #include"Application/code/component/EffectByBlock/EffectByBlockUIStatus.h"
 #include"Application/code/component/OperateUI/OperateUIStatus.h"
-#include"Application/code/component/GameEnd/GameEnd.h"
+#include"Application/code/component/GameEnd/SceneChangerStatus.h"
 #include"Application/code/component/Button.h"
 #include"Application/code/component/SceneChanger.h"
 #include"Application/code/component/EffectByBlock/EffectByBlockSpawner.h"
@@ -84,7 +84,7 @@
 #include"Application/code/system/EffectByBlock/EffectByBlockDrawSystem.h"
 #include"Application/code/system/EffectByBlock/EffectByBlockDeleteSystem.h"
 #include"Application/code/system/OperateUI/OperateUISystem.h"
-#include"Application/code/system/GameEnd/GameEndSystem.h"
+#include"Application/code/system/GameEnd/SceneChangerSystem.h"
 #include"Application/code/system/ButtonInputSystem.h"
 #include"Application/code/system/ChangeSceneByButton.h"
 #include"Application/code/system/LeverlUP/LevelUIAdaptSystem.h"
@@ -134,7 +134,7 @@ void GameScene::registerComponents() {
     ecsManager->registerComponent<EffectByBlockUIStatus>();
     ecsManager->registerComponent<OperateUIStatus>();
     ecsManager->registerComponent<EffectByBlockSpawner>();
-    ecsManager->registerComponent<GameEnd>();
+    ecsManager->registerComponent<SceneChangerStatus>();
     ecsManager->registerComponent<Button>();
     ecsManager->registerComponent<LevelUIStatus>();
     ecsManager->registerComponent<LevelUIParentStatus>();
@@ -195,7 +195,7 @@ void GameScene::registerSystems() {
     ecsManager->registerSystem<EffectByBlockDrawSystem>();
     ecsManager->registerSystem<EffectByBlockDeleteSystem>();
     ecsManager->registerSystem<OperateUISystem>();
-    ecsManager->registerSystem<GameEndSystem>();
+    ecsManager->registerSystem<SceneChangerSystem>();
     ecsManager->registerSystem<ButtonInputSystem>();
     ecsManager->registerSystem<ChangeSceneByButton>();
     ecsManager->registerSystem<LevelUIAdaptSystem>();

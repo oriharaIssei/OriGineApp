@@ -1,4 +1,4 @@
-#include "GameEnd.h"
+#include "SceneChangerStatus.h"
 /// Engine
 #define ENGINE_INCLUDE
 /// ECS
@@ -8,10 +8,10 @@
 /// externals
 #include "imgui/imgui.h"
 
-void GameEnd::Initialize([[maybe_unused]] GameEntity* _entity) {
+void SceneChangerStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 }
 
-bool GameEnd::Edit() {
+bool SceneChangerStatus::Edit() {
     bool isChange = false;
 
     isChange = ImGui::Checkbox("IsAlive", &isAlive_);
@@ -21,14 +21,14 @@ bool GameEnd::Edit() {
     return isChange;
 }
 
-void GameEnd::Finalize() {
+void SceneChangerStatus::Finalize() {
 
 }
 
-void to_json(nlohmann::json& j, const GameEnd& g) {
+void to_json(nlohmann::json& j, const SceneChangerStatus& g) {
     j["isAlive"] = g.isAlive_;
 }
 
-void from_json(const nlohmann::json& j, GameEnd& g) {
+void from_json(const nlohmann::json& j, SceneChangerStatus& g) {
     j.at("isAlive").get_to(g.isAlive_);
 }

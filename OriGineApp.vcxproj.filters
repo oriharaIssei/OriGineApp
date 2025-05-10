@@ -343,7 +343,7 @@
     <ClInclude Include="code\system\OperateUI\OperateUISystem.h">
       <Filter>system\OperateUI</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\GameEnd\GameEndSystem.h">
+    <ClInclude Include="code\system\GameEnd\SceneChangerSystem.h">
       <Filter>system\GameEnd</Filter>
     </ClInclude>
     <ClInclude Include="code\component\LevelUPUI\LevelUIParentStatus.h">
@@ -436,7 +436,7 @@
     <ClInclude Include="code\system\SceneTransitionSystem\SceneTransitionSystem.h">
       <Filter>system\SceneTransition</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\GameEnd\GameEnd.h">
+    <ClInclude Include="code\component\GameEnd\SceneChangerStatus.h">
       <Filter>component\GameEnd</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Menu\MenutextSystem.h">
@@ -667,7 +667,7 @@
     <ClCompile Include="code\system\OperateUI\OperateUISystem.cpp">
       <Filter>system\OperateUI</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\GameEnd\GameEndSystem.cpp">
+    <ClCompile Include="code\system\GameEnd\SceneChangerSystem.cpp">
       <Filter>system\GameEnd</Filter>
     </ClCompile>
     <ClCompile Include="code\component\LevelUPUI\LevelUIParentStatus.cpp">
@@ -760,7 +760,7 @@
     <ClCompile Include="code\system\SceneTransitionSystem\SceneTransitionSystem.cpp">
       <Filter>system\SceneTransition</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\GameEnd\GameEnd.cpp">
+    <ClCompile Include="code\component\GameEnd\SceneChangerStatus.cpp">
       <Filter>component\GameEnd</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Menu\MenutextSystem.cpp">

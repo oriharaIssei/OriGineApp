@@ -23,7 +23,7 @@ enum class TransitonStep {
     WAIT,
     END,
 };
-class GameEnd;
+class SceneChangerStatus;
 class SceneTransition
     : public IComponent {
 
@@ -74,7 +74,7 @@ private:
  
     void SetIsTransitionIn(const bool& is) { isTransitionIn_ = is; }
     void SetTransitionStep(const TransitonStep& step) { transitionStep_ = step; }
-    void GoToNextScene(GameEnd*gameend);
+    void GoToNextScene(SceneChangerStatus* gameend);
     void SetIsGoTitleFromMenu(const bool& is) { isGoTitleFromMenu_ = is; }
     void SetIsRetry(const bool& is) { isRetry_ = is; }
     void SettIsTitleTransitionOut(const bool& is) { isTitleTransitionOut_ = is; }

@@ -13,7 +13,7 @@
 // component
 #include "component/Menu/MenuStatus.h"
 #include"component/Menu/TutorialMenuParentStatus.h"
-#include"component/GameEnd/GameEnd.h"
+#include"component/GameEnd/SceneChangerStatus.h"
 
 #include "engine/EngineInclude.h"
 #include <Vector2.h>
@@ -45,7 +45,7 @@ void MenuSystem::UpdateEntity(GameEntity* entity) {
     MenuStatus* menu       = getComponent<MenuStatus>(entity);
     SpriteRenderer* sprite = getComponent<SpriteRenderer>(entity);
     TutorialMenuParentStatus* tutorialUIParent = getComponent<TutorialMenuParentStatus>(tutorialParentEntity);
-    GameEnd* gameend                           = getComponent<GameEnd>(endEntity);
+    SceneChangerStatus* gameend                = getComponent<SceneChangerStatus>(endEntity);
 
     //Audio
     Audio* audioOpenMenu = getComponent<Audio>(entity);
