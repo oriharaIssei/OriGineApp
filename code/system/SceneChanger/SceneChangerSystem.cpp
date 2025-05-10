@@ -3,7 +3,7 @@
 /// ECS
 #define ENGINE_ECS
 // component
-#include "component/GameEnd/SceneChangerStatus.h"
+#include "component/SceneChanger/SceneChangerStatus.h"
 #include "component/ResultUI/ResultUIRankStatus.h"
 #include "component/SceneTransition/SceneTransition.h"
 #include "component/Timer/TimerStatus.h"

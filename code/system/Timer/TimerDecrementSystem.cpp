@@ -13,7 +13,7 @@
 // component
 #include "component/Timer/TimerStatus.h"
 #include "component/Combo/ComboUIStatus.h"
-#include"component/GameEnd/SceneChangerStatus.h"
+#include"component/SceneChanger/SceneChangerStatus.h"
 #include"component/Menu/MenuStatus.h"
 
 #include "engine/EngineInclude.h"

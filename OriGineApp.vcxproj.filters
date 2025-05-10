@@ -88,12 +88,6 @@
     <Filter Include="system\OperateUI">
       <UniqueIdentifier>{9ea86450-1e24-42e1-a8f3-a523f91e7583}</UniqueIdentifier>
     </Filter>
-    <Filter Include="component\GameEnd">
-      <UniqueIdentifier>{40525bc1-9fcd-4ab0-a642-9cd230c49751}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="system\GameEnd">
-      <UniqueIdentifier>{d4cdb92d-5bac-450f-ae0c-8aafe0e6fe65}</UniqueIdentifier>
-    </Filter>
     <Filter Include="component\LevelUP">
       <UniqueIdentifier>{e938c1d1-664f-4787-a938-2d9cdc128034}</UniqueIdentifier>
     </Filter>
@@ -117,6 +111,12 @@
     </Filter>
     <Filter Include="system\SceneTransition">
       <UniqueIdentifier>{36583fe7-dc6f-468a-b3e3-bf69321265d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\SceneChanger">
+      <UniqueIdentifier>{40525bc1-9fcd-4ab0-a642-9cd230c49751}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\SceneChanger">
+      <UniqueIdentifier>{d4cdb92d-5bac-450f-ae0c-8aafe0e6fe65}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -343,9 +343,6 @@
     <ClInclude Include="code\system\OperateUI\OperateUISystem.h">
       <Filter>system\OperateUI</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\GameEnd\SceneChangerSystem.h">
-      <Filter>system\GameEnd</Filter>
-    </ClInclude>
     <ClInclude Include="code\component\LevelUPUI\LevelUIParentStatus.h">
       <Filter>component\LevelUP</Filter>
     </ClInclude>
@@ -436,11 +433,14 @@
     <ClInclude Include="code\system\SceneTransitionSystem\SceneTransitionSystem.h">
       <Filter>system\SceneTransition</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\GameEnd\SceneChangerStatus.h">
-      <Filter>component\GameEnd</Filter>
-    </ClInclude>
     <ClInclude Include="code\system\Menu\MenutextSystem.h">
       <Filter>system\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\SceneChanger\SceneChangerStatus.h">
+      <Filter>component\SceneChanger</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\SceneChanger\SceneChangerSystem.h">
+      <Filter>system\SceneChanger</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -667,9 +667,6 @@
     <ClCompile Include="code\system\OperateUI\OperateUISystem.cpp">
       <Filter>system\OperateUI</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\GameEnd\SceneChangerSystem.cpp">
-      <Filter>system\GameEnd</Filter>
-    </ClCompile>
     <ClCompile Include="code\component\LevelUPUI\LevelUIParentStatus.cpp">
       <Filter>component\LevelUP</Filter>
     </ClCompile>
@@ -760,11 +757,14 @@
     <ClCompile Include="code\system\SceneTransitionSystem\SceneTransitionSystem.cpp">
       <Filter>system\SceneTransition</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\GameEnd\SceneChangerStatus.cpp">
-      <Filter>component\GameEnd</Filter>
-    </ClCompile>
     <ClCompile Include="code\system\Menu\MenutextSystem.cpp">
       <Filter>system\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\SceneChanger\SceneChangerStatus.cpp">
+      <Filter>component\SceneChanger</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\SceneChanger\SceneChangerSystem.cpp">
+      <Filter>system\SceneChanger</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

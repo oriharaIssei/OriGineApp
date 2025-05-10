@@ -11,14 +11,14 @@
 #include "component/Button.h"
 #include "component/SceneChanger.h"
 #include"Application/code/component/SceneTransition/SceneTransition.h"
-#include"Application/code/component/GameEnd/SceneChangerStatus.h"
+#include"Application/code/component/SceneChanger/SceneChangerStatus.h"
 // system
 #include "system/ButtonInputSystem.h"
 #include "system/ChangeSceneByButton.h"
 #include "system/UpdateButtonColorByState.h"
 #include "system/UsingCameraSetSystem.h"
 #include"Application/code/system/SceneTransitionSystem/SceneTransitionSystem.h"
-#include"Application/code/system/GameEnd/SceneChangerSystem.h"
+#include"Application/code/system/SceneChanger/SceneChangerSystem.h"
 
 TitleScene::TitleScene() : IScene("Title") {}
 

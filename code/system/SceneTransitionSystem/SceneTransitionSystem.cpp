@@ -10,7 +10,7 @@
 // include
 
 // component
-#include "component/GameEnd/SceneChangerStatus.h"
+#include "component/SceneChanger/SceneChangerStatus.h"
 #include "component/SceneTransition/SceneTransition.h"
 
 #include "engine/EngineInclude.h"
@@ -32,15 +32,15 @@ void SceneTransitionSystem::UpdateEntity(GameEntity* entity) {
 
     // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
-    GameEntity* endEntity                    = ecsManager->getUniqueEntity("GameEnd");
+   GameEntity* sceneChangerEntity                    = ecsManager->getUniqueEntity("SceneChanger");
 
-    if (!endEntity) { // Entityが存在しない場合の早期リターン
+    if (!sceneChangerEntity) { // Entityが存在しない場合の早期リターン
         return;
     }
 
     SpriteRenderer* sprite            = getComponent<SpriteRenderer>(entity);
     SceneTransition* sceneTransition = getComponent<SceneTransition>(entity);
-    SceneChangerStatus* gameend       = getComponent<SceneChangerStatus>(endEntity);
+    SceneChangerStatus* gameend       = getComponent<SceneChangerStatus>(sceneChangerEntity);
 
    
     if (!gameend || !sprite || !sceneTransition) {

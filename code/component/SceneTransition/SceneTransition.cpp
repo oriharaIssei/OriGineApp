@@ -1,5 +1,5 @@
 #include "SceneTransition.h"
-#include "component/GameEnd/SceneChangerStatus.h"
+#include "component/SceneChanger/SceneChangerStatus.h"
 #include "imgui/imgui.h"
 
 bool SceneTransition::isTitleTransitionOut_ = false;

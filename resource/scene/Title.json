@@ -506,10 +506,10 @@
                     }
                 ]
             },
-            "Name": "GameEnd",
+            "Name": "SceneChanger",
             "Systems": [
                 {
-                    "SystemName": "GameEndSystem",
+                    "SystemName": "SceneChangerSystem",
                     "SystemType": 2
                 }
             ],
@@ -591,7 +591,7 @@
                 "Priority": 0,
                 "isActive": true
             },
-            "GameEndSystem": {
+            "SceneChangerSystem": {
                 "Priority": 0,
                 "isActive": true
             },

@@ -107,7 +107,6 @@
     <ClInclude Include="code\component\EffectByBlock\EffectByBlockSpawner.h" />
     <ClInclude Include="code\component\EffectByBlock\EffectByBlockUIStatus.h" />
     <ClInclude Include="code\component\Field\FieldStatus.h" />
-    <ClInclude Include="code\component\GameEnd\SceneChangerStatus.h" />
     <ClInclude Include="code\component\LevelUPUI\LevelUIParentStatus.h" />
     <ClInclude Include="code\component\LevelUPUI\LevelUIStatus.h" />
     <ClInclude Include="code\component\Menu\MenuStatus.h" />
@@ -120,6 +119,7 @@
     <ClInclude Include="code\component\ResultUI\ResultUIParentStatus.h" />
     <ClInclude Include="code\component\ResultUI\ResultUIRankStatus.h" />
     <ClInclude Include="code\component\ResultUI\ResultUIScoreStatus.h" />
+    <ClInclude Include="code\component\SceneChanger\SceneChangerStatus.h" />
     <ClInclude Include="code\component\SceneTransition\SceneTransition.h" />
     <ClInclude Include="code\component\Score\ScoreStatus.h" />
     <ClInclude Include="code\component\Score\ScoreUIStatus.h" />
@@ -178,7 +178,6 @@
     <ClInclude Include="code\system\FloatingFloor\FloatingFloorRevivalSystem.h" />
     <ClInclude Include="code\system\Floor\DeleteFloorSystem.h" />
     <ClInclude Include="code\system\Floor\FloorUpdateMatrixSystem.h" />
-    <ClInclude Include="code\system\GameEnd\SceneChangerSystem.h" />
     <ClInclude Include="code\system\LeverlUP\LevelUIAdaptSystem.h" />
     <ClInclude Include="code\system\LeverlUP\LevelUIAnimationSystem.h" />
     <ClInclude Include="code\system\LeverlUP\LevelUIInitSystem.h" />
@@ -201,6 +200,7 @@
     <ClInclude Include="code\system\ResultUI\ResultRankSystem.h" />
     <ClInclude Include="code\system\ResultUI\ResultScoreAdaptSystem.h" />
     <ClInclude Include="code\system\ResultUI\ResultUIParentSystem.h" />
+    <ClInclude Include="code\system\SceneChanger\SceneChangerSystem.h" />
     <ClInclude Include="code\system\SceneTransitionSystem\SceneTransitionSystem.h" />
     <ClInclude Include="code\system\Score\ScoreIncrementSystem.h" />
     <ClInclude Include="code\system\Score\ScoreUIScrollSystem.h" />
@@ -219,7 +219,6 @@
     <ClCompile Include="code\component\EffectByBlock\EffectByBlockSpawner.cpp" />
     <ClCompile Include="code\component\EffectByBlock\EffectByBlockUIStatus.cpp" />
     <ClCompile Include="code\component\Field\FieldStatus.cpp" />
-    <ClCompile Include="code\component\GameEnd\SceneChangerStatus.cpp" />
     <ClCompile Include="code\component\LevelUPUI\LevelUIParentStatus.cpp" />
     <ClCompile Include="code\component\LevelUPUI\LevelUIStatus.cpp" />
     <ClCompile Include="code\component\Menu\MenuStatus.cpp" />
@@ -232,6 +231,7 @@
     <ClCompile Include="code\component\ResultUI\ResultUIParentStatus.cpp" />
     <ClCompile Include="code\component\ResultUI\ResultUIRankStatus.cpp" />
     <ClCompile Include="code\component\ResultUI\ResultUIScoreStatus.cpp" />
+    <ClCompile Include="code\component\SceneChanger\SceneChangerStatus.cpp" />
     <ClCompile Include="code\component\SceneTransition\SceneTransition.cpp" />
     <ClCompile Include="code\component\Score\ScoreStatus.cpp" />
     <ClCompile Include="code\component\Score\ScoreUIStatus.cpp" />
@@ -290,7 +290,6 @@
     <ClCompile Include="code\system\FloatingFloor\FloatingFloorRevivalSystem.cpp" />
     <ClCompile Include="code\system\Floor\DeleteFloorSystem.cpp" />
     <ClCompile Include="code\system\Floor\FloorUpdateMatrixSystem.cpp" />
-    <ClCompile Include="code\system\GameEnd\SceneChangerSystem.cpp" />
     <ClCompile Include="code\system\LeverlUP\LevelUIAdaptSystem.cpp" />
     <ClCompile Include="code\system\LeverlUP\LevelUIAnimationSystem.cpp" />
     <ClCompile Include="code\system\LeverlUP\LevelUIInitSystem.cpp" />
@@ -313,6 +312,7 @@
     <ClCompile Include="code\system\ResultUI\ResultRankSystem.cpp" />
     <ClCompile Include="code\system\ResultUI\ResultScoreAdaptSystem.cpp" />
     <ClCompile Include="code\system\ResultUI\ResultUIParentSystem.cpp" />
+    <ClCompile Include="code\system\SceneChanger\SceneChangerSystem.cpp" />
     <ClCompile Include="code\system\SceneTransitionSystem\SceneTransitionSystem.cpp" />
     <ClCompile Include="code\system\Score\ScoreIncrementSystem.cpp" />
     <ClCompile Include="code\system\Score\ScoreUIScrollSystem.cpp" />

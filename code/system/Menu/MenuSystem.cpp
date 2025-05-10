@@ -13,7 +13,7 @@
 // component
 #include "component/Menu/MenuStatus.h"
 #include"component/Menu/TutorialMenuParentStatus.h"
-#include"component/GameEnd/SceneChangerStatus.h"
+#include"component/SceneChanger/SceneChangerStatus.h"
 
 #include "engine/EngineInclude.h"
 #include <Vector2.h>
@@ -35,17 +35,18 @@ void MenuSystem::UpdateEntity(GameEntity* entity) {
      // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* tutorialParentEntity         = ecsManager->getUniqueEntity("TutorialMenuParent");
-    GameEntity* endEntity                    = ecsManager->getUniqueEntity("GameEnd");
-
+   GameEntity* sceneChangerEntity                    = ecsManager->getUniqueEntity("SceneChanger");
     
-    if (!tutorialParentEntity || !endEntity) { // Entityが存在しない場合の早期リターン
+    
+    
+    if (!tutorialParentEntity || !sceneChangerEntity) { // Entityが存在しない場合の早期リターン
         return;
     }
 
     MenuStatus* menu       = getComponent<MenuStatus>(entity);
     SpriteRenderer* sprite = getComponent<SpriteRenderer>(entity);
     TutorialMenuParentStatus* tutorialUIParent = getComponent<TutorialMenuParentStatus>(tutorialParentEntity);
-    SceneChangerStatus* gameend                = getComponent<SceneChangerStatus>(endEntity);
+    SceneChangerStatus* gameend                = getComponent<SceneChangerStatus>(sceneChangerEntity);
 
     //Audio
     Audio* audioOpenMenu = getComponent<Audio>(entity);

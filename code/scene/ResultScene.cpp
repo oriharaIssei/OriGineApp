@@ -16,7 +16,7 @@
 #include"component/ResultUI/ResultFontStatus.h"
 #include"component/ResultUI/ResultUIkeyStatus.h"
 #include"component/Score/ScoreStatus.h"
-#include"component/GameEnd/SceneChangerStatus.h"
+#include"component/SceneChanger/SceneChangerStatus.h"
 #include"Application/code/component/SceneTransition/SceneTransition.h"
 
 // system
@@ -30,7 +30,7 @@
 #include"system/ResultUI/ResultRankSystem.h"
 #include"system/ResultUI/ResultKeySystem.h"
 #include"Application/code/system/SceneTransitionSystem/SceneTransitionSystem.h"
-#include"system/GameEnd/SceneChangerSystem.h"
+#include"system/SceneChanger/SceneChangerSystem.h"
 
 ResultScene::ResultScene() : IScene("Result") {}
 
