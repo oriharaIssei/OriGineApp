@@ -443,6 +443,8 @@
                         "CurrentScene": 0,
                         "SceneEaseMaxTime": 0.5,
                         "TransitionMode": 1,
+                        "endPositionX_": -1280.0,
+                        "startPositionX_": 0.0,
                         "waitTime": 0.10000000149011612
                     }
                 ],
@@ -522,6 +524,8 @@
                         "CurrentScene": 0,
                         "SceneEaseMaxTime": 0.5,
                         "TransitionMode": 0,
+                        "endPositionX_": 1.3648167340209183e-14,
+                        "startPositionX_": -1280.0,
                         "waitTime": 0.10000000149011612
                     }
                 ],

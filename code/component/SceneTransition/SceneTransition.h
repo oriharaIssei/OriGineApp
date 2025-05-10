@@ -56,10 +56,10 @@ private:
     bool isTransitionIn_=false;
 
     Easing sceneEase_;
-    float transitionPosX_;
+    float positionX_;
 
-    float endPos_;
-    float startPos_;
+    float endPositionX_;
+    float startPositionX_;
 
     float waitTime_;
     float currentWaitTime_;
@@ -81,7 +81,7 @@ private:
 
     // カメラなどの取得に使用
     bool GetIsTransitionIn() const { return isTransitionIn_; }
-    float TransitionPosX() const { return transitionPosX_; }
+    float GetPositionX() const { return positionX_; }
     TransitionScene GetCurrentScene() const { return currentScene_; }
     TransitonStep GetTransitionStep() const { return transitionStep_; }
     TransitionMode GetTransitionnMode() const { return transitionMode_; }

@@ -83,7 +83,7 @@ void SceneTransitionSystem::UpdateEntity(GameEntity* entity) {
 
     ///* ------------------------------calucration------------------------------
 
-    Vec2f basePos  = Vec2f(sceneTransition->TransitionPosX(),0.0f);
+    Vec2f basePos  = Vec2f(sceneTransition->GetPositionX(),0.0f);
     Vec2f baseSize = sprite->getTextureSize() * sceneTransition->GetScale();
     /*  resultRank->SetRankForScore(resultUIParent->GetCurrentScore());*/
 
