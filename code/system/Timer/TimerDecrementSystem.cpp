@@ -64,8 +64,8 @@ void TimerDecrementSystem::UpdateEntity(GameEntity* _entity) {
    timerStauts_->DecrementTimer();
 
   //タイマー多すぎた場合の処理
-   if (timerStauts_->GetCurrentTimer() >= 100) {
-       timerStauts_->SetCurrentTimer(99);
+   if (timerStauts_->GetCurrentTimer() >= 60) {
+       timerStauts_->SetCurrentTimer(60);
    }
    
 }
