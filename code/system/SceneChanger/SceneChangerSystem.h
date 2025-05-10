@@ -16,13 +16,15 @@ public:
     // void Update()override;
     void Finalize() override;
 
-    void AnimationChangeGameToResult();
-    void ResultTransition();
-    void TitleTransition();
+    void ChangeResultToGame();
+    void ChangeTitleToResult();
+    void ChangeGameToTitle();
+    void ChangeTitleToGame();
 
     void ChangeSceneTitle();
     void ChangeSceneResult();
     void ChangeSceneGame();
+
 
 protected:
     virtual void UpdateEntity(GameEntity* _entity) override;

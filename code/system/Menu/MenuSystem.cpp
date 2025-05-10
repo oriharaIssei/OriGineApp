@@ -12,8 +12,8 @@
 #include <Vector3.h>
 // component
 #include "component/Menu/MenuStatus.h"
-#include"component/Menu/TutorialMenuParentStatus.h"
-#include"component/SceneChanger/SceneChangerStatus.h"
+#include "component/Menu/TutorialMenuParentStatus.h"
+#include "component/SceneChanger/SceneChangerStatus.h"
 
 #include "engine/EngineInclude.h"
 #include <Vector2.h>
@@ -32,26 +32,23 @@ void MenuSystem::Finalize() {}
 
 void MenuSystem::UpdateEntity(GameEntity* entity) {
 
-     // ComboEntityを取得
+    // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* tutorialParentEntity         = ecsManager->getUniqueEntity("TutorialMenuParent");
-   GameEntity* sceneChangerEntity                    = ecsManager->getUniqueEntity("SceneChanger");
-    
-    
-    
-    if (!tutorialParentEntity || !sceneChangerEntity) { // Entityが存在しない場合の早期リターン
+
+    if (!tutorialParentEntity) { // Entityが存在しない場合の早期リターン
         return;
     }
 
-    MenuStatus* menu       = getComponent<MenuStatus>(entity);
-    SpriteRenderer* sprite = getComponent<SpriteRenderer>(entity);
+    MenuStatus* menu                           = getComponent<MenuStatus>(entity);
+    SpriteRenderer* sprite                     = getComponent<SpriteRenderer>(entity);
     TutorialMenuParentStatus* tutorialUIParent = getComponent<TutorialMenuParentStatus>(tutorialParentEntity);
-    SceneChangerStatus* gameend                = getComponent<SceneChangerStatus>(sceneChangerEntity);
+   
 
-    //Audio
-    Audio* audioOpenMenu = getComponent<Audio>(entity);
-    Audio* selectCategory = getComponent<Audio>(entity,1);
-    Audio* closeMenu = getComponent<Audio>(entity,2);
+    // Audio
+    Audio* audioOpenMenu  = getComponent<Audio>(entity);
+    Audio* selectCategory = getComponent<Audio>(entity, 1);
+    Audio* closeMenu      = getComponent<Audio>(entity, 2);
 
     if (!menu || !sprite || !tutorialUIParent) {
         return;
@@ -60,6 +57,9 @@ void MenuSystem::UpdateEntity(GameEntity* entity) {
     float deltaTime = Engine::getInstance()->getDeltaTime();
 
     switch (menu->GetMenuMode()) {
+        ///-----------------------------------------------------------
+        /// 停止中
+        ///-----------------------------------------------------------
     case MenuMode::NONE:
         if (input_->isTriggerKey(DIK_ESCAPE)) {
             audioOpenMenu->Play();
@@ -68,6 +68,9 @@ void MenuSystem::UpdateEntity(GameEntity* entity) {
         }
         break;
 
+        ///-----------------------------------------------------------
+        /// メニューセレクト中
+        ///-----------------------------------------------------------
     case MenuMode::MENUSELECT:
 
         menu->OpenMenuAnimation(deltaTime);
@@ -93,38 +96,41 @@ void MenuSystem::UpdateEntity(GameEntity* entity) {
         }
 
         menu->UpdateArrowPos();
-        menu->DesideForCategory(input_,tutorialUIParent);
+        menu->DesideForCategory(input_, tutorialUIParent);
 
         break;
 
+        ///-----------------------------------------------------------
+        /// チュートリアル
+        ///-----------------------------------------------------------
     case MenuMode::WATCHINGTUTORIAL:
-      /*  tutorialUIParent->SetIsAnimation(true);*/
+        /*  tutorialUIParent->SetIsAnimation(true);*/
         break;
 
+         ///-----------------------------------------------------------
+        /// 閉じる前の初期化*
+        ///----------------------------------------------------------- 
     case MenuMode::CLOSEINIT:
         menu->ScrollTimeReset();
         menu->SetMenuMode(MenuMode::CLOSE);
         break;
 
+         ///-----------------------------------------------------------
+        /// 閉じる
+        ///----------------------------------------------------------- 
     case MenuMode::CLOSE:
         menu->CloseAnimation(deltaTime);
         break;
-
+        ///-----------------------------------------------------------
+        /// 終わり
+        ///----------------------------------------------------------- 
     case MenuMode::END:
 
         menu->SetMenuMode(MenuMode::NONE);
         break;
 
     case MenuMode::GAMEEND:
-        // ポーズ中は通さない
-
-        
-        if (!gameend) {
-            return;
-        }
-
-        gameend->SetIsBackTitle(true);
-
+       
         break;
 
     default:

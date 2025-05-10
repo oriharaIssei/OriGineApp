@@ -7,6 +7,7 @@
 #include "component/ResultUI/ResultUIRankStatus.h"
 #include "component/SceneTransition/SceneTransition.h"
 #include "component/Timer/TimerStatus.h"
+#include"component/Menu/MenuStatus.h"
 #include "engine/EngineInclude.h"
 #include <Vector.h>
 
@@ -29,9 +30,10 @@ void SceneChangerSystem::UpdateEntity(GameEntity* _entity) {
 
     gameEnd_ = getComponent<SceneChangerStatus>(_entity);
 
-    AnimationChangeGameToResult();
-    ResultTransition();
-    TitleTransition();
+    ChangeResultToGame();
+    ChangeTitleToResult();
+    ChangeGameToTitle();
+    ChangeTitleToGame();
     ///*シーン切り替え
 
     // タイトル
@@ -60,7 +62,7 @@ void SceneChangerSystem::ChangeSceneGame() {
     }
 }
 
-void SceneChangerSystem::AnimationChangeGameToResult() {
+void SceneChangerSystem::ChangeResultToGame() {
     // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* timerEntity                  = ecsManager->getUniqueEntity("Timer");
@@ -83,7 +85,7 @@ void SceneChangerSystem::AnimationChangeGameToResult() {
     }
 }
 
-void SceneChangerSystem::ResultTransition() {
+void SceneChangerSystem::ChangeTitleToResult() {
     // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* resultRankEntity             = ecsManager->getUniqueEntity("ResultRank");
@@ -98,7 +100,7 @@ void SceneChangerSystem::ResultTransition() {
     SceneTransition* transitionStatus      = getComponent<SceneTransition>(resultTransitionEntity);
     SceneTransition* titleTransitionStatus = getComponent<SceneTransition>(titleTransitionOutEntity);
 
-    if (!transitionStatus || !rankStatus) {
+    if (!transitionStatus || !rankStatus || !titleTransitionStatus) {
         return;
     }
 
@@ -117,7 +119,7 @@ void SceneChangerSystem::ResultTransition() {
     }
 }
 
-void SceneChangerSystem::TitleTransition() {
+void SceneChangerSystem::ChangeGameToTitle() {
     // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* resultTransitionEntity       = ecsManager->getUniqueEntity("TitleTransitionIN");
@@ -136,3 +138,31 @@ void SceneChangerSystem::TitleTransition() {
         transitionStatus->SetIsTransitionIn(true);
     }
 }
+
+void SceneChangerSystem::ChangeTitleToGame() {
+    // ComboEntityを取得
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* menuEntity                  = ecsManager->getUniqueEntity("Menu");
+    GameEntity* GameToResultEntity           = ecsManager->getUniqueEntity("GameTransitionIN");
+    GameEntity* titleTransitionOutEntity     = ecsManager->getUniqueEntity("TitleOutTransition");
+
+    if (!menuEntity || !GameToResultEntity || !titleTransitionOutEntity) { // Entityが存在しない場合の早期リターン
+        return;
+    }
+
+    MenuStatus* menuStatus           = getComponent<MenuStatus>(menuEntity);
+    SceneTransition* transitionStatus = getComponent<SceneTransition>(GameToResultEntity);
+    SceneTransition* titleTransitionStatus = getComponent<SceneTransition>(titleTransitionOutEntity);
+
+
+    if (!transitionStatus || !menuStatus || !titleTransitionStatus) {
+        return;
+    }
+
+    // シーン遷移アニメーション切り替え
+    if (menuStatus->GetMenuMode()==MenuMode::GAMEEND  && transitionStatus->GetIsTransitionIn() == false) {
+        transitionStatus->SetIsGoTitleFromMenu(true);
+        titleTransitionStatus->SettIsTitleTransitionOut(true);
+        transitionStatus->SetIsTransitionIn(true);
+    }
+  }

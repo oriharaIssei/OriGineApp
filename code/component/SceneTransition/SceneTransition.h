@@ -5,7 +5,6 @@
 #include <Entity.h>
 #include <Vector2.h>
 
-
 enum class TransitionMode {
     FadeIN,
     FadeOUT,
@@ -50,10 +49,10 @@ public:
 
 private:
     TransitionMode transitionMode_;
-    TransitionScene currentScene_  = TransitionScene::TITLE;
-    TransitonStep transitionStep_  = TransitonStep::NONE;
-   
-    bool isTransitionIn_=false;
+    TransitionScene currentScene_ = TransitionScene::TITLE;
+    TransitonStep transitionStep_ = TransitonStep::NONE;
+
+    bool isTransitionIn_ = false;
 
     Easing sceneEase_;
     float positionX_;
@@ -68,16 +67,9 @@ private:
     bool isRetry_           = false;
     static bool isTitleTransitionOut_;
 
-    Vec2f scale_ = {0.0f,0.0f};
+    Vec2f scale_ = {0.0f, 0.0f};
 
-    public:
- 
-    void SetIsTransitionIn(const bool& is) { isTransitionIn_ = is; }
-    void SetTransitionStep(const TransitonStep& step) { transitionStep_ = step; }
-    void GoToNextScene(SceneChangerStatus* gameend);
-    void SetIsGoTitleFromMenu(const bool& is) { isGoTitleFromMenu_ = is; }
-    void SetIsRetry(const bool& is) { isRetry_ = is; }
-    void SettIsTitleTransitionOut(const bool& is) { isTitleTransitionOut_ = is; }
+public:
 
     // カメラなどの取得に使用
     bool GetIsTransitionIn() const { return isTransitionIn_; }
@@ -88,4 +80,11 @@ private:
     Vec2f GetScale() const { return scale_; }
     bool GetIsRetry() const { return isRetry_; }
     bool GetIsTitleTransitionOut() const { return isTitleTransitionOut_; }
+
+    void SetIsTransitionIn(const bool& is) { isTransitionIn_ = is; }
+    void SetTransitionStep(const TransitonStep& step) { transitionStep_ = step; }
+    void GoToNextScene(SceneChangerStatus* gameend);
+    void SetIsGoTitleFromMenu(const bool& is) { isGoTitleFromMenu_ = is; }
+    void SetIsRetry(const bool& is) { isRetry_ = is; }
+    void SettIsTitleTransitionOut(const bool& is) { isTitleTransitionOut_ = is; }
 };
