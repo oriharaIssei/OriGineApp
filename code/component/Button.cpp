@@ -7,7 +7,11 @@
 
 /// externals
 // imgui
+#ifdef _DEBUG
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
+#endif // _DEBUG
+
 
 void to_json(nlohmann::json& j, const Button& r) {
     /// ============ color ============ ///
@@ -84,10 +88,10 @@ bool Button::Edit() {
     bool isChanged = false;
 
     if (ImGui::TreeNode("Button Colors")) {
-        isChanged |= ImGui::ColorEdit4("Normal Color", normalColor_.v);
-        isChanged |= ImGui::ColorEdit4("Hover Color", hoverColor_.v);
-        isChanged |= ImGui::ColorEdit4("Press Color", pressColor_.v);
-        isChanged |= ImGui::ColorEdit4("Release Color", releaseColor_.v);
+        isChanged |= ColorEditCommand("Normal Color",  normalColor_);
+        isChanged |= ColorEditCommand("Hover Color",   hoverColor_);
+        isChanged |= ColorEditCommand("Press Color",   pressColor_);
+        isChanged |= ColorEditCommand("Release Color", releaseColor_);
 
         ImGui::TreePop();
     }

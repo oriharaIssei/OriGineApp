@@ -3,10 +3,13 @@
 /// engine
 #define ENGINE_SCENE
 #include "EngineInclude.h"
-
+#include "module/editor/EditorGroup.h"
+#include "module/editor/IEditor.h"
 /// externals
 // imgui
+#ifdef _DEBUG
 #include "imgui/imgui.h"
+#endif // _DEBUG
 
 SceneChanger::SceneChanger() {
 }
@@ -25,8 +28,11 @@ bool SceneChanger::Edit() {
         for (const auto& [sceneName, sceneIndex] : sceneManager->getScenes()) {
             bool isSelected = nextSceneName_ == sceneName;
             if (ImGui::Selectable(sceneName.c_str(), isSelected)) {
-                nextSceneName_ = sceneName;
-                changed        = true;
+
+                EditorGroup::getInstance()->pushCommand(
+                    std::make_unique<SetterCommand<std::string>>(&nextSceneName_, sceneName));
+
+                changed = true;
             }
             if (isSelected) {
                 ImGui::SetItemDefaultFocus();
