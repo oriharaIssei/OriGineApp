@@ -101,8 +101,7 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     default:
         break;
     }
-    // ↓ここのパラメータコピーがエディターで設定した値にならない(初期化設定した値は問題なし)
-
+   
     // /// States
 
     // row,columNum
@@ -120,11 +119,12 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     floatingFloorStatus->SetSaveScale(baseTransform->scale);
     // fall
     floatingFloorStatus->SetFallSpeed(1.0f);
-    floatingFloorStatus->SetFallPosY(-1.0f);
+    floatingFloorStatus->SetFallPosY(-5.0f);
     floatingFloorStatus->SetIncrementFallEaseT(0.0f);
 
     // ratio
-    floatingFloorStatus->SetScoreUpRatio(floatFloorSpawner->GetRatio());
+    floatingFloorStatus->SetScoreUpRatio(floatFloorSpawner->GetScoreUPRate());
+    floatingFloorStatus->SetStartScoreUPRate(floatFloorSpawner->GetScoreUPRate());
 
     for (int32_t i = 0; i < audios_.size(); ++i) {
         audios_[i]  = getComponent<Audio>(_entity, i); // audio

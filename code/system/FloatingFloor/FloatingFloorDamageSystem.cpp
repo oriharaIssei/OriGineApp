@@ -7,8 +7,8 @@
 #define ENGINE_ECS
 #include "engine/EngineInclude.h"
 
+#include "component/BigBom/BigExplotionCollision.h"
 #include "component/Bom/ExplotionCollision.h"
-#include"component/BigBom/BigExplotionCollision.h"
 #include "component/Piller/FloatingFloorStatus.h"
 #include "component/Player/PlayerStates.h"
 
@@ -27,8 +27,8 @@ void FloatingFloorDamageSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-      EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
-   
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+
     FloatingFloorStatus* floatingFloorStatus = getComponent<FloatingFloorStatus>(_entity);
     GameEntity* FloorSound                   = ecsManager->getUniqueEntity("FloorSound");
     Audio* damageSound                       = getComponent<Audio>(FloorSound, 4);
@@ -59,19 +59,20 @@ void FloatingFloorDamageSystem::UpdateEntity(GameEntity* _entity) {
                 }
 
                 // CharacterStatusを取得
-                ExplotionCollision* hitEntityStatus = getComponent<ExplotionCollision>(hitEntity);
+                ExplotionCollision* hitEntityStatus       = getComponent<ExplotionCollision>(hitEntity);
                 BigExplotionCollision* hitEntityBigStatus = getComponent<BigExplotionCollision>(hitEntity);
-                PlayerStates* playerStatus          = getComponent<PlayerStates>(hitEntity);
+                PlayerStates* playerStatus                = getComponent<PlayerStates>(hitEntity);
 
                 if (playerStatus || (!hitEntityBigStatus && !hitEntityStatus)) {
                     continue;
                 }
-                //ダメ―ジ音
+                // ダメ―ジ音
                 damageSound->Play();
 
+                //デカボムか通常ボムか
                 if (hitEntityBigStatus) {
                     float ratio = floatingFloorStatus->GetScoreUPRatio() * hitEntityBigStatus->GetPlusScoreRatio();
-                    floatingFloorStatus->SetScoreUpRatio(ratio);
+                     floatingFloorStatus->SetScoreUpRatio(ratio);
                     floatingFloorStatus->TakeBigDamage();
                 } else {
                     floatingFloorStatus->TakeDamage();

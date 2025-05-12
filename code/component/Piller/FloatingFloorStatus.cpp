@@ -39,6 +39,7 @@ void FloatingFloorStatus::TakeDamage() {
 }
 
 void FloatingFloorStatus::TakeBigDamage() {
+    
     currentHP_ = 0;
  }
 
@@ -48,6 +49,8 @@ void FloatingFloorStatus::RevivalReset() {
     currentHP_           = HPMax_;
     isFall_              = false;
     isRevivaling_        = false;
+    scoreUpRate_        = startScoreUpRate_;
+  
 }
 
 void to_json(nlohmann::json& _json, const FloatingFloorStatus& _block) {

@@ -44,7 +44,7 @@ void BreakBlockSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     if (blockStatus_->GetIsBreak()) {
-         ScrapSpawn(_entity);
+        ScrapSpawn(_entity);
         BlockReaction(_entity, blockStatus_->GetBlockType());
         DestroyEntity(_entity);
     }
@@ -68,7 +68,7 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
         return;
     }
 
-    /// component取得
+    /// component取得z
     ScoreStatus* scoreStatus            = getComponent<ScoreStatus>(scoreEntity);
     TimerStatus* timerStatus            = getComponent<TimerStatus>(timerEntity);
     EffectByBlockSpawner* SpawnerStatus = getComponent<EffectByBlockSpawner>(effectByBlockSpawner);
@@ -77,9 +77,9 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
         return;
     }
 
-    float timerDecrementValue = timerStatus->GetPulusTime() * blockStatus_->GetPlusScoreRatio();
-    float timerIncrementValue = timerStatus->GetMinusTime() * blockStatus_->GetPlusScoreRatio();
-    float scoreValue          = blockStatus_->GetBaseScoreValue() * blockStatus_->GetPlusScoreRatio();
+    float timerDecrementValue = timerStatus->GetPulusTime() * blockStatus_->GetPlusScoreRate();
+    float timerIncrementValue = timerStatus->GetMinusTime() * blockStatus_->GetPlusScoreRate();
+    float scoreValue          = blockStatus_->GetBaseScoreValue() * blockStatus_->GetPlusScoreRate();
 
     switch (blocktype) {
         ///---------------------------------------------
@@ -90,8 +90,8 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
         scoreStatus->SetScoreChangeTime(0.0f);
         effectType_ = EffectType::SCORE;
         tempValue_  = scoreValue;
-       /* if (!breakNormal->isPlaying()) {*/
-            breakNormal->Play();
+        /* if (!breakNormal->isPlaying()) {*/
+        breakNormal->Play();
         /*}*/
         break;
 
@@ -102,9 +102,9 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
         timerStatus->TimerDecrement(timerDecrementValue);
         effectType_ = EffectType::MIMUSTIME;
         tempValue_  = timerDecrementValue;
-      /*  if (!breakSkull->isPlaying()) {*/
-            breakSkull->Play();
-       /* }*/
+        /*  if (!breakSkull->isPlaying()) {*/
+        breakSkull->Play();
+        /* }*/
         break;
 
         ///---------------------------------------------
@@ -114,9 +114,9 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
         timerStatus->TimerIncrement(timerIncrementValue);
         effectType_ = EffectType::TIME;
         tempValue_  = timerIncrementValue;
-      /*  if (!breakAdvance->isPlaying()) {*/
-            breakAdvance->Play();
-       /* }*/
+        /*  if (!breakAdvance->isPlaying()) {*/
+        breakAdvance->Play();
+        /* }*/
         break;
 
     default:

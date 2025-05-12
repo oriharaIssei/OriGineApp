@@ -26,7 +26,7 @@ bool FloatingFloorSpawner::Edit() {
     isChange |= ImGui::DragFloat3("fallCollisionCenterPos", fallCollisionCenterPos_.v, 0.01f);
     isChange |= ImGui::DragFloat("sideSpace", &sideSpace_, 0.01f);
     isChange |= ImGui::DragFloat("positionHeight", &positionHeight_, 0.01f);
-    isChange |= ImGui::DragFloat("ratio", &ratio_, 0.01f);
+    isChange |= ImGui::DragFloat("ratio", &scoreUpRate_, 0.01f);
     ImGui::Text("No Edit");
 
     isChange |= ImGui::DragFloat("revivalTime", &revivalTime_);
@@ -45,7 +45,7 @@ void to_json(nlohmann::json& _json, const FloatingFloorSpawner& _block) {
     _json["fallCollisionCenterPos"] = _block.fallCollisionCenterPos_;
     _json["sideSpace"]              = _block.sideSpace_;
     _json["revivalTime"]            = _block.revivalTime_;
-    _json["ratio"]                  = _block.ratio_;
+    _json["ratio"]                  = _block.scoreUpRate_;
     /*_json["positionHeight"]         = _block.positionHeight_;*/
 }
 
@@ -59,6 +59,6 @@ void from_json(const nlohmann::json& _json, FloatingFloorSpawner& _block) {
     _json.at("fallCollisionCenterPos").get_to(_block.fallCollisionCenterPos_);
     _json.at("sideSpace").get_to(_block.sideSpace_);
     _json.at("revivalTime").get_to(_block.revivalTime_);
-    _json.at("ratio").get_to(_block.ratio_);
+    _json.at("ratio").get_to(_block.scoreUpRate_);
    /* _json.at("positionHeight").get_to(_block.positionHeight_);*/
 }

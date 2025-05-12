@@ -17,17 +17,23 @@ private: // variables
     float positionHeight_;
     float sideSpace_;
 
+    // row colum
     int32_t columNumMax_;
     int32_t rowNumber_; // 列番号
 
+    /// hp
     int32_t HPMax_;
 
+    /// collider
     Vec3f fallCollisionSizeMin_;
     Vec3f fallCollisionSizeMax_;
     Vec3f fallCollisionCenterPos_;
 
-    float ratio_;
+    //score
+    float scoreUpRate_;
+ 
 
+    //time
     float revivalTime_;
 
 public:
@@ -47,7 +53,7 @@ public: // accsessor
     float GetPositionHeight() const { return positionHeight_; }
     float GetPositionSideSpace() const { return sideSpace_; }
     float GetRevivalTime() const { return revivalTime_; }
-    float GetRatio() const { return ratio_; }
+    float GetScoreUPRate() const { return scoreUpRate_; }
     bool GetIsCreated() const { return isCreated_; }
     int32_t GetHpMax() const { return HPMax_; }
     Vec3f GetFallCollisionSizeMin() const { return fallCollisionSizeMin_; }
@@ -56,4 +62,5 @@ public: // accsessor
     /// setter
     void SetIsCreated(const bool& is) { isCreated_ = is; }
     void SetRowNumber(const int32_t& num) { rowNumber_ = num; }
+   
 };

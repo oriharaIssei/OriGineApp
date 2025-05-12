@@ -31,7 +31,8 @@ private: // variables
     float currentRevivalTimer_ = 0.0f;
     Vec3f saveScale_           = {1.0f, 1.0f, 1.0f};
 
-    float scoreUpRatio_;
+    float scoreUpRate_;
+    float startScoreUpRate_;
 
 public:
     FloatingFloorStatus() {}
@@ -48,8 +49,6 @@ public:
     void SetColumDecrement();
 
 public: // accsessor
-
-
     /// getter
     int32_t GetColumNum() const { return columNum_; }
     int32_t GetRowNum() const { return rowNum_; }
@@ -59,7 +58,7 @@ public: // accsessor
     float GetFallPosY() const { return fallPosY_; }
     float GetFallEaseT() const { return fallEaseT_; }
     float GetFallSpeed() const { return fallspeed_; }
-    float GetScoreUPRatio() const { return scoreUpRatio_; }
+    float GetScoreUPRatio() const { return scoreUpRate_; }
     bool GetIsDestroy() const { return isDestroy_; }
     bool GetIsRevaviling() const { return isRevivaling_; }
     const bool& GetIsFall() const { return isFall_; }
@@ -83,5 +82,6 @@ public: // accsessor
     void SetIncrementRevivalTime(const float& speed) { currentRevivalTimer_ += speed; }
     void SetHPMax(const int32_t max) { HPMax_ = max; }
     void SetSaveScale(const Vec3f& s) { saveScale_ = s; }
-    void SetScoreUpRatio(const float& ratio) { scoreUpRatio_ = ratio; }
+    void SetScoreUpRatio(const float& ratio) { scoreUpRate_ = ratio; }
+    void SetStartScoreUPRate(const float& score) { startScoreUpRate_ = score; }
 };

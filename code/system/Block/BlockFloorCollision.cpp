@@ -73,7 +73,7 @@ void BlockFloorCollision::UpdateEntity(GameEntity* _entity) {
                 }
 
                 // CharacterStatusを更新
-                blockStatus->SetPlusScoreRatio(hitEntityStatus->GetScoreUPRatio());
+                blockStatus->SetPlusScoreRate(hitEntityStatus->GetScoreUPRatio());
                 blockStatus->SetIsBreak(true);
             }
         }
