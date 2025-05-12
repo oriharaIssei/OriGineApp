@@ -105,8 +105,6 @@
     <ClInclude Include="code\MyGame.h" />
     <ClInclude Include="code\component\Button.h" />
     <ClInclude Include="code\component\SceneChanger.h" />
-    <ClInclude Include="code\scene\GameScene.h" />
-    <ClInclude Include="code\scene\TitleScene.h" />
     <ClInclude Include="code\system\Input\ButtonInputSystem.h" />
     <ClInclude Include="code\system\Transition\ChangeSceneByButton.h" />
     <ClInclude Include="code\system\Transition\UpdateButtonColorByState.h" />
@@ -116,8 +114,6 @@
     <ClCompile Include="code\MyGame.cpp" />
     <ClCompile Include="code\component\Button.cpp" />
     <ClCompile Include="code\component\SceneChanger.cpp" />
-    <ClCompile Include="code\scene\GameScene.cpp" />
-    <ClCompile Include="code\scene\TitleScene.cpp" />
     <ClCompile Include="code\system\Input\ButtonInputSystem.cpp" />
     <ClCompile Include="code\system\Transition\ChangeSceneByButton.cpp" />
     <ClCompile Include="code\system\Transition\UpdateButtonColorByState.cpp" />

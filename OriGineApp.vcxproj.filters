@@ -26,12 +26,6 @@
     <ClInclude Include="code\component\SceneChanger.h">
       <Filter>component</Filter>
     </ClInclude>
-    <ClInclude Include="code\scene\GameScene.h">
-      <Filter>scene</Filter>
-    </ClInclude>
-    <ClInclude Include="code\scene\TitleScene.h">
-      <Filter>scene</Filter>
-    </ClInclude>
     <ClInclude Include="code\system\Input\ButtonInputSystem.h">
       <Filter>system\Input</Filter>
     </ClInclude>
@@ -50,12 +44,6 @@
     </ClCompile>
     <ClCompile Include="code\component\SceneChanger.cpp">
       <Filter>component</Filter>
-    </ClCompile>
-    <ClCompile Include="code\scene\GameScene.cpp">
-      <Filter>scene</Filter>
-    </ClCompile>
-    <ClCompile Include="code\scene\TitleScene.cpp">
-      <Filter>scene</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Input\ButtonInputSystem.cpp">
       <Filter>system\Input</Filter>

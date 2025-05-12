@@ -2,9 +2,14 @@
 
 /// engine
 #define ENGINE_SCENE
+#define RESOURCE_DIRECTORY
 #include "EngineInclude.h"
 #include "module/editor/EditorGroup.h"
 #include "module/editor/IEditor.h"
+
+/// lib
+#include "myFileSystem/MyFileSystem.h"
+
 /// externals
 // imgui
 #ifdef _DEBUG
@@ -24,8 +29,7 @@ bool SceneChanger::Edit() {
     ImGui::Text("Next Scene Name :");
     ImGui::SameLine();
     if (ImGui::BeginCombo("##NextSceneName", nextSceneName_.c_str())) {
-        SceneManager* sceneManager = SceneManager::getInstance();
-        for (const auto& [sceneName, sceneIndex] : sceneManager->getScenes()) {
+        for (const auto& [directory, sceneName] : myfs::searchFile(kApplicationResourceDirectory + "/scene/", "json")) {
             bool isSelected = nextSceneName_ == sceneName;
             if (ImGui::Selectable(sceneName.c_str(), isSelected)) {
 
