@@ -23,6 +23,7 @@ private: // variables
     int32_t currentHP_;
     bool isDestroy_ = false;
     bool isbreak_   = false;
+    bool isNotScrapSpawn_ = false;
 
     // color
     Vec4f changeColor_ = {1.0f, 0.0f, 0.0f, 1.0f};
@@ -45,7 +46,9 @@ public:
     bool Edit() override;
     void Finalize() override;
 
-    void TakeDamage();
+    void TakeDamageForBomb();
+    void TakeDamageForBigBomb();
+    void TakeDamageForFloor();
 
     void MoveUpdate(const float& time, Transform* transform, const float& moveValue);
     void TimeInit();
@@ -58,6 +61,7 @@ public: // accsessor
     const bool& GetIsFall() const { return isFall_; }
     BlockType GetBlockType() const { return blockType_; }
     bool GetIsBreak() const { return isbreak_; }
+    bool GetIsNotScrapSpawn() const { return isNotScrapSpawn_; }
      float GetBaseScoreValue() const { return baseScoreValue_; }
     float GetPlusScoreRate() const { return plusScoreRate_; }
     Vec3f GetPreMovePos() const { preMovePos_; }

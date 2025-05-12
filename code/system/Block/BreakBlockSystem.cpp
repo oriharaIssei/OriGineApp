@@ -127,6 +127,11 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
 }
 
 void BreakBlockSystem::ScrapSpawn(GameEntity* _entity) {
+
+    if (blockStatus_->GetIsNotScrapSpawn()) {
+        return;
+    }
+
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* scrapEntity                  = ecsManager->getUniqueEntity("ScrapSpawner");
 
@@ -146,7 +151,8 @@ void BreakBlockSystem::ScrapSpawn(GameEntity* _entity) {
         ScrapStatus* status = getComponent<ScrapStatus>(scrap);
         status->SetFallStopPosY(scrapSpawner->GetFallStopPosY()); // stopPos
         status->SetLifeTime(scrapSpawner->GetLifeTime()); // lifeTime
-        // status->SetPointValue(scrapSpawner->GetPointValue());    // pointValue
+
+
         float blowValueX = 0.0f;
         float blowValueY = scrapSpawner->GetBlowValue()[Y];
 

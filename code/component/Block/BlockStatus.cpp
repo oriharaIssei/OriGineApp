@@ -27,8 +27,18 @@ void BlockStatus::SetColum(const int32_t& colum) {
     columNum_ = colum;
 }
 
-void BlockStatus::TakeDamage() {
+void BlockStatus::TakeDamageForBomb() {
     currentHP_--;
+}
+
+void BlockStatus::TakeDamageForBigBomb() {
+    isNotScrapSpawn_ = true;
+    currentHP_=0;
+}
+
+
+void BlockStatus::TakeDamageForFloor() {
+    currentHP_ = 0;
 }
 
 void BlockStatus::MoveUpdate(const float& time, Transform* transform, const float& moveValue) {

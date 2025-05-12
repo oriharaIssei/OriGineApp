@@ -8,15 +8,12 @@
 // lib
 
 // include
-#include <Quaternion.h>
-#include <Vector3.h>
+
 // component
 #include "component/EffectByBlock/EffectByBlockUIStatus.h"
-#include "component/Score/ScoreStatus.h"
 
 #include "engine/EngineInclude.h"
-#include <cmath>
-#include <cstdint>
+
 
 EffectByBlockDeleteSystem::EffectByBlockDeleteSystem()
     : ISystem(SystemType::StateTransition) {}

@@ -7,10 +7,10 @@
 #define ENGINE_ECS
 #include "engine/EngineInclude.h"
 
+#include "component/BigBom/BigExplotionCollision.h"
 #include "component/Block/BlockManager.h"
 #include "component/Block/BlockStatus.h"
 #include "component/Bom/ExplotionCollision.h"
-#include"component/BigBom/BigExplotionCollision.h"
 #include "component/Player/PlayerStates.h"
 
 BlockExBomCollision::BlockExBomCollision() : ISystem(SystemType::Collision) {}
@@ -30,8 +30,7 @@ void BlockExBomCollision::UpdateEntity(GameEntity* _entity) {
 
     // CharacterStatusを取得
 
-    BlockStatus* blockStatus                 = getComponent<BlockStatus>(_entity);
-  
+    BlockStatus* blockStatus = getComponent<BlockStatus>(_entity);
 
     if (!blockStatus) {
         return;
@@ -60,22 +59,28 @@ void BlockExBomCollision::UpdateEntity(GameEntity* _entity) {
                 }
 
                 // CharacterStatusを取得
-                ExplotionCollision* hitEntityStatus = getComponent<ExplotionCollision>(hitEntity);
+                ExplotionCollision* hitEntityStatus      = getComponent<ExplotionCollision>(hitEntity);
                 BigExplotionCollision* bigBomExCollision = getComponent<BigExplotionCollision>(hitEntity);
-                PlayerStates* playerStatus          = getComponent<PlayerStates>(hitEntity);
+                PlayerStates* playerStatus               = getComponent<PlayerStates>(hitEntity);
 
                 if (playerStatus || (!hitEntityStatus && !bigBomExCollision)) {
                     continue;
                 }
 
                 if (bigBomExCollision) {
-                    blockStatus->SetPlusScoreRate(bigBomExCollision->GetPlusScoreRatio());
+                    blockStatus->TakeDamageForBigBomb(); 
+                    blockStatus->SetPlusScoreRate(bigBomExCollision->GetPlusScoreRatio());                 
+                }
+                else {
+                    blockStatus->TakeDamageForBomb(); 
                 }
 
-                // CharacterStatusを更新
-                blockStatus->SetIsBreak(true);
-
-              
+                //死亡
+                if (blockStatus->GetCurrentHP() > 0) {
+                    return;
+                }
+                    blockStatus->SetIsBreak(true);
+                
             }
         }
     }

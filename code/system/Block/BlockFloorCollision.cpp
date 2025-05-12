@@ -7,30 +7,27 @@
 #define ENGINE_ECS
 #include "engine/EngineInclude.h"
 
-#include"component/Piller/FloatingFloorStatus.h"
-#include"component/Block/BlockStatus.h"
-#include"component/Player/PlayerStates.h"
+#include "component/Block/BlockStatus.h"
+#include "component/Piller/FloatingFloorStatus.h"
+#include "component/Player/PlayerStates.h"
 
 BlockFloorCollision::BlockFloorCollision() : ISystem(SystemType::Collision) {}
 BlockFloorCollision::~BlockFloorCollision() {}
 
 void BlockFloorCollision::Initialize() {
-
 }
 
 void BlockFloorCollision::Finalize() {
-
 }
 
-
 void BlockFloorCollision::UpdateEntity(GameEntity* _entity) {
-  
+
     if (!_entity) {
         return;
     }
 
     // CharacterStatusを取得
- 
+
     BlockStatus* blockStatus = getComponent<BlockStatus>(_entity);
 
     if (!blockStatus) {
@@ -40,7 +37,7 @@ void BlockFloorCollision::UpdateEntity(GameEntity* _entity) {
     if (blockStatus->GetIsFall()) {
         return;
     }
-   
+
     /// ====================================================
     /// 衝突判定の結果を使って CharacterStatus を更新
     /// ====================================================
@@ -49,7 +46,6 @@ void BlockFloorCollision::UpdateEntity(GameEntity* _entity) {
         std::vector<SphereCollider>* entityColliders = getComponents<SphereCollider>(_entity);
         for (auto& entityCollider : *entityColliders) {
             for (auto& [hitEntity, collisionState] : entityCollider.getCollisionStateMap()) {
-
 
                 if (_entity->getDataType() == hitEntity->getDataType()) {
                     continue;
@@ -62,7 +58,6 @@ void BlockFloorCollision::UpdateEntity(GameEntity* _entity) {
 
                 // CharacterStatusを取得
                 FloatingFloorStatus* hitEntityStatus = getComponent<FloatingFloorStatus>(hitEntity);
-              
 
                 if (!hitEntityStatus) {
                     continue;
@@ -72,8 +67,14 @@ void BlockFloorCollision::UpdateEntity(GameEntity* _entity) {
                     continue;
                 }
 
-                // CharacterStatusを更新
+                // 更新
+                blockStatus->TakeDamageForFloor();
                 blockStatus->SetPlusScoreRate(hitEntityStatus->GetScoreUPRatio());
+
+                // 死亡
+                if (blockStatus->GetCurrentHP() > 0) {
+                    return;
+                }
                 blockStatus->SetIsBreak(true);
             }
         }
