@@ -7,6 +7,7 @@
 #include "engine/EngineInclude.h"
 /// externals
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
 
 void SceneChanger::Initialize([[maybe_unused]] GameEntity* _entity) {
 }
@@ -22,7 +23,6 @@ bool SceneChanger::Edit() {
 }
 
 void SceneChanger::Finalize() {
-
 }
 
 void to_json(nlohmann::json& j, const SceneChanger& g) {

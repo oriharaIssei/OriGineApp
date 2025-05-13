@@ -213,9 +213,6 @@
     <ClInclude Include="code\component\SceneChanger.h">
       <Filter>component</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\SceneChanger\SceneChanger.h">
-      <Filter>component\SceneChanger</Filter>
-    </ClInclude>
     <ClInclude Include="code\component\SceneChanger\SceneChangerStatus.h">
       <Filter>component\SceneChanger</Filter>
     </ClInclude>
@@ -532,9 +529,6 @@
     </ClCompile>
     <ClCompile Include="code\component\SceneChanger.cpp">
       <Filter>component</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\SceneChanger\SceneChanger.cpp">
-      <Filter>component\SceneChanger</Filter>
     </ClCompile>
     <ClCompile Include="code\component\SceneChanger\SceneChangerStatus.cpp">
       <Filter>component\SceneChanger</Filter>

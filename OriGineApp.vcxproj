@@ -61,7 +61,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalOptions>/WX /utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/WX /utf-8 /bigobj %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -86,7 +86,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalOptions>/WX /utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/WX /utf-8 /bigobj %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -134,7 +134,6 @@
     <ClInclude Include="code\component\ResultUI\ResultUIScoreStatus.h" />
     <ClInclude Include="code\component\ResultUI\ResultUIkeyStatus.h" />
     <ClInclude Include="code\component\SceneChanger.h" />
-    <ClInclude Include="code\component\SceneChanger\SceneChanger.h" />
     <ClInclude Include="code\component\SceneChanger\SceneChangerStatus.h" />
     <ClInclude Include="code\component\SceneTransition\SceneTransition.h" />
     <ClInclude Include="code\component\Score\ScoreStatus.h" />
@@ -246,9 +245,6 @@
     <ClCompile Include="code\component\ResultUI\ResultUIScoreStatus.cpp" />
     <ClCompile Include="code\component\ResultUI\ResultUIkeyStatus.cpp" />
     <ClCompile Include="code\component\SceneChanger.cpp" />
-    <ClCompile Include="code\component\SceneChanger\SceneChanger.cpp">
-      <ObjectFileName>$(IntDir)\SceneChanger1.obj</ObjectFileName>
-    </ClCompile>
     <ClCompile Include="code\component\SceneChanger\SceneChangerStatus.cpp" />
     <ClCompile Include="code\component\SceneTransition\SceneTransition.cpp" />
     <ClCompile Include="code\component\Score\ScoreStatus.cpp" />

@@ -292,7 +292,7 @@ void MyGame::RegisterUsingComponents() {
 void MyGame::RegisterUsingSystems() {
     ECSManager* ecsManager = ECSManager::getInstance();
 
-     ecsManager->registerSystem<PlayerInputSystem>();
+    ecsManager->registerSystem<PlayerInputSystem>();
     ecsManager->registerSystem<PlayerMoveSystem>();
     ecsManager->registerSystem<PutBomSystem>();
     ecsManager->registerSystem<CreateFloorSystem>();
@@ -401,4 +401,5 @@ void MyGame::RegisterUsingSystems() {
     /// =================================================================================================
     ecsManager->registerSystem<GrayscaleEffect>();
     ecsManager->registerSystem<SmoothingEffect>();
+
 }
