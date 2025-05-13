@@ -2,9 +2,10 @@
 
 #include "component/LevelUPUI/LevelUIParentStatus.h"
 
+#include <string>
 /// externals
 #include "imgui/imgui.h"
-#include <string>
+#include "myGui/MyGui.h"
 
 void BlockManager::Initialize([[maybe_unused]] GameEntity* _entity) {
     /// 初期化でパラメータ編集してるから大丈夫、ここ消したら未定義値が出る
@@ -24,73 +25,73 @@ void BlockManager::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool BlockManager::Edit() {
     bool isChange = false;
 
-    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
-    isChange |= ImGui::InputInt("pillarHP", &HPMax_);
-    isChange |= ImGui::InputInt("columNumMax", &columNumMax_);
-    isChange |= ImGui::DragFloat3("blockSize", blockSize_.v);
-    isChange |= ImGui::DragFloat3("scalingSize", scalingSize_.v);
-    isChange |= ImGui::DragFloat("collisionRadius", &collisionRadius_, 0.01f);
-    isChange |= ImGui::DragFloat("startPositionX", &startPositionX_, 0.01f);
-    isChange |= ImGui::DragFloat("startPositionZ", &startPositionZ_, 0.01f);
-    isChange |= ImGui::DragFloat("nextCreatePositionX", &nextCreatePositionX_, 0.01f);
-    isChange |= ImGui::DragFloat("deadPositionX", &deadPositionX_, 0.01f);
-    isChange |= ImGui::DragFloat("basePosY", &basePosY_, 0.01f);
+    isChange |= InputGuiCommand("pillarHP", HPMax_);
+    isChange |= InputGuiCommand("columNumMax", columNumMax_);
+    isChange |= DragGuiVectorCommand<3,float>("blockSize", blockSize_);
+    isChange |= DragGuiVectorCommand<3,float>("scalingSize", scalingSize_);
+    isChange |= DragGuiCommand("collisionRadius", collisionRadius_, 0.01f);
+    isChange |= DragGuiCommand("startPositionX", startPositionX_, 0.01f);
+    isChange |= DragGuiCommand("startPositionZ", startPositionZ_, 0.01f);
+    isChange |= DragGuiCommand("nextCreatePositionX", nextCreatePositionX_, 0.01f);
+    isChange |= DragGuiCommand("deadPositionX", deadPositionX_, 0.01f);
+    isChange |= DragGuiCommand("basePosY", basePosY_, 0.01f);
 
     // random create
     ImGui::Text("Random Parameters");
     for (int i = 0; i < randomPar_.size(); ++i) {
         std::string label = "Random[" + std::to_string(i) + "]";
-        isChange |= ImGui::InputInt(label.c_str(), &randomPar_[i]);
+        isChange |= InputGuiCommand(label.c_str(), randomPar_[i]);
     }
 
     ImGui::Text("Costs");
     for (int i = 0; i < costs_.size(); ++i) {
         std::string label = "Cost[" + std::to_string(i) + "]";
-        isChange |= ImGui::InputInt(label.c_str(), &costs_[i]);
+        isChange |= InputGuiCommand(label.c_str(), costs_[i]);
     }
 
     ImGui::Text("Generate Interval");
     for (int i = 0; i < generateInterval_.size(); ++i) {
         std::string label = "Interval[" + std::to_string(i) + "]";
-        isChange |= ImGui::InputInt(label.c_str(), &generateInterval_[i]);
+        isChange |= InputGuiCommand(label.c_str(), generateInterval_[i]);
     }
 
     ImGui::Text("Score");
     for (int i = 0; i < scoreValue_.size(); ++i) {
         std::string label = "scoreValue[" + std::to_string(i) + "]";
-        isChange |= ImGui::DragFloat(label.c_str(), &scoreValue_[i]);
+        isChange |= DragGuiCommand(label.c_str(), scoreValue_[i]);
     }
 
     ImGui::Text("tenpo");
-    isChange |= ImGui::DragFloat("moveTenpo", &moveTenpo_, 0.01f);
-    isChange |= ImGui::InputInt("movetenpoNum", &moveTenpoNum_);
+    isChange |= DragGuiCommand("moveTenpo", moveTenpo_, 0.01f);
+    isChange |= InputGuiCommand("movetenpoNum", moveTenpoNum_);
 
     for (int i = 0; i < moveTenpos_.size(); ++i) {
         std::string label = "moveTenpos[" + std::to_string(i) + "]";
-        ImGui::DragFloat(label.c_str(), &moveTenpos_[i], 0.1f);
+        DragGuiCommand(label.c_str(), moveTenpos_[i], 0.1f);
     }
 
     for (int i = 0; i < nextLevelTime_.size(); ++i) {
         std::string label = "nextLevelTime[" + std::to_string(i) + "]";
-        ImGui::DragFloat(label.c_str(), &nextLevelTime_[i], 0.1f);
+        DragGuiCommand(label.c_str(), nextLevelTime_[i], 0.1f);
     }
 
     ImGui::Text("--------------easing---------------");
     ImGui::Text("scalingEase");
-    isChange |= ImGui::DragFloat("ScalingmaxTime", &scalingEase_.maxTime, 0.01f);
-    /* isChange |= ImGui::DragFloat("Scalingamplitude", &scalingEase_.amplitude, 0.01f);
-     isChange |= ImGui::DragFloat("Scalingperiod", &scalingEase_.period, 0.01f);*/
-    isChange |= ImGui::DragFloat("ScalingbackRatio", &scalingEase_.backRatio, 0.01f);
+    isChange |= DragGuiCommand("ScalingmaxTime", scalingEase_.maxTime, 0.01f);
+    /* isChange |= DragGuiCommand("Scalingamplitude", &scalingEase_.amplitude, 0.01f);
+     isChange |= DragGuiCommand("Scalingperiod", &scalingEase_.period, 0.01f);*/
+    isChange |= DragGuiCommand("ScalingbackRatio", scalingEase_.backRatio, 0.01f);
     ImGui::Text("scalingEase");
-    isChange |= ImGui::DragFloat("MoveScalingmaxTime", &moveScalingEase_.maxTime, 0.01f);
-    isChange |= ImGui::DragFloat("MoveScalingamplitude", &moveScalingEase_.amplitude, 0.01f);
-    isChange |= ImGui::DragFloat("MoveScalingperiod", &moveScalingEase_.period, 0.01f);
-    isChange |= ImGui::DragFloat("MoveScalingbackRatio", &moveScalingEase_.backRatio, 0.01f);
+    isChange |= DragGuiCommand("MoveScalingmaxTime", moveScalingEase_.maxTime, 0.01f);
+    isChange |= DragGuiCommand("MoveScalingamplitude", moveScalingEase_.amplitude, 0.01f);
+    isChange |= DragGuiCommand("MoveScalingperiod", moveScalingEase_.period, 0.01f);
+    isChange |= DragGuiCommand("MoveScalingbackRatio", moveScalingEase_.backRatio, 0.01f);
     ImGui::Text("moveEase");
-    isChange |= ImGui::DragFloat("moveTimemax", &moveTimemax_, 0.01f);
+    isChange |= DragGuiCommand("moveTimemax", moveTimemax_, 0.01f);
 
     return isChange;
 }

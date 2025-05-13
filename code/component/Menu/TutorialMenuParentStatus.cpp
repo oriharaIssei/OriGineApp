@@ -2,6 +2,7 @@
 
 // 外部ライブラリなど
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
 
 void TutorialMenuParentStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
     // 必要であれば初期化処理をここに記述
@@ -10,21 +11,21 @@ void TutorialMenuParentStatus::Initialize([[maybe_unused]] GameEntity* _entity) 
 bool TutorialMenuParentStatus::Edit() {
     bool isChange = false;
 
-    isChange |= ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange |= CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
     ImGui::Text("pos");
-    isChange |= ImGui::DragFloat2("initPos", initPos_.v, 0.01f);
-    isChange |= ImGui::DragFloat2("scrollValue", scrollValue_.v, 0.01f);
-    isChange |= ImGui::DragFloat2("endPos", endPos_.v, 0.01f);
+    isChange |= DragGuiVectorCommand("initPos", initPos_, 0.01f);
+    isChange |= DragGuiVectorCommand("scrollValue", scrollValue_, 0.01f);
+    isChange |= DragGuiVectorCommand("endPos", endPos_, 0.01f);
 
     ImGui::Text("easing");
-    isChange |= ImGui::DragFloat("moveEasing.maxTime", &moveEasing_.maxTime, 0.01f);
-    isChange |= ImGui::DragFloat("apperUVAnimation.maxTime", &apperUVEasing_.maxTime, 0.01f);
+    isChange |= DragGuiCommand("moveEasing.maxTime", moveEasing_.maxTime, 0.01f);
+    isChange |= DragGuiCommand("apperUVAnimation.maxTime", apperUVEasing_.maxTime, 0.01f);
 
     ImGui::Text("etc");
-    isChange |= ImGui::InputInt("maxPauge", &maxPauge_);
+    isChange |= InputGuiCommand("maxPauge", maxPauge_);
 
     return isChange;
 }

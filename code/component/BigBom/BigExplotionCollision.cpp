@@ -8,6 +8,7 @@
 #include "engine/EngineInclude.h"
 /// externals
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
 
 void BigExplotionCollision::Initialize([[maybe_unused]] GameEntity* _entity) {
     adaptTime_ = 0.1f;
@@ -17,7 +18,7 @@ void BigExplotionCollision::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool BigExplotionCollision::Edit() {
     bool isChange = false;
 
-    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
@@ -25,10 +26,10 @@ bool BigExplotionCollision::Edit() {
     isChange |= ImGui::InputFloat3("##BomOffset", positionOffset_.v);
 
     ImGui::Text("etc");
-    isChange |= ImGui::DragFloat("adaptTime", &adaptTime_);
-    isChange |= ImGui::DragFloat("CollisionRadius", &collisionRadius_);
+    isChange |= DragGuiCommand("adaptTime", adaptTime_);
+    isChange |= DragGuiCommand("CollisionRadius", collisionRadius_);
 
-    isChange |= ImGui::DragFloat("plusScoreRatio", &plusScoreRatio_);
+    isChange |= DragGuiCommand("plusScoreRatio", plusScoreRatio_);
     return isChange;
 }
 

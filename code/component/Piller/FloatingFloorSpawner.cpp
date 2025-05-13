@@ -1,6 +1,7 @@
 #include "FloatingFloorSpawner.h"
 /// externals
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
 #include <string>
 
 void FloatingFloorSpawner::Initialize([[maybe_unused]] GameEntity* _entity) {
@@ -15,21 +16,21 @@ void FloatingFloorSpawner::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool FloatingFloorSpawner::Edit() {
     bool isChange = false;
 
-    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
-    isChange |= ImGui::InputInt("pillarHP", &HPMax_);
-    isChange |= ImGui::InputInt("rowNumber", &rowNumber_);
-    isChange |= ImGui::DragFloat3("FallCollisionMin", fallCollisionSizeMin_.v, 0.01f);
-    isChange |= ImGui::DragFloat3("FallCollisionMax", fallCollisionSizeMax_.v, 0.01f);
-    isChange |= ImGui::DragFloat3("fallCollisionCenterPos", fallCollisionCenterPos_.v, 0.01f);
-    isChange |= ImGui::DragFloat("sideSpace", &sideSpace_, 0.01f);
-    isChange |= ImGui::DragFloat("positionHeight", &positionHeight_, 0.01f);
-    isChange |= ImGui::DragFloat("ratio", &scoreUpRate_, 0.01f);
+    isChange |= InputGuiCommand("pillarHP", HPMax_);
+    isChange |= InputGuiCommand("rowNumber", rowNumber_);
+    isChange |= DragGuiVectorCommand<3,float>("FallCollisionMin", fallCollisionSizeMin_, 0.01f);
+    isChange |= DragGuiVectorCommand<3,float>("FallCollisionMax", fallCollisionSizeMax_, 0.01f);
+    isChange |= DragGuiVectorCommand<3,float>("fallCollisionCenterPos", fallCollisionCenterPos_, 0.01f);
+    isChange |= DragGuiCommand("sideSpace", sideSpace_, 0.01f);
+    isChange |= DragGuiCommand("positionHeight", positionHeight_, 0.01f);
+    isChange |= DragGuiCommand("ratio", scoreUpRate_, 0.01f);
     ImGui::Text("No Edit");
 
-    isChange |= ImGui::DragFloat("revivalTime", &revivalTime_);
+    isChange |= DragGuiCommand("revivalTime", revivalTime_);
     return isChange;
 }
 

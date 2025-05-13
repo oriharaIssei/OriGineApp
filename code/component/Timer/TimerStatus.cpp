@@ -14,18 +14,18 @@ void TimerStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool TimerStatus::Edit() {
     bool isChange = false;
 
-    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", &isAlive_);
 
     ImGui::Spacing();
 
-    isChange |= ImGui::DragFloat("startTimer", &currentTimer_, 0.01f);
-    isChange |= ImGui::DragFloat("pulusTime", &pulusTime_, 0.01f);
-    isChange |= ImGui::DragFloat("minusTime", &minusTime_, 0.01f);
-    isChange |= ImGui::DragFloat("minusTimeNormal", &minusTimeNormal_, 0.01f);
+    isChange |= DragGuiCommand("startTimer", &currentTimer_, 0.01f);
+    isChange |= DragGuiCommand("pulusTime", &pulusTime_, 0.01f);
+    isChange |= DragGuiCommand("minusTime", &minusTime_, 0.01f);
+    isChange |= DragGuiCommand("minusTimeNormal", &minusTimeNormal_, 0.01f);
 
     ImGui::Text("NotChange");
 
-    isChange |= ImGui::DragFloat("currentPulusTime", &currentPulusTime_, 0.01f);
+    isChange |= DragGuiCommand("currentPulusTime", &currentPulusTime_, 0.01f);
 
     return isChange;
 }

@@ -7,6 +7,7 @@
 #include "engine/EngineInclude.h"
 /// externals
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
 
 void to_json(nlohmann::json& _json, const ResultUIkeyStatus& _component) {
     _json["isAlive"]             = _component.isAlive_;
@@ -29,17 +30,17 @@ void ResultUIkeyStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool ResultUIkeyStatus::Edit() {
     bool isChange = false;
 
-    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
-    isChange |= ImGui::DragFloat3("initPos", initPos_.v);
-    isChange |= ImGui::DragFloat3("easePos", easePos_.v);
+    isChange |= DragGuiVectorCommand<3,float>("initPos", initPos_);
+    isChange |= DragGuiVectorCommand<3,float>("easePos", easePos_);
     ImGui::Text("moveEasing");
-    isChange |= ImGui::DragFloat("moveEasing.maxTime", &moveEasing_.maxTime, 0.01f);
+    isChange |= DragGuiCommand("moveEasing.maxTime", moveEasing_.maxTime, 0.01f);
 
     ImGui::Text("AlphaEasing");
-    isChange |= ImGui::DragFloat("alphaEasing.maxTime", &alphaEasing_.maxTime, 0.01f);
+    isChange |= DragGuiCommand("alphaEasing.maxTime", alphaEasing_.maxTime, 0.01f);
 
     return isChange;
 }

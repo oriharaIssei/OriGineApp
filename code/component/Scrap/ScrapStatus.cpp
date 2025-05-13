@@ -8,7 +8,7 @@ void ScrapStatus::Initialize([[maybe_unused]] GameEntity* _entity) {}
 bool ScrapStatus::Edit() {
     bool isChange = false;
 
-    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", &isAlive_);
 
     ImGui::Spacing();
 

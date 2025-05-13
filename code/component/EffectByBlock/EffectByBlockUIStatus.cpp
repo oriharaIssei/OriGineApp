@@ -4,6 +4,7 @@
 #include "engine/EngineInclude.h"
 /// externals
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
 
 void to_json(nlohmann::json& _json, const EffectByBlockUIStatus& _component) {
     _json["isAlive"] = _component.isAlive_;
@@ -20,7 +21,7 @@ void EffectByBlockUIStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool EffectByBlockUIStatus::Edit() {
     bool isChange = false;
 
-    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 

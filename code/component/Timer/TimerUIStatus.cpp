@@ -14,7 +14,7 @@ void TimerUIStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool TimerUIStatus::Edit() {
     bool isChange = false;
 
-    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", &isAlive_);
 
     ImGui::Spacing();
 

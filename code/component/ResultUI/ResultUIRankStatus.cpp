@@ -7,6 +7,7 @@
 #include "engine/EngineInclude.h"
 /// externals
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
 
 void ResultUIRankStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 }
@@ -14,30 +15,30 @@ void ResultUIRankStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool ResultUIRankStatus::Edit() {
     bool isChange = false;
 
-    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
     // ComboDigit（桁数）のUI選択
 
-    isChange |= ImGui::DragFloat3("position", position_.v);
+    isChange |= DragGuiVectorCommand<3,float>("position", position_);
 
     // 回転量（2種）
     isChange |= ImGui::SliderAngle("rotateValue", &rotateValue_, 0, 1080);
 
     // スケール
-    isChange |= ImGui::DragFloat2("scale", scale_.v, 0.1f);
-    isChange |= ImGui::DragFloat2("easeScale", easeScale_.v, 0.1f);
+    isChange |= DragGuiVectorCommand("scale", scale_, 0.1f);
+    isChange |= DragGuiVectorCommand("easeScale", easeScale_, 0.1f);
 
     isChange |= ImGui::DragFloat2("textureSize", textureSize_.v, 0.01f);
 
     ImGui::Text("moveEasing");
-    isChange |= ImGui::DragFloat("scalingEasing_.maxTime", &scalingEasing_.maxTime, 0.01f);
+    isChange |= DragGuiCommand("scalingEasing_.maxTime", scalingEasing_.maxTime, 0.01f);
     ImGui::Text("scaleEasing");
-    isChange |= ImGui::DragFloat("rotateEasing_.maxTime", &rotateEasing_.maxTime, 0.01f);
+    isChange |= DragGuiCommand("rotateEasing_.maxTime", rotateEasing_.maxTime, 0.01f);
     ImGui::Text("ScoreValue");
     for (int32_t i = 0; i < rankValue_.size(); ++i) {
-        isChange |= ImGui::DragFloat(("rankValue" + std::to_string(i)).c_str(), &rankValue_[i]);
+        isChange |= DragGuiCommand(("rankValue" + std::to_string(i)).c_str(), rankValue_[i]);
     }
     return isChange;
 }

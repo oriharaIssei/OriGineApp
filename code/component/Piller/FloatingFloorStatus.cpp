@@ -1,6 +1,7 @@
 #include "FloatingFloorStatus.h"
 /// externals
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
 #include <string>
 
 void FloatingFloorStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
@@ -14,11 +15,11 @@ void FloatingFloorStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool FloatingFloorStatus::Edit() {
     bool isChange = false;
 
-    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
-    isChange |= ImGui::DragFloat("fallspeed", &fallspeed_, 0.01f);
+    isChange |= DragGuiCommand("fallspeed", fallspeed_, 0.01f);
 
     return isChange;
 }

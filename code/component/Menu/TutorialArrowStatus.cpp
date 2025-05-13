@@ -2,6 +2,7 @@
 
 // 外部ライブラリなど
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
 
 void TutorialArrowStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
     // 必要であれば初期化処理をここに記述
@@ -10,17 +11,17 @@ void TutorialArrowStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool TutorialArrowStatus::Edit() {
     bool isChange = false;
 
-    isChange |= ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange |= CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
     ImGui::Text("pos");
-    isChange |= ImGui::DragFloat2("startPos", startPos_.v, 0.01f);
-    isChange |= ImGui::DragFloat2("endPos", endPos_.v, 0.01f);
+    isChange |= DragGuiVectorCommand("startPos", startPos_, 0.01f);
+    isChange |= DragGuiVectorCommand("endPos", endPos_, 0.01f);
 
     ImGui::Text("easing");
-    isChange |= ImGui::DragFloat("moveEasing.maxTime", &moveEasing_.maxTime, 0.01f);
-    isChange |= ImGui::DragFloat("moveEasing.backRatio", &moveEasing_.backRatio, 0.01f);
+    isChange |= DragGuiCommand("moveEasing.maxTime", moveEasing_.maxTime, 0.01f);
+    isChange |= DragGuiCommand("moveEasing.backRatio", moveEasing_.backRatio, 0.01f);
 
     ImGui::Text("etc");
     // ComboDigit（桁数）のUI選択
@@ -30,7 +31,8 @@ bool TutorialArrowStatus::Edit() {
 
     int currentIndex = static_cast<int>(arrowDirection_);
     if (ImGui::Combo("Arrow Direction", &currentIndex, directionLabel, static_cast<int>(ArrowDirection::COUNT))) {
-        arrowDirection_ = static_cast<ArrowDirection>(currentIndex);
+        auto command    = std::make_unique<SetterCommand<ArrowDirection>>(&arrowDirection_, static_cast<ArrowDirection>(currentIndex));
+        EditorGroup::getInstance()->pushCommand(std::move(command));
     }
     return isChange;
 }

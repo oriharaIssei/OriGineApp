@@ -8,16 +8,16 @@ void ScrapSpawner::Initialize([[maybe_unused]] GameEntity* _entity) {}
 bool ScrapSpawner::Edit() {
     bool isChange = false;
 
-    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", &isAlive_);
 
     ImGui::Spacing();
 
     isChange |= ImGui::InputInt("createNum", &createNum_);
-    isChange |= ImGui::DragFloat("LifeTime", &lifeTime_, 0.1f);
-    isChange |= ImGui::DragFloat("FallStopPosY", &fallStopPosY_, 0.1f);
+    isChange |= DragGuiCommand("LifeTime", &lifeTime_, 0.1f);
+    isChange |= DragGuiCommand("FallStopPosY", &fallStopPosY_, 0.1f);
     isChange |= ImGui::DragFloat2("blowValue", blowValue_.v, 0.01f);
-    isChange |= ImGui::DragFloat("mass", &mass_, 0.01f);
-    isChange |= ImGui::DragFloat("colliderRadius", &colliderRadius_, 0.01f);
+    isChange |= DragGuiCommand("mass", &mass_, 0.01f);
+    isChange |= DragGuiCommand("colliderRadius", &colliderRadius_, 0.01f);
     return isChange;
 }
 

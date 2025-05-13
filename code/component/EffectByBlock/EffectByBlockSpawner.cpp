@@ -9,6 +9,7 @@
 #define ENGINE_COMPONENTS
 /// externals
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
 
 #include "EffectByBlockUIStatus.h"
 #include "system/EffectByBlock/EffectByBlockDeleteSystem.h"
@@ -20,7 +21,7 @@ void EffectByBlockSpawner::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool EffectByBlockSpawner::Edit() {
     bool isChange = false;
 
-    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 

@@ -8,6 +8,7 @@
 /// externals
 #include "component/ResultUI/ResultUIParentStatus.h"
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
 
 void ResultFontStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 }
@@ -15,22 +16,22 @@ void ResultFontStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool ResultFontStatus::Edit() {
     bool isChange = false;
 
-    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", &isAlive_);
 
     ImGui::Spacing();
 
-    isChange |= ImGui::DragFloat3("initPos", initPos_.v, 0.01f);
-    isChange |= ImGui::DragFloat3("easePos", easePos_.v, 0.01f);
-    isChange |= ImGui::DragFloat2("easeScale", easeScale_.v, 0.01f);
+    isChange |= DragGuiVectorCommand<3,float>("initPos", initPos_, 0.01f);
+    isChange |= DragGuiVectorCommand<3,float>("easePos", easePos_, 0.01f);
+    isChange |= DragGuiVectorCommand("easeScale", easeScale_, 0.01f);
 
     ImGui::Text("moveEasing");
-    isChange |= ImGui::DragFloat("moveEasing.maxTime", &moveEasing_.maxTime, 0.01f);
+    isChange |= DragGuiCommand("moveEasing.maxTime", moveEasing_.maxTime, 0.01f);
     ImGui::Text("scaleEasing");
-    isChange |= ImGui::DragFloat("zoomEasing_.maxTime", &zoomEasing_.maxTime, 0.01f);
+    isChange |= DragGuiCommand("zoomEasing_.maxTime", zoomEasing_.maxTime, 0.01f);
 
     ImGui::Text("waitTime");
-    isChange |= ImGui::DragFloat("reverseWaitTime_", &moveWaitTime_, 0.01f);
-    isChange |= ImGui::DragFloat("firstWaitTime_", &firstWaitTime_, 0.01f);
+    isChange |= DragGuiCommand("reverseWaitTime_", moveWaitTime_, 0.01f);
+    isChange |= DragGuiCommand("firstWaitTime_", firstWaitTime_, 0.01f);
 
     return isChange;
 }

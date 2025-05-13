@@ -2,6 +2,7 @@
 
 /// externals
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
 
 void BomStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
     currentTime_     = 0.0f;
@@ -14,17 +15,17 @@ void BomStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool BomStatus::Edit() {
     bool isChange = false;
 
-    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
     ImGui::Text("Offset");
-    isChange |= ImGui::InputFloat3("##BomOffset", positionOffset_.v);
+    isChange |= InputVectorGuiCommand("##BomOffset", positionOffset_);
 
     ImGui::Text("etc");
-    isChange |= ImGui::DragFloat("explotionTime", &explotionTime_);
-    isChange |= ImGui::DragFloat("CollisionRadius", &collisionRadius_);
-    isChange |= ImGui::DragFloat("launthSpeed", &launthSpeed_, 0.1f);
+    isChange |= DragGuiCommand("explotionTime", explotionTime_);
+    isChange |= DragGuiCommand("CollisionRadius", collisionRadius_);
+    isChange |= DragGuiCommand("launthSpeed", launthSpeed_, 0.1f);
 
     return isChange;
 }

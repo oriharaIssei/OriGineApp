@@ -4,6 +4,7 @@
 // 外部ライブラリなど
 #include "imgui/imgui.h"
 #include "input/Input.h"
+#include "myGui/MyGui.h"
 
 
   void to_json(nlohmann::json& j, const MenuStatus& m) {
@@ -47,26 +48,26 @@ void MenuStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool MenuStatus::Edit() {
     bool isChange = false;
 
-    isChange |= ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange |= CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
     ImGui::Text("pos");
-    isChange |= ImGui::DragFloat2("position", position_.v, 0.01f);
+    isChange |= DragGuiCommand("position", position_, 0.01f);
     for (int32_t i = 0; i < arrowPositions_.size(); ++i) {
-        isChange |= ImGui::DragFloat2(("arrow position" + std::to_string(i)).c_str(), arrowPositions_[i].v, 0.01f);
+        isChange |= DragGuiCommand(("arrow position" + std::to_string(i)).c_str(), arrowPositions_[i], 0.01f);
     }
-    isChange |= ImGui::DragFloat("arrowOffsetValue", &arrowOffsetValue_, 0.01f);
+    isChange |= DragGuiCommand("arrowOffsetValue", arrowOffsetValue_, 0.01f);
 
     ImGui::Text("easing");
-    isChange |= ImGui::DragFloat("moveEasing.maxTime", &moveEasing_.maxTime, 0.01f);
-    isChange |= ImGui::DragFloat("apperUVAnimation.maxTime", &apperUVEasing_.maxTime, 0.01f);
-    isChange |= ImGui::DragFloat("arrowMoveEasing.maxTime", &arrowMoveEasing_.maxTime, 0.01f);
-    isChange |= ImGui::DragFloat("arrowMoveEasing.backRatio", &arrowMoveEasing_.backRatio, 0.01f);
+    isChange |= DragGuiCommand("moveEasing.maxTime", moveEasing_.maxTime, 0.01f);
+    isChange |= DragGuiCommand("apperUVAnimation.maxTime", apperUVEasing_.maxTime, 0.01f);
+    isChange |= DragGuiCommand("arrowMoveEasing.maxTime", arrowMoveEasing_.maxTime, 0.01f);
+    isChange |= DragGuiCommand("arrowMoveEasing.backRatio", arrowMoveEasing_.backRatio, 0.01f);
 
 
     ImGui::Text("etc");
-    isChange |= ImGui::InputInt("maxPauge", &maxCategoryNum_);
+    isChange |= InputGuiCommand("maxPauge", maxCategoryNum_);
 
     return isChange;
 }

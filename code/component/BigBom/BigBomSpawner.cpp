@@ -2,6 +2,7 @@
 
 /// externals
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
 
 void BigBomSpawner::Initialize([[maybe_unused]] GameEntity* _entity) {
 
@@ -13,16 +14,16 @@ void BigBomSpawner::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool BigBomSpawner::Edit() {
     bool isChange = false;
 
-    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
-
+    
   
-    isChange |= ImGui::DragFloat("launthSpeed", &launthSpeed_); 
-    isChange |= ImGui::DragFloat3("spawnOffset", spawnOffset_.v);
+    isChange |= DragGuiCommand("launthSpeed", launthSpeed_); 
+    isChange |= DragGuiVectorCommand<3,float>("spawnOffset", spawnOffset_);
     ImGui::Text("collsion");
-    isChange |= ImGui::DragFloat3("collisionCenter", collisionCenter_.v);
-    isChange |= ImGui::DragFloat("collisionRadius", &collisionRadius_);
+    isChange |= DragGuiVectorCommand<3,float>("collisionCenter", collisionCenter_);
+    isChange |= DragGuiCommand("collisionRadius", collisionRadius_);
   
     return isChange;
 }

@@ -2,6 +2,7 @@
 
 /// externals
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
 
 void BomSpawner::Initialize([[maybe_unused]] GameEntity* _entity) {
 
@@ -13,12 +14,12 @@ void BomSpawner::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool BomSpawner::Edit() {
     bool isChange = false;
 
-    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
-    isChange |= ImGui::DragFloat("PutCoolTime", &putCoolTimeMax_);
-    isChange |= ImGui::InputInt("SettingBomNum", &ableSetBomNum_);
+    isChange |= DragGuiCommand("PutCoolTime", putCoolTimeMax_);
+    isChange |= InputGuiCommand("SettingBomNum", ableSetBomNum_);
 
     return isChange;
 }

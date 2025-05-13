@@ -14,7 +14,7 @@ void LevelUIStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool LevelUIStatus::Edit() {
     bool isChange = false;
 
-    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
@@ -25,8 +25,8 @@ bool LevelUIStatus::Edit() {
         levelUIDigit_ = static_cast<LevelUIDigit>(currentIndex);
     }
 
-    isChange |= ImGui::DragFloat3("offsetPos", offsetPos_.v);
-    isChange |= ImGui::DragFloat2("textureSize", textureSize_.v);
+    isChange |= DragGuiVectorCommand<3,float>("offsetPos", offsetPos_);
+    isChange |= DragGuiVectorCommand<2,float>("textureSize", textureSize_);
 
     return isChange;
 }

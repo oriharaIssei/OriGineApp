@@ -7,6 +7,7 @@
 #include "engine/EngineInclude.h"
 /// externals
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
 
 void OperateUIStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 }
@@ -14,15 +15,15 @@ void OperateUIStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool OperateUIStatus::Edit() {
     bool isChange = false;
 
-    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", &isAlive_);
 
     ImGui::Spacing();
-    isChange = ImGui::DragFloat("scalingEase_.maxTime", &scalingEase_.maxTime);
-    isChange = ImGui::DragFloat("scalingEase_.period", &scalingEase_.period);
-    isChange = ImGui::DragFloat("scalingEase_.amplitude", &scalingEase_.amplitude);
-    isChange = ImGui::DragFloat2("startTextureSize_", startTextureSize_.v);
-    isChange = ImGui::DragFloat2("maxTextureSize_", maxTextureSize_.v);
-    isChange = ImGui::DragFloat2("resultTextureSize_", resultTextureSize_.v);
+    isChange = DragGuiCommand("scalingEase_.maxTime", scalingEase_.maxTime);
+    isChange = DragGuiCommand("scalingEase_.period", scalingEase_.period);
+    isChange = DragGuiCommand("scalingEase_.amplitude", scalingEase_.amplitude);
+    isChange = DragGuiCommand("startTextureSize_", startTextureSize_);
+    isChange = DragGuiCommand("maxTextureSize_", maxTextureSize_);
+    isChange = DragGuiCommand("resultTextureSize_", resultTextureSize_);
     return isChange;
 }
 

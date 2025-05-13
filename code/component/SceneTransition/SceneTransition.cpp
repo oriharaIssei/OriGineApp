@@ -57,11 +57,11 @@ bool SceneTransition::Edit() {
         isChange      = true;
     }
 
-    isChange |= ImGui::DragFloat("Scene Ease MaxTime", &sceneEase_.maxTime, 0.01f);
-    isChange |= ImGui::DragFloat("waitTime", &waitTime_, 0.01f);
+    isChange |= DragGuiCommand("Scene Ease MaxTime", &sceneEase_.maxTime, 0.01f);
+    isChange |= DragGuiCommand("waitTime", &waitTime_, 0.01f);
 
-    isChange |= ImGui::DragFloat("startPositionX", &startPositionX_, 0.01f);
-    isChange |= ImGui::DragFloat("endPositionX", &endPositionX_, 0.01f);
+    isChange |= DragGuiCommand("startPositionX", &startPositionX_, 0.01f);
+    isChange |= DragGuiCommand("endPositionX", &endPositionX_, 0.01f);
 
     return isChange;
 }

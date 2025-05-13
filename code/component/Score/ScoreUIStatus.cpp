@@ -14,7 +14,7 @@ void ScoreUIStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool ScoreUIStatus::Edit() {
     bool isChange = false;
 
-    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", &isAlive_);
 
     ImGui::Spacing();
 

@@ -14,7 +14,7 @@ void SceneChangerStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool SceneChangerStatus::Edit() {
     bool isChange = false;
 
-    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", &isAlive_);
 
     ImGui::Spacing();
 

@@ -50,30 +50,30 @@ void LevelUIParentStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool LevelUIParentStatus::Edit() {
     bool isChange = false;
 
-    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
-    isChange |= ImGui::DragFloat3("initPos", initPos_.v);
-    isChange |= ImGui::DragFloat3("easePos", easePos_.v);
-    isChange |= ImGui::DragFloat2("easeScale", easeScale_.v);
-    isChange |= ImGui::DragFloat2("changingEaseScale", changingEaseScale_.v);
+    isChange |= DragGuiVectorCommand<3,float>("initPos", initPos_);
+    isChange |= DragGuiVectorCommand<3,float>("easePos", easePos_);
+    isChange |= DragGuiVectorCommand<2,float>("easeScale", easeScale_);
+    isChange |= DragGuiVectorCommand<2,float>("changingEaseScale", changingEaseScale_);
 
-    isChange |= ImGui::DragFloat3("moveOffset", moveOffset_.v);
+    isChange |= DragGuiVectorCommand<3,float>("moveOffset", moveOffset_);
 
     ImGui::Text("moveEasing");
-    isChange |= ImGui::DragFloat("moveEasing.maxTime", &moveEasing_.maxTime, 0.01f);
+    isChange |= DragGuiCommand("moveEasing.maxTime", moveEasing_.maxTime, 0.01f);
     ImGui::Text("scaleEasing");
-    isChange |= ImGui::DragFloat("scaleEasing.maxTime", &scaleEasing_.maxTime, 0.01f);
-    isChange |= ImGui::DragFloat("scaleEasing.amplitude", &scaleEasing_.amplitude, 0.01f);
-    isChange |= ImGui::DragFloat("scaleEasing.period", &scaleEasing_.period, 0.01f);
-    isChange |= ImGui::DragFloat("scaleEasing.backRatio", &scaleEasing_.backRatio, 0.01f);
+    isChange |= DragGuiCommand("scaleEasing.maxTime", scaleEasing_.maxTime, 0.01f);
+    isChange |= DragGuiCommand("scaleEasing.amplitude", scaleEasing_.amplitude, 0.01f);
+    isChange |= DragGuiCommand("scaleEasing.period", scaleEasing_.period, 0.01f);
+    isChange |= DragGuiCommand("scaleEasing.backRatio", scaleEasing_.backRatio, 0.01f);
     ImGui::Text("uvScrollEasing");
-    isChange |= ImGui::DragFloat("uvScrollEasing.maxTime", &uvScrollEasing_.maxTime, 0.01f);
+    isChange |= DragGuiCommand("uvScrollEasing.maxTime", uvScrollEasing_.maxTime, 0.01f);
 
     ImGui::Text("waitTime");
-    isChange |= ImGui::DragFloat("scrollWaitTime", &scrollWaitTime_, 0.01f);
-    isChange |= ImGui::DragFloat("reverseWaitTime", &reverseWaitTime_, 0.01f);
+    isChange |= DragGuiCommand("scrollWaitTime", scrollWaitTime_, 0.01f);
+    isChange |= DragGuiCommand("reverseWaitTime", reverseWaitTime_, 0.01f);
 
     return isChange;
 }

@@ -7,6 +7,7 @@
 #include "engine/EngineInclude.h"
 /// externals
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
 
 void ResultUIScoreStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 }
@@ -14,7 +15,7 @@ void ResultUIScoreStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool ResultUIScoreStatus::Edit() {
     bool isChange = false;
 
-    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
@@ -22,11 +23,12 @@ bool ResultUIScoreStatus::Edit() {
     static const char* digitLabels[] = {"ONE", "TWO", "THREE", "FLOR", "FIVE"};
     int currentIndex                 = static_cast<int>(uiDigit_);
     if (ImGui::Combo("LevelUI Digit", &currentIndex, digitLabels, static_cast<int>(ResultUIDigit::COUNT))) {
-        uiDigit_ = static_cast<ResultUIDigit>(currentIndex);
+        auto command = std::make_unique<SetterCommand<ResultUIScoreStatus::ResultUIDigit>>(&uiDigit_, static_cast<ResultUIDigit>(currentIndex));
+        EditorGroup::getInstance()->pushCommand(std::move(command));
     }
 
-    isChange |= ImGui::DragFloat3("offsetPos", offsetPos_.v);
-    isChange |= ImGui::DragFloat2("textureSize", textureSize_.v);
+    isChange |= DragGuiVectorCommand<3,float>("offsetPos", offsetPos_);
+    isChange |= DragGuiVectorCommand("textureSize", textureSize_);
 
     return isChange;
 }

@@ -2,6 +2,7 @@
 
 /// externals
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
 
 void BigBomStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
     currentTime_ = 0.0f;
@@ -11,7 +12,7 @@ void BigBomStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool BigBomStatus::Edit() {
     bool isChange = false;
 
-    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 

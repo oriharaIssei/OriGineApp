@@ -7,6 +7,7 @@
 #include "engine/EngineInclude.h"
 /// externals
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
 
 void ComboStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
     currentComboNum_ = 0;
@@ -18,11 +19,11 @@ void ComboStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool ComboStatus::Edit() {
     bool isChange = false;
 
-    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
-    isChange |= ImGui::DragFloat("continuationTime", &continuationTime_, 0.01f);
+    isChange |= DragGuiCommand("continuationTime", continuationTime_, 0.01f);
     /*  isChange |= ImGui::InputInt("d", &currentComboNum_);*/
 
     return isChange;

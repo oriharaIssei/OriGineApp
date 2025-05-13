@@ -7,6 +7,7 @@
 #include "engine/EngineInclude.h"
 /// externals
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
 
 void TutorialMenuStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 }
@@ -14,14 +15,14 @@ void TutorialMenuStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool TutorialMenuStatus::Edit() {
     bool isChange = false;
 
-    isChange = ImGui::Checkbox("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
    
 
-    isChange |= ImGui::DragFloat2("offsetPos", offsetPos_.v);
-    isChange |= ImGui::DragFloat2("textureSize", textureSize_.v);
+    isChange |= DragGuiVectorCommand("offsetPos", offsetPos_);
+    isChange |= DragGuiVectorCommand("textureSize", textureSize_);
 
     return isChange;
 }
