@@ -1,12 +1,18 @@
 #include "MyGame.h"
 
 /// engine
-#include "Engine.h"
+
+// ECS
+// component
+
+// system
+
+// engine include
+#define ENGINE_INCLUDE
+#define ENGINE_ECS
+#include <EngineInclude.h>
 
 // scene
-#include "scene/GameScene.h"
-#include "scene/TitleScene.h"
-#include"scene/ResultScene.h"
 #include "sceneManager/SceneManager.h"
 
 /// lib
@@ -14,7 +20,6 @@
 #include "logger/Logger.h"
 
 #ifdef _DEBUG
-
 /// editor
 #include "ECSEditor.h"
 #include "module/editor/EditorGroup.h"
@@ -22,7 +27,6 @@
 #include "ECSDebugger.h"
 #include "logger/Logger.h"
 #include "module/debugger/DebuggerGroup.h"
-
 #endif // DEBUG
 
 MyGame::MyGame() {}
@@ -33,24 +37,19 @@ void MyGame::Initialize() {
     ///=================================================================================================
     // Game のための 初期化
     ///=================================================================================================
-    engine_ = Engine::getInstance();
+    variables_ = GlobalVariables::getInstance();
 
-    variables_    = GlobalVariables::getInstance();
+    engine_       = Engine::getInstance();
     sceneManager_ = SceneManager::getInstance();
 
     variables_->LoadAllFile();
     engine_->Initialize();
     sceneManager_->Initialize();
 
-    // exe 上で 使用するscene
-    sceneManager_->addScene("Title", []() { return std::make_unique<TitleScene>(); });
-    sceneManager_->addScene("Game", []() { return std::make_unique<GameScene>(); });
-    sceneManager_->addScene("Result", []() { return std::make_unique<ResultScene>(); });
-
-    SerializedField<std::string> startupSceneName{"Settings", "Scene", "StartupSceneName"};
-    sceneManager_->changeScene(startupSceneName);
+    sceneManager_->sceneChange2StartupScene();
     // シーンの変更を適応するために 一度更新
     sceneManager_->executeSceneChange();
+
 #ifdef _DEBUG
     ///=================================================================================================
     // Editor の初期化
@@ -108,4 +107,79 @@ void MyGame::Run() {
 
         engine_->EndFrame();
     }
+}
+
+void MyGame::RegisterUsingComponents() {
+    ECSManager* ecsManager = ECSManager::getInstance();
+
+    ecsManager->registerComponent<Transform>();
+    ecsManager->registerComponent<CameraTransform>();
+
+    ecsManager->registerComponent<DirectionalLight>();
+    ecsManager->registerComponent<PointLight>();
+    ecsManager->registerComponent<SpotLight>();
+
+    ecsManager->registerComponent<Rigidbody>();
+
+    ecsManager->registerComponent<AABBCollider>();
+    ecsManager->registerComponent<SphereCollider>();
+
+    ecsManager->registerComponent<Emitter>();
+
+    ecsManager->registerComponent<Audio>();
+
+    ecsManager->registerComponent<ModelNodeAnimation>();
+    ecsManager->registerComponent<PrimitiveNodeAnimation>();
+
+    ecsManager->registerComponent<ModelMeshRenderer>();
+    ecsManager->registerComponent<PlaneRenderer>();
+    ecsManager->registerComponent<SpriteRenderer>();
+    ecsManager->registerComponent<LineRenderer>();
+}
+
+void MyGame::RegisterUsingSystems() {
+    ECSManager* ecsManager = ECSManager::getInstance();
+
+    /// ====================================================================================================
+    // Initialize
+    /// ====================================================================================================
+
+    /// ===================================================================================================
+    // Input
+    /// ===================================================================================================
+
+    /// ===================================================================================================
+    // StateTransition
+    /// ===================================================================================================
+
+    /// =================================================================================================
+    // Movement
+    /// =================================================================================================
+    ecsManager->registerSystem<MoveSystemByRigidBody>();
+
+    /// =================================================================================================
+    // Collision
+    /// =================================================================================================
+    ecsManager->registerSystem<CollisionCheckSystem>();
+
+    /// =================================================================================================
+    // Effect
+    /// =================================================================================================
+    ecsManager->registerSystem<EmitterWorkSystem>();
+    ecsManager->registerSystem<PrimitiveNodeAnimationWorkSystem>();
+
+    /// =================================================================================================
+    // Render
+    /// =================================================================================================
+    ecsManager->registerSystem<ParticleRenderSystem>();
+    ecsManager->registerSystem<SpriteRenderSystem>();
+    ecsManager->registerSystem<TexturedMeshRenderSystem>();
+    ecsManager->registerSystem<LineRenderSystem>();
+    ecsManager->registerSystem<ColliderRenderingSystem>();
+
+    /// =================================================================================================
+    // PostRender
+    /// =================================================================================================
+    ecsManager->registerSystem<GrayscaleEffect>();
+    ecsManager->registerSystem<SmoothingEffect>();
 }
