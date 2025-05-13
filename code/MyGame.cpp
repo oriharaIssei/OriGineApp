@@ -13,6 +13,7 @@
 #include <EngineInclude.h>
 
 // scene
+#include "iScene/IScene.h"
 #include "sceneManager/SceneManager.h"
 
 /// lib
@@ -28,113 +29,111 @@
 #include "module/debugger/DebuggerGroup.h"
 #endif // DEBUG
 
-#include "Application/code/component/Player/PlayerStates.h"
-#include "Application/code/component/Piller/FloatingFloorStatus.h"
-#include "Application/code/component/Piller/FloatingFloorSpawner.h"
-#include "Application/code/component/Bom/BomSpawner.h"
-#include "Application/code/component/Bom/BomStatus.h"
-#include "Application/code/component/Bom/ExplotionCollision.h"
-#include "Application/code/component/Combo/ComboStatus.h"
-#include "Application/code/component/Combo/ComboUIStatus.h"
-#include "Application/code/component/Timer/TimerUIStatus.h"
-#include "Application/code/component/Timer/TimerStatus.h"
-#include "Application/code/component/Block/BlockManager.h"
-#include "Application/code/component/Block/BlockStatus.h"
-#include "Application/code/component/Scrap/ScrapSpawner.h"
-#include "Application/code/component/Scrap/ScrapStatus.h"
 #include "Application/code/component/BigBom/BigBomSpawner.h"
 #include "Application/code/component/BigBom/BigBomStatus.h"
 #include "Application/code/component/BigBom/BigExplotionCollision.h"
-#include "Application/code/component/Score/ScoreStatus.h"
-#include "Application/code/component/Score/ScoreUIStatus.h"
-#include "Application/code/component/Field/FieldStatus.h"
-#include "Application/code/component/EffectByBlock/EffectByBlockUIStatus.h"
-#include "Application/code/component/OperateUI/OperateUIStatus.h"
-#include "Application/code/component/SceneChanger/SceneChangerStatus.h"
+#include "Application/code/component/Block/BlockManager.h"
+#include "Application/code/component/Block/BlockStatus.h"
+#include "Application/code/component/Bom/BomSpawner.h"
+#include "Application/code/component/Bom/BomStatus.h"
+#include "Application/code/component/Bom/ExplotionCollision.h"
 #include "Application/code/component/Button.h"
-#include "Application/code/component/SceneChanger.h"
+#include "Application/code/component/Combo/ComboStatus.h"
+#include "Application/code/component/Combo/ComboUIStatus.h"
 #include "Application/code/component/EffectByBlock/EffectByBlockSpawner.h"
+#include "Application/code/component/EffectByBlock/EffectByBlockUIStatus.h"
+#include "Application/code/component/Field/FieldStatus.h"
 #include "Application/code/component/LevelUPUI/LevelUIParentStatus.h"
 #include "Application/code/component/LevelUPUI/LevelUIStatus.h"
-#include "Application/code/component/Menu/TutorialMenuParentStatus.h"
-#include "Application/code/component/Menu/TutorialMenuStatus.h"
 #include "Application/code/component/Menu/MenuStatus.h"
 #include "Application/code/component/Menu/TutorialArrowStatus.h"
+#include "Application/code/component/Menu/TutorialMenuParentStatus.h"
+#include "Application/code/component/Menu/TutorialMenuStatus.h"
+#include "Application/code/component/OperateUI/OperateUIStatus.h"
+#include "Application/code/component/Piller/FloatingFloorSpawner.h"
+#include "Application/code/component/Piller/FloatingFloorStatus.h"
+#include "Application/code/component/Player/PlayerStates.h"
+#include "Application/code/component/SceneChanger.h"
+#include "Application/code/component/SceneChanger/SceneChangerStatus.h"
 #include "Application/code/component/SceneTransition/SceneTransition.h"
-#include"component/ResultUI/ResultUIParentStatus.h"
-#include"component/ResultUI/ResultUIRankStatus.h"
-#include"component/ResultUI/ResultUIScoreStatus.h"
-#include"component/ResultUI/ResultFontStatus.h"
-#include"component/ResultUI/ResultUIkeyStatus.h"
+#include "Application/code/component/Score/ScoreStatus.h"
+#include "Application/code/component/Score/ScoreUIStatus.h"
+#include "Application/code/component/Scrap/ScrapSpawner.h"
+#include "Application/code/component/Scrap/ScrapStatus.h"
+#include "Application/code/component/Timer/TimerStatus.h"
+#include "Application/code/component/Timer/TimerUIStatus.h"
+#include "component/ResultUI/ResultFontStatus.h"
+#include "component/ResultUI/ResultUIkeyStatus.h"
+#include "component/ResultUI/ResultUIParentStatus.h"
+#include "component/ResultUI/ResultUIRankStatus.h"
+#include "component/ResultUI/ResultUIScoreStatus.h"
 
 // system
-#include "Application/code/system/Player/PlayerInput.h"
-#include "Application/code/system/Player/PlayerMoveSystem.h"
-#include "Application/code/system/Bom/PutBomSystem.h"
-#include "Application/code/system/Bom/BomExplotionSystem.h"
-#include "Application/code/system/Bom/DeleteBomSystem.h"
-#include "Application/code/system/Bom/DeleteExplotionCollision.h"
-#include "Application/code/system/Player/PlayerFollowCameraSystem.h"
-#include "Application/code/system/Player/PlayerCreateBigBomSystem.h"
-#include "Application/code/system/Floor/DeleteFloorSystem.h"
-#include "Application/code/system/Floor/FloorUpdateMatrixSystem.h"
-#include "Application/code/system/Combo/ComboUIScrollSystem.h"
-#include "Application/code/system/Combo/ComboSystem.h"
-#include "Application/code/system/Timer/TimerDecrementSystem.h"
-#include "Application/code/system/Timer/TimerUIScrollSystem.h"
-#include "Application/code/system/FloatingFloor/CreateFloorSystem.h"
-#include "Application/code/system/FloatingFloor/FloatingFloorFallSystem.h"
-#include "Application/code/system/FloatingFloor/DeleteFloatingFloorSystem.h"
-#include "Application/code/system/FloatingFloor/FloatingFloorDamageSystem.h"
-#include "Application/code/system/FloatingFloor/CanageStateFallSystem.h"
-#include "Application/code/system/Matrix/UpdateMatrixSystem.h"
-#include "Application/code/system/Block/BlockSpawnSystem.h"
-#include "Application/code/system/Block/BlockMoveSystem.h"
-#include "Application/code/system/Block/DeleteBlockSystem.h"
-#include "Application/code/system/Block/MoveTenpoSystem.h"
-#include "Application/code/system/Bom/BomCollisionExSystem.h"
-#include "Application/code/system/Block/BreakBlockSystem.h"
-#include "Application/code/system/Block/BlockExBomCollision.h"
-#include "Application/code/system/scrap/ScrapFallSystem.h"
-#include "Application/code/system/scrap/ScrapDeleteSystem.h"
-#include "Application/code/system/scrap/ScrapToPlayerCollisionSystem.h"
-#include "Application/code/system/FloatingFloor/FloatingFloorRevivalSystem.h"
-#include "Application/code/system/Block/BlockFloorCollision.h"
-#include "Application/code/system/Score/ScoreIncrementSystem.h"
-#include "Application/code/system/Score/ScoreUIScrollSystem.h"
 #include "Application/code/system/BigBom/BigBomCollisionExSystem.h"
-#include "Application/code/system/BigBom/DeleteBigExplotionCollision.h"
 #include "Application/code/system/BigBom/BigBomInputSystem.h"
 #include "Application/code/system/BigBom/BigBomLaunchSystem.h"
 #include "Application/code/system/BigBom/DeleteBigBomSystem.h"
-#include "Application/code/system/EffectByBlock/EffectByBlockDrawSystem.h"
-#include "Application/code/system/EffectByBlock/EffectByBlockDeleteSystem.h"
-#include "Application/code/system/OperateUI/OperateUISystem.h"
-#include "Application/code/system/SceneChanger/SceneChangerSystem.h"
+#include "Application/code/system/BigBom/DeleteBigExplotionCollision.h"
+#include "Application/code/system/Block/BlockColorChangeSystem.h"
+#include "Application/code/system/Block/BlockExBomCollision.h"
+#include "Application/code/system/Block/BlockFloorCollision.h"
+#include "Application/code/system/Block/BlockMoveSystem.h"
+#include "Application/code/system/Block/BlockSpawnSystem.h"
+#include "Application/code/system/Block/BreakBlockSystem.h"
+#include "Application/code/system/Block/DeleteBlockSystem.h"
+#include "Application/code/system/Block/MoveTenpoSystem.h"
+#include "Application/code/system/Bom/BomCollisionExSystem.h"
+#include "Application/code/system/Bom/BomExplotionSystem.h"
+#include "Application/code/system/Bom/DeleteBomSystem.h"
+#include "Application/code/system/Bom/DeleteExplotionCollision.h"
+#include "Application/code/system/Bom/PutBomSystem.h"
 #include "Application/code/system/ButtonInputSystem.h"
 #include "Application/code/system/ChangeSceneByButton.h"
+#include "Application/code/system/Combo/ComboSystem.h"
+#include "Application/code/system/Combo/ComboUIScrollSystem.h"
+#include "Application/code/system/EffectByBlock/EffectByBlockDeleteSystem.h"
+#include "Application/code/system/EffectByBlock/EffectByBlockDrawSystem.h"
+#include "Application/code/system/FloatingFloor/CanageStateFallSystem.h"
+#include "Application/code/system/FloatingFloor/CreateFloorSystem.h"
+#include "Application/code/system/FloatingFloor/DeleteFloatingFloorSystem.h"
+#include "Application/code/system/FloatingFloor/FloatingFloorDamageSystem.h"
+#include "Application/code/system/FloatingFloor/FloatingFloorFallSystem.h"
+#include "Application/code/system/FloatingFloor/FloatingFloorRevivalSystem.h"
+#include "Application/code/system/Floor/DeleteFloorSystem.h"
+#include "Application/code/system/Floor/FloorUpdateMatrixSystem.h"
 #include "Application/code/system/LeverlUP/LevelUIAdaptSystem.h"
 #include "Application/code/system/LeverlUP/LevelUIAnimationSystem.h"
 #include "Application/code/system/LeverlUP/LevelUIInitSystem.h"
 #include "Application/code/system/LeverlUP/LevelUIParentInitSystem.h"
+#include "Application/code/system/Matrix/UpdateMatrixSystem.h"
+#include "Application/code/system/Menu/MenuArrowSystem.h"
+#include "Application/code/system/Menu/MenuFontSystem.h"
+#include "Application/code/system/Menu/MenuSystem.h"
+#include "Application/code/system/Menu/MenutextSystem.h"
+#include "Application/code/system/Menu/TutorialArrowSystem.h"
 #include "Application/code/system/Menu/TutorialMenuParentSystem.h"
 #include "Application/code/system/Menu/TutorialMenuSystem.h"
-#include "Application/code/system/Menu/MenuArrowSystem.h"
-#include "Application/code/system/Menu/MenuSystem.h"
-#include "Application/code/system/Menu/MenuFontSystem.h"
-#include "Application/code/system/Menu/TutorialArrowSystem.h"
-#include "Application/code/system/Block/BlockColorChangeSystem.h"
+#include "Application/code/system/OperateUI/OperateUISystem.h"
+#include "Application/code/system/Player/PlayerCreateBigBomSystem.h"
+#include "Application/code/system/Player/PlayerFollowCameraSystem.h"
+#include "Application/code/system/Player/PlayerInput.h"
+#include "Application/code/system/Player/PlayerMoveSystem.h"
+#include "Application/code/system/SceneChanger/SceneChangerSystem.h"
 #include "Application/code/system/SceneTransitionSystem/SceneTransitionSystem.h"
-#include "Application/code/system/Menu/MenutextSystem.h"
+#include "Application/code/system/Score/ScoreIncrementSystem.h"
+#include "Application/code/system/Score/ScoreUIScrollSystem.h"
+#include "Application/code/system/scrap/ScrapDeleteSystem.h"
+#include "Application/code/system/scrap/ScrapFallSystem.h"
+#include "Application/code/system/scrap/ScrapToPlayerCollisionSystem.h"
+#include "Application/code/system/Timer/TimerDecrementSystem.h"
+#include "Application/code/system/Timer/TimerUIScrollSystem.h"
+#include "system/ResultUI/ResultFontSystem.h"
+#include "system/ResultUI/ResultKeySystem.h"
+#include "system/ResultUI/ResultRankSystem.h"
+#include "system/ResultUI/ResultScoreAdaptSystem.h"
+#include "system/ResultUI/ResultUIParentSystem.h"
 #include "system/UpdateButtonColorByState.h"
 #include "system/UsingCameraSetSystem.h"
-#include"system/ResultUI/ResultScoreAdaptSystem.h"
-#include"system/ResultUI/ResultUIParentSystem.h"
-#include"system/ResultUI/ResultFontSystem.h"
-#include"system/ResultUI/ResultRankSystem.h"
-#include"system/ResultUI/ResultKeySystem.h"
-
-
 
 MyGame::MyGame() {}
 
@@ -157,8 +156,6 @@ void MyGame::Initialize() {
     RegisterUsingSystems();
 
     sceneManager_->sceneChange2StartupScene();
-    // シーンの変更を適応するために 一度更新
-    sceneManager_->executeSceneChange();
 
 #ifdef _DEBUG
     ///=================================================================================================
@@ -198,6 +195,13 @@ void MyGame::Initialize() {
 }
 
 void MyGame::Finalize() {
+    EditorGroup* editorGroup     = EditorGroup::getInstance();
+    DebuggerGroup* debuggerGroup = DebuggerGroup::getInstance();
+    editorGroup->Finalize();
+    debuggerGroup->Finalize();
+
+    SceneFinalize();
+
     sceneManager_->Finalize();
     engine_->Finalize();
 }
@@ -222,8 +226,7 @@ void MyGame::Run() {
 void MyGame::RegisterUsingComponents() {
     ECSManager* ecsManager = ECSManager::getInstance();
 
-
-     ecsManager->registerComponent<PlayerStates>();
+    ecsManager->registerComponent<PlayerStates>();
     ecsManager->registerComponent<FloatingFloorSpawner>();
     ecsManager->registerComponent<BomSpawner>();
     ecsManager->registerComponent<BomStatus>();
@@ -262,7 +265,6 @@ void MyGame::RegisterUsingComponents() {
     ecsManager->registerComponent<ResultFontStatus>();
     ecsManager->registerComponent<ResultUIkeyStatus>();
 
-
     ecsManager->registerComponent<Transform>();
     ecsManager->registerComponent<CameraTransform>();
 
@@ -286,7 +288,7 @@ void MyGame::RegisterUsingComponents() {
     ecsManager->registerComponent<PlaneRenderer>();
     ecsManager->registerComponent<SpriteRenderer>();
     ecsManager->registerComponent<LineRenderer>();
-   //ecsManager->registerComponent<SkyboxRenderer>();
+    // ecsManager->registerComponent<SkyboxRenderer>();
 }
 
 void MyGame::RegisterUsingSystems() {
@@ -394,12 +396,11 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<TexturedMeshRenderSystem>();
     ecsManager->registerSystem<LineRenderSystem>();
     ecsManager->registerSystem<ColliderRenderingSystem>();
-    //ecsManager->registerSystem<SkyboxRender>();
+    // ecsManager->registerSystem<SkyboxRender>();
 
     /// =================================================================================================
     // PostRender
     /// =================================================================================================
     ecsManager->registerSystem<GrayscaleEffect>();
     ecsManager->registerSystem<SmoothingEffect>();
-
 }
