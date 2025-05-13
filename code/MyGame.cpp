@@ -137,7 +137,7 @@ void MyGame::RegisterUsingComponents() {
     ecsManager->registerComponent<PlaneRenderer>();
     ecsManager->registerComponent<SpriteRenderer>();
     ecsManager->registerComponent<LineRenderer>();
-    ecsManager->registerComponent<SkyboxRenderer>();
+   //ecsManager->registerComponent<SkyboxRenderer>();
 }
 
 void MyGame::RegisterUsingSystems() {
@@ -179,7 +179,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<TexturedMeshRenderSystem>();
     ecsManager->registerSystem<LineRenderSystem>();
     ecsManager->registerSystem<ColliderRenderingSystem>();
-    ecsManager->registerSystem<SkyboxRender>();
+    //ecsManager->registerSystem<SkyboxRender>();
 
     /// =================================================================================================
     // PostRender
