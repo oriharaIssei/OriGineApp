@@ -15,7 +15,7 @@ void OperateUIStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool OperateUIStatus::Edit() {
     bool isChange = false;
 
-    isChange = CheckBoxCommand("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
     isChange = DragGuiCommand("scalingEase_.maxTime", scalingEase_.maxTime);

@@ -1,6 +1,7 @@
 #include "SceneTransition.h"
 #include "component/SceneChanger/SceneChangerStatus.h"
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
 
 bool SceneTransition::isTitleTransitionOut_ = false;
 
@@ -57,11 +58,11 @@ bool SceneTransition::Edit() {
         isChange      = true;
     }
 
-    isChange |= DragGuiCommand("Scene Ease MaxTime", &sceneEase_.maxTime, 0.01f);
-    isChange |= DragGuiCommand("waitTime", &waitTime_, 0.01f);
+    isChange |= DragGuiCommand("Scene Ease MaxTime", sceneEase_.maxTime, 0.01f);
+    isChange |= DragGuiCommand("waitTime", waitTime_, 0.01f);
 
-    isChange |= DragGuiCommand("startPositionX", &startPositionX_, 0.01f);
-    isChange |= DragGuiCommand("endPositionX", &endPositionX_, 0.01f);
+    isChange |= DragGuiCommand("startPositionX", startPositionX_, 0.01f);
+    isChange |= DragGuiCommand("endPositionX", endPositionX_, 0.01f);
 
     return isChange;
 }

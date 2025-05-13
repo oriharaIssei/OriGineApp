@@ -7,6 +7,7 @@
 #include "engine/EngineInclude.h"
 /// externals
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
 
 void TimerUIStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 }
@@ -14,7 +15,7 @@ void TimerUIStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool TimerUIStatus::Edit() {
     bool isChange = false;
 
-    isChange = CheckBoxCommand("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
@@ -22,7 +23,9 @@ bool TimerUIStatus::Edit() {
     static const char* digitLabels[] = {"ONE", "TWO", "DecimalONE", "DecimalTWO"};
     int currentIndex                 = static_cast<int>(digit_);
     if (ImGui::Combo("Timer Digit", &currentIndex, digitLabels, static_cast<int>(TimeDigit::COUNT))) {
-        digit_ = static_cast<TimeDigit>(currentIndex);
+        auto command = std::make_unique<SetterCommand<int32_t>>(&currentIndex, currentIndex);
+        EditorGroup::getInstance()->pushCommand(std::move(command));
+        isChange = true;
     }
 
     return isChange;

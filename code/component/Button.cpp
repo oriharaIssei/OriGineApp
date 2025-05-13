@@ -12,7 +12,6 @@
 #include "myGui/MyGui.h"
 #endif // _DEBUG
 
-
 void to_json(nlohmann::json& j, const Button& r) {
     /// ============ color ============ ///
     nlohmann::json normalColorJson  = nlohmann::json::object();
@@ -88,9 +87,9 @@ bool Button::Edit() {
     bool isChanged = false;
 
     if (ImGui::TreeNode("Button Colors")) {
-        isChanged |= ColorEditGuiCommand("Normal Color",  normalColor_);
-        isChanged |= ColorEditGuiCommand("Hover Color",   hoverColor_);
-        isChanged |= ColorEditGuiCommand("Press Color",   pressColor_);
+        isChanged |= ColorEditGuiCommand("Normal Color", normalColor_);
+        isChanged |= ColorEditGuiCommand("Hover Color", hoverColor_);
+        isChanged |= ColorEditGuiCommand("Press Color", pressColor_);
         isChanged |= ColorEditGuiCommand("Release Color", releaseColor_);
 
         ImGui::TreePop();
@@ -124,7 +123,7 @@ bool Button::Edit() {
         }
         // add
         if (ImGui::Button("Add Key")) {
-            auto command = std::make_unique<AddElementCommand<std::vector<Key>>>(shortcutKey_, Key::ESCAPE);
+            auto command = std::make_unique<AddElementCommand<std::vector<Key>>>(&shortcutKey_, Key::ESCAPE);
             EditorGroup::getInstance()->pushCommand(std::move(command));
             isChanged = true;
         }
@@ -132,7 +131,7 @@ bool Button::Edit() {
         // remove
         if (ImGui::Button("Remove Key")) {
             if (shortcutKey_.size() > 0) {
-                auto command = std::make_unique<EraseElementCommand<std::vector<Key>>>(shortcutKey_, shortcutKey_.size() - 1);
+                auto command = std::make_unique<EraseElementCommand<std::vector<Key>>>(&shortcutKey_, shortcutKey_.end() - 1);
                 EditorGroup::getInstance()->pushCommand(std::move(command));
             }
         }
@@ -168,7 +167,7 @@ bool Button::Edit() {
         }
         // add
         if (ImGui::Button("Add PadButton")) {
-            auto command = std::make_unique<AddElementCommand<std::vector<PadButton>>>(shortcutPadButton_, PadButton::UP);
+            auto command = std::make_unique<AddElementCommand<std::vector<PadButton>>>(&shortcutPadButton_, PadButton::UP);
             EditorGroup::getInstance()->pushCommand(std::move(command));
             isChanged = true;
         }
@@ -176,7 +175,7 @@ bool Button::Edit() {
         // remove
         if (ImGui::Button("Remove PadButton")) {
             if (shortcutPadButton_.size() > 0) {
-                auto command = std::make_unique<EraseElementCommand<std::vector<PadButton>>>(shortcutPadButton_, shortcutPadButton_.size() - 1);
+                auto command = std::make_unique<EraseElementCommand<std::vector<PadButton>>>(&shortcutPadButton_, shortcutPadButton_.end() - 1);
                 EditorGroup::getInstance()->pushCommand(std::move(command));
                 isChanged = true;
             }

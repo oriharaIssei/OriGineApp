@@ -29,8 +29,8 @@ bool BlockManager::Edit() {
 
     ImGui::Spacing();
 
-    isChange |= InputGuiCommand("pillarHP", HPMax_);
-    isChange |= InputGuiCommand("columNumMax", columNumMax_);
+    isChange |= InputGuiCommand<int>("pillarHP", HPMax_);
+    isChange |= InputGuiCommand<int>("columNumMax", columNumMax_);
     isChange |= DragGuiVectorCommand<3,float>("blockSize", blockSize_);
     isChange |= DragGuiVectorCommand<3,float>("scalingSize", scalingSize_);
     isChange |= DragGuiCommand("collisionRadius", collisionRadius_, 0.01f);
@@ -44,19 +44,19 @@ bool BlockManager::Edit() {
     ImGui::Text("Random Parameters");
     for (int i = 0; i < randomPar_.size(); ++i) {
         std::string label = "Random[" + std::to_string(i) + "]";
-        isChange |= InputGuiCommand(label.c_str(), randomPar_[i]);
+        isChange |= InputGuiCommand<int>(label.c_str(), randomPar_[i]);
     }
 
     ImGui::Text("Costs");
     for (int i = 0; i < costs_.size(); ++i) {
         std::string label = "Cost[" + std::to_string(i) + "]";
-        isChange |= InputGuiCommand(label.c_str(), costs_[i]);
+        isChange |= InputGuiCommand<int>(label.c_str(), costs_[i]);
     }
 
     ImGui::Text("Generate Interval");
     for (int i = 0; i < generateInterval_.size(); ++i) {
         std::string label = "Interval[" + std::to_string(i) + "]";
-        isChange |= InputGuiCommand(label.c_str(), generateInterval_[i]);
+        isChange |= InputGuiCommand<int>(label.c_str(), generateInterval_[i]);
     }
 
     ImGui::Text("Score");
@@ -67,7 +67,7 @@ bool BlockManager::Edit() {
 
     ImGui::Text("tenpo");
     isChange |= DragGuiCommand("moveTenpo", moveTenpo_, 0.01f);
-    isChange |= InputGuiCommand("movetenpoNum", moveTenpoNum_);
+    isChange |= InputGuiCommand<int>("movetenpoNum", moveTenpoNum_);
 
     for (int i = 0; i < moveTenpos_.size(); ++i) {
         std::string label = "moveTenpos[" + std::to_string(i) + "]";

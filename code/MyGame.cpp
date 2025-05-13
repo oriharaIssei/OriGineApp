@@ -25,7 +25,6 @@
 #include "module/editor/EditorGroup.h"
 /// debugger
 #include "ECSDebugger.h"
-#include "logger/Logger.h"
 #include "module/debugger/DebuggerGroup.h"
 #endif // DEBUG
 
@@ -45,6 +44,9 @@ void MyGame::Initialize() {
     variables_->LoadAllFile();
     engine_->Initialize();
     sceneManager_->Initialize();
+
+    RegisterUsingComponents();
+    RegisterUsingSystems();
 
     sceneManager_->sceneChange2StartupScene();
     // シーンの変更を適応するために 一度更新
@@ -135,6 +137,7 @@ void MyGame::RegisterUsingComponents() {
     ecsManager->registerComponent<PlaneRenderer>();
     ecsManager->registerComponent<SpriteRenderer>();
     ecsManager->registerComponent<LineRenderer>();
+    ecsManager->registerComponent<SkyboxRenderer>();
 }
 
 void MyGame::RegisterUsingSystems() {
@@ -176,6 +179,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<TexturedMeshRenderSystem>();
     ecsManager->registerSystem<LineRenderSystem>();
     ecsManager->registerSystem<ColliderRenderingSystem>();
+    ecsManager->registerSystem<SkyboxRender>();
 
     /// =================================================================================================
     // PostRender

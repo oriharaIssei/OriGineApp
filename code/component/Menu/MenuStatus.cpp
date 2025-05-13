@@ -67,7 +67,7 @@ bool MenuStatus::Edit() {
 
 
     ImGui::Text("etc");
-    isChange |= InputGuiCommand("maxPauge", maxCategoryNum_);
+    isChange |= InputGuiCommand<int>("maxPauge", maxCategoryNum_);
 
     return isChange;
 }

@@ -7,6 +7,7 @@
 #include "engine/EngineInclude.h"
 /// externals
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
 
 void ScoreUIStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 }
@@ -14,7 +15,7 @@ void ScoreUIStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool ScoreUIStatus::Edit() {
     bool isChange = false;
 
-    isChange = CheckBoxCommand("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
@@ -29,7 +30,9 @@ bool ScoreUIStatus::Edit() {
         "SEVEN"};
     int currentIndex = static_cast<int>(digit_);
     if (ImGui::Combo("Timer Digit", &currentIndex, digitLabels, static_cast<int>(TimeDigit::COUNT))) {
-        digit_ = static_cast<TimeDigit>(currentIndex);
+        auto command = std::make_unique<SetterCommand<int32_t>>(&currentIndex, currentIndex);
+        EditorGroup::getInstance()->pushCommand(std::move(command));
+        isChange = true;
     }
 
     return isChange;

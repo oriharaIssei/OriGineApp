@@ -2,13 +2,14 @@
 
 /// externals
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
 
 void ScrapStatus::Initialize([[maybe_unused]] GameEntity* _entity) {}
 
 bool ScrapStatus::Edit() {
     bool isChange = false;
 
-    isChange = CheckBoxCommand("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 

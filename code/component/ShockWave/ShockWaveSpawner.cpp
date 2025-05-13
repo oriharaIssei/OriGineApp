@@ -2,17 +2,18 @@
 
 /// externals
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
 
 void ShockWaveSpawner::Initialize([[maybe_unused]] GameEntity* _entity) {}
 
 bool ShockWaveSpawner::Edit() {
     bool isChange = false;
 
-    isChange = CheckBoxCommand("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
-    isChange |= DragGuiCommand("MoveSpeed", &moveSpeed_, 0.01f);
+    isChange |= DragGuiCommand("MoveSpeed", moveSpeed_, 0.01f);
 
     return isChange;
 }

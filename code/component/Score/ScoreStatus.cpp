@@ -7,6 +7,7 @@
 #include "engine/EngineInclude.h"
 /// externals
 #include "imgui/imgui.h"
+#include "myGui/MyGui.h"
 
 float ScoreStatus::currentScore_ = 0.0f;
 
@@ -16,12 +17,12 @@ void ScoreStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool ScoreStatus::Edit() {
     bool isChange = false;
 
-    isChange = CheckBoxCommand("IsAlive", &isAlive_);
+    isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
-    isChange |= DragGuiCommand("currentScore", &currentScore_);
-    isChange |= DragGuiCommand("pulusScore", &pulusScore_);
+    isChange |= DragGuiCommand("currentScore", currentScore_);
+    isChange |= DragGuiCommand("pulusScore", pulusScore_);
 
     return isChange;
 }
