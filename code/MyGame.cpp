@@ -45,6 +45,9 @@ void MyGame::Initialize() {
     engine_->Initialize();
     sceneManager_->Initialize();
 
+    RegisterUsingComponents();
+    RegisterUsingSystems();
+
     sceneManager_->sceneChange2StartupScene();
     // シーンの変更を適応するために 一度更新
     sceneManager_->executeSceneChange();
