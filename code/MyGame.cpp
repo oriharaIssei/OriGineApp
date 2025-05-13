@@ -13,6 +13,7 @@
 #include <EngineInclude.h>
 
 // scene
+#include "iScene/IScene.h"
 #include "sceneManager/SceneManager.h"
 
 /// lib
@@ -49,8 +50,6 @@ void MyGame::Initialize() {
     RegisterUsingSystems();
 
     sceneManager_->sceneChange2StartupScene();
-    // シーンの変更を適応するために 一度更新
-    sceneManager_->executeSceneChange();
 
 #ifdef _DEBUG
     ///=================================================================================================
@@ -90,6 +89,13 @@ void MyGame::Initialize() {
 }
 
 void MyGame::Finalize() {
+    EditorGroup* editorGroup     = EditorGroup::getInstance();
+    DebuggerGroup* debuggerGroup = DebuggerGroup::getInstance();
+    editorGroup->Finalize();
+    debuggerGroup->Finalize();
+
+    SceneFinalize();
+
     sceneManager_->Finalize();
     engine_->Finalize();
 }
@@ -137,6 +143,7 @@ void MyGame::RegisterUsingComponents() {
     ecsManager->registerComponent<PlaneRenderer>();
     ecsManager->registerComponent<SpriteRenderer>();
     ecsManager->registerComponent<LineRenderer>();
+    // ecsManager->registerComponent<SkyboxRenderer>();
 }
 
 void MyGame::RegisterUsingSystems() {
@@ -178,6 +185,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<TexturedMeshRenderSystem>();
     ecsManager->registerSystem<LineRenderSystem>();
     ecsManager->registerSystem<ColliderRenderingSystem>();
+    // ecsManager->registerSystem<SkyboxRender>();
 
     /// =================================================================================================
     // PostRender
