@@ -46,7 +46,7 @@ void FloorUIStatus::moveEasing(const float& time) {
 void FloorUIStatus::OpenEasing(const float& time) {
     openEasing_.time += time;
 
-    baseScale_ = EaseOutBack(Vec3f(0.0f, 0.0f, 0.0f), maxScale_, openEasing_.time, openEasing_.maxTime);
+    baseScale_ = EaseInCirc(Vec3f(0.0f, 0.0f, 0.0f), maxScale_, openEasing_.time, openEasing_.maxTime);
 
     if (openEasing_.time < openEasing_.maxTime) {
         return;
@@ -59,7 +59,7 @@ void FloorUIStatus::OpenEasing(const float& time) {
 void FloorUIStatus::CloseEasing(const float& time) {
     closeEasing_.time += time;
 
-    baseScale_ = EaseOutBack(saveScale_, Vec3f(0.0f, 0.0f, 0.0f), closeEasing_.time, closeEasing_.maxTime);
+    baseScale_ = EaseInCirc(saveScale_, Vec3f(0.0f, 0.0f, 0.0f), closeEasing_.time, closeEasing_.maxTime);
 
     if (closeEasing_.time < closeEasing_.maxTime) {
         return;
@@ -84,8 +84,8 @@ void FloorUIStatus::SavingScale() {
 
 void FloorUIStatus::ChangeAnimationEndForFlag() {
 
-    if (isAnimation_) {
+    if (*isAnimation_) {
         return;
     }
-    floorUIStep_ = FloorUIStep::END;
+    floorUIStep_ = FloorUIStep::CLOSE;
 }

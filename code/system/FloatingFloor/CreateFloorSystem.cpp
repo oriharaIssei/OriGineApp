@@ -22,6 +22,7 @@
 #include "system/FloatingFloor/FloatingFloorFallSystem.h"
 #include "system/FloatingFloor/FloatingFloorRevivalSystem.h"
 #include "system/Matrix/UpdateMatrixSystem.h"
+#include"system/FloatingFloor/CheckIsUnderPlayer.h"
 #include"system/FloorUI/FloorUISystem.h"
 
 CreateFloorSystem::CreateFloorSystem() : ISystem(SystemType::Initialize) {}
@@ -159,6 +160,9 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
 
     floorUIStatus->SetIsAnimation(&floatingFloorStatus->GetIsPlayerUnderTheFloor());
 
+      floorUIStatus->SetStartPos(floorUIController->GetStartPos());
+    floorUIStatus->SetEndPos(floorUIController->GetEndPos());
+
 
     // ================================= System ================================= //
 
@@ -179,6 +183,7 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     //------------------ Collision
     ecs->getSystem<CollisionCheckSystem>()->addEntity(floatingFloor);
     ecs->getSystem<FloatingFloorDamageSystem>()->addEntity(floatingFloor);
+    ecs->getSystem<CheckIsUnderPlayer>()->addEntity(floatingFloor);
     //------------------ Physics
     // None
 

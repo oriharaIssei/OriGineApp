@@ -56,6 +56,7 @@ void FloorUISystem::UpdateEntity(GameEntity* entity) {
             return;
         }
         floorUIStatus->Reset();
+        floorUIStatus->SetFloorUIStep(FloorUIStep::APPER);
 
         break;
 
@@ -64,6 +65,7 @@ void FloorUISystem::UpdateEntity(GameEntity* entity) {
         ///-----------------------------------------------------------
     case FloorUIStep::APPER:
         floorUIStatus->SavingScale();
+        floorUIStatus->moveEasing(deltaTime);
         floorUIStatus->ChangeAnimationEndForFlag();
         floorUIStatus->OpenEasing(deltaTime);
 
@@ -82,6 +84,7 @@ void FloorUISystem::UpdateEntity(GameEntity* entity) {
         /// 閉じる前の初期化*
         ///-----------------------------------------------------------
     case FloorUIStep::CLOSE:
+        floorUIStatus->moveEasing(deltaTime);
         floorUIStatus->CloseEasing(deltaTime);
         break;
 
@@ -89,6 +92,7 @@ void FloorUISystem::UpdateEntity(GameEntity* entity) {
         /// 終わり
         ///-----------------------------------------------------------
     case FloorUIStep::END:
+        floorUIStatus->Reset();
         floorUIStatus->SetFloorUIStep(FloorUIStep::NONE);
 
         break;

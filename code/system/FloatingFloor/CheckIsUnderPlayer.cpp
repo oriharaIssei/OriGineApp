@@ -35,13 +35,13 @@ void CheckIsUnderPlayer::UpdateEntity(GameEntity* _entity) {
     }
     FloatingFloorStatus* floatingFloorStatus  = getComponent<FloatingFloorStatus>(_entity);
     Transform* floatingFloorTransform = getComponent<Transform>(_entity);
-    Transform* playerTransform        = getComponent<Transform>(PlayerEntity);
+    Transform* playerTransform        = getComponent<Transform>(PlayerEntity,1);
 
     if (!playerTransform || !floatingFloorStatus || !floatingFloorTransform) {
         return;
     }
 
-    const Vec3f& center = floatingFloorStatus->GetFallCollisionCenterPos();
+    const Vec3f& center    = floatingFloorTransform->translate;
     const Vec3f& min    = floatingFloorStatus->GetFallCollisionSizeMin();
     const Vec3f& max    = floatingFloorStatus->GetFallCollisionSizeMax();
     const Vec3f& playerpos = playerTransform->translate;

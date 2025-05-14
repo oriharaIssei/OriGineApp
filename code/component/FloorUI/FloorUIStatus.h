@@ -35,7 +35,7 @@ private: // variables
     Vec3f saveScale_ = {1.0f, 1.0f, 1.0f};
     Vec3f maxScale_ = {1.0f, 1.0f, 1.0f};
 
-    FloorUIStep floorUIStep_;
+    FloorUIStep floorUIStep_ = FloorUIStep::NONE;
 
     Easing moveEasing_;
     Easing openEasing_;

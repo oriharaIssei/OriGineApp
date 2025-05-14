@@ -471,7 +471,7 @@
                         "followCameraOffset": [
                             0.0,
                             14.630000114440918,
-                            -86.23999786376953
+                            -104.80999755859375
                         ],
                         "isAlive": true,
                         "moveRadius": 0.0,
@@ -1941,10 +1941,6 @@
                 {
                     "SystemName": "MoveSystemByRigidBody",
                     "SystemType": 3
-                },
-                {
-                    "SystemName": "CheckIsUnderPlayer",
-                    "SystemType": 4
                 }
             ],
             "isUnique": true
@@ -2024,10 +2020,6 @@
                 {
                     "SystemName": "MoveSystemByRigidBody",
                     "SystemType": 3
-                },
-                {
-                    "SystemName": "CheckIsUnderPlayer",
-                    "SystemType": 4
                 }
             ],
             "isUnique": true
@@ -2107,10 +2099,6 @@
                 {
                     "SystemName": "MoveSystemByRigidBody",
                     "SystemType": 3
-                },
-                {
-                    "SystemName": "CheckIsUnderPlayer",
-                    "SystemType": 4
                 }
             ],
             "isUnique": true
@@ -3071,20 +3059,20 @@
             "Components": {
                 "FloorUIController": [
                     {
-                        "closeEasing_.maxTime": 0.5,
+                        "closeEasing_.maxTime": 0.30000001192092896,
                         "endPos": [
                             0.0,
-                            0.0,
-                            0.0
+                            10.0,
+                            -5.0
                         ],
                         "isAlive": true,
                         "moveEasing.backRatio": 0.5,
-                        "moveEasing.maxTime": 0.699999988079071,
-                        "openEasing_.maxTime": 0.5,
+                        "moveEasing.maxTime": 0.6000000238418579,
+                        "openEasing_.maxTime": 0.30000001192092896,
                         "startPos": [
                             0.0,
-                            0.0,
-                            0.0
+                            9.0,
+                            -5.0
                         ],
                         "startScale": [
                             5.0,
@@ -3341,6 +3329,13 @@
                 "Priority": 0
             }
         },
-        {}
+        {
+            "GrayscaleEffect": {
+                "Priority": 0
+            },
+            "SmoothingEffect": {
+                "Priority": 0
+            }
+        }
     ]
 }
