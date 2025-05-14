@@ -11,7 +11,7 @@
 #include "component/Piller/FloatingFloorStatus.h"
 #include "component/Player/PlayerStates.h"
 
-CheckIsUnderPlayer::CheckIsUnderPlayer() : ISystem(SystemType::StateTransition) {}
+CheckIsUnderPlayer::CheckIsUnderPlayer() : ISystem(SystemType::Collision) {}
 
 void CheckIsUnderPlayer::Initialize() {
 }
