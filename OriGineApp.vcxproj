@@ -101,6 +101,8 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="code\component\FloorUI\FloorUIController.h" />
+    <ClInclude Include="code\component\FloorUI\FloorUIStatus.h" />
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\KetaEasing.h" />
     <ClInclude Include="code\MyGame.h" />
@@ -168,11 +170,13 @@
     <ClInclude Include="code\system\EffectByBlock\EffectByBlockDeleteSystem.h" />
     <ClInclude Include="code\system\EffectByBlock\EffectByBlockDrawSystem.h" />
     <ClInclude Include="code\system\FloatingFloor\CanageStateFallSystem.h" />
+    <ClInclude Include="code\system\FloatingFloor\CheckIsUnderPlayer.h" />
     <ClInclude Include="code\system\FloatingFloor\CreateFloorSystem.h" />
     <ClInclude Include="code\system\FloatingFloor\DeleteFloatingFloorSystem.h" />
     <ClInclude Include="code\system\FloatingFloor\FloatingFloorDamageSystem.h" />
     <ClInclude Include="code\system\FloatingFloor\FloatingFloorFallSystem.h" />
     <ClInclude Include="code\system\FloatingFloor\FloatingFloorRevivalSystem.h" />
+    <ClInclude Include="code\system\FloorUI\FloorUISystem.h" />
     <ClInclude Include="code\system\Floor\DeleteFloorSystem.h" />
     <ClInclude Include="code\system\Floor\FloorUpdateMatrixSystem.h" />
     <ClInclude Include="code\system\LeverlUP\LevelUIAdaptSystem.h" />
@@ -210,6 +214,8 @@
     <ClInclude Include="code\system\scrap\ScrapToPlayerCollisionSystem.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\component\FloorUI\FloorUIController.cpp" />
+    <ClCompile Include="code\component\FloorUI\FloorUIStatus.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\KetaEasing.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
@@ -279,11 +285,13 @@
     <ClCompile Include="code\system\EffectByBlock\EffectByBlockDeleteSystem.cpp" />
     <ClCompile Include="code\system\EffectByBlock\EffectByBlockDrawSystem.cpp" />
     <ClCompile Include="code\system\FloatingFloor\CanageStateFallSystem.cpp" />
+    <ClCompile Include="code\system\FloatingFloor\CheckIsUnderPlayer.cpp" />
     <ClCompile Include="code\system\FloatingFloor\CreateFloorSystem.cpp" />
     <ClCompile Include="code\system\FloatingFloor\DeleteFloatingFloorSystem.cpp" />
     <ClCompile Include="code\system\FloatingFloor\FloatingFloorDamageSystem.cpp" />
     <ClCompile Include="code\system\FloatingFloor\FloatingFloorFallSystem.cpp" />
     <ClCompile Include="code\system\FloatingFloor\FloatingFloorRevivalSystem.cpp" />
+    <ClCompile Include="code\system\FloorUI\FloorUISystem.cpp" />
     <ClCompile Include="code\system\Floor\DeleteFloorSystem.cpp" />
     <ClCompile Include="code\system\Floor\FloorUpdateMatrixSystem.cpp" />
     <ClCompile Include="code\system\LeverlUP\LevelUIAdaptSystem.cpp" />

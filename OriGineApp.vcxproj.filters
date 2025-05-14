@@ -118,6 +118,12 @@
     <Filter Include="system\scrap">
       <UniqueIdentifier>{F2566A6A-DEB9-F90E-873F-32C57381C591}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\FloorUI">
+      <UniqueIdentifier>{f8c1c73b-cffa-40b3-9f20-3f38a794f11d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\FloorUI">
+      <UniqueIdentifier>{abc21256-d54c-48c2-bf64-432286b2f099}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -435,6 +441,18 @@
     <ClInclude Include="code\system\scrap\ScrapToPlayerCollisionSystem.h">
       <Filter>system\scrap</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\FloorUI\FloorUIController.h">
+      <Filter>component\FloorUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\FloorUI\FloorUIStatus.h">
+      <Filter>component\FloorUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\FloorUI\FloorUISystem.h">
+      <Filter>system\FloorUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\FloatingFloor\CheckIsUnderPlayer.h">
+      <Filter>system\FloatingFloor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -751,6 +769,18 @@
     </ClCompile>
     <ClCompile Include="code\system\scrap\ScrapToPlayerCollisionSystem.cpp">
       <Filter>system\scrap</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\FloorUI\FloorUIController.cpp">
+      <Filter>component\FloorUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\FloorUI\FloorUIStatus.cpp">
+      <Filter>component\FloorUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\FloorUI\FloorUISystem.cpp">
+      <Filter>system\FloorUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\FloatingFloor\CheckIsUnderPlayer.cpp">
+      <Filter>system\FloatingFloor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

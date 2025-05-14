@@ -34,6 +34,13 @@ private: // variables
     float scoreUpRate_;
     float startScoreUpRate_;
 
+    bool isPlayerUnderTheFloor_=false;
+
+      /// collider
+    Vec3f fallCollisionSizeMin_;
+    Vec3f fallCollisionSizeMax_;
+    Vec3f fallCollisionCenterPos_;
+
 public:
     FloatingFloorStatus() {}
     virtual ~FloatingFloorStatus() = default;
@@ -61,10 +68,14 @@ public: // accsessor
     float GetScoreUPRatio() const { return scoreUpRate_; }
     bool GetIsDestroy() const { return isDestroy_; }
     bool GetIsRevaviling() const { return isRevivaling_; }
+    const bool& GetIsPlayerUnderTheFloor() const { return isPlayerUnderTheFloor_; }
     const bool& GetIsFall() const { return isFall_; }
     float GetRevivalTime() const { return revivalTime_; }
     float GetCurrentRevivalTime() const { return currentRevivalTimer_; }
     Vec3f GetSaveScale() const { return saveScale_; }
+    Vec3f GetFallCollisionSizeMin() const { return fallCollisionSizeMin_; }
+    Vec3f GetFallCollisionSizeMax() const { return fallCollisionSizeMax_; }
+    Vec3f GetFallCollisionCenterPos() const { return fallCollisionCenterPos_; }
 
     /// setter
     void SetColumAndRow(const int32_t& colum, const int32_t& row);
@@ -84,4 +95,8 @@ public: // accsessor
     void SetSaveScale(const Vec3f& s) { saveScale_ = s; }
     void SetScoreUpRatio(const float& ratio) { scoreUpRate_ = ratio; }
     void SetStartScoreUPRate(const float& score) { startScoreUpRate_ = score; }
+    void SetIsPlayerUnderTheFloor(const bool& is) { isPlayerUnderTheFloor_ = is; }
+    void SetFallCollisionSizeMin(const Vec3f& s) { fallCollisionSizeMin_ = s; }
+    void SetFallCollisionSizeMax(const Vec3f& s) { fallCollisionSizeMax_ = s; }
+    void SetFallCollisionCenterPos(const Vec3f& s) { fallCollisionCenterPos_ = s; }
 };

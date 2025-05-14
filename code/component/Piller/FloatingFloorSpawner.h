@@ -32,7 +32,6 @@ private: // variables
     //score
     float scoreUpRate_;
  
-
     //time
     float revivalTime_;
 
