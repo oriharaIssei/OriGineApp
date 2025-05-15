@@ -20,7 +20,7 @@ private: // variables
     float currentPulusTime_;
     float promiseTime_;
     bool isChanging_ = false;
-    int32_t previousSecond_ = 0;
+    int32_t previousSecond_ = 2;
 
 public:
     TimerStatus() {}

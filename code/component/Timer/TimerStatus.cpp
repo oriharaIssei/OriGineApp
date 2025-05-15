@@ -64,18 +64,14 @@ void TimerStatus::TimerIncrement(const float& timer) {
 }
 
 bool TimerStatus::IsChangeSecond() {
-    // 秒単位の整数部を取得
     int32_t currentSecond = static_cast<int32_t>(std::floor(currentTimer_));
 
     if (currentSecond != previousSecond_) {
         previousSecond_ = currentSecond;
         return true;
     }
-
     return false;
 }
-
-
 
 void to_json(nlohmann::json& _json, const TimerStatus& _timerStatus) {
     _json["isAlive"]          = _timerStatus.isAlive_;

@@ -34,7 +34,7 @@ void TimerUIScrollSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    // ComboEntityを取得
+    // Entityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* TimerEntity                  = ecsManager->getUniqueEntity("Timer");
     GameEntity* TimerAnimationEntity         = ecsManager->getUniqueEntity("TimerAnimation");

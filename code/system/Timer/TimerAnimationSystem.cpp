@@ -55,8 +55,8 @@ void TimerAnimationSystem::UpdateEntity(GameEntity* _entity) {
             timerAnimationStatus->Reset();
             return;
         }
+
         // アニメーションリセット
-        /*   time_ = 0.0f;*/
         timerAnimationStatus->Reset();
         timerAnimationStatus->SetAnimationStep(TimerAnimationStep::SCALING);
 
