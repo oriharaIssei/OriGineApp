@@ -85,7 +85,7 @@ void DeleteBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) 
         /// Normal
         ///---------------------------------------------
     case BlockType::NORMAL:
-        timerStatus->TimerDecrement(timerDecrementValue);
+        timerStatus->MinusTimer(timerDecrementValue);
         effectType_ = EffectType::MIMUSTIME;
         tempValue_  = timerDecrementValue;
         /* if (!breakNormal->isPlaying()) {*/

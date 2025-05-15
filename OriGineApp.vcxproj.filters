@@ -124,6 +124,12 @@
     <Filter Include="system\FloorUI">
       <UniqueIdentifier>{abc21256-d54c-48c2-bf64-432286b2f099}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\GameEndUI">
+      <UniqueIdentifier>{e2fa3783-16ac-4efc-8b95-87dc1431aaa3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\GameEndUI">
+      <UniqueIdentifier>{8f119c40-063a-428b-9bce-c7320a0a62ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -453,6 +459,12 @@
     <ClInclude Include="code\system\FloatingFloor\CheckIsUnderPlayer.h">
       <Filter>system\FloatingFloor</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\GameEndUI\GameEndUIStatus.h">
+      <Filter>component\GameEndUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\GameEndUI\GameEndUISystem.h">
+      <Filter>system\GameEndUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -781,6 +793,12 @@
     </ClCompile>
     <ClCompile Include="code\system\FloatingFloor\CheckIsUnderPlayer.cpp">
       <Filter>system\FloatingFloor</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\GameEndUI\GameEndUIStatus.cpp">
+      <Filter>component\GameEndUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\GameEndUI\GameEndUISystem.cpp">
+      <Filter>system\GameEndUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

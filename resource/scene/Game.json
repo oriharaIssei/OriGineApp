@@ -728,6 +728,7 @@
                         "isAlive": true,
                         "minusTime": 5.0,
                         "minusTimeNormal": 1.0,
+                        "promiseTime": 3.0,
                         "pulusTime": 5.0,
                         "startTimer": 60.0
                     }
@@ -3084,6 +3085,72 @@
             },
             "Name": "FloorUIController",
             "isUnique": true
+        },
+        {
+            "Components": {
+                "GameEndUIStatus": [
+                    {
+                        "alphaEasingmaxTime": 0.6000000238418579,
+                        "easeScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "isAlive": true,
+                        "waitTimeAfterApearEase": 2.0,
+                        "zoomEasing_.maxTime": 0.6000000238418579
+                    }
+                ],
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 1185783296,
+                        "rotate": 0.0,
+                        "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "",
+                        "textureSize": [
+                            0.0,
+                            0.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "GameEndUI",
+            "Systems": [
+                {
+                    "SystemName": "GameEndUISystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
         }
     ],
     "Systems": [
@@ -3185,6 +3252,9 @@
                 "Priority": 0
             },
             "FloorUpdateMatrixSystem": {
+                "Priority": 0
+            },
+            "GameEndUISystem": {
                 "Priority": 0
             },
             "LevelUIAdaptSystem": {

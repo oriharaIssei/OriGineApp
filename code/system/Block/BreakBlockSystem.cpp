@@ -99,7 +99,7 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
         /// Skull
         ///---------------------------------------------
     case BlockType::SKULL:
-        timerStatus->TimerDecrement(timerDecrementValue);
+        timerStatus->MinusTimer(timerDecrementValue);
         effectType_ = EffectType::MIMUSTIME;
         tempValue_  = timerDecrementValue;
         /*  if (!breakSkull->isPlaying()) {*/

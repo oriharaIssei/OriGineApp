@@ -20,6 +20,7 @@ private: // variables
     float minusTime_;
     float minusTimeNormal_;
     float currentPulusTime_;
+    float promiseTime_;
     bool isChanging_ = false;
 
 public:
@@ -34,12 +35,15 @@ public:
     void CurrentTimeUpdate(const int32_t& time);
     void PlusTimeUpdate();
 
-    void TimerDecrement(const float& timer);
+    void MinusTimer(const float& timer);
     void TimerIncrement(const float& timer);
+
+    void TimerPromise(const float& minesTimer);
 
 public: // accsessor
     /// getter
     float GetCurrentTimer() const { return currentTimer_; }
+    float GetPromiseTime() const { return promiseTime_; }
     float GetPulusTime() const { return pulusTime_; }
     float GetMinusTime() const { return minusTime_; }
     float GetCurrentPulusTime() const { return currentPulusTime_; }

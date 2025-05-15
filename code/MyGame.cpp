@@ -69,6 +69,7 @@
 #include "component/ResultUI/ResultUIScoreStatus.h"
 #include"component/FloorUI/FloorUIController.h"
 #include"component/FloorUI/FloorUIStatus.h"
+#include"component/GameEndUI/GameEndUIStatus.h"
 
 // system
 #include "Application/code/system/BigBom/BigBomCollisionExSystem.h"
@@ -138,6 +139,7 @@
 #include "system/UsingCameraSetSystem.h"
 #include"system/FloorUI/FloorUISystem.h"
 #include"system/FloatingFloor/CheckIsUnderPlayer.h"
+#include"system/GameEndUI/GameEndUISystem.h"
 
 MyGame::MyGame() {}
 
@@ -270,6 +272,7 @@ void MyGame::RegisterUsingComponents() {
     ecsManager->registerComponent<ResultUIkeyStatus>();
     ecsManager->registerComponent<FloorUIController>();
     ecsManager->registerComponent<FloorUIStatus>();
+    ecsManager->registerComponent<GameEndUIStatus>();
 
     ecsManager->registerComponent<Transform>();
     ecsManager->registerComponent<CameraTransform>();
@@ -365,6 +368,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<ResultFontSystem>();
     ecsManager->registerSystem<ResultRankSystem>();
     ecsManager->registerSystem<ResultKeySystem>();
+    ecsManager->registerSystem<GameEndUISystem>();
 
       ecsManager->registerSystem<FloorUISystem>();
     ecsManager->registerSystem<CheckIsUnderPlayer>();
