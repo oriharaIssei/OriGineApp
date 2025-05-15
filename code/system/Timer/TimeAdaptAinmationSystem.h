@@ -1,20 +1,23 @@
 #pragma once
 #include "system/ISystem.h"
 #include "component/transform/Transform.h"
+#include<array>
+#include<string>
 
-class TimerAnimationSystem
+class TimeAdaptAinmationSystem
     : public ISystem {
 private:
-   
-    float time_;
-    float scalingElapsed_; 
+   /* std::array<std::string, 10> textureName_;*/
+
 public:
-    TimerAnimationSystem();
-    ~TimerAnimationSystem();
+    TimeAdaptAinmationSystem();
+    ~TimeAdaptAinmationSystem();
 
     void Initialize() override;
+    // void Update() override;
     void Finalize() override;
 
+   
     protected:
     void UpdateEntity(GameEntity* _entity) override;
 

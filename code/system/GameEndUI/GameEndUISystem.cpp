@@ -11,7 +11,6 @@
 #include <Vector3.h>
 // component
 #include "component/GameEndUI/GameEndUIStatus.h"
-#include "component/SceneTransition/SceneTransition.h"
 #include "component/Timer/TimerStatus.h"
 
 #include "engine/EngineInclude.h"
@@ -52,7 +51,8 @@ void GameEndUISystem::UpdateEntity(GameEntity* _entity) {
     case GameEndUIStep::NONE:
   
         if (timerStatus->GetCurrentTimer() > 0.0f) {
-            return;
+            gameEndUIStatus->SetBaseScale(Vec2f(0.0f, 0.0f));
+            break;
         }
         // アニメーションリセット
         time_ = 0.0f;
@@ -95,11 +95,9 @@ void GameEndUISystem::UpdateEntity(GameEntity* _entity) {
     ///* ------------------------------calucration------------------------------
 
     Vec2f baseSize = sprite->getTextureSize() * gameEndUIStatus->GetBaseScale();
-    /*  float uvPos    = resultUIParent->GetCurrentLevelUV() * 0.1f;*/
-
+ 
     ///* ------------------------------adapt------------------------------
 
-    // pos
- /*   sprite->setTranslate(Vec2f(basePos[X], basePos[Y]));*/
+    sprite->setColor(Vec4f(1.0f,1.0f,1.0f,gameEndUIStatus->GetAlpha()));
     sprite->setSize(baseSize);
 }

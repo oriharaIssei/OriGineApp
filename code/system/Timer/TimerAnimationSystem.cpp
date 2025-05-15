@@ -11,7 +11,7 @@
 #include <Vector3.h>
 // component
 #include "component/GameEndUI/GameEndUIStatus.h"
-#include "component/SceneTransition/SceneTransition.h"
+#include "component/Timer/TimerAnimationStatus.h"
 #include "component/Timer/TimerStatus.h"
 
 #include "engine/EngineInclude.h"
@@ -23,7 +23,8 @@ TimerAnimationSystem::TimerAnimationSystem()
 TimerAnimationSystem::~TimerAnimationSystem() {}
 
 void TimerAnimationSystem::Initialize() {
-    time_ = 0.0f;
+    time_           = 0.0f;
+    scalingElapsed_ = 0.0f;
 }
 
 void TimerAnimationSystem::Finalize() {}
@@ -39,67 +40,54 @@ void TimerAnimationSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     // get timer component
-    GameEndUIStatus* gameEndUIStatus = getComponent<GameEndUIStatus>(_entity);
-    SpriteRenderer* sprite           = getComponent<SpriteRenderer>(_entity);
-    TimerStatus* timerStatus         = getComponent<TimerStatus>(timerEntity);
-    float deltaTIme                  = Engine::getInstance()->getDeltaTime();
+    TimerAnimationStatus* timerAnimationStatus = getComponent<TimerAnimationStatus>(_entity);
+    TimerStatus* timerStatus                   = getComponent<TimerStatus>(timerEntity);
+    float deltaTIme                            = Engine::getInstance()->getDeltaTime();
 
-    if (!gameEndUIStatus || !timerStatus || !sprite) {
+    if (!timerAnimationStatus || !timerStatus) {
         return;
     }
 
-    switch (gameEndUIStatus->GetAnimationStep()) {
-    case GameEndUIStep::NONE:
-  
-        if (timerStatus->GetCurrentTimer() > 0.0f) {
+    switch (timerAnimationStatus->GetAnimationStep()) {
+    case TimerAnimationStep::NONE:
+
+        if (timerStatus->GetCurrentTimer() > timerStatus->GetPromiseTime()) {
+            timerAnimationStatus->Reset();
             return;
         }
         // アニメーションリセット
-        time_ = 0.0f;
-        gameEndUIStatus->Reset();
-        gameEndUIStatus->SetAnimationStep(GameEndUIStep::APEER);
+        /*   time_ = 0.0f;*/
+        timerAnimationStatus->Reset();
+        timerAnimationStatus->SetAnimationStep(TimerAnimationStep::SCALING);
+
         break;
         ///----------------------------------------------------------------
         /// Move Animation
         ///----------------------------------------------------------------
-    case GameEndUIStep::APEER:
-       
-        gameEndUIStatus->ApeerUIAnimation(deltaTIme);
-        gameEndUIStatus->AlphaEaseAnimation(deltaTIme);
-        gameEndUIStatus->CheckAbleNextStep();
+    case TimerAnimationStep::SCALING:
+
+        timerAnimationStatus->ScalingAnimation(deltaTIme);
+        timerAnimationStatus->ColorChangeEasing(deltaTIme);
 
         break;
         ///----------------------------------------------------------------
         /// Scroll Wait
         ///----------------------------------------------------------------
-    case GameEndUIStep::WAIT:
-        time_ += deltaTIme;
+    case TimerAnimationStep::END:
 
-        if (time_ < gameEndUIStatus->GetWaitTimeAfterApear()) {
-            break;
+        if (!timerStatus->IsChangeSecond()) {
+            return;
         }
-        time_ = 0.0f;
-        gameEndUIStatus->SetAnimationStep(GameEndUIStep::END);
+
+        timerAnimationStatus->SetAnimationStep(TimerAnimationStep::NONE);
         break;
         ///----------------------------------------------------------------
         /// Scroll Animation
         ///----------------------------------------------------------------
-    case GameEndUIStep::END:
-
-        break;
 
     default:
         break;
     }
 
-    ///* ------------------------------calucration------------------------------
-
-    Vec2f baseSize = sprite->getTextureSize() * gameEndUIStatus->GetBaseScale();
-    /*  float uvPos    = resultUIParent->GetCurrentLevelUV() * 0.1f;*/
-
-    ///* ------------------------------adapt------------------------------
-
-    // pos
- /*   sprite->setTranslate(Vec2f(basePos[X], basePos[Y]));*/
-    sprite->setSize(baseSize);
+    
 }

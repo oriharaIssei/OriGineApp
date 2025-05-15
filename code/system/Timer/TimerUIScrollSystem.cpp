@@ -47,19 +47,16 @@ void TimerUIScrollSystem::UpdateEntity(GameEntity* _entity) {
     TimerStatus* timerStatus     = getComponent<TimerStatus>(TimerEntity);
     TimerUIStatus* timerUIStatus = getComponent<TimerUIStatus>(_entity);
     SpriteRenderer* spriteRender = getComponent<SpriteRenderer>(_entity);
-    TimerAnimationStatus* timerAnimationStatus = getComponent<TimerAnimationStatus>(TimerAnimationEntity);
-
-    if (!timerStatus || !timerUIStatus || !spriteRender || !timerAnimationStatus) { // Componentが存在しない場合の早期リターン
+  
+    if (!timerStatus || !timerUIStatus || !spriteRender) { // Componentが存在しない場合の早期リターン
         return;
     }
 
-    //サイズ
-    Vec2f baseSize = timerAnimationStatus->GetTextureSize() * timerAnimationStatus->GetBaseScale();
-
+   
     // 現在タイムの取得
-    float currentTime  = comboStatus->GetCurrentTimer();
+    float currentTime  = timerStatus->GetCurrentTimer();
     int32_t timerDigit = timerUIStatus->GetValueForDigit(currentTime);
 
-    // UV座標を設定
+   // UV座標を設定
     spriteRender->setUVTranslate(Vec2f(float(timerDigit * 0.1f), 0.0f));
 }

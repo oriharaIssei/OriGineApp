@@ -4,6 +4,7 @@
 #include "KetaEasing.h"
 #include <Entity.h>
 #include <Vector2.h>
+#include <Vector4.h>
 
 enum class TimerAnimationStep {
     NONE,
@@ -28,11 +29,14 @@ private: // variables
     // offset
 
     // scale
-    Vec2f baseScale_ = {0.0f, 0.0f};
+    Vec2f baseScale_ = {1.0f, 1.0f};
     Vec2f initScale_ = {1.0f, 1.0f};
     Vec2f maxScale_  = {1.0f, 1.0f};
 
-    Vec2f textureSize_ = {0.0f, 0.0f};
+    Vec2f textureSize_;
+
+    Vec4f panicColor_;
+    Vec4f color_={1.0f,1.0f,1.0f,1.0f};
 
     // ease
     Easing scalingEasing_;
@@ -54,6 +58,7 @@ public:
     virtual void Finalize();
 
     void ScalingAnimation(const float& time);
+    void ColorChangeEasing(const float& time);
     void CheckAbleNextStep();
 
     //
@@ -65,6 +70,7 @@ public: // accsessor
     bool GetIsAnimation() const { return isAnimation_; }
     Vec2f GetBasePos() const { return basePos_; }
     Vec2f GetBaseScale() const { return baseScale_; }
+    Vec4f GetBaseClolor() const { return color_; }
     Vec2f GetTextureSize() const { return textureSize_; }
     TimerAnimationStep GetAnimationStep() const { return curerntStep_; }
     float GetWaitTimeAfterApear() const { return waitTimeAfterScaing_; }

@@ -471,6 +471,9 @@
     <ClInclude Include="code\component\Timer\TimerAnimationStatus.h">
       <Filter>component\Timer</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Timer\TimeAdaptAinmationSystem.h">
+      <Filter>system\Timer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -811,6 +814,9 @@
     </ClCompile>
     <ClCompile Include="code\component\Timer\TimerAnimationStatus.cpp">
       <Filter>component\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Timer\TimeAdaptAinmationSystem.cpp">
+      <Filter>system\Timer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -442,6 +442,7 @@
                                 ]
                             }
                         ],
+                        "meshGroupSize": 1,
                         "transformBufferDatas": [
                             {
                                 "rotate": [
@@ -603,8 +604,8 @@
                 "SpriteRenderer": [
                     {
                         "anchorPoint": [
-                            0.0,
-                            0.0
+                            0.5,
+                            0.5
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -624,8 +625,8 @@
                             48.0
                         ],
                         "translate": [
-                            400.0,
-                            560.0
+                            464.0,
+                            624.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -649,6 +650,10 @@
             "Name": "TRD2",
             "Systems": [
                 {
+                    "SystemName": "TimeAdaptAinmationSystem",
+                    "SystemType": 3
+                },
+                {
                     "SystemName": "TimerUIScrollSystem",
                     "SystemType": 3
                 },
@@ -664,8 +669,8 @@
                 "SpriteRenderer": [
                     {
                         "anchorPoint": [
-                            0.0,
-                            0.0
+                            0.5,
+                            0.5
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -685,8 +690,8 @@
                             48.0
                         ],
                         "translate": [
-                            320.0,
-                            560.0
+                            384.0,
+                            624.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -709,6 +714,10 @@
             },
             "Name": "TRD1",
             "Systems": [
+                {
+                    "SystemName": "TimeAdaptAinmationSystem",
+                    "SystemType": 3
+                },
                 {
                     "SystemName": "TimerUIScrollSystem",
                     "SystemType": 3
@@ -1106,8 +1115,8 @@
                 "SpriteRenderer": [
                     {
                         "anchorPoint": [
-                            0.0,
-                            0.0
+                            0.5,
+                            0.5
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -1127,8 +1136,8 @@
                             48.0
                         ],
                         "translate": [
-                            130.0,
-                            560.0
+                            194.0,
+                            624.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -1151,6 +1160,10 @@
             "Name": "TR2",
             "Systems": [
                 {
+                    "SystemName": "TimeAdaptAinmationSystem",
+                    "SystemType": 3
+                },
+                {
                     "SystemName": "TimerUIScrollSystem",
                     "SystemType": 3
                 },
@@ -1166,8 +1179,8 @@
                 "SpriteRenderer": [
                     {
                         "anchorPoint": [
-                            0.0,
-                            0.0
+                            0.5,
+                            0.5
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -1187,8 +1200,8 @@
                             48.0
                         ],
                         "translate": [
-                            210.0,
-                            560.0
+                            274.0,
+                            624.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -1211,6 +1224,10 @@
             "Name": "TR1",
             "Systems": [
                 {
+                    "SystemName": "TimeAdaptAinmationSystem",
+                    "SystemType": 3
+                },
+                {
                     "SystemName": "TimerUIScrollSystem",
                     "SystemType": 3
                 },
@@ -1226,8 +1243,8 @@
                 "SpriteRenderer": [
                     {
                         "anchorPoint": [
-                            0.0,
-                            0.0
+                            0.5,
+                            0.5
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -1247,8 +1264,8 @@
                             192.0
                         ],
                         "translate": [
-                            15.350000381469727,
-                            560.0
+                            79.0,
+                            624.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -2476,8 +2493,8 @@
                 "SpriteRenderer": [
                     {
                         "anchorPoint": [
-                            0.0,
-                            0.0
+                            0.5,
+                            0.5
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -2497,8 +2514,8 @@
                             48.0
                         ],
                         "translate": [
-                            280.010009765625,
-                            570.0
+                            344.0,
+                            634.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -2514,6 +2531,10 @@
             },
             "Name": "TimerDot",
             "Systems": [
+                {
+                    "SystemName": "TimeAdaptAinmationSystem",
+                    "SystemType": 3
+                },
                 {
                     "SystemName": "SpriteRenderSystem",
                     "SystemType": 6
@@ -2689,6 +2710,7 @@
                                 ]
                             }
                         ],
+                        "meshGroupSize": 1,
                         "transformBufferDatas": [
                             {
                                 "rotate": [
@@ -3103,29 +3125,29 @@
                 "SpriteRenderer": [
                     {
                         "anchorPoint": [
-                            0.0,
-                            0.0
+                            0.5,
+                            0.5
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
-                        "renderingPriority": 1185783296,
+                        "renderingPriority": 9,
                         "rotate": 0.0,
                         "scale": [
-                            1.0,
-                            1.0
+                            720.0,
+                            320.0
                         ],
                         "textureLeftTop": [
                             0.0,
                             0.0
                         ],
-                        "texturePath": "",
+                        "texturePath": "application/resource/Texture/gameEnd.png",
                         "textureSize": [
-                            0.0,
-                            0.0
+                            720.0,
+                            320.0
                         ],
                         "translate": [
-                            0.0,
-                            0.0
+                            640.0,
+                            320.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -3148,6 +3170,46 @@
                 {
                     "SystemName": "SpriteRenderSystem",
                     "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "TimerAnimationStatus": [
+                    {
+                        "alphaEasingmaxTime": 1.0,
+                        "colorChangeEasing_.backRatio": 1.0,
+                        "initScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "isAlive": true,
+                        "maxScale": [
+                            1.399999976158142,
+                            1.399999976158142
+                        ],
+                        "panicColor": [
+                            1.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scalingEasing_.backRatio": 0.5,
+                        "textureSize": [
+                            128.0,
+                            128.0
+                        ],
+                        "waitTimeAfterScaing": 0.10000000149011612,
+                        "zoomEasing_.maxTime": 0.6000000238418579
+                    }
+                ]
+            },
+            "Name": "TimerAnimation",
+            "Systems": [
+                {
+                    "SystemName": "TimerAnimationSystem",
+                    "SystemType": 3
                 }
             ],
             "isUnique": true
@@ -3321,6 +3383,12 @@
                 "Priority": 0
             },
             "ScrapFallSystem": {
+                "Priority": 0
+            },
+            "TimeAdaptAinmationSystem": {
+                "Priority": 0
+            },
+            "TimerAnimationSystem": {
                 "Priority": 0
             },
             "TimerDecrementSystem": {

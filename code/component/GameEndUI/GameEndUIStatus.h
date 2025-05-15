@@ -7,8 +7,8 @@
 
 enum class GameEndUIStep {
     NONE,
-    APEER,//拡大＆アルファ
-    WAIT, //待機
+    APEER, //拡大＆アルファ
+    WAIT,  //待機
     END,
 
 };
@@ -36,7 +36,7 @@ private: // variables
     float alpha_ = 0.0f;
 
     // ease
-  /*  Easing moveEasing_;*/
+ 
     Easing apeerEasing_;
     Easing alphaEasing_;
 
@@ -66,6 +66,7 @@ public: // accsessor
     /// getter
 
     bool GetIsAnimation() const { return isAnimation_; }
+    float GetAlpha() const { return alpha_; }
     Vec2f GetBasePos() const { return basePos_; }
     Vec2f GetBaseScale() const { return baseScale_; }
     GameEndUIStep GetAnimationStep() const { return curerntStep_; }
@@ -74,4 +75,5 @@ public: // accsessor
     /// setter
     void SetAnimationStep(const GameEndUIStep& step) { curerntStep_ = step; }
     void SetIsResultAnimation(const bool& is) { isAnimation_ = is; }
+    void SetBaseScale(const Vec2f& scale) { baseScale_ = scale; }
 };

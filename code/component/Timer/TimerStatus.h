@@ -1,8 +1,6 @@
 #pragma once
 
 #include "component/IComponent.h"
-#include <array>
-#include <component/transform/Transform.h>
 #include <cstdint>
 #include <Entity.h>
 #include <Vector3.h>
@@ -22,6 +20,7 @@ private: // variables
     float currentPulusTime_;
     float promiseTime_;
     bool isChanging_ = false;
+    int32_t previousSecond_ = 0;
 
 public:
     TimerStatus() {}
@@ -33,12 +32,10 @@ public:
 
     void DecrementTimer();
     void CurrentTimeUpdate(const int32_t& time);
-    void PlusTimeUpdate();
+    bool IsChangeSecond();
 
     void MinusTimer(const float& timer);
     void TimerIncrement(const float& timer);
-
-    void TimerPromise(const float& minesTimer);
 
 public: // accsessor
     /// getter
@@ -51,6 +48,5 @@ public: // accsessor
 
     /// setter
     void SetCurrentTimer(float currentTimer) { currentTimer_ = currentTimer; }
-    /* void SetDecrementTimer(const float& time) { decrementTimer_ = time; }
-     void SetIncrementTimer(const float& time) { incrementTimer_ = time; }*/
+  
 };

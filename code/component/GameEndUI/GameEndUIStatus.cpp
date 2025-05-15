@@ -54,7 +54,7 @@ void GameEndUIStatus::AlphaEaseAnimation(const float& time) {
     }
 
     alpha_            = 1.0f;
-    apeerEasing_.time = apeerEasing_.maxTime;
+    alphaEasing_.time = alphaEasing_.maxTime;
 }
 
 void GameEndUIStatus::CheckAbleNextStep() {
@@ -70,7 +70,9 @@ void GameEndUIStatus::CheckAbleNextStep() {
 }
 
 void GameEndUIStatus::Reset() {
-
+    baseScale_        = Vec2f(0.0f, 0.0f);
+    alpha_            = 0.0f;
+    apeerEasing_.time = 0.0f;
     apeerEasing_.time = 0.0f;
 }
 
