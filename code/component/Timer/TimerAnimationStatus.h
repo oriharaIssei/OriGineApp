@@ -1,0 +1,75 @@
+#pragma once
+
+#include "component/IComponent.h"
+#include "KetaEasing.h"
+#include <Entity.h>
+#include <Vector2.h>
+
+enum class TimerAnimationStep {
+    NONE,
+    SCALING,
+    END,
+
+};
+
+class TimerAnimationStatus
+    : public IComponent {
+    friend void to_json(nlohmann::json& _json, const TimerAnimationStatus& _component);
+    friend void from_json(const nlohmann::json& _json, TimerAnimationStatus& _component);
+
+private: // variables
+    bool isAlive_ = true;
+
+    bool isAnimation_ = false;
+
+    // pos
+    Vec2f basePos_ = {0.0f, 0.0f};
+
+    // offset
+
+    // scale
+    Vec2f baseScale_ = {0.0f, 0.0f};
+    Vec2f initScale_ = {1.0f, 1.0f};
+    Vec2f maxScale_  = {1.0f, 1.0f};
+
+    Vec2f textureSize_ = {0.0f, 0.0f};
+
+    // ease
+    Easing scalingEasing_;
+    Easing colorChangeEasing_;
+
+    // step
+    TimerAnimationStep curerntStep_ = TimerAnimationStep::NONE;
+
+    // waitTime
+    float waitTimeAfterScaing_;
+
+public:
+    TimerAnimationStatus() {}
+    virtual ~TimerAnimationStatus() = default;
+
+    void Initialize(GameEntity* _entity) override;
+    virtual bool Edit();
+
+    virtual void Finalize();
+
+    void ScalingAnimation(const float& time);
+    void CheckAbleNextStep();
+
+    //
+    void Reset();
+
+public: // accsessor
+    /// getter
+
+    bool GetIsAnimation() const { return isAnimation_; }
+    Vec2f GetBasePos() const { return basePos_; }
+    Vec2f GetBaseScale() const { return baseScale_; }
+    Vec2f GetTextureSize() const { return textureSize_; }
+    TimerAnimationStep GetAnimationStep() const { return curerntStep_; }
+    float GetWaitTimeAfterApear() const { return waitTimeAfterScaing_; }
+
+    /// setter
+    void SetAnimationStep(const TimerAnimationStep& step) { curerntStep_ = step; }
+    void SetIsResultAnimation(const bool& is) { isAnimation_ = is; }
+};

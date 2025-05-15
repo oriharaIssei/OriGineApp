@@ -104,6 +104,7 @@
     <ClInclude Include="code\component\FloorUI\FloorUIController.h" />
     <ClInclude Include="code\component\FloorUI\FloorUIStatus.h" />
     <ClInclude Include="code\component\GameEndUI\GameEndUIStatus.h" />
+    <ClInclude Include="code\component\Timer\TimerAnimationStatus.h" />
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\KetaEasing.h" />
     <ClInclude Include="code\MyGame.h" />
@@ -207,6 +208,7 @@
     <ClInclude Include="code\system\SceneTransitionSystem\SceneTransitionSystem.h" />
     <ClInclude Include="code\system\Score\ScoreIncrementSystem.h" />
     <ClInclude Include="code\system\Score\ScoreUIScrollSystem.h" />
+    <ClInclude Include="code\system\Timer\TimerAnimationSystem.h" />
     <ClInclude Include="code\system\Timer\TimerDecrementSystem.h" />
     <ClInclude Include="code\system\Timer\TimerUIScrollSystem.h" />
     <ClInclude Include="code\system\UpdateButtonColorByState.h" />
@@ -219,6 +221,7 @@
     <ClCompile Include="code\component\FloorUI\FloorUIController.cpp" />
     <ClCompile Include="code\component\FloorUI\FloorUIStatus.cpp" />
     <ClCompile Include="code\component\GameEndUI\GameEndUIStatus.cpp" />
+    <ClCompile Include="code\component\Timer\TimerAnimationStatus.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\KetaEasing.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
@@ -324,6 +327,7 @@
     <ClCompile Include="code\system\SceneTransitionSystem\SceneTransitionSystem.cpp" />
     <ClCompile Include="code\system\Score\ScoreIncrementSystem.cpp" />
     <ClCompile Include="code\system\Score\ScoreUIScrollSystem.cpp" />
+    <ClCompile Include="code\system\Timer\TimerAnimationSystem.cpp" />
     <ClCompile Include="code\system\Timer\TimerDecrementSystem.cpp" />
     <ClCompile Include="code\system\Timer\TimerUIScrollSystem.cpp" />
     <ClCompile Include="code\system\UpdateButtonColorByState.cpp" />

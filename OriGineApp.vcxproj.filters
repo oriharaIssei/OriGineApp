@@ -465,6 +465,12 @@
     <ClInclude Include="code\system\GameEndUI\GameEndUISystem.h">
       <Filter>system\GameEndUI</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Timer\TimerAnimationSystem.h">
+      <Filter>system\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Timer\TimerAnimationStatus.h">
+      <Filter>component\Timer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -799,6 +805,12 @@
     </ClCompile>
     <ClCompile Include="code\system\GameEndUI\GameEndUISystem.cpp">
       <Filter>system\GameEndUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Timer\TimerAnimationSystem.cpp">
+      <Filter>system\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Timer\TimerAnimationStatus.cpp">
+      <Filter>component\Timer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

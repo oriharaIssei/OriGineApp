@@ -10,6 +10,7 @@
 // include
 #include <Vector3.h>
 // component
+#include "component/Timer/TimerAnimationStatus.h"
 #include "component/Timer/TimerStatus.h"
 #include "component/Timer/TimerUIStatus.h"
 
@@ -23,10 +24,6 @@ TimerUIScrollSystem::TimerUIScrollSystem()
 TimerUIScrollSystem::~TimerUIScrollSystem() {}
 
 void TimerUIScrollSystem::Initialize() {
-    //// TextureNameの初期化
-    // for (int32_t i = 0; i < 10; ++i) {
-    //     textureName_[i] = "Texture/Combo/ComboNumber" + std::to_string(i) + ".png";
-    // };
 }
 
 void TimerUIScrollSystem::Finalize() {}
@@ -40,24 +37,29 @@ void TimerUIScrollSystem::UpdateEntity(GameEntity* _entity) {
     // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* TimerEntity                  = ecsManager->getUniqueEntity("Timer");
+    GameEntity* TimerAnimationEntity         = ecsManager->getUniqueEntity("TimerAnimation");
 
-    if (!TimerEntity) { // Entityが存在しない場合の早期リターン
+    if (!TimerEntity || !TimerAnimationEntity) { // Entityが存在しない場合の早期リターン
         return;
     }
 
     /// component取得
-    TimerStatus* comboStatus     = getComponent<TimerStatus>(TimerEntity);
-    TimerUIStatus* comboUIStatus = getComponent<TimerUIStatus>(_entity);
+    TimerStatus* timerStatus     = getComponent<TimerStatus>(TimerEntity);
+    TimerUIStatus* timerUIStatus = getComponent<TimerUIStatus>(_entity);
     SpriteRenderer* spriteRender = getComponent<SpriteRenderer>(_entity);
+    TimerAnimationStatus* timerAnimationStatus = getComponent<TimerAnimationStatus>(TimerAnimationEntity);
 
-    if (!comboStatus || !comboUIStatus || !spriteRender) { // Componentが存在しない場合の早期リターン
+    if (!timerStatus || !timerUIStatus || !spriteRender || !timerAnimationStatus) { // Componentが存在しない場合の早期リターン
         return;
     }
 
+    //サイズ
+    Vec2f baseSize = timerAnimationStatus->GetTextureSize() * timerAnimationStatus->GetBaseScale();
+
     // 現在タイムの取得
     float currentTime  = comboStatus->GetCurrentTimer();
-    int32_t timerDigit = comboUIStatus->GetValueForDigit(currentTime);
+    int32_t timerDigit = timerUIStatus->GetValueForDigit(currentTime);
 
-    //UV座標を設定
+    // UV座標を設定
     spriteRender->setUVTranslate(Vec2f(float(timerDigit * 0.1f), 0.0f));
 }
