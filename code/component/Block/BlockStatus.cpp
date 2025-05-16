@@ -23,9 +23,9 @@ bool BlockStatus::Edit() {
 
 void BlockStatus::Finalize() {}
 
-void BlockStatus::SetColum(const int32_t& colum) {
+void BlockStatus::setRow(const int32_t& colum) {
 
-    columNum_ = colum;
+    row_ = colum;
 }
 
 void BlockStatus::TakeDamageForBomb() {
@@ -65,7 +65,7 @@ void BlockStatus::MoveUpdate(const float& time, Transform* transform, const floa
 
         // flag increment row
         isMove_                 = false;
-        rowNum_++;
+        columuNum_++;
     }
 }
 

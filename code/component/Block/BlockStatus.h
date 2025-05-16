@@ -19,8 +19,8 @@ private: // variables
     bool isFall_  = false;
 
     //
-    int32_t columNum_;
-    int32_t rowNum_=0;
+    int32_t row_;
+    int32_t columuNum_=0;
 
     int32_t currentHP_;
     bool isDestroy_ = false;
@@ -40,6 +40,10 @@ private: // variables
     bool isMove_      = false;
     Easing moveEase_;
 
+    //time
+    float breakOffsetTime_ = 0.0f;
+    bool isBreakForAdvaltageEffect_=false;
+
 public:
     BlockStatus() {}
     virtual ~BlockStatus() = default;
@@ -57,22 +61,23 @@ public:
 
 public: // accsessor
     /// getter
-    int32_t GetColumNum() const { return columNum_; }
-    int32_t GetRowNum() const { return rowNum_; }
+    int32_t GetRow() const { return row_; }
+    int32_t GetColum() const { return columuNum_; }
     int32_t GetCurrentHP() const { return currentHP_; }
     bool GetIsDestroy() const { return isDestroy_; }
     const bool& GetIsFall() const { return isFall_; }
     BlockType GetBlockType() const { return blockType_; }
     bool GetIsBreak() const { return isbreak_; }
     bool GetIsNotScrapSpawn() const { return isNotScrapSpawn_; }
+    bool GetIsBreakForAdvantageEffect() const { return isBreakForAdvaltageEffect_; }
      float GetBaseScoreValue() const { return baseScoreValue_; }
     float GetPlusScoreRate() const { return plusScoreRate_; }
     Vec3f GetPreMovePos() const { preMovePos_; }
     Vec4f GetChangeColor() const { return changeColor_; }
 
     /// setter
-    void SetColum(const int32_t& colum);
-    void SetRow(const int32_t& row) { rowNum_ = row; }
+    void setRow(const int32_t& colum);
+    void SetColum(const int32_t& row) { columuNum_ = row; }
     void SetIsFall(const bool& is) { isFall_ = is; }
     void SetcurrentHP(const int32_t& hp) { currentHP_ = hp; }
     void SetIsDestroy(const bool& is) { isDestroy_ = is; }
@@ -83,5 +88,5 @@ public: // accsessor
     void SetIsMove(const bool& is) { isMove_ = is; }
     void SetEaseTimeMax(const float& time) { moveEase_.maxTime = time; }
     void SetPlusScoreRate(const float& ratio) {  plusScoreRate_ = ratio; }
-    
+    void SetIsBreakForAdvntageEffect(const bool& is) { isBreakForAdvaltageEffect_ = is; }
 };

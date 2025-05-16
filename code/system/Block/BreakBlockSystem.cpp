@@ -15,6 +15,7 @@
 #include "component/Scrap/ScrapStatus.h"
 #include "component/Timer/TimerStatus.h"
 /// system
+#include "component/Block/BlockCombinationStatus.h"
 #include "system/scrap/ScrapDeleteSystem.h"
 #include "system/scrap/ScrapFallSystem.h"
 #include "system/scrap/ScrapToPlayerCollisionSystem.h"
@@ -52,11 +53,16 @@ void BreakBlockSystem::UpdateEntity(GameEntity* _entity) {
 
 void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
 
+    if (blockStatus_->GetIsBreakForAdvantageEffect()) {
+        return;
+    }
+
     // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* scoreEntity                  = ecsManager->getUniqueEntity("Score");
     GameEntity* timerEntity                  = ecsManager->getUniqueEntity("Timer");
     GameEntity* effectByBlockSpawner         = ecsManager->getUniqueEntity("effectByBlockSpawner");
+    GameEntity* combiEntity                  = ecsManager->getUniqueEntity("BlockCombination");
 
     /// sound
     GameEntity* blockManager = ecsManager->getUniqueEntity("BlockManager");
@@ -72,14 +78,17 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
     ScoreStatus* scoreStatus            = getComponent<ScoreStatus>(scoreEntity);
     TimerStatus* timerStatus            = getComponent<TimerStatus>(timerEntity);
     EffectByBlockSpawner* SpawnerStatus = getComponent<EffectByBlockSpawner>(effectByBlockSpawner);
+    BlockCombinationStatus* combiStatus = getComponent<BlockCombinationStatus>(combiEntity);
 
-    if (!scoreStatus || !timerStatus || !SpawnerStatus) { // Componentが存在しない場合の早期リターン
+    if (!scoreStatus || !timerStatus || !SpawnerStatus || !combiStatus) { // Componentが存在しない場合の早期リターン
         return;
     }
 
-    float timerDecrementValue = timerStatus->GetPulusTime() * blockStatus_->GetPlusScoreRate();
-    float timerIncrementValue = timerStatus->GetMinusTime() * blockStatus_->GetPlusScoreRate();
+    float timerDecrementValue = timerStatus->GetMinusTime() * blockStatus_->GetPlusScoreRate();
+    float timerIncrementValue = timerStatus->GetPulusTime() * blockStatus_->GetPlusScoreRate();
     float scoreValue          = blockStatus_->GetBaseScoreValue() * blockStatus_->GetPlusScoreRate();
+
+   /* float breakOffsetTime = 0.0f;*/
 
     switch (blocktype) {
         ///---------------------------------------------
@@ -111,12 +120,42 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
         /// Advance
         ///---------------------------------------------
     case BlockType::ADVANTAGE:
+        if (!combiStatus) {
+            break;
+        }
+
+        rightBlocks_ = combiStatus->GetRightBlocks(blockStatus_->GetColum(), blockStatus_->GetRow());
+
+        for (BlockStatus* status : rightBlocks_) {
+            switch (status->GetBlockType()) {
+            case BlockType::NORMAL:
+                timerIncrementValue += combiStatus->GetPlusValue();
+                break;
+            case BlockType::ADVANTAGE:
+                timerIncrementValue *= combiStatus->GetPlusRate();
+                break;
+            case BlockType::SKULL:
+                timerIncrementValue = -timerIncrementValue;
+                break;
+            default:
+                break;
+            }
+
+            status->SetIsBreak(true);
+            status->SetIsBreakForAdvntageEffect(true);
+        }
+
         timerStatus->TimerIncrement(timerIncrementValue);
-        effectType_ = EffectType::TIME;
-        tempValue_  = timerIncrementValue;
-        /*  if (!breakAdvance->isPlaying()) {*/
+        tempValue_ = timerIncrementValue;
+
+        if (tempValue_ >= 0) {
+            effectType_ = EffectType::TIME;
+        } else {
+            effectType_ = EffectType::MIMUSTIME;
+        }
+
         breakAdvance->Play();
-        /* }*/
+       
         break;
 
     default:
@@ -151,7 +190,6 @@ void BreakBlockSystem::ScrapSpawn(GameEntity* _entity) {
         ScrapStatus* status = getComponent<ScrapStatus>(scrap);
         status->SetFallStopPosY(scrapSpawner->GetFallStopPosY()); // stopPos
         status->SetLifeTime(scrapSpawner->GetLifeTime()); // lifeTime
-
 
         float blowValueX = 0.0f;
         float blowValueY = scrapSpawner->GetBlowValue()[Y];

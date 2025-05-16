@@ -10,7 +10,7 @@
 // component
 #include "component/Block/BlockManager.h"
 #include "component/Block/BlockStatus.h"
-#include"component/Menu/MenuStatus.h"
+#include "component/Menu/MenuStatus.h"
 
 BlockMoveSystem::BlockMoveSystem()
     : ISystem(SystemType::Movement) {}
@@ -25,13 +25,11 @@ void BlockMoveSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-   
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* blockManagerEntity           = ecsManager->getUniqueEntity("BlockManager");
-    GameEntity* menuEntity = ecsManager->getUniqueEntity("Menu");
+    GameEntity* menuEntity                   = ecsManager->getUniqueEntity("Menu");
 
-  
-    //no Entity
+    // no Entity
     if (!blockManagerEntity || !menuEntity) {
         return;
     }
@@ -49,7 +47,6 @@ void BlockMoveSystem::UpdateEntity(GameEntity* _entity) {
     if (menu->GetIsPose()) {
         return;
     }
-
 
     // スケール代入
     transform->scale = blockManager->GetResultScalle();

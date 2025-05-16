@@ -3218,7 +3218,11 @@
             "Components": {
                 "BlockCombinationStatus": [
                     {
-                        "isAlive": true
+                        "breakOffsetTime": 2.0,
+                        "conbiMax": 3,
+                        "isAlive": true,
+                        "plusRate": 2.0,
+                        "plusValue": 2.0
                     }
                 ]
             },

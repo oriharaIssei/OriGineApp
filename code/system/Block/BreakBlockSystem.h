@@ -3,6 +3,7 @@
 #include "component/Block/BlockManager.h"
 #include "component/EffectByBlock/EffectByBlockUIStatus.h"
 #include "system/ISystem.h"
+#include <vector>
 
 class BlockStatus;
 class BreakBlockSystem
@@ -23,6 +24,7 @@ protected:
     virtual void UpdateEntity(GameEntity* _entity) override;
 
 private:
+    std::vector<BlockStatus*> rightBlocks_;
     BlockStatus* blockStatus_;
     EffectType effectType_;
     float tempValue_;

@@ -17,6 +17,9 @@ private: // variables
 
     int32_t conbinationMax_;
     std::vector<BlockStatus*> blockStatusArray_;
+    float plusRate_;
+    float plusValue_;
+    float breakOffsetTime_;
 
 public:
     BlockCombinationStatus() {}
@@ -27,10 +30,12 @@ public:
     void Finalize() override;
 
     void AddBlockStatus(BlockStatus* status);
+    std::vector<BlockStatus*> GetRightBlocks(const int& baseRowNum,const int&columNum)const ;
 
 public: // accsessor
     /// getter
-
+    float GetPlusRate() const { return plusRate_; }
+    float GetPlusValue() const { return plusValue_; }
     const std::vector<BlockStatus*>& GetBlockStatusArray() const {return blockStatusArray_;}
 
     /// setter
