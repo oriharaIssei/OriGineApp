@@ -72,7 +72,7 @@ public: // accsessor
 
     /// setter
     void SetColum(const int32_t& colum);
-    void SetRow(const int32_t& row);
+    void SetRow(const int32_t& row) { rowNum_ = row; }
     void SetIsFall(const bool& is) { isFall_ = is; }
     void SetcurrentHP(const int32_t& hp) { currentHP_ = hp; }
     void SetIsDestroy(const bool& is) { isDestroy_ = is; }
