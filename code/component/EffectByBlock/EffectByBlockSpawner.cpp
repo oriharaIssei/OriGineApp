@@ -25,18 +25,6 @@ bool EffectByBlockSpawner::Edit() {
 
     ImGui::Spacing();
 
-    //// ComboDigit（桁数）のUI選択
-    // static const char* digitLabels[] = {
-    //     "ONE",
-    //     "TWO",
-    //     "THREE",
-    //     "FOUR",
-    //     "FIVE",
-    // };
-    // int currentIndex                 = static_cast<int>(digit_);
-    // if (ImGui::Combo("Timer Digit", &currentIndex, digitLabels, static_cast<int>(UIDigit::COUNT))) {
-    //     digit_ = static_cast<UIDigit>(currentIndex);
-    // }
 
     return isChange;
 }
@@ -44,14 +32,9 @@ bool EffectByBlockSpawner::Edit() {
 void EffectByBlockSpawner::Finalize() {
 }
 
-void EffectByBlockSpawner::EffectUISpawn(GameEntity* _entity, const float& value, const EffectType& effectType) {
-    if (!_entity)
-        return;
+void EffectByBlockSpawner::EffectUISpawn(const Vec3f& position, const float& value, const EffectType& effectType) {
 
-    Transform* hostTransform = getComponent<Transform>(_entity);
-    if (!hostTransform)
-        return;
-
+    
     const float effectValue = value;
     const EffectType type   = effectType;
 
@@ -80,13 +63,13 @@ void EffectByBlockSpawner::EffectUISpawn(GameEntity* _entity, const float& value
             status->SetEffectType(type);
             status->SetCurerntIconTexture();
             status->SetDigit(BlockEffectUIDigit::ICON);
-            trans->translate = Vec3f(hostTransform->worldMat[3]) + Vec3f(-5.0f, 0.0f, -6.0f); // 固定位置
+            trans->translate = Vec3f(position) + Vec3f(-5.0f, 0.0f, -6.0f); // 固定位置
             break;
         case 1: // 符号
             status->SetEffectType(type);
             status->SetCurerntSignTexture();
             status->SetDigit(BlockEffectUIDigit::SIGN);
-            trans->translate = Vec3f(hostTransform->worldMat[3]) + Vec3f(-1.5f, 0.0f, -6.0f); // 固定位置
+            trans->translate = Vec3f(position) + Vec3f(-1.5f, 0.0f, -6.0f); // 固定位置
             break;
         default: // 数字
             status->SetEffectType(type);
@@ -96,7 +79,7 @@ void EffectByBlockSpawner::EffectUISpawn(GameEntity* _entity, const float& value
             status->SetCurerntNumberTexture(ditinum);
 
             // 数字のみオフセットを加算
-            trans->translate = Vec3f(hostTransform->worldMat[3]) + Vec3f(static_cast<float>((-2.5f * currentOffsetIndex) + 1.5f), 0.0f, -6.0f);
+            trans->translate = Vec3f(position) + Vec3f(static_cast<float>((-2.5f * currentOffsetIndex) + 1.5f), 0.0f, -6.0f);
             ++currentOffsetIndex;
             break;
         }

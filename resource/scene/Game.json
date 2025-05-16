@@ -735,10 +735,10 @@
                     {
                         "currentPulusTime": 0.0,
                         "isAlive": true,
-                        "minusTime": 5.0,
+                        "minusTime": 2.0,
                         "minusTimeNormal": 1.0,
                         "promiseTime": 3.0,
-                        "pulusTime": 5.0,
+                        "pulusTime": 2.0,
                         "startTimer": 60.0
                     }
                 ]
@@ -1856,6 +1856,7 @@
                             20,
                             20
                         ],
+                        "rowNumMax": 8,
                         "scalingSize": [
                             4.699999809265137,
                             4.699999809265137,
@@ -3218,10 +3219,12 @@
             "Components": {
                 "BlockCombinationStatus": [
                     {
-                        "breakOffsetTime": 2.0,
+                        "breakOffsetTime": 0.07000000029802322,
                         "conbiMax": 3,
                         "isAlive": true,
                         "plusRate": 2.0,
+                        "plusScoreRate": 2.0,
+                        "plusScoreValue": 100.0,
                         "plusValue": 2.0
                     }
                 ]
@@ -3270,6 +3273,9 @@
                 "Priority": 0
             },
             "DeleteBigExplotionCollision": {
+                "Priority": 0
+            },
+            "DeleteBlockForAdvantageSystem": {
                 "Priority": 0
             },
             "DeleteBlockSystem": {

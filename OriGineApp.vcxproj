@@ -159,6 +159,7 @@
     <ClInclude Include="code\system\Block\BlockMoveSystem.h" />
     <ClInclude Include="code\system\Block\BlockSpawnSystem.h" />
     <ClInclude Include="code\system\Block\BreakBlockSystem.h" />
+    <ClInclude Include="code\system\Block\DeleteBlockForAdvantageSystem.h" />
     <ClInclude Include="code\system\Block\DeleteBlockSystem.h" />
     <ClInclude Include="code\system\Block\MoveTenpoSystem.h" />
     <ClInclude Include="code\system\Bom\BomCollisionExSystem.h" />
@@ -280,6 +281,7 @@
     <ClCompile Include="code\system\Block\BlockMoveSystem.cpp" />
     <ClCompile Include="code\system\Block\BlockSpawnSystem.cpp" />
     <ClCompile Include="code\system\Block\BreakBlockSystem.cpp" />
+    <ClCompile Include="code\system\Block\DeleteBlockForAdvantageSystem.cpp" />
     <ClCompile Include="code\system\Block\DeleteBlockSystem.cpp" />
     <ClCompile Include="code\system\Block\MoveTenpoSystem.cpp" />
     <ClCompile Include="code\system\Bom\BomCollisionExSystem.cpp" />

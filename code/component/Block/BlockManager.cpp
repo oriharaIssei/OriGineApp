@@ -250,3 +250,4 @@ void from_json(const nlohmann::json& _json, BlockManager& _blockManager) {
     if (auto it = _json.find("rowNumMax"); it != _json.end()) {
         _json.at("rowNumMax").get_to(_blockManager.columnMax_);
     }
+}

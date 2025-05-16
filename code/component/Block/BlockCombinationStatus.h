@@ -4,6 +4,7 @@
 #include "component/IComponent.h"
 #include <cstdint>
 #include <vector>
+#include <Vector3.h>
 
 class BlockStatus;
 class BlockCombinationStatus
@@ -17,9 +18,16 @@ private: // variables
 
     int32_t conbinationMax_;
     std::vector<BlockStatus*> blockStatusArray_;
-    float plusRate_;
-    float plusValue_;
+    float plusTimerRate_;
+    float plusTimerValue_;
+    float plusScoreRate_;
+    float plusScoreValue_;
     float breakOffsetTime_;
+
+    float minusScoreValue_;
+    float minusTimerValue_;
+
+    Vec3f endPosition_;
 
 public:
     BlockCombinationStatus() {}
@@ -30,13 +38,21 @@ public:
     void Finalize() override;
 
     void AddBlockStatus(BlockStatus* status);
-    std::vector<BlockStatus*> GetRightBlocks(const int& baseRowNum,const int&columNum)const ;
+    std::vector<BlockStatus*> GetRightBlocks(const int& baseRowNum,const int&columNum);
 
 public: // accsessor
     /// getter
-    float GetPlusRate() const { return plusRate_; }
-    float GetPlusValue() const { return plusValue_; }
+    Vec3f GetEndPosition() const { return endPosition_; }
+    float GetPlusRate() const { return plusTimerRate_; }
+    float GetPlusValue() const { return plusTimerValue_; }
+    float GetPlusScoreRate() const { return plusScoreRate_; }
+    float GetMinusTimerValue() const { return minusTimerValue_; }
+    float GetMinusScoreValue() const { return minusScoreValue_; }
+    float GetPlusScoreValue() const { return plusScoreValue_; }
+    float GetBreakOffsetTime() const { return breakOffsetTime_; }
     const std::vector<BlockStatus*>& GetBlockStatusArray() const {return blockStatusArray_;}
 
     /// setter
+    void SetMinusTimerValue(const float& timer) { minusTimerValue_ = timer; }
+    void SetMinusScoreValue(const float& timer) { minusScoreValue_ = timer; }
 };

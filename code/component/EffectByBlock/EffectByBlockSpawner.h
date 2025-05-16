@@ -1,6 +1,7 @@
 #pragma once
 
 #include "component/IComponent.h"
+#include <Vector3.h>
 
 
 enum class EffectType;
@@ -23,7 +24,7 @@ public:
 
     virtual void Finalize();
 
-    void EffectUISpawn(GameEntity* _entity, const float& value, const EffectType& type);
+    void EffectUISpawn(const Vec3f& position, const float& value, const EffectType& type);
 
  
 

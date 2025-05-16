@@ -34,9 +34,8 @@ void BlockStatus::TakeDamageForBomb() {
 
 void BlockStatus::TakeDamageForBigBomb() {
     isNotScrapSpawn_ = true;
-    currentHP_=0;
+    currentHP_       = 0;
 }
-
 
 void BlockStatus::TakeDamageForFloor() {
     currentHP_ = 0;
@@ -56,17 +55,21 @@ void BlockStatus::MoveUpdate(const float& time, Transform* transform, const floa
     transform->translate[X] = (EaseInCirc(preMovePos_[X], movepos, moveEase_.time, moveEase_.maxTime));
 
     if (moveEase_.time >= moveEase_.maxTime) {
-        //save time
-        moveEase_.time          = moveEase_.maxTime;
+        // save time
+        moveEase_.time = moveEase_.maxTime;
 
         // save pos
         transform->translate[X] = movepos;
         preMovePos_[X]          = transform->translate[X];
 
         // flag increment row
-        isMove_                 = false;
+        isMove_ = false;
         columuNum_++;
     }
+}
+
+void BlockStatus::BreakTimerDecrement(const float& deltaTime) {
+    breakOffsetTime_ -= deltaTime;
 }
 
 void BlockStatus::TimeInit() {
@@ -75,26 +78,10 @@ void BlockStatus::TimeInit() {
 
 void to_json(nlohmann::json& _json, const BlockStatus& _block) {
     _json["isAlive"] = _block.isAlive_;
-    /*
-    _json["columNum"]       = _block.columNum_;
-     _json["currentHP"]      = _block.currentHP_;
-     _json["isDestroy"]      = _block.isDestroy_;
-     _json["isbreak"]        = _block.isbreak_;
-     _json["ratio"]          = _block.ratio_;
-     _json["baseScoreValue"] = _block.baseScoreValue_;
-     _json["blockType"]      = static_cast<int32_t>(_block.blockType_);
-     */
+   
 }
 
 void from_json(const nlohmann::json& _json, BlockStatus& _block) {
     _json.at("isAlive").get_to(_block.isAlive_);
-    /*
-   _json.at("columNum").get_to(_block.columNum_);
-    _json.at("currentHP").get_to(_block.currentHP_);
-    _json.at("isDestroy").get_to(_block.isDestroy_);
-    _json.at("isbreak").get_to(_block.isbreak_);
-    _json.at("ratio").get_to(_block.ratio_);
-    _json.at("baseScoreValue").get_to(_block.baseScoreValue_);
-    _json.at("blockType").get_to(static_cast<int32_t>(_block.blockType_));
-    */
+   
 }

@@ -477,6 +477,9 @@
     <ClInclude Include="code\component\Block\BlockCombinationStatus.h">
       <Filter>component\Block</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Block\DeleteBlockForAdvantageSystem.h">
+      <Filter>system\Block</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -823,6 +826,9 @@
     </ClCompile>
     <ClCompile Include="code\component\Block\BlockCombinationStatus.cpp">
       <Filter>component\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Block\DeleteBlockForAdvantageSystem.cpp">
+      <Filter>system\Block</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

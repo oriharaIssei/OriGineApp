@@ -144,6 +144,7 @@
 #include"system/GameEndUI/GameEndUISystem.h"
 #include"system/Timer/TimerAnimationSystem.h"
 #include"system/Timer/TimeAdaptAinmationSystem.h"
+#include"system/Block/DeleteBlockForAdvantageSystem.h"
 
 MyGame::MyGame() {}
 
@@ -377,8 +378,9 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<GameEndUISystem>();
     ecsManager->registerSystem<TimerAnimationSystem>();
     ecsManager->registerSystem<TimeAdaptAinmationSystem>();
-
-      ecsManager->registerSystem<FloorUISystem>();
+    ecsManager->registerSystem<DeleteBlockForAdvantageSystem>();
+    
+    ecsManager->registerSystem<FloorUISystem>();
     ecsManager->registerSystem<CheckIsUnderPlayer>();
 
     /// ====================================================================================================

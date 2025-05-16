@@ -20,29 +20,33 @@ private: // variables
 
     //
     int32_t row_;
-    int32_t columuNum_=0;
+    int32_t columuNum_ = 0;
 
     int32_t currentHP_;
-    bool isDestroy_ = false;
-    bool isbreak_   = false;
+    bool isDestroy_       = false;
+    bool isbreak_         = false;
     bool isNotScrapSpawn_ = false;
+    bool isMove_          = false;
+    Easing moveEase_;
 
-    // color
+    // pos,color
+    Vec3f preMovePos_  = {0.0f, 0.0f, 0.0f};
     Vec4f changeColor_ = {1.0f, 0.0f, 0.0f, 1.0f};
 
     // score
     float baseScoreValue_ = 0.0f;
     float plusScoreRate_  = 1.0f;
 
+    // type
     BlockType blockType_;
 
-    Vec3f preMovePos_ = {0.0f, 0.0f, 0.0f};
-    bool isMove_      = false;
-    Easing moveEase_;
+    // time
+    float breakOffsetTime_          = 0.0f;
+    bool isBreakForAdvaltageEffect_ = false;
 
-    //time
-    float breakOffsetTime_ = 0.0f;
-    bool isBreakForAdvaltageEffect_=false;
+    float resultScore_ = 0.0f;
+    float resultTime_  = 0.0f;
+    bool isRightEdge_  = 0.0f;
 
 public:
     BlockStatus() {}
@@ -59,8 +63,14 @@ public:
     void MoveUpdate(const float& time, Transform* transform, const float& moveValue);
     void TimeInit();
 
+    void BreakTimerDecrement(const float& deltaTime);
+
 public: // accsessor
     /// getter
+    bool GetIsRightEdge() const { return isRightEdge_; }
+    float GetResultScore() const { return resultScore_; }
+    float GetResultTime() const { return resultTime_; }
+    float GetBreakOffsetTime() const { return breakOffsetTime_; }
     int32_t GetRow() const { return row_; }
     int32_t GetColum() const { return columuNum_; }
     int32_t GetCurrentHP() const { return currentHP_; }
@@ -70,12 +80,13 @@ public: // accsessor
     bool GetIsBreak() const { return isbreak_; }
     bool GetIsNotScrapSpawn() const { return isNotScrapSpawn_; }
     bool GetIsBreakForAdvantageEffect() const { return isBreakForAdvaltageEffect_; }
-     float GetBaseScoreValue() const { return baseScoreValue_; }
+    float GetBaseScoreValue() const { return baseScoreValue_; }
     float GetPlusScoreRate() const { return plusScoreRate_; }
-    Vec3f GetPreMovePos() const { preMovePos_; }
+    Vec3f GetPreMovePos() const { return preMovePos_; }
     Vec4f GetChangeColor() const { return changeColor_; }
 
     /// setter
+    void SetBreakOffsetTime(const float& time) { breakOffsetTime_=time; }
     void setRow(const int32_t& colum);
     void SetColum(const int32_t& row) { columuNum_ = row; }
     void SetIsFall(const bool& is) { isFall_ = is; }
@@ -87,6 +98,9 @@ public: // accsessor
     void SetPreMovePos(const Vec3f& offset) { preMovePos_ = offset; }
     void SetIsMove(const bool& is) { isMove_ = is; }
     void SetEaseTimeMax(const float& time) { moveEase_.maxTime = time; }
-    void SetPlusScoreRate(const float& ratio) {  plusScoreRate_ = ratio; }
+    void SetPlusScoreRate(const float& ratio) { plusScoreRate_ = ratio; }
     void SetIsBreakForAdvntageEffect(const bool& is) { isBreakForAdvaltageEffect_ = is; }
+    void SetResultScore(const float& score) { resultScore_ = score; }
+    void SetResultTimer(const float& timer) { resultTime_ = timer; }
+    void SetIsRightEdge(const bool& is) { isRightEdge_ = is; }
 };

@@ -24,6 +24,7 @@
 #include "system/Block/BlockMoveSystem.h"
 #include "system/Block/BreakBlockSystem.h"
 #include "system/Block/DeleteBlockSystem.h"
+#include"system/Block/DeleteBlockForAdvantageSystem.h"
 
 BlockSpawnSystem::BlockSpawnSystem() : ISystem(SystemType::Movement) {}
 BlockSpawnSystem::~BlockSpawnSystem() {}
@@ -79,7 +80,7 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
 
         for (int32_t i = blockSpawner_->GetColumnNumMax(); i > 0; --i) {
             for (int32_t j = 0; j < blockSpawner_->GetRowNumMax(); ++j) {
-                CreateBlocks(i, j, blockSpawner_->GetStartPositionX() + (blockWidth * i));
+                CreateBlocks(i, j, blockSpawner_->GetStartPositionX() + (blockWidth * (blockSpawner_->GetColumnNumMax() - i)));
             }
         }
         // 　行数カウンターを一応初期化
@@ -162,9 +163,11 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columnIndex, const int32_t& r
     //------------------ StateTransition
     ecs->getSystem<DeleteBlockSystem>()->addEntity(block);
     ecs->getSystem<BreakBlockSystem>()->addEntity(block);
+    ecs->getSystem<DeleteBlockForAdvantageSystem>()->addEntity(block);
     //------------------ Movement
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(block);
     ecs->getSystem<BlockMoveSystem>()->addEntity(block);
+    
 
     //------------------ Collision
     ecs->getSystem<CollisionCheckSystem>()->addEntity(block);

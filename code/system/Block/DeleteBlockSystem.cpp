@@ -72,8 +72,9 @@ void DeleteBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) 
     ScoreStatus* scoreStatus = getComponent<ScoreStatus>(scoreEntity);
     TimerStatus* timerStatus = getComponent<TimerStatus>(timerEntity);
     EffectByBlockSpawner* SpawnerStatus = getComponent<EffectByBlockSpawner>(effectByBlockSpawner);
+    Transform* blockTransform              = getComponent<Transform>(_entity);
 
-    if (!scoreStatus || !timerStatus || !SpawnerStatus) { // Componentが存在しない場合の早期リターン
+    if (!scoreStatus || !timerStatus || !SpawnerStatus || !blockTransform) { // Componentが存在しない場合の早期リターン
         return;
     }
 
@@ -123,5 +124,5 @@ void DeleteBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) 
         break;
     }
 
-       SpawnerStatus->EffectUISpawn(_entity, tempValue_, effectType_);
+       SpawnerStatus->EffectUISpawn(Vec3f(blockTransform->worldMat[3]), tempValue_, effectType_);
  }

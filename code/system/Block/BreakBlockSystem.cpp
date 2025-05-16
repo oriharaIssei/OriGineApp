@@ -45,17 +45,16 @@ void BreakBlockSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     if (blockStatus_->GetIsBreak()) {
-        ScrapSpawn(_entity);
-        BlockReaction(_entity, blockStatus_->GetBlockType());
+
+        if (!blockStatus_->GetIsBreakForAdvantageEffect()) {
+            ScrapSpawn(_entity);
+            BlockReaction(_entity, blockStatus_->GetBlockType());
+        }
         DestroyEntity(_entity);
     }
 }
 
 void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
-
-    if (blockStatus_->GetIsBreakForAdvantageEffect()) {
-        return;
-    }
 
     // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
@@ -74,31 +73,32 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
         return;
     }
 
-    /// component取得z
+    /// component取得
     ScoreStatus* scoreStatus            = getComponent<ScoreStatus>(scoreEntity);
     TimerStatus* timerStatus            = getComponent<TimerStatus>(timerEntity);
     EffectByBlockSpawner* SpawnerStatus = getComponent<EffectByBlockSpawner>(effectByBlockSpawner);
     BlockCombinationStatus* combiStatus = getComponent<BlockCombinationStatus>(combiEntity);
+    Transform* blockTransform           = getComponent<Transform>(_entity);
 
     if (!scoreStatus || !timerStatus || !SpawnerStatus || !combiStatus) { // Componentが存在しない場合の早期リターン
         return;
     }
 
-    float timerDecrementValue = timerStatus->GetMinusTime() * blockStatus_->GetPlusScoreRate();
-    float timerIncrementValue = timerStatus->GetPulusTime() * blockStatus_->GetPlusScoreRate();
-    float scoreValue          = blockStatus_->GetBaseScoreValue() * blockStatus_->GetPlusScoreRate();
+    /*  float timerDecrementValue = timerStatus->GetMinusTime() * blockStatus_->GetPlusScoreRate();*/
+    float plusTimerValue = timerStatus->GetPulusTime() * blockStatus_->GetPlusScoreRate();
+    float plusScoreValue = blockStatus_->GetBaseScoreValue() * blockStatus_->GetPlusScoreRate();
 
-   /* float breakOffsetTime = 0.0f;*/
+    float breakOffsetTime = 0.0f;
 
     switch (blocktype) {
         ///---------------------------------------------
         /// Normal
         ///---------------------------------------------
     case BlockType::NORMAL:
-        scoreStatus->PlusScoreIncrement(scoreValue);
+        scoreStatus->PlusScoreIncrement(plusScoreValue);
         scoreStatus->SetScoreChangeTime(0.0f);
         effectType_ = EffectType::SCORE;
-        tempValue_  = scoreValue;
+        tempValue_  = plusScoreValue;
         /* if (!breakNormal->isPlaying()) {*/
         breakNormal->Play();
         /*}*/
@@ -108,12 +108,15 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
         /// Skull
         ///---------------------------------------------
     case BlockType::SKULL:
-        timerStatus->MinusTimer(timerDecrementValue);
-        effectType_ = EffectType::MIMUSTIME;
-        tempValue_  = timerDecrementValue;
-        /*  if (!breakSkull->isPlaying()) {*/
+        scoreStatus->PlusScoreIncrement(plusScoreValue);
+        scoreStatus->SetScoreChangeTime(0.0f);
+        effectType_ = EffectType::SCORE;
+        tempValue_  = plusScoreValue;
+        /*  timerStatus->MinusTimer(timerDecrementValue);*/
+        /* effectType_ = EffectType::MIMUSTIME;
+         tempValue_  = timerDecrementValue;*/
         breakSkull->Play();
-        /* }*/
+
         break;
 
         ///---------------------------------------------
@@ -129,40 +132,48 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
         for (BlockStatus* status : rightBlocks_) {
             switch (status->GetBlockType()) {
             case BlockType::NORMAL:
-                timerIncrementValue += combiStatus->GetPlusValue();
+                plusTimerValue += combiStatus->GetPlusValue();
+                plusScoreValue += combiStatus->GetPlusScoreValue();
                 break;
             case BlockType::ADVANTAGE:
-                timerIncrementValue *= combiStatus->GetPlusRate();
+                plusTimerValue *= combiStatus->GetPlusRate();
+                plusScoreValue *= combiStatus->GetPlusScoreRate();
                 break;
             case BlockType::SKULL:
-                timerIncrementValue = -timerIncrementValue;
+                plusTimerValue = -plusTimerValue;
+                plusScoreValue = -plusScoreValue;
                 break;
             default:
                 break;
             }
 
-            status->SetIsBreak(true);
+            // 破壊までのオフセットタイム
+            breakOffsetTime += combiStatus->GetBreakOffsetTime();
+            status->SetBreakOffsetTime(breakOffsetTime);
             status->SetIsBreakForAdvntageEffect(true);
+
+            status->SetResultScore(plusScoreValue);
+            status->SetResultTimer(plusTimerValue);  
         }
 
-        timerStatus->TimerIncrement(timerIncrementValue);
-        tempValue_ = timerIncrementValue;
-
-        if (tempValue_ >= 0) {
-            effectType_ = EffectType::TIME;
+        // スコア、タイマー加算
+        if (plusTimerValue >= 0.0f) {
+            timerStatus->TimerIncrement(plusTimerValue);
         } else {
-            effectType_ = EffectType::MIMUSTIME;
+            timerStatus->MinusTimer(plusTimerValue);
         }
+        scoreStatus->PlusScoreIncrement(plusScoreValue);
+        scoreStatus->SetScoreChangeTime(0.0f);
 
         breakAdvance->Play();
-       
+        return;
         break;
 
     default:
         break;
     }
 
-    SpawnerStatus->EffectUISpawn(_entity, tempValue_, effectType_);
+    SpawnerStatus->EffectUISpawn(Vec3f(blockTransform->worldMat[3]), tempValue_, effectType_);
 }
 
 void BreakBlockSystem::ScrapSpawn(GameEntity* _entity) {
