@@ -30,7 +30,8 @@ bool BlockManager::Edit() {
     ImGui::Spacing();
 
     isChange |= InputGuiCommand<int>("pillarHP", HPMax_);
-    isChange |= InputGuiCommand<int>("columNumMax", columNumMax_);
+    isChange |= InputGuiCommand<int>("rowMax", rowNumMax_);
+    isChange |= InputGuiCommand<int>("columnMax", columnMax_);
     isChange |= DragGuiVectorCommand<3,float>("blockSize", blockSize_);
     isChange |= DragGuiVectorCommand<3,float>("scalingSize", scalingSize_);
     isChange |= DragGuiCommand("collisionRadius", collisionRadius_, 0.01f);
@@ -186,7 +187,7 @@ void BlockManager::ResetScalingEase() {
 }
 
 void to_json(nlohmann::json& _json, const BlockManager& _blockManager) {
-    _json["columNumMax"]          = _blockManager.columNumMax_;
+    _json["columNumMax"]          = _blockManager.rowNumMax_;
     _json["pillarHP"]             = _blockManager.HPMax_;
     _json["FirstblockSize"]       = _blockManager.blockSize_;
     _json["scalingSize"]          = _blockManager.scalingSize_;
@@ -214,10 +215,11 @@ void to_json(nlohmann::json& _json, const BlockManager& _blockManager) {
     _json["generateInterval"] = _blockManager.generateInterval_;
     _json["scoreValue"]       = _blockManager.scoreValue_;
     _json["nextLevelTime"]    = _blockManager.nextLevelTime_;
+    _json["rowNumMax"]    = _blockManager.columnMax_;
 }
 
 void from_json(const nlohmann::json& _json, BlockManager& _blockManager) {
-    _json.at("columNumMax").get_to(_blockManager.columNumMax_);
+    _json.at("columNumMax").get_to(_blockManager.rowNumMax_);
     _json.at("pillarHP").get_to(_blockManager.HPMax_);
     _json.at("FirstblockSize").get_to(_blockManager.blockSize_);
     _json.at("scalingSize").get_to(_blockManager.scalingSize_);
@@ -244,4 +246,7 @@ void from_json(const nlohmann::json& _json, BlockManager& _blockManager) {
     _json.at("generateInterval").get_to(_blockManager.generateInterval_);
     _json.at("scoreValue").get_to(_blockManager.scoreValue_);
     _json.at("nextLevelTime").get_to(_blockManager.nextLevelTime_);
-}
+
+    if (auto it = _json.find("rowNumMax"); it != _json.end()) {
+        _json.at("rowNumMax").get_to(_blockManager.columnMax_);
+    }

@@ -8,17 +8,14 @@
 #define ENGINE_ECS
 #include "engine/EngineInclude.h"
 #include "myRandom/MyRandom.h"
-// lib
-#include "input/Input.h"
-// include
-#include <Quaternion.h>
+
 #include <Vector3.h>
 // component
 
+#include "component/Block/BlockCombinationStatus.h"
 #include "component/Block/BlockStatus.h"
 #include "component/Menu/MenuStatus.h"
 #include "component/Piller/FloatingFloorStatus.h"
-#include"component/Block/BlockCombinationStatus.h"
 // #include "component/Piller/PillerStates.h"
 //  system
 #include "system/Block/BlockColorChangeSystem.h"
@@ -71,7 +68,7 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
 
     blockSpawner_->CostReset(); // コストリセット
 
-    float blockWidth_  = blockSpawner_->GetBlockSize()[X] * 2.0f;
+    float blockWidth  = blockSpawner_->GetBlockSize()[X] * 2.0f;
     float nextPosition = blockSpawner_->GetNextCreatePositionX();
 
     if (blockSpawner_->GetIsMove()) {
@@ -80,8 +77,10 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
 
     if (!isInited_) { // 初回の生成
 
-        for (int32_t i = 0; i < blockSpawner_->GetColumNumMax(); ++i) {
-            CreateBlocks(i, blockSpawner_->GetStartPositionX());
+        for (int32_t i = blockSpawner_->GetColumnNumMax(); i > 0; --i) {
+            for (int32_t j = 0; j < blockSpawner_->GetRowNumMax(); ++j) {
+                CreateBlocks(i, j, blockSpawner_->GetStartPositionX() + (blockWidth * i));
+            }
         }
         // 　行数カウンターを一応初期化
         for (int i = 0; i < static_cast<int32_t>(BlockType::COUNT); ++i) {
@@ -92,9 +91,9 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
 
         // 2回目移行の生成
         if (lastTransform_ && lastTransform_->translate[X] < nextPosition) {
-            for (int32_t i = 0; i < blockSpawner_->GetColumNumMax(); ++i) {
-                float newX = lastTransform_->translate[X] + blockWidth_;
-                CreateBlocks(i, newX);
+            for (int32_t i = 0; i < blockSpawner_->GetRowNumMax(); ++i) {
+                float newX = lastTransform_->translate[X] + blockWidth;
+                CreateBlocks(0, i, newX);
             }
         }
     }
@@ -102,7 +101,7 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
     isInited_ = true;
 }
 
-void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos) {
+void BlockSpawnSystem::CreateBlocks(const int32_t& columnIndex, const int32_t& rowIndex, const float& xPos) {
 
     // ================================= Bullet Entityを 生成 ================================= //
     GameEntity* block = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, BlockStatus>(
@@ -114,7 +113,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos
     Transform* transform = getComponent<Transform>(block); // 柱
     float sizeY          = blockSpawner_->GetBlockSize()[Y] * 2.0f;
 
-    transform->translate = Vec3f{xPos, blockSpawner_->GetBasePosY() + (sizeY * columIndex), blockSpawner_->GetStartPositionZ()};
+    transform->translate = Vec3f{xPos, blockSpawner_->GetBasePosY() + (sizeY * rowIndex), blockSpawner_->GetStartPositionZ()};
     transform->scale     = blockSpawner_->GetBlockSize();
 
     //* Collider
@@ -125,8 +124,8 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos
 
     // row,columNum
     BlockStatus* blockStatus = getComponent<BlockStatus>(block);
-    blockStatus->setRow(columIndex);
-    blockStatus->SetColum(0);
+    blockStatus->setRow(rowIndex);
+    blockStatus->SetColum(columnIndex);
     blockStatus->SetBlockType(BlockType::NORMAL); // まずはノーマルにセット
     blockStatus->SetEaseTimeMax(blockSpawner_->GetMoveTime());
 
@@ -147,11 +146,11 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos
     blockStatus->SetcurrentHP(blockSpawner_->GetHpMax());
 
     // 一番上のブロックを監視対象に設定
-    if (columIndex == blockSpawner_->GetColumNumMax() - 1) {
+    if (rowIndex == blockSpawner_->GetRowNumMax() - 1) {
         lastTransform_ = transform;
     }
 
-    //ブロックステータスを更新
+    // ブロックステータスを更新
     blockCombinationStatus_->AddBlockStatus(blockStatus);
 
     // ================================= System ================================= //

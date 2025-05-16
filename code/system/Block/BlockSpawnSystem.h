@@ -33,7 +33,7 @@ public:
     void Finalize() override;
 
   
-    void CreateBlocks(const int32_t& columIndex, const float& newPosX);
+    void CreateBlocks(const int32_t& columnIndex, const int32_t& rowIndex, const float& xPos);
     void BlockTypeSetting(BlockStatus* status, BlockType blocktype);
     void ModelSetForBlockType(ModelMeshRenderer* render, GameEntity* entity,BlockType type);
 
