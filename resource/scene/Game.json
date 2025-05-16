@@ -3213,6 +3213,17 @@
                 }
             ],
             "isUnique": true
+        },
+        {
+            "Components": {
+                "BlockCombinationStatus": [
+                    {
+                        "isAlive": true
+                    }
+                ]
+            },
+            "Name": "BlockCombination",
+            "isUnique": true
         }
     ],
     "Systems": [

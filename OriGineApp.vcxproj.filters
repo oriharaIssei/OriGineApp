@@ -474,6 +474,9 @@
     <ClInclude Include="code\system\Timer\TimeAdaptAinmationSystem.h">
       <Filter>system\Timer</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\Block\BlockCombinationStatus.h">
+      <Filter>component\Block</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -817,6 +820,9 @@
     </ClCompile>
     <ClCompile Include="code\system\Timer\TimeAdaptAinmationSystem.cpp">
       <Filter>system\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Block\BlockCombinationStatus.cpp">
+      <Filter>component\Block</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

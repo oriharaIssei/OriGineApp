@@ -101,6 +101,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="code\component\Block\BlockCombinationStatus.h" />
     <ClInclude Include="code\component\FloorUI\FloorUIController.h" />
     <ClInclude Include="code\component\FloorUI\FloorUIStatus.h" />
     <ClInclude Include="code\component\GameEndUI\GameEndUIStatus.h" />
@@ -219,6 +220,7 @@
     <ClInclude Include="code\system\scrap\ScrapToPlayerCollisionSystem.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\component\Block\BlockCombinationStatus.cpp" />
     <ClCompile Include="code\component\FloorUI\FloorUIController.cpp" />
     <ClCompile Include="code\component\FloorUI\FloorUIStatus.cpp" />
     <ClCompile Include="code\component\GameEndUI\GameEndUIStatus.cpp" />

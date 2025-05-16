@@ -6,14 +6,6 @@
 #include <cstdint>
 #include <Vector3.h>
 
-// enum class MoveStep {
-//     NONE,
-//     INIT,
-//     MOVE,
-//     END,
-// };
-//
-
 enum class BlockType {
     NORMAL,
     SKULL,

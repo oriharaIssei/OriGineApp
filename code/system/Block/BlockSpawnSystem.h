@@ -15,12 +15,13 @@
 class ModelMeshRenderer;
 class BlockManager;
 class BlockStatus;
+class BlockCombinationStatus;
 class BlockSpawnSystem : public ISystem {
 private:
     bool isInited_;
     BlockManager* blockSpawner_;
     Transform* lastTransform_ = nullptr;
-
+    BlockCombinationStatus* blockCombinationStatus_ = nullptr;
    
     int32_t nextSpecialLine_;
 

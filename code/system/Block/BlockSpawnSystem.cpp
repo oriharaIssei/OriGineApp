@@ -16,16 +16,17 @@
 // component
 
 #include "component/Block/BlockStatus.h"
+#include "component/Menu/MenuStatus.h"
 #include "component/Piller/FloatingFloorStatus.h"
-#include"component/Menu/MenuStatus.h"
+#include"component/Block/BlockCombinationStatus.h"
 // #include "component/Piller/PillerStates.h"
 //  system
+#include "system/Block/BlockColorChangeSystem.h"
 #include "system/Block/BlockExBomCollision.h"
+#include "system/Block/BlockFloorCollision.h"
 #include "system/Block/BlockMoveSystem.h"
 #include "system/Block/BreakBlockSystem.h"
 #include "system/Block/DeleteBlockSystem.h"
-#include"system/Block/BlockFloorCollision.h"
-#include"system/Block/BlockColorChangeSystem.h"
 
 BlockSpawnSystem::BlockSpawnSystem() : ISystem(SystemType::Movement) {}
 BlockSpawnSystem::~BlockSpawnSystem() {}
@@ -43,24 +44,24 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-      // ポーズ中は通さない
+    // ポーズ中は通さない
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* menuEntity                   = ecsManager->getUniqueEntity("Menu");
+    GameEntity* bockCombiEntity              = ecsManager->getUniqueEntity("BlockCombination");
 
-    if (!menuEntity) {
+    if (!menuEntity || !bockCombiEntity) {
         return;
     }
 
-    MenuStatus* menu = getComponent<MenuStatus>(menuEntity);
-
-    if (!menu) {
+    MenuStatus* menu        = getComponent<MenuStatus>(menuEntity);
+    blockCombinationStatus_ = getComponent<BlockCombinationStatus>(bockCombiEntity);
+    if (!menu || !blockCombinationStatus_) {
         return;
     }
 
     if (menu->GetIsPose()) {
         return;
     }
-
 
     blockSpawner_ = getComponent<BlockManager>(_entity);
 
@@ -132,7 +133,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos
     BlockTypeSetting(blockStatus, BlockType::SKULL); // どくろの生成
     BlockTypeSetting(blockStatus, BlockType::ADVANTAGE); // アドバンテージブロックの生成
 
-    //ブロックタイプにより得られるスコアを設定
+    // ブロックタイプにより得られるスコアを設定
     blockStatus->SetBaseScoreValue(blockSpawner_->GetScoreValue(blockStatus->GetBlockType()));
 
     //* MeshRenderer
@@ -149,6 +150,9 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos
         lastTransform_ = transform;
     }
 
+    //ブロックステータスを更新
+    blockCombinationStatus_->AddBlockStatus(blockStatus);
+
     // ================================= System ================================= //
     ECSManager* ecs = ECSManager::getInstance();
 
@@ -161,7 +165,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos
     //------------------ Movement
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(block);
     ecs->getSystem<BlockMoveSystem>()->addEntity(block);
-    
+
     //------------------ Collision
     ecs->getSystem<CollisionCheckSystem>()->addEntity(block);
     ecs->getSystem<BlockExBomCollision>()->addEntity(block);

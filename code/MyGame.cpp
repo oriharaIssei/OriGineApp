@@ -71,6 +71,7 @@
 #include"component/FloorUI/FloorUIStatus.h"
 #include"component/GameEndUI/GameEndUIStatus.h"
 #include"component/Timer/TimerAnimationStatus.h"
+#include"component/Block/BlockCombinationStatus.h"
 
 // system
 #include "Application/code/system/BigBom/BigBomCollisionExSystem.h"
@@ -277,6 +278,7 @@ void MyGame::RegisterUsingComponents() {
     ecsManager->registerComponent<FloorUIStatus>();
     ecsManager->registerComponent<GameEndUIStatus>();
     ecsManager->registerComponent<TimerAnimationStatus>();
+    ecsManager->registerComponent<BlockCombinationStatus>();
 
     ecsManager->registerComponent<Transform>();
     ecsManager->registerComponent<CameraTransform>();
