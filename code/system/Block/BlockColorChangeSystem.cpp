@@ -44,7 +44,7 @@ void BlockColorChangeSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    if (blockStatus->GetIsRedColor()) {
+    if (blockStatus->GetIsColorChange()) {
         switch (blockStatus->GetBlockType()) {
         case BlockType::NORMAL:
             modelMesh->getMaterialBuff(0)->color_ = blockStatus->GetNormalChangeColor();
@@ -66,7 +66,7 @@ void BlockColorChangeSystem::UpdateEntity(GameEntity* _entity) {
         modelMesh->getMaterialBuff(0)->color_ = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
     }
 
-    blockStatus->SetIsRedColor(false);
+    blockStatus->SetIsColorChange(false);
 
     /// ====================================================
     /// 衝突判定の結果を使って CharacterStatus を更新
@@ -107,7 +107,7 @@ void BlockColorChangeSystem::UpdateEntity(GameEntity* _entity) {
                         if (combinationStatus) {
                             auto rightBlocks = combinationStatus->GetRightBlocksForCalucration(blockStatus->GetRowNum(), blockStatus->GetColumNum());
                             for (auto* rightBlock : rightBlocks) {
-                                rightBlock->SetIsRedColor(true);
+                                rightBlock->SetIsColorChange(true);
                             }
                         }
                     }
