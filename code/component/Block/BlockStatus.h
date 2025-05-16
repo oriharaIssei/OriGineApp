@@ -47,6 +47,7 @@ private: // variables
     float resultScore_ = 0.0f;
     float resultTime_  = 0.0f;
     bool isRightEdge_  = 0.0f;
+    bool isRedColor_   = false;
 
 public:
     BlockStatus() {}
@@ -67,6 +68,7 @@ public:
 
 public: // accsessor
     /// getter
+    bool GetIsRedColor() const { return isRedColor_; }
     bool GetIsRightEdge() const { return isRightEdge_; }
     float GetResultScore() const { return resultScore_; }
     float GetResultTime() const { return resultTime_; }
@@ -86,6 +88,7 @@ public: // accsessor
     Vec4f GetChangeColor() const { return changeColor_; }
 
     /// setter
+    void SetIsRedColor(const bool& is) {  isRedColor_ = is; }
     void SetBreakOffsetTime(const float& time) { breakOffsetTime_=time; }
     void setRow(const int32_t& colum);
     void SetColum(const int32_t& row) { columuNum_ = row; }

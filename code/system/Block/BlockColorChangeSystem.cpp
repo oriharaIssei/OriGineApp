@@ -8,6 +8,7 @@
 #include "engine/EngineInclude.h"
 
 #include "component/BigBom/BigBomStatus.h"
+#include "component/Block/BlockCombinationStatus.h"
 #include "component/Block/BlockManager.h"
 #include "component/Block/BlockStatus.h"
 #include "component/Bom/BomStatus.h"
@@ -28,10 +29,12 @@ void BlockColorChangeSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     // CharacterStatusを取得
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* combiEntity                  = ecsManager->getUniqueEntity("BlockCombination");
 
-    BlockStatus* blockStatus     = getComponent<BlockStatus>(_entity);
-    ModelMeshRenderer* modelMesh = getComponent<ModelMeshRenderer>(_entity);
-    /* ModelMeshRenderer* modelMesh = getComponent<ModelMeshRenderer>(_entity);*/
+    BlockStatus* blockStatus                  = getComponent<BlockStatus>(_entity);
+    ModelMeshRenderer* modelMesh              = getComponent<ModelMeshRenderer>(_entity);
+    BlockCombinationStatus* combinationStatus = getComponent<BlockCombinationStatus>(combiEntity);
 
     if (!blockStatus) {
         return;
@@ -41,8 +44,14 @@ void BlockColorChangeSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    // 白
-    modelMesh->getMaterialBuff(0)->color_ = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
+    if (blockStatus->GetIsRedColor()) {
+        modelMesh->getMaterialBuff(0)->color_ = blockStatus->GetChangeColor();
+    } else {
+        // 白
+        modelMesh->getMaterialBuff(0)->color_ = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
+    }
+
+    blockStatus->SetIsRedColor(false);
 
     /// ====================================================
     /// 衝突判定の結果を使って CharacterStatus を更新
@@ -76,9 +85,23 @@ void BlockColorChangeSystem::UpdateEntity(GameEntity* _entity) {
                 if (hitEntityStatus) {
 
                     modelMesh->getMaterialBuff(0)->color_ = blockStatus->GetChangeColor();
+
+                    if (blockStatus->GetBlockType() == BlockType::ADVANTAGE) {
+                        // 右隣の壊れる予定のブロックを取得
+
+                        if (combinationStatus) {
+                            auto rightBlocks = combinationStatus->GetRightBlocks(blockStatus->GetColum(), blockStatus->GetRow());
+                            for (auto* rightBlock : rightBlocks) {
+                                rightBlock->SetIsRedColor(true);
+                                                       
+                            }
+                        }
+                    }
+
                 } else if (bigbomStatus) {
                     if (bigbomStatus->GetIsLaunch()) {
                         modelMesh->getMaterialBuff(0)->color_ = blockStatus->GetChangeColor();
+
                     }
                 }
             }
