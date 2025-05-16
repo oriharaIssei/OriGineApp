@@ -45,7 +45,22 @@ void BlockColorChangeSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     if (blockStatus->GetIsRedColor()) {
-        modelMesh->getMaterialBuff(0)->color_ = blockStatus->GetChangeColor();
+        switch (blockStatus->GetBlockType()) {
+        case BlockType::NORMAL:
+            modelMesh->getMaterialBuff(0)->color_ = blockStatus->GetNormalChangeColor();
+            break;
+
+        case BlockType::ADVANTAGE:
+            modelMesh->getMaterialBuff(0)->color_ = blockStatus->GetAdvantageChangeColor();
+            break;
+
+        case BlockType::SKULL:
+            modelMesh->getMaterialBuff(0)->color_ = blockStatus->GetSkullChangeColor();
+            break;
+        default:
+            break;
+        }
+      
     } else {
         // 白
         modelMesh->getMaterialBuff(0)->color_ = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
@@ -84,7 +99,7 @@ void BlockColorChangeSystem::UpdateEntity(GameEntity* _entity) {
 
                 if (hitEntityStatus) {
 
-                    modelMesh->getMaterialBuff(0)->color_ = blockStatus->GetChangeColor();
+                    modelMesh->getMaterialBuff(0)->color_ = blockStatus->GetNormalChangeColor();
 
                     if (blockStatus->GetBlockType() == BlockType::ADVANTAGE) {
                         // 右隣の壊れる予定のブロックを取得
@@ -93,15 +108,13 @@ void BlockColorChangeSystem::UpdateEntity(GameEntity* _entity) {
                             auto rightBlocks = combinationStatus->GetRightBlocks(blockStatus->GetColum(), blockStatus->GetRow());
                             for (auto* rightBlock : rightBlocks) {
                                 rightBlock->SetIsRedColor(true);
-                                                       
                             }
                         }
                     }
 
                 } else if (bigbomStatus) {
                     if (bigbomStatus->GetIsLaunch()) {
-                        modelMesh->getMaterialBuff(0)->color_ = blockStatus->GetChangeColor();
-
+                        modelMesh->getMaterialBuff(0)->color_ = blockStatus->GetNormalChangeColor();
                     }
                 }
             }

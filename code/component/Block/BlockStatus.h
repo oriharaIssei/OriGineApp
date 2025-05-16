@@ -30,8 +30,10 @@ private: // variables
     Easing moveEase_;
 
     // pos,color
-    Vec3f preMovePos_  = {0.0f, 0.0f, 0.0f};
-    Vec4f changeColor_ = {1.0f, 0.0f, 0.0f, 1.0f};
+    Vec3f preMovePos_           = {0.0f, 0.0f, 0.0f};
+    Vec4f normalChangeColor_    = {1.0f, 0.0f, 0.0f, 1.0f};
+    Vec4f skullChangeColor_     = {0.57f, 0.439f, 0.859f, 1.0f};
+    Vec4f advantageChangeColor_ = {1.0f, 0.843f, 0.0f, 1.0f};
 
     // score
     float baseScoreValue_ = 0.0f;
@@ -85,11 +87,13 @@ public: // accsessor
     float GetBaseScoreValue() const { return baseScoreValue_; }
     float GetPlusScoreRate() const { return plusScoreRate_; }
     Vec3f GetPreMovePos() const { return preMovePos_; }
-    Vec4f GetChangeColor() const { return changeColor_; }
+    Vec4f GetNormalChangeColor() const { return normalChangeColor_; }
+    Vec4f GetSkullChangeColor() const { return skullChangeColor_; }
+    Vec4f GetAdvantageChangeColor() const { return advantageChangeColor_; }
 
     /// setter
-    void SetIsRedColor(const bool& is) {  isRedColor_ = is; }
-    void SetBreakOffsetTime(const float& time) { breakOffsetTime_=time; }
+    void SetIsRedColor(const bool& is) { isRedColor_ = is; }
+    void SetBreakOffsetTime(const float& time) { breakOffsetTime_ = time; }
     void setRow(const int32_t& colum);
     void SetColum(const int32_t& row) { columuNum_ = row; }
     void SetIsFall(const bool& is) { isFall_ = is; }
