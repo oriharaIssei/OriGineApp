@@ -6,6 +6,7 @@
 
 class BlockStatus;
 class EffectByBlockSpawner;
+struct Transform;
 class DeleteBlockForAdvantageSystem
     : public ISystem {
 public:
@@ -21,9 +22,11 @@ protected:
 
     void BlockReaction(GameEntity* _entity, BlockType blocktype);
     void ApearResultScoreUI();
-    EffectByBlockSpawner* SpawnerStatus_;
+    
 
 private:
+    EffectByBlockSpawner* SpawnerStatus_;
+    Transform* blockTransform_; 
     BlockStatus* blockStatus_;
     EffectType effectType_;
     float tempValue_;

@@ -3488,13 +3488,6 @@
                 "Priority": 0
             }
         },
-        {
-            "GrayscaleEffect": {
-                "Priority": 0
-            },
-            "SmoothingEffect": {
-                "Priority": 0
-            }
-        }
+        {}
     ]
 }

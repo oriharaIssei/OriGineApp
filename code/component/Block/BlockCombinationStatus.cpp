@@ -86,10 +86,9 @@ std::vector<BlockStatus*> BlockCombinationStatus::GetRightBlocks(const int& base
         return a->GetColum() > b->GetColum();
     });
 
-   // 最後尾にフラグを立てる
-  /*  if (!result.empty()) {
+  if (!result.empty()) {
         result.back()->SetIsRightEdge(true);
-    }*/
+    }
    
     return result;
 }
