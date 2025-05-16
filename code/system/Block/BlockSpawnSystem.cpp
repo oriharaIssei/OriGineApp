@@ -126,6 +126,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columIndex, const float& xPos
     // row,columNum
     BlockStatus* blockStatus = getComponent<BlockStatus>(block);
     blockStatus->SetColum(columIndex);
+    blockStatus->SetRow(0);
     blockStatus->SetBlockType(BlockType::NORMAL); // まずはノーマルにセット
     blockStatus->SetEaseTimeMax(blockSpawner_->GetMoveTime());
 

@@ -20,6 +20,8 @@ private: // variables
 
     //
     int32_t columNum_;
+    int32_t rowNum_=0;
+
     int32_t currentHP_;
     bool isDestroy_ = false;
     bool isbreak_   = false;
@@ -56,6 +58,7 @@ public:
 public: // accsessor
     /// getter
     int32_t GetColumNum() const { return columNum_; }
+    int32_t GetRowNum() const { return rowNum_; }
     int32_t GetCurrentHP() const { return currentHP_; }
     bool GetIsDestroy() const { return isDestroy_; }
     const bool& GetIsFall() const { return isFall_; }
@@ -69,6 +72,7 @@ public: // accsessor
 
     /// setter
     void SetColum(const int32_t& colum);
+    void SetRow(const int32_t& row);
     void SetIsFall(const bool& is) { isFall_ = is; }
     void SetcurrentHP(const int32_t& hp) { currentHP_ = hp; }
     void SetIsDestroy(const bool& is) { isDestroy_ = is; }

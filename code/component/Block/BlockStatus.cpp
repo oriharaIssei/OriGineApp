@@ -56,10 +56,16 @@ void BlockStatus::MoveUpdate(const float& time, Transform* transform, const floa
     transform->translate[X] = (EaseInCirc(preMovePos_[X], movepos, moveEase_.time, moveEase_.maxTime));
 
     if (moveEase_.time >= moveEase_.maxTime) {
+        //save time
         moveEase_.time          = moveEase_.maxTime;
+
+        // save pos
         transform->translate[X] = movepos;
         preMovePos_[X]          = transform->translate[X];
+
+        // flag increment row
         isMove_                 = false;
+        rowNum_++;
     }
 }
 

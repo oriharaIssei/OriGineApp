@@ -14,7 +14,7 @@ public:
     // void Update()override;
     void Finalize() override;
 
-    void OneTenpoMethod(GameEntity* _entity);
+    void OneTenpoMoveMethod(GameEntity* _entity);
 
 protected:
     virtual void UpdateEntity(GameEntity* _entity) override;

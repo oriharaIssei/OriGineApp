@@ -69,10 +69,10 @@ void MoveTenpoSystem::UpdateEntity(GameEntity* _entity) {
 
     blockManager_->SetIsMove(false);
     // 1テンポ
-    OneTenpoMethod(_entity);
+    OneTenpoMoveMethod(_entity);
 }
 
-void MoveTenpoSystem::OneTenpoMethod(GameEntity* _entity) {
+void MoveTenpoSystem::OneTenpoMoveMethod(GameEntity* _entity) {
     // 1テンポごとの処理
     if (curerntTenpoTime_ < blockManager_->GetMoveTenpo()) {
         return;
