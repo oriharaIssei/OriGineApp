@@ -27,7 +27,8 @@ private: // variables
     float minusScoreValue_;
     float minusTimerValue_;
 
-    Vec3f endPosition_;
+    Vec3f timerUIPosOffset_;
+    Vec3f scoreUIPosOffset_;
 
 public:
     BlockCombinationStatus() {}
@@ -42,7 +43,8 @@ public:
 
 public: // accsessor
     /// getter
-    Vec3f GetEndPosition() const { return endPosition_; }
+    Vec3f GetTimerUIPosOffset() const { return timerUIPosOffset_; }
+    Vec3f GetScoreUIPosOffset() const { return scoreUIPosOffset_; }
     float GetPlusRate() const { return plusTimerRate_; }
     float GetPlusValue() const { return plusTimerValue_; }
     float GetPlusScoreRate() const { return plusScoreRate_; }

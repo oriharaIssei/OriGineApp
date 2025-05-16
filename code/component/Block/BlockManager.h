@@ -8,8 +8,8 @@
 
 enum class BlockType {
     NORMAL,
-    SKULL,
     ADVANTAGE,
+    SKULL,
     COUNT
 };
 

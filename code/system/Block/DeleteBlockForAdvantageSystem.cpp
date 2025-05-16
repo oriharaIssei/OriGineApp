@@ -119,7 +119,9 @@ void DeleteBlockForAdvantageSystem::BlockReaction(GameEntity* _entity, BlockType
 }
 
 void DeleteBlockForAdvantageSystem::ApearResultScoreUI() {
- 
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* combiEntity = ecsManager->getUniqueEntity("BlockCombination");
+
     // effectType 判定
     if (blockStatus_->GetResultTime() >= 0) {
         effectType_ = EffectType::TIME;
@@ -127,8 +129,8 @@ void DeleteBlockForAdvantageSystem::ApearResultScoreUI() {
         effectType_ = EffectType::MIMUSTIME;
     }
 
-    /*breakAdvance->Play();*/
+     BlockCombinationStatus* breakAdvance = getComponent<BlockCombinationStatus>(combiEntity); // 落ちる音
 
-    SpawnerStatus_->EffectUISpawn(Vec3f(blockTransform_->worldMat[3]), blockStatus_->GetResultTime(), effectType_);
-    SpawnerStatus_->EffectUISpawn(Vec3f(blockTransform_->worldMat[3]), blockStatus_->GetResultScore(), EffectType::SCORE);
+    SpawnerStatus_->EffectUISpawn(Vec3f(blockTransform_->worldMat[3]) + breakAdvance->GetTimerUIPosOffset(), std::fabsf(blockStatus_->GetResultTime()), effectType_);
+     SpawnerStatus_->EffectUISpawn(Vec3f(blockTransform_->worldMat[3]) + breakAdvance->GetScoreUIPosOffset(), std::fabsf(blockStatus_->GetResultScore()), EffectType::SCORE);
 }

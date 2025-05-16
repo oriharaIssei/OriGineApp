@@ -19,6 +19,9 @@ bool BlockCombinationStatus::Edit() {
     isChange |= DragGuiCommand("plusScoreValue", plusScoreValue_);
     isChange |= DragGuiCommand("plusScoreRate", plusScoreRate_);
     isChange |= DragGuiCommand("breakOffsetTime", breakOffsetTime_);
+
+    isChange |= DragVectorGui("timerUIPosOffset", timerUIPosOffset_);
+    isChange |= DragVectorGui("scoreUIPosOffset", scoreUIPosOffset_);
     ImGui::Spacing();
 
     return isChange;
@@ -38,6 +41,8 @@ void to_json(nlohmann::json& _json, const BlockCombinationStatus& _block) {
     _json["breakOffsetTime"] = _block.breakOffsetTime_;
     _json["plusScoreRate"]   = _block.plusScoreRate_;
     _json["plusScoreValue"]  = _block.plusScoreValue_;
+    _json["timerUIPosOffset"] = _block.timerUIPosOffset_;
+    _json["scoreUIPosOffset"] = _block.scoreUIPosOffset_;
 }
 
 void from_json(const nlohmann::json& _json, BlockCombinationStatus& _block) {
@@ -65,6 +70,12 @@ void from_json(const nlohmann::json& _json, BlockCombinationStatus& _block) {
     if (auto it = _json.find("plusScoreValue"); it != _json.end()) {
         _json.at("plusScoreValue").get_to(_block.plusScoreValue_);
     }
+    if (auto it = _json.find("timerUIPosOffset"); it != _json.end()) {
+        _json.at("timerUIPosOffset").get_to(_block.timerUIPosOffset_);
+    }
+    if (auto it = _json.find("scoreUIPosOffset"); it != _json.end()) {
+        _json.at("scoreUIPosOffset").get_to(_block.scoreUIPosOffset_);
+    }
 }
 
 std::vector<BlockStatus*> BlockCombinationStatus::GetRightBlocks(const int& baseRowNum, const int& columNum) {
@@ -83,12 +94,12 @@ std::vector<BlockStatus*> BlockCombinationStatus::GetRightBlocks(const int& base
     }
     // rowNumが小さい順にソート（右から順）
     std::sort(result.begin(), result.end(), [](BlockStatus* a, BlockStatus* b) {
-        return a->GetColum() > b->GetColum();
+        return static_cast<int>(a->GetBlockType()) < static_cast<int>(b->GetBlockType());
     });
 
-  if (!result.empty()) {
+    if (!result.empty()) {
         result.back()->SetIsRightEdge(true);
     }
-   
+
     return result;
 }

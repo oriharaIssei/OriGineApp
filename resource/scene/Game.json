@@ -3225,7 +3225,17 @@
                         "plusRate": 2.0,
                         "plusScoreRate": 2.0,
                         "plusScoreValue": 100.0,
-                        "plusValue": 2.0
+                        "plusValue": 2.0,
+                        "scoreUIPosOffset": [
+                            0.0,
+                            3.0,
+                            0.0
+                        ],
+                        "timerUIPosOffset": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
                     }
                 ]
             },
