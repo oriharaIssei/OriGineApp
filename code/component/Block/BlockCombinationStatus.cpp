@@ -34,13 +34,13 @@ void BlockCombinationStatus::AddBlockStatus(BlockStatus* status) {
 }
 
 void to_json(nlohmann::json& _json, const BlockCombinationStatus& _block) {
-    _json["isAlive"]         = _block.isAlive_;
-    _json["conbiMax"]        = _block.conbinationMax_;
-    _json["plusRate"]        = _block.plusTimerRate_;
-    _json["plusValue"]       = _block.plusTimerValue_;
-    _json["breakOffsetTime"] = _block.breakOffsetTime_;
-    _json["plusScoreRate"]   = _block.plusScoreRate_;
-    _json["plusScoreValue"]  = _block.plusScoreValue_;
+    _json["isAlive"]          = _block.isAlive_;
+    _json["conbiMax"]         = _block.conbinationMax_;
+    _json["plusRate"]         = _block.plusTimerRate_;
+    _json["plusValue"]        = _block.plusTimerValue_;
+    _json["breakOffsetTime"]  = _block.breakOffsetTime_;
+    _json["plusScoreRate"]    = _block.plusScoreRate_;
+    _json["plusScoreValue"]   = _block.plusScoreValue_;
     _json["timerUIPosOffset"] = _block.timerUIPosOffset_;
     _json["scoreUIPosOffset"] = _block.scoreUIPosOffset_;
 }
@@ -78,7 +78,7 @@ void from_json(const nlohmann::json& _json, BlockCombinationStatus& _block) {
     }
 }
 
-std::vector<BlockStatus*> BlockCombinationStatus::GetRightBlocksForCalucration(const int& baseRowNum, const int& columNum)const {
+std::vector<BlockStatus*> BlockCombinationStatus::GetRightBlocksForCalucration(const int& baseRowNum, const int& columNum) const {
     std::vector<BlockStatus*> result;
     for (BlockStatus* status : blockStatusArray_) {
         int row = status->GetRowNum();
@@ -108,7 +108,7 @@ std::vector<BlockStatus*> BlockCombinationStatus::SortBlocksLeftToRight(std::vec
         return a->GetRowNum() > b->GetRowNum();
     });
 
-     if (!result.empty()) {
+    if (!result.empty()) {
         result.back()->SetIsRightEdge(true);
     }
 

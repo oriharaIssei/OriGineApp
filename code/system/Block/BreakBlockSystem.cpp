@@ -101,7 +101,7 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
         tempValue_  = plusScoreValue;
         /* if (!breakNormal->isPlaying()) {*/
         breakNormal->Play();
-        /*}*/
+        
         break;
 
         ///---------------------------------------------
