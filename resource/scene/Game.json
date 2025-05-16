@@ -573,10 +573,6 @@
                     "SystemType": 3
                 },
                 {
-                    "SystemName": "PlayerCreateBigBomSystem",
-                    "SystemType": 3
-                },
-                {
                     "SystemName": "PlayerFollowCameraSystem",
                     "SystemType": 3
                 },
@@ -3220,7 +3216,7 @@
                 "BlockCombinationStatus": [
                     {
                         "breakOffsetTime": 0.07000000029802322,
-                        "conbiMax": 3,
+                        "conbiMax": 4,
                         "isAlive": true,
                         "plusRate": 2.0,
                         "plusScoreRate": 2.0,
@@ -3228,7 +3224,7 @@
                         "plusValue": 2.0,
                         "scoreUIPosOffset": [
                             0.0,
-                            3.0,
+                            4.099999904632568,
                             0.0
                         ],
                         "timerUIPosOffset": [

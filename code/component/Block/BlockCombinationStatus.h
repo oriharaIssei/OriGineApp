@@ -39,7 +39,8 @@ public:
     void Finalize() override;
 
     void AddBlockStatus(BlockStatus* status);
-    std::vector<BlockStatus*> GetRightBlocks(const int& baseRowNum,const int&columNum);
+    std::vector<BlockStatus*> GetRightBlocksForCalucration(const int& baseRowNum, const int& columNum) const;
+    std::vector<BlockStatus*> SortBlocksLeftToRight(std::vector<BlockStatus*> blocks);
 
 public: // accsessor
     /// getter

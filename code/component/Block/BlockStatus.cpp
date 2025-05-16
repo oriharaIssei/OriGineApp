@@ -23,10 +23,6 @@ bool BlockStatus::Edit() {
 
 void BlockStatus::Finalize() {}
 
-void BlockStatus::setRow(const int32_t& colum) {
-
-    row_ = colum;
-}
 
 void BlockStatus::TakeDamageForBomb() {
     currentHP_--;
@@ -64,7 +60,7 @@ void BlockStatus::MoveUpdate(const float& time, Transform* transform, const floa
 
         // flag increment row
         isMove_ = false;
-        columuNum_++;
+        rownum_++;
     }
 }
 

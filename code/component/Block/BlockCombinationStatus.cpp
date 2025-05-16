@@ -78,13 +78,13 @@ void from_json(const nlohmann::json& _json, BlockCombinationStatus& _block) {
     }
 }
 
-std::vector<BlockStatus*> BlockCombinationStatus::GetRightBlocks(const int& baseRowNum, const int& columNum) {
+std::vector<BlockStatus*> BlockCombinationStatus::GetRightBlocksForCalucration(const int& baseRowNum, const int& columNum)const {
     std::vector<BlockStatus*> result;
     for (BlockStatus* status : blockStatusArray_) {
-        int row = status->GetColum();
+        int row = status->GetRowNum();
 
         // colum が血がければskip
-        if (columNum != status->GetRow()) {
+        if (columNum != status->GetColumNum()) {
             continue;
         }
 
@@ -92,12 +92,23 @@ std::vector<BlockStatus*> BlockCombinationStatus::GetRightBlocks(const int& base
             result.push_back(status);
         }
     }
-    // rowNumが小さい順にソート（右から順）
+    // BlockType順にソート
     std::sort(result.begin(), result.end(), [](BlockStatus* a, BlockStatus* b) {
         return static_cast<int>(a->GetBlockType()) < static_cast<int>(b->GetBlockType());
     });
 
-    if (!result.empty()) {
+    return result;
+}
+
+std::vector<BlockStatus*> BlockCombinationStatus::SortBlocksLeftToRight(std::vector<BlockStatus*> blocks) {
+    std::vector<BlockStatus*> result = blocks;
+
+    // rowNumが小さい順にソート（右から順）
+    std::sort(result.begin(), result.end(), [](BlockStatus* a, BlockStatus* b) {
+        return a->GetRowNum() > b->GetRowNum();
+    });
+
+     if (!result.empty()) {
         result.back()->SetIsRightEdge(true);
     }
 

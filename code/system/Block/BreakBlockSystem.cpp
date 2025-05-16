@@ -127,7 +127,8 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
             break;
         }
 
-        rightBlocks_ = combiStatus->GetRightBlocks(blockStatus_->GetColum(), blockStatus_->GetRow());
+        // 合計スコア計算用のソート
+        rightBlocks_ = combiStatus->GetRightBlocksForCalucration(blockStatus_->GetRowNum(), blockStatus_->GetColumNum());
 
         for (BlockStatus* status : rightBlocks_) {
             switch (status->GetBlockType()) {
@@ -147,13 +148,19 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
                 break;
             }
 
+            // 計算結果保持
+            status->SetResultScore(plusScoreValue);
+            status->SetResultTimer(plusTimerValue);
+        }
+
+        //再ソート(左から右の順番になるように)
+        rightBlocks_ = combiStatus->SortBlocksLeftToRight(rightBlocks_);
+
+        for (BlockStatus* status : rightBlocks_) {
             // 破壊までのオフセットタイム
             breakOffsetTime += combiStatus->GetBreakOffsetTime();
             status->SetBreakOffsetTime(breakOffsetTime);
             status->SetIsBreakForAdvntageEffect(true);
-
-            status->SetResultScore(plusScoreValue);
-            status->SetResultTimer(plusTimerValue);  
         }
 
         // スコア、タイマー加算

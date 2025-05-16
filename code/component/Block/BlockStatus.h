@@ -19,8 +19,8 @@ private: // variables
     bool isFall_  = false;
 
     //
-    int32_t row_;
-    int32_t columuNum_ = 0;
+    int32_t columnnum;
+    int32_t rownum_ = 0;
 
     int32_t currentHP_;
     bool isDestroy_       = false;
@@ -75,8 +75,8 @@ public: // accsessor
     float GetResultScore() const { return resultScore_; }
     float GetResultTime() const { return resultTime_; }
     float GetBreakOffsetTime() const { return breakOffsetTime_; }
-    int32_t GetRow() const { return row_; }
-    int32_t GetColum() const { return columuNum_; }
+    int32_t GetColumNum() const { return columnnum; }
+    int32_t GetRowNum() const { return rownum_; }
     int32_t GetCurrentHP() const { return currentHP_; }
     bool GetIsDestroy() const { return isDestroy_; }
     const bool& GetIsFall() const { return isFall_; }
@@ -94,8 +94,8 @@ public: // accsessor
     /// setter
     void SetIsRedColor(const bool& is) { isRedColor_ = is; }
     void SetBreakOffsetTime(const float& time) { breakOffsetTime_ = time; }
-    void setRow(const int32_t& colum);
-    void SetColum(const int32_t& row) { columuNum_ = row; }
+    void SetColumnNum(const int32_t& colum) {columnnum = colum;}
+    void SetRowNum(const int32_t& row) { rownum_ = row; }
     void SetIsFall(const bool& is) { isFall_ = is; }
     void SetcurrentHP(const int32_t& hp) { currentHP_ = hp; }
     void SetIsDestroy(const bool& is) { isDestroy_ = is; }
