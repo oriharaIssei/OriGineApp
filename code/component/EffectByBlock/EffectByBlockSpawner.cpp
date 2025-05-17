@@ -81,7 +81,6 @@ void EffectByBlockSpawner::EffectUISpawn(const Vec3f& position, const float& val
 
             // 数字のみオフセットを加算
             trans->translate = Vec3f(leftStartX + digitSpacing * (digitCount-(i-2)), position[Y], position[Z] - 6.0f);
-
             break;
         }
 

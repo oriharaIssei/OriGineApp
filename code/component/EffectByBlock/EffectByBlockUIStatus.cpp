@@ -88,6 +88,9 @@ void EffectByBlockUIStatus::SetCurerntIconTexture() {
     case EffectType::MIMUSTIME:
         currentTextureName_ = "/Texture/UI/TimeIcom.png";
         break;
+    case EffectType::MIMUSSCORE:
+        currentTextureName_ = "";
+        break;
     default:
         break;
     }
@@ -105,6 +108,9 @@ void EffectByBlockUIStatus::SetCurerntSignTexture() {
     case EffectType::MIMUSTIME:
         currentTextureName_ = "/Texture/UI/SubtractTimeUI.png";
         break;
+    case EffectType::MIMUSSCORE:
+        currentTextureName_ = "/Texture/UI/SubtractTimeUI.png";
+        break;
     default:
         break;
     }
@@ -120,6 +126,9 @@ void EffectByBlockUIStatus::SetCurerntNumberTexture(const int32_t& num) {
         currentTextureName_ = ("/Texture/UI/GreenNumbers/greennumber" + std::to_string(num) + ".png").c_str();
         break;
     case EffectType::MIMUSTIME:
+        currentTextureName_ = ("/Texture/UI/BlueNumbers/bluenumber" + std::to_string(num) + ".png").c_str();
+        break;
+    case EffectType::MIMUSSCORE:
         currentTextureName_ = ("/Texture/UI/BlueNumbers/bluenumber" + std::to_string(num) + ".png").c_str();
         break;
     default:

@@ -476,7 +476,7 @@
                         ],
                         "isAlive": true,
                         "moveRadius": 0.0,
-                        "moveSpeed": 15.119999885559082
+                        "moveSpeed": 20.059999465942383
                     }
                 ],
                 "Rigidbody": [
@@ -3228,7 +3228,7 @@
                             0.0
                         ],
                         "timerUIPosOffset": [
-                            0.0,
+                            2.299999952316284,
                             0.0,
                             0.0
                         ]

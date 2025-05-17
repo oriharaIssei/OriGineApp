@@ -12,6 +12,7 @@ enum class EffectType {
     SCORE,
     TIME,
     MIMUSTIME,
+    MIMUSSCORE,
 };
 
 enum class BlockEffectUIDigit {

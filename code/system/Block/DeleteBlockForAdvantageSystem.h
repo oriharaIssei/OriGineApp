@@ -29,5 +29,8 @@ private:
     Transform* blockTransform_; 
     BlockStatus* blockStatus_;
     EffectType effectType_;
+
+    EffectType timeEffectType_;
+    EffectType scoreEffectType_;
     float tempValue_;
 };
