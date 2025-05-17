@@ -1817,14 +1817,14 @@
                         "columNumMax": 5,
                         "costs": [
                             0,
-                            2,
+                            3,
                             2
                         ],
                         "deadPositionX": -42.0,
                         "generateInterval": [
                             3,
-                            3,
-                            3
+                            2,
+                            6
                         ],
                         "moveSpeed": 0.0,
                         "moveSpeeds": [
@@ -1850,7 +1850,7 @@
                         "randomPar": [
                             0,
                             20,
-                            20
+                            50
                         ],
                         "rowNumMax": 8,
                         "scalingSize": [

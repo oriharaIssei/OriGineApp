@@ -67,8 +67,6 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    blockSpawner_->CostReset(); // コストリセット
-
     float blockWidth  = blockSpawner_->GetBlockSize()[X] * 2.0f;
     float nextPosition = blockSpawner_->GetNextCreatePositionX();
 
@@ -82,10 +80,8 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
             for (int32_t j = 0; j < blockSpawner_->GetRowNumMax(); ++j) {
                 CreateBlocks(i, j, blockSpawner_->GetStartPositionX() + (blockWidth * (blockSpawner_->GetColumnNumMax() - i)));
             }
-        }
-        // 　行数カウンターを一応初期化
-        for (int i = 0; i < static_cast<int32_t>(BlockType::COUNT); ++i) {
-            blockSpawner_->ResetLineCounter(static_cast<BlockType>(i));
+            blockSpawner_->CostReset(); // コストリセット
+            blockSpawner_->SetIncrementLineCounter();
         }
 
     } else {
@@ -96,6 +92,8 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
                 float newX = lastTransform_->translate[X] + blockWidth;
                 CreateBlocks(0, i, newX);
             }
+            blockSpawner_->CostReset(); // コストリセット
+            blockSpawner_->SetIncrementLineCounter();
         }
     }
 
@@ -125,13 +123,13 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columnIndex, const int32_t& r
 
     // row,columNum
     BlockStatus* blockStatus = getComponent<BlockStatus>(block);
-    blockStatus->SetColumnNum(rowIndex);
-    blockStatus->SetRowNum(columnIndex);
+    blockStatus->SetRow(rowIndex);
+    blockStatus->SetColumn(columnIndex);
     blockStatus->SetBlockType(BlockType::NORMAL); // まずはノーマルにセット
     blockStatus->SetEaseTimeMax(blockSpawner_->GetMoveTime());
 
     /// blockTypeCreater
-    BlockTypeSetting(blockStatus, BlockType::SKULL); // どくろの生成
+    BlockTypeSetting(blockStatus, BlockType::SKULL);     // どくろの生成
     BlockTypeSetting(blockStatus, BlockType::ADVANTAGE); // アドバンテージブロックの生成
 
     // ブロックタイプにより得られるスコアを設定
@@ -154,6 +152,11 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columnIndex, const int32_t& r
     // ブロックステータスを更新
     blockCombinationStatus_->AddBlockStatus(blockStatus);
 
+    //列カウンターインクリメント
+   
+    /*blockSpawner_->SetIncrementLineCounter(BlockType::NORMAL);
+    blockSpawner_->SetIncrementLineCounter(BlockType::ADVANTAGE);
+    blockSpawner_->SetIncrementLineCounter(BlockType::SKULL);*/
     // ================================= System ================================= //
     ECSManager* ecs = ECSManager::getInstance();
 
@@ -183,14 +186,18 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columnIndex, const int32_t& r
 }
 
 void BlockSpawnSystem::CostInit() {
+    // 　行数カウンターを一応初期化
+   
+        blockSpawner_->CostReset();
+    
 }
 
 void BlockSpawnSystem::BlockTypeSetting(BlockStatus* status, BlockType blocktype) {
 
-    blockSpawner_->SetIncrementLineCounter(blocktype);
+   /* blockSpawner_->SetIncrementLineCounter(blocktype);*/
 
     // 指定された行間隔に達していなければスキップ
-    if (blockSpawner_->GetLineCounter(blocktype) % blockSpawner_->GetGenerateInterval(blocktype) != 0) {
+    if (blockSpawner_->GetLineCounter() % blockSpawner_->GetGenerateInterval(blocktype) != 0) {
         return;
     }
     // コストチェック

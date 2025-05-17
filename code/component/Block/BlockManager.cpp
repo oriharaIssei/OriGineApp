@@ -130,7 +130,8 @@ void BlockManager::SetMoveTempoForLevel() {
 }
 
 void BlockManager::ResetLineCounter(BlockType type) {
-    lineCounter_[static_cast<int32_t>(type)] = 0;
+    type;
+    lineCounter_= 0;
 }
 
 void BlockManager::ScalingEaseUpdate(const float& t) {

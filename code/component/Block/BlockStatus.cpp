@@ -60,7 +60,7 @@ void BlockStatus::MoveUpdate(const float& time, Transform* transform, const floa
 
         // flag increment row
         isMove_ = false;
-        rownum_++;
+        columnNum_++;
     }
 }
 

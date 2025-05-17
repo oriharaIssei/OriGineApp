@@ -72,7 +72,7 @@ private: // variables
     std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> costs_;
     std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> currentCosts_;
     std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> generateInterval_{}; // 各BlockTypeの生成間隔（列ごと）
-    std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> lineCounter_{}; // 現在の行数カウント
+    int32_t lineCounter_=0; // 現在の行数カウント
     std::array<float, static_cast<int32_t>(BlockType::COUNT)> scoreValue_{}; // 現在の行数カウント
 
 public:
@@ -109,7 +109,7 @@ public: // accsessor
     int32_t GetCost(BlockType type) const { return costs_[static_cast<int32_t>(type)]; }
     int32_t GetCurrentCost(BlockType type) const { return currentCosts_[static_cast<int32_t>(type)]; }
     int32_t GetGenerateInterval(BlockType type) const { return generateInterval_[static_cast<int32_t>(type)]; }
-    int32_t GetLineCounter(BlockType type) const { return lineCounter_[static_cast<int32_t>(type)]; }
+    int32_t GetLineCounter() const { return lineCounter_; }
     float GetScoreValue(BlockType type) const { return scoreValue_[static_cast<int32_t>(type)]; }
     int32_t GetMoveTenpoNum() const { return moveTenpoNum_; }
     Easing GetScalingEasing() const { return scalingEase_; }
@@ -119,7 +119,7 @@ public: // accsessor
 
     /// setter
     void SetCurrentCostIncrement(BlockType type) { currentCosts_[static_cast<int32_t>(type)]++; }
-    void SetIncrementLineCounter(BlockType type) { lineCounter_[static_cast<int32_t>(type)]++; }
+    void SetIncrementLineCounter() { lineCounter_++; }
     void SetEaseTime(const float& time) { scalingEase_.time = time; }
     void SetResultScale(const Vec3f resullt) { resultScale_ = resullt; }
     void SetEaseType(const EaseType& is) { easeType_ = is; }
