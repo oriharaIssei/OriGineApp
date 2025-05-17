@@ -98,7 +98,7 @@ void EffectByBlockSpawner::EffectUISpawn(const Vec3f& position, const float& val
 
         // rigit body
         Rigidbody* rigit = getComponent<Rigidbody>(uiEntity);
-        rigit->setVelocity(Vec3f(0.0f, 1.0f, 0.0f));
+        rigit->setVelocity(Vec3f(-7.0f, 1.0f, 0.0f));
 
         ECSManager* ecs = ECSManager::getInstance();
         ecs->getSystem<EffectByBlockDeleteSystem>()->addEntity(uiEntity);
