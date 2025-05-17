@@ -142,8 +142,10 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
                 plusScoreValue *= combiStatus->GetPlusScoreRate();
                 break;
             case BlockType::SKULL:
-                plusTimerValue = -plusTimerValue;
-                plusScoreValue = -plusScoreValue;
+                if (plusTimerValue >= 0) {
+                    plusTimerValue = -plusTimerValue;
+                    plusScoreValue = -plusScoreValue;
+                }
                 break;
             default:
                 break;
