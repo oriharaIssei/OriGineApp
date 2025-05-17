@@ -41,34 +41,33 @@ bool BlockManager::Edit() {
     isChange |= DragGuiCommand("deadPositionX", deadPositionX_, 0.01f);
     isChange |= DragGuiCommand("basePosY", basePosY_, 0.01f);
 
-    // random create
-    ImGui::Text("Random Parameters");
-    for (int i = 0; i < randomPar_.size(); ++i) {
-        std::string label = "Random[" + std::to_string(i) + "]";
+   ImGui::Text("Random Parameters");
+    for (int i = 0; i < static_cast<int>(BlockType::COUNT); ++i) {
+        std::string label = std::string("Random[") + ToStringByBlockType(static_cast<BlockType>(i)) + "]";
         isChange |= InputGuiCommand<int>(label.c_str(), randomPar_[i]);
     }
 
     ImGui::Text("Costs");
-    for (int i = 0; i < costs_.size(); ++i) {
-        std::string label = "Cost[" + std::to_string(i) + "]";
+    for (int i = 0; i < static_cast<int>(BlockType::COUNT); ++i) {
+        std::string label = std::string("Cost[") + ToStringByBlockType(static_cast<BlockType>(i)) + "]";
         isChange |= InputGuiCommand<int>(label.c_str(), costs_[i]);
     }
 
     ImGui::Text("Generate Interval");
-    for (int i = 0; i < generateInterval_.size(); ++i) {
-        std::string label = "Interval[" + std::to_string(i) + "]";
+    for (int i = 0; i < static_cast<int>(BlockType::COUNT); ++i) {
+        std::string label = std::string("Interval[") + ToStringByBlockType(static_cast<BlockType>(i)) + "]";
         isChange |= InputGuiCommand<int>(label.c_str(), generateInterval_[i]);
     }
 
-     ImGui::Text("Line Offset");
-    for (int i = 0; i < lineOffset_.size(); ++i) {
-        std::string label = "lineOffset[" + std::to_string(i) + "]";
+    ImGui::Text("Line Offset");
+    for (int i = 0; i < static_cast<int>(BlockType::COUNT); ++i) {
+        std::string label = std::string("LineOffset[") + ToStringByBlockType(static_cast<BlockType>(i)) + "]";
         isChange |= InputGuiCommand<int>(label.c_str(), lineOffset_[i]);
     }
 
-     ImGui::Text("randomPar InOutOfCost");
-    for (int i = 0; i < randomParConstant_.size(); ++i) {
-        std::string label = "randomParInOutOfCost[" + std::to_string(i) + "]";
+    ImGui::Text("randomPar InOutOfCost");
+    for (int i = 0; i < static_cast<int>(BlockType::COUNT); ++i) {
+        std::string label = std::string("randomParInOutOfCost[") + ToStringByBlockType(static_cast<BlockType>(i)) + "]";
         isChange |= InputGuiCommand<int>(label.c_str(), randomParConstant_[i]);
     }
 
@@ -284,5 +283,18 @@ void from_json(const nlohmann::json& _json, BlockManager& _blockManager) {
 
     if (auto it = _json.find("randomParInOutOfCost"); it != _json.end()) {
         _json.at("randomParInOutOfCost").get_to(_blockManager.randomParConstant_);
+    }
+}
+
+ const char* BlockManager::ToStringByBlockType(BlockType type) {
+    switch (type) {
+    case BlockType::NORMAL:
+        return "NORMAL";
+    case BlockType::ADVANTAGE:
+        return "ADVANTAGE";
+    case BlockType::SKULL:
+        return "SKULL";
+    default:
+        return "UNKNOWN";
     }
 }

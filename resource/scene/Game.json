@@ -365,7 +365,7 @@
                         "CollisionRadius": 2.0,
                         "explotionTime": 2.0,
                         "isAlive": true,
-                        "launthSpeed": 21.0,
+                        "launthSpeed": 31.0,
                         "positionOffset": [
                             0.0,
                             0.0,
@@ -470,7 +470,7 @@
                         "OffSetY": -3.0,
                         "bigBomPointMax": 10,
                         "followCameraOffset": [
-                            0.0,
+                            -10.609999656677246,
                             14.630000114440918,
                             -104.80999755859375
                         ],
@@ -1824,12 +1824,12 @@
                         "generateInterval": [
                             3,
                             4,
-                            7
+                            6
                         ],
                         "lineOffset": [
                             0,
-                            0,
-                            4
+                            1,
+                            6
                         ],
                         "moveSpeed": 0.0,
                         "moveSpeeds": [
@@ -1854,13 +1854,13 @@
                         "pillarHP": 1,
                         "randomPar": [
                             0,
-                            40,
+                            30,
                             20
                         ],
                         "randomParInOutOfCost": [
-                            3,
-                            3,
-                            3
+                            2,
+                            0,
+                            2
                         ],
                         "rowNumMax": 8,
                         "scalingSize": [
@@ -3226,7 +3226,7 @@
                 "BlockCombinationStatus": [
                     {
                         "breakOffsetTime": 0.07000000029802322,
-                        "conbiMax": 4,
+                        "conbiMax": 5,
                         "isAlive": true,
                         "plusRate": 2.0,
                         "plusScoreRate": 2.0,

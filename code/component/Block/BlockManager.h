@@ -95,6 +95,8 @@ public:
 
     void LineIncrement();
 
+    const char* ToStringByBlockType(BlockType type);
+
 public: // accsessor
     /// getter
     int32_t GetRowNumMax() const { return rowNumMax_; }
