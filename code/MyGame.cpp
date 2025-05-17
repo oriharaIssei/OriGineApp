@@ -1,13 +1,6 @@
 #include "MyGame.h"
 
-/// engine
-
-// ECS
-// component
-
-// system
-
-// engine include
+/// engine include
 #define ENGINE_INCLUDE
 #define ENGINE_ECS
 #include <EngineInclude.h>
@@ -133,6 +126,8 @@ void MyGame::RegisterUsingComponents() {
     ecsManager->registerComponent<SphereCollider>();
 
     ecsManager->registerComponent<Emitter>();
+    ecsManager->registerComponent<TextureEffectParam>();
+    ecsManager->registerComponent<VignetteParam>();
 
     ecsManager->registerComponent<Audio>();
 
@@ -143,7 +138,7 @@ void MyGame::RegisterUsingComponents() {
     ecsManager->registerComponent<PlaneRenderer>();
     ecsManager->registerComponent<SpriteRenderer>();
     ecsManager->registerComponent<LineRenderer>();
-    // ecsManager->registerComponent<SkyboxRenderer>();
+    ecsManager->registerComponent<SkyboxRenderer>();
 }
 
 void MyGame::RegisterUsingSystems() {
@@ -176,6 +171,7 @@ void MyGame::RegisterUsingSystems() {
     /// =================================================================================================
     ecsManager->registerSystem<EmitterWorkSystem>();
     ecsManager->registerSystem<PrimitiveNodeAnimationWorkSystem>();
+    ecsManager->registerSystem<TextureEffectAnimation>();
 
     /// =================================================================================================
     // Render
@@ -183,13 +179,15 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<ParticleRenderSystem>();
     ecsManager->registerSystem<SpriteRenderSystem>();
     ecsManager->registerSystem<TexturedMeshRenderSystem>();
+    ecsManager->registerSystem<EffectTexturedMeshRenderSystem>();
     ecsManager->registerSystem<LineRenderSystem>();
     ecsManager->registerSystem<ColliderRenderingSystem>();
-    // ecsManager->registerSystem<SkyboxRender>();
+    ecsManager->registerSystem<SkyboxRender>();
 
     /// =================================================================================================
     // PostRender
     /// =================================================================================================
     ecsManager->registerSystem<GrayscaleEffect>();
     ecsManager->registerSystem<SmoothingEffect>();
+    ecsManager->registerSystem<VignetteEffect>();
 }
