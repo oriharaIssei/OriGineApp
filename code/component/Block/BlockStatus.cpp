@@ -13,16 +13,18 @@ void BlockStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 
 bool BlockStatus::Edit() {
     bool isChange = false;
+#ifdef _DEBUG
 
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
+#endif // _DEBUG
+
     return isChange;
 }
 
 void BlockStatus::Finalize() {}
-
 
 void BlockStatus::TakeDamageForBomb() {
     currentHP_--;
@@ -74,10 +76,8 @@ void BlockStatus::TimeInit() {
 
 void to_json(nlohmann::json& _json, const BlockStatus& _block) {
     _json["isAlive"] = _block.isAlive_;
-   
 }
 
 void from_json(const nlohmann::json& _json, BlockStatus& _block) {
     _json.at("isAlive").get_to(_block.isAlive_);
-   
 }

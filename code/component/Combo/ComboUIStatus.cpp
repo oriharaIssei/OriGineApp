@@ -16,6 +16,8 @@ void ComboUIStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool ComboUIStatus::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
+
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
@@ -28,6 +30,8 @@ bool ComboUIStatus::Edit() {
         EditorGroup::getInstance()->pushCommand(std::move(command));
         isChange = true;
     }
+
+#endif // _DEBUG
 
     return isChange;
 }

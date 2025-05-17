@@ -21,6 +21,8 @@ void EffectByBlockUIStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool EffectByBlockUIStatus::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
+
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
@@ -37,6 +39,8 @@ bool EffectByBlockUIStatus::Edit() {
     // if (ImGui::Combo("Timer Digit", &currentIndex, digitLabels, static_cast<int>(UIDigit::COUNT))) {
     //     digit_ = static_cast<UIDigit>(currentIndex);
     // }
+
+#endif
 
     return isChange;
 }

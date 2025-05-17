@@ -14,15 +14,18 @@ void SceneChangerStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool SceneChangerStatus::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
+
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
+
+#endif
 
     return isChange;
 }
 
 void SceneChangerStatus::Finalize() {
-
 }
 
 void to_json(nlohmann::json& j, const SceneChangerStatus& g) {

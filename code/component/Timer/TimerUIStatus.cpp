@@ -15,6 +15,7 @@ void TimerUIStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool TimerUIStatus::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
@@ -27,6 +28,7 @@ bool TimerUIStatus::Edit() {
         EditorGroup::getInstance()->pushCommand(std::move(command));
         isChange = true;
     }
+#endif
 
     return isChange;
 }

@@ -11,13 +11,14 @@
 #include "myGui/MyGui.h"
 
 void BigExplotionCollision::Initialize([[maybe_unused]] GameEntity* _entity) {
-    adaptTime_ = 0.1f;
+    adaptTime_      = 0.1f;
     plusScoreRatio_ = 3.0f;
 }
 
 bool BigExplotionCollision::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
@@ -30,6 +31,8 @@ bool BigExplotionCollision::Edit() {
     isChange |= DragGuiCommand("CollisionRadius", collisionRadius_);
 
     isChange |= DragGuiCommand("plusScoreRatio", plusScoreRatio_);
+#endif // _DEBUG
+
     return isChange;
 }
 

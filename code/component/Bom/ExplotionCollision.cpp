@@ -17,6 +17,8 @@ void ExplotionCollision::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool ExplotionCollision::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
+
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
@@ -27,6 +29,8 @@ bool ExplotionCollision::Edit() {
     ImGui::Text("etc");
     isChange |= DragGuiCommand("adaptTime", adaptTime_);
     isChange |= DragGuiCommand("CollisionRadius", collisionRadius_);
+
+#endif // _DEBUG
 
     return isChange;
 }

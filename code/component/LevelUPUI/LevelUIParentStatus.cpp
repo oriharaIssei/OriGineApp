@@ -50,16 +50,18 @@ void LevelUIParentStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool LevelUIParentStatus::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
+
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
-    isChange |= DragGuiVectorCommand<3,float>("initPos", initPos_);
-    isChange |= DragGuiVectorCommand<3,float>("easePos", easePos_);
-    isChange |= DragGuiVectorCommand<2,float>("easeScale", easeScale_);
-    isChange |= DragGuiVectorCommand<2,float>("changingEaseScale", changingEaseScale_);
+    isChange |= DragGuiVectorCommand<3, float>("initPos", initPos_);
+    isChange |= DragGuiVectorCommand<3, float>("easePos", easePos_);
+    isChange |= DragGuiVectorCommand<2, float>("easeScale", easeScale_);
+    isChange |= DragGuiVectorCommand<2, float>("changingEaseScale", changingEaseScale_);
 
-    isChange |= DragGuiVectorCommand<3,float>("moveOffset", moveOffset_);
+    isChange |= DragGuiVectorCommand<3, float>("moveOffset", moveOffset_);
 
     ImGui::Text("moveEasing");
     isChange |= DragGuiCommand("moveEasing.maxTime", moveEasing_.maxTime, 0.01f);
@@ -75,6 +77,7 @@ bool LevelUIParentStatus::Edit() {
     isChange |= DragGuiCommand("scrollWaitTime", scrollWaitTime_, 0.01f);
     isChange |= DragGuiCommand("reverseWaitTime", reverseWaitTime_, 0.01f);
 
+#endif // _DEBUG
     return isChange;
 }
 

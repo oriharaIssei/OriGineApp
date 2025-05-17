@@ -44,6 +44,8 @@ void SceneTransition::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool SceneTransition::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
+
     const char* modeItems[] = {"IN", "OUT"};
     int modeIndex           = static_cast<int>(transitionMode_);
     if (ImGui::Combo("Transition Mode", &modeIndex, modeItems, IM_ARRAYSIZE(modeItems))) {
@@ -64,6 +66,8 @@ bool SceneTransition::Edit() {
     isChange |= DragGuiCommand("startPositionX", startPositionX_, 0.01f);
     isChange |= DragGuiCommand("endPositionX", endPositionX_, 0.01f);
 
+#endif // _DEBUG
+
     return isChange;
 }
 
@@ -82,18 +86,18 @@ void SceneTransition::UpdateTransition(const float& deltaTime) {
 
     sceneEase_.time += deltaTime;
 
-   /* switch (transitionMode_) {
-    case TransitionMode::FadeIN:
-        startPositionX_ = -1280;
-        endPositionX_   = 0;
-        break;
-    case TransitionMode::FadeOUT:
-        startPositionX_ = 0;
-        endPositionX_   = -1280;
-        break;
-    default:
-        break;
-    }*/
+    /* switch (transitionMode_) {
+     case TransitionMode::FadeIN:
+         startPositionX_ = -1280;
+         endPositionX_   = 0;
+         break;
+     case TransitionMode::FadeOUT:
+         startPositionX_ = 0;
+         endPositionX_   = -1280;
+         break;
+     default:
+         break;
+     }*/
 
     positionX_ = EaseInCubic(startPositionX_, endPositionX_, sceneEase_.time, sceneEase_.maxTime);
 

@@ -25,6 +25,8 @@ void BlockManager::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool BlockManager::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
+
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
@@ -110,6 +112,8 @@ bool BlockManager::Edit() {
     isChange |= DragGuiCommand("MoveScalingbackRatio", moveScalingEase_.backRatio, 0.01f);
     ImGui::Text("moveEase");
     isChange |= DragGuiCommand("moveTimemax", moveTimemax_, 0.01f);
+
+#endif // _DEBUG
 
     return isChange;
 }

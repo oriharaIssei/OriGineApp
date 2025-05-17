@@ -30,17 +30,21 @@ void ResultUIkeyStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool ResultUIkeyStatus::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
+
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
-    isChange |= DragGuiVectorCommand<3,float>("initPos", initPos_);
-    isChange |= DragGuiVectorCommand<3,float>("easePos", easePos_);
+    isChange |= DragGuiVectorCommand<3, float>("initPos", initPos_);
+    isChange |= DragGuiVectorCommand<3, float>("easePos", easePos_);
     ImGui::Text("moveEasing");
     isChange |= DragGuiCommand("moveEasing.maxTime", moveEasing_.maxTime, 0.01f);
 
     ImGui::Text("AlphaEasing");
     isChange |= DragGuiCommand("alphaEasing.maxTime", alphaEasing_.maxTime, 0.01f);
+
+#endif
 
     return isChange;
 }

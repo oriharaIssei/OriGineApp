@@ -16,21 +16,26 @@ void FloatingFloorSpawner::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool FloatingFloorSpawner::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
+
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
     isChange |= InputGuiCommand("pillarHP", HPMax_);
     isChange |= InputGuiCommand("rowNumber", rowNumber_);
-    isChange |= DragGuiVectorCommand<3,float>("FallCollisionMin", fallCollisionSizeMin_, 0.01f);
-    isChange |= DragGuiVectorCommand<3,float>("FallCollisionMax", fallCollisionSizeMax_, 0.01f);
-    isChange |= DragGuiVectorCommand<3,float>("fallCollisionCenterPos", fallCollisionCenterPos_, 0.01f);
+    isChange |= DragGuiVectorCommand<3, float>("FallCollisionMin", fallCollisionSizeMin_, 0.01f);
+    isChange |= DragGuiVectorCommand<3, float>("FallCollisionMax", fallCollisionSizeMax_, 0.01f);
+    isChange |= DragGuiVectorCommand<3, float>("fallCollisionCenterPos", fallCollisionCenterPos_, 0.01f);
     isChange |= DragGuiCommand("sideSpace", sideSpace_, 0.01f);
     isChange |= DragGuiCommand("positionHeight", positionHeight_, 0.01f);
     isChange |= DragGuiCommand("ratio", scoreUpRate_, 0.01f);
     ImGui::Text("No Edit");
 
     isChange |= DragGuiCommand("revivalTime", revivalTime_);
+
+#endif // _DEBUG
+
     return isChange;
 }
 
@@ -61,5 +66,5 @@ void from_json(const nlohmann::json& _json, FloatingFloorSpawner& _block) {
     _json.at("sideSpace").get_to(_block.sideSpace_);
     _json.at("revivalTime").get_to(_block.revivalTime_);
     _json.at("ratio").get_to(_block.scoreUpRate_);
-   /* _json.at("positionHeight").get_to(_block.positionHeight_);*/
+    /* _json.at("positionHeight").get_to(_block.positionHeight_);*/
 }

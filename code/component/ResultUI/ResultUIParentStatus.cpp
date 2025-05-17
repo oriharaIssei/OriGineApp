@@ -9,7 +9,6 @@
 #include "imgui/imgui.h"
 #include "myGui/MyGui.h"
 
-
 void to_json(nlohmann::json& _json, const ResultUIParentStatus& _component) {
     _json["isAlive"]               = _component.isAlive_;
     _json["scoreUpSpeed"]          = _component.scoreUpSpeed_;
@@ -48,12 +47,14 @@ void ResultUIParentStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool ResultUIParentStatus::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
+
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
-    isChange |= DragGuiVectorCommand<3,float>("initPos", initPos_);
-    isChange |= DragGuiVectorCommand<3,float>("easePos", easePos_);
+    isChange |= DragGuiVectorCommand<3, float>("initPos", initPos_);
+    isChange |= DragGuiVectorCommand<3, float>("easePos", easePos_);
     isChange |= DragGuiVectorCommand("easeScale", scoreEaseScale_);
     isChange |= DragGuiCommand("scoreUpSpeed", scoreUpSpeed_, 0.01f);
 
@@ -68,6 +69,8 @@ bool ResultUIParentStatus::Edit() {
     isChange |= DragGuiCommand("alphaEasing.maxTime", alphaEasing_.maxTime, 0.01f);
     ImGui::Text("waitTime");
     isChange |= DragGuiCommand("scoreWaitTime", scoreWaitTime_, 0.01f);
+
+#endif // _DEBUG
 
     return isChange;
 }

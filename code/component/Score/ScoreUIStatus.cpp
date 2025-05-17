@@ -15,6 +15,8 @@ void ScoreUIStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool ScoreUIStatus::Edit() {
     bool isChange = false;
 
+#ifdef DEBUG
+
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
@@ -34,6 +36,8 @@ bool ScoreUIStatus::Edit() {
         EditorGroup::getInstance()->pushCommand(std::move(command));
         isChange = true;
     }
+
+#endif // DEBUG
 
     return isChange;
 }

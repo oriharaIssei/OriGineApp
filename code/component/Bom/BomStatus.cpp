@@ -15,6 +15,7 @@ void BomStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool BomStatus::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
@@ -26,6 +27,8 @@ bool BomStatus::Edit() {
     isChange |= DragGuiCommand("explotionTime", explotionTime_);
     isChange |= DragGuiCommand("CollisionRadius", collisionRadius_);
     isChange |= DragGuiCommand("launthSpeed", launthSpeed_, 0.1f);
+
+#endif
 
     return isChange;
 }

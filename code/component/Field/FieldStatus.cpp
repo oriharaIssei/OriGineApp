@@ -14,12 +14,16 @@ void FieldStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool FieldStatus::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
+
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
     isChange |= DragGuiCommand("fieldRightMax", fieldRightMax_, 0.01f);
     isChange |= DragGuiCommand("fieldLeftMax", fieldLeftMax_, 0.01f);
+
+#endif
 
     return isChange;
 }

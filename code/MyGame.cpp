@@ -62,16 +62,16 @@
 #include "Application/code/component/Scrap/ScrapStatus.h"
 #include "Application/code/component/Timer/TimerStatus.h"
 #include "Application/code/component/Timer/TimerUIStatus.h"
+#include "component/Block/BlockCombinationStatus.h"
+#include "component/FloorUI/FloorUIController.h"
+#include "component/FloorUI/FloorUIStatus.h"
+#include "component/GameEndUI/GameEndUIStatus.h"
 #include "component/ResultUI/ResultFontStatus.h"
 #include "component/ResultUI/ResultUIkeyStatus.h"
 #include "component/ResultUI/ResultUIParentStatus.h"
 #include "component/ResultUI/ResultUIRankStatus.h"
 #include "component/ResultUI/ResultUIScoreStatus.h"
-#include"component/FloorUI/FloorUIController.h"
-#include"component/FloorUI/FloorUIStatus.h"
-#include"component/GameEndUI/GameEndUIStatus.h"
-#include"component/Timer/TimerAnimationStatus.h"
-#include"component/Block/BlockCombinationStatus.h"
+#include "component/Timer/TimerAnimationStatus.h"
 
 // system
 #include "Application/code/system/BigBom/BigBomCollisionExSystem.h"
@@ -132,19 +132,19 @@
 #include "Application/code/system/scrap/ScrapToPlayerCollisionSystem.h"
 #include "Application/code/system/Timer/TimerDecrementSystem.h"
 #include "Application/code/system/Timer/TimerUIScrollSystem.h"
+#include "system/Block/DeleteBlockForAdvantageSystem.h"
+#include "system/FloatingFloor/CheckIsUnderPlayer.h"
+#include "system/FloorUI/FloorUISystem.h"
+#include "system/GameEndUI/GameEndUISystem.h"
 #include "system/ResultUI/ResultFontSystem.h"
 #include "system/ResultUI/ResultKeySystem.h"
 #include "system/ResultUI/ResultRankSystem.h"
 #include "system/ResultUI/ResultScoreAdaptSystem.h"
 #include "system/ResultUI/ResultUIParentSystem.h"
+#include "system/Timer/TimeAdaptAinmationSystem.h"
+#include "system/Timer/TimerAnimationSystem.h"
 #include "system/UpdateButtonColorByState.h"
 #include "system/UsingCameraSetSystem.h"
-#include"system/FloorUI/FloorUISystem.h"
-#include"system/FloatingFloor/CheckIsUnderPlayer.h"
-#include"system/GameEndUI/GameEndUISystem.h"
-#include"system/Timer/TimerAnimationSystem.h"
-#include"system/Timer/TimeAdaptAinmationSystem.h"
-#include"system/Block/DeleteBlockForAdvantageSystem.h"
 
 MyGame::MyGame() {}
 
@@ -206,10 +206,12 @@ void MyGame::Initialize() {
 }
 
 void MyGame::Finalize() {
+#ifdef _DEBUG
     EditorGroup* editorGroup     = EditorGroup::getInstance();
     DebuggerGroup* debuggerGroup = DebuggerGroup::getInstance();
     editorGroup->Finalize();
     debuggerGroup->Finalize();
+#endif // _DEBUG
 
     SceneFinalize();
 
@@ -379,7 +381,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<TimerAnimationSystem>();
     ecsManager->registerSystem<TimeAdaptAinmationSystem>();
     ecsManager->registerSystem<DeleteBlockForAdvantageSystem>();
-    
+
     ecsManager->registerSystem<FloorUISystem>();
     ecsManager->registerSystem<CheckIsUnderPlayer>();
 
@@ -417,7 +419,9 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<ParticleRenderSystem>();
     ecsManager->registerSystem<SpriteRenderSystem>();
     ecsManager->registerSystem<TexturedMeshRenderSystem>();
-    ecsManager->registerSystem<LineRenderSystem>();
+#ifdef _DEBUG
+    ecsManager->registerSystem<LineRenderSystem>(); // デバッグ用
+#endif // _DEBUG
     ecsManager->registerSystem<ColliderRenderingSystem>();
     // ecsManager->registerSystem<SkyboxRender>();
 

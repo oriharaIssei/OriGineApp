@@ -86,6 +86,8 @@ void Button::Initialize(GameEntity* /*_entity*/) {}
 bool Button::Edit() {
     bool isChanged = false;
 
+    #ifdef _DEBUG
+
     if (ImGui::TreeNode("Button Colors")) {
         isChanged |= ColorEditGuiCommand("Normal Color", normalColor_);
         isChanged |= ColorEditGuiCommand("Hover Color", hoverColor_);
@@ -183,6 +185,8 @@ bool Button::Edit() {
 
         ImGui::TreePop();
     }
+
+#endif // _DEBUG
 
     return isChanged;
 }

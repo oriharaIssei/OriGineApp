@@ -14,6 +14,7 @@ void GameEndUIStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool GameEndUIStatus::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
@@ -27,6 +28,8 @@ bool GameEndUIStatus::Edit() {
 
     ImGui::Text("waitTime");
     isChange |= DragGuiCommand("waitTimeAfterApearEase_", waitTimeAfterApearEase_, 0.01f);
+
+#endif // _DEBUG
 
     return isChange;
 }

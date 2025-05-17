@@ -1,23 +1,21 @@
 #include "MenuStatus.h"
-#include"TutorialMenuParentStatus.h"
+#include "TutorialMenuParentStatus.h"
 
 // 外部ライブラリなど
 #include "imgui/imgui.h"
 #include "input/Input.h"
 #include "myGui/MyGui.h"
 
-
-  void to_json(nlohmann::json& j, const MenuStatus& m) {
-    j["isAlive"]               = m.isAlive_;
-    j["moveEasing.maxTime"]    = m.moveEasing_.maxTime;
-    j["apperUVEasing.maxTime"] = m.apperUVEasing_.maxTime;
-    j["position"]              = m.position_;
-    j["maxPauge"]              = m.maxCategoryNum_;
-    j["arrowPositions"]        = m.arrowPositions_;
-    j["arrowMoveEasing.maxTime"] = m.arrowMoveEasing_.maxTime;
+void to_json(nlohmann::json& j, const MenuStatus& m) {
+    j["isAlive"]                   = m.isAlive_;
+    j["moveEasing.maxTime"]        = m.moveEasing_.maxTime;
+    j["apperUVEasing.maxTime"]     = m.apperUVEasing_.maxTime;
+    j["position"]                  = m.position_;
+    j["maxPauge"]                  = m.maxCategoryNum_;
+    j["arrowPositions"]            = m.arrowPositions_;
+    j["arrowMoveEasing.maxTime"]   = m.arrowMoveEasing_.maxTime;
     j["arrowMoveEasing.backRatio"] = m.arrowMoveEasing_.backRatio;
     j["arrowOffsetValue"]          = m.arrowOffsetValue_;
-   
 }
 
 void from_json(const nlohmann::json& j, MenuStatus& m) {
@@ -35,11 +33,10 @@ void from_json(const nlohmann::json& j, MenuStatus& m) {
         j.at("arrowMoveEasing.backRatio").get_to(m.arrowMoveEasing_.backRatio);
     }
 
-     if (auto it = j.find("arrowOffsetValue"); it != j.end()) {
+    if (auto it = j.find("arrowOffsetValue"); it != j.end()) {
         j.at("arrowOffsetValue").get_to(m.arrowOffsetValue_);
     }
 }
-
 
 void MenuStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
     // 必要であれば初期化処理をここに記述
@@ -47,6 +44,8 @@ void MenuStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 
 bool MenuStatus::Edit() {
     bool isChange = false;
+
+#ifdef _DEBUG
 
     isChange |= CheckBoxCommand("IsAlive", isAlive_);
 
@@ -65,9 +64,10 @@ bool MenuStatus::Edit() {
     isChange |= DragGuiCommand("arrowMoveEasing.maxTime", arrowMoveEasing_.maxTime, 0.01f);
     isChange |= DragGuiCommand("arrowMoveEasing.backRatio", arrowMoveEasing_.backRatio, 0.01f);
 
-
     ImGui::Text("etc");
     isChange |= InputGuiCommand<int>("maxPauge", maxCategoryNum_);
+
+#endif // _DEBUG
 
     return isChange;
 }
@@ -106,12 +106,12 @@ void MenuStatus::CloseAnimation(const float& time) {
 void MenuStatus::ArrowMoveAnimation(const float& time) {
     arrowMoveEasing_.time += time;
 
-   arrowXOffset_ = Back::InCubicZero(0.0f, arrowOffsetValue_, arrowMoveEasing_.time, arrowMoveEasing_.maxTime, arrowMoveEasing_.backRatio);
+    arrowXOffset_ = Back::InCubicZero(0.0f, arrowOffsetValue_, arrowMoveEasing_.time, arrowMoveEasing_.maxTime, arrowMoveEasing_.backRatio);
 
     if (arrowMoveEasing_.time < arrowMoveEasing_.maxTime) {
         return;
     }
-    arrowXOffset_       = 0.0f;
+    arrowXOffset_         = 0.0f;
     arrowMoveEasing_.time = 0.0f;
 }
 
@@ -136,22 +136,20 @@ void MenuStatus::UpdateArrowPos() {
 }
 
 void MenuStatus::Reset() {
-    moveEasing_.time    = 0.0f;
-    apperUVEasing_.time = 0.0f;
+    moveEasing_.time      = 0.0f;
+    apperUVEasing_.time   = 0.0f;
     arrowMoveEasing_.time = 0.0f;
-    scaleX_             = 0.0f;
-    baseScale_          = {0.0f, 1.0f};
-    arrowXOffset_       = 0.0f;
-    currentCategory_    = MenuCategory::RETURNGAME;
-   
+    scaleX_               = 0.0f;
+    baseScale_            = {0.0f, 1.0f};
+    arrowXOffset_         = 0.0f;
+    currentCategory_      = MenuCategory::RETURNGAME;
 }
 
 void MenuStatus::ScrollTimeReset() {
     apperUVEasing_.time = 0.0f;
-  
 }
 
-void MenuStatus::DesideForCategory(Input* input, TutorialMenuParentStatus*tutorialStatus) {
+void MenuStatus::DesideForCategory(Input* input, TutorialMenuParentStatus* tutorialStatus) {
 
     if (!input->isTriggerKey(DIK_SPACE)) {
         return;
@@ -175,4 +173,4 @@ void MenuStatus::DesideForCategory(Input* input, TutorialMenuParentStatus*tutori
 
 bool MenuStatus::GetIsPose() {
     return !(scrollStep_ == MenuMode::NONE);
- }
+}

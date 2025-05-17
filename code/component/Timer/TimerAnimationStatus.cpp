@@ -14,6 +14,7 @@ void TimerAnimationStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool TimerAnimationStatus::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
@@ -32,6 +33,7 @@ bool TimerAnimationStatus::Edit() {
 
     ImGui::Text("waitTime");
     isChange |= DragGuiCommand("waitTimeAfterScaing", waitTimeAfterScaing_, 0.01f);
+#endif // _DEBUG
 
     return isChange;
 }

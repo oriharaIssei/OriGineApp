@@ -15,6 +15,8 @@ void OperateUIStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool OperateUIStatus::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
+
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
@@ -24,6 +26,9 @@ bool OperateUIStatus::Edit() {
     isChange = DragGuiCommand("startTextureSize_", startTextureSize_);
     isChange = DragGuiCommand("maxTextureSize_", maxTextureSize_);
     isChange = DragGuiCommand("resultTextureSize_", resultTextureSize_);
+
+#endif // _DEBUG
+
     return isChange;
 }
 
@@ -39,21 +44,20 @@ void OperateUIStatus::ScalingEaseUpdate(const float& t) {
     if (!isChange_) {
         return;
     }
-      
-        scalingEase_.time += t;
 
-        /// スケーリングイージング
-        resultTextureSize_ = (EaseAmplitudeScale(startTextureSize_, scalingEase_.time, scalingEase_.maxTime,
-            scalingEase_.amplitude, scalingEase_.period));
+    scalingEase_.time += t;
 
-        // 事後処理
-        if (scalingEase_.time < scalingEase_.maxTime) {
-            return;
-        }
-        scalingEase_.time = scalingEase_.maxTime;
-        resultTextureSize_ = startTextureSize_;
-        isChange_         = false;
-        
+    /// スケーリングイージング
+    resultTextureSize_ = (EaseAmplitudeScale(startTextureSize_, scalingEase_.time, scalingEase_.maxTime,
+        scalingEase_.amplitude, scalingEase_.period));
+
+    // 事後処理
+    if (scalingEase_.time < scalingEase_.maxTime) {
+        return;
+    }
+    scalingEase_.time  = scalingEase_.maxTime;
+    resultTextureSize_ = startTextureSize_;
+    isChange_          = false;
 }
 
 void to_json(nlohmann::json& j, const OperateUIStatus& l) {

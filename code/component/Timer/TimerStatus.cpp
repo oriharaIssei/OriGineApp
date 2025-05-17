@@ -14,6 +14,8 @@ void TimerStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool TimerStatus::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
+
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
@@ -27,6 +29,8 @@ bool TimerStatus::Edit() {
     ImGui::Text("NotChange");
 
     isChange |= DragGuiCommand("currentPulusTime", currentPulusTime_, 0.01f);
+
+#endif
 
     return isChange;
 }
@@ -55,11 +59,11 @@ void TimerStatus::MinusTimer(const float& timer) {
         return;
     }
 
-        // そのまま減算
+    // そのまま減算
     currentTimer_ -= timer;
 }
 void TimerStatus::TimerIncrement(const float& timer) {
-   
+
     currentTimer_ += timer;
 }
 

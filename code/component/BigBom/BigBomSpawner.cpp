@@ -8,23 +8,24 @@ void BigBomSpawner::Initialize([[maybe_unused]] GameEntity* _entity) {
 
     currentPutCoolTime_ = 0.0f;
     isPut_              = false;
-    putTotalNum_         = 0;
+    putTotalNum_        = 0;
 }
 
 bool BigBomSpawner::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
-    
-  
-    isChange |= DragGuiCommand("launthSpeed", launthSpeed_); 
-    isChange |= DragGuiVectorCommand<3,float>("spawnOffset", spawnOffset_);
+
+    isChange |= DragGuiCommand("launthSpeed", launthSpeed_);
+    isChange |= DragGuiVectorCommand<3, float>("spawnOffset", spawnOffset_);
     ImGui::Text("collsion");
-    isChange |= DragGuiVectorCommand<3,float>("collisionCenter", collisionCenter_);
+    isChange |= DragGuiVectorCommand<3, float>("collisionCenter", collisionCenter_);
     isChange |= DragGuiCommand("collisionRadius", collisionRadius_);
-  
+#endif // _DEBUG
+
     return isChange;
 }
 

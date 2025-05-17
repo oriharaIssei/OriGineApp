@@ -11,6 +11,8 @@ void TutorialMenuParentStatus::Initialize([[maybe_unused]] GameEntity* _entity) 
 bool TutorialMenuParentStatus::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
+
     isChange |= CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
@@ -26,6 +28,8 @@ bool TutorialMenuParentStatus::Edit() {
 
     ImGui::Text("etc");
     isChange |= InputGuiCommand("maxPauge", maxPauge_);
+
+#endif
 
     return isChange;
 }
@@ -58,7 +62,7 @@ void TutorialMenuParentStatus::MoveAnimation(const float& time) {
 
     switch (scrollStep_) {
     case ScrollStep::PAUGEUP:
-        if (currentPauge_ >= maxPauge_-1) {
+        if (currentPauge_ >= maxPauge_ - 1) {
             scrollStep_ = ScrollStep::PAUGESELECTION;
             return;
         }

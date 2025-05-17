@@ -11,9 +11,12 @@ void FloorUIStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool FloorUIStatus::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
     isChange |= CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
+
+#endif // _DEBUG
 
     return isChange;
 }

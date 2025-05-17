@@ -17,12 +17,16 @@ void ScoreStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool ScoreStatus::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
+
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
     isChange |= DragGuiCommand("currentScore", currentScore_);
     isChange |= DragGuiCommand("pulusScore", pulusScore_);
+
+#endif // _DEBUG
 
     return isChange;
 }

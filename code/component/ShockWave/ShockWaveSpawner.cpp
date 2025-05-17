@@ -9,11 +9,15 @@ void ShockWaveSpawner::Initialize([[maybe_unused]] GameEntity* _entity) {}
 bool ShockWaveSpawner::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
+
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
     isChange |= DragGuiCommand("MoveSpeed", moveSpeed_, 0.01f);
+
+#endif // _DEBUG
 
     return isChange;
 }
@@ -40,7 +44,7 @@ void ShockWaveSpawner::SetDirection(const Direction& _direction) {
     }
 }
 
-void to_json(nlohmann::json& _json,const ShockWaveSpawner& _s) {
+void to_json(nlohmann::json& _json, const ShockWaveSpawner& _s) {
     _json["isAlive"]   = _s.isAlive_;
     _json["moveSpeed"] = _s.moveSpeed_;
 }

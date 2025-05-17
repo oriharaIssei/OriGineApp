@@ -14,12 +14,16 @@ void BomSpawner::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool BomSpawner::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
+
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
     isChange |= DragGuiCommand("PutCoolTime", putCoolTimeMax_);
     isChange |= InputGuiCommand("SettingBomNum", ableSetBomNum_);
+
+#endif
 
     return isChange;
 }

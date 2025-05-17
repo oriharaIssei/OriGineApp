@@ -11,6 +11,7 @@ void FloorUIController::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool FloorUIController::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
     isChange |= CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
@@ -24,9 +25,10 @@ bool FloorUIController::Edit() {
     isChange |= DragGuiCommand("moveEasing.maxTime", moveEasing_.maxTime, 0.01f);
     isChange |= DragGuiCommand("moveEasing.backRatio", moveEasing_.backRatio, 0.01f);
 
-     isChange |= DragGuiCommand("openEasing_.maxTime", openEasing_.maxTime, 0.01f);
-     isChange |= DragGuiCommand("closeEasing_.maxTime", closeEasing_.maxTime, 0.01f);
- 
+    isChange |= DragGuiCommand("openEasing_.maxTime", openEasing_.maxTime, 0.01f);
+    isChange |= DragGuiCommand("closeEasing_.maxTime", closeEasing_.maxTime, 0.01f);
+
+#endif // _DEBUG
 
     return isChange;
 }
@@ -37,7 +39,7 @@ void to_json(nlohmann::json& j, const FloorUIController& m) {
     j["startPos"]             = m.startPos_;
     j["endPos"]               = m.endPos_;
     j["moveEasing.backRatio"] = m.moveEasing_.backRatio;
-    j["openEasing_.maxTime"] = m.openEasing_.maxTime;
+    j["openEasing_.maxTime"]  = m.openEasing_.maxTime;
     j["closeEasing_.maxTime"] = m.closeEasing_.maxTime;
     j["startScale"]           = m.startScale_;
 }

@@ -15,13 +15,15 @@ void ResultUIRankStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool ResultUIRankStatus::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
+
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
 
     // ComboDigit（桁数）のUI選択
 
-    isChange |= DragGuiVectorCommand<3,float>("position", position_);
+    isChange |= DragGuiVectorCommand<3, float>("position", position_);
 
     // 回転量（2種）
     isChange |= ImGui::SliderAngle("rotateValue", &rotateValue_, 0, 1080);
@@ -40,6 +42,9 @@ bool ResultUIRankStatus::Edit() {
     for (int32_t i = 0; i < rankValue_.size(); ++i) {
         isChange |= DragGuiCommand(("rankValue" + std::to_string(i)).c_str(), rankValue_[i]);
     }
+
+#endif // _DEBUG
+
     return isChange;
 }
 
@@ -47,7 +52,6 @@ void ResultUIRankStatus::Finalize() {}
 
 void ResultUIRankStatus::SetRankForScore(const float& score) {
 
-    
     if (score < rankValue_[static_cast<int32_t>(RankType::C)]) {
         rankType_ = RankType::C;
         return;

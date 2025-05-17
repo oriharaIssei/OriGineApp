@@ -9,6 +9,8 @@ void ScrapSpawner::Initialize([[maybe_unused]] GameEntity* _entity) {}
 bool ScrapSpawner::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
+
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
@@ -19,6 +21,8 @@ bool ScrapSpawner::Edit() {
     isChange |= DragGuiVectorCommand("blowValue", blowValue_, 0.01f);
     isChange |= DragGuiCommand("mass", mass_, 0.01f);
     isChange |= DragGuiCommand("colliderRadius", colliderRadius_, 0.01f);
+
+#endif // _DEBUG
     return isChange;
 }
 

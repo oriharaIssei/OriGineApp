@@ -21,9 +21,13 @@ void EffectByBlockSpawner::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool EffectByBlockSpawner::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
+
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
+
+#endif // _DEBUG
 
     return isChange;
 }
@@ -69,7 +73,7 @@ void EffectByBlockSpawner::EffectUISpawn(const Vec3f& position, const float& val
             status->SetEffectType(type);
             status->SetCurerntSignTexture();
             status->SetDigit(BlockEffectUIDigit::SIGN);
-            trans->translate = Vec3f(leftStartX, position[Y], - 6.0f);
+            trans->translate = Vec3f(leftStartX, position[Y], -6.0f);
             // 固定位置
             break;
         default: // 数字
@@ -80,7 +84,7 @@ void EffectByBlockSpawner::EffectUISpawn(const Vec3f& position, const float& val
             status->SetCurerntNumberTexture(ditinum);
 
             // 数字のみオフセットを加算
-            trans->translate = Vec3f(leftStartX + digitSpacing * (digitCount-(i-2)), position[Y],  - 6.0f);
+            trans->translate = Vec3f(leftStartX + digitSpacing * (digitCount - (i - 2)), position[Y], -6.0f);
             break;
         }
 

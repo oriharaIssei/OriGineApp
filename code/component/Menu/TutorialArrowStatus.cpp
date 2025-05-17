@@ -11,6 +11,8 @@ void TutorialArrowStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool TutorialArrowStatus::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
+
     isChange |= CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
@@ -31,9 +33,11 @@ bool TutorialArrowStatus::Edit() {
 
     int currentIndex = static_cast<int>(arrowDirection_);
     if (ImGui::Combo("Arrow Direction", &currentIndex, directionLabel, static_cast<int>(ArrowDirection::COUNT))) {
-        auto command    = std::make_unique<SetterCommand<ArrowDirection>>(&arrowDirection_, static_cast<ArrowDirection>(currentIndex));
+        auto command = std::make_unique<SetterCommand<ArrowDirection>>(&arrowDirection_, static_cast<ArrowDirection>(currentIndex));
         EditorGroup::getInstance()->pushCommand(std::move(command));
     }
+
+#endif // _DEBUG
     return isChange;
 }
 

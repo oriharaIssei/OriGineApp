@@ -15,6 +15,7 @@ void ResultUIScoreStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool ResultUIScoreStatus::Edit() {
     bool isChange = false;
 
+#ifdef _DEBUG
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
@@ -27,8 +28,10 @@ bool ResultUIScoreStatus::Edit() {
         EditorGroup::getInstance()->pushCommand(std::move(command));
     }
 
-    isChange |= DragGuiVectorCommand<3,float>("offsetPos", offsetPos_);
+    isChange |= DragGuiVectorCommand<3, float>("offsetPos", offsetPos_);
     isChange |= DragGuiVectorCommand("textureSize", textureSize_);
+
+#endif
 
     return isChange;
 }
