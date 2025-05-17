@@ -226,32 +226,40 @@ void BlockSpawnSystem::BlockTypeSetting(BlockStatus* status, BlockType blocktype
     }
 }
 
-void BlockSpawnSystem::BlockTypeSettingBySameColum(BlockStatus* status,BlockType type, const int32_t& columnNum) {
+void BlockSpawnSystem::BlockTypeSettingBySameColum(BlockStatus* status, BlockType type, const int32_t& columnNum) {
 
-      if (status->GetBlockType() != BlockType::NORMAL) {
+    if (status->GetBlockType() != BlockType::NORMAL) {
         return;
     }
 
-    // --- reservedSkullColumns_に含まれるcolumならSkull生成判定 ---
     auto it = std::find(reservedSkullColumns_.begin(), reservedSkullColumns_.end(), columnNum);
     if (it != reservedSkullColumns_.end()) {
-        // 確率でSkull生成
-        MyRandom::Int rand(0, 100);
-        int32_t skullProb = blockSpawner_->GetRandomParRightOfAdvance(type); // 例: 30なら30%
-        if (rand.get() < skullProb) {
-            status->SetBlockType(type);
-            if (type != BlockType::ADVANTAGE) {
-                return;
-            }
-                // 生成できたので予約解除
-                reservedSkullColumns_.erase(it);
-            
+        int32_t baseProb = blockSpawner_->GetRandomParRightOfAdvance(type);
+        int32_t upValue  = blockSpawner_->GetRandomParUPValue(type);
 
+        int32_t& currentProb = skullProbabilities_[columnNum];
+        if (currentProb == 0) {
+            currentProb = baseProb;
         }
-        // 外れた場合は予約を残す（次回また判定）
+
+        MyRandom::Int rand(0, 100);
+
+        int32_t judgeProb = (type == BlockType::SKULL) ? currentProb : baseProb;
+
+        if (rand.get() < judgeProb) {
+            status->SetBlockType(type);
+
+            // 生成できたので予約解除＆確率リセット
+            reservedSkullColumns_.erase(it);
+            skullProbabilities_.erase(columnNum);
+        } else if (type == BlockType::SKULL) {
+            // 失敗したら確率をUP（Skullのみ）
+            currentProb += upValue;
+            if (currentProb > 100)
+                currentProb = 100;
+        }
     }
 }
-
 void BlockSpawnSystem::ModelSetForBlockType(ModelMeshRenderer* render, GameEntity* entity, BlockType type) {
     switch (type) {
     case BlockType::NORMAL:

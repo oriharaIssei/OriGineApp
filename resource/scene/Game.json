@@ -1828,8 +1828,8 @@
                         ],
                         "lineOffset": [
                             0,
-                            3,
-                            15
+                            1,
+                            5
                         ],
                         "moveSpeed": 0.0,
                         "moveSpeeds": [
@@ -1854,13 +1854,18 @@
                         "pillarHP": 1,
                         "randomPar": [
                             0,
-                            35,
+                            40,
                             12
                         ],
                         "randomParInOutOfCost": [
                             0,
-                            1,
+                            0,
                             0
+                        ],
+                        "randomParUPValue": [
+                            0,
+                            0,
+                            5
                         ],
                         "rowNumMax": 8,
                         "scalingSize": [

@@ -76,6 +76,7 @@ private: // variables
     std::array<float, static_cast<int32_t>(BlockType::COUNT)> scoreValue_{}; // 現在の行数カウント
     std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> randomParRightofAdvance;
     std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> randomParConstant_;
+    std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> randomParUPValue_;
 
 public:
     BlockManager() {}
@@ -115,6 +116,7 @@ public: // accsessor
     int32_t GetCost(BlockType type) const { return costs_[static_cast<int32_t>(type)]; }
     int32_t GetCurrentCost(BlockType type) const { return currentCosts_[static_cast<int32_t>(type)]; }
     int32_t GetGenerateInterval(BlockType type) const { return generateInterval_[static_cast<int32_t>(type)]; }
+    int32_t GetRandomParUPValue(BlockType type) const { return randomParUPValue_[static_cast<int32_t>(type)]; }
     int32_t GetLineCounter(BlockType type)const;
     int32_t GetRandomParConstant(BlockType type) const { return randomParConstant_[static_cast<int32_t>(type)]; }
     int32_t GetRandomParRightOfAdvance(BlockType type) const { return randomParRightofAdvance[static_cast<int32_t>(type)]; }

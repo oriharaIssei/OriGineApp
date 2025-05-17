@@ -7,6 +7,7 @@
 #include <cstdint>
 #include <vector>
 #include <Vector3.h>
+#include <unordered_map>
 
 
 ///====================================================================
@@ -25,6 +26,7 @@ private:
     // Advanceブロック生成colum予約
     std::vector<int32_t> reservedSkullColumns_; // 追加
     int32_t nextSpecialLine_;
+    std::unordered_map<int32_t, int32_t> skullProbabilities_;
 
 public:
     BlockSpawnSystem();

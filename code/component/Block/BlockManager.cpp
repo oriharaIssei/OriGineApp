@@ -41,7 +41,7 @@ bool BlockManager::Edit() {
     isChange |= DragGuiCommand("deadPositionX", deadPositionX_, 0.01f);
     isChange |= DragGuiCommand("basePosY", basePosY_, 0.01f);
 
-   ImGui::Text("Random Parameters");
+    ImGui::Text("Random Parameters");
     for (int i = 0; i < static_cast<int>(BlockType::COUNT); ++i) {
         std::string label = std::string("Random[") + ToStringByBlockType(static_cast<BlockType>(i)) + "]";
         isChange |= InputGuiCommand<int>(label.c_str(), randomPar_[i]);
@@ -71,6 +71,11 @@ bool BlockManager::Edit() {
         isChange |= InputGuiCommand<int>(label.c_str(), randomParConstant_[i]);
     }
 
+    ImGui::Text("randomParUPValue_");
+    for (int i = 0; i < static_cast<int>(BlockType::COUNT); ++i) {
+        std::string label = std::string("randomParUPValue_[") + ToStringByBlockType(static_cast<BlockType>(i)) + "]";
+        isChange |= InputGuiCommand<int>(label.c_str(), randomParUPValue_[i]);
+    }
 
     ImGui::Text("Score");
     for (int i = 0; i < scoreValue_.size(); ++i) {
@@ -240,8 +245,10 @@ void to_json(nlohmann::json& _json, const BlockManager& _blockManager) {
     _json["nextLevelTime"]    = _blockManager.nextLevelTime_;
     _json["rowNumMax"]        = _blockManager.rowMax_;
 
-    _json["lineOffset"] = _blockManager.randomParRightofAdvance;
+    _json["lineOffset"]           = _blockManager.randomParRightofAdvance;
     _json["randomParInOutOfCost"] = _blockManager.randomParConstant_;
+
+    _json["randomParUPValue"] = _blockManager.randomParUPValue_;
 }
 
 void from_json(const nlohmann::json& _json, BlockManager& _blockManager) {
@@ -284,9 +291,13 @@ void from_json(const nlohmann::json& _json, BlockManager& _blockManager) {
     if (auto it = _json.find("randomParInOutOfCost"); it != _json.end()) {
         _json.at("randomParInOutOfCost").get_to(_blockManager.randomParConstant_);
     }
+
+    if (auto it = _json.find("randomParUPValue"); it != _json.end()) {
+        _json.at("randomParUPValue").get_to(_blockManager.randomParUPValue_);
+    }
 }
 
- const char* BlockManager::ToStringByBlockType(BlockType type) {
+const char* BlockManager::ToStringByBlockType(BlockType type) {
     switch (type) {
     case BlockType::NORMAL:
         return "NORMAL";
