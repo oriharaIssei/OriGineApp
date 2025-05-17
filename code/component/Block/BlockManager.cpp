@@ -59,10 +59,10 @@ bool BlockManager::Edit() {
         isChange |= InputGuiCommand<int>(label.c_str(), generateInterval_[i]);
     }
 
-    ImGui::Text("Line Offset");
+    ImGui::Text("randomParRightofAdvance");
     for (int i = 0; i < static_cast<int>(BlockType::COUNT); ++i) {
-        std::string label = std::string("LineOffset[") + ToStringByBlockType(static_cast<BlockType>(i)) + "]";
-        isChange |= InputGuiCommand<int>(label.c_str(), lineOffset_[i]);
+        std::string label = std::string("randomParRightofAdvance[") + ToStringByBlockType(static_cast<BlockType>(i)) + "]";
+        isChange |= InputGuiCommand<int>(label.c_str(), randomParRightofAdvance[i]);
     }
 
     ImGui::Text("randomPar InOutOfCost");
@@ -147,7 +147,7 @@ void BlockManager::ResetLineCounter(BlockType type) {
 }
 
 int32_t BlockManager::GetLineCounter(BlockType type) const {
-    return lineCounter_[static_cast<int32_t>(type)] + lineOffset_[static_cast<int32_t>(type)];
+    return lineCounter_[static_cast<int32_t>(type)] + randomParRightofAdvance[static_cast<int32_t>(type)];
 }
 
 void BlockManager::LineIncrement() {
@@ -240,7 +240,7 @@ void to_json(nlohmann::json& _json, const BlockManager& _blockManager) {
     _json["nextLevelTime"]    = _blockManager.nextLevelTime_;
     _json["rowNumMax"]        = _blockManager.rowMax_;
 
-    _json["lineOffset"] = _blockManager.lineOffset_;
+    _json["lineOffset"] = _blockManager.randomParRightofAdvance;
     _json["randomParInOutOfCost"] = _blockManager.randomParConstant_;
 }
 
@@ -278,7 +278,7 @@ void from_json(const nlohmann::json& _json, BlockManager& _blockManager) {
     }
 
     if (auto it = _json.find("lineOffset"); it != _json.end()) {
-        _json.at("lineOffset").get_to(_blockManager.lineOffset_);
+        _json.at("lineOffset").get_to(_blockManager.randomParRightofAdvance);
     }
 
     if (auto it = _json.find("randomParInOutOfCost"); it != _json.end()) {

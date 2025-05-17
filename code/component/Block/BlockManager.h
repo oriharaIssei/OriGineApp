@@ -74,7 +74,7 @@ private: // variables
     std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> generateInterval_{}; // 各BlockTypeの生成間隔（列ごと）
     std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> lineCounter_; // 現在の行数カウント
     std::array<float, static_cast<int32_t>(BlockType::COUNT)> scoreValue_{}; // 現在の行数カウント
-    std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> lineOffset_;
+    std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> randomParRightofAdvance;
     std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> randomParConstant_;
 
 public:
@@ -117,7 +117,7 @@ public: // accsessor
     int32_t GetGenerateInterval(BlockType type) const { return generateInterval_[static_cast<int32_t>(type)]; }
     int32_t GetLineCounter(BlockType type)const;
     int32_t GetRandomParConstant(BlockType type) const { return randomParConstant_[static_cast<int32_t>(type)]; }
-    int32_t GetLineOffset(BlockType type) const { return lineOffset_[static_cast<int32_t>(type)]; }
+    int32_t GetRandomParRightOfAdvance(BlockType type) const { return randomParRightofAdvance[static_cast<int32_t>(type)]; }
     float GetScoreValue(BlockType type) const { return scoreValue_[static_cast<int32_t>(type)]; }
     int32_t GetMoveTenpoNum() const { return moveTenpoNum_; }
     Easing GetScalingEasing() const { return scalingEase_; }

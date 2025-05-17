@@ -141,7 +141,8 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     }
 
     // アドバンテージの隣にskullを生成する
-    BlockTypeSettingBySameColum(blockStatus, columIndex);
+    BlockTypeSettingBySameColum(blockStatus,BlockType::SKULL, columIndex);
+    BlockTypeSettingBySameColum(blockStatus, BlockType::ADVANTAGE, columIndex);
 
     // ブロックタイプにより得られるスコアを設定
     blockStatus->SetBaseScoreValue(blockSpawner_->GetScoreValue(blockStatus->GetBlockType()));
@@ -225,17 +226,26 @@ void BlockSpawnSystem::BlockTypeSetting(BlockStatus* status, BlockType blocktype
     }
 }
 
-void BlockSpawnSystem::BlockTypeSettingBySameColum(BlockStatus* status, const int32_t& columnNum) {
+void BlockSpawnSystem::BlockTypeSettingBySameColum(BlockStatus* status,BlockType type, const int32_t& columnNum) {
+
+      if (status->GetBlockType() != BlockType::NORMAL) {
+        return;
+    }
+
     // --- reservedSkullColumns_に含まれるcolumならSkull生成判定 ---
     auto it = std::find(reservedSkullColumns_.begin(), reservedSkullColumns_.end(), columnNum);
     if (it != reservedSkullColumns_.end()) {
         // 確率でSkull生成
         MyRandom::Int rand(0, 100);
-        int32_t skullProb = blockSpawner_->GetRandomPar(BlockType::SKULL); // 例: 30なら30%
+        int32_t skullProb = blockSpawner_->GetRandomParRightOfAdvance(type); // 例: 30なら30%
         if (rand.get() < skullProb) {
-            status->SetBlockType(BlockType::SKULL);
-            // 生成できたので予約解除
-            reservedSkullColumns_.erase(it);
+            status->SetBlockType(type);
+            if (type != BlockType::ADVANTAGE) {
+                return;
+            }
+                // 生成できたので予約解除
+                reservedSkullColumns_.erase(it);
+            
 
         }
         // 外れた場合は予約を残す（次回また判定）

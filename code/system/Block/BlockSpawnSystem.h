@@ -39,7 +39,7 @@ public:
     void ModelSetForBlockType(ModelMeshRenderer* render, GameEntity* entity,BlockType type);
 
     void CostInit();
-    void BlockTypeSettingBySameColum(BlockStatus* status, const int32_t& columnNum);
+    void BlockTypeSettingBySameColum(BlockStatus* status, BlockType type, const int32_t& columnNum);
 
 protected:
     void UpdateEntity(GameEntity* _entity) override;
