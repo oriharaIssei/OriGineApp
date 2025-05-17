@@ -81,10 +81,10 @@ void from_json(const nlohmann::json& _json, BlockCombinationStatus& _block) {
 std::vector<BlockStatus*> BlockCombinationStatus::GetRightBlocksForCalucration(const int& baseRowNum, const int& columNum) const {
     std::vector<BlockStatus*> result;
     for (BlockStatus* status : blockStatusArray_) {
-        int row = status->GetColumn();
+        int row = status->GetRowNum();
 
         // colum が血がければskip
-        if (columNum != status->GetRow()) {
+        if (columNum != status->GetColumnNum()) {
             continue;
         }
 
@@ -105,7 +105,7 @@ std::vector<BlockStatus*> BlockCombinationStatus::SortBlocksLeftToRight(std::vec
 
     // rowNumが小さい順にソート（右から順）
     std::sort(result.begin(), result.end(), [](BlockStatus* a, BlockStatus* b) {
-        return a->GetColumn() > b->GetColumn();
+        return a->GetRowNum() > b->GetRowNum();
     });
 
     if (!result.empty()) {

@@ -28,8 +28,8 @@ class BlockManager
 private: // variables
     bool isAlive_ = true;
 
-    int32_t rowNumMax_;
     int32_t columnMax_;
+    int32_t rowMax_;
     int32_t HPMax_;
 
     // size
@@ -99,8 +99,8 @@ public:
 
 public: // accsessor
     /// getter
-    int32_t GetRowNumMax() const { return rowNumMax_; }
-    int32_t GetColumnNumMax() const { return columnMax_; }
+    int32_t GetColumnMaxNum() const { return columnMax_; }
+    int32_t GetRowMaxNum() const { return rowMax_; }
     int32_t GetHpMax() const { return HPMax_; }
     float GetCollisionRadius() const { return collisionRadius_; }
     Vec3f GetBlockSize() const { return blockSize_; }

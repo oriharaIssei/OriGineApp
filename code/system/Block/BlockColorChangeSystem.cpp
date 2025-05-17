@@ -105,7 +105,7 @@ void BlockColorChangeSystem::UpdateEntity(GameEntity* _entity) {
                         // 右隣の壊れる予定のブロックを取得
 
                         if (combinationStatus) {
-                            auto rightBlocks = combinationStatus->GetRightBlocksForCalucration(blockStatus->GetColumn(), blockStatus->GetRow());
+                            auto rightBlocks = combinationStatus->GetRightBlocksForCalucration(blockStatus->GetRowNum(), blockStatus->GetColumnNum());
                             for (auto* rightBlock : rightBlocks) {
                                 rightBlock->SetIsColorChange(true);
                             }

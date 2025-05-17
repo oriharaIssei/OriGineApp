@@ -22,7 +22,8 @@ private:
     BlockManager* blockSpawner_;
     Transform* lastTransform_ = nullptr;
     BlockCombinationStatus* blockCombinationStatus_ = nullptr;
-   
+    // Advanceブロック生成colum予約
+    std::vector<int32_t> reservedSkullColumns_; // 追加
     int32_t nextSpecialLine_;
 
 public:
@@ -38,6 +39,7 @@ public:
     void ModelSetForBlockType(ModelMeshRenderer* render, GameEntity* entity,BlockType type);
 
     void CostInit();
+    void BlockTypeSettingBySameColum(BlockStatus* status, const int32_t& columnNum);
 
 protected:
     void UpdateEntity(GameEntity* _entity) override;
