@@ -236,6 +236,7 @@ void BlockSpawnSystem::BlockTypeSettingBySameColum(BlockStatus* status, const in
             status->SetBlockType(BlockType::SKULL);
             // 生成できたので予約解除
             reservedSkullColumns_.erase(it);
+
         }
         // 外れた場合は予約を残す（次回また判定）
     }

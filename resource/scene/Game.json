@@ -1818,18 +1818,18 @@
                         "costs": [
                             0,
                             2,
-                            2
+                            0
                         ],
                         "deadPositionX": -42.0,
                         "generateInterval": [
                             3,
                             4,
-                            6
+                            0
                         ],
                         "lineOffset": [
                             0,
                             1,
-                            6
+                            0
                         ],
                         "moveSpeed": 0.0,
                         "moveSpeeds": [
@@ -1855,12 +1855,12 @@
                         "randomPar": [
                             0,
                             35,
-                            15
+                            12
                         ],
                         "randomParInOutOfCost": [
-                            2,
                             0,
-                            2
+                            1,
+                            0
                         ],
                         "rowNumMax": 8,
                         "scalingSize": [
