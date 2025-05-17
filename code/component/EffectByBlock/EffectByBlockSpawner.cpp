@@ -25,7 +25,6 @@ bool EffectByBlockSpawner::Edit() {
 
     ImGui::Spacing();
 
-
     return isChange;
 }
 
@@ -34,7 +33,6 @@ void EffectByBlockSpawner::Finalize() {
 
 void EffectByBlockSpawner::EffectUISpawn(const Vec3f& position, const float& value, const EffectType& effectType) {
 
-    
     const float effectValue = value;
     const EffectType type   = effectType;
 
@@ -44,8 +42,6 @@ void EffectByBlockSpawner::EffectUISpawn(const Vec3f& position, const float& val
     ///*　パラメータべた書きゾーン
 
     int32_t digitCount = (absValue == 0) ? 1 : static_cast<int32_t>(std::log10(absValue)) + 1;
-
-    int32_t currentOffsetIndex = 0; // 数字用のオフセットインデックス
 
     for (int i = 0; i < digitCount + 2; ++i) {
         GameEntity* uiEntity = CreateEntity<Transform, Rigidbody, ModelMeshRenderer, EffectByBlockUIStatus>(
@@ -58,6 +54,10 @@ void EffectByBlockSpawner::EffectUISpawn(const Vec3f& position, const float& val
         ModelMeshRenderer* sprite     = getComponent<ModelMeshRenderer>(uiEntity);
         CreateModelMeshRenderer(sprite, uiEntity, kApplicationResourceDirectory + "/Models/Plane", "Plane.obj");
 
+        float digitSpacing = 2.5f; // 桁ごとの間隔
+        float totalWidth   = digitCount * digitSpacing;
+        float leftStartX   = position[X] - totalWidth / 2.0f; // 中央揃え
+
         switch (i) {
         case 0: // アイコン
             status->SetEffectType(type);
@@ -69,7 +69,8 @@ void EffectByBlockSpawner::EffectUISpawn(const Vec3f& position, const float& val
             status->SetEffectType(type);
             status->SetCurerntSignTexture();
             status->SetDigit(BlockEffectUIDigit::SIGN);
-            trans->translate = Vec3f(position) + Vec3f(-1.5f, 0.0f, -6.0f); // 固定位置
+            trans->translate = Vec3f(leftStartX, position[Y], position[Z] - 6.0f);
+            // 固定位置
             break;
         default: // 数字
             status->SetEffectType(type);
@@ -79,8 +80,8 @@ void EffectByBlockSpawner::EffectUISpawn(const Vec3f& position, const float& val
             status->SetCurerntNumberTexture(ditinum);
 
             // 数字のみオフセットを加算
-            trans->translate = Vec3f(position) + Vec3f(static_cast<float>((-2.5f * currentOffsetIndex) + 1.5f), 0.0f, -6.0f);
-            ++currentOffsetIndex;
+            trans->translate = Vec3f(leftStartX + digitSpacing * (digitCount-(i-2)), position[Y], position[Z] - 6.0f);
+
             break;
         }
 

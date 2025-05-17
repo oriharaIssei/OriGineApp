@@ -113,7 +113,7 @@ public: // accsessor
     float GetScoreValue(BlockType type) const { return scoreValue_[static_cast<int32_t>(type)]; }
     int32_t GetMoveTenpoNum() const { return moveTenpoNum_; }
     Easing GetScalingEasing() const { return scalingEase_; }
-    Vec3f GetResultScalle() const { return resultScale_; }
+    Vec3f GetResultScale() const { return resultScale_; }
     bool GetIsMove() const { return isMove_; }
     float GetMoveTime() const { return moveTimemax_; }
 

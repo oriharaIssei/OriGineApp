@@ -49,7 +49,7 @@ void BlockMoveSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     // スケール代入
-    transform->scale = blockManager->GetResultScalle();
+    transform->scale = blockManager->GetResultScale();
 
     if (blockManager->GetIsMove()) {
         blockStatus->SetIsMove(true);
