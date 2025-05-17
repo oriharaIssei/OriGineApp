@@ -81,7 +81,7 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
                 CreateBlocks(i, j, blockSpawner_->GetStartPositionX() + (blockWidth * (blockSpawner_->GetColumnNumMax() - i)));
             }
             blockSpawner_->CostReset(); // コストリセット
-            blockSpawner_->SetIncrementLineCounter();
+            blockSpawner_->LineIncrement();
         }
 
     } else {
@@ -93,7 +93,7 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
                 CreateBlocks(0, i, newX);
             }
             blockSpawner_->CostReset(); // コストリセット
-            blockSpawner_->SetIncrementLineCounter();
+            blockSpawner_->LineIncrement();
         }
     }
 
@@ -188,25 +188,33 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& columnIndex, const int32_t& r
 void BlockSpawnSystem::CostInit() {
     // 　行数カウンターを一応初期化
    
-        blockSpawner_->CostReset();
     
 }
 
 void BlockSpawnSystem::BlockTypeSetting(BlockStatus* status, BlockType blocktype) {
 
-   /* blockSpawner_->SetIncrementLineCounter(blocktype);*/
+
+    if (status->GetBlockType() != BlockType::NORMAL) {
+        return;
+    }
+
+    MyRandom::Int Random(0, 100);
 
     // 指定された行間隔に達していなければスキップ
-    if (blockSpawner_->GetLineCounter() % blockSpawner_->GetGenerateInterval(blocktype) != 0) {
-        return;
+    if ((blockSpawner_->GetLineCounter(blocktype) % blockSpawner_->GetGenerateInterval(blocktype) != 0)||
+        blockSpawner_->GetCurrentCost(blocktype) >= blockSpawner_->GetCost(blocktype)) {
+
+         // 指定の割合で別ブロックに変身   
+        if (Random.get() <= blockSpawner_->GetRandomParConstant(blocktype)) {
+            status->SetBlockType(blocktype);
+       
+        }
+
+        return;     
     }
-    // コストチェック
-    if (blockSpawner_->GetCurrentCost(blocktype) >= blockSpawner_->GetRandomPar(blocktype)) {
-        return;
-    }
+   
 
     // 指定の割合で別ブロックに変身
-    MyRandom::Int Random(0, 100);
     if (Random.get() <= blockSpawner_->GetRandomPar(blocktype)) {
         status->SetBlockType(blocktype);
         blockSpawner_->SetCurrentCostIncrement(blocktype);

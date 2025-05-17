@@ -1817,14 +1817,19 @@
                         "columNumMax": 5,
                         "costs": [
                             0,
-                            3,
+                            2,
                             2
                         ],
                         "deadPositionX": -42.0,
                         "generateInterval": [
                             3,
-                            2,
-                            6
+                            4,
+                            7
+                        ],
+                        "lineOffset": [
+                            0,
+                            0,
+                            4
                         ],
                         "moveSpeed": 0.0,
                         "moveSpeeds": [
@@ -1849,8 +1854,13 @@
                         "pillarHP": 1,
                         "randomPar": [
                             0,
-                            20,
-                            50
+                            40,
+                            20
+                        ],
+                        "randomParInOutOfCost": [
+                            3,
+                            3,
+                            3
                         ],
                         "rowNumMax": 8,
                         "scalingSize": [

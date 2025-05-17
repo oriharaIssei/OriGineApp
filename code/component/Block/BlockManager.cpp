@@ -10,14 +10,14 @@
 void BlockManager::Initialize([[maybe_unused]] GameEntity* _entity) {
     /// 初期化でパラメータ編集してるから大丈夫、ここ消したら未定義値が出る
 
-   /* columNumMax_         = 1;
-    HPMax_               = 1;
-    collisionRadius_     = 1.0f;
-    startPositionX_      = 0.0f;
-    nextCreatePositionX_ = 0.0f;
-    basePosY_            = 0.0f;
-    moveTenpo_           = 0.0f;
-    deadPositionX_       = 0.0f;*/
+    /* columNumMax_         = 1;
+     HPMax_               = 1;
+     collisionRadius_     = 1.0f;
+     startPositionX_      = 0.0f;
+     nextCreatePositionX_ = 0.0f;
+     basePosY_            = 0.0f;
+     moveTenpo_           = 0.0f;
+     deadPositionX_       = 0.0f;*/
 
     currentLevel_ = 0;
 }
@@ -32,8 +32,8 @@ bool BlockManager::Edit() {
     isChange |= InputGuiCommand<int>("pillarHP", HPMax_);
     isChange |= InputGuiCommand<int>("rowMax", rowNumMax_);
     isChange |= InputGuiCommand<int>("columnMax", columnMax_);
-    isChange |= DragGuiVectorCommand<3,float>("blockSize", blockSize_);
-    isChange |= DragGuiVectorCommand<3,float>("scalingSize", scalingSize_);
+    isChange |= DragGuiVectorCommand<3, float>("blockSize", blockSize_);
+    isChange |= DragGuiVectorCommand<3, float>("scalingSize", scalingSize_);
     isChange |= DragGuiCommand("collisionRadius", collisionRadius_, 0.01f);
     isChange |= DragGuiCommand("startPositionX", startPositionX_, 0.01f);
     isChange |= DragGuiCommand("startPositionZ", startPositionZ_, 0.01f);
@@ -59,6 +59,19 @@ bool BlockManager::Edit() {
         std::string label = "Interval[" + std::to_string(i) + "]";
         isChange |= InputGuiCommand<int>(label.c_str(), generateInterval_[i]);
     }
+
+     ImGui::Text("Line Offset");
+    for (int i = 0; i < lineOffset_.size(); ++i) {
+        std::string label = "lineOffset[" + std::to_string(i) + "]";
+        isChange |= InputGuiCommand<int>(label.c_str(), lineOffset_[i]);
+    }
+
+     ImGui::Text("randomPar InOutOfCost");
+    for (int i = 0; i < randomParConstant_.size(); ++i) {
+        std::string label = "randomParInOutOfCost[" + std::to_string(i) + "]";
+        isChange |= InputGuiCommand<int>(label.c_str(), randomParConstant_[i]);
+    }
+
 
     ImGui::Text("Score");
     for (int i = 0; i < scoreValue_.size(); ++i) {
@@ -131,7 +144,17 @@ void BlockManager::SetMoveTempoForLevel() {
 
 void BlockManager::ResetLineCounter(BlockType type) {
     type;
-    lineCounter_= 0;
+    /* lineCounter_= 0;*/
+}
+
+int32_t BlockManager::GetLineCounter(BlockType type) const {
+    return lineCounter_[static_cast<int32_t>(type)] + lineOffset_[static_cast<int32_t>(type)];
+}
+
+void BlockManager::LineIncrement() {
+    SetIncrementLineCounter(BlockType::NORMAL);
+    SetIncrementLineCounter(BlockType::ADVANTAGE);
+    SetIncrementLineCounter(BlockType::SKULL);
 }
 
 void BlockManager::ScalingEaseUpdate(const float& t) {
@@ -216,7 +239,10 @@ void to_json(nlohmann::json& _json, const BlockManager& _blockManager) {
     _json["generateInterval"] = _blockManager.generateInterval_;
     _json["scoreValue"]       = _blockManager.scoreValue_;
     _json["nextLevelTime"]    = _blockManager.nextLevelTime_;
-    _json["rowNumMax"]    = _blockManager.columnMax_;
+    _json["rowNumMax"]        = _blockManager.columnMax_;
+
+    _json["lineOffset"] = _blockManager.lineOffset_;
+    _json["randomParInOutOfCost"] = _blockManager.randomParConstant_;
 }
 
 void from_json(const nlohmann::json& _json, BlockManager& _blockManager) {
@@ -250,5 +276,13 @@ void from_json(const nlohmann::json& _json, BlockManager& _blockManager) {
 
     if (auto it = _json.find("rowNumMax"); it != _json.end()) {
         _json.at("rowNumMax").get_to(_blockManager.columnMax_);
+    }
+
+    if (auto it = _json.find("lineOffset"); it != _json.end()) {
+        _json.at("lineOffset").get_to(_blockManager.lineOffset_);
+    }
+
+    if (auto it = _json.find("randomParInOutOfCost"); it != _json.end()) {
+        _json.at("randomParInOutOfCost").get_to(_blockManager.randomParConstant_);
     }
 }
