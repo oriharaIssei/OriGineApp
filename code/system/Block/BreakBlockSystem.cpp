@@ -167,7 +167,7 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
         if (plusTimerValue >= 0.0f) {
             timerStatus->TimerIncrement(plusTimerValue);
         } else {
-            timerStatus->MinusTimer(plusTimerValue);
+            timerStatus->MinusTimer(-plusTimerValue);
         }
         scoreStatus->PlusScoreIncrement(plusScoreValue);
         scoreStatus->SetScoreChangeTime(0.0f);
