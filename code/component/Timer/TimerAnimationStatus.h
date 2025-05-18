@@ -49,9 +49,15 @@ private: // variables
     // back
     Easing backApearEase_;
     Easing backAlphaEase_;
+    Easing rotateEasing_;
+
     float backAlpha_ = 0.0f;
     float backStartAlpha_;
     float backEndAlpha_;
+
+    float backTimerRotate_;
+    float backTimerStartRotate_;
+    float backTimerEndRotate_;
 
     // step
     TimerAnimationStep curerntStep_ = TimerAnimationStep::NONE;
@@ -74,6 +80,7 @@ public:
 
     void BackApearScaling(const float& time);
     void BackAlphaEasing(const float& time);
+    void BackRotateEasing(const float& time);
     //
     void Reset();
 
@@ -88,6 +95,7 @@ public: // accsessor
     TimerAnimationStep GetAnimationStep() const { return curerntStep_; }
     float GetWaitTimeAfterApear() const { return waitTimeAfterScaing_; }
     float GetBackAlpha() const { return backAlpha_; }
+    float GetBackTimerRotate() const { return backTimerRotate_; }
     Vec2f GetBackBaseScale() const { return backBaseScale_; }
 
     /// setter

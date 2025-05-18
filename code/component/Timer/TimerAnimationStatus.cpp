@@ -42,6 +42,10 @@ bool TimerAnimationStatus::Edit() {
     isChange |= DragGuiVectorCommand("backmaxScale", backMaxScale_, 0.01f);
     isChange |= DragGuiVectorCommand("backinitScale", backInitScale_, 0.01f);
 
+    ImGui::Text("backRotate");
+    isChange |= ImGui::SliderAngle("backTimerStartRotate", &backTimerStartRotate_);
+    isChange |= ImGui::SliderAngle("backTimerEndRotate", &backTimerEndRotate_);
+
     ImGui::Text("backAlpha");
     isChange |= DragGuiCommand("backStartAlpha", backStartAlpha_, 0.01f);
     isChange |= DragGuiCommand("backEndAlpha", backEndAlpha_, 0.01f);
@@ -51,6 +55,9 @@ bool TimerAnimationStatus::Edit() {
     ImGui::Text("backAlphaEase");
     isChange |= DragGuiCommand("backAlphaEase.maxTime", backAlphaEase_.maxTime, 0.01f);
     isChange |= DragGuiCommand("backAlphaEase.backRatio", backAlphaEase_.backRatio, 0.01f);
+
+    ImGui::Text("rotateEasing");
+    isChange |= DragGuiCommand("rotateEasing.maxTime", rotateEasing_.maxTime, 0.01f);
 
     return isChange;
 }
@@ -99,6 +106,18 @@ void TimerAnimationStatus::BackAlphaEasing(const float& time) {
     backAlphaEase_.time = backAlphaEase_.maxTime;
 }
 
+void TimerAnimationStatus::BackRotateEasing(const float& time) {
+    rotateEasing_.time += time;
+    backTimerRotate_ = EaseOutQuad(backTimerStartRotate_, backTimerEndRotate_, rotateEasing_.time, rotateEasing_.maxTime);
+
+    if (rotateEasing_.time < rotateEasing_.maxTime) {
+        return;
+    }
+
+    backTimerRotate_   = backTimerEndRotate_;
+    rotateEasing_.time = rotateEasing_.maxTime;
+}
+
 void TimerAnimationStatus::ColorChangeEasing(const float& time) {
     color_ = panicColor_;
     time;
@@ -131,6 +150,9 @@ void TimerAnimationStatus::Reset() {
     backAlphaEase_.time = 0.0f;
     backAlpha_          = backStartAlpha_;
     backBaseScale_      = backInitScale_;
+
+    backTimerRotate_   = backTimerStartRotate_;
+    rotateEasing_.time = 0.0f;
 }
 
 void to_json(nlohmann::json& _json, const TimerAnimationStatus& _component) {
@@ -152,6 +174,10 @@ void to_json(nlohmann::json& _json, const TimerAnimationStatus& _component) {
     _json["backApearEase_.maxTime"]   = _component.backApearEase_.maxTime;
     _json["backAlphaEase_.maxTime"]   = _component.backAlphaEase_.maxTime;
     _json["backAlphaEase_.backRatio"] = _component.backAlphaEase_.backRatio;
+    _json["rotateEasing_.maxTime"]    = _component.rotateEasing_.maxTime;
+    _json["backTimerRotate"]          = _component.backTimerRotate_;
+    _json["backTimerStartRotate"]     = _component.backTimerStartRotate_;
+    _json["backTimerEndRotate"]       = _component.backTimerEndRotate_;
 }
 
 void from_json(const nlohmann::json& _json, TimerAnimationStatus& _component) {
@@ -192,5 +218,20 @@ void from_json(const nlohmann::json& _json, TimerAnimationStatus& _component) {
 
     if (auto it = _json.find("backAlphaEase_.backRatio"); it != _json.end()) {
         _json.at("backAlphaEase_.backRatio").get_to(_component.backAlphaEase_.backRatio);
+    }
+
+    if (auto it = _json.find("rotateEasing_.maxTime"); it != _json.end()) {
+        _json.at("rotateEasing_.maxTime").get_to(_component.rotateEasing_.maxTime);
+    }
+
+
+    if (auto it = _json.find("backTimerRotate"); it != _json.end()) {
+        _json.at("backTimerRotate").get_to(_component.backTimerRotate_);
+    }
+    if (auto it = _json.find("backTimerStartRotate"); it != _json.end()) {
+        _json.at("backTimerStartRotate").get_to(_component.backTimerStartRotate_);
+    }
+    if (auto it = _json.find("backTimerEndRotate"); it != _json.end()) {
+        _json.at("backTimerEndRotate").get_to(_component.backTimerEndRotate_);
     }
 }

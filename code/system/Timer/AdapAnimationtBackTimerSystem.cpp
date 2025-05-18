@@ -61,10 +61,14 @@ void AdapAnimationtBackTimerSystem::UpdateEntity(GameEntity* _entity) {
     // 現在タイムの取得
     float currentTime  = timerStatus->GetCurrentTimer();
     int32_t timerDigit = timerUIStatus->GetValueForDigit(currentTime+1.0f);
+
+    float rotate = timerAnimationStatus->GetBackTimerRotate();
     ///* ------------------------------adapt------------------------------
 
     spriteRender->setSize(baseSize);
     spriteRender->setColor(Vec4f(0.7f, 0.0f, 0.0f, alpha));
     // UV座標を設定
     spriteRender->setUVTranslate(Vec2f(float(timerDigit * 0.1f), 0.0f));
+
+    spriteRender->setRotate(rotate);
 }

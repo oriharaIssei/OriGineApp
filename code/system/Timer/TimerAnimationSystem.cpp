@@ -70,7 +70,7 @@ void TimerAnimationSystem::UpdateEntity(GameEntity* _entity) {
         timerAnimationStatus->ColorChangeEasing(deltaTIme);
         timerAnimationStatus->BackAlphaEasing(deltaTIme);
         timerAnimationStatus->BackApearScaling(deltaTIme);
-
+        timerAnimationStatus->BackRotateEasing(deltaTIme);
         break;
         ///----------------------------------------------------------------
         /// Scroll Wait

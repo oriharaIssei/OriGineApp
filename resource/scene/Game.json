@@ -3204,6 +3204,9 @@
                             5.0
                         ],
                         "backStartAlpha": 0.0,
+                        "backTimerEndRotate": 0.0,
+                        "backTimerRotate": 0.0,
+                        "backTimerStartRotate": 3.1415927410125732,
                         "colorChangeEasing_.backRatio": 1.0,
                         "initScale": [
                             1.0,
@@ -3220,6 +3223,7 @@
                             0.0,
                             1.0
                         ],
+                        "rotateEasing_.maxTime": 0.4699999988079071,
                         "scalingEasing_.backRatio": 0.5,
                         "textureSize": [
                             128.0,
