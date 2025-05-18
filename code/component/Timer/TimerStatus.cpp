@@ -64,6 +64,19 @@ void TimerStatus::MinusTimer(const float& timer) {
 }
 void TimerStatus::TimerIncrement(const float& timer) {
 
+    if (timer <= 0.0f) {
+
+        if (currentTimer_ < promiseTime_) {
+            return;
+        }
+
+        float preTime = currentTimer_ + timer;
+        if (preTime < promiseTime_) {
+            currentTimer_ = promiseTime_;
+            return;
+        }
+    }
+
     currentTimer_ += timer;
 }
 

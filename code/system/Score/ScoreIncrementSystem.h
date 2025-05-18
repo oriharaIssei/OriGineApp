@@ -20,6 +20,5 @@ public:
     protected:
     void UpdateEntity(GameEntity* _entity) override;
 
-  float Lerp(const float& start, const float& end, float t);
 
 };

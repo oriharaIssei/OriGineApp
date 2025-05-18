@@ -46,15 +46,15 @@ void TimeAdaptAinmationSystem::UpdateEntity(GameEntity* _entity) {
     SpriteRenderer* spriteRender = getComponent<SpriteRenderer>(_entity);
     TimerAnimationStatus* timerAnimationStatus = getComponent<TimerAnimationStatus>(TimerAnimationEntity);
 
-    if (  !spriteRender || !timerAnimationStatus) { // Componentが存在しない場合の早期リターン
+    if (!spriteRender || !timerAnimationStatus) { // Componentが存在しない場合の早期リターン
         return;
     }
 
-   
     ///* ------------------------------calucration------------------------------
 
     Vec2f baseSize = timerAnimationStatus->GetTextureSize() * timerAnimationStatus->GetBaseScale();
     Vec4f clolor   = timerAnimationStatus->GetBaseClolor();
+
     ///* ------------------------------adapt------------------------------
 
     spriteRender->setSize(baseSize);

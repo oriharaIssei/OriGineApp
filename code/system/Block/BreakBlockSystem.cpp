@@ -47,7 +47,7 @@ void BreakBlockSystem::UpdateEntity(GameEntity* _entity) {
     if (blockStatus_->GetIsBreak()) {
 
         if (!blockStatus_->GetIsBreakForAdvantageEffect()) {
-           /* ScrapSpawn(_entity);*/
+            /* ScrapSpawn(_entity);*/
             BlockReaction(_entity, blockStatus_->GetBlockType());
         }
         DestroyEntity(_entity);
@@ -96,12 +96,13 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
         ///---------------------------------------------
     case BlockType::NORMAL:
         scoreStatus->PlusScoreIncrement(plusScoreValue);
-        scoreStatus->SetScoreChangeTime(0.0f);
+         scoreStatus->SetScoreUIStep(ScoreUIStep::INIT);
+       
         effectType_ = EffectType::SCORE;
         tempValue_  = plusScoreValue;
         /* if (!breakNormal->isPlaying()) {*/
         breakNormal->Play();
-        
+
         break;
 
         ///---------------------------------------------
@@ -109,7 +110,7 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
         ///---------------------------------------------
     case BlockType::SKULL:
         scoreStatus->PlusScoreIncrement(plusScoreValue);
-        scoreStatus->SetScoreChangeTime(0.0f);
+         scoreStatus->SetScoreUIStep(ScoreUIStep::INIT);
         effectType_ = EffectType::SCORE;
         tempValue_  = plusScoreValue;
         /*  timerStatus->MinusTimer(timerDecrementValue);*/
@@ -152,7 +153,7 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
             }
         }
 
-        //再ソート(左から右の順番になるように)
+        // 再ソート(左から右の順番になるように)
         rightBlocks_ = combiStatus->SortBlocksLeftToRight(rightBlocks_);
 
         for (BlockStatus* status : rightBlocks_) {
@@ -166,13 +167,9 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
         }
 
         // スコア、タイマー加算
-        if (plusTimerValue >= 0.0f) {
-            timerStatus->TimerIncrement(plusTimerValue);
-        } else {
-            timerStatus->MinusTimer(-plusTimerValue);
-        }
+        timerStatus->TimerIncrement(plusTimerValue);
         scoreStatus->PlusScoreIncrement(plusScoreValue);
-        scoreStatus->SetScoreChangeTime(0.0f);
+         scoreStatus->SetScoreUIStep(ScoreUIStep::INIT);
 
         breakAdvance->Play();
         return;

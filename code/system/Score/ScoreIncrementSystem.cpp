@@ -37,8 +37,30 @@ void ScoreIncrementSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    scoreStatus_->TimeIncrement(Engine::getInstance()->getDeltaTime());
-    scoreStatus_->SetCurrentScore(Lerp(scoreStatus_->GetCurrentScore(), scoreStatus_->GetPulusScore(), scoreStatus_->GetScoreChangeTIme()));
+    float deltaTime = Engine::getInstance()->getDeltaTime();
+
+   /* if (scoreStatus_->GetIsScoreChange()) {
+        scoreStatus_->SetScoreUIStep(ScoreUIStep::INIT);
+    }*/
+
+    switch (scoreStatus_->GetScoreUIStep()) {
+    case ScoreUIStep::INIT:
+
+        scoreStatus_->Reset();
+        scoreStatus_->SetScoreUIStep(ScoreUIStep::SCOREUP);
+        break;
+
+    case ScoreUIStep::SCOREUP:
+
+        scoreStatus_->TimeIncrementAnimation(deltaTime);
+       
+        break;
+    default:
+        break;
+    }
+
+   /* scoreStatus_->TimeIncrementAnimation(deltaTime);*/
+    /* scoreStatus_->SetCurrentScore(Lerp(scoreStatus_->GetCurrentScore(), scoreStatus_->GetPulusScore(), scoreStatus_->GetScoreChangeTIme()));*/
 
     if (scoreStatus_->GetCurrentScore() < scoreStatus_->GetScoreMax()) {
         return;
@@ -48,8 +70,4 @@ void ScoreIncrementSystem::UpdateEntity(GameEntity* _entity) {
 }
 
 void ScoreIncrementSystem::ComboReset() {
-}
-
-float ScoreIncrementSystem::Lerp(const float& start, const float& end, float t) {
-    return (1.0f - t) * start + end * t;
 }

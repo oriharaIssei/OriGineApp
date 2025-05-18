@@ -754,7 +754,8 @@
                     {
                         "currentScore": 0.0,
                         "isAlive": true,
-                        "pulusScore": 0.0
+                        "pulusScore": 0.0,
+                        "scoreAdaptEasing_.maxTime": 0.8999999761581421
                     }
                 ]
             },
