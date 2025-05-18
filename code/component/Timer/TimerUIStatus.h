@@ -45,4 +45,5 @@ public: // accsessor
     std::string GetCurrentTextureName() const { return currentTextureName_; }
     /// setter
     void SetcurrentTextureName(const std::string& currentTextureName) { currentTextureName_ = currentTextureName; }
+    void SetDigit(const TimeDigit& digit) { digit_ = digit; }
 };

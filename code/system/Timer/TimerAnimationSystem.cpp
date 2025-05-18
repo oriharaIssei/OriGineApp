@@ -68,6 +68,8 @@ void TimerAnimationSystem::UpdateEntity(GameEntity* _entity) {
 
         timerAnimationStatus->ScalingAnimation(deltaTIme);
         timerAnimationStatus->ColorChangeEasing(deltaTIme);
+        timerAnimationStatus->BackAlphaEasing(deltaTIme);
+        timerAnimationStatus->BackApearScaling(deltaTIme);
 
         break;
         ///----------------------------------------------------------------

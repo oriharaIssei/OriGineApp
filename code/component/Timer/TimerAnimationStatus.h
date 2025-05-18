@@ -10,7 +10,6 @@ enum class TimerAnimationStep {
     NONE,
     SCALING,
     END,
-
 };
 
 class TimerAnimationStatus
@@ -33,14 +32,26 @@ private: // variables
     Vec2f initScale_ = {1.0f, 1.0f};
     Vec2f maxScale_  = {1.0f, 1.0f};
 
+    // back
+    Vec2f backBaseScale_ = {1.0f, 1.0f};
+    Vec2f backInitScale_ = {1.0f, 1.0f};
+    Vec2f backMaxScale_  = {1.0f, 1.0f};
+
     Vec2f textureSize_;
 
     Vec4f panicColor_;
-    Vec4f color_={1.0f,1.0f,1.0f,1.0f};
+    Vec4f color_ = {1.0f, 1.0f, 1.0f, 1.0f};
 
     // ease
     Easing scalingEasing_;
     Easing colorChangeEasing_;
+
+    // back
+    Easing backApearEase_;
+    Easing backAlphaEase_;
+    float backAlpha_ = 0.0f;
+    float backStartAlpha_;
+    float backEndAlpha_;
 
     // step
     TimerAnimationStep curerntStep_ = TimerAnimationStep::NONE;
@@ -61,6 +72,8 @@ public:
     void ColorChangeEasing(const float& time);
     void CheckAbleNextStep();
 
+    void BackApearScaling(const float& time);
+    void BackAlphaEasing(const float& time);
     //
     void Reset();
 
@@ -74,6 +87,8 @@ public: // accsessor
     Vec2f GetTextureSize() const { return textureSize_; }
     TimerAnimationStep GetAnimationStep() const { return curerntStep_; }
     float GetWaitTimeAfterApear() const { return waitTimeAfterScaing_; }
+    float GetBackAlpha() const { return backAlpha_; }
+    Vec2f GetBackBaseScale() const { return backBaseScale_; }
 
     /// setter
     void SetAnimationStep(const TimerAnimationStep& step) { curerntStep_ = step; }

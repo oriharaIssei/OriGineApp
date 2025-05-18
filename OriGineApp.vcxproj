@@ -210,6 +210,7 @@
     <ClInclude Include="code\system\SceneTransitionSystem\SceneTransitionSystem.h" />
     <ClInclude Include="code\system\Score\ScoreIncrementSystem.h" />
     <ClInclude Include="code\system\Score\ScoreUIScrollSystem.h" />
+    <ClInclude Include="code\system\Timer\AdapAnimationtBackTimerSystem.h" />
     <ClInclude Include="code\system\Timer\TimeAdaptAinmationSystem.h" />
     <ClInclude Include="code\system\Timer\TimerAnimationSystem.h" />
     <ClInclude Include="code\system\Timer\TimerDecrementSystem.h" />
@@ -332,6 +333,7 @@
     <ClCompile Include="code\system\SceneTransitionSystem\SceneTransitionSystem.cpp" />
     <ClCompile Include="code\system\Score\ScoreIncrementSystem.cpp" />
     <ClCompile Include="code\system\Score\ScoreUIScrollSystem.cpp" />
+    <ClCompile Include="code\system\Timer\AdapAnimationtBackTimerSystem.cpp" />
     <ClCompile Include="code\system\Timer\TimeAdaptAinmationSystem.cpp" />
     <ClCompile Include="code\system\Timer\TimerAnimationSystem.cpp" />
     <ClCompile Include="code\system\Timer\TimerDecrementSystem.cpp" />

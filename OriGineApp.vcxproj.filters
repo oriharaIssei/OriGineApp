@@ -480,6 +480,9 @@
     <ClInclude Include="code\system\Block\DeleteBlockForAdvantageSystem.h">
       <Filter>system\Block</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Timer\AdapAnimationtBackTimerSystem.h">
+      <Filter>system\Timer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -829,6 +832,9 @@
     </ClCompile>
     <ClCompile Include="code\system\Block\DeleteBlockForAdvantageSystem.cpp">
       <Filter>system\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Timer\AdapAnimationtBackTimerSystem.cpp">
+      <Filter>system\Timer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
