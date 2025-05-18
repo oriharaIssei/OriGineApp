@@ -44,43 +44,43 @@ bool BlockManager::Edit() {
     isChange |= DragGuiCommand("basePosY", basePosY_, 0.01f);
 
     ImGui::Text("Random Parameters");
-    for (int i = 0; i < static_cast<int>(BlockType::COUNT); ++i) {
+    for (int i = 1; i < static_cast<int>(BlockType::COUNT); ++i) {
         std::string label = std::string("Random[") + ToStringByBlockType(static_cast<BlockType>(i)) + "]";
         isChange |= InputGuiCommand<int>(label.c_str(), randomPar_[i]);
     }
 
     ImGui::Text("Costs");
-    for (int i = 0; i < static_cast<int>(BlockType::COUNT); ++i) {
+    for (int i = 1; i < static_cast<int>(BlockType::COUNT); ++i) {
         std::string label = std::string("Cost[") + ToStringByBlockType(static_cast<BlockType>(i)) + "]";
         isChange |= InputGuiCommand<int>(label.c_str(), costs_[i]);
     }
 
     ImGui::Text("Generate Interval");
-    for (int i = 0; i < static_cast<int>(BlockType::COUNT); ++i) {
+    for (int i = 1; i < static_cast<int>(BlockType::COUNT); ++i) {
         std::string label = std::string("Interval[") + ToStringByBlockType(static_cast<BlockType>(i)) + "]";
         isChange |= InputGuiCommand<int>(label.c_str(), generateInterval_[i]);
     }
 
     ImGui::Text("randomParRightofAdvance");
-    for (int i = 0; i < static_cast<int>(BlockType::COUNT); ++i) {
+    for (int i = 1; i < static_cast<int>(BlockType::COUNT); ++i) {
         std::string label = std::string("randomParRightofAdvance[") + ToStringByBlockType(static_cast<BlockType>(i)) + "]";
         isChange |= InputGuiCommand<int>(label.c_str(), randomParRightofAdvance[i]);
     }
 
-    ImGui::Text("randomPar InOutOfCost");
-    for (int i = 0; i < static_cast<int>(BlockType::COUNT); ++i) {
+   /* ImGui::Text("randomPar InOutOfCost");
+    for (int i = 1; i < static_cast<int>(BlockType::COUNT); ++i) {
         std::string label = std::string("randomParInOutOfCost[") + ToStringByBlockType(static_cast<BlockType>(i)) + "]";
         isChange |= InputGuiCommand<int>(label.c_str(), randomParConstant_[i]);
-    }
+    }*/
 
     ImGui::Text("randomParUPValue_");
-    for (int i = 0; i < static_cast<int>(BlockType::COUNT); ++i) {
+    for (int i = 1; i < static_cast<int>(BlockType::COUNT); ++i) {
         std::string label = std::string("randomParUPValue_[") + ToStringByBlockType(static_cast<BlockType>(i)) + "]";
         isChange |= InputGuiCommand<int>(label.c_str(), randomParUPValue_[i]);
     }
 
     ImGui::Text("Score");
-    for (int i = 0; i < scoreValue_.size(); ++i) {
+    for (int i = 1; i < scoreValue_.size(); ++i) {
         std::string label = "scoreValue[" + std::to_string(i) + "]";
         isChange |= DragGuiCommand(label.c_str(), scoreValue_[i]);
     }

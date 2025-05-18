@@ -63,6 +63,7 @@
 #include "Application/code/component/Timer/TimerStatus.h"
 #include "Application/code/component/Timer/TimerUIStatus.h"
 #include "component/Block/BlockCombinationStatus.h"
+#include "component/effect/TextureEffectParam.h"
 #include "component/FloorUI/FloorUIController.h"
 #include "component/FloorUI/FloorUIStatus.h"
 #include "component/GameEndUI/GameEndUIStatus.h"
@@ -133,25 +134,25 @@
 #include "Application/code/system/Timer/TimerDecrementSystem.h"
 #include "Application/code/system/Timer/TimerUIScrollSystem.h"
 #include "system/Block/DeleteBlockForAdvantageSystem.h"
+#include "system/Block/DeleteBlockForAdvantageSystem.h"
+#include "system/FloatingFloor/CheckIsUnderPlayer.h"
 #include "system/FloatingFloor/CheckIsUnderPlayer.h"
 #include "system/FloorUI/FloorUISystem.h"
+#include "system/FloorUI/FloorUISystem.h"
+#include "system/GameEndUI/GameEndUISystem.h"
 #include "system/GameEndUI/GameEndUISystem.h"
 #include "system/ResultUI/ResultFontSystem.h"
 #include "system/ResultUI/ResultKeySystem.h"
 #include "system/ResultUI/ResultRankSystem.h"
 #include "system/ResultUI/ResultScoreAdaptSystem.h"
 #include "system/ResultUI/ResultUIParentSystem.h"
+#include "system/Timer/AdapAnimationtBackTimerSystem.h"
 #include "system/Timer/TimeAdaptAinmationSystem.h"
+#include "system/Timer/TimeAdaptAinmationSystem.h"
+#include "system/Timer/TimerAnimationSystem.h"
 #include "system/Timer/TimerAnimationSystem.h"
 #include "system/UpdateButtonColorByState.h"
 #include "system/UsingCameraSetSystem.h"
-#include"system/FloorUI/FloorUISystem.h"
-#include"system/FloatingFloor/CheckIsUnderPlayer.h"
-#include"system/GameEndUI/GameEndUISystem.h"
-#include"system/Timer/TimerAnimationSystem.h"
-#include"system/Timer/TimeAdaptAinmationSystem.h"
-#include"system/Block/DeleteBlockForAdvantageSystem.h"
-#include"system/Timer/AdapAnimationtBackTimerSystem.h"
 
 MyGame::MyGame() {}
 
@@ -314,6 +315,8 @@ void MyGame::RegisterUsingComponents() {
     ecsManager->registerComponent<SpriteRenderer>();
     ecsManager->registerComponent<LineRenderer>();
     // ecsManager->registerComponent<SkyboxRenderer>();
+
+    ecsManager->registerComponent<TextureEffectParam>();
 }
 
 void MyGame::RegisterUsingSystems() {
@@ -390,7 +393,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<DeleteBlockForAdvantageSystem>();
 
     ecsManager->registerSystem<AdapAnimationtBackTimerSystem>();
-    
+
     ecsManager->registerSystem<FloorUISystem>();
     ecsManager->registerSystem<CheckIsUnderPlayer>();
 
@@ -433,7 +436,7 @@ void MyGame::RegisterUsingSystems() {
 #endif // _DEBUG
     ecsManager->registerSystem<ColliderRenderingSystem>();
     // ecsManager->registerSystem<SkyboxRender>();
-
+    ecsManager->registerSystem<EffectTexturedMeshRenderSystem>();
     /// =================================================================================================
     // PostRender
     /// =================================================================================================

@@ -73,11 +73,17 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
     if (blockSpawner_->GetIsMove()) {
         return;
     }
-
     if (!isInited_) { // 初回の生成
 
-        for (int32_t i = blockSpawner_->GetRowMaxNum(); i > 0; --i) {//列を
-            for (int32_t j = 0; j < blockSpawner_->GetColumnMaxNum(); ++j) {//上に立ててく
+        for (int32_t i = blockSpawner_->GetRowMaxNum(); i > 0; --i) {
+            // 列インデックスを作成しシャッフル
+            std::vector<int32_t> columns(blockSpawner_->GetColumnMaxNum());
+            std::iota(columns.begin(), columns.end(), 0);
+            std::random_device rd;
+            std::mt19937 g(rd());
+            std::shuffle(columns.begin(), columns.end(), g);
+
+            for (int32_t j : columns) {
                 CreateBlocks(i, j, blockSpawner_->GetStartPositionX() + (blockWidth * (blockSpawner_->GetRowMaxNum() - i)));
             }
             blockSpawner_->CostReset(); // コストリセット
@@ -88,8 +94,15 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
 
         // 2回目移行の生成
         if (lastTransform_ && lastTransform_->translate[X] < nextPosition) {
-            for (int32_t i = 0; i < blockSpawner_->GetColumnMaxNum(); ++i) {
-                float newX = lastTransform_->translate[X] + blockWidth;
+            // 列インデックスを作成しシャッフル
+            std::vector<int32_t> columns(blockSpawner_->GetColumnMaxNum());
+            std::iota(columns.begin(), columns.end(), 0);
+            std::random_device rd;
+            std::mt19937 g(rd());
+            std::shuffle(columns.begin(), columns.end(), g);
+
+            float newX = lastTransform_->translate[X] + blockWidth;
+            for (int32_t i : columns) {
                 CreateBlocks(0, i, newX);
             }
             blockSpawner_->CostReset(); // コストリセット

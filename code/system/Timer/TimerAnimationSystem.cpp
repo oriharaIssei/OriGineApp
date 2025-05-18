@@ -10,7 +10,6 @@
 // include
 #include <Vector3.h>
 // component
-#include "component/GameEndUI/GameEndUIStatus.h"
 #include "component/Timer/TimerAnimationStatus.h"
 #include "component/Timer/TimerStatus.h"
 
