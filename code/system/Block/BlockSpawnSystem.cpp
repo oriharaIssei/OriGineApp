@@ -75,6 +75,8 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
     }
     if (!isInited_) { // 初回の生成
 
+        blockSpawner_->ApplyLevelParams(blockSpawner_->GetCurrentLevel());
+
         for (int32_t i = blockSpawner_->GetRowMaxNum(); i > 0; --i) {
             // 列インデックスを作成しシャッフル
             std::vector<int32_t> columns(blockSpawner_->GetColumnMaxNum());
@@ -222,13 +224,16 @@ void BlockSpawnSystem::BlockTypeSetting(BlockStatus* status, BlockType blocktype
     MyRandom::Int Random(0, 100);
 
     // 指定された行間隔に達していなければスキップ
-    if ((blockSpawner_->GetLineCounter(blocktype) % blockSpawner_->GetGenerateInterval(blocktype) != 0) || blockSpawner_->GetCurrentCost(blocktype) >= blockSpawner_->GetCost(blocktype)) {
+    if ((blockSpawner_->GetLineCounter(blocktype) % blockSpawner_->GetGenerateInterval(blocktype) != 0)) {
 
-        // 指定の割合で別ブロックに変身
-        if (Random.get() <= blockSpawner_->GetRandomParConstant(blocktype)) {
-            status->SetBlockType(blocktype);
-        }
+        //// 指定の割合で別ブロックに変身
+        //if (Random.get() <= blockSpawner_->GetRandomParConstant(blocktype)) {
+        //    status->SetBlockType(blocktype);
+        //}
 
+        return;
+    }
+    if (blockSpawner_->GetCurrentCost(blocktype) >= blockSpawner_->GetCost(blocktype)) {
         return;
     }
 

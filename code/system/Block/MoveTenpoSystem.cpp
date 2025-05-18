@@ -61,7 +61,7 @@ void MoveTenpoSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
    
-    blockManager_->SpeedChangeForTime(timer_, levelUIParentStatus);
+    blockManager_->ChangeNextLevel(timer_, levelUIParentStatus);
     blockManager_->SetMoveTempoForLevel();
 
     // イージングタイム更新

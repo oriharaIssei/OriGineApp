@@ -6,6 +6,8 @@
 #include <cstdint>
 #include <Vector3.h>
 
+constexpr int LEVEL_MAX = 6; 
+
 enum class BlockType {
     NORMAL,
     ADVANTAGE,
@@ -19,11 +21,20 @@ enum class EaseType {
     MOVESCALING,
 };
 
+
 class LevelUIParentStatus;
 class BlockManager
     : public IComponent {
     friend void to_json(nlohmann::json& _json, const BlockManager& _blockManager);
     friend void from_json(const nlohmann::json& _json, BlockManager& _blockManager);
+public:
+    struct BlockRandomParams {
+        std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> randomPar{};
+        std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> costs{};
+        std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> generateInterval{};
+        std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> randomParRightofAdvance{};
+        std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> randomParUPValue{};
+    };
 
 private: // variables
     bool isAlive_ = true;
@@ -52,7 +63,7 @@ private: // variables
     // speed
     float moveTenpo_;
     int32_t moveTenpoNum_;
-    std::array<float, 6> moveTenpos_;
+    std::array<float, LEVEL_MAX> moveTenpos_;
 
     // reaction
     Easing scalingEase_;
@@ -64,19 +75,16 @@ private: // variables
     bool isMove_ = false;
 
     // level
-    std::array<float, 6> nextLevelTime_;
+    std::array<float, LEVEL_MAX> nextLevelTime_;
     int32_t currentLevel_ = 0;
-
+    std::array<BlockRandomParams, LEVEL_MAX> levelParams_; 
     // randomCreate
-    std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> randomPar_;
-    std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> costs_;
+
     std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> currentCosts_;
-    std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> generateInterval_{}; // 各BlockTypeの生成間隔（列ごと）
     std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> lineCounter_; // 現在の行数カウント
     std::array<float, static_cast<int32_t>(BlockType::COUNT)> scoreValue_{}; // 現在の行数カウント
-    std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> randomParRightofAdvance;
-    std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> randomParConstant_;
-    std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> randomParUPValue_;
+
+    BlockRandomParams blockRandomParms_;
 
 public:
     BlockManager() {}
@@ -88,7 +96,7 @@ public:
 
     void CostReset();
     void ResetLineCounter(BlockType type);
-    void SpeedChangeForTime(float& time, LevelUIParentStatus* levelUI);
+    void ChangeNextLevel(float& time, LevelUIParentStatus* levelUI);
 
     void ScalingEaseUpdate(const float& t);
     void ResetScalingEase();
@@ -97,6 +105,8 @@ public:
     void LineIncrement();
 
     const char* ToStringByBlockType(BlockType type);
+
+     void ApplyLevelParams(int32_t level);
 
 public: // accsessor
     /// getter
@@ -112,20 +122,21 @@ public: // accsessor
     float GetBasePosY() const { return basePosY_; }
     float GetMoveTenpo() const { return moveTenpo_; }
     float GetDeadPosition() const { return deadPositionX_; }
-    int32_t GetRandomPar(BlockType type) const { return randomPar_[static_cast<int32_t>(type)]; }
-    int32_t GetCost(BlockType type) const { return costs_[static_cast<int32_t>(type)]; }
+    int32_t GetRandomPar(BlockType type) const { return blockRandomParms_.randomPar[static_cast<int32_t>(type)]; }
+    int32_t GetCost(BlockType type) const { return blockRandomParms_.costs[static_cast<int32_t>(type)]; }
     int32_t GetCurrentCost(BlockType type) const { return currentCosts_[static_cast<int32_t>(type)]; }
-    int32_t GetGenerateInterval(BlockType type) const { return generateInterval_[static_cast<int32_t>(type)]; }
-    int32_t GetRandomParUPValue(BlockType type) const { return randomParUPValue_[static_cast<int32_t>(type)]; }
-    int32_t GetLineCounter(BlockType type)const;
-    int32_t GetRandomParConstant(BlockType type) const { return randomParConstant_[static_cast<int32_t>(type)]; }
-    int32_t GetRandomParRightOfAdvance(BlockType type) const { return randomParRightofAdvance[static_cast<int32_t>(type)]; }
+    int32_t GetGenerateInterval(BlockType type) const { return blockRandomParms_.generateInterval[static_cast<int32_t>(type)]; }
+    int32_t GetRandomParUPValue(BlockType type) const { return blockRandomParms_.randomParUPValue[static_cast<int32_t>(type)]; }
+    int32_t GetLineCounter(BlockType type) const;
+   /* int32_t GetRandomParConstant(BlockType type) const { return blockRandomParms_.ra[static_cast<int32_t>(type)]; }*/
+    int32_t GetRandomParRightOfAdvance(BlockType type) const { return blockRandomParms_.randomParRightofAdvance[static_cast<int32_t>(type)]; }
     float GetScoreValue(BlockType type) const { return scoreValue_[static_cast<int32_t>(type)]; }
     int32_t GetMoveTenpoNum() const { return moveTenpoNum_; }
     Easing GetScalingEasing() const { return scalingEase_; }
     Vec3f GetResultScale() const { return resultScale_; }
     bool GetIsMove() const { return isMove_; }
     float GetMoveTime() const { return moveTimemax_; }
+    int32_t GetCurrentLevel() const { return currentLevel_; }
 
     /// setter
     void SetCurrentCostIncrement(BlockType type) { currentCosts_[static_cast<int32_t>(type)]++; }

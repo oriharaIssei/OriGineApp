@@ -10,21 +10,12 @@
 void BlockManager::Initialize([[maybe_unused]] GameEntity* _entity) {
     /// 初期化でパラメータ編集してるから大丈夫、ここ消したら未定義値が出る
 
-    /* columNumMax_         = 1;
-     HPMax_               = 1;
-     collisionRadius_     = 1.0f;
-     startPositionX_      = 0.0f;
-     nextCreatePositionX_ = 0.0f;
-     basePosY_            = 0.0f;
-     moveTenpo_           = 0.0f;
-     deadPositionX_       = 0.0f;*/
-
     currentLevel_ = 0;
 }
 
 bool BlockManager::Edit() {
-    bool isChange = false;
-
+    bool isChange             = false;
+    static int levelEditIndex = 0;
 #ifdef _DEBUG
 
     isChange = CheckBoxCommand("IsAlive", isAlive_);
@@ -43,42 +34,37 @@ bool BlockManager::Edit() {
     isChange |= DragGuiCommand("deadPositionX", deadPositionX_, 0.01f);
     isChange |= DragGuiCommand("basePosY", basePosY_, 0.01f);
 
+    ImGui::Separator();
+    ImGui::Text("=== Level Random Params ===");
+    ImGui::SliderInt("Level", &levelEditIndex, 0, LEVEL_MAX - 1);
+
+    BlockRandomParams& params = levelParams_[levelEditIndex];
+
     ImGui::Text("Random Parameters");
     for (int i = 1; i < static_cast<int>(BlockType::COUNT); ++i) {
         std::string label = std::string("Random[") + ToStringByBlockType(static_cast<BlockType>(i)) + "]";
-        isChange |= InputGuiCommand<int>(label.c_str(), randomPar_[i]);
+        isChange |= InputGuiCommand<int>(label.c_str(), params.randomPar[i]);
     }
-
     ImGui::Text("Costs");
     for (int i = 1; i < static_cast<int>(BlockType::COUNT); ++i) {
         std::string label = std::string("Cost[") + ToStringByBlockType(static_cast<BlockType>(i)) + "]";
-        isChange |= InputGuiCommand<int>(label.c_str(), costs_[i]);
+        isChange |= InputGuiCommand<int>(label.c_str(), params.costs[i]);
     }
-
     ImGui::Text("Generate Interval");
     for (int i = 1; i < static_cast<int>(BlockType::COUNT); ++i) {
         std::string label = std::string("Interval[") + ToStringByBlockType(static_cast<BlockType>(i)) + "]";
-        isChange |= InputGuiCommand<int>(label.c_str(), generateInterval_[i]);
+        isChange |= InputGuiCommand<int>(label.c_str(), params.generateInterval[i]);
     }
-
     ImGui::Text("randomParRightofAdvance");
     for (int i = 1; i < static_cast<int>(BlockType::COUNT); ++i) {
         std::string label = std::string("randomParRightofAdvance[") + ToStringByBlockType(static_cast<BlockType>(i)) + "]";
-        isChange |= InputGuiCommand<int>(label.c_str(), randomParRightofAdvance[i]);
+        isChange |= InputGuiCommand<int>(label.c_str(), params.randomParRightofAdvance[i]);
     }
-
-   /* ImGui::Text("randomPar InOutOfCost");
-    for (int i = 1; i < static_cast<int>(BlockType::COUNT); ++i) {
-        std::string label = std::string("randomParInOutOfCost[") + ToStringByBlockType(static_cast<BlockType>(i)) + "]";
-        isChange |= InputGuiCommand<int>(label.c_str(), randomParConstant_[i]);
-    }*/
-
     ImGui::Text("randomParUPValue_");
     for (int i = 1; i < static_cast<int>(BlockType::COUNT); ++i) {
         std::string label = std::string("randomParUPValue_[") + ToStringByBlockType(static_cast<BlockType>(i)) + "]";
-        isChange |= InputGuiCommand<int>(label.c_str(), randomParUPValue_[i]);
+        isChange |= InputGuiCommand<int>(label.c_str(), params.randomParUPValue[i]);
     }
-
     ImGui::Text("Score");
     for (int i = 1; i < scoreValue_.size(); ++i) {
         std::string label = "scoreValue[" + std::to_string(i) + "]";
@@ -126,7 +112,7 @@ void BlockManager::CostReset() {
     }
 }
 
-void BlockManager::SpeedChangeForTime(float& time, LevelUIParentStatus* levelUI) {
+void BlockManager::ChangeNextLevel(float& time, LevelUIParentStatus* levelUI) {
 
     if (moveTenpos_.size() - 1 < currentLevel_) {
         return;
@@ -137,9 +123,17 @@ void BlockManager::SpeedChangeForTime(float& time, LevelUIParentStatus* levelUI)
     }
 
     currentLevel_++;
+    ApplyLevelParams(currentLevel_);
     levelUI->SetIsLevelChange(true);
     levelUI->SetNextLevelUV(float(currentLevel_));
     time = 0.0f;
+}
+
+void BlockManager::ApplyLevelParams(int32_t level) {
+    if (level < 0 || level >= LEVEL_MAX)
+        return;
+    blockRandomParms_       = levelParams_[level];
+   
 }
 
 void BlockManager::SetMoveTempoForLevel() {
@@ -156,7 +150,7 @@ void BlockManager::ResetLineCounter(BlockType type) {
 }
 
 int32_t BlockManager::GetLineCounter(BlockType type) const {
-    return lineCounter_[static_cast<int32_t>(type)] + randomParRightofAdvance[static_cast<int32_t>(type)];
+    return lineCounter_[static_cast<int32_t>(type)] + blockRandomParms_.randomParRightofAdvance[static_cast<int32_t>(type)];
 }
 
 void BlockManager::LineIncrement() {
@@ -241,18 +235,25 @@ void to_json(nlohmann::json& _json, const BlockManager& _blockManager) {
     _json["MoveScalingbackRatio"] = _blockManager.moveScalingEase_.backRatio;
     _json["movetenpoNum"]         = _blockManager.moveTenpoNum_;
     _json["moveSpeeds"]           = _blockManager.moveTenpos_;
-    _json["randomPar"]            = _blockManager.randomPar_;
-    _json["costs"]                = _blockManager.costs_;
 
-    _json["generateInterval"] = _blockManager.generateInterval_;
-    _json["scoreValue"]       = _blockManager.scoreValue_;
-    _json["nextLevelTime"]    = _blockManager.nextLevelTime_;
-    _json["rowNumMax"]        = _blockManager.rowMax_;
+    _json["scoreValue"]    = _blockManager.scoreValue_;
+    _json["nextLevelTime"] = _blockManager.nextLevelTime_;
+    _json["rowNumMax"]     = _blockManager.rowMax_;
 
-    _json["lineOffset"]           = _blockManager.randomParRightofAdvance;
-    _json["randomParInOutOfCost"] = _blockManager.randomParConstant_;
+    _json["randomPar"]        = _blockManager.levelParams_[0].randomPar;
+    _json["costs"]            = _blockManager.levelParams_[0].costs;
+    _json["generateInterval"] = _blockManager.levelParams_[0].generateInterval;
+    _json["lineOffset"]       = _blockManager.levelParams_[0].randomParRightofAdvance;
+    _json["randomParUPValue"] = _blockManager.levelParams_[0].randomParUPValue;
 
-    _json["randomParUPValue"] = _blockManager.randomParUPValue_;
+    for (int i = 1; i < LEVEL_MAX; ++i) {
+        std::string idx                  = std::to_string(i);
+        _json["randomPar_" + idx]        = _blockManager.levelParams_[i].randomPar;
+        _json["costs_" + idx]            = _blockManager.levelParams_[i].costs;
+        _json["generateInterval_" + idx] = _blockManager.levelParams_[i].generateInterval;
+        _json["lineOffset_" + idx]       = _blockManager.levelParams_[i].randomParRightofAdvance;
+        _json["randomParUPValue_" + idx] = _blockManager.levelParams_[i].randomParUPValue;
+    }
 }
 
 void from_json(const nlohmann::json& _json, BlockManager& _blockManager) {
@@ -278,9 +279,6 @@ void from_json(const nlohmann::json& _json, BlockManager& _blockManager) {
     _json.at("MoveScalingbackRatio").get_to(_blockManager.moveScalingEase_.backRatio);
     _json.at("movetenpoNum").get_to(_blockManager.moveTenpoNum_);
     _json.at("moveSpeeds").get_to(_blockManager.moveTenpos_);
-    _json.at("randomPar").get_to(_blockManager.randomPar_);
-    _json.at("costs").get_to(_blockManager.costs_);
-    _json.at("generateInterval").get_to(_blockManager.generateInterval_);
     _json.at("scoreValue").get_to(_blockManager.scoreValue_);
     _json.at("nextLevelTime").get_to(_blockManager.nextLevelTime_);
 
@@ -288,16 +286,33 @@ void from_json(const nlohmann::json& _json, BlockManager& _blockManager) {
         _json.at("rowNumMax").get_to(_blockManager.rowMax_);
     }
 
+    _json.at("randomPar").get_to(_blockManager.levelParams_[0].randomPar);
+    _json.at("costs").get_to(_blockManager.levelParams_[0].costs);
+    _json.at("generateInterval").get_to(_blockManager.levelParams_[0].generateInterval);
     if (auto it = _json.find("lineOffset"); it != _json.end()) {
-        _json.at("lineOffset").get_to(_blockManager.randomParRightofAdvance);
+        it->get_to(_blockManager.levelParams_[0].randomParRightofAdvance);
     }
-
-    if (auto it = _json.find("randomParInOutOfCost"); it != _json.end()) {
-        _json.at("randomParInOutOfCost").get_to(_blockManager.randomParConstant_);
-    }
-
     if (auto it = _json.find("randomParUPValue"); it != _json.end()) {
-        _json.at("randomParUPValue").get_to(_blockManager.randomParUPValue_);
+        it->get_to(_blockManager.levelParams_[0].randomParUPValue);
+    }
+
+    for (int i = 1; i < LEVEL_MAX; ++i) {
+        std::string idx = std::to_string(i);
+        if (auto it = _json.find("randomPar_" + idx); it != _json.end()) {
+            it->get_to(_blockManager.levelParams_[i].randomPar);
+        }
+        if (auto it = _json.find("costs_" + idx); it != _json.end()) {
+            it->get_to(_blockManager.levelParams_[i].costs);
+        }
+        if (auto it = _json.find("generateInterval_" + idx); it != _json.end()) {
+            it->get_to(_blockManager.levelParams_[i].generateInterval);
+        }
+        if (auto it = _json.find("lineOffset_" + idx); it != _json.end()) {
+            it->get_to(_blockManager.levelParams_[i].randomParRightofAdvance);
+        }
+        if (auto it = _json.find("randomParUPValue_" + idx); it != _json.end()) {
+            it->get_to(_blockManager.levelParams_[i].randomParUPValue);
+        }
     }
 }
 
