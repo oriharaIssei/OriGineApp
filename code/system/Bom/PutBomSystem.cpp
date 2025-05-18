@@ -75,6 +75,7 @@ void PutBomSystem::SpawnBom(GameEntity* _entity, BomStatus* _status) {
     Transform* hostTransform = getComponent<Transform>(_entity); // 設置元
     Transform* bomTransform  = getComponent<Transform>(bom); // ボム
     bomTransform->translate  = Vec3f(hostTransform->worldMat[3]) + _status->GetPositionOffset();
+    bomTransform->scale      = Vec3f(3.0f, 3.0f, 3.0f);
 
     // Collider
     SphereCollider* collider              = getComponent<SphereCollider>(bom);
@@ -87,7 +88,7 @@ void PutBomSystem::SpawnBom(GameEntity* _entity, BomStatus* _status) {
     // MeshRenderer
     ModelMeshRenderer* renderer = getComponent<ModelMeshRenderer>(bom);
     // Model から MeshRenderer を作成
-    CreateModelMeshRenderer(renderer, bom, kApplicationResourceDirectory + "/Models/Bom", "Bom.obj");
+    CreateModelMeshRenderer(renderer, bom, kApplicationResourceDirectory + "/Models/Bomb", "Bomb.obj");
 
     /// States
     BomStatus* status = getComponent<BomStatus>(bom);
