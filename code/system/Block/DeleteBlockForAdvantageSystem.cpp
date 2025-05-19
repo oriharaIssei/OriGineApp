@@ -69,6 +69,9 @@ void DeleteBlockForAdvantageSystem::BlockReaction(GameEntity* _entity, BlockType
     Audio* breakNormal       = getComponent<Audio>(blockManager, 5); // 落ちる音
     Audio* breakSkull        = getComponent<Audio>(blockManager, 6); // 落ちる音
     Audio* breakAdvance      = getComponent<Audio>(blockManager, 7); // 落ちる音
+    Emitter* normalStartEmitter   = getComponent<Emitter>(blockManager, 0);//通常エミッタその1
+    Emitter* normalIconEmitter  = getComponent<Emitter>(blockManager, 1);
+  /*  Transform* baseTransform      = getComponent<Transform>(_entity, 1);*/
 
     if (!scoreEntity || !timerEntity) { // Entityが存在しない場合の早期リターン
         return;
@@ -90,15 +93,21 @@ void DeleteBlockForAdvantageSystem::BlockReaction(GameEntity* _entity, BlockType
     case BlockType::NORMAL:
 
         effectType_ = EffectType::TIME;
+       /* normalStartEmitter->setParent(baseTransform);
+        normalIconEmitter->setParent(baseTransform);*/
+
+        //parent じゃなく emitterの初期位置を指定したい(setPositionみたいに)
+
+        normalStartEmitter->setIsActive(true);
+        normalIconEmitter->setIsActive(true);
         breakNormal->Play();
         break;
 
-        ///---------------------------------------------
         /// Skull
         ///---------------------------------------------
     case BlockType::SKULL:
         effectType_ = EffectType::TIME;
-
+   
         breakSkull->Play();
 
         break;

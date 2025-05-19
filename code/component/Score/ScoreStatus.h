@@ -24,7 +24,7 @@ private: // variables
 
     static float currentScore_;
     bool isChanging_ = false;
-
+   
     // score value
     float pulusScoreValue_ = 0.0f;
     float plusScore_       = 0.0f;

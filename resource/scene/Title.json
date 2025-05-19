@@ -803,10 +803,7 @@
             }
         },
         {
-            "ColliderRenderingSystem": {
-                "Priority": 0
-            },
-            "LineRenderSystem": {
+            "EffectTexturedMeshRenderSystem": {
                 "Priority": 0
             },
             "ParticleRenderSystem": {

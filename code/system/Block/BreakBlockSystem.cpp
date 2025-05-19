@@ -43,6 +43,7 @@ void BreakBlockSystem::UpdateEntity(GameEntity* _entity) {
     if (!blockStatus_) {
         return;
     }
+    
 
     if (blockStatus_->GetIsBreak()) {
 
@@ -80,11 +81,12 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
     BlockCombinationStatus* combiStatus = getComponent<BlockCombinationStatus>(combiEntity);
     Transform* blockTransform           = getComponent<Transform>(_entity);
 
+
     if (!scoreStatus || !timerStatus || !SpawnerStatus || !combiStatus) { // Componentが存在しない場合の早期リターン
         return;
     }
 
-    /*  float timerDecrementValue = timerStatus->GetMinusTime() * blockStatus_->GetPlusScoreRate();*/
+    /*  float timerDecrementValue = timerStatus->GetMinusTimesds) * blockStatus_->GetPlusScoreRate();*/
     float plusTimerValue = timerStatus->GetPulusTime() * blockStatus_->GetPlusScoreRate();
     float plusScoreValue = blockStatus_->GetBaseScoreValue() * blockStatus_->GetPlusScoreRate();
 

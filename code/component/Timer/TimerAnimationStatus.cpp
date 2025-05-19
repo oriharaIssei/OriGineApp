@@ -34,7 +34,7 @@ bool TimerAnimationStatus::Edit() {
 
     ImGui::Text("waitTime");
     isChange |= DragGuiCommand("waitTimeAfterScaing", waitTimeAfterScaing_, 0.01f);
-#endif // _DEBUG
+
 
     ImGui::SeparatorText("Back");
 
@@ -58,7 +58,7 @@ bool TimerAnimationStatus::Edit() {
 
     ImGui::Text("rotateEasing");
     isChange |= DragGuiCommand("rotateEasing.maxTime", rotateEasing_.maxTime, 0.01f);
-
+#endif // _DEBUG
     return isChange;
 }
 
