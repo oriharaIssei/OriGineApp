@@ -30,12 +30,13 @@ bool ScoreUIStatus::Edit() {
         "FIVE",
         "SIX",
         "SEVEN"};
+
     int currentIndex = static_cast<int>(digit_);
     if (ImGui::Combo("Timer Digit", &currentIndex, digitLabels, static_cast<int>(TimeDigit::COUNT))) {
-        auto command = std::make_unique<SetterCommand<int32_t>>(&currentIndex, currentIndex);
-        EditorGroup::getInstance()->pushCommand(std::move(command));
+        digit_   = static_cast<TimeDigit>(currentIndex);
         isChange = true;
     }
+
 
 #endif // DEBUG
 

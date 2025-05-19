@@ -483,6 +483,9 @@
     <ClInclude Include="code\system\Timer\AdapAnimationtBackTimerSystem.h">
       <Filter>system\Timer</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Score\PlusScoreAdaptUISystem.h">
+      <Filter>system\Score</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -835,6 +838,9 @@
     </ClCompile>
     <ClCompile Include="code\system\Timer\AdapAnimationtBackTimerSystem.cpp">
       <Filter>system\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Score\PlusScoreAdaptUISystem.cpp">
+      <Filter>system\Score</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

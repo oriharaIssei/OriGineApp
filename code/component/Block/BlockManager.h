@@ -6,7 +6,7 @@
 #include <cstdint>
 #include <Vector3.h>
 
-constexpr int LEVEL_MAX = 6; 
+constexpr int LEVEL_MAX = 6;
 
 enum class BlockType {
     NORMAL,
@@ -21,12 +21,12 @@ enum class EaseType {
     MOVESCALING,
 };
 
-
 class LevelUIParentStatus;
 class BlockManager
     : public IComponent {
     friend void to_json(nlohmann::json& _json, const BlockManager& _blockManager);
     friend void from_json(const nlohmann::json& _json, BlockManager& _blockManager);
+
 public:
     struct BlockRandomParams {
         std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> randomPar{};
@@ -77,7 +77,7 @@ private: // variables
     // level
     std::array<float, LEVEL_MAX> nextLevelTime_;
     int32_t currentLevel_ = 0;
-    std::array<BlockRandomParams, LEVEL_MAX> levelParams_; 
+    std::array<BlockRandomParams, LEVEL_MAX> levelParams_;
     // randomCreate
 
     std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> currentCosts_;
@@ -106,7 +106,7 @@ public:
 
     const char* ToStringByBlockType(BlockType type);
 
-     void ApplyLevelParams(int32_t level);
+    void ApplyLevelParams(int32_t level);
 
 public: // accsessor
     /// getter
@@ -128,7 +128,7 @@ public: // accsessor
     int32_t GetGenerateInterval(BlockType type) const { return blockRandomParms_.generateInterval[static_cast<int32_t>(type)]; }
     int32_t GetRandomParUPValue(BlockType type) const { return blockRandomParms_.randomParUPValue[static_cast<int32_t>(type)]; }
     int32_t GetLineCounter(BlockType type) const;
-   /* int32_t GetRandomParConstant(BlockType type) const { return blockRandomParms_.ra[static_cast<int32_t>(type)]; }*/
+    /* int32_t GetRandomParConstant(BlockType type) const { return blockRandomParms_.ra[static_cast<int32_t>(type)]; }*/
     int32_t GetRandomParRightOfAdvance(BlockType type) const { return blockRandomParms_.randomParRightofAdvance[static_cast<int32_t>(type)]; }
     float GetScoreValue(BlockType type) const { return scoreValue_[static_cast<int32_t>(type)]; }
     int32_t GetMoveTenpoNum() const { return moveTenpoNum_; }

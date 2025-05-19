@@ -1,25 +1,26 @@
 #pragma once
 #include "system/ISystem.h"
 #include "component/transform/Transform.h"
+#include<array>
+#include<string>
 
-class ScoreStatus;
-class ScoreIncrementSystem
+class PlusScoreAdaptUISystem
     : public ISystem {
 private:
-    ScoreStatus* scoreStatus_;
-    float time_;
+   /* std::array<std::string, 10> textureName_;*/
 
 public:
-    ScoreIncrementSystem();
-    ~ScoreIncrementSystem();
+    PlusScoreAdaptUISystem();
+    ~PlusScoreAdaptUISystem();
 
     void Initialize() override;
     // void Update() override;
     void Finalize() override;
 
-   void ComboReset();
+   
     protected:
     void UpdateEntity(GameEntity* _entity) override;
 
+  
 
 };

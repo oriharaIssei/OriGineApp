@@ -752,10 +752,28 @@
             "Components": {
                 "ScoreStatus": [
                     {
+                        "basePlusScoreTextureSize_": [
+                            64.0,
+                            64.0
+                        ],
+                        "baseScoreTextureSize_": [
+                            128.0,
+                            128.0
+                        ],
                         "currentScore": 0.0,
                         "isAlive": true,
                         "pulusScore": 0.0,
-                        "scoreAdaptEasing_.maxTime": 0.8999999761581421
+                        "scaleEasing_.amplitude": 1.0,
+                        "scaleEasing_.backRatio": 0.0,
+                        "scaleEasing_.maxTime": 0.6000000238418579,
+                        "scaleEasing_.period": 0.20000000298023224,
+                        "scalingEasingBaseScore_.amplitude": 1.0,
+                        "scalingEasingBaseScore_.backRatio": 0.0,
+                        "scalingEasingBaseScore_.maxTime": 0.6000000238418579,
+                        "scalingEasingBaseScore_.period": 0.20000000298023224,
+                        "scoreAdaptEasing_.maxTime": 0.44999998807907104,
+                        "upScpreUpEasing_.maxTime": 0.6000000238418579,
+                        "waitTime_": 0.5
                     }
                 ]
             },
@@ -1366,8 +1384,8 @@
                 "SpriteRenderer": [
                     {
                         "anchorPoint": [
-                            0.0,
-                            0.0
+                            0.5,
+                            0.5
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -1387,8 +1405,8 @@
                             48.0
                         ],
                         "translate": [
-                            1100.0,
-                            560.0
+                            1164.0,
+                            624.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -1426,8 +1444,8 @@
                 "SpriteRenderer": [
                     {
                         "anchorPoint": [
-                            0.0,
-                            0.0
+                            0.5,
+                            0.5
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -1447,8 +1465,8 @@
                             48.0
                         ],
                         "translate": [
-                            1020.0,
-                            560.0
+                            1084.0,
+                            624.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -1486,8 +1504,8 @@
                 "SpriteRenderer": [
                     {
                         "anchorPoint": [
-                            0.0,
-                            0.0
+                            0.5,
+                            0.5
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -1507,8 +1525,8 @@
                             48.0
                         ],
                         "translate": [
-                            940.0,
-                            560.0
+                            1004.0,
+                            624.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -1546,8 +1564,8 @@
                 "SpriteRenderer": [
                     {
                         "anchorPoint": [
-                            0.0,
-                            0.0
+                            0.5,
+                            0.5
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -1567,8 +1585,8 @@
                             48.0
                         ],
                         "translate": [
-                            860.0,
-                            560.0
+                            924.0,
+                            624.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -1606,8 +1624,8 @@
                 "SpriteRenderer": [
                     {
                         "anchorPoint": [
-                            0.0,
-                            0.0
+                            0.5,
+                            0.5
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -1627,8 +1645,8 @@
                             48.0
                         ],
                         "translate": [
-                            780.0,
-                            560.0
+                            844.0,
+                            624.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -1657,93 +1675,11 @@
         },
         {
             "Components": {
-                "Button": [
-                    {
-                        "hoverColor": [
-                            0.800000011920929,
-                            0.800000011920929,
-                            0.800000011920929,
-                            1.0
-                        ],
-                        "normalColor": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "pressColor": [
-                            0.6000000238418579,
-                            0.6000000238418579,
-                            0.6000000238418579,
-                            1.0
-                        ],
-                        "releaseColor": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "shortKeys": [
-                            20
-                        ],
-                        "shortcutPadButton": []
-                    }
-                ],
-                "SceneChanger": [
-                    {
-                        "nextSceneName": "Title"
-                    }
-                ],
-                "SpriteRenderer": [
-                    {
-                        "anchorPoint": [
-                            0.0,
-                            0.0
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "renderingPriority": 1,
-                        "rotate": 0.0,
-                        "scale": [
-                            192.0,
-                            192.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "application/resource/Texture\\UI/GameToTitleUI.png",
-                        "textureSize": [
-                            192.0,
-                            192.0
-                        ],
-                        "translate": [
-                            0.0,
-                            0.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ]
+                "Button": [],
+                "SceneChanger": [],
+                "SpriteRenderer": []
             },
             "Name": "BakcT",
-            "Systems": [
-                {
-                    "SystemName": "ButtonInputSystem",
-                    "SystemType": 1
-                },
-                {
-                    "SystemName": "ChangeSceneByButton",
-                    "SystemType": 2
-                }
-            ],
             "isUnique": true
         },
         {
@@ -3450,6 +3386,246 @@
                 }
             ],
             "isUnique": true
+        },
+        {
+            "Components": {
+                "ScoreUIStatus": [
+                    {
+                        "isAlive": true,
+                        "levelUIDigit": 0
+                    }
+                ],
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.5,
+                            0.5
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 2,
+                        "rotate": 0.0,
+                        "scale": [
+                            480.0,
+                            48.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI/Numbers.png",
+                        "textureSize": [
+                            480.0,
+                            48.0
+                        ],
+                        "translate": [
+                            1050.0,
+                            550.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            0.10000000149011612,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "PulusScoreUIDigit1",
+            "Systems": [
+                {
+                    "SystemName": "PlusScoreAdaptUISystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "ScoreUIStatus": [
+                    {
+                        "isAlive": true,
+                        "levelUIDigit": 1
+                    }
+                ],
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.5,
+                            0.5
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 2,
+                        "rotate": 0.0,
+                        "scale": [
+                            480.0,
+                            48.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI/Numbers.png",
+                        "textureSize": [
+                            480.0,
+                            48.0
+                        ],
+                        "translate": [
+                            1000.0,
+                            550.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "PulusScoreUIDigit2",
+            "Systems": [
+                {
+                    "SystemName": "PlusScoreAdaptUISystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "ScoreUIStatus": [
+                    {
+                        "isAlive": true,
+                        "levelUIDigit": 2
+                    }
+                ],
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.5,
+                            0.5
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 2,
+                        "rotate": 0.0,
+                        "scale": [
+                            480.0,
+                            48.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI/Numbers.png",
+                        "textureSize": [
+                            480.0,
+                            48.0
+                        ],
+                        "translate": [
+                            950.0,
+                            550.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "PulusScoreUIDigit3",
+            "Systems": [
+                {
+                    "SystemName": "PlusScoreAdaptUISystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "ScoreUIStatus": [
+                    {
+                        "isAlive": true,
+                        "levelUIDigit": 3
+                    }
+                ],
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.5,
+                            0.5
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 2,
+                        "rotate": 0.0,
+                        "scale": [
+                            480.0,
+                            48.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\UI/Numbers.png",
+                        "textureSize": [
+                            480.0,
+                            48.0
+                        ],
+                        "translate": [
+                            900.0,
+                            550.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "PulusScoreUIDigit4",
+            "Systems": [
+                {
+                    "SystemName": "PlusScoreAdaptUISystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
         }
     ],
     "Systems": [
@@ -3596,6 +3772,9 @@
                 "Priority": 0
             },
             "PlayerMoveSystem": {
+                "Priority": 0
+            },
+            "PlusScoreAdaptUISystem": {
                 "Priority": 0
             },
             "PutBomSystem": {

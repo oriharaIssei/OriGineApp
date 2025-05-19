@@ -134,12 +134,8 @@
 #include "Application/code/system/Timer/TimerDecrementSystem.h"
 #include "Application/code/system/Timer/TimerUIScrollSystem.h"
 #include "system/Block/DeleteBlockForAdvantageSystem.h"
-#include "system/Block/DeleteBlockForAdvantageSystem.h"
-#include "system/FloatingFloor/CheckIsUnderPlayer.h"
 #include "system/FloatingFloor/CheckIsUnderPlayer.h"
 #include "system/FloorUI/FloorUISystem.h"
-#include "system/FloorUI/FloorUISystem.h"
-#include "system/GameEndUI/GameEndUISystem.h"
 #include "system/GameEndUI/GameEndUISystem.h"
 #include "system/ResultUI/ResultFontSystem.h"
 #include "system/ResultUI/ResultKeySystem.h"
@@ -148,11 +144,10 @@
 #include "system/ResultUI/ResultUIParentSystem.h"
 #include "system/Timer/AdapAnimationtBackTimerSystem.h"
 #include "system/Timer/TimeAdaptAinmationSystem.h"
-#include "system/Timer/TimeAdaptAinmationSystem.h"
-#include "system/Timer/TimerAnimationSystem.h"
 #include "system/Timer/TimerAnimationSystem.h"
 #include "system/UpdateButtonColorByState.h"
 #include "system/UsingCameraSetSystem.h"
+#include"system/Score/PlusScoreAdaptUISystem.h"
 
 MyGame::MyGame() {}
 
@@ -391,7 +386,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<TimerAnimationSystem>();
     ecsManager->registerSystem<TimeAdaptAinmationSystem>();
     ecsManager->registerSystem<DeleteBlockForAdvantageSystem>();
-
+    ecsManager->registerSystem<PlusScoreAdaptUISystem>();
     ecsManager->registerSystem<AdapAnimationtBackTimerSystem>();
 
     ecsManager->registerSystem<FloorUISystem>();

@@ -1,4 +1,4 @@
-#include "ScoreUIScrollSystem.h"
+#include "PlusScoreAdaptUISystem.h"
 
 /// Engine
 #define ENGINE_INCLUDE
@@ -16,22 +16,23 @@
 #define RESOURCE_DIRECTORY
 #include "engine/EngineInclude.h"
 #include <cstdint>
+#include <cmath>
 
-ScoreUIScrollSystem::ScoreUIScrollSystem()
+PlusScoreAdaptUISystem::PlusScoreAdaptUISystem()
     : ISystem(SystemType::Movement) {}
 
-ScoreUIScrollSystem::~ScoreUIScrollSystem() {}
+PlusScoreAdaptUISystem::~PlusScoreAdaptUISystem() {}
 
-void ScoreUIScrollSystem::Initialize() {
+void PlusScoreAdaptUISystem::Initialize() {
     //// TextureNameの初期化
     // for (int32_t i = 0; i < 10; ++i) {
     //     textureName_[i] = "Texture/Combo/ComboNumber" + std::to_string(i) + ".png";
     // };
 }
 
-void ScoreUIScrollSystem::Finalize() {}
+void PlusScoreAdaptUISystem::Finalize() {}
 
-void ScoreUIScrollSystem::UpdateEntity(GameEntity* _entity) {
+void PlusScoreAdaptUISystem::UpdateEntity(GameEntity* _entity) {
 
     if (!_entity) {
         return;
@@ -54,13 +55,26 @@ void ScoreUIScrollSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    Vec2f size = scoreStatus->GetBaseTextureSize() * scoreStatus->GetBaseScoreScale();
+    Vec2f size = scoreStatus->GetBasePlusScoreTextureSize() * scoreStatus->GetPlusScoreScale();
+    // 現在タイムの取得
+    float curerntScore = scoreStatus->GetPlusScore();
+    int32_t scoreDigit = scoreUIStatus->GetValueForDigit(std::fabsf(curerntScore));
+
+    spriteRender->setUVScale(Vec2f(0.1f, 1.0f));
     spriteRender->setSize(size);
 
-    // 現在タイムの取得
-    float curerntScore = scoreStatus->GetCurrentScore();
-    int32_t scoreDigit = scoreUIStatus->GetValueForDigit(curerntScore);
-
-    // UV座標を設定
+   
+    //UV座標を設定
     spriteRender->setUVTranslate(Vec2f(float(scoreDigit * 0.1f), 0.0f));
+
+    if (scoreStatus->GetPlusScoreValue() < 0.0f) {
+        spriteRender->setColor(scoreStatus->GetMinusScoreColor());
+    } else {
+        spriteRender->setColor(scoreStatus->GetScorePlusColor());
+    }
+
+    if (scoreStatus->GetPlusScoreValue() == 0.0f) {
+         spriteRender->setColor(Vec4f(1.0f,1.0f,1.0f,0.0f));
+    }
+
 }

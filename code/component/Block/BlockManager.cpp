@@ -114,7 +114,7 @@ void BlockManager::CostReset() {
 
 void BlockManager::ChangeNextLevel(float& time, LevelUIParentStatus* levelUI) {
 
-    if (moveTenpos_.size() - 1 < currentLevel_) {
+    if (moveTenpos_.size() - 2 < currentLevel_) {
         return;
     }
 
@@ -132,8 +132,7 @@ void BlockManager::ChangeNextLevel(float& time, LevelUIParentStatus* levelUI) {
 void BlockManager::ApplyLevelParams(int32_t level) {
     if (level < 0 || level >= LEVEL_MAX)
         return;
-    blockRandomParms_       = levelParams_[level];
-   
+    blockRandomParms_ = levelParams_[level];
 }
 
 void BlockManager::SetMoveTempoForLevel() {

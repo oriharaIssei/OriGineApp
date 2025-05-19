@@ -99,7 +99,7 @@ void DeleteBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) 
         ///---------------------------------------------
     case BlockType::SKULL:
         scoreStatus->PlusScoreIncrement(scoreValue);
-         scoreStatus->SetScoreUIStep(ScoreUIStep::INIT);
+         scoreStatus->ScoreUPChange();
         effectType_ = EffectType::SCORE;
         tempValue_  = scoreValue;
         /* if (!breakNormal->isPlaying()) {*/
@@ -112,7 +112,7 @@ void DeleteBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) 
         ///---------------------------------------------
     case BlockType::ADVANTAGE:
         scoreStatus->PlusScoreIncrement(scoreValue);
-         scoreStatus->SetScoreUIStep(ScoreUIStep::INIT);
+         scoreStatus->ScoreUPChange();
         effectType_ = EffectType::SCORE;
         tempValue_  = scoreValue;
         /* if (!breakNormal->isPlaying()) {*/

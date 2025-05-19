@@ -24,6 +24,7 @@ ScoreIncrementSystem::ScoreIncrementSystem()
 ScoreIncrementSystem::~ScoreIncrementSystem() {}
 
 void ScoreIncrementSystem::Initialize() {
+    time_ = 0.0f;
 }
 
 void ScoreIncrementSystem::Finalize() {}
@@ -39,28 +40,67 @@ void ScoreIncrementSystem::UpdateEntity(GameEntity* _entity) {
 
     float deltaTime = Engine::getInstance()->getDeltaTime();
 
-   /* if (scoreStatus_->GetIsScoreChange()) {
-        scoreStatus_->SetScoreUIStep(ScoreUIStep::INIT);
+    /* if (scoreStatus_->GetIsScoreChange()) {
+         scoreStatus_->SetScoreUIStep(ScoreUIStep::INIT);
     }*/
 
     switch (scoreStatus_->GetScoreUIStep()) {
     case ScoreUIStep::INIT:
-
-        scoreStatus_->Reset();
+        time_ = 0.0f;
+        scoreStatus_->ResetEaseTime();
         scoreStatus_->SetScoreUIStep(ScoreUIStep::SCOREUP);
         break;
 
+        ///---------------------------------------------------
+        /// スコアアップ加算
+        ///---------------------------------------------------
     case ScoreUIStep::SCOREUP:
+        time_ = 0.0f;
+        scoreStatus_->PlusScorePlusAnimation(deltaTime);
+        scoreStatus_->ScoreUPAmplitudeScaling(deltaTime);
 
-        scoreStatus_->TimeIncrementAnimation(deltaTime);
+        break;
+
+        ///---------------------------------------------------
+        /// 待機
+        ///---------------------------------------------------
+    case ScoreUIStep::WAIT:
+        time_ += deltaTime;
+
+        if (time_ < scoreStatus_->GetWaitTime()) {
+            return;
+        }
+
+        scoreStatus_->SetScoreUIStep(ScoreUIStep::ADAPT);
+
+        break;
+        ///---------------------------------------------------
+        /// 適応
+        ///---------------------------------------------------
+    case ScoreUIStep::ADAPT:
+        scoreStatus_->ResetEaseTime();
+        scoreStatus_->ResetPlusScore();
+        scoreStatus_->SetIsChanging(true);
+        scoreStatus_->SetTotalScoreValue();
+        scoreStatus_->SetScoreUIStep(ScoreUIStep::END);
+        break;
+        ///---------------------------------------------------
+        /// 終わり
+        ///---------------------------------------------------
+    case ScoreUIStep::END:
        
         break;
     default:
         break;
     }
 
-   /* scoreStatus_->TimeIncrementAnimation(deltaTime);*/
-    /* scoreStatus_->SetCurrentScore(Lerp(scoreStatus_->GetCurrentScore(), scoreStatus_->GetPulusScore(), scoreStatus_->GetScoreChangeTIme()));*/
+    // 実際にタイム加算
+    scoreStatus_->TimeIncrementAnimation(deltaTime);
+    scoreStatus_->BaseScoreUPAmplitudeScaling(deltaTime);
+
+    if (scoreStatus_->GetCurrentScore() <= 0.0f) {
+        scoreStatus_->SetCurrentScore(0.0f);
+    }
 
     if (scoreStatus_->GetCurrentScore() < scoreStatus_->GetScoreMax()) {
         return;

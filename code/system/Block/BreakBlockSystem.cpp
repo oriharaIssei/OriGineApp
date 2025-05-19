@@ -96,7 +96,7 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
         ///---------------------------------------------
     case BlockType::NORMAL:
         scoreStatus->PlusScoreIncrement(plusScoreValue);
-         scoreStatus->SetScoreUIStep(ScoreUIStep::INIT);
+         scoreStatus->ScoreUPChange();
        
         effectType_ = EffectType::SCORE;
         tempValue_  = plusScoreValue;
@@ -110,7 +110,7 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
         ///---------------------------------------------
     case BlockType::SKULL:
         scoreStatus->PlusScoreIncrement(plusScoreValue);
-         scoreStatus->SetScoreUIStep(ScoreUIStep::INIT);
+         scoreStatus->ScoreUPChange();
         effectType_ = EffectType::SCORE;
         tempValue_  = plusScoreValue;
         /*  timerStatus->MinusTimer(timerDecrementValue);*/
@@ -169,8 +169,8 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
         // スコア、タイマー加算
         timerStatus->TimerIncrement(plusTimerValue);
         scoreStatus->PlusScoreIncrement(plusScoreValue);
-         scoreStatus->SetScoreUIStep(ScoreUIStep::INIT);
-
+         scoreStatus->ScoreUPChange();
+        
         breakAdvance->Play();
         return;
         break;
