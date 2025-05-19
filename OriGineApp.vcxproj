@@ -209,6 +209,7 @@
     <ClInclude Include="code\system\SceneChanger\SceneChangerSystem.h" />
     <ClInclude Include="code\system\SceneTransitionSystem\SceneTransitionSystem.h" />
     <ClInclude Include="code\system\Score\PlusScoreAdaptUISystem.h" />
+    <ClInclude Include="code\system\Score\PlusScoreIconSystem.h" />
     <ClInclude Include="code\system\Score\ScoreIncrementSystem.h" />
     <ClInclude Include="code\system\Score\ScoreUIScrollSystem.h" />
     <ClInclude Include="code\system\Timer\AdapAnimationtBackTimerSystem.h" />
@@ -333,6 +334,7 @@
     <ClCompile Include="code\system\SceneChanger\SceneChangerSystem.cpp" />
     <ClCompile Include="code\system\SceneTransitionSystem\SceneTransitionSystem.cpp" />
     <ClCompile Include="code\system\Score\PlusScoreAdaptUISystem.cpp" />
+    <ClCompile Include="code\system\Score\PlusScoreIconSystem.cpp" />
     <ClCompile Include="code\system\Score\ScoreIncrementSystem.cpp" />
     <ClCompile Include="code\system\Score\ScoreUIScrollSystem.cpp" />
     <ClCompile Include="code\system\Timer\AdapAnimationtBackTimerSystem.cpp" />

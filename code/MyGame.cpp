@@ -148,6 +148,7 @@
 #include "system/UpdateButtonColorByState.h"
 #include "system/UsingCameraSetSystem.h"
 #include"system/Score/PlusScoreAdaptUISystem.h"
+#include"system/Score/PlusScoreIconSystem.h"
 
 MyGame::MyGame() {}
 
@@ -388,6 +389,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<DeleteBlockForAdvantageSystem>();
     ecsManager->registerSystem<PlusScoreAdaptUISystem>();
     ecsManager->registerSystem<AdapAnimationtBackTimerSystem>();
+    ecsManager->registerSystem<PlusScoreIconSystem>();
 
     ecsManager->registerSystem<FloorUISystem>();
     ecsManager->registerSystem<CheckIsUnderPlayer>();

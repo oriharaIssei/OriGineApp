@@ -486,6 +486,9 @@
     <ClInclude Include="code\system\Score\PlusScoreAdaptUISystem.h">
       <Filter>system\Score</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Score\PlusScoreIconSystem.h">
+      <Filter>system\Score</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -840,6 +843,9 @@
       <Filter>system\Timer</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Score\PlusScoreAdaptUISystem.cpp">
+      <Filter>system\Score</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Score\PlusScoreIconSystem.cpp">
       <Filter>system\Score</Filter>
     </ClCompile>
   </ItemGroup>
