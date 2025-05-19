@@ -1759,64 +1759,64 @@
                         ],
                         "costs_1": [
                             0,
-                            0,
+                            2,
                             0
                         ],
                         "costs_2": [
                             0,
-                            0,
-                            0
+                            2,
+                            1
                         ],
                         "costs_3": [
                             0,
-                            0,
-                            0
+                            2,
+                            1
                         ],
                         "costs_4": [
                             0,
-                            0,
-                            0
+                            2,
+                            1
                         ],
                         "costs_5": [
                             0,
-                            0,
-                            0
+                            2,
+                            1
                         ],
                         "deadPositionX": -42.0,
                         "generateInterval": [
                             3,
-                            4,
-                            1
+                            2,
+                            0
                         ],
                         "generateInterval_1": [
                             0,
-                            1,
-                            1
+                            2,
+                            0
                         ],
                         "generateInterval_2": [
                             0,
-                            1,
+                            4,
                             1
                         ],
                         "generateInterval_3": [
                             0,
-                            1,
+                            4,
                             1
                         ],
                         "generateInterval_4": [
                             0,
-                            1,
+                            4,
                             1
                         ],
                         "generateInterval_5": [
                             0,
-                            1,
+                            4,
                             1
                         ],
                         "lineOffset": [
                             0,
                             0,
-                            5
+                            0
                         ],
                         "lineOffset_1": [
                             0,
@@ -1825,23 +1825,23 @@
                         ],
                         "lineOffset_2": [
                             0,
-                            0,
+                            5,
                             0
                         ],
                         "lineOffset_3": [
                             0,
-                            0,
-                            0
+                            10,
+                            5
                         ],
                         "lineOffset_4": [
                             0,
-                            0,
-                            0
+                            10,
+                            10
                         ],
                         "lineOffset_5": [
                             0,
-                            0,
-                            0
+                            10,
+                            40
                         ],
                         "moveSpeed": 0.0,
                         "moveSpeeds": [
@@ -1856,23 +1856,23 @@
                         "movetenpoNum": 4,
                         "nextCreatePositionX": 70.18000030517578,
                         "nextLevelTime": [
-                            3.0,
-                            10.0,
-                            10.0,
-                            10.0,
-                            10.0,
-                            10.0
+                            15.0,
+                            15.0,
+                            20.0,
+                            30.0,
+                            25.0,
+                            25.0
                         ],
                         "pillarHP": 1,
                         "randomPar": [
                             0,
                             30,
-                            5
+                            0
                         ],
                         "randomParUPValue": [
                             0,
-                            0,
-                            2
+                            2,
+                            0
                         ],
                         "randomParUPValue_1": [
                             0,
@@ -1881,48 +1881,48 @@
                         ],
                         "randomParUPValue_2": [
                             0,
-                            0,
-                            0
+                            5,
+                            5
                         ],
                         "randomParUPValue_3": [
                             0,
                             0,
-                            0
+                            5
                         ],
                         "randomParUPValue_4": [
                             0,
-                            0,
-                            0
+                            5,
+                            5
                         ],
                         "randomParUPValue_5": [
                             0,
                             0,
-                            0
+                            5
                         ],
                         "randomPar_1": [
                             0,
-                            0,
+                            40,
                             0
                         ],
                         "randomPar_2": [
                             0,
-                            0,
-                            0
+                            50,
+                            30
                         ],
                         "randomPar_3": [
                             0,
-                            0,
-                            0
+                            50,
+                            30
                         ],
                         "randomPar_4": [
                             0,
-                            0,
-                            0
+                            45,
+                            30
                         ],
                         "randomPar_5": [
                             0,
-                            0,
-                            0
+                            50,
+                            40
                         ],
                         "rowNumMax": 8,
                         "scalingSize": [
