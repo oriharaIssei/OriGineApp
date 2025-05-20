@@ -98,8 +98,8 @@ void DeleteBlockForAdvantageSystem::BlockReaction(GameEntity* _entity, BlockType
 
         //parent じゃなく emitterの初期位置を指定したい(setPositionみたいに)
 
-        normalStartEmitter->setIsActive(true);
-        normalIconEmitter->setIsActive(true);
+        normalStartEmitter->PlayStart();
+        normalIconEmitter->PlayStart();
         breakNormal->Play();
         break;
 
