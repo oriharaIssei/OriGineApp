@@ -122,9 +122,9 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
 void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& columIndex, const float& xPos) {
 
     // ================================= Bullet Entityを 生成 ================================= //
-    ComponentArray<Emitter>* emitterArray = ECSManager::getInstance()->getComponentArray<Emitter>();
+   /* ComponentArray<Emitter>* emitterArray = ECSManager::getInstance()->getComponentArray<Emitter>();*/
     GameEntity* block = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, BlockStatus, Emitter, Emitter>(
-        "Block", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), BlockStatus(), Emitter(emitterArray.getSrvArray), Emitter());
+        "Block", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), BlockStatus(), Emitter(), Emitter());
 
     // ================================= Componentを初期化 ================================= //
 
@@ -175,7 +175,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
 
     //* Emitter
     Emitter* blockEmitterLayerOne = getComponent<Emitter>(block);
-    Emitter* blockEmitterLayerTwo = getComponent<Emitter>(block);
+    Emitter* blockEmitterLayerTwo = getComponent<Emitter>(block,1);
 
     // blockTypeによってEmitterを変更する
     EmitterSetForBlockType(blockEmitterLayerOne, blockEmitterLayerTwo, blockStatus->GetBlockType());
@@ -309,12 +309,13 @@ void BlockSpawnSystem::ModelSetForBlockType(ModelMeshRenderer* render, GameEntit
     }
 }
 
+
 void BlockSpawnSystem::EmitterSetForBlockType(Emitter* emitter1, Emitter* emitter2, BlockType type) {
 
     switch (type) {
     case BlockType::NORMAL:
-        emitter1 = emitters_[0];
-        emitter2 = emitters_[1];
+        *emitter1 = *emitters_[0];
+        *emitter2 = *emitters_[1];
             break;
     
     case BlockType::ADVANTAGE:
