@@ -32,7 +32,7 @@ private:
     int32_t nextSpecialLine_;
     std::unordered_map<int32_t, int32_t> skullProbabilities_;
 
-    std::array<Emitter*, 6> emitters_;
+  /*  std::array<Emitter*, 6> emitters_;*/
 
 public:
     BlockSpawnSystem();

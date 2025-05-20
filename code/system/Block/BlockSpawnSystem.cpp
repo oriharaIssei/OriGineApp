@@ -66,10 +66,10 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    // Particle達
-    for (int32_t i = 0; i < emitters_.size(); ++i) {
-        emitters_[i] = getComponent<Emitter>(_entity, i);
-    }
+    //// Particle達
+    //for (int32_t i = 0; i < emitters_.size(); ++i) {
+    //    emitters_[i] = getComponent<Emitter>(_entity, i);
+    //}
 
     float blockWidth   = blockSpawner_->GetBlockSize()[X] * 2.0f;
     float nextPosition = blockSpawner_->GetNextCreatePositionX();
@@ -123,8 +123,8 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
 
     // ================================= Bullet Entityを 生成 ================================= //
    /* ComponentArray<Emitter>* emitterArray = ECSManager::getInstance()->getComponentArray<Emitter>();*/
-    GameEntity* block = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, BlockStatus, Emitter, Emitter>(
-        "Block", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), BlockStatus(), Emitter(), Emitter());
+    GameEntity* block = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, BlockStatus>(
+        "Block", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), BlockStatus());
 
     // ================================= Componentを初期化 ================================= //
 
@@ -173,12 +173,12 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     //// Model から MeshRenderer を作成
     ModelSetForBlockType(blockRender, block, blockStatus->GetBlockType());
 
-    //* Emitter
-    Emitter* blockEmitterLayerOne = getComponent<Emitter>(block);
-    Emitter* blockEmitterLayerTwo = getComponent<Emitter>(block,1);
+    ////* Emitter
+    //Emitter* blockEmitterLayerOne = getComponent<Emitter>(block);
+    //Emitter* blockEmitterLayerTwo = getComponent<Emitter>(block,1);
 
-    // blockTypeによってEmitterを変更する
-    EmitterSetForBlockType(blockEmitterLayerOne, blockEmitterLayerTwo, blockStatus->GetBlockType());
+    //// blockTypeによってEmitterを変更する
+    //EmitterSetForBlockType(blockEmitterLayerOne, blockEmitterLayerTwo, blockStatus->GetBlockType());
 
     // hp
     blockStatus->SetcurrentHP(blockSpawner_->GetHpMax());
@@ -310,25 +310,25 @@ void BlockSpawnSystem::ModelSetForBlockType(ModelMeshRenderer* render, GameEntit
 }
 
 
-void BlockSpawnSystem::EmitterSetForBlockType(Emitter* emitter1, Emitter* emitter2, BlockType type) {
-
-    switch (type) {
-    case BlockType::NORMAL:
-        *emitter1 = *emitters_[0];
-        *emitter2 = *emitters_[1];
-            break;
-    
-    case BlockType::ADVANTAGE:
-        emitter1 = emitters_[2];
-        emitter2 = emitters_[3];
-        break;
-    case BlockType::SKULL:
-        emitter1 = emitters_[4];
-        emitter2 = emitters_[5];
-        break;
-    case BlockType::COUNT:
-        break;
-    default:
-        break;
-    }
-}
+//void BlockSpawnSystem::EmitterSetForBlockType(Emitter* emitter1, Emitter* emitter2, BlockType type) {
+//
+//   /* switch (type) {
+//    case BlockType::NORMAL:
+//        *emitter1 = *emitters_[0];
+//        *emitter2 = *emitters_[1];
+//            break;
+//    
+//    case BlockType::ADVANTAGE:
+//        emitter1 = emitters_[2];
+//        emitter2 = emitters_[3];
+//        break;
+//    case BlockType::SKULL:
+//        emitter1 = emitters_[4];
+//        emitter2 = emitters_[5];
+//        break;
+//    case BlockType::COUNT:
+//        break;
+//    default:
+//        break;
+//    }*/
+//}
