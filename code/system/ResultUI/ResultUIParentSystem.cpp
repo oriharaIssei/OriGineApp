@@ -24,6 +24,7 @@ ResultUIParentSystem::~ResultUIParentSystem() {}
 
 void ResultUIParentSystem::Initialize() {
     time_ = 0.0f;
+    input_ = Input::getInstance();
 }
 
 void ResultUIParentSystem::Finalize() {}
@@ -86,6 +87,9 @@ void ResultUIParentSystem::UpdateEntity(GameEntity* _entity) {
         /// Scroll Animation
         ///---------------------------------------------------------------- 
     case ResultStep::SCOREUP:
+        if (input_->isTriggerKey(DIK_SPACE)) {
+            resultUIParent->SetIsScoreSkip(true);
+        }
         resultUIParent->ScoreUP(deltaTIme);
         break;
         ///----------------------------------------------------------------

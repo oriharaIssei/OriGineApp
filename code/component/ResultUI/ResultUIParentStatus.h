@@ -62,6 +62,7 @@ private: // variables
 
     //
     bool hasStartedScaling_;
+    bool isScoreSkip_ = false;
 
 public:
     ResultUIParentStatus() {}
@@ -84,6 +85,7 @@ public: // accsessor
     /// getter
 
     bool GetIsAnimation() const { return isAnimation_; }
+    bool GetIsScoreSkip() const { return isScoreSkip_; }
     bool GetIsRankApeearAnimationStart() const { return isRankApeearAnimationStart_; }
     Vec3f GetBasePos() const { return basePos_; }
     Vec3f GetInitPos() const { return initPos_; }
@@ -98,6 +100,7 @@ public: // accsessor
     /// setter
     void SetIsAnimation(const bool& currentComboNum) { isAnimation_ = currentComboNum; }
     void SetInitPos(const Vec3f& pos) { initPos_ = pos; }
+    void SetIsScoreSkip(const bool& is) { isScoreSkip_ = is; }
     void SetAnimationStep(const ResultStep& step) { curerntStep_ = step; }
     void SetResultScore(const float& score) { resultScore_ = score; }
     void SetIsRankApeearAnimationStart(const bool& is) { isRankApeearAnimationStart_ = is; }

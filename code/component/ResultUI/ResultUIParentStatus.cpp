@@ -125,7 +125,7 @@ void ResultUIParentStatus::ScoreScalingAnimation(const float& time) {
 void ResultUIParentStatus::ScoreUP(const float& time) {
     currentScore_ += scoreUpSpeed_ * time;
 
-    if (currentScore_ < resultScore_) {
+    if (currentScore_ < resultScore_||isScoreSkip_) {
         return;
     }
 
@@ -140,4 +140,5 @@ void ResultUIParentStatus::Reset() {
     basePos_           = initPos_;
     scoreScale_        = scoreInitScale_;
     hasStartedScaling_ = false;
+    isScoreSkip_       = false;
 }

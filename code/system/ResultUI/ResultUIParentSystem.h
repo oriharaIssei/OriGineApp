@@ -2,11 +2,13 @@
 #include "system/ISystem.h"
 #include "component/transform/Transform.h"
 
+class Input;
 class ResultUIParentSystem
     : public ISystem {
 private:
    
     float time_;
+    Input* input_;
    
 public:
     ResultUIParentSystem();
