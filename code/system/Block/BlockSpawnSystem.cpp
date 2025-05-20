@@ -122,8 +122,9 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
 void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& columIndex, const float& xPos) {
 
     // ================================= Bullet Entityを 生成 ================================= //
+    ComponentArray<Emitter>* emitterArray = ECSManager::getInstance()->getComponentArray<Emitter>();
     GameEntity* block = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, BlockStatus, Emitter, Emitter>(
-        "Block", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), BlockStatus(), Emitter(), Emitter());
+        "Block", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), BlockStatus(), Emitter(emitterArray.getSrvArray), Emitter());
 
     // ================================= Componentを初期化 ================================= //
 
