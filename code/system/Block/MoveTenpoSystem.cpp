@@ -8,6 +8,7 @@
 #include "component/Block/BlockStatus.h"
 #include"component/LevelUPUI/LevelUIParentStatus.h"
 #include"component/Menu/MenuStatus.h"
+#include"component/GameEndUI/GameEndUIStatus.h"
 #include <Vector.h>
 
 #include "KetaEasing.h"
@@ -35,13 +36,17 @@ void MoveTenpoSystem::UpdateEntity(GameEntity* _entity) {
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* levelUI                  = ecsManager->getUniqueEntity("LevelUIParent");
     GameEntity* menuEntity                   = ecsManager->getUniqueEntity("Menu");
+    GameEntity* gameEndUIEntity              = ecsManager->getUniqueEntity("GameEndUI");
 
-    if (!levelUI || !menuEntity) { // Entityが存在しない場合の早期リターン
+
+    if (!levelUI || !menuEntity||!gameEndUIEntity) { // Entityが存在しない場合の早期リターン
         return;
     }
 
     // ポーズ中は通さない
     MenuStatus* menu = getComponent<MenuStatus>(menuEntity);
+    GameEndUIStatus* gameEndUIStatus = getComponent<GameEndUIStatus>(gameEndUIEntity);
+
 
     if (!menu) {
         return;
@@ -50,6 +55,11 @@ void MoveTenpoSystem::UpdateEntity(GameEntity* _entity) {
     if (menu->GetIsPose()) {
         return;
     }
+
+    if (gameEndUIStatus->GetAnimationStep() != GameEndUIStep::NONE) {
+        return;
+    }
+
 
     timer_ += Engine::getInstance()->getDeltaTime();
     curerntTenpoTime_ += Engine::getInstance()->getDeltaTime(); // easeTime

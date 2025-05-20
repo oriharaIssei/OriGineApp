@@ -11,6 +11,7 @@
 #include "component/Block/BlockManager.h"
 #include "component/Block/BlockStatus.h"
 #include "component/Menu/MenuStatus.h"
+#include"component/GameEndUI/GameEndUIStatus.h"
 
 BlockMoveSystem::BlockMoveSystem()
     : ISystem(SystemType::Movement) {}
@@ -28,16 +29,29 @@ void BlockMoveSystem::UpdateEntity(GameEntity* _entity) {
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* blockManagerEntity           = ecsManager->getUniqueEntity("BlockManager");
     GameEntity* menuEntity                   = ecsManager->getUniqueEntity("Menu");
+    GameEntity* gameEndUIEntity              = ecsManager->getUniqueEntity("GameEndUI");
+
 
     // no Entity
-    if (!blockManagerEntity || !menuEntity) {
+    if (!blockManagerEntity || !menuEntity||!gameEndUIEntity) {
         return;
     }
-
+    
     Transform* transform       = getComponent<Transform>(_entity);
     BlockManager* blockManager = getComponent<BlockManager>(blockManagerEntity);
     BlockStatus* blockStatus   = getComponent<BlockStatus>(_entity);
     MenuStatus* menu           = getComponent<MenuStatus>(menuEntity);
+    GameEndUIStatus* gameEndUIStatus = getComponent<GameEndUIStatus>(gameEndUIEntity);
+    
+    if (!gameEndUIEntity) { // Entityが存在しない場合の早期リターン
+        return;
+    }
+
+   
+    if (gameEndUIStatus->GetAnimationStep() != GameEndUIStep::NONE) {
+        return;
+    }
+
 
     // no Component
     if (!transform || !blockManager || !blockStatus || !menu) {

@@ -14,6 +14,7 @@
 #include "component/Bom/BomSpawner.h"
 #include "component/Player/PlayerStates.h"
 #include"component/Menu/MenuStatus.h"
+#include"component/GameEndUI/GameEndUIStatus.h"
 
 #include "engine/EngineInclude.h"
 #include <cmath>
@@ -51,6 +52,20 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
      }
 
      if (menu->GetIsPose()) {
+         return;
+     }
+
+     
+     GameEntity* gameEndUIEntity                  = ecsManager->getUniqueEntity("GameEndUI");
+
+     if (!gameEndUIEntity) { // Entityが存在しない場合の早期リターン
+         return;
+     }
+
+     // get timer component
+     GameEndUIStatus* gameEndUIStatus = getComponent<GameEndUIStatus>(gameEndUIEntity);
+    
+     if (gameEndUIStatus->GetAnimationStep() != GameEndUIStep::NONE) {
          return;
      }
 
