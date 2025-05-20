@@ -206,7 +206,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     //------------------ Movement
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(block);
     ecs->getSystem<BlockMoveSystem>()->addEntity(block);
-    ecs->getSystem<EmitterWorkSystem>()->addEntity(block);
+   /* ecs->getSystem<EmitterWorkSystem>()->addEntity(block);*/
 
     //------------------ Collision
     ecs->getSystem<CollisionCheckSystem>()->addEntity(block);
@@ -217,7 +217,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     // None
 
     //------------------ Render
-    ecs->getSystem<ParticleRenderSystem>()->addEntity(block);
+   /* ecs->getSystem<ParticleRenderSystem>()->addEntity(block);*/
     ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(block);
 }
 

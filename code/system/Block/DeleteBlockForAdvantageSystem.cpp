@@ -89,8 +89,8 @@ void DeleteBlockForAdvantageSystem::BlockBreakParticleShot(GameEntity* _entity, 
         // emitter
         normalIconEmitter->setOriginePos(basePos);
         normalStartEmitter->setOriginePos(basePos);
-        normalStartEmitter->PlayStart();
-        normalIconEmitter->PlayStart();
+        normalStartEmitter->PlayContinue();
+        normalIconEmitter->PlayContinue();
 
         breakNormal->Play();
         break;
