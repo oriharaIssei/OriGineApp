@@ -20,7 +20,7 @@ public:
 protected:
     virtual void UpdateEntity(GameEntity* _entity) override;
 
-    void BlockReaction(GameEntity* _entity, BlockType blocktype);
+    void BlockBreakParticleShot(GameEntity* _entity, BlockType blocktype);
     void ApearResultScoreUI();
     
 

@@ -30,8 +30,8 @@ void DeleteBlockForAdvantageSystem::UpdateEntity(GameEntity* _entity) {
 
     GameEntity* effectByBlockSpawner = ecsManager->getUniqueEntity("effectByBlockSpawner");
 
-    SpawnerStatus_ = getComponent<EffectByBlockSpawner>(effectByBlockSpawner);
-    blockStatus_   = getComponent<BlockStatus>(_entity);
+    SpawnerStatus_  = getComponent<EffectByBlockSpawner>(effectByBlockSpawner);
+    blockStatus_    = getComponent<BlockStatus>(_entity);
     blockTransform_ = getComponent<Transform>(_entity);
 
     float deltaTime = Engine::getInstance()->getDeltaTime();
@@ -48,43 +48,40 @@ void DeleteBlockForAdvantageSystem::UpdateEntity(GameEntity* _entity) {
         if (blockStatus_->GetBreakOffsetTime() > 0) {
             return;
         }
-
+        // 右端にUI出す
         if (blockStatus_->GetIsRightEdge()) {
             ApearResultScoreUI();
         }
-
+        // 破壊パーティクル
+        BlockBreakParticleShot(_entity, blockStatus_->GetBlockType());
         DestroyEntity(_entity);
     }
 }
 
-void DeleteBlockForAdvantageSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
+void DeleteBlockForAdvantageSystem::BlockBreakParticleShot(GameEntity* _entity, BlockType blocktype) {
     _entity;
     // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
-    GameEntity* scoreEntity                  = ecsManager->getUniqueEntity("Score");
-    GameEntity* timerEntity                  = ecsManager->getUniqueEntity("Timer");
 
     /// sound
     GameEntity* blockManager = ecsManager->getUniqueEntity("BlockManager");
     Audio* breakNormal       = getComponent<Audio>(blockManager, 5); // 落ちる音
     Audio* breakSkull        = getComponent<Audio>(blockManager, 6); // 落ちる音
     Audio* breakAdvance      = getComponent<Audio>(blockManager, 7); // 落ちる音
-    Emitter* normalStartEmitter   = getComponent<Emitter>(blockManager, 0);//通常エミッタその1
-    Emitter* normalIconEmitter  = getComponent<Emitter>(blockManager, 1);
-  /*  Transform* baseTransform      = getComponent<Transform>(_entity, 1);*/
 
-    if (!scoreEntity || !timerEntity) { // Entityが存在しない場合の早期リターン
+    Emitter* normalStartEmitter = getComponent<Emitter>(_entity, 0); // 通常エミッタその1
+    Emitter* normalIconEmitter  = getComponent<Emitter>(_entity, 1);
+   
+    if (!SpawnerStatus_) { // Componentが存在しない場合の早期リターン
         return;
     }
 
-    /// component取得
-    ScoreStatus* scoreStatus  = getComponent<ScoreStatus>(scoreEntity);
-    TimerStatus* timerStatus  = getComponent<TimerStatus>(timerEntity);
-  
-
-    if (!scoreStatus || !timerStatus || !SpawnerStatus_ /*|| !combiEntity*/) { // Componentが存在しない場合の早期リターン
-        return;
-    }
+    //Particle発射
+    Vec3f basePos = blockTransform_->worldMat[3];
+    normalIconEmitter->setOriginePos(basePos);
+    normalStartEmitter->setOriginePos(basePos);
+    normalStartEmitter->PlayStart();
+    normalIconEmitter->PlayStart();
 
     switch (blocktype) {
         ///---------------------------------------------
@@ -92,22 +89,16 @@ void DeleteBlockForAdvantageSystem::BlockReaction(GameEntity* _entity, BlockType
         ///---------------------------------------------
     case BlockType::NORMAL:
 
-        effectType_ = EffectType::TIME;
-       /* normalStartEmitter->setParent(baseTransform);
-        normalIconEmitter->setParent(baseTransform);*/
+        // emitter
+       
 
-        //parent じゃなく emitterの初期位置を指定したい(setPositionみたいに)
-
-        normalStartEmitter->PlayStart();
-        normalIconEmitter->PlayStart();
         breakNormal->Play();
         break;
 
         /// Skull
         ///---------------------------------------------
     case BlockType::SKULL:
-        effectType_ = EffectType::TIME;
-   
+
         breakSkull->Play();
 
         break;
@@ -116,20 +107,18 @@ void DeleteBlockForAdvantageSystem::BlockReaction(GameEntity* _entity, BlockType
         /// Advance
         ///---------------------------------------------
     case BlockType::ADVANTAGE:
-        effectType_ = EffectType::MIMUSTIME;
+
         breakAdvance->Play();
         break;
 
     default:
         break;
     }
-
-    SpawnerStatus_->EffectUISpawn(Vec3f(blockTransform_->worldMat[3]), tempValue_, effectType_);
 }
 
 void DeleteBlockForAdvantageSystem::ApearResultScoreUI() {
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
-    GameEntity* combiEntity = ecsManager->getUniqueEntity("BlockCombination");
+    GameEntity* combiEntity                  = ecsManager->getUniqueEntity("BlockCombination");
 
     // effectType 判定
     if (blockStatus_->GetResultTime() >= 0) {
@@ -145,8 +134,8 @@ void DeleteBlockForAdvantageSystem::ApearResultScoreUI() {
         scoreEffectType_ = EffectType::MIMUSSCORE;
     }
 
-     BlockCombinationStatus* breakAdvance = getComponent<BlockCombinationStatus>(combiEntity); // 落ちる音
+    BlockCombinationStatus* breakAdvance = getComponent<BlockCombinationStatus>(combiEntity); // 落ちる音
 
     SpawnerStatus_->EffectUISpawn(Vec3f(blockTransform_->worldMat[3]) + breakAdvance->GetTimerUIPosOffset(), std::fabsf(blockStatus_->GetResultTime()), timeEffectType_);
-     SpawnerStatus_->EffectUISpawn(Vec3f(blockTransform_->worldMat[3]) + breakAdvance->GetScoreUIPosOffset(), std::fabsf(blockStatus_->GetResultScore()), scoreEffectType_);
+    SpawnerStatus_->EffectUISpawn(Vec3f(blockTransform_->worldMat[3]) + breakAdvance->GetScoreUIPosOffset(), std::fabsf(blockStatus_->GetResultScore()), scoreEffectType_);
 }

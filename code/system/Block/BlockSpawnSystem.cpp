@@ -62,9 +62,13 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     blockSpawner_ = getComponent<BlockManager>(_entity);
-
     if (!blockSpawner_) {
         return;
+    }
+
+    // Particle達
+    for (int32_t i = 0; i < emitters_.size(); ++i) {
+        emitters_[i] = getComponent<Emitter>(_entity, i);
     }
 
     float blockWidth   = blockSpawner_->GetBlockSize()[X] * 2.0f;
@@ -118,8 +122,8 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
 void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& columIndex, const float& xPos) {
 
     // ================================= Bullet Entityを 生成 ================================= //
-    GameEntity* block = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, BlockStatus>(
-        "Block", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), BlockStatus());
+    GameEntity* block = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, BlockStatus, Emitter, Emitter>(
+        "Block", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), BlockStatus(), Emitter(), Emitter());
 
     // ================================= Componentを初期化 ================================= //
 
@@ -147,7 +151,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
 
     BlockTypeSetting(blockStatus, BlockType::ADVANTAGE); // アドバンテージブロックの生成
 
-    //アドバンテージのcolum位置を保存
+    // アドバンテージのcolum位置を保存
     if (blockStatus->GetBlockType() == BlockType::ADVANTAGE) {
         // Advance生成時にcolumを予約
         if (std::find(reservedSkullColumns_.begin(), reservedSkullColumns_.end(), columIndex) == reservedSkullColumns_.end()) {
@@ -156,7 +160,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     }
 
     // アドバンテージの隣にskullを生成する
-    BlockTypeSettingBySameColum(blockStatus,BlockType::SKULL, columIndex);
+    BlockTypeSettingBySameColum(blockStatus, BlockType::SKULL, columIndex);
     BlockTypeSettingBySameColum(blockStatus, BlockType::ADVANTAGE, columIndex);
 
     // ブロックタイプにより得られるスコアを設定
@@ -167,6 +171,13 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
 
     //// Model から MeshRenderer を作成
     ModelSetForBlockType(blockRender, block, blockStatus->GetBlockType());
+
+    //* Emitter
+    Emitter* blockEmitterLayerOne = getComponent<Emitter>(block);
+    Emitter* blockEmitterLayerTwo = getComponent<Emitter>(block);
+
+    // blockTypeによってEmitterを変更する
+    EmitterSetForBlockType(blockEmitterLayerOne, blockEmitterLayerTwo, blockStatus->GetBlockType());
 
     // hp
     blockStatus->SetcurrentHP(blockSpawner_->GetHpMax());
@@ -181,9 +192,6 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
 
     // 列カウンターインクリメント
 
-    /*blockSpawner_->SetIncrementLineCounter(BlockType::NORMAL);
-    blockSpawner_->SetIncrementLineCounter(BlockType::ADVANTAGE);
-    blockSpawner_->SetIncrementLineCounter(BlockType::SKULL);*/
     // ================================= System ================================= //
     ECSManager* ecs = ECSManager::getInstance();
 
@@ -197,6 +205,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     //------------------ Movement
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(block);
     ecs->getSystem<BlockMoveSystem>()->addEntity(block);
+    ecs->getSystem<EmitterWorkSystem>()->addEntity(block);
 
     //------------------ Collision
     ecs->getSystem<CollisionCheckSystem>()->addEntity(block);
@@ -207,7 +216,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     // None
 
     //------------------ Render
-    /* ecs->getSystem<ColliderRenderingSystem>()->addEntity(block);*/
+    ecs->getSystem<ParticleRenderSystem>()->addEntity(block);
     ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(block);
 }
 
@@ -227,9 +236,9 @@ void BlockSpawnSystem::BlockTypeSetting(BlockStatus* status, BlockType blocktype
     if ((blockSpawner_->GetLineCounter(blocktype) % blockSpawner_->GetGenerateInterval(blocktype) != 0)) {
 
         //// 指定の割合で別ブロックに変身
-        //if (Random.get() <= blockSpawner_->GetRandomParConstant(blocktype)) {
-        //    status->SetBlockType(blocktype);
-        //}
+        // if (Random.get() <= blockSpawner_->GetRandomParConstant(blocktype)) {
+        //     status->SetBlockType(blocktype);
+        // }
 
         return;
     }
@@ -250,8 +259,10 @@ void BlockSpawnSystem::BlockTypeSettingBySameColum(BlockStatus* status, BlockTyp
         return;
     }
 
+    // アドバンテージブロックと同じ列に生成する
     auto it = std::find(reservedSkullColumns_.begin(), reservedSkullColumns_.end(), columnNum);
     if (it != reservedSkullColumns_.end()) {
+
         int32_t baseProb = blockSpawner_->GetRandomParRightOfAdvance(type);
         int32_t upValue  = blockSpawner_->GetRandomParUPValue(type);
 
@@ -262,7 +273,7 @@ void BlockSpawnSystem::BlockTypeSettingBySameColum(BlockStatus* status, BlockTyp
 
         MyRandom::Int rand(0, 100);
 
-        int32_t judgeProb = (type == BlockType::SKULL) ? currentProb : baseProb;
+        int32_t judgeProb = (type == BlockType::SKULL) ? currentProb : baseProb; // skullブロックのみ確率上昇をする
 
         if (rand.get() < judgeProb) {
             status->SetBlockType(type);
@@ -278,6 +289,7 @@ void BlockSpawnSystem::BlockTypeSettingBySameColum(BlockStatus* status, BlockTyp
         }
     }
 }
+
 void BlockSpawnSystem::ModelSetForBlockType(ModelMeshRenderer* render, GameEntity* entity, BlockType type) {
     switch (type) {
     case BlockType::NORMAL:
@@ -288,6 +300,29 @@ void BlockSpawnSystem::ModelSetForBlockType(ModelMeshRenderer* render, GameEntit
         break;
     case BlockType::ADVANTAGE:
         CreateModelMeshRenderer(render, entity, kApplicationResourceDirectory + "/Models/AdvantageBlock", "AdvantageBlock.gltf");
+        break;
+    case BlockType::COUNT:
+        break;
+    default:
+        break;
+    }
+}
+
+void BlockSpawnSystem::EmitterSetForBlockType(Emitter* emitter1, Emitter* emitter2, BlockType type) {
+
+    switch (type) {
+    case BlockType::NORMAL:
+        emitter1 = emitters_[0];
+        emitter2 = emitters_[1];
+            break;
+    
+    case BlockType::ADVANTAGE:
+        emitter1 = emitters_[2];
+        emitter2 = emitters_[3];
+        break;
+    case BlockType::SKULL:
+        emitter1 = emitters_[4];
+        emitter2 = emitters_[5];
         break;
     case BlockType::COUNT:
         break;

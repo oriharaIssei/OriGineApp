@@ -8,6 +8,7 @@
 #include <vector>
 #include <Vector3.h>
 #include <unordered_map>
+#include <array>
 
 
 ///====================================================================
@@ -17,16 +18,21 @@ class ModelMeshRenderer;
 class BlockManager;
 class BlockStatus;
 class BlockCombinationStatus;
+class Emitter;
 class BlockSpawnSystem : public ISystem {
 private:
     bool isInited_;
+
     BlockManager* blockSpawner_;
     Transform* lastTransform_ = nullptr;
     BlockCombinationStatus* blockCombinationStatus_ = nullptr;
+
     // Advanceブロック生成colum予約
     std::vector<int32_t> reservedSkullColumns_; // 追加
     int32_t nextSpecialLine_;
     std::unordered_map<int32_t, int32_t> skullProbabilities_;
+
+    std::array<Emitter*, 6> emitters_;
 
 public:
     BlockSpawnSystem();
@@ -42,6 +48,7 @@ public:
 
     void CostInit();
     void BlockTypeSettingBySameColum(BlockStatus* status, BlockType type, const int32_t& columnNum);
+    void EmitterSetForBlockType(Emitter* emitter1, Emitter* emitter2, BlockType type);
 
 protected:
     void UpdateEntity(GameEntity* _entity) override;
