@@ -51,13 +51,22 @@ private: // variables
     Easing backAlphaEase_;
     Easing rotateEasing_;
 
+    //vignet easing
+    Easing vignetEase_;
+
+    // back alpha
     float backAlpha_ = 0.0f;
     float backStartAlpha_;
     float backEndAlpha_;
 
+    // back rotate
     float backTimerRotate_;
     float backTimerStartRotate_;
     float backTimerEndRotate_;
+
+    float vignetValue_;
+    float vignetMax_;
+    float vignetStart_;
 
     // step
     TimerAnimationStep curerntStep_ = TimerAnimationStep::NONE;
@@ -81,12 +90,13 @@ public:
     void BackApearScaling(const float& time);
     void BackAlphaEasing(const float& time);
     void BackRotateEasing(const float& time);
+    void VignetParmEasing(const float& time);
     //
     void Reset();
 
 public: // accsessor
     /// getter
-
+    float GetVignetteValue() const { return vignetValue_; }
     bool GetIsAnimation() const { return isAnimation_; }
     Vec2f GetBasePos() const { return basePos_; }
     Vec2f GetBaseScale() const { return baseScale_; }

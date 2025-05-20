@@ -489,6 +489,9 @@
     <ClInclude Include="code\system\Score\PlusScoreIconSystem.h">
       <Filter>system\Score</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Timer\TimerAdaptVignetSystem.h">
+      <Filter>system\Timer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -847,6 +850,9 @@
     </ClCompile>
     <ClCompile Include="code\system\Score\PlusScoreIconSystem.cpp">
       <Filter>system\Score</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Timer\TimerAdaptVignetSystem.cpp">
+      <Filter>system\Timer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

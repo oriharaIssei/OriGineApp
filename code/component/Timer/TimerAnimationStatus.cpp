@@ -35,7 +35,6 @@ bool TimerAnimationStatus::Edit() {
     ImGui::Text("waitTime");
     isChange |= DragGuiCommand("waitTimeAfterScaing", waitTimeAfterScaing_, 0.01f);
 
-
     ImGui::SeparatorText("Back");
 
     ImGui::Text("backtimer");
@@ -58,6 +57,15 @@ bool TimerAnimationStatus::Edit() {
 
     ImGui::Text("rotateEasing");
     isChange |= DragGuiCommand("rotateEasing.maxTime", rotateEasing_.maxTime, 0.01f);
+
+    ImGui::SeparatorText("Vignet");
+    isChange |= DragGuiCommand("vignetMax", vignetMax_, 0.01f);
+    isChange |= DragGuiCommand("vignetStart", vignetStart_, 0.01f);
+
+    ImGui::Text("VignetEasing");
+    isChange |= DragGuiCommand("vignetEase_.maxTime", vignetEase_.maxTime, 0.01f);
+    isChange |= DragGuiCommand("vignetEase_.backRatio", vignetEase_.backRatio, 0.01f);
+
 #endif // _DEBUG
     return isChange;
 }
@@ -118,6 +126,18 @@ void TimerAnimationStatus::BackRotateEasing(const float& time) {
     rotateEasing_.time = rotateEasing_.maxTime;
 }
 
+void TimerAnimationStatus::VignetParmEasing(const float& time) {
+    vignetEase_.time += time;
+    vignetValue_ = Back::InCircZero(vignetStart_, vignetMax_, vignetEase_.time, vignetEase_.maxTime, vignetEase_.backRatio);
+
+    if (vignetEase_.time < vignetEase_.maxTime) {
+        return;
+    }
+
+    vignetValue_ = vignetStart_;
+    vignetEase_.time = vignetEase_.maxTime;
+}
+
 void TimerAnimationStatus::ColorChangeEasing(const float& time) {
     color_ = panicColor_;
     time;
@@ -153,6 +173,9 @@ void TimerAnimationStatus::Reset() {
 
     backTimerRotate_   = backTimerStartRotate_;
     rotateEasing_.time = 0.0f;
+
+    vignetValue_     = vignetStart_;
+    vignetEase_.time = 0.0f;
 }
 
 void to_json(nlohmann::json& _json, const TimerAnimationStatus& _component) {
@@ -178,6 +201,11 @@ void to_json(nlohmann::json& _json, const TimerAnimationStatus& _component) {
     _json["backTimerRotate"]          = _component.backTimerRotate_;
     _json["backTimerStartRotate"]     = _component.backTimerStartRotate_;
     _json["backTimerEndRotate"]       = _component.backTimerEndRotate_;
+
+    _json["vignetMax_"]            = _component.vignetMax_;
+    _json["vignetStart_"]          = _component.vignetStart_;
+    _json["vignetEase_.maxTime"]   = _component.vignetEase_.maxTime;
+    _json["vignetEase_.backRatio"] = _component.vignetEase_.backRatio;
 }
 
 void from_json(const nlohmann::json& _json, TimerAnimationStatus& _component) {
@@ -224,7 +252,6 @@ void from_json(const nlohmann::json& _json, TimerAnimationStatus& _component) {
         _json.at("rotateEasing_.maxTime").get_to(_component.rotateEasing_.maxTime);
     }
 
-
     if (auto it = _json.find("backTimerRotate"); it != _json.end()) {
         _json.at("backTimerRotate").get_to(_component.backTimerRotate_);
     }
@@ -233,5 +260,18 @@ void from_json(const nlohmann::json& _json, TimerAnimationStatus& _component) {
     }
     if (auto it = _json.find("backTimerEndRotate"); it != _json.end()) {
         _json.at("backTimerEndRotate").get_to(_component.backTimerEndRotate_);
+    }
+
+    if (auto it = _json.find("vignetMax_"); it != _json.end()) {
+        _json.at("vignetMax_").get_to(_component.vignetMax_);
+    }
+    if (auto it = _json.find("vignetStart_"); it != _json.end()) {
+        _json.at("vignetStart_").get_to(_component.vignetStart_);
+    }
+    if (auto it = _json.find("vignetEase_.maxTime"); it != _json.end()) {
+        _json.at("vignetEase_.maxTime").get_to(_component.vignetEase_.maxTime);
+    }
+    if (auto it = _json.find("vignetEase_.backRatio"); it != _json.end()) {
+        _json.at("vignetEase_.backRatio").get_to(_component.vignetEase_.backRatio);
     }
 }
