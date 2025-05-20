@@ -130,8 +130,8 @@
                                 ]
                             }
                         ],
-                        "dissolveTexPath": "application/resource/..\\..\\engine\\resource\\Texture/white1x1.png",
-                        "dissolveThreshold": 0.0,
+                        "dissolveTexPath": "application/resource/Texture/gimacho.png",
+                        "dissolveThreshold": 0.8199999928474426,
                         "dissolveUV": {
                             "rotate": 0.0,
                             "scale": [
@@ -181,8 +181,8 @@
                                 ]
                             }
                         ],
-                        "distortionStrength": 0.3499999940395355,
-                        "distortionTexPath": "application/resource/..\\..\\engine\\resource\\Texture/white1x1.png",
+                        "distortionStrength": 0.20999999344348907,
+                        "distortionTexPath": "application/resource/Models\\axis/uvChecker.png",
                         "distortionUV": {
                             "rotate": -431602080.0,
                             "scale": [
@@ -195,7 +195,7 @@
                             ]
                         },
                         "effectFlag": 7,
-                        "maskAnimDuration": 0.4300000071525574,
+                        "maskAnimDuration": 0.8999999761581421,
                         "maskAnimIsLoop": false,
                         "maskAnimIsPlay": false,
                         "maskAnimRotate": [],
@@ -209,7 +209,7 @@
                             }
                         ],
                         "maskAnimTranslate": [],
-                        "maskTexPath": "application/resource/..\\..\\engine\\resource\\Texture/white1x1.png",
+                        "maskTexPath": "application/resource/Texture/gimacho.png",
                         "maskUV": {
                             "rotate": 0.0,
                             "scale": [

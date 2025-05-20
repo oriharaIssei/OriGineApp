@@ -82,10 +82,12 @@ void MyGame::Initialize() {
 }
 
 void MyGame::Finalize() {
+#ifdef _DEBUG
     EditorGroup* editorGroup     = EditorGroup::getInstance();
     DebuggerGroup* debuggerGroup = DebuggerGroup::getInstance();
     editorGroup->Finalize();
     debuggerGroup->Finalize();
+#endif // _DEBUG
 
     SceneFinalize();
 
