@@ -1,6 +1,7 @@
 #pragma once
 
 #include "component/IComponent.h"
+#include "component/Piller/FloatingFloorAnimationStatus.h"
 #include <array>
 #include <cstdint>
 #include <Vector3.h>
@@ -34,15 +35,22 @@ private: // variables
     float scoreUpRate_;
     float startScoreUpRate_;
 
-    bool isPlayerUnderTheFloor_=false;
+    bool isPlayerUnderTheFloor_ = false;
 
-      /// collider
+    /// collider
     Vec3f fallCollisionSizeMin_;
     Vec3f fallCollisionSizeMax_;
     Vec3f fallCollisionCenterPos_;
 
-public:
-    FloatingFloorStatus() {}
+    // pos
+    Vec3f savePos_;
+    Vec3f damageShakePos_={0.0f,0.0f,0.0f};
+
+    // reaction
+    ReactionStep reactionStep_=ReactionStep::NONE;
+    float shakeTime_=0.0f;
+
+    public : FloatingFloorStatus() {}
     virtual ~FloatingFloorStatus() = default;
 
     void Initialize(GameEntity* _entity) override;
@@ -52,8 +60,13 @@ public:
     void TakeDamage();
     void TakeBigDamage();
     void RevivalReset();
+    void DamageShakeReset(FloatingFloorAnimationStatus* animestatus);
 
     void SetColumDecrement();
+
+    void ChangeReactionMode();
+
+    void DamageShake(FloatingFloorAnimationStatus* animestatus,const float&deltaTime);
 
 public: // accsessor
     /// getter
@@ -76,6 +89,8 @@ public: // accsessor
     Vec3f GetFallCollisionSizeMin() const { return fallCollisionSizeMin_; }
     Vec3f GetFallCollisionSizeMax() const { return fallCollisionSizeMax_; }
     Vec3f GetFallCollisionCenterPos() const { return fallCollisionCenterPos_; }
+    Vec3f GetSavePos() const { return savePos_; }
+    ReactionStep GetReactionStep() const { return reactionStep_; }
 
     /// setter
     void SetColumAndRow(const int32_t& colum, const int32_t& row);
@@ -99,4 +114,6 @@ public: // accsessor
     void SetFallCollisionSizeMin(const Vec3f& s) { fallCollisionSizeMin_ = s; }
     void SetFallCollisionSizeMax(const Vec3f& s) { fallCollisionSizeMax_ = s; }
     void SetFallCollisionCenterPos(const Vec3f& s) { fallCollisionCenterPos_ = s; }
+    void SetSavePos(const Vec3f pos) { savePos_ = pos; }
+    void SetReactionStep(const ReactionStep& step) { reactionStep_ = step; }
 };

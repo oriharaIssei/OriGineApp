@@ -492,6 +492,14 @@
     <ClInclude Include="code\system\Timer\TimerAdaptVignetSystem.h">
       <Filter>system\Timer</Filter>
     </ClInclude>
+    <ClInclude Include="code\KetaShake.h" />
+    <ClInclude Include="code\KetaRandom.h" />
+    <ClInclude Include="code\component\Piller\FloatingFloorAnimationStatus.h">
+      <Filter>component\Piller</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\FloatingFloor\FloatingFloorAnimationSystem.h">
+      <Filter>system\FloatingFloor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -853,6 +861,14 @@
     </ClCompile>
     <ClCompile Include="code\system\Timer\TimerAdaptVignetSystem.cpp">
       <Filter>system\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="code\KetaShake.cpp" />
+    <ClCompile Include="code\KetaRandom.cpp" />
+    <ClCompile Include="code\component\Piller\FloatingFloorAnimationStatus.cpp">
+      <Filter>component\Piller</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\FloatingFloor\FloatingFloorAnimationSystem.cpp">
+      <Filter>system\FloatingFloor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

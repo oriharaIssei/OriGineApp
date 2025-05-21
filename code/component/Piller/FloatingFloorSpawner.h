@@ -11,6 +11,7 @@ class FloatingFloorSpawner
     friend void from_json(const nlohmann::json& _json, FloatingFloorSpawner& _block);
 
 private: // variables
+
     bool isAlive_ = true;
     bool isCreated_;
 

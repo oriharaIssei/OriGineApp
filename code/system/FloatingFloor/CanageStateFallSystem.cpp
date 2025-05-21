@@ -59,21 +59,5 @@ void CanageStateFallSystem::UpdateEntity(GameEntity* _entity) {
 
 void CanageStateFallSystem::ComboCountIncrement() {
 
-    //// ComboEntityを取得
-    //EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
-    //GameEntity* ComboEntity                  = ecsManager->getUniqueEntity("Combo");
-
-    //if (!ComboEntity) {
-    //    return;
-    //}
-
-    //ComboStatus* comboStatus = getComponent<ComboStatus>(ComboEntity);
-
-    //if (!comboStatus) {
-    //    return;
-    //}
-
-    //comboStatus->SetCurrentTime(comboStatus->GetContinuationTime());
-    //comboStatus->SetComboIncrement(); // 現在のコンボ数をインクリメント
-    //comboStatus->SetIsUpdateCombo(true); // コンボ更新フラグを立てる
+   
 }

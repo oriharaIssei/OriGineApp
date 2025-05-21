@@ -12,6 +12,7 @@
 // component
 #include "component/SceneChanger/SceneChangerStatus.h"
 #include "component/SceneTransition/SceneTransition.h"
+#include"component/effect/TextureEffectParam.h"
 
 #include "engine/EngineInclude.h"
 #include <Vector2.h>
@@ -38,7 +39,7 @@ void SceneTransitionSystem::UpdateEntity(GameEntity* entity) {
         return;
     }
 
-    SpriteRenderer* sprite            = getComponent<SpriteRenderer>(entity);
+    SpriteRenderer* sprite     = getComponent<SpriteRenderer>(entity);
     SceneTransition* sceneTransition = getComponent<SceneTransition>(entity);
     SceneChangerStatus* gameend       = getComponent<SceneChangerStatus>(sceneChangerEntity);
 
@@ -81,15 +82,17 @@ void SceneTransitionSystem::UpdateEntity(GameEntity* entity) {
         break;
     }
 
+    /*sprite->getEffectParamBuffer().openData_.distortionStrength = 0.0f;*/
+
     ///* ------------------------------calucration------------------------------
 
     Vec2f basePos  = Vec2f(sceneTransition->GetPositionX(),0.0f);
     Vec2f baseSize = sprite->getTextureSize() * sceneTransition->GetScale();
     /*  resultRank->SetRankForScore(resultUIParent->GetCurrentScore());*/
 
-    ///* ------------------------------adapt------------------------------
+    /////* ------------------------------adapt------------------------------
 
-    // pos
+    //// pos
     sprite->setTranslate(basePos);
     sprite->setSize(baseSize);
     /* sprite->setUVScale(Vec2f(tutorialMenu->GetUVScale(),1.0f));*/

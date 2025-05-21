@@ -6,9 +6,9 @@
 // component
 #include "component/Block/BlockManager.h"
 #include "component/Block/BlockStatus.h"
-#include"component/LevelUPUI/LevelUIParentStatus.h"
-#include"component/Menu/MenuStatus.h"
-#include"component/GameEndUI/GameEndUIStatus.h"
+#include "component/GameEndUI/GameEndUIStatus.h"
+#include "component/LevelUPUI/LevelUIParentStatus.h"
+#include "component/Menu/MenuStatus.h"
 #include <Vector.h>
 
 #include "KetaEasing.h"
@@ -30,23 +30,19 @@ void MoveTenpoSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-
-
-       // ComboEntityを取得
+    // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
-    GameEntity* levelUI                  = ecsManager->getUniqueEntity("LevelUIParent");
+    GameEntity* levelUI                      = ecsManager->getUniqueEntity("LevelUIParent");
     GameEntity* menuEntity                   = ecsManager->getUniqueEntity("Menu");
     GameEntity* gameEndUIEntity              = ecsManager->getUniqueEntity("GameEndUI");
 
-
-    if (!levelUI || !menuEntity||!gameEndUIEntity) { // Entityが存在しない場合の早期リターン
+    if (!levelUI || !menuEntity || !gameEndUIEntity) { // Entityが存在しない場合の早期リターン
         return;
     }
 
     // ポーズ中は通さない
-    MenuStatus* menu = getComponent<MenuStatus>(menuEntity);
+    MenuStatus* menu                 = getComponent<MenuStatus>(menuEntity);
     GameEndUIStatus* gameEndUIStatus = getComponent<GameEndUIStatus>(gameEndUIEntity);
-
 
     if (!menu) {
         return;
@@ -60,17 +56,16 @@ void MoveTenpoSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-
     timer_ += Engine::getInstance()->getDeltaTime();
     curerntTenpoTime_ += Engine::getInstance()->getDeltaTime(); // easeTime
 
-    blockManager_ = getComponent<BlockManager>(_entity);
+    blockManager_                            = getComponent<BlockManager>(_entity);
     LevelUIParentStatus* levelUIParentStatus = getComponent<LevelUIParentStatus>(levelUI);
-
+    
     if (!blockManager_ || !levelUIParentStatus) {
         return;
     }
-   
+
     blockManager_->ChangeNextLevel(timer_, levelUIParentStatus);
     blockManager_->SetMoveTempoForLevel();
 
@@ -100,7 +95,7 @@ void MoveTenpoSystem::OneTenpoMoveMethod(GameEntity* _entity) {
     // 移動するべき場合
     if (curentTempoNum_ < blockManager_->GetMoveTenpoNum()) {
 
-        audio->Play();//テンポ音
+        audio->Play(); // テンポ音
         return;
     }
 

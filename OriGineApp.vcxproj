@@ -105,9 +105,12 @@
     <ClInclude Include="code\component\FloorUI\FloorUIController.h" />
     <ClInclude Include="code\component\FloorUI\FloorUIStatus.h" />
     <ClInclude Include="code\component\GameEndUI\GameEndUIStatus.h" />
+    <ClInclude Include="code\component\Piller\FloatingFloorAnimationStatus.h" />
     <ClInclude Include="code\component\Timer\TimerAnimationStatus.h" />
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\KetaEasing.h" />
+    <ClInclude Include="code\KetaRandom.h" />
+    <ClInclude Include="code\KetaShake.h" />
     <ClInclude Include="code\MyGame.h" />
     <ClInclude Include="code\component\BigBom\BigBomSpawner.h" />
     <ClInclude Include="code\component\BigBom\BigBomStatus.h" />
@@ -177,6 +180,7 @@
     <ClInclude Include="code\system\FloatingFloor\CheckIsUnderPlayer.h" />
     <ClInclude Include="code\system\FloatingFloor\CreateFloorSystem.h" />
     <ClInclude Include="code\system\FloatingFloor\DeleteFloatingFloorSystem.h" />
+    <ClInclude Include="code\system\FloatingFloor\FloatingFloorAnimationSystem.h" />
     <ClInclude Include="code\system\FloatingFloor\FloatingFloorDamageSystem.h" />
     <ClInclude Include="code\system\FloatingFloor\FloatingFloorFallSystem.h" />
     <ClInclude Include="code\system\FloatingFloor\FloatingFloorRevivalSystem.h" />
@@ -229,9 +233,12 @@
     <ClCompile Include="code\component\FloorUI\FloorUIController.cpp" />
     <ClCompile Include="code\component\FloorUI\FloorUIStatus.cpp" />
     <ClCompile Include="code\component\GameEndUI\GameEndUIStatus.cpp" />
+    <ClCompile Include="code\component\Piller\FloatingFloorAnimationStatus.cpp" />
     <ClCompile Include="code\component\Timer\TimerAnimationStatus.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\KetaEasing.cpp" />
+    <ClCompile Include="code\KetaRandom.cpp" />
+    <ClCompile Include="code\KetaShake.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
     <ClCompile Include="code\component\BigBom\BigBomSpawner.cpp" />
     <ClCompile Include="code\component\BigBom\BigBomStatus.cpp" />
@@ -303,6 +310,7 @@
     <ClCompile Include="code\system\FloatingFloor\CheckIsUnderPlayer.cpp" />
     <ClCompile Include="code\system\FloatingFloor\CreateFloorSystem.cpp" />
     <ClCompile Include="code\system\FloatingFloor\DeleteFloatingFloorSystem.cpp" />
+    <ClCompile Include="code\system\FloatingFloor\FloatingFloorAnimationSystem.cpp" />
     <ClCompile Include="code\system\FloatingFloor\FloatingFloorDamageSystem.cpp" />
     <ClCompile Include="code\system\FloatingFloor\FloatingFloorFallSystem.cpp" />
     <ClCompile Include="code\system\FloatingFloor\FloatingFloorRevivalSystem.cpp" />

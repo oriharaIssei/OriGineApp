@@ -145,6 +145,8 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     floatingFloorStatus->SetFallCollisionSizeMax(floatFloorSpawner->GetFallCollisionSizeMax());
     floatingFloorStatus->SetFallCollisionSizeMin(floatFloorSpawner->GetFallCollisionSizeMin());
 
+    //position save
+    floatingFloorStatus->SetSavePos(transform->translate);
 
     for (int32_t i = 0; i < audios_.size(); ++i) {
         audios_[i]  = getComponent<Audio>(_entity, i); // audio
