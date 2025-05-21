@@ -31,9 +31,9 @@ private: // variables
     Vec3f endPos_   = {0.0f, 0.0f, 0.0f};
 
     // scale
-    Vec3f baseScale_ = {1.0f, 1.0f,1.0f};
+    Vec3f baseScale_ = {1.0f, 1.0f, 1.0f};
     Vec3f saveScale_ = {1.0f, 1.0f, 1.0f};
-    Vec3f maxScale_ = {1.0f, 1.0f, 1.0f};
+    Vec3f maxScale_  = {1.0f, 1.0f, 1.0f};
 
     FloorUIStep floorUIStep_ = FloorUIStep::NONE;
 
@@ -41,6 +41,8 @@ private: // variables
     Easing openEasing_;
     Easing closeEasing_;
 
+    float rotate_      = 0.0f;
+    float rotateSpeed_ = 0.0f;
 
 public:
     FloorUIStatus() {}
@@ -48,7 +50,6 @@ public:
 
     void Initialize(GameEntity* _entity) override;
     virtual bool Edit();
-  
 
     virtual void Finalize();
 
@@ -56,15 +57,16 @@ public:
     void OpenEasing(const float& time);
     void CloseEasing(const float& time);
     void SavingScale();
+    void RotateMoving(const float& deltatime);
     void ChangeAnimationEndForFlag();
     //
     void Reset();
-  
-public: // accsessor
-    /// getter
 
-  public: // accessors
+public: // accsessor
+        /// getter
+public: // accessors
     /// getter
+    float GetRotate() { return rotate_; }
     bool GetIsAlive() const { return isAlive_; }
     const bool* GetIsAnimationPtr() const { return isAnimation_; }
     const Vec3f& GetPosition() const { return position_; }
@@ -94,4 +96,6 @@ public: // accsessor
     void SetMoveEasing(const Easing& easing) { moveEasing_ = easing; }
     void SetOpenEasing(const Easing& easing) { openEasing_ = easing; }
     void SetCloseEasing(const Easing& easing) { closeEasing_ = easing; }
+
+    void SetFloorRotateSpeed(const float& speed) { rotateSpeed_ = speed; }
 };

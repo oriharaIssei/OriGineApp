@@ -17,14 +17,14 @@
 #include "component/Piller/FloatingFloorStatus.h"
 //  system
 #include "system/FloatingFloor/CanageStateFallSystem.h"
+#include "system/FloatingFloor/CheckIsUnderPlayer.h"
 #include "system/FloatingFloor/DeleteFloatingFloorSystem.h"
+#include "system/FloatingFloor/FloatingFloorAnimationSystem.h"
 #include "system/FloatingFloor/FloatingFloorDamageSystem.h"
 #include "system/FloatingFloor/FloatingFloorFallSystem.h"
 #include "system/FloatingFloor/FloatingFloorRevivalSystem.h"
+#include "system/FloorUI/FloorUISystem.h"
 #include "system/Matrix/UpdateMatrixSystem.h"
-#include"system/FloatingFloor/CheckIsUnderPlayer.h"
-#include"system/FloorUI/FloorUISystem.h"
-#include"system/FloatingFloor/FloatingFloorAnimationSystem.h"
 
 CreateFloorSystem::CreateFloorSystem() : ISystem(SystemType::Initialize) {}
 CreateFloorSystem::~CreateFloorSystem() {}
@@ -56,7 +56,7 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
 
     // ポーズ中は通さない
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
-    GameEntity* floorUIControllerEntity            = ecsManager->getUniqueEntity("FloorUIController");
+    GameEntity* floorUIControllerEntity      = ecsManager->getUniqueEntity("FloorUIController");
 
     if (!floorUIControllerEntity) {
         return;
@@ -115,7 +115,7 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     }
 
     CreateModelMeshRenderer(floorUIRender, floorUIEntity, kApplicationResourceDirectory + "/Models/plane", "plane.obj");
-    floorUIRender->setTexture(0, kApplicationResourceDirectory + "/Texture/UI/FloorUIArrow.png");
+    floorUIRender->setTexture(0, kApplicationResourceDirectory + "/Texture/anchorPoint.png");
 
     // /// States
 
@@ -141,12 +141,12 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     floatingFloorStatus->SetScoreUpRatio(floatFloorSpawner->GetScoreUPRate());
     floatingFloorStatus->SetStartScoreUPRate(floatFloorSpawner->GetScoreUPRate());
 
-    //collision
+    // collision
     floatingFloorStatus->SetFallCollisionCenterPos(floatFloorSpawner->GetFallCollisionCenterPos());
     floatingFloorStatus->SetFallCollisionSizeMax(floatFloorSpawner->GetFallCollisionSizeMax());
     floatingFloorStatus->SetFallCollisionSizeMin(floatFloorSpawner->GetFallCollisionSizeMin());
 
-    //position save
+    // position save
     floatingFloorStatus->SetSavePos(transform->translate);
 
     for (int32_t i = 0; i < audios_.size(); ++i) {
@@ -157,15 +157,21 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     }
 
     FloorUIStatus* floorUIStatus = getComponent<FloorUIStatus>(floorUIEntity);
+
+    //easing status
     floorUIStatus->SetMoveEasing(floorUIController->GetMoveEasing());
     floorUIStatus->SetOpenEasing(floorUIController->GetOpenEasing());
     floorUIStatus->SetCloseEasing(floorUIController->GetCloseEasing());
 
+    //is animation frag
     floorUIStatus->SetIsAnimation(&floatingFloorStatus->GetIsPlayerUnderTheFloor());
 
-      floorUIStatus->SetStartPos(floorUIController->GetStartPos());
+    //pos
+    floorUIStatus->SetStartPos(floorUIController->GetStartPos());
     floorUIStatus->SetEndPos(floorUIController->GetEndPos());
 
+    //rotate speed
+    floorUIStatus->SetFloorRotateSpeed(floorUIController->GetRotateSpeed());
 
     // ================================= System ================================= //
 

@@ -46,6 +46,10 @@ void FloorUIStatus::moveEasing(const float& time) {
     moveEasing_.time = 0.0f;
 }
 
+void FloorUIStatus::RotateMoving(const float&deltatime) {
+    rotate_ += rotateSpeed_ * deltatime;
+ }
+
 void FloorUIStatus::OpenEasing(const float& time) {
     openEasing_.time += time;
 
@@ -79,6 +83,7 @@ void FloorUIStatus::Reset() {
     closeEasing_.time = 0.0f;
     baseScale_        = Vec3f(0.0f, 0.0f, 0.0f);
     saveScale_        = Vec3f(0.0f, 0.0f, 0.0f);
+    rotate_           = 0.0f;
 }
 
 void FloorUIStatus::SavingScale() {

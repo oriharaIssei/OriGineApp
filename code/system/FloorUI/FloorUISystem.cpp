@@ -61,27 +61,29 @@ void FloorUISystem::UpdateEntity(GameEntity* entity) {
         break;
 
         ///-----------------------------------------------------------
-        /// メニューセレクト中
+        /// 出現
         ///-----------------------------------------------------------
     case FloorUIStep::APPER:
         floorUIStatus->SavingScale();
         floorUIStatus->moveEasing(deltaTime);
+        floorUIStatus->RotateMoving(deltaTime);
         floorUIStatus->ChangeAnimationEndForFlag();
         floorUIStatus->OpenEasing(deltaTime);
 
         break;
 
         ///-----------------------------------------------------------
-        /// チュートリアル
+        /// UI強調
         ///-----------------------------------------------------------
     case FloorUIStep::MOVING:
         floorUIStatus->SavingScale();
         floorUIStatus->ChangeAnimationEndForFlag();
+        floorUIStatus->RotateMoving(deltaTime);
         floorUIStatus->moveEasing(deltaTime);
         break;
 
         ///-----------------------------------------------------------
-        /// 閉じる前の初期化*
+        /// 閉じる
         ///-----------------------------------------------------------
     case FloorUIStep::CLOSE:
         floorUIStatus->moveEasing(deltaTime);

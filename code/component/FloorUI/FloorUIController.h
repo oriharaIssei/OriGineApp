@@ -15,7 +15,7 @@ private: // variables
     bool isAlive_ = true;
 
     // pos
-  
+
     Vec3f startPos_ = {0.0f, 0.0f, 0.0f};
     Vec3f endPos_   = {0.0f, 0.0f, 0.0f};
 
@@ -27,6 +27,8 @@ private: // variables
     Easing moveEasing_;
     Easing openEasing_;
     Easing closeEasing_;
+
+    float rotateSpeed_ = 0.0f;
 
     //// step
     // ArrowDirection arrowDirection_;
@@ -40,10 +42,10 @@ public:
 
     virtual void Finalize();
 
-
 public: // accsessor
 public: // accessors
     /// getter
+    float GetRotateSpeed() const { return rotateSpeed_; }
     bool GetIsAlive() const { return isAlive_; }
     const Vec3f& GetStartPos() const { return startPos_; }
     const Vec3f& GetEndPos() const { return endPos_; }
@@ -52,18 +54,6 @@ public: // accessors
     const Easing& GetMoveEasing() const { return moveEasing_; }
     const Easing& GetOpenEasing() const { return openEasing_; }
     const Easing& GetCloseEasing() const { return closeEasing_; }
-
-  /*  /// setter
-    void SetIsAlive(bool alive) { isAlive_ = alive; }
-    void SetStartPos(const Vec3f& pos) { startPos_ = pos; }
-    void SetEndPos(const Vec3f& pos) { endPos_ = pos; }
-    void SetStartScale(const Vec3f& scale) { startScale_ = scale; }
-    void SetEndScale(const Vec3f& scale) { endScale_ = scale; }
-
-    void SetMoveEasing(const Easing& easing) { moveEasing_ = easing; }
-    void SetOpenEasing(const Easing& easing) { openEasing_ = easing; }
-    void SetCloseEasing(const Easing& easing) { closeEasing_ = easing; }*/
-
 
   
 };
