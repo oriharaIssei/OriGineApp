@@ -54,7 +54,6 @@ void TimerAdaptVignetSystem::UpdateEntity(GameEntity* _entity) {
  /*   Vec4f clolor   = timerAnimationStatus->GetBaseClolor();*/
 
     ///* ------------------------------adapt------------------------------
-    vignetterParm->getVignetteBuffer().openData_.vignettePow = timerAnimationStatus->GetVignetteValue();
-    vignetterParm->setVignetteParam(vignetterParm->getVignetteParam());
+    vignetterParm->setVignettePow(timerAnimationStatus->GetVignetteValue());
 
 }
