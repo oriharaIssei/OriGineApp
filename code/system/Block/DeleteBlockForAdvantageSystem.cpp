@@ -71,14 +71,13 @@ void DeleteBlockForAdvantageSystem::BlockBreakParticleShot(GameEntity* _entity, 
 
     Emitter* normalStartEmitter = getComponent<Emitter>(blockManager, 0); // 通常エミッタその1
     Emitter* normalIconEmitter  = getComponent<Emitter>(blockManager, 1);
-   
+
     if (!SpawnerStatus_) { // Componentが存在しない場合の早期リターン
         return;
     }
 
-    //Particle発射
+    // Particle発射
     Vec3f basePos = blockTransform_->worldMat[3];
-   
 
     switch (blocktype) {
         ///---------------------------------------------
@@ -87,10 +86,12 @@ void DeleteBlockForAdvantageSystem::BlockBreakParticleShot(GameEntity* _entity, 
     case BlockType::NORMAL:
 
         // emitter
+        if (!normalIconEmitter->getIsActive()) {
+            normalIconEmitter->PlayStart();
+            normalStartEmitter->PlayStart();
+        }
         normalIconEmitter->setOriginePos(basePos);
         normalStartEmitter->setOriginePos(basePos);
-        normalStartEmitter->PlayContinue();
-        normalIconEmitter->PlayContinue();
 
         breakNormal->Play();
         break;
