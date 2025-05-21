@@ -62,10 +62,10 @@ public:
     void TakeDamage();
     void TakeBigDamage();
     void RevivalReset();
-  
+
     void SetColumDecrement();
 
-      void DamageShakeReset(FloatingFloorAnimationStatus* animestatus);
+    void DamageShakeReset(FloatingFloorAnimationStatus* animestatus);
     void ChangeDamageShake();
     void DamageShake(const float& shakeValue, const float& deltaTime);
     void ConstantShake(const float& shakeValue);

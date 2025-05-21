@@ -19,7 +19,7 @@ bool FloorUIController::Edit() {
     ImGui::Text("pos");
     isChange |= DragGuiVectorCommand("startPos", startPos_, 0.01f);
     isChange |= DragGuiVectorCommand("endPos", endPos_, 0.01f);
-    isChange |= DragGuiVectorCommand("startScale", startScale_, 0.01f);
+    isChange |= DragGuiVectorCommand("maxScale_", maxScale_, 0.01f);
 
     ImGui::Text("easing");
     isChange |= DragGuiCommand("moveEasing.maxTime", moveEasing_.maxTime, 0.01f);
@@ -43,7 +43,7 @@ void to_json(nlohmann::json& j, const FloorUIController& m) {
     j["moveEasing.backRatio"] = m.moveEasing_.backRatio;
     j["openEasing_.maxTime"]  = m.openEasing_.maxTime;
     j["closeEasing_.maxTime"] = m.closeEasing_.maxTime;
-    j["startScale"]           = m.startScale_;
+    j["startScale"]           = m.maxScale_;
     j["rotateSpeed"]          = m.rotateSpeed_;
 }
 
@@ -55,7 +55,7 @@ void from_json(const nlohmann::json& j, FloorUIController& m) {
     j.at("moveEasing.backRatio").get_to(m.moveEasing_.backRatio);
     j.at("openEasing_.maxTime").get_to(m.openEasing_.maxTime);
     j.at("closeEasing_.maxTime").get_to(m.closeEasing_.maxTime);
-    j.at("startScale").get_to(m.startScale_);
+    j.at("startScale").get_to(m.maxScale_);
     if (auto it = j.find("rotateSpeed"); it != j.end()) {
         j.at("rotateSpeed").get_to(m.rotateSpeed_);
     }

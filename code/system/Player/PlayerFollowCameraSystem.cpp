@@ -11,10 +11,10 @@
 
 // component
 #include "camera/CameraManager.h"
+#include "component/GameCamera/CameraRenditionStatus.h"
 #include "component/Player/PlayerStates.h"
 
 #include "engine/EngineInclude.h"
-
 
 PlayerFollowCameraSystem::PlayerFollowCameraSystem()
     : ISystem(SystemType::Movement) {}
@@ -31,36 +31,36 @@ void PlayerFollowCameraSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-     PlayerStates* entityPlayerStates_ = getComponent<PlayerStates>(_entity);
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* cameraRenditionEntity = ecsManager->getUniqueEntity("CameraRendition");
 
-    if ( !entityPlayerStates_) {
+    PlayerStates* entityPlayerStates_ = getComponent<PlayerStates>(_entity);
+    CameraTransform* cameraTransform_ = getComponent<CameraTransform>(_entity);
+    CameraRenditionStatus* cameraRenditionStatus = getComponent<CameraRenditionStatus>(cameraRenditionEntity);
+
+    if (!entityPlayerStates_ || !cameraTransform_) {
         return;
     }
-
-     CameraTransform* cameraTransform_ = getComponent<CameraTransform>(_entity);
-    if (!cameraTransform_) {
-        return;
-    }
-
+    
     ///============================================================
     /// カメラのオフセットを適用
     ///============================================================
-    // カメラのオフセット（前方から見る場合、Z値を正にする）
-    Vec3f cameraOffset = entityPlayerStates_->GetFollowOffset(); /*{0.0f, 8.0f, 56.0f};*/ 
+    // カメラのオフセット
+    Vec3f cameraOffset = entityPlayerStates_->GetFollowOffset(); /*{0.0f, 8.0f, 56.0f};*/
 
     CameraManager::getInstance()->setTransform(*cameraTransform_);
 
     ///============================================================
     /// 固定カメラ位置を設定
     ///============================================================
-    // 固定位置（例：シーンを斜め上から俯瞰する位置）
-    cameraTransform_->translate = cameraOffset;
+   
+    cameraTransform_->translate = cameraOffset + cameraRenditionStatus->CameraShakeOffset();
 
     ///============================================================
     /// 固定カメラ回転を設定
     ///============================================================
     // 方向ベクトル（原点方向に向ける）
-   /* Vec3f direction                      = Vec3f::Normalize(Vec3f{0.0f, 0.0f, 0.0f} - cameraTransform_->translate);*/
+    /* Vec3f direction                      = Vec3f::Normalize(Vec3f{0.0f, 0.0f, 0.0f} - cameraTransform_->translate);*/
     cameraTransform_->rotate = Quaternion::Identity();
 
     ///============================================================
@@ -68,8 +68,6 @@ void PlayerFollowCameraSystem::UpdateEntity(GameEntity* _entity) {
     ///============================================================
     cameraTransform_->UpdateMatrix();
 }
-
-
 
 Vec3f PlayerFollowCameraSystem::Multiply(const Matrix4x4& rotationMatrix, const Vec3f& offset) {
     return Vec3f(

@@ -12,23 +12,23 @@ class PlayerStates
     friend void from_json(const nlohmann::json& j, PlayerStates& p);
 
 private: // variables
-    bool isAlive_ = true;
+    bool isAlive_        = true;
+    bool isBigBomHaving_ = false;
 
     float moveSpeed_; // 移動速度
-    float moveRadius_; // 移動半径
-    float theta_; // 現在の移動角度
     float direction_; // 移動方向
     float offSetY_;
-    int32_t bigBomPointMax_;
-    int32_t currentBigBomPoint_ = 0;
+
     Vec3f followCameraOffset_;
+
+    int32_t bigBomPointMax_;
+    int32_t bomExplotionNum_; // 爆発数
+    int32_t currentBigBomPoint_ = 0;
 
     Transform* pivotTransform_ = nullptr; // 回転の中心となるオブジェクト
     Transform* transform_      = nullptr; // 自身のTransform
 
-    // bom
-    int32_t bomExplotionNum_; // 爆発数
-    bool isBigBomHaving_ = false;
+   
 
 public:
     PlayerStates() {}
@@ -45,8 +45,6 @@ public:
 public: // accsessor
     /// getter
     float GetMoveSpeed() const { return moveSpeed_; }
-    float GetTheta() const { return theta_; }
-    float GetMoveRadius() const { return moveRadius_; }
     float GetOffSetY() const { return offSetY_; }
     float GetDirection() const { return direction_; }
     Transform* GetPivotTransform() const { return pivotTransform_; }
@@ -57,8 +55,7 @@ public: // accsessor
     Vec3f GetFollowOffset() const { return followCameraOffset_; }
     bool GetIsBigBomHaving() const { return isBigBomHaving_; }
     /// setter
-    void SetIncrementTheta(float _theta) { theta_ += _theta; }
-    void SetTheta(float _theta) { theta_ = _theta; }
+
     void SetDirection(float _direction) { direction_ = _direction; }
     void SetTransform(Transform* _transform) { transform_ = _transform; }
     void SetPivotTransform(Transform* _pivotTransform) { pivotTransform_ = _pivotTransform; }

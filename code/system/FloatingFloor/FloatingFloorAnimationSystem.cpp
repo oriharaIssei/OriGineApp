@@ -80,6 +80,7 @@ void FloatingFloorAnimationSystem::UpdateEntity(GameEntity* _entity) {
         ///---------------------------------------------------
     case ReactionStep::END:
         floatingFloorStatus->DamageShakeReset(animationStatus_);
+      /*  floatingFloorStatus->SetReactionStep(ReactionStep::NONE);*/
         break;
     default:
         break;

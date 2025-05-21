@@ -26,7 +26,6 @@ bool PlayerStates::Edit() {
     ImGui::Spacing();
 
     isChange |= DragGuiCommand("MoveSpeed", moveSpeed_, 0.01f);
-    isChange |= DragGuiCommand("MoveRadius", moveRadius_, 0.01f);
     isChange |= DragGuiCommand("OffSetY", offSetY_, 0.01f);
     isChange |= InputGuiCommand("bigBomPointMax", bigBomPointMax_);
     isChange |= DragGuiVectorCommand<3, float>("followCameraOffset", followCameraOffset_, 0.01f);
@@ -48,7 +47,6 @@ void PlayerStates::ReSetCurrentBigBomPoint() {
 void to_json(nlohmann::json& j, const PlayerStates& p) {
     j["isAlive"]            = p.isAlive_;
     j["moveSpeed"]          = p.moveSpeed_;
-    j["moveRadius"]         = p.moveRadius_;
     j["OffSetY"]            = p.offSetY_;
     j["bigBomPointMax"]     = p.bigBomPointMax_;
     j["followCameraOffset"] = p.followCameraOffset_;
@@ -57,7 +55,6 @@ void to_json(nlohmann::json& j, const PlayerStates& p) {
 void from_json(const nlohmann::json& j, PlayerStates& p) {
     j.at("isAlive").get_to(p.isAlive_);
     j.at("moveSpeed").get_to(p.moveSpeed_);
-    j.at("moveRadius").get_to(p.moveRadius_);
     j.at("OffSetY").get_to(p.offSetY_);
     j.at("bigBomPointMax").get_to(p.bigBomPointMax_);
     j.at("followCameraOffset").get_to(p.followCameraOffset_);

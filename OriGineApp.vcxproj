@@ -104,6 +104,7 @@
     <ClInclude Include="code\component\Block\BlockCombinationStatus.h" />
     <ClInclude Include="code\component\FloorUI\FloorUIController.h" />
     <ClInclude Include="code\component\FloorUI\FloorUIStatus.h" />
+    <ClInclude Include="code\component\GameCamera\CameraRenditionStatus.h" />
     <ClInclude Include="code\component\GameEndUI\GameEndUIStatus.h" />
     <ClInclude Include="code\component\Piller\FloatingFloorAnimationStatus.h" />
     <ClInclude Include="code\component\Timer\TimerAnimationStatus.h" />
@@ -187,6 +188,7 @@
     <ClInclude Include="code\system\FloorUI\FloorUISystem.h" />
     <ClInclude Include="code\system\Floor\DeleteFloorSystem.h" />
     <ClInclude Include="code\system\Floor\FloorUpdateMatrixSystem.h" />
+    <ClInclude Include="code\system\GameCamera\CameraShakeSystem.h" />
     <ClInclude Include="code\system\GameEndUI\GameEndUISystem.h" />
     <ClInclude Include="code\system\LeverlUP\LevelUIAdaptSystem.h" />
     <ClInclude Include="code\system\LeverlUP\LevelUIAnimationSystem.h" />
@@ -232,6 +234,7 @@
     <ClCompile Include="code\component\Block\BlockCombinationStatus.cpp" />
     <ClCompile Include="code\component\FloorUI\FloorUIController.cpp" />
     <ClCompile Include="code\component\FloorUI\FloorUIStatus.cpp" />
+    <ClCompile Include="code\component\GameCamera\CameraRenditionStatus.cpp" />
     <ClCompile Include="code\component\GameEndUI\GameEndUIStatus.cpp" />
     <ClCompile Include="code\component\Piller\FloatingFloorAnimationStatus.cpp" />
     <ClCompile Include="code\component\Timer\TimerAnimationStatus.cpp" />
@@ -317,6 +320,7 @@
     <ClCompile Include="code\system\FloorUI\FloorUISystem.cpp" />
     <ClCompile Include="code\system\Floor\DeleteFloorSystem.cpp" />
     <ClCompile Include="code\system\Floor\FloorUpdateMatrixSystem.cpp" />
+    <ClCompile Include="code\system\GameCamera\CameraShakeSystem.cpp" />
     <ClCompile Include="code\system\GameEndUI\GameEndUISystem.cpp" />
     <ClCompile Include="code\system\LeverlUP\LevelUIAdaptSystem.cpp" />
     <ClCompile Include="code\system\LeverlUP\LevelUIAnimationSystem.cpp" />

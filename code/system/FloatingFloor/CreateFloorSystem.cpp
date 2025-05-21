@@ -170,6 +170,8 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     floorUIStatus->SetStartPos(floorUIController->GetStartPos());
     floorUIStatus->SetEndPos(floorUIController->GetEndPos());
 
+    floorUIStatus->SetMaxScale(floorUIController->GetMaxScale());
+
     //rotate speed
     floorUIStatus->SetFloorRotateSpeed(floorUIController->GetRotateSpeed());
 

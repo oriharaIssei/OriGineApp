@@ -6,7 +6,6 @@
 
 void FloatingFloorAnimationStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
     /// 初期化でパラメータ編集してるから大丈夫、ここ消したら未定義値が出る
-   
 }
 
 bool FloatingFloorAnimationStatus::Edit() {
@@ -17,7 +16,7 @@ bool FloatingFloorAnimationStatus::Edit() {
     isChange = CheckBoxCommand("IsAlive", isAlive_);
 
     ImGui::Spacing();
-   
+
     isChange |= DragGuiCommand("shakeValue_", shakeValue_, 0.01f);
     isChange |= DragGuiCommand("shakeMaxTime_", shakeMaxTime_, 0.01f);
     isChange |= DragGuiCommand("constantShakeValue_", constantShakeValue_, 0.01f);
@@ -30,8 +29,8 @@ bool FloatingFloorAnimationStatus::Edit() {
 void FloatingFloorAnimationStatus::Finalize() {}
 
 void to_json(nlohmann::json& _json, const FloatingFloorAnimationStatus& _block) {
-    _json["shakeValue_"] = _block.shakeValue_;
-    _json["shakeMaxTime_"] = _block.shakeMaxTime_;
+    _json["shakeValue_"]         = _block.shakeValue_;
+    _json["shakeMaxTime_"]       = _block.shakeMaxTime_;
     _json["constantShakeValue_"] = _block.constantShakeValue_;
 }
 

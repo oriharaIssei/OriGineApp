@@ -130,6 +130,12 @@
     <Filter Include="system\GameEndUI">
       <UniqueIdentifier>{8f119c40-063a-428b-9bce-c7320a0a62ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\GameCamera">
+      <UniqueIdentifier>{249f735a-11b9-4cb8-bdc9-f31c0b912dbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\GameCamera">
+      <UniqueIdentifier>{69aa7fc8-b318-4625-a191-d4feabc48f8a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -500,6 +506,12 @@
     <ClInclude Include="code\system\FloatingFloor\FloatingFloorAnimationSystem.h">
       <Filter>system\FloatingFloor</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\GameCamera\CameraRenditionStatus.h">
+      <Filter>component\GameCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\GameCamera\CameraShakeSystem.h">
+      <Filter>system\GameCamera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -869,6 +881,12 @@
     </ClCompile>
     <ClCompile Include="code\system\FloatingFloor\FloatingFloorAnimationSystem.cpp">
       <Filter>system\FloatingFloor</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\GameCamera\CameraRenditionStatus.cpp">
+      <Filter>component\GameCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\GameCamera\CameraShakeSystem.cpp">
+      <Filter>system\GameCamera</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

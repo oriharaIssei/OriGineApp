@@ -19,7 +19,7 @@ private: // variables
     Vec3f startPos_ = {0.0f, 0.0f, 0.0f};
     Vec3f endPos_   = {0.0f, 0.0f, 0.0f};
 
-    Vec3f startScale_ = {1.0f, 1.0f, 1.0f};
+    Vec3f maxScale_ = {1.0f, 1.0f, 1.0f};
 
     // scale
 
@@ -49,7 +49,7 @@ public: // accessors
     bool GetIsAlive() const { return isAlive_; }
     const Vec3f& GetStartPos() const { return startPos_; }
     const Vec3f& GetEndPos() const { return endPos_; }
-    const Vec3f& GetStartScale() const { return startScale_; }
+    const Vec3f& GetMaxScale() const { return maxScale_; }
  
     const Easing& GetMoveEasing() const { return moveEasing_; }
     const Easing& GetOpenEasing() const { return openEasing_; }

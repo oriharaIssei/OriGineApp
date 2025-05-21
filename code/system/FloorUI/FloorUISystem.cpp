@@ -107,12 +107,18 @@ void FloorUISystem::UpdateEntity(GameEntity* entity) {
 
     Vec3f basePos   = floorUIStatus->GetPosition();
     Vec3f baseScale = floorUIStatus->GetBaseScale();
-
+    float rotateZ   = floorUIStatus->GetRotate();
+   
     ///* ------------------------------adapt------------------------------
 
     // pos
     transform->translate = basePos;
     transform->scale     = baseScale;
+
+     // Quaternionに変換
+    Quaternion q = Quaternion::FromEulerAngles(0.0f, 0.0f, rotateZ);
+    // クォータニオンで回転をセット
+    transform->rotate    = q;
 }
 
 void FloorUISystem::ComboReset() {

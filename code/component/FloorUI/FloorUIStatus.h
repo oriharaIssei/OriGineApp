@@ -89,7 +89,7 @@ public: // accessors
     void SetEndPos(const Vec3f& pos) { endPos_ = pos; }
 
     void SetBaseScale(const Vec3f& scale) { baseScale_ = scale; }
-    void SetStartScale(const Vec3f& scale) { maxScale_ = scale; }
+    void SetMaxScale(const Vec3f& scale) { maxScale_ = scale; }
 
     void SetFloorUIStep(FloorUIStep step) { floorUIStep_ = step; }
 

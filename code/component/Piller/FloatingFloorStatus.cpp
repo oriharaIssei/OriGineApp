@@ -65,10 +65,14 @@ void FloatingFloorStatus::DamageShake(const float& shakeValue, const float& delt
 }
 
 void FloatingFloorStatus::ConstantShake(const float& shakeValue) {
-    damageShakePos_[X] = ShakeWave<float>(1.0f, shakeValue);
+    if (isFall_) {
+        return;
+    }
+    damageShakePos_[X] = ShakeWave<float>(0.2f, shakeValue);
 }
 
 void FloatingFloorStatus::DamageShakeReset(FloatingFloorAnimationStatus* animestatus) {
+    isDamageShake_  = false;
     damageShakePos_ = {0.0f, 0.0f, 0.0f};
     shakeTime_      = animestatus->GetShakeMaxTime();
 }
@@ -81,6 +85,7 @@ void FloatingFloorStatus::RevivalReset() {
     isRevivaling_        = false;
     scoreUpRate_         = startScoreUpRate_;
     isDamageShake_       = false;
+    reactionStep_        = ReactionStep::NONE;
 }
 
 void to_json(nlohmann::json& _json, const FloatingFloorStatus& _block) {

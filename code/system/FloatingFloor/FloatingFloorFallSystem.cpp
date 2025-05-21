@@ -11,6 +11,7 @@
 /// app
 // component
 #include "component/Piller/FloatingFloorStatus.h"
+#include"component/GameCamera/CameraRenditionStatus.h"
 #include"component/Menu/MenuStatus.h"
 
 // system
@@ -30,6 +31,7 @@ void FloatingFloorFallSystem::UpdateEntity(GameEntity* _entity) {
       // ポーズ中は通さない
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* menuEntity                   = ecsManager->getUniqueEntity("Menu");
+    GameEntity* cameraRenditionEntity                   = ecsManager->getUniqueEntity("CameraRendition");
 
     if (!menuEntity) {
         return;
@@ -46,6 +48,8 @@ void FloatingFloorFallSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     FloatingFloorStatus* entityStatus = getComponent<FloatingFloorStatus>(_entity);
+    Transform* entityTransform        = getComponent<Transform>(_entity);
+    CameraRenditionStatus* cameraRenditionStatus = getComponent<CameraRenditionStatus>(cameraRenditionEntity);
 
     if (!entityStatus) {
         return;
@@ -55,8 +59,7 @@ void FloatingFloorFallSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    Transform* entityTransform = getComponent<Transform>(_entity);
-
+  
     // フロアの落下処理
     entityStatus->SetIncrementFallEaseT(Engine::getInstance()->getDeltaTime() * entityStatus->GetFallSpeed());
 
@@ -78,6 +81,7 @@ void FloatingFloorFallSystem::UpdateEntity(GameEntity* _entity) {
 
     // 破壊条件
     if (entityTransform->translate[Y] <= entityStatus->GetFallPosY()) {
+        cameraRenditionStatus->SetIsShaking(true);
         entityStatus->SetIsDestroy(true);
     }
 }
