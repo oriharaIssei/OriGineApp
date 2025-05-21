@@ -24,6 +24,7 @@
 #include "system/Matrix/UpdateMatrixSystem.h"
 #include"system/FloatingFloor/CheckIsUnderPlayer.h"
 #include"system/FloorUI/FloorUISystem.h"
+#include"system/FloatingFloor/FloatingFloorAnimationSystem.h"
 
 CreateFloorSystem::CreateFloorSystem() : ISystem(SystemType::Initialize) {}
 CreateFloorSystem::~CreateFloorSystem() {}
@@ -169,7 +170,7 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     // ================================= System ================================= //
 
     //------------------ Input
-    // None
+    // NoneFloatingFloorAnimationSystem
 
     //------------------ StateTransition
     ecs->getSystem<CanageStateFallSystem>()->addEntity(floatingFloor);
@@ -179,6 +180,7 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     ecs->getSystem<FloatingFloorFallSystem>()->addEntity(floatingFloor);
     ecs->getSystem<FloatingFloorRevivalSystem>()->addEntity(floatingFloor);
     ecs->getSystem<UpdateMatrixSystem>()->addEntity(floatingFloor);
+    ecs->getSystem<FloatingFloorAnimationSystem>()->addEntity(floatingFloor);
 
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(floorUIEntity);
     ecs->getSystem<FloorUISystem>()->addEntity(floorUIEntity);

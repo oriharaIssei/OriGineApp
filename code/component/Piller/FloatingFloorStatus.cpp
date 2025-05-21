@@ -48,24 +48,12 @@ void FloatingFloorStatus::TakeBigDamage() {
     currentHP_ = 0;
 }
 
-void FloatingFloorStatus::ChangeReactionMode() {
-    switch (reactionStep_) {
-    case ReactionStep::NONE:
-        reactionStep_ = ReactionStep::DAMAGESHAKE;
-        break;
-    case ReactionStep::CONSTANTSHAKE:
-        reactionStep_ = ReactionStep::CHANGEFALLSTATE;
-        break;
-    case ReactionStep::END:
-        reactionStep_ = ReactionStep::DAMAGESHAKE;
-        break;
-    default:
-        break;
-    }
+void FloatingFloorStatus::ChangeDamageShake() {
+    isDamageShake_ = true;
 }
 
 void FloatingFloorStatus::DamageShake(FloatingFloorAnimationStatus* animestatus, const float& deltaTime) {
-    damageShakePos_ = ShakeWave<Vec3f>(shakeTime_, animestatus->GetShakeValue());
+    damageShakePos_[X] = ShakeWave<float>(shakeTime_, animestatus->GetShakeValue());
     shakeTime_ -= deltaTime;
 
     if (shakeTime_ > 0.0f) {
@@ -89,6 +77,7 @@ void FloatingFloorStatus::RevivalReset() {
     isFall_              = false;
     isRevivaling_        = false;
     scoreUpRate_         = startScoreUpRate_;
+    isDamageShake_       = false;
 }
 
 void to_json(nlohmann::json& _json, const FloatingFloorStatus& _block) {

@@ -10,6 +10,7 @@ enum class ReactionStep {
     DAMAGESHAKE,
     CONSTANTSHAKE,
     CHANGEFALLSTATE,
+    FALLED,
     END,
 };
 

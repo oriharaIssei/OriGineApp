@@ -36,10 +36,11 @@ void FloatingFloorAnimationSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    animationStatus_ = getComponent<FloatingFloorAnimationStatus>(animationEntity);
+    animationStatus_                         = getComponent<FloatingFloorAnimationStatus>(animationEntity);
     FloatingFloorStatus* floatingFloorStatus = getComponent<FloatingFloorStatus>(_entity);
+    Transform* transform                     = getComponent<Transform>(_entity);
 
-    if (!animationStatus_ || !floatingFloorStatus) {
+    if (!animationStatus_ || !floatingFloorStatus || !transform) {
         return;
     }
 
@@ -54,8 +55,13 @@ void FloatingFloorAnimationSystem::UpdateEntity(GameEntity* _entity) {
         /// NONE
         ///---------------------------------------------------
     case ReactionStep::NONE:
-        time_ = 0.0f;
-      
+
+        if (!floatingFloorStatus->GetIsDamageShake()) {
+            return;
+        }
+        floatingFloorStatus->DamageShakeReset(animationStatus_);
+
+        floatingFloorStatus->SetReactionStep(ReactionStep::DAMAGESHAKE);
         break;
 
         ///---------------------------------------------------
@@ -63,7 +69,7 @@ void FloatingFloorAnimationSystem::UpdateEntity(GameEntity* _entity) {
         ///---------------------------------------------------
     case ReactionStep::DAMAGESHAKE:
         time_ = 0.0f;
-        floatingFloorStatus->DamageShake(animationStatus_,deltaTime);
+        floatingFloorStatus->DamageShake(animationStatus_, deltaTime);
 
         break;
 
@@ -71,16 +77,16 @@ void FloatingFloorAnimationSystem::UpdateEntity(GameEntity* _entity) {
         /// 待機
         ///---------------------------------------------------
     case ReactionStep::CONSTANTSHAKE:
-       /* time_ += deltaTime;
+        /* time_ += deltaTime;
 
-        if (time_ < animationStatus_->GetWaitTime()) {
-            return;
-        }
+         if (time_ < animationStatus_->GetWaitTime()) {
+             return;
+         }
 
-        animationStatus_->SetScoreUIStep(ScoreUIStep::ADAPT);*/
+         animationStatus_->SetScoreUIStep(ScoreUIStep::ADAPT);*/
 
         break;
-      
+
         ///---------------------------------------------------
         /// 終わり
         ///---------------------------------------------------
@@ -91,19 +97,7 @@ void FloatingFloorAnimationSystem::UpdateEntity(GameEntity* _entity) {
         break;
     }
 
-    //// 実際にタイム加算
-    // scoreStatus_->TimeIncrementAnimation(deltaTime);
-    // scoreStatus_->BaseScoreUPAmplitudeScaling(deltaTime);
-
-    // if (scoreStatus_->GetCurrentScore() <= 0.0f) {
-    //     scoreStatus_->SetCurrentScore(0.0f);
-    // }
-
-    // if (scoreStatus_->GetCurrentScore() < scoreStatus_->GetScoreMax()) {
-    //     return;
-    // }
-
-    // scoreStatus_->SetCurrentScore(scoreStatus_->GetScoreMax());
+   transform->translate[X] = floatingFloorStatus->GetSavePos()[X] + floatingFloorStatus->GetDamageShakePos()[X];
 }
 
 void FloatingFloorAnimationSystem::ComboReset() {

@@ -49,6 +49,7 @@ private: // variables
     // reaction
     ReactionStep reactionStep_=ReactionStep::NONE;
     float shakeTime_=0.0f;
+    bool isDamageShake_       = false;
 
     public : FloatingFloorStatus() {}
     virtual ~FloatingFloorStatus() = default;
@@ -64,12 +65,13 @@ private: // variables
 
     void SetColumDecrement();
 
-    void ChangeReactionMode();
+    void ChangeDamageShake();
 
     void DamageShake(FloatingFloorAnimationStatus* animestatus,const float&deltaTime);
 
 public: // accsessor
     /// getter
+    bool GetIsDamageShake() const { return isDamageShake_; }
     int32_t GetColumNum() const { return columNum_; }
     int32_t GetRowNum() const { return rowNum_; }
     int32_t GetCurrentHP() const { return currentHP_; }
@@ -90,6 +92,7 @@ public: // accsessor
     Vec3f GetFallCollisionSizeMax() const { return fallCollisionSizeMax_; }
     Vec3f GetFallCollisionCenterPos() const { return fallCollisionCenterPos_; }
     Vec3f GetSavePos() const { return savePos_; }
+    Vec3f GetDamageShakePos() const { return damageShakePos_; }
     ReactionStep GetReactionStep() const { return reactionStep_; }
 
     /// setter

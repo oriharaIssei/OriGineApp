@@ -75,7 +75,7 @@ void FloatingFloorDamageSystem::UpdateEntity(GameEntity* _entity) {
                      floatingFloorStatus->SetScoreUpRatio(ratio);
                     floatingFloorStatus->TakeBigDamage();
                 } else {
-                    floatingFloorStatus->ChangeReactionMode();
+                    floatingFloorStatus->ChangeDamageShake();
                     floatingFloorStatus->TakeDamage();
                 }
             }

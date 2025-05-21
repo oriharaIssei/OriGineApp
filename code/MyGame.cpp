@@ -74,6 +74,7 @@
 #include "component/ResultUI/ResultUIScoreStatus.h"
 #include "component/Timer/TimerAnimationStatus.h"
 #include"component/effect/post/VignetteParam.h"
+#include"component/Piller/FloatingFloorAnimationStatus.h"
 
 // system
 #include "Application/code/system/BigBom/BigBomCollisionExSystem.h"
@@ -152,6 +153,7 @@
 #include"system/Score/PlusScoreIconSystem.h"
 #include"system/postRender/VignetteEffect.h"
 #include"system/Timer/TimerAdaptVignetSystem.h"
+#include"system/FloatingFloor/FloatingFloorAnimationSystem.h"
 
 MyGame::MyGame() {}
 
@@ -290,6 +292,7 @@ void MyGame::RegisterUsingComponents() {
     ecsManager->registerComponent<TimerAnimationStatus>();
     ecsManager->registerComponent<BlockCombinationStatus>();
     ecsManager->registerComponent<VignetteParam>();
+    ecsManager->registerComponent<FloatingFloorAnimationStatus>();
 
     ecsManager->registerComponent<Transform>();
     ecsManager->registerComponent<CameraTransform>();
@@ -396,6 +399,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<PlusScoreIconSystem>();
     ecsManager->registerSystem<VignetteEffect>();
     ecsManager->registerSystem<TimerAdaptVignetSystem>();
+    ecsManager->registerSystem<FloatingFloorAnimationSystem>();
 
     ecsManager->registerSystem<FloorUISystem>();
     ecsManager->registerSystem<CheckIsUnderPlayer>();
