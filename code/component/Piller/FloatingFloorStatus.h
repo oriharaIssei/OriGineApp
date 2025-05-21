@@ -44,14 +44,15 @@ private: // variables
 
     // pos
     Vec3f savePos_;
-    Vec3f damageShakePos_={0.0f,0.0f,0.0f};
+    Vec3f damageShakePos_ = {0.0f, 0.0f, 0.0f};
 
     // reaction
-    ReactionStep reactionStep_=ReactionStep::NONE;
-    float shakeTime_=0.0f;
-    bool isDamageShake_       = false;
+    ReactionStep reactionStep_ = ReactionStep::NONE;
+    float shakeTime_           = 0.0f;
+    bool isDamageShake_        = false;
 
-    public : FloatingFloorStatus() {}
+public:
+    FloatingFloorStatus() {}
     virtual ~FloatingFloorStatus() = default;
 
     void Initialize(GameEntity* _entity) override;
@@ -67,7 +68,7 @@ private: // variables
 
     void ChangeDamageShake();
 
-    void DamageShake(FloatingFloorAnimationStatus* animestatus,const float&deltaTime);
+    void DamageShake(FloatingFloorAnimationStatus* animestatus, const float& deltaTime);
 
 public: // accsessor
     /// getter
