@@ -1,9 +1,8 @@
 #include "FloatingFloorStatus.h"
 /// externals
 #include "imgui/imgui.h"
-#include "myGui/MyGui.h"
-#include <string>
 #include "KetaShake.h"
+#include "myGui/MyGui.h"
 
 void FloatingFloorStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
     fallPosY_  = 0.0f;
@@ -52,23 +51,27 @@ void FloatingFloorStatus::ChangeDamageShake() {
     isDamageShake_ = true;
 }
 
-void FloatingFloorStatus::DamageShake(FloatingFloorAnimationStatus* animestatus, const float& deltaTime) {
-    damageShakePos_[X] = ShakeWave<float>(shakeTime_, animestatus->GetShakeValue());
+void FloatingFloorStatus::DamageShake(const float& shakeValue, const float& deltaTime) {
+    damageShakePos_[X] = Shake<float>(shakeTime_, shakeValue);
     shakeTime_ -= deltaTime;
 
     if (shakeTime_ > 0.0f) {
         return;
     }
-
-    shakeTime_ = 0.0f;
+    //リセット
+    shakeTime_      = 0.0f;
     damageShakePos_ = {0.0f, 0.0f, 0.0f};
     reactionStep_   = ReactionStep::CONSTANTSHAKE;
 }
 
+void FloatingFloorStatus::ConstantShake(const float& shakeValue) {
+    damageShakePos_[X] = ShakeWave<float>(1.0f, shakeValue);
+}
+
 void FloatingFloorStatus::DamageShakeReset(FloatingFloorAnimationStatus* animestatus) {
     damageShakePos_ = {0.0f, 0.0f, 0.0f};
-    shakeTime_ = animestatus->GetShakeMaxTime();
- }
+    shakeTime_      = animestatus->GetShakeMaxTime();
+}
 
 void FloatingFloorStatus::RevivalReset() {
     isDestroy_           = false;

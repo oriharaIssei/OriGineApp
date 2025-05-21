@@ -50,6 +50,7 @@ void CanageStateFallSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     fallSound->Play();//再生
+    fAndPStatus->SetReactionStep(ReactionStep::END);
     fAndPStatus->SetIsFall(true);
 
    

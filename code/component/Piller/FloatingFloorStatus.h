@@ -62,13 +62,13 @@ public:
     void TakeDamage();
     void TakeBigDamage();
     void RevivalReset();
-    void DamageShakeReset(FloatingFloorAnimationStatus* animestatus);
-
+  
     void SetColumDecrement();
 
+      void DamageShakeReset(FloatingFloorAnimationStatus* animestatus);
     void ChangeDamageShake();
-
-    void DamageShake(FloatingFloorAnimationStatus* animestatus, const float& deltaTime);
+    void DamageShake(const float& shakeValue, const float& deltaTime);
+    void ConstantShake(const float& shakeValue);
 
 public: // accsessor
     /// getter

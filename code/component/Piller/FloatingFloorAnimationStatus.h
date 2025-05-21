@@ -20,11 +20,12 @@ class FloatingFloorAnimationStatus
     friend void from_json(const nlohmann::json& _json, FloatingFloorAnimationStatus& _block);
 
 private: // variables
-
     bool isAlive_ = true;
 
     float shakeValue_;
     float shakeMaxTime_;
+
+    float constantShakeValue_;
 
 public:
     FloatingFloorAnimationStatus() {}
@@ -34,12 +35,11 @@ public:
     bool Edit() override;
     void Finalize() override;
 
-  
-
 public: // accsessor
     /// getter
     float GetShakeValue() const { return shakeValue_; }
     float GetShakeMaxTime() const { return shakeMaxTime_; }
+    float GetConstantShakeValue() const { return constantShakeValue_; }
     /// setter
   
    

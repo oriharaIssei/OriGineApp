@@ -51,9 +51,10 @@ void CheckIsUnderPlayer::UpdateEntity(GameEntity* _entity) {
     float maxX = center[X] + max[X];
 
     bool isInX = (playerpos[X] >= minX && playerpos[X] <= maxX);
+    bool isFalling = floatingFloorStatus->GetIsFall();
 
     //フラグ立てる
-    floatingFloorStatus->SetIsPlayerUnderTheFloor(isInX);
+    floatingFloorStatus->SetIsPlayerUnderTheFloor(isInX && !isFalling);
 
 }
 

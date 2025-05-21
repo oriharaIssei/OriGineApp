@@ -46,10 +46,6 @@ void FloatingFloorAnimationSystem::UpdateEntity(GameEntity* _entity) {
 
     float deltaTime = Engine::getInstance()->getDeltaTime();
 
-    /* if (scoreStatus_->GetIsScoreChange()) {
-         scoreStatus_->SetScoreUIStep(ScoreUIStep::INIT);
-    }*/
-
     switch (floatingFloorStatus->GetReactionStep()) {
         ///---------------------------------------------------
         /// NONE
@@ -65,39 +61,31 @@ void FloatingFloorAnimationSystem::UpdateEntity(GameEntity* _entity) {
         break;
 
         ///---------------------------------------------------
-        /// スコアアップ加算
+        /// ダメージシェイク
         ///---------------------------------------------------
     case ReactionStep::DAMAGESHAKE:
-        time_ = 0.0f;
-        floatingFloorStatus->DamageShake(animationStatus_, deltaTime);
 
+        floatingFloorStatus->DamageShake(animationStatus_->GetShakeValue(), deltaTime);
         break;
 
         ///---------------------------------------------------
-        /// 待機
+        /// 常に揺れる
         ///---------------------------------------------------
     case ReactionStep::CONSTANTSHAKE:
-        /* time_ += deltaTime;
-
-         if (time_ < animationStatus_->GetWaitTime()) {
-             return;
-         }
-
-         animationStatus_->SetScoreUIStep(ScoreUIStep::ADAPT);*/
-
+        floatingFloorStatus->ConstantShake(animationStatus_->GetConstantShakeValue());
         break;
 
         ///---------------------------------------------------
         /// 終わり
         ///---------------------------------------------------
     case ReactionStep::END:
-
+        floatingFloorStatus->DamageShakeReset(animationStatus_);
         break;
     default:
         break;
     }
 
-   transform->translate[X] = floatingFloorStatus->GetSavePos()[X] + floatingFloorStatus->GetDamageShakePos()[X];
+    transform->translate[X] = floatingFloorStatus->GetSavePos()[X] + floatingFloorStatus->GetDamageShakePos()[X];
 }
 
 void FloatingFloorAnimationSystem::ComboReset() {

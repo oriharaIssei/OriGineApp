@@ -68,9 +68,6 @@ void FloatingFloorFallSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    /*/// columを下げる
-    entityStatus->SetColumDecrement();*/
-
     // savePosY_を更新
     entityTransform->translate[Y] = entityStatus->GetFallPosY();
   /*  entityStatus->SetStartPosY(entityTransform->translate[Y]);*/
