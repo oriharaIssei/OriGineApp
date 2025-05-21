@@ -1,18 +1,18 @@
 #include "MyGame.h"
 
-/// engine
-#include "Engine.h"
+/// engine include
+#define ENGINE_INCLUDE
+#define ENGINE_ECS
+#include <EngineInclude.h>
 
 // scene
-#include "scene/GameScene.h"
-#include "scene/TitleScene.h"
+#include "iScene/IScene.h"
 #include "sceneManager/SceneManager.h"
 
 /// lib
 #include "globalVariables/GlobalVariables.h"
 
 #ifdef _DEBUG
-
 /// editor
 #include "ECSEditor.h"
 #include "module/editor/EditorGroup.h"
@@ -20,7 +20,6 @@
 #include "ECSDebugger.h"
 #include "logger/Logger.h"
 #include "module/debugger/DebuggerGroup.h"
-
 #endif // DEBUG
 
 MyGame::MyGame() {}
@@ -31,23 +30,20 @@ void MyGame::Initialize() {
     ///=================================================================================================
     // Game のための 初期化
     ///=================================================================================================
-    engine_ = Engine::getInstance();
+    variables_ = GlobalVariables::getInstance();
 
-    variables_    = GlobalVariables::getInstance();
+    engine_       = Engine::getInstance();
     sceneManager_ = SceneManager::getInstance();
 
     variables_->LoadAllFile();
     engine_->Initialize();
     sceneManager_->Initialize();
 
-    // exe 上で 使用するscene
-    sceneManager_->addScene("Title", []() { return std::make_unique<TitleScene>(); });
-    sceneManager_->addScene("Game", []() { return std::make_unique<GameScene>(); });
+    RegisterUsingComponents();
+    RegisterUsingSystems();
 
-    SerializedField<std::string> startupSceneName{"Settings", "Scene", "StartupSceneName"};
-    sceneManager_->changeScene(startupSceneName);
-    // シーンの変更を適応するために 一度更新
-    sceneManager_->executeSceneChange();
+    sceneManager_->sceneChange2StartupScene();
+
 #ifdef _DEBUG
     ///=================================================================================================
     // Editor の初期化
@@ -86,6 +82,15 @@ void MyGame::Initialize() {
 }
 
 void MyGame::Finalize() {
+#ifdef _DEBUG
+    EditorGroup* editorGroup     = EditorGroup::getInstance();
+    DebuggerGroup* debuggerGroup = DebuggerGroup::getInstance();
+    editorGroup->Finalize();
+    debuggerGroup->Finalize();
+#endif // _DEBUG
+
+    SceneFinalize();
+
     sceneManager_->Finalize();
     engine_->Finalize();
 }
@@ -105,4 +110,86 @@ void MyGame::Run() {
 
         engine_->EndFrame();
     }
+}
+
+void MyGame::RegisterUsingComponents() {
+    ECSManager* ecsManager = ECSManager::getInstance();
+
+    ecsManager->registerComponent<Transform>();
+    ecsManager->registerComponent<CameraTransform>();
+
+    ecsManager->registerComponent<DirectionalLight>();
+    ecsManager->registerComponent<PointLight>();
+    ecsManager->registerComponent<SpotLight>();
+
+    ecsManager->registerComponent<Rigidbody>();
+
+    ecsManager->registerComponent<AABBCollider>();
+    ecsManager->registerComponent<SphereCollider>();
+
+    ecsManager->registerComponent<Emitter>();
+    ecsManager->registerComponent<TextureEffectParam>();
+    ecsManager->registerComponent<VignetteParam>();
+
+    ecsManager->registerComponent<Audio>();
+
+    ecsManager->registerComponent<ModelNodeAnimation>();
+    ecsManager->registerComponent<PrimitiveNodeAnimation>();
+
+    ecsManager->registerComponent<ModelMeshRenderer>();
+    ecsManager->registerComponent<PlaneRenderer>();
+    ecsManager->registerComponent<SpriteRenderer>();
+    ecsManager->registerComponent<LineRenderer>();
+    ecsManager->registerComponent<SkyboxRenderer>();
+}
+
+void MyGame::RegisterUsingSystems() {
+    ECSManager* ecsManager = ECSManager::getInstance();
+
+    /// ====================================================================================================
+    // Initialize
+    /// ====================================================================================================
+
+    /// ===================================================================================================
+    // Input
+    /// ===================================================================================================
+
+    /// ===================================================================================================
+    // StateTransition
+    /// ===================================================================================================
+
+    /// =================================================================================================
+    // Movement
+    /// =================================================================================================
+    ecsManager->registerSystem<MoveSystemByRigidBody>();
+
+    /// =================================================================================================
+    // Collision
+    /// =================================================================================================
+    ecsManager->registerSystem<CollisionCheckSystem>();
+
+    /// =================================================================================================
+    // Effect
+    /// =================================================================================================
+    ecsManager->registerSystem<EmitterWorkSystem>();
+    ecsManager->registerSystem<PrimitiveNodeAnimationWorkSystem>();
+    ecsManager->registerSystem<TextureEffectAnimation>();
+
+    /// =================================================================================================
+    // Render
+    /// =================================================================================================
+    ecsManager->registerSystem<ParticleRenderSystem>();
+    ecsManager->registerSystem<SpriteRenderSystem>();
+    ecsManager->registerSystem<TexturedMeshRenderSystem>();
+    ecsManager->registerSystem<EffectTexturedMeshRenderSystem>();
+    ecsManager->registerSystem<LineRenderSystem>();
+    ecsManager->registerSystem<ColliderRenderingSystem>();
+    ecsManager->registerSystem<SkyboxRender>();
+
+    /// =================================================================================================
+    // PostRender
+    /// =================================================================================================
+    ecsManager->registerSystem<GrayscaleEffect>();
+    ecsManager->registerSystem<SmoothingEffect>();
+    ecsManager->registerSystem<VignetteEffect>();
 }

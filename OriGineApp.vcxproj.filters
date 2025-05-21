@@ -4,9 +4,6 @@
     <Filter Include="component">
       <UniqueIdentifier>{18DEAB42-8448-60B9-CD86-115F39303E0E}</UniqueIdentifier>
     </Filter>
-    <Filter Include="scene">
-      <UniqueIdentifier>{D3075810-3F1C-80C1-089E-232174717CF2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="system">
       <UniqueIdentifier>{8AE4EE1C-7686-19F3-5F41-2D474B82A043}</UniqueIdentifier>
     </Filter>
@@ -25,12 +22,6 @@
     </ClInclude>
     <ClInclude Include="code\component\SceneChanger.h">
       <Filter>component</Filter>
-    </ClInclude>
-    <ClInclude Include="code\scene\GameScene.h">
-      <Filter>scene</Filter>
-    </ClInclude>
-    <ClInclude Include="code\scene\TitleScene.h">
-      <Filter>scene</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Input\ButtonInputSystem.h">
       <Filter>system\Input</Filter>
@@ -74,12 +65,6 @@
     </ClCompile>
     <ClCompile Include="code\component\SceneChanger.cpp">
       <Filter>component</Filter>
-    </ClCompile>
-    <ClCompile Include="code\scene\GameScene.cpp">
-      <Filter>scene</Filter>
-    </ClCompile>
-    <ClCompile Include="code\scene\TitleScene.cpp">
-      <Filter>scene</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Input\ButtonInputSystem.cpp">
       <Filter>system\Input</Filter>

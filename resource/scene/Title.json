@@ -2,18 +2,64 @@
     "Entities": [
         {
             "Components": {
-                "AABBCollider": [
+                "DirectionalLight": [
                     {
-                        "max": [
-                            33.0,
-                            22.0,
-                            11.0
-                        ],
-                        "min": [
-                            3.0,
-                            2.0,
+                        "color": [
+                            1.0,
+                            1.0,
                             1.0
                         ],
+                        "direction": [
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "intensity": 0.4099999964237213,
+                        "isActive": true
+                    }
+                ]
+            },
+            "Name": "light",
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "PlaneRenderer": [
+                    {
+                        "blendMode": 1,
+                        "isRenderer": true,
+                        "material": {
+                            "color": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "enableLighting": false,
+                            "shininess": 0.0,
+                            "specularColor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "uvRotate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "uvScale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "uvTranslate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "textureDirectory": "application/resource/Models\\axis",
+                        "textureFileName": "uvChecker.png",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -22,12 +68,155 @@
                                 1.0
                             ],
                             "scale": [
-                                1.0,
+                                10.0,
+                                10.0,
+                                10.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.7799999713897705
+                            ]
+                        }
+                    }
+                ],
+                "TextureEffectParam": [
+                    {
+                        "dissolveAnimDuration": 1.0,
+                        "dissolveAnimIsLoop": false,
+                        "dissolveAnimIsPlay": false,
+                        "dissolveAnimRotate": [
+                            {
+                                "time": 0.0,
+                                "value": 0.0
+                            }
+                        ],
+                        "dissolveAnimScale": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    1.0,
+                                    1.0
+                                ]
+                            }
+                        ],
+                        "dissolveAnimTranslate": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.14899712800979614,
+                                "value": [
+                                    0.0,
+                                    0.10000000149011612
+                                ]
+                            },
+                            {
+                                "time": 0.5071633458137512,
+                                "value": [
+                                    0.0,
+                                    0.30000001192092896
+                                ]
+                            },
+                            {
+                                "time": 1.0,
+                                "value": [
+                                    0.0,
+                                    1.100000023841858
+                                ]
+                            }
+                        ],
+                        "dissolveTexPath": "application/resource/Texture/gimacho.png",
+                        "dissolveThreshold": 0.8199999928474426,
+                        "dissolveUV": {
+                            "rotate": 0.0,
+                            "scale": [
                                 1.0,
                                 1.0
                             ],
                             "translate": [
                                 0.0,
+                                0.0
+                            ]
+                        },
+                        "distortionAnimDuration": 0.7200000286102295,
+                        "distortionAnimIsLoop": false,
+                        "distortionAnimIsPlay": false,
+                        "distortionAnimRotate": [
+                            {
+                                "time": 0.0,
+                                "value": -431602080.0
+                            },
+                            {
+                                "time": 0.6725501418113708,
+                                "value": 0.4000000059604645
+                            }
+                        ],
+                        "distortionAnimScale": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ],
+                        "distortionAnimTranslate": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.7200000286102295,
+                                "value": [
+                                    0.0,
+                                    0.30000001192092896
+                                ]
+                            }
+                        ],
+                        "distortionStrength": 0.20999999344348907,
+                        "distortionTexPath": "application/resource/Models\\axis/uvChecker.png",
+                        "distortionUV": {
+                            "rotate": -431602080.0,
+                            "scale": [
+                                0.0,
+                                0.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "effectFlag": 7,
+                        "maskAnimDuration": 0.8999999761581421,
+                        "maskAnimIsLoop": false,
+                        "maskAnimIsPlay": false,
+                        "maskAnimRotate": [],
+                        "maskAnimScale": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    1.0,
+                                    1.0
+                                ]
+                            }
+                        ],
+                        "maskAnimTranslate": [],
+                        "maskTexPath": "application/resource/Texture/gimacho.png",
+                        "maskUV": {
+                            "rotate": 0.0,
+                            "scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
                                 0.0,
                                 0.0
                             ]
@@ -36,69 +225,62 @@
                 ]
             },
             "Name": "Entity",
+            "Systems": [
+                {
+                    "SystemName": "TextureEffectAnimation",
+                    "SystemType": 5
+                },
+                {
+                    "SystemName": "EffectTexturedMeshRenderSystem",
+                    "SystemType": 6
+                }
+            ],
             "isUnique": false
         }
     ],
     "Systems": [
         {},
-        {
-            "ButtonInputSystem": {
-                "Priority": 0,
-                "isActive": true
-            }
-        },
-        {
-            "ChangeSceneByButton": {
-                "Priority": 0,
-                "isActive": true
-            },
-            "UpdateButtonColorByState": {
-                "Priority": 0,
-                "isActive": true
-            }
-        },
+        {},
+        {},
         {
             "MoveSystemByRigidBody": {
-                "Priority": 0,
-                "isActive": true
+                "Priority": 0
             }
         },
         {
             "CollisionCheckSystem": {
-                "Priority": 0,
-                "isActive": true
+                "Priority": 0
             }
         },
         {
             "EmitterWorkSystem": {
-                "Priority": 0,
-                "isActive": true
+                "Priority": 0
             },
             "PrimitiveNodeAnimationWorkSystem": {
-                "Priority": 0,
-                "isActive": true
+                "Priority": 0
             }
         },
         {
             "ColliderRenderingSystem": {
-                "Priority": 0,
-                "isActive": true
+                "Priority": 1
+            },
+            "EffectTexturedMeshRenderSystem": {
+                "Priority": 0
             },
             "LineRenderSystem": {
-                "Priority": 0,
-                "isActive": true
+                "Priority": 1
             },
             "ParticleRenderSystem": {
-                "Priority": 0,
-                "isActive": true
+                "Priority": 1
+            },
+            "SkyboxRender": {
+                "Priority": 0
             },
             "SpriteRenderSystem": {
-                "Priority": 0,
-                "isActive": true
+                "Priority": 1
             },
             "TexturedMeshRenderSystem": {
-                "Priority": 0,
-                "isActive": true
+                "Priority": 1
             }
         },
         {}
