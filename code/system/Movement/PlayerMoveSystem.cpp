@@ -36,7 +36,7 @@ void PlayerMoveSystem::UpdateEntity(GameEntity* _entity) {
     Quaternion cameraRotation = getComponent<CameraTransform>(gameCamera)->rotate;
 
     // 入力方向をカメラ基準に変換
-    cameraRotation = inputRotation * cameraRotation;
+    cameraRotation = Quaternion::Normalize(inputRotation * cameraRotation);
 
     movementDirection = movementDirection * MakeMatrix::RotateQuaternion(cameraRotation);
 

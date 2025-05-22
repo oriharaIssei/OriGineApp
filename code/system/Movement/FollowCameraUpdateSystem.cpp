@@ -18,18 +18,20 @@ void FollowCameraUpdateSystem::Finalize() {
 void FollowCameraUpdateSystem::UpdateEntity(GameEntity* _entity) {
     CameraController* cameraController = getComponent<CameraController>(_entity);
     CameraTransform* cameraTransform   = getComponent<CameraTransform>(_entity);
+
     if (cameraController->getFollowTarget()) {
+        // ============= interTarget ============= //
+        cameraController->setInterTarget(Lerp(Vec3f(cameraController->getFollowTarget()->worldMat[3]), cameraController->getInterTarget(), cameraController->getInterTargetInterpolation()));
+
         // ============= rotate ============= //
         // Quaternion で 回転
-        Vec3f targetDirection   = Vec3f::Normalize(cameraController->getInterTarget() - cameraTransform->translate);
-        Vec3f targetDirectionXZ = Vec3f::Normalize(Vec3f(targetDirection[X], 0.0f, targetDirection[Z]));
-        float yaw               = atan2(targetDirectionXZ[X], targetDirectionXZ[Z]);
-        float pitch             = atan2(targetDirection[Y], Vec3f::Length(Vec3f(targetDirection[X], 0.0f, targetDirection[Z])));
-        Quaternion newRotate    = Quaternion::FromEulerAngles(pitch, yaw, 0.0f);
-        cameraTransform->rotate = Lerp(cameraTransform->rotate, newRotate, cameraController->getRotateSensitivity());
+        Vec2f destinationAngleXY = cameraController->getDestinationAngleXY();
 
-        
-         // ============= translate ============= //
+        Quaternion destinationAngleQuat = Quaternion::FromEulerAngles({destinationAngleXY, 0.f});
+        cameraTransform->rotate         = Slerp(cameraTransform->rotate, destinationAngleQuat, cameraController->getRotateSensitivity());
+        cameraTransform->rotate[X]      = std::clamp(cameraTransform->rotate[X], cameraController->getMinRotateX(), cameraController->getMaxRotateX());
+
+        // ============= translate ============= //
         // FollowTarget を中心に回転
         Vec3f followTargetPosition = cameraController->getInterTarget();
         Vec3f offset               = cameraController->getFollowOffset();
@@ -39,7 +41,6 @@ void FollowCameraUpdateSystem::UpdateEntity(GameEntity* _entity) {
 
         // 新しいカメラ位置を計算
         cameraTransform->translate = followTargetPosition + rotatedOffset;
-
     }
 
     cameraTransform->UpdateMatrix();

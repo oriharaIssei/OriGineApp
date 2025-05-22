@@ -22,6 +22,21 @@
 #include "module/debugger/DebuggerGroup.h"
 #endif // DEBUG
 
+/// =====================================================
+// Application Include
+/// =====================================================
+// component
+#include "component/cameraController/CameraController.h"
+#include "component/Player/PlayerInput.h"
+#include "component/Player/PlayerStatus.h"
+
+// system
+#include "system/Initialize/SettingGameCameraTarget.h"
+#include "system/Input/CameraInputSystem.h"
+#include "system/Input/PlayerInputSystem.h"
+#include "system/Movement/FollowCameraUpdateSystem.h"
+#include "system/Movement/PlayerMoveSystem.h"
+
 MyGame::MyGame() {}
 
 MyGame::~MyGame() {}
@@ -141,6 +156,11 @@ void MyGame::RegisterUsingComponents() {
     ecsManager->registerComponent<SpriteRenderer>();
     ecsManager->registerComponent<LineRenderer>();
     ecsManager->registerComponent<SkyboxRenderer>();
+
+    ecsManager->registerComponent<CameraController>();
+    ecsManager->registerComponent<PlayerInput>();
+    ecsManager->registerComponent<PlayerStatus>();
+
 }
 
 void MyGame::RegisterUsingSystems() {
@@ -149,10 +169,13 @@ void MyGame::RegisterUsingSystems() {
     /// ====================================================================================================
     // Initialize
     /// ====================================================================================================
+    ecsManager->registerSystem<SettingGameCameraTarget>();
 
     /// ===================================================================================================
     // Input
     /// ===================================================================================================
+    ecsManager->registerSystem<PlayerInputSystem>();
+    ecsManager->registerSystem<CameraInputSystem>();
 
     /// ===================================================================================================
     // StateTransition
@@ -162,6 +185,8 @@ void MyGame::RegisterUsingSystems() {
     // Movement
     /// =================================================================================================
     ecsManager->registerSystem<MoveSystemByRigidBody>();
+    ecsManager->registerSystem<FollowCameraUpdateSystem>();
+    ecsManager->registerSystem<PlayerMoveSystem>();
 
     /// =================================================================================================
     // Collision
