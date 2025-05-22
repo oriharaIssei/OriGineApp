@@ -1,5 +1,6 @@
 #include "BlockStatus.h"
 #include "component/transform/Transform.h"
+
 /// externals
 #include "imgui/imgui.h"
 #include "myGui/MyGui.h"
@@ -46,7 +47,7 @@ void BlockStatus::MoveUpdate(const float& time, Transform* transform, const floa
     }
 
     // 移動位置
-    float movepos = preMovePos_[X] - moveValue;
+    float movepos = preMovePos_[X] - (moveValue*2.0f);
     moveEase_.time += time;
 
     /// スケーリングイージング
@@ -81,3 +82,8 @@ void to_json(nlohmann::json& _json, const BlockStatus& _block) {
 void from_json(const nlohmann::json& _json, BlockStatus& _block) {
     _json.at("isAlive").get_to(_block.isAlive_);
 }
+
+void BlockStatus::SetBlockManagerParm(BlockManager* parm) {
+    parm;
+  /*  startZPos_=parm.*/
+ }

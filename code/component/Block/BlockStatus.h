@@ -1,11 +1,12 @@
 #pragma once
 
-#include "component/Block/BlockManager.h"
 #include "component/IComponent.h"
 #include <array>
 #include <cstdint>
 #include <Vector3.h>
 #include <Vector4.h>
+#include "KetaEasing.h"
+#include "component/Block/BlockManager.h"
 
 struct Transform;
 class BlockStatus
@@ -51,6 +52,12 @@ private: // variables
     bool isRightEdge_  = 0.0f;
     bool isColorChange_   = false;
 
+    Easing breakApearEasing_;
+    float startZPos_;
+    float EndZPos_;
+    float zposition_;
+    
+
 public:
     BlockStatus() {}
     virtual ~BlockStatus() = default;
@@ -67,6 +74,8 @@ public:
     void TimeInit();
 
     void BreakTimerDecrement(const float& deltaTime);
+
+    void SetBlockManagerParm(BlockManager* parm);
 
 public: // accsessor
     /// getter
