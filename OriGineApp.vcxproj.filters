@@ -515,6 +515,9 @@
     <ClInclude Include="code\system\Block\BlockAdaptTextureSystem.h">
       <Filter>system\Block</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Block\BlockApearSystem.h">
+      <Filter>system\Block</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -892,6 +895,9 @@
       <Filter>system\GameCamera</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Block\BlockAdaptTextureSystem.cpp">
+      <Filter>system\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Block\BlockApearSystem.cpp">
       <Filter>system\Block</Filter>
     </ClCompile>
   </ItemGroup>

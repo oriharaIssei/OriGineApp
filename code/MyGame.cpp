@@ -157,6 +157,7 @@
 #include"system/FloatingFloor/FloatingFloorAnimationSystem.h"
 #include"system/GameCamera/CameraShakeSystem.h"
 #include"system/Block/BlockAdaptTextureSystem.h"
+#include"system/Block/BlockApearSystem.h"
 
 MyGame::MyGame() {}
 
@@ -406,6 +407,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<FloatingFloorAnimationSystem>();
     ecsManager->registerSystem<CameraShakeSystem>();
     ecsManager->registerSystem<BlockAdaptTextureSystem>();
+    ecsManager->registerSystem<BlockApearSystem>();
 
     ecsManager->registerSystem<FloorUISystem>();
     ecsManager->registerSystem<CheckIsUnderPlayer>();

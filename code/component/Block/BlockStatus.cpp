@@ -88,8 +88,55 @@ void BlockStatus::SetBlockManagerParm(BlockManager* parm) {
     startZPos_        = parm->GetStartPositionZ();
     EndZPos_          = parm->GetEndZPos();
     breakBackEasing_  = parm->GetBreakBackEasing();
+    saveZPos_         = startZPos_;
+    zposition_        = saveZPos_;
 }
 
-void BlockStatus::SavingZPosition(const float&pos) {
-    saveZPos_ = pos;
+void BlockStatus::SavingZPosition(/*const float& pos*/) {
+    saveZPos_ = zposition_;
+}
+
+void BlockStatus::ZApearEasing(const float& deltaTime) {
+    breakApearEasing_.time += deltaTime;
+
+    /// スケーリングイージング
+    zposition_ = (EaseInCirc(saveZPos_, EndZPos_, breakApearEasing_.time, breakApearEasing_.maxTime));
+
+    if (breakApearEasing_.time < breakApearEasing_.maxTime) {
+        return;
+    }
+    // save time
+    breakApearEasing_.time = breakApearEasing_.maxTime;
+    zposition_     = EndZPos_;
+}
+
+void BlockStatus::ZBackEasing(const float& deltaTime) {
+    breakBackEasing_.time += deltaTime;
+
+    /// スケーリングイージング
+    zposition_ = (EaseInCirc(saveZPos_, startZPos_, breakBackEasing_.time, breakBackEasing_.maxTime));
+
+    if (breakBackEasing_.time < breakBackEasing_.maxTime) {
+        return;
+    }
+    // save time
+    breakBackEasing_.time = breakBackEasing_.maxTime;
+    zposition_          = startZPos_;
+    apearAnimationStep_ = ApearAnimationStep::END;
+ }
+
+void BlockStatus::ChangeStep(const ApearAnimationStep& step) {
+    // timer reset
+    TimerReset();
+    if (apearAnimationStep_ == step) {
+        return;
+    }
+   apearAnimationStep_ = step;
+}
+
+void BlockStatus::TimerReset() {
+    saveZPos_              = zposition_;
+    breakApearEasing_.time = 0.0f;
+    breakBackEasing_.time  = 0.0f;
+   
 }

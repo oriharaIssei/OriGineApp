@@ -63,7 +63,7 @@ private: // variables
     float resultScore_  = 0.0f;
     float resultTime_   = 0.0f;
     bool isRightEdge_   = 0.0f;
-    bool isColorChange_ = false;
+    bool isCollisionReaction_ = false;
 
    
     /// adaptTexture
@@ -71,7 +71,7 @@ private: // variables
     std::string adaptTexture_;
 
     ///
-    ApearAnimationStep apearAnimationStep_;
+    ApearAnimationStep apearAnimationStep_=ApearAnimationStep::NONE;
     float saveZPos_;
     Easing breakApearEasing_;
     Easing breakBackEasing_;
@@ -98,12 +98,18 @@ public:
     void SetBlockManagerParm(BlockManager* parm);
 
     // blockZApear
-    void SavingZPosition(const float& pos);
-    
+    void SavingZPosition(/*const float& pos*/);
+    void ZApearEasing(const float& deltaTime);
+    void ZBackEasing(const float& deltaTime);
+    void ChangeStep(const ApearAnimationStep&step);
+    void TimerReset();
 
 public: // accsessor
     /// getter
-    bool GetIsColorChange() const { return isColorChange_; }
+    float GetZPosition() const { return zposition_; }
+   /* float GetstartZPosition() const { return startZPos_; }
+    float GetEndZPosition() const { return EndZPos_; }*/
+    bool GetIsCollisionReaction() const { return isCollisionReaction_; }
     bool GetIsRightEdge() const { return isRightEdge_; }
     float GetResultScore() const { return resultScore_; }
     float GetResultTime() const { return resultTime_; }
@@ -128,7 +134,7 @@ public: // accsessor
     ApearAnimationStep GetApearAnimationstep() const { return apearAnimationStep_; }
 
     /// setter
-    void SetIsColorChange(const bool& is) { isColorChange_ = is; }
+    void SetIsCollisionReaction(const bool& is) { isCollisionReaction_ = is; }
     void SetBreakOffsetTime(const float& time) { breakOffsetTime_ = time; }
     void SetColumnNum(const int32_t& colum) { columnNum_ = colum; }
     void SetRowNum(const int32_t& row) { rowNum_ = row; }

@@ -90,7 +90,6 @@ private: // variables
     /// ZApear
     Easing breakApearEasing_;
     Easing breakBackEasing_;
-    float startZPos_;
     float endZPos_;
 
 public:
@@ -120,7 +119,6 @@ public: // accsessor
 
     Easing GetBreakApearEasing() const { return breakApearEasing_; }
     Easing GetBreakBackEasing() const { return breakBackEasing_; }
-    float GetStartZPos() const { return startZPos_; }
     float GetEndZPos() const { return endZPos_; }
     int32_t GetColumnMaxNum() const { return columnMax_; }
     int32_t GetRowMaxNum() const { return rowMax_; }

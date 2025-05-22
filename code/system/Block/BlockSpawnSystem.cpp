@@ -26,6 +26,7 @@
 #include "system/Block/DeleteBlockForAdvantageSystem.h"
 #include "system/Block/DeleteBlockSystem.h"
 #include"system/Block/BlockAdaptTextureSystem.h"
+#include"system/Block/BlockApearSystem.h"
 
 BlockSpawnSystem::BlockSpawnSystem() : ISystem(SystemType::Movement) {}
 BlockSpawnSystem::~BlockSpawnSystem() {}
@@ -149,6 +150,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     blockStatus->SetBlockType(BlockType::NORMAL); // まずはノーマルにセット
     blockStatus->SetEaseTimeMax(blockSpawner_->GetMoveTime());
     blockStatus->SetBlockManagerParm(blockSpawner_);
+    blockStatus->TimerReset();
 
     /// blockTypeCreater
 
@@ -203,7 +205,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
 
     //------------------ Input
     // None
-
+    
     //------------------ StateTransition
     ecs->getSystem<DeleteBlockSystem>()->addEntity(block);
     ecs->getSystem<BreakBlockSystem>()->addEntity(block);
@@ -212,7 +214,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(block);
     ecs->getSystem<BlockMoveSystem>()->addEntity(block);
     ecs->getSystem<BlockAdaptTextureSystem>()->addEntity(block);
-    /* ecs->getSystem<EmitterWorkSystem>()->addEntity(block);*/
+    ecs->getSystem<BlockApearSystem>()->addEntity(block);
     
     //------------------ Collision
     ecs->getSystem<CollisionCheckSystem>()->addEntity(block);

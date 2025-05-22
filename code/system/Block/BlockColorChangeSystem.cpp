@@ -44,7 +44,7 @@ void BlockColorChangeSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    if (blockStatus->GetIsColorChange()) {
+    if (blockStatus->GetIsCollisionReaction()) {
         switch (blockStatus->GetBlockType()) {
         case BlockType::NORMAL:
             modelMesh->getMaterialBuff(0)->color_ = blockStatus->GetNormalChangeColor();
@@ -60,13 +60,18 @@ void BlockColorChangeSystem::UpdateEntity(GameEntity* _entity) {
         default:
             break;
         }
-      
+        blockStatus->ChangeStep(BlockStatus::ApearAnimationStep::APEAR);
+
     } else {
         // 白
         modelMesh->getMaterialBuff(0)->color_ = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
+        // 戻す
+        if (blockStatus->GetApearAnimationstep() == BlockStatus::ApearAnimationStep::APEAR) {
+            blockStatus->ChangeStep(BlockStatus::ApearAnimationStep::REVERSE);
+        }
     }
 
-    blockStatus->SetIsColorChange(false);
+    blockStatus->SetIsCollisionReaction(false);
 
     /// ====================================================
     /// 衝突判定の結果を使って CharacterStatus を更新
@@ -99,7 +104,7 @@ void BlockColorChangeSystem::UpdateEntity(GameEntity* _entity) {
 
                 if (hitEntityStatus) {
 
-                    modelMesh->getMaterialBuff(0)->color_ = blockStatus->GetNormalChangeColor();
+                    blockStatus->SetIsCollisionReaction(true);
 
                     if (blockStatus->GetBlockType() == BlockType::ADVANTAGE) {
                         // 右隣の壊れる予定のブロックを取得
@@ -107,14 +112,13 @@ void BlockColorChangeSystem::UpdateEntity(GameEntity* _entity) {
                         if (combinationStatus) {
                             auto rightBlocks = combinationStatus->GetRightBlocksForCalucration(blockStatus->GetRowNum(), blockStatus->GetColumnNum());
                             for (auto* rightBlock : rightBlocks) {
-                                rightBlock->SetIsColorChange(true);
+                                rightBlock->SetIsCollisionReaction(true);
                             }
                         }
-                    }
-
-                } else if (bigbomStatus) {
-                    if (bigbomStatus->GetIsLaunch()) {
-                        modelMesh->getMaterialBuff(0)->color_ = blockStatus->GetNormalChangeColor();
+                    } else if (bigbomStatus) {
+                        if (bigbomStatus->GetIsLaunch()) {
+                            modelMesh->getMaterialBuff(0)->color_ = blockStatus->GetNormalChangeColor();
+                        }
                     }
                 }
             }
