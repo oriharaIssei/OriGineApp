@@ -44,6 +44,7 @@ public:
 
 public: // accsessor
     /// getter
+    int32_t GetConbinationMax() const { return conbinationMax_; }
     Vec3f GetTimerUIPosOffset() const { return timerUIPosOffset_; }
     Vec3f GetScoreUIPosOffset() const { return scoreUIPosOffset_; }
     float GetPlusRate() const { return plusTimerRate_; }

@@ -110,6 +110,7 @@ public:
 
 public: // accsessor
     /// getter
+  
     int32_t GetColumnMaxNum() const { return columnMax_; }
     int32_t GetRowMaxNum() const { return rowMax_; }
     int32_t GetHpMax() const { return HPMax_; }
@@ -128,7 +129,6 @@ public: // accsessor
     int32_t GetGenerateInterval(BlockType type) const { return blockRandomParms_.generateInterval[static_cast<int32_t>(type)]; }
     int32_t GetRandomParUPValue(BlockType type) const { return blockRandomParms_.randomParUPValue[static_cast<int32_t>(type)]; }
     int32_t GetLineCounter(BlockType type) const;
-    /* int32_t GetRandomParConstant(BlockType type) const { return blockRandomParms_.ra[static_cast<int32_t>(type)]; }*/
     int32_t GetRandomParRightOfAdvance(BlockType type) const { return blockRandomParms_.randomParRightofAdvance[static_cast<int32_t>(type)]; }
     float GetScoreValue(BlockType type) const { return scoreValue_[static_cast<int32_t>(type)]; }
     int32_t GetMoveTenpoNum() const { return moveTenpoNum_; }

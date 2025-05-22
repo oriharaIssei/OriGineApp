@@ -25,6 +25,7 @@
 #include "system/Block/BreakBlockSystem.h"
 #include "system/Block/DeleteBlockForAdvantageSystem.h"
 #include "system/Block/DeleteBlockSystem.h"
+#include"system/Block/BlockAdaptTextureSystem.h"
 
 BlockSpawnSystem::BlockSpawnSystem() : ISystem(SystemType::Movement) {}
 BlockSpawnSystem::~BlockSpawnSystem() {}
@@ -67,9 +68,9 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     //// Particle達
-    //for (int32_t i = 0; i < emitters_.size(); ++i) {
-    //    emitters_[i] = getComponent<Emitter>(_entity, i);
-    //}
+    // for (int32_t i = 0; i < emitters_.size(); ++i) {
+    //     emitters_[i] = getComponent<Emitter>(_entity, i);
+    // }
 
     float blockWidth   = blockSpawner_->GetBlockSize()[X] * 2.0f;
     float nextPosition = blockSpawner_->GetNextCreatePositionX();
@@ -122,7 +123,7 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
 void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& columIndex, const float& xPos) {
 
     // ================================= Bullet Entityを 生成 ================================= //
-   /* ComponentArray<Emitter>* emitterArray = ECSManager::getInstance()->getComponentArray<Emitter>();*/
+    /* ComponentArray<Emitter>* emitterArray = ECSManager::getInstance()->getComponentArray<Emitter>();*/
     GameEntity* block = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, BlockStatus>(
         "Block", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), BlockStatus());
 
@@ -171,14 +172,9 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     ModelMeshRenderer* blockRender = getComponent<ModelMeshRenderer>(block);
 
     //// Model から MeshRenderer を作成
-    ModelSetForBlockType(blockRender, block, blockStatus->GetBlockType());
+    ModelSetForBlockType(blockStatus, blockRender, block);
 
-    ////* Emitter
-    //Emitter* blockEmitterLayerOne = getComponent<Emitter>(block);
-    //Emitter* blockEmitterLayerTwo = getComponent<Emitter>(block,1);
-
-    //// blockTypeによってEmitterを変更する
-    //EmitterSetForBlockType(blockEmitterLayerOne, blockEmitterLayerTwo, blockStatus->GetBlockType());
+    // textureSet
 
     // hp
     blockStatus->SetcurrentHP(blockSpawner_->GetHpMax());
@@ -206,8 +202,9 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     //------------------ Movement
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(block);
     ecs->getSystem<BlockMoveSystem>()->addEntity(block);
-   /* ecs->getSystem<EmitterWorkSystem>()->addEntity(block);*/
-
+    ecs->getSystem<BlockAdaptTextureSystem>()->addEntity(block);
+    /* ecs->getSystem<EmitterWorkSystem>()->addEntity(block);*/
+    
     //------------------ Collision
     ecs->getSystem<CollisionCheckSystem>()->addEntity(block);
     ecs->getSystem<BlockExBomCollision>()->addEntity(block);
@@ -217,7 +214,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     // None
 
     //------------------ Render
-   /* ecs->getSystem<ParticleRenderSystem>()->addEntity(block);*/
+    /* ecs->getSystem<ParticleRenderSystem>()->addEntity(block);*/
     ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(block);
 }
 
@@ -291,15 +288,19 @@ void BlockSpawnSystem::BlockTypeSettingBySameColum(BlockStatus* status, BlockTyp
     }
 }
 
-void BlockSpawnSystem::ModelSetForBlockType(ModelMeshRenderer* render, GameEntity* entity, BlockType type) {
-    switch (type) {
+void BlockSpawnSystem::ModelSetForBlockType(BlockStatus* status, ModelMeshRenderer* render, GameEntity* entity) {
+
+    switch (status->GetBlockType()) {
     case BlockType::NORMAL:
+        status->SetAdaptTexture(kApplicationResourceDirectory + "/Models/BLock/BLock.png");
         CreateModelMeshRenderer(render, entity, kApplicationResourceDirectory + "/Models/Block", "Block.gltf");
         break;
     case BlockType::SKULL:
+        status->SetAdaptTexture(kApplicationResourceDirectory + "/Models/SkullBlock/SkullBlock.png");
         CreateModelMeshRenderer(render, entity, kApplicationResourceDirectory + "/Models/SkullBlock", "SkullBlock.gltf");
         break;
     case BlockType::ADVANTAGE:
+        status->SetAdaptTexture(kApplicationResourceDirectory + "/Models/AdvantageBlock/AdvantageBlock.png");
         CreateModelMeshRenderer(render, entity, kApplicationResourceDirectory + "/Models/AdvantageBlock", "AdvantageBlock.gltf");
         break;
     case BlockType::COUNT:
@@ -307,28 +308,10 @@ void BlockSpawnSystem::ModelSetForBlockType(ModelMeshRenderer* render, GameEntit
     default:
         break;
     }
+
+    //初期化での生成はこれ
+    if (!isInited_) {
+        status->SetAdaptTextureStep(BlockStatus::AdaptTextureStep::END);
+        render->setTexture(0, status->GetAdaptTexture());
+    }
 }
-
-
-//void BlockSpawnSystem::EmitterSetForBlockType(Emitter* emitter1, Emitter* emitter2, BlockType type) {
-//
-//   /* switch (type) {
-//    case BlockType::NORMAL:
-//        *emitter1 = *emitters_[0];
-//        *emitter2 = *emitters_[1];
-//            break;
-//    
-//    case BlockType::ADVANTAGE:
-//        emitter1 = emitters_[2];
-//        emitter2 = emitters_[3];
-//        break;
-//    case BlockType::SKULL:
-//        emitter1 = emitters_[4];
-//        emitter2 = emitters_[5];
-//        break;
-//    case BlockType::COUNT:
-//        break;
-//    default:
-//        break;
-//    }*/
-//}

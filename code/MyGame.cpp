@@ -156,6 +156,7 @@
 #include"system/Timer/TimerAdaptVignetSystem.h"
 #include"system/FloatingFloor/FloatingFloorAnimationSystem.h"
 #include"system/GameCamera/CameraShakeSystem.h"
+#include"system/Block/BlockAdaptTextureSystem.h"
 
 MyGame::MyGame() {}
 
@@ -404,6 +405,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<TimerAdaptVignetSystem>();
     ecsManager->registerSystem<FloatingFloorAnimationSystem>();
     ecsManager->registerSystem<CameraShakeSystem>();
+    ecsManager->registerSystem<BlockAdaptTextureSystem>();
 
     ecsManager->registerSystem<FloorUISystem>();
     ecsManager->registerSystem<CheckIsUnderPlayer>();

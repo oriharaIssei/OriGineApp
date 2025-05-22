@@ -245,6 +245,7 @@ void to_json(nlohmann::json& _json, const BlockManager& _blockManager) {
     _json["lineOffset"]       = _blockManager.levelParams_[0].randomParRightofAdvance;
     _json["randomParUPValue"] = _blockManager.levelParams_[0].randomParUPValue;
 
+
     for (int i = 1; i < LEVEL_MAX; ++i) {
         std::string idx                  = std::to_string(i);
         _json["randomPar_" + idx]        = _blockManager.levelParams_[i].randomPar;
@@ -253,6 +254,8 @@ void to_json(nlohmann::json& _json, const BlockManager& _blockManager) {
         _json["lineOffset_" + idx]       = _blockManager.levelParams_[i].randomParRightofAdvance;
         _json["randomParUPValue_" + idx] = _blockManager.levelParams_[i].randomParUPValue;
     }
+
+    
 }
 
 void from_json(const nlohmann::json& _json, BlockManager& _blockManager) {
@@ -313,6 +316,7 @@ void from_json(const nlohmann::json& _json, BlockManager& _blockManager) {
             it->get_to(_blockManager.levelParams_[i].randomParUPValue);
         }
     }
+
 }
 
 const char* BlockManager::ToStringByBlockType(BlockType type) {

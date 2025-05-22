@@ -44,12 +44,11 @@ public:
   
     void CreateBlocks(const int32_t& columnIndex, const int32_t& rowIndex, const float& xPos);
     void BlockTypeSetting(BlockStatus* status, BlockType blocktype);
-    void ModelSetForBlockType(ModelMeshRenderer* render, GameEntity* entity,BlockType type);
+    void ModelSetForBlockType(BlockStatus* status,ModelMeshRenderer* render, GameEntity* entity);
 
     void CostInit();
     void BlockTypeSettingBySameColum(BlockStatus* status, BlockType type, const int32_t& columnNum);
-    void EmitterSetForBlockType(Emitter* emitter1, Emitter* emitter2, BlockType type);
-
+   
 protected:
     void UpdateEntity(GameEntity* _entity) override;
 };

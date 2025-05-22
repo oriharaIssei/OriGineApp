@@ -7,6 +7,7 @@
 #include <Vector4.h>
 #include "KetaEasing.h"
 #include "component/Block/BlockManager.h"
+#include <string>
 
 struct Transform;
 class BlockStatus
@@ -15,7 +16,14 @@ public:
     friend void to_json(nlohmann::json& _json, const BlockStatus& _block);
     friend void from_json(const nlohmann::json& _json, BlockStatus& _block);
 
+    enum class AdaptTextureStep {
+        NONE,
+        ADAPT,
+        END,
+    };
+
 private: // variables
+
     bool isAlive_ = true;
     bool isFall_  = false;
 
@@ -47,16 +55,18 @@ private: // variables
     float breakOffsetTime_          = 0.0f;
     bool isBreakForAdvaltageEffect_ = false;
 
-    float resultScore_ = 0.0f;
-    float resultTime_  = 0.0f;
-    bool isRightEdge_  = 0.0f;
-    bool isColorChange_   = false;
+    float resultScore_  = 0.0f;
+    float resultTime_   = 0.0f;
+    bool isRightEdge_   = 0.0f;
+    bool isColorChange_ = false;
 
     Easing breakApearEasing_;
     float startZPos_;
     float EndZPos_;
     float zposition_;
-    
+
+    AdaptTextureStep adaptTextureStep_=AdaptTextureStep::NONE;
+    std::string adaptTexture_;
 
 public:
     BlockStatus() {}
@@ -99,11 +109,13 @@ public: // accsessor
     Vec4f GetNormalChangeColor() const { return normalChangeColor_; }
     Vec4f GetSkullChangeColor() const { return skullChangeColor_; }
     Vec4f GetAdvantageChangeColor() const { return advantageChangeColor_; }
+    std::string GetAdaptTexture() const { return adaptTexture_; }
+    AdaptTextureStep GetAdaptTextureStep() const { return adaptTextureStep_; }
 
     /// setter
     void SetIsColorChange(const bool& is) { isColorChange_ = is; }
     void SetBreakOffsetTime(const float& time) { breakOffsetTime_ = time; }
-    void SetColumnNum(const int32_t& colum) {columnNum_ = colum;}
+    void SetColumnNum(const int32_t& colum) { columnNum_ = colum; }
     void SetRowNum(const int32_t& row) { rowNum_ = row; }
     void SetIsFall(const bool& is) { isFall_ = is; }
     void SetcurrentHP(const int32_t& hp) { currentHP_ = hp; }
@@ -119,4 +131,6 @@ public: // accsessor
     void SetResultScore(const float& score) { resultScore_ = score; }
     void SetResultTimer(const float& timer) { resultTime_ = timer; }
     void SetIsRightEdge(const bool& is) { isRightEdge_ = is; }
+    void SetAdaptTexture(const std::string& texture) {adaptTexture_= texture; }
+    void SetAdaptTextureStep(const AdaptTextureStep& step) { adaptTextureStep_ = step; }
 };
