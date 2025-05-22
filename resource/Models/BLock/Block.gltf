@@ -64,7 +64,7 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":1916,
+			"count":240,
 			"max":[
 				1,
 				1,
@@ -80,45 +80,45 @@
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":1916,
+			"count":240,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":1916,
+			"count":240,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5123,
-			"count":6948,
+			"count":540,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":22992,
+			"byteLength":2880,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":22992,
-			"byteOffset":22992,
+			"byteLength":2880,
+			"byteOffset":2880,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":15328,
-			"byteOffset":45984,
+			"byteLength":1920,
+			"byteOffset":5760,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":13896,
-			"byteOffset":61312,
+			"byteLength":1080,
+			"byteOffset":7680,
 			"target":34963
 		}
 	],
@@ -130,7 +130,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":75208,
+			"byteLength":8760,
 			"uri":"Block.bin"
 		}
 	]

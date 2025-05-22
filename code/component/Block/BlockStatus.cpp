@@ -9,7 +9,6 @@
 void BlockStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 
     currentHP_ = 1;
-    /* collisionSize_ = 5.0f;*/
 }
 
 bool BlockStatus::Edit() {
@@ -47,7 +46,7 @@ void BlockStatus::MoveUpdate(const float& time, Transform* transform, const floa
     }
 
     // 移動位置
-    float movepos = preMovePos_[X] - (moveValue*2.0f);
+    float movepos = preMovePos_[X] - (moveValue * 2.0f);
     moveEase_.time += time;
 
     /// スケーリングイージング
@@ -85,5 +84,8 @@ void from_json(const nlohmann::json& _json, BlockStatus& _block) {
 
 void BlockStatus::SetBlockManagerParm(BlockManager* parm) {
     parm;
-  /*  startZPos_=parm.*/
- }
+   /* breakApearEasing_ =parm.
+        startZPos_ = parm.
+        EndZPos_ = parm.*/
+    /*  startZPos_=parm.*/
+}

@@ -40,7 +40,7 @@ void BlockAdaptTextureSystem::UpdateEntity(GameEntity* _entity) {
     BlockStatus* blockStatus                 = getComponent<BlockStatus>(_entity);
     ModelMeshRenderer* modelRenderer         = getComponent<ModelMeshRenderer>(_entity);
     BlockCombinationStatus* blockCombiStatus = getComponent<BlockCombinationStatus>(blockCombiEntity);
-    Vec4f color_;
+   /* Vec4f color_;*/
 
     if (!blockStatus || !modelRenderer || !blockCombiStatus) {
         return;
@@ -72,7 +72,7 @@ void BlockAdaptTextureSystem::UpdateEntity(GameEntity* _entity) {
         /// 終わり
         ///---------------------------------------------------
     case BlockStatus::AdaptTextureStep::END:
-        /*    color_ = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);*/
+        /*color_ = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);*/
         break;
     default:
         break;

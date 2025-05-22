@@ -34,6 +34,11 @@ bool BlockManager::Edit() {
     isChange |= DragGuiCommand("deadPositionX", deadPositionX_, 0.01f);
     isChange |= DragGuiCommand("basePosY", basePosY_, 0.01f);
 
+       ImGui::Text("=== Rendition ===");
+    isChange |= DragGuiCommand("breakApearEasing_", breakApearEasing_.time, 0.01f);
+    isChange |= DragGuiCommand("startZPos_", startZPos_, 0.01f);
+    isChange |= DragGuiCommand("endZPos_", endZPos_, 0.01f);
+
     ImGui::Separator();
     ImGui::Text("=== Level Random Params ===");
     ImGui::SliderInt("Level", &levelEditIndex, 0, LEVEL_MAX - 1);

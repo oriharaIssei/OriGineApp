@@ -124,8 +124,8 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
 
     // ================================= Bullet Entityを 生成 ================================= //
     /* ComponentArray<Emitter>* emitterArray = ECSManager::getInstance()->getComponentArray<Emitter>();*/
-    GameEntity* block = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, BlockStatus, Emitter, Emitter>(
-        "Block", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), BlockStatus(), Emitter(), Emitter());
+    GameEntity* block = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, BlockStatus/*, Emitter, Emitter*/>(
+        "Block", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), BlockStatus()/*, Emitter(), Emitter()*/);
 
     // ================================= Componentを初期化 ================================= //
 
@@ -176,11 +176,11 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
 
     // Particle Set
     //* Emitter
-    Emitter* blockEmitterLayerOne = getComponent<Emitter>(block);
-    Emitter* blockEmitterLayerTwo = getComponent<Emitter>(block);
+   /* Emitter* blockEmitterLayerOne = getComponent<Emitter>(block);
+    Emitter* blockEmitterLayerTwo = getComponent<Emitter>(block);*/
 
     // blockTypeによってEmitterを変更する
-    EmitterSetForBlockType(blockEmitterLayerOne, blockEmitterLayerTwo, blockStatus->GetBlockType());
+  /*  EmitterSetForBlockType(blockEmitterLayerOne, blockEmitterLayerTwo, blockStatus->GetBlockType());*/
 
 
 
@@ -220,9 +220,10 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     ecs->getSystem<BlockColorChangeSystem>()->addEntity(block);
     //------------------ Physics
     // None
-    ecs->getSystem<EmitterWorkSystem>()->addEntity(block);
+   /* ecs->getSystem<EmitterWorkSystem>()->addEntity(block);
+    ecs->getSystem<ParticleRenderSystem>()->addEntity(block);*/
     //------------------ Render
-     ecs->getSystem<ParticleRenderSystem>()->addEntity(block);
+ 
     ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(block);
 }
 

@@ -64,10 +64,10 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":2896,
+			"count":1126,
 			"max":[
 				1,
-				1,
+				1.0002930164337158,
 				1
 			],
 			"min":[
@@ -80,45 +80,45 @@
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":2896,
+			"count":1126,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":2896,
+			"count":1126,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5123,
-			"count":8292,
+			"count":2364,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":34752,
+			"byteLength":13512,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":34752,
-			"byteOffset":34752,
+			"byteLength":13512,
+			"byteOffset":13512,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":23168,
-			"byteOffset":69504,
+			"byteLength":9008,
+			"byteOffset":27024,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":16584,
-			"byteOffset":92672,
+			"byteLength":4728,
+			"byteOffset":36032,
 			"target":34963
 		}
 	],
@@ -130,7 +130,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":109256,
+			"byteLength":40760,
 			"uri":"AdvantageBlock.bin"
 		}
 	]

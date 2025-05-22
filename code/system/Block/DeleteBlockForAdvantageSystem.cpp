@@ -69,22 +69,22 @@ void DeleteBlockForAdvantageSystem::BlockBreakParticleShot(GameEntity* _entity, 
     Audio* breakSkull        = getComponent<Audio>(blockManager, 6); // 落ちる音
     Audio* breakAdvance      = getComponent<Audio>(blockManager, 7); // 落ちる音
 
-    Emitter* normalStartEmitter = getComponent<Emitter>(_entity, 0); // 通常エミッタその1
-    Emitter* normalIconEmitter  = getComponent<Emitter>(_entity, 1);
+    //Emitter* normalStartEmitter = getComponent<Emitter>(_entity, 0); // 通常エミッタその1
+    //Emitter* normalIconEmitter  = getComponent<Emitter>(_entity, 1);
 
     if (!SpawnerStatus_) { // Componentが存在しない場合の早期リターン
         return;
     }
 
-    // Particle発射
-    Vec3f basePos = blockTransform_->worldMat[3];
-    // emitter
-    if (!normalIconEmitter->getIsActive()) {
-        normalIconEmitter->PlayStart();
-        normalStartEmitter->PlayStart();
-    }
-    normalIconEmitter->setOriginePos(basePos);
-    normalStartEmitter->setOriginePos(basePos);
+    //// Particle発射
+    //Vec3f basePos = blockTransform_->worldMat[3];
+    //// emitter
+    //if (!normalIconEmitter->getIsActive()) {
+    //    normalIconEmitter->PlayStart();
+    //    normalStartEmitter->PlayStart();
+    //}
+    //normalIconEmitter->setOriginePos(basePos);
+    //normalStartEmitter->setOriginePos(basePos);
 
     switch (blocktype) {
         ///---------------------------------------------

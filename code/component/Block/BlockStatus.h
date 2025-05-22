@@ -1,13 +1,12 @@
 #pragma once
 
+#include "component/Block/BlockManager.h"
 #include "component/IComponent.h"
-#include <array>
+#include "KetaEasing.h"
 #include <cstdint>
+#include <string>
 #include <Vector3.h>
 #include <Vector4.h>
-#include "KetaEasing.h"
-#include "component/Block/BlockManager.h"
-#include <string>
 
 struct Transform;
 class BlockStatus
@@ -23,7 +22,6 @@ public:
     };
 
 private: // variables
-
     bool isAlive_ = true;
     bool isFall_  = false;
 
@@ -60,12 +58,13 @@ private: // variables
     bool isRightEdge_   = 0.0f;
     bool isColorChange_ = false;
 
+    //　破壊予定可視化
     Easing breakApearEasing_;
     float startZPos_;
     float EndZPos_;
     float zposition_;
 
-    AdaptTextureStep adaptTextureStep_=AdaptTextureStep::NONE;
+    AdaptTextureStep adaptTextureStep_ = AdaptTextureStep::NONE;
     std::string adaptTexture_;
 
 public:
@@ -131,6 +130,6 @@ public: // accsessor
     void SetResultScore(const float& score) { resultScore_ = score; }
     void SetResultTimer(const float& timer) { resultTime_ = timer; }
     void SetIsRightEdge(const bool& is) { isRightEdge_ = is; }
-    void SetAdaptTexture(const std::string& texture) {adaptTexture_= texture; }
+    void SetAdaptTexture(const std::string& texture) { adaptTexture_ = texture; }
     void SetAdaptTextureStep(const AdaptTextureStep& step) { adaptTextureStep_ = step; }
 };

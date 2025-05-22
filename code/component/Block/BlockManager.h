@@ -84,7 +84,13 @@ private: // variables
     std::array<int32_t, static_cast<int32_t>(BlockType::COUNT)> lineCounter_; // 現在の行数カウント
     std::array<float, static_cast<int32_t>(BlockType::COUNT)> scoreValue_{}; // 現在の行数カウント
 
+    //
     BlockRandomParams blockRandomParms_;
+
+    /// ZApear
+    Easing breakApearEasing_;
+    float startZPos_;
+    float endZPos_;
 
 public:
     BlockManager() {}
@@ -110,7 +116,10 @@ public:
 
 public: // accsessor
     /// getter
-  
+
+    Easing GetBreakApearEasing() const { return breakApearEasing_; }
+    float GetStartZPos() const { return startZPos_; }
+    float GetEndZPos() const { return endZPos_; }
     int32_t GetColumnMaxNum() const { return columnMax_; }
     int32_t GetRowMaxNum() const { return rowMax_; }
     int32_t GetHpMax() const { return HPMax_; }
