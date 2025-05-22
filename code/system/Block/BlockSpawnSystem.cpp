@@ -67,10 +67,10 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    //// Particle達
-    // for (int32_t i = 0; i < emitters_.size(); ++i) {
-    //     emitters_[i] = getComponent<Emitter>(_entity, i);
-    // }
+    // Particle達
+     for (int32_t i = 0; i < emitters_.size(); ++i) {
+         emitters_[i] = getComponent<Emitter>(_entity, i);
+     }
 
     float blockWidth   = blockSpawner_->GetBlockSize()[X] * 2.0f;
     float nextPosition = blockSpawner_->GetNextCreatePositionX();
@@ -124,8 +124,8 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
 
     // ================================= Bullet Entityを 生成 ================================= //
     /* ComponentArray<Emitter>* emitterArray = ECSManager::getInstance()->getComponentArray<Emitter>();*/
-    GameEntity* block = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, BlockStatus>(
-        "Block", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), BlockStatus());
+    GameEntity* block = CreateEntity<Transform, SphereCollider, Rigidbody, ModelMeshRenderer, BlockStatus, Emitter, Emitter>(
+        "Block", Transform(), SphereCollider(), Rigidbody(), ModelMeshRenderer(), BlockStatus(), Emitter(), Emitter());
 
     // ================================= Componentを初期化 ================================= //
 
@@ -174,7 +174,15 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     //// Model から MeshRenderer を作成
     ModelSetForBlockType(blockStatus, blockRender, block);
 
-    // textureSet
+    // Particle Set
+    //* Emitter
+    Emitter* blockEmitterLayerOne = getComponent<Emitter>(block);
+    Emitter* blockEmitterLayerTwo = getComponent<Emitter>(block);
+
+    // blockTypeによってEmitterを変更する
+    EmitterSetForBlockType(blockEmitterLayerOne, blockEmitterLayerTwo, blockStatus->GetBlockType());
+
+
 
     // hp
     blockStatus->SetcurrentHP(blockSpawner_->GetHpMax());
@@ -212,9 +220,9 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     ecs->getSystem<BlockColorChangeSystem>()->addEntity(block);
     //------------------ Physics
     // None
-
+    ecs->getSystem<EmitterWorkSystem>()->addEntity(block);
     //------------------ Render
-    /* ecs->getSystem<ParticleRenderSystem>()->addEntity(block);*/
+     ecs->getSystem<ParticleRenderSystem>()->addEntity(block);
     ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(block);
 }
 
@@ -313,5 +321,28 @@ void BlockSpawnSystem::ModelSetForBlockType(BlockStatus* status, ModelMeshRender
     if (!isInited_) {
         status->SetAdaptTextureStep(BlockStatus::AdaptTextureStep::END);
         render->setTexture(0, status->GetAdaptTexture());
+    }
+}
+
+void BlockSpawnSystem::EmitterSetForBlockType(Emitter* emitter1, Emitter* emitter2, BlockType type) {
+
+    switch (type) {
+    case BlockType::NORMAL:
+        *emitter1 = *emitters_[0];
+        *emitter2 = *emitters_[1];
+        break;
+
+    case BlockType::ADVANTAGE:
+       /* *emitter1 = *emitters_[2];
+        *emitter2 = *emitters_[3];*/
+        break;
+    case BlockType::SKULL:
+       /* *emitter1 = *emitters_[4];
+        *emitter2 = *emitters_[5];*/
+        break;
+    case BlockType::COUNT:
+        break;
+    default:
+        break;
     }
 }

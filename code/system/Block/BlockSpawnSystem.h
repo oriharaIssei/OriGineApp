@@ -32,6 +32,8 @@ private:
     int32_t nextSpecialLine_;
     std::unordered_map<int32_t, int32_t> skullProbabilities_;
 
+    std::array<Emitter*, 6> emitters_;
+
   /*  std::array<Emitter*, 6> emitters_;*/
 
 public:
@@ -48,7 +50,8 @@ public:
 
     void CostInit();
     void BlockTypeSettingBySameColum(BlockStatus* status, BlockType type, const int32_t& columnNum);
-   
-protected:
+    void EmitterSetForBlockType(Emitter* emitter1, Emitter* emitter2, BlockType type);
+
+    protected:
     void UpdateEntity(GameEntity* _entity) override;
 };
