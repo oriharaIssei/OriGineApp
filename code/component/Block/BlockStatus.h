@@ -21,6 +21,13 @@ public:
         END,
     };
 
+    enum class ApearAnimationStep {
+        NONE,
+        APEAR,
+        REVERSE,
+        END,
+    };
+
 private: // variables
     bool isAlive_ = true;
     bool isFall_  = false;
@@ -58,14 +65,19 @@ private: // variables
     bool isRightEdge_   = 0.0f;
     bool isColorChange_ = false;
 
-    //　破壊予定可視化
+   
+    /// adaptTexture
+    AdaptTextureStep adaptTextureStep_ = AdaptTextureStep::NONE;
+    std::string adaptTexture_;
+
+    ///
+    ApearAnimationStep apearAnimationStep_;
+    float saveZPos_;
     Easing breakApearEasing_;
+    Easing breakBackEasing_;
     float startZPos_;
     float EndZPos_;
     float zposition_;
-
-    AdaptTextureStep adaptTextureStep_ = AdaptTextureStep::NONE;
-    std::string adaptTexture_;
 
 public:
     BlockStatus() {}
@@ -83,8 +95,11 @@ public:
     void TimeInit();
 
     void BreakTimerDecrement(const float& deltaTime);
-
     void SetBlockManagerParm(BlockManager* parm);
+
+    // blockZApear
+    void SavingZPosition(const float& pos);
+    
 
 public: // accsessor
     /// getter
@@ -110,6 +125,7 @@ public: // accsessor
     Vec4f GetAdvantageChangeColor() const { return advantageChangeColor_; }
     std::string GetAdaptTexture() const { return adaptTexture_; }
     AdaptTextureStep GetAdaptTextureStep() const { return adaptTextureStep_; }
+    ApearAnimationStep GetApearAnimationstep() const { return apearAnimationStep_; }
 
     /// setter
     void SetIsColorChange(const bool& is) { isColorChange_ = is; }
@@ -132,4 +148,5 @@ public: // accsessor
     void SetIsRightEdge(const bool& is) { isRightEdge_ = is; }
     void SetAdaptTexture(const std::string& texture) { adaptTexture_ = texture; }
     void SetAdaptTextureStep(const AdaptTextureStep& step) { adaptTextureStep_ = step; }
+    void SetApearAnimationstep(const ApearAnimationStep& step) { apearAnimationStep_ = step; }
 };

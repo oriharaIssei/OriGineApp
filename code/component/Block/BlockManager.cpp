@@ -33,9 +33,10 @@ bool BlockManager::Edit() {
     isChange |= DragGuiCommand("nextCreatePositionX", nextCreatePositionX_, 0.01f);
     isChange |= DragGuiCommand("deadPositionX", deadPositionX_, 0.01f);
     isChange |= DragGuiCommand("basePosY", basePosY_, 0.01f);
-
-       ImGui::Text("=== Rendition ===");
-    isChange |= DragGuiCommand("breakApearEasing_", breakApearEasing_.time, 0.01f);
+  
+    ImGui::Text("=== Rendition ===");
+    isChange |= DragGuiCommand("breakApearEasing_.time", breakApearEasing_.maxTime, 0.01f);
+    isChange |= DragGuiCommand("breakBackEasing_.time", breakBackEasing_.maxTime, 0.01f);
     isChange |= DragGuiCommand("startZPos_", startZPos_, 0.01f);
     isChange |= DragGuiCommand("endZPos_", endZPos_, 0.01f);
 
@@ -250,7 +251,6 @@ void to_json(nlohmann::json& _json, const BlockManager& _blockManager) {
     _json["lineOffset"]       = _blockManager.levelParams_[0].randomParRightofAdvance;
     _json["randomParUPValue"] = _blockManager.levelParams_[0].randomParUPValue;
 
-
     for (int i = 1; i < LEVEL_MAX; ++i) {
         std::string idx                  = std::to_string(i);
         _json["randomPar_" + idx]        = _blockManager.levelParams_[i].randomPar;
@@ -260,7 +260,10 @@ void to_json(nlohmann::json& _json, const BlockManager& _blockManager) {
         _json["randomParUPValue_" + idx] = _blockManager.levelParams_[i].randomParUPValue;
     }
 
-    
+    _json["breakApearEasing_"] = _blockManager.breakApearEasing_.maxTime;
+    _json["breakBackEasing_"] = _blockManager.breakBackEasing_.maxTime;
+    _json["startZPos_"]        = _blockManager.startZPos_;
+    _json["endZPos_"]          = _blockManager.endZPos_;
 }
 
 void from_json(const nlohmann::json& _json, BlockManager& _blockManager) {
@@ -322,6 +325,18 @@ void from_json(const nlohmann::json& _json, BlockManager& _blockManager) {
         }
     }
 
+    if (auto it = _json.find("breakApearEasing_"); it != _json.end()) {
+        _json.at("breakApearEasing_").get_to(_blockManager.breakApearEasing_.maxTime);
+    }
+    if (auto it = _json.find("startZPos_"); it != _json.end()) {
+        _json.at("startZPos_").get_to(_blockManager.startZPos_);
+    }
+    if (auto it = _json.find("endZPos_"); it != _json.end()) {
+        _json.at("endZPos_").get_to(_blockManager.endZPos_);
+    }
+    if (auto it = _json.find("breakBackEasing_"); it != _json.end()) {
+        _json.at("breakBackEasing_").get_to(_blockManager.breakBackEasing_.maxTime);
+    }
 }
 
 const char* BlockManager::ToStringByBlockType(BlockType type) {

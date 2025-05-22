@@ -50,7 +50,7 @@ void BlockStatus::MoveUpdate(const float& time, Transform* transform, const floa
     moveEase_.time += time;
 
     /// スケーリングイージング
-    transform->translate[X] = (EaseInCirc(preMovePos_[X], movepos, moveEase_.time, moveEase_.maxTime));
+    transform->translate[X] = (EaseInBounce(preMovePos_[X], movepos, moveEase_.time, moveEase_.maxTime));
 
     if (moveEase_.time >= moveEase_.maxTime) {
         // save time
@@ -83,9 +83,13 @@ void from_json(const nlohmann::json& _json, BlockStatus& _block) {
 }
 
 void BlockStatus::SetBlockManagerParm(BlockManager* parm) {
-    parm;
-   /* breakApearEasing_ =parm.
-        startZPos_ = parm.
-        EndZPos_ = parm.*/
-    /*  startZPos_=parm.*/
+
+    breakApearEasing_ = parm->GetBreakApearEasing();
+    startZPos_        = parm->GetStartPositionZ();
+    EndZPos_          = parm->GetEndZPos();
+    breakBackEasing_  = parm->GetBreakBackEasing();
+}
+
+void BlockStatus::SavingZPosition(const float&pos) {
+    saveZPos_ = pos;
 }

@@ -148,6 +148,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     blockStatus->SetRowNum(rowIndex);
     blockStatus->SetBlockType(BlockType::NORMAL); // まずはノーマルにセット
     blockStatus->SetEaseTimeMax(blockSpawner_->GetMoveTime());
+    blockStatus->SetBlockManagerParm(blockSpawner_);
 
     /// blockTypeCreater
 
