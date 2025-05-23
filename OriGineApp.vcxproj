@@ -107,6 +107,7 @@
     <ClInclude Include="code\component\GameCamera\CameraRenditionStatus.h" />
     <ClInclude Include="code\component\GameEndUI\GameEndUIStatus.h" />
     <ClInclude Include="code\component\Piller\FloatingFloorAnimationStatus.h" />
+    <ClInclude Include="code\component\Player\PlayerAnimationStatus.h" />
     <ClInclude Include="code\component\Timer\TimerAnimationStatus.h" />
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\KetaEasing.h" />
@@ -239,6 +240,7 @@
     <ClCompile Include="code\component\GameCamera\CameraRenditionStatus.cpp" />
     <ClCompile Include="code\component\GameEndUI\GameEndUIStatus.cpp" />
     <ClCompile Include="code\component\Piller\FloatingFloorAnimationStatus.cpp" />
+    <ClCompile Include="code\component\Player\PlayerAnimationStatus.cpp" />
     <ClCompile Include="code\component\Timer\TimerAnimationStatus.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\KetaEasing.cpp" />

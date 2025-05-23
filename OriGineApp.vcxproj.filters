@@ -518,6 +518,9 @@
     <ClInclude Include="code\system\Block\BlockApearSystem.h">
       <Filter>system\Block</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\Player\PlayerAnimationStatus.h">
+      <Filter>system\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -899,6 +902,9 @@
     </ClCompile>
     <ClCompile Include="code\system\Block\BlockApearSystem.cpp">
       <Filter>system\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Player\PlayerAnimationStatus.cpp">
+      <Filter>system\Player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
