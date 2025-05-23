@@ -15,6 +15,7 @@
 #include "component/Player/PlayerStates.h"
 #include"component/Menu/MenuStatus.h"
 #include"component/GameEndUI/GameEndUIStatus.h"
+#include"component/Player/PlayerAnimationStatus.h"
 
 #include "engine/EngineInclude.h"
 #include <cmath>
@@ -75,6 +76,7 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
    
 
     entityPlayerStates_ = getComponent<PlayerStates>(_entity);
+     PlayerAnimationStatus* playerAnimationStatus = getComponent<PlayerAnimationStatus>(_entity);
     if (!entityPlayerStates_) {
         return;
     }
@@ -101,6 +103,15 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
     }
 
       entityPlayerStates_->SetDirection(inputDirection);
+
+         // アニメーション切り替え
+      if (inputDirection != 0) {
+          playerAnimationStatus->ChangeMotion(PlayerAnimationStatus::MotionStep::MOVE);
+      } else {
+       
+          playerAnimationStatus->ChangeMotion(PlayerAnimationStatus::MotionStep::WAIT);
+      }
+     
 
 }
 
@@ -148,6 +159,7 @@ void PlayerInputSystem::PutBom(GameEntity* _entity) {
     if (currentCoolTime <= 0.0f) {
 
         entityBomSpawner->SetIsLaunch(input_->isTriggerKey(DIK_SPACE));
+     
 
     } else {
         // coolTimeを減らす

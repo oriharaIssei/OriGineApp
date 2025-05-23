@@ -206,6 +206,7 @@
     <ClInclude Include="code\system\Menu\TutorialMenuParentSystem.h" />
     <ClInclude Include="code\system\Menu\TutorialMenuSystem.h" />
     <ClInclude Include="code\system\OperateUI\OperateUISystem.h" />
+    <ClInclude Include="code\system\Player\PlayerAnimationSystem.h" />
     <ClInclude Include="code\system\Player\PlayerCreateBigBomSystem.h" />
     <ClInclude Include="code\system\Player\PlayerFollowCameraSystem.h" />
     <ClInclude Include="code\system\Player\PlayerInput.h" />
@@ -341,6 +342,7 @@
     <ClCompile Include="code\system\Menu\TutorialMenuParentSystem.cpp" />
     <ClCompile Include="code\system\Menu\TutorialMenuSystem.cpp" />
     <ClCompile Include="code\system\OperateUI\OperateUISystem.cpp" />
+    <ClCompile Include="code\system\Player\PlayerAnimationSystem.cpp" />
     <ClCompile Include="code\system\Player\PlayerCreateBigBomSystem.cpp" />
     <ClCompile Include="code\system\Player\PlayerFollowCameraSystem.cpp" />
     <ClCompile Include="code\system\Player\PlayerInput.cpp" />

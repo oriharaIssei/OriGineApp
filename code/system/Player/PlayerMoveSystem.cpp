@@ -28,15 +28,15 @@ void PlayerMoveSystem::UpdateEntity(GameEntity* _entity) {
     if (!playerStates)
         return;
 
-    Transform* pivotTransform = getComponent<Transform>(_entity, 1);
-    Transform* transform      = getComponent<Transform>(_entity, 0);
-    transform->parent         = pivotTransform;
+    Transform* parentTransform = getComponent<Transform>(_entity, 1);
+    Transform* transform       = getComponent<Transform>(_entity, 0);
+    transform->parent          = parentTransform;
 
-     // ComboEntityを取得
+    // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* fieldEntity                  = ecsManager->getUniqueEntity("Field");
 
-    if (!fieldEntity) { 
+    if (!fieldEntity) {
         return;
     }
 
@@ -59,20 +59,18 @@ void PlayerMoveSystem::UpdateEntity(GameEntity* _entity) {
     Vec3f velocity = {direction, 0.0f, 0.0f};
 
     /// 位置更新
-    pivotTransform->translate += velocity.normalize() * speed * deltaTime;
+    parentTransform->translate += velocity.normalize() * speed * deltaTime;
 
-   
-
-    pivotTransform->translate[X] = std::clamp(pivotTransform->translate[X], fieldStatus->GetFieldLeftMax(), fieldStatus->GetFieldRightMax());
+    parentTransform->translate[X] = std::clamp(parentTransform->translate[X], fieldStatus->GetFieldLeftMax(), fieldStatus->GetFieldRightMax());
 
     /// 回転：進行方向に向ける
     float targetAngle  = std::atan2(-velocity[X], -velocity[Z]);
     float currentAngle = transform->rotate.ToEulerAngles()[Y];
     float newAngle     = LerpShortAngle(currentAngle, targetAngle, 0.5f);
 
-    transform->rotate = Quaternion::RotateAxisAngle({0.0f, 1.0f, 0.0f}, newAngle);
+   playerStates->SetPartsHeadRotate (Quaternion::RotateAxisAngle({0.0f, 1.0f, 0.0f}, newAngle));
 
-    pivotTransform->Update();
+    parentTransform->Update();
     transform->Update();
 }
 

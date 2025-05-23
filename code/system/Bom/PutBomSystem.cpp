@@ -14,6 +14,7 @@
 #include "component/Bom/BomStatus.h"
 #include "component/Bom/ExplotionCollision.h"
 #include"component/OperateUI/OperateUIStatus.h"
+#include"component/Player/PlayerAnimationStatus.h"
 
 // system
 #include "system/Bom/BomCollisionExSystem.h"
@@ -33,6 +34,8 @@ void PutBomSystem::UpdateEntity(GameEntity* _entity) {
     bomSpawner_          = getComponent<BomSpawner>(_entity);
     bomExCollision_      = getComponent<ExplotionCollision>(_entity);
     BomStatus* bomStates = getComponent<BomStatus>(_entity);
+    PlayerAnimationStatus* playerAnimationStatus = getComponent<PlayerAnimationStatus>(_entity);
+
 
     if (!bomSpawner_ || !bomStates || !bomExCollision_) {
         return;
@@ -45,6 +48,7 @@ void PutBomSystem::UpdateEntity(GameEntity* _entity) {
     SpawnBom(_entity, bomStates);
     bomSpawner_->SetIsLaunch(false);
     bomSpawner_->SetIsLaunched(true);
+    playerAnimationStatus->ChangeMotion(PlayerAnimationStatus::MotionStep::LAUNCH);
 
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* operateUI           = ecsManager->getUniqueEntity("OperateUI");

@@ -19,9 +19,10 @@ bool PlayerAnimationStatus::Edit() {
     isChange |= DragGuiCommand("startPosY", startPosY_, 0.01f);
     isChange |= DragGuiCommand("endPosY", endPosY_, 0.01f);
     isChange |= DragGuiCommand("baseYOffset", baseYOffset_, 0.01f);
-   
+
     ImGui::Spacing();
     ImGui::Text("Scale");
+    isChange |= DragGuiVectorCommand("baseScale", baseScale_, 0.01f);
     isChange |= DragGuiVectorCommand("landingScale", landingScale_, 0.01f);
     isChange |= DragGuiVectorCommand("waitScale", waitScale_, 0.01f);
 
@@ -67,8 +68,12 @@ void PlayerAnimationStatus::MoveAnimaiton(const float& deltaTime) {
 
     moveEasing_.time = 0.0f;
     jumpPosY_        = startPosY_;
+    isLanding_       = true;
 }
-void PlayerAnimationStatus::LndingAnimaiton(const float& deltaTime) {
+void PlayerAnimationStatus::LandingAnimation(const float& deltaTime) {
+    if (!isLanding_) {
+        return;
+    }
     landingEasing_.time += deltaTime;
 
     /// 　ジャンプイージング
@@ -78,56 +83,103 @@ void PlayerAnimationStatus::LndingAnimaiton(const float& deltaTime) {
         return;
     }
 
-    landingEasing_.time = landingEasing_.maxTime;
-    animationScale_     = Vec3f(0.0f, 0.0f, 0.0f);
-}
-
-void PlayerAnimationStatus::WaitAnimation(const float& deltaTime) {
-    waitEasing_.time += deltaTime;
-
-    /// 　ジャンプイージング
-    animationScale_ = Back::InCircZero(Vec3f(0.0f, 0.0f, 0.0f), waitScale_, waitEasing_.time, waitEasing_.maxTime, waitEasing_.backRatio);
-
-    if (waitEasing_.time < waitEasing_.maxTime) {
-        return;
-    }
-
     landingEasing_.time = 0.0f;
     animationScale_     = Vec3f(0.0f, 0.0f, 0.0f);
+    isLanding_          = false;
+}
+
+void PlayerAnimationStatus::WaitAnimation(const float& deltaTime, const Vec3f& blockSize) {
+    deltaTime;
+    animationScale_ = blockSize - waitScale_;
+    /* waitEasing_.time += deltaTime;
+
+     /// 　ジャンプイージング
+     animationScale_ = Back::InCircZero(Vec3f(0.0f, 0.0f, 0.0f), waitScale_, waitEasing_.time, waitEasing_.maxTime, waitEasing_.backRatio);
+
+     if (waitEasing_.time < waitEasing_.maxTime) {
+         return;
+     }
+
+     waitEasing_.time = 0.0f;
+     animationScale_     = Vec3f(0.0f, 0.0f, 0.0f);*/
 }
 
 void PlayerAnimationStatus::LaunchScaleAnimation(const float& deltaTime) {
     launchEasing_.time += deltaTime;
 
     /// 弾発射アニメーション
-    animationScale_ = EaseAmplitudeScale(Vec3f(0.0f, 0.0f, 0.0f), launchEasing_.time, launchEasing_.maxTime, launchEasing_.amplitude, launchEasing_.period);
+    launchScale_ = EaseAmplitudeScale(Vec3f(0.0f, 0.0f, 0.0f), launchEasing_.time, launchEasing_.maxTime, launchEasing_.amplitude, launchEasing_.period);
 
     if (launchEasing_.time < launchEasing_.maxTime) {
         return;
     }
 
     launchEasing_.time = launchEasing_.maxTime;
-    animationScale_    = Vec3f(0.0f, 0.0f, 0.0f);
+    launchScale_        = Vec3f(0.0f, 0.0f, 0.0f);
 }
 
 void PlayerAnimationStatus::LaunchRotateAnimation(const float& deltaTime) {
-    launchEasing_.time += deltaTime;
+    launchRotateEasing_.time += deltaTime;
 
     /// 弾発射アニメーション
-    launchRotate_ = EaseOutQuad(0.0f, launchRotationValue_, launchEasing_.time, launchEasing_.maxTime);
+    launchRotate_ = EaseOutQuad(0.0f, launchRotationValue_, launchRotateEasing_.time, launchRotateEasing_.maxTime);
 
+    if (launchRotateEasing_.time < launchRotateEasing_.maxTime) {
+        return;
+    }
+
+    launchRotateEasing_.time = launchRotateEasing_.maxTime;
+    launchRotate_            = 0.0f;
+  
+}
+
+void PlayerAnimationStatus::ChangeMotionWait() {
+    if (launchRotateEasing_.time < launchRotateEasing_.maxTime) {
+        return;
+    }
     if (launchEasing_.time < launchEasing_.maxTime) {
         return;
     }
 
-    launchEasing_.time = launchEasing_.maxTime;
-    launchRotate_      = 0.0f;
+      motionStep_ = MotionStep::WAIT;
+  }
+
+void PlayerAnimationStatus::ChangeMotion(const MotionStep& step) {
+
+   
+    if (motionStep_ == step) {
+        return;
+    }
+
+    switch (step) {
+    case PlayerAnimationStatus::MotionStep::WAIT:
+        if (!isLanding_ || motionStep_==MotionStep::LAUNCH) {
+            return;
+        }
+        break;
+    case PlayerAnimationStatus::MotionStep::MOVE:
+        if ( motionStep_ == MotionStep::LAUNCH) {
+            return;
+        }
+        break;
+    case PlayerAnimationStatus::MotionStep::LAUNCH:
+      
+        break;
+    default:
+        break;
+    }
+
+    Reset();
+
+    motionStep_ = step;
 }
 
 void PlayerAnimationStatus::Reset() {
-    waitEasing_.time    = 0.0f;
-    moveEasing_.time    = 0.0f;
-    landingEasing_.time = 0.0f;
+    waitEasing_.time         = 0.0f;
+    moveEasing_.time         = 0.0f;
+    landingEasing_.time      = 0.0f;
+    launchEasing_.time       = 0.0f;
+    launchRotateEasing_.time = 0.0f;
 }
 
 void to_json(nlohmann::json& j, const PlayerAnimationStatus& m) {
@@ -172,6 +224,8 @@ void to_json(nlohmann::json& j, const PlayerAnimationStatus& m) {
     j["landingEasing.backRatio"] = m.landingEasing_.backRatio;
     j["landingEasing.amplitude"] = m.landingEasing_.amplitude;
     j["landingEasing.period"]    = m.landingEasing_.period;
+
+    j["baseScale_"] = m.baseScale_;
 }
 
 void from_json(const nlohmann::json& j, PlayerAnimationStatus& m) {
@@ -214,6 +268,9 @@ void from_json(const nlohmann::json& j, PlayerAnimationStatus& m) {
     j.at("landingEasing.backRatio").get_to(m.landingEasing_.backRatio);
     j.at("landingEasing.amplitude").get_to(m.landingEasing_.amplitude);
     j.at("landingEasing.period").get_to(m.landingEasing_.period);
+    if (auto it = j.find("baseScale_"); it != j.end()) {
+        j.at("baseScale_").get_to(m.baseScale_);
+    }
 }
 
 void PlayerAnimationStatus::Finalize() {

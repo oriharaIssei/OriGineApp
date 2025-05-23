@@ -5,6 +5,7 @@
 #include <cstdint>
 #include <Entity.h>
 #include <Vector3.h>
+#include <Quaternion.h>
 
 class PlayerStates
     : public IComponent {
@@ -28,7 +29,7 @@ private: // variables
     Transform* pivotTransform_ = nullptr; // 回転の中心となるオブジェクト
     Transform* transform_      = nullptr; // 自身のTransform
 
-   
+   Quaternion partsHeadRotate_;
 
 public:
     PlayerStates() {}
@@ -54,6 +55,7 @@ public: // accsessor
     int32_t GetCurrentBigBomPoint() const { return currentBigBomPoint_; }
     Vec3f GetFollowOffset() const { return followCameraOffset_; }
     bool GetIsBigBomHaving() const { return isBigBomHaving_; }
+    Quaternion GetPartsHeadRotate() const { return partsHeadRotate_; }
     /// setter
 
     void SetDirection(float _direction) { direction_ = _direction; }
@@ -61,4 +63,5 @@ public: // accsessor
     void SetPivotTransform(Transform* _pivotTransform) { pivotTransform_ = _pivotTransform; }
     void SetincrementBomExplotionNum() { bomExplotionNum_++; }
     void SetIsBigBomHaving(const bool& is) { isBigBomHaving_ = is; }
+    void SetPartsHeadRotate(const Quaternion& q) { partsHeadRotate_ = q; }
 };

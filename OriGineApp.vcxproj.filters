@@ -518,8 +518,11 @@
     <ClInclude Include="code\system\Block\BlockApearSystem.h">
       <Filter>system\Block</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\Player\PlayerAnimationStatus.h">
+    <ClInclude Include="code\system\Player\PlayerAnimationSystem.h">
       <Filter>system\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Player\PlayerAnimationStatus.h">
+      <Filter>component\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -903,8 +906,11 @@
     <ClCompile Include="code\system\Block\BlockApearSystem.cpp">
       <Filter>system\Block</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\Player\PlayerAnimationStatus.cpp">
+    <ClCompile Include="code\system\Player\PlayerAnimationSystem.cpp">
       <Filter>system\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Player\PlayerAnimationStatus.cpp">
+      <Filter>component\Player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

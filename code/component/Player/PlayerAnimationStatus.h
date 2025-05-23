@@ -6,13 +6,14 @@
 #include <Entity.h>
 #include <Vector2.h>
 
+//class BlockManager;
 class PlayerAnimationStatus
     : public IComponent {
     friend void to_json(nlohmann::json& j, const PlayerAnimationStatus& m);
     friend void from_json(const nlohmann::json& j, PlayerAnimationStatus& m);
 
 public:
-    enum class PlayerAnimeStep {
+    enum class MotionStep {
         WAIT,
         MOVE,
         LAUNCH,
@@ -34,10 +35,12 @@ private: // variables
 
     ///* Waiting
     Vec3f waitScale_ = {1.0f, 1.0f, 1.0f};
+    Vec3f waitScaleOffset_ = {1.0f, 1.0f, 1.0f};
 
     ///*launch
     float launchRotationValue_ = 0.0f;
     float launchRotate_ = 0.0f;
+    Vec3f launchScale_   = {0.0f, 0.0f, 0.0f};
     // scale
 
     // ease
@@ -46,6 +49,10 @@ private: // variables
     Easing waitEasing_;
     Easing launchEasing_;
     Easing launchRotateEasing_;
+
+    MotionStep motionStep_;
+
+    bool isLanding_;
 
 public:
     PlayerAnimationStatus() {}
@@ -56,17 +63,24 @@ public:
     virtual void Finalize();
 
     void MoveAnimaiton(const float& deltaTime);
-    void WaitAnimation(const float& deltaTime);
-    void LndingAnimaiton(const float& deltaTime);
+    void WaitAnimation(const float& deltaTime, const Vec3f& blockSize);
+    void LandingAnimation(const float& deltaTime);
     void LaunchScaleAnimation(const float& deltaTime);
     void LaunchRotateAnimation(const float& deltaTime);
 
+    void ChangeMotion(const MotionStep &step);
+    void ChangeMotionWait();
     void Reset();
 
 public: // accsessor
     /// getter
     bool GetIsAlive() const { return isAlive_; }
-    const float& GetStartPosY() const { return startPosY_; }
-    const float& GetEndPosY() const { return endPosY_; }
-    const Vec3f& GetMaxScale() const { return landingScale_; }
+    MotionStep GetPlayerMotionStep() const { return motionStep_; }
+    const float& GetJumpPosY() const { return jumpPosY_; }
+    const float& GetBaseYOffset() const { return baseYOffset_; }
+    const Vec3f& GetAnimationScale() const { return animationScale_; }
+    const Vec3f& GetBaseScale() const { return baseScale_; }
+    const Vec3f& GetLaunchScale() const { return launchScale_; }
+    const float& GetLaunchRotateY() const { return launchRotate_; }
+
 };
