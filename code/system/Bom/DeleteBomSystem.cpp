@@ -30,6 +30,7 @@ DeleteBomSystem::~DeleteBomSystem() {}
 
 void DeleteBomSystem::UpdateEntity(GameEntity* _entity) {
     BomStatus* status = getComponent<BomStatus>(_entity);
+    Transform* transform = getComponent<Transform>(_entity);
 
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* playerEntity                 = ecsManager->getUniqueEntity("Player");
@@ -47,7 +48,7 @@ void DeleteBomSystem::UpdateEntity(GameEntity* _entity) {
 
     BomSpawner* bomSpawner = getComponent<BomSpawner>(playerEntity);
 
-    if (status->GetIsExplotion()) {
+    if (status->GetIsExplotion() || transform->translate[Y]>50.0f) {
         AddExplotionEntity(_entity, addcollision); // コリジョン追加
         operateUIStatus->ChangeInit(OperateMode::LAUNCH);
         audio->Play();
