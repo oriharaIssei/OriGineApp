@@ -26,15 +26,17 @@ bool GameStartStatus::Edit() {
     isChange |= DragGuiVectorCommand("readyEndPos_", readyEndPos_, 0.01f);
 
     ImGui::Spacing();
-    ImGui::Text("Scale - Go");
+    ImGui::Text("ScaleAndRotate - Go");
     isChange |= DragGuiVectorCommand("goStartScale_", goStartScale_, 0.01f);
     isChange |= DragGuiVectorCommand("goEndScale_", goEndScale_, 0.01f);
+    isChange |= DragGuiCommand("goRotateSpeed", goRotateSpeed_, 0.01f);
 
     ImGui::Spacing();
     ImGui::Text("Time");
     isChange |= DragGuiCommand("firstWaitTime_", firstWaitTime_, 0.01f);
     isChange |= DragGuiCommand("waitTimeAfterApear_", waitTimeAfterApear_, 0.01f);
     isChange |= DragGuiCommand("waitTimeAfterClose_", waitTimeAfterClose_, 0.01f);
+    isChange |= DragGuiCommand("waitTimeAfterGo_", waitTimeAfterGo_, 0.01f);
 
     ImGui::Spacing();
     ImGui::Text("Easing - Apear");
@@ -49,37 +51,20 @@ bool GameStartStatus::Edit() {
     isChange |= DragGuiCommand("closeEasing_.amplitude", closeEasing_.amplitude, 0.01f);
     isChange |= DragGuiCommand("closeEasing_.period", closeEasing_.period, 0.01f);
 
+    ImGui::Text("Easing - Ready");
+    isChange |= DragGuiCommand("readyEasing_.maxTime", readyEasing_.maxTime, 0.01f);
+    isChange |= DragGuiCommand("readyEasing_.backRatio", readyEasing_.backRatio, 0.01f);
+    isChange |= DragGuiCommand("readyEasing_.amplitude", readyEasing_.amplitude, 0.01f);
+    isChange |= DragGuiCommand("readyEasing_.period", readyEasing_.period, 0.01f);
+
     ImGui::Text("Easing - Go");
     isChange |= DragGuiCommand("goEasing_.maxTime", goEasing_.maxTime, 0.01f);
-    isChange |= DragGuiCommand("goEasing_.backRatio", goEasing_.backRatio, 0.01f);
-    isChange |= DragGuiCommand("goEasing_.amplitude", goEasing_.amplitude, 0.01f);
-    isChange |= DragGuiCommand("goEasing_.period", goEasing_.period, 0.01f);
 
-    ImGui::Text("Easing - Ready");
-    isChange |= DragGuiCommand("readyEasing_.maxTime", ReadyEasing_.maxTime, 0.01f);
-    isChange |= DragGuiCommand("readyEasing_.backRatio", ReadyEasing_.backRatio, 0.01f);
-    isChange |= DragGuiCommand("readyEasing_.amplitude", ReadyEasing_.amplitude, 0.01f);
-    isChange |= DragGuiCommand("readyEasing_.period", ReadyEasing_.period, 0.01f);
+    ImGui::Text("Easing - GoBack");
+    isChange |= DragGuiCommand("goBackEasing_.maxTime", goBackEasing_.maxTime, 0.01f);
 
 #endif
     return isChange;
-}
-
-void GameStartStatus::ApearEasing(const float& deltaTime) {
-    apearEasing_.time += deltaTime;
-
-    /// 　ease
-    purposePos_ = EaseInCubic(purposeStartPos_, purposeEndPos_, apearEasing_.time, apearEasing_.maxTime);
-
-    // end
-    if (apearEasing_.time < apearEasing_.maxTime) {
-        return;
-    }
-
-    // adapt
-    apearEasing_.time = apearEasing_.maxTime;
-    purposePos_       = purposeEndPos_;
-    renditionStep_    = RenditionStep::WAITAFTERAPERAR;
 }
 
 void GameStartStatus::ApearEasing(const float& deltaTime) {
@@ -116,12 +101,73 @@ void GameStartStatus::CloseEasing(const float& deltaTime) {
     renditionStep_    = RenditionStep::WAITAFTERCLOSE;
 }
 
+void GameStartStatus::ReadyEasing(const float& deltaTime) {
+    readyEasing_.time += deltaTime;
+
+    /// 　ease
+    readyPos_ = EaseInCubic(readyStartPos_, readyEndPos_, readyEasing_.time, readyEasing_.maxTime);
+
+    // end
+    if (readyEasing_.time < readyEasing_.maxTime) {
+        return;
+    }
+
+    // adapt
+    readyEasing_.time = readyEasing_.maxTime;
+    purposePos_       = purposeClosePos_;
+    renditionStep_    = RenditionStep::GO;
+}
+
+void GameStartStatus::GoEasing(const float& deltaTime) {
+    goEasing_.time += deltaTime;
+    goRotate_ += goRotateSpeed_;
+
+    /// 　ease
+    goScale_ = EaseInCubic(goStartScale_, goEndScale_, goEasing_.time, goEasing_.maxTime);
+
+    // end
+    if (goEasing_.time < goEasing_.maxTime) {
+        return;
+    }
+
+    // adapt
+    goEasing_.time = goEasing_.maxTime;
+    goScale_       = goEndScale_;
+    goRotate_      = 0.0f;
+    renditionStep_ = RenditionStep::WAITAFTERGO;
+}
+
+void GameStartStatus::GoBackEasing(const float& deltaTime) {
+    goBackEasing_.time += deltaTime;
+    goRotate_ -= goRotateSpeed_;
+
+    /// 　ease
+    goScale_ = EaseInCubic(goEndScale_, Vec2f(0.0f, 0.0f), goBackEasing_.time, goBackEasing_.maxTime);
+
+    // end
+    if (goBackEasing_.time < goBackEasing_.maxTime) {
+        return;
+    }
+
+    // adapt
+    goBackEasing_.time = goBackEasing_.maxTime;
+    goScale_       = Vec2f(0.0f, 0.0f);
+    goRotate_      = 0.0f;
+    renditionStep_ = RenditionStep::END;
+}
+
+
 void GameStartStatus::Reset() {
-    /*waitEasing_.time         = 0.0f;
-    moveEasing_.time         = 0.0f;
-    landingEasing_.time      = 0.0f;
-    launchEasing_.time       = 0.0f;
-    launchRotateEasing_.time = 0.0f;*/
+    goEasing_.time    = 0.0f;
+    readyEasing_.time = 0.0f;
+    closeEasing_.time = 0.0f;
+    apearEasing_.time = 0.0f;
+    goBackEasing_.time = 0.0f;
+
+    goRotate_   = 0.0f;
+    goScale_    = goStartScale_;
+    readyPos_   = readyStartPos_;
+    purposePos_ = purposeStartPos_;
 }
 
 void to_json(nlohmann::json& j, const GameStartStatus& m) {
@@ -130,6 +176,7 @@ void to_json(nlohmann::json& j, const GameStartStatus& m) {
     j["firstWaitTime"]      = m.firstWaitTime_;
     j["waitTimeAfterApear"] = m.waitTimeAfterApear_;
     j["waitTimeAfterClose"] = m.waitTimeAfterClose_;
+    j["waitTimeAfterGo"] = m.waitTimeAfterGo_;
 
     j["purposeStartPos"] = m.purposeStartPos_;
     j["purposeEndPos"]   = m.purposeEndPos_;
@@ -138,8 +185,9 @@ void to_json(nlohmann::json& j, const GameStartStatus& m) {
     j["readyStartPos"] = m.readyStartPos_;
     j["readyEndPos"]   = m.readyEndPos_;
 
-    j["goStartScale"] = m.goStartScale_;
-    j["goEndScale"]   = m.goEndScale_;
+    j["goStartScale"]  = m.goStartScale_;
+    j["goEndScale"]    = m.goEndScale_;
+    j["goRotateSpeed"] = m.goRotateSpeed_;
 
     // Easing
     j["apearEasing.maxTime"]   = m.apearEasing_.maxTime;
@@ -157,11 +205,12 @@ void to_json(nlohmann::json& j, const GameStartStatus& m) {
     j["goEasing.amplitude"] = m.goEasing_.amplitude;
     j["goEasing.period"]    = m.goEasing_.period;
 
-    j["readyEasing.maxTime"]   = m.ReadyEasing_.maxTime;
-    j["readyEasing.backRatio"] = m.ReadyEasing_.backRatio;
-    j["readyEasing.amplitude"] = m.ReadyEasing_.amplitude;
-    j["readyEasing.period"]    = m.ReadyEasing_.period;
+    j["readyEasing.maxTime"]   = m.readyEasing_.maxTime;
+    j["readyEasing.backRatio"] = m.readyEasing_.backRatio;
+    j["readyEasing.amplitude"] = m.readyEasing_.amplitude;
+    j["readyEasing.period"]    = m.readyEasing_.period;
 
+    j["goBackEasing.maxTime"] = m.goBackEasing_.maxTime;
 }
 
 void from_json(const nlohmann::json& j, GameStartStatus& m) {
@@ -170,6 +219,7 @@ void from_json(const nlohmann::json& j, GameStartStatus& m) {
     j.at("firstWaitTime").get_to(m.firstWaitTime_);
     j.at("waitTimeAfterApear").get_to(m.waitTimeAfterApear_);
     j.at("waitTimeAfterClose").get_to(m.waitTimeAfterClose_);
+    j.at("waitTimeAfterGo").get_to(m.waitTimeAfterGo_);
 
     j.at("purposeStartPos").get_to(m.purposeStartPos_);
     j.at("purposeEndPos").get_to(m.purposeEndPos_);
@@ -180,6 +230,7 @@ void from_json(const nlohmann::json& j, GameStartStatus& m) {
 
     j.at("goStartScale").get_to(m.goStartScale_);
     j.at("goEndScale").get_to(m.goEndScale_);
+    j.at("goRotateSpeed").get_to(m.goRotateSpeed_);
 
     // Easing
     j.at("apearEasing.maxTime").get_to(m.apearEasing_.maxTime);
@@ -197,12 +248,12 @@ void from_json(const nlohmann::json& j, GameStartStatus& m) {
     j.at("goEasing.amplitude").get_to(m.goEasing_.amplitude);
     j.at("goEasing.period").get_to(m.goEasing_.period);
 
-    j.at("readyEasing.maxTime").get_to(m.ReadyEasing_.maxTime);
-    j.at("readyEasing.backRatio").get_to(m.ReadyEasing_.backRatio);
-    j.at("readyEasing.amplitude").get_to(m.ReadyEasing_.amplitude);
-    j.at("readyEasing.period").get_to(m.ReadyEasing_.period);
+    j.at("readyEasing.maxTime").get_to(m.readyEasing_.maxTime);
+    j.at("readyEasing.backRatio").get_to(m.readyEasing_.backRatio);
+    j.at("readyEasing.amplitude").get_to(m.readyEasing_.amplitude);
+    j.at("readyEasing.period").get_to(m.readyEasing_.period);
 
- 
+    j.at("goBackEasing.maxTime").get_to(m.goBackEasing_.maxTime);
 }
 
 void GameStartStatus::Finalize() {

@@ -139,6 +139,9 @@
     <Filter Include="component\GameStart">
       <UniqueIdentifier>{06955c34-abf8-43ff-ad2f-3821ab2bf20a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="system\GameStart">
+      <UniqueIdentifier>{20cc0de0-ddfa-438a-89e2-ca24f0b1858a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -530,6 +533,9 @@
     <ClInclude Include="code\component\GameStart\GameStartStatus.h">
       <Filter>component\GameStart</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\GameStart\GameStartRenditionSystem.h">
+      <Filter>system\GameStart</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -920,6 +926,9 @@
     </ClCompile>
     <ClCompile Include="code\component\GameStart\GameStartStatus.cpp">
       <Filter>component\GameStart</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\GameStart\GameStartRenditionSystem.cpp">
+      <Filter>system\GameStart</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

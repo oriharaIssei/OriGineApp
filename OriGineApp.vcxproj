@@ -194,6 +194,7 @@
     <ClInclude Include="code\system\Floor\FloorUpdateMatrixSystem.h" />
     <ClInclude Include="code\system\GameCamera\CameraShakeSystem.h" />
     <ClInclude Include="code\system\GameEndUI\GameEndUISystem.h" />
+    <ClInclude Include="code\system\GameStart\GameStartRenditionSystem.h" />
     <ClInclude Include="code\system\LeverlUP\LevelUIAdaptSystem.h" />
     <ClInclude Include="code\system\LeverlUP\LevelUIAnimationSystem.h" />
     <ClInclude Include="code\system\LeverlUP\LevelUIInitSystem.h" />
@@ -331,6 +332,7 @@
     <ClCompile Include="code\system\Floor\FloorUpdateMatrixSystem.cpp" />
     <ClCompile Include="code\system\GameCamera\CameraShakeSystem.cpp" />
     <ClCompile Include="code\system\GameEndUI\GameEndUISystem.cpp" />
+    <ClCompile Include="code\system\GameStart\GameStartRenditionSystem.cpp" />
     <ClCompile Include="code\system\LeverlUP\LevelUIAdaptSystem.cpp" />
     <ClCompile Include="code\system\LeverlUP\LevelUIAnimationSystem.cpp" />
     <ClCompile Include="code\system\LeverlUP\LevelUIInitSystem.cpp" />

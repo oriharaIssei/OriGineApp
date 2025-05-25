@@ -21,15 +21,19 @@ public:
         WAITAFTERCLOSE,
         READY,
         GO,
+        WAITAFTERGO,
+        GOBACK,
         END,
     };
 
 private: // variables
     bool isAlive_ = true;
+    bool isStart_=false;
 
     float firstWaitTime_;
     float waitTimeAfterApear_;
     float waitTimeAfterClose_;
+    float waitTimeAfterGo_;
 
     ///* pos
     Vec2f purposeStartPos_;
@@ -45,12 +49,15 @@ private: // variables
     Vec2f goStartScale_;
     Vec2f goEndScale_;
     Vec2f goScale_;
+    float goRotateSpeed_;
+    float goRotate_;
 
     // ease
     Easing apearEasing_;
     Easing closeEasing_;
     Easing goEasing_;
-    Easing ReadyEasing_;
+    Easing readyEasing_;
+    Easing goBackEasing_;
 
     RenditionStep renditionStep_;
 
@@ -65,8 +72,9 @@ public:
 
     void ApearEasing(const float& deltaTime);
     void CloseEasing(const float& deltaTime);
-    void 
- 
+    void GoEasing(const float& deltaTime);
+    void ReadyEasing(const float& deltaTime);
+    void GoBackEasing(const float& deltaTime);
 
     void Reset();
 
@@ -74,4 +82,17 @@ public: // accsessor
     /// getter
     bool GetIsAlive() const { return isAlive_; }
     RenditionStep GetRenditionStep() const { return renditionStep_; }
+    float GetFirstWaitTime() const { return firstWaitTime_; }
+    float GetWaitTimeAfterApear() const { return waitTimeAfterApear_; }
+    float GetWaitTimeAfterClose() const { return waitTimeAfterClose_; }
+    float GetWaitTimeAfterGo() const { return waitTimeAfterGo_;}
+    Vec2f GetGoScale() const { return goScale_; }
+    Vec2f GetReadyPos() const { return readyPos_; }
+    Vec2f GetPurposePos() const { return purposePos_; }
+    float GoRotate() const { return goRotate_; }
+    bool GetIsStart() const { return isStart_; }
+
+    //setter
+    void SetRenditionStep(const RenditionStep& step) { renditionStep_=step; }
+    void SetIsStart(const bool& is) { isStart_ = is; }
 };
