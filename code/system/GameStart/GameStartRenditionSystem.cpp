@@ -119,6 +119,7 @@ void GameStartRenditionSystem::UpdateEntity(GameEntity* _entity) {
         /// NONE
         ///---------------------------------------------------
     case GameStartStatus::RenditionStep::GOBACK:
+        gameStartStatus->SetIsStart(true);
         gameStartStatus->GoBackEasing(deltaTime);
         break;
         ///---------------------------------------------------

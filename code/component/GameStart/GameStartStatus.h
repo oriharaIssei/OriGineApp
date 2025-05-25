@@ -81,6 +81,7 @@ public:
 public: // accsessor
     /// getter
     bool GetIsAlive() const { return isAlive_; }
+    bool GetIsStart() const { return isStart_; }
     RenditionStep GetRenditionStep() const { return renditionStep_; }
     float GetFirstWaitTime() const { return firstWaitTime_; }
     float GetWaitTimeAfterApear() const { return waitTimeAfterApear_; }
@@ -90,8 +91,7 @@ public: // accsessor
     Vec2f GetReadyPos() const { return readyPos_; }
     Vec2f GetPurposePos() const { return purposePos_; }
     float GoRotate() const { return goRotate_; }
-    bool GetIsStart() const { return isStart_; }
-
+  
     //setter
     void SetRenditionStep(const RenditionStep& step) { renditionStep_=step; }
     void SetIsStart(const bool& is) { isStart_ = is; }
