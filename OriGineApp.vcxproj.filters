@@ -536,6 +536,18 @@
     <ClInclude Include="code\system\GameStart\GameStartRenditionSystem.h">
       <Filter>system\GameStart</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\GameStart\AdaptPurposeSystem.h">
+      <Filter>system\GameStart</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\GameStart\AdaptGoSystem.h">
+      <Filter>system\GameStart</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\GameStart\AdaptReadySystem.h">
+      <Filter>system\GameStart</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\GameStart\GameStartBackGroundSystem.h">
+      <Filter>system\GameStart</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -928,6 +940,18 @@
       <Filter>component\GameStart</Filter>
     </ClCompile>
     <ClCompile Include="code\system\GameStart\GameStartRenditionSystem.cpp">
+      <Filter>system\GameStart</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\GameStart\AdaptPurposeSystem.cpp">
+      <Filter>system\GameStart</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\GameStart\AdaptGoSystem.cpp">
+      <Filter>system\GameStart</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\GameStart\AdaptReadySystem.cpp">
+      <Filter>system\GameStart</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\GameStart\GameStartBackGroundSystem.cpp">
       <Filter>system\GameStart</Filter>
     </ClCompile>
   </ItemGroup>

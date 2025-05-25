@@ -6,6 +6,7 @@
 
 #include "component/Field/FieldStatus.h"
 #include "component/Player/PlayerStates.h"
+#include"component/GameStart/GameStartStatus.h"
 
 #include <cmath>
 #include <numbers>
@@ -35,17 +36,25 @@ void PlayerMoveSystem::UpdateEntity(GameEntity* _entity) {
     // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* fieldEntity                  = ecsManager->getUniqueEntity("Field");
+    GameEntity* gameStartEntity              = ecsManager->getUniqueEntity("GameStartRendition");
 
-    if (!fieldEntity) {
+
+    if (!fieldEntity || !gameStartEntity) {
         return;
     }
 
     /// component取得
     FieldStatus* fieldStatus = getComponent<FieldStatus>(fieldEntity);
+    GameStartStatus* gameStartStatus = getComponent<GameStartStatus>(gameStartEntity);
 
     if (!fieldStatus) {
         return;
     }
+    if (!gameStartStatus->GetIsStart()) {
+        return;
+    }
+
+
 
     float direction = playerStates->GetDirection();
     float speed     = playerStates->GetMoveSpeed();

@@ -12,6 +12,7 @@
 #include "component/Block/BlockStatus.h"
 #include "component/Menu/MenuStatus.h"
 #include"component/GameEndUI/GameEndUIStatus.h"
+#include"component/GameStart/GameStartStatus.h"
 
 BlockMoveSystem::BlockMoveSystem()
     : ISystem(SystemType::Movement) {}
@@ -30,10 +31,11 @@ void BlockMoveSystem::UpdateEntity(GameEntity* _entity) {
     GameEntity* blockManagerEntity           = ecsManager->getUniqueEntity("BlockManager");
     GameEntity* menuEntity                   = ecsManager->getUniqueEntity("Menu");
     GameEntity* gameEndUIEntity              = ecsManager->getUniqueEntity("GameEndUI");
+    GameEntity* gameStartEntity           = ecsManager->getUniqueEntity("GameStartRendition");
 
 
     // no Entity
-    if (!blockManagerEntity || !menuEntity||!gameEndUIEntity) {
+    if (!blockManagerEntity || !menuEntity || !gameEndUIEntity || !gameStartEntity) {
         return;
     }
     
@@ -42,13 +44,14 @@ void BlockMoveSystem::UpdateEntity(GameEntity* _entity) {
     BlockStatus* blockStatus   = getComponent<BlockStatus>(_entity);
     MenuStatus* menu           = getComponent<MenuStatus>(menuEntity);
     GameEndUIStatus* gameEndUIStatus = getComponent<GameEndUIStatus>(gameEndUIEntity);
+    GameStartStatus* gameStartStatus = getComponent<GameStartStatus>(gameStartEntity);
     
-    if (!gameEndUIEntity) { // Entityが存在しない場合の早期リターン
+   
+    if (gameEndUIStatus->GetAnimationStep() != GameEndUIStep::NONE) {
         return;
     }
 
-   
-    if (gameEndUIStatus->GetAnimationStep() != GameEndUIStep::NONE) {
+    if (!gameStartStatus->GetIsStart()) {
         return;
     }
 

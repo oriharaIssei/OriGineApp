@@ -16,6 +16,7 @@
 #include"component/Menu/MenuStatus.h"
 #include"component/GameEndUI/GameEndUIStatus.h"
 #include"component/Player/PlayerAnimationStatus.h"
+#include"component/GameStart/GameStartStatus.h"
 
 #include "engine/EngineInclude.h"
 #include <cmath>
@@ -41,12 +42,17 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
     // ポーズ中は通さない
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* menuEntity           = ecsManager->getUniqueEntity("Menu");
+    GameEntity* gameStartEntity              = ecsManager->getUniqueEntity("GameStartRendition");
 
-    if (!menuEntity) {
+
+
+    if (!menuEntity || !gameStartEntity) {
         return;
     }
 
      MenuStatus* menu = getComponent<MenuStatus>(menuEntity);
+    GameStartStatus* gameStartStatus = getComponent<GameStartStatus>(gameStartEntity);
+
 
      if (!menu) {
          return;
@@ -56,7 +62,10 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
          return;
      }
 
-     
+     if (!gameStartStatus->GetIsStart()) {
+         return;
+     }
+   
      GameEntity* gameEndUIEntity                  = ecsManager->getUniqueEntity("GameEndUI");
 
      if (!gameEndUIEntity) { // Entityが存在しない場合の早期リターン

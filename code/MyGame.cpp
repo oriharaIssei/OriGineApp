@@ -77,6 +77,7 @@
 #include"component/Piller/FloatingFloorAnimationStatus.h"
 #include"component/GameCamera/CameraRenditionStatus.h"
 #include"component/Player/PlayerAnimationStatus.h"
+#include"component/GameStart/GameStartStatus.h"
 
 // system
 #include "system/BigBom/BigBomCollisionExSystem.h"
@@ -160,6 +161,11 @@
 #include"system/Block/BlockAdaptTextureSystem.h"
 #include"system/Block/BlockApearSystem.h"
 #include"system/Player/PlayerAnimationSystem.h"
+#include"system/GameStart/AdaptGoSystem.h"
+#include"system/GameStart/AdaptPurposeSystem.h"
+#include"system/GameStart/AdaptReadySystem.h"
+#include"system/GameStart/GameStartBackGroundSystem.h"
+#include"system/GameStart/GameStartRenditionSystem.h"
 
 MyGame::MyGame() {}
 
@@ -301,6 +307,7 @@ void MyGame::RegisterUsingComponents() {
     ecsManager->registerComponent<FloatingFloorAnimationStatus>();
     ecsManager->registerComponent<CameraRenditionStatus>();
     ecsManager->registerComponent<PlayerAnimationStatus>();
+    ecsManager->registerComponent<GameStartStatus>();
 
     ecsManager->registerComponent<Transform>();
     ecsManager->registerComponent<CameraTransform>();
@@ -412,6 +419,11 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<BlockAdaptTextureSystem>();
     ecsManager->registerSystem<BlockApearSystem>();
     ecsManager->registerSystem<PlayerAnimationSystem>();
+    ecsManager->registerSystem<AdaptGoSystem>();
+    ecsManager->registerSystem<AdaptPurposeSystem>();
+    ecsManager->registerSystem<AdaptReadySystem>();
+    ecsManager->registerSystem<GameStartBackGroundSystem>();
+    ecsManager->registerSystem<GameStartRenditionSystem>();
 
     ecsManager->registerSystem<FloorUISystem>();
     ecsManager->registerSystem<CheckIsUnderPlayer>();

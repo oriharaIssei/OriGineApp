@@ -12,9 +12,8 @@
 #include <Vector3.h>
 // component
 #include "component/Timer/TimerStatus.h"
-#include "component/Combo/ComboUIStatus.h"
-#include"component/SceneChanger/SceneChangerStatus.h"
 #include"component/Menu/MenuStatus.h"
+#include"component/GameStart/GameStartStatus.h"
 
 #include "engine/EngineInclude.h"
 #include <cmath>
@@ -38,12 +37,15 @@ void TimerDecrementSystem::UpdateEntity(GameEntity* _entity) {
     // ポーズ中は通さない
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* menuEntity                   = ecsManager->getUniqueEntity("Menu");
+    GameEntity* gameStartEntity              = ecsManager->getUniqueEntity("GameStartRendition");
 
-    if (!menuEntity) {
+    if (!menuEntity || !gameStartEntity) {
         return;
     }
 
     MenuStatus* menu = getComponent<MenuStatus>(menuEntity);
+    GameStartStatus* gameStartStatus = getComponent<GameStartStatus>(gameStartEntity);
+
 
     if (!menu) {
         return;
@@ -52,6 +54,11 @@ void TimerDecrementSystem::UpdateEntity(GameEntity* _entity) {
     if (menu->GetIsPose()) {
         return;
     }
+
+    if (!gameStartStatus->GetIsStart()) {
+        return;
+    }
+
 
     // get timer component 
    timerStauts_ = getComponent<TimerStatus>(_entity);

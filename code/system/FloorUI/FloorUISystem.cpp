@@ -11,6 +11,7 @@
 #include "component/FloorUI/FloorUIController.h"
 #include "component/FloorUI/FloorUIStatus.h"
 #include "component/Menu/TutorialMenuParentStatus.h"
+#include"component/GameStart/GameStartStatus.h"
 
 #include "engine/EngineInclude.h"
 
@@ -31,18 +32,28 @@ void FloorUISystem::UpdateEntity(GameEntity* entity) {
     // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* FloorUIControllerEntity      = ecsManager->getUniqueEntity("FloorUIController");
+    GameEntity* gameStartEntity              = ecsManager->getUniqueEntity("GameStartRendition");
 
-    if (!FloorUIControllerEntity) { // Entityが存在しない場合の早期リターン
+
+    if (!FloorUIControllerEntity || !gameStartEntity) { // Entityが存在しない場合の早期リターン
         return;
     }
 
     FloorUIStatus* floorUIStatus         = getComponent<FloorUIStatus>(entity);
     Transform* transform                 = getComponent<Transform>(entity);
     FloorUIController* floorUIController = getComponent<FloorUIController>(FloorUIControllerEntity);
+    GameStartStatus* gameStartStatus     = getComponent<GameStartStatus>(gameStartEntity);
+
 
     if (!floorUIStatus || !transform || !floorUIController) {
         return;
     }
+
+    if (!gameStartStatus->GetIsStart()) {
+        return;
+    }
+
+
 
     float deltaTime = Engine::getInstance()->getDeltaTime();
 

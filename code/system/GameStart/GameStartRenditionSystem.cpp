@@ -61,6 +61,7 @@ void GameStartRenditionSystem::UpdateEntity(GameEntity* _entity) {
         /// 目的出現
         ///---------------------------------------------------
     case GameStartStatus::RenditionStep::APEARPURPOSE:
+        gameStartStatus->SetIsBackApear(true);
         gameStartStatus->ApearEasing(deltaTime);
         break;
         ///---------------------------------------------------
@@ -85,6 +86,7 @@ void GameStartRenditionSystem::UpdateEntity(GameEntity* _entity) {
         /// NONE
         ///---------------------------------------------------
     case GameStartStatus::RenditionStep::WAITAFTERCLOSE:
+        gameStartStatus->SetIsBackApear(false);
         time_ += deltaTime;
         if (time_ < gameStartStatus->GetWaitTimeAfterClose()) {
             return;
