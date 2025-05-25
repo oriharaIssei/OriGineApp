@@ -9,6 +9,7 @@
 #include "component/GameEndUI/GameEndUIStatus.h"
 #include "component/LevelUPUI/LevelUIParentStatus.h"
 #include "component/Menu/MenuStatus.h"
+#include"component/GameStart/GameStartStatus.h"
 #include <Vector.h>
 
 #include "KetaEasing.h"
@@ -35,14 +36,19 @@ void MoveTenpoSystem::UpdateEntity(GameEntity* _entity) {
     GameEntity* levelUI                      = ecsManager->getUniqueEntity("LevelUIParent");
     GameEntity* menuEntity                   = ecsManager->getUniqueEntity("Menu");
     GameEntity* gameEndUIEntity              = ecsManager->getUniqueEntity("GameEndUI");
+    GameEntity* gameStartEntity              = ecsManager->getUniqueEntity("GameStartRendition");
 
-    if (!levelUI || !menuEntity || !gameEndUIEntity) { // Entityが存在しない場合の早期リターン
+
+    if (!levelUI || !menuEntity || !gameEndUIEntity || !gameStartEntity) { // Entityが存在しない場合の早期リターン
         return;
     }
 
     // ポーズ中は通さない
     MenuStatus* menu                 = getComponent<MenuStatus>(menuEntity);
     GameEndUIStatus* gameEndUIStatus = getComponent<GameEndUIStatus>(gameEndUIEntity);
+     gameStartStatus_ = getComponent<GameStartStatus>(gameStartEntity);
+
+
 
     if (!menu) {
         return;
@@ -91,6 +97,15 @@ void MoveTenpoSystem::OneTenpoMoveMethod(GameEntity* _entity) {
     blockManager_->ResetScalingEase();
     curerntTenpoTime_ = 0.0f;
     curentTempoNum_++; // テンポ加算
+
+
+    ///ゲーム始まってなければ早期リターン
+    if (!gameStartStatus_->GetIsStart()) {
+        curentTempoNum_ = 0;
+        return;
+    }
+
+
 
     // 移動するべき場合
     if (curentTempoNum_ < blockManager_->GetMoveTenpoNum()) {

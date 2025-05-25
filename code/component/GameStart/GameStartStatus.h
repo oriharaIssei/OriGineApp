@@ -14,6 +14,7 @@ class GameStartStatus
 
 public:
     enum class RenditionStep {
+        INIT,
         WAIT,
         APEARPURPOSE,
         WAITAFTERAPERAR,
@@ -45,6 +46,7 @@ private: // variables
     Vec2f readyStartPos_;
     Vec2f readyEndPos_;
     Vec2f readyPos_;
+    Vec2f readyScale_;
 
     // scale
     Vec2f goStartScale_;
@@ -60,7 +62,7 @@ private: // variables
     Easing readyEasing_;
     Easing goBackEasing_;
 
-    RenditionStep renditionStep_;
+    RenditionStep renditionStep_=RenditionStep::INIT;
 
   
 public:
@@ -90,6 +92,7 @@ public: // accsessor
     float GetWaitTimeAfterClose() const { return waitTimeAfterClose_; }
     float GetWaitTimeAfterGo() const { return waitTimeAfterGo_;}
     Vec2f GetGoScale() const { return goScale_; }
+    Vec2f GetReadyScale() const { return readyScale_; }
     Vec2f GetReadyPos() const { return readyPos_; }
     Vec2f GetPurposePos() const { return purposePos_; }
     float GetGoRotate() const { return goRotate_; }

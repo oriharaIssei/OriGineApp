@@ -29,13 +29,13 @@ void AdaptPurposeSystem::Finalize() {}
 void AdaptPurposeSystem::UpdateEntity(GameEntity* _entity) {
 
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
-    GameEntity* blockManagerEntity           = ecsManager->getUniqueEntity("GameStartRendition");
+    GameEntity* gameStartEntity              = ecsManager->getUniqueEntity("GameStartRendition");
 
-    if (!blockManagerEntity) { // Entityが存在しない場合の早期リターン
+    if (!gameStartEntity) { // Entityが存在しない場合の早期リターン
         return;
     }
 
-    GameStartStatus* gameStartStatus = getComponent<GameStartStatus>(_entity);
+    GameStartStatus* gameStartStatus = getComponent<GameStartStatus>(gameStartEntity);
     SpriteRenderer* spriteRenderer   = getComponent<SpriteRenderer>(_entity);
 
     if (!spriteRenderer || !gameStartStatus) {

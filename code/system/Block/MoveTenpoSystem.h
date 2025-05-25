@@ -3,6 +3,7 @@
 #include "system/ISystem.h"
 #include <cstdint>
 
+class GameStartStatus;
 class BlockManager;
 class MoveTenpoSystem
     : public ISystem {
@@ -21,6 +22,7 @@ protected:
 
 private:
     BlockManager* blockManager_;
+    GameStartStatus* gameStartStatus_;
 
     float timer_;
 

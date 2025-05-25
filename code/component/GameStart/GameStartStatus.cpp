@@ -143,6 +143,7 @@ void GameStartStatus::GoBackEasing(const float& deltaTime) {
 
     /// 　ease
     goScale_ = EaseInCubic(goEndScale_, Vec2f(0.0f, 0.0f), goBackEasing_.time, goBackEasing_.maxTime);
+    readyScale_ = EaseInCubic(Vec2f(1.0f, 1.0f), Vec2f(0.0f, 0.0f), goBackEasing_.time, goBackEasing_.maxTime);
 
     // end
     if (goBackEasing_.time < goBackEasing_.maxTime) {
@@ -152,6 +153,7 @@ void GameStartStatus::GoBackEasing(const float& deltaTime) {
     // adapt
     goBackEasing_.time = goBackEasing_.maxTime;
     goScale_       = Vec2f(0.0f, 0.0f);
+    readyScale_        = Vec2f(0.0f, 0.0f);
     goRotate_      = 0.0f;
     renditionStep_ = RenditionStep::END;
 }
@@ -163,6 +165,8 @@ void GameStartStatus::Reset() {
     closeEasing_.time = 0.0f;
     apearEasing_.time = 0.0f;
     goBackEasing_.time = 0.0f;
+
+    readyScale_ = Vec2f(1.0f, 1.0f);
 
     goRotate_   = 0.0f;
     goScale_    = goStartScale_;

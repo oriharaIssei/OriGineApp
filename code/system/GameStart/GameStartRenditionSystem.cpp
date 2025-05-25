@@ -12,6 +12,7 @@
 
 // component
 #include "component/GameStart/GameStartStatus.h"
+#include"component/Menu/MenuStatus.h"
 
 #include "engine/EngineInclude.h"
 
@@ -28,22 +29,37 @@ void GameStartRenditionSystem::Finalize() {}
 
 void GameStartRenditionSystem::UpdateEntity(GameEntity* _entity) {
 
-    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
-    GameEntity* blockManagerEntity           = ecsManager->getUniqueEntity("BlockManager");
+   
+   
 
-    if (!blockManagerEntity) { // Entityが存在しない場合の早期リターン
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* menuEntity                   = ecsManager->getUniqueEntity("Menu");
+  
+
+  
+
+    GameStartStatus* gameStartStatus = getComponent<GameStartStatus>(_entity);
+    MenuStatus* menu                 = getComponent<MenuStatus>(menuEntity);
+    if (!gameStartStatus || !menuEntity) {
         return;
     }
 
-    GameStartStatus* gameStartStatus = getComponent<GameStartStatus>(_entity);
-
-    if (!gameStartStatus) {
+    if (menu->GetIsPose()) {
         return;
     }
 
     float deltaTime = Engine::getInstance()->getDeltaTime();
 
     switch (gameStartStatus->GetRenditionStep()) {
+        ///---------------------------------------------------
+        /// 最初の待機
+        ///---------------------------------------------------
+    case GameStartStatus::RenditionStep::INIT:
+
+     gameStartStatus->Reset();
+        gameStartStatus->SetRenditionStep(GameStartStatus::RenditionStep::WAIT);
+
+        break;
         ///---------------------------------------------------
         /// 最初の待機
         ///---------------------------------------------------
