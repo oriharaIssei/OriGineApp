@@ -136,6 +136,9 @@
     <Filter Include="system\GameCamera">
       <UniqueIdentifier>{69aa7fc8-b318-4625-a191-d4feabc48f8a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\GameStart">
+      <UniqueIdentifier>{06955c34-abf8-43ff-ad2f-3821ab2bf20a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -524,6 +527,9 @@
     <ClInclude Include="code\component\Player\PlayerAnimationStatus.h">
       <Filter>component\Player</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\GameStart\GameStartStatus.h">
+      <Filter>component\GameStart</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -911,6 +917,9 @@
     </ClCompile>
     <ClCompile Include="code\component\Player\PlayerAnimationStatus.cpp">
       <Filter>component\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\GameStart\GameStartStatus.cpp">
+      <Filter>component\GameStart</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

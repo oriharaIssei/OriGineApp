@@ -106,6 +106,7 @@
     <ClInclude Include="code\component\FloorUI\FloorUIStatus.h" />
     <ClInclude Include="code\component\GameCamera\CameraRenditionStatus.h" />
     <ClInclude Include="code\component\GameEndUI\GameEndUIStatus.h" />
+    <ClInclude Include="code\component\GameStart\GameStartStatus.h" />
     <ClInclude Include="code\component\Piller\FloatingFloorAnimationStatus.h" />
     <ClInclude Include="code\component\Player\PlayerAnimationStatus.h" />
     <ClInclude Include="code\component\Timer\TimerAnimationStatus.h" />
@@ -240,6 +241,7 @@
     <ClCompile Include="code\component\FloorUI\FloorUIStatus.cpp" />
     <ClCompile Include="code\component\GameCamera\CameraRenditionStatus.cpp" />
     <ClCompile Include="code\component\GameEndUI\GameEndUIStatus.cpp" />
+    <ClCompile Include="code\component\GameStart\GameStartStatus.cpp" />
     <ClCompile Include="code\component\Piller\FloatingFloorAnimationStatus.cpp" />
     <ClCompile Include="code\component\Player\PlayerAnimationStatus.cpp" />
     <ClCompile Include="code\component\Timer\TimerAnimationStatus.cpp" />
