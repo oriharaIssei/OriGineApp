@@ -78,6 +78,7 @@
 #include"component/GameCamera/CameraRenditionStatus.h"
 #include"component/Player/PlayerAnimationStatus.h"
 #include"component/GameStart/GameStartStatus.h"
+#include"component/Block/BlockFrontPlaneStatus.h"
 
 // system
 #include "system/BigBom/BigBomCollisionExSystem.h"
@@ -166,6 +167,8 @@
 #include"system/GameStart/AdaptReadySystem.h"
 #include"system/GameStart/GameStartBackGroundSystem.h"
 #include"system/GameStart/GameStartRenditionSystem.h"
+#include"system/Block/AdaptFrontPlaneSystem.h"
+#include"system/Block/FrontPlaneDeleteSystem.h"
 
 MyGame::MyGame() {}
 
@@ -308,6 +311,7 @@ void MyGame::RegisterUsingComponents() {
     ecsManager->registerComponent<CameraRenditionStatus>();
     ecsManager->registerComponent<PlayerAnimationStatus>();
     ecsManager->registerComponent<GameStartStatus>();
+    ecsManager->registerComponent<BlockFrontPlaneStatus>();
 
     ecsManager->registerComponent<Transform>();
     ecsManager->registerComponent<CameraTransform>();
@@ -424,6 +428,9 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<AdaptReadySystem>();
     ecsManager->registerSystem<GameStartBackGroundSystem>();
     ecsManager->registerSystem<GameStartRenditionSystem>();
+
+    ecsManager->registerSystem<AdaptFrontPlaneSystem>();
+    ecsManager->registerSystem<FrontPlaneDeleteSystem>();
 
     ecsManager->registerSystem<FloorUISystem>();
     ecsManager->registerSystem<CheckIsUnderPlayer>();

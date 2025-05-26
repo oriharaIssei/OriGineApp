@@ -44,16 +44,16 @@ void BlockMoveSystem::UpdateEntity(GameEntity* _entity) {
     BlockStatus* blockStatus   = getComponent<BlockStatus>(_entity);
     MenuStatus* menu           = getComponent<MenuStatus>(menuEntity);
     GameEndUIStatus* gameEndUIStatus = getComponent<GameEndUIStatus>(gameEndUIEntity);
-    GameStartStatus* gameStartStatus = getComponent<GameStartStatus>(gameStartEntity);
-    
+   /* GameStartStatus* gameStartStatus = getComponent<GameStartStatus>(gameStartEntity);
+  */  
    
     if (gameEndUIStatus->GetAnimationStep() != GameEndUIStep::NONE) {
         return;
     }
 
-    if (!gameStartStatus->GetIsStart()) {
+  /*  if (!gameStartStatus->GetIsStart()) {
         return;
-    }
+    }*/
 
 
     // no Component

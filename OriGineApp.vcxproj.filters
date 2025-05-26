@@ -548,6 +548,15 @@
     <ClInclude Include="code\system\GameStart\GameStartBackGroundSystem.h">
       <Filter>system\GameStart</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\Block\BlockFrontPlaneStatus.h">
+      <Filter>component\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Block\FrontPlaneDeleteSystem.h">
+      <Filter>system\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Block\AdaptFrontPlaneSystem.h">
+      <Filter>system\Block</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -953,6 +962,15 @@
     </ClCompile>
     <ClCompile Include="code\system\GameStart\GameStartBackGroundSystem.cpp">
       <Filter>system\GameStart</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Block\BlockFrontPlaneStatus.cpp">
+      <Filter>component\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Block\FrontPlaneDeleteSystem.cpp">
+      <Filter>system\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Block\AdaptFrontPlaneSystem.cpp">
+      <Filter>system\Block</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -13,11 +13,15 @@
 // component
 
 #include "component/Block/BlockCombinationStatus.h"
+#include "component/Block/BlockFrontPlaneStatus.h"
 #include "component/Block/BlockStatus.h"
 #include "component/Menu/MenuStatus.h"
 #include "component/Piller/FloatingFloorStatus.h"
 // #include "component/Piller/PillerStates.h"
 //  system
+#include "system/Block/AdaptFrontPlaneSystem.h"
+#include "system/Block/BlockAdaptTextureSystem.h"
+#include "system/Block/BlockApearSystem.h"
 #include "system/Block/BlockColorChangeSystem.h"
 #include "system/Block/BlockExBomCollision.h"
 #include "system/Block/BlockFloorCollision.h"
@@ -25,8 +29,7 @@
 #include "system/Block/BreakBlockSystem.h"
 #include "system/Block/DeleteBlockForAdvantageSystem.h"
 #include "system/Block/DeleteBlockSystem.h"
-#include"system/Block/BlockAdaptTextureSystem.h"
-#include"system/Block/BlockApearSystem.h"
+#include "system/Block/FrontPlaneDeleteSystem.h"
 
 BlockSpawnSystem::BlockSpawnSystem() : ISystem(SystemType::Movement) {}
 BlockSpawnSystem::~BlockSpawnSystem() {}
@@ -69,9 +72,9 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     // Particle達
-     for (int32_t i = 0; i < emitters_.size(); ++i) {
-         emitters_[i] = getComponent<Emitter>(_entity, i);
-     }
+    for (int32_t i = 0; i < emitters_.size(); ++i) {
+        emitters_[i] = getComponent<Emitter>(_entity, i);
+    }
 
     float blockWidth   = blockSpawner_->GetBlockSize()[X] * 2.0f;
     float nextPosition = blockSpawner_->GetNextCreatePositionX();
@@ -137,12 +140,12 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     transform->translate = Vec3f{xPos, blockSpawner_->GetBasePosY() + (sizeY * columIndex), blockSpawner_->GetStartPositionZ()};
     transform->scale     = blockSpawner_->GetBlockSize();
 
+
     //* Collider
     SphereCollider* collider              = getComponent<SphereCollider>(block);
     collider->getLocalShapePtr()->radius_ = blockSpawner_->GetCollisionRadius();
 
-    // /// States
-
+   
     // row,columNum
     BlockStatus* blockStatus = getComponent<BlockStatus>(block);
     blockStatus->SetColumnNum(columIndex);
@@ -151,6 +154,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     blockStatus->SetEaseTimeMax(blockSpawner_->GetMoveTime());
     blockStatus->SetBlockManagerParm(blockSpawner_);
     blockStatus->TimerReset();
+   
 
     /// blockTypeCreater
 
@@ -185,8 +189,6 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     // blockTypeによってEmitterを変更する
     EmitterSetForBlockType(blockEmitterLayerOne, blockEmitterLayerTwo, blockStatus->GetBlockType());
 
-
-
     // hp
     blockStatus->SetcurrentHP(blockSpawner_->GetHpMax());
 
@@ -205,7 +207,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
 
     //------------------ Input
     // None
-    
+
     //------------------ StateTransition
     ecs->getSystem<DeleteBlockSystem>()->addEntity(block);
     ecs->getSystem<BreakBlockSystem>()->addEntity(block);
@@ -215,7 +217,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     ecs->getSystem<BlockMoveSystem>()->addEntity(block);
     ecs->getSystem<BlockAdaptTextureSystem>()->addEntity(block);
     ecs->getSystem<BlockApearSystem>()->addEntity(block);
-    
+
     //------------------ Collision
     ecs->getSystem<CollisionCheckSystem>()->addEntity(block);
     ecs->getSystem<BlockExBomCollision>()->addEntity(block);
@@ -226,8 +228,56 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     ecs->getSystem<EmitterWorkSystem>()->addEntity(block);
     ecs->getSystem<ParticleRenderSystem>()->addEntity(block);
     //------------------ Render
- 
+
     ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(block);
+
+    
+ 
+     GameEntity* frontPlane = CreateEntity<Transform, Rigidbody, ModelMeshRenderer, BlockFrontPlaneStatus>(
+        "FrontPlane", Transform(), Rigidbody(), ModelMeshRenderer(), BlockFrontPlaneStatus());
+   
+    // Front Plane
+     Transform* frontPlaneTransform = getComponent<Transform>(frontPlane); // 柱
+     frontPlaneTransform->parent    = transform;
+
+     /// States(Front Plane)
+    BlockFrontPlaneStatus* blockFrontPlaneStatus = getComponent<BlockFrontPlaneStatus>(frontPlane);
+    blockFrontPlaneStatus->SetCloseEaseTime(0.6f);
+    blockFrontPlaneStatus->SetRotateSpeed(0.6f);
+    blockFrontPlaneStatus->SetRotate(0.0f);
+    blockFrontPlaneStatus->SetScale(Vec3f(2.0f, 2.0f, 2.0f));
+
+    if (blockStatus->GetRowNum() >= blockCombinationStatus_->GetConbinationMax()) {
+        blockFrontPlaneStatus->SetIsDeath(true);
+    } else {
+
+     blockFrontPlaneStatus->SetIsDeath(false);
+    }
+    
+    //(Front Plane)
+    ModelMeshRenderer* blockFrontRenderer = getComponent<ModelMeshRenderer>(frontPlane);
+    CreateModelMeshRenderer(blockFrontRenderer, frontPlane, kApplicationResourceDirectory + "/Models/Plane", "Plane.gltf");
+    blockFrontRenderer->setTexture(0, kApplicationResourceDirectory + "/Texture/NoBreak.png");
+
+     blockStatus->SetBackPlane(blockFrontPlaneStatus); // plane set
+
+       //------------------ Input
+     // None
+
+     //------------------ StateTransition
+
+     //------------------ Movement
+     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(frontPlane);
+     ecs->getSystem<AdaptFrontPlaneSystem>()->addEntity(frontPlane);
+     ecs->getSystem<FrontPlaneDeleteSystem>()->addEntity(frontPlane);
+
+     //------------------ Collision
+
+     //------------------ Physics
+     // None
+
+     //------------------ Render
+     ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(frontPlane);
 }
 
 void BlockSpawnSystem::CostInit() {
@@ -321,7 +371,7 @@ void BlockSpawnSystem::ModelSetForBlockType(BlockStatus* status, ModelMeshRender
         break;
     }
 
-    //初期化での生成はこれ
+    // 初期化での生成はこれ
     if (!isInited_) {
         status->SetAdaptTextureStep(BlockStatus::AdaptTextureStep::END);
         render->setTexture(0, status->GetAdaptTexture());
@@ -337,12 +387,12 @@ void BlockSpawnSystem::EmitterSetForBlockType(Emitter* emitter1, Emitter* emitte
         break;
 
     case BlockType::ADVANTAGE:
-       /* *emitter1 = *emitters_[2];
-        *emitter2 = *emitters_[3];*/
+        /* *emitter1 = *emitters_[2];
+         *emitter2 = *emitters_[3];*/
         break;
     case BlockType::SKULL:
-       /* *emitter1 = *emitters_[4];
-        *emitter2 = *emitters_[5];*/
+        /* *emitter1 = *emitters_[4];
+         *emitter2 = *emitters_[5];*/
         break;
     case BlockType::COUNT:
         break;

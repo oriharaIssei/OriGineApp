@@ -54,8 +54,6 @@ void PlayerMoveSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-
-
     float direction = playerStates->GetDirection();
     float speed     = playerStates->GetMoveSpeed();
     float deltaTime = Engine::getInstance()->getDeltaTime();

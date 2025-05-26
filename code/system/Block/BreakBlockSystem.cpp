@@ -14,6 +14,7 @@
 #include "component/Scrap/ScrapSpawner.h"
 #include "component/Scrap/ScrapStatus.h"
 #include "component/Timer/TimerStatus.h"
+#include"component/Block/BlockFrontPlaneStatus.h"
 /// system
 #include "component/Block/BlockCombinationStatus.h"
 #include "system/scrap/ScrapDeleteSystem.h"
@@ -50,6 +51,9 @@ void BreakBlockSystem::UpdateEntity(GameEntity* _entity) {
         if (!blockStatus_->GetIsBreakForAdvantageEffect()) {
             /* ScrapSpawn(_entity);*/
             BlockReaction(_entity, blockStatus_->GetBlockType());
+        }
+        if (blockStatus_->GetFrontPlaneStatus()) {
+            blockStatus_->GetFrontPlaneStatus()->SetIsDeath(true);
         }
         DestroyEntity(_entity);
     }

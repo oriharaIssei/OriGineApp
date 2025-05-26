@@ -8,7 +8,9 @@
 #include <Vector3.h>
 #include <Vector4.h>
 
+
 struct Transform;
+class BlockFrontPlaneStatus;
 class BlockStatus
     : public IComponent {
 public:
@@ -31,6 +33,7 @@ public:
 private: // variables
     bool isAlive_ = true;
     bool isFall_  = false;
+    BlockFrontPlaneStatus* backPlane_;
 
     //
     int32_t columnNum_;
@@ -132,6 +135,7 @@ public: // accsessor
     std::string GetAdaptTexture() const { return adaptTexture_; }
     AdaptTextureStep GetAdaptTextureStep() const { return adaptTextureStep_; }
     ApearAnimationStep GetApearAnimationstep() const { return apearAnimationStep_; }
+    BlockFrontPlaneStatus* GetFrontPlaneStatus() const { return backPlane_; }
 
     /// setter
     void SetIsCollisionReaction(const bool& is) { isCollisionReaction_ = is; }
@@ -155,4 +159,5 @@ public: // accsessor
     void SetAdaptTexture(const std::string& texture) { adaptTexture_ = texture; }
     void SetAdaptTextureStep(const AdaptTextureStep& step) { adaptTextureStep_ = step; }
     void SetApearAnimationstep(const ApearAnimationStep& step) { apearAnimationStep_ = step; }
+    void SetBackPlane(BlockFrontPlaneStatus* planeStatus) { backPlane_ = planeStatus; }
 };

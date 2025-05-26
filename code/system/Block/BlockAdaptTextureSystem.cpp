@@ -12,6 +12,7 @@
 
 // component
 #include "component/Block/BlockCombinationStatus.h"
+#include "component/Block/BlockFrontPlaneStatus.h"
 #include "component/Block/BlockStatus.h"
 
 #include "engine/EngineInclude.h"
@@ -40,19 +41,19 @@ void BlockAdaptTextureSystem::UpdateEntity(GameEntity* _entity) {
     BlockStatus* blockStatus                 = getComponent<BlockStatus>(_entity);
     ModelMeshRenderer* modelRenderer         = getComponent<ModelMeshRenderer>(_entity);
     BlockCombinationStatus* blockCombiStatus = getComponent<BlockCombinationStatus>(blockCombiEntity);
-   /* Vec4f color_;*/
+    float deltaTime                          = Engine::getInstance()->getDeltaTime();
 
     if (!blockStatus || !modelRenderer || !blockCombiStatus) {
         return;
     }
 
-    switch (blockStatus->GetAdaptTextureStep()) {
+    switch (blockStatus->GetFrontPlaneStatus()->GetPlaneStep()) {
         ///---------------------------------------------------
         /// NONE
         ///---------------------------------------------------
-    case BlockStatus::AdaptTextureStep::NONE:
+    case BlockFrontPlaneStatus::PlaneStep::NONE:
         if (blockStatus->GetRowNum() < blockCombiStatus->GetConbinationMax()) {
-            /*  color_ = Vec4f(1.0f, 0.0f, 0.4f, 1.0f);*/
+            blockStatus->GetFrontPlaneStatus()->Reset();
             break;
         }
 
@@ -62,16 +63,13 @@ void BlockAdaptTextureSystem::UpdateEntity(GameEntity* _entity) {
         /// 適応
         ///---------------------------------------------------
 
-    case BlockStatus::AdaptTextureStep::ADAPT:
-        /*  color_ = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);*/
-        // ドロンのようなパーティクル入れたい
-        modelRenderer->setTexture(0, blockStatus->GetAdaptTexture());
-        blockStatus->SetAdaptTextureStep(BlockStatus::AdaptTextureStep::END);
+   case BlockFrontPlaneStatus::PlaneStep::CLOSE:
+        blockStatus->GetFrontPlaneStatus()->CloseEasing(deltaTime);
         break;
         ///---------------------------------------------------
         /// 終わり
         ///---------------------------------------------------
-    case BlockStatus::AdaptTextureStep::END:
+   case BlockFrontPlaneStatus::PlaneStep::END:
         /*color_ = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);*/
         break;
     default:

@@ -6,6 +6,7 @@
 #include "component/Block/BlockCombinationStatus.h"
 #include "component/Block/BlockStatus.h"
 #include "component/EffectByBlock/EffectByBlockSpawner.h"
+#include"component/Block/BlockFrontPlaneStatus.h"
 #include "component/Score/ScoreStatus.h"
 #include "component/Timer/TimerStatus.h"
 #include "engine/EngineInclude.h"
@@ -54,6 +55,9 @@ void DeleteBlockForAdvantageSystem::UpdateEntity(GameEntity* _entity) {
         }
         // 破壊パーティクル
         BlockBreakParticleShot(_entity, blockStatus_->GetBlockType());
+        if (blockStatus_->GetFrontPlaneStatus()) {
+            blockStatus_->GetFrontPlaneStatus()->SetIsDeath(true);
+        }
         DestroyEntity(_entity);
     }
 }
