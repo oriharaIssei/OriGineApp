@@ -19,13 +19,7 @@ void PlayerInputSystem::Finalize() {
 }
 
 void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
-    PlayerInput* playerInput   = getComponent<PlayerInput>(_entity);
-
-#ifdef _DEBUG
-    if (playerInput == nullptr ) {
-        return;
-    }
-#endif // _DEBUG
+    PlayerInput* playerInput = getComponent<PlayerInput>(_entity);
 
     // ゲームパッドか,キーボード 片方だけ 入力
     if (input_->isPadActive()) {
@@ -71,13 +65,13 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
         }
 
         playerInput->setInputDirection(Vec2f(float(right - left), float(front - back)));
-
+        
         // ジャンプ
-        for (auto key : playerInput->getJumpKeys()) {
+        /*for (auto key : playerInput->getJumpKeys()) {
             if (input_->isPressKey(key)) {
                 playerInput->setJump(true);
                 break;
             }
-        }
+        }*/
     }
 }

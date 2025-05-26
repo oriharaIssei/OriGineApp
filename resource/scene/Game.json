@@ -1,74 +1,286 @@
 {
+    "Entities": [
+        {
+            "Components": {
+                "SkyboxRenderer": [
+                    {
+                        "filePath": "application/resource/..\\..\\..\\..\\..\\..\\Downloads/output_skybox.dds",
+                        "materialBuff": {
+                            "color": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ]
+                        },
+                        "transformBuff": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ]
+            },
+            "Name": "Skybox",
+            "Systems": [
+                {
+                    "SystemName": "SkyboxRender",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "ModelMeshRenderer": [
+                    {
+                        "blendMode": 1,
+                        "directory": "application/resource/Models",
+                        "fileName": "box.obj",
+                        "isRender": true,
+                        "materialBufferDatas": [
+                            {
+                                "color": [
+                                    1.0,
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "enableLighting": false,
+                                "shininess": 0.0,
+                                "specularColor": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvRotate": 0.0,
+                                "uvScale": [
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvTranslate": [
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ],
+                        "transformBufferDatas": [
+                            {
+                                "rotate": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "scale": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "translate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "PlayerInput": [
+                    null
+                ],
+                "PlayerStatus": [
+                    {
+                        "baseSpeed": 0.0,
+                        "directionInterpolateRate": 0.10000000149011612,
+                        "gearUpCoolTime": 0.0
+                    }
+                ],
+                "Rigidbody": [
+                    {
+                        "acceleration": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "mass": 1.0,
+                        "useGravity": false,
+                        "velocity": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "Player",
+            "Systems": [
+                {
+                    "SystemName": "PlayerInputSystem",
+                    "SystemType": 1
+                },
+                {
+                    "SystemName": "MoveSystemByRigidBody",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "PlayerMoveSystem",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "TexturedMeshRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "CameraController": [
+                    {
+                        "followOffset": [
+                            0.0,
+                            1.940000057220459,
+                            -7.28000020980835
+                        ],
+                        "interTargetInterpolation": 0.10000000149011612,
+                        "maxRotateX": 0.4000000059604645,
+                        "minRotateX": -0.1599999964237213,
+                        "rotateSensitivity": 0.07000000029802322,
+                        "rotateSpeedMouse": 0.07999999821186066,
+                        "rotateSpeedPadStick": 0.17000000178813934
+                    }
+                ],
+                "CameraTransform": [
+                    {
+                        "aspectRatio": 1.7777777910232544,
+                        "farZ": 1000.0,
+                        "fovAngleY": 0.7853981852531433,
+                        "nearZ": 0.10000000149011612,
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "GameCamera",
+            "Systems": [
+                {
+                    "SystemName": "CameraInputSystem",
+                    "SystemType": 1
+                },
+                {
+                    "SystemName": "FollowCameraUpdateSystem",
+                    "SystemType": 3
+                }
+            ],
+            "isUnique": true
+        }
+    ],
     "Systems": [
         {
             "SettingGameCameraTarget": {
-                "Priority": 0,
-                "isActive": true
+                "Priority": 0
             }
         },
         {
             "CameraInputSystem": {
-                "Priority": 0,
-                "isActive": true
+                "Priority": 0
             },
             "PlayerInputSystem": {
-                "Priority": 0,
-                "isActive": true
+                "Priority": 0
             }
         },
         {},
         {
             "FollowCameraUpdateSystem": {
-                "Priority": 0,
-                "isActive": true
+                "Priority": 0
             },
             "MoveSystemByRigidBody": {
-                "Priority": 0,
-                "isActive": true
+                "Priority": 0
             },
             "PlayerMoveSystem": {
-                "Priority": 0,
-                "isActive": true
+                "Priority": 0
             }
         },
         {
             "CollisionCheckSystem": {
-                "Priority": 0,
-                "isActive": true
+                "Priority": 0
             }
         },
         {
             "EmitterWorkSystem": {
-                "Priority": 0,
-                "isActive": true
+                "Priority": 0
             },
             "PrimitiveNodeAnimationWorkSystem": {
-                "Priority": 0,
-                "isActive": true
+                "Priority": 0
             }
         },
         {
             "ColliderRenderingSystem": {
-                "Priority": 0,
-                "isActive": true
+                "Priority": 0
             },
             "LineRenderSystem": {
-                "Priority": 0,
-                "isActive": true
+                "Priority": 0
             },
             "ParticleRenderSystem": {
-                "Priority": 0,
-                "isActive": true
+                "Priority": 0
+            },
+            "SkyboxRender": {
+                "Priority": 0
             },
             "SpriteRenderSystem": {
-                "Priority": 0,
-                "isActive": true
+                "Priority": 0
             },
             "TexturedMeshRenderSystem": {
-                "Priority": 0,
-                "isActive": true
+                "Priority": 0
             }
         },
-        {}
+        {
+            "DistortionEffect": {
+                "Priority": 0
+            }
+        }
     ]
 }

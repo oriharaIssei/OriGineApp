@@ -16,6 +16,7 @@ public:
 private:
     void UpdateEntity(GameEntity* _entity) override;
 
+
 private:
     Input* input_ = nullptr;
 };

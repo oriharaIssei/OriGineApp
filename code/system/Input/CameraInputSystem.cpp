@@ -23,7 +23,7 @@ void CameraInputSystem::Finalize() {
 }
 
 void CameraInputSystem::UpdateEntity(GameEntity* _entity) {
-    static const float tao                   = std::numbers::pi_v<float> * 2.f;
+    static const float tao             = std::numbers::pi_v<float> * 2.f;
     CameraController* cameraController = getComponent<CameraController>(_entity);
 
     Vec2f destinationAngleXY = cameraController->getDestinationAngleXY();
@@ -38,7 +38,7 @@ void CameraInputSystem::UpdateEntity(GameEntity* _entity) {
             destinationAngleXY += rotateVelocity;
         }
 
-        destinationAngleXY[X] = std::fmodf(destinationAngleXY[X], tao);
+        destinationAngleXY[X] = 0.f;
         destinationAngleXY[Y] = std::fmodf(destinationAngleXY[Y], tao);
 
         cameraController->setDestinationAngleXY(destinationAngleXY);

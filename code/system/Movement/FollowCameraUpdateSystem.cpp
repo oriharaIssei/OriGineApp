@@ -21,29 +21,31 @@ void FollowCameraUpdateSystem::UpdateEntity(GameEntity* _entity) {
 
     if (cameraController->getFollowTarget()) {
         // ============= interTarget ============= //
-        cameraController->setInterTarget(Lerp(Vec3f(cameraController->getFollowTarget()->worldMat[3]), cameraController->getInterTarget(), cameraController->getInterTargetInterpolation()));
+        cameraController->setInterTarget(
+            Lerp(
+                Vec3f(cameraController->getFollowTarget()->worldMat[3]),
+                cameraController->getInterTarget(),
+                cameraController->getInterTargetInterpolation()));
 
         // ============= rotate ============= //
-        // Quaternion で 回転
-        Vec2f destinationAngleXY = cameraController->getDestinationAngleXY();
+        // 角度からオフセットを回転
+        const Vec2f& destinationAngleXY = cameraController->getDestinationAngleXY();
+        Vec3f offset                    = cameraController->getFollowOffset();
 
-        Quaternion destinationAngleQuat = Quaternion::FromEulerAngles({destinationAngleXY, 0.f});
-        cameraTransform->rotate         = Slerp(cameraTransform->rotate, destinationAngleQuat, cameraController->getRotateSensitivity());
-        cameraTransform->rotate[X]      = std::clamp(cameraTransform->rotate[X], cameraController->getMinRotateX(), cameraController->getMaxRotateX());
+        // 回転行列を作成
+        Matrix4x4 rotateMat = MakeMatrix::RotateY(destinationAngleXY[Y]) * MakeMatrix::RotateX(destinationAngleXY[X]);
+        Vec3f rotatedOffset = offset * rotateMat;
 
-        // ============= translate ============= //
-        // FollowTarget を中心に回転
+        // 新しいカメラ位置
         Vec3f followTargetPosition = cameraController->getInterTarget();
-        Vec3f offset               = cameraController->getFollowOffset();
-
-        // 回転行列を適用
-        Vec3f rotatedOffset = offset * MakeMatrix::RotateQuaternion(cameraTransform->rotate);
-
-        // 新しいカメラ位置を計算
         cameraTransform->translate = followTargetPosition + rotatedOffset;
+
+        // ============= look at target ============= //
+        // カメラの向きをターゲットに向ける
+        Vec3f lookDir              = Vec3f::Normalize(followTargetPosition - cameraTransform->translate);
+        cameraTransform->rotate    = Quaternion::LookAt(lookDir, Vec3f(0, 1, 0));
     }
 
     cameraTransform->UpdateMatrix();
-
     CameraManager::getInstance()->setTransform(*cameraTransform);
 }

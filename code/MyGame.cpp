@@ -145,6 +145,7 @@ void MyGame::RegisterUsingComponents() {
     ecsManager->registerComponent<Emitter>();
     ecsManager->registerComponent<TextureEffectParam>();
     ecsManager->registerComponent<VignetteParam>();
+    ecsManager->registerComponent<DistortionEffectParam>();
 
     ecsManager->registerComponent<Audio>();
 
@@ -160,7 +161,6 @@ void MyGame::RegisterUsingComponents() {
     ecsManager->registerComponent<CameraController>();
     ecsManager->registerComponent<PlayerInput>();
     ecsManager->registerComponent<PlayerStatus>();
-
 }
 
 void MyGame::RegisterUsingSystems() {
@@ -217,4 +217,5 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<GrayscaleEffect>();
     ecsManager->registerSystem<SmoothingEffect>();
     ecsManager->registerSystem<VignetteEffect>();
+    ecsManager->registerSystem<DistortionEffect>();
 }
