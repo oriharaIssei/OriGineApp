@@ -71,7 +71,7 @@ void GameStartStatus::ApearEasing(const float& deltaTime) {
     apearEasing_.time += deltaTime;
 
     /// 　ease
-    purposePos_ = EaseInCubic(purposeStartPos_, purposeEndPos_, apearEasing_.time, apearEasing_.maxTime);
+    purposePos_ = EaseOutBack(purposeStartPos_, purposeEndPos_, apearEasing_.time, apearEasing_.maxTime);
 
     // end
     if (apearEasing_.time < apearEasing_.maxTime) {
@@ -88,7 +88,7 @@ void GameStartStatus::CloseEasing(const float& deltaTime) {
     closeEasing_.time += deltaTime;
 
     /// 　ease
-    purposePos_ = EaseInCubic(purposeEndPos_, purposeClosePos_, closeEasing_.time, closeEasing_.maxTime);
+    purposePos_ = EaseInBack(purposeEndPos_, purposeClosePos_, closeEasing_.time, closeEasing_.maxTime);
 
     // end
     if (closeEasing_.time < closeEasing_.maxTime) {
@@ -123,7 +123,7 @@ void GameStartStatus::GoEasing(const float& deltaTime) {
     goRotate_ += goRotateSpeed_;
 
     /// 　ease
-    goScale_ = EaseInCubic(goStartScale_, goEndScale_, goEasing_.time, goEasing_.maxTime);
+    goScale_ = EaseInQuart(goStartScale_, goEndScale_, goEasing_.time, goEasing_.maxTime);
 
     // end
     if (goEasing_.time < goEasing_.maxTime) {
@@ -142,8 +142,8 @@ void GameStartStatus::GoBackEasing(const float& deltaTime) {
     goRotate_ -= goRotateSpeed_;
 
     /// 　ease
-    goScale_ = EaseInCubic(goEndScale_, Vec2f(0.0f, 0.0f), goBackEasing_.time, goBackEasing_.maxTime);
-    readyScale_ = EaseInCubic(Vec2f(1.0f, 1.0f), Vec2f(0.0f, 0.0f), goBackEasing_.time, goBackEasing_.maxTime);
+    goScale_ = EaseInBack(goEndScale_, Vec2f(0.0f, 0.0f), goBackEasing_.time, goBackEasing_.maxTime);
+    readyScale_ = EaseInBack(Vec2f(1.0f, 1.0f), Vec2f(0.0f, 0.0f), goBackEasing_.time, goBackEasing_.maxTime);
 
     // end
     if (goBackEasing_.time < goBackEasing_.maxTime) {
