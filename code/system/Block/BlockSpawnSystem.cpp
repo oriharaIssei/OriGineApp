@@ -243,7 +243,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
      /// States(Front Plane)
     BlockFrontPlaneStatus* blockFrontPlaneStatus = getComponent<BlockFrontPlaneStatus>(frontPlane);
     blockFrontPlaneStatus->SetCloseEaseTime(0.6f);
-    blockFrontPlaneStatus->SetRotateSpeed(0.6f);
+    blockFrontPlaneStatus->SetRotateSpeed(5.6f);
     blockFrontPlaneStatus->SetRotate(0.0f);
     blockFrontPlaneStatus->SetStartScale(Vec3f(1.0f, 1.0f, 1.0f));
     blockFrontPlaneStatus->SetScale(Vec3f(1.0f, 1.0f, 1.0f));

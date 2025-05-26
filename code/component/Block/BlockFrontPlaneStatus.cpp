@@ -61,10 +61,11 @@ void BlockFrontPlaneStatus::Finalize() {}
 
 
 void BlockFrontPlaneStatus::CloseEasing(const float& deltaTime) {
+    rotate_ += rotateSpeed_ * deltaTime;
     closeEasing_.time += deltaTime;
 
     /// 　ease
-    scale_ = EaseOutBack(startScale_, Vec3f(0.0f, 0.0f, 0.0f), closeEasing_.time, closeEasing_.maxTime);
+    scale_ = EaseInBack(startScale_, Vec3f(0.0f, 0.0f, 0.0f), closeEasing_.time, closeEasing_.maxTime);
 
     // end
     if (closeEasing_.time < closeEasing_.maxTime) {
