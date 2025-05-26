@@ -29,6 +29,7 @@ private: // variables
     Vec3f position_ = {0.0f, 0.0f, 0.0f};
     Vec3f startPos_ = {0.0f, 0.0f, 0.0f};
     Vec3f endPos_   = {0.0f, 0.0f, 0.0f};
+    Vec3f basePosition_ = {0.0f, 0.0f, 0.0f};
 
     // scale
     Vec3f baseScale_ = {1.0f, 1.0f, 1.0f};
@@ -74,6 +75,7 @@ public: // accessors
     const Vec3f& GetEndPos() const { return endPos_; }
     const Vec3f& GetBaseScale() const { return baseScale_; }
     const Vec3f& GetStartScale() const { return maxScale_; }
+    const Vec3f& GetBasePosition() const { return basePosition_; }  
     FloorUIStep GetFloorUIStep() const { return floorUIStep_; }
 
     const Easing& GetMoveEasing() const { return moveEasing_; }
@@ -98,4 +100,6 @@ public: // accessors
     void SetCloseEasing(const Easing& easing) { closeEasing_ = easing; }
 
     void SetFloorRotateSpeed(const float& speed) { rotateSpeed_ = speed; }
+
+    void SetbasePosition(const Vec3f& pos) { basePosition_ = pos; }
 };

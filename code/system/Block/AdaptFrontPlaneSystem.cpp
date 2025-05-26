@@ -50,12 +50,9 @@ void AdaptFrontPlaneSystem::UpdateEntity(GameEntity* _entity) {
     Quaternion yRotation = Quaternion::FromEulerAngles(0.0f, std::numbers::pi_v<float>, 0.0f); // Y軸90度
     Quaternion zRotation = Quaternion::FromEulerAngles(0.0f, 0.0f, rotate); // Z軸回転
 
-    // 回転を組み合わせる（順番が重要）
-    // Z軸回転 -> Y軸90度回転 の順に適用する場合
+   
     Quaternion animationRotation = zRotation * yRotation;
-    // Y軸90度回転 -> Z軸回転 の順に適用する場合
-    // Quaternion animationRotation = yRotation * zRotation;
-
+  
     transform->translate = Vec3f{0.0f, 0.0f, -1.0f}; // 位置は固定
     transform->rotate    = animationRotation;
     transform->scale     = scale;

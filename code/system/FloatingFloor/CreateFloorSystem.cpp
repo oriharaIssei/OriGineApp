@@ -73,7 +73,7 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
 
     Transform* transform        = getComponent<Transform>(floatingFloor); // 柱
     Transform* baseTransform    = getComponent<Transform>(_entity); // 床
-    Transform* floorUITransform = getComponent<Transform>(floorUIEntity); // 床
+    //Transform* floorUITransform = getComponent<Transform>(floorUIEntity); // 床
 
     if (!baseTransform) {
         return;
@@ -83,8 +83,8 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     transform->translate = Vec3f(baseTransform->translate[X], floatFloorSpawner->GetPositionHeight(), baseTransform->translate[Z]);
     transform->scale     = baseTransform->scale;
 
-    // setparent
-    floorUITransform->parent = transform;
+    //// setparent
+    //floorUITransform->parent = transform;
 
     //* Collider
 
@@ -149,6 +149,7 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     // position save
     floatingFloorStatus->SetSavePos(transform->translate);
 
+
     for (int32_t i = 0; i < audios_.size(); ++i) {
         audios_[i]  = getComponent<Audio>(_entity, i); // audio
         faudios_[i] = getComponent<Audio>(floatingFloor, i); // audio
@@ -169,6 +170,7 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     //pos
     floorUIStatus->SetStartPos(floorUIController->GetStartPos());
     floorUIStatus->SetEndPos(floorUIController->GetEndPos());
+    floorUIStatus->SetbasePosition(transform->translate);
 
     floorUIStatus->SetMaxScale(floorUIController->GetMaxScale());
 

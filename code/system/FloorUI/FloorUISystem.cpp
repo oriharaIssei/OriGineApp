@@ -116,7 +116,7 @@ void FloorUISystem::UpdateEntity(GameEntity* entity) {
 
     ///* ------------------------------calucration------------------------------
 
-    Vec3f basePos   = floorUIStatus->GetPosition();
+    Vec3f basePos   = floorUIStatus->GetBasePosition() + floorUIStatus->GetPosition();
     Vec3f baseScale = floorUIStatus->GetBaseScale();
     float rotateZ   = floorUIStatus->GetRotate();
    
