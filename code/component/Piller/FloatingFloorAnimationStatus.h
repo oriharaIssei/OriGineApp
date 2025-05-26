@@ -4,6 +4,7 @@
 #include <array>
 #include <cstdint>
 #include <Vector3.h>
+#include <KetaEasing.h>
 
 enum class ReactionStep {
     NONE,
@@ -27,6 +28,9 @@ private: // variables
 
     float constantShakeValue_;
 
+    bool isRevivalAnimation_ = false;
+    Easing revivalEasing_;
+  
 public:
     FloatingFloorAnimationStatus() {}
     virtual ~FloatingFloorAnimationStatus() = default;
