@@ -58,6 +58,7 @@ void AdaptFrontPlaneSystem::UpdateEntity(GameEntity* _entity) {
 
     transform->translate = Vec3f{0.0f, 0.0f, -1.0f}; // 位置は固定
     transform->rotate    = animationRotation;
+    transform->scale     = scale;
 }
 
 void AdaptFrontPlaneSystem::ComboReset() {

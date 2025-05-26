@@ -159,5 +159,5 @@ public: // accsessor
     void SetAdaptTexture(const std::string& texture) { adaptTexture_ = texture; }
     void SetAdaptTextureStep(const AdaptTextureStep& step) { adaptTextureStep_ = step; }
     void SetApearAnimationstep(const ApearAnimationStep& step) { apearAnimationStep_ = step; }
-    void SetBackPlane(BlockFrontPlaneStatus* planeStatus) { backPlane_ = planeStatus; }
+    void SetFrontBackPlane(BlockFrontPlaneStatus* planeStatus) { backPlane_ = planeStatus; }
 };

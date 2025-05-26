@@ -20,7 +20,7 @@
 // #include "component/Piller/PillerStates.h"
 //  system
 #include "system/Block/AdaptFrontPlaneSystem.h"
-#include "system/Block/BlockAdaptTextureSystem.h"
+#include "system/Block/BackFrontAdaptSystem.h"
 #include "system/Block/BlockApearSystem.h"
 #include "system/Block/BlockColorChangeSystem.h"
 #include "system/Block/BlockExBomCollision.h"
@@ -215,7 +215,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     //------------------ Movement
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(block);
     ecs->getSystem<BlockMoveSystem>()->addEntity(block);
-    ecs->getSystem<BlockAdaptTextureSystem>()->addEntity(block);
+    ecs->getSystem<BackFrontAdaptSystem>()->addEntity(block);
     ecs->getSystem<BlockApearSystem>()->addEntity(block);
 
     //------------------ Collision
@@ -245,7 +245,9 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     blockFrontPlaneStatus->SetCloseEaseTime(0.6f);
     blockFrontPlaneStatus->SetRotateSpeed(0.6f);
     blockFrontPlaneStatus->SetRotate(0.0f);
-    blockFrontPlaneStatus->SetScale(Vec3f(2.0f, 2.0f, 2.0f));
+    blockFrontPlaneStatus->SetStartScale(Vec3f(1.0f, 1.0f, 1.0f));
+    blockFrontPlaneStatus->SetScale(Vec3f(1.0f, 1.0f, 1.0f));
+    blockFrontPlaneStatus->SetPlaneStep(BlockFrontPlaneStatus::PlaneStep::NONE);
 
     if (blockStatus->GetRowNum() >= blockCombinationStatus_->GetConbinationMax()) {
         blockFrontPlaneStatus->SetIsDeath(true);
@@ -259,7 +261,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     CreateModelMeshRenderer(blockFrontRenderer, frontPlane, kApplicationResourceDirectory + "/Models/Plane", "Plane.gltf");
     blockFrontRenderer->setTexture(0, kApplicationResourceDirectory + "/Texture/NoBreak.png");
 
-     blockStatus->SetBackPlane(blockFrontPlaneStatus); // plane set
+     blockStatus->SetFrontBackPlane(blockFrontPlaneStatus); // plane set
 
        //------------------ Input
      // None

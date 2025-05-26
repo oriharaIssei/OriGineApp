@@ -53,7 +53,9 @@ public: // accsessor
 
     void SetRotate(const float& speed) { rotate_ = speed; }
     void SetRotateSpeed(const float& speed) { rotateSpeed_ = speed; }
+    void SetStartScale(const Vec3f& speed) { startScale_ = speed; }
     void SetScale(const Vec3f& speed) { scale_ = speed; }
     void SetCloseEaseTime(const float& speed) { closeEasing_.maxTime = speed; }
     void SetIsDeath(const bool& is) { isDeath_ = is; }
+    void SetPlaneStep(const PlaneStep& step) { planestep_ = step; }
 };

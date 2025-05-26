@@ -159,7 +159,7 @@
 #include"system/Timer/TimerAdaptVignetSystem.h"
 #include"system/FloatingFloor/FloatingFloorAnimationSystem.h"
 #include"system/GameCamera/CameraShakeSystem.h"
-#include"system/Block/BlockAdaptTextureSystem.h"
+#include"system/Block/BackFrontAdaptSystem.h"
 #include"system/Block/BlockApearSystem.h"
 #include"system/Player/PlayerAnimationSystem.h"
 #include"system/GameStart/AdaptGoSystem.h"
@@ -420,7 +420,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<TimerAdaptVignetSystem>();
     ecsManager->registerSystem<FloatingFloorAnimationSystem>();
     ecsManager->registerSystem<CameraShakeSystem>();
-    ecsManager->registerSystem<BlockAdaptTextureSystem>();
+    ecsManager->registerSystem<BackFrontAdaptSystem>();
     ecsManager->registerSystem<BlockApearSystem>();
     ecsManager->registerSystem<PlayerAnimationSystem>();
     ecsManager->registerSystem<AdaptGoSystem>();

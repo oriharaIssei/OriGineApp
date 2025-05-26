@@ -2,15 +2,15 @@
 #include "system/ISystem.h"
 #include "component/transform/Transform.h"
 
-class BlockAdaptTextureSystem
+class BackFrontAdaptSystem
     : public ISystem {
 private:
   
     float time_;
 
 public:
-    BlockAdaptTextureSystem();
-    ~BlockAdaptTextureSystem();
+    BackFrontAdaptSystem();
+    ~BackFrontAdaptSystem();
 
     void Initialize() override;
     // void Update() override;

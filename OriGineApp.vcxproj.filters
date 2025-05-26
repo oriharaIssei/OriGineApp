@@ -518,7 +518,7 @@
     <ClInclude Include="code\system\GameCamera\CameraShakeSystem.h">
       <Filter>system\GameCamera</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Block\BlockAdaptTextureSystem.h">
+    <ClInclude Include="code\system\Block\BackFrontAdaptSystem.h">
       <Filter>system\Block</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Block\BlockApearSystem.h">
@@ -933,7 +933,7 @@
     <ClCompile Include="code\system\GameCamera\CameraShakeSystem.cpp">
       <Filter>system\GameCamera</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Block\BlockAdaptTextureSystem.cpp">
+    <ClCompile Include="code\system\Block\BackFrontAdaptSystem.cpp">
       <Filter>system\Block</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Block\BlockApearSystem.cpp">

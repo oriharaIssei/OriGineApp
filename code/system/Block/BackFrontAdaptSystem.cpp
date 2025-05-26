@@ -1,4 +1,4 @@
-#include "BlockAdaptTextureSystem.h"
+#include "BackFrontAdaptSystem.h"
 
 /// Engine
 #define ENGINE_INCLUDE
@@ -18,18 +18,18 @@
 #include "engine/EngineInclude.h"
 #include <Vector4.h>
 
-BlockAdaptTextureSystem::BlockAdaptTextureSystem()
+BackFrontAdaptSystem::BackFrontAdaptSystem()
     : ISystem(SystemType::Movement) {}
 
-BlockAdaptTextureSystem::~BlockAdaptTextureSystem() {}
+BackFrontAdaptSystem::~BackFrontAdaptSystem() {}
 
-void BlockAdaptTextureSystem::Initialize() {
+void BackFrontAdaptSystem::Initialize() {
     time_ = 0.0f;
 }
 
-void BlockAdaptTextureSystem::Finalize() {}
+void BackFrontAdaptSystem::Finalize() {}
 
-void BlockAdaptTextureSystem::UpdateEntity(GameEntity* _entity) {
+void BackFrontAdaptSystem::UpdateEntity(GameEntity* _entity) {
 
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* blockCombiEntity             = ecsManager->getUniqueEntity("BlockCombination");
@@ -57,7 +57,7 @@ void BlockAdaptTextureSystem::UpdateEntity(GameEntity* _entity) {
             break;
         }
 
-        blockStatus->SetAdaptTextureStep(BlockStatus::AdaptTextureStep::ADAPT);
+        blockStatus->GetFrontPlaneStatus()->SetPlaneStep(BlockFrontPlaneStatus::PlaneStep::CLOSE);
         break;
         ///---------------------------------------------------
         /// 適応
@@ -78,5 +78,5 @@ void BlockAdaptTextureSystem::UpdateEntity(GameEntity* _entity) {
     /* modelRenderer->getMaterialBuff(0)->color_ = color_;*/
 }
 
-void BlockAdaptTextureSystem::ComboReset() {
+void BackFrontAdaptSystem::ComboReset() {
 }
