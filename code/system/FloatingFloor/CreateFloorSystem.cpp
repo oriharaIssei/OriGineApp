@@ -104,7 +104,7 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
         CreateModelMeshRenderer(pillerRender, floatingFloor, kApplicationResourceDirectory + "/Models/Floor_Gold", "Floor_Gold.obj");
         break;
     case 1:
-        CreateModelMeshRenderer(pillerRender, floatingFloor, kApplicationResourceDirectory + "/Models/FloorSilver", "FloorSilver.obj");
+        CreateModelMeshRenderer(pillerRender, floatingFloor, kApplicationResourceDirectory + "/Models/Floor_Silver", "FloorSilver.obj");
         break;
     case 2:
         CreateModelMeshRenderer(pillerRender, floatingFloor, kApplicationResourceDirectory + "/Models/Floor", "Floor.obj");

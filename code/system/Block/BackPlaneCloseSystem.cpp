@@ -31,12 +31,12 @@ void BackPlaneCloseSystem::UpdateEntity(GameEntity* _entity) {
     if (!_entity) {
         return;
     }
-   
-    ModelMeshRenderer* modelRenderer         = getComponent<ModelMeshRenderer>(_entity);
+
+    ModelMeshRenderer* modelRenderer             = getComponent<ModelMeshRenderer>(_entity);
     BlockFrontPlaneStatus* blockFrontPlaneStatus = getComponent<BlockFrontPlaneStatus>(_entity);
     Transform* transform                         = getComponent<Transform>(_entity);
-  
-    float deltaTime                          = Engine::getInstance()->getDeltaTime();
+
+    float deltaTime = Engine::getInstance()->getDeltaTime();
 
     if (!modelRenderer || !blockFrontPlaneStatus || !transform) {
         return;
@@ -70,7 +70,7 @@ void BackPlaneCloseSystem::UpdateEntity(GameEntity* _entity) {
     default:
         break;
     }
- 
+
     Vec3f scale  = blockFrontPlaneStatus->GetScale();
     float rotate = blockFrontPlaneStatus->GetRotate();
 
@@ -78,14 +78,13 @@ void BackPlaneCloseSystem::UpdateEntity(GameEntity* _entity) {
     Quaternion yRotation = Quaternion::FromEulerAngles(0.0f, std::numbers::pi_v<float>, 0.0f); // Y軸90度
     Quaternion zRotation = Quaternion::FromEulerAngles(0.0f, 0.0f, rotate); // Z軸回転
 
-   
     Quaternion animationRotation = zRotation * yRotation;
-  
+
     transform->translate = Vec3f{0.0f, 0.0f, -1.0f}; // 位置は固定
     transform->rotate    = animationRotation;
     transform->scale     = scale;
 
-    if (transform->parent->scale==Vec3f(0.0f,0.0f,0.0f)) {
+    if (transform->parent->scale == Vec3f(0.0f, 0.0f, 0.0f)) {
         modelRenderer->setIsRender(false);
     }
 }

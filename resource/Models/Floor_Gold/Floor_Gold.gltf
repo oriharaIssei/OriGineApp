@@ -15,7 +15,7 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"\u30c6\u30ad\u30b9\u30c8"
+			"name":"\u30c6\u30ad\u30b9\u30c8.008"
 		}
 	],
 	"materials":[
@@ -33,7 +33,7 @@
 	],
 	"meshes":[
 		{
-			"name":"\u30ab\u30fc\u30d6",
+			"name":"\u30ab\u30fc\u30d6.008",
 			"primitives":[
 				{
 					"attributes":{
@@ -64,10 +64,10 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":1544,
+			"count":931,
 			"max":[
 				1,
-				1.3124945163726807,
+				0.32078051567077637,
 				1.717510461807251
 			],
 			"min":[
@@ -80,45 +80,45 @@
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":1544,
+			"count":931,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":1544,
+			"count":931,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5123,
-			"count":4512,
+			"count":2628,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":18528,
+			"byteLength":11172,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":18528,
-			"byteOffset":18528,
+			"byteLength":11172,
+			"byteOffset":11172,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":12352,
-			"byteOffset":37056,
+			"byteLength":7448,
+			"byteOffset":22344,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":9024,
-			"byteOffset":49408,
+			"byteLength":5256,
+			"byteOffset":29792,
 			"target":34963
 		}
 	],
@@ -130,7 +130,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":58432,
+			"byteLength":35048,
 			"uri":"Floor_Gold.bin"
 		}
 	]
