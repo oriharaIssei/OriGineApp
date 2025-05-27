@@ -47,6 +47,9 @@ void BlockApearSystem::UpdateEntity(GameEntity* _entity) {
     if (!blockStatus || !transform) {
         return;
     }
+   /* if (!blockStatus->GetFrontPlaneStatus()) {
+        return;
+    }*/
 
     switch (blockStatus->GetApearAnimationstep()) {
         ///---------------------------------------------------

@@ -261,7 +261,8 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     CreateModelMeshRenderer(blockFrontRenderer, frontPlane, kApplicationResourceDirectory + "/Models/Plane", "Plane.gltf");
     blockFrontRenderer->setTexture(0, kApplicationResourceDirectory + "/Texture/NoBreak.png");
 
-     blockStatus->SetFrontBackPlane(blockFrontPlaneStatus); // plane set
+
+    blockStatus->SetFrontBackPlane(blockFrontPlaneStatus); // plane set
 
        //------------------ Input
      // None
