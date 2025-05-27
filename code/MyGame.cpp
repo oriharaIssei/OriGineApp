@@ -159,7 +159,7 @@
 #include"system/Timer/TimerAdaptVignetSystem.h"
 #include"system/FloatingFloor/FloatingFloorAnimationSystem.h"
 #include"system/GameCamera/CameraShakeSystem.h"
-#include"system/Block/BackFrontAdaptSystem.h"
+#include"system/Block/BackPlaneChangeCloseSystem.h"
 #include"system/Block/BlockApearSystem.h"
 #include"system/Player/PlayerAnimationSystem.h"
 #include"system/GameStart/AdaptGoSystem.h"
@@ -167,7 +167,7 @@
 #include"system/GameStart/AdaptReadySystem.h"
 #include"system/GameStart/GameStartBackGroundSystem.h"
 #include"system/GameStart/GameStartRenditionSystem.h"
-#include"system/Block/AdaptFrontPlaneSystem.h"
+#include"system/Block/BackPlaneCloseSystem.h"
 #include"system/Block/FrontPlaneDeleteSystem.h"
 
 MyGame::MyGame() {}
@@ -420,7 +420,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<TimerAdaptVignetSystem>();
     ecsManager->registerSystem<FloatingFloorAnimationSystem>();
     ecsManager->registerSystem<CameraShakeSystem>();
-    ecsManager->registerSystem<BackFrontAdaptSystem>();
+    ecsManager->registerSystem<BackPlaneChangeCloseSystem>();
     ecsManager->registerSystem<BlockApearSystem>();
     ecsManager->registerSystem<PlayerAnimationSystem>();
     ecsManager->registerSystem<AdaptGoSystem>();
@@ -429,7 +429,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<GameStartBackGroundSystem>();
     ecsManager->registerSystem<GameStartRenditionSystem>();
 
-    ecsManager->registerSystem<AdaptFrontPlaneSystem>();
+    ecsManager->registerSystem<BackPlaneCloseSystem>();
     ecsManager->registerSystem<FrontPlaneDeleteSystem>();
 
     ecsManager->registerSystem<FloorUISystem>();

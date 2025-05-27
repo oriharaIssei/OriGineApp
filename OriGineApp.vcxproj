@@ -160,8 +160,8 @@
     <ClInclude Include="code\system\BigBom\BigBomLaunchSystem.h" />
     <ClInclude Include="code\system\BigBom\DeleteBigBomSystem.h" />
     <ClInclude Include="code\system\BigBom\DeleteBigExplotionCollision.h" />
-    <ClInclude Include="code\system\Block\AdaptFrontPlaneSystem.h" />
-    <ClInclude Include="code\system\Block\BackFrontAdaptSystem.h" />
+    <ClInclude Include="code\system\Block\BackPlaneCloseSystem.h" />
+    <ClInclude Include="code\system\Block\BackPlaneChangeCloseSystem.h" />
     <ClInclude Include="code\system\Block\BlockApearSystem.h" />
     <ClInclude Include="code\system\Block\BlockColorChangeSystem.h" />
     <ClInclude Include="code\system\Block\BlockExBomCollision.h" />
@@ -305,8 +305,8 @@
     <ClCompile Include="code\system\BigBom\BigBomLaunchSystem.cpp" />
     <ClCompile Include="code\system\BigBom\DeleteBigBomSystem.cpp" />
     <ClCompile Include="code\system\BigBom\DeleteBigExplotionCollision.cpp" />
-    <ClCompile Include="code\system\Block\AdaptFrontPlaneSystem.cpp" />
-    <ClCompile Include="code\system\Block\BackFrontAdaptSystem.cpp" />
+    <ClCompile Include="code\system\Block\BackPlaneCloseSystem.cpp" />
+    <ClCompile Include="code\system\Block\BackPlaneChangeCloseSystem.cpp" />
     <ClCompile Include="code\system\Block\BlockApearSystem.cpp" />
     <ClCompile Include="code\system\Block\BlockColorChangeSystem.cpp" />
     <ClCompile Include="code\system\Block\BlockExBomCollision.cpp" />

@@ -19,8 +19,10 @@
 #include "component/Piller/FloatingFloorStatus.h"
 // #include "component/Piller/PillerStates.h"
 //  system
-#include "system/Block/AdaptFrontPlaneSystem.h"
-#include "system/Block/BackFrontAdaptSystem.h"
+#include "system/Block/BackPlaneCloseSystem.h"
+#include "system/Block/BackPlaneChangeCloseSystem.h"
+
+
 #include "system/Block/BlockApearSystem.h"
 #include "system/Block/BlockColorChangeSystem.h"
 #include "system/Block/BlockExBomCollision.h"
@@ -140,12 +142,10 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     transform->translate = Vec3f{xPos, blockSpawner_->GetBasePosY() + (sizeY * columIndex), blockSpawner_->GetStartPositionZ()};
     transform->scale     = blockSpawner_->GetBlockSize();
 
-
     //* Collider
     SphereCollider* collider              = getComponent<SphereCollider>(block);
     collider->getLocalShapePtr()->radius_ = blockSpawner_->GetCollisionRadius();
 
-   
     // row,columNum
     BlockStatus* blockStatus = getComponent<BlockStatus>(block);
     blockStatus->SetColumnNum(columIndex);
@@ -153,8 +153,8 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     blockStatus->SetBlockType(BlockType::NORMAL); // まずはノーマルにセット
     blockStatus->SetEaseTimeMax(blockSpawner_->GetMoveTime());
     blockStatus->SetBlockManagerParm(blockSpawner_);
+    blockStatus->SetIsCloseFrontBackPlane(false);
     blockStatus->TimerReset();
-   
 
     /// blockTypeCreater
 
@@ -212,10 +212,10 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     ecs->getSystem<DeleteBlockSystem>()->addEntity(block);
     ecs->getSystem<BreakBlockSystem>()->addEntity(block);
     ecs->getSystem<DeleteBlockForAdvantageSystem>()->addEntity(block);
+    ecs->getSystem<BackPlaneChangeCloseSystem>()->addEntity(block);
     //------------------ Movement
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(block);
     ecs->getSystem<BlockMoveSystem>()->addEntity(block);
-    ecs->getSystem<BackFrontAdaptSystem>()->addEntity(block);
     ecs->getSystem<BlockApearSystem>()->addEntity(block);
 
     //------------------ Collision
@@ -231,16 +231,14 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
 
     ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(block);
 
-    
- 
-     GameEntity* frontPlane = CreateEntity<Transform, Rigidbody, ModelMeshRenderer, BlockFrontPlaneStatus>(
+    GameEntity* frontPlane = CreateEntity<Transform, Rigidbody, ModelMeshRenderer, BlockFrontPlaneStatus>(
         "FrontPlane", Transform(), Rigidbody(), ModelMeshRenderer(), BlockFrontPlaneStatus());
-   
-    // Front Plane
-     Transform* frontPlaneTransform = getComponent<Transform>(frontPlane); // 柱
-     frontPlaneTransform->parent    = transform;
 
-     /// States(Front Plane)
+    // Front Plane
+    Transform* frontPlaneTransform = getComponent<Transform>(frontPlane); // 柱
+    frontPlaneTransform->parent    = transform;
+
+    /// States(Front Plane)
     BlockFrontPlaneStatus* blockFrontPlaneStatus = getComponent<BlockFrontPlaneStatus>(frontPlane);
     blockFrontPlaneStatus->SetCloseEaseTime(0.6f);
     blockFrontPlaneStatus->SetRotateSpeed(5.6f);
@@ -248,39 +246,37 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     blockFrontPlaneStatus->SetStartScale(Vec3f(1.0f, 1.0f, 1.0f));
     blockFrontPlaneStatus->SetScale(Vec3f(1.0f, 1.0f, 1.0f));
     blockFrontPlaneStatus->SetPlaneStep(BlockFrontPlaneStatus::PlaneStep::NONE);
+    blockFrontPlaneStatus->SetIsFrontPlaneClose(&blockStatus->GetIsCloseFrontBackPlane());
 
     if (blockStatus->GetRowNum() >= blockCombinationStatus_->GetConbinationMax()) {
         blockFrontPlaneStatus->SetIsDeath(true);
     } else {
 
-     blockFrontPlaneStatus->SetIsDeath(false);
+        blockFrontPlaneStatus->SetIsDeath(false);
     }
-    
+
     //(Front Plane)
     ModelMeshRenderer* blockFrontRenderer = getComponent<ModelMeshRenderer>(frontPlane);
     CreateModelMeshRenderer(blockFrontRenderer, frontPlane, kApplicationResourceDirectory + "/Models/Plane", "Plane.gltf");
     blockFrontRenderer->setTexture(0, kApplicationResourceDirectory + "/Texture/NoBreak.png");
 
+    //------------------ Input
+    // None
 
-    blockStatus->SetFrontBackPlane(blockFrontPlaneStatus); // plane set
+    //------------------ StateTransition
 
-       //------------------ Input
-     // None
+    //------------------ Movement
+    ecs->getSystem<MoveSystemByRigidBody>()->addEntity(frontPlane);
+    ecs->getSystem<BackPlaneCloseSystem>()->addEntity(frontPlane);
+    ecs->getSystem<FrontPlaneDeleteSystem>()->addEntity(frontPlane);
 
-     //------------------ StateTransition
+    //------------------ Collision
 
-     //------------------ Movement
-     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(frontPlane);
-     ecs->getSystem<AdaptFrontPlaneSystem>()->addEntity(frontPlane);
-     ecs->getSystem<FrontPlaneDeleteSystem>()->addEntity(frontPlane);
+    //------------------ Physics
+    // None
 
-     //------------------ Collision
-
-     //------------------ Physics
-     // None
-
-     //------------------ Render
-     ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(frontPlane);
+    //------------------ Render
+    ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(frontPlane);
 }
 
 void BlockSpawnSystem::CostInit() {

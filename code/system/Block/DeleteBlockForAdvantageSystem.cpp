@@ -55,9 +55,7 @@ void DeleteBlockForAdvantageSystem::UpdateEntity(GameEntity* _entity) {
         }
         // 破壊パーティクル
         BlockBreakParticleShot(_entity, blockStatus_->GetBlockType());
-        if (blockStatus_->GetFrontPlaneStatus()) {
-            blockStatus_->GetFrontPlaneStatus()->SetIsDeath(true);
-        }
+       
         DestroyEntity(_entity);
     }
 }

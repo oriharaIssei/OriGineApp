@@ -2,15 +2,15 @@
 #include "system/ISystem.h"
 #include "component/transform/Transform.h"
 
-class BackFrontAdaptSystem
+class BackPlaneCloseSystem
     : public ISystem {
 private:
-  
+
     float time_;
 
 public:
-    BackFrontAdaptSystem();
-    ~BackFrontAdaptSystem();
+    BackPlaneCloseSystem();
+    ~BackPlaneCloseSystem();
 
     void Initialize() override;
     // void Update() override;

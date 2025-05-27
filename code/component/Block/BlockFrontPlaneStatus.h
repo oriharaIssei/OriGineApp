@@ -30,8 +30,10 @@ private: // variables
     Vec3f scale_;
     Vec3f startScale_;
     Easing closeEasing_;
-    bool isDeath_;
+    bool isDeath_=false;
     PlaneStep planestep_=PlaneStep::NONE;
+
+    const bool* isFrontPlaneClose_ = nullptr; 
 
 public:
     BlockFrontPlaneStatus() {}
@@ -50,6 +52,7 @@ public: // accsessor
     PlaneStep GetPlaneStep() const { return planestep_; }
     Vec3f GetScale() const { return scale_; }
     float GetRotate() const { return rotate_; }
+    const bool* GetIsFrontPlaneClose() const { return isFrontPlaneClose_; }
 
     void SetRotate(const float& speed) { rotate_ = speed; }
     void SetRotateSpeed(const float& speed) { rotateSpeed_ = speed; }
@@ -58,4 +61,5 @@ public: // accsessor
     void SetCloseEaseTime(const float& speed) { closeEasing_.maxTime = speed; }
     void SetIsDeath(const bool& is) { isDeath_ = is; }
     void SetPlaneStep(const PlaneStep& step) { planestep_ = step; }
+    void SetIsFrontPlaneClose(const bool* isFrontPlaneClose) { isFrontPlaneClose_ = isFrontPlaneClose; }
 };

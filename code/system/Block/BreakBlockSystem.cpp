@@ -52,9 +52,7 @@ void BreakBlockSystem::UpdateEntity(GameEntity* _entity) {
             /* ScrapSpawn(_entity);*/
             BlockReaction(_entity, blockStatus_->GetBlockType());
         }
-        if (blockStatus_->GetFrontPlaneStatus()) {
-            blockStatus_->GetFrontPlaneStatus()->SetIsDeath(true);
-        }
+      
         DestroyEntity(_entity);
     }
 }

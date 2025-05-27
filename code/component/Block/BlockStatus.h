@@ -8,9 +8,7 @@
 #include <Vector3.h>
 #include <Vector4.h>
 
-
 struct Transform;
-class BlockFrontPlaneStatus;
 class BlockStatus
     : public IComponent {
 public:
@@ -33,7 +31,8 @@ public:
 private: // variables
     bool isAlive_ = true;
     bool isFall_  = false;
-    BlockFrontPlaneStatus* backPlane_;
+
+    bool isFrontPlaneClose_ = false;
 
     //
     int32_t columnNum_;
@@ -63,18 +62,17 @@ private: // variables
     float breakOffsetTime_          = 0.0f;
     bool isBreakForAdvaltageEffect_ = false;
 
-    float resultScore_  = 0.0f;
-    float resultTime_   = 0.0f;
-    bool isRightEdge_   = 0.0f;
+    float resultScore_        = 0.0f;
+    float resultTime_         = 0.0f;
+    bool isRightEdge_         = 0.0f;
     bool isCollisionReaction_ = false;
 
-   
     /// adaptTexture
     AdaptTextureStep adaptTextureStep_ = AdaptTextureStep::NONE;
     std::string adaptTexture_;
 
     ///
-    ApearAnimationStep apearAnimationStep_=ApearAnimationStep::NONE;
+    ApearAnimationStep apearAnimationStep_ = ApearAnimationStep::NONE;
     float saveZPos_;
     Easing breakApearEasing_;
     Easing breakBackEasing_;
@@ -104,14 +102,12 @@ public:
     void SavingZPosition(/*const float& pos*/);
     void ZApearEasing(const float& deltaTime);
     void ZBackEasing(const float& deltaTime);
-    void ChangeStep(const ApearAnimationStep&step);
+    void ChangeStep(const ApearAnimationStep& step);
     void TimerReset();
 
 public: // accsessor
     /// getter
     float GetZPosition() const { return zposition_; }
-   /* float GetstartZPosition() const { return startZPos_; }
-    float GetEndZPosition() const { return EndZPos_; }*/
     bool GetIsCollisionReaction() const { return isCollisionReaction_; }
     bool GetIsRightEdge() const { return isRightEdge_; }
     float GetResultScore() const { return resultScore_; }
@@ -135,7 +131,7 @@ public: // accsessor
     std::string GetAdaptTexture() const { return adaptTexture_; }
     AdaptTextureStep GetAdaptTextureStep() const { return adaptTextureStep_; }
     ApearAnimationStep GetApearAnimationstep() const { return apearAnimationStep_; }
-    BlockFrontPlaneStatus* GetFrontPlaneStatus() const { return backPlane_; }
+    const bool& GetIsCloseFrontBackPlane() const { return isFrontPlaneClose_; }
 
     /// setter
     void SetIsCollisionReaction(const bool& is) { isCollisionReaction_ = is; }
@@ -159,5 +155,5 @@ public: // accsessor
     void SetAdaptTexture(const std::string& texture) { adaptTexture_ = texture; }
     void SetAdaptTextureStep(const AdaptTextureStep& step) { adaptTextureStep_ = step; }
     void SetApearAnimationstep(const ApearAnimationStep& step) { apearAnimationStep_ = step; }
-    void SetFrontBackPlane(BlockFrontPlaneStatus* planeStatus) { backPlane_ = planeStatus; }
+    void SetIsCloseFrontBackPlane(const bool& is) { isFrontPlaneClose_ = is; }
 };

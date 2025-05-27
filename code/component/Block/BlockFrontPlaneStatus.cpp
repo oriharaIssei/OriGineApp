@@ -80,6 +80,7 @@ void BlockFrontPlaneStatus::CloseEasing(const float& deltaTime) {
 }
 
 void BlockFrontPlaneStatus::Reset() {
+    rotate_           = 0.0f;
     closeEasing_.time = 0.0f;
     scale_            = startScale_;
 }

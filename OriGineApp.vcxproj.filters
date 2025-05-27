@@ -518,7 +518,7 @@
     <ClInclude Include="code\system\GameCamera\CameraShakeSystem.h">
       <Filter>system\GameCamera</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Block\BackFrontAdaptSystem.h">
+    <ClInclude Include="code\system\Block\BackPlaneChangeCloseSystem.h">
       <Filter>system\Block</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Block\BlockApearSystem.h">
@@ -554,7 +554,7 @@
     <ClInclude Include="code\system\Block\FrontPlaneDeleteSystem.h">
       <Filter>system\Block</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Block\AdaptFrontPlaneSystem.h">
+    <ClInclude Include="code\system\Block\BackPlaneCloseSystem.h">
       <Filter>system\Block</Filter>
     </ClInclude>
   </ItemGroup>
@@ -933,7 +933,7 @@
     <ClCompile Include="code\system\GameCamera\CameraShakeSystem.cpp">
       <Filter>system\GameCamera</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Block\BackFrontAdaptSystem.cpp">
+    <ClCompile Include="code\system\Block\BackPlaneChangeCloseSystem.cpp">
       <Filter>system\Block</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Block\BlockApearSystem.cpp">
@@ -969,7 +969,7 @@
     <ClCompile Include="code\system\Block\FrontPlaneDeleteSystem.cpp">
       <Filter>system\Block</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Block\AdaptFrontPlaneSystem.cpp">
+    <ClCompile Include="code\system\Block\BackPlaneCloseSystem.cpp">
       <Filter>system\Block</Filter>
     </ClCompile>
   </ItemGroup>
