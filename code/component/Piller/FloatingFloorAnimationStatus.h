@@ -28,8 +28,7 @@ private: // variables
 
     float constantShakeValue_;
 
-    bool isRevivalAnimation_ = false;
-    Easing revivalEasing_;
+    float revivalMaxTime_ = 0.0f;   
   
 public:
     FloatingFloorAnimationStatus() {}
@@ -44,6 +43,7 @@ public: // accsessor
     float GetShakeValue() const { return shakeValue_; }
     float GetShakeMaxTime() const { return shakeMaxTime_; }
     float GetConstantShakeValue() const { return constantShakeValue_; }
+    float GetRevivalMaxTime() const { return revivalMaxTime_; } 
     /// setter
   
    

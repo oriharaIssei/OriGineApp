@@ -53,7 +53,7 @@ void FloatingFloorAnimationSystem::UpdateEntity(GameEntity* _entity) {
     case ReactionStep::NONE:
 
         if (!floatingFloorStatus->GetIsDamageShake()) {
-            return;
+            break;
         }
         floatingFloorStatus->DamageShakeReset(animationStatus_);
 
@@ -86,7 +86,11 @@ void FloatingFloorAnimationSystem::UpdateEntity(GameEntity* _entity) {
         break;
     }
 
+    //復活演出
+    floatingFloorStatus->RevivalAnimation(deltaTime, animationStatus_->GetRevivalMaxTime());
+
     transform->translate[X] = floatingFloorStatus->GetSavePos()[X] + floatingFloorStatus->GetDamageShakePos()[X];
+    transform->scale        = floatingFloorStatus->GetBaseScale();
 }
 
 void FloatingFloorAnimationSystem::ComboReset() {

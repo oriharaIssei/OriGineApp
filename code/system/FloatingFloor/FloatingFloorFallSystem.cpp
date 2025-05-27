@@ -10,9 +10,9 @@
 
 /// app
 // component
+#include "component/GameCamera/CameraRenditionStatus.h"
+#include "component/Menu/MenuStatus.h"
 #include "component/Piller/FloatingFloorStatus.h"
-#include"component/GameCamera/CameraRenditionStatus.h"
-#include"component/Menu/MenuStatus.h"
 
 // system
 
@@ -28,10 +28,10 @@ void FloatingFloorFallSystem::Finalize() {
 
 void FloatingFloorFallSystem::UpdateEntity(GameEntity* _entity) {
 
-      // ポーズ中は通さない
+    // ポーズ中は通さない
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* menuEntity                   = ecsManager->getUniqueEntity("Menu");
-    GameEntity* cameraRenditionEntity                   = ecsManager->getUniqueEntity("CameraRendition");
+    GameEntity* cameraRenditionEntity        = ecsManager->getUniqueEntity("CameraRendition");
 
     if (!menuEntity) {
         return;
@@ -47,24 +47,23 @@ void FloatingFloorFallSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    FloatingFloorStatus* entityStatus = getComponent<FloatingFloorStatus>(_entity);
-    Transform* entityTransform        = getComponent<Transform>(_entity);
+    FloatingFloorStatus* entityStatus            = getComponent<FloatingFloorStatus>(_entity);
+    Transform* entityTransform                   = getComponent<Transform>(_entity);
     CameraRenditionStatus* cameraRenditionStatus = getComponent<CameraRenditionStatus>(cameraRenditionEntity);
 
     if (!entityStatus) {
         return;
     }
 
-    if (!entityStatus->GetIsFall()||entityStatus->GetIsDestroy()) {
+    if (!entityStatus->GetIsFall() || entityStatus->GetIsDestroy()) {
         return;
     }
 
-  
     // フロアの落下処理
     entityStatus->SetIncrementFallEaseT(Engine::getInstance()->getDeltaTime() * entityStatus->GetFallSpeed());
 
     // 落とす
-    entityTransform->translate[Y] = Lerp(entityStatus->GetStartPosY(),entityStatus->GetFallPosY(),entityStatus->GetFallEaseT());
+    entityTransform->translate[Y] = Lerp(entityStatus->GetStartPosY(), entityStatus->GetFallPosY(), entityStatus->GetFallEaseT());
 
     // 落ちた後の処理
     if (entityStatus->GetFallEaseT() < 1.0f) {
@@ -73,7 +72,7 @@ void FloatingFloorFallSystem::UpdateEntity(GameEntity* _entity) {
 
     // savePosY_を更新
     entityTransform->translate[Y] = entityStatus->GetFallPosY();
-  /*  entityStatus->SetStartPosY(entityTransform->translate[Y]);*/
+    /*  entityStatus->SetStartPosY(entityTransform->translate[Y]);*/
     entityStatus->SetFallEaseT(0.0f);
 
     // フラグ戻す

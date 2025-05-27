@@ -71,8 +71,8 @@ void FloatingFloorDamageSystem::UpdateEntity(GameEntity* _entity) {
 
                 //デカボムか通常ボムか
                 if (hitEntityBigStatus) {
-                    float ratio = floatingFloorStatus->GetScoreUPRatio() * hitEntityBigStatus->GetPlusScoreRatio();
-                     floatingFloorStatus->SetScoreUpRatio(ratio);
+                    float rate = floatingFloorStatus->GetScoreUPRatio() * hitEntityBigStatus->GetPlusScoreRatio();
+                     floatingFloorStatus->SetScoreUpRatio(rate);
                     floatingFloorStatus->TakeBigDamage();
                 } else {
                     floatingFloorStatus->ChangeDamageShake();

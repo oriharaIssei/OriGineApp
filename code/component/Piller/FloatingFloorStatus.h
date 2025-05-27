@@ -51,6 +51,11 @@ private: // variables
     float shakeTime_           = 0.0f;
     bool isDamageShake_        = false;
 
+    // revival easing
+    bool isRevivalAnimation_ = false;
+    float revivalEaseT_;
+    Vec3f baseScale_ = {1.0f, 1.0f, 1.0f};
+
 public:
     FloatingFloorStatus() {}
     virtual ~FloatingFloorStatus() = default;
@@ -70,8 +75,12 @@ public:
     void DamageShake(const float& shakeValue, const float& deltaTime);
     void ConstantShake(const float& shakeValue);
 
+    void RevivalAnimation(const float& deltaTime, const float&maxTime);
+
 public: // accsessor
     /// getter
+    Vec3f GetBaseScale() const { return baseScale_; }
+    bool GetIsRevivalAnimation() const { return isRevivalAnimation_; }
     bool GetIsDamageShake() const { return isDamageShake_; }
     int32_t GetColumNum() const { return columNum_; }
     int32_t GetRowNum() const { return rowNum_; }
@@ -119,5 +128,7 @@ public: // accsessor
     void SetFallCollisionSizeMax(const Vec3f& s) { fallCollisionSizeMax_ = s; }
     void SetFallCollisionCenterPos(const Vec3f& s) { fallCollisionCenterPos_ = s; }
     void SetSavePos(const Vec3f pos) { savePos_ = pos; }
+    void SetBaseScale(const Vec3f pos) { baseScale_ = pos; }
     void SetReactionStep(const ReactionStep& step) { reactionStep_ = step; }
+    void SetIsRevivalAnimation(const bool& is) { isRevivalAnimation_ = is; }
 };

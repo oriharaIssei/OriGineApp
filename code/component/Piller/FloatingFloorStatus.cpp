@@ -58,10 +58,27 @@ void FloatingFloorStatus::DamageShake(const float& shakeValue, const float& delt
     if (shakeTime_ > 0.0f) {
         return;
     }
-    //リセット
+    // リセット
     shakeTime_      = 0.0f;
     damageShakePos_ = {0.0f, 0.0f, 0.0f};
     reactionStep_   = ReactionStep::CONSTANTSHAKE;
+}
+
+void FloatingFloorStatus::RevivalAnimation(const float& deltaTime, const float& maxTime) {
+    if (!isRevivalAnimation_) {
+        return;
+    }
+    revivalEaseT_ += deltaTime;
+
+    baseScale_ = EaseOutQuad(Vec3f(0.0f, 0.0f, 0.0f), savePos_, revivalEaseT_, maxTime);
+
+    if (revivalEaseT_ < maxTime) {
+        return;
+    }
+
+    isRevivalAnimation_ = false;
+    baseScale_          = savePos_;
+    revivalEaseT_       = 0.0f;
 }
 
 void FloatingFloorStatus::ConstantShake(const float& shakeValue) {

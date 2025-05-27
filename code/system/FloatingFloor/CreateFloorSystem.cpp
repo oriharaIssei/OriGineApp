@@ -132,12 +132,13 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     // pretrasfnorm
     floatingFloorStatus->SetStartPosY(floatFloorSpawner->GetPositionHeight());
     floatingFloorStatus->SetSaveScale(baseTransform->scale);
+    floatingFloorStatus->SetBaseScale(baseTransform->scale);
     // fall
     floatingFloorStatus->SetFallSpeed(1.0f);
     floatingFloorStatus->SetFallPosY(-5.0f);
     floatingFloorStatus->SetIncrementFallEaseT(0.0f);
 
-    // ratio
+    // rate
     floatingFloorStatus->SetScoreUpRatio(floatFloorSpawner->GetScoreUPRate());
     floatingFloorStatus->SetStartScoreUPRate(floatFloorSpawner->GetScoreUPRate());
 
