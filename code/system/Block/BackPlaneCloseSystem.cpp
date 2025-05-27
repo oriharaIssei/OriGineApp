@@ -84,6 +84,10 @@ void BackPlaneCloseSystem::UpdateEntity(GameEntity* _entity) {
     transform->translate = Vec3f{0.0f, 0.0f, -1.0f}; // 位置は固定
     transform->rotate    = animationRotation;
     transform->scale     = scale;
+
+    if (!transform->parent) {
+        modelRenderer->setIsRender(false);
+    }
 }
 
 void BackPlaneCloseSystem::ComboReset() {
