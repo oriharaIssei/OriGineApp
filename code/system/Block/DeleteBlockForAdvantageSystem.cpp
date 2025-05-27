@@ -55,7 +55,7 @@ void DeleteBlockForAdvantageSystem::UpdateEntity(GameEntity* _entity) {
         }
         // 破壊パーティクル
         BlockBreakParticleShot(_entity, blockStatus_->GetBlockType());
-       
+        blockTransform_->scale = Vec3f(0.0f, 0.0f, 0.0f);   
         DestroyEntity(_entity);
     }
 }

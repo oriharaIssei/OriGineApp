@@ -40,6 +40,7 @@ void BreakBlockSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     blockStatus_ = getComponent<BlockStatus>(_entity);
+    Transform* transform = getComponent<Transform>(_entity);
 
     if (!blockStatus_) {
         return;
@@ -49,10 +50,10 @@ void BreakBlockSystem::UpdateEntity(GameEntity* _entity) {
     if (blockStatus_->GetIsBreak()) {
 
         if (!blockStatus_->GetIsBreakForAdvantageEffect()) {
-            /* ScrapSpawn(_entity);*/
             BlockReaction(_entity, blockStatus_->GetBlockType());
         }
-      
+
+        transform->scale=Vec3f(0.0f,0.0f,0.0f);   
         DestroyEntity(_entity);
     }
 }
@@ -183,6 +184,7 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
         break;
     }
 
+   
     SpawnerStatus->EffectUISpawn(Vec3f(blockTransform->worldMat[3]), tempValue_, effectType_);
 }
 

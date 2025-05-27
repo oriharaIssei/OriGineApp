@@ -85,7 +85,7 @@ void BackPlaneCloseSystem::UpdateEntity(GameEntity* _entity) {
     transform->rotate    = animationRotation;
     transform->scale     = scale;
 
-    if (!transform->parent) {
+    if (transform->parent->scale==Vec3f(0.0f,0.0f,0.0f)) {
         modelRenderer->setIsRender(false);
     }
 }
