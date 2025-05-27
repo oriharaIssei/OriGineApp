@@ -28,7 +28,9 @@ void BackPlaneCloseSystem::Initialize() {
 void BackPlaneCloseSystem::Finalize() {}
 
 void BackPlaneCloseSystem::UpdateEntity(GameEntity* _entity) {
-
+    if (!_entity) {
+        return;
+    }
    
     ModelMeshRenderer* modelRenderer         = getComponent<ModelMeshRenderer>(_entity);
     BlockFrontPlaneStatus* blockFrontPlaneStatus = getComponent<BlockFrontPlaneStatus>(_entity);

@@ -75,6 +75,8 @@ void BlockFrontPlaneStatus::CloseEasing(const float& deltaTime) {
     // adapt
     closeEasing_.time = closeEasing_.maxTime;
     scale_            = Vec3f(0.0f, 0.0f, 0.0f);
+    rotate_           = 0.0f;
+    rotateSpeed_      = 0.0f;
     isDeath_          = true;
     planestep_        = PlaneStep::END;
 }

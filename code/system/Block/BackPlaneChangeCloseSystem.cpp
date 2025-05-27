@@ -30,6 +30,9 @@ void BackPlaneChangeCloseSystem::Initialize() {
 void BackPlaneChangeCloseSystem::Finalize() {}
 
 void BackPlaneChangeCloseSystem::UpdateEntity(GameEntity* _entity) {
+    if (!_entity) {
+        return;
+    }
 
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* blockCombiEntity             = ecsManager->getUniqueEntity("BlockCombination");

@@ -70,14 +70,14 @@ void FloatingFloorStatus::RevivalAnimation(const float& deltaTime, const float& 
     }
     revivalEaseT_ += deltaTime;
 
-    baseScale_ = EaseOutQuad(Vec3f(0.0f, 0.0f, 0.0f), savePos_, revivalEaseT_, maxTime);
+    baseScale_ = EaseOutQuad(Vec3f(0.0f, 0.0f, 0.0f), saveScale_, revivalEaseT_, maxTime);
 
     if (revivalEaseT_ < maxTime) {
         return;
     }
 
     isRevivalAnimation_ = false;
-    baseScale_          = savePos_;
+    baseScale_          = saveScale_;
     revivalEaseT_       = 0.0f;
 }
 
@@ -97,6 +97,7 @@ void FloatingFloorStatus::DamageShakeReset(FloatingFloorAnimationStatus* animest
 void FloatingFloorStatus::RevivalReset() {
     isDestroy_           = false;
     currentRevivalTimer_ = 0.0f;
+    revivalEaseT_        = 0.0f;
     currentHP_           = HPMax_;
     isFall_              = false;
     isRevivaling_        = false;
