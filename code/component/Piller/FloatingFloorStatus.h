@@ -55,6 +55,8 @@ private: // variables
     bool isRevivalAnimation_ = false;
     float revivalEaseT_;
     Vec3f baseScale_ = {1.0f, 1.0f, 1.0f};
+  float scaleOffsetRate_=1.0f;
+    Vec3f floorScaleOffset_ = {0.0f, 0.0f, 0.0f};
 
 public:
     FloatingFloorStatus() {}
@@ -77,8 +79,13 @@ public:
 
     void RevivalAnimation(const float& deltaTime, const float&maxTime);
 
+    void ChangeFallInit();
+
 public: // accsessor
     /// getter
+
+    float GetScaleOffsetRate() const { return scaleOffsetRate_; }
+    Vec3f GetFloorScaleOffset() const { return floorScaleOffset_; }
     Vec3f GetBaseScale() const { return baseScale_; }
     bool GetIsRevivalAnimation() const { return isRevivalAnimation_; }
     bool GetIsDamageShake() const { return isDamageShake_; }
@@ -131,4 +138,5 @@ public: // accsessor
     void SetBaseScale(const Vec3f pos) { baseScale_ = pos; }
     void SetReactionStep(const ReactionStep& step) { reactionStep_ = step; }
     void SetIsRevivalAnimation(const bool& is) { isRevivalAnimation_ = is; }
+    void SetFloorScaleOffset(const Vec3f& offset) { floorScaleOffset_ = offset; }
 };

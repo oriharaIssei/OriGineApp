@@ -30,6 +30,7 @@ bool FloatingFloorSpawner::Edit() {
     isChange |= DragGuiCommand("sideSpace", sideSpace_, 0.01f);
     isChange |= DragGuiCommand("positionHeight", positionHeight_, 0.01f);
     isChange |= DragGuiCommand("ratio", scoreUpRate_, 0.01f);
+    isChange |= DragGuiVectorCommand<3, float>("OffsetScale_", OffsetScale_, 0.01f);
     ImGui::Text("No Edit");
 
     isChange |= DragGuiCommand("revivalTime", revivalTime_);
@@ -52,6 +53,7 @@ void to_json(nlohmann::json& _json, const FloatingFloorSpawner& _block) {
     _json["sideSpace"]              = _block.sideSpace_;
     _json["revivalTime"]            = _block.revivalTime_;
     _json["ratio"]                  = _block.scoreUpRate_;
+    _json["OffsetScale"]            = _block.OffsetScale_;
     /*_json["positionHeight"]         = _block.positionHeight_;*/
 }
 
@@ -66,5 +68,8 @@ void from_json(const nlohmann::json& _json, FloatingFloorSpawner& _block) {
     _json.at("sideSpace").get_to(_block.sideSpace_);
     _json.at("revivalTime").get_to(_block.revivalTime_);
     _json.at("ratio").get_to(_block.scoreUpRate_);
-    /* _json.at("positionHeight").get_to(_block.positionHeight_);*/
+
+    if (auto it = _json.find("OffsetScale"); it != _json.end()) {
+        _json.at("OffsetScale").get_to(_block.OffsetScale_);
+    }
 }

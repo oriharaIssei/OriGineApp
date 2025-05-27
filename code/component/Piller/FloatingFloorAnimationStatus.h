@@ -28,6 +28,7 @@ private: // variables
 
     float constantShakeValue_;
 
+    // ease
     float revivalMaxTime_ = 0.0f;   
   
 public:

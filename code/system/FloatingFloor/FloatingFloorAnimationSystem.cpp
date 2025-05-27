@@ -13,6 +13,7 @@
 // component
 #include "component/Piller/FloatingFloorAnimationStatus.h"
 #include "component/Piller/FloatingFloorStatus.h"
+#include"component/Block/BlockManager.h"
 
 #include "engine/EngineInclude.h"
 
@@ -31,16 +32,18 @@ void FloatingFloorAnimationSystem::UpdateEntity(GameEntity* _entity) {
 
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* animationEntity              = ecsManager->getUniqueEntity("FloatingFloorAnimation");
+    GameEntity* blockManagerEntity              = ecsManager->getUniqueEntity("BlockManager");
 
-    if (!animationEntity) { // Entityが存在しない場合の早期リターン
+    if (!animationEntity || !blockManagerEntity) { // Entityが存在しない場合の早期リターン
         return;
     }
 
     animationStatus_                         = getComponent<FloatingFloorAnimationStatus>(animationEntity);
     FloatingFloorStatus* floatingFloorStatus = getComponent<FloatingFloorStatus>(_entity);
     Transform* transform                     = getComponent<Transform>(_entity);
+    BlockManager* blockManager               = getComponent<BlockManager>(blockManagerEntity);
 
-    if (!animationStatus_ || !floatingFloorStatus || !transform) {
+    if (!animationStatus_ || !floatingFloorStatus || !transform || !blockManager) {
         return;
     }
 
@@ -86,11 +89,13 @@ void FloatingFloorAnimationSystem::UpdateEntity(GameEntity* _entity) {
         break;
     }
 
+    Vec3f constantAnimationScale = (blockManager->GetResultScale() + floatingFloorStatus->GetFloorScaleOffset())*floatingFloorStatus->GetScaleOffsetRate();
+
     //復活演出
     floatingFloorStatus->RevivalAnimation(deltaTime, animationStatus_->GetRevivalMaxTime());
 
     transform->translate[X] = floatingFloorStatus->GetSavePos()[X] + floatingFloorStatus->GetDamageShakePos()[X];
-    transform->scale        = floatingFloorStatus->GetBaseScale();
+    transform->scale        = floatingFloorStatus->GetBaseScale() + constantAnimationScale;
 }
 
 void FloatingFloorAnimationSystem::ComboReset() {

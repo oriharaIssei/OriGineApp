@@ -78,6 +78,7 @@ void FloatingFloorStatus::RevivalAnimation(const float& deltaTime, const float& 
 
     isRevivalAnimation_ = false;
     baseScale_          = saveScale_;
+    scaleOffsetRate_    = 1.0f;
     revivalEaseT_       = 0.0f;
 }
 
@@ -104,6 +105,12 @@ void FloatingFloorStatus::RevivalReset() {
     scoreUpRate_         = startScoreUpRate_;
     isDamageShake_       = false;
     reactionStep_        = ReactionStep::NONE;
+}
+
+void FloatingFloorStatus::ChangeFallInit() {
+    reactionStep_=ReactionStep::END;
+    isFall_=true;
+    scaleOffsetRate_ = 0.0f;
 }
 
 void to_json(nlohmann::json& _json, const FloatingFloorStatus& _block) {

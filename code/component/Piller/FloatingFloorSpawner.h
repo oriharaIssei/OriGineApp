@@ -36,6 +36,8 @@ private: // variables
     //time
     float revivalTime_;
 
+    Vec3f OffsetScale_; 
+
 public:
     FloatingFloorSpawner() {}
     virtual ~FloatingFloorSpawner() = default;
@@ -48,6 +50,7 @@ public:
 
 public: // accsessor
     /// getter
+    Vec3f GetOffsetScale() const { return OffsetScale_; }
     int32_t GetColumNumMax() const { return columNumMax_; }
     int32_t GetRowNumber() const { return rowNumber_; }
     float GetPositionHeight() const { return positionHeight_; }
