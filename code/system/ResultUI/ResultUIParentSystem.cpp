@@ -57,7 +57,7 @@ void ResultUIParentSystem::UpdateEntity(GameEntity* _entity) {
 
         if (!resultUIParent->GetIsAnimation()) {
             resultUIParent->Reset();
-            return;
+            break;
         }
 
         time_ = 0.0f;

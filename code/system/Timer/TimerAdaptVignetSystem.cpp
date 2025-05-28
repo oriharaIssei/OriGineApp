@@ -52,7 +52,9 @@ void TimerAdaptVignetSystem::UpdateEntity(GameEntity* _entity) {
 
     ///* ------------------------------calucration------------------------------
  /*   Vec4f clolor   = timerAnimationStatus->GetBaseClolor();*/
-
+    if (timerAnimationStatus->GetAnimationStep() == TimerAnimationStep::NONE) {
+        return;
+    }
     ///* ------------------------------adapt------------------------------
     vignetterParm->setVignettePow(timerAnimationStatus->GetVignetteValue());
 

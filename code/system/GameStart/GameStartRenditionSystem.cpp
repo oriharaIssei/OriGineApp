@@ -38,6 +38,7 @@ void GameStartRenditionSystem::UpdateEntity(GameEntity* _entity) {
     Audio* readyAudio         = getComponent<Audio>(_entity,1);
     Audio* goAudio           = getComponent<Audio>(_entity,2);
     MenuStatus* menu                 = getComponent<MenuStatus>(menuEntity);
+
     if (!gameStartStatus || !menuEntity) {
         return;
     }

@@ -54,7 +54,7 @@ void TimerAnimationSystem::UpdateEntity(GameEntity* _entity) {
         if (timerStatus->GetCurrentTimer() > timerStatus->GetPromiseTime()) {
             timerAnimationStatus->Reset();
             timerStatus->PreviousSecondReset();
-            break;
+            return;
         }
 
         // アニメーションリセット
