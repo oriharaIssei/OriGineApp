@@ -1,0 +1,124 @@
+{
+    "Components": {
+        "ModelMeshRenderer": [
+            {
+                "blendMode": 1,
+                "directory": "application/resource/Models",
+                "fileName": "box.obj",
+                "isRender": false,
+                "materialBufferDatas": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "transformBufferDatas": [
+                    {
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            }
+        ],
+        "PlayerInput": [
+            null
+        ],
+        "PlayerStatus": [
+            {
+                "baseSpeed": 0.0,
+                "directionInterpolateRate": 0.10000000149011612,
+                "gearUpCoolTime": 0.0
+            }
+        ],
+        "Rigidbody": [
+            {
+                "acceleration": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "mass": 1.0,
+                "useGravity": false,
+                "velocity": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        ],
+        "Transform": [
+            {
+                "rotate": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "translate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        ]
+    },
+    "Name": "Player",
+    "Systems": [
+        {
+            "SystemName": "PlayerInputSystem",
+            "SystemType": 1
+        },
+        {
+            "SystemName": "MoveSystemByRigidBody",
+            "SystemType": 3
+        },
+        {
+            "SystemName": "PlayerMoveSystem",
+            "SystemType": 3
+        },
+        {
+            "SystemName": "TexturedMeshRenderSystem",
+            "SystemType": 6
+        }
+    ],
+    "isUnique": true
+}

@@ -60,7 +60,7 @@
                                     1.0
                                 ],
                                 "enableLighting": false,
-                                "shininess": 0.0,
+                                "shininess": 1.9600000381469727,
                                 "specularColor": [
                                     1.0,
                                     1.0,
@@ -93,7 +93,7 @@
                                 "translate": [
                                     0.0,
                                     0.0,
-                                    0.0
+                                    -11.350000381469727
                                 ]
                             }
                         ]
@@ -104,9 +104,9 @@
                 ],
                 "PlayerStatus": [
                     {
-                        "baseSpeed": 0.0,
+                        "baseSpeed": 64.9000015258789,
                         "directionInterpolateRate": 0.10000000149011612,
-                        "gearUpCoolTime": 0.0
+                        "gearUpCoolTime": 7.099999904632568
                     }
                 ],
                 "Rigidbody": [
@@ -216,6 +216,214 @@
                 }
             ],
             "isUnique": true
+        },
+        {
+            "Components": {
+                "RingRenderer": [
+                    {
+                        "InnerRadius": 0.009999999776482582,
+                        "OuterRadius": 1.0199999809265137,
+                        "blendMode": 1,
+                        "division": 64,
+                        "isRenderer": true,
+                        "material": {
+                            "color": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "enableLighting": false,
+                            "shininess": 0.0,
+                            "specularColor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "uvRotate": 0.0,
+                            "uvScale": [
+                                1.0,
+                                1.0
+                            ],
+                            "uvTranslate": [
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "textureDirectory": "application/resource/Texture",
+                        "textureFileName": "myNoise.png",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                -1.0,
+                                0.0,
+                                0.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "TextureEffectParam": [
+                    {
+                        "dissolveAnimDuration": 5.059999942779541,
+                        "dissolveAnimIsLoop": true,
+                        "dissolveAnimIsPlay": true,
+                        "dissolveAnimRotate": [
+                            {
+                                "time": 0.0,
+                                "value": 0.0
+                            },
+                            {
+                                "time": 5.059999942779541,
+                                "value": 6.289999961853027
+                            }
+                        ],
+                        "dissolveAnimScale": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    1.0,
+                                    1.0
+                                ]
+                            }
+                        ],
+                        "dissolveAnimTranslate": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.10000000149011612,
+                                    0.0
+                                ]
+                            }
+                        ],
+                        "dissolveTexPath": "application/resource/Texture/waveNoise.png",
+                        "dissolveThreshold": 0.029999999329447746,
+                        "dissolveUV": {
+                            "rotate": 0.0,
+                            "scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.10000000149011612,
+                                0.0
+                            ]
+                        },
+                        "distortionAnimDuration": 5.059999942779541,
+                        "distortionAnimIsLoop": true,
+                        "distortionAnimIsPlay": true,
+                        "distortionAnimRotate": [
+                            {
+                                "time": 0.0,
+                                "value": 0.0
+                            }
+                        ],
+                        "distortionAnimScale": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    1.0,
+                                    0.699999988079071
+                                ]
+                            }
+                        ],
+                        "distortionAnimTranslate": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 5.059999942779541,
+                                "value": [
+                                    1.0,
+                                    1.0
+                                ]
+                            }
+                        ],
+                        "distortionBias": 0.847000002861023,
+                        "distortionStrength": 2.9800000190734863,
+                        "distortionTexPath": "application/resource/Texture/waveNoise.png",
+                        "distortionUV": {
+                            "rotate": 0.0,
+                            "scale": [
+                                1.0,
+                                0.699999988079071
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "effectFlag": 2,
+                        "maskAnimDuration": 0.0,
+                        "maskAnimIsLoop": false,
+                        "maskAnimIsPlay": false,
+                        "maskAnimRotate": [],
+                        "maskAnimScale": [],
+                        "maskAnimTranslate": [],
+                        "maskTexPath": "",
+                        "maskUV": {
+                            "rotate": 0.0,
+                            "scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "Goal",
+            "Systems": [
+                {
+                    "SystemName": "BillboardTransform",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "TextureEffectAnimation",
+                    "SystemType": 5
+                },
+                {
+                    "SystemName": "EffectTexturedMeshRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
         }
     ],
     "Systems": [
@@ -226,7 +434,7 @@
         },
         {
             "CameraInputSystem": {
-                "Priority": 0
+                "Priority": 1
             },
             "PlayerInputSystem": {
                 "Priority": 0
@@ -234,11 +442,14 @@
         },
         {},
         {
+            "BillboardTransform": {
+                "Priority": 100
+            },
             "FollowCameraUpdateSystem": {
-                "Priority": 0
+                "Priority": 10
             },
             "MoveSystemByRigidBody": {
-                "Priority": 0
+                "Priority": 3
             },
             "PlayerMoveSystem": {
                 "Priority": 0
@@ -255,10 +466,16 @@
             },
             "PrimitiveNodeAnimationWorkSystem": {
                 "Priority": 0
+            },
+            "TextureEffectAnimation": {
+                "Priority": 0
             }
         },
         {
             "ColliderRenderingSystem": {
+                "Priority": 0
+            },
+            "EffectTexturedMeshRenderSystem": {
                 "Priority": 0
             },
             "LineRenderSystem": {
@@ -268,7 +485,7 @@
                 "Priority": 0
             },
             "SkyboxRender": {
-                "Priority": 0
+                "Priority": -1
             },
             "SpriteRenderSystem": {
                 "Priority": 0

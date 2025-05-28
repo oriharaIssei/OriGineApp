@@ -101,6 +101,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="code\system\Movement\BillboardTransform.h" />
     <ClInclude Include="code\system\Input\CameraInputSystem.h" />
     <ClInclude Include="code\component\cameraController\CameraController.h" />
     <ClInclude Include="code\FrameWork.h" />
@@ -119,6 +120,7 @@
     <ClInclude Include="code\system\Transition\TransitionPlayerState.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\system\Movement\BillboardTransform.cpp" />
     <ClCompile Include="code\system\Input\CameraInputSystem.cpp" />
     <ClCompile Include="code\component\cameraController\CameraController.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />

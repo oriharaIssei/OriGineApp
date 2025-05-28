@@ -1,0 +1,200 @@
+{
+    "Components": {
+        "RingRenderer": [
+            {
+                "InnerRadius": 0.009999999776482582,
+                "OuterRadius": 1.0,
+                "blendMode": 1,
+                "division": 64,
+                "isRenderer": true,
+                "material": {
+                    "color": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "enableLighting": false,
+                    "shininess": 0.0,
+                    "specularColor": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "uvRotate": 0.0,
+                    "uvScale": [
+                        1.0,
+                        1.0
+                    ],
+                    "uvTranslate": [
+                        0.0,
+                        0.0
+                    ]
+                },
+                "textureDirectory": "application/resource/Texture",
+                "textureFileName": "lazer.png",
+                "transform": {
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "translate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                }
+            }
+        ],
+        "TextureEffectParam": [
+            {
+                "dissolveAnimDuration": 0.0,
+                "dissolveAnimIsLoop": false,
+                "dissolveAnimIsPlay": false,
+                "dissolveAnimRotate": [],
+                "dissolveAnimScale": [],
+                "dissolveAnimTranslate": [],
+                "dissolveTexPath": "",
+                "dissolveThreshold": 0.0,
+                "dissolveUV": {
+                    "rotate": 0.0,
+                    "scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "translate": [
+                        0.0,
+                        0.0
+                    ]
+                },
+                "distortionAnimDuration": 3.5199999809265137,
+                "distortionAnimIsLoop": true,
+                "distortionAnimIsPlay": true,
+                "distortionAnimRotate": [
+                    {
+                        "time": 0.0,
+                        "value": 0.0
+                    }
+                ],
+                "distortionAnimScale": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.2800000011920929,
+                            0.27000001072883606
+                        ]
+                    },
+                    {
+                        "time": 1.5691566467285156,
+                        "value": [
+                            0.3700000047683716,
+                            0.27000001072883606
+                        ]
+                    },
+                    {
+                        "time": 2.1628916263580322,
+                        "value": [
+                            0.3700000047683716,
+                            0.6700000166893005
+                        ]
+                    },
+                    {
+                        "time": 3.5199999809265137,
+                        "value": [
+                            0.2800000011920929,
+                            0.27000001072883606
+                        ]
+                    }
+                ],
+                "distortionAnimTranslate": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 3.5199999809265137,
+                        "value": [
+                            2.0,
+                            1.0
+                        ]
+                    }
+                ],
+                "distortionBias": 0.49799999594688416,
+                "distortionStrength": 2.680000066757202,
+                "distortionTexPath": "application/resource/Texture/myNoise.png",
+                "distortionUV": {
+                    "rotate": 0.0,
+                    "scale": [
+                        0.2800000011920929,
+                        0.27000001072883606
+                    ],
+                    "translate": [
+                        0.0,
+                        0.0
+                    ]
+                },
+                "effectFlag": 2,
+                "maskAnimDuration": 0.0,
+                "maskAnimIsLoop": false,
+                "maskAnimIsPlay": false,
+                "maskAnimRotate": [],
+                "maskAnimScale": [],
+                "maskAnimTranslate": [],
+                "maskTexPath": "",
+                "maskUV": {
+                    "rotate": 0.0,
+                    "scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "translate": [
+                        0.0,
+                        0.0
+                    ]
+                }
+            }
+        ],
+        "Transform": [
+            {
+                "rotate": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "translate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        ]
+    },
+    "Name": "Goal",
+    "Systems": [
+        {
+            "SystemName": "TextureEffectAnimation",
+            "SystemType": 5
+        },
+        {
+            "SystemName": "EffectTexturedMeshRenderSystem",
+            "SystemType": 6
+        }
+    ],
+    "isUnique": true
+}
