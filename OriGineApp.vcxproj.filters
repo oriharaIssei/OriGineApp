@@ -57,6 +57,7 @@
       <Filter>system</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Transition\TransitionPlayerState.h" />
+    <ClInclude Include="code\system\Movement\BillboardTransform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -101,5 +102,6 @@
       <Filter>system</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Transition\TransitionPlayerState.cpp" />
+    <ClCompile Include="code\system\Movement\BillboardTransform.cpp" />
   </ItemGroup>
 </Project>

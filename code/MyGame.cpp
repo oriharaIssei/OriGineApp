@@ -34,6 +34,7 @@
 #include "system/Initialize/SettingGameCameraTarget.h"
 #include "system/Input/CameraInputSystem.h"
 #include "system/Input/PlayerInputSystem.h"
+#include "system/Movement//BillboardTransform.h"
 #include "system/Movement/FollowCameraUpdateSystem.h"
 #include "system/Movement/PlayerMoveSystem.h"
 
@@ -154,6 +155,7 @@ void MyGame::RegisterUsingComponents() {
 
     ecsManager->registerComponent<ModelMeshRenderer>();
     ecsManager->registerComponent<PlaneRenderer>();
+    ecsManager->registerComponent<RingRenderer>();
     ecsManager->registerComponent<SpriteRenderer>();
     ecsManager->registerComponent<LineRenderer>();
     ecsManager->registerComponent<SkyboxRenderer>();
@@ -187,6 +189,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<MoveSystemByRigidBody>();
     ecsManager->registerSystem<FollowCameraUpdateSystem>();
     ecsManager->registerSystem<PlayerMoveSystem>();
+    ecsManager->registerSystem<BillboardTransform>();
 
     /// =================================================================================================
     // Collision
