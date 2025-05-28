@@ -1,8 +1,10 @@
 #include "FloatingFloorStatus.h"
+#include"component/renderer/MeshRenderer.h"
 /// externals
 #include "imgui/imgui.h"
 #include "KetaShake.h"
 #include "myGui/MyGui.h"
+
 
 void FloatingFloorStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
     fallPosY_  = 0.0f;
@@ -108,8 +110,8 @@ void FloatingFloorStatus::RevivalReset() {
 }
 
 void FloatingFloorStatus::ChangeFallInit() {
-    reactionStep_=ReactionStep::END;
-    isFall_=true;
+    reactionStep_    = ReactionStep::END;
+    isFall_          = true;
     scaleOffsetRate_ = 0.0f;
 }
 
@@ -121,4 +123,11 @@ void to_json(nlohmann::json& _json, const FloatingFloorStatus& _block) {
 void from_json(const nlohmann::json& _json, FloatingFloorStatus& _block) {
     _json.at("isAlive").get_to(_block.isAlive_);
     _json.at("fallspeed").get_to(_block.fallspeed_);
+}
+
+void FloatingFloorStatus::ChangeDamageModel(ModelMeshRenderer* model,GameEntity*entity) {
+    CreateModelMeshRenderer(model, entity, kApplicationResourceDirectory + damageModelFilePath_,damageModelFileName_);
+}
+void FloatingFloorStatus::ChangeNormalModel(ModelMeshRenderer* model, GameEntity* entity) {
+    CreateModelMeshRenderer(model, entity, kApplicationResourceDirectory + normalModelFilePath_, normalModelFileName_);
 }

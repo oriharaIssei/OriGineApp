@@ -99,16 +99,30 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     ModelMeshRenderer* pillerRender  = getComponent<ModelMeshRenderer>(floatingFloor);
     ModelMeshRenderer* floorUIRender = getComponent<ModelMeshRenderer>(floorUIEntity);
 
+      // row,columNum
+    FloatingFloorStatus* floatingFloorStatus = getComponent<FloatingFloorStatus>(floatingFloor);
+
     switch (floatFloorSpawner->GetRowNumber()) {
     case 0:
         CreateModelMeshRenderer(pillerRender, floatingFloor, kApplicationResourceDirectory + "/Models/Floor_Gold", "Floor_Gold.obj");
+        floatingFloorStatus->SetNormalModelFilePath("/Models/Floor_Gold");
+        floatingFloorStatus->SetNormalModelFileName("Floor_Gold.obj");
+        floatingFloorStatus->SetDamageModelFilePath("/Models/Floor_Break_Gold");
+        floatingFloorStatus->SetDamageModelFileName("Floor_Break_Gold.obj");
         break;
     case 1:
         CreateModelMeshRenderer(pillerRender, floatingFloor, kApplicationResourceDirectory + "/Models/Floor_Silver", "FloorSilver.obj");
+        floatingFloorStatus->SetNormalModelFilePath("/Models/Floor_Silver");
+        floatingFloorStatus->SetNormalModelFileName("FloorSilver.obj");
+        floatingFloorStatus->SetDamageModelFilePath("/Models/Floor_Break_Silver");
+        floatingFloorStatus->SetDamageModelFileName("Floor_Break_Silver.obj");
         break;
     case 2:
         CreateModelMeshRenderer(pillerRender, floatingFloor, kApplicationResourceDirectory + "/Models/Floor", "Floor.obj");
-
+        floatingFloorStatus->SetNormalModelFilePath("/Models/Floor");
+        floatingFloorStatus->SetNormalModelFileName("Floor.obj");
+        floatingFloorStatus->SetDamageModelFilePath("/Models/Floor_Break");
+        floatingFloorStatus->SetDamageModelFileName("Floor_Break.obj");
         break;
     default:
         break;
@@ -117,10 +131,9 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     CreateModelMeshRenderer(floorUIRender, floorUIEntity, kApplicationResourceDirectory + "/Models/plane", "plane.obj");
     floorUIRender->setTexture(0, kApplicationResourceDirectory + "/Texture/anchorPoint.png");
 
-    // /// States
+     /// States
 
-    // row,columNum
-    FloatingFloorStatus* floatingFloorStatus = getComponent<FloatingFloorStatus>(floatingFloor);
+  
     floatingFloorStatus->SetColumAndRow(0, floatFloorSpawner->GetRowNumber());
     floatingFloorStatus->SetRevivalTime(floatFloorSpawner->GetRevivalTime());
 
@@ -133,6 +146,7 @@ void CreateFloorSystem::CreateFloatingFloor(GameEntity* _entity) {
     floatingFloorStatus->SetStartPosY(floatFloorSpawner->GetPositionHeight());
     floatingFloorStatus->SetSaveScale(baseTransform->scale);
     floatingFloorStatus->SetBaseScale(baseTransform->scale);
+
     // fall
     floatingFloorStatus->SetFallSpeed(1.0f);
     floatingFloorStatus->SetFallPosY(-5.0f);

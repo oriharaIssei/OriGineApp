@@ -28,10 +28,12 @@ void FloatingFloorDamageSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* FloorSound                   = ecsManager->getUniqueEntity("FloorSound");
 
     FloatingFloorStatus* floatingFloorStatus = getComponent<FloatingFloorStatus>(_entity);
-    GameEntity* FloorSound                   = ecsManager->getUniqueEntity("FloorSound");
     Audio* damageSound                       = getComponent<Audio>(FloorSound, 4);
+    ModelMeshRenderer* modelMeshRenderer     = getComponent<ModelMeshRenderer>(_entity);
+
     if (!floatingFloorStatus || !damageSound) {
         return;
     }
@@ -74,7 +76,8 @@ void FloatingFloorDamageSystem::UpdateEntity(GameEntity* _entity) {
                     float rate = floatingFloorStatus->GetScoreUPRatio() * hitEntityBigStatus->GetPlusScoreRatio();
                      floatingFloorStatus->SetScoreUpRatio(rate);
                     floatingFloorStatus->TakeBigDamage();
-                } else {
+                } else {//通常ボムによるダメージ
+                    floatingFloorStatus->ChangeDamageModel(modelMeshRenderer, _entity);
                     floatingFloorStatus->ChangeDamageShake();
                     floatingFloorStatus->TakeDamage();
                 }

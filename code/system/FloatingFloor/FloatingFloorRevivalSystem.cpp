@@ -27,11 +27,12 @@ void FloatingFloorRevivalSystem::Finalize() {
 void FloatingFloorRevivalSystem::UpdateEntity(GameEntity* _entity) {
 
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* FloorSound                   = ecsManager->getUniqueEntity("FloorSound");
 
     FloatingFloorStatus* floatingStatus = getComponent<FloatingFloorStatus>(_entity);
     Transform* entityTransform          = getComponent<Transform>(_entity);
     AABBCollider* collider              = getComponent<AABBCollider>(_entity);
-    GameEntity* FloorSound              = ecsManager->getUniqueEntity("FloorSound");
+    ModelMeshRenderer* modelMeshRenderer = getComponent<ModelMeshRenderer>(_entity);
     Audio* revivalSound                 = getComponent<Audio>(FloorSound, 2);
 
     if (!floatingStatus || !entityTransform || !collider || !revivalSound) {
@@ -55,14 +56,12 @@ void FloatingFloorRevivalSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     revivalSound->Play(); // 再生
+    floatingStatus->RevivalReset(); // リセット
 
-    floatingStatus->RevivalReset();//リセット
-
+    //transform ,collider reset
     entityTransform->translate[Y] = floatingStatus->GetStartPosY();
     floatingStatus->SetIsRevivalAnimation(true);
     entityTransform->Update();
-
     collider->setActive(true);
-
-        /*   entityTransform->scale        = floatingStatus->GetSaveScale();*/
+    floatingStatus->ChangeNormalModel(modelMeshRenderer, _entity);
 }

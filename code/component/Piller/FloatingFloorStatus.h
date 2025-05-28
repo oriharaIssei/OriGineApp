@@ -4,8 +4,10 @@
 #include "component/Piller/FloatingFloorAnimationStatus.h"
 #include <array>
 #include <cstdint>
+#include <string>
 #include <Vector3.h>
 
+class ModelMeshRenderer;
 class FloatingFloorStatus
     : public IComponent {
     friend void to_json(nlohmann::json& _json, const FloatingFloorStatus& _block);
@@ -58,6 +60,11 @@ private: // variables
     float scaleOffsetRate_  = 1.0f;
     Vec3f floorScaleOffset_ = {0.0f, 0.0f, 0.0f};
 
+    std::string normalModelFileName_ = "";
+    std::string normalModelFilePath_ = "";
+    std::string damageModelFileName_ = "";
+    std::string damageModelFilePath_ = "";
+
 public:
     FloatingFloorStatus() {}
     virtual ~FloatingFloorStatus() = default;
@@ -80,6 +87,9 @@ public:
     void RevivalAnimation(const float& deltaTime, const float& maxTime);
 
     void ChangeFallInit();
+
+    void ChangeDamageModel(ModelMeshRenderer* model, GameEntity* entity);
+    void ChangeNormalModel(ModelMeshRenderer* model, GameEntity* entity);
 
 public: // accsessor
     /// getter
@@ -139,4 +149,8 @@ public: // accsessor
     void SetReactionStep(const ReactionStep& step) { reactionStep_ = step; }
     void SetIsRevivalAnimation(const bool& is) { isRevivalAnimation_ = is; }
     void SetFloorScaleOffset(const Vec3f& offset) { floorScaleOffset_ = offset; }
+    void SetDamageModelFileName(const std::string name) { damageModelFileName_ = name; }
+    void SetDamageModelFilePath(const std::string name) { damageModelFilePath_ = name; }
+    void SetNormalModelFileName(const std::string name) { normalModelFileName_ = name; }
+    void SetNormalModelFilePath(const std::string name) { normalModelFilePath_ = name; }
 };
