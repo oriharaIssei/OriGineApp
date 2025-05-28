@@ -33,6 +33,8 @@ void ScoreIncrementSystem::UpdateEntity(GameEntity* _entity) {
 
     // get timer component
     scoreStatus_ = getComponent<ScoreStatus>(_entity);
+    Audio* plusAudio = getComponent<Audio>(_entity);
+    Audio* minusAudio = getComponent<Audio>(_entity,1);
 
     if (!scoreStatus_) {
         return;
@@ -79,7 +81,7 @@ void ScoreIncrementSystem::UpdateEntity(GameEntity* _entity) {
         ///---------------------------------------------------
     case ScoreUIStep::ADAPT:
         scoreStatus_->ResetEaseTime();
-        scoreStatus_->ResetPlusScore();
+        scoreStatus_->ResetPlusScore(plusAudio, minusAudio);
         scoreStatus_->SetIsChanging(true);
         scoreStatus_->SetTotalScoreValue();
         scoreStatus_->SetScoreUIStep(ScoreUIStep::END);

@@ -1,4 +1,5 @@
 #include "ScoreStatus.h"
+#include"audio/Audio.h"
 /// Engine
 #define ENGINE_INCLUDE
 /// ECS
@@ -119,6 +120,7 @@ void ScoreStatus::TimeIncrementAnimation(const float& value) {
 
 void ScoreStatus::SetTotalScoreValue() {
     scoreUPValue_ = totalScore_;
+
 }
 
 void ScoreStatus::ResetEaseTime() {
@@ -129,8 +131,13 @@ void ScoreStatus::ResetEaseTime() {
     upScpreUpEasing_.time        = 0.0f;
 }
 
-void ScoreStatus::ResetPlusScore() {
-    /* plusScore_       = 0.0f;*/
+void ScoreStatus::ResetPlusScore(Audio*plusaudio,Audio*minusAudio) {
+
+    if (pulusScoreValue_>0.0f) {
+        plusaudio->Play();
+    } else {
+        minusAudio->Play();
+    }
     pulusScoreValue_ = 0.0f;
 }
 

@@ -14,6 +14,7 @@ enum class ScoreUIStep {
     END,
 };
 
+class Audio;
 class ScoreStatus
     : public IComponent {
     friend void to_json(nlohmann::json& _json, const ScoreStatus& _component);
@@ -71,7 +72,7 @@ public:
     void BaseScoreUPAmplitudeScaling(const float& value);
 
     void ResetEaseTime();
-    void ResetPlusScore();
+    void ResetPlusScore(Audio* plusaudio, Audio* minusAudio);
 
     void ScoreUPChange();
 

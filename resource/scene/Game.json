@@ -796,6 +796,20 @@
         },
         {
             "Components": {
+                "Audio": [
+                    {
+                        "fileName": "application/resource/sound/BreakFall.wav",
+                        "isLoop": false,
+                        "isPlay": false,
+                        "valume": 0.5
+                    },
+                    {
+                        "fileName": "application/resource/sound/Break_Block.wav",
+                        "isLoop": false,
+                        "isPlay": false,
+                        "valume": 0.5
+                    }
+                ],
                 "ScoreStatus": [
                     {
                         "basePlusScoreTextureSize_": [
@@ -2005,6 +2019,15 @@
                         "activeTime": 1.2999999523162842,
                         "blendMode": 2,
                         "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -7497,6 +7520,14 @@
                                 "value": [
                                     0.0,
                                     0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
                                     -1.0
                                 ]
                             },
@@ -7518,6 +7549,14 @@
                             }
                         ],
                         "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -12714,9 +12753,25 @@
                                     0.0,
                                     0.0
                                 ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
                             }
                         ],
                         "uvScaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -17838,9 +17893,25 @@
                                     0.0,
                                     0.0
                                 ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
                             }
                         ],
                         "velocityCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -20407,6 +20478,15 @@
                         "activeTime": 1.2999999523162842,
                         "blendMode": 0,
                         "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -25919,9 +25999,25 @@
                                     0.0,
                                     0.0
                                 ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
                             }
                         ],
                         "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -31134,9 +31230,25 @@
                                     0.0,
                                     0.0
                                 ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
                             }
                         ],
                         "uvScaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -36258,9 +36370,25 @@
                                     0.0,
                                     0.0
                                 ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
                             }
                         ],
                         "velocityCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
