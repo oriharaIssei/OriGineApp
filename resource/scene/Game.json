@@ -4870,6 +4870,15 @@
                             {
                                 "time": 0.0,
                                 "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
                                     0.3492583930492401,
                                     0.9367088675498962,
                                     0.12252309173345566,
@@ -7480,6 +7489,14 @@
                                 "value": [
                                     0.0,
                                     0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
                                     -1.0
                                 ]
                             },
@@ -7501,6 +7518,14 @@
                             }
                         ],
                         "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -12681,9 +12706,25 @@
                                     0.0,
                                     0.0
                                 ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
                             }
                         ],
                         "uvScaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -17789,9 +17830,25 @@
                                     0.0,
                                     0.0
                                 ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
                             }
                         ],
                         "velocityCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -20350,6 +20407,15 @@
                         "activeTime": 1.2999999523162842,
                         "blendMode": 0,
                         "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -25845,9 +25911,25 @@
                                     0.0,
                                     0.0
                                 ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
                             }
                         ],
                         "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -31044,9 +31126,25 @@
                                     0.0,
                                     0.0
                                 ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
                             }
                         ],
                         "uvScaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -36152,9 +36250,25 @@
                                     0.0,
                                     0.0
                                 ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
                             }
                         ],
                         "velocityCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -40655,17 +40769,17 @@
                         "renderingPriority": 5,
                         "rotate": 0.0,
                         "scale": [
-                            680.0,
-                            260.0
+                            640.0,
+                            320.0
                         ],
                         "textureLeftTop": [
                             0.0,
                             0.0
                         ],
-                        "texturePath": "application/resource/Texture/title.png",
+                        "texturePath": "application/resource/Texture/gameStartText.png",
                         "textureSize": [
-                            680.0,
-                            260.0
+                            640.0,
+                            320.0
                         ],
                         "translate": [
                             0.0,
@@ -40709,17 +40823,17 @@
                         "renderingPriority": 5,
                         "rotate": 0.0,
                         "scale": [
-                            288.0,
-                            48.0
+                            320.0,
+                            160.0
                         ],
                         "textureLeftTop": [
                             0.0,
                             0.0
                         ],
-                        "texturePath": "application/resource/Texture/GameToTitleText.png",
+                        "texturePath": "application/resource/Texture/ready.png",
                         "textureSize": [
-                            288.0,
-                            48.0
+                            320.0,
+                            208.0
                         ],
                         "translate": [
                             0.0,
@@ -40817,7 +40931,7 @@
                         "renderingPriority": 5,
                         "rotate": 0.0,
                         "scale": [
-                            720.0,
+                            640.0,
                             320.0
                         ],
                         "textureLeftTop": [
@@ -40826,7 +40940,7 @@
                         ],
                         "texturePath": "application/resource/Texture/gameEnd.png",
                         "textureSize": [
-                            720.0,
+                            640.0,
                             320.0
                         ],
                         "translate": [
