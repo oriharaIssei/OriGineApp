@@ -10,7 +10,7 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
-                        "renderingPriority": 1,
+                        "renderingPriority": 5,
                         "rotate": 0.0,
                         "scale": [
                             1280.0,
@@ -167,7 +167,7 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
-                        "renderingPriority": 5,
+                        "renderingPriority": 6,
                         "rotate": 0.0,
                         "scale": [
                             640.0,
@@ -234,7 +234,7 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
-                        "renderingPriority": 5,
+                        "renderingPriority": 6,
                         "rotate": 0.0,
                         "scale": [
                             640.0,
@@ -1987,6 +1987,33 @@
                         "activeTime": 1.2999999523162842,
                         "blendMode": 2,
                         "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -7122,6 +7149,30 @@
                                 "value": [
                                     0.0,
                                     0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
                                     -1.0
                                 ]
                             },
@@ -7143,6 +7194,30 @@
                             }
                         ],
                         "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -12003,9 +12078,57 @@
                                     0.0,
                                     0.0
                                 ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
                             }
                         ],
                         "uvScaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -16791,9 +16914,57 @@
                                     0.0,
                                     0.0
                                 ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
                             }
                         ],
                         "velocityCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -19192,6 +19363,33 @@
                         "activeTime": 1.2999999523162842,
                         "blendMode": 0,
                         "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -24347,9 +24545,57 @@
                                     0.0,
                                     0.0
                                 ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
                             }
                         ],
                         "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -29226,9 +29472,57 @@
                                     0.0,
                                     0.0
                                 ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
                             }
                         ],
                         "uvScaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -34014,9 +34308,57 @@
                                     0.0,
                                     0.0
                                 ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
                             }
                         ],
                         "velocityCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -36748,7 +37090,7 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
-                        "renderingPriority": 5,
+                        "renderingPriority": 6,
                         "rotate": 0.0,
                         "scale": [
                             640.0,
@@ -36815,7 +37157,7 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
-                        "renderingPriority": 3,
+                        "renderingPriority": 4,
                         "rotate": 0.0,
                         "scale": [
                             48.0,
@@ -36869,7 +37211,7 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
-                        "renderingPriority": 5,
+                        "renderingPriority": 4,
                         "rotate": 0.0,
                         "scale": [
                             1280.0,
@@ -37401,7 +37743,7 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
-                        "renderingPriority": 3,
+                        "renderingPriority": 4,
                         "rotate": 0.0,
                         "scale": [
                             288.0,
@@ -37455,7 +37797,7 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
-                        "renderingPriority": 3,
+                        "renderingPriority": 4,
                         "rotate": 0.0,
                         "scale": [
                             288.0,
@@ -37509,7 +37851,7 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
-                        "renderingPriority": 3,
+                        "renderingPriority": 4,
                         "rotate": 0.0,
                         "scale": [
                             288.0,
@@ -37563,7 +37905,7 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
-                        "renderingPriority": 5,
+                        "renderingPriority": 6,
                         "rotate": 0.0,
                         "scale": [
                             640.0,
