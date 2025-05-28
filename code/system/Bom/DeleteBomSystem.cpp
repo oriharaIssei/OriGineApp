@@ -39,7 +39,7 @@ void DeleteBomSystem::UpdateEntity(GameEntity* _entity) {
     ExplotionCollision* addcollision = getComponent<ExplotionCollision>(playerEntity);
     OperateUIStatus* operateUIStatus = getComponent<OperateUIStatus>(operateUI);
 
-    Audio* audio = getComponent<Audio>(playerEntity);
+    Audio* audio = getComponent<Audio>(playerEntity,0);
    
 
     if (!status || !addcollision || !playerEntity || !operateUIStatus || !audio) {

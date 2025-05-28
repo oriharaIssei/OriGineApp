@@ -30,6 +30,9 @@ void SceneChangerSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     gameEnd_ = getComponent<SceneChangerStatus>(_entity);
+    if (!gameEnd_) {
+        return;
+    }
 
     ChangeResultToGame();
     ChangeTitleToResult();
@@ -73,12 +76,11 @@ void SceneChangerSystem::ChangeResultToGame() {
     if (!gameEndUIEntity || !GameToResultEntity) { // Entityが存在しない場合の早期リターン
         return;
     }
-    //component
+    // component
     GameEndUIStatus* gameendUIStatus  = getComponent<GameEndUIStatus>(gameEndUIEntity);
     SceneTransition* transitionStatus = getComponent<SceneTransition>(GameToResultEntity);
 
-   
-    if (!transitionStatus || !gameendUIStatus) {// Componentが存在しない場合の早期リターン
+    if (!transitionStatus || !gameendUIStatus) { // Componentが存在しない場合の早期リターン
         return;
     }
 
@@ -102,8 +104,9 @@ void SceneChangerSystem::ChangeTitleToResult() {
     ResultUIRankStatus* rankStatus         = getComponent<ResultUIRankStatus>(resultRankEntity);
     SceneTransition* transitionStatus      = getComponent<SceneTransition>(resultTransitionEntity);
     SceneTransition* titleTransitionStatus = getComponent<SceneTransition>(titleTransitionOutEntity);
+    Audio* selsectAudio                    = getComponent<Audio>(resultTransitionEntity);
 
-    if (!transitionStatus || !rankStatus || !titleTransitionStatus) {
+    if (!transitionStatus || !rankStatus || !titleTransitionStatus || !selsectAudio) {
         return;
     }
 
@@ -111,14 +114,20 @@ void SceneChangerSystem::ChangeTitleToResult() {
         return;
     }
 
+    if (transitionStatus->GetIsTransitionIn()) {
+        return;
+    }
+
     // retry
     if (input_->isTriggerKey(DIK_R)) {
         transitionStatus->SetIsTransitionIn(true);
         transitionStatus->SetIsRetry(true);
+        selsectAudio->Play();
         // back titmle
     } else if (input_->isTriggerKey(DIK_T)) {
         transitionStatus->SetIsTransitionIn(true);
         titleTransitionStatus->SettIsTitleTransitionOut(true);
+        selsectAudio->Play();
     }
 }
 
@@ -132,12 +141,18 @@ void SceneChangerSystem::ChangeGameToTitle() {
     }
 
     SceneTransition* transitionStatus = getComponent<SceneTransition>(resultTransitionEntity);
+    Audio* startAudio                 = getComponent<Audio>(resultTransitionEntity);
 
-    if (!transitionStatus) {
+    if (!transitionStatus || !startAudio) {
+        return;
+    }
+
+    if (transitionStatus->GetIsTransitionIn()) {
         return;
     }
 
     if (input_->isTriggerKey(DIK_SPACE)) {
+        startAudio->Play();
         transitionStatus->SetIsTransitionIn(true);
     }
 }

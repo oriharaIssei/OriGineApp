@@ -44,7 +44,7 @@ void ResultFontStatus::Finalize() {}
 
 void ResultFontStatus::ZoomAnimation(const float& time) {
     zoomEasing_.time += time;
-    baseScale_ = EaseOutBack(Vec2f(0.0f, 0.0f), easeScale_, zoomEasing_.time, zoomEasing_.maxTime);
+    baseScale_ = EaseOutBounce(Vec2f(0.0f, 0.0f), easeScale_, zoomEasing_.time, zoomEasing_.maxTime);
 
     if (zoomEasing_.time < zoomEasing_.maxTime) {
         return;

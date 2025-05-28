@@ -12,8 +12,7 @@
 #include <Vector3.h>
 // component
 #include "component/ResultUI/ResultUIParentStatus.h"
-#include"component/Score/ScoreStatus.h"
-
+#include "component/Score/ScoreStatus.h"
 
 #include "engine/EngineInclude.h"
 
@@ -23,7 +22,7 @@ ResultUIParentSystem::ResultUIParentSystem()
 ResultUIParentSystem::~ResultUIParentSystem() {}
 
 void ResultUIParentSystem::Initialize() {
-    time_ = 0.0f;
+    time_  = 0.0f;
     input_ = Input::getInstance();
 }
 
@@ -31,47 +30,54 @@ void ResultUIParentSystem::Finalize() {}
 
 void ResultUIParentSystem::UpdateEntity(GameEntity* _entity) {
 
-      // ComboEntityを取得
+    // ComboEntityを取得
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
-    GameEntity* scoreEntity  = ecsManager->getUniqueEntity("Score");
+    GameEntity* scoreEntity                  = ecsManager->getUniqueEntity("Score");
     if (!scoreEntity) {
         return;
     }
 
     ScoreStatus* scoreStatus = getComponent<ScoreStatus>(scoreEntity);
 
-
     // get timer component
     ResultUIParentStatus* resultUIParent = getComponent<ResultUIParentStatus>(_entity);
     SpriteRenderer* sprite               = getComponent<SpriteRenderer>(_entity);
-    float deltaTIme      = Engine::getInstance()->getDeltaTime();
+    Audio* paperApearAudio                    = getComponent<Audio>(_entity);
+    Audio* scoreDesideAudio              = getComponent<Audio>(_entity,1);
+    float deltaTIme                      = Engine::getInstance()->getDeltaTime();
 
     if (!resultUIParent) {
         return;
     }
 
-    if (resultUIParent->GetIsAnimation() && resultUIParent->GetAnimationStep() == ResultStep::NONE) {
-        time_ = 0.0f;
-        resultUIParent->SetResultScore(scoreStatus->GetCurrentScore());
-        // アニメーションリセット
-        resultUIParent->Reset();
-        resultUIParent->SetAnimationStep(ResultStep::ALPHA);
-    }
+ 
 
     switch (resultUIParent->GetAnimationStep()) {
     case ResultStep::NONE:
 
+        if (!resultUIParent->GetIsAnimation()) {
+            resultUIParent->Reset();
+            return;
+        }
+
+        time_ = 0.0f;
+        resultUIParent->SetResultScore(scoreStatus->GetCurrentScore());
+        paperApearAudio->Play();
+        // アニメーションリセット
+        resultUIParent->Reset();
+        resultUIParent->SetAnimationStep(ResultStep::ALPHA);
+        
         break;
         ///----------------------------------------------------------------
         /// Move Animation
-        ///---------------------------------------------------------------- 
+        ///----------------------------------------------------------------
     case ResultStep::ALPHA:
         resultUIParent->MoveAnimation(deltaTIme);
         resultUIParent->AlphaAnimation(deltaTIme);
         break;
         ///----------------------------------------------------------------
         /// Scroll Wait
-        ///---------------------------------------------------------------- 
+        ///----------------------------------------------------------------
     case ResultStep::SCOREUPWAIT:
         resultUIParent->AlphaAnimation(deltaTIme);
         time_ += deltaTIme;
@@ -85,32 +91,31 @@ void ResultUIParentSystem::UpdateEntity(GameEntity* _entity) {
         break;
         ///----------------------------------------------------------------
         /// Scroll Animation
-        ///---------------------------------------------------------------- 
+        ///----------------------------------------------------------------
     case ResultStep::SCOREUP:
         if (input_->isTriggerKey(DIK_SPACE)) {
             resultUIParent->SetIsScoreSkip(true);
         }
-        resultUIParent->ScoreUP(deltaTIme);
+        resultUIParent->ScoreUP(deltaTIme, scoreDesideAudio);
         break;
         ///----------------------------------------------------------------
         /// Scaling Animation
-        ///---------------------------------------------------------------- 
+        ///----------------------------------------------------------------
     case ResultStep::SCOREUPSCALING:
         resultUIParent->ScoreScalingAnimation(deltaTIme);
         break;
         ///----------------------------------------------------------------
         /// Reverse Wait
-        ///---------------------------------------------------------------- 
+        ///----------------------------------------------------------------
     case ResultStep::END:
-       
+
         break;
-    
+
     default:
         break;
     }
 
-
-     ///* ------------------------------calucration------------------------------
+    ///* ------------------------------calucration------------------------------
 
     Vec3f basePos  = resultUIParent->GetBasePos();
     Vec2f baseSize = sprite->getTextureSize() * resultUIParent->GetBaseScale();

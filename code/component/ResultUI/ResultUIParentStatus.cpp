@@ -1,4 +1,5 @@
 #include "ResultUIParentStatus.h"
+#include"audio/Audio.h"
 /// Engine
 #define ENGINE_INCLUDE
 /// ECS
@@ -122,13 +123,14 @@ void ResultUIParentStatus::ScoreScalingAnimation(const float& time) {
     curerntStep_      = ResultStep::END;
 }
 
-void ResultUIParentStatus::ScoreUP(const float& time) {
+void ResultUIParentStatus::ScoreUP(const float& time,Audio*audio) {
     currentScore_ += scoreUpSpeed_ * time;
 
     if (currentScore_ < resultScore_ && !isScoreSkip_) {
         return;
     }
 
+    audio->Play();
     currentScore_ = resultScore_;
     curerntStep_  = ResultStep::SCOREUPSCALING;
 }

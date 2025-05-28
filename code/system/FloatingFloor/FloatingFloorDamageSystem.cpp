@@ -31,7 +31,7 @@ void FloatingFloorDamageSystem::UpdateEntity(GameEntity* _entity) {
     GameEntity* FloorSound                   = ecsManager->getUniqueEntity("FloorSound");
 
     FloatingFloorStatus* floatingFloorStatus = getComponent<FloatingFloorStatus>(_entity);
-    Audio* damageSound                       = getComponent<Audio>(FloorSound, 4);
+    Audio* damageSound                       = getComponent<Audio>(FloorSound, 3);
     ModelMeshRenderer* modelMeshRenderer     = getComponent<ModelMeshRenderer>(_entity);
 
     if (!floatingFloorStatus || !damageSound) {

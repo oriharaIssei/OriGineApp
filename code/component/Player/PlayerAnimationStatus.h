@@ -6,7 +6,8 @@
 #include <Entity.h>
 #include <Vector2.h>
 
-//class BlockManager;
+class Audio;
+    //class BlockManager;
 class PlayerAnimationStatus
     : public IComponent {
     friend void to_json(nlohmann::json& j, const PlayerAnimationStatus& m);
@@ -54,6 +55,8 @@ private: // variables
 
     bool isLanding_;
 
+    bool isMoveSound_=false;
+
 public:
     PlayerAnimationStatus() {}
     virtual ~PlayerAnimationStatus() = default;
@@ -62,7 +65,7 @@ public:
     virtual bool Edit();
     virtual void Finalize();
 
-    void MoveAnimaiton(const float& deltaTime);
+    void MoveAnimaiton(const float& deltaTime, Audio* audio);
     void WaitAnimation(const float& deltaTime, const Vec3f& blockSize);
     void LandingAnimation(const float& deltaTime);
     void LaunchScaleAnimation(const float& deltaTime);
@@ -71,6 +74,8 @@ public:
     void ChangeMotion(const MotionStep &step);
     void ChangeMotionWait();
     void Reset();
+
+    void MoveSound(Audio* audio);
 
 public: // accsessor
     /// getter

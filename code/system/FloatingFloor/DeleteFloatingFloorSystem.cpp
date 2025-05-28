@@ -30,7 +30,7 @@ void DeleteFloatingFloorSystem::UpdateEntity(GameEntity* _entity) {
     Transform* transform             = getComponent<Transform>(_entity);
     AABBCollider* collider           = getComponent<AABBCollider>(_entity);
     GameEntity* FloorSound           = ecsManager->getUniqueEntity("FloorSound");
-    Audio* breakSound               = getComponent<Audio>(FloorSound, 2);
+    Audio* breakSound               = getComponent<Audio>(FloorSound, 1);
 
     if (!fAndPStatus || !transform || !collider || !breakSound) {
         return;

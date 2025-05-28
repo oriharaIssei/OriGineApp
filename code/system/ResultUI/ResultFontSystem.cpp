@@ -45,7 +45,7 @@ void ResultFontSystem::UpdateEntity(GameEntity* _entity) {
     SpriteRenderer* sprite               = getComponent<SpriteRenderer>(_entity);
     ResultUIParentStatus* resultUIParent = getComponent<ResultUIParentStatus>(levelUIParent);
     float deltaTIme                      = Engine::getInstance()->getDeltaTime();
-
+    Audio* textUpAudio                         = getComponent<Audio>(_entity,0);
      
     
 
@@ -78,6 +78,7 @@ void ResultFontSystem::UpdateEntity(GameEntity* _entity) {
         if (time_ < resultFont->GetFirstWaitTime()) {
             break;
         }
+        textUpAudio->Play();
         time_ = 0.0f;
         resultFont->SetAnimationStep(ResultFontStep::ZOOM);
 

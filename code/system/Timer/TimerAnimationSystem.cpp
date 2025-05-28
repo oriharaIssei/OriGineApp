@@ -39,8 +39,9 @@ void TimerAnimationSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     // get timer component
-    TimerAnimationStatus* timerAnimationStatus = getComponent<TimerAnimationStatus>(_entity);
     TimerStatus* timerStatus                   = getComponent<TimerStatus>(timerEntity);
+    TimerAnimationStatus* timerAnimationStatus = getComponent<TimerAnimationStatus>(_entity);
+    Audio* countDownAudio                      = getComponent<Audio>(_entity);
     float deltaTIme                            = Engine::getInstance()->getDeltaTime();
 
     if (!timerAnimationStatus || !timerStatus) {
@@ -52,11 +53,13 @@ void TimerAnimationSystem::UpdateEntity(GameEntity* _entity) {
 
         if (timerStatus->GetCurrentTimer() > timerStatus->GetPromiseTime()) {
             timerAnimationStatus->Reset();
-            return;
+            timerStatus->PreviousSecondReset();
+            break;
         }
 
         // アニメーションリセット
         timerAnimationStatus->Reset();
+        countDownAudio->Play();
         timerAnimationStatus->SetAnimationStep(TimerAnimationStep::SCALING);
 
         break;
@@ -90,6 +93,4 @@ void TimerAnimationSystem::UpdateEntity(GameEntity* _entity) {
     default:
         break;
     }
-
-    
 }

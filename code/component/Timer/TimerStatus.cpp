@@ -89,7 +89,9 @@ bool TimerStatus::IsChangeSecond() {
     }
     return false;
 }
-
+void TimerStatus::PreviousSecondReset() {
+    previousSecond_ = 2;
+}
 void to_json(nlohmann::json& _json, const TimerStatus& _timerStatus) {
     _json["isAlive"]          = _timerStatus.isAlive_;
     _json["pulusTime"]        = _timerStatus.pulusTime_;

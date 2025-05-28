@@ -1,4 +1,5 @@
 #include "PlayerAnimationStatus.h"
+#include"audio/Audio.h"
 
 // 外部ライブラリなど
 #include "imgui/imgui.h"
@@ -55,8 +56,21 @@ bool PlayerAnimationStatus::Edit() {
 #endif
     return isChange;
 }
+void PlayerAnimationStatus::MoveSound(Audio* audio) {
+    if (motionStep_ == MotionStep::LAUNCH) {
+        return;
+    }
 
-void PlayerAnimationStatus::MoveAnimaiton(const float& deltaTime) {
+    if (isMoveSound_) {
+        return;
+    }
+    audio->Play();
+    isMoveSound_ = true;
+}
+
+void PlayerAnimationStatus::MoveAnimaiton(const float& deltaTime,Audio*audio) {
+
+    MoveSound(audio);
     moveEasing_.time += deltaTime;
 
     /// 　ジャンプイージング
@@ -69,6 +83,7 @@ void PlayerAnimationStatus::MoveAnimaiton(const float& deltaTime) {
     moveEasing_.time = 0.0f;
     jumpPosY_        = startPosY_;
     isLanding_       = true;
+    isMoveSound_     = false;
 }
 void PlayerAnimationStatus::LandingAnimation(const float& deltaTime) {
     if (!isLanding_) {

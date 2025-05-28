@@ -16,7 +16,7 @@ enum class ResultStep {
     SCOREUPSCALING,
     END,
 };
-
+class Audio;
 class ResultUIParentStatus
     : public IComponent {
     friend void to_json(nlohmann::json& _json, const ResultUIParentStatus& _component );
@@ -76,7 +76,7 @@ public:
     void MoveAnimation(const float& time);
     void AlphaAnimation(const float& time);
     void ScoreScalingAnimation(const float& time);
-    void ScoreUP(const float& time);
+    void ScoreUP(const float& time,  Audio* audio);
 
     //
     void Reset();

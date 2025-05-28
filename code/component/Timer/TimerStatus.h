@@ -37,6 +37,8 @@ public:
     void MinusTimer(const float& timer);
     void TimerIncrement(const float& timer);
 
+    void PreviousSecondReset();
+
 public: // accsessor
     /// getter
     float GetCurrentTimer() const { return currentTimer_; }

@@ -29,16 +29,14 @@ void GameStartRenditionSystem::Finalize() {}
 
 void GameStartRenditionSystem::UpdateEntity(GameEntity* _entity) {
 
-   
-   
 
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* menuEntity                   = ecsManager->getUniqueEntity("Menu");
   
-
-  
-
     GameStartStatus* gameStartStatus = getComponent<GameStartStatus>(_entity);
+    Audio* purposeApearAudio           = getComponent<Audio>(_entity);
+    Audio* readyAudio         = getComponent<Audio>(_entity,1);
+    Audio* goAudio           = getComponent<Audio>(_entity,2);
     MenuStatus* menu                 = getComponent<MenuStatus>(menuEntity);
     if (!gameStartStatus || !menuEntity) {
         return;
@@ -69,6 +67,7 @@ void GameStartRenditionSystem::UpdateEntity(GameEntity* _entity) {
         if (time_ < gameStartStatus->GetFirstWaitTime()) {
             return;
         }
+        purposeApearAudio->Play();
         time_ = 0.0f;
         gameStartStatus->SetRenditionStep(GameStartStatus::RenditionStep::APEARPURPOSE);
 
@@ -108,6 +107,7 @@ void GameStartRenditionSystem::UpdateEntity(GameEntity* _entity) {
             return;
         }
         time_ = 0.0f;
+        readyAudio->Play();
         gameStartStatus->SetRenditionStep(GameStartStatus::RenditionStep::READY);
         break;
         ///---------------------------------------------------
@@ -120,7 +120,7 @@ void GameStartRenditionSystem::UpdateEntity(GameEntity* _entity) {
         /// NONE
         ///---------------------------------------------------
     case GameStartStatus::RenditionStep::GO:
-        gameStartStatus->GoEasing(deltaTime);
+        gameStartStatus->GoEasing(deltaTime,goAudio);
         break;
         ///---------------------------------------------------
         /// NONE

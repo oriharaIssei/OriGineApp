@@ -213,6 +213,14 @@
         },
         {
             "Components": {
+                "Audio": [
+                    {
+                        "fileName": "application/resource/sound/BreakFall.wav",
+                        "isLoop": false,
+                        "isPlay": false,
+                        "valume": 0.5
+                    }
+                ],
                 "ResultUIRankStatus": [
                     {
                         "easeScale": [
@@ -572,6 +580,20 @@
         },
         {
             "Components": {
+                "Audio": [
+                    {
+                        "fileName": "application/resource/sound/BreakFall.wav",
+                        "isLoop": false,
+                        "isPlay": false,
+                        "valume": 0.5
+                    },
+                    {
+                        "fileName": "application/resource/sound/BreakFall.wav",
+                        "isLoop": false,
+                        "isPlay": false,
+                        "valume": 0.5
+                    }
+                ],
                 "ResultUIParentStatus": [
                     {
                         "alphaEasing.maxTime": 0.8700000047683716,
@@ -653,6 +675,14 @@
         },
         {
             "Components": {
+                "Audio": [
+                    {
+                        "fileName": "application/resource/sound/BreakFall.wav",
+                        "isLoop": false,
+                        "isPlay": false,
+                        "valume": 0.5
+                    }
+                ],
                 "ResultFontStatus": [
                     {
                         "easePos": [
@@ -737,6 +767,14 @@
         },
         {
             "Components": {
+                "Audio": [
+                    {
+                        "fileName": "application/resource/sound/BreakFall.wav",
+                        "isLoop": false,
+                        "isPlay": false,
+                        "valume": 0.5
+                    }
+                ],
                 "SceneTransition": [
                     {
                         "CurrentScene": 2,
@@ -924,6 +962,9 @@
             }
         },
         {
+            "BackPlaneChangeCloseSystem": {
+                "Priority": 0
+            },
             "BreakBlockSystem": {
                 "Priority": 0
             },
@@ -960,6 +1001,9 @@
             "EffectByBlockDeleteSystem": {
                 "Priority": 0
             },
+            "FrontPlaneDeleteSystem": {
+                "Priority": 0
+            },
             "SceneChangerSystem": {
                 "Priority": 0
             },
@@ -974,13 +1018,31 @@
             "AdapAnimationtBackTimerSystem": {
                 "Priority": 0
             },
+            "AdaptGoSystem": {
+                "Priority": 0
+            },
+            "AdaptPurposeSystem": {
+                "Priority": 0
+            },
+            "AdaptReadySystem": {
+                "Priority": 0
+            },
+            "BackPlaneCloseSystem": {
+                "Priority": 0
+            },
             "BigBomLaunchSystem": {
+                "Priority": 0
+            },
+            "BlockApearSystem": {
                 "Priority": 0
             },
             "BlockMoveSystem": {
                 "Priority": 0
             },
             "BlockSpawnSystem": {
+                "Priority": 0
+            },
+            "CameraShakeSystem": {
                 "Priority": 0
             },
             "ComboSystem": {
@@ -990,6 +1052,9 @@
                 "Priority": 0
             },
             "EffectByBlockDrawSystem": {
+                "Priority": 0
+            },
+            "FloatingFloorAnimationSystem": {
                 "Priority": 0
             },
             "FloatingFloorFallSystem": {
@@ -1005,6 +1070,12 @@
                 "Priority": 0
             },
             "GameEndUISystem": {
+                "Priority": 0
+            },
+            "GameStartBackGroundSystem": {
+                "Priority": 0
+            },
+            "GameStartRenditionSystem": {
                 "Priority": 0
             },
             "LevelUIAdaptSystem": {
@@ -1032,6 +1103,9 @@
                 "Priority": 0
             },
             "OperateUISystem": {
+                "Priority": 0
+            },
+            "PlayerAnimationSystem": {
                 "Priority": 0
             },
             "PlayerCreateBigBomSystem": {
@@ -1080,6 +1154,9 @@
                 "Priority": 0
             },
             "TimeAdaptAinmationSystem": {
+                "Priority": 0
+            },
+            "TimerAdaptVignetSystem": {
                 "Priority": 0
             },
             "TimerAnimationSystem": {
@@ -1164,6 +1241,10 @@
                 "Priority": 0
             }
         },
-        {}
+        {
+            "VignetteEffect": {
+                "Priority": 0
+            }
+        }
     ]
 }

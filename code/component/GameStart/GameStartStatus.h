@@ -6,7 +6,7 @@
 #include <Entity.h>
 #include <Vector2.h>
 
-// class BlockManager;
+class Audio;
 class GameStartStatus
     : public IComponent {
     friend void to_json(nlohmann::json& j, const GameStartStatus& m);
@@ -75,7 +75,7 @@ public:
 
     void ApearEasing(const float& deltaTime);
     void CloseEasing(const float& deltaTime);
-    void GoEasing(const float& deltaTime);
+    void GoEasing(const float& deltaTime, Audio* audio);
     void ReadyEasing(const float& deltaTime);
     void GoBackEasing(const float& deltaTime);
 

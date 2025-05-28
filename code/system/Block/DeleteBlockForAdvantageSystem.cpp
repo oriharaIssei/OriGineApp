@@ -67,9 +67,9 @@ void DeleteBlockForAdvantageSystem::BlockBreakParticleShot(GameEntity* _entity, 
 
     /// sound
     GameEntity* blockManager = ecsManager->getUniqueEntity("BlockManager");
-    Audio* breakNormal       = getComponent<Audio>(blockManager, 5); // 落ちる音
-    Audio* breakSkull        = getComponent<Audio>(blockManager, 6); // 落ちる音
-    Audio* breakAdvance      = getComponent<Audio>(blockManager, 7); // 落ちる音
+    Audio* breakNormal       = getComponent<Audio>(blockManager, 8); // 落ちる音
+    Audio* breakSkull        = getComponent<Audio>(blockManager, 9); // 落ちる音
+    Audio* breakAdvance      = getComponent<Audio>(blockManager, 10); // 落ちる音
 
     Emitter* normalStartEmitter = getComponent<Emitter>(_entity, 0); // 通常エミッタその1
     Emitter* normalIconEmitter  = getComponent<Emitter>(_entity, 1);
@@ -87,14 +87,13 @@ void DeleteBlockForAdvantageSystem::BlockBreakParticleShot(GameEntity* _entity, 
     }
     normalIconEmitter->setOriginePos(basePos);
     normalStartEmitter->setOriginePos(basePos);
+   
 
     switch (blocktype) {
         ///---------------------------------------------
         /// Normal
         ///---------------------------------------------
     case BlockType::NORMAL:
-
-       
 
         breakNormal->Play();
         break;

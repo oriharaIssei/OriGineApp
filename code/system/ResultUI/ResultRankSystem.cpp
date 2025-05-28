@@ -11,8 +11,8 @@
 #include <Quaternion.h>
 #include <Vector3.h>
 // component
-#include "component/ResultUI/ResultUIRankStatus.h"
 #include "component/ResultUI/ResultUIParentStatus.h"
+#include "component/ResultUI/ResultUIRankStatus.h"
 
 #include "engine/EngineInclude.h"
 #include <Vector2.h>
@@ -41,6 +41,7 @@ void ResultRankSystem::UpdateEntity(GameEntity* _entity) {
     // get timer component
     ResultUIRankStatus* resultRank       = getComponent<ResultUIRankStatus>(_entity);
     SpriteRenderer* sprite               = getComponent<SpriteRenderer>(_entity);
+    Audio* rankUpSystem                  = getComponent<Audio>(_entity);
     ResultUIParentStatus* resultUIParent = getComponent<ResultUIParentStatus>(levelUIParent);
     float deltaTIme                      = Engine::getInstance()->getDeltaTime();
 
@@ -48,24 +49,24 @@ void ResultRankSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    if (resultRank->GetAnimationStep() == RankAnimationStep::NONE&& resultUIParent->GetAnimationStep()==ResultStep::END) {
+    switch (resultRank->GetAnimationStep()) {
+    case RankAnimationStep::NONE:
+        if (resultUIParent->GetAnimationStep() != ResultStep::END) {
+            return;
+        }
         time_ = 0.0f;
 
         // アニメーションリセット
         resultRank->Reset();
+        rankUpSystem->Play();
         resultRank->SetAnimationStep(RankAnimationStep::SCALING);
-    }
-
-    switch (resultRank->GetAnimationStep()) {
-    case RankAnimationStep::NONE:
-
         break;
         ///----------------------------------------------------------------
         /// Move Animation
         ///----------------------------------------------------------------
     case RankAnimationStep::SCALING:
-      
-          resultRank->ScalingEasing(deltaTIme);
+
+        resultRank->ScalingEasing(deltaTIme);
         resultRank->RotateEasing(deltaTIme);
 
         break;
@@ -78,7 +79,7 @@ void ResultRankSystem::UpdateEntity(GameEntity* _entity) {
         ///----------------------------------------------------------------
         /// Scroll Animation
         ///----------------------------------------------------------------
-   
+
     default:
         break;
     }
@@ -96,7 +97,6 @@ void ResultRankSystem::UpdateEntity(GameEntity* _entity) {
     sprite->setRotate(resultRank->GetRotate());
     sprite->setSize(baseSize);
     sprite->setUVTranslate(Vec2f(0.0f, resultRank->GetUVPos()));
-
 }
 
 void ResultRankSystem::ComboReset() {

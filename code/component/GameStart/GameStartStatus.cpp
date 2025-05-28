@@ -1,4 +1,5 @@
 #include "GameStartStatus.h"
+#include "audio/Audio.h"
 
 // 外部ライブラリなど
 #include "imgui/imgui.h"
@@ -118,7 +119,7 @@ void GameStartStatus::ReadyEasing(const float& deltaTime) {
     renditionStep_    = RenditionStep::GO;
 }
 
-void GameStartStatus::GoEasing(const float& deltaTime) {
+void GameStartStatus::GoEasing(const float& deltaTime, Audio* audio) {
     goEasing_.time += deltaTime;
     goRotate_ += goRotateSpeed_;
 
@@ -129,7 +130,8 @@ void GameStartStatus::GoEasing(const float& deltaTime) {
     if (goEasing_.time < goEasing_.maxTime) {
         return;
     }
-
+    // play
+    audio->Play();
     // adapt
     goEasing_.time = goEasing_.maxTime;
     goScale_       = goEndScale_;
@@ -142,28 +144,27 @@ void GameStartStatus::GoBackEasing(const float& deltaTime) {
     goRotate_ -= goRotateSpeed_;
 
     /// 　ease
-    goScale_ = EaseInBack(goEndScale_, Vec2f(0.0f, 0.0f), goBackEasing_.time, goBackEasing_.maxTime);
+    goScale_    = EaseInBack(goEndScale_, Vec2f(0.0f, 0.0f), goBackEasing_.time, goBackEasing_.maxTime);
     readyScale_ = EaseInBack(Vec2f(1.0f, 1.0f), Vec2f(0.0f, 0.0f), goBackEasing_.time, goBackEasing_.maxTime);
 
     // end
     if (goBackEasing_.time < goBackEasing_.maxTime) {
         return;
     }
-
+   
     // adapt
     goBackEasing_.time = goBackEasing_.maxTime;
-    goScale_       = Vec2f(0.0f, 0.0f);
+    goScale_           = Vec2f(0.0f, 0.0f);
     readyScale_        = Vec2f(0.0f, 0.0f);
-    goRotate_      = 0.0f;
-    renditionStep_ = RenditionStep::END;
+    goRotate_          = 0.0f;
+    renditionStep_     = RenditionStep::END;
 }
 
-
 void GameStartStatus::Reset() {
-    goEasing_.time    = 0.0f;
-    readyEasing_.time = 0.0f;
-    closeEasing_.time = 0.0f;
-    apearEasing_.time = 0.0f;
+    goEasing_.time     = 0.0f;
+    readyEasing_.time  = 0.0f;
+    closeEasing_.time  = 0.0f;
+    apearEasing_.time  = 0.0f;
     goBackEasing_.time = 0.0f;
 
     readyScale_ = Vec2f(1.0f, 1.0f);
@@ -180,7 +181,7 @@ void to_json(nlohmann::json& j, const GameStartStatus& m) {
     j["firstWaitTime"]      = m.firstWaitTime_;
     j["waitTimeAfterApear"] = m.waitTimeAfterApear_;
     j["waitTimeAfterClose"] = m.waitTimeAfterClose_;
-    j["waitTimeAfterGo"] = m.waitTimeAfterGo_;
+    j["waitTimeAfterGo"]    = m.waitTimeAfterGo_;
 
     j["purposeStartPos"] = m.purposeStartPos_;
     j["purposeEndPos"]   = m.purposeEndPos_;

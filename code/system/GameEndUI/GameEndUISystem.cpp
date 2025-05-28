@@ -41,6 +41,7 @@ void GameEndUISystem::UpdateEntity(GameEntity* _entity) {
     GameEndUIStatus* gameEndUIStatus = getComponent<GameEndUIStatus>(_entity);
     SpriteRenderer* sprite           = getComponent<SpriteRenderer>(_entity);
     TimerStatus* timerStatus         = getComponent<TimerStatus>(timerEntity);
+    Audio* gameEndAudio              = getComponent<Audio>(_entity);
     float deltaTIme                  = Engine::getInstance()->getDeltaTime();
 
     if (!gameEndUIStatus || !timerStatus || !sprite) {
@@ -56,6 +57,7 @@ void GameEndUISystem::UpdateEntity(GameEntity* _entity) {
         }
         // アニメーションリセット
         time_ = 0.0f;
+        gameEndAudio->Play();
         gameEndUIStatus->Reset();
         gameEndUIStatus->SetAnimationStep(GameEndUIStep::APEER);
         break;

@@ -501,6 +501,14 @@
         },
         {
             "Components": {
+                "Audio": [
+                    {
+                        "fileName": "application/resource/sound/BreakFall.wav",
+                        "isLoop": false,
+                        "isPlay": false,
+                        "valume": 0.5
+                    }
+                ],
                 "SceneTransition": [
                     {
                         "CurrentScene": 0,
@@ -591,6 +599,9 @@
             }
         },
         {
+            "BackPlaneChangeCloseSystem": {
+                "Priority": 0
+            },
             "BreakBlockSystem": {
                 "Priority": 0
             },
@@ -604,6 +615,9 @@
                 "Priority": 0
             },
             "DeleteBigExplotionCollision": {
+                "Priority": 0
+            },
+            "DeleteBlockForAdvantageSystem": {
                 "Priority": 0
             },
             "DeleteBlockSystem": {
@@ -624,6 +638,9 @@
             "EffectByBlockDeleteSystem": {
                 "Priority": 0
             },
+            "FrontPlaneDeleteSystem": {
+                "Priority": 0
+            },
             "SceneChangerSystem": {
                 "Priority": 0
             },
@@ -635,13 +652,34 @@
             }
         },
         {
+            "AdapAnimationtBackTimerSystem": {
+                "Priority": 0
+            },
+            "AdaptGoSystem": {
+                "Priority": 0
+            },
+            "AdaptPurposeSystem": {
+                "Priority": 0
+            },
+            "AdaptReadySystem": {
+                "Priority": 0
+            },
+            "BackPlaneCloseSystem": {
+                "Priority": 0
+            },
             "BigBomLaunchSystem": {
+                "Priority": 0
+            },
+            "BlockApearSystem": {
                 "Priority": 0
             },
             "BlockMoveSystem": {
                 "Priority": 0
             },
             "BlockSpawnSystem": {
+                "Priority": 0
+            },
+            "CameraShakeSystem": {
                 "Priority": 0
             },
             "ComboSystem": {
@@ -653,13 +691,28 @@
             "EffectByBlockDrawSystem": {
                 "Priority": 0
             },
+            "FloatingFloorAnimationSystem": {
+                "Priority": 0
+            },
             "FloatingFloorFallSystem": {
                 "Priority": 0
             },
             "FloatingFloorRevivalSystem": {
                 "Priority": 0
             },
+            "FloorUISystem": {
+                "Priority": 0
+            },
             "FloorUpdateMatrixSystem": {
+                "Priority": 0
+            },
+            "GameEndUISystem": {
+                "Priority": 0
+            },
+            "GameStartBackGroundSystem": {
+                "Priority": 0
+            },
+            "GameStartRenditionSystem": {
                 "Priority": 0
             },
             "LevelUIAdaptSystem": {
@@ -689,6 +742,9 @@
             "OperateUISystem": {
                 "Priority": 0
             },
+            "PlayerAnimationSystem": {
+                "Priority": 0
+            },
             "PlayerCreateBigBomSystem": {
                 "Priority": 0
             },
@@ -696,6 +752,12 @@
                 "Priority": 0
             },
             "PlayerMoveSystem": {
+                "Priority": 0
+            },
+            "PlusScoreAdaptUISystem": {
+                "Priority": 0
+            },
+            "PlusScoreIconSystem": {
                 "Priority": 0
             },
             "PutBomSystem": {
@@ -726,6 +788,15 @@
                 "Priority": 0
             },
             "ScrapFallSystem": {
+                "Priority": 0
+            },
+            "TimeAdaptAinmationSystem": {
+                "Priority": 0
+            },
+            "TimerAdaptVignetSystem": {
+                "Priority": 0
+            },
+            "TimerAnimationSystem": {
                 "Priority": 0
             },
             "TimerDecrementSystem": {
@@ -766,6 +837,9 @@
             "BomCollisionExSystem": {
                 "Priority": 0
             },
+            "CheckIsUnderPlayer": {
+                "Priority": 0
+            },
             "CollisionCheckSystem": {
                 "Priority": 0
             },
@@ -785,7 +859,13 @@
             }
         },
         {
+            "ColliderRenderingSystem": {
+                "Priority": 0
+            },
             "EffectTexturedMeshRenderSystem": {
+                "Priority": 0
+            },
+            "LineRenderSystem": {
                 "Priority": 0
             },
             "ParticleRenderSystem": {
@@ -798,6 +878,10 @@
                 "Priority": 0
             }
         },
-        {}
+        {
+            "VignetteEffect": {
+                "Priority": 0
+            }
+        }
     ]
 }

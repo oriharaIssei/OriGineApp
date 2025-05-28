@@ -69,9 +69,9 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
 
     /// sound
     GameEntity* blockManager = ecsManager->getUniqueEntity("BlockManager");
-    Audio* breakNormal       = getComponent<Audio>(blockManager, 2); // 落ちる音
-    Audio* breakSkull        = getComponent<Audio>(blockManager, 3); // 落ちる音
-    Audio* breakAdvance      = getComponent<Audio>(blockManager, 4); // 落ちる音
+    Audio* breakNormal       = getComponent<Audio>(blockManager, 5); // 落ちる音
+    Audio* breakSkull        = getComponent<Audio>(blockManager, 6); // 落ちる音
+    Audio* breakAdvance      = getComponent<Audio>(blockManager, 7); // 落ちる音
 
     if (!scoreEntity || !timerEntity) { // Entityが存在しない場合の早期リターン
         return;

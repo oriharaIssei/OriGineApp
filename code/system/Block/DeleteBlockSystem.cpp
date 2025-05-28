@@ -3,10 +3,10 @@
 /// ECS
 #define ENGINE_ECS
 // component
-#include"component/Block/BlockStatus.h"
-#include"component/EffectByBlock/EffectByBlockSpawner.h"
-#include"component/Score/ScoreStatus.h"
-#include"component/Timer/TimerStatus.h"
+#include "component/Block/BlockStatus.h"
+#include "component/EffectByBlock/EffectByBlockSpawner.h"
+#include "component/Score/ScoreStatus.h"
+#include "component/Timer/TimerStatus.h"
 #include "engine/EngineInclude.h"
 #include <Vector.h>
 
@@ -21,12 +21,10 @@ void DeleteBlockSystem::Finalize() {
 
 DeleteBlockSystem::~DeleteBlockSystem() {}
 
-
 void DeleteBlockSystem::UpdateEntity(GameEntity* _entity) {
     if (!_entity) {
         return;
     }
-
 
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* blockManagerEntity           = ecsManager->getUniqueEntity("BlockManager");
@@ -38,15 +36,14 @@ void DeleteBlockSystem::UpdateEntity(GameEntity* _entity) {
     Transform* transform       = getComponent<Transform>(_entity);
     BlockManager* blockManager = getComponent<BlockManager>(blockManagerEntity);
     blockStatus_               = getComponent<BlockStatus>(_entity);
-   
 
     if (!transform || !blockManager || !blockStatus_) {
         return;
     }
 
     if (transform->translate[X] <= blockManager->GetDeadPosition()) {
-        BlockReaction(_entity,blockStatus_->GetBlockType());
-        transform->scale = Vec3f(0.0f, 0.0f, 0.0f);   
+        BlockReaction(_entity, blockStatus_->GetBlockType());
+        transform->scale = Vec3f(0.0f, 0.0f, 0.0f);
         DestroyEntity(_entity);
     }
 }
@@ -58,22 +55,21 @@ void DeleteBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) 
     GameEntity* timerEntity                  = ecsManager->getUniqueEntity("Timer");
     GameEntity* effectByBlockSpawner         = ecsManager->getUniqueEntity("effectByBlockSpawner");
 
-    
     /// sound
     GameEntity* blockManager = ecsManager->getUniqueEntity("BlockManager");
-    Audio* breakNormal       = getComponent<Audio>(blockManager,5); // 落ちる音
-    Audio* breakSkull        = getComponent<Audio>(blockManager, 6); // 落ちる音
-    Audio* breakAdvance      = getComponent<Audio>(blockManager, 7); // 落ちる音
+    Audio* breakNormal       = getComponent<Audio>(blockManager, 2); // 落ちる音
+    Audio* breakSkull        = getComponent<Audio>(blockManager, 3); // 落ちる音
+    Audio* breakAdvance      = getComponent<Audio>(blockManager, 4); // 落ちる音
 
     if (!scoreEntity || !timerEntity) { // Entityが存在しない場合の早期リターン
         return;
     }
 
     /// component取得
-    ScoreStatus* scoreStatus = getComponent<ScoreStatus>(scoreEntity);
-    TimerStatus* timerStatus = getComponent<TimerStatus>(timerEntity);
+    ScoreStatus* scoreStatus            = getComponent<ScoreStatus>(scoreEntity);
+    TimerStatus* timerStatus            = getComponent<TimerStatus>(timerEntity);
     EffectByBlockSpawner* SpawnerStatus = getComponent<EffectByBlockSpawner>(effectByBlockSpawner);
-    Transform* blockTransform              = getComponent<Transform>(_entity);
+    Transform* blockTransform           = getComponent<Transform>(_entity);
 
     if (!scoreStatus || !timerStatus || !SpawnerStatus || !blockTransform) { // Componentが存在しない場合の早期リターン
         return;
@@ -100,7 +96,7 @@ void DeleteBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) 
         ///---------------------------------------------
     case BlockType::SKULL:
         scoreStatus->PlusScoreIncrement(scoreValue);
-         scoreStatus->ScoreUPChange();
+        scoreStatus->ScoreUPChange();
         effectType_ = EffectType::SCORE;
         tempValue_  = scoreValue;
         /* if (!breakNormal->isPlaying()) {*/
@@ -113,7 +109,7 @@ void DeleteBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) 
         ///---------------------------------------------
     case BlockType::ADVANTAGE:
         scoreStatus->PlusScoreIncrement(scoreValue);
-         scoreStatus->ScoreUPChange();
+        scoreStatus->ScoreUPChange();
         effectType_ = EffectType::SCORE;
         tempValue_  = scoreValue;
         /* if (!breakNormal->isPlaying()) {*/
@@ -125,5 +121,5 @@ void DeleteBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) 
         break;
     }
 
-       SpawnerStatus->EffectUISpawn(Vec3f(blockTransform->worldMat[3]), tempValue_, effectType_);
- }
+    SpawnerStatus->EffectUISpawn(Vec3f(blockTransform->worldMat[3]), tempValue_, effectType_);
+}
