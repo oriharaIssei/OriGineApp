@@ -12,14 +12,15 @@ public:
 
     void Initialize(GameEntity* _entity) override;
     bool Edit() override;
+    void Debug() override;
     void Finalize() override;
 
 public:
     enum class MoveState {
-        IDLE,
-        MOVE,
-        // DASH // 常にダッシュ状態なので Moveと統合 して省略
-        JUMP
+        IDLE, // 待機 (動いていない)
+        DASH, // ダッシュ(基本移動)
+        JUMP, // ジャンプ
+        SLIDE // スライディング
     };
 
 private:
@@ -28,29 +29,25 @@ private:
     /// </summary>
 
     MoveState moveState_ = MoveState::IDLE;
-    bool isJump_         = false; // ジャンプ中かどうか
-    bool canJump_        = false; // ジャンプ可能かどうか
 
-    /// <summary>
-    /// ダッシュ状態を表す構造体
-    /// </summary>
-    struct DashState {
-        int32_t gearLevel_    = 0; // ギアレベル
-        float gearUpCoolTime_ = 0.0f; // ギアレベルが上がるまでの時間
+    bool onGround_ = true; // 地面にいるかどうか
 
-        // 基本速度 最終速度は gearLevel_ に応じて変化する
-        float baseSpeed_ = 0.0f;
-    };
+    int32_t gearLevel_    = 0; // ギアレベル
+    float baseGearupCoolTime_ = 1.0f; // ギアアップの基本クールタイム (秒単位)
+    float gearUpCoolTime_ = 0.0f; // ギアレベルが上がるまでの時間
 
-    DashState dashState_;
+    // 基本速度 最終速度は gearLevel_ に応じて変化する
+    float baseSpeed_ = 0.0f;
+
+    bool isGearUp_ = false; // ギアアップ中かどうか
 
     float directionInterpolateRate_ = 0.1f;
 
 public:
-    const MoveState& getMoveState() const {
+    const MoveState& getState() const {
         return moveState_;
     }
-    void setMoveState(const MoveState& _state) {
+    void setState(const MoveState& _state) {
         moveState_ = _state;
     }
 
@@ -58,42 +55,31 @@ public:
         return directionInterpolateRate_;
     }
 
-    bool isJump() const {
-        return isJump_;
+    bool isGearUp() const {
+        return isGearUp_;
     }
-    void setJump(bool _isJump) {
-        isJump_ = _isJump;
-    }
-
-    bool canJump() const {
-        return canJump_;
-    }
-    void setCanJump(bool _canJump) {
-        canJump_ = _canJump;
-    }
-
-    const DashState& getDashState() const {
-        return dashState_;
+    void setGearUp(bool _isGearUp) {
+        isGearUp_ = _isGearUp;
     }
 
     float getBaseSpeed() const {
-        return dashState_.baseSpeed_;
+        return baseSpeed_;
     }
 
     int32_t getGearLevel() const {
-        return dashState_.gearLevel_;
+        return gearLevel_;
     }
     void setGearLevel(int32_t _gearLevel) {
-        dashState_.gearLevel_ = _gearLevel;
+        gearLevel_ = _gearLevel;
     }
 
     float getGearUpCoolTime() const {
-        return dashState_.gearUpCoolTime_;
+        return gearUpCoolTime_;
     }
     void setGearUpCoolTime(float _gearUpCoolTime) {
-        dashState_.gearUpCoolTime_ = _gearUpCoolTime;
+        gearUpCoolTime_ = _gearUpCoolTime;
     }
     void minusGearUpCoolTime(float _deltaTime) {
-        dashState_.gearUpCoolTime_ -= _deltaTime;
+        gearUpCoolTime_ -= _deltaTime;
     }
 };

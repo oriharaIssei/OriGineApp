@@ -56,6 +56,7 @@
     <ClInclude Include="code\system\Initialize\SettingGameCameraTarget.h">
       <Filter>system</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Transition\TransitionPlayerState.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -99,5 +100,6 @@
     <ClCompile Include="code\system\Initialize\SettingGameCameraTarget.cpp">
       <Filter>system</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\Transition\TransitionPlayerState.cpp" />
   </ItemGroup>
 </Project>

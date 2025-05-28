@@ -32,6 +32,7 @@ public:
 private:
     Vec2f inputDirection_ = {0.0f, 0.0f};
     bool isJump_          = false;
+    bool isSlideing_      = false;
 
     /// <summary>
     /// 移動 キー (ゲームパッドは スティックだから必要なし)
@@ -55,6 +56,12 @@ private:
     std::vector<PadButton> jumpButton_ = {
         PadButton::A,
         PadButton::B};
+    std::vector<Key> slideKeys_ = {
+        Key::L_SHIFT,
+        Key::L_CTRL};
+    std::vector<PadButton> slideButton_ = {
+        PadButton::L_SHOULDER,
+        PadButton::R_SHOULDER};
 
 public:
     const std::vector<Key>& getMoveFrontKeys() const {
@@ -76,6 +83,13 @@ public:
 
     const std::vector<PadButton>& getJumpButton() const {
         return jumpButton_;
+    }
+
+    const std::vector<Key>& getSlideKeys() const {
+        return slideKeys_;
+    }
+    const std::vector<PadButton>& getSlideButton() const {
+        return slideButton_;
     }
 
     const Vec2f& getInputDirection() const {

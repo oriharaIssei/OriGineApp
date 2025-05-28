@@ -116,6 +116,7 @@
     <ClInclude Include="code\system\Movement\PlayerMoveSystem.h" />
     <ClInclude Include="code\system\Movement\FollowCameraUpdateSystem.h" />
     <ClInclude Include="code\system\Initialize\SettingGameCameraTarget.h" />
+    <ClInclude Include="code\system\Transition\TransitionPlayerState.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\system\Input\CameraInputSystem.cpp" />
@@ -133,6 +134,7 @@
     <ClCompile Include="code\system\Movement\PlayerMoveSystem.cpp" />
     <ClCompile Include="code\system\Movement\FollowCameraUpdateSystem.cpp" />
     <ClCompile Include="code\system\Initialize\SettingGameCameraTarget.cpp" />
+    <ClCompile Include="code\system\Transition\TransitionPlayerState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\externals\DirectXTex\DirectXTex.vcxproj">
