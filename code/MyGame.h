@@ -29,6 +29,8 @@ private:
     /// </summary>
     void RegisterUsingSystems();
 
+        void ResourceAllLoad();
+
 private:
     Engine* engine_             = nullptr;
     GlobalVariables* variables_ = nullptr;

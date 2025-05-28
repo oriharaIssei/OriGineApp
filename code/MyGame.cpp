@@ -29,6 +29,9 @@
 #include "module/debugger/DebuggerGroup.h"
 #endif // DEBUG
 
+#include "texture/TextureManager.h"
+#include"model/ModelManager.h"
+
 #include "component/BigBom/BigBomSpawner.h"
 #include "component/BigBom/BigBomStatus.h"
 #include "component/BigBom/BigExplotionCollision.h"
@@ -186,6 +189,7 @@ void MyGame::Initialize() {
     variables_->LoadAllFile();
     engine_->Initialize();
     sceneManager_->Initialize();
+    ResourceAllLoad();
 
     RegisterUsingComponents();
     RegisterUsingSystems();
@@ -480,4 +484,72 @@ void MyGame::RegisterUsingSystems() {
     /// =================================================================================================
     ecsManager->registerSystem<GrayscaleEffect>();
     ecsManager->registerSystem<SmoothingEffect>();
+}
+
+void MyGame::ResourceAllLoad() {
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/anchorPoint.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/DescriptionArrowLeft.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/DescriptionArrowRight.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/gameEnd.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/gameStartText.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/GameToTitleText.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/image.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/kira.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/Menu_Fream.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/MenuArrow.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/NoBreak.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/ready.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/ResultToTitle.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/Retry.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/ReturnGameText.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/SeeDescription.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/title.png");
+
+    for (int32_t i = 0; i < 10; ++i) {
+        TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/UI/BlueNumbers/bluenumber" + std::to_string(i).c_str() + ".png");
+    }
+
+    for (int32_t i = 0; i < 10; ++i) {
+        TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/UI/GreenNumbers/greennumber" + std::to_string(i).c_str() + ".png");
+    }
+
+    for (int32_t i = 0; i < 10; ++i) {
+        TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/UI/Numbers/number" + std::to_string(i).c_str() + ".png");
+    }
+
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/UI/Time/TimeNum.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/UI/Time/TimeSymbol.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/UI/AddTimeUI.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/UI/AddTimeUI-sheet.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/UI/GameToTitleUI.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/UI/menuOperate.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/UI/menuUP.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/UI/Numbers_Blue.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/UI/Numbers_Green.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/UI/PlaySpaceUI.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/UI/PlaySpaceUI_Explosion.png");
+
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/Explanation/Explanation_01.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/Explanation/Explanation_02.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/Explanation/Explanation_03.png");
+    TextureManager::LoadTexture(kApplicationResourceDirectory + "/Texture/Explanation/Explanation_04.png");
+
+    /// model
+    ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/AdvantageBlock", "AdvantageBlock.gltf");
+    ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/BLock", "BLock.gltf");
+    ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/SkullBlock", "SkullBlock.gltf");
+    ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/Plane", "Plane.gltf");
+    ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/Bomb", "Bomb.obj");
+    ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/Field", "Field.obj");
+    ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/Floor", "Floor.obj");
+    ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/Floor_Gold", "Floor_Gold.obj");
+    ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/Floor_Silver", "FloorSilver.obj");
+    ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/Floor_Break", "Floor_Break.obj");
+    ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/Floor_Break_Gold", "Floor_Break_Gold.obj");
+    ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/Floor_Break_Silver", "Floor_Break_Silver.obj");
+    ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/Player", "Player.gltf");
+    ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/Scrap", "Scrap.obj");
+    ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/hook", "hook.obj");
+    /*ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/Floor_Gold_Text", "Floor_Gold_Text.gltf");
+    ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/Floor_Silver_Text", "Floor_Silver_Text.gltf");*/
 }

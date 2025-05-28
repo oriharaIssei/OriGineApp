@@ -94,6 +94,7 @@ void FloatingFloorAnimationSystem::UpdateEntity(GameEntity* _entity) {
     //復活演出
     floatingFloorStatus->RevivalAnimation(deltaTime, animationStatus_->GetRevivalMaxTime());
 
+    //adapt
     transform->translate[X] = floatingFloorStatus->GetSavePos()[X] + floatingFloorStatus->GetDamageShakePos()[X];
     transform->scale        = floatingFloorStatus->GetBaseScale() + constantAnimationScale;
 }

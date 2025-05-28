@@ -54,8 +54,8 @@ private: // variables
     // revival easing
     bool isRevivalAnimation_ = false;
     float revivalEaseT_;
-    Vec3f baseScale_ = {1.0f, 1.0f, 1.0f};
-  float scaleOffsetRate_=1.0f;
+    Vec3f baseScale_        = {1.0f, 1.0f, 1.0f};
+    float scaleOffsetRate_  = 1.0f;
     Vec3f floorScaleOffset_ = {0.0f, 0.0f, 0.0f};
 
 public:
@@ -77,7 +77,7 @@ public:
     void DamageShake(const float& shakeValue, const float& deltaTime);
     void ConstantShake(const float& shakeValue);
 
-    void RevivalAnimation(const float& deltaTime, const float&maxTime);
+    void RevivalAnimation(const float& deltaTime, const float& maxTime);
 
     void ChangeFallInit();
 
