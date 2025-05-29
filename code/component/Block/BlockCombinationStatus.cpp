@@ -80,20 +80,35 @@ void from_json(const nlohmann::json& _json, BlockCombinationStatus& _block) {
     }
 }
 
+#include <algorithm>
+#include <iterator> // std::find_if
+#include <utility> // std::pair
+#include <vector>
+
 std::vector<BlockStatus*> BlockCombinationStatus::GetRightBlocksForCalucration(const int& baseRowNum, const int& columNum) const {
     std::vector<BlockStatus*> result;
+
     for (BlockStatus* status : blockStatusArray_) {
         int row = status->GetRowNum();
+        int column = status->GetColumnNum();
 
-        // colum が血がければskip
-        if (columNum != status->GetColumnNum()) {
+        // colum が違ければ skip
+        if (columNum != column) {
             continue;
         }
 
         if (row < baseRowNum && row >= conbinationMax_) {
-            result.push_back(status);
+            // すでに同じ (row, col) のBlockStatusが result に存在するかをチェック
+            bool alreadyExists = std::any_of(result.begin(), result.end(), [&](BlockStatus* block) {
+                return block->GetRowNum() == row && block->GetColumnNum() == column;
+            });
+
+            if (!alreadyExists) {
+                result.push_back(status);
+            }
         }
     }
+
     // BlockType順にソート
     std::sort(result.begin(), result.end(), [](BlockStatus* a, BlockStatus* b) {
         return static_cast<int>(a->GetBlockType()) < static_cast<int>(b->GetBlockType());

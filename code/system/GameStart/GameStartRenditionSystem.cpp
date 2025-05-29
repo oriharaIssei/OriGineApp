@@ -49,6 +49,10 @@ void GameStartRenditionSystem::UpdateEntity(GameEntity* _entity) {
 
     float deltaTime = Engine::getInstance()->getDeltaTime();
 
+   if (deltaTime >= 0.5f) {
+        return;
+    }
+
     switch (gameStartStatus->GetRenditionStep()) {
         ///---------------------------------------------------
         /// 最初の待機

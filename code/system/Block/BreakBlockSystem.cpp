@@ -157,6 +157,10 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
                 break;
             }
         }
+        if (std::fabsf(plusTimerValue )>= 300) {
+            int a = 3;
+            a     = 3;
+        }
 
         // 再ソート(左から右の順番になるように)
         rightBlocks_ = combiStatus->SortBlocksLeftToRight(rightBlocks_);

@@ -50,7 +50,10 @@ void SceneTransitionSystem::UpdateEntity(GameEntity* entity) {
 
     float deltaTime = Engine::getInstance()->getDeltaTime();
 
-    //ボタンによるシーン切り替え
+    if (deltaTime >= 0.5f) {
+        return;
+    }
+  
 
     //ステップに基づく動き
     switch (sceneTransition->GetTransitionStep()) {
