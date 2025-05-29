@@ -11,7 +11,7 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
-                        "renderingPriority": 1,
+                        "renderingPriority": 4,
                         "rotate": 0.0,
                         "scale": [
                             1.0,
@@ -57,108 +57,30 @@
         },
         {
             "Components": {
-                "PlaneRenderer": [
+                "PlaneRenderer": [],
+                "PrimitiveNodeAnimation": [],
+                "SpriteAnimation": [
                     {
-                        "blendMode": 1,
-                        "isRenderer": true,
-                        "material": {
-                            "color": [
-                                1.0,
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "enableLighting": false,
-                            "shininess": 0.0,
-                            "specularColor": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "uvRotate": 0.0,
-                            "uvScale": [
-                                1.0,
-                                1.0
-                            ],
-                            "uvTranslate": [
-                                0.0,
-                                0.0
-                            ]
+                        "colorAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
                         },
-                        "textureDirectory": "application/resource/Texture\\BackGround",
-                        "textureFileName": "BackGround_02.png",
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                1.0800000429153442
-                            ]
-                        }
-                    }
-                ],
-                "PrimitiveNodeAnimation": [
-                    {
-                        "colorCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    1.0,
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ]
-                            }
-                        ],
+                        "colorCurve": [],
                         "colorInterpolationType": 0,
-                        "duration": 5.0,
-                        "isLoop": false,
-                        "isPlay": false,
-                        "rotateCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ],
-                        "scaleCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ]
-                            }
-                        ],
+                        "duration": 8.0,
+                        "rotateCurve": [],
+                        "scaleCurve": [],
+                        "transformAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
+                        },
                         "transformInterpolationType": 0,
-                        "translateCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ],
+                        "translateCurve": [],
+                        "uvAnimationState": {
+                            "isLoop": true,
+                            "isPlay": true
+                        },
                         "uvInterpolationType": 0,
-                        "uvIsLoop": true,
-                        "uvIsPlay": true,
                         "uvRotateCurve": [
                             {
                                 "time": 0.0,
@@ -183,7 +105,7 @@
                                 ]
                             },
                             {
-                                "time": 5.0,
+                                "time": 8.0,
                                 "value": [
                                     1.0,
                                     0.0
@@ -191,16 +113,58 @@
                             }
                         ]
                     }
+                ],
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 2,
+                        "rotate": 0.0,
+                        "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
+                            1280.0,
+                            720.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\BackGround/BackGround_02.png",
+                        "textureSize": [
+                            1280.0,
+                            720.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
                 ]
             },
             "Name": "BackGround_Front",
             "Systems": [
                 {
-                    "SystemName": "PrimitiveNodeAnimationWorkSystem",
+                    "SystemName": "SpriteAnimationSystem",
                     "SystemType": 5
                 },
                 {
-                    "SystemName": "TexturedMeshRenderSystem",
+                    "SystemName": "SpriteRenderSystem",
                     "SystemType": 6
                 }
             ],
@@ -239,80 +203,30 @@
         },
         {
             "Components": {
-                "PlaneRenderer": [
+                "PlaneRenderer": [],
+                "PrimitiveNodeAnimation": [],
+                "SpriteAnimation": [
                     {
-                        "blendMode": 1,
-                        "isRenderer": true,
-                        "material": {
-                            "color": [
-                                1.0,
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "enableLighting": false,
-                            "shininess": 0.0,
-                            "specularColor": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "uvRotate": 0.0,
-                            "uvScale": [
-                                1.0,
-                                1.0
-                            ],
-                            "uvTranslate": [
-                                0.0,
-                                0.0
-                            ]
+                        "colorAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
                         },
-                        "textureDirectory": "application/resource/Texture\\BackGround",
-                        "textureFileName": "BackGround_03.png",
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.11999999731779099,
-                                1.090000033378601
-                            ]
-                        }
-                    }
-                ],
-                "PrimitiveNodeAnimation": [
-                    {
-                        "colorCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    1.0,
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ]
-                            }
-                        ],
+                        "colorCurve": [],
                         "colorInterpolationType": 0,
-                        "duration": 8.0,
-                        "isLoop": false,
-                        "isPlay": false,
+                        "duration": 4.0,
                         "rotateCurve": [],
                         "scaleCurve": [],
+                        "transformAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
+                        },
                         "transformInterpolationType": 0,
                         "translateCurve": [],
+                        "uvAnimationState": {
+                            "isLoop": true,
+                            "isPlay": true
+                        },
                         "uvInterpolationType": 0,
-                        "uvIsLoop": true,
-                        "uvIsPlay": true,
                         "uvRotateCurve": [
                             {
                                 "time": 0.0,
@@ -337,7 +251,7 @@
                                 ]
                             },
                             {
-                                "time": 8.0,
+                                "time": 4.0,
                                 "value": [
                                     1.0,
                                     0.0
@@ -345,16 +259,58 @@
                             }
                         ]
                     }
+                ],
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 3,
+                        "rotate": 0.0,
+                        "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
+                            1280.0,
+                            720.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\BackGround/BackGround_03.png",
+                        "textureSize": [
+                            1280.0,
+                            720.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
                 ]
             },
             "Name": "BackGround_Back",
             "Systems": [
                 {
-                    "SystemName": "PrimitiveNodeAnimationWorkSystem",
+                    "SystemName": "SpriteAnimationSystem",
                     "SystemType": 5
                 },
                 {
-                    "SystemName": "TexturedMeshRenderSystem",
+                    "SystemName": "SpriteRenderSystem",
                     "SystemType": 6
                 }
             ],
@@ -442,7 +398,7 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
-                        "renderingPriority": 6,
+                        "renderingPriority": 7,
                         "rotate": 0.0,
                         "scale": [
                             1.0,
@@ -535,7 +491,7 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
-                        "renderingPriority": 5,
+                        "renderingPriority": 7,
                         "rotate": 0.0,
                         "scale": [
                             1.0,
@@ -867,6 +823,9 @@
                 "Priority": 0
             },
             "PrimitiveNodeAnimationWorkSystem": {
+                "Priority": 0
+            },
+            "SpriteAnimationSystem": {
                 "Priority": 0
             }
         },
