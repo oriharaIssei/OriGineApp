@@ -467,7 +467,7 @@
             "Components": {
                 "Audio": [
                     {
-                        "fileName": "application/resource/sound/BreakFall.wav",
+                        "fileName": "application/resource/sound/decision.wav",
                         "isLoop": false,
                         "isPlay": false,
                         "valume": 0.5

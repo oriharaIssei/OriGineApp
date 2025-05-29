@@ -28,11 +28,6 @@ public:
         END,
     };
 
-    enum class SkullMode {
-        NONE,
-        SINISTER,
-    };
-
 private: // variables
     bool isAlive_ = true;
     bool isFall_  = false;
@@ -52,6 +47,7 @@ private: // variables
 
     // pos,color
     Vec3f preMovePos_           = {0.0f, 0.0f, 0.0f};
+    Vec3f basePos_           = {0.0f, 0.0f, 0.0f};
     Vec4f normalChangeColor_    = {1.0f, 0.0f, 0.0f, 1.0f};
     Vec4f skullChangeColor_     = {0.57f, 0.439f, 0.859f, 1.0f};
     Vec4f advantageChangeColor_ = {1.0f, 0.843f, 0.0f, 1.0f};
@@ -86,7 +82,8 @@ private: // variables
     float zposition_;
 
     // sinister
-    SkullMode skullMode_;
+    bool isSinister_;
+    Vec3f sinisterOffsetPos_;
 
     public : BlockStatus() {}
     virtual ~BlockStatus() = default;
@@ -105,6 +102,8 @@ private: // variables
     void BreakTimerDecrement(const float& deltaTime);
     void SetBlockManagerParm(BlockManager* parm);
 
+    void SinisterShake();
+
     // blockZApear
     void SavingZPosition(/*const float& pos*/);
     void ZApearEasing(const float& deltaTime);
@@ -114,7 +113,9 @@ private: // variables
 
 public: // accsessor
     /// getter
-    SkullMode GetSkullMode() const { return skullMode_; }
+    Vec3f GetBasePos() const { return basePos_; }
+    Vec3f GetSinisterOffset() const { return sinisterOffsetPos_; }
+    bool GetIsSinister() const { return isSinister_; }
     float GetZPosition() const { return zposition_; }
     bool GetIsCollisionReaction() const { return isCollisionReaction_; }
     bool GetIsRightEdge() const { return isRightEdge_; }
@@ -142,6 +143,7 @@ public: // accsessor
     const bool& GetIsCloseFrontBackPlane() const { return isFrontPlaneClose_; }
 
     /// setter
+    void SetBasePos(const Vec3f& pos) {  basePos_= pos; }
     void SetIsCollisionReaction(const bool& is) { isCollisionReaction_ = is; }
     void SetBreakOffsetTime(const float& time) { breakOffsetTime_ = time; }
     void SetColumnNum(const int32_t& colum) { columnNum_ = colum; }
@@ -164,5 +166,5 @@ public: // accsessor
     void SetAdaptTextureStep(const AdaptTextureStep& step) { adaptTextureStep_ = step; }
     void SetApearAnimationstep(const ApearAnimationStep& step) { apearAnimationStep_ = step; }
     void SetIsCloseFrontBackPlane(const bool& is) { isFrontPlaneClose_ = is; }
-    void SetSkullMode(const SkullMode& mode) { skullMode_ = mode; }
+    void SetIsSinister(const bool& mode) { isSinister_ = mode; }
 };

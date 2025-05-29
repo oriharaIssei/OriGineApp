@@ -614,13 +614,13 @@
             "Components": {
                 "Audio": [
                     {
-                        "fileName": "application/resource/sound/BreakFall.wav",
+                        "fileName": "application/resource/sound/Tutorial_Open.wav",
                         "isLoop": false,
                         "isPlay": false,
-                        "valume": 0.5
+                        "valume": 0.5870000123977661
                     },
                     {
-                        "fileName": "application/resource/sound/BreakFall.wav",
+                        "fileName": "application/resource/sound/Score_Decision.wav",
                         "isLoop": false,
                         "isPlay": false,
                         "valume": 0.5
@@ -809,7 +809,7 @@
             "Components": {
                 "Audio": [
                     {
-                        "fileName": "application/resource/sound/BreakFall.wav",
+                        "fileName": "application/resource/sound/decision.wav",
                         "isLoop": false,
                         "isPlay": false,
                         "valume": 0.5
@@ -1266,6 +1266,9 @@
                 "Priority": 0
             },
             "PrimitiveNodeAnimationWorkSystem": {
+                "Priority": 0
+            },
+            "SpriteAnimationSystem": {
                 "Priority": 0
             }
         },

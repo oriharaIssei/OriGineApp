@@ -155,6 +155,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     blockStatus->SetEaseTimeMax(blockSpawner_->GetMoveTime());
     blockStatus->SetBlockManagerParm(blockSpawner_);
     blockStatus->SetIsCloseFrontBackPlane(false);
+    blockStatus->SetBasePos(transform->translate);
     blockStatus->TimerReset();
 
     /// blockTypeCreater

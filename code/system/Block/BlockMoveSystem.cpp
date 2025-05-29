@@ -68,10 +68,13 @@ void BlockMoveSystem::UpdateEntity(GameEntity* _entity) {
 
     if (blockManager->GetIsMove()) {
         blockStatus->SetIsMove(true);
-        blockStatus->SetPreMovePos(transform->translate);
+        blockStatus->SetPreMovePos(blockStatus->GetBasePos());
         blockStatus->TimeInit();
     }
 
     // 移動
     blockStatus->MoveUpdate(Engine::getInstance()->getDeltaTime(), transform, blockManager->GetBlockSize()[X]);
+
+    transform->translate[X] = blockStatus->GetBasePos()[X] + blockStatus->GetSinisterOffset()[X];
+    transform->translate[Y] = blockStatus->GetBasePos()[Y] + blockStatus->GetSinisterOffset()[Y];
 }

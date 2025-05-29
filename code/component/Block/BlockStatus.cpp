@@ -1,5 +1,6 @@
 #include "BlockStatus.h"
 #include "component/transform/Transform.h"
+#include "KetaShake.h"
 
 /// externals
 #include "imgui/imgui.h"
@@ -40,6 +41,7 @@ void BlockStatus::TakeDamageForFloor() {
 }
 
 void BlockStatus::MoveUpdate(const float& time, Transform* transform, const float& moveValue) {
+    transform;
 
     if (!isMove_) {
         return;
@@ -50,15 +52,15 @@ void BlockStatus::MoveUpdate(const float& time, Transform* transform, const floa
     moveEase_.time += time;
 
     /// スケーリングイージング
-    transform->translate[X] = (EaseInBounce(preMovePos_[X], movepos, moveEase_.time, moveEase_.maxTime));
+    basePos_[X] = (EaseInBounce(preMovePos_[X], movepos, moveEase_.time, moveEase_.maxTime));
 
     if (moveEase_.time >= moveEase_.maxTime) {
         // save time
         moveEase_.time = moveEase_.maxTime;
 
         // save pos
-        transform->translate[X] = movepos;
-        preMovePos_[X]          = transform->translate[X];
+        basePos_[X]     = movepos;
+        preMovePos_[X] = basePos_[X];
 
         // flag increment row
         isMove_ = false;
@@ -107,7 +109,7 @@ void BlockStatus::ZApearEasing(const float& deltaTime) {
     }
     // save time
     breakApearEasing_.time = breakApearEasing_.maxTime;
-    zposition_     = EndZPos_;
+    zposition_             = EndZPos_;
 }
 
 void BlockStatus::ZBackEasing(const float& deltaTime) {
@@ -121,9 +123,9 @@ void BlockStatus::ZBackEasing(const float& deltaTime) {
     }
     // save time
     breakBackEasing_.time = breakBackEasing_.maxTime;
-    zposition_          = startZPos_;
-    apearAnimationStep_ = ApearAnimationStep::END;
- }
+    zposition_            = startZPos_;
+    apearAnimationStep_   = ApearAnimationStep::END;
+}
 
 void BlockStatus::ChangeStep(const ApearAnimationStep& step) {
     // timer reset
@@ -131,12 +133,19 @@ void BlockStatus::ChangeStep(const ApearAnimationStep& step) {
     if (apearAnimationStep_ == step) {
         return;
     }
-   apearAnimationStep_ = step;
+    apearAnimationStep_ = step;
+}
+
+void BlockStatus::SinisterShake() {
+    if (!isSinister_) {
+        sinisterOffsetPos_ = Vec3f(0.0f, 0.0f, 0.0f);
+        return;
+    }
+    sinisterOffsetPos_ = Shake<Vec3f>(0.7f, 0.8f);
 }
 
 void BlockStatus::TimerReset() {
     saveZPos_              = zposition_;
     breakApearEasing_.time = 0.0f;
     breakBackEasing_.time  = 0.0f;
-   
 }

@@ -11,7 +11,6 @@
 #include "component/Block/BlockCombinationStatus.h"
 #include "component/Block/BlockManager.h"
 #include "component/Block/BlockStatus.h"
-#include "component/Bom/BomStatus.h"
 
 SkullSinisterEffectSystem::SkullSinisterEffectSystem() : ISystem(SystemType::Movement) {}
 SkullSinisterEffectSystem::~SkullSinisterEffectSystem() {}
@@ -33,7 +32,6 @@ void SkullSinisterEffectSystem::UpdateEntity(GameEntity* _entity) {
     GameEntity* combiEntity                  = ecsManager->getUniqueEntity("BlockCombination");
 
     BlockStatus* blockStatus                  = getComponent<BlockStatus>(_entity);
-  /*  ModelMeshRenderer* modelMesh              = getComponent<ModelMeshRenderer>(_entity);*/
     BlockCombinationStatus* combinationStatus = getComponent<BlockCombinationStatus>(combiEntity);
 
     if (!blockStatus || !combinationStatus) {
@@ -47,5 +45,8 @@ void SkullSinisterEffectSystem::UpdateEntity(GameEntity* _entity) {
 
     // 左にAdvantageがあるか判定
     bool leftBlocks = combinationStatus->JudgeIsAdvantageToLeft(blockStatus->GetRowNum(), blockStatus->GetColumnNum());
-    /* blockStatus->SetIsCollisionReaction(leftBlocks);*/ leftBlocks;
+     blockStatus->SetIsSinister(leftBlocks);
+
+     blockStatus->SinisterShake();//シェイク
+    
 }
