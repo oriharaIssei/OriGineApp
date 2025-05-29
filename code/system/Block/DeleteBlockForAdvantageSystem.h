@@ -3,10 +3,12 @@
 #include "component/Block/BlockManager.h"
 #include "component/EffectByBlock/EffectByBlockUIStatus.h"
 #include "system/ISystem.h"
+#include <array>
 
 class BlockStatus;
 class EffectByBlockSpawner;
 struct Transform;
+class Emitter;
 class DeleteBlockForAdvantageSystem
     : public ISystem {
 public:
@@ -22,7 +24,8 @@ protected:
 
     void BlockBreakParticleShot(GameEntity* _entity, BlockType blocktype);
     void ApearResultScoreUI();
-    
+
+    void SpawnBlockEffect(BlockType type);
 
 private:
     EffectByBlockSpawner* SpawnerStatus_;
@@ -32,5 +35,8 @@ private:
 
     EffectType timeEffectType_;
     EffectType scoreEffectType_;
+    std::array<Emitter*, 9> breakBlockEffects_;
+
+      std::array<Emitter*, 3> breakEffect_;
     float tempValue_;
 };

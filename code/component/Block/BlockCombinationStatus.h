@@ -39,6 +39,8 @@ public:
     void Finalize() override;
 
     void AddBlockStatus(BlockStatus* status);
+
+    bool JudgeIsAdvantageToLeft(const int& baseRowNum, const int& columNum) const;
     std::vector<BlockStatus*> GetRightBlocksForCalucration(const int& baseRowNum, const int& columNum) const;
     std::vector<BlockStatus*> SortBlocksLeftToRight(std::vector<BlockStatus*> blocks);
 

@@ -6,9 +6,6 @@
 #include "component/Block/BlockCombinationStatus.h"
 #include "component/Block/BlockStatus.h"
 #include "component/EffectByBlock/EffectByBlockSpawner.h"
-#include"component/Block/BlockFrontPlaneStatus.h"
-#include "component/Score/ScoreStatus.h"
-#include "component/Timer/TimerStatus.h"
 #include "engine/EngineInclude.h"
 #include <Vector.h>
 
@@ -55,7 +52,7 @@ void DeleteBlockForAdvantageSystem::UpdateEntity(GameEntity* _entity) {
         }
         // 破壊パーティクル
         BlockBreakParticleShot(_entity, blockStatus_->GetBlockType());
-        blockTransform_->scale = Vec3f(0.0f, 0.0f, 0.0f);   
+        blockTransform_->scale = Vec3f(0.0f, 0.0f, 0.0f);
         DestroyEntity(_entity);
     }
 }
@@ -71,23 +68,14 @@ void DeleteBlockForAdvantageSystem::BlockBreakParticleShot(GameEntity* _entity, 
     Audio* breakSkull        = getComponent<Audio>(blockManager, 9); // 落ちる音
     Audio* breakAdvance      = getComponent<Audio>(blockManager, 10); // 落ちる音
 
-    Emitter* normalStartEmitter = getComponent<Emitter>(_entity, 0); // 通常エミッタその1
-    Emitter* normalIconEmitter  = getComponent<Emitter>(_entity, 1);
+    // Emitter* normalStartEmitter = getComponent<Emitter>(_entity, 0); // 通常エミッタその1
+    // Emitter* normalIconEmitter  = getComponent<Emitter>(_entity, 1);
 
     if (!SpawnerStatus_) { // Componentが存在しない場合の早期リターン
         return;
     }
 
-    //// Particle発射
-    Vec3f basePos = blockTransform_->worldMat[3];
-    // emitter
-    if (!normalIconEmitter->getIsActive()) {
-        normalIconEmitter->PlayStart();
-        normalStartEmitter->PlayStart();
-    }
-    normalIconEmitter->setOriginePos(basePos);
-    normalStartEmitter->setOriginePos(basePos);
-   
+    SpawnBlockEffect(blocktype);
 
     switch (blocktype) {
         ///---------------------------------------------
@@ -117,6 +105,66 @@ void DeleteBlockForAdvantageSystem::BlockBreakParticleShot(GameEntity* _entity, 
     default:
         break;
     }
+}
+
+void DeleteBlockForAdvantageSystem::SpawnBlockEffect(BlockType type) {
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* breakBlockEffectManager      = ecsManager->getUniqueEntity("AdAndSkullBreakEffect");
+
+    GameEntity* blockbreakEffect = CreateEntity<Emitter, Emitter, Emitter>("blockbreakEffect", Emitter(), Emitter(), Emitter());
+
+    // advantage
+    for (int32_t i = 0; i < breakBlockEffects_.size(); ++i) {
+        breakBlockEffects_[i] = getComponent<Emitter>(breakBlockEffectManager, i);
+    }
+
+    for (int32_t i = 0; i < breakEffect_.size(); ++i) {
+        breakEffect_[i] = getComponent<Emitter>(blockbreakEffect, i);
+    }
+
+    switch (type) {
+    case BlockType::NORMAL:
+
+        break;
+    case BlockType::ADVANTAGE:
+        *breakEffect_[0] = *breakBlockEffects_[0];
+        *breakEffect_[1] = *breakBlockEffects_[1];
+        *breakEffect_[2] = *breakBlockEffects_[2];
+        break;
+    case BlockType::SKULL:
+        break;
+    case BlockType::COUNT:
+        break;
+    default:
+        break;
+    }
+
+    //// Particle発射
+    Vec3f basePos = blockTransform_->worldMat[3];
+
+    // emitter
+    for (int32_t i = 0; i < breakEffect_.size(); ++i) {
+        breakEffect_[i]->PlayStart();
+    }
+    for (int32_t i = 0; i < breakEffect_.size(); ++i) {
+        breakEffect_[i]->setOriginePos(basePos);
+    }
+
+    ECSManager* ecs = ECSManager::getInstance();
+    //------------------ Input
+    // None
+
+    //------------------ StateTransition
+
+    //------------------ Movement
+    ecs->getSystem<EmitterWorkSystem>()->addEntity(blockbreakEffect);
+    //------------------ Collision
+
+    //------------------ Physics
+    // None
+
+    //------------------ Render
+    ecs->getSystem<ParticleRenderSystem>()->addEntity(blockbreakEffect);
 }
 
 void DeleteBlockForAdvantageSystem::ApearResultScoreUI() {

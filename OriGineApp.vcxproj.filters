@@ -557,6 +557,9 @@
     <ClInclude Include="code\system\Block\BackPlaneCloseSystem.h">
       <Filter>system\Block</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Block\SkullSinisterEffectSystem.h">
+      <Filter>system\Block</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -970,6 +973,9 @@
       <Filter>system\Block</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Block\BackPlaneCloseSystem.cpp">
+      <Filter>system\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Block\SkullSinisterEffectSystem.cpp">
       <Filter>system\Block</Filter>
     </ClCompile>
   </ItemGroup>

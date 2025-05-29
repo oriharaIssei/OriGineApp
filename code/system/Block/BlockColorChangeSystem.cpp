@@ -44,27 +44,37 @@ void BlockColorChangeSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
+    // コリジョンリアクション
     if (blockStatus->GetIsCollisionReaction()) {
         switch (blockStatus->GetBlockType()) {
+            ///---------------------------------------------------------------------------------
+            /// NORMAL色変
+            ///---------------------------------------------------------------------------------
         case BlockType::NORMAL:
             modelMesh->getMaterialBuff(0)->color_ = blockStatus->GetNormalChangeColor();
             break;
-
+            ///---------------------------------------------------------------------------------
+            /// Advantage色変
+            ///---------------------------------------------------------------------------------
         case BlockType::ADVANTAGE:
             modelMesh->getMaterialBuff(0)->color_ = blockStatus->GetAdvantageChangeColor();
             break;
-
+            ///---------------------------------------------------------------------------------
+            /// Skull色変
+            ///---------------------------------------------------------------------------------
         case BlockType::SKULL:
             modelMesh->getMaterialBuff(0)->color_ = blockStatus->GetSkullChangeColor();
             break;
         default:
             break;
         }
+        ///共通で手前に出す
         blockStatus->ChangeStep(BlockStatus::ApearAnimationStep::APEAR);
 
     } else {
         // 白
         modelMesh->getMaterialBuff(0)->color_ = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
+
         // 戻す
         if (blockStatus->GetApearAnimationstep() == BlockStatus::ApearAnimationStep::APEAR) {
             blockStatus->ChangeStep(BlockStatus::ApearAnimationStep::REVERSE);
@@ -94,7 +104,7 @@ void BlockColorChangeSystem::UpdateEntity(GameEntity* _entity) {
                 // CharacterStatusを取得
                 BomStatus* hitEntityStatus = getComponent<BomStatus>(hitEntity);
                 /// BigBom
-                BigBomStatus* bigbomStatus = getComponent<BigBomStatus>(hitEntity);
+               /* BigBomStatus* bigbomStatus = getComponent<BigBomStatus>(hitEntity);*/
 
                 SphereCollider* sphereCollider = getComponent<SphereCollider>(hitEntity, 1);
 
@@ -115,13 +125,17 @@ void BlockColorChangeSystem::UpdateEntity(GameEntity* _entity) {
                                 rightBlock->SetIsCollisionReaction(true);
                             }
                         }
-                    } else if (bigbomStatus) {
-                        if (bigbomStatus->GetIsLaunch()) {
-                            modelMesh->getMaterialBuff(0)->color_ = blockStatus->GetNormalChangeColor();
-                        }
                     }
                 }
             }
         }
     }
+
+   
 }
+
+// else if (bigbomStatus) {
+//     if (bigbomStatus->GetIsLaunch()) {
+//         modelMesh->getMaterialBuff(0)->color_ = blockStatus->GetNormalChangeColor();
+//     }
+// }

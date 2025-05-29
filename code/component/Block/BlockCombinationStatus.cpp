@@ -4,7 +4,7 @@
 #include "imgui/imgui.h"
 #include "myGui/MyGui.h"
 #include <algorithm>
-#include <string>
+#include <vector>
 
 void BlockCombinationStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 }
@@ -12,7 +12,7 @@ void BlockCombinationStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
 bool BlockCombinationStatus::Edit() {
     bool isChange = false;
 
-    #ifdef _DEBUG
+#ifdef _DEBUG
     isChange = CheckBoxCommand("IsAlive", isAlive_);
     isChange |= InputGuiCommand("conbiMax", conbinationMax_);
     isChange |= DragGuiCommand("plusTimerRate", plusTimerRate_);
@@ -80,16 +80,43 @@ void from_json(const nlohmann::json& _json, BlockCombinationStatus& _block) {
     }
 }
 
-#include <algorithm>
-#include <iterator> // std::find_if
-#include <utility> // std::pair
-#include <vector>
+bool BlockCombinationStatus::JudgeIsAdvantageToLeft(const int& baseRowNum, const int& columNum) const {
+    std::vector<BlockStatus*> result;
+
+    for (BlockStatus* status : blockStatusArray_) {
+        int row    = status->GetRowNum();
+        int column = status->GetColumnNum();
+
+        // colum が違ければ skip
+        if (columNum != column) {
+            continue;
+        }
+
+        if (row > baseRowNum && row >= conbinationMax_) {
+
+            bool alreadyExists = std::any_of(result.begin(), result.end(), [&](BlockStatus* block) {
+                return block->GetRowNum() == row && block->GetColumnNum() == column;
+            });
+
+            if (!alreadyExists) {
+                result.push_back(status);
+            }
+        }
+    }
+
+    bool hasAdvantage = std::any_of(result.begin(), result.end(), [](BlockStatus* block) {
+        return block->GetBlockType() == BlockType::ADVANTAGE;
+    });
+
+    return hasAdvantage;
+    
+}
 
 std::vector<BlockStatus*> BlockCombinationStatus::GetRightBlocksForCalucration(const int& baseRowNum, const int& columNum) const {
     std::vector<BlockStatus*> result;
 
     for (BlockStatus* status : blockStatusArray_) {
-        int row = status->GetRowNum();
+        int row    = status->GetRowNum();
         int column = status->GetColumnNum();
 
         // colum が違ければ skip

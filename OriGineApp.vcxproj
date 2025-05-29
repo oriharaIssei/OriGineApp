@@ -173,6 +173,7 @@
     <ClInclude Include="code\system\Block\DeleteBlockSystem.h" />
     <ClInclude Include="code\system\Block\FrontPlaneDeleteSystem.h" />
     <ClInclude Include="code\system\Block\MoveTenpoSystem.h" />
+    <ClInclude Include="code\system\Block\SkullSinisterEffectSystem.h" />
     <ClInclude Include="code\system\Bom\BomCollisionExSystem.h" />
     <ClInclude Include="code\system\Bom\BomExplotionSystem.h" />
     <ClInclude Include="code\system\Bom\DeleteBomSystem.h" />
@@ -318,6 +319,7 @@
     <ClCompile Include="code\system\Block\DeleteBlockSystem.cpp" />
     <ClCompile Include="code\system\Block\FrontPlaneDeleteSystem.cpp" />
     <ClCompile Include="code\system\Block\MoveTenpoSystem.cpp" />
+    <ClCompile Include="code\system\Block\SkullSinisterEffectSystem.cpp" />
     <ClCompile Include="code\system\Bom\BomCollisionExSystem.cpp" />
     <ClCompile Include="code\system\Bom\BomExplotionSystem.cpp" />
     <ClCompile Include="code\system\Bom\DeleteBomSystem.cpp" />

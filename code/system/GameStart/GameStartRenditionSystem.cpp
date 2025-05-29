@@ -12,7 +12,7 @@
 
 // component
 #include "component/GameStart/GameStartStatus.h"
-#include"component/Menu/MenuStatus.h"
+#include "component/Menu/MenuStatus.h"
 
 #include "engine/EngineInclude.h"
 
@@ -29,14 +29,13 @@ void GameStartRenditionSystem::Finalize() {}
 
 void GameStartRenditionSystem::UpdateEntity(GameEntity* _entity) {
 
-
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* menuEntity                   = ecsManager->getUniqueEntity("Menu");
-  
+
     GameStartStatus* gameStartStatus = getComponent<GameStartStatus>(_entity);
-    Audio* purposeApearAudio           = getComponent<Audio>(_entity);
-    Audio* readyAudio         = getComponent<Audio>(_entity,1);
-    Audio* goAudio           = getComponent<Audio>(_entity,2);
+    Audio* purposeApearAudio         = getComponent<Audio>(_entity);
+    Audio* readyAudio                = getComponent<Audio>(_entity, 1);
+    Audio* goAudio                   = getComponent<Audio>(_entity, 2);
     MenuStatus* menu                 = getComponent<MenuStatus>(menuEntity);
 
     if (!gameStartStatus || !menuEntity) {
@@ -49,7 +48,7 @@ void GameStartRenditionSystem::UpdateEntity(GameEntity* _entity) {
 
     float deltaTime = Engine::getInstance()->getDeltaTime();
 
-   if (deltaTime >= 0.5f) {
+    if (deltaTime >= 0.5f) {
         return;
     }
 
@@ -59,7 +58,7 @@ void GameStartRenditionSystem::UpdateEntity(GameEntity* _entity) {
         ///---------------------------------------------------
     case GameStartStatus::RenditionStep::INIT:
 
-     gameStartStatus->Reset();
+        gameStartStatus->Reset();
         gameStartStatus->SetRenditionStep(GameStartStatus::RenditionStep::WAIT);
 
         break;
@@ -125,7 +124,7 @@ void GameStartRenditionSystem::UpdateEntity(GameEntity* _entity) {
         /// NONE
         ///---------------------------------------------------
     case GameStartStatus::RenditionStep::GO:
-        gameStartStatus->GoEasing(deltaTime,goAudio);
+        gameStartStatus->GoEasing(deltaTime, goAudio);
         break;
         ///---------------------------------------------------
         /// NONE

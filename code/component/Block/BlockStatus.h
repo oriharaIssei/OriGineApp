@@ -28,6 +28,11 @@ public:
         END,
     };
 
+    enum class SkullMode {
+        NONE,
+        SINISTER,
+    };
+
 private: // variables
     bool isAlive_ = true;
     bool isFall_  = false;
@@ -80,8 +85,10 @@ private: // variables
     float EndZPos_;
     float zposition_;
 
-public:
-    BlockStatus() {}
+    // sinister
+    SkullMode skullMode_;
+
+    public : BlockStatus() {}
     virtual ~BlockStatus() = default;
 
     void Initialize(GameEntity* _entity) override;
@@ -107,6 +114,7 @@ public:
 
 public: // accsessor
     /// getter
+    SkullMode GetSkullMode() const { return skullMode_; }
     float GetZPosition() const { return zposition_; }
     bool GetIsCollisionReaction() const { return isCollisionReaction_; }
     bool GetIsRightEdge() const { return isRightEdge_; }
@@ -156,4 +164,5 @@ public: // accsessor
     void SetAdaptTextureStep(const AdaptTextureStep& step) { adaptTextureStep_ = step; }
     void SetApearAnimationstep(const ApearAnimationStep& step) { apearAnimationStep_ = step; }
     void SetIsCloseFrontBackPlane(const bool& is) { isFrontPlaneClose_ = is; }
+    void SetSkullMode(const SkullMode& mode) { skullMode_ = mode; }
 };

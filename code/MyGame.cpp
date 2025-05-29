@@ -77,6 +77,7 @@
 #include "component/Timer/TimerAnimationStatus.h"
 #include "component/Timer/TimerStatus.h"
 #include "component/Timer/TimerUIStatus.h"
+#include"component/animation/SpriteAnimation.h"
 
 // system
 #include "system/BigBom/BigBomCollisionExSystem.h"
@@ -167,6 +168,7 @@
 #include "system/Timer/TimerUIScrollSystem.h"
 #include "system/UpdateButtonColorByState.h"
 #include "system/UsingCameraSetSystem.h"
+#include"system/Block/SkullSinisterEffectSystem.h"
 
 MyGame::MyGame() {}
 
@@ -428,6 +430,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<AdaptReadySystem>();
     ecsManager->registerSystem<GameStartBackGroundSystem>();
     ecsManager->registerSystem<GameStartRenditionSystem>();
+    ecsManager->registerSystem<SkullSinisterEffectSystem>();
 
     ecsManager->registerSystem<BackPlaneCloseSystem>();
     ecsManager->registerSystem<FrontPlaneDeleteSystem>();

@@ -157,10 +157,10 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
                 break;
             }
         }
-        if (std::fabsf(plusTimerValue )>= 300) {
+        /*if (std::fabsf(plusTimerValue )>= 300) {
             int a = 3;
             a     = 3;
-        }
+        }*/
 
         // 再ソート(左から右の順番になるように)
         rightBlocks_ = combiStatus->SortBlocksLeftToRight(rightBlocks_);
@@ -191,6 +191,8 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
    
     SpawnerStatus->EffectUISpawn(Vec3f(blockTransform->worldMat[3]), tempValue_, effectType_);
 }
+
+
 
 void BreakBlockSystem::ScrapSpawn(GameEntity* _entity) {
 

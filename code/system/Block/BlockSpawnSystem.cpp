@@ -32,6 +32,7 @@
 #include "system/Block/DeleteBlockForAdvantageSystem.h"
 #include "system/Block/DeleteBlockSystem.h"
 #include "system/Block/FrontPlaneDeleteSystem.h"
+#include"system/Block/SkullSinisterEffectSystem.h"
 
 BlockSpawnSystem::BlockSpawnSystem() : ISystem(SystemType::Movement) {}
 BlockSpawnSystem::~BlockSpawnSystem() {}
@@ -217,6 +218,7 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(block);
     ecs->getSystem<BlockMoveSystem>()->addEntity(block);
     ecs->getSystem<BlockApearSystem>()->addEntity(block);
+    ecs->getSystem<SkullSinisterEffectSystem>()->addEntity(block);
 
     //------------------ Collision
     ecs->getSystem<CollisionCheckSystem>()->addEntity(block);
