@@ -115,7 +115,7 @@ void GameStartStatus::ReadyEasing(const float& deltaTime) {
 
     // adapt
     readyEasing_.time = readyEasing_.maxTime;
-    purposePos_       = purposeClosePos_;
+    readyPos_         = readyEndPos_;
     renditionStep_    = RenditionStep::GO;
 }
 

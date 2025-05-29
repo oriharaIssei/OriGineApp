@@ -140,15 +140,7 @@ void DeleteBlockForAdvantageSystem::SpawnBlockEffect(BlockType type) {
     }
 
     //// Particle発射
-    Vec3f basePos = blockTransform_->worldMat[3];
-
-    // emitter
-    for (int32_t i = 0; i < breakEffect_.size(); ++i) {
-        breakEffect_[i]->PlayStart();
-    }
-    for (int32_t i = 0; i < breakEffect_.size(); ++i) {
-        breakEffect_[i]->setOriginePos(basePos);
-    }
+    Vec3f basePos = Vec3f(blockTransform_->worldMat[3]) + Vec3f(0.0f, 0.0f, -5.0f);
 
     ECSManager* ecs = ECSManager::getInstance();
     //------------------ Input
@@ -165,6 +157,11 @@ void DeleteBlockForAdvantageSystem::SpawnBlockEffect(BlockType type) {
 
     //------------------ Render
     ecs->getSystem<ParticleRenderSystem>()->addEntity(blockbreakEffect);
+
+    for (int32_t i = 0; i < breakEffect_.size(); ++i) {
+        breakEffect_[i]->setOriginePos(basePos);
+        breakEffect_[i]->PlayStart();
+    }
 }
 
 void DeleteBlockForAdvantageSystem::ApearResultScoreUI() {

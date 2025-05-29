@@ -47,5 +47,5 @@ void SkullSinisterEffectSystem::UpdateEntity(GameEntity* _entity) {
 
     // 左にAdvantageがあるか判定
     bool leftBlocks = combinationStatus->JudgeIsAdvantageToLeft(blockStatus->GetRowNum(), blockStatus->GetColumnNum());
-    blockStatus->SetIsCollisionReaction(leftBlocks);
+    /* blockStatus->SetIsCollisionReaction(leftBlocks);*/ leftBlocks;
 }
