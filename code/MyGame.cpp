@@ -2,11 +2,6 @@
 
 /// engine
 
-// ECS
-// component
-
-// system
-
 // engine include
 #define ENGINE_INCLUDE
 #define ENGINE_ECS
@@ -29,12 +24,14 @@
 #include "module/debugger/DebuggerGroup.h"
 #endif // DEBUG
 
+#include "model/ModelManager.h"
 #include "texture/TextureManager.h"
-#include"model/ModelManager.h"
 
 #include "component/BigBom/BigBomSpawner.h"
 #include "component/BigBom/BigBomStatus.h"
 #include "component/BigBom/BigExplotionCollision.h"
+#include "component/Block/BlockCombinationStatus.h"
+#include "component/Block/BlockFrontPlaneStatus.h"
 #include "component/Block/BlockManager.h"
 #include "component/Block/BlockStatus.h"
 #include "component/Bom/BomSpawner.h"
@@ -43,9 +40,16 @@
 #include "component/Button.h"
 #include "component/Combo/ComboStatus.h"
 #include "component/Combo/ComboUIStatus.h"
+#include "component/effect/post/VignetteParam.h"
+#include "component/effect/TextureEffectParam.h"
 #include "component/EffectByBlock/EffectByBlockSpawner.h"
 #include "component/EffectByBlock/EffectByBlockUIStatus.h"
 #include "component/Field/FieldStatus.h"
+#include "component/FloorUI/FloorUIController.h"
+#include "component/FloorUI/FloorUIStatus.h"
+#include "component/GameCamera/CameraRenditionStatus.h"
+#include "component/GameEndUI/GameEndUIStatus.h"
+#include "component/GameStart/GameStartStatus.h"
 #include "component/LevelUPUI/LevelUIParentStatus.h"
 #include "component/LevelUPUI/LevelUIStatus.h"
 #include "component/Menu/MenuStatus.h"
@@ -53,9 +57,16 @@
 #include "component/Menu/TutorialMenuParentStatus.h"
 #include "component/Menu/TutorialMenuStatus.h"
 #include "component/OperateUI/OperateUIStatus.h"
+#include "component/Piller/FloatingFloorAnimationStatus.h"
 #include "component/Piller/FloatingFloorSpawner.h"
 #include "component/Piller/FloatingFloorStatus.h"
+#include "component/Player/PlayerAnimationStatus.h"
 #include "component/Player/PlayerStates.h"
+#include "component/ResultUI/ResultFontStatus.h"
+#include "component/ResultUI/ResultUIkeyStatus.h"
+#include "component/ResultUI/ResultUIParentStatus.h"
+#include "component/ResultUI/ResultUIRankStatus.h"
+#include "component/ResultUI/ResultUIScoreStatus.h"
 #include "component/SceneChanger.h"
 #include "component/SceneChanger/SceneChangerStatus.h"
 #include "component/SceneTransition/SceneTransition.h"
@@ -63,25 +74,9 @@
 #include "component/Score/ScoreUIStatus.h"
 #include "component/Scrap/ScrapSpawner.h"
 #include "component/Scrap/ScrapStatus.h"
+#include "component/Timer/TimerAnimationStatus.h"
 #include "component/Timer/TimerStatus.h"
 #include "component/Timer/TimerUIStatus.h"
-#include "component/Block/BlockCombinationStatus.h"
-#include "component/effect/TextureEffectParam.h"
-#include "component/FloorUI/FloorUIController.h"
-#include "component/FloorUI/FloorUIStatus.h"
-#include "component/GameEndUI/GameEndUIStatus.h"
-#include "component/ResultUI/ResultFontStatus.h"
-#include "component/ResultUI/ResultUIkeyStatus.h"
-#include "component/ResultUI/ResultUIParentStatus.h"
-#include "component/ResultUI/ResultUIRankStatus.h"
-#include "component/ResultUI/ResultUIScoreStatus.h"
-#include "component/Timer/TimerAnimationStatus.h"
-#include"component/effect/post/VignetteParam.h"
-#include"component/Piller/FloatingFloorAnimationStatus.h"
-#include"component/GameCamera/CameraRenditionStatus.h"
-#include"component/Player/PlayerAnimationStatus.h"
-#include"component/GameStart/GameStartStatus.h"
-#include"component/Block/BlockFrontPlaneStatus.h"
 
 // system
 #include "system/BigBom/BigBomCollisionExSystem.h"
@@ -89,13 +84,18 @@
 #include "system/BigBom/BigBomLaunchSystem.h"
 #include "system/BigBom/DeleteBigBomSystem.h"
 #include "system/BigBom/DeleteBigExplotionCollision.h"
+#include "system/Block/BackPlaneChangeCloseSystem.h"
+#include "system/Block/BackPlaneCloseSystem.h"
+#include "system/Block/BlockApearSystem.h"
 #include "system/Block/BlockColorChangeSystem.h"
 #include "system/Block/BlockExBomCollision.h"
 #include "system/Block/BlockFloorCollision.h"
 #include "system/Block/BlockMoveSystem.h"
 #include "system/Block/BlockSpawnSystem.h"
 #include "system/Block/BreakBlockSystem.h"
+#include "system/Block/DeleteBlockForAdvantageSystem.h"
 #include "system/Block/DeleteBlockSystem.h"
+#include "system/Block/FrontPlaneDeleteSystem.h"
 #include "system/Block/MoveTenpoSystem.h"
 #include "system/Bom/BomCollisionExSystem.h"
 #include "system/Bom/BomExplotionSystem.h"
@@ -109,13 +109,23 @@
 #include "system/EffectByBlock/EffectByBlockDeleteSystem.h"
 #include "system/EffectByBlock/EffectByBlockDrawSystem.h"
 #include "system/FloatingFloor/CanageStateFallSystem.h"
+#include "system/FloatingFloor/CheckIsUnderPlayer.h"
 #include "system/FloatingFloor/CreateFloorSystem.h"
 #include "system/FloatingFloor/DeleteFloatingFloorSystem.h"
+#include "system/FloatingFloor/FloatingFloorAnimationSystem.h"
 #include "system/FloatingFloor/FloatingFloorDamageSystem.h"
 #include "system/FloatingFloor/FloatingFloorFallSystem.h"
 #include "system/FloatingFloor/FloatingFloorRevivalSystem.h"
 #include "system/Floor/DeleteFloorSystem.h"
 #include "system/Floor/FloorUpdateMatrixSystem.h"
+#include "system/FloorUI/FloorUISystem.h"
+#include "system/GameCamera/CameraShakeSystem.h"
+#include "system/GameEndUI/GameEndUISystem.h"
+#include "system/GameStart/AdaptGoSystem.h"
+#include "system/GameStart/AdaptPurposeSystem.h"
+#include "system/GameStart/AdaptReadySystem.h"
+#include "system/GameStart/GameStartBackGroundSystem.h"
+#include "system/GameStart/GameStartRenditionSystem.h"
 #include "system/LeverlUP/LevelUIAdaptSystem.h"
 #include "system/LeverlUP/LevelUIAnimationSystem.h"
 #include "system/LeverlUP/LevelUIInitSystem.h"
@@ -129,49 +139,34 @@
 #include "system/Menu/TutorialMenuParentSystem.h"
 #include "system/Menu/TutorialMenuSystem.h"
 #include "system/OperateUI/OperateUISystem.h"
+#include "system/Player/PlayerAnimationSystem.h"
 #include "system/Player/PlayerCreateBigBomSystem.h"
 #include "system/Player/PlayerFollowCameraSystem.h"
 #include "system/Player/PlayerInput.h"
 #include "system/Player/PlayerMoveSystem.h"
-#include "system/SceneChanger/SceneChangerSystem.h"
-#include "system/SceneTransitionSystem/SceneTransitionSystem.h"
-#include "system/Score/ScoreIncrementSystem.h"
-#include "system/Score/ScoreUIScrollSystem.h"
-#include "system/scrap/ScrapDeleteSystem.h"
-#include "system/scrap/ScrapFallSystem.h"
-#include "system/scrap/ScrapToPlayerCollisionSystem.h"
-#include "system/Timer/TimerDecrementSystem.h"
-#include "system/Timer/TimerUIScrollSystem.h"
-#include "system/Block/DeleteBlockForAdvantageSystem.h"
-#include "system/FloatingFloor/CheckIsUnderPlayer.h"
-#include "system/FloorUI/FloorUISystem.h"
-#include "system/GameEndUI/GameEndUISystem.h"
+#include "system/postRender/VignetteEffect.h"
 #include "system/ResultUI/ResultFontSystem.h"
 #include "system/ResultUI/ResultKeySystem.h"
 #include "system/ResultUI/ResultRankSystem.h"
 #include "system/ResultUI/ResultScoreAdaptSystem.h"
 #include "system/ResultUI/ResultUIParentSystem.h"
+#include "system/SceneChanger/SceneChangerSystem.h"
+#include "system/SceneTransitionSystem/SceneTransitionSystem.h"
+#include "system/Score/PlusScoreAdaptUISystem.h"
+#include "system/Score/PlusScoreIconSystem.h"
+#include "system/Score/ScoreIncrementSystem.h"
+#include "system/Score/ScoreUIScrollSystem.h"
+#include "system/scrap/ScrapDeleteSystem.h"
+#include "system/scrap/ScrapFallSystem.h"
+#include "system/scrap/ScrapToPlayerCollisionSystem.h"
 #include "system/Timer/AdapAnimationtBackTimerSystem.h"
 #include "system/Timer/TimeAdaptAinmationSystem.h"
+#include "system/Timer/TimerAdaptVignetSystem.h"
 #include "system/Timer/TimerAnimationSystem.h"
+#include "system/Timer/TimerDecrementSystem.h"
+#include "system/Timer/TimerUIScrollSystem.h"
 #include "system/UpdateButtonColorByState.h"
 #include "system/UsingCameraSetSystem.h"
-#include"system/Score/PlusScoreAdaptUISystem.h"
-#include"system/Score/PlusScoreIconSystem.h"
-#include"system/postRender/VignetteEffect.h"
-#include"system/Timer/TimerAdaptVignetSystem.h"
-#include"system/FloatingFloor/FloatingFloorAnimationSystem.h"
-#include"system/GameCamera/CameraShakeSystem.h"
-#include"system/Block/BackPlaneChangeCloseSystem.h"
-#include"system/Block/BlockApearSystem.h"
-#include"system/Player/PlayerAnimationSystem.h"
-#include"system/GameStart/AdaptGoSystem.h"
-#include"system/GameStart/AdaptPurposeSystem.h"
-#include"system/GameStart/AdaptReadySystem.h"
-#include"system/GameStart/GameStartBackGroundSystem.h"
-#include"system/GameStart/GameStartRenditionSystem.h"
-#include"system/Block/BackPlaneCloseSystem.h"
-#include"system/Block/FrontPlaneDeleteSystem.h"
 
 MyGame::MyGame() {}
 
@@ -335,6 +330,7 @@ void MyGame::RegisterUsingComponents() {
 
     ecsManager->registerComponent<ModelNodeAnimation>();
     ecsManager->registerComponent<PrimitiveNodeAnimation>();
+    ecsManager->registerComponent<SpriteAnimation>();
 
     ecsManager->registerComponent<ModelMeshRenderer>();
     ecsManager->registerComponent<PlaneRenderer>();
@@ -438,7 +434,7 @@ void MyGame::RegisterUsingSystems() {
 
     ecsManager->registerSystem<FloorUISystem>();
     ecsManager->registerSystem<CheckIsUnderPlayer>();
-    
+
     /// ====================================================================================================
     // Initialize
     /// ====================================================================================================
@@ -466,6 +462,7 @@ void MyGame::RegisterUsingSystems() {
     /// =================================================================================================
     ecsManager->registerSystem<EmitterWorkSystem>();
     ecsManager->registerSystem<PrimitiveNodeAnimationWorkSystem>();
+    ecsManager->registerSystem<SpriteAnimationSystem>();
 
     /// =================================================================================================
     // Render
