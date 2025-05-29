@@ -10,9 +10,9 @@
 // component
 #include "component/Block/BlockManager.h"
 #include "component/Block/BlockStatus.h"
+#include "component/GameEndUI/GameEndUIStatus.h"
+#include "component/GameStart/GameStartStatus.h"
 #include "component/Menu/MenuStatus.h"
-#include"component/GameEndUI/GameEndUIStatus.h"
-#include"component/GameStart/GameStartStatus.h"
 
 BlockMoveSystem::BlockMoveSystem()
     : ISystem(SystemType::Movement) {}
@@ -31,30 +31,28 @@ void BlockMoveSystem::UpdateEntity(GameEntity* _entity) {
     GameEntity* blockManagerEntity           = ecsManager->getUniqueEntity("BlockManager");
     GameEntity* menuEntity                   = ecsManager->getUniqueEntity("Menu");
     GameEntity* gameEndUIEntity              = ecsManager->getUniqueEntity("GameEndUI");
-    GameEntity* gameStartEntity           = ecsManager->getUniqueEntity("GameStartRendition");
-
+    GameEntity* gameStartEntity              = ecsManager->getUniqueEntity("GameStartRendition");
 
     // no Entity
     if (!blockManagerEntity || !menuEntity || !gameEndUIEntity || !gameStartEntity) {
         return;
     }
-    
-    Transform* transform       = getComponent<Transform>(_entity);
-    BlockManager* blockManager = getComponent<BlockManager>(blockManagerEntity);
-    BlockStatus* blockStatus   = getComponent<BlockStatus>(_entity);
-    MenuStatus* menu           = getComponent<MenuStatus>(menuEntity);
+
+    Transform* transform             = getComponent<Transform>(_entity);
+    BlockManager* blockManager       = getComponent<BlockManager>(blockManagerEntity);
+    BlockStatus* blockStatus         = getComponent<BlockStatus>(_entity);
+    MenuStatus* menu                 = getComponent<MenuStatus>(menuEntity);
     GameEndUIStatus* gameEndUIStatus = getComponent<GameEndUIStatus>(gameEndUIEntity);
-   /* GameStartStatus* gameStartStatus = getComponent<GameStartStatus>(gameStartEntity);
-  */  
-   
-    if (gameEndUIStatus->GetAnimationStep() != GameEndUIStep::NONE) {
+    /* GameStartStatus* gameStartStatus = getComponent<GameStartStatus>(gameStartEntity);
+     */
+
+    if (gameEndUIStatus && gameEndUIStatus->GetAnimationStep() != GameEndUIStep::NONE) {
         return;
     }
 
-  /*  if (!gameStartStatus->GetIsStart()) {
-        return;
-    }*/
-
+    /*  if (!gameStartStatus->GetIsStart()) {
+          return;
+      }*/
 
     // no Component
     if (!transform || !blockManager || !blockStatus || !menu) {
