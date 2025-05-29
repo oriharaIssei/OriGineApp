@@ -13,6 +13,10 @@
                         "renderingPriority": 5,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             1280.0,
                             100.0
                         ],
@@ -116,6 +120,10 @@
                         "renderingPriority": 3,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             480.0,
                             480.0
                         ],
@@ -170,6 +178,10 @@
                         "renderingPriority": 6,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             640.0,
                             512.0
                         ],
@@ -237,6 +249,10 @@
                         "renderingPriority": 6,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             640.0,
                             512.0
                         ],
@@ -654,6 +670,10 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             128.0,
                             128.0
                         ],
@@ -719,6 +739,10 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             128.0,
                             128.0
                         ],
@@ -879,6 +903,10 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             128.0,
                             128.0
                         ],
@@ -1001,6 +1029,10 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             128.0,
                             48.0
                         ],
@@ -1074,6 +1106,10 @@
                         "renderingPriority": 2,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             96.0,
                             48.0
                         ],
@@ -1192,6 +1228,10 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             128.0,
                             128.0
                         ],
@@ -1256,6 +1296,10 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             128.0,
                             128.0
                         ],
@@ -1320,6 +1364,10 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             128.0,
                             128.0
                         ],
@@ -1390,6 +1438,10 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             128.0,
                             128.0
                         ],
@@ -1446,6 +1498,10 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             128.0,
                             128.0
                         ],
@@ -1506,6 +1562,10 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             128.0,
                             128.0
                         ],
@@ -1566,6 +1626,10 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             128.0,
                             128.0
                         ],
@@ -1626,6 +1690,10 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             128.0,
                             128.0
                         ],
@@ -1686,6 +1754,10 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             128.0,
                             128.0
                         ],
@@ -2019,6 +2091,15 @@
                         "activeTime": 1.2999999523162842,
                         "blendMode": 2,
                         "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -7664,6 +7745,14 @@
                                 "value": [
                                     0.0,
                                     0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
                                     -1.0
                                 ]
                             },
@@ -7685,6 +7774,14 @@
                             }
                         ],
                         "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -13025,9 +13122,25 @@
                                     0.0,
                                     0.0
                                 ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
                             }
                         ],
                         "uvScaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -18293,9 +18406,25 @@
                                     0.0,
                                     0.0
                                 ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
                             }
                         ],
                         "velocityCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -20934,6 +21063,15 @@
                         "activeTime": 1.2999999523162842,
                         "blendMode": 0,
                         "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -26599,9 +26737,25 @@
                                     0.0,
                                     0.0
                                 ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
                             }
                         ],
                         "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -31958,9 +32112,25 @@
                                     0.0,
                                     0.0
                                 ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
                             }
                         ],
                         "uvScaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -37226,9 +37396,25 @@
                                     0.0,
                                     0.0
                                 ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
                             }
                         ],
                         "velocityCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -40203,6 +40389,10 @@
                         "renderingPriority": 6,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             640.0,
                             512.0
                         ],
@@ -40270,6 +40460,10 @@
                         "renderingPriority": 4,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             48.0,
                             48.0
                         ],
@@ -40324,6 +40518,10 @@
                         "renderingPriority": 4,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             1280.0,
                             100.0
                         ],
@@ -40378,6 +40576,10 @@
                         "renderingPriority": 3,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             48.0,
                             48.0
                         ],
@@ -40448,6 +40650,10 @@
                         "renderingPriority": 3,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             48.0,
                             48.0
                         ],
@@ -40518,6 +40724,10 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             96.0,
                             96.0
                         ],
@@ -40582,6 +40792,10 @@
                         "renderingPriority": 10,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             1280.0,
                             720.0
                         ],
@@ -40646,6 +40860,10 @@
                         "renderingPriority": 10,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             1280.0,
                             720.0
                         ],
@@ -40806,6 +41024,10 @@
                         "renderingPriority": 3,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             144.0,
                             48.0
                         ],
@@ -40856,6 +41078,10 @@
                         "renderingPriority": 4,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             288.0,
                             48.0
                         ],
@@ -40910,6 +41136,10 @@
                         "renderingPriority": 4,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             288.0,
                             48.0
                         ],
@@ -40964,6 +41194,10 @@
                         "renderingPriority": 4,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             288.0,
                             48.0
                         ],
@@ -41018,6 +41252,10 @@
                         "renderingPriority": 6,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             640.0,
                             512.0
                         ],
@@ -41152,6 +41390,10 @@
                         "renderingPriority": 9,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             720.0,
                             320.0
                         ],
@@ -41302,6 +41544,10 @@
                         "renderingPriority": 9,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             480.0,
                             48.0
                         ],
@@ -41368,6 +41614,10 @@
                         "renderingPriority": 2,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             480.0,
                             48.0
                         ],
@@ -41428,6 +41678,10 @@
                         "renderingPriority": 2,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             480.0,
                             48.0
                         ],
@@ -41488,6 +41742,10 @@
                         "renderingPriority": 2,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             480.0,
                             48.0
                         ],
@@ -41548,6 +41806,10 @@
                         "renderingPriority": 2,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             480.0,
                             48.0
                         ],
@@ -41608,6 +41870,10 @@
                         "renderingPriority": 2,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             96.0,
                             48.0
                         ],
@@ -41809,6 +42075,10 @@
                         "renderingPriority": 5,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             640.0,
                             320.0
                         ],
@@ -41863,6 +42133,10 @@
                         "renderingPriority": 5,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             320.0,
                             160.0
                         ],
@@ -41917,6 +42191,10 @@
                         "renderingPriority": 2,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             1280.0,
                             720.0
                         ],
@@ -41971,6 +42249,10 @@
                         "renderingPriority": 5,
                         "rotate": 0.0,
                         "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
                             640.0,
                             320.0
                         ],
