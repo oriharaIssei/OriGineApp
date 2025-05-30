@@ -78,6 +78,7 @@
 #include "component/Timer/TimerStatus.h"
 #include "component/Timer/TimerUIStatus.h"
 #include"component/animation/SpriteAnimation.h"
+#include"component/DeleteEntityStatus/DeleteEntityStatus.h"
 
 // system
 #include "system/BigBom/BigBomCollisionExSystem.h"
@@ -169,6 +170,7 @@
 #include "system/UpdateButtonColorByState.h"
 #include "system/UsingCameraSetSystem.h"
 #include"system/Block/SkullSinisterEffectSystem.h"
+#include"system/DeleteEntitySystem/DeleteEntitySystem.h"
 
 MyGame::MyGame() {}
 
@@ -313,6 +315,7 @@ void MyGame::RegisterUsingComponents() {
     ecsManager->registerComponent<PlayerAnimationStatus>();
     ecsManager->registerComponent<GameStartStatus>();
     ecsManager->registerComponent<BlockFrontPlaneStatus>();
+    ecsManager->registerComponent<DeleteEntityStatus>();
 
     ecsManager->registerComponent<Transform>();
     ecsManager->registerComponent<CameraTransform>();
@@ -431,6 +434,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<GameStartBackGroundSystem>();
     ecsManager->registerSystem<GameStartRenditionSystem>();
     ecsManager->registerSystem<SkullSinisterEffectSystem>();
+    ecsManager->registerSystem<DeleteEntitySystem>();
 
     ecsManager->registerSystem<BackPlaneCloseSystem>();
     ecsManager->registerSystem<FrontPlaneDeleteSystem>();

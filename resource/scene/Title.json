@@ -834,19 +834,19 @@
                 "Priority": 0
             },
             "EffectTexturedMeshRenderSystem": {
-                "Priority": 0
+                "Priority": 2
             },
             "LineRenderSystem": {
-                "Priority": 0
+                "Priority": 1
             },
             "ParticleRenderSystem": {
-                "Priority": 0
+                "Priority": 4
             },
             "SpriteRenderSystem": {
-                "Priority": 0
+                "Priority": 5
             },
             "TexturedMeshRenderSystem": {
-                "Priority": 0
+                "Priority": 3
             }
         },
         {

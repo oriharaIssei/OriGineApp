@@ -142,6 +142,12 @@
     <Filter Include="system\GameStart">
       <UniqueIdentifier>{20cc0de0-ddfa-438a-89e2-ca24f0b1858a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\DeleteEntity">
+      <UniqueIdentifier>{78c5b9fe-bb88-4b97-9c3f-1a44714f14f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\DeleteEntity">
+      <UniqueIdentifier>{a688c57c-dce7-4578-8fc2-bda6b45498ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -560,6 +566,12 @@
     <ClInclude Include="code\system\Block\SkullSinisterEffectSystem.h">
       <Filter>system\Block</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\DeleteEntityStatus\DeleteEntityStatus.h">
+      <Filter>component\DeleteEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\DeleteEntitySystem\DeleteEntitySystem.h">
+      <Filter>system\DeleteEntity</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -977,6 +989,12 @@
     </ClCompile>
     <ClCompile Include="code\system\Block\SkullSinisterEffectSystem.cpp">
       <Filter>system\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\DeleteEntityStatus\DeleteEntityStatus.cpp">
+      <Filter>component\DeleteEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\DeleteEntitySystem\DeleteEntitySystem.cpp">
+      <Filter>system\DeleteEntity</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
