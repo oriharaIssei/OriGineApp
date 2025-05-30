@@ -39,19 +39,17 @@ void PlayerMoveSystem::UpdateEntity(GameEntity* _entity) {
     Quaternion cameraYawRotation = Quaternion::RotateAxisAngle(Vec3f(0.f, 1.f, 0.f), cameraYaw);
 
     // 入力方向の回転
-    float inputAngle         = std::atan2(-inputDirection[Y], inputDirection[X]);
+    float inputAngle         = std::atan2(inputDirection[X], inputDirection[Y]);
     Quaternion inputRotation = Quaternion::RotateAxisAngle(Vec3f(0.f, 1.f, 0.f), inputAngle);
 
     // y軸のみの回転合成
-    Quaternion targetRotation = Quaternion::Normalize(inputRotation * cameraYawRotation);
-
-    // 移動方向を回転
-    Vec3f movementDirection = Vec3f(0.f, 0.f, 1.f) * MakeMatrix::RotateQuaternion(targetRotation);
+    Quaternion targetRotation = Quaternion::Normalize(cameraYawRotation * inputRotation);
 
     // プレイヤーの回転を補間して設定
     transform->rotate = Slerp(transform->rotate, targetRotation, playerStatus->getDirectionInterpolateRate());
 
-    // 移動速度の更新
-    float playerSpeed = playerStatus->getBaseSpeed();
-    rigidbody->setVelocity((playerSpeed * deltaTime) * movementDirection);
+    // 移動方向を回転
+    Vec3f movementDirection = Vec3f(0.f, 0.f, 1.f) * MakeMatrix::RotateQuaternion(transform->rotate);
+
+    rigidbody->setVelocity((playerStatus->getCurrentSpeed() * deltaTime) * movementDirection);
 }

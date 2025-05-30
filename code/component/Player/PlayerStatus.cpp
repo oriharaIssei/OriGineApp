@@ -35,11 +35,12 @@ void PlayerStatus::Debug() {
 
     ImGui::Text("MoveState: %s", moveStateName[moveState_]);
     ImGui::Text("Gear Level: %d", gearLevel_);
-
+    ImGui::Spacing();
     ImGui::Text("Base Gear Up Cool Time: %.2f", baseGearupCoolTime_);
     ImGui::Text("Gear Up Cool Time: %.2f", gearUpCoolTime_);
-
+    ImGui::Spacing();
     ImGui::Text("Base Speed: %.2f", baseSpeed_);
+    ImGui::Text("Current Speed: %.2f", currentSpeed_);
     ImGui::Text("Direction Interpolate Rate: %.2f", directionInterpolateRate_);
 
 #endif

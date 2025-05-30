@@ -16,6 +16,9 @@ public:
     void Finalize() override;
 
 public:
+    /// <summary>
+    /// プレイヤーの 移動状態 を表す列挙体
+    /// </summary>
     enum class MoveState {
         IDLE, // 待機 (動いていない)
         DASH, // ダッシュ(基本移動)
@@ -24,20 +27,18 @@ public:
     };
 
 private:
-    /// <summary>
-    /// プレイヤーの 移動状態 を表す列挙体
-    /// </summary>
-
-    MoveState moveState_ = MoveState::IDLE;
+    MoveState moveState_     = MoveState::IDLE;
+    MoveState prevMoveState_ = MoveState::IDLE; // 前の移動状態
 
     bool onGround_ = true; // 地面にいるかどうか
 
-    int32_t gearLevel_    = 0; // ギアレベル
+    int32_t gearLevel_        = 0; // ギアレベル
     float baseGearupCoolTime_ = 1.0f; // ギアアップの基本クールタイム (秒単位)
-    float gearUpCoolTime_ = 0.0f; // ギアレベルが上がるまでの時間
+    float gearUpCoolTime_     = 0.0f; // ギアレベルが上がるまでの時間
 
     // 基本速度 最終速度は gearLevel_ に応じて変化する
     float baseSpeed_ = 0.0f;
+    float currentSpeed_;
 
     bool isGearUp_ = false; // ギアアップ中かどうか
 
@@ -49,6 +50,13 @@ public:
     }
     void setState(const MoveState& _state) {
         moveState_ = _state;
+    }
+
+    const MoveState& getPrevState() const {
+        return prevMoveState_;
+    }
+    void setPrevState(const MoveState& _prevState) {
+        prevMoveState_ = _prevState;
     }
 
     float getDirectionInterpolateRate() const {
@@ -66,6 +74,13 @@ public:
         return baseSpeed_;
     }
 
+    float getCurrentSpeed() const {
+        return currentSpeed_;
+    }
+    void setCurrentSpeed(float _currentSpeed) {
+        currentSpeed_ = _currentSpeed;
+    }
+
     int32_t getGearLevel() const {
         return gearLevel_;
     }
@@ -73,6 +88,9 @@ public:
         gearLevel_ = _gearLevel;
     }
 
+    float getBaseGearupCoolTime() const {
+        return baseGearupCoolTime_;
+    }
     float getGearUpCoolTime() const {
         return gearUpCoolTime_;
     }

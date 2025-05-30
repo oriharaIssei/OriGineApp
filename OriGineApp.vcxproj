@@ -118,6 +118,7 @@
     <ClInclude Include="code\system\Movement\FollowCameraUpdateSystem.h" />
     <ClInclude Include="code\system\Initialize\SettingGameCameraTarget.h" />
     <ClInclude Include="code\system\Transition\TransitionPlayerState.h" />
+    <ClInclude Include="code\system\effect\EffectOnPlayerGearup.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\system\Movement\BillboardTransform.cpp" />
@@ -137,6 +138,7 @@
     <ClCompile Include="code\system\Movement\FollowCameraUpdateSystem.cpp" />
     <ClCompile Include="code\system\Initialize\SettingGameCameraTarget.cpp" />
     <ClCompile Include="code\system\Transition\TransitionPlayerState.cpp" />
+    <ClCompile Include="code\system\effect\EffectOnPlayerGearup.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\externals\DirectXTex\DirectXTex.vcxproj">
