@@ -132,7 +132,7 @@ void BreakBlockSystem::BlockReaction(GameEntity* _entity, BlockType blocktype) {
         if (!combiStatus) {
             break;
         }
-
+        rightBlocks_.clear();
         // 合計スコア計算用のソート
         rightBlocks_ = combiStatus->GetRightBlocksForCalucration(blockStatus_->GetRowNum(), blockStatus_->GetColumnNum());
 
