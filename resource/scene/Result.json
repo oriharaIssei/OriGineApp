@@ -815,56 +815,127 @@
                         "valume": 0.5
                     }
                 ],
+                "PlaneRenderer": [
+                    {
+                        "blendMode": 1,
+                        "isRenderer": true,
+                        "material": {
+                            "color": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "enableLighting": false,
+                            "shininess": 0.0,
+                            "specularColor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "uvRotate": 0.0,
+                            "uvScale": [
+                                1.0,
+                                1.0
+                            ],
+                            "uvTranslate": [
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "textureDirectory": "application/resource/Texture\\BackGround",
+                        "textureFileName": "sceneTransition.png",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                0.029999999329447746,
+                                0.029999999329447746,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.029999999329447746
+                            ]
+                        }
+                    }
+                ],
                 "SceneTransition": [
                     {
                         "CurrentScene": 2,
-                        "SceneEaseMaxTime": 0.4000000059604645,
+                        "SceneEaseMaxTime": 0.6000000238418579,
                         "TransitionMode": 0,
-                        "endPositionX_": 8.364440873265266e-08,
-                        "startPositionX_": -1280.0,
+                        "endPositionX_": 0.0,
+                        "startPositionX_": 1.0,
                         "waitTime": 0.10000000149011612
                     }
                 ],
-                "SpriteRenderer": [
+                "SpriteRenderer": [],
+                "TextureEffectParam": [
                     {
-                        "anchorPoint": [
-                            0.0,
-                            0.0
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "renderingPriority": 5,
-                        "rotate": 0.0,
-                        "scale": [
-                            1.0,
-                            1.0
-                        ],
-                        "size": [
-                            1280.0,
-                            720.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "application/resource/Texture\\BackGround/sceneTransition.png",
-                        "textureSize": [
-                            1280.0,
-                            720.0
-                        ],
-                        "translate": [
-                            0.0,
-                            0.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
+                        "dissolveAnimDuration": 0.0,
+                        "dissolveAnimIsLoop": false,
+                        "dissolveAnimIsPlay": false,
+                        "dissolveAnimRotate": [],
+                        "dissolveAnimScale": [],
+                        "dissolveAnimTranslate": [],
+                        "dissolveTexPath": "application/resource/Texture/image.png",
+                        "dissolveThreshold": 1.0,
+                        "dissolveUV": {
+                            "rotate": 0.0,
+                            "scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "distortionAnimDuration": 0.0,
+                        "distortionAnimIsLoop": false,
+                        "distortionAnimIsPlay": false,
+                        "distortionAnimRotate": [],
+                        "distortionAnimScale": [],
+                        "distortionAnimTranslate": [],
+                        "distortionBias": 0.0,
+                        "distortionStrength": 0.0,
+                        "distortionTexPath": "",
+                        "distortionUV": {
+                            "rotate": 0.0,
+                            "scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "effectFlag": 1,
+                        "maskAnimDuration": 0.0,
+                        "maskAnimIsLoop": false,
+                        "maskAnimIsPlay": false,
+                        "maskAnimRotate": [],
+                        "maskAnimScale": [],
+                        "maskAnimTranslate": [],
+                        "maskTexPath": "",
+                        "maskUV": {
+                            "rotate": 0.0,
+                            "scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0
+                            ]
+                        }
                     }
                 ]
             },
@@ -875,7 +946,7 @@
                     "SystemType": 3
                 },
                 {
-                    "SystemName": "SpriteRenderSystem",
+                    "SystemName": "EffectTexturedMeshRenderSystem",
                     "SystemType": 6
                 }
             ],
@@ -883,56 +954,127 @@
         },
         {
             "Components": {
+                "PlaneRenderer": [
+                    {
+                        "blendMode": 1,
+                        "isRenderer": true,
+                        "material": {
+                            "color": [
+                                1.0,
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "enableLighting": false,
+                            "shininess": 0.0,
+                            "specularColor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "uvRotate": 0.0,
+                            "uvScale": [
+                                1.0,
+                                1.0
+                            ],
+                            "uvTranslate": [
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "textureDirectory": "application/resource/Texture\\BackGround",
+                        "textureFileName": "sceneTransition.png",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                0.029999999329447746,
+                                0.029999999329447746,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.029999999329447746
+                            ]
+                        }
+                    }
+                ],
                 "SceneTransition": [
                     {
                         "CurrentScene": 2,
-                        "SceneEaseMaxTime": 0.4000000059604645,
+                        "SceneEaseMaxTime": 0.6000000238418579,
                         "TransitionMode": 1,
-                        "endPositionX_": -1280.0,
+                        "endPositionX_": 1.0,
                         "startPositionX_": 0.0,
                         "waitTime": 0.10000000149011612
                     }
                 ],
-                "SpriteRenderer": [
+                "SpriteRenderer": [],
+                "TextureEffectParam": [
                     {
-                        "anchorPoint": [
-                            0.0,
-                            0.0
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "renderingPriority": 5,
-                        "rotate": 0.0,
-                        "scale": [
-                            1.0,
-                            1.0
-                        ],
-                        "size": [
-                            1280.0,
-                            720.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "application/resource/Texture\\BackGround/sceneTransition.png",
-                        "textureSize": [
-                            1280.0,
-                            720.0
-                        ],
-                        "translate": [
-                            0.0,
-                            0.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
+                        "dissolveAnimDuration": 0.0,
+                        "dissolveAnimIsLoop": false,
+                        "dissolveAnimIsPlay": false,
+                        "dissolveAnimRotate": [],
+                        "dissolveAnimScale": [],
+                        "dissolveAnimTranslate": [],
+                        "dissolveTexPath": "application/resource/Texture/image.png",
+                        "dissolveThreshold": 0.0,
+                        "dissolveUV": {
+                            "rotate": 0.0,
+                            "scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "distortionAnimDuration": 0.0,
+                        "distortionAnimIsLoop": false,
+                        "distortionAnimIsPlay": false,
+                        "distortionAnimRotate": [],
+                        "distortionAnimScale": [],
+                        "distortionAnimTranslate": [],
+                        "distortionBias": 0.0,
+                        "distortionStrength": 0.0,
+                        "distortionTexPath": "",
+                        "distortionUV": {
+                            "rotate": 0.0,
+                            "scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "effectFlag": 1,
+                        "maskAnimDuration": 0.0,
+                        "maskAnimIsLoop": false,
+                        "maskAnimIsPlay": false,
+                        "maskAnimRotate": [],
+                        "maskAnimScale": [],
+                        "maskAnimTranslate": [],
+                        "maskTexPath": "",
+                        "maskUV": {
+                            "rotate": 0.0,
+                            "scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0
+                            ]
+                        }
                     }
                 ]
             },
@@ -943,7 +1085,7 @@
                     "SystemType": 3
                 },
                 {
-                    "SystemName": "SpriteRenderSystem",
+                    "SystemName": "EffectTexturedMeshRenderSystem",
                     "SystemType": 6
                 }
             ],
@@ -1201,6 +1343,9 @@
             "ScrapFallSystem": {
                 "Priority": 0
             },
+            "SkullSinisterEffectSystem": {
+                "Priority": 0
+            },
             "TimeAdaptAinmationSystem": {
                 "Priority": 0
             },
@@ -1277,7 +1422,7 @@
                 "Priority": 0
             },
             "EffectTexturedMeshRenderSystem": {
-                "Priority": 0
+                "Priority": 2
             },
             "LineRenderSystem": {
                 "Priority": 0
@@ -1286,7 +1431,7 @@
                 "Priority": 0
             },
             "SpriteRenderSystem": {
-                "Priority": 0
+                "Priority": 1
             },
             "TexturedMeshRenderSystem": {
                 "Priority": 0
