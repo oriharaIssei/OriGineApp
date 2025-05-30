@@ -35,7 +35,7 @@ private:
 
     EffectType timeEffectType_;
     EffectType scoreEffectType_;
-    std::array<Emitter*, 9> breakBlockEffects_;
+    std::array<Emitter*, 3> breakBlockEffects_;
 
       std::array<Emitter*, 3> breakEffect_;
     float tempValue_;

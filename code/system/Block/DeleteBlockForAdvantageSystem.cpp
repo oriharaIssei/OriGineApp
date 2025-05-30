@@ -5,8 +5,11 @@
 // component
 #include "component/Block/BlockCombinationStatus.h"
 #include "component/Block/BlockStatus.h"
+#include "component/DeleteEntityStatus/DeleteEntityStatus.h"
 #include "component/EffectByBlock/EffectByBlockSpawner.h"
 #include "engine/EngineInclude.h"
+// sys
+#include "system/DeleteEntitySystem/DeleteEntitySystem.h"
 #include <Vector.h>
 
 DeleteBlockForAdvantageSystem::DeleteBlockForAdvantageSystem() : ISystem(SystemType::StateTransition) {}
@@ -111,25 +114,28 @@ void DeleteBlockForAdvantageSystem::SpawnBlockEffect(BlockType type) {
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* breakBlockEffectManager      = ecsManager->getUniqueEntity("AdAndSkullBreakEffect");
 
-    GameEntity* blockbreakEffect = CreateEntity<Emitter, Emitter, Emitter>("blockbreakEffect", Emitter(), Emitter(), Emitter());
+    GameEntity* blockbreakEffect = CreateEntity<Emitter, Emitter, Emitter, DeleteEntityStatus>("blockbreakEffect", Emitter(), Emitter(), Emitter(), DeleteEntityStatus());
 
     // advantage
     for (int32_t i = 0; i < breakBlockEffects_.size(); ++i) {
         breakBlockEffects_[i] = getComponent<Emitter>(breakBlockEffectManager, i);
     }
 
-    for (int32_t i = 0; i < breakEffect_.size(); ++i) {
-        breakEffect_[i] = getComponent<Emitter>(blockbreakEffect, i);
-    }
+    Emitter* breakEffect0 = getComponent<Emitter>(blockbreakEffect, 0);
+    Emitter* breakEffect1 = getComponent<Emitter>(blockbreakEffect, 1);
+    Emitter* breakEffect2 = getComponent<Emitter>(blockbreakEffect, 2);
+
+     DeleteEntityStatus* deleteEntityStatus = getComponent<DeleteEntityStatus>(blockbreakEffect);
+    deleteEntityStatus->SetDeleteTime(5.0f);
 
     switch (type) {
     case BlockType::NORMAL:
 
         break;
     case BlockType::ADVANTAGE:
-        *breakEffect_[0] = *breakBlockEffects_[0];
-        *breakEffect_[1] = *breakBlockEffects_[1];
-        *breakEffect_[2] = *breakBlockEffects_[2];
+        *breakEffect0 = *breakBlockEffects_[0];
+        *breakEffect1 = *breakBlockEffects_[1];
+        *breakEffect2 = *breakBlockEffects_[2];
         break;
     case BlockType::SKULL:
         break;
@@ -147,7 +153,7 @@ void DeleteBlockForAdvantageSystem::SpawnBlockEffect(BlockType type) {
     // None
 
     //------------------ StateTransition
-
+    ecs->getSystem<DeleteEntitySystem>()->addEntity(blockbreakEffect);
     //------------------ Movement
     ecs->getSystem<EmitterWorkSystem>()->addEntity(blockbreakEffect);
     //------------------ Collision
@@ -158,10 +164,13 @@ void DeleteBlockForAdvantageSystem::SpawnBlockEffect(BlockType type) {
     //------------------ Render
     ecs->getSystem<ParticleRenderSystem>()->addEntity(blockbreakEffect);
 
-    for (int32_t i = 0; i < breakEffect_.size(); ++i) {
-        breakEffect_[i]->setOriginePos(basePos);
-        breakEffect_[i]->PlayStart();
-    }
+    breakEffect0->setOriginePos(basePos);
+    breakEffect1->setOriginePos(basePos);
+    breakEffect2->setOriginePos(basePos);
+
+    breakEffect0->PlayStart();
+    breakEffect1->PlayStart();
+    breakEffect2->PlayStart();
 }
 
 void DeleteBlockForAdvantageSystem::ApearResultScoreUI() {

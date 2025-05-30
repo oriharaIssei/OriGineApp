@@ -30,4 +30,6 @@ public: // accsessor
 
     float GetDeleteTime() const { return deleteTime_; }
   /*  float GetTimer() const { return timer_; }*/
+
+    void SetDeleteTime(const float& time) { deleteTime_ = time; }
 };
