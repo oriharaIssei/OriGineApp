@@ -72,7 +72,7 @@ void GameStartStatus::ApearEasing(const float& deltaTime) {
     apearEasing_.time += deltaTime;
 
     /// 　ease
-    purposePos_ = EaseOutBack(purposeStartPos_, purposeEndPos_, apearEasing_.time, apearEasing_.maxTime);
+    purposePos_ = EaseOutCubic(purposeStartPos_, purposeEndPos_, apearEasing_.time, apearEasing_.maxTime);
 
     // end
     if (apearEasing_.time < apearEasing_.maxTime) {
@@ -106,7 +106,7 @@ void GameStartStatus::ReadyEasing(const float& deltaTime) {
     readyEasing_.time += deltaTime;
 
     /// 　ease
-    readyPos_ = EaseInCubic(readyStartPos_, readyEndPos_, readyEasing_.time, readyEasing_.maxTime);
+    readyPos_ = EaseOutCirc(readyStartPos_, readyEndPos_, readyEasing_.time, readyEasing_.maxTime);
 
     // end
     if (readyEasing_.time < readyEasing_.maxTime) {
