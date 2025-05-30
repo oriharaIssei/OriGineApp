@@ -52,9 +52,9 @@ bool MenuStatus::Edit() {
     ImGui::Spacing();
 
     ImGui::Text("pos");
-    isChange |= DragGuiCommand("position", position_, 0.01f);
+    isChange |= DragGuiVectorCommand("position", position_, 0.01f);
     for (int32_t i = 0; i < arrowPositions_.size(); ++i) {
-        isChange |= DragGuiCommand(("arrow position" + std::to_string(i)).c_str(), arrowPositions_[i], 0.01f);
+        isChange |= DragGuiVectorCommand(("arrow position" + std::to_string(i)).c_str(), arrowPositions_[i], 0.01f);
     }
     isChange |= DragGuiCommand("arrowOffsetValue", arrowOffsetValue_, 0.01f);
 

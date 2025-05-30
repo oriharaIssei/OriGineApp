@@ -48,8 +48,8 @@ void GameStartRenditionSystem::UpdateEntity(GameEntity* _entity) {
 
     float deltaTime = Engine::getInstance()->getDeltaTime();
 
-    if (deltaTime >= 0.5f) {
-        return;
+   if (deltaTime >= 0.1f) {
+        deltaTime = 0.03f;
     }
 
     switch (gameStartStatus->GetRenditionStep()) {

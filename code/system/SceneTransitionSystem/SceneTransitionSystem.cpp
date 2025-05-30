@@ -39,19 +39,21 @@ void SceneTransitionSystem::UpdateEntity(GameEntity* entity) {
         return;
     }
 
-    SpriteRenderer* sprite     = getComponent<SpriteRenderer>(entity);
+  /*  SpriteRenderer* sprite     = getComponent<SpriteRenderer>(entity);*/
+   /* PlaneRenderer* planeRenderer      = getComponent<PlaneRenderer>(entity);*/
+    TextureEffectParam* textureEffectParam = getComponent<TextureEffectParam>(entity);
     SceneTransition* sceneTransition = getComponent<SceneTransition>(entity);
     SceneChangerStatus* gameend       = getComponent<SceneChangerStatus>(sceneChangerEntity);
 
    
-    if (!gameend || !sprite || !sceneTransition) {
+    if (!gameend || !textureEffectParam || !sceneTransition) {
         return;
     }
 
     float deltaTime = Engine::getInstance()->getDeltaTime();
 
-    if (deltaTime >= 0.5f) {
-        return;
+    if (deltaTime >= 0.1f) {
+        deltaTime = 0.03f;
     }
   
 
@@ -88,16 +90,17 @@ void SceneTransitionSystem::UpdateEntity(GameEntity* entity) {
     /*sprite->getEffectParamBuffer().openData_.distortionStrength = 0.0f;*/
 
     ///* ------------------------------calucration------------------------------
-
-    Vec2f basePos  = Vec2f(sceneTransition->GetPositionX(),0.0f);
-    Vec2f baseSize = sprite->getTextureSize() * sceneTransition->GetScale();
+    textureEffectParam->getEffectParamBuffer().openData_.dissolveThreshold = sceneTransition->GetPositionX();
+   
+ /*   Vec2f basePos  = Vec2f(sceneTransition->GetPositionX(),0.0f);*/
+  /*  Vec2f baseSize = sprite->getTextureSize() * sceneTransition->GetScale();*/
     /*  resultRank->SetRankForScore(resultUIParent->GetCurrentScore());*/
 
     /////* ------------------------------adapt------------------------------
 
     //// pos
-    sprite->setTranslate(basePos);
-    sprite->setSize(baseSize);
+   /* sprite->setTranslate(basePos);
+    sprite->setSize(baseSize);*/
     /* sprite->setUVScale(Vec2f(tutorialMenu->GetUVScale(),1.0f));*/
 }
 

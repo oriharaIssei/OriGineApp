@@ -76,7 +76,7 @@ void SceneTransition::Finalize() {
 }
 
 void SceneTransition::TransitionInit() {
-    positionX_       = -1280.0f;
+    positionX_       = 1.0f;
     sceneEase_.time  = 0.0f;
     currentWaitTime_ = 0.0f;
     scale_           = Vec2f(0.0f, 0.0f);
@@ -99,7 +99,7 @@ void SceneTransition::UpdateTransition(const float& deltaTime) {
          break;
      }*/
 
-    positionX_ = EaseInCubic(startPositionX_, endPositionX_, sceneEase_.time, sceneEase_.maxTime);
+    positionX_ = EaseOutSine(startPositionX_, endPositionX_, sceneEase_.time, sceneEase_.maxTime);
 
     if (sceneEase_.time < sceneEase_.maxTime) {
         return;
