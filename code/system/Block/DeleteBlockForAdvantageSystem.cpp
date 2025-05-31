@@ -160,9 +160,18 @@ void DeleteBlockForAdvantageSystem::SpawnBlockEffect(BlockType type) {
     }
 
     // 一旦、Advantageが壊れた先のブロックに全てeffectを出す
-    *breakEffect0 = *breakBlockEffects_[0];
-    *breakEffect1 = *breakBlockEffects_[1];
-    *breakEffect2 = *breakBlockEffects_[2];
+    // json経由で コピー
+    nlohmann::json breakBlockEffects0 = *breakBlockEffects_[0];
+    nlohmann::json breakBlockEffects1 = *breakBlockEffects_[1];
+    nlohmann::json breakBlockEffects2 = *breakBlockEffects_[2];
+
+    *breakEffect0 = breakBlockEffects0;
+    *breakEffect1 = breakBlockEffects1;
+    *breakEffect2 = breakBlockEffects2;
+    // テクスチャを読み込む
+    breakEffect0->Initialize(blockbreakEffect);
+    breakEffect1->Initialize(blockbreakEffect);
+    breakEffect2->Initialize(blockbreakEffect);
 
     //// Particle発射
     Vec3f basePos = Vec3f(blockTransform_->worldMat[3]) + Vec3f(0.0f, 0.0f, -5.0f);
