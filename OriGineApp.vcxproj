@@ -104,6 +104,7 @@
     <ClInclude Include="code\component\Block\BlockCombinationStatus.h" />
     <ClInclude Include="code\component\Block\BlockFrontPlaneStatus.h" />
     <ClInclude Include="code\component\DeleteEntityStatus\DeleteEntityStatus.h" />
+    <ClInclude Include="code\component\EffectByBlock\EffectByBlockAnimationStatus.h" />
     <ClInclude Include="code\component\FloorUI\FloorUIController.h" />
     <ClInclude Include="code\component\FloorUI\FloorUIStatus.h" />
     <ClInclude Include="code\component\GameCamera\CameraRenditionStatus.h" />
@@ -186,6 +187,7 @@
     <ClInclude Include="code\system\Combo\ComboSystem.h" />
     <ClInclude Include="code\system\Combo\ComboUIScrollSystem.h" />
     <ClInclude Include="code\system\DeleteEntitySystem\DeleteEntitySystem.h" />
+    <ClInclude Include="code\system\EffectByBlock\EffectByBlockAnimationSystem.h" />
     <ClInclude Include="code\system\EffectByBlock\EffectByBlockDeleteSystem.h" />
     <ClInclude Include="code\system\EffectByBlock\EffectByBlockDrawSystem.h" />
     <ClInclude Include="code\system\FloatingFloor\CanageStateFallSystem.h" />
@@ -252,6 +254,7 @@
     <ClCompile Include="code\component\Block\BlockCombinationStatus.cpp" />
     <ClCompile Include="code\component\Block\BlockFrontPlaneStatus.cpp" />
     <ClCompile Include="code\component\DeleteEntityStatus\DeleteEntityStatus.cpp" />
+    <ClCompile Include="code\component\EffectByBlock\EffectByBlockAnimationStatus.cpp" />
     <ClCompile Include="code\component\FloorUI\FloorUIController.cpp" />
     <ClCompile Include="code\component\FloorUI\FloorUIStatus.cpp" />
     <ClCompile Include="code\component\GameCamera\CameraRenditionStatus.cpp" />
@@ -336,6 +339,7 @@
     <ClCompile Include="code\system\Combo\ComboSystem.cpp" />
     <ClCompile Include="code\system\Combo\ComboUIScrollSystem.cpp" />
     <ClCompile Include="code\system\DeleteEntitySystem\DeleteEntitySystem.cpp" />
+    <ClCompile Include="code\system\EffectByBlock\EffectByBlockAnimationSystem.cpp" />
     <ClCompile Include="code\system\EffectByBlock\EffectByBlockDeleteSystem.cpp" />
     <ClCompile Include="code\system\EffectByBlock\EffectByBlockDrawSystem.cpp" />
     <ClCompile Include="code\system\FloatingFloor\CanageStateFallSystem.cpp" />

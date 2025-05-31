@@ -2,7 +2,7 @@
 
 #include "component/IComponent.h"
 #include <Vector3.h>
-
+#include"KetaEasing.h"
 
 enum class EffectType;
 class GameEntity;
@@ -14,6 +14,13 @@ class EffectByBlockSpawner
 public:
 private: // variables
     bool isAlive_ = true;
+
+    float rotateSpeed_;
+    float fadeOutTime_;
+    float fadeOutValueX_;
+    Easing ApearEasing_;
+    Easing FadeOutEasing_;
+    Vec3f maxScale_;
 
 public:
     EffectByBlockSpawner() {}

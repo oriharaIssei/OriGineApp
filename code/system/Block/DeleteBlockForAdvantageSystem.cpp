@@ -119,7 +119,7 @@ void DeleteBlockForAdvantageSystem::SpawnBlockEffect(BlockType type) {
 
     DeleteEntityStatus* deleteEntityStatus = getComponent<DeleteEntityStatus>(blockbreakEffect);
 
-    //　生成済なら早期リターン(1回しか通らないはずなんだけど...)
+    // 　生成済なら早期リターン(1回しか通らないはずなんだけど...)
     if (deleteEntityStatus->GetIsCreated()) {
         return;
     }
@@ -147,9 +147,9 @@ void DeleteBlockForAdvantageSystem::SpawnBlockEffect(BlockType type) {
         /*  *breakEffect_[0] = *breakBlockEffects_[0];
          *breakEffect_[1] = *breakBlockEffects_[1];
          *breakEffect_[2] = *breakBlockEffects_[2];*/
-      /*  *breakEffect0 = *breakBlockEffects_[0];
-        *breakEffect1 = *breakBlockEffects_[1];
-        *breakEffect2 = *breakBlockEffects_[2];*/
+        /*  *breakEffect0 = *breakBlockEffects_[0];
+         *breakEffect1 = *breakBlockEffects_[1];
+         *breakEffect2 = *breakBlockEffects_[2];*/
         break;
     case BlockType::SKULL:
         break;
@@ -159,8 +159,8 @@ void DeleteBlockForAdvantageSystem::SpawnBlockEffect(BlockType type) {
         break;
     }
 
-    //一旦、Advantageが壊れた先のブロックに全てeffectを出す
-     *breakEffect0 = *breakBlockEffects_[0];
+    // 一旦、Advantageが壊れた先のブロックに全てeffectを出す
+    *breakEffect0 = *breakBlockEffects_[0];
     *breakEffect1 = *breakBlockEffects_[1];
     *breakEffect2 = *breakBlockEffects_[2];
 
@@ -201,7 +201,6 @@ void DeleteBlockForAdvantageSystem::SpawnBlockEffect(BlockType type) {
 
     // created
     deleteEntityStatus->SetIsCreated(true);
-
 }
 
 void DeleteBlockForAdvantageSystem::ApearResultScoreUI() {

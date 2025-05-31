@@ -80,6 +80,7 @@
 #include"component/animation/SpriteAnimation.h"
 #include"component/DeleteEntityStatus/DeleteEntityStatus.h"
 #include"component/ScaleByBlockStatus/ScaleByBlockStatus.h"
+#include"component/EffectByBlock/EffectByBlockAnimationStatus.h"
 
 // system
 #include "system/BigBom/BigBomCollisionExSystem.h"
@@ -173,6 +174,7 @@
 #include"system/Block/SkullSinisterEffectSystem.h"
 #include"system/DeleteEntitySystem/DeleteEntitySystem.h"
 #include"system/ScaleByBlock/ScaleByBlockSystem.h"
+#include"system/EffectByBlock/EffectByBlockAnimationSystem.h"
 
 MyGame::MyGame() {}
 
@@ -319,6 +321,8 @@ void MyGame::RegisterUsingComponents() {
     ecsManager->registerComponent<BlockFrontPlaneStatus>();
     ecsManager->registerComponent<DeleteEntityStatus>();
     ecsManager->registerComponent<ScaleByBlockStatus>();
+    ecsManager->registerComponent<EffectByBlockAnimationStatus>();
+
 
     ecsManager->registerComponent<Transform>();
     ecsManager->registerComponent<CameraTransform>();
@@ -439,6 +443,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<SkullSinisterEffectSystem>();
     ecsManager->registerSystem<DeleteEntitySystem>();
     ecsManager->registerSystem<ScaleByBlockSystem>();
+    ecsManager->registerSystem<EffectByBlockAnimationSystem>();
 
     ecsManager->registerSystem<BackPlaneCloseSystem>();
     ecsManager->registerSystem<FrontPlaneDeleteSystem>();

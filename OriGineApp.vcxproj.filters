@@ -584,6 +584,12 @@
     <ClInclude Include="code\system\ScaleByBlock\ScaleByBlockSystem.h">
       <Filter>system\ScaleByBlock</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\EffectByBlock\EffectByBlockAnimationStatus.h">
+      <Filter>component\EffectByBlock</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\EffectByBlock\EffectByBlockAnimationSystem.h">
+      <Filter>system\EffectByBlock</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -1013,6 +1019,12 @@
     </ClCompile>
     <ClCompile Include="code\system\ScaleByBlock\ScaleByBlockSystem.cpp">
       <Filter>system\ScaleByBlock</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\EffectByBlock\EffectByBlockAnimationStatus.cpp">
+      <Filter>component\EffectByBlock</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\EffectByBlock\EffectByBlockAnimationSystem.cpp">
+      <Filter>system\EffectByBlock</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
