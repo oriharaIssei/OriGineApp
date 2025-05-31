@@ -121,11 +121,15 @@ void DeleteBlockForAdvantageSystem::SpawnBlockEffect(BlockType type) {
         breakBlockEffects_[i] = getComponent<Emitter>(breakBlockEffectManager, i);
     }
 
-    Emitter* breakEffect0 = getComponent<Emitter>(blockbreakEffect, 0);
-    Emitter* breakEffect1 = getComponent<Emitter>(blockbreakEffect, 1);
-    Emitter* breakEffect2 = getComponent<Emitter>(blockbreakEffect, 2);
+    for (int32_t i = 0; i < breakBlockEffects_.size(); ++i) {
+        breakEffect_[i] = getComponent<Emitter>(blockbreakEffect, i);
+    }
 
-     DeleteEntityStatus* deleteEntityStatus = getComponent<DeleteEntityStatus>(blockbreakEffect);
+    /*  Emitter* breakEffect0 = getComponent<Emitter>(blockbreakEffect, 0);
+      Emitter* breakEffect1 = getComponent<Emitter>(blockbreakEffect, 1);
+      Emitter* breakEffect2 = getComponent<Emitter>(blockbreakEffect, 2);*/
+
+    DeleteEntityStatus* deleteEntityStatus = getComponent<DeleteEntityStatus>(blockbreakEffect);
     deleteEntityStatus->SetDeleteTime(5.0f);
 
     switch (type) {
@@ -133,9 +137,9 @@ void DeleteBlockForAdvantageSystem::SpawnBlockEffect(BlockType type) {
 
         break;
     case BlockType::ADVANTAGE:
-        *breakEffect0 = *breakBlockEffects_[0];
-        *breakEffect1 = *breakBlockEffects_[1];
-        *breakEffect2 = *breakBlockEffects_[2];
+        *breakEffect_[0] = *breakBlockEffects_[0];
+        *breakEffect_[1] = *breakBlockEffects_[1];
+        *breakEffect_[2] = *breakBlockEffects_[2];
         break;
     case BlockType::SKULL:
         break;
@@ -164,13 +168,20 @@ void DeleteBlockForAdvantageSystem::SpawnBlockEffect(BlockType type) {
     //------------------ Render
     ecs->getSystem<ParticleRenderSystem>()->addEntity(blockbreakEffect);
 
-    breakEffect0->setOriginePos(basePos);
+
+    // set origin 
+    for (int32_t i = 0; i < breakBlockEffects_.size(); ++i) {
+        breakEffect_[i]->setOriginePos(basePos);
+        breakEffect_[i]->PlayStart();
+    }
+
+    /*breakEffect0->setOriginePos(basePos);
     breakEffect1->setOriginePos(basePos);
     breakEffect2->setOriginePos(basePos);
 
     breakEffect0->PlayStart();
     breakEffect1->PlayStart();
-    breakEffect2->PlayStart();
+    breakEffect2->PlayStart();*/
 }
 
 void DeleteBlockForAdvantageSystem::ApearResultScoreUI() {
