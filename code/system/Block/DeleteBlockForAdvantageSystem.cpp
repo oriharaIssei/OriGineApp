@@ -116,30 +116,39 @@ void DeleteBlockForAdvantageSystem::SpawnBlockEffect(BlockType type) {
 
     GameEntity* blockbreakEffect = CreateEntity<Emitter, Emitter, Emitter, DeleteEntityStatus>("blockbreakEffect", Emitter(), Emitter(), Emitter(), DeleteEntityStatus());
 
+    DeleteEntityStatus* deleteEntityStatus = getComponent<DeleteEntityStatus>(blockbreakEffect);
+
+    //　生成済なら早期リターン(1回しか通らないはずなんだけど...)
+    if (deleteEntityStatus->GetIsCreated()) {
+        return;
+    }
+    deleteEntityStatus->SetDeleteTime(5.0f);
+
     // advantage
     for (int32_t i = 0; i < breakBlockEffects_.size(); ++i) {
         breakBlockEffects_[i] = getComponent<Emitter>(breakBlockEffectManager, i);
     }
 
-    for (int32_t i = 0; i < breakBlockEffects_.size(); ++i) {
+    /*for (int32_t i = 0; i < breakBlockEffects_.size(); ++i) {
         breakEffect_[i] = getComponent<Emitter>(blockbreakEffect, i);
-    }
+    }*/
 
-    /*  Emitter* breakEffect0 = getComponent<Emitter>(blockbreakEffect, 0);
-      Emitter* breakEffect1 = getComponent<Emitter>(blockbreakEffect, 1);
-      Emitter* breakEffect2 = getComponent<Emitter>(blockbreakEffect, 2);*/
-
-    DeleteEntityStatus* deleteEntityStatus = getComponent<DeleteEntityStatus>(blockbreakEffect);
-    deleteEntityStatus->SetDeleteTime(5.0f);
+    // emitter
+    Emitter* breakEffect0 = getComponent<Emitter>(blockbreakEffect, 0);
+    Emitter* breakEffect1 = getComponent<Emitter>(blockbreakEffect, 1);
+    Emitter* breakEffect2 = getComponent<Emitter>(blockbreakEffect, 2);
 
     switch (type) {
     case BlockType::NORMAL:
 
         break;
     case BlockType::ADVANTAGE:
-        *breakEffect_[0] = *breakBlockEffects_[0];
-        *breakEffect_[1] = *breakBlockEffects_[1];
-        *breakEffect_[2] = *breakBlockEffects_[2];
+        /*  *breakEffect_[0] = *breakBlockEffects_[0];
+         *breakEffect_[1] = *breakBlockEffects_[1];
+         *breakEffect_[2] = *breakBlockEffects_[2];*/
+      /*  *breakEffect0 = *breakBlockEffects_[0];
+        *breakEffect1 = *breakBlockEffects_[1];
+        *breakEffect2 = *breakBlockEffects_[2];*/
         break;
     case BlockType::SKULL:
         break;
@@ -148,6 +157,10 @@ void DeleteBlockForAdvantageSystem::SpawnBlockEffect(BlockType type) {
     default:
         break;
     }
+
+     *breakEffect0 = *breakBlockEffects_[0];
+    *breakEffect1 = *breakBlockEffects_[1];
+    *breakEffect2 = *breakBlockEffects_[2];
 
     //// Particle発射
     Vec3f basePos = Vec3f(blockTransform_->worldMat[3]) + Vec3f(0.0f, 0.0f, -5.0f);
@@ -168,20 +181,23 @@ void DeleteBlockForAdvantageSystem::SpawnBlockEffect(BlockType type) {
     //------------------ Render
     ecs->getSystem<ParticleRenderSystem>()->addEntity(blockbreakEffect);
 
+    // set origin
+    /* for (int32_t i = 0; i < breakBlockEffects_.size(); ++i) {
+         breakEffect_[i]->setOriginePos(basePos);
+         breakEffect_[i]->PlayStart();
+     }*/
 
-    // set origin 
-    for (int32_t i = 0; i < breakBlockEffects_.size(); ++i) {
-        breakEffect_[i]->setOriginePos(basePos);
-        breakEffect_[i]->PlayStart();
-    }
-
-    /*breakEffect0->setOriginePos(basePos);
+    breakEffect0->setOriginePos(basePos);
     breakEffect1->setOriginePos(basePos);
     breakEffect2->setOriginePos(basePos);
 
     breakEffect0->PlayStart();
     breakEffect1->PlayStart();
-    breakEffect2->PlayStart();*/
+    breakEffect2->PlayStart();
+
+    // created
+    deleteEntityStatus->SetIsCreated(true);
+
 }
 
 void DeleteBlockForAdvantageSystem::ApearResultScoreUI() {

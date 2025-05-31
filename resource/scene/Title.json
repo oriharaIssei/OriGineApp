@@ -449,6 +449,13 @@
                         "dissolveAnimRotate": [],
                         "dissolveAnimScale": [],
                         "dissolveAnimTranslate": [],
+                        "dissolveColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "dissolveEdgeWidth": 0.0,
                         "dissolveTexPath": "application/resource/Texture/image.png",
                         "dissolveThreshold": 1.0,
                         "dissolveUV": {
@@ -613,6 +620,13 @@
                         "dissolveAnimRotate": [],
                         "dissolveAnimScale": [],
                         "dissolveAnimTranslate": [],
+                        "dissolveColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "dissolveEdgeWidth": 0.0,
                         "dissolveTexPath": "application/resource/Texture/image.png",
                         "dissolveThreshold": 1.0,
                         "dissolveUV": {

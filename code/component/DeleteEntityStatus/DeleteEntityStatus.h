@@ -14,6 +14,7 @@ private: // variables
     bool isAlive_ = true;
 
     float deleteTime_;
+    bool isCreated_=false;
   
 public:
     DeleteEntityStatus() {}
@@ -29,7 +30,8 @@ public: // accsessor
     /// getter
 
     float GetDeleteTime() const { return deleteTime_; }
-  /*  float GetTimer() const { return timer_; }*/
+    bool GetIsCreated() const { return isCreated_; }
 
     void SetDeleteTime(const float& time) { deleteTime_ = time; }
+    void SetIsCreated(const bool& is) { isCreated_ = is; }
 };

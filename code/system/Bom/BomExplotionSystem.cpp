@@ -25,7 +25,7 @@ void BomExplotionSystem::Initialize() {
 }
 
 void BomExplotionSystem::Finalize() {
-    entities_.clear();
+   /* entities_.clear();*/
 }
 
 void BomExplotionSystem::UpdateEntity(GameEntity* _entity) {

@@ -26,7 +26,7 @@
 void PutBomSystem::Initialize() {}
 
 void PutBomSystem::Finalize() {
-    entities_.clear();
+   /* entities_.clear();*/
 }
 
 void PutBomSystem::UpdateEntity(GameEntity* _entity) {
