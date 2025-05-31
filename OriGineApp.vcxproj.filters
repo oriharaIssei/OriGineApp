@@ -148,6 +148,12 @@
     <Filter Include="system\DeleteEntity">
       <UniqueIdentifier>{a688c57c-dce7-4578-8fc2-bda6b45498ac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\ScaleByBlock">
+      <UniqueIdentifier>{8c1221ab-8c28-44c1-895d-f6fb7fbbe5f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\ScaleByBlock">
+      <UniqueIdentifier>{58285ec2-6ed6-4fc6-a69f-2b2e8298bf04}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -572,6 +578,12 @@
     <ClInclude Include="code\system\DeleteEntitySystem\DeleteEntitySystem.h">
       <Filter>system\DeleteEntity</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\ScaleByBlockStatus\ScaleByBlockStatus.h">
+      <Filter>component\ScaleByBlock</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\ScaleByBlock\ScaleByBlockSystem.h">
+      <Filter>system\ScaleByBlock</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -995,6 +1007,12 @@
     </ClCompile>
     <ClCompile Include="code\system\DeleteEntitySystem\DeleteEntitySystem.cpp">
       <Filter>system\DeleteEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\ScaleByBlockStatus\ScaleByBlockStatus.cpp">
+      <Filter>component\ScaleByBlock</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\ScaleByBlock\ScaleByBlockSystem.cpp">
+      <Filter>system\ScaleByBlock</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

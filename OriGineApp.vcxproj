@@ -111,6 +111,7 @@
     <ClInclude Include="code\component\GameStart\GameStartStatus.h" />
     <ClInclude Include="code\component\Piller\FloatingFloorAnimationStatus.h" />
     <ClInclude Include="code\component\Player\PlayerAnimationStatus.h" />
+    <ClInclude Include="code\component\ScaleByBlockStatus\ScaleByBlockStatus.h" />
     <ClInclude Include="code\component\Timer\TimerAnimationStatus.h" />
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\KetaEasing.h" />
@@ -228,6 +229,7 @@
     <ClInclude Include="code\system\ResultUI\ResultRankSystem.h" />
     <ClInclude Include="code\system\ResultUI\ResultScoreAdaptSystem.h" />
     <ClInclude Include="code\system\ResultUI\ResultUIParentSystem.h" />
+    <ClInclude Include="code\system\ScaleByBlock\ScaleByBlockSystem.h" />
     <ClInclude Include="code\system\SceneChanger\SceneChangerSystem.h" />
     <ClInclude Include="code\system\SceneTransitionSystem\SceneTransitionSystem.h" />
     <ClInclude Include="code\system\Score\PlusScoreAdaptUISystem.h" />
@@ -257,6 +259,7 @@
     <ClCompile Include="code\component\GameStart\GameStartStatus.cpp" />
     <ClCompile Include="code\component\Piller\FloatingFloorAnimationStatus.cpp" />
     <ClCompile Include="code\component\Player\PlayerAnimationStatus.cpp" />
+    <ClCompile Include="code\component\ScaleByBlockStatus\ScaleByBlockStatus.cpp" />
     <ClCompile Include="code\component\Timer\TimerAnimationStatus.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\KetaEasing.cpp" />
@@ -376,6 +379,7 @@
     <ClCompile Include="code\system\ResultUI\ResultRankSystem.cpp" />
     <ClCompile Include="code\system\ResultUI\ResultScoreAdaptSystem.cpp" />
     <ClCompile Include="code\system\ResultUI\ResultUIParentSystem.cpp" />
+    <ClCompile Include="code\system\ScaleByBlock\ScaleByBlockSystem.cpp" />
     <ClCompile Include="code\system\SceneChanger\SceneChangerSystem.cpp" />
     <ClCompile Include="code\system\SceneTransitionSystem\SceneTransitionSystem.cpp" />
     <ClCompile Include="code\system\Score\PlusScoreAdaptUISystem.cpp" />
