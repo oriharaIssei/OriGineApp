@@ -111,6 +111,7 @@ void DeleteBlockForAdvantageSystem::BlockBreakParticleShot(GameEntity* _entity, 
 }
 
 void DeleteBlockForAdvantageSystem::SpawnBlockEffect(BlockType type) {
+
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* breakBlockEffectManager      = ecsManager->getUniqueEntity("AdAndSkullBreakEffect");
 
@@ -158,6 +159,7 @@ void DeleteBlockForAdvantageSystem::SpawnBlockEffect(BlockType type) {
         break;
     }
 
+    //一旦、Advantageが壊れた先のブロックに全てeffectを出す
      *breakEffect0 = *breakBlockEffects_[0];
     *breakEffect1 = *breakBlockEffects_[1];
     *breakEffect2 = *breakBlockEffects_[2];
@@ -187,10 +189,12 @@ void DeleteBlockForAdvantageSystem::SpawnBlockEffect(BlockType type) {
          breakEffect_[i]->PlayStart();
      }*/
 
+    // setorigin
     breakEffect0->setOriginePos(basePos);
     breakEffect1->setOriginePos(basePos);
     breakEffect2->setOriginePos(basePos);
 
+    // shot
     breakEffect0->PlayStart();
     breakEffect1->PlayStart();
     breakEffect2->PlayStart();
