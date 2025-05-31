@@ -35,7 +35,7 @@ void EffectByBlockAnimationStatus::Finalize() {}
 void EffectByBlockAnimationStatus::ApearEasing(const float& deltaTime) {
     ApearEasing_.time += deltaTime;
 
-    baseScale_ = EaseOutBack(Vec3f(0.0f, 0.0f, 0.0f), maxScale_, ApearEasing_.time, ApearEasing_.maxTime);
+    baseScale_ = EaseOutBounce(Vec3f(0.0f, 0.0f, 0.0f), maxScale_, ApearEasing_.time, ApearEasing_.maxTime);
 
     // end
     if (ApearEasing_.time < ApearEasing_.maxTime) {
