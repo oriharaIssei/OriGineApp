@@ -54,6 +54,7 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* menuEntity                   = ecsManager->getUniqueEntity("Menu");
     GameEntity* bockCombiEntity              = ecsManager->getUniqueEntity("BlockCombination");
+    GameEntity* SkullEffectEntity              = ecsManager->getUniqueEntity("SkullEffect");
 
     if (!menuEntity || !bockCombiEntity) {
         return;
@@ -75,9 +76,11 @@ void BlockSpawnSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     // Particle達
-    for (int32_t i = 0; i < emitters_.size(); ++i) {
-        emitters_[i] = getComponent<Emitter>(_entity, i);
+    for (int32_t i = 0; i < skullEmitter_.size(); ++i) {
+        skullEmitter_[i] = getComponent<Emitter>(SkullEffectEntity, i);
     }
+    //dataget
+    skullEmitterData_[0] = *skullEmitter_[0];
 
     float blockWidth   = blockSpawner_->GetBlockSize()[X] * 2.0f;
     float nextPosition = blockSpawner_->GetNextCreatePositionX();
@@ -190,6 +193,8 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
 
     // blockTypeによってEmitterを変更する
     EmitterSetForBlockType(blockEmitterLayerOne, blockEmitterLayerTwo, blockStatus->GetBlockType());
+    blockEmitterLayerOne->Initialize(block);
+    blockEmitterLayerTwo->Initialize(block);
 
     // hp
     blockStatus->SetcurrentHP(blockSpawner_->GetHpMax());
@@ -201,8 +206,8 @@ void BlockSpawnSystem::CreateBlocks(const int32_t& rowIndex, const int32_t& colu
 
     // ブロックステータスを更新
     blockCombinationStatus_->AddBlockStatus(blockStatus);
-
-    // 列カウンターインクリメント
+ 
+   
 
     // ================================= System ================================= //
     ECSManager* ecs = ECSManager::getInstance();
@@ -381,20 +386,19 @@ void BlockSpawnSystem::ModelSetForBlockType(BlockStatus* status, ModelMeshRender
 }
 
 void BlockSpawnSystem::EmitterSetForBlockType(Emitter* emitter1, Emitter* emitter2, BlockType type) {
-
+  
     switch (type) {
     case BlockType::NORMAL:
-        *emitter1 = *emitters_[0];
-        *emitter2 = *emitters_[1];
-        break;
-
+      
+         break;
     case BlockType::ADVANTAGE:
         /* *emitter1 = *emitters_[2];
          *emitter2 = *emitters_[3];*/
         break;
     case BlockType::SKULL:
-        /* *emitter1 = *emitters_[4];
-         *emitter2 = *emitters_[5];*/
+        *emitter1 = skullEmitterData_[0];
+        *emitter2 = skullEmitterData_[0];
+       
         break;
     case BlockType::COUNT:
         break;
