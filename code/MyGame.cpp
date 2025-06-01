@@ -175,6 +175,7 @@
 #include"system/DeleteEntitySystem/DeleteEntitySystem.h"
 #include"system/ScaleByBlock/ScaleByBlockSystem.h"
 #include"system/EffectByBlock/EffectByBlockAnimationSystem.h"
+#include"system/render/BackGroundSpriteRenderSystem.h"
 
 MyGame::MyGame() {}
 
@@ -479,13 +480,14 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<EmitterWorkSystem>();
     ecsManager->registerSystem<PrimitiveNodeAnimationWorkSystem>();
     ecsManager->registerSystem<SpriteAnimationSystem>();
-
+    
     /// =================================================================================================
     // Render
     /// =================================================================================================
     ecsManager->registerSystem<ParticleRenderSystem>();
     ecsManager->registerSystem<SpriteRenderSystem>();
     ecsManager->registerSystem<TexturedMeshRenderSystem>();
+    ecsManager->registerSystem<BackGroundSpriteRenderSystem>();
 #ifdef _DEBUG
     ecsManager->registerSystem<LineRenderSystem>(); // デバッグ用
 #endif // _DEBUG
