@@ -88,7 +88,7 @@ bool BlockCombinationStatus::JudgeIsAdvantageToLeft(const int& baseRowNum, const
         int column = status->GetColumnNum();
 
         // colum が違ければ skip
-        if (columNum != column) {
+        if (columNum != column||status->GetIsBreak()) {
             continue;
         }
 

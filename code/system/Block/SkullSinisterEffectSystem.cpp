@@ -50,6 +50,9 @@ void SkullSinisterEffectSystem::UpdateEntity(GameEntity* _entity) {
     blockStatus->SetIsSinister(leftBlocks);
     blockStatus->SinisterShake(); // シェイク
 
+    if (!leftBlocks) {
+        return;
+    }
     //particle
     if (emitterAura) {
         // particleダウ
