@@ -58,6 +58,8 @@ public: // accsessor
     float GetBreakOffsetTime() const { return breakOffsetTime_; }
     const std::vector<BlockStatus*>& GetBlockStatusArray() const {return blockStatusArray_;}
 
+    void RemoveMarkedBlocks();
+
     /// setter
     void SetMinusTimerValue(const float& timer) { minusTimerValue_ = timer; }
     void SetMinusScoreValue(const float& timer) { minusScoreValue_ = timer; }

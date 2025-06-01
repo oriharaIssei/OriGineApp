@@ -114,7 +114,7 @@ bool BlockCombinationStatus::JudgeIsAdvantageToLeft(const int& baseRowNum, const
 
 std::vector<BlockStatus*> BlockCombinationStatus::GetRightBlocksForCalucration(const int& baseRowNum, const int& columNum) const {
     std::vector<BlockStatus*> result;
-
+    result.clear();
     for (BlockStatus* status : blockStatusArray_) {
         int row    = status->GetRowNum();
         int column = status->GetColumnNum();
@@ -157,4 +157,13 @@ std::vector<BlockStatus*> BlockCombinationStatus::SortBlocksLeftToRight(std::vec
     }
 
     return result;
+}
+
+void BlockCombinationStatus::RemoveMarkedBlocks() {
+    blockStatusArray_.erase(
+        std::remove_if(blockStatusArray_.begin(), blockStatusArray_.end(),
+            [](BlockStatus* status) {
+                return status->GetIsBreak(); 
+            }),
+        blockStatusArray_.end());
 }

@@ -1018,9 +1018,6 @@
             }
         },
         {
-            "SmoothingEffect": {
-                "Priority": 0
-            },
             "VignetteEffect": {
                 "Priority": 0
             }

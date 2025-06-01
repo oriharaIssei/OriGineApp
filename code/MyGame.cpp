@@ -176,6 +176,7 @@
 #include"system/ScaleByBlock/ScaleByBlockSystem.h"
 #include"system/EffectByBlock/EffectByBlockAnimationSystem.h"
 #include"system/render/BackGroundSpriteRenderSystem.h"
+#include"system/Block/CombiArrayRemoveSystem.h"
 
 MyGame::MyGame() {}
 
@@ -445,7 +446,8 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<DeleteEntitySystem>();
     ecsManager->registerSystem<ScaleByBlockSystem>();
     ecsManager->registerSystem<EffectByBlockAnimationSystem>();
-
+    ecsManager->registerSystem<CombiArrayRemoveSystem>();
+ 
     ecsManager->registerSystem<BackPlaneCloseSystem>();
     ecsManager->registerSystem<FrontPlaneDeleteSystem>();
 
