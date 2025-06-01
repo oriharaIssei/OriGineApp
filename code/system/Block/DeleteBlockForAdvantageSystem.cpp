@@ -139,17 +139,19 @@ void DeleteBlockForAdvantageSystem::SpawnBlockEffect(BlockType type) {
     Emitter* breakEffect1 = getComponent<Emitter>(blockbreakEffect, 1);
     Emitter* breakEffect2 = getComponent<Emitter>(blockbreakEffect, 2);
 
+    // advantage
+    nlohmann::json breakBlockEffects0 = *breakBlockEffects_[0];
+    nlohmann::json breakBlockEffects1 = *breakBlockEffects_[1];
+    nlohmann::json breakBlockEffects2 = *breakBlockEffects_[2];
+
     switch (type) {
     case BlockType::NORMAL:
-
+        
         break;
     case BlockType::ADVANTAGE:
-        /*  *breakEffect_[0] = *breakBlockEffects_[0];
-         *breakEffect_[1] = *breakBlockEffects_[1];
-         *breakEffect_[2] = *breakBlockEffects_[2];*/
-        /*  *breakEffect0 = *breakBlockEffects_[0];
-         *breakEffect1 = *breakBlockEffects_[1];
-         *breakEffect2 = *breakBlockEffects_[2];*/
+        *breakEffect0      = breakBlockEffects0;
+        *breakEffect1      = breakBlockEffects1;
+        *breakEffect2      = breakBlockEffects2;
         break;
     case BlockType::SKULL:
         break;
@@ -159,15 +161,8 @@ void DeleteBlockForAdvantageSystem::SpawnBlockEffect(BlockType type) {
         break;
     }
 
-    // 一旦、Advantageが壊れた先のブロックに全てeffectを出す
-    // json経由で コピー
-    nlohmann::json breakBlockEffects0 = *breakBlockEffects_[0];
-    nlohmann::json breakBlockEffects1 = *breakBlockEffects_[1];
-    nlohmann::json breakBlockEffects2 = *breakBlockEffects_[2];
+   
 
-    *breakEffect0 = breakBlockEffects0;
-    *breakEffect1 = breakBlockEffects1;
-    *breakEffect2 = breakBlockEffects2;
     // テクスチャを読み込む
     breakEffect0->Initialize(blockbreakEffect);
     breakEffect1->Initialize(blockbreakEffect);

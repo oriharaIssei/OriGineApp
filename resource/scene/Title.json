@@ -450,12 +450,12 @@
                         "dissolveAnimScale": [],
                         "dissolveAnimTranslate": [],
                         "dissolveColor": [
-                            1.0,
-                            1.0,
-                            1.0,
+                            0.9098039269447327,
+                            0.34117648005485535,
+                            0.062745101749897,
                             1.0
                         ],
-                        "dissolveEdgeWidth": 0.0,
+                        "dissolveEdgeWidth": 0.03799999877810478,
                         "dissolveTexPath": "application/resource/Texture/image.png",
                         "dissolveThreshold": 1.0,
                         "dissolveUV": {
@@ -621,12 +621,12 @@
                         "dissolveAnimScale": [],
                         "dissolveAnimTranslate": [],
                         "dissolveColor": [
-                            1.0,
-                            1.0,
-                            1.0,
+                            0.9098039269447327,
+                            0.34117648005485535,
+                            0.062745101749897,
                             1.0
                         ],
-                        "dissolveEdgeWidth": 0.0,
+                        "dissolveEdgeWidth": 0.03799999877810478,
                         "dissolveTexPath": "application/resource/Texture/image.png",
                         "dissolveThreshold": 1.0,
                         "dissolveUV": {
@@ -750,6 +750,9 @@
             "DeleteBomSystem": {
                 "Priority": 0
             },
+            "DeleteEntitySystem": {
+                "Priority": 0
+            },
             "DeleteExplotionCollision": {
                 "Priority": 0
             },
@@ -810,6 +813,9 @@
                 "Priority": 0
             },
             "ComboUIScrollSystem": {
+                "Priority": 0
+            },
+            "EffectByBlockAnimationSystem": {
                 "Priority": 0
             },
             "EffectByBlockDrawSystem": {
@@ -900,6 +906,9 @@
                 "Priority": 0
             },
             "ResultUIParentSystem": {
+                "Priority": 0
+            },
+            "ScaleByBlockSystem": {
                 "Priority": 0
             },
             "SceneTransitionSystem": {
@@ -1009,6 +1018,9 @@
             }
         },
         {
+            "SmoothingEffect": {
+                "Priority": 0
+            },
             "VignetteEffect": {
                 "Priority": 0
             }
