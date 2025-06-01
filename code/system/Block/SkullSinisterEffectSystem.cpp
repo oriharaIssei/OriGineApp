@@ -33,7 +33,7 @@ void SkullSinisterEffectSystem::UpdateEntity(GameEntity* _entity) {
 
     BlockStatus* blockStatus                  = getComponent<BlockStatus>(_entity);
     BlockCombinationStatus* combinationStatus = getComponent<BlockCombinationStatus>(combiEntity);
-    Transform* transform                      = getComponent<Transform>(_entity);
+  /*  Transform* transform                      = getComponent<Transform>(_entity);*/
     Emitter* emitterAura                      = getComponent<Emitter>(_entity);
 
     if (!blockStatus || !combinationStatus) {
@@ -53,7 +53,7 @@ void SkullSinisterEffectSystem::UpdateEntity(GameEntity* _entity) {
     //particle
     if (emitterAura) {
         // particleダウ
-        emitterAura->setOriginePos(transform->translate);
+      /*  emitterAura->setOriginePos(transform->worldMat[3]);*/
         emitterAura->PlayStart();
     }
 }
