@@ -28,6 +28,13 @@ public:
         END,
     };
 
+    enum class FuseMode {
+        NONE,
+        START,
+        CENTER,
+        END,
+    };
+
 private: // variables
     bool isAlive_ = true;
     bool isFall_  = false;
@@ -45,9 +52,10 @@ private: // variables
     bool isMove_          = false;
     Easing moveEase_;
 
+
     // pos,color
     Vec3f preMovePos_           = {0.0f, 0.0f, 0.0f};
-    Vec3f basePos_           = {0.0f, 0.0f, 0.0f};
+    Vec3f basePos_              = {0.0f, 0.0f, 0.0f};
     Vec4f normalChangeColor_    = {1.0f, 0.0f, 0.0f, 1.0f};
     Vec4f skullChangeColor_     = {0.57f, 0.439f, 0.859f, 1.0f};
     Vec4f advantageChangeColor_ = {1.0f, 0.843f, 0.0f, 1.0f};
@@ -85,7 +93,15 @@ private: // variables
     bool isSinister_;
     Vec3f sinisterOffsetPos_;
 
-    public : BlockStatus() {}
+    // 導火線
+    bool isApearStartFuse_  = false; // 導火始点
+    bool isApearCenterFuse_ = false; // 中間導火線
+    bool isCreateFuse_       = false;
+    bool isCreatedFuse_     = false;
+    FuseMode fuseMode_      = FuseMode::NONE;
+
+public:
+    BlockStatus() {}
     virtual ~BlockStatus() = default;
 
     void Initialize(GameEntity* _entity) override;
@@ -113,7 +129,9 @@ private: // variables
 
 public: // accsessor
     /// getter
-    Vec3f GetBasePos() const { return basePos_; }
+    bool GetIsCreatedFuse() { return isCreatedFuse_; }
+    bool GetIsCreateFuse() { return isCreateFuse_; }
+   const  Vec3f& GetBasePos() const { return basePos_; }
     Vec3f GetSinisterOffset() const { return sinisterOffsetPos_; }
     bool GetIsSinister() const { return isSinister_; }
     float GetZPosition() const { return zposition_; }
@@ -128,7 +146,7 @@ public: // accsessor
     bool GetIsDestroy() const { return isDestroy_; }
     const bool& GetIsFall() const { return isFall_; }
     BlockType GetBlockType() const { return blockType_; }
-    bool GetIsBreak() const { return isbreak_; }
+    const bool& GetIsBreak() const { return isbreak_; }
     bool GetIsNotScrapSpawn() const { return isNotScrapSpawn_; }
     bool GetIsBreakForAdvantageEffect() const { return isBreakForAdvaltageEffect_; }
     float GetBaseScoreValue() const { return baseScoreValue_; }
@@ -140,10 +158,14 @@ public: // accsessor
     std::string GetAdaptTexture() const { return adaptTexture_; }
     AdaptTextureStep GetAdaptTextureStep() const { return adaptTextureStep_; }
     ApearAnimationStep GetApearAnimationstep() const { return apearAnimationStep_; }
+    FuseMode GetFuseMode() const { return fuseMode_; }
     const bool& GetIsCloseFrontBackPlane() const { return isFrontPlaneClose_; }
 
     /// setter
-    void SetBasePos(const Vec3f& pos) {  basePos_= pos; }
+    void SetIsCreatedFuse(const bool& is) { isCreatedFuse_ = is; }
+    void SetIsCreateFuse(const bool& is) { isCreateFuse_ = is; }
+    void SetFuseMode(const FuseMode& mode) { fuseMode_ = mode; }
+    void SetBasePos(const Vec3f& pos) { basePos_ = pos; }
     void SetIsCollisionReaction(const bool& is) { isCollisionReaction_ = is; }
     void SetBreakOffsetTime(const float& time) { breakOffsetTime_ = time; }
     void SetColumnNum(const int32_t& colum) { columnNum_ = colum; }

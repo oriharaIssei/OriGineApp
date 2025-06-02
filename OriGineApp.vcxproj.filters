@@ -154,6 +154,12 @@
     <Filter Include="system\ScaleByBlock">
       <UniqueIdentifier>{58285ec2-6ed6-4fc6-a69f-2b2e8298bf04}</UniqueIdentifier>
     </Filter>
+    <Filter Include="system\FuseCreateSystem">
+      <UniqueIdentifier>{a3b070c6-a44c-4a3b-a6af-d8b097ad8340}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\Fuse">
+      <UniqueIdentifier>{7860e64d-422a-4853-8619-c1bf607aee28}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
@@ -593,6 +599,18 @@
     <ClInclude Include="code\system\Block\CombiArrayRemoveSystem.h">
       <Filter>system\Block</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Fuse\FuseCreateSystem.h">
+      <Filter>system\FuseCreateSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Fuse\FuseStatus.h">
+      <Filter>component\Fuse</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Fuse\FuseDeleteSystem.h">
+      <Filter>component\Fuse</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Fuse\FuseAdaptPosSystem.h">
+      <Filter>component\Fuse</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -1031,6 +1049,18 @@
     </ClCompile>
     <ClCompile Include="code\system\Block\CombiArrayRemoveSystem.cpp">
       <Filter>system\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Fuse\FuseCreateSystem.cpp">
+      <Filter>system\FuseCreateSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Fuse\FuseStatus.cpp">
+      <Filter>component\Fuse</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Fuse\FuseDeleteSystem.cpp">
+      <Filter>component\Fuse</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Fuse\FuseAdaptPosSystem.cpp">
+      <Filter>component\Fuse</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

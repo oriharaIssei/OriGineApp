@@ -81,6 +81,7 @@
 #include"component/DeleteEntityStatus/DeleteEntityStatus.h"
 #include"component/ScaleByBlockStatus/ScaleByBlockStatus.h"
 #include"component/EffectByBlock/EffectByBlockAnimationStatus.h"
+#include"component/Fuse/FuseStatus.h"
 
 // system
 #include "system/BigBom/BigBomCollisionExSystem.h"
@@ -177,6 +178,9 @@
 #include"system/EffectByBlock/EffectByBlockAnimationSystem.h"
 #include"system/render/BackGroundSpriteRenderSystem.h"
 #include"system/Block/CombiArrayRemoveSystem.h"
+#include"system/Fuse/FuseAdaptPosSystem.h"
+#include"system/Fuse/FuseCreateSystem.h"
+#include"system/Fuse/FuseDeleteSystem.h"
 
 MyGame::MyGame() {}
 
@@ -324,7 +328,7 @@ void MyGame::RegisterUsingComponents() {
     ecsManager->registerComponent<DeleteEntityStatus>();
     ecsManager->registerComponent<ScaleByBlockStatus>();
     ecsManager->registerComponent<EffectByBlockAnimationStatus>();
-
+    ecsManager->registerComponent<FuseStatus>();
 
     ecsManager->registerComponent<Transform>();
     ecsManager->registerComponent<CameraTransform>();
@@ -447,6 +451,11 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<ScaleByBlockSystem>();
     ecsManager->registerSystem<EffectByBlockAnimationSystem>();
     ecsManager->registerSystem<CombiArrayRemoveSystem>();
+
+     ecsManager->registerSystem<FuseAdaptPosSystem>();
+    ecsManager->registerSystem<FuseCreateSystem>();
+     ecsManager->registerSystem<FuseDeleteSystem>();
+ 
  
     ecsManager->registerSystem<BackPlaneCloseSystem>();
     ecsManager->registerSystem<FrontPlaneDeleteSystem>();
@@ -567,6 +576,7 @@ void MyGame::ResourceAllLoad() {
     ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/Player", "Player.gltf");
     ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/Scrap", "Scrap.obj");
     ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/hook", "hook.obj");
+    ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/Fuse_Long", "Fuse_Long.obj");
     /*ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/Floor_Gold_Text", "Floor_Gold_Text.gltf");
     ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/Floor_Silver_Text", "Floor_Silver_Text.gltf");*/
 }

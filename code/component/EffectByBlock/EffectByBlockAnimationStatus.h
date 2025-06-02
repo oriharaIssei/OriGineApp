@@ -47,18 +47,18 @@ public:
 
     virtual void Finalize();
 
-    void FadeOutEasing(const float&deltaTime);
+    void FadeOutEasing(const float& deltaTime);
     void ApearEasing(const float& deltaTime);
-    void FadeOutWaitUpdate(const float& deltaTime,const float& savePos);
+    void FadeOutWaitUpdate(const float& deltaTime, const float& savePos);
     void Reset();
 
 public: // accsessor
         /// getter
     AnimationStep GetAnimationStep() const { return animationStep_; }
-   const Vec3f& GetBaseScale() const { return baseScale_; }
-   float GetSavePosX() const { return savePosX_; }
-   float GetBasePosX() const { return basePosX_; }
-   float GetRotate() const { return rotate_; }
+    const Vec3f& GetBaseScale() const { return baseScale_; }
+    float GetSavePosX() const { return savePosX_; }
+    float GetBasePosX() const { return basePosX_; }
+    float GetRotate() const { return rotate_; }
     /// setter
     void SetApearEasing(const Easing& easing) { ApearEasing_ = easing; }
     void SetFadeOutEasing(const Easing& easing) { FadeOutEasing_ = easing; }

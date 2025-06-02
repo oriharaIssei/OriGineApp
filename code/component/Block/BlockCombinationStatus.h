@@ -3,8 +3,8 @@
 #include "component/Block/BlockManager.h"
 #include "component/IComponent.h"
 #include <cstdint>
-#include <vector>
 #include <Vector3.h>
+#include <vector>
 
 class BlockStatus;
 class BlockCombinationStatus
@@ -37,10 +37,14 @@ public:
     void Initialize(GameEntity* _entity) override;
     bool Edit() override;
     void Finalize() override;
-
     void AddBlockStatus(BlockStatus* status);
 
     bool JudgeIsAdvantageToLeft(const int& baseRowNum, const int& columNum) const;
+    void ChangeStatusAdvantageStart(const int& baseRowNum, const int& columNum);
+    void ChangeStatusRightEdge(const int& baseRowNum, const int& columNum);
+    void ChangeCenterFuse(int startRowNum, int endRowNum, int columnNum);
+    void ChangeStatusFuse(const int& baseRowNum, const int& columNum);
+
     std::vector<BlockStatus*> GetRightBlocksForCalucration(const int& baseRowNum, const int& columNum) const;
     std::vector<BlockStatus*> SortBlocksLeftToRight(std::vector<BlockStatus*> blocks);
 
@@ -56,7 +60,7 @@ public: // accsessor
     float GetMinusScoreValue() const { return minusScoreValue_; }
     float GetPlusScoreValue() const { return plusScoreValue_; }
     float GetBreakOffsetTime() const { return breakOffsetTime_; }
-    const std::vector<BlockStatus*>& GetBlockStatusArray() const {return blockStatusArray_;}
+    const std::vector<BlockStatus*>& GetBlockStatusArray() const { return blockStatusArray_; }
 
     void RemoveMarkedBlocks();
 
