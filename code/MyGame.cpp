@@ -578,6 +578,7 @@ void MyGame::ResourceAllLoad() {
     ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/Scrap", "Scrap.obj");
     ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/hook", "hook.obj");
     ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/Fuse_Long", "Fuse_Long.obj");
+    ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/Fuse", "Fuse.obj");
     /*ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/Floor_Gold_Text", "Floor_Gold_Text.gltf");
     ModelManager::getInstance()->Create(kApplicationResourceDirectory + "/Models/Floor_Silver_Text", "Floor_Silver_Text.gltf");*/
 }

@@ -63,9 +63,12 @@ void FuseCreateSystem::UpdateEntity(GameEntity* _entity) {
     if (!blockStatus || !transform) {
         return;
     }
+    if (blockStatus->GetRowNum() < blockCombinationStatus_->GetConbinationMax()) {
+        return;
+    }
 
     //
-    blockCombinationStatus_->ChangeStatusAdvantageStart(blockStatus->GetRowNum(), blockStatus->GetColumnNum());
+   /* blockCombinationStatus_->ChangeStatusAdvantageStart(blockStatus->GetRowNum(), blockStatus->GetColumnNum());*/
     blockCombinationStatus_->ChangeStatusFuse(blockStatus->GetRowNum(), blockStatus->GetColumnNum());
 
     // 導火線追加
@@ -88,10 +91,11 @@ void FuseCreateSystem::CreateFuse(GameEntity* _entity, BlockStatus* blockStatus)
     ModelMeshRenderer* fuseCenterModel = getComponent<ModelMeshRenderer>(fuseCenter);
     switch (blockStatus->GetFuseMode()) {
     case FuseMode::NONE:
+        fuseCenterModel->setIsRender(false);
         break;
 
     case FuseMode::START:
-        CreateModelMeshRenderer(fuseCenterModel, fuseCenter, kApplicationResourceDirectory + "/Models/Fuse_Long", "Fuse_Long.obj");
+        CreateModelMeshRenderer(fuseCenterModel, fuseCenter, kApplicationResourceDirectory + "/Models/Fuse", "Fuse.obj");
 
         break;
 

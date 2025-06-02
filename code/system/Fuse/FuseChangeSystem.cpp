@@ -69,7 +69,8 @@ void FuseChangeSystem::UpdateEntity(GameEntity* _entity) {
 
     case FuseMode::START:
         fuseCenterModel->setIsRender(true);
-        CreateModelMeshRenderer(fuseCenterModel, _entity, kApplicationResourceDirectory + "/Models/Fuse_Long", "Fuse_Long.obj");
+        CreateModelMeshRenderer(fuseCenterModel, _entity, kApplicationResourceDirectory + "/Models/Fuse", "Fuse.obj");
+
 
         break;
 

@@ -111,100 +111,6 @@ bool BlockCombinationStatus::JudgeIsAdvantageToLeft(const int& baseRowNum, const
     return hasAdvantage;
 }
 
-// BlockCombinationStatus.cpp
-void BlockCombinationStatus::ChangeStatusRightEdge(const int& baseRowNum, const int& columNum) {
-    BlockStatus* rightMost = nullptr;
-
-    for (BlockStatus* status : blockStatusArray_) {
-        int row    = status->GetRowNum();
-        int column = status->GetColumnNum();
-
-        // 条件に合わなければスキップ
-        if (column != columNum || status->GetIsBreak()) {
-            continue;
-        }
-
-        if (row < baseRowNum && row >= conbinationMax_) {
-            // 現在の最右（最小row）を更新
-            if (rightMost == nullptr || row < rightMost->GetRowNum()) {
-                rightMost = status;
-            }
-        }
-    }
-
-    // 全体をもう一度走査してステータス更新
-    for (BlockStatus* status : blockStatusArray_) {
-        if (status->GetColumnNum() != columNum) {
-            continue;
-        }
-
-        if (status == rightMost) {
-            status->SetFuseMode(FuseMode::END);
-        } else {
-            if (status->GetFuseMode() == FuseMode::END) {
-                status->SetFuseMode(FuseMode::CENTER);
-            }
-        }
-    }
-}
-
-void BlockCombinationStatus::ChangeCenterFuse(int startRowNum, int endRowNum, int columnNum) {
-    // STARTとENDの間にあるブロックを CENTER に設定
-    for (BlockStatus* status : blockStatusArray_) {
-        if (status->GetColumnNum() != columnNum)
-            continue;
-        if (status->GetBlockType() != BlockType::ADVANTAGE)
-            continue;
-        if (status->GetIsBreak())
-            continue;
-
-        int row = status->GetRowNum();
-        if ((startRowNum < row && row < endRowNum) || (endRowNum < row && row < startRowNum)) {
-            status->SetFuseMode(FuseMode::CENTER);
-        }
-    }
-}
-
-// BlockCombinationStatus.cpp
-void BlockCombinationStatus::ChangeStatusAdvantageStart(const int& baseRowNum, const int& columNum) {
-    BlockStatus* rightMost = nullptr;
-
-    for (BlockStatus* status : blockStatusArray_) {
-        int row    = status->GetRowNum();
-        int column = status->GetColumnNum();
-
-        // 条件：列が一致・破壊されていない・ADVANTAGE・指定範囲
-        if (column != columNum || status->GetIsBreak() || status->GetBlockType() != BlockType::ADVANTAGE) {
-            continue;
-        }
-
-        if (row < baseRowNum && row >= conbinationMax_) {
-            if (rightMost == nullptr || row < rightMost->GetRowNum()) {
-                rightMost = status;
-            }
-        }
-    }
-
-    // FuseMode を更新
-    for (BlockStatus* status : blockStatusArray_) {
-        if (status->GetColumnNum() != columNum) {
-            continue;
-        }
-
-        if (status->GetBlockType() != BlockType::ADVANTAGE) {
-            continue;
-        }
-
-        if (status == rightMost) {
-            status->SetFuseMode(FuseMode::START);
-        } else {
-
-            if (status->GetFuseMode() == FuseMode::START) {
-                status->SetFuseMode(FuseMode::CENTER);
-            }
-        }
-    }
-}
 
 std::vector<BlockStatus*> BlockCombinationStatus::GetRightBlocksForCalucration(const int& baseRowNum, const int& columNum) const {
     std::vector<BlockStatus*> result;
@@ -262,28 +168,115 @@ void BlockCombinationStatus::RemoveMarkedBlocks() {
         blockStatusArray_.end());
 }
 
-void BlockCombinationStatus::ChangeStatusFuse(const int& baseRowNum, const int& columNum) {
-    bool hasLeftAdvantage = false;
+
+
+// BlockCombinationStatus.cpp
+void BlockCombinationStatus::ChangeStatusRightEdge(const int& baseRowNum, const int& columNum) {
+    BlockStatus* rightMost = nullptr;
 
     for (BlockStatus* status : blockStatusArray_) {
         int row    = status->GetRowNum();
         int column = status->GetColumnNum();
 
-        // 同じ列、かつ左側にADVANTAGEブロックがあればフラグを立てる
-        if (column == columNum && row > baseRowNum && status->GetBlockType() == BlockType::ADVANTAGE && !status->GetIsBreak()) {
-            hasLeftAdvantage = true;
+        // 条件に合わなければスキップ
+        if (column != columNum || status->GetIsBreak()) {
+            continue;
+        }
+
+        if (row < baseRowNum && row >= conbinationMax_) {
+            // 現在の最右（最小row）を更新
+            if (rightMost == nullptr || row < rightMost->GetRowNum()) {
+                rightMost = status;
+            }
+        }
+    }
+
+    // 全体をもう一度走査してステータス更新
+    for (BlockStatus* status : blockStatusArray_) {
+        if (status->GetColumnNum() != columNum) {
+            continue;
+        }
+
+        if (status == rightMost) {
+            status->SetFuseMode(FuseMode::END);
+        } else {
+            if (status->GetFuseMode() == FuseMode::END) {
+                status->SetFuseMode(FuseMode::CENTER);
+            }
+        }
+    }
+}
+
+void BlockCombinationStatus::ChangeStatusFuse(const int& baseRowNum, const int& columNum) {
+    // 対象ブロックを探す
+    BlockStatus* targetBlock = nullptr;
+    for (BlockStatus* status : blockStatusArray_) {
+        if (status->GetColumnNum() == columNum && status->GetRowNum() == baseRowNum && !status->GetIsBreak()) {
+            targetBlock = status;
             break;
         }
     }
 
-    if (hasLeftAdvantage) {
-        // baseRowNum の位置のブロックを探して CENTER にする
+    // 対象ブロックが見つからない場合は処理終了
+    if (!targetBlock) {
+        return;
+    }
+
+    // 対象ブロックがADVANTAGE以外の場合のみ処理を実行
+    if (targetBlock->GetBlockType() != BlockType::ADVANTAGE) {
+        bool hasLeftAdvantage = false;
+
+        // 同じ列で、対象ブロックより左側（rowが大きい値）にADVANTAGEブロックがあるかチェック
         for (BlockStatus* status : blockStatusArray_) {
-            if (status->GetColumnNum() == columNum && status->GetRowNum() == baseRowNum && !status->GetIsBreak()) {
-                status->SetFuseMode(FuseMode::CENTER);
-                status->SetIsCreateFuse(true);
+            int row    = status->GetRowNum();
+            int column = status->GetColumnNum();
+
+            if (column == columNum && row > baseRowNum && status->GetBlockType() == BlockType::ADVANTAGE && !status->GetIsBreak()) {
+                hasLeftAdvantage = true;
                 break;
             }
+        }
+
+        // 左側にADVANTAGEブロックがある場合、対象ブロックの設定を変更
+        if (hasLeftAdvantage) {
+            targetBlock->SetFuseMode(FuseMode::CENTER);
+            targetBlock->SetIsCreatedFuse(true);
+        }
+    }
+}
+void BlockCombinationStatus::ChangeStatusAdvantageStart(const int& baseRowNum, const int& columNum) {
+    BlockStatus* leftMostAdvantage = nullptr;
+
+    // 最も左（row が最大）の ADVANTAGE ブロックを探す
+    for (BlockStatus* status : blockStatusArray_) {
+        int row    = status->GetRowNum();
+        int column = status->GetColumnNum();
+
+        if (column != columNum || status->GetIsBreak() || status->GetBlockType() != BlockType::ADVANTAGE) {
+            continue;
+        }
+
+        if (row < baseRowNum && row >= conbinationMax_) {
+            if (leftMostAdvantage == nullptr || row > leftMostAdvantage->GetRowNum()) {
+                leftMostAdvantage = status;
+            }
+        }
+    }
+
+    // FuseMode を更新
+    for (BlockStatus* status : blockStatusArray_) {
+        int row    = status->GetRowNum();
+        int column = status->GetColumnNum();
+
+        if (column != columNum || status->GetBlockType() != BlockType::ADVANTAGE) {
+            continue;
+        }
+
+        if (status == leftMostAdvantage) {
+            status->SetFuseMode(FuseMode::START);
+        } else if (leftMostAdvantage && row < leftMostAdvantage->GetRowNum()) {
+            // leftMost より右（row が小さい）なら CENTER に変更
+            status->SetFuseMode(FuseMode::CENTER);
         }
     }
 }
