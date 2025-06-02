@@ -22,10 +22,11 @@ SceneChanger::SceneChanger() {
 SceneChanger::~SceneChanger() {
 }
 
-void SceneChanger::Initialize(GameEntity* /* _entity*/) {}
+void SceneChanger::Initialize(GameEntity* /*_entity*/) {}
 
 bool SceneChanger::Edit() {
     bool changed = false;
+
 #ifdef _DEBUG
 
     ImGui::Text("Next Scene Name :");
@@ -47,8 +48,7 @@ bool SceneChanger::Edit() {
         ImGui::EndCombo();
     }
 
-#endif // _DEBUG
-
+#endif
     return changed;
 }
 
