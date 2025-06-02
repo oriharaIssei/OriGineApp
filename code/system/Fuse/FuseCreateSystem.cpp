@@ -141,7 +141,7 @@ void FuseCreateSystem::CreateFuse(GameEntity* _entity, BlockStatus* blockStatus)
     fuseStatus->SetBasePosition(&blockStatus->GetBasePos());
     fuseStatus->SetIsDeath(&blockStatus->GetIsBreak());
     fuseStatus->SetFuseMode(&blockStatus->GetFuseMode());
-    fuseStatus->SetMaxScale(Vec3f(7.5f, 3.5f, 2.5f));
+    fuseStatus->SetMaxScale(Vec3f(8.5f, 3.5f, 2.5f));
     fuseStatus->SetStartScale(Vec3f(0.0f, 3.5f, 2.5f));
     fuseStatus->Reset();
 
