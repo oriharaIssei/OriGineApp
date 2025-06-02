@@ -68,8 +68,11 @@ void FuseCreateSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     //
-   /* blockCombinationStatus_->ChangeStatusAdvantageStart(blockStatus->GetRowNum(), blockStatus->GetColumnNum());*/
-    blockCombinationStatus_->ChangeStatusFuse(blockStatus->GetRowNum(), blockStatus->GetColumnNum());
+    if (blockStatus->GetBlockType() == BlockType::ADVANTAGE) {
+        blockCombinationStatus_->ChangeStatusAdvantageStart(blockStatus->GetRowNum(), blockStatus->GetColumnNum());
+    } else {
+        blockCombinationStatus_->ChangeStatusFuse(blockStatus->GetRowNum(), blockStatus->GetColumnNum());
+    }
 
     // 導火線追加
     CreateFuse(_entity, blockStatus);

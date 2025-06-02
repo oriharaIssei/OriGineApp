@@ -248,42 +248,40 @@ void BlockCombinationStatus::ChangeStatusFuse(const int& baseRowNum, const int& 
 }
 
 void BlockCombinationStatus::ChangeStatusAdvantageStart(const int& baseRowNum, const int& columNum) {
-    BlockStatus* leftMostAdvantage = nullptr;
-
-    // 最も左（row が最大）の ADVANTAGE ブロックを探す
+    // 対象ブロック（baseRowNum, columNum）を探す
+    BlockStatus* targetBlock = nullptr;
     for (BlockStatus* status : blockStatusArray_) {
-        int row    = status->GetRowNum();
-        int column = status->GetColumnNum();
-
-        if (column != columNum || status->GetIsBreak() || status->GetBlockType() != BlockType::ADVANTAGE) {
-            continue;
-        }
-
-        if (row < baseRowNum && row >= conbinationMax_) {
-            if (leftMostAdvantage == nullptr || row > leftMostAdvantage->GetRowNum()) {
-                leftMostAdvantage = status;
-            }
+        if (status->GetColumnNum() == columNum && status->GetRowNum() == baseRowNum && !status->GetIsBreak()) {
+            targetBlock = status;
+            break;
         }
     }
 
-    // FuseMode を更新
+    // 対象ブロックが見つからない、またはADVANTAGEブロックでない場合は処理終了
+    if (!targetBlock || targetBlock->GetBlockType() != BlockType::ADVANTAGE) {
+        return;
+    }
+
+    // 左側（rowが大きい値）に更にADVANTAGEブロックがあるかチェック
+    bool hasLeftAdvantage = false;
     for (BlockStatus* status : blockStatusArray_) {
         int row    = status->GetRowNum();
         int column = status->GetColumnNum();
 
-        if (column != columNum || status->GetBlockType() != BlockType::ADVANTAGE) {
-            continue;
+        if (column == columNum && row > baseRowNum && row >= conbinationMax_ && status->GetBlockType() == BlockType::ADVANTAGE && !status->GetIsBreak()) {
+            hasLeftAdvantage = true;
+            break;
         }
+    }
 
-        if (status == leftMostAdvantage) {
-            status->SetFuseMode(FuseMode::START);
-        } else if (leftMostAdvantage && row < leftMostAdvantage->GetRowNum()) {
-            // leftMost より右（row が小さい）なら CENTER に変更
-            status->SetFuseMode(FuseMode::CENTER);
-        }
+    // FuseModeを設定
+    if (hasLeftAdvantage) {
+        targetBlock->SetIsCreateFuse(true);
+        targetBlock->SetFuseMode(FuseMode::CENTER);
+    } else {
+        targetBlock->SetIsCreateFuse(true);
+        targetBlock->SetFuseMode(FuseMode::START);
     }
 }
-
-
 
 
