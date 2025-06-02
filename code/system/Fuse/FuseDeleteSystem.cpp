@@ -47,6 +47,7 @@ void FuseDeleteSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
+
     if (*fuseStatus->GetIsDeath()) {
         DestroyEntity(_entity);
     }

@@ -204,6 +204,10 @@
             "Name": "TitleTransitionIN",
             "Systems": [
                 {
+                    "SystemName": "SceneTransitionSystem",
+                    "SystemType": 3
+                },
+                {
                     "SystemName": "EffectTexturedMeshRenderSystem",
                     "SystemType": 6
                 }
@@ -219,6 +223,12 @@
                 ]
             },
             "Name": "SceneChanger",
+            "Systems": [
+                {
+                    "SystemName": "SceneChangerSystem",
+                    "SystemType": 2
+                }
+            ],
             "isUnique": true
         },
         {
@@ -356,6 +366,10 @@
             },
             "Name": "TitleOutTransition",
             "Systems": [
+                {
+                    "SystemName": "SceneTransitionSystem",
+                    "SystemType": 3
+                },
                 {
                     "SystemName": "EffectTexturedMeshRenderSystem",
                     "SystemType": 6
@@ -1342,15 +1356,334 @@
                 }
             ],
             "isUnique": false
+        },
+        {
+            "Components": {
+                "Audio": [
+                    {
+                        "fileName": "application/resource/sound/Title.wav",
+                        "isLoop": true,
+                        "isPlay": true,
+                        "valume": 0.2409999966621399
+                    }
+                ]
+            },
+            "Name": "AUDIO",
+            "isUnique": true
         }
     ],
     "Systems": [
-        {},
-        {},
-        {},
-        {},
-        {},
         {
+            "CreateFloorSystem": {
+                "Priority": 0
+            },
+            "LevelUIInitSystem": {
+                "Priority": 0
+            },
+            "LevelUIParentInitSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "BigBomInputSystem": {
+                "Priority": 0
+            },
+            "BomExplotionSystem": {
+                "Priority": 0
+            },
+            "ButtonInputSystem": {
+                "Priority": 0
+            },
+            "PlayerInputSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "BackPlaneChangeCloseSystem": {
+                "Priority": 0
+            },
+            "BreakBlockSystem": {
+                "Priority": 0
+            },
+            "CanageStateFallSystem": {
+                "Priority": 0
+            },
+            "ChangeSceneByButton": {
+                "Priority": 0
+            },
+            "CombiArrayRemoveSystem": {
+                "Priority": 0
+            },
+            "DeleteBigBomSystem": {
+                "Priority": 0
+            },
+            "DeleteBigExplotionCollision": {
+                "Priority": 0
+            },
+            "DeleteBlockForAdvantageSystem": {
+                "Priority": 0
+            },
+            "DeleteBlockSystem": {
+                "Priority": 0
+            },
+            "DeleteBomSystem": {
+                "Priority": 0
+            },
+            "DeleteEntitySystem": {
+                "Priority": 0
+            },
+            "DeleteExplotionCollision": {
+                "Priority": 0
+            },
+            "DeleteFloatingFloorSystem": {
+                "Priority": 0
+            },
+            "DeleteFloorSystem": {
+                "Priority": 0
+            },
+            "EffectByBlockDeleteSystem": {
+                "Priority": 0
+            },
+            "FrontPlaneDeleteSystem": {
+                "Priority": 0
+            },
+            "FuseDeleteSystem": {
+                "Priority": 0
+            },
+            "SceneChangerSystem": {
+                "Priority": 0
+            },
+            "ScrapDeleteSystem": {
+                "Priority": 0
+            },
+            "UpdateButtonColorByState": {
+                "Priority": 0
+            }
+        },
+        {
+            "AdapAnimationtBackTimerSystem": {
+                "Priority": 0
+            },
+            "AdaptGoSystem": {
+                "Priority": 0
+            },
+            "AdaptPurposeSystem": {
+                "Priority": 0
+            },
+            "AdaptReadySystem": {
+                "Priority": 0
+            },
+            "BackPlaneCloseSystem": {
+                "Priority": 0
+            },
+            "BigBomLaunchSystem": {
+                "Priority": 0
+            },
+            "BlockApearSystem": {
+                "Priority": 0
+            },
+            "BlockMoveSystem": {
+                "Priority": 0
+            },
+            "BlockSpawnSystem": {
+                "Priority": 0
+            },
+            "CameraShakeSystem": {
+                "Priority": 0
+            },
+            "ComboSystem": {
+                "Priority": 0
+            },
+            "ComboUIScrollSystem": {
+                "Priority": 0
+            },
+            "EffectByBlockAnimationSystem": {
+                "Priority": 0
+            },
+            "EffectByBlockDrawSystem": {
+                "Priority": 0
+            },
+            "FloatingFloorAnimationSystem": {
+                "Priority": 0
+            },
+            "FloatingFloorFallSystem": {
+                "Priority": 0
+            },
+            "FloatingFloorRevivalSystem": {
+                "Priority": 0
+            },
+            "FloorUISystem": {
+                "Priority": 0
+            },
+            "FloorUpdateMatrixSystem": {
+                "Priority": 0
+            },
+            "FuseAdaptPosSystem": {
+                "Priority": 0
+            },
+            "FuseChangeSystem": {
+                "Priority": 0
+            },
+            "FuseCreateSystem": {
+                "Priority": 0
+            },
+            "GameEndUISystem": {
+                "Priority": 0
+            },
+            "GameStartBackGroundSystem": {
+                "Priority": 0
+            },
+            "GameStartRenditionSystem": {
+                "Priority": 0
+            },
+            "LevelUIAdaptSystem": {
+                "Priority": 0
+            },
+            "LevelUIAnimationSystem": {
+                "Priority": 0
+            },
+            "MenuArrowSystem": {
+                "Priority": 0
+            },
+            "MenuFontSystem": {
+                "Priority": 0
+            },
+            "MenuSystem": {
+                "Priority": 0
+            },
+            "MenutextSystem": {
+                "Priority": 0
+            },
+            "MoveSystemByRigidBody": {
+                "Priority": 0
+            },
+            "MoveTenpoSystem": {
+                "Priority": 0
+            },
+            "OperateUISystem": {
+                "Priority": 0
+            },
+            "PlayerAnimationSystem": {
+                "Priority": 0
+            },
+            "PlayerCreateBigBomSystem": {
+                "Priority": 0
+            },
+            "PlayerFollowCameraSystem": {
+                "Priority": 0
+            },
+            "PlayerMoveSystem": {
+                "Priority": 0
+            },
+            "PlusScoreAdaptUISystem": {
+                "Priority": 0
+            },
+            "PlusScoreIconSystem": {
+                "Priority": 0
+            },
+            "PutBomSystem": {
+                "Priority": 0
+            },
+            "ResultFontSystem": {
+                "Priority": 0
+            },
+            "ResultKeySystem": {
+                "Priority": 0
+            },
+            "ResultRankSystem": {
+                "Priority": 0
+            },
+            "ResultScoreAdaptSystem": {
+                "Priority": 0
+            },
+            "ResultUIParentSystem": {
+                "Priority": 0
+            },
+            "ScaleByBlockSystem": {
+                "Priority": 0
+            },
+            "SceneTransitionSystem": {
+                "Priority": 0
+            },
+            "ScoreIncrementSystem": {
+                "Priority": 0
+            },
+            "ScoreUIScrollSystem": {
+                "Priority": 0
+            },
+            "ScrapFallSystem": {
+                "Priority": 0
+            },
+            "SkullSinisterEffectSystem": {
+                "Priority": 0
+            },
+            "TimeAdaptAinmationSystem": {
+                "Priority": 0
+            },
+            "TimerAdaptVignetSystem": {
+                "Priority": 0
+            },
+            "TimerAnimationSystem": {
+                "Priority": 0
+            },
+            "TimerDecrementSystem": {
+                "Priority": 0
+            },
+            "TimerUIScrollSystem": {
+                "Priority": 0
+            },
+            "TutorialArrowSystem": {
+                "Priority": 0
+            },
+            "TutorialMenuParentSystem": {
+                "Priority": 0
+            },
+            "TutorialMenuSystem": {
+                "Priority": 0
+            },
+            "UpdateMatrixSystem": {
+                "Priority": 0
+            },
+            "UsingCameraSetSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "BigBomCollisionExSystem": {
+                "Priority": 0
+            },
+            "BlockColorChangeSystem": {
+                "Priority": 0
+            },
+            "BlockExBomCollision": {
+                "Priority": 0
+            },
+            "BlockFloorCollision": {
+                "Priority": 0
+            },
+            "BomCollisionExSystem": {
+                "Priority": 0
+            },
+            "CheckIsUnderPlayer": {
+                "Priority": 0
+            },
+            "CollisionCheckSystem": {
+                "Priority": 0
+            },
+            "FloatingFloorDamageSystem": {
+                "Priority": 0
+            },
+            "ScrapToPlayerCollisionSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "EmitterWorkSystem": {
+                "Priority": 0
+            },
+            "PrimitiveNodeAnimationWorkSystem": {
+                "Priority": 0
+            },
             "SpriteAnimationSystem": {
                 "Priority": 0
             }
@@ -1359,8 +1692,14 @@
             "BackGroundSpriteRenderSystem": {
                 "Priority": 0
             },
+            "ColliderRenderingSystem": {
+                "Priority": 0
+            },
             "EffectTexturedMeshRenderSystem": {
                 "Priority": 5
+            },
+            "LineRenderSystem": {
+                "Priority": 1
             },
             "ParticleRenderSystem": {
                 "Priority": 4
@@ -1372,6 +1711,10 @@
                 "Priority": 2
             }
         },
-        {}
+        {
+            "VignetteEffect": {
+                "Priority": 1
+            }
+        }
     ]
 }
