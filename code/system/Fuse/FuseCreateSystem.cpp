@@ -18,9 +18,9 @@
 #include "component/Menu/MenuStatus.h"
 //  system
 #include "system/Fuse/FuseAdaptPosSystem.h"
+#include "system/Fuse/FuseChangeSystem.h"
 #include "system/Fuse/FuseCreateSystem.h"
 #include "system/Fuse/FuseDeleteSystem.h"
-#include"system/Fuse/FuseChangeSystem.h"
 #include <cstdint>
 
 FuseCreateSystem::FuseCreateSystem() : ISystem(SystemType::Movement) {}
@@ -77,8 +77,7 @@ void FuseCreateSystem::UpdateEntity(GameEntity* _entity) {
     // 導火線追加
     CreateFuse(_entity, blockStatus);
     ////導火線変更
-    //ChangeFuse(_entity, blockStatus);
-
+    // ChangeFuse(_entity, blockStatus);
 }
 
 void FuseCreateSystem::CreateFuse(GameEntity* _entity, BlockStatus* blockStatus) {
@@ -88,10 +87,12 @@ void FuseCreateSystem::CreateFuse(GameEntity* _entity, BlockStatus* blockStatus)
         return;
     }
 
-    GameEntity* fuseCenter = CreateEntity<Transform, Rigidbody, ModelMeshRenderer, FuseStatus>("FuseCenters", Transform(), Rigidbody(), ModelMeshRenderer(), FuseStatus());
+    GameEntity* fuseCenter = CreateEntity<Transform, Rigidbody, ModelMeshRenderer, FuseStatus, Emitter>("FuseCenters", Transform(), Rigidbody(), ModelMeshRenderer(), FuseStatus(), Emitter());
     FuseStatus* fuseStatus = getComponent<FuseStatus>(fuseCenter);
+
     //* model
     ModelMeshRenderer* fuseCenterModel = getComponent<ModelMeshRenderer>(fuseCenter);
+
     switch (blockStatus->GetFuseMode()) {
     case FuseMode::NONE:
         fuseCenterModel->setIsRender(false);
@@ -112,9 +113,30 @@ void FuseCreateSystem::CreateFuse(GameEntity* _entity, BlockStatus* blockStatus)
     default:
         break;
     }
-   
+
+    // particleEntity
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* fireParticleEntity           = ecsManager->getUniqueEntity("FuseFire");
+
+    if (!fireParticleEntity) {
+        return;
+    }
+
+    // Particle達
+    for (int32_t i = 0; i < fireEmitter_.size(); ++i) {
+        fireEmitter_[i] = getComponent<Emitter>(fireParticleEntity, i);
+    }
+    // dataget
+    fireEmitterData_[0] = *fireEmitter_[0];
+
+    // adapt
+    Emitter* emitterLayer1 = getComponent<Emitter>(fuseCenter);
+    *emitterLayer1         = fireEmitterData_[0];
+
+    // init
+    emitterLayer1->Initialize(fuseCenter);
+
     // set
-   
     fuseStatus->SetBasePosition(&blockStatus->GetBasePos());
     fuseStatus->SetIsDeath(&blockStatus->GetIsBreak());
     fuseStatus->SetFuseMode(&blockStatus->GetFuseMode());
@@ -128,16 +150,19 @@ void FuseCreateSystem::CreateFuse(GameEntity* _entity, BlockStatus* blockStatus)
     ecs->getSystem<MoveSystemByRigidBody>()->addEntity(fuseCenter);
     ecs->getSystem<TexturedMeshRenderSystem>()->addEntity(fuseCenter);
 
-    ecs->getSystem<FuseAdaptPosSystem>()->addEntity(fuseCenter); 
+    ecs->getSystem<FuseAdaptPosSystem>()->addEntity(fuseCenter);
     ecs->getSystem<FuseDeleteSystem>()->addEntity(fuseCenter);
     ecs->getSystem<FuseChangeSystem>()->addEntity(fuseCenter);
+
+    ecs->getSystem<EmitterWorkSystem>()->addEntity(fuseCenter);
+    ecs->getSystem<ParticleRenderSystem>()->addEntity(fuseCenter);
 
     blockStatus->SetIsCreatedFuse(true);
 }
 
-//void FuseCreateSystem::ChangeFuse(GameEntity* _entity, BlockStatus* blockStatus) {
+// void FuseCreateSystem::ChangeFuse(GameEntity* _entity, BlockStatus* blockStatus) {
 //
-// }
+//  }
 
 //// アドバンテージブロック処理
 // if (blockStatus->GetBlockType() == BlockType::ADVANTAGE) {

@@ -55,6 +55,8 @@ void FuseChangeSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     FuseStatus* fuseStatus = getComponent<FuseStatus>(_entity);
+    Emitter* emitterFire    = getComponent<Emitter>(_entity);
+  
 
     if (!fuseStatus) {
         return;
@@ -62,24 +64,41 @@ void FuseChangeSystem::UpdateEntity(GameEntity* _entity) {
 
     //* model
     ModelMeshRenderer* fuseCenterModel = getComponent<ModelMeshRenderer>(_entity);
+
     switch (*fuseStatus->GetFuseMode()) {
+        /// -------------------------------------------------
+        /// NONE
+        /// -------------------------------------------------
     case FuseMode::NONE:
+        emitterFire->setIsLoop(false);
         fuseCenterModel->setIsRender(false);
+     
         break;
-
+        /// -------------------------------------------------
+        /// NONE
+        /// -------------------------------------------------
     case FuseMode::START:
+
         fuseCenterModel->setIsRender(true);
+        fuseStatus->SetOffSetPos(Vec3f(0.0f, 0.0f, -6.0f));
+
+        if (emitterFire) {
+            emitterFire->PlayStart();
+            emitterFire->setIsLoop(true);
+        }
+        
         CreateModelMeshRenderer(fuseCenterModel, _entity, kApplicationResourceDirectory + "/Models/Fuse", "Fuse.obj");
-
-
         break;
-
+        /// -------------------------------------------------
+        /// NONE
+        /// -------------------------------------------------
     case FuseMode::CENTER:
-       /* fuseCenterModel->setIsRender(true);
-        CreateModelMeshRenderer(fuseCenterModel, _entity, kApplicationResourceDirectory + "/Models/Fuse_Long", "Fuse_Long.obj");*/
-
+        emitterFire->setIsLoop(false);
+        fuseStatus->SetOffSetPos(Vec3f(-5.0f, 0.0f, -6.0f));
         break;
-
+        /// -------------------------------------------------
+        /// NONE
+        /// -------------------------------------------------
     case FuseMode::END:
         break;
     default:

@@ -4,6 +4,8 @@
 
 #include "component/Block/BlockManager.h"
 #include <cstdint>
+#include <array>
+#include <nlohmann/json.hpp>
 
 
 ///====================================================================
@@ -11,12 +13,16 @@
 ///====================================================================
 class BlockStatus;
 class BlockCombinationStatus;
+class Emitter;
 class FuseCreateSystem : public ISystem {
 private:
     bool isInited_;
 
     BlockManager* blockSpawner_=nullptr;
     BlockCombinationStatus* blockCombinationStatus_ = nullptr;
+
+    std::array<Emitter*, 1> fireEmitter_;
+    std::array<nlohmann::json, 1> fireEmitterData_;
 
     public:
     FuseCreateSystem();
