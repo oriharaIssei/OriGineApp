@@ -90,7 +90,7 @@ void DeleteBlockForAdvantageSystem::BlockBreakParticleShot(GameEntity* _entity, 
         /// Skull
         ///---------------------------------------------
     case BlockType::SKULL:
-
+        SpawnBlockEffectS(blocktype);
         breakSkull->Play();
 
         break;
@@ -273,6 +273,96 @@ void DeleteBlockForAdvantageSystem::SpawnBlockEffectN(BlockType type) {
     // created
     deleteEntityStatus->SetIsCreated(true);
 }
+
+void DeleteBlockForAdvantageSystem::SpawnBlockEffectS(BlockType type) {
+    type;
+
+    EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
+    GameEntity* breakBlockEffectManager      = ecsManager->getUniqueEntity("SkullEx");
+
+    GameEntity* blockbreakEffect = CreateEntity<Emitter, Emitter, Emitter, Emitter, DeleteEntityStatus>("blockbreakEffectS", Emitter(), Emitter(), Emitter(), Emitter(), DeleteEntityStatus());
+
+    DeleteEntityStatus* deleteEntityStatus = getComponent<DeleteEntityStatus>(blockbreakEffect);
+
+    // 　生成済なら早期リターン(1回しか通らないはずなんだけど...)
+    if (deleteEntityStatus->GetIsCreated()) {
+        return;
+    }
+    deleteEntityStatus->SetDeleteTime(5.0f);
+
+    // advantage
+    for (int32_t i = 0; i < breakBlockEffectsS_.size(); ++i) {
+        breakBlockEffectsS_[i] = getComponent<Emitter>(breakBlockEffectManager, i);
+    }
+
+    /*for (int32_t i = 0; i < breakBlockEffects_.size(); ++i) {
+        breakEffect_[i] = getComponent<Emitter>(blockbreakEffect, i);
+    }*/
+
+    // emitter
+    Emitter* breakEffect0 = getComponent<Emitter>(blockbreakEffect, 0);
+    Emitter* breakEffect1 = getComponent<Emitter>(blockbreakEffect, 1);
+    Emitter* breakEffect2 = getComponent<Emitter>(blockbreakEffect, 2);
+    Emitter* breakEffect3 = getComponent<Emitter>(blockbreakEffect, 3);
+
+    // advantage
+    nlohmann::json breakBlockEffects0 = *breakBlockEffectsS_[0];
+    nlohmann::json breakBlockEffects1 = *breakBlockEffectsS_[1];
+    nlohmann::json breakBlockEffects2 = *breakBlockEffectsS_[2];
+    nlohmann::json breakBlockEffects3 = *breakBlockEffectsS_[3];
+
+    *breakEffect0 = breakBlockEffects0;
+    *breakEffect1 = breakBlockEffects1;
+    *breakEffect2 = breakBlockEffects2;
+    *breakEffect3 = breakBlockEffects3;
+
+    // テクスチャを読み込む
+    breakEffect0->Initialize(blockbreakEffect);
+    breakEffect1->Initialize(blockbreakEffect);
+    breakEffect2->Initialize(blockbreakEffect);
+    breakEffect3->Initialize(blockbreakEffect);
+
+    //// Particle発射
+    Vec3f basePos = Vec3f(blockTransform_->worldMat[3]) + Vec3f(0.0f, 0.0f, -5.0f);
+
+    ECSManager* ecs = ECSManager::getInstance();
+    //------------------ Input
+    // None
+
+    //------------------ StateTransition
+    ecs->getSystem<DeleteEntitySystem>()->addEntity(blockbreakEffect);
+    //------------------ Movement
+    ecs->getSystem<EmitterWorkSystem>()->addEntity(blockbreakEffect);
+    //------------------ Collision
+
+    //------------------ Physics
+    // None
+
+    //------------------ Render
+    ecs->getSystem<ParticleRenderSystem>()->addEntity(blockbreakEffect);
+
+    // set origin
+    /* for (int32_t i = 0; i < breakBlockEffects_.size(); ++i) {
+         breakEffect_[i]->setOriginePos(basePos);
+         breakEffect_[i]->PlayStart();
+     }*/
+
+    // setorigin
+    breakEffect0->setOriginePos(basePos);
+    breakEffect1->setOriginePos(basePos);
+    breakEffect2->setOriginePos(basePos);
+    breakEffect3->setOriginePos(basePos);
+
+    // shot
+    breakEffect0->PlayStart();
+    breakEffect1->PlayStart();
+    breakEffect2->PlayStart();
+    breakEffect3->PlayStart();
+
+    // created
+    deleteEntityStatus->SetIsCreated(true);
+}
+
 
 
 

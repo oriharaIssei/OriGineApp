@@ -53108,6 +53108,16 @@
                 ]
             },
             "Name": "BomEx",
+            "Systems": [
+                {
+                    "SystemName": "EmitterWorkSystem",
+                    "SystemType": 5
+                },
+                {
+                    "SystemName": "ParticleRenderSystem",
+                    "SystemType": 6
+                }
+            ],
             "isUnique": true
         },
         {
@@ -54126,10 +54136,291 @@
                         ],
                         "updateSettings": 4498,
                         "uvInterpolationType": 0
+                    },
+                    {
+                        "EmitterShape": {
+                            "radius": 0.0,
+                            "spawnType": 0
+                        },
+                        "activeTime": 1.2999999523162842,
+                        "blendMode": 2,
+                        "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    1.0,
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    1.0,
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "time": 1.0410094261169434,
+                                "value": [
+                                    1.0,
+                                    1.0,
+                                    1.0,
+                                    0.07058823853731155
+                                ]
+                            }
+                        ],
+                        "colorInterpolationType": 0,
+                        "isActive": true,
+                        "isLoop": false,
+                        "originPos": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "particleColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "particleIsBillBoard": true,
+                        "particleLifeTime": 1.100000023841858,
+                        "particleUvRotate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "particleUvScale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "particleUvTranslate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "randMass": [
+                            1.0,
+                            1.0
+                        ],
+                        "rotateCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.27066245675086975,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.8999999761581421
+                                ]
+                            },
+                            {
+                                "time": 0.7252365946769714,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    -0.800000011920929
+                                ]
+                            },
+                            {
+                                "time": 1.100000023841858,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ],
+                        "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.392113596200943,
+                                "value": [
+                                    2.0,
+                                    2.0,
+                                    2.0
+                                ]
+                            },
+                            {
+                                "time": 1.100000023841858,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ],
+                        "shapeType": 0,
+                        "spawnCoolTime": 0.4000000059604645,
+                        "spawnParticleVal": 1,
+                        "startParticleRotateMax": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "startParticleRotateMin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "startParticleScaleMax": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "startParticleScaleMin": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "startParticleVelocityMax": [
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "startParticleVelocityMin": [
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "textureFileName": "application/resource\\Texture/SkullTexture.png",
+                        "transformInterpolationType": 0,
+                        "updateParticleRotateMax": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "updateParticleRotateMin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "updateParticleScaleMax": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "updateParticleScaleMin": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "updateParticleVelocityMax": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "updateParticleVelocityMin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "updateSettings": 266,
+                        "uvInterpolationType": 0
                     }
                 ]
             },
-            "Name": "BlockEx",
+            "Name": "SkullEx",
             "isUnique": true
         }
     ],
