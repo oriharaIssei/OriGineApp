@@ -36,3 +36,22 @@ void to_json(nlohmann::json& _json, const FuseStatus& _timerStatus) {
 void from_json(const nlohmann::json& _json, FuseStatus& _timerStatus) {
     _json.at("isAlive").get_to(_timerStatus.isAlive_);
 }
+
+void FuseStatus::ScaleEasing(const float& deltaTime) {
+    easing_.time += deltaTime;
+
+    scale_ = EaseInCirc(StartScale_, maxScale_, easing_.time, easing_.maxTime);
+
+    if (easing_.time < easing_.maxTime) {
+        return;
+    }
+
+    scale_       = maxScale_;
+    easing_.time = easing_.maxTime;
+}
+
+void FuseStatus::Reset() {
+    easing_.time = 0.0f;
+    easing_.maxTime = 0.35f;
+    scale_       = StartScale_;
+}

@@ -38,6 +38,11 @@ void FuseAdaptPosSystem::UpdateEntity(GameEntity* _entity) {
     if (!fuseStatus->GetBasePos()) {
         return;
     }
+
+    float deltaTime = Engine::getInstance()->getDeltaTime();
+
+    fuseStatus->ScaleEasing(deltaTime);
+
     transform->translate = *fuseStatus->GetBasePos()+fuseStatus->GetOffsetPos();
     transform->scale     = fuseStatus->GetScale();
   

@@ -5,7 +5,6 @@
 #include "component/Block/BlockManager.h"
 #include <cstdint>
 
-
 ///====================================================================
 // FloorSystem
 ///====================================================================
@@ -15,16 +14,13 @@ class FuseDeleteSystem : public ISystem {
 private:
     bool isInited_;
 
- 
-    public:
+public:
     FuseDeleteSystem();
-        ~FuseDeleteSystem();
+    ~FuseDeleteSystem();
 
     void Initialize() override;
     void Finalize() override;
 
- 
-   
 protected:
     void UpdateEntity(GameEntity* _entity) override;
 };

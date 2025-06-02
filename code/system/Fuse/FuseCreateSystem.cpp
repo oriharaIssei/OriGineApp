@@ -89,7 +89,7 @@ void FuseCreateSystem::CreateFuse(GameEntity* _entity, BlockStatus* blockStatus)
     }
 
     GameEntity* fuseCenter = CreateEntity<Transform, Rigidbody, ModelMeshRenderer, FuseStatus>("FuseCenters", Transform(), Rigidbody(), ModelMeshRenderer(), FuseStatus());
-
+    FuseStatus* fuseStatus = getComponent<FuseStatus>(fuseCenter);
     //* model
     ModelMeshRenderer* fuseCenterModel = getComponent<ModelMeshRenderer>(fuseCenter);
     switch (blockStatus->GetFuseMode()) {
@@ -99,12 +99,12 @@ void FuseCreateSystem::CreateFuse(GameEntity* _entity, BlockStatus* blockStatus)
 
     case FuseMode::START:
         CreateModelMeshRenderer(fuseCenterModel, fuseCenter, kApplicationResourceDirectory + "/Models/Fuse", "Fuse.obj");
-
+        fuseStatus->SetOffSetPos(Vec3f(0.0f, 0.0f, -6.0f));
         break;
 
     case FuseMode::CENTER:
         CreateModelMeshRenderer(fuseCenterModel, fuseCenter, kApplicationResourceDirectory + "/Models/Fuse_Long", "Fuse_Long.obj");
-
+        fuseStatus->SetOffSetPos(Vec3f(-5.0f, 0.0f, -6.0f));
         break;
 
     case FuseMode::END:
@@ -114,12 +114,13 @@ void FuseCreateSystem::CreateFuse(GameEntity* _entity, BlockStatus* blockStatus)
     }
    
     // set
-    FuseStatus* fuseStatus = getComponent<FuseStatus>(fuseCenter);
+   
     fuseStatus->SetBasePosition(&blockStatus->GetBasePos());
     fuseStatus->SetIsDeath(&blockStatus->GetIsBreak());
-    fuseStatus->SetOffSetPos(Vec3f(0.0f, 0.0f, -6.0f));
-    fuseStatus->SetScale(Vec3f(7.5f, 3.5f, 2.5f));
     fuseStatus->SetFuseMode(&blockStatus->GetFuseMode());
+    fuseStatus->SetMaxScale(Vec3f(7.5f, 3.5f, 2.5f));
+    fuseStatus->SetStartScale(Vec3f(0.0f, 3.5f, 2.5f));
+    fuseStatus->Reset();
 
     // 既存のエンティティ（fuse）にシステム追加処理
     ECSManager* ecs = ECSManager::getInstance();

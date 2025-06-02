@@ -5,6 +5,7 @@
 #include <cstdint>
 #include <Entity.h>
 #include <Vector3.h>
+#include "KetaEasing.h"
 
 class FuseStatus
     : public IComponent {
@@ -17,8 +18,13 @@ private: // variables
     const Vec3f* basePos_ = nullptr;
     const bool* isDeath_ = nullptr;
     Vec3f offsetPos_;
-    Vec3f scale_;
+    Vec3f maxScale_;
+    Vec3f StartScale_;
     const FuseMode* fuseMode_ = nullptr;
+
+    Easing easing_;
+    Vec3f scale_;
+
 
 public:
     FuseStatus() {}
@@ -28,7 +34,8 @@ public:
     virtual bool Edit();
     virtual void Finalize();
 
-  
+   void ScaleEasing(const float& deltaTime);
+    void Reset();
 
 public: // accsessor
     /// getter
@@ -43,6 +50,7 @@ public: // accsessor
     void SetIsDeath(const bool* is) { isDeath_ = is; }
     void SetFuseMode(const FuseMode* is) { fuseMode_ = is; }
     void SetOffSetPos(const Vec3f offset) { offsetPos_ = offset; }
-    void SetScale(const Vec3f offset) { scale_ = offset; }
+    void SetMaxScale(const Vec3f offset) { maxScale_ = offset; }
+    void SetStartScale(const Vec3f offset) { StartScale_ = offset; }
   
 };
