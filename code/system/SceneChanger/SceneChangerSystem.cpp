@@ -143,6 +143,7 @@ void SceneChangerSystem::ChangeGameToTitle() {
     SceneTransition* transitionStatus = getComponent<SceneTransition>(resultTransitionEntity);
     Audio* startAudio                 = getComponent<Audio>(resultTransitionEntity);
 
+
     if (!transitionStatus || !startAudio) {
         return;
     }
