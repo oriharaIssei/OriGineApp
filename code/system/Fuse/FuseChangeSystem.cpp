@@ -54,13 +54,11 @@ void FuseChangeSystem::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-     FuseStatus* fuseStatus = getComponent<FuseStatus>(_entity);
-  
+    FuseStatus* fuseStatus = getComponent<FuseStatus>(_entity);
 
     if (!fuseStatus) {
         return;
     }
-
 
     //* model
     ModelMeshRenderer* fuseCenterModel = getComponent<ModelMeshRenderer>(_entity);
@@ -76,8 +74,8 @@ void FuseChangeSystem::UpdateEntity(GameEntity* _entity) {
         break;
 
     case FuseMode::CENTER:
-        fuseCenterModel->setIsRender(true);
-        CreateModelMeshRenderer(fuseCenterModel, _entity, kApplicationResourceDirectory + "/Models/Fuse_Long", "Fuse_Long.obj");
+       /* fuseCenterModel->setIsRender(true);
+        CreateModelMeshRenderer(fuseCenterModel, _entity, kApplicationResourceDirectory + "/Models/Fuse_Long", "Fuse_Long.obj");*/
 
         break;
 
@@ -86,6 +84,4 @@ void FuseChangeSystem::UpdateEntity(GameEntity* _entity) {
     default:
         break;
     }
-
 }
-
