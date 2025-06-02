@@ -5,12 +5,1807 @@
                 "Emitter": [
                     {
                         "EmitterShape": {
+                            "max": [
+                                0.4000000059604645,
+                                0.5,
+                                0.0
+                            ],
+                            "min": [
+                                -0.30000001192092896,
+                                0.0,
+                                0.0
+                            ],
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "spawnType": 0
+                        },
+                        "activeTime": 0.03999999910593033,
+                        "blendMode": 2,
+                        "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    1.0,
+                                    0.025316476821899414,
+                                    0.0,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "time": 0.05836575850844383,
+                                "value": [
+                                    0.902953565120697,
+                                    0.1599206179380417,
+                                    0.07619862258434296,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "time": 0.2439688742160797,
+                                "value": [
+                                    0.14767932891845703,
+                                    0.1426943689584732,
+                                    0.14762872457504272,
+                                    0.18039216101169586
+                                ]
+                            },
+                            {
+                                "time": 1.7784860134124756,
+                                "value": [
+                                    0.8509804010391235,
+                                    0.0784313753247261,
+                                    0.843137264251709,
+                                    0.125490203499794
+                                ]
+                            }
+                        ],
+                        "colorInterpolationType": 0,
+                        "isActive": true,
+                        "isLoop": true,
+                        "originPos": [
+                            -9.0,
+                            0.0,
+                            0.0
+                        ],
+                        "particleColor": [
+                            1.0,
+                            0.025316476821899414,
+                            0.0,
+                            1.0
+                        ],
+                        "particleIsBillBoard": true,
+                        "particleLifeTime": 0.30000001192092896,
+                        "particleUvRotate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "particleUvScale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "particleUvTranslate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "randMass": [
+                            -37.400001525878906,
+                            -26.899999618530273
+                        ],
+                        "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    -2.700000047683716,
+                                    4.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.30000001192092896,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.30000001192092896,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.005976096261292696,
+                                "value": [
+                                    2.0,
+                                    2.0,
+                                    2.0
+                                ]
+                            },
+                            {
+                                "time": 0.0793774276971817,
+                                "value": [
+                                    4.0,
+                                    4.0,
+                                    4.0
+                                ]
+                            },
+                            {
+                                "time": 0.30000001192092896,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.968127429485321,
+                                "value": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "time": 1.8430277109146118,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ],
+                        "shapeType": 1,
+                        "spawnCoolTime": 0.05000000074505806,
+                        "spawnParticleVal": 2,
+                        "startParticleRotateMax": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "startParticleRotateMin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "startParticleScaleMax": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "startParticleScaleMin": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "startParticleVelocityMax": [
+                            -0.30000001192092896,
+                            4.0,
+                            0.0
+                        ],
+                        "startParticleVelocityMin": [
+                            -2.700000047683716,
+                            4.0,
+                            0.0
+                        ],
+                        "textureFileName": "application/resource\\Texture/circle.png",
+                        "transformInterpolationType": 0,
+                        "updateParticleRotateMax": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "updateParticleRotateMin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "updateParticleScaleMax": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "updateParticleScaleMin": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "updateParticleVelocityMax": [
+                            0.0,
+                            1.100000023841858,
+                            0.0
+                        ],
+                        "updateParticleVelocityMin": [
+                            0.0,
+                            0.4000000059604645,
+                            0.0
+                        ],
+                        "updateSettings": 2498,
+                        "uvInterpolationType": 0,
+                        "uvTranslateCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    1.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "Name": "FuseFire",
+            "Systems": [
+                {
+                    "SystemName": "EmitterWorkSystem",
+                    "SystemType": 5
+                },
+                {
+                    "SystemName": "ParticleRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "ModelMeshRenderer": [
+                    {
+                        "blendMode": 1,
+                        "directory": "application/resource/Models\\SkullBlock",
+                        "fileName": "SkullBlock.gltf",
+                        "isRender": true,
+                        "materialBufferDatas": [
+                            {
+                                "color": [
+                                    1.0,
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "enableLighting": false,
+                                "shininess": 0.0,
+                                "specularColor": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvRotate": 0.0,
+                                "uvScale": [
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvTranslate": [
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ],
+                        "textureFilePath": [
+                            "application/resource/Models/SkullBlock/SkullBlock.png"
+                        ],
+                        "transformBufferDatas": [
+                            {
+                                "rotate": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "scale": [
+                                    4.5,
+                                    4.5,
+                                    4.5
+                                ],
+                                "translate": [
+                                    9.949999809265137,
+                                    0.0,
+                                    11.5600004196167
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "Name": "Block",
+            "Systems": [
+                {
+                    "SystemName": "TexturedMeshRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "Emitter": [
+                    {
+                        "EmitterShape": {
+                            "max": [
+                                0.4000000059604645,
+                                0.5,
+                                0.0
+                            ],
+                            "min": [
+                                -0.30000001192092896,
+                                0.0,
+                                0.0
+                            ],
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "spawnType": 0
+                        },
+                        "activeTime": 0.03999999910593033,
+                        "blendMode": 2,
+                        "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.852320671081543,
+                                    0.07911839336156845,
+                                    0.8425333499908447,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "time": 0.30000001192092896,
+                                "value": [
+                                    0.8509804010391235,
+                                    0.0784313753247261,
+                                    0.843137264251709,
+                                    0.18039216101169586
+                                ]
+                            },
+                            {
+                                "time": 1.7784860134124756,
+                                "value": [
+                                    0.8509804010391235,
+                                    0.0784313753247261,
+                                    0.843137264251709,
+                                    0.125490203499794
+                                ]
+                            }
+                        ],
+                        "colorInterpolationType": 0,
+                        "isActive": true,
+                        "isLoop": true,
+                        "originPos": [
+                            9.479999542236328,
+                            0.0,
+                            0.0
+                        ],
+                        "particleColor": [
+                            0.852320671081543,
+                            0.07911839336156845,
+                            0.8425333499908447,
+                            1.0
+                        ],
+                        "particleIsBillBoard": true,
+                        "particleLifeTime": 0.30000001192092896,
+                        "particleUvRotate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "particleUvScale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "particleUvTranslate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "randMass": [
+                            -72.4000015258789,
+                            -51.79999923706055
+                        ],
+                        "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.30000001192092896,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.30000001192092896,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.005976096261292696,
+                                "value": [
+                                    2.0,
+                                    2.0,
+                                    2.0
+                                ]
+                            },
+                            {
+                                "time": 0.07649403065443039,
+                                "value": [
+                                    8.0,
+                                    8.0,
+                                    8.0
+                                ]
+                            },
+                            {
+                                "time": 0.30000001192092896,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.968127429485321,
+                                "value": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "time": 1.8430277109146118,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ],
+                        "shapeType": 1,
+                        "spawnCoolTime": 0.05000000074505806,
+                        "spawnParticleVal": 2,
+                        "startParticleRotateMax": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "startParticleRotateMin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "startParticleScaleMax": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "startParticleScaleMin": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "startParticleVelocityMax": [
+                            0.0,
+                            4.0,
+                            0.0
+                        ],
+                        "startParticleVelocityMin": [
+                            0.0,
+                            0.30000001192092896,
+                            0.0
+                        ],
+                        "textureFileName": "application/resource\\Texture/circle.png",
+                        "transformInterpolationType": 0,
+                        "updateParticleRotateMax": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "updateParticleRotateMin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "updateParticleScaleMax": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "updateParticleScaleMin": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "updateParticleVelocityMax": [
+                            0.0,
+                            1.100000023841858,
+                            0.0
+                        ],
+                        "updateParticleVelocityMin": [
+                            0.0,
+                            0.4000000059604645,
+                            0.0
+                        ],
+                        "updateSettings": 2498,
+                        "uvInterpolationType": 0,
+                        "uvTranslateCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    1.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "Name": "SkullEffect",
+            "Systems": [
+                {
+                    "SystemName": "EmitterWorkSystem",
+                    "SystemType": 5
+                },
+                {
+                    "SystemName": "ParticleRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "Emitter": [
+                    {
+                        "EmitterShape": {
+                            "radius": 0.6100000143051147,
+                            "spawnType": 0
+                        },
+                        "activeTime": 1.399999976158142,
+                        "blendMode": 2,
+                        "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.003921568859368563,
+                                    0.0,
+                                    0.08235294371843338,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.18406374752521515,
+                                "value": [
+                                    0.9535865187644958,
+                                    0.5921271443367004,
+                                    0.3460271656513214,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "time": 1.100000023841858,
+                                "value": [
+                                    1.0,
+                                    1.0,
+                                    1.0,
+                                    0.0
+                                ]
+                            }
+                        ],
+                        "colorInterpolationType": 0,
+                        "isActive": true,
+                        "isLoop": true,
+                        "originPos": [
+                            0.0,
+                            0.0,
+                            0.8999999761581421
+                        ],
+                        "particleColor": [
+                            0.003921568859368563,
+                            0.0,
+                            0.08235294371843338,
+                            0.0
+                        ],
+                        "particleIsBillBoard": true,
+                        "particleLifeTime": 1.100000023841858,
+                        "particleUvRotate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "particleUvScale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "particleUvTranslate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "randMass": [
+                            1.0,
+                            1.0
+                        ],
+                        "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    -2.799999952316284,
+                                    -1.399999976158142,
+                                    -3.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    -2.799999952316284,
+                                    -1.399999976158142,
+                                    -3.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.24103586375713348,
+                                "value": [
+                                    3.0,
+                                    3.0,
+                                    3.0
+                                ]
+                            },
+                            {
+                                "time": 1.100000023841858,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ],
+                        "shapeType": 0,
+                        "spawnCoolTime": 3.0,
+                        "spawnParticleVal": 32,
+                        "startParticleRotateMax": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "startParticleRotateMin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "startParticleScaleMax": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "startParticleScaleMin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "startParticleVelocityMax": [
+                            2.5,
+                            2.200000047683716,
+                            0.0
+                        ],
+                        "startParticleVelocityMin": [
+                            -2.799999952316284,
+                            -1.399999976158142,
+                            -3.0
+                        ],
+                        "textureFileName": "application/resource\\Texture\\explotion/smoke.png",
+                        "transformInterpolationType": 0,
+                        "updateParticleRotateMax": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "updateParticleRotateMin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "updateParticleScaleMax": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "updateParticleScaleMin": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "updateParticleVelocityMax": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "updateParticleVelocityMin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "updateSettings": 258,
+                        "uvInterpolationType": 0
+                    },
+                    {
+                        "EmitterShape": {
+                            "radius": 0.949999988079071,
+                            "spawnType": 0
+                        },
+                        "activeTime": 1.2999999523162842,
+                        "blendMode": 2,
+                        "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.9409282803535461,
+                                    0.145237535238266,
+                                    0.05558225139975548,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.9409282803535461,
+                                    0.145237535238266,
+                                    0.05558225139975548,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.9409282803535461,
+                                    0.145237535238266,
+                                    0.05558225139975548,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.9409282803535461,
+                                    0.145237535238266,
+                                    0.05558225139975548,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.9409282803535461,
+                                    0.145237535238266,
+                                    0.05558225139975548,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.9409282803535461,
+                                    0.145237535238266,
+                                    0.05558225139975548,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "time": 0.5952191352844238,
+                                "value": [
+                                    0.8987341523170471,
+                                    0.33903542160987854,
+                                    0.06446616351604462,
+                                    0.0
+                                ]
+                            }
+                        ],
+                        "colorInterpolationType": 0,
+                        "isActive": true,
+                        "isLoop": true,
+                        "originPos": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "particleColor": [
+                            0.9409282803535461,
+                            0.145237535238266,
+                            0.05558225139975548,
+                            1.0
+                        ],
+                        "particleIsBillBoard": true,
+                        "particleLifeTime": 0.30000001192092896,
+                        "particleUvRotate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "particleUvScale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "particleUvTranslate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "randMass": [
+                            17.200000762939453,
+                            17.200000762939453
+                        ],
+                        "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    -8.0,
+                                    1.2999999523162842,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    -8.0,
+                                    -8.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    -8.0,
+                                    -8.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.11115538328886032,
+                                "value": [
+                                    -2.0999999046325684,
+                                    1.2999999523162842,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.30000001192092896,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "time": 0.5976095795631409,
+                                "value": [
+                                    0.30000001192092896,
+                                    1.399999976158142,
+                                    1.0
+                                ]
+                            }
+                        ],
+                        "shapeType": 0,
+                        "spawnCoolTime": 3.0,
+                        "spawnParticleVal": 36,
+                        "startParticleRotateMax": [
+                            0.0,
+                            0.0,
+                            141.1999969482422
+                        ],
+                        "startParticleRotateMin": [
+                            0.0,
+                            0.0,
+                            136.39999389648438
+                        ],
+                        "startParticleScaleMax": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "startParticleScaleMin": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "startParticleVelocityMax": [
+                            8.0,
+                            12.399999618530273,
+                            0.0
+                        ],
+                        "startParticleVelocityMin": [
+                            -8.0,
+                            1.2999999523162842,
+                            0.0
+                        ],
+                        "textureFileName": "application/resource\\Texture/circle.png",
+                        "transformInterpolationType": 0,
+                        "updateParticleRotateMax": [
+                            0.0,
+                            0.0,
+                            22.100000381469727
+                        ],
+                        "updateParticleRotateMin": [
+                            0.0,
+                            0.0,
+                            22.100000381469727
+                        ],
+                        "updateParticleScaleMax": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "updateParticleScaleMin": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "updateParticleVelocityMax": [
+                            3.299999952316284,
+                            6.300000190734863,
+                            4.400000095367432
+                        ],
+                        "updateParticleVelocityMin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "updateSettings": 466,
+                        "uvInterpolationType": 0
+                    },
+                    {
+                        "EmitterShape": {
+                            "radius": 0.15000000596046448,
+                            "spawnType": 0
+                        },
+                        "activeTime": 0.0,
+                        "blendMode": 2,
+                        "colorInterpolationType": 0,
+                        "isActive": true,
+                        "isLoop": true,
+                        "originPos": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "particleColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "particleIsBillBoard": true,
+                        "particleLifeTime": 0.0,
+                        "particleUvRotate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "particleUvScale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "particleUvTranslate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "randMass": [
+                            1.0,
+                            1.0
+                        ],
+                        "shapeType": 0,
+                        "spawnCoolTime": 0.0,
+                        "spawnParticleVal": 1,
+                        "startParticleRotateMax": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "startParticleRotateMin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "startParticleScaleMax": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "startParticleScaleMin": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "startParticleVelocityMax": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "startParticleVelocityMin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "textureFileName": "application/resource\\Texture/circle.png",
+                        "transformInterpolationType": 0,
+                        "updateParticleRotateMax": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "updateParticleRotateMin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "updateParticleScaleMax": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "updateParticleScaleMin": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "updateParticleVelocityMax": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "updateParticleVelocityMin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "updateSettings": 0,
+                        "uvInterpolationType": 0
+                    }
+                ]
+            },
+            "Name": "Ex",
+            "Systems": [
+                {
+                    "SystemName": "EmitterWorkSystem",
+                    "SystemType": 5
+                },
+                {
+                    "SystemName": "ParticleRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "ModelMeshRenderer": [
+                    {
+                        "blendMode": 1,
+                        "directory": "application/resource/Models\\DeadLine",
+                        "fileName": "DeadLine.obj",
+                        "isRender": true,
+                        "materialBufferDatas": [
+                            {
+                                "color": [
+                                    1.0,
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "enableLighting": false,
+                                "shininess": 0.0,
+                                "specularColor": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvRotate": -0.10999999940395355,
+                                "uvScale": [
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvTranslate": [
+                                    0.0,
+                                    1.0
+                                ]
+                            }
+                        ],
+                        "textureFilePath": [
+                            "C:/Users/k023g/Desktop/OriGine/project/Application/resource/Models/DeadLine/DeadLine.png"
+                        ],
+                        "transformBufferDatas": [
+                            {
+                                "rotate": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "scale": [
+                                    1.0,
+                                    1.0,
+                                    0.0
+                                ],
+                                "translate": [
+                                    4.789999961853027,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "Name": "DD",
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "ModelMeshRenderer": [
+                    {
+                        "blendMode": 1,
+                        "directory": "application/resource/Models\\Hook",
+                        "fileName": "hook.obj",
+                        "isRender": true,
+                        "materialBufferDatas": [
+                            {
+                                "color": [
+                                    1.0,
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "enableLighting": false,
+                                "shininess": 0.0,
+                                "specularColor": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvRotate": 0.0,
+                                "uvScale": [
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvTranslate": [
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ],
+                        "textureFilePath": [
+                            ""
+                        ],
+                        "transformBufferDatas": [
+                            {
+                                "rotate": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "scale": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "translate": [
+                                    4.610000133514404,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "Rigidbody": [
+                    {
+                        "acceleration": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "mass": 1.0,
+                        "useGravity": false,
+                        "velocity": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "rr",
+            "Systems": [
+                {
+                    "SystemName": "MoveSystemByRigidBody",
+                    "SystemType": 3
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "Emitter": [
+                    {
+                        "EmitterShape": {
                             "radius": 0.0,
                             "spawnType": 0
                         },
                         "activeTime": 0.20000000298023224,
                         "blendMode": 2,
                         "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -713,6 +2508,14 @@
                                 ]
                             },
                             {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
                                 "time": 0.8470588326454163,
                                 "value": [
                                     0.0,
@@ -730,6 +2533,14 @@
                             }
                         ],
                         "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -1410,6 +3221,15 @@
                             {
                                 "time": 0.0,
                                 "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
                                     0.06393207609653473,
                                     0.7215189933776855,
                                     0.08057986199855804,
@@ -1462,6 +3282,14 @@
                             1.0
                         ],
                         "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -2074,6 +3902,15 @@
                             {
                                 "time": 0.0,
                                 "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
                                     0.1764705926179886,
                                     0.7568627595901489,
                                     0.07450980693101883,
@@ -2126,6 +3963,14 @@
                             1.0
                         ],
                         "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -2442,1824 +4287,6 @@
                 {
                     "SystemName": "EmitterWorkSystem",
                     "SystemType": 5
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "ModelMeshRenderer": [
-                    {
-                        "blendMode": 1,
-                        "directory": "application/resource/Models\\Hook",
-                        "fileName": "hook.obj",
-                        "isRender": true,
-                        "materialBufferDatas": [
-                            {
-                                "color": [
-                                    1.0,
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "enableLighting": false,
-                                "shininess": 0.0,
-                                "specularColor": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvRotate": 0.0,
-                                "uvScale": [
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvTranslate": [
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ],
-                        "textureFilePath": [
-                            ""
-                        ],
-                        "transformBufferDatas": [
-                            {
-                                "rotate": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    1.0
-                                ],
-                                "scale": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "translate": [
-                                    4.610000133514404,
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ]
-                    }
-                ],
-                "Rigidbody": [
-                    {
-                        "acceleration": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "mass": 1.0,
-                        "useGravity": false,
-                        "velocity": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "Transform": [
-                    {
-                        "rotate": [
-                            0.0,
-                            0.0,
-                            0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "translate": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "rr",
-            "Systems": [
-                {
-                    "SystemName": "MoveSystemByRigidBody",
-                    "SystemType": 3
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "ModelMeshRenderer": [
-                    {
-                        "blendMode": 1,
-                        "directory": "application/resource/Models\\DeadLine",
-                        "fileName": "DeadLine.obj",
-                        "isRender": true,
-                        "materialBufferDatas": [
-                            {
-                                "color": [
-                                    1.0,
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "enableLighting": false,
-                                "shininess": 0.0,
-                                "specularColor": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvRotate": -0.10999999940395355,
-                                "uvScale": [
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvTranslate": [
-                                    0.0,
-                                    1.0
-                                ]
-                            }
-                        ],
-                        "textureFilePath": [
-                            "C:/Users/k023g/Desktop/OriGine/project/Application/resource/Models/DeadLine/DeadLine.png"
-                        ],
-                        "transformBufferDatas": [
-                            {
-                                "rotate": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    1.0
-                                ],
-                                "scale": [
-                                    1.0,
-                                    1.0,
-                                    0.0
-                                ],
-                                "translate": [
-                                    4.789999961853027,
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            "Name": "DD",
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "Emitter": [
-                    {
-                        "EmitterShape": {
-                            "radius": 0.6100000143051147,
-                            "spawnType": 0
-                        },
-                        "activeTime": 1.399999976158142,
-                        "blendMode": 2,
-                        "colorCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.003921568859368563,
-                                    0.0,
-                                    0.08235294371843338,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.18406374752521515,
-                                "value": [
-                                    0.9535865187644958,
-                                    0.5921271443367004,
-                                    0.3460271656513214,
-                                    1.0
-                                ]
-                            },
-                            {
-                                "time": 1.100000023841858,
-                                "value": [
-                                    1.0,
-                                    1.0,
-                                    1.0,
-                                    0.0
-                                ]
-                            }
-                        ],
-                        "colorInterpolationType": 0,
-                        "isActive": true,
-                        "isLoop": true,
-                        "originPos": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "particleColor": [
-                            0.003921568859368563,
-                            0.0,
-                            0.08235294371843338,
-                            0.0
-                        ],
-                        "particleIsBillBoard": true,
-                        "particleLifeTime": 1.100000023841858,
-                        "particleUvRotate": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "particleUvScale": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "particleUvTranslate": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "randMass": [
-                            1.0,
-                            1.0
-                        ],
-                        "scaleCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    -2.799999952316284,
-                                    -1.399999976158142,
-                                    -3.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    -2.799999952316284,
-                                    -1.399999976158142,
-                                    -3.0
-                                ]
-                            },
-                            {
-                                "time": 0.03505976125597954,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.16653387248516083,
-                                "value": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ]
-                            }
-                        ],
-                        "shapeType": 0,
-                        "spawnCoolTime": 3.0,
-                        "spawnParticleVal": 21,
-                        "startParticleRotateMax": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "startParticleRotateMin": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "startParticleScaleMax": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "startParticleScaleMin": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "startParticleVelocityMax": [
-                            2.5,
-                            2.200000047683716,
-                            2.4000000953674316
-                        ],
-                        "startParticleVelocityMin": [
-                            -2.799999952316284,
-                            -1.399999976158142,
-                            -3.0
-                        ],
-                        "textureFileName": "application/resource\\Texture\\explotion/smoke.png",
-                        "transformInterpolationType": 0,
-                        "updateParticleRotateMax": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "updateParticleRotateMin": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "updateParticleScaleMax": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "updateParticleScaleMin": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "updateParticleVelocityMax": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "updateParticleVelocityMin": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "updateSettings": 258,
-                        "uvInterpolationType": 0
-                    },
-                    {
-                        "EmitterShape": {
-                            "radius": 0.949999988079071,
-                            "spawnType": 0
-                        },
-                        "activeTime": 1.2999999523162842,
-                        "blendMode": 2,
-                        "colorCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.9409282803535461,
-                                    0.145237535238266,
-                                    0.05558225139975548,
-                                    1.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.9409282803535461,
-                                    0.145237535238266,
-                                    0.05558225139975548,
-                                    1.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.9409282803535461,
-                                    0.145237535238266,
-                                    0.05558225139975548,
-                                    1.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.9409282803535461,
-                                    0.145237535238266,
-                                    0.05558225139975548,
-                                    1.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.9409282803535461,
-                                    0.145237535238266,
-                                    0.05558225139975548,
-                                    1.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.9409282803535461,
-                                    0.145237535238266,
-                                    0.05558225139975548,
-                                    1.0
-                                ]
-                            },
-                            {
-                                "time": 0.5952191352844238,
-                                "value": [
-                                    0.8987341523170471,
-                                    0.33903542160987854,
-                                    0.06446616351604462,
-                                    0.0
-                                ]
-                            }
-                        ],
-                        "colorInterpolationType": 0,
-                        "isActive": true,
-                        "isLoop": true,
-                        "originPos": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "particleColor": [
-                            0.9409282803535461,
-                            0.145237535238266,
-                            0.05558225139975548,
-                            1.0
-                        ],
-                        "particleIsBillBoard": false,
-                        "particleLifeTime": 0.6000000238418579,
-                        "particleUvRotate": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "particleUvScale": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "particleUvTranslate": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "randMass": [
-                            1.0,
-                            1.0
-                        ],
-                        "scaleCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    -8.0,
-                                    -8.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    -8.0,
-                                    -8.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    -8.0,
-                                    -8.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.04902723804116249,
-                                "value": [
-                                    0.699999988079071,
-                                    1.600000023841858,
-                                    1.0
-                                ]
-                            },
-                            {
-                                "time": 0.5976095795631409,
-                                "value": [
-                                    0.30000001192092896,
-                                    1.399999976158142,
-                                    1.0
-                                ]
-                            }
-                        ],
-                        "shapeType": 0,
-                        "spawnCoolTime": 3.0,
-                        "spawnParticleVal": 36,
-                        "startParticleRotateMax": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "startParticleRotateMin": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "startParticleScaleMax": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "startParticleScaleMin": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "startParticleVelocityMax": [
-                            8.0,
-                            8.0,
-                            0.0
-                        ],
-                        "startParticleVelocityMin": [
-                            -8.0,
-                            -8.0,
-                            0.0
-                        ],
-                        "textureFileName": "application/resource\\Texture/circle.png",
-                        "transformInterpolationType": 0,
-                        "updateParticleRotateMax": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "updateParticleRotateMin": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "updateParticleScaleMax": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "updateParticleScaleMin": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "updateParticleVelocityMax": [
-                            3.299999952316284,
-                            6.300000190734863,
-                            4.400000095367432
-                        ],
-                        "updateParticleVelocityMin": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "updateSettings": 10562,
-                        "uvInterpolationType": 0,
-                        "uvTranslateCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            "Name": "Ex",
-            "Systems": [
-                {
-                    "SystemName": "EmitterWorkSystem",
-                    "SystemType": 5
-                },
-                {
-                    "SystemName": "ParticleRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "Emitter": [
-                    {
-                        "EmitterShape": {
-                            "max": [
-                                0.4000000059604645,
-                                0.5,
-                                0.0
-                            ],
-                            "min": [
-                                -0.30000001192092896,
-                                0.0,
-                                0.0
-                            ],
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ],
-                            "spawnType": 0
-                        },
-                        "activeTime": 0.03999999910593033,
-                        "blendMode": 2,
-                        "colorCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.852320671081543,
-                                    0.07911839336156845,
-                                    0.8425333499908447,
-                                    1.0
-                                ]
-                            },
-                            {
-                                "time": 0.30000001192092896,
-                                "value": [
-                                    0.8509804010391235,
-                                    0.0784313753247261,
-                                    0.843137264251709,
-                                    0.18039216101169586
-                                ]
-                            },
-                            {
-                                "time": 1.7784860134124756,
-                                "value": [
-                                    0.8509804010391235,
-                                    0.0784313753247261,
-                                    0.843137264251709,
-                                    0.125490203499794
-                                ]
-                            }
-                        ],
-                        "colorInterpolationType": 0,
-                        "isActive": true,
-                        "isLoop": true,
-                        "originPos": [
-                            9.479999542236328,
-                            0.0,
-                            0.0
-                        ],
-                        "particleColor": [
-                            0.852320671081543,
-                            0.07911839336156845,
-                            0.8425333499908447,
-                            1.0
-                        ],
-                        "particleIsBillBoard": true,
-                        "particleLifeTime": 0.30000001192092896,
-                        "particleUvRotate": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "particleUvScale": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "particleUvTranslate": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "randMass": [
-                            -72.4000015258789,
-                            -51.79999923706055
-                        ],
-                        "scaleCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.30000001192092896,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.30000001192092896,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.005976096261292696,
-                                "value": [
-                                    2.0,
-                                    2.0,
-                                    2.0
-                                ]
-                            },
-                            {
-                                "time": 0.07649403065443039,
-                                "value": [
-                                    8.0,
-                                    8.0,
-                                    8.0
-                                ]
-                            },
-                            {
-                                "time": 0.30000001192092896,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.968127429485321,
-                                "value": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ]
-                            },
-                            {
-                                "time": 1.8430277109146118,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ],
-                        "shapeType": 1,
-                        "spawnCoolTime": 0.05000000074505806,
-                        "spawnParticleVal": 2,
-                        "startParticleRotateMax": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "startParticleRotateMin": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "startParticleScaleMax": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "startParticleScaleMin": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "startParticleVelocityMax": [
-                            0.0,
-                            4.0,
-                            0.0
-                        ],
-                        "startParticleVelocityMin": [
-                            0.0,
-                            0.30000001192092896,
-                            0.0
-                        ],
-                        "textureFileName": "application/resource\\Texture/circle.png",
-                        "transformInterpolationType": 0,
-                        "updateParticleRotateMax": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "updateParticleRotateMin": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "updateParticleScaleMax": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "updateParticleScaleMin": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "updateParticleVelocityMax": [
-                            0.0,
-                            1.100000023841858,
-                            0.0
-                        ],
-                        "updateParticleVelocityMin": [
-                            0.0,
-                            0.4000000059604645,
-                            0.0
-                        ],
-                        "updateSettings": 2498,
-                        "uvInterpolationType": 0,
-                        "uvTranslateCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    1.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            "Name": "SkullEffect",
-            "Systems": [
-                {
-                    "SystemName": "EmitterWorkSystem",
-                    "SystemType": 5
-                },
-                {
-                    "SystemName": "ParticleRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "ModelMeshRenderer": [
-                    {
-                        "blendMode": 1,
-                        "directory": "application/resource/Models\\SkullBlock",
-                        "fileName": "SkullBlock.gltf",
-                        "isRender": true,
-                        "materialBufferDatas": [
-                            {
-                                "color": [
-                                    1.0,
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "enableLighting": false,
-                                "shininess": 0.0,
-                                "specularColor": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvRotate": 0.0,
-                                "uvScale": [
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvTranslate": [
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ],
-                        "textureFilePath": [
-                            "application/resource/Models/SkullBlock/SkullBlock.png"
-                        ],
-                        "transformBufferDatas": [
-                            {
-                                "rotate": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    1.0
-                                ],
-                                "scale": [
-                                    4.5,
-                                    4.5,
-                                    4.5
-                                ],
-                                "translate": [
-                                    9.949999809265137,
-                                    0.0,
-                                    11.5600004196167
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            "Name": "Block",
-            "Systems": [
-                {
-                    "SystemName": "TexturedMeshRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "Emitter": [
-                    {
-                        "EmitterShape": {
-                            "max": [
-                                0.4000000059604645,
-                                0.5,
-                                0.0
-                            ],
-                            "min": [
-                                -0.30000001192092896,
-                                0.0,
-                                0.0
-                            ],
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ],
-                            "spawnType": 0
-                        },
-                        "activeTime": 0.03999999910593033,
-                        "blendMode": 2,
-                        "colorCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    1.0,
-                                    0.025316476821899414,
-                                    0.0,
-                                    1.0
-                                ]
-                            },
-                            {
-                                "time": 0.05836575850844383,
-                                "value": [
-                                    0.902953565120697,
-                                    0.1599206179380417,
-                                    0.07619862258434296,
-                                    1.0
-                                ]
-                            },
-                            {
-                                "time": 0.2439688742160797,
-                                "value": [
-                                    0.14767932891845703,
-                                    0.1426943689584732,
-                                    0.14762872457504272,
-                                    0.18039216101169586
-                                ]
-                            },
-                            {
-                                "time": 1.7784860134124756,
-                                "value": [
-                                    0.8509804010391235,
-                                    0.0784313753247261,
-                                    0.843137264251709,
-                                    0.125490203499794
-                                ]
-                            }
-                        ],
-                        "colorInterpolationType": 0,
-                        "isActive": true,
-                        "isLoop": true,
-                        "originPos": [
-                            -9.0,
-                            0.0,
-                            0.0
-                        ],
-                        "particleColor": [
-                            1.0,
-                            0.025316476821899414,
-                            0.0,
-                            1.0
-                        ],
-                        "particleIsBillBoard": true,
-                        "particleLifeTime": 0.30000001192092896,
-                        "particleUvRotate": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "particleUvScale": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "particleUvTranslate": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "randMass": [
-                            -37.400001525878906,
-                            -26.899999618530273
-                        ],
-                        "scaleCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    -2.700000047683716,
-                                    4.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.30000001192092896,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.30000001192092896,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.005976096261292696,
-                                "value": [
-                                    2.0,
-                                    2.0,
-                                    2.0
-                                ]
-                            },
-                            {
-                                "time": 0.0793774276971817,
-                                "value": [
-                                    4.0,
-                                    4.0,
-                                    4.0
-                                ]
-                            },
-                            {
-                                "time": 0.30000001192092896,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.968127429485321,
-                                "value": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ]
-                            },
-                            {
-                                "time": 1.8430277109146118,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ],
-                        "shapeType": 1,
-                        "spawnCoolTime": 0.05000000074505806,
-                        "spawnParticleVal": 2,
-                        "startParticleRotateMax": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "startParticleRotateMin": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "startParticleScaleMax": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "startParticleScaleMin": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "startParticleVelocityMax": [
-                            -0.30000001192092896,
-                            4.0,
-                            0.0
-                        ],
-                        "startParticleVelocityMin": [
-                            -2.700000047683716,
-                            4.0,
-                            0.0
-                        ],
-                        "textureFileName": "application/resource\\Texture/circle.png",
-                        "transformInterpolationType": 0,
-                        "updateParticleRotateMax": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "updateParticleRotateMin": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "updateParticleScaleMax": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "updateParticleScaleMin": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "updateParticleVelocityMax": [
-                            0.0,
-                            1.100000023841858,
-                            0.0
-                        ],
-                        "updateParticleVelocityMin": [
-                            0.0,
-                            0.4000000059604645,
-                            0.0
-                        ],
-                        "updateSettings": 2498,
-                        "uvInterpolationType": 0,
-                        "uvTranslateCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    1.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            "Name": "FuseFire",
-            "Systems": [
-                {
-                    "SystemName": "EmitterWorkSystem",
-                    "SystemType": 5
-                },
-                {
-                    "SystemName": "ParticleRenderSystem",
-                    "SystemType": 6
                 }
             ],
             "isUnique": true
