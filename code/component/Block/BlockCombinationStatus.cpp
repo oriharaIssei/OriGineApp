@@ -139,10 +139,10 @@ void BlockCombinationStatus::ChangeStatusRightEdge(const int& baseRowNum, const 
         }
 
         if (status == rightMost) {
-            status->SetFuseMode(BlockStatus::FuseMode::END);
+            status->SetFuseMode(FuseMode::END);
         } else {
-            if (status->GetFuseMode() == BlockStatus::FuseMode::END) {
-                status->SetFuseMode(BlockStatus::FuseMode::CENTER);
+            if (status->GetFuseMode() == FuseMode::END) {
+                status->SetFuseMode(FuseMode::CENTER);
             }
         }
     }
@@ -160,7 +160,7 @@ void BlockCombinationStatus::ChangeCenterFuse(int startRowNum, int endRowNum, in
 
         int row = status->GetRowNum();
         if ((startRowNum < row && row < endRowNum) || (endRowNum < row && row < startRowNum)) {
-            status->SetFuseMode(BlockStatus::FuseMode::CENTER);
+            status->SetFuseMode(FuseMode::CENTER);
         }
     }
 }
@@ -196,11 +196,11 @@ void BlockCombinationStatus::ChangeStatusAdvantageStart(const int& baseRowNum, c
         }
 
         if (status == rightMost) {
-            status->SetFuseMode(BlockStatus::FuseMode::START);
+            status->SetFuseMode(FuseMode::START);
         } else {
 
-            if (status->GetFuseMode() == BlockStatus::FuseMode::START) {
-                status->SetFuseMode(BlockStatus::FuseMode::CENTER);
+            if (status->GetFuseMode() == FuseMode::START) {
+                status->SetFuseMode(FuseMode::CENTER);
             }
         }
     }
@@ -280,7 +280,7 @@ void BlockCombinationStatus::ChangeStatusFuse(const int& baseRowNum, const int& 
         // baseRowNum の位置のブロックを探して CENTER にする
         for (BlockStatus* status : blockStatusArray_) {
             if (status->GetColumnNum() == columNum && status->GetRowNum() == baseRowNum && !status->GetIsBreak()) {
-                status->SetFuseMode(BlockStatus::FuseMode::CENTER);
+                status->SetFuseMode(FuseMode::CENTER);
                 status->SetIsCreateFuse(true);
                 break;
             }

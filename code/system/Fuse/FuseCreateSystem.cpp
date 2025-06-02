@@ -20,6 +20,7 @@
 #include "system/Fuse/FuseAdaptPosSystem.h"
 #include "system/Fuse/FuseCreateSystem.h"
 #include "system/Fuse/FuseDeleteSystem.h"
+#include"system/Fuse/FuseChangeSystem.h"
 #include <cstdint>
 
 FuseCreateSystem::FuseCreateSystem() : ISystem(SystemType::Movement) {}
@@ -64,10 +65,13 @@ void FuseCreateSystem::UpdateEntity(GameEntity* _entity) {
     }
 
     //
+    blockCombinationStatus_->ChangeStatusAdvantageStart(blockStatus->GetRowNum(), blockStatus->GetColumnNum());
     blockCombinationStatus_->ChangeStatusFuse(blockStatus->GetRowNum(), blockStatus->GetColumnNum());
 
-    // crateFuse
+    // 導火線追加
     CreateFuse(_entity, blockStatus);
+    ////導火線変更
+    //ChangeFuse(_entity, blockStatus);
 
 }
 
@@ -83,20 +87,20 @@ void FuseCreateSystem::CreateFuse(GameEntity* _entity, BlockStatus* blockStatus)
     //* model
     ModelMeshRenderer* fuseCenterModel = getComponent<ModelMeshRenderer>(fuseCenter);
     switch (blockStatus->GetFuseMode()) {
-    case BlockStatus::FuseMode::NONE:
+    case FuseMode::NONE:
         break;
 
-    case BlockStatus::FuseMode::START:
+    case FuseMode::START:
         CreateModelMeshRenderer(fuseCenterModel, fuseCenter, kApplicationResourceDirectory + "/Models/Fuse_Long", "Fuse_Long.obj");
 
         break;
 
-    case BlockStatus::FuseMode::CENTER:
+    case FuseMode::CENTER:
         CreateModelMeshRenderer(fuseCenterModel, fuseCenter, kApplicationResourceDirectory + "/Models/Fuse_Long", "Fuse_Long.obj");
 
         break;
 
-    case BlockStatus::FuseMode::END:
+    case FuseMode::END:
         break;
     default:
         break;
@@ -108,6 +112,7 @@ void FuseCreateSystem::CreateFuse(GameEntity* _entity, BlockStatus* blockStatus)
     fuseStatus->SetIsDeath(&blockStatus->GetIsBreak());
     fuseStatus->SetOffSetPos(Vec3f(0.0f, 0.0f, -5.0f));
     fuseStatus->SetScale(Vec3f(4.5f, 4.5f, 4.5f));
+    fuseStatus->SetFuseMode(&blockStatus->GetFuseMode());
 
     // 既存のエンティティ（fuse）にシステム追加処理
     ECSManager* ecs = ECSManager::getInstance();
@@ -117,9 +122,14 @@ void FuseCreateSystem::CreateFuse(GameEntity* _entity, BlockStatus* blockStatus)
 
     ecs->getSystem<FuseAdaptPosSystem>()->addEntity(fuseCenter); 
     ecs->getSystem<FuseDeleteSystem>()->addEntity(fuseCenter);
+    ecs->getSystem<FuseChangeSystem>()->addEntity(fuseCenter);
 
     blockStatus->SetIsCreatedFuse(true);
 }
+
+//void FuseCreateSystem::ChangeFuse(GameEntity* _entity, BlockStatus* blockStatus) {
+//
+// }
 
 //// アドバンテージブロック処理
 // if (blockStatus->GetBlockType() == BlockType::ADVANTAGE) {
@@ -140,9 +150,9 @@ void FuseCreateSystem::CreateFuse(GameEntity* _entity, BlockStatus* blockStatus)
 //     if (block->GetIsBreak())
 //         continue;
 
-//    if (block->GetFuseMode() == BlockStatus::FuseMode::START) {
+//    if (block->GetFuseMode() == FuseMode::START) {
 //        startBlock = block;
-//    } else if (block->GetFuseMode() == BlockStatus::FuseMode::END) {
+//    } else if (block->GetFuseMode() == FuseMode::END) {
 //        endBlock = block;
 //    }
 //}

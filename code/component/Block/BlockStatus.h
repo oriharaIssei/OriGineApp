@@ -9,6 +9,14 @@
 #include <Vector4.h>
 
 struct Transform;
+
+  enum class FuseMode {
+    NONE,
+    START,
+    CENTER,
+    END,
+};
+
 class BlockStatus
     : public IComponent {
 public:
@@ -25,13 +33,6 @@ public:
         NONE,
         APEAR,
         REVERSE,
-        END,
-    };
-
-    enum class FuseMode {
-        NONE,
-        START,
-        CENTER,
         END,
     };
 
@@ -158,7 +159,7 @@ public: // accsessor
     std::string GetAdaptTexture() const { return adaptTexture_; }
     AdaptTextureStep GetAdaptTextureStep() const { return adaptTextureStep_; }
     ApearAnimationStep GetApearAnimationstep() const { return apearAnimationStep_; }
-    FuseMode GetFuseMode() const { return fuseMode_; }
+   const  FuseMode& GetFuseMode() const { return fuseMode_; }
     const bool& GetIsCloseFrontBackPlane() const { return isFrontPlaneClose_; }
 
     /// setter

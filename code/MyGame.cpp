@@ -181,6 +181,7 @@
 #include"system/Fuse/FuseAdaptPosSystem.h"
 #include"system/Fuse/FuseCreateSystem.h"
 #include"system/Fuse/FuseDeleteSystem.h"
+#include"system/Fuse/FuseChangeSystem.h"
 
 MyGame::MyGame() {}
 
@@ -451,11 +452,11 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<ScaleByBlockSystem>();
     ecsManager->registerSystem<EffectByBlockAnimationSystem>();
     ecsManager->registerSystem<CombiArrayRemoveSystem>();
+    ecsManager->registerSystem<FuseChangeSystem>();
 
      ecsManager->registerSystem<FuseAdaptPosSystem>();
     ecsManager->registerSystem<FuseCreateSystem>();
      ecsManager->registerSystem<FuseDeleteSystem>();
- 
  
     ecsManager->registerSystem<BackPlaneCloseSystem>();
     ecsManager->registerSystem<FrontPlaneDeleteSystem>();

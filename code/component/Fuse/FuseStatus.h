@@ -1,6 +1,7 @@
 #pragma once
 
 #include "component/IComponent.h"
+#include"component/Block/BlockStatus.h"
 #include <cstdint>
 #include <Entity.h>
 #include <Vector3.h>
@@ -17,6 +18,7 @@ private: // variables
     const bool* isDeath_ = nullptr;
     Vec3f offsetPos_;
     Vec3f scale_;
+    const FuseMode* fuseMode_ = nullptr;
 
 public:
     FuseStatus() {}
@@ -32,12 +34,14 @@ public: // accsessor
     /// getter
     const Vec3f* GetBasePos() const { return basePos_; }
     const bool* GetIsDeath() const { return isDeath_; }
+    const FuseMode* GetFuseMode() const { return fuseMode_; }
     Vec3f GetOffsetPos() const { return offsetPos_; }
     Vec3f GetScale() const { return scale_; }
 
     /// setter
     void SetBasePosition(const Vec3f* isFrontPlaneClose) { basePos_ = isFrontPlaneClose; }
     void SetIsDeath(const bool* is) { isDeath_ = is; }
+    void SetFuseMode(const FuseMode* is) { fuseMode_ = is; }
     void SetOffSetPos(const Vec3f offset) { offsetPos_ = offset; }
     void SetScale(const Vec3f offset) { scale_ = offset; }
   

@@ -11,7 +11,7 @@
 ///====================================================================
 class BlockStatus;
 class BlockCombinationStatus;
-class FuseCreateSystem : public ISystem {
+class FuseChangeSystem : public ISystem {
 private:
     bool isInited_;
 
@@ -19,14 +19,13 @@ private:
     BlockCombinationStatus* blockCombinationStatus_ = nullptr;
 
     public:
-    FuseCreateSystem();
-        ~FuseCreateSystem();
+    FuseChangeSystem();
+        ~FuseChangeSystem();
 
     void Initialize() override;
     void Finalize() override;
 
     void CreateFuse(GameEntity* _entity, BlockStatus*blockStatus);
-    void ChangeFuse(GameEntity* _entity, BlockStatus* blockStatus);
    
    
 protected:
