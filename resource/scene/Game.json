@@ -10,6 +10,60 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
+                            640.0,
+                            512.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "application/resource/Texture\\Explanation/Explanation_01.png",
+                        "textureSize": [
+                            640.0,
+                            512.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "Entity",
+            "Systems": [
+                {
+                    "SystemName": "BackGroundSpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
                         "renderingPriority": 11,
                         "rotate": 0.0,
                         "scale": [
@@ -2108,6 +2162,24 @@
                         "activeTime": 1.2999999523162842,
                         "blendMode": 2,
                         "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -11187,6 +11259,22 @@
                                 "value": [
                                     0.0,
                                     0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
                                     -1.0
                                 ]
                             },
@@ -11208,6 +11296,22 @@
                             }
                         ],
                         "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -20314,6 +20418,24 @@
                             {
                                 "time": 0.0,
                                 "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
                                     0.3360788822174072,
                                     0.949367105960846,
                                     0.12818458676338196,
@@ -20393,6 +20515,22 @@
                             1.0
                         ],
                         "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -26779,10 +26917,6 @@
                 {
                     "SystemName": "TimerAdaptVignetSystem",
                     "SystemType": 3
-                },
-                {
-                    "SystemName": "VignetteEffect",
-                    "SystemType": 7
                 }
             ],
             "isUnique": true
@@ -27150,6 +27284,24 @@
                         "activeTime": 0.20000000298023224,
                         "blendMode": 2,
                         "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -30776,6 +30928,22 @@
                                 ]
                             },
                             {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
                                 "time": 0.8470588326454163,
                                 "value": [
                                     0.0,
@@ -30793,6 +30961,22 @@
                             }
                         ],
                         "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -32840,6 +33024,24 @@
                             {
                                 "time": 0.0,
                                 "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
                                     0.5366706252098083,
                                     0.894514799118042,
                                     0.08680947124958038,
@@ -32892,6 +33094,22 @@
                             1.0
                         ],
                         "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -34625,6 +34843,24 @@
                         "activeTime": 0.20000000298023224,
                         "blendMode": 2,
                         "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -38081,6 +38317,22 @@
                                 ]
                             },
                             {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
                                 "time": 0.3741176426410675,
                                 "value": [
                                     5.0,
@@ -39415,6 +39667,24 @@
                             {
                                 "time": 0.0,
                                 "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
                                     0.852320671081543,
                                     0.07911839336156845,
                                     0.8425333499908447,
@@ -39476,6 +39746,22 @@
                             -18.5
                         ],
                         "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -39689,6 +39975,22 @@
                         "updateSettings": 2498,
                         "uvInterpolationType": 0,
                         "uvTranslateCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -40135,6 +40437,9 @@
             }
         },
         {
+            "BackGroundSpriteRenderSystem": {
+                "Priority": 0
+            },
             "ColliderRenderingSystem": {
                 "Priority": 0
             },
@@ -40154,13 +40459,6 @@
                 "Priority": 3
             }
         },
-        {
-            "SmoothingEffect": {
-                "Priority": 0
-            },
-            "VignetteEffect": {
-                "Priority": 1
-            }
-        }
+        {}
     ]
 }
