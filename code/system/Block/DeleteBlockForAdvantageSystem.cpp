@@ -195,7 +195,7 @@ void DeleteBlockForAdvantageSystem::SpawnBlockEffectN(BlockType type) {
     type;
 
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
-    GameEntity* breakBlockEffectManager      = ecsManager->getUniqueEntity("BomEx");
+    GameEntity* breakBlockEffectManager      = ecsManager->getUniqueEntity("BlockEx");
 
     GameEntity* blockbreakEffect = CreateEntity<Emitter, Emitter, Emitter, DeleteEntityStatus>("blockbreakEffectN", Emitter(), Emitter(), Emitter(), DeleteEntityStatus());
 
@@ -208,8 +208,8 @@ void DeleteBlockForAdvantageSystem::SpawnBlockEffectN(BlockType type) {
     deleteEntityStatus->SetDeleteTime(5.0f);
 
     // advantage
-    for (int32_t i = 0; i < breakBlockEffects_.size(); ++i) {
-        breakBlockEffects_[i] = getComponent<Emitter>(breakBlockEffectManager, i);
+    for (int32_t i = 0; i < breakBlockEffectsN_.size(); ++i) {
+        breakBlockEffectsN_[i] = getComponent<Emitter>(breakBlockEffectManager, i);
     }
 
     /*for (int32_t i = 0; i < breakBlockEffects_.size(); ++i) {
@@ -222,9 +222,9 @@ void DeleteBlockForAdvantageSystem::SpawnBlockEffectN(BlockType type) {
     Emitter* breakEffect2 = getComponent<Emitter>(blockbreakEffect, 2);
 
     // advantage
-    nlohmann::json breakBlockEffects0 = *breakBlockEffects_[0];
-    nlohmann::json breakBlockEffects1 = *breakBlockEffects_[1];
-    nlohmann::json breakBlockEffects2 = *breakBlockEffects_[2];
+    nlohmann::json breakBlockEffects0 = *breakBlockEffectsN_[0];
+    nlohmann::json breakBlockEffects1 = *breakBlockEffectsN_[1];
+    nlohmann::json breakBlockEffects2 = *breakBlockEffectsN_[2];
 
     *breakEffect0 = breakBlockEffects0;
     *breakEffect1 = breakBlockEffects1;
