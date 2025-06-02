@@ -117,8 +117,8 @@ void FuseCreateSystem::CreateFuse(GameEntity* _entity, BlockStatus* blockStatus)
     FuseStatus* fuseStatus = getComponent<FuseStatus>(fuseCenter);
     fuseStatus->SetBasePosition(&blockStatus->GetBasePos());
     fuseStatus->SetIsDeath(&blockStatus->GetIsBreak());
-    fuseStatus->SetOffSetPos(Vec3f(0.0f, 0.0f, -5.0f));
-    fuseStatus->SetScale(Vec3f(4.5f, 4.5f, 4.5f));
+    fuseStatus->SetOffSetPos(Vec3f(0.0f, 0.0f, -6.0f));
+    fuseStatus->SetScale(Vec3f(7.5f, 3.5f, 2.5f));
     fuseStatus->SetFuseMode(&blockStatus->GetFuseMode());
 
     // 既存のエンティティ（fuse）にシステム追加処理
