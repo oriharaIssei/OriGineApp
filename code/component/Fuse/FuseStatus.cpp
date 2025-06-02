@@ -40,7 +40,7 @@ void from_json(const nlohmann::json& _json, FuseStatus& _timerStatus) {
 void FuseStatus::ScaleEasing(const float& deltaTime) {
     easing_.time += deltaTime;
 
-    scale_ = EaseInCirc(StartScale_, maxScale_, easing_.time, easing_.maxTime);
+    scale_ = EaseOutCirc(StartScale_, maxScale_, easing_.time, easing_.maxTime);
 
     if (easing_.time < easing_.maxTime) {
         return;
