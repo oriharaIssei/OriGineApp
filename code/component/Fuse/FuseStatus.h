@@ -26,6 +26,8 @@ private: // variables
     Vec3f scale_;
 
 
+    bool isStarted_ = false;
+
 public:
     FuseStatus() {}
     virtual ~FuseStatus() = default;
@@ -44,6 +46,7 @@ public: // accsessor
     const FuseMode* GetFuseMode() const { return fuseMode_; }
     Vec3f GetOffsetPos() const { return offsetPos_; }
     Vec3f GetScale() const { return scale_; }
+    bool GetIsStarted() const { return isStarted_; }
 
     /// setter
     void SetBasePosition(const Vec3f* isFrontPlaneClose) { basePos_ = isFrontPlaneClose; }
@@ -52,5 +55,6 @@ public: // accsessor
     void SetOffSetPos(const Vec3f offset) { offsetPos_ = offset; }
     void SetMaxScale(const Vec3f offset) { maxScale_ = offset; }
     void SetStartScale(const Vec3f offset) { StartScale_ = offset; }
+    void SetisStarted(const bool& is) { isStarted_=is; }
   
 };

@@ -101,6 +101,7 @@ void FuseCreateSystem::CreateFuse(GameEntity* _entity, BlockStatus* blockStatus)
     case FuseMode::START:
         CreateModelMeshRenderer(fuseCenterModel, fuseCenter, kApplicationResourceDirectory + "/Models/Fuse", "Fuse.obj");
         fuseStatus->SetOffSetPos(Vec3f(0.0f, 0.0f, -6.0f));
+        fuseStatus->SetisStarted(true);
         break;
 
     case FuseMode::CENTER:

@@ -82,12 +82,19 @@ void FuseChangeSystem::UpdateEntity(GameEntity* _entity) {
         fuseCenterModel->setIsRender(true);
         fuseStatus->SetOffSetPos(Vec3f(0.0f, 0.0f, -6.0f));
 
+        //effect
         if (emitterFire) {
             emitterFire->PlayStart();
             emitterFire->setIsLoop(true);
         }
-        
+
+        if (fuseStatus->GetIsStarted()) {
+            break;
+        }
+
+        // model change
         CreateModelMeshRenderer(fuseCenterModel, _entity, kApplicationResourceDirectory + "/Models/Fuse", "Fuse.obj");
+        fuseStatus->SetisStarted(true);
         break;
         /// -------------------------------------------------
         /// NONE
