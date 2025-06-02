@@ -51,6 +51,7 @@ void SkullSinisterEffectSystem::UpdateEntity(GameEntity* _entity) {
     blockStatus->SinisterShake(); // シェイク
 
     if (!leftBlocks) {
+        emitterAura->setIsLoop(false);
         return;
     }
     //particle
@@ -58,5 +59,6 @@ void SkullSinisterEffectSystem::UpdateEntity(GameEntity* _entity) {
         // particleダウ
       /*  emitterAura->setOriginePos(transform->worldMat[3]);*/
         emitterAura->PlayStart();
+        emitterAura->setIsLoop(true);
     }
 }
