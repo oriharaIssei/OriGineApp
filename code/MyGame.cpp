@@ -27,6 +27,7 @@
 #include "model/ModelManager.h"
 #include "texture/TextureManager.h"
 
+#include "component/animation/SpriteAnimation.h"
 #include "component/BigBom/BigBomSpawner.h"
 #include "component/BigBom/BigBomStatus.h"
 #include "component/BigBom/BigExplotionCollision.h"
@@ -40,8 +41,10 @@
 #include "component/Button.h"
 #include "component/Combo/ComboStatus.h"
 #include "component/Combo/ComboUIStatus.h"
+#include "component/DeleteEntityStatus/DeleteEntityStatus.h"
 #include "component/effect/post/VignetteParam.h"
 #include "component/effect/TextureEffectParam.h"
+#include "component/EffectByBlock/EffectByBlockAnimationStatus.h"
 #include "component/EffectByBlock/EffectByBlockSpawner.h"
 #include "component/EffectByBlock/EffectByBlockUIStatus.h"
 #include "component/Field/FieldStatus.h"
@@ -67,6 +70,7 @@
 #include "component/ResultUI/ResultUIParentStatus.h"
 #include "component/ResultUI/ResultUIRankStatus.h"
 #include "component/ResultUI/ResultUIScoreStatus.h"
+#include "component/ScaleByBlockStatus/ScaleByBlockStatus.h"
 #include "component/SceneChanger.h"
 #include "component/SceneChanger/SceneChangerStatus.h"
 #include "component/SceneTransition/SceneTransition.h"
@@ -102,6 +106,7 @@
 #include "system/Block/DeleteBlockSystem.h"
 #include "system/Block/FrontPlaneDeleteSystem.h"
 #include "system/Block/MoveTenpoSystem.h"
+#include "system/Block/SkullSinisterEffectSystem.h"
 #include "system/Bom/BomCollisionExSystem.h"
 #include "system/Bom/BomExplotionSystem.h"
 #include "system/Bom/DeleteBomSystem.h"
@@ -111,6 +116,8 @@
 #include "system/ChangeSceneByButton.h"
 #include "system/Combo/ComboSystem.h"
 #include "system/Combo/ComboUIScrollSystem.h"
+#include "system/DeleteEntitySystem/DeleteEntitySystem.h"
+#include "system/EffectByBlock/EffectByBlockAnimationSystem.h"
 #include "system/EffectByBlock/EffectByBlockDeleteSystem.h"
 #include "system/EffectByBlock/EffectByBlockDrawSystem.h"
 #include "system/FloatingFloor/CanageStateFallSystem.h"
@@ -155,6 +162,7 @@
 #include "system/ResultUI/ResultRankSystem.h"
 #include "system/ResultUI/ResultScoreAdaptSystem.h"
 #include "system/ResultUI/ResultUIParentSystem.h"
+#include "system/ScaleByBlock/ScaleByBlockSystem.h"
 #include "system/SceneChanger/SceneChangerSystem.h"
 #include "system/SceneTransitionSystem/SceneTransitionSystem.h"
 #include "system/Score/PlusScoreAdaptUISystem.h"
@@ -502,10 +510,11 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<BackGroundSpriteRenderSystem>();
 #ifdef _DEBUG
     ecsManager->registerSystem<LineRenderSystem>(); // デバッグ用
-#endif // _DEBUG
     ecsManager->registerSystem<ColliderRenderingSystem>();
+#endif // _DEBUG
     // ecsManager->registerSystem<SkyboxRender>();
     ecsManager->registerSystem<EffectTexturedMeshRenderSystem>();
+    ecsManager->registerSystem<BackGroundSpriteRenderSystem>();
     /// =================================================================================================
     // PostRender
     /// =================================================================================================
