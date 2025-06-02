@@ -26,6 +26,7 @@ protected:
     void ApearResultScoreUI();
 
     void SpawnBlockEffect(BlockType type);
+    void SpawnBlockEffectN(BlockType type);
 
 private:
     EffectByBlockSpawner* SpawnerStatus_;
@@ -35,8 +36,11 @@ private:
 
     EffectType timeEffectType_;
     EffectType scoreEffectType_;
+
     std::array<Emitter*, 3> breakBlockEffects_;
 
+    std::array<Emitter*, 3> breakBlockEffectsN_;
       std::array<Emitter*, 3> breakEffect_;
+    
     float tempValue_;
 };
