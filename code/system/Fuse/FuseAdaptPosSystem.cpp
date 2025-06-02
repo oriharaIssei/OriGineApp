@@ -38,7 +38,8 @@ void FuseAdaptPosSystem::UpdateEntity(GameEntity* _entity) {
     if (!fuseStatus->GetBasePos()) {
         return;
     }
-    transform->translate = *fuseStatus->GetBasePos();
+    transform->translate = *fuseStatus->GetBasePos()+fuseStatus->GetOffsetPos();
+    transform->scale     = fuseStatus->GetScale();
   
 }
 
