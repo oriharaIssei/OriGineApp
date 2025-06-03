@@ -276,7 +276,6 @@
                     {
                         "fileName": "application/resource/sound/decision.wav",
                         "isLoop": false,
-                        "isPlay": false,
                         "valume": 0.5
                     }
                 ],
@@ -435,7 +434,6 @@
                     {
                         "fileName": "application/resource/sound/BreakFall.wav",
                         "isLoop": false,
-                        "isPlay": false,
                         "valume": 0.5
                     }
                 ],
@@ -532,13 +530,11 @@
                     {
                         "fileName": "application/resource/sound/Tutorial_Open.wav",
                         "isLoop": false,
-                        "isPlay": false,
                         "valume": 0.5870000123977661
                     },
                     {
                         "fileName": "application/resource/sound/Score_Decision.wav",
                         "isLoop": false,
-                        "isPlay": false,
                         "valume": 0.5
                     }
                 ],
@@ -953,7 +949,6 @@
                     {
                         "fileName": "application/resource/sound/BreakFall.wav",
                         "isLoop": false,
-                        "isPlay": false,
                         "valume": 0.5
                     }
                 ],
@@ -1288,10 +1283,32 @@
                 }
             ],
             "isUnique": true
+        },
+        {
+            "Components": {
+                "Audio": [
+                    {
+                        "fileName": "application/resource/sound/Result.wav",
+                        "isLoop": false,
+                        "valume": 0.3319999873638153
+                    }
+                ]
+            },
+            "Name": "AUDIOR",
+            "Systems": [
+                {
+                    "SystemName": "AudioInitializeSystem",
+                    "SystemType": 0
+                }
+            ],
+            "isUnique": true
         }
     ],
     "Systems": [
         {
+            "AudioInitializeSystem": {
+                "Priority": 0
+            },
             "CreateFloorSystem": {
                 "Priority": 0
             },
@@ -1329,6 +1346,9 @@
             "ChangeSceneByButton": {
                 "Priority": 0
             },
+            "CombiArrayRemoveSystem": {
+                "Priority": 0
+            },
             "DeleteBigBomSystem": {
                 "Priority": 0
             },
@@ -1361,6 +1381,9 @@
             },
             "FrontPlaneDeleteSystem": {
                 "Priority": 0
+            },
+            "FuseDeleteSystem": {
+                "Priority": 2
             },
             "SceneChangerSystem": {
                 "Priority": 0
@@ -1428,6 +1451,15 @@
                 "Priority": 0
             },
             "FloorUpdateMatrixSystem": {
+                "Priority": 0
+            },
+            "FuseAdaptPosSystem": {
+                "Priority": 0
+            },
+            "FuseChangeSystem": {
+                "Priority": 0
+            },
+            "FuseCreateSystem": {
                 "Priority": 0
             },
             "GameEndUISystem": {

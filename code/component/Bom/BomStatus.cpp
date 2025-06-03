@@ -7,7 +7,7 @@
 void BomStatus::Initialize([[maybe_unused]] GameEntity* _entity) {
     currentTime_     = 0.0f;
     explotionTime_   = 2.0f;
-    collisionRadius_ = 2.0f;
+    collisionRadius_ = 6.0f;
     positionOffset_  = Vec3f(0.0f, 0.0f, 0.0f);
     launthSpeed_     = 31.0f;
 }
@@ -48,4 +48,8 @@ void from_json(const nlohmann::json& _json, BomStatus& _block) {
     _json.at("positionOffset").get_to(_block.positionOffset_);
     _json.at("CollisionRadius").get_to(_block.collisionRadius_);
     _json.at("launthSpeed").get_to(_block.launthSpeed_);
+}
+
+void BomStatus::Rotating(const float&deltaTime) {
+    rotateY_ +=50.0f*deltaTime;
 }

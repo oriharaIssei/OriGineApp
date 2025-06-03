@@ -23,6 +23,8 @@ private: // variables
     bool isExplotion_ = false;
     float launthSpeed_;
 
+    float rotateY_=0.0f;
+
 public:
     BomStatus() {}
     virtual ~BomStatus() = default;
@@ -30,6 +32,8 @@ public:
     void Initialize(GameEntity* _entity) override;
     virtual bool Edit();
     virtual void Finalize();
+
+    void Rotating(const float&deltaTime);
 
 public: // accsessor
     /// getter
@@ -40,6 +44,7 @@ public: // accsessor
     int32_t GetBomNumber() const { return bomNumber_; }
     bool GetIsExplotion() const { return isExplotion_; }
     float GetLaunghSpeed() const { return launthSpeed_; }
+    float GetRotateY() const { return rotateY_; }
     /// setter
     void CurrentTimeIncrement(const float& time) { currentTime_ += time; }
     void SetBomNumber(const int32_t& num) { bomNumber_ = num; }

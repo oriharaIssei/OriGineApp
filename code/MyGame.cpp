@@ -461,6 +461,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<EffectByBlockAnimationSystem>();
     ecsManager->registerSystem<CombiArrayRemoveSystem>();
     ecsManager->registerSystem<FuseChangeSystem>();
+    ecsManager->registerSystem<AudioInitializeSystem>();
 
      ecsManager->registerSystem<FuseAdaptPosSystem>();
     ecsManager->registerSystem<FuseCreateSystem>();

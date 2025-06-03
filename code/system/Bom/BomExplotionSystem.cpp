@@ -32,7 +32,7 @@ void BomExplotionSystem::UpdateEntity(GameEntity* _entity) {
     if (!_entity) {
         return;
     }
-
+  
     // ポーズ中は通さない
     EntityComponentSystemManager* ecsManager = ECSManager::getInstance();
     GameEntity* menuEntity                   = ecsManager->getUniqueEntity("Menu");
@@ -80,9 +80,16 @@ void BomExplotionSystem::UpdateEntity(GameEntity* _entity) {
 }
 
 void BomExplotionSystem::LaunchMethod(GameEntity* _entity) {
-
+    float deltaTime      = Engine::getInstance()->getDeltaTime();
     Transform* transform = getComponent<Transform>(_entity);
+    bomStates_->Rotating(deltaTime);
 
+   
     transform->translate[Y] += bomStates_->GetLaunghSpeed() * Engine::getInstance()->getDeltaTime();
-    /*transform->rotate[Z] += bomStates_->GetLaunghSpeed() * Engine::getInstance()->getDeltaTime();*/
+    transform->translate[Z] = -1.0f;
+
+        // Quaternionに変換
+    Quaternion q = Quaternion::FromEulerAngles(0.0f, bomStates_->GetRotateY(), 0.0f);
+    // クォータニオンで回転をセット
+    transform->rotate = q;
 }

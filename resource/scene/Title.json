@@ -66,7 +66,6 @@
                     {
                         "fileName": "application/resource/sound/decision.wav",
                         "isLoop": false,
-                        "isPlay": false,
                         "valume": 0.5
                     }
                 ],
@@ -1363,17 +1362,25 @@
                     {
                         "fileName": "application/resource/sound/Title.wav",
                         "isLoop": true,
-                        "isPlay": true,
-                        "valume": 0.2409999966621399
+                        "valume": 0.3070000112056732
                     }
                 ]
             },
             "Name": "AUDIO",
+            "Systems": [
+                {
+                    "SystemName": "AudioInitializeSystem",
+                    "SystemType": 0
+                }
+            ],
             "isUnique": true
         }
     ],
     "Systems": [
         {
+            "AudioInitializeSystem": {
+                "Priority": 0
+            },
             "CreateFloorSystem": {
                 "Priority": 0
             },
