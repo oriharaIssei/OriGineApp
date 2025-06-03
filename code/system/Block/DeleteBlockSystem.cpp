@@ -44,6 +44,7 @@ void DeleteBlockSystem::UpdateEntity(GameEntity* _entity) {
     if (transform->translate[X] <= blockManager->GetDeadPosition()) {
         BlockReaction(_entity, blockStatus_->GetBlockType());
         transform->scale = Vec3f(0.0f, 0.0f, 0.0f);
+        blockStatus_->SetIsBreak(true);
         DestroyEntity(_entity);
     }
 }

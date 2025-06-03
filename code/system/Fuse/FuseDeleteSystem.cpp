@@ -42,13 +42,17 @@ void FuseDeleteSystem::UpdateEntity(GameEntity* _entity) {
     //}
 
     FuseStatus* fuseStatus = getComponent<FuseStatus>(_entity);
+    ModelMeshRenderer* renderer = getComponent<ModelMeshRenderer>(_entity);
 
     if (!fuseStatus->GetIsDeath()) {
+        renderer->setIsRender(false);
+        DestroyEntity(_entity);
         return;
     }
 
 
     if (*fuseStatus->GetIsDeath()) {
+        renderer->setIsRender(false);
         DestroyEntity(_entity);
     }
 
