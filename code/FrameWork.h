@@ -12,9 +12,6 @@ public:
 	virtual void Finalize();
 
 	virtual void Run() = 0;
-
-
-
 protected:
 	bool isEndRequest_ = false;
 	Engine* engine_ = nullptr;

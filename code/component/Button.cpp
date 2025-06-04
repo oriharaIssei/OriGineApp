@@ -12,6 +12,7 @@
 #include "myGui/MyGui.h"
 #endif // _DEBUG
 
+
 void to_json(nlohmann::json& j, const Button& r) {
     /// ============ color ============ ///
     nlohmann::json normalColorJson  = nlohmann::json::object();
@@ -87,9 +88,9 @@ bool Button::Edit() {
     bool isChanged = false;
 #ifdef _DEBUG
     if (ImGui::TreeNode("Button Colors")) {
-        isChanged |= ColorEditGuiCommand("Normal Color", normalColor_);
-        isChanged |= ColorEditGuiCommand("Hover Color", hoverColor_);
-        isChanged |= ColorEditGuiCommand("Press Color", pressColor_);
+        isChanged |= ColorEditGuiCommand("Normal Color",  normalColor_);
+        isChanged |= ColorEditGuiCommand("Hover Color",   hoverColor_);
+        isChanged |= ColorEditGuiCommand("Press Color",   pressColor_);
         isChanged |= ColorEditGuiCommand("Release Color", releaseColor_);
 
         ImGui::TreePop();
