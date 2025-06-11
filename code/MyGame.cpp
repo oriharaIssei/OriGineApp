@@ -15,7 +15,7 @@
 #ifdef _DEBUG
 /// editor
 #include "ECSEditor.h"
-#include "module/editor/EditorGroup.h"
+#include "module/editor/EditorController.h"
 /// debugger
 #include "ECSDebugger.h"
 #include "logger/Logger.h"
@@ -49,14 +49,14 @@ void MyGame::Initialize() {
     // Editor の初期化
     ///=================================================================================================
     {
-        EditorGroup* editorGroup             = EditorGroup::getInstance();
+        EditorController* editorController   = EditorController::getInstance();
         std::unique_ptr<ECSEditor> ecsEditor = std::make_unique<ECSEditor>();
-        editorGroup->addEditor(std::move(ecsEditor));
+        editorController->addEditor(std::move(ecsEditor));
         std::unique_ptr<GlobalVariablesEditor> globalVariables = std::make_unique<GlobalVariablesEditor>();
-        editorGroup->addEditor(std::move(globalVariables));
+        editorController->addEditor(std::move(globalVariables));
 
-        // gorup Initialize
-        editorGroup->Initialize();
+        // controller Initialize
+        editorController->Initialize();
     }
 
     ///=================================================================================================
@@ -83,9 +83,9 @@ void MyGame::Initialize() {
 
 void MyGame::Finalize() {
 #ifdef _DEBUG
-    EditorGroup* editorGroup     = EditorGroup::getInstance();
-    DebuggerGroup* debuggerGroup = DebuggerGroup::getInstance();
-    editorGroup->Finalize();
+    EditorController* editorController = EditorController::getInstance();
+    DebuggerGroup* debuggerGroup       = DebuggerGroup::getInstance();
+    editorController->Finalize();
     debuggerGroup->Finalize();
 #endif // _DEBUG
 
