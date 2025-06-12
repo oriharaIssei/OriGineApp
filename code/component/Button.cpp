@@ -111,7 +111,7 @@ bool Button::Edit() {
                     bool isSelected = (shortcutKey_[i] == key.first);
                     if (ImGui::Selectable(key.second.c_str(), isSelected)) {
                         auto command = std::make_unique<SetterCommand<Key>>(&shortcutKey_[i], key.first);
-                        EditorGroup::getInstance()->pushCommand(std::move(command));
+                        EditorController::getInstance()->pushCommand(std::move(command));
                         isChanged = true;
                     }
                     if (isSelected) {
@@ -125,7 +125,7 @@ bool Button::Edit() {
         // add
         if (ImGui::Button("Add Key")) {
             auto command = std::make_unique<AddElementCommand<std::vector<Key>>>(&shortcutKey_, Key::ESCAPE);
-            EditorGroup::getInstance()->pushCommand(std::move(command));
+            EditorController::getInstance()->pushCommand(std::move(command));
             isChanged = true;
         }
         ImGui::SameLine();
@@ -133,7 +133,7 @@ bool Button::Edit() {
         if (ImGui::Button("Remove Key")) {
             if (shortcutKey_.size() > 0) {
                 auto command = std::make_unique<EraseElementCommand<std::vector<Key>>>(&shortcutKey_, shortcutKey_.end() - 1);
-                EditorGroup::getInstance()->pushCommand(std::move(command));
+                EditorController::getInstance()->pushCommand(std::move(command));
             }
         }
 
@@ -155,7 +155,7 @@ bool Button::Edit() {
                     bool isSelected = (shortcutPadButton_[i] == button.first);
                     if (ImGui::Selectable(button.second.c_str(), isSelected)) {
                         auto command = std::make_unique<SetterCommand<PadButton>>(&shortcutPadButton_[i], button.first);
-                        EditorGroup::getInstance()->pushCommand(std::move(command));
+                        EditorController::getInstance()->pushCommand(std::move(command));
                         isChanged = true;
                     }
                     if (isSelected) {
@@ -169,7 +169,7 @@ bool Button::Edit() {
         // add
         if (ImGui::Button("Add PadButton")) {
             auto command = std::make_unique<AddElementCommand<std::vector<PadButton>>>(&shortcutPadButton_, PadButton::UP);
-            EditorGroup::getInstance()->pushCommand(std::move(command));
+            EditorController::getInstance()->pushCommand(std::move(command));
             isChanged = true;
         }
         ImGui::SameLine();
@@ -177,7 +177,7 @@ bool Button::Edit() {
         if (ImGui::Button("Remove PadButton")) {
             if (shortcutPadButton_.size() > 0) {
                 auto command = std::make_unique<EraseElementCommand<std::vector<PadButton>>>(&shortcutPadButton_, shortcutPadButton_.end() - 1);
-                EditorGroup::getInstance()->pushCommand(std::move(command));
+                EditorController::getInstance()->pushCommand(std::move(command));
                 isChanged = true;
             }
         }
