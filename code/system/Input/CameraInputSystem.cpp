@@ -35,7 +35,7 @@ void CameraInputSystem::UpdateEntity(GameEntity* _entity) {
         } else { /// Mouse
             Vec2f rotateVelocity = input_->getMouseVelocity() * cameraController->getRotateSpeedMouse();
             // input の x,yをそれぞれの角度に変換
-            destinationAngleXY += rotateVelocity;
+            destinationAngleXY += Vec2f(rotateVelocity[Y], rotateVelocity[X]);
         }
 
         destinationAngleXY[X] = 0.f;
