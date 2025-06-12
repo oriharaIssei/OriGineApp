@@ -6,12 +6,12 @@
 #include <vector>
 
 /// engine
-#include "input/Input.h"
+#include <input/Input.h>
 // component
 #include "component/renderer/Sprite.h"
 
 /// math
-#include "Vector4.h"
+#include <Vector4.h>
 #include <stdint.h>
 
 ///=====================================================

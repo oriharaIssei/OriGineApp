@@ -65,14 +65,14 @@ void MyGame::Initialize() {
     // Editor の初期化
     ///=================================================================================================
     {
-        EditorController* editorGroup             = EditorController::getInstance();
+        EditorController* editorController   = EditorController::getInstance();
         std::unique_ptr<ECSEditor> ecsEditor = std::make_unique<ECSEditor>();
-        editorGroup->addEditor(std::move(ecsEditor));
+        editorController->addEditor(std::move(ecsEditor));
         std::unique_ptr<GlobalVariablesEditor> globalVariables = std::make_unique<GlobalVariablesEditor>();
-        editorGroup->addEditor(std::move(globalVariables));
+        editorController->addEditor(std::move(globalVariables));
 
-        // gorup Initialize
-        editorGroup->Initialize();
+        // controller Initialize
+        editorController->Initialize();
     }
 
     ///=================================================================================================
@@ -99,9 +99,9 @@ void MyGame::Initialize() {
 
 void MyGame::Finalize() {
 #ifdef _DEBUG
-    EditorController* editorGroup     = EditorController::getInstance();
-    DebuggerGroup* debuggerGroup = DebuggerGroup::getInstance();
-    editorGroup->Finalize();
+    EditorController* editorController = EditorController::getInstance();
+    DebuggerGroup* debuggerGroup       = DebuggerGroup::getInstance();
+    editorController->Finalize();
     debuggerGroup->Finalize();
 #endif // _DEBUG
 
