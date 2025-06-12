@@ -1,0 +1,153 @@
+{
+    "Entities": [
+        {
+            "Components": {
+                "ModelMeshRenderer": [
+                    {
+                        "blendMode": 1,
+                        "directory": "application/resource/Models",
+                        "fileName": "sphere.obj",
+                        "isRender": true,
+                        "materialBufferDatas": [
+                            {
+                                "color": [
+                                    1.0,
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "enableLighting": false,
+                                "shininess": 0.0,
+                                "specularColor": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvRotate": 0.0,
+                                "uvScale": [
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvTranslate": [
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ],
+                        "textureFilePath": [
+                            ""
+                        ],
+                        "transformBufferDatas": [
+                            {
+                                "rotate": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "scale": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "translate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0,
+                            6.039999961853027
+                        ]
+                    }
+                ]
+            },
+            "Name": "Entity",
+            "Systems": [
+                {
+                    "SystemName": "TexturedMeshRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": false
+        }
+    ],
+    "Systems": [
+        {},
+        {},
+        {},
+        {
+            "MoveSystemByRigidBody": {
+                "Priority": 0
+            }
+        },
+        {
+            "CollisionCheckSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "EmitterWorkSystem": {
+                "Priority": 0
+            },
+            "PrimitiveNodeAnimationWorkSystem": {
+                "Priority": 0
+            },
+            "TextureEffectAnimation": {
+                "Priority": 0
+            }
+        },
+        {
+            "ColliderRenderingSystem": {
+                "Priority": 0
+            },
+            "EffectTexturedMeshRenderSystem": {
+                "Priority": 0
+            },
+            "LineRenderSystem": {
+                "Priority": 0
+            },
+            "ParticleRenderSystem": {
+                "Priority": 0
+            },
+            "SkyboxRender": {
+                "Priority": 0
+            },
+            "SpriteRenderSystem": {
+                "Priority": 0
+            },
+            "TexturedMeshRenderSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "GrayscaleEffect": {
+                "Priority": 0
+            },
+            "SmoothingEffect": {
+                "Priority": 0
+            },
+            "VignetteEffect": {
+                "Priority": 0
+            }
+        }
+    ]
+}
