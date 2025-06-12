@@ -42,6 +42,7 @@
     <ClCompile Include="code\component\SceneChanger.cpp">
       <Filter>component</Filter>
     </ClCompile>
+    <ClCompile Include="code\main.cpp" />
     <ClCompile Include="code\system\Input\ButtonInputSystem.cpp">
       <Filter>system\Input</Filter>
     </ClCompile>
