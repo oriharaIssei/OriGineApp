@@ -1,0 +1,85 @@
+{
+    "Systems": [
+        {
+            "SettingGameCameraTarget": {
+                "Priority": 0
+            }
+        },
+        {
+            "CameraInputSystem": {
+                "Priority": 1
+            },
+            "PlayerInputSystem": {
+                "Priority": 0
+            }
+        },
+        {},
+        {
+            "BillboardTransform": {
+                "Priority": 100
+            },
+            "FollowCameraUpdateSystem": {
+                "Priority": 10
+            },
+            "MoveSystemByRigidBody": {
+                "Priority": 3
+            },
+            "PlayerMoveSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "CollisionCheckSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "EmitterWorkSystem": {
+                "Priority": 0
+            },
+            "PrimitiveNodeAnimationWorkSystem": {
+                "Priority": 1
+            },
+            "TextureEffectAnimation": {
+                "Priority": 2
+            }
+        },
+        {
+            "ColliderRenderingSystem": {
+                "Priority": 0
+            },
+            "EffectTexturedMeshRenderSystem": {
+                "Priority": 0
+            },
+            "LineRenderSystem": {
+                "Priority": 0
+            },
+            "ParticleRenderSystem": {
+                "Priority": 3
+            },
+            "SkyboxRender": {
+                "Priority": -1
+            },
+            "SpriteRenderSystem": {
+                "Priority": 5
+            },
+            "TexturedMeshRenderSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "DistortionEffect": {
+                "Priority": 0
+            },
+            "GrayscaleEffect": {
+                "Priority": 0
+            },
+            "SmoothingEffect": {
+                "Priority": 0
+            },
+            "VignetteEffect": {
+                "Priority": 0
+            }
+        }
+    ]
+}
