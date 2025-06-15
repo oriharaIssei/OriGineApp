@@ -31,12 +31,14 @@
 #include "component/Player/PlayerStatus.h"
 
 // system
+#include "system/effect/EffectOnPlayerGearup.h"
 #include "system/Initialize/SettingGameCameraTarget.h"
 #include "system/Input/CameraInputSystem.h"
 #include "system/Input/PlayerInputSystem.h"
 #include "system/Movement//BillboardTransform.h"
 #include "system/Movement/FollowCameraUpdateSystem.h"
 #include "system/Movement/PlayerMoveSystem.h"
+#include "system/Transition/TransitionPlayerState.h"
 
 MyGame::MyGame() {}
 
@@ -182,7 +184,7 @@ void MyGame::RegisterUsingSystems() {
     /// ===================================================================================================
     // StateTransition
     /// ===================================================================================================
-
+    ecsManager->registerSystem<TransitionPlayerState>();
     /// =================================================================================================
     // Movement
     /// =================================================================================================
@@ -202,6 +204,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<EmitterWorkSystem>();
     ecsManager->registerSystem<PrimitiveNodeAnimationWorkSystem>();
     ecsManager->registerSystem<TextureEffectAnimation>();
+    ecsManager->registerSystem<EffectOnPlayerGearup>();
 
     /// =================================================================================================
     // Render
