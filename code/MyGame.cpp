@@ -144,6 +144,7 @@ void MyGame::RegisterUsingComponents() {
 
     ecsManager->registerComponent<AABBCollider>();
     ecsManager->registerComponent<SphereCollider>();
+    ecsManager->registerComponent<CollisionPushBackInfo>();
 
     ecsManager->registerComponent<Emitter>();
     ecsManager->registerComponent<TextureEffectParam>();
@@ -197,6 +198,7 @@ void MyGame::RegisterUsingSystems() {
     // Collision
     /// =================================================================================================
     ecsManager->registerSystem<CollisionCheckSystem>();
+    ecsManager->registerSystem<CollisionPushBackSystem>();
 
     /// =================================================================================================
     // Effect
