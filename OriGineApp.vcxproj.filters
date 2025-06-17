@@ -59,6 +59,7 @@
     <ClInclude Include="code\system\Transition\TransitionPlayerState.h" />
     <ClInclude Include="code\system\Movement\BillboardTransform.h" />
     <ClInclude Include="code\system\effect\EffectOnPlayerGearup.h" />
+    <ClInclude Include="code\system\collision\PlayerOnCollision.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -106,5 +107,6 @@
     <ClCompile Include="code\system\Transition\TransitionPlayerState.cpp" />
     <ClCompile Include="code\system\Movement\BillboardTransform.cpp" />
     <ClCompile Include="code\system\effect\EffectOnPlayerGearup.cpp" />
+    <ClCompile Include="code\system\collision\PlayerOnCollision.cpp" />
   </ItemGroup>
 </Project>

@@ -117,6 +117,7 @@
     <ClInclude Include="code\system\Initialize\SettingGameCameraTarget.h" />
     <ClInclude Include="code\system\Transition\TransitionPlayerState.h" />
     <ClInclude Include="code\system\effect\EffectOnPlayerGearup.h" />
+    <ClInclude Include="code\system\collision\PlayerOnCollision.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\system\Movement\BillboardTransform.cpp" />
@@ -138,6 +139,7 @@
     <ClCompile Include="code\system\Initialize\SettingGameCameraTarget.cpp" />
     <ClCompile Include="code\system\Transition\TransitionPlayerState.cpp" />
     <ClCompile Include="code\system\effect\EffectOnPlayerGearup.cpp" />
+    <ClCompile Include="code\system\collision\PlayerOnCollision.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">

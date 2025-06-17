@@ -1,4 +1,159 @@
 {
+    "Entities": [
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "max": [
+                            3.0,
+                            1.0,
+                            3.0
+                        ],
+                        "min": [
+                            -3.0,
+                            -1.0,
+                            -3.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemName": "CollisionCheckSystem",
+                    "SystemType": 4
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "CollisionPushBackInfo": [
+                    {
+                        "pushBackType": 2
+                    }
+                ],
+                "Rigidbody": [
+                    {
+                        "acceleration": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "mass": 3.200000047683716,
+                        "useGravity": true,
+                        "velocity": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "SphereCollider": [
+                    {
+                        "center": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "radius": 0.9100000262260437,
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            0.0,
+                            5.440000057220459,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "ball",
+            "Systems": [
+                {
+                    "SystemName": "MoveSystemByRigidBody",
+                    "SystemType": 3
+                },
+                {
+                    "SystemName": "CollisionCheckSystem",
+                    "SystemType": 4
+                },
+                {
+                    "SystemName": "CollisionPushBackSystem",
+                    "SystemType": 4
+                }
+            ],
+            "isUnique": false
+        }
+    ],
     "Systems": [
         {
             "SettingGameCameraTarget": {
@@ -13,7 +168,11 @@
                 "Priority": 0
             }
         },
-        {},
+        {
+            "TransitionPlayerState": {
+                "Priority": 0
+            }
+        },
         {
             "BillboardTransform": {
                 "Priority": 100
@@ -31,9 +190,18 @@
         {
             "CollisionCheckSystem": {
                 "Priority": 0
+            },
+            "CollisionPushBackSystem": {
+                "Priority": 5
+            },
+            "PlayerOnCollision": {
+                "Priority": 10
             }
         },
         {
+            "EffectOnPlayerGearup": {
+                "Priority": 0
+            },
             "EmitterWorkSystem": {
                 "Priority": 0
             },
