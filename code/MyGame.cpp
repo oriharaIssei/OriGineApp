@@ -31,6 +31,7 @@
 #include "component/Player/PlayerStatus.h"
 
 // system
+#include "system/Collision/PlayerOnCollision.h"
 #include "system/effect/EffectOnPlayerGearup.h"
 #include "system/Initialize/SettingGameCameraTarget.h"
 #include "system/Input/CameraInputSystem.h"
@@ -199,6 +200,7 @@ void MyGame::RegisterUsingSystems() {
     /// =================================================================================================
     ecsManager->registerSystem<CollisionCheckSystem>();
     ecsManager->registerSystem<CollisionPushBackSystem>();
+    ecsManager->registerSystem<PlayerOnCollision>();
 
     /// =================================================================================================
     // Effect

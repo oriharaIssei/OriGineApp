@@ -31,8 +31,7 @@ public:
 
 private:
     Vec2f inputDirection_ = {0.0f, 0.0f};
-    bool isJump_          = false;
-    bool isSlideing_      = false;
+    bool isJumpInput_     = false; // ジャンプ入力があったかどうか
 
     /// <summary>
     /// 移動 キー (ゲームパッドは スティックだから必要なし)
@@ -99,10 +98,10 @@ public:
         inputDirection_ = _inputDirection;
     }
 
-    bool isJump() const {
-        return isJump_;
+    bool isJumpInput() const {
+        return isJumpInput_;
     }
-    void setJump(bool _isJump) {
-        isJump_ = _isJump;
+    void setJumpInput(bool _isJumpInput) {
+        isJumpInput_ = _isJumpInput;
     }
 };

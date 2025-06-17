@@ -58,13 +58,14 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
         }
 
         playerInput->setInputDirection(Vec2f(float(right - left), float(front - back)));
-        
+
         // ジャンプ
-        /*for (auto key : playerInput->getJumpKeys()) {
+        playerInput->setJumpInput(false);
+        for (auto key : playerInput->getJumpKeys()) {
             if (input_->isPressKey(key)) {
-                playerInput->setJump(true);
+                playerInput->setJumpInput(true);
                 break;
             }
-        }*/
+        }
     }
 }
