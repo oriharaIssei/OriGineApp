@@ -164,7 +164,10 @@ private:
     float gearUpCoolTime_     = 0.0f; // ギアレベルが上がるまでの時間
 
     // 基本速度
-    float baseSpeed_ = 0.0f;
+    float baseSpeed_         = 0.0f;
+    float wallRunSpeed_      = 0.0f; // 壁走りの速度
+    Vec3f wallJumpDirection_ = Vec3f(0.0f, 0.0f, 0.0f); // 壁ジャンプの方向
+
     // 現在の速度は gearLevel_ に応じて変化する
     float currentSpeed_ = 0.0f; // 現在の速度
 
@@ -240,6 +243,20 @@ public:
     }
     void setCurrentSpeed(float _currentSpeed) {
         currentSpeed_ = _currentSpeed;
+    }
+
+    float getWallRunSpeed() const {
+        return wallRunSpeed_;
+    }
+    void setWallRunSpeed(float _wallRunSpeed) {
+        wallRunSpeed_ = _wallRunSpeed;
+    }
+
+    const Vec3f& getWallJumpDirection() const {
+        return wallJumpDirection_;
+    }
+    void setWallJumpDirection(const Vec3f& _wallJumpDirection) {
+        wallJumpDirection_ = _wallJumpDirection;
     }
 
     float getBaseGearupCoolTime() const {
