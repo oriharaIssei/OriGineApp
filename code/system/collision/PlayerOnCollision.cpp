@@ -14,6 +14,7 @@ void PlayerOnCollision::Finalize() {
 }
 
 static const float GROUND_CHECK_THRESHOLD = 0.7f; // 地面と判断するための閾値
+static const float WALL_CHECK_THRESHOLD   = 0.7f; // 壁と判断するための閾値
 
 void PlayerOnCollision::UpdateEntity(GameEntity* _entity) {
     auto* status       = getComponent<PlayerStatus>(_entity);
@@ -23,9 +24,11 @@ void PlayerOnCollision::UpdateEntity(GameEntity* _entity) {
         return;
     }
     status->setOnGround(false);
+    status->setCollisionWithWall(false, {0.0f, 0.0f, 0.0f});
 
     for (auto& [entity, info] : pushBackInfo->getCollisionInfoMap()) {
-        if (info.collVec.normalize()[Y] > GROUND_CHECK_THRESHOLD) {
+        Vec3f collNormal = info.collVec.normalize();
+        if (collNormal[Y] > GROUND_CHECK_THRESHOLD) {
             // 上方向に衝突した場合は、地面にいると判断する
             status->setOnGround(true);
 
@@ -39,6 +42,12 @@ void PlayerOnCollision::UpdateEntity(GameEntity* _entity) {
             // Y軸の速度を0にする
             velo[Y] = 0.f;
             rigidbody->setVelocity(velo);
+        } else {
+            if (std::abs(collNormal[X]) > WALL_CHECK_THRESHOLD) {
+                // 壁と衝突した場合、地面にいると判断する
+                status->setOnGround(true);
+                status->setCollisionWithWall(true, collNormal);
+            }
         }
     }
 }

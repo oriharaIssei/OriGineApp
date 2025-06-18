@@ -4,17 +4,21 @@
 /// util
 #include "util/EnumBitMask.h"
 
+/// math
+#include <math/Vector3.h>
+
 /// <summary>
 /// プレイヤーの 移動状態 を表す列挙体
 /// </summary>
 enum class PlayerMoveState {
-    IDLE = 1 << 0, // 待機 (動いていない)
-    DASH = 1 << 1, // ダッシュ(基本移動)
-    JUMP = 1 << 2, // ジャンプ
-    // SLIDE    = 1 << 3, // スライド
-    // WALL_RUN = 1 << 4, // ウォールラン
+    IDLE      = 1 << 0, // 待機 (動いていない)
+    DASH      = 1 << 1, // ダッシュ(基本移動)
+    JUMP      = 1 << 2, // ジャンプ
+    WALL_RUN  = 1 << 3, // 壁走り
+    WALL_JUMP = 1 << 4, // 壁ジャンプ
+    // SLIDE    = 1 << 4, // スライド
 
-    Count = 3 // 5
+    Count = 5 // 5
 };
 
 #pragma region "Playser State"
@@ -79,6 +83,39 @@ public:
     PlayerMoveState TransitionState() const override;
 };
 
+class PlayerWallRunState
+    : public IPlayerMoveState {
+public:
+    PlayerWallRunState(int32_t _playerEntityID) : IPlayerMoveState(_playerEntityID, PlayerMoveState::DASH) {}
+    ~PlayerWallRunState() override {};
+
+    void Initialize() override;
+    void Update(float _deltaTime) override;
+    void Finalize() override;
+
+    PlayerMoveState TransitionState() const override;
+
+protected:
+    float separationGraceTime_ = 0.2f; // オブジェクトが離れていると判定するまでの猶予時間
+    float separationdLeftTime_ = 0.0f; // 壁との衝突判定の残り時間
+};
+
+class PlayerWallJumpState
+    : public IPlayerMoveState {
+public:
+    PlayerWallJumpState(int32_t _playerEntityID) : IPlayerMoveState(_playerEntityID, PlayerMoveState::WALL_JUMP) {}
+    ~PlayerWallJumpState() override {};
+
+    void Initialize() override;
+    void Update(float _deltaTime) override;
+    void Finalize() override;
+
+    PlayerMoveState TransitionState() const override;
+
+protected:
+    Vec3f velo_ = Vec3f(0.0f, 0.0f, 0.0f); // 壁ジャンプの方向
+};
+
 // class PlayerSlideState
 //     : public IPlayerMoveState {
 // public:
@@ -115,8 +152,8 @@ private:
     // プレイヤーの状態を表す変数群
     bool onGround_ = false; // 地面にいるかどうか
 
-    bool canJump_  = false; // ジャンプ可能かどうか
-    bool canSlide_ = false; // スライド可能かどうか
+    bool collisionWithWall_    = false; // 壁に衝突しているかどうか
+    Vec3f wallCollisionNormal_ = Vec3f(0.0f, 0.0f, 0.0f); // 壁との衝突時の法線ベクトル
 
     bool isGearUp_     = false; // ギアアップ中かどうか
     int32_t gearLevel_ = 0; // ギアレベル
@@ -127,7 +164,10 @@ private:
     float gearUpCoolTime_     = 0.0f; // ギアレベルが上がるまでの時間
 
     // 基本速度
-    float baseSpeed_ = 0.0f;
+    float baseSpeed_         = 0.0f;
+    float wallRunSpeed_      = 0.0f; // 壁走りの速度
+    Vec3f wallJumpDirection_ = Vec3f(0.0f, 0.0f, 0.0f); // 壁ジャンプの方向
+
     // 現在の速度は gearLevel_ に応じて変化する
     float currentSpeed_ = 0.0f; // 現在の速度
 
@@ -164,18 +204,15 @@ public:
         onGround_ = _onGround;
     }
 
-    bool canJump() const {
-        return canJump_;
+    bool isCollisionWithWall() const {
+        return collisionWithWall_;
     }
-    void setCanJump(bool _canJump) {
-        canJump_ = _canJump;
+    void setCollisionWithWall(bool _collisionWithWall, const Vec3f& _wallCollisionNormal) {
+        collisionWithWall_   = _collisionWithWall;
+        wallCollisionNormal_ = _wallCollisionNormal;
     }
-
-    bool canSlide() const {
-        return canSlide_;
-    }
-    void setCanSlide(bool _canSlide) {
-        canSlide_ = _canSlide;
+    const Vec3f& getWallCollisionNormal() const {
+        return wallCollisionNormal_;
     }
 
     bool isGearUp() const {
@@ -206,6 +243,20 @@ public:
     }
     void setCurrentSpeed(float _currentSpeed) {
         currentSpeed_ = _currentSpeed;
+    }
+
+    float getWallRunSpeed() const {
+        return wallRunSpeed_;
+    }
+    void setWallRunSpeed(float _wallRunSpeed) {
+        wallRunSpeed_ = _wallRunSpeed;
+    }
+
+    const Vec3f& getWallJumpDirection() const {
+        return wallJumpDirection_;
+    }
+    void setWallJumpDirection(const Vec3f& _wallJumpDirection) {
+        wallJumpDirection_ = _wallJumpDirection;
     }
 
     float getBaseGearupCoolTime() const {
