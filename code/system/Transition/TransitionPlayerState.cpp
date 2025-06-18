@@ -36,6 +36,14 @@ void TransitionPlayerState::UpdateEntity(GameEntity* _entity) {
             playerStatus->setPlayerMoveState(std::make_shared<PlayerJumpState>(_entity->getID()));
             break;
         }
+        case PlayerMoveState::WALL_RUN: {
+            playerStatus->setPlayerMoveState(std::make_shared<PlayerWallRunState>(_entity->getID()));
+            break;
+        }
+        case PlayerMoveState::WALL_JUMP: {
+            playerStatus->setPlayerMoveState(std::make_shared<PlayerWallJumpState>(_entity->getID()));
+            break;
+        }
         }
 
         playerStatus->getPlayerMoveState()->Initialize();
