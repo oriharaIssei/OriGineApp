@@ -29,6 +29,9 @@ public:
 private:
     Transform* followTarget_ = nullptr;
 
+    Vec3f forward_     = {0.f, 0.f, 1.f}; // カメラの前方向
+    float angleLimitY_ = 0.0f;
+
     Vec3f followOffset_             = {0.f, 0.f, 0.f};
     Vec3f interTarget_              = {0.f, 0.f, 0.f};
     Vec2f destinationAngleXY_       = {0.0f, 0.0f};
@@ -41,6 +44,12 @@ private:
     float minRotateX_ = 0.0f;
 
 public:
+    const Vec3f& getForward() const { return forward_; }
+    void setForward(const Vec3f& forward) { forward_ = forward; }
+
+    float getAngleLimitY() const { return angleLimitY_; }
+    void setAngleLimitY(float angleLimitY) { angleLimitY_ = angleLimitY; }
+
     const Vec3f& getFollowOffset() const { return followOffset_; }
     void setFollowOffset(const Vec3f& offset) { followOffset_ = offset; }
 

@@ -9,6 +9,10 @@
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
 
+/// math
+#include <algorithm>
+#include <numbers>
+
 void FollowCameraUpdateSystem::Initialize() {
 }
 
@@ -29,11 +33,11 @@ void FollowCameraUpdateSystem::UpdateEntity(GameEntity* _entity) {
 
         // ============= rotate ============= //
         // 角度からオフセットを回転
-        const Vec2f& destinationAngleXY = cameraController->getDestinationAngleXY();
-        Vec3f offset                    = cameraController->getFollowOffset();
+        Vec2f destinationAngleXY = cameraController->getDestinationAngleXY();
+        Vec3f offset             = cameraController->getFollowOffset();
 
         // 回転行列を作成
-        Matrix4x4 rotateMat = MakeMatrix::RotateY(destinationAngleXY[Y]) * MakeMatrix::RotateX(destinationAngleXY[X]);
+        Matrix4x4 rotateMat = MakeMatrix::RotateX(destinationAngleXY[X]) * MakeMatrix::RotateY(destinationAngleXY[Y]);
         Vec3f rotatedOffset = offset * rotateMat;
 
         // 新しいカメラ位置
@@ -42,8 +46,10 @@ void FollowCameraUpdateSystem::UpdateEntity(GameEntity* _entity) {
 
         // ============= look at target ============= //
         // カメラの向きをターゲットに向ける
-        Vec3f lookDir              = Vec3f::Normalize(followTargetPosition - cameraTransform->translate);
-        cameraTransform->rotate    = Quaternion::LookAt(lookDir, Vec3f(0, 1, 0));
+        Vec3f lookDir               = Vec3f::Normalize(followTargetPosition - cameraTransform->translate);
+        Quaternion targetQuaternion = Quaternion::LookAt(lookDir, axisY);
+
+        cameraTransform->rotate = Lerp(cameraTransform->rotate, targetQuaternion, cameraController->getRotateSensitivity());
     }
 
     cameraTransform->UpdateMatrix();

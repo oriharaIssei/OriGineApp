@@ -26,6 +26,15 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
         // 移動
         playerInput->setInputDirection(input_->getLStickVelocity().normalize());
 
+        // ジャンプ
+        playerInput->setJumpInput(false);
+        for (auto button : playerInput->getJumpButton()) {
+            if (input_->isTriggerButton(button)) {
+                playerInput->setJumpInput(true);
+                break;
+            }
+        }
+
     } else {
         bool front = false;
         bool back  = false;
@@ -62,7 +71,7 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
         // ジャンプ
         playerInput->setJumpInput(false);
         for (auto key : playerInput->getJumpKeys()) {
-            if (input_->isPressKey(key)) {
+            if (input_->isTriggerKey(key)) {
                 playerInput->setJumpInput(true);
                 break;
             }

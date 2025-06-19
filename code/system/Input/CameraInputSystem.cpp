@@ -37,9 +37,11 @@ void CameraInputSystem::UpdateEntity(GameEntity* _entity) {
             // input の x,yをそれぞれの角度に変換
             destinationAngleXY += Vec2f(rotateVelocity[Y], rotateVelocity[X]);
         }
-
-        destinationAngleXY[X] = 0.f;
-        destinationAngleXY[Y] = std::fmodf(destinationAngleXY[Y], tao);
+        // 角度制限を適用
+        destinationAngleXY[X] = std::clamp(destinationAngleXY[X], cameraController->getMinRotateX(), cameraController->getMaxRotateX());
+        // Y軸の角度制限を適用
+        float forwardAngle    = std::atan2(cameraController->getForward()[X], cameraController->getForward()[Z]);
+        destinationAngleXY[Y] = std::clamp(destinationAngleXY[Y], -cameraController->getAngleLimitY() + forwardAngle, cameraController->getAngleLimitY() + forwardAngle);
 
         cameraController->setDestinationAngleXY(destinationAngleXY);
     }
