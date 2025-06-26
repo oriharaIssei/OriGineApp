@@ -1,6 +1,7 @@
 #include "MyGame.h"
 
 /// engine include
+#include "winApp/WinApp.h"
 #define ENGINE_INCLUDE
 #define ENGINE_ECS
 #include <EngineInclude.h>
@@ -29,17 +30,23 @@
 #include "component/cameraController/CameraController.h"
 #include "component/Player/PlayerInput.h"
 #include "component/Player/PlayerStatus.h"
+#include "component/TimerComponent.h"
 
 // system
 #include "system/Collision/PlayerOnCollision.h"
 #include "system/effect/EffectOnPlayerGearup.h"
+#include "system/effect/TimerForSprite.h"
+#include "system/Initialize/CreateSpriteFromTimer.h"
 #include "system/Initialize/SettingGameCameraTarget.h"
 #include "system/Input/CameraInputSystem.h"
 #include "system/Input/PlayerInputSystem.h"
 #include "system/Movement//BillboardTransform.h"
 #include "system/Movement/FollowCameraUpdateSystem.h"
 #include "system/Movement/PlayerMoveSystem.h"
+#include "system/Transition/GameEndStateTransition.h"
+#include "system/Transition/TimerCountDown.h"
 #include "system/Transition/TransitionPlayerState.h"
+#include "system/Transition/TransitionSceneByTimer.h"
 
 MyGame::MyGame() {}
 
@@ -116,11 +123,15 @@ void MyGame::Finalize() {
 
 void MyGame::Run() {
     while (true) {
-        if (engine_->ProcessMessage()) {
+        if (engine_->ProcessMessage() || sceneManager_->isExitGame()) {
             break;
         }
+
         engine_->BeginFrame();
 
+        if (!engine_->getWinApp()->isActive()) {
+            continue;
+        }
 #ifdef _DEBUG
         sceneManager_->DebugUpdate();
 #endif // DEBUG
@@ -167,6 +178,9 @@ void MyGame::RegisterUsingComponents() {
     ecsManager->registerComponent<CameraController>();
     ecsManager->registerComponent<PlayerInput>();
     ecsManager->registerComponent<PlayerStatus>();
+
+    ecsManager->registerComponent<TimerComponent>();
+    ecsManager->registerComponent<TimerForSpriteComponent>();
 }
 
 void MyGame::RegisterUsingSystems() {
@@ -176,6 +190,7 @@ void MyGame::RegisterUsingSystems() {
     // Initialize
     /// ====================================================================================================
     ecsManager->registerSystem<SettingGameCameraTarget>();
+    ecsManager->registerSystem<CreateSpriteFromTimer>();
 
     /// ===================================================================================================
     // Input
@@ -187,6 +202,10 @@ void MyGame::RegisterUsingSystems() {
     // StateTransition
     /// ===================================================================================================
     ecsManager->registerSystem<TransitionPlayerState>();
+    ecsManager->registerSystem<TimerCountDown>();
+    ecsManager->registerSystem<GameEndStateTransition>();
+    ecsManager->registerSystem<TransitionSceneByTimer>();
+
     /// =================================================================================================
     // Movement
     /// =================================================================================================
@@ -209,6 +228,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<PrimitiveNodeAnimationWorkSystem>();
     ecsManager->registerSystem<TextureEffectAnimation>();
     ecsManager->registerSystem<EffectOnPlayerGearup>();
+    ecsManager->registerSystem<TimerForSprite>();
 
     /// =================================================================================================
     // Render

@@ -60,6 +60,12 @@
     <ClInclude Include="code\system\Movement\BillboardTransform.h" />
     <ClInclude Include="code\system\effect\EffectOnPlayerGearup.h" />
     <ClInclude Include="code\system\collision\PlayerOnCollision.h" />
+    <ClInclude Include="code\component\TimerComponent.h" />
+    <ClInclude Include="code\system\Transition\GameEndStateTransition.h" />
+    <ClInclude Include="code\system\Transition\TransitionSceneByTimer.h" />
+    <ClInclude Include="code\system\Transition\TimerCountDown.h" />
+    <ClInclude Include="code\system\effect\TimerForSprite.h" />
+    <ClInclude Include="code\system\Initialize\CreateSpriteFromTimer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -108,5 +114,11 @@
     <ClCompile Include="code\system\Movement\BillboardTransform.cpp" />
     <ClCompile Include="code\system\effect\EffectOnPlayerGearup.cpp" />
     <ClCompile Include="code\system\collision\PlayerOnCollision.cpp" />
+    <ClCompile Include="code\component\TimerComponent.cpp" />
+    <ClCompile Include="code\system\Transition\GameEndStateTransition.cpp" />
+    <ClCompile Include="code\system\Transition\TransitionSceneByTimer.cpp" />
+    <ClCompile Include="code\system\Transition\TimerCountDown.cpp" />
+    <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
+    <ClCompile Include="code\system\Initialize\CreateSpriteFromTimer.cpp" />
   </ItemGroup>
 </Project>
