@@ -66,6 +66,7 @@
     <ClInclude Include="code\system\Transition\TimerCountDown.h" />
     <ClInclude Include="code\system\effect\TimerForSprite.h" />
     <ClInclude Include="code\system\Initialize\CreateSpriteFromTimer.h" />
+    <ClInclude Include="code\component\Stage.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -120,5 +121,6 @@
     <ClCompile Include="code\system\Transition\TimerCountDown.cpp" />
     <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
     <ClCompile Include="code\system\Initialize\CreateSpriteFromTimer.cpp" />
+    <ClCompile Include="code\component\Stage.cpp" />
   </ItemGroup>
 </Project>
