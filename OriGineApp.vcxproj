@@ -126,6 +126,7 @@
     <ClInclude Include="code\system\Transition\TransitionSceneByTimer.h" />
     <ClInclude Include="code\system\Transition\TimerCountDown.h" />
     <ClInclude Include="code\system\Initialize\CreateSpriteFromTimer.h" />
+    <ClInclude Include="code\component\Stage.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
@@ -154,6 +155,7 @@
     <ClCompile Include="code\system\Transition\TransitionSceneByTimer.cpp" />
     <ClCompile Include="code\system\Transition\TimerCountDown.cpp" />
     <ClCompile Include="code\system\Initialize\CreateSpriteFromTimer.cpp" />
+    <ClCompile Include="code\component\Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">
