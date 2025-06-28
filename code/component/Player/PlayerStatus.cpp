@@ -20,6 +20,7 @@
 
 /// math
 #include <math/Quaternion.h>
+#include <math/Sequence.h>
 
 #pragma region "Player State"
 IPlayerMoveState::IPlayerMoveState(int32_t _playerEntityID, PlayerMoveState _state) : playerEntityID_(_playerEntityID), state_(_state) {}
@@ -86,9 +87,20 @@ void PlayerDashState::Update(float _deltaTime) {
     if (playerStatus->getGearUpCoolTime() <= 0.f) {
         playerStatus->setGearUp(true);
 
-        playerStatus->setGearLevel(playerStatus->getGearLevel() + 1);
-        playerStatus->setGearUpCoolTime(playerStatus->getBaseGearupCoolTime() + (playerStatus->getGearLevel() * 1.3f));
-        playerStatus->setCurrentSpeed(playerStatus->getBaseSpeed() + playerStatus->getBaseSpeed() * (playerStatus->getGearLevel() * 1.6f));
+        int32_t addedGearLevel = playerStatus->getGearLevel() + 1;
+        playerStatus->setGearLevel(addedGearLevel);
+
+        playerStatus->setGearUpCoolTime(
+            GeometricSequence<float>(
+                playerStatus->getBaseGearupCoolTime(),
+                ArithmeticSequence<float>(playerStatus->getCoolTimeUpRateBase(), playerStatus->getCoolTimeUpRateCommonRate(), addedGearLevel - 1),
+                addedGearLevel));
+
+        playerStatus->setCurrentSpeed(
+            ArithmeticSequence<float>(
+                playerStatus->getBaseSpeed(),
+                ArithmeticSequence<float>(playerStatus->getSpeedUpRateBase(), playerStatus->getSpeedUpRateCommonRate(), addedGearLevel - 1),
+                addedGearLevel));
     }
 
     // 入力方向を取得
@@ -360,6 +372,11 @@ bool PlayerStatus::Edit() {
         wallJumpDirection_ = wallJumpDirection_.normalize();
     }
 
+    isChange |= DragGuiCommand("speedUpRateBase", speedUpRateBase_);
+    isChange |= DragGuiCommand("speedUpRateCommonRate", speedUpRateCommonRate_);
+    isChange |= DragGuiCommand("coolTimeAddRateBase", coolTimeAddRateBase_);
+    isChange |= DragGuiCommand("coolTimeAddRateCommonRate", coolTimeAddRateCommonRate_);
+
     isChange |= DragGuiCommand("jumpPower", jumpPower_);
     isChange |= DragGuiCommand("gearUpCoolTime", baseGearupCoolTime_);
     isChange |= DragGuiCommand("directionInterpolateRate", directionInterpolateRate_);
@@ -390,6 +407,13 @@ void PlayerStatus::Debug() {
     ImGui::Spacing();
     ImGui::Text("Base Speed          : %.2f", baseSpeed_);
     ImGui::Text("Current Speed       : %.2f", currentSpeed_);
+    ImGui::Spacing();
+    ImGui::Text("Speed Up Rate Base : %.2f", speedUpRateBase_);
+    ImGui::Text("Speed Up Rate Common Rate : %.2f", speedUpRateCommonRate_);
+    ImGui::Spacing();
+    ImGui::Text("Cool Time Up Rate Base : %.2f", coolTimeAddRateBase_);
+    ImGui::Text("Cool Time Up Rate Common Rate : %.2f", coolTimeAddRateCommonRate_);
+    ImGui::Spacing();
     ImGui::Text("Wall Run Speed      : %.2f", wallRunSpeed_);
     ImGui::Text("Wall Jump Direction : (%.2f, %.2f, %.2f)", wallJumpDirection_[X], wallJumpDirection_[Y], wallJumpDirection_[Z]);
     ImGui::Text("Direction Interpolate Rate: %.2f", directionInterpolateRate_);
@@ -406,6 +430,11 @@ void to_json(nlohmann::json& j, const PlayerStatus& _playerStatus) {
     j["jumpPower"]                = _playerStatus.jumpPower_;
     j["gearUpCoolTime"]           = _playerStatus.baseGearupCoolTime_;
     j["directionInterpolateRate"] = _playerStatus.directionInterpolateRate_;
+
+    j["speedUpRateBase"] = _playerStatus.speedUpRateBase_;
+    j["speedUpRateCommonRate"] = _playerStatus.speedUpRateCommonRate_;
+    j["coolTimeAddRateBase"]   = _playerStatus.coolTimeAddRateBase_;
+    j["coolTimeAddRateCommonRate"] = _playerStatus.coolTimeAddRateCommonRate_;
 }
 void from_json(const nlohmann::json& j, PlayerStatus& _playerStatus) {
     j.at("baseSpeed").get_to(_playerStatus.baseSpeed_);
@@ -414,5 +443,10 @@ void from_json(const nlohmann::json& j, PlayerStatus& _playerStatus) {
     j.at("wallJumpDirection").get_to(_playerStatus.wallJumpDirection_);
     j.at("gearUpCoolTime").get_to(_playerStatus.baseGearupCoolTime_);
     j.at("directionInterpolateRate").get_to(_playerStatus.directionInterpolateRate_);
+
+    j.at("speedUpRateBase").get_to(_playerStatus.speedUpRateBase_);
+    j.at("speedUpRateCommonRate").get_to(_playerStatus.speedUpRateCommonRate_);
+    j.at("coolTimeAddRateBase").get_to(_playerStatus.coolTimeAddRateBase_);
+    j.at("coolTimeAddRateCommonRate").get_to(_playerStatus.coolTimeAddRateCommonRate_);
 }
 #pragma endregion

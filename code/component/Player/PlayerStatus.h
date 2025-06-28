@@ -160,13 +160,17 @@ private:
 
     /// ==========================================
     // 能力値
-    float baseGearupCoolTime_ = 1.0f; // ギアアップの基本クールタイム (秒単位)
-    float gearUpCoolTime_     = 0.0f; // ギアレベルが上がるまでの時間
+    float baseGearupCoolTime_       = 1.0f; // ギアアップの基本クールタイム (秒単位)
+    float gearUpCoolTime_           = 0.0f; // ギアレベルが上がるまでの時間
+    float coolTimeAddRateBase_       = 1.0f;
+    float coolTimeAddRateCommonRate_ = 1.f;
 
     // 基本速度
-    float baseSpeed_         = 0.0f;
-    float wallRunSpeed_      = 0.0f; // 壁走りの速度
-    Vec3f wallJumpDirection_ = Vec3f(0.0f, 0.0f, 0.0f); // 壁ジャンプの方向
+    float baseSpeed_             = 0.0f; // 基本速度 (ギアレベル0の時の速度)
+    float speedUpRateBase_       = 1.0f; // ギアアップ時の速度上昇率の基本値
+    float speedUpRateCommonRate_ = 1.f; // ギアアップ時の速度上昇率の共通値
+    float wallRunSpeed_          = 0.0f; // 壁走りの速度
+    Vec3f wallJumpDirection_     = Vec3f(0.0f, 0.0f, 0.0f); // 壁ジャンプの方向
 
     // 現在の速度は gearLevel_ に応じて変化する
     float currentSpeed_ = 0.0f; // 現在の速度
@@ -270,5 +274,18 @@ public:
     }
     void minusGearUpCoolTime(float _deltaTime) {
         gearUpCoolTime_ -= _deltaTime;
+    }
+
+    float getCoolTimeUpRateBase() const {
+        return coolTimeAddRateBase_;
+    }
+    float getCoolTimeUpRateCommonRate() const {
+        return coolTimeAddRateCommonRate_;
+    }
+    float getSpeedUpRateBase() const {
+        return speedUpRateBase_;
+    }
+    float getSpeedUpRateCommonRate() const {
+        return speedUpRateCommonRate_;
     }
 };
