@@ -28,12 +28,14 @@
 /// =====================================================
 // component
 #include "component/cameraController/CameraController.h"
+#include "component/effect/CameraAction.h"
 #include "component/Player/PlayerInput.h"
 #include "component/Player/PlayerStatus.h"
 #include "component/TimerComponent.h"
 
 // system
 #include "system/Collision/PlayerOnCollision.h"
+#include "system/effect/CameraActionSystem.h"
 #include "system/effect/EffectOnPlayerGearup.h"
 #include "system/effect/TimerForSprite.h"
 #include "system/Initialize/CreateSpriteFromTimer.h"
@@ -129,11 +131,12 @@ void MyGame::Run() {
 
         engine_->BeginFrame();
 
+#ifdef _DEBUG
+        sceneManager_->DebugUpdate();
+#else
         if (!engine_->getWinApp()->isActive()) {
             continue;
         }
-#ifdef _DEBUG
-        sceneManager_->DebugUpdate();
 #endif // DEBUG
 
         sceneManager_->Update();
@@ -162,6 +165,7 @@ void MyGame::RegisterUsingComponents() {
     ecsManager->registerComponent<TextureEffectParam>();
     ecsManager->registerComponent<VignetteParam>();
     ecsManager->registerComponent<DistortionEffectParam>();
+    ecsManager->registerComponent<CameraAction>();
 
     ecsManager->registerComponent<Audio>();
 
@@ -229,6 +233,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<TextureEffectAnimation>();
     ecsManager->registerSystem<EffectOnPlayerGearup>();
     ecsManager->registerSystem<TimerForSprite>();
+    ecsManager->registerSystem<CameraActionSystem>();
 
     /// =================================================================================================
     // Render

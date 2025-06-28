@@ -13,6 +13,8 @@
 void TransitionPlayerState::UpdateEntity(GameEntity* _entity) {
     PlayerStatus* playerStatus = getComponent<PlayerStatus>(_entity);
 
+    // 一フレームだけ trueになればいいので 毎フレーム 初期化
+    playerStatus->setGearUp(false);
     /// =====================================================
     // StateUpdate
     /// =====================================================
