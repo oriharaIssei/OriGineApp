@@ -213,10 +213,10 @@ private:
     Stage* stage_;
     int32_t index_;
 };
-class ClearControlPointsCommand
+class ClearSelectedControlPointsCommand
     : public IEditCommand {
 public:
-    ClearControlPointsCommand(Stage* stage)
+    ClearSelectedControlPointsCommand(Stage* stage)
         : stage_(stage) {}
     void Execute() override {
 
@@ -271,10 +271,10 @@ private:
     Stage* stage_;
     int32_t index_;
 };
-class ClearLinksCommand
+class ClearSelectedLinksCommand
     : public IEditCommand {
 public:
-    ClearLinksCommand(Stage* stage)
+    ClearSelectedLinksCommand(Stage* stage)
         : stage_(stage) {}
     void Execute() override {
         for (auto& [idx, link] : stage_->getEditLinks()) {
@@ -361,12 +361,12 @@ bool Stage::Edit() {
             if (ImGui::Button("X")) {
                 // 制御点を削除する
                 // 選択リストからも削除
-                auto removeCommand = std::make_unique<RemoveControlPointCommand>(this, static_cast<int32_t>(i));
-                EditorController::getInstance()->pushCommand(std::move(removeCommand));
                 if (isSelected) {
                     auto deselectCommand = std::make_unique<DeselectControlPointCommand>(this, static_cast<int32_t>(i));
                     EditorController::getInstance()->pushCommand(std::move(deselectCommand));
                 }
+                auto removeCommand = std::make_unique<RemoveControlPointCommand>(this, static_cast<int32_t>(i));
+                EditorController::getInstance()->pushCommand(std::move(removeCommand));
 
                 continue;
             }
@@ -391,7 +391,7 @@ bool Stage::Edit() {
                     }
                 } else {
                     // Shiftなしなら単独選択
-                    auto clearCommand = std::make_unique<ClearControlPointsCommand>(this);
+                    auto clearCommand = std::make_unique<ClearSelectedControlPointsCommand>(this);
                     EditorController::getInstance()->pushCommand(std::move(clearCommand));
                     auto selectCommand = std::make_unique<SelectControlPointCommand>(this, static_cast<int32_t>(i));
                     EditorController::getInstance()->pushCommand(std::move(selectCommand));
@@ -451,11 +451,15 @@ bool Stage::Edit() {
             if (ImGui::Selectable(label.c_str(), isSelected, 0, ImVec2(0, 0))) {
                 if (io.KeyShift) {
                     if (!isSelected) {
-                        editLinks_.emplace_back(static_cast<int32_t>(i), link);
+                        auto selectCommand = std::make_unique<SelectLinkCommand>(this, static_cast<int32_t>(i));
+                        EditorController::getInstance()->pushCommand(std::move(selectCommand));
                     }
                 } else {
-                    editLinks_.clear();
-                    editLinks_.emplace_back(static_cast<int32_t>(i), link);
+                    // Shiftなしなら単独選択
+                    auto clearCommand = std::make_unique<ClearSelectedLinksCommand>(this);
+                    EditorController::getInstance()->pushCommand(std::move(clearCommand));
+                    auto selectCommand = std::make_unique<SelectLinkCommand>(this, static_cast<int32_t>(i));
+                    EditorController::getInstance()->pushCommand(std::move(selectCommand));
                 }
             }
             if (isSelected) {
