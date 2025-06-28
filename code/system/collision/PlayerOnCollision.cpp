@@ -6,6 +6,7 @@
 #include "component/collider/CollisionPushBackInfo.h"
 #include "component/physics/Rigidbody.h"
 #include "component/Player/PlayerStatus.h"
+#include "component/transform/Transform.h"
 
 void PlayerOnCollision::Initialize() {
 }
@@ -24,9 +25,9 @@ void PlayerOnCollision::UpdateEntity(GameEntity* _entity) {
         return;
     }
     status->setOnGround(false);
-    status->setCollisionWithWall(false, {0.0f, 0.0f, 0.0f});
+    status->setCollisionWithWall(false);
 
-    for (auto& [entity, info] : pushBackInfo->getCollisionInfoMap()) {
+    for (auto& [entityId, info] : pushBackInfo->getCollisionInfoMap()) {
         Vec3f collNormal = info.collVec.normalize();
         if (collNormal[Y] > GROUND_CHECK_THRESHOLD) {
             // 上方向に衝突した場合は、地面にいると判断する
@@ -34,6 +35,7 @@ void PlayerOnCollision::UpdateEntity(GameEntity* _entity) {
 
             auto* rigidbody    = getComponent<Rigidbody>(_entity);
             Vec3f acceleration = rigidbody->getAcceleration();
+
             // Y軸の加速度を0にする
             acceleration[Y] = 0.f;
             rigidbody->setAcceleration(acceleration);
@@ -43,10 +45,20 @@ void PlayerOnCollision::UpdateEntity(GameEntity* _entity) {
             velo[Y] = 0.f;
             rigidbody->setVelocity(velo);
         } else {
-            if (std::abs(collNormal[X]) > WALL_CHECK_THRESHOLD) {
-                // 壁と衝突した場合、地面にいると判断する
-                status->setOnGround(true);
-                status->setCollisionWithWall(true, collNormal);
+            Vec3f localNormal = collNormal;
+
+            GameEntity* collidedEntity = getEntity(entityId);
+            Transform* transform       = getComponent<Transform>(collidedEntity);
+            if (transform) {
+                localNormal = localNormal * MakeMatrix::RotateQuaternion(transform->rotate).inverse();
+            }
+
+            if (std::abs(localNormal[X]) > WALL_CHECK_THRESHOLD) {
+                if (collidedEntity->getDataType().find("Wall") != std::string::npos) {
+                    // 壁と衝突した場合、地面にいると判断する
+                    status->setOnGround(true);
+                    status->setCollisionWithWall(true, collNormal);
+                }
             }
         }
     }

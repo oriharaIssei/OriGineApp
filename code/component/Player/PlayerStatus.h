@@ -81,6 +81,8 @@ public:
     void Update(float _deltaTime) override;
     void Finalize() override;
     PlayerMoveState TransitionState() const override;
+
+private:
 };
 
 class PlayerWallRunState
@@ -96,7 +98,8 @@ public:
     PlayerMoveState TransitionState() const override;
 
 protected:
-    float separationGraceTime_ = 0.2f; // オブジェクトが離れていると判定するまでの猶予時間
+    Vec3f prevVelo_            = Vec3f(0.0f, 0.0f, 0.0f); // 前の速度 壁走り前の速度を保存
+    float separationGraceTime_ = 0.04f; // オブジェクトが離れていると判定するまでの猶予時間
     float separationdLeftTime_ = 0.0f; // 壁との衝突判定の残り時間
 };
 
@@ -113,7 +116,10 @@ public:
     PlayerMoveState TransitionState() const override;
 
 protected:
-    Vec3f velo_ = Vec3f(0.0f, 0.0f, 0.0f); // 壁ジャンプの方向
+    Vec3f prevVelo_       = Vec3f(0.0f, 0.0f, 0.0f); // 前の速度 着地後に戻す
+    Vec3f velo_           = Vec3f(0.0f, 0.0f, 0.0f); // 壁ジャンプの方向
+    float forcedJumpTime_ = 0.6f;
+    float leftTime_       = 0.0f; // 壁ジャンプの残り時間
 };
 
 // class PlayerSlideState
@@ -160,8 +166,8 @@ private:
 
     /// ==========================================
     // 能力値
-    float baseGearupCoolTime_       = 1.0f; // ギアアップの基本クールタイム (秒単位)
-    float gearUpCoolTime_           = 0.0f; // ギアレベルが上がるまでの時間
+    float baseGearupCoolTime_        = 1.0f; // ギアアップの基本クールタイム (秒単位)
+    float gearUpCoolTime_            = 0.0f; // ギアレベルが上がるまでの時間
     float coolTimeAddRateBase_       = 1.0f;
     float coolTimeAddRateCommonRate_ = 1.f;
 
@@ -169,7 +175,7 @@ private:
     float baseSpeed_             = 0.0f; // 基本速度 (ギアレベル0の時の速度)
     float speedUpRateBase_       = 1.0f; // ギアアップ時の速度上昇率の基本値
     float speedUpRateCommonRate_ = 1.f; // ギアアップ時の速度上昇率の共通値
-    float wallRunSpeed_          = 0.0f; // 壁走りの速度
+    float wallRunRate_          = 0.0f; // 壁走りの速度
     Vec3f wallJumpDirection_     = Vec3f(0.0f, 0.0f, 0.0f); // 壁ジャンプの方向
 
     // 現在の速度は gearLevel_ に応じて変化する
@@ -215,6 +221,9 @@ public:
         collisionWithWall_   = _collisionWithWall;
         wallCollisionNormal_ = _wallCollisionNormal;
     }
+    void setCollisionWithWall(bool _collisionWithWall) {
+        collisionWithWall_ = _collisionWithWall;
+    }
     const Vec3f& getWallCollisionNormal() const {
         return wallCollisionNormal_;
     }
@@ -249,11 +258,11 @@ public:
         currentSpeed_ = _currentSpeed;
     }
 
-    float getWallRunSpeed() const {
-        return wallRunSpeed_;
+    float getWallRunRate() const {
+        return wallRunRate_;
     }
-    void setWallRunSpeed(float _wallRunSpeed) {
-        wallRunSpeed_ = _wallRunSpeed;
+    void setWallRunRate(float _wallRunRate) {
+        wallRunRate_ = _wallRunRate;
     }
 
     const Vec3f& getWallJumpDirection() const {

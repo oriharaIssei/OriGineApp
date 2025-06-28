@@ -36,6 +36,9 @@ void PlayerIdleState::Initialize() {
     playerStatus->setCurrentSpeed(0.0f);
     playerStatus->setGearUpCoolTime(playerStatus->getBaseGearupCoolTime());
     playerStatus->setGearLevel(0);
+
+    auto* rigidbody = getComponent<Rigidbody>(playerEntity);
+    rigidbody->setVelocity(Vec3f(0.f, 0.f, 0.f)); // ダッシュ終了時に速度をリセット
 }
 
 void PlayerIdleState::Update(float /*_deltaTime*/) {
@@ -139,9 +142,6 @@ void PlayerDashState::Update(float _deltaTime) {
 }
 
 void PlayerDashState::Finalize() {
-    auto* playerEntity = getEntity(playerEntityID_);
-    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
-    rigidbody->setVelocity(Vec3f(0.f, 0.f, 0.f)); // ダッシュ終了時に速度をリセット
 }
 
 PlayerMoveState PlayerDashState::TransitionState() const {
@@ -155,6 +155,12 @@ PlayerMoveState PlayerDashState::TransitionState() const {
 
     if (playerStatus->isOnGround()) {
         if (playerInput->isJumpInput()) {
+            //! TODO : JumpInit に書く
+            auto* rigidbody = getComponent<Rigidbody>(playerEntity);
+
+            Vec3f velocity = rigidbody->getVelocity(); // ジャンプ中はY軸の速度を保持
+            velocity[Y]    = playerStatus->getJumpPower(); // ジャンプパワーをY軸に設定
+            rigidbody->setVelocity(velocity);
             return PlayerMoveState::JUMP;
         }
     } else {
@@ -171,15 +177,7 @@ PlayerMoveState PlayerDashState::TransitionState() const {
 // JUMP
 /// ====================================================================================
 
-void PlayerJumpState::Initialize() {
-    auto* playerEntity = getEntity(playerEntityID_);
-    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
-    auto* playerStatus = getComponent<PlayerStatus>(playerEntity);
-
-    Vec3f velocity = rigidbody->getVelocity(); // ジャンプ中はY軸の速度を保持
-    velocity[Y]    = playerStatus->getJumpPower(); // ジャンプパワーをY軸に設定
-    rigidbody->setVelocity(velocity);
-}
+void PlayerJumpState::Initialize() {}
 
 void PlayerJumpState::Update(float _deltaTime) {
     auto* playerEntity = getEntity(playerEntityID_);
@@ -210,9 +208,17 @@ void PlayerJumpState::Update(float _deltaTime) {
     transform->rotate = Slerp(transform->rotate, targetRotation, playerStatus->getDirectionInterpolateRate());
 
     // 移動方向を回転
+    // ジャンプ中は速度が落ちない,止まらない
     Vec3f movementDirection = Vec3f(0.f, 0.f, 1.f) * MakeMatrix::RotateQuaternion(transform->rotate);
-    Vec3f velocity          = (playerStatus->getCurrentSpeed() * _deltaTime) * movementDirection;
-    velocity[Y]             = rigidbody->getVelocity()[Y]; // ジャンプ中はY軸の速度を保持
+
+    Vec3f oldVelo   = rigidbody->getVelocity();
+    Vec2f oldXZVelo = {oldVelo[X], oldVelo[Z]};
+
+    Vec3f velocity = {0.f, 0.f, 0.f};
+    if (oldXZVelo.length() > 0.f) {
+        velocity = (playerStatus->getCurrentSpeed() * _deltaTime) * movementDirection;
+    }
+    velocity[Y] = oldVelo[Y]; // ジャンプ中はY軸の速度を保持
     rigidbody->setVelocity(velocity);
 }
 
@@ -245,6 +251,12 @@ PlayerMoveState PlayerJumpState::TransitionState() const {
 /// ====================================================================================
 
 void PlayerWallRunState::Initialize() {
+    auto* playerEntity = getEntity(playerEntityID_);
+    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
+    prevVelo_          = rigidbody->getVelocity(); // 壁ジャンプ前の速度を保存
+
+    rigidbody->setUseGravity(false);
+
     separationdLeftTime_ = separationGraceTime_; // 壁との衝突判定の残り時間を初期化
 }
 
@@ -254,43 +266,36 @@ void PlayerWallRunState::Update(float _deltaTime) {
     auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
     auto* transform    = getComponent<Transform>(playerEntity);
 
-    // 壁の法線から回転
-    const Vec3f& wallNormal = playerStatus->getWallCollisionNormal();
-    float yaw               = std::atan2(wallNormal[X], wallNormal[Y]); // x, y成分から角度を算出
-
-    // z軸回転のクォータニオンを生成
-    transform->rotate = Quaternion::RotateAxisAngle(Vec3f(0.f, 0.f, 1.f), yaw);
-
     // 移動方向を回転
-    Vec3f movementDirection = Vec3f(0.0f, 0.f, 1.f) * MakeMatrix::RotateQuaternion(transform->rotate);
-    Vec3f velo              = (playerStatus->getWallRunSpeed() * _deltaTime) * movementDirection;
+    Vec3f movementDirection = axisZ * MakeMatrix::RotateQuaternion(transform->rotate);
+    Vec3f velo              = (playerStatus->getCurrentSpeed() * playerStatus->getWallRunRate() * _deltaTime) * movementDirection;
+    Vec3f normal            = playerStatus->getWallCollisionNormal();
+    velo -= normal * 0.02f;
 
     rigidbody->setVelocity(velo);
 
-    rigidbody->setAcceleration({0.0f, 0.0f, 0.0f});
-
     if (playerStatus->isCollisionWithWall()) {
-        separationdLeftTime_ -= _deltaTime; // 壁との衝突判定の残り時間を減少
-    } else {
         separationdLeftTime_ = separationGraceTime_;
+    } else {
+        separationdLeftTime_ -= _deltaTime; // 壁との衝突判定の残り時間を減少
     }
 }
 
 void PlayerWallRunState::Finalize() {
     auto* playerEntity = getEntity(playerEntityID_);
+    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
+    // 壁走行終了時に速度をリセット
+    rigidbody->setVelocity(prevVelo_); // 壁走行終了時に速度をリセット
 
     auto playerStatus = getComponent<PlayerStatus>(playerEntity);
-    playerStatus->setCollisionWithWall(false, Vec3f(0.0f, 0.0f, 0.0f)); // 壁走行終了時に壁との衝突をリセット
+    playerStatus->setCollisionWithWall(false); // 壁走行終了時に壁との衝突をリセット
 }
 
 PlayerMoveState PlayerWallRunState::TransitionState() const {
     auto* playerEntity = getEntity(playerEntityID_);
 
-    auto playerStatus = getComponent<PlayerStatus>(playerEntity);
-
     if (separationdLeftTime_ <= 0.0f) {
-        playerStatus->setCollisionWithWall(false, Vec3f(0.0f, 0.0f, 0.0f)); // 壁との衝突がなくなった場合はリセット
-        return PlayerMoveState::DASH; // 壁から離れたらジャンプ状態に遷移
+        return PlayerMoveState::DASH;
     }
 
     auto playerInput = getComponent<PlayerInput>(playerEntity);
@@ -309,18 +314,20 @@ PlayerMoveState PlayerWallRunState::TransitionState() const {
 
 void PlayerWallJumpState::Initialize() {
     auto* playerEntity = getEntity(playerEntityID_);
+    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
     auto* playerStatus = getComponent<PlayerStatus>(playerEntity);
 
-    const Vec3f& wallNormal = playerStatus->getWallCollisionNormal();
-    float rotateY           = std::atan2(wallNormal[X], wallNormal[Z]);
+    rigidbody->setAcceleration({0.0f, 0.0f, 0.0f}); // 壁ジャンプ時は加速度をリセット
+    rigidbody->setUseGravity(false); // 無効
+    prevVelo_ = rigidbody->getVelocity(); // 壁ジャンプ前の速度を保存
 
-    Quaternion wallJumpRotation = Quaternion::RotateAxisAngle(Vec3f(0.f, 1.f, 0.f), rotateY);
-
-    float signedRate        = wallNormal[X] > 0 ? 1.0f : -1.0f; // 壁の法線のX成分が正なら右側、負なら左側
+    // ジャンプ方向  基本 +z にしか進まないので 一旦固定
     Vec3f wallJumpDirection = playerStatus->getWallJumpDirection();
-    wallJumpDirection[X] *= signedRate;
-    wallJumpDirection = wallJumpDirection * MakeMatrix::RotateQuaternion(wallJumpRotation); // 壁ジャンプの方向を回転
-    velo_             = wallJumpDirection * playerStatus->getWallRunSpeed();
+    wallJumpDirection       = wallJumpDirection.normalize();
+
+    velo_ = wallJumpDirection * (playerStatus->getCurrentSpeed() * playerStatus->getWallRunRate());
+
+    leftTime_ = forcedJumpTime_; // 壁ジャンプの残り時間を初期化
 }
 
 void PlayerWallJumpState::Update(float _deltaTime) {
@@ -328,9 +335,16 @@ void PlayerWallJumpState::Update(float _deltaTime) {
     auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
 
     rigidbody->setVelocity(velo_ * _deltaTime); // 壁ジャンプの方向に速度を設定
+
+    leftTime_ -= _deltaTime; // 壁ジャンプの残り時間を減少
 }
 
 void PlayerWallJumpState::Finalize() {
+    auto* playerEntity = getEntity(playerEntityID_);
+    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
+
+    rigidbody->setUseGravity(true); // 重力を有効
+    rigidbody->setVelocity(prevVelo_); // 壁ジャンプ終了時に速度をリセット
 }
 
 PlayerMoveState PlayerWallJumpState::TransitionState() const {
@@ -338,6 +352,9 @@ PlayerMoveState PlayerWallJumpState::TransitionState() const {
     auto playerStatus  = getComponent<PlayerStatus>(playerEntity);
 
     if (playerStatus->isOnGround()) {
+        return PlayerMoveState::DASH;
+    }
+    if (leftTime_ <= 0.0f) {
         return PlayerMoveState::DASH;
     }
 
@@ -360,7 +377,7 @@ bool PlayerStatus::Edit() {
     bool isChange = false;
 
     isChange |= DragGuiCommand("baseSpeed", baseSpeed_);
-    isChange |= DragGuiCommand("wallRunSpeed", wallRunSpeed_);
+    isChange |= DragGuiCommand("wallRunRate", wallRunRate_);
     if (DragGuiVectorCommand<3, float>("wallJumpDirection",
             wallJumpDirection_,
             0.01f,
@@ -414,7 +431,7 @@ void PlayerStatus::Debug() {
     ImGui::Text("Cool Time Up Rate Base : %.2f", coolTimeAddRateBase_);
     ImGui::Text("Cool Time Up Rate Common Rate : %.2f", coolTimeAddRateCommonRate_);
     ImGui::Spacing();
-    ImGui::Text("Wall Run Speed      : %.2f", wallRunSpeed_);
+    ImGui::Text("Wall Run Rate      : %.2f", wallRunRate_);
     ImGui::Text("Wall Jump Direction : (%.2f, %.2f, %.2f)", wallJumpDirection_[X], wallJumpDirection_[Y], wallJumpDirection_[Z]);
     ImGui::Text("Direction Interpolate Rate: %.2f", directionInterpolateRate_);
 
@@ -425,21 +442,21 @@ void PlayerStatus::Finalize() {}
 
 void to_json(nlohmann::json& j, const PlayerStatus& _playerStatus) {
     j["baseSpeed"]                = _playerStatus.baseSpeed_;
-    j["wallRunSpeed"]             = _playerStatus.wallRunSpeed_;
+    j["wallRunRate"]              = _playerStatus.wallRunRate_;
     j["wallJumpDirection"]        = _playerStatus.wallJumpDirection_;
     j["jumpPower"]                = _playerStatus.jumpPower_;
     j["gearUpCoolTime"]           = _playerStatus.baseGearupCoolTime_;
     j["directionInterpolateRate"] = _playerStatus.directionInterpolateRate_;
 
-    j["speedUpRateBase"] = _playerStatus.speedUpRateBase_;
-    j["speedUpRateCommonRate"] = _playerStatus.speedUpRateCommonRate_;
-    j["coolTimeAddRateBase"]   = _playerStatus.coolTimeAddRateBase_;
+    j["speedUpRateBase"]           = _playerStatus.speedUpRateBase_;
+    j["speedUpRateCommonRate"]     = _playerStatus.speedUpRateCommonRate_;
+    j["coolTimeAddRateBase"]       = _playerStatus.coolTimeAddRateBase_;
     j["coolTimeAddRateCommonRate"] = _playerStatus.coolTimeAddRateCommonRate_;
 }
 void from_json(const nlohmann::json& j, PlayerStatus& _playerStatus) {
     j.at("baseSpeed").get_to(_playerStatus.baseSpeed_);
     j.at("jumpPower").get_to(_playerStatus.jumpPower_);
-    j.at("wallRunSpeed").get_to(_playerStatus.wallRunSpeed_);
+    j.at("wallRunRate").get_to(_playerStatus.wallRunRate_);
     j.at("wallJumpDirection").get_to(_playerStatus.wallJumpDirection_);
     j.at("gearUpCoolTime").get_to(_playerStatus.baseGearupCoolTime_);
     j.at("directionInterpolateRate").get_to(_playerStatus.directionInterpolateRate_);
