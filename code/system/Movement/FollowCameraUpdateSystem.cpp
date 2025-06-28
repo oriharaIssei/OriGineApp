@@ -27,8 +27,8 @@ void FollowCameraUpdateSystem::UpdateEntity(GameEntity* _entity) {
         // ============= interTarget ============= //
         cameraController->setInterTarget(
             Lerp(
-                Vec3f(cameraController->getFollowTarget()->worldMat[3]),
                 cameraController->getInterTarget(),
+                Vec3f(cameraController->getFollowTarget()->worldMat[3]),
                 cameraController->getInterTargetInterpolation()));
 
         // ============= rotate ============= //
