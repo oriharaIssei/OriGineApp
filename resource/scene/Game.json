@@ -26,9 +26,9 @@
                                 1.0
                             ],
                             "translate": [
-                                0.0,
-                                0.0,
-                                0.0
+                                -1.8524093627929688,
+                                18.445985794067383,
+                                -37.04057312011719
                             ]
                         }
                     }
@@ -126,7 +126,7 @@
                             -0.2880076467990875,
                             0.9459990859031677
                         ],
-                        "wallRunRate": 1.2999999523162842
+                        "wallRunRate": 1.399999976158142
                     }
                 ],
                 "Rigidbody": [
@@ -243,7 +243,12 @@
             "Components": {
                 "CameraAction": [
                     {
-                        "aspectRatioCurve": [],
+                        "aspectRatioCurve": [
+                            {
+                                "time": 0.0,
+                                "value": 1.7777777910232544
+                            }
+                        ],
                         "duration": 0.9100000262260437,
                         "farZCurve": [],
                         "fovCurve": [
@@ -292,18 +297,18 @@
                         "angleLimitY": 1.5707963705062866,
                         "followOffset": [
                             0.0,
-                            2.140000104904175,
-                            -21.0
+                            0.9599999785423279,
+                            -16.010000228881836
                         ],
                         "forward": [
                             0.0,
                             0.0,
                             1.0
                         ],
-                        "interTargetInterpolation": 0.05000000074505806,
-                        "maxRotateX": 0.5099999904632568,
-                        "minRotateX": -0.009999999776482582,
-                        "rotateSensitivity": 0.4000000059604645,
+                        "interTargetInterpolation": 0.07999999821186066,
+                        "maxRotateX": 0.4399999976158142,
+                        "minRotateX": -0.10999999940395355,
+                        "rotateSensitivity": 0.10999999940395355,
                         "rotateSpeedMouse": 0.010999999940395355,
                         "rotateSpeedPadStick": 0.10999999940395355
                     }
@@ -337,6 +342,10 @@
                 {
                     "SystemName": "FollowCameraUpdateSystem",
                     "SystemType": 3
+                },
+                {
+                    "SystemName": "CameraActionSystem",
+                    "SystemType": 5
                 }
             ],
             "isUnique": true
@@ -352,6 +361,87 @@
                         "activeTime": 2.299999952316284,
                         "blendMode": 1,
                         "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -5233,6 +5323,78 @@
                             {
                                 "time": 0.0,
                                 "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
                                     0.10000000149011612,
                                     0.10000000149011612,
                                     0.10000000149011612
@@ -5331,6 +5493,78 @@
                         "updateSettings": 12578,
                         "uvInterpolationType": 0,
                         "velocityCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -7932,7 +8166,7 @@
                 ],
                 "TextureEffectParam": [
                     {
-                        "dissolveAnimDuration": 8.0,
+                        "dissolveAnimDuration": 8.220000267028809,
                         "dissolveAnimIsLoop": true,
                         "dissolveAnimIsPlay": true,
                         "dissolveAnimRotate": [
@@ -7945,8 +8179,8 @@
                             {
                                 "time": 0.0,
                                 "value": [
-                                    2.0,
-                                    12.0
+                                    1.5399999618530273,
+                                    1.7100000381469727
                                 ]
                             }
                         ],
@@ -7978,8 +8212,8 @@
                         "dissolveUV": {
                             "rotate": 0.0,
                             "scale": [
-                                2.0,
-                                12.0
+                                1.5399999618530273,
+                                1.7100000381469727
                             ],
                             "translate": [
                                 0.0,
@@ -7999,8 +8233,8 @@
                             {
                                 "time": 0.0,
                                 "value": [
-                                    2.0,
-                                    15.0
+                                    2.1700000762939453,
+                                    1.940000057220459
                                 ]
                             }
                         ],
@@ -8026,8 +8260,8 @@
                         "distortionUV": {
                             "rotate": 0.0,
                             "scale": [
-                                2.0,
-                                15.0
+                                2.1700000762939453,
+                                1.940000057220459
                             ],
                             "translate": [
                                 0.0,
@@ -8844,7 +9078,7 @@
                     }
                 ]
             },
-            "Name": "Wall",
+            "Name": "step",
             "Systems": [
                 {
                     "SystemName": "CollisionCheckSystem",
@@ -8864,12 +9098,12 @@
                         "max": [
                             10.0,
                             1.0,
-                            40.0
+                            45.0
                         ],
                         "min": [
                             -10.0,
                             -1.0,
-                            -40.0
+                            -45.0
                         ],
                         "transform": {
                             "rotate": [
@@ -8937,7 +9171,7 @@
                                 "scale": [
                                     1.0,
                                     1.0,
-                                    40.0
+                                    45.0
                                 ],
                                 "translate": [
                                     0.0,
@@ -9217,8 +9451,8 @@
                             {
                                 "time": 0.0,
                                 "value": [
-                                    2.0,
-                                    12.0
+                                    3.0,
+                                    1.659999966621399
                                 ]
                             }
                         ],
@@ -9250,8 +9484,8 @@
                         "dissolveUV": {
                             "rotate": 0.0,
                             "scale": [
-                                2.0,
-                                12.0
+                                3.0,
+                                1.659999966621399
                             ],
                             "translate": [
                                 0.0,
@@ -9272,7 +9506,7 @@
                                 "time": 0.0,
                                 "value": [
                                     2.0,
-                                    15.0
+                                    3.0
                                 ]
                             }
                         ],
@@ -9299,7 +9533,7 @@
                             "rotate": 0.0,
                             "scale": [
                                 2.0,
-                                15.0
+                                3.0
                             ],
                             "translate": [
                                 0.0,
@@ -9360,131 +9594,6 @@
                 },
                 {
                     "SystemName": "EffectTexturedMeshRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "AABBCollider": [
-                    {
-                        "max": [
-                            15.0,
-                            5.0,
-                            1.0
-                        ],
-                        "min": [
-                            -15.0,
-                            -5.0,
-                            -1.0
-                        ],
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "ModelMeshRenderer": [
-                    {
-                        "blendMode": 1,
-                        "directory": "./application/resource/Models",
-                        "fileName": "box.obj",
-                        "isRender": true,
-                        "materialBufferDatas": [
-                            {
-                                "color": [
-                                    1.0,
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "enableLighting": false,
-                                "shininess": 0.0,
-                                "specularColor": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvRotate": 0.0,
-                                "uvScale": [
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvTranslate": [
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ],
-                        "textureFilePath": [
-                            ""
-                        ],
-                        "transformBufferDatas": [
-                            {
-                                "rotate": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    1.0
-                                ],
-                                "scale": [
-                                    15.0,
-                                    5.0,
-                                    1.0
-                                ],
-                                "translate": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ]
-                    }
-                ],
-                "Transform": [
-                    {
-                        "rotate": [
-                            -0.0,
-                            0.0,
-                            -0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "translate": [
-                            0.0,
-                            2.7336416244506836,
-                            334.5605163574219
-                        ]
-                    }
-                ]
-            },
-            "Name": "Wall",
-            "Systems": [
-                {
-                    "SystemName": "CollisionCheckSystem",
-                    "SystemType": 4
-                },
-                {
-                    "SystemName": "TexturedMeshRenderSystem",
                     "SystemType": 6
                 }
             ],
@@ -9597,7 +9706,7 @@
                                 "time": 0.0,
                                 "value": [
                                     2.0,
-                                    12.0
+                                    2.25
                                 ]
                             }
                         ],
@@ -9630,7 +9739,7 @@
                             "rotate": 0.0,
                             "scale": [
                                 2.0,
-                                12.0
+                                2.25
                             ],
                             "translate": [
                                 0.0,
@@ -9651,7 +9760,7 @@
                                 "time": 0.0,
                                 "value": [
                                     2.0,
-                                    15.0
+                                    1.9700000286102295
                                 ]
                             }
                         ],
@@ -9678,7 +9787,7 @@
                             "rotate": 0.0,
                             "scale": [
                                 2.0,
-                                15.0
+                                1.9700000286102295
                             ],
                             "translate": [
                                 0.0,
@@ -10273,6 +10382,639 @@
             },
             "Name": "StartPosition",
             "isUnique": true
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "max": [
+                            2.0,
+                            5.0,
+                            40.0
+                        ],
+                        "min": [
+                            -2.0,
+                            -5.0,
+                            -40.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "ModelMeshRenderer": [
+                    {
+                        "blendMode": 1,
+                        "directory": "./application/resource/Models",
+                        "fileName": "box.obj",
+                        "isRender": true,
+                        "materialBufferDatas": [
+                            {
+                                "color": [
+                                    1.0,
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "enableLighting": false,
+                                "shininess": 0.0,
+                                "specularColor": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvRotate": 0.0,
+                                "uvScale": [
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvTranslate": [
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ],
+                        "textureFilePath": [
+                            ""
+                        ],
+                        "transformBufferDatas": [
+                            {
+                                "rotate": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "scale": [
+                                    1.8700000047683716,
+                                    5.0,
+                                    40.0
+                                ],
+                                "translate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0000001192092896,
+                            1.0
+                        ],
+                        "translate": [
+                            10.749996185302734,
+                            1.7117013931274414,
+                            394.2770080566406
+                        ]
+                    }
+                ]
+            },
+            "Name": "Wall",
+            "Systems": [
+                {
+                    "SystemName": "CollisionCheckSystem",
+                    "SystemType": 4
+                },
+                {
+                    "SystemName": "TexturedMeshRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "max": [
+                            10.0,
+                            1.0,
+                            10.0
+                        ],
+                        "min": [
+                            -10.0,
+                            -1.0,
+                            -10.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "ModelMeshRenderer": [
+                    {
+                        "blendMode": 1,
+                        "directory": "application/resource/Models",
+                        "fileName": "box.obj",
+                        "isRender": true,
+                        "materialBufferDatas": [
+                            {
+                                "color": [
+                                    0.25316452980041504,
+                                    0.25316452980041504,
+                                    0.25316452980041504,
+                                    1.0
+                                ],
+                                "enableLighting": true,
+                                "shininess": 50.0,
+                                "specularColor": [
+                                    0.949367105960846,
+                                    0.0,
+                                    0.0
+                                ],
+                                "uvRotate": 0.0,
+                                "uvScale": [
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvTranslate": [
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ],
+                        "textureFilePath": [
+                            "application/resource/Texture/lazer.png"
+                        ],
+                        "transformBufferDatas": [
+                            {
+                                "rotate": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "scale": [
+                                    1.0,
+                                    1.0,
+                                    10.0
+                                ],
+                                "translate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "TextureEffectParam": [
+                    {
+                        "dissolveAnimDuration": 8.0,
+                        "dissolveAnimIsLoop": true,
+                        "dissolveAnimIsPlay": true,
+                        "dissolveAnimRotate": [
+                            {
+                                "time": 0.0,
+                                "value": 0.0
+                            }
+                        ],
+                        "dissolveAnimScale": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    1.0,
+                                    3.0
+                                ]
+                            }
+                        ],
+                        "dissolveAnimTranslate": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 8.0,
+                                "value": [
+                                    0.0,
+                                    1.0
+                                ]
+                            }
+                        ],
+                        "dissolveColor": [
+                            0.0,
+                            0.6075949668884277,
+                            1.0,
+                            1.0
+                        ],
+                        "dissolveEdgeWidth": 0.0031999999191612005,
+                        "dissolveTexPath": "application/resource/Texture/waveNoise.png",
+                        "dissolveThreshold": 0.019999999552965164,
+                        "dissolveUV": {
+                            "rotate": 0.0,
+                            "scale": [
+                                1.0,
+                                3.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "distortionAnimDuration": 8.0,
+                        "distortionAnimIsLoop": true,
+                        "distortionAnimIsPlay": true,
+                        "distortionAnimRotate": [
+                            {
+                                "time": 0.0,
+                                "value": 0.0
+                            }
+                        ],
+                        "distortionAnimScale": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    2.0,
+                                    3.0
+                                ]
+                            }
+                        ],
+                        "distortionAnimTranslate": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 8.0,
+                                "value": [
+                                    0.0,
+                                    1.0
+                                ]
+                            }
+                        ],
+                        "distortionBias": 0.5220000147819519,
+                        "distortionStrength": 2.049999952316284,
+                        "distortionTexPath": "application/resource/Texture/bioNoise.png",
+                        "distortionUV": {
+                            "rotate": 0.0,
+                            "scale": [
+                                2.0,
+                                3.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "effectFlag": 3,
+                        "maskAnimDuration": 0.0,
+                        "maskAnimIsLoop": false,
+                        "maskAnimIsPlay": false,
+                        "maskAnimRotate": [],
+                        "maskAnimScale": [],
+                        "maskAnimTranslate": [],
+                        "maskTexPath": "",
+                        "maskUV": {
+                            "rotate": 0.0,
+                            "scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            10.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            0.0,
+                            -8.807027816772461,
+                            400.5504150390625
+                        ]
+                    }
+                ]
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemName": "CollisionCheckSystem",
+                    "SystemType": 4
+                },
+                {
+                    "SystemName": "TextureEffectAnimation",
+                    "SystemType": 5
+                },
+                {
+                    "SystemName": "EffectTexturedMeshRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "max": [
+                            10.0,
+                            1.0,
+                            50.0
+                        ],
+                        "min": [
+                            -10.0,
+                            -1.0,
+                            -50.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "ModelMeshRenderer": [
+                    {
+                        "blendMode": 1,
+                        "directory": "application/resource/Models",
+                        "fileName": "box.obj",
+                        "isRender": true,
+                        "materialBufferDatas": [
+                            {
+                                "color": [
+                                    0.25316452980041504,
+                                    0.25316452980041504,
+                                    0.25316452980041504,
+                                    1.0
+                                ],
+                                "enableLighting": true,
+                                "shininess": 50.0,
+                                "specularColor": [
+                                    0.949367105960846,
+                                    0.0,
+                                    0.0
+                                ],
+                                "uvRotate": 0.0,
+                                "uvScale": [
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvTranslate": [
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ],
+                        "textureFilePath": [
+                            "application/resource/Texture/lazer.png"
+                        ],
+                        "transformBufferDatas": [
+                            {
+                                "rotate": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "scale": [
+                                    1.0,
+                                    1.0,
+                                    50.0
+                                ],
+                                "translate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "TextureEffectParam": [
+                    {
+                        "dissolveAnimDuration": 8.0,
+                        "dissolveAnimIsLoop": true,
+                        "dissolveAnimIsPlay": true,
+                        "dissolveAnimRotate": [
+                            {
+                                "time": 0.0,
+                                "value": 0.0
+                            }
+                        ],
+                        "dissolveAnimScale": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    2.0,
+                                    12.0
+                                ]
+                            }
+                        ],
+                        "dissolveAnimTranslate": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 8.0,
+                                "value": [
+                                    0.0,
+                                    1.0
+                                ]
+                            }
+                        ],
+                        "dissolveColor": [
+                            0.0,
+                            0.6075949668884277,
+                            1.0,
+                            1.0
+                        ],
+                        "dissolveEdgeWidth": 0.0031999999191612005,
+                        "dissolveTexPath": "application/resource/Texture/waveNoise.png",
+                        "dissolveThreshold": 0.019999999552965164,
+                        "dissolveUV": {
+                            "rotate": 0.0,
+                            "scale": [
+                                2.0,
+                                12.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "distortionAnimDuration": 8.0,
+                        "distortionAnimIsLoop": true,
+                        "distortionAnimIsPlay": true,
+                        "distortionAnimRotate": [
+                            {
+                                "time": 0.0,
+                                "value": 0.0
+                            }
+                        ],
+                        "distortionAnimScale": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    2.0,
+                                    15.0
+                                ]
+                            }
+                        ],
+                        "distortionAnimTranslate": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 8.0,
+                                "value": [
+                                    0.0,
+                                    1.0
+                                ]
+                            }
+                        ],
+                        "distortionBias": 0.5220000147819519,
+                        "distortionStrength": 2.049999952316284,
+                        "distortionTexPath": "application/resource/Texture/bioNoise.png",
+                        "distortionUV": {
+                            "rotate": 0.0,
+                            "scale": [
+                                2.0,
+                                15.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "effectFlag": 3,
+                        "maskAnimDuration": 0.0,
+                        "maskAnimIsLoop": false,
+                        "maskAnimIsPlay": false,
+                        "maskAnimRotate": [],
+                        "maskAnimScale": [],
+                        "maskAnimTranslate": [],
+                        "maskTexPath": "",
+                        "maskUV": {
+                            "rotate": 0.0,
+                            "scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            10.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            0.0,
+                            -6.408566951751709,
+                            477.1885681152344
+                        ]
+                    }
+                ]
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemName": "CollisionCheckSystem",
+                    "SystemType": 4
+                },
+                {
+                    "SystemName": "TextureEffectAnimation",
+                    "SystemType": 5
+                },
+                {
+                    "SystemName": "EffectTexturedMeshRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": false
         }
     ],
     "Systems": [

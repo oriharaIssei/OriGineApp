@@ -164,6 +164,8 @@ private:
     bool isGearUp_     = false; // ギアアップ中かどうか
     int32_t gearLevel_ = 0; // ギアレベル
 
+    bool isGoal_ = false; // ゴールに到達したかどうか
+
     /// ==========================================
     // 能力値
     float baseGearupCoolTime_        = 1.0f; // ギアアップの基本クールタイム (秒単位)
@@ -175,7 +177,7 @@ private:
     float baseSpeed_             = 0.0f; // 基本速度 (ギアレベル0の時の速度)
     float speedUpRateBase_       = 1.0f; // ギアアップ時の速度上昇率の基本値
     float speedUpRateCommonRate_ = 1.f; // ギアアップ時の速度上昇率の共通値
-    float wallRunRate_          = 0.0f; // 壁走りの速度
+    float wallRunRate_           = 0.0f; // 壁走りの速度
     Vec3f wallJumpDirection_     = Vec3f(0.0f, 0.0f, 0.0f); // 壁ジャンプの方向
 
     // 現在の速度は gearLevel_ に応じて変化する
@@ -205,6 +207,13 @@ public:
     }
     void setPlayerMoveState(std::shared_ptr<IPlayerMoveState> _playerMoveState) {
         playerMoveState_ = _playerMoveState;
+    }
+
+    bool isGoal() const {
+        return isGoal_;
+    }
+    void setGoal(bool _isGoal) {
+        isGoal_ = _isGoal;
     }
 
     bool isOnGround() const {

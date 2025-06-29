@@ -41,8 +41,7 @@ void PlayerIdleState::Initialize() {
     rigidbody->setVelocity(Vec3f(0.f, 0.f, 0.f)); // ダッシュ終了時に速度をリセット
 }
 
-void PlayerIdleState::Update(float /*_deltaTime*/) {
-}
+void PlayerIdleState::Update(float /*_deltaTime*/) {}
 
 void PlayerIdleState::Finalize() {
     auto* playerEntity = getEntity(playerEntityID_);

@@ -28,7 +28,16 @@ void PlayerOnCollision::UpdateEntity(GameEntity* _entity) {
     status->setCollisionWithWall(false);
 
     for (auto& [entityId, info] : pushBackInfo->getCollisionInfoMap()) {
-        Vec3f collNormal = info.collVec.normalize();
+        Vec3f collNormal           = info.collVec.normalize();
+        GameEntity* collidedEntity = getEntity(entityId);
+
+        // ゴール と 衝突したか
+        if (collidedEntity->getDataType().find("Goal") != std::string::npos) {
+            // ゴールと衝突した場合は、ゴールに到達したと判断する
+            status->setGoal(true);
+            continue;
+        }
+
         if (collNormal[Y] > GROUND_CHECK_THRESHOLD) {
             // 上方向に衝突した場合は、地面にいると判断する
             status->setOnGround(true);
@@ -47,8 +56,7 @@ void PlayerOnCollision::UpdateEntity(GameEntity* _entity) {
         } else {
             Vec3f localNormal = collNormal;
 
-            GameEntity* collidedEntity = getEntity(entityId);
-            Transform* transform       = getComponent<Transform>(collidedEntity);
+            Transform* transform = getComponent<Transform>(collidedEntity);
             if (transform) {
                 localNormal = localNormal * MakeMatrix::RotateQuaternion(transform->rotate).inverse();
             }
