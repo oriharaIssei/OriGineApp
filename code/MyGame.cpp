@@ -40,11 +40,13 @@
 #include "system/effect/TimerForSprite.h"
 #include "system/Initialize/CreateSpriteFromTimer.h"
 #include "system/Initialize/SettingGameCameraTarget.h"
+#include "system/Initialize/TakePlayerToStartPosition.h"
 #include "system/Input/CameraInputSystem.h"
 #include "system/Input/PlayerInputSystem.h"
 #include "system/Movement//BillboardTransform.h"
 #include "system/Movement/FollowCameraUpdateSystem.h"
 #include "system/Movement/PlayerMoveSystem.h"
+#include "system/Transition/FallDetectionSystem.h"
 #include "system/Transition/GameEndStateTransition.h"
 #include "system/Transition/TimerCountDown.h"
 #include "system/Transition/TransitionPlayerState.h"
@@ -195,6 +197,7 @@ void MyGame::RegisterUsingSystems() {
     /// ====================================================================================================
     ecsManager->registerSystem<SettingGameCameraTarget>();
     ecsManager->registerSystem<CreateSpriteFromTimer>();
+    ecsManager->registerSystem<TakePlayerToStartPosition>();
 
     /// ===================================================================================================
     // Input
@@ -209,6 +212,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<TimerCountDown>();
     ecsManager->registerSystem<GameEndStateTransition>();
     ecsManager->registerSystem<TransitionSceneByTimer>();
+    ecsManager->registerSystem<FallDetectionSystem>();
 
     /// =================================================================================================
     // Movement

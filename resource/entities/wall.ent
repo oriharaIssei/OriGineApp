@@ -1,0 +1,125 @@
+{
+    "Components": {
+        "AABBCollider": [
+            {
+                "max": [
+                    2.0,
+                    5.0,
+                    10.0
+                ],
+                "min": [
+                    -2.0,
+                    -5.0,
+                    -10.0
+                ],
+                "transform": {
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "translate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                }
+            }
+        ],
+        "ModelMeshRenderer": [
+            {
+                "blendMode": 1,
+                "directory": "./application/resource/Models",
+                "fileName": "box.obj",
+                "isRender": true,
+                "materialBufferDatas": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "textureFilePath": [
+                    ""
+                ],
+                "transformBufferDatas": [
+                    {
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.8700000047683716,
+                            5.0,
+                            10.350000381469727
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            }
+        ],
+        "Transform": [
+            {
+                "rotate": [
+                    -0.0,
+                    0.0,
+                    -0.0,
+                    1.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "translate": [
+                    12.760000228881836,
+                    7.433538436889648,
+                    50.09000015258789
+                ]
+            }
+        ]
+    },
+    "Name": "wall",
+    "Systems": [
+        {
+            "SystemName": "CollisionCheckSystem",
+            "SystemType": 4
+        },
+        {
+            "SystemName": "TexturedMeshRenderSystem",
+            "SystemType": 6
+        }
+    ],
+    "isUnique": false
+}

@@ -367,8 +367,19 @@ PlayerMoveState PlayerWallJumpState::TransitionState() const {
 #pragma region "Player Status"
 
 void PlayerStatus::Initialize(GameEntity* _entity) {
-    playerMoveState_ = std::make_shared<PlayerIdleState>(_entity->getID());
-    gearUpCoolTime_  = baseGearupCoolTime_; // ギアアップのクールタイムを初期化
+    playerMoveState_     = std::make_shared<PlayerIdleState>(_entity->getID());
+    moveState_           = PlayerMoveState::IDLE; // 初期状態は IDLE
+    prevPlayerMoveState_ = PlayerMoveState::IDLE; // 前の移動状態を初期化
+
+    gearUpCoolTime_ = baseGearupCoolTime_; // ギアアップのクールタイムを初期化
+    gearLevel_      = 0; // ギアレベルを初期化
+    isGearUp_       = false; // ギアアップ状態を初期化
+
+    currentSpeed_ = baseSpeed_; // 現在の速度を初期化
+
+    onGround_            = true; // 初期状態では地面にいる
+    collisionWithWall_   = false; // 初期状態では壁に衝突していない
+    wallCollisionNormal_ = Vec3f(0.0f, 0.0f, 0.0f); // 初期状態では壁との衝突がない
 }
 
 bool PlayerStatus::Edit() {

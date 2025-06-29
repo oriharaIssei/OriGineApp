@@ -26,9 +26,9 @@
                                 1.0
                             ],
                             "translate": [
-                                -44.05021667480469,
-                                6.390260696411133,
-                                272.9217529296875
+                                0.0,
+                                0.0,
+                                0.0
                             ]
                         }
                     }
@@ -197,8 +197,16 @@
             "Name": "Player",
             "Systems": [
                 {
+                    "SystemName": "TakePlayerToStartPosition",
+                    "SystemType": 0
+                },
+                {
                     "SystemName": "PlayerInputSystem",
                     "SystemType": 1
+                },
+                {
+                    "SystemName": "FallDetectionSystem",
+                    "SystemType": 2
                 },
                 {
                     "SystemName": "TransitionPlayerState",
@@ -344,6 +352,60 @@
                         "activeTime": 2.299999952316284,
                         "blendMode": 1,
                         "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -5123,6 +5185,54 @@
                             {
                                 "time": 0.0,
                                 "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
                                     0.10000000149011612,
                                     0.10000000149011612,
                                     0.10000000149011612
@@ -5221,6 +5331,54 @@
                         "updateSettings": 12578,
                         "uvInterpolationType": 0,
                         "velocityCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -10089,6 +10247,32 @@
                 }
             ],
             "isUnique": false
+        },
+        {
+            "Components": {
+                "Transform": [
+                    {
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            0.0,
+                            6.3019118309021,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "StartPosition",
+            "isUnique": true
         }
     ],
     "Systems": [
@@ -10097,7 +10281,10 @@
                 "Priority": 0
             },
             "SettingGameCameraTarget": {
-                "Priority": 0
+                "Priority": 5
+            },
+            "TakePlayerToStartPosition": {
+                "Priority": 3
             }
         },
         {
@@ -10109,11 +10296,14 @@
             }
         },
         {
+            "FallDetectionSystem": {
+                "Priority": 4
+            },
             "TimerCountDown": {
                 "Priority": 0
             },
             "TransitionPlayerState": {
-                "Priority": 0
+                "Priority": 5
             }
         },
         {

@@ -67,6 +67,8 @@
     <ClInclude Include="code\system\effect\TimerForSprite.h" />
     <ClInclude Include="code\system\Initialize\CreateSpriteFromTimer.h" />
     <ClInclude Include="code\component\Stage.h" />
+    <ClInclude Include="code\system\Transition\FallDetectionSystem.h" />
+    <ClInclude Include="code\system\Initialize\TakePlayerToStartPosition.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -122,5 +124,7 @@
     <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
     <ClCompile Include="code\system\Initialize\CreateSpriteFromTimer.cpp" />
     <ClCompile Include="code\component\Stage.cpp" />
+    <ClCompile Include="code\system\Transition\FallDetectionSystem.cpp" />
+    <ClCompile Include="code\system\Initialize\TakePlayerToStartPosition.cpp" />
   </ItemGroup>
 </Project>
