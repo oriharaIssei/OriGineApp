@@ -27,6 +27,7 @@
 // Application Include
 /// =====================================================
 // component
+#include "component/effect/post/RadialBlurParam.h"
 #include "component/cameraController/CameraController.h"
 #include "component/effect/CameraAction.h"
 #include "component/Player/PlayerInput.h"
@@ -47,10 +48,10 @@
 #include "system/Movement/FollowCameraUpdateSystem.h"
 #include "system/Movement/PlayerMoveSystem.h"
 #include "system/Transition/FallDetectionSystem.h"
-#include "system/Transition/GameEndStateTransition.h"
 #include "system/Transition/TimerCountDown.h"
 #include "system/Transition/TransitionPlayerState.h"
 #include "system/Transition/TransitionSceneByTimer.h"
+#include "system/postRender/RadialBlurEffect.h"     
 
 MyGame::MyGame() {}
 
@@ -150,6 +151,8 @@ void MyGame::Run() {
 void MyGame::RegisterUsingComponents() {
     ECSManager* ecsManager = ECSManager::getInstance();
 
+    ecsManager->registerComponent<Audio>();
+
     ecsManager->registerComponent<Transform>();
     ecsManager->registerComponent<CameraTransform>();
 
@@ -165,14 +168,15 @@ void MyGame::RegisterUsingComponents() {
 
     ecsManager->registerComponent<Emitter>();
     ecsManager->registerComponent<TextureEffectParam>();
+
     ecsManager->registerComponent<VignetteParam>();
     ecsManager->registerComponent<DistortionEffectParam>();
-    ecsManager->registerComponent<CameraAction>();
-
-    ecsManager->registerComponent<Audio>();
+    ecsManager->registerComponent<DistortionEffectParam>();
+    ecsManager->registerComponent<RadialBlurParam>();
 
     ecsManager->registerComponent<ModelNodeAnimation>();
     ecsManager->registerComponent<PrimitiveNodeAnimation>();
+    ecsManager->registerComponent<CameraAction>();
 
     ecsManager->registerComponent<ModelMeshRenderer>();
     ecsManager->registerComponent<PlaneRenderer>();
@@ -210,7 +214,6 @@ void MyGame::RegisterUsingSystems() {
     /// ===================================================================================================
     ecsManager->registerSystem<TransitionPlayerState>();
     ecsManager->registerSystem<TimerCountDown>();
-    ecsManager->registerSystem<GameEndStateTransition>();
     ecsManager->registerSystem<TransitionSceneByTimer>();
     ecsManager->registerSystem<FallDetectionSystem>();
 
@@ -256,5 +259,6 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<GrayscaleEffect>();
     ecsManager->registerSystem<SmoothingEffect>();
     ecsManager->registerSystem<VignetteEffect>();
+    ecsManager->registerSystem<RadialBlurEffect>();
     ecsManager->registerSystem<DistortionEffect>();
 }

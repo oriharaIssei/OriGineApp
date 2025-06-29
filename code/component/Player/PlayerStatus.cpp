@@ -285,6 +285,7 @@ void PlayerWallRunState::Finalize() {
     auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
     // 壁走行終了時に速度をリセット
     rigidbody->setVelocity(prevVelo_); // 壁走行終了時に速度をリセット
+    rigidbody->setUseGravity(true);
 
     auto playerStatus = getComponent<PlayerStatus>(playerEntity);
     playerStatus->setCollisionWithWall(false); // 壁走行終了時に壁との衝突をリセット

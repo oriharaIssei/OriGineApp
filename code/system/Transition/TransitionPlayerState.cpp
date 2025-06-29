@@ -4,17 +4,28 @@
 #define DELTA_TIME
 #define ENGINE_ECS
 #include "EngineInclude.h"
+#include "sceneManager/SceneManager.h"
 
 /// application
 // component
 #include "component/Player/PlayerInput.h"
 #include "component/Player/PlayerStatus.h"
+#include "component/SceneChanger.h"
 
 void TransitionPlayerState::UpdateEntity(GameEntity* _entity) {
     PlayerStatus* playerStatus = getComponent<PlayerStatus>(_entity);
 
     // 一フレームだけ trueになればいいので 毎フレーム 初期化
     playerStatus->setGearUp(false);
+
+    if (playerStatus->isGoal()) {
+        SceneChanger* sceneChanger = getComponent<SceneChanger>(_entity);
+        if (sceneChanger) {
+            SceneManager::getInstance()->changeScene(sceneChanger->getNextSceneName());
+            return;
+        }
+    }
+
     /// =====================================================
     // StateUpdate
     /// =====================================================

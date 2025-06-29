@@ -19,15 +19,17 @@ protected:
     /// ==========================================
     // ShockWave Ring
     /// ==========================================
-    const Vec3f shockWaveOffset_ = {0.f, 0.f, 20.f}; // 衝撃波のオフセット位置
+    bool isRingAnimationPlay_ = false; // 衝撃波の再生中かどうか
 
-    const float minInnerRadius_ = 1.15f; // 衝撃波の中半径
-    const float minouterRadius_ = 1.46f; // 衝撃波の外半径
-    const float maxInnerRadius_ = 24.0f; // 衝撃波の中半径
-    const float maxouterRadius_ = 28.0f; // 衝撃波の外半径
+    const Vec3f shockWaveOffset_ = {0.f, 0.f, 33.f}; // 衝撃波のオフセット位置
+
+    const float minInnerRadius_ = 4.2f; // 衝撃波の中半径
+    const float minouterRadius_ = 5.1f; // 衝撃波の外半径
+    const float maxInnerRadius_ = 14.3f; // 衝撃波の中半径
+    const float maxouterRadius_ = 19.2; // 衝撃波の外半径
 
     float currentTime_   = 0.f;
-    const float maxTime_ = 3.f;
+    const float maxTime_ = 0.4f;
 
     void UpdateEntity(GameEntity* _entity) override;
 };
