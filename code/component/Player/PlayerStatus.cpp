@@ -4,6 +4,7 @@
 #include "ECSManager.h"
 // component
 #include "component/collider/CollisionPushBackInfo.h"
+#include "component/effect/particle/emitter/Emitter.h"
 #include "component/physics/Rigidbody.h"
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
@@ -39,6 +40,14 @@ void PlayerIdleState::Initialize() {
 
     auto* rigidbody = getComponent<Rigidbody>(playerEntity);
     rigidbody->setVelocity(Vec3f(0.f, 0.f, 0.f)); // ダッシュ終了時に速度をリセット
+
+    int32_t emitterSize = ECSManager::getInstance()->getComponentArray<Emitter>()->getComponentSize(playerEntity);
+
+    //! TODO: 速度でパーティクルの量を変える
+    for (int32_t i = 0; i < emitterSize; i++) {
+        auto* emitter = getComponent<Emitter>(playerEntity, i);
+        emitter->PlayStop();
+    }
 }
 
 void PlayerIdleState::Update(float /*_deltaTime*/) {}
@@ -73,7 +82,16 @@ PlayerMoveState PlayerIdleState::TransitionState() const {
 // DASH
 /// ====================================================================================
 
-void PlayerDashState::Initialize() {}
+void PlayerDashState::Initialize() {
+    auto* playerEntity  = getEntity(playerEntityID_);
+    int32_t emitterSize = ECSManager::getInstance()->getComponentArray<Emitter>()->getComponentSize(playerEntity);
+
+    //! TODO: 速度でパーティクルの量を変える
+    for (int32_t i = 0; i < emitterSize; i++) {
+        auto* emitter = getComponent<Emitter>(playerEntity, i);
+        emitter->PlayStart();
+    }
+}
 
 void PlayerDashState::Update(float _deltaTime) {
     auto* playerEntity = getEntity(playerEntityID_);
@@ -140,8 +158,7 @@ void PlayerDashState::Update(float _deltaTime) {
     rigidbody->setVelocity(velo);
 }
 
-void PlayerDashState::Finalize() {
-}
+void PlayerDashState::Finalize() {}
 
 PlayerMoveState PlayerDashState::TransitionState() const {
     auto* playerEntity = getEntity(playerEntityID_);

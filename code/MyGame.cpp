@@ -27,11 +27,13 @@
 // Application Include
 /// =====================================================
 // component
-#include "component/effect/post/RadialBlurParam.h"
+#include "component/Button.h"
 #include "component/cameraController/CameraController.h"
 #include "component/effect/CameraAction.h"
+#include "component/effect/post/RadialBlurParam.h"
 #include "component/Player/PlayerInput.h"
 #include "component/Player/PlayerStatus.h"
+#include "component/SceneChanger.h"
 #include "component/TimerComponent.h"
 
 // system
@@ -42,16 +44,19 @@
 #include "system/Initialize/CreateSpriteFromTimer.h"
 #include "system/Initialize/SettingGameCameraTarget.h"
 #include "system/Initialize/TakePlayerToStartPosition.h"
+#include "system/Input/ButtonInputSystem.h"
 #include "system/Input/CameraInputSystem.h"
 #include "system/Input/PlayerInputSystem.h"
 #include "system/Movement//BillboardTransform.h"
 #include "system/Movement/FollowCameraUpdateSystem.h"
 #include "system/Movement/PlayerMoveSystem.h"
+#include "system/postRender/RadialBlurEffect.h"
+#include "system/Transition/ChangeSceneByButton.h"
 #include "system/Transition/FallDetectionSystem.h"
 #include "system/Transition/TimerCountDown.h"
 #include "system/Transition/TransitionPlayerState.h"
 #include "system/Transition/TransitionSceneByTimer.h"
-#include "system/postRender/RadialBlurEffect.h"     
+#include "system/Transition/UpdateButtonColorByState.h"
 
 MyGame::MyGame() {}
 
@@ -153,6 +158,8 @@ void MyGame::RegisterUsingComponents() {
 
     ecsManager->registerComponent<Audio>();
 
+    ecsManager->registerComponent<Button>();
+
     ecsManager->registerComponent<Transform>();
     ecsManager->registerComponent<CameraTransform>();
 
@@ -189,6 +196,7 @@ void MyGame::RegisterUsingComponents() {
     ecsManager->registerComponent<PlayerInput>();
     ecsManager->registerComponent<PlayerStatus>();
 
+    ecsManager->registerComponent<SceneChanger>();
     ecsManager->registerComponent<TimerComponent>();
     ecsManager->registerComponent<TimerForSpriteComponent>();
 }
@@ -208,6 +216,7 @@ void MyGame::RegisterUsingSystems() {
     /// ===================================================================================================
     ecsManager->registerSystem<PlayerInputSystem>();
     ecsManager->registerSystem<CameraInputSystem>();
+    ecsManager->registerSystem<ButtonInputSystem>();
 
     /// ===================================================================================================
     // StateTransition
@@ -216,6 +225,8 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<TimerCountDown>();
     ecsManager->registerSystem<TransitionSceneByTimer>();
     ecsManager->registerSystem<FallDetectionSystem>();
+    ecsManager->registerSystem<UpdateButtonColorByState>();
+    ecsManager->registerSystem<ChangeSceneByButton>();
 
     /// =================================================================================================
     // Movement

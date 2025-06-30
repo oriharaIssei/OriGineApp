@@ -7,6 +7,7 @@
 
 // component
 #include "component/effect/particle/emitter/Emitter.h"
+#include "component/effect/post/RadialBlurParam.h"
 #include "component/Player/PlayerStatus.h"
 
 /// math
@@ -27,17 +28,28 @@ void EffectOnPlayerGearup::UpdateEntity(GameEntity* _entity) {
     // ギアアップの衝撃波を生成
     DistortionEffectParam* distortionEffectParam = getComponent<DistortionEffectParam>(_entity);
     auto& shockWaveRings                         = distortionEffectParam->getDistortionObjects();
+    RadialBlurParam* radialBlurParam             = getComponent<RadialBlurParam>(_entity);
 
     // 前フレームにPlayerがGearupしていたかどうか
     if (playerStatus->isGearUp()) {
+
+        Transform* playerTransform = getComponent<Transform>(player);
+        Transform* transform       = getComponent<Transform>(_entity);
+        transform->translate       = playerTransform->translate; // Playerの位置に合わせる
+        Matrix4x4 rotateMat        = MakeMatrix::RotateQuaternion(playerTransform->rotate);
+
         // Emitterの再生
-        Emitter* emitter = getComponent<Emitter>(_entity);
-        if (emitter) {
-            emitter->PlayStart();
+        int32_t emitterSize = ECSManager::getInstance()->getComponentArray<Emitter>()->getComponentSize(_entity);
+        for (int32_t i = 0; i < emitterSize; ++i) {
+            Emitter* emitter = getComponent<Emitter>(_entity, i);
+            if (emitter) {
+                emitter->setOriginePos(emitterOffset_);
+                emitter->PlayStart();
+            }
         }
 
         if (playerStatus->getGearLevel() >= 3 && playerStatus->getGearLevel() % 2 == 0) {
-            isRingAnimationPlay_ = true; // ギアアップの衝撃波を再生する
+            isEffectPlaying_ = true; // ギアアップの衝撃波を再生する
 
             // shockWaveRingの初期化Add commentMore actions
             for (auto& [object, type] : shockWaveRings) {
@@ -48,22 +60,21 @@ void EffectOnPlayerGearup::UpdateEntity(GameEntity* _entity) {
                     continue;
                 }
 
-                RingRenderer* ringRenderer = dynamic_cast<RingRenderer*>(object.get());
+                RingRenderer* ringRenderer          = dynamic_cast<RingRenderer*>(object.get());
+                ringRenderer->getTransform().parent = playerTransform; // PlayerのTransformを親に設定
 
-                // 初期位置
-                Transform* playerTransform             = getComponent<Transform>(player);
-                Vec3f spawnPos                         = Vec3f(playerTransform->translate + shockWaveOffset_) * MakeMatrix::RotateQuaternion(playerTransform->rotate);
-                ringRenderer->getTransform().translate = spawnPos;
+                ringRenderer->getTransform().translate = shockWaveOffset_; // 初期位置を設定
                 ringRenderer->getTransform().rotate    = playerTransform->rotate;
-
                 ringRenderer->getPrimitive().setInnerRadius(minInnerRadius_);
                 ringRenderer->getPrimitive().setOuterRadius(minouterRadius_);
             }
+
+            // radialBlurParam->Play(); // レイディアルブラーを有効にする
+            currentTime_ = 0.f; // 時間をリセットAdd commentMore actions
         }
-        currentTime_ = 0.f; // 時間をリセットAdd commentMore actions
     }
 
-    if (!isRingAnimationPlay_) {
+    if (!isEffectPlaying_) {
         // shockWaveRingのを見えない位置に隠す
         for (auto& [object, type] : shockWaveRings) {
             if (type != PrimitiveType::Ring) {
@@ -78,6 +89,10 @@ void EffectOnPlayerGearup::UpdateEntity(GameEntity* _entity) {
             // 初期位置
             ringRenderer->getTransform().translate[Y] = -10000.f;
         }
+
+        if (radialBlurParam) {
+            radialBlurParam->Stop(); // レイディアルブラーを無効にする
+        }
         return;
     }
 
@@ -85,7 +100,7 @@ void EffectOnPlayerGearup::UpdateEntity(GameEntity* _entity) {
     float t = currentTime_ / maxTime_;
 
     if (t >= 1.f) {
-        isRingAnimationPlay_ = false;
+        isEffectPlaying_ = false;
     }
 
     // Ring
@@ -102,5 +117,15 @@ void EffectOnPlayerGearup::UpdateEntity(GameEntity* _entity) {
         ringRenderer->getPrimitive().setOuterRadius(std::lerp(minouterRadius_, maxouterRadius_, EaseOutCubic(t)));
 
         ringRenderer->createMesh(&ringRenderer->getMeshGroup()->back());
+
+        // レイディアルブラーの幅を設定
+        if (radialBlurParam) {
+            float halfMaxTime = maxTime_ * 0.5f;
+            if (currentTime_ < halfMaxTime) {
+                radialBlurParam->setWidth(std::lerp(minRadialBlurWidth_, maxRadialBlurWidth_, EaseOutCubic(currentTime_ / halfMaxTime)));
+            } else {
+                radialBlurParam->setWidth(std::lerp(maxRadialBlurWidth_, minRadialBlurWidth_, EaseInOutQuad((currentTime_ - halfMaxTime) / halfMaxTime)));
+            }
+        }
     }
 }
