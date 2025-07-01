@@ -261,7 +261,11 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<TexturedMeshRenderSystem>();
     ecsManager->registerSystem<EffectTexturedMeshRenderSystem>();
     ecsManager->registerSystem<LineRenderSystem>();
+
+#ifdef _DEBUG
     ecsManager->registerSystem<ColliderRenderingSystem>();
+#endif // _DEBUG
+
     ecsManager->registerSystem<SkyboxRender>();
 
     /// =================================================================================================

@@ -52,8 +52,8 @@
                 "SpriteRenderer": [
                     {
                         "anchorPoint": [
-                            0.0,
-                            0.0
+                            0.5,
+                            0.5
                         ],
                         "color": [
                             1.0,
@@ -70,21 +70,21 @@
                             1.0
                         ],
                         "size": [
-                            1280.0,
+                            512.0,
                             128.0
                         ],
                         "textureLeftTop": [
                             0.0,
                             0.0
                         ],
-                        "texturePath": "./application/resource/Texture/NumbersUI.png",
+                        "texturePath": "./application/resource/Texture/Title.png",
                         "textureSize": [
-                            1280.0,
+                            512.0,
                             128.0
                         ],
                         "translate": [
-                            0.0,
-                            128.0
+                            640.0,
+                            160.74000549316406
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -168,25 +168,25 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            0.10000000149011612,
-                            0.10000000149011612
+                            0.699999988079071,
+                            0.699999988079071
                         ],
                         "size": [
-                            1024.0,
-                            1024.0
+                            542.0,
+                            256.0
                         ],
                         "textureLeftTop": [
                             0.0,
                             0.0
                         ],
-                        "texturePath": "./application/resource/Texture/gimacho.png",
+                        "texturePath": "./application/resource/Texture/SpaceOrA.png",
                         "textureSize": [
-                            1024.0,
-                            1024.0
+                            512.0,
+                            256.0
                         ],
                         "translate": [
                             640.0,
-                            560.0
+                            532.6199951171875
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [

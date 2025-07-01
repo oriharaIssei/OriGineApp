@@ -145,6 +145,11 @@
                         ]
                     }
                 ],
+                "SceneChanger": [
+                    {
+                        "nextSceneName": "Title"
+                    }
+                ],
                 "SphereCollider": [
                     {
                         "center": [
@@ -361,6 +366,114 @@
                         "activeTime": 2.299999952316284,
                         "blendMode": 1,
                         "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -5667,6 +5780,102 @@
                             {
                                 "time": 0.0,
                                 "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
                                     0.10000000149011612,
                                     0.10000000149011612,
                                     0.10000000149011612
@@ -5765,6 +5974,102 @@
                         "updateSettings": 12578,
                         "uvInterpolationType": 0,
                         "velocityCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -8309,6 +8614,34 @@
                         }
                     }
                 ],
+                "SphereCollider": [
+                    {
+                        "center": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "radius": 4.0,
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
                 "TextureEffectParam": [
                     {
                         "dissolveAnimDuration": 5.110000133514404,
@@ -8453,6 +8786,10 @@
                 {
                     "SystemName": "BillboardTransform",
                     "SystemType": 3
+                },
+                {
+                    "SystemName": "CollisionCheckSystem",
+                    "SystemType": 4
                 },
                 {
                     "SystemName": "EmitterWorkSystem",
@@ -8904,8 +9241,8 @@
                                     1.0,
                                     1.0
                                 ],
-                                "enableLighting": false,
-                                "shininess": 0.0,
+                                "enableLighting": true,
+                                "shininess": 70.0,
                                 "specularColor": [
                                     1.0,
                                     1.0,
@@ -8923,7 +9260,7 @@
                             }
                         ],
                         "textureFilePath": [
-                            ""
+                            "./application/resource/Texture/waveNoise.png"
                         ],
                         "transformBufferDatas": [
                             {
@@ -8947,319 +9284,36 @@
                         ]
                     }
                 ],
-                "Transform": [
-                    {
-                        "rotate": [
-                            -0.0,
-                            0.0,
-                            -0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "translate": [
-                            12.760000228881836,
-                            7.433538436889648,
-                            50.09000015258789
-                        ]
-                    }
-                ]
-            },
-            "Name": "Wall",
-            "Systems": [
-                {
-                    "SystemName": "CollisionCheckSystem",
-                    "SystemType": 4
-                },
-                {
-                    "SystemName": "TexturedMeshRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "TimerComponent": [
-                    {
-                        "isStarted": true,
-                        "maxTime": 120.0
-                    }
-                ],
-                "TimerForSpriteComponent": [
-                    {
-                        "anchorOnWindow": [
-                            0.5,
-                            0.05000000074505806
-                        ],
-                        "digitDecimalForSprite": 2,
-                        "digitForSprite": 5,
-                        "digitIntegerForSprite": 3,
-                        "marginBetweenIntegerAndDecimal": [
-                            17.200000762939453,
-                            0.0
-                        ],
-                        "numbersTexturePath": "./application/resource/Texture//NumbersUI.png",
-                        "offset": [
-                            0.0,
-                            0.0
-                        ],
-                        "spriteMarginDecimal": [
-                            8.600000381469727,
-                            0.0
-                        ],
-                        "spriteMarginInteger": [
-                            8.600000381469727,
-                            0.0
-                        ],
-                        "spriteSizeDecimal": [
-                            32.0,
-                            32.0
-                        ],
-                        "spriteSizeInteger": [
-                            32.0,
-                            32.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "Timer",
-            "Systems": [
-                {
-                    "SystemName": "CreateSpriteFromTimer",
-                    "SystemType": 0
-                },
-                {
-                    "SystemName": "TimerCountDown",
-                    "SystemType": 2
-                },
-                {
-                    "SystemName": "TimerForSprite",
-                    "SystemType": 5
-                },
-                {
-                    "SystemName": "SpriteRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": null,
-            "Name": "SceneTransitioner",
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "SpriteRenderer": [
-                    {
-                        "anchorPoint": [
-                            0.5,
-                            0.5
-                        ],
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "renderingPriority": 1,
-                        "rotate": 0.0,
-                        "scale": [
-                            1.0,
-                            1.0
-                        ],
-                        "size": [
-                            32.0,
-                            32.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "./application/resource/Texture/slash.png",
-                        "textureSize": [
-                            128.0,
-                            128.0
-                        ],
-                        "translate": [
-                            645.9600219726563,
-                            36.65999984741211
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "Entity",
-            "Systems": [
-                {
-                    "SystemName": "SpriteRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "AABBCollider": [
-                    {
-                        "max": [
-                            10.0,
-                            1.0,
-                            40.0
-                        ],
-                        "min": [
-                            -10.0,
-                            -1.0,
-                            -40.0
-                        ],
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                10.0,
-                                1.0,
-                                30.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "ModelMeshRenderer": [
-                    {
-                        "blendMode": 1,
-                        "directory": "application/resource/Models",
-                        "fileName": "box.obj",
-                        "isRender": true,
-                        "materialBufferDatas": [
-                            {
-                                "color": [
-                                    0.25316452980041504,
-                                    0.25316452980041504,
-                                    0.25316452980041504,
-                                    1.0
-                                ],
-                                "enableLighting": true,
-                                "shininess": 50.0,
-                                "specularColor": [
-                                    0.949367105960846,
-                                    0.0,
-                                    0.0
-                                ],
-                                "uvRotate": 0.0,
-                                "uvScale": [
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvTranslate": [
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ],
-                        "textureFilePath": [
-                            "application/resource/Texture/lazer.png"
-                        ],
-                        "transformBufferDatas": [
-                            {
-                                "rotate": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    1.0
-                                ],
-                                "scale": [
-                                    10.0,
-                                    1.0,
-                                    40.0
-                                ],
-                                "translate": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ]
-                    }
-                ],
+                "PrimitiveNodeAnimation": [],
                 "TextureEffectParam": [
                     {
-                        "dissolveAnimDuration": 8.0,
+                        "dissolveAnimDuration": 0.25,
                         "dissolveAnimIsLoop": true,
                         "dissolveAnimIsPlay": true,
-                        "dissolveAnimRotate": [
-                            {
-                                "time": 0.0,
-                                "value": 0.0
-                            }
-                        ],
-                        "dissolveAnimScale": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    2.0,
-                                    12.0
-                                ]
-                            }
-                        ],
-                        "dissolveAnimTranslate": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 8.0,
-                                "value": [
-                                    0.0,
-                                    1.0
-                                ]
-                            }
-                        ],
+                        "dissolveAnimRotate": [],
+                        "dissolveAnimScale": [],
+                        "dissolveAnimTranslate": [],
                         "dissolveColor": [
-                            0.0,
-                            0.6075949668884277,
+                            1.0,
+                            1.0,
                             1.0,
                             1.0
                         ],
-                        "dissolveEdgeWidth": 0.0031999999191612005,
-                        "dissolveTexPath": "application/resource/Texture/waveNoise.png",
-                        "dissolveThreshold": 0.019999999552965164,
+                        "dissolveEdgeWidth": 0.0,
+                        "dissolveTexPath": "./application/resource/Texture/gradationLine.png",
+                        "dissolveThreshold": -0.11999999731779099,
                         "dissolveUV": {
                             "rotate": 0.0,
                             "scale": [
-                                2.0,
-                                12.0
+                                1.0,
+                                1.0
                             ],
                             "translate": [
                                 0.0,
                                 0.0
                             ]
                         },
-                        "distortionAnimDuration": 8.0,
+                        "distortionAnimDuration": 4.0,
                         "distortionAnimIsLoop": true,
                         "distortionAnimIsPlay": true,
                         "distortionAnimRotate": [
@@ -9272,8 +9326,8 @@
                             {
                                 "time": 0.0,
                                 "value": [
-                                    2.0,
-                                    15.0
+                                    3.240000009536743,
+                                    0.2800000011920929
                                 ]
                             }
                         ],
@@ -9286,28 +9340,28 @@
                                 ]
                             },
                             {
-                                "time": 8.0,
+                                "time": 4.0,
                                 "value": [
-                                    0.0,
-                                    1.0
+                                    1.0,
+                                    0.0
                                 ]
                             }
                         ],
-                        "distortionBias": 0.5220000147819519,
-                        "distortionStrength": 2.049999952316284,
-                        "distortionTexPath": "application/resource/Texture/bioNoise.png",
+                        "distortionBias": 0.5910000205039978,
+                        "distortionStrength": 0.20999999344348907,
+                        "distortionTexPath": "./application/resource/Texture/bioNoise.png",
                         "distortionUV": {
                             "rotate": 0.0,
                             "scale": [
-                                2.0,
-                                15.0
+                                3.240000009536743,
+                                0.2800000011920929
                             ],
                             "translate": [
                                 0.0,
                                 0.0
                             ]
                         },
-                        "effectFlag": 3,
+                        "effectFlag": 2,
                         "maskAnimDuration": 0.0,
                         "maskAnimIsLoop": false,
                         "maskAnimIsPlay": false,
@@ -9342,14 +9396,14 @@
                             1.0
                         ],
                         "translate": [
-                            0.0,
-                            0.0,
-                            95.05303192138672
+                            12.760000228881836,
+                            7.433538436889648,
+                            50.09000015258789
                         ]
                     }
                 ]
             },
-            "Name": "Floor",
+            "Name": "Wall",
             "Systems": [
                 {
                     "SystemName": "CollisionCheckSystem",
@@ -9414,12 +9468,12 @@
                                     1.0,
                                     1.0
                                 ],
-                                "enableLighting": false,
-                                "shininess": 0.0,
+                                "enableLighting": true,
+                                "shininess": 30.0,
                                 "specularColor": [
-                                    1.0,
-                                    1.0,
-                                    1.0
+                                    0.32642558217048645,
+                                    0.8143459558486938,
+                                    0.6969979405403137
                                 ],
                                 "uvRotate": 0.0,
                                 "uvScale": [
@@ -9721,9 +9775,9 @@
                             1.0
                         ],
                         "translate": [
-                            0.0,
-                            -11.428352355957031,
-                            184.84713745117188
+                            0.1300736516714096,
+                            -11.433072090148926,
+                            176.79476928710938
                         ]
                     }
                 ]
@@ -10258,131 +10312,6 @@
                 "AABBCollider": [
                     {
                         "max": [
-                            2.0,
-                            5.0,
-                            10.0
-                        ],
-                        "min": [
-                            -2.0,
-                            -5.0,
-                            -10.0
-                        ],
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "ModelMeshRenderer": [
-                    {
-                        "blendMode": 1,
-                        "directory": "./application/resource/Models",
-                        "fileName": "box.obj",
-                        "isRender": true,
-                        "materialBufferDatas": [
-                            {
-                                "color": [
-                                    1.0,
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "enableLighting": false,
-                                "shininess": 0.0,
-                                "specularColor": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvRotate": 0.0,
-                                "uvScale": [
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvTranslate": [
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ],
-                        "textureFilePath": [
-                            ""
-                        ],
-                        "transformBufferDatas": [
-                            {
-                                "rotate": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    1.0
-                                ],
-                                "scale": [
-                                    1.8700000047683716,
-                                    5.0,
-                                    10.350000381469727
-                                ],
-                                "translate": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ]
-                    }
-                ],
-                "Transform": [
-                    {
-                        "rotate": [
-                            -0.0,
-                            0.0,
-                            -0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "translate": [
-                            -12.96571159362793,
-                            -0.8308675289154053,
-                            231.87060546875
-                        ]
-                    }
-                ]
-            },
-            "Name": "Wall",
-            "Systems": [
-                {
-                    "SystemName": "CollisionCheckSystem",
-                    "SystemType": 4
-                },
-                {
-                    "SystemName": "TexturedMeshRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "AABBCollider": [
-                    {
-                        "max": [
                             10.0,
                             1.0,
                             50.0
@@ -10634,131 +10563,6 @@
         },
         {
             "Components": {
-                "AABBCollider": [
-                    {
-                        "max": [
-                            2.0,
-                            5.0,
-                            10.0
-                        ],
-                        "min": [
-                            -2.0,
-                            -5.0,
-                            -10.0
-                        ],
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "ModelMeshRenderer": [
-                    {
-                        "blendMode": 1,
-                        "directory": "./application/resource/Models",
-                        "fileName": "box.obj",
-                        "isRender": true,
-                        "materialBufferDatas": [
-                            {
-                                "color": [
-                                    1.0,
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "enableLighting": false,
-                                "shininess": 0.0,
-                                "specularColor": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvRotate": 0.0,
-                                "uvScale": [
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvTranslate": [
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ],
-                        "textureFilePath": [
-                            ""
-                        ],
-                        "transformBufferDatas": [
-                            {
-                                "rotate": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    1.0
-                                ],
-                                "scale": [
-                                    1.8700000047683716,
-                                    5.0,
-                                    10.350000381469727
-                                ],
-                                "translate": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ]
-                    }
-                ],
-                "Transform": [
-                    {
-                        "rotate": [
-                            -0.0,
-                            0.0,
-                            -0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "translate": [
-                            12.760000228881836,
-                            3.652677536010742,
-                            270.2803955078125
-                        ]
-                    }
-                ]
-            },
-            "Name": "Wall",
-            "Systems": [
-                {
-                    "SystemName": "CollisionCheckSystem",
-                    "SystemType": 4
-                },
-                {
-                    "SystemName": "TexturedMeshRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
                 "Transform": [
                     {
                         "rotate": [
@@ -10782,131 +10586,6 @@
             },
             "Name": "StartPosition",
             "isUnique": true
-        },
-        {
-            "Components": {
-                "AABBCollider": [
-                    {
-                        "max": [
-                            2.0,
-                            5.0,
-                            40.0
-                        ],
-                        "min": [
-                            -2.0,
-                            -5.0,
-                            -40.0
-                        ],
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "ModelMeshRenderer": [
-                    {
-                        "blendMode": 1,
-                        "directory": "./application/resource/Models",
-                        "fileName": "box.obj",
-                        "isRender": true,
-                        "materialBufferDatas": [
-                            {
-                                "color": [
-                                    1.0,
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "enableLighting": false,
-                                "shininess": 0.0,
-                                "specularColor": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvRotate": 0.0,
-                                "uvScale": [
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvTranslate": [
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ],
-                        "textureFilePath": [
-                            ""
-                        ],
-                        "transformBufferDatas": [
-                            {
-                                "rotate": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    1.0
-                                ],
-                                "scale": [
-                                    1.8700000047683716,
-                                    5.0,
-                                    40.0
-                                ],
-                                "translate": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ]
-                    }
-                ],
-                "Transform": [
-                    {
-                        "rotate": [
-                            -0.0,
-                            0.0,
-                            -0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            1.0,
-                            1.0000001192092896,
-                            1.0
-                        ],
-                        "translate": [
-                            10.749996185302734,
-                            1.7117013931274414,
-                            394.2770080566406
-                        ]
-                    }
-                ]
-            },
-            "Name": "Wall",
-            "Systems": [
-                {
-                    "SystemName": "CollisionCheckSystem",
-                    "SystemType": 4
-                },
-                {
-                    "SystemName": "TexturedMeshRenderSystem",
-                    "SystemType": 6
-                }
-            ],
-            "isUnique": false
         },
         {
             "Components": {
@@ -11415,13 +11094,776 @@
                 }
             ],
             "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "max": [
+                            2.0,
+                            5.0,
+                            10.0
+                        ],
+                        "min": [
+                            -2.0,
+                            -5.0,
+                            -10.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "ModelMeshRenderer": [
+                    {
+                        "blendMode": 1,
+                        "directory": "./application/resource/Models",
+                        "fileName": "box.obj",
+                        "isRender": true,
+                        "materialBufferDatas": [
+                            {
+                                "color": [
+                                    1.0,
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "enableLighting": true,
+                                "shininess": 70.0,
+                                "specularColor": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvRotate": 0.0,
+                                "uvScale": [
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvTranslate": [
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ],
+                        "textureFilePath": [
+                            "./application/resource/Texture/waveNoise.png"
+                        ],
+                        "transformBufferDatas": [
+                            {
+                                "rotate": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "scale": [
+                                    1.8700000047683716,
+                                    5.0,
+                                    10.0
+                                ],
+                                "translate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "PrimitiveNodeAnimation": [],
+                "TextureEffectParam": [
+                    {
+                        "dissolveAnimDuration": 0.25,
+                        "dissolveAnimIsLoop": true,
+                        "dissolveAnimIsPlay": true,
+                        "dissolveAnimRotate": [],
+                        "dissolveAnimScale": [],
+                        "dissolveAnimTranslate": [],
+                        "dissolveColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "dissolveEdgeWidth": 0.0,
+                        "dissolveTexPath": "./application/resource/Texture/gradationLine.png",
+                        "dissolveThreshold": -0.11999999731779099,
+                        "dissolveUV": {
+                            "rotate": 0.0,
+                            "scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "distortionAnimDuration": 4.0,
+                        "distortionAnimIsLoop": true,
+                        "distortionAnimIsPlay": true,
+                        "distortionAnimRotate": [
+                            {
+                                "time": 0.0,
+                                "value": 0.0
+                            }
+                        ],
+                        "distortionAnimScale": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    3.240000009536743,
+                                    0.2800000011920929
+                                ]
+                            }
+                        ],
+                        "distortionAnimTranslate": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 4.0,
+                                "value": [
+                                    1.0,
+                                    0.0
+                                ]
+                            }
+                        ],
+                        "distortionBias": 0.5910000205039978,
+                        "distortionStrength": 0.20999999344348907,
+                        "distortionTexPath": "./application/resource/Texture/bioNoise.png",
+                        "distortionUV": {
+                            "rotate": 0.0,
+                            "scale": [
+                                3.240000009536743,
+                                0.2800000011920929
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "effectFlag": 2,
+                        "maskAnimDuration": 0.0,
+                        "maskAnimIsLoop": false,
+                        "maskAnimIsPlay": false,
+                        "maskAnimRotate": [],
+                        "maskAnimScale": [],
+                        "maskAnimTranslate": [],
+                        "maskTexPath": "",
+                        "maskUV": {
+                            "rotate": 0.0,
+                            "scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            12.760000228881836,
+                            3.6530001163482666,
+                            270.2799987792969
+                        ]
+                    }
+                ]
+            },
+            "Name": "Wall",
+            "Systems": [
+                {
+                    "SystemName": "CollisionCheckSystem",
+                    "SystemType": 4
+                },
+                {
+                    "SystemName": "TextureEffectAnimation",
+                    "SystemType": 5
+                },
+                {
+                    "SystemName": "EffectTexturedMeshRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "max": [
+                            2.0,
+                            5.0,
+                            40.0
+                        ],
+                        "min": [
+                            -2.0,
+                            -5.0,
+                            -40.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "ModelMeshRenderer": [
+                    {
+                        "blendMode": 1,
+                        "directory": "./application/resource/Models",
+                        "fileName": "box.obj",
+                        "isRender": true,
+                        "materialBufferDatas": [
+                            {
+                                "color": [
+                                    1.0,
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "enableLighting": true,
+                                "shininess": 70.0,
+                                "specularColor": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvRotate": 0.0,
+                                "uvScale": [
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvTranslate": [
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ],
+                        "textureFilePath": [
+                            "./application/resource/Texture/waveNoise.png"
+                        ],
+                        "transformBufferDatas": [
+                            {
+                                "rotate": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "scale": [
+                                    1.8700000047683716,
+                                    5.0,
+                                    40.0
+                                ],
+                                "translate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "PrimitiveNodeAnimation": [],
+                "TextureEffectParam": [
+                    {
+                        "dissolveAnimDuration": 0.25,
+                        "dissolveAnimIsLoop": true,
+                        "dissolveAnimIsPlay": true,
+                        "dissolveAnimRotate": [],
+                        "dissolveAnimScale": [],
+                        "dissolveAnimTranslate": [],
+                        "dissolveColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "dissolveEdgeWidth": 0.0,
+                        "dissolveTexPath": "./application/resource/Texture/gradationLine.png",
+                        "dissolveThreshold": -0.11999999731779099,
+                        "dissolveUV": {
+                            "rotate": 0.0,
+                            "scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "distortionAnimDuration": 4.0,
+                        "distortionAnimIsLoop": true,
+                        "distortionAnimIsPlay": true,
+                        "distortionAnimRotate": [
+                            {
+                                "time": 0.0,
+                                "value": 0.0
+                            }
+                        ],
+                        "distortionAnimScale": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    6.199999809265137,
+                                    0.2800000011920929
+                                ]
+                            }
+                        ],
+                        "distortionAnimTranslate": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 4.0,
+                                "value": [
+                                    1.0,
+                                    0.0
+                                ]
+                            }
+                        ],
+                        "distortionBias": 0.5910000205039978,
+                        "distortionStrength": 0.20999999344348907,
+                        "distortionTexPath": "./application/resource/Texture/bioNoise.png",
+                        "distortionUV": {
+                            "rotate": 0.0,
+                            "scale": [
+                                6.199999809265137,
+                                0.2800000011920929
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "effectFlag": 2,
+                        "maskAnimDuration": 0.0,
+                        "maskAnimIsLoop": false,
+                        "maskAnimIsPlay": false,
+                        "maskAnimRotate": [],
+                        "maskAnimScale": [],
+                        "maskAnimTranslate": [],
+                        "maskTexPath": "",
+                        "maskUV": {
+                            "rotate": 0.0,
+                            "scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            12.760000228881836,
+                            1.7120000123977661,
+                            394.177001953125
+                        ]
+                    }
+                ]
+            },
+            "Name": "Wall",
+            "Systems": [
+                {
+                    "SystemName": "CollisionCheckSystem",
+                    "SystemType": 4
+                },
+                {
+                    "SystemName": "TextureEffectAnimation",
+                    "SystemType": 5
+                },
+                {
+                    "SystemName": "EffectTexturedMeshRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "max": [
+                            10.0,
+                            5.0,
+                            5.0
+                        ],
+                        "min": [
+                            -10.0,
+                            -5.0,
+                            -5.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            0.0,
+                            -6.255693435668945,
+                            130.18789672851563
+                        ]
+                    }
+                ]
+            },
+            "Name": "Invisible",
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "max": [
+                            10.0,
+                            1.0,
+                            40.0
+                        ],
+                        "min": [
+                            -10.0,
+                            -1.0,
+                            -40.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                10.0,
+                                1.0,
+                                30.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "ModelMeshRenderer": [
+                    {
+                        "blendMode": 1,
+                        "directory": "application/resource/Models",
+                        "fileName": "box.obj",
+                        "isRender": true,
+                        "materialBufferDatas": [
+                            {
+                                "color": [
+                                    0.25316452980041504,
+                                    0.25316452980041504,
+                                    0.25316452980041504,
+                                    1.0
+                                ],
+                                "enableLighting": true,
+                                "shininess": 50.0,
+                                "specularColor": [
+                                    0.949367105960846,
+                                    0.0,
+                                    0.0
+                                ],
+                                "uvRotate": 0.0,
+                                "uvScale": [
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvTranslate": [
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ],
+                        "textureFilePath": [
+                            "application/resource/Texture/lazer.png"
+                        ],
+                        "transformBufferDatas": [
+                            {
+                                "rotate": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "scale": [
+                                    10.0,
+                                    1.0,
+                                    40.0
+                                ],
+                                "translate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "TextureEffectParam": [
+                    {
+                        "dissolveAnimDuration": 8.0,
+                        "dissolveAnimIsLoop": true,
+                        "dissolveAnimIsPlay": true,
+                        "dissolveAnimRotate": [
+                            {
+                                "time": 0.0,
+                                "value": 0.0
+                            }
+                        ],
+                        "dissolveAnimScale": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    2.0,
+                                    12.0
+                                ]
+                            }
+                        ],
+                        "dissolveAnimTranslate": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 8.0,
+                                "value": [
+                                    0.0,
+                                    1.0
+                                ]
+                            }
+                        ],
+                        "dissolveColor": [
+                            0.0,
+                            0.6075949668884277,
+                            1.0,
+                            1.0
+                        ],
+                        "dissolveEdgeWidth": 0.0031999999191612005,
+                        "dissolveTexPath": "application/resource/Texture/waveNoise.png",
+                        "dissolveThreshold": 0.019999999552965164,
+                        "dissolveUV": {
+                            "rotate": 0.0,
+                            "scale": [
+                                2.0,
+                                12.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "distortionAnimDuration": 8.0,
+                        "distortionAnimIsLoop": true,
+                        "distortionAnimIsPlay": true,
+                        "distortionAnimRotate": [
+                            {
+                                "time": 0.0,
+                                "value": 0.0
+                            }
+                        ],
+                        "distortionAnimScale": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    2.0,
+                                    15.0
+                                ]
+                            }
+                        ],
+                        "distortionAnimTranslate": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 8.0,
+                                "value": [
+                                    0.0,
+                                    1.0
+                                ]
+                            }
+                        ],
+                        "distortionBias": 0.5220000147819519,
+                        "distortionStrength": 2.049999952316284,
+                        "distortionTexPath": "application/resource/Texture/bioNoise.png",
+                        "distortionUV": {
+                            "rotate": 0.0,
+                            "scale": [
+                                2.0,
+                                15.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "effectFlag": 3,
+                        "maskAnimDuration": 0.0,
+                        "maskAnimIsLoop": false,
+                        "maskAnimIsPlay": false,
+                        "maskAnimRotate": [],
+                        "maskAnimScale": [],
+                        "maskAnimTranslate": [],
+                        "maskTexPath": "",
+                        "maskUV": {
+                            "rotate": 0.0,
+                            "scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0,
+                            95.05303192138672
+                        ]
+                    }
+                ]
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemName": "CollisionCheckSystem",
+                    "SystemType": 4
+                },
+                {
+                    "SystemName": "TextureEffectAnimation",
+                    "SystemType": 5
+                },
+                {
+                    "SystemName": "EffectTexturedMeshRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": false
         }
     ],
     "Systems": [
         {
-            "CreateSpriteFromTimer": {
-                "Priority": 0
-            },
             "SettingGameCameraTarget": {
                 "Priority": 5
             },
@@ -11440,9 +11882,6 @@
         {
             "FallDetectionSystem": {
                 "Priority": 4
-            },
-            "TimerCountDown": {
-                "Priority": 0
             },
             "TransitionPlayerState": {
                 "Priority": 5
@@ -11488,9 +11927,6 @@
             },
             "TextureEffectAnimation": {
                 "Priority": 2
-            },
-            "TimerForSprite": {
-                "Priority": 0
             }
         },
         {
