@@ -2,7 +2,7 @@
 
 /// engine
 #define ENGINE_INCLUDE
-
+#define ENGINE_INPUT
 #define RESOURCE_DIRECTORY // Resource の Directory
 // ECS
 #define ENGINE_ECS

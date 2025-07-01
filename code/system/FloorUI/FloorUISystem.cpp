@@ -2,6 +2,7 @@
 
 /// Engine
 #define ENGINE_INCLUDE
+#define ENGINE_INPUT
 /// ECS
 // component
 #define ENGINE_COMPONENTS

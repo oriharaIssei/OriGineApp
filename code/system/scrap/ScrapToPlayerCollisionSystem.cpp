@@ -35,7 +35,8 @@ void ScrapToPlayerCollisionSystem::UpdateEntity(GameEntity* _entity) {
         // sphereのみ
         std::vector<SphereCollider>* entityColliders = getComponents<SphereCollider>(_entity);
         for (auto& entityCollider : *entityColliders) {
-            for (auto& [hitEntity, collisionState] : entityCollider.getCollisionStateMap()) {
+            for (auto& [hitEntityId, collisionState] : entityCollider.getCollisionStateMap()) {
+                GameEntity* hitEntity = ECSManager::getInstance()->getEntity(hitEntityId);
 
                 if (_entity->getDataType() == hitEntity->getDataType()) {
                     continue;

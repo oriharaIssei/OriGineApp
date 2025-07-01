@@ -19,11 +19,29 @@
     <Filter Include="component\Combo">
       <UniqueIdentifier>{37AAAD01-A335-1BC6-AC46-9EBA185177C6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\DeleteEntityStatus">
+      <UniqueIdentifier>{1B6836D1-0723-267D-B0DA-9EC79C74700D}</UniqueIdentifier>
+    </Filter>
     <Filter Include="component\EffectByBlock">
       <UniqueIdentifier>{BAF1E4E4-2629-2D7C-2F33-919F9BE95375}</UniqueIdentifier>
     </Filter>
     <Filter Include="component\Field">
       <UniqueIdentifier>{AB88E001-1714-4EC6-2025-D1BA8C2FAAC6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\FloorUI">
+      <UniqueIdentifier>{47BADB03-B3D0-D999-FC47-65BB689DAA21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\Fuse">
+      <UniqueIdentifier>{3A503DBA-261E-31C0-0FB2-A1E6FB1E0D25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\GameCamera">
+      <UniqueIdentifier>{8A40D45B-76CF-5D25-1FEE-71200B5C6ECB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\GameEndUI">
+      <UniqueIdentifier>{7688F302-E2E9-D010-6B57-17C3D7B707D0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\GameStart">
+      <UniqueIdentifier>{EF20F403-5B82-D111-E4EF-17C4505008D1}</UniqueIdentifier>
     </Filter>
     <Filter Include="component\LevelUPUI">
       <UniqueIdentifier>{E2E4E8B1-4E46-C6BF-D7B3-0C724314FD7E}</UniqueIdentifier>
@@ -42,6 +60,9 @@
     </Filter>
     <Filter Include="component\ResultUI">
       <UniqueIdentifier>{64C54F81-50A9-10D7-B909-0B2AA50CFB58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\ScaleByBlockStatus">
+      <UniqueIdentifier>{99CEBFF6-8589-AFA2-2E41-28ED1ADBF932}</UniqueIdentifier>
     </Filter>
     <Filter Include="component\SceneChanger">
       <UniqueIdentifier>{ADB58A3F-99AF-B391-821C-4AA26EB519FE}</UniqueIdentifier>
@@ -64,6 +85,9 @@
     <Filter Include="system">
       <UniqueIdentifier>{8AE4EE1C-7686-19F3-5F41-2D474B82A043}</UniqueIdentifier>
     </Filter>
+    <Filter Include="system\AudioInit">
+      <UniqueIdentifier>{1F29256E-0B22-44C0-3454-294520AC23CC}</UniqueIdentifier>
+    </Filter>
     <Filter Include="system\BigBom">
       <UniqueIdentifier>{A975CE45-1536-4A7C-DE70-93F94AF08E58}</UniqueIdentifier>
     </Filter>
@@ -76,6 +100,9 @@
     <Filter Include="system\Combo">
       <UniqueIdentifier>{293E0C67-15A1-9B0B-BE26-D4C1AA68678E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="system\DeleteEntitySystem">
+      <UniqueIdentifier>{8EAC8663-FA6E-BAED-431F-497AAF2093CB}</UniqueIdentifier>
+    </Filter>
     <Filter Include="system\EffectByBlock">
       <UniqueIdentifier>{AC57C95A-98E6-5224-4105-671F2D7363CA}</UniqueIdentifier>
     </Filter>
@@ -84,6 +111,21 @@
     </Filter>
     <Filter Include="system\Floor">
       <UniqueIdentifier>{BBEC4067-A74F-D00B-50D5-08C23C179C8E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\FloorUI">
+      <UniqueIdentifier>{B9122F3B-A5E0-2241-8E74-93677AE1FEA5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\Fuse">
+      <UniqueIdentifier>{EC2D407F-58E3-B874-E1D7-B24B4D8CAF78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\GameCamera">
+      <UniqueIdentifier>{BC1BC7E6-2832-C57C-71A9-509EDDFE9504}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\GameEndUI">
+      <UniqueIdentifier>{68C57E5C-54BE-9DAE-7DF0-823369487DBA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\GameStart">
+      <UniqueIdentifier>{E15D7F5D-CD56-9EAF-F688-8334E2E07DBB}</UniqueIdentifier>
     </Filter>
     <Filter Include="system\LeverlUP">
       <UniqueIdentifier>{E848641F-54D4-D1E3-5DE5-54D8C9EF2DE4}</UniqueIdentifier>
@@ -100,8 +142,14 @@
     <Filter Include="system\Player">
       <UniqueIdentifier>{6696AA66-D256-269D-9B91-6F1A07116B79}</UniqueIdentifier>
     </Filter>
+    <Filter Include="system\ResoureceAllLoadSystem">
+      <UniqueIdentifier>{04708B26-7088-7250-3935-02EAA50C07EA}</UniqueIdentifier>
+    </Filter>
     <Filter Include="system\ResultUI">
       <UniqueIdentifier>{162C0EA3-82B7-7B67-8BC8-FE5BF7D2D767}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\ScaleByBlock">
+      <UniqueIdentifier>{2786F931-93E7-D63F-1C55-1DF288B50DFF}</UniqueIdentifier>
     </Filter>
     <Filter Include="system\SceneChanger">
       <UniqueIdentifier>{5F25A152-CB86-7E60-54F4-C412C054B51F}</UniqueIdentifier>
@@ -118,52 +166,12 @@
     <Filter Include="system\scrap">
       <UniqueIdentifier>{F2566A6A-DEB9-F90E-873F-32C57381C591}</UniqueIdentifier>
     </Filter>
-    <Filter Include="component\FloorUI">
-      <UniqueIdentifier>{f8c1c73b-cffa-40b3-9f20-3f38a794f11d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="system\FloorUI">
-      <UniqueIdentifier>{abc21256-d54c-48c2-bf64-432286b2f099}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="component\GameEndUI">
-      <UniqueIdentifier>{e2fa3783-16ac-4efc-8b95-87dc1431aaa3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="system\GameEndUI">
-      <UniqueIdentifier>{8f119c40-063a-428b-9bce-c7320a0a62ee}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="component\GameCamera">
-      <UniqueIdentifier>{249f735a-11b9-4cb8-bdc9-f31c0b912dbf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="system\GameCamera">
-      <UniqueIdentifier>{69aa7fc8-b318-4625-a191-d4feabc48f8a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="component\GameStart">
-      <UniqueIdentifier>{06955c34-abf8-43ff-ad2f-3821ab2bf20a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="system\GameStart">
-      <UniqueIdentifier>{20cc0de0-ddfa-438a-89e2-ca24f0b1858a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="component\DeleteEntity">
-      <UniqueIdentifier>{78c5b9fe-bb88-4b97-9c3f-1a44714f14f8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="system\DeleteEntity">
-      <UniqueIdentifier>{a688c57c-dce7-4578-8fc2-bda6b45498ac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="component\ScaleByBlock">
-      <UniqueIdentifier>{8c1221ab-8c28-44c1-895d-f6fb7fbbe5f8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="system\ScaleByBlock">
-      <UniqueIdentifier>{58285ec2-6ed6-4fc6-a69f-2b2e8298bf04}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="component\Fuse">
-      <UniqueIdentifier>{7860e64d-422a-4853-8619-c1bf607aee28}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="system\Fuse">
-      <UniqueIdentifier>{f8d71fd3-218b-4fe5-9b9e-33d3a0c56573}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\KetaEasing.h" />
+    <ClInclude Include="code\KetaRandom.h" />
+    <ClInclude Include="code\KetaShake.h" />
     <ClInclude Include="code\MyGame.h" />
     <ClInclude Include="code\component\BigBom\BigBomSpawner.h">
       <Filter>component\BigBom</Filter>
@@ -173,6 +181,18 @@
     </ClInclude>
     <ClInclude Include="code\component\BigBom\BigExplotionCollision.h">
       <Filter>component\BigBom</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Block\BlockBreakEffectSpawner.h">
+      <Filter>component\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Block\BlockBreakEffectStatus.h">
+      <Filter>component\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Block\BlockCombinationStatus.h">
+      <Filter>component\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Block\BlockFrontPlaneStatus.h">
+      <Filter>component\Block</Filter>
     </ClInclude>
     <ClInclude Include="code\component\Block\BlockManager.h">
       <Filter>component\Block</Filter>
@@ -198,6 +218,12 @@
     <ClInclude Include="code\component\Combo\ComboUIStatus.h">
       <Filter>component\Combo</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\DeleteEntityStatus\DeleteEntityStatus.h">
+      <Filter>component\DeleteEntityStatus</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\EffectByBlock\EffectByBlockAnimationStatus.h">
+      <Filter>component\EffectByBlock</Filter>
+    </ClInclude>
     <ClInclude Include="code\component\EffectByBlock\EffectByBlockSpawner.h">
       <Filter>component\EffectByBlock</Filter>
     </ClInclude>
@@ -206,6 +232,24 @@
     </ClInclude>
     <ClInclude Include="code\component\Field\FieldStatus.h">
       <Filter>component\Field</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\FloorUI\FloorUIController.h">
+      <Filter>component\FloorUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\FloorUI\FloorUIStatus.h">
+      <Filter>component\FloorUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Fuse\FuseStatus.h">
+      <Filter>component\Fuse</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\GameCamera\CameraRenditionStatus.h">
+      <Filter>component\GameCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\GameEndUI\GameEndUIStatus.h">
+      <Filter>component\GameEndUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\GameStart\GameStartStatus.h">
+      <Filter>component\GameStart</Filter>
     </ClInclude>
     <ClInclude Include="code\component\LevelUPUI\LevelUIParentStatus.h">
       <Filter>component\LevelUPUI</Filter>
@@ -228,11 +272,17 @@
     <ClInclude Include="code\component\OperateUI\OperateUIStatus.h">
       <Filter>component\OperateUI</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\Piller\FloatingFloorAnimationStatus.h">
+      <Filter>component\Piller</Filter>
+    </ClInclude>
     <ClInclude Include="code\component\Piller\FloatingFloorSpawner.h">
       <Filter>component\Piller</Filter>
     </ClInclude>
     <ClInclude Include="code\component\Piller\FloatingFloorStatus.h">
       <Filter>component\Piller</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Player\PlayerAnimationStatus.h">
+      <Filter>component\Player</Filter>
     </ClInclude>
     <ClInclude Include="code\component\Player\PlayerStates.h">
       <Filter>component\Player</Filter>
@@ -252,8 +302,11 @@
     <ClInclude Include="code\component\ResultUI\ResultUIkeyStatus.h">
       <Filter>component\ResultUI</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\SceneChanger.h">
-      <Filter>component</Filter>
+    <ClInclude Include="code\component\ScaleByBlockStatus\ScaleByBlockStatus.h">
+      <Filter>component\ScaleByBlockStatus</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\SceneChanger\SceneChanger.h">
+      <Filter>component\SceneChanger</Filter>
     </ClInclude>
     <ClInclude Include="code\component\SceneChanger\SceneChangerStatus.h">
       <Filter>component\SceneChanger</Filter>
@@ -276,6 +329,9 @@
     <ClInclude Include="code\component\ShockWave\ShockWaveSpawner.h">
       <Filter>component\ShockWave</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\Timer\TimerAnimationStatus.h">
+      <Filter>component\Timer</Filter>
+    </ClInclude>
     <ClInclude Include="code\component\Timer\TimerStatus.h">
       <Filter>component\Timer</Filter>
     </ClInclude>
@@ -297,6 +353,15 @@
     <ClInclude Include="code\system\BigBom\DeleteBigExplotionCollision.h">
       <Filter>system\BigBom</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Block\BackPlaneChangeCloseSystem.h">
+      <Filter>system\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Block\BackPlaneCloseSystem.h">
+      <Filter>system\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Block\BlockApearSystem.h">
+      <Filter>system\Block</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\Block\BlockColorChangeSystem.h">
       <Filter>system\Block</Filter>
     </ClInclude>
@@ -315,10 +380,22 @@
     <ClInclude Include="code\system\Block\BreakBlockSystem.h">
       <Filter>system\Block</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Block\CombiArrayRemoveSystem.h">
+      <Filter>system\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Block\DeleteBlockForAdvantageSystem.h">
+      <Filter>system\Block</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\Block\DeleteBlockSystem.h">
       <Filter>system\Block</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Block\FrontPlaneDeleteSystem.h">
+      <Filter>system\Block</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\Block\MoveTenpoSystem.h">
+      <Filter>system\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Block\SkullSinisterEffectSystem.h">
       <Filter>system\Block</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Bom\BomCollisionExSystem.h">
@@ -348,6 +425,12 @@
     <ClInclude Include="code\system\Combo\ComboUIScrollSystem.h">
       <Filter>system\Combo</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\DeleteEntitySystem\DeleteEntitySystem.h">
+      <Filter>system\DeleteEntitySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\EffectByBlock\EffectByBlockAnimationSystem.h">
+      <Filter>system\EffectByBlock</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\EffectByBlock\EffectByBlockDeleteSystem.h">
       <Filter>system\EffectByBlock</Filter>
     </ClInclude>
@@ -357,10 +440,16 @@
     <ClInclude Include="code\system\FloatingFloor\CanageStateFallSystem.h">
       <Filter>system\FloatingFloor</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\FloatingFloor\CheckIsUnderPlayer.h">
+      <Filter>system\FloatingFloor</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\FloatingFloor\CreateFloorSystem.h">
       <Filter>system\FloatingFloor</Filter>
     </ClInclude>
     <ClInclude Include="code\system\FloatingFloor\DeleteFloatingFloorSystem.h">
+      <Filter>system\FloatingFloor</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\FloatingFloor\FloatingFloorAnimationSystem.h">
       <Filter>system\FloatingFloor</Filter>
     </ClInclude>
     <ClInclude Include="code\system\FloatingFloor\FloatingFloorDamageSystem.h">
@@ -377,6 +466,42 @@
     </ClInclude>
     <ClInclude Include="code\system\Floor\FloorUpdateMatrixSystem.h">
       <Filter>system\Floor</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\FloorUI\FloorUISystem.h">
+      <Filter>system\FloorUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Fuse\FuseAdaptPosSystem.h">
+      <Filter>system\Fuse</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Fuse\FuseChangeSystem.h">
+      <Filter>system\Fuse</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Fuse\FuseCreateSystem.h">
+      <Filter>system\Fuse</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Fuse\FuseDeleteSystem.h">
+      <Filter>system\Fuse</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\GameCamera\CameraShakeSystem.h">
+      <Filter>system\GameCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\GameEndUI\GameEndUISystem.h">
+      <Filter>system\GameEndUI</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\GameStart\AdaptGoSystem.h">
+      <Filter>system\GameStart</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\GameStart\AdaptPurposeSystem.h">
+      <Filter>system\GameStart</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\GameStart\AdaptReadySystem.h">
+      <Filter>system\GameStart</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\GameStart\GameStartBackGroundSystem.h">
+      <Filter>system\GameStart</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\GameStart\GameStartRenditionSystem.h">
+      <Filter>system\GameStart</Filter>
     </ClInclude>
     <ClInclude Include="code\system\LeverlUP\LevelUIAdaptSystem.h">
       <Filter>system\LeverlUP</Filter>
@@ -417,6 +542,9 @@
     <ClInclude Include="code\system\OperateUI\OperateUISystem.h">
       <Filter>system\OperateUI</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Player\PlayerAnimationSystem.h">
+      <Filter>system\Player</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\Player\PlayerCreateBigBomSystem.h">
       <Filter>system\Player</Filter>
     </ClInclude>
@@ -444,17 +572,38 @@
     <ClInclude Include="code\system\ResultUI\ResultUIParentSystem.h">
       <Filter>system\ResultUI</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\ScaleByBlock\ScaleByBlockSystem.h">
+      <Filter>system\ScaleByBlock</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\SceneChanger\SceneChangerSystem.h">
       <Filter>system\SceneChanger</Filter>
     </ClInclude>
     <ClInclude Include="code\system\SceneTransitionSystem\SceneTransitionSystem.h">
       <Filter>system\SceneTransitionSystem</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Score\PlusScoreAdaptUISystem.h">
+      <Filter>system\Score</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Score\PlusScoreIconSystem.h">
+      <Filter>system\Score</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\Score\ScoreIncrementSystem.h">
       <Filter>system\Score</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Score\ScoreUIScrollSystem.h">
       <Filter>system\Score</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Timer\AdapAnimationtBackTimerSystem.h">
+      <Filter>system\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Timer\TimeAdaptAinmationSystem.h">
+      <Filter>system\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Timer\TimerAdaptVignetSystem.h">
+      <Filter>system\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Timer\TimerAnimationSystem.h">
+      <Filter>system\Timer</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Timer\TimerDecrementSystem.h">
       <Filter>system\Timer</Filter>
@@ -477,147 +626,12 @@
     <ClInclude Include="code\system\scrap\ScrapToPlayerCollisionSystem.h">
       <Filter>system\scrap</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\FloorUI\FloorUIController.h">
-      <Filter>component\FloorUI</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\FloorUI\FloorUIStatus.h">
-      <Filter>component\FloorUI</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\FloorUI\FloorUISystem.h">
-      <Filter>system\FloorUI</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\FloatingFloor\CheckIsUnderPlayer.h">
-      <Filter>system\FloatingFloor</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\GameEndUI\GameEndUIStatus.h">
-      <Filter>component\GameEndUI</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\GameEndUI\GameEndUISystem.h">
-      <Filter>system\GameEndUI</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Timer\TimerAnimationSystem.h">
-      <Filter>system\Timer</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\Timer\TimerAnimationStatus.h">
-      <Filter>component\Timer</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Timer\TimeAdaptAinmationSystem.h">
-      <Filter>system\Timer</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\Block\BlockCombinationStatus.h">
-      <Filter>component\Block</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Block\DeleteBlockForAdvantageSystem.h">
-      <Filter>system\Block</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Timer\AdapAnimationtBackTimerSystem.h">
-      <Filter>system\Timer</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Score\PlusScoreAdaptUISystem.h">
-      <Filter>system\Score</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Score\PlusScoreIconSystem.h">
-      <Filter>system\Score</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Timer\TimerAdaptVignetSystem.h">
-      <Filter>system\Timer</Filter>
-    </ClInclude>
-    <ClInclude Include="code\KetaShake.h" />
-    <ClInclude Include="code\KetaRandom.h" />
-    <ClInclude Include="code\component\Piller\FloatingFloorAnimationStatus.h">
-      <Filter>component\Piller</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\FloatingFloor\FloatingFloorAnimationSystem.h">
-      <Filter>system\FloatingFloor</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\GameCamera\CameraRenditionStatus.h">
-      <Filter>component\GameCamera</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\GameCamera\CameraShakeSystem.h">
-      <Filter>system\GameCamera</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Block\BackPlaneChangeCloseSystem.h">
-      <Filter>system\Block</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Block\BlockApearSystem.h">
-      <Filter>system\Block</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Player\PlayerAnimationSystem.h">
-      <Filter>system\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\Player\PlayerAnimationStatus.h">
-      <Filter>component\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\GameStart\GameStartStatus.h">
-      <Filter>component\GameStart</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\GameStart\GameStartRenditionSystem.h">
-      <Filter>system\GameStart</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\GameStart\AdaptPurposeSystem.h">
-      <Filter>system\GameStart</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\GameStart\AdaptGoSystem.h">
-      <Filter>system\GameStart</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\GameStart\AdaptReadySystem.h">
-      <Filter>system\GameStart</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\GameStart\GameStartBackGroundSystem.h">
-      <Filter>system\GameStart</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\Block\BlockFrontPlaneStatus.h">
-      <Filter>component\Block</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Block\FrontPlaneDeleteSystem.h">
-      <Filter>system\Block</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Block\BackPlaneCloseSystem.h">
-      <Filter>system\Block</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Block\SkullSinisterEffectSystem.h">
-      <Filter>system\Block</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\DeleteEntityStatus\DeleteEntityStatus.h">
-      <Filter>component\DeleteEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\DeleteEntitySystem\DeleteEntitySystem.h">
-      <Filter>system\DeleteEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\ScaleByBlockStatus\ScaleByBlockStatus.h">
-      <Filter>component\ScaleByBlock</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\ScaleByBlock\ScaleByBlockSystem.h">
-      <Filter>system\ScaleByBlock</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\EffectByBlock\EffectByBlockAnimationStatus.h">
-      <Filter>component\EffectByBlock</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\EffectByBlock\EffectByBlockAnimationSystem.h">
-      <Filter>system\EffectByBlock</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Block\CombiArrayRemoveSystem.h">
-      <Filter>system\Block</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\Fuse\FuseStatus.h">
-      <Filter>component\Fuse</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Fuse\FuseAdaptPosSystem.h">
-      <Filter>system\Fuse</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Fuse\FuseDeleteSystem.h">
-      <Filter>system\Fuse</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Fuse\FuseCreateSystem.h">
-      <Filter>system\Fuse</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Fuse\FuseChangeSystem.h">
-      <Filter>system\Fuse</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\KetaEasing.cpp" />
+    <ClCompile Include="code\KetaRandom.cpp" />
+    <ClCompile Include="code\KetaShake.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
     <ClCompile Include="code\component\BigBom\BigBomSpawner.cpp">
       <Filter>component\BigBom</Filter>
@@ -627,6 +641,18 @@
     </ClCompile>
     <ClCompile Include="code\component\BigBom\BigExplotionCollision.cpp">
       <Filter>component\BigBom</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Block\BlockBreakEffectSpawner.cpp">
+      <Filter>component\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Block\BlockBreakEffectStatus.cpp">
+      <Filter>component\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Block\BlockCombinationStatus.cpp">
+      <Filter>component\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Block\BlockFrontPlaneStatus.cpp">
+      <Filter>component\Block</Filter>
     </ClCompile>
     <ClCompile Include="code\component\Block\BlockManager.cpp">
       <Filter>component\Block</Filter>
@@ -652,6 +678,12 @@
     <ClCompile Include="code\component\Combo\ComboUIStatus.cpp">
       <Filter>component\Combo</Filter>
     </ClCompile>
+    <ClCompile Include="code\component\DeleteEntityStatus\DeleteEntityStatus.cpp">
+      <Filter>component\DeleteEntityStatus</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\EffectByBlock\EffectByBlockAnimationStatus.cpp">
+      <Filter>component\EffectByBlock</Filter>
+    </ClCompile>
     <ClCompile Include="code\component\EffectByBlock\EffectByBlockSpawner.cpp">
       <Filter>component\EffectByBlock</Filter>
     </ClCompile>
@@ -660,6 +692,24 @@
     </ClCompile>
     <ClCompile Include="code\component\Field\FieldStatus.cpp">
       <Filter>component\Field</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\FloorUI\FloorUIController.cpp">
+      <Filter>component\FloorUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\FloorUI\FloorUIStatus.cpp">
+      <Filter>component\FloorUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Fuse\FuseStatus.cpp">
+      <Filter>component\Fuse</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\GameCamera\CameraRenditionStatus.cpp">
+      <Filter>component\GameCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\GameEndUI\GameEndUIStatus.cpp">
+      <Filter>component\GameEndUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\GameStart\GameStartStatus.cpp">
+      <Filter>component\GameStart</Filter>
     </ClCompile>
     <ClCompile Include="code\component\LevelUPUI\LevelUIParentStatus.cpp">
       <Filter>component\LevelUPUI</Filter>
@@ -682,11 +732,17 @@
     <ClCompile Include="code\component\OperateUI\OperateUIStatus.cpp">
       <Filter>component\OperateUI</Filter>
     </ClCompile>
+    <ClCompile Include="code\component\Piller\FloatingFloorAnimationStatus.cpp">
+      <Filter>component\Piller</Filter>
+    </ClCompile>
     <ClCompile Include="code\component\Piller\FloatingFloorSpawner.cpp">
       <Filter>component\Piller</Filter>
     </ClCompile>
     <ClCompile Include="code\component\Piller\FloatingFloorStatus.cpp">
       <Filter>component\Piller</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Player\PlayerAnimationStatus.cpp">
+      <Filter>component\Player</Filter>
     </ClCompile>
     <ClCompile Include="code\component\Player\PlayerStates.cpp">
       <Filter>component\Player</Filter>
@@ -706,8 +762,11 @@
     <ClCompile Include="code\component\ResultUI\ResultUIkeyStatus.cpp">
       <Filter>component\ResultUI</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\SceneChanger.cpp">
-      <Filter>component</Filter>
+    <ClCompile Include="code\component\ScaleByBlockStatus\ScaleByBlockStatus.cpp">
+      <Filter>component\ScaleByBlockStatus</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\SceneChanger\SceneChanger.cpp">
+      <Filter>component\SceneChanger</Filter>
     </ClCompile>
     <ClCompile Include="code\component\SceneChanger\SceneChangerStatus.cpp">
       <Filter>component\SceneChanger</Filter>
@@ -730,6 +789,9 @@
     <ClCompile Include="code\component\ShockWave\ShockWaveSpawner.cpp">
       <Filter>component\ShockWave</Filter>
     </ClCompile>
+    <ClCompile Include="code\component\Timer\TimerAnimationStatus.cpp">
+      <Filter>component\Timer</Filter>
+    </ClCompile>
     <ClCompile Include="code\component\Timer\TimerStatus.cpp">
       <Filter>component\Timer</Filter>
     </ClCompile>
@@ -751,6 +813,15 @@
     <ClCompile Include="code\system\BigBom\DeleteBigExplotionCollision.cpp">
       <Filter>system\BigBom</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\Block\BackPlaneChangeCloseSystem.cpp">
+      <Filter>system\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Block\BackPlaneCloseSystem.cpp">
+      <Filter>system\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Block\BlockApearSystem.cpp">
+      <Filter>system\Block</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\Block\BlockColorChangeSystem.cpp">
       <Filter>system\Block</Filter>
     </ClCompile>
@@ -769,10 +840,22 @@
     <ClCompile Include="code\system\Block\BreakBlockSystem.cpp">
       <Filter>system\Block</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\Block\CombiArrayRemoveSystem.cpp">
+      <Filter>system\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Block\DeleteBlockForAdvantageSystem.cpp">
+      <Filter>system\Block</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\Block\DeleteBlockSystem.cpp">
       <Filter>system\Block</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\Block\FrontPlaneDeleteSystem.cpp">
+      <Filter>system\Block</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\Block\MoveTenpoSystem.cpp">
+      <Filter>system\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Block\SkullSinisterEffectSystem.cpp">
       <Filter>system\Block</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Bom\BomCollisionExSystem.cpp">
@@ -802,6 +885,12 @@
     <ClCompile Include="code\system\Combo\ComboUIScrollSystem.cpp">
       <Filter>system\Combo</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\DeleteEntitySystem\DeleteEntitySystem.cpp">
+      <Filter>system\DeleteEntitySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\EffectByBlock\EffectByBlockAnimationSystem.cpp">
+      <Filter>system\EffectByBlock</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\EffectByBlock\EffectByBlockDeleteSystem.cpp">
       <Filter>system\EffectByBlock</Filter>
     </ClCompile>
@@ -811,10 +900,16 @@
     <ClCompile Include="code\system\FloatingFloor\CanageStateFallSystem.cpp">
       <Filter>system\FloatingFloor</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\FloatingFloor\CheckIsUnderPlayer.cpp">
+      <Filter>system\FloatingFloor</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\FloatingFloor\CreateFloorSystem.cpp">
       <Filter>system\FloatingFloor</Filter>
     </ClCompile>
     <ClCompile Include="code\system\FloatingFloor\DeleteFloatingFloorSystem.cpp">
+      <Filter>system\FloatingFloor</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\FloatingFloor\FloatingFloorAnimationSystem.cpp">
       <Filter>system\FloatingFloor</Filter>
     </ClCompile>
     <ClCompile Include="code\system\FloatingFloor\FloatingFloorDamageSystem.cpp">
@@ -831,6 +926,42 @@
     </ClCompile>
     <ClCompile Include="code\system\Floor\FloorUpdateMatrixSystem.cpp">
       <Filter>system\Floor</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\FloorUI\FloorUISystem.cpp">
+      <Filter>system\FloorUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Fuse\FuseAdaptPosSystem.cpp">
+      <Filter>system\Fuse</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Fuse\FuseChangeSystem.cpp">
+      <Filter>system\Fuse</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Fuse\FuseCreateSystem.cpp">
+      <Filter>system\Fuse</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Fuse\FuseDeleteSystem.cpp">
+      <Filter>system\Fuse</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\GameCamera\CameraShakeSystem.cpp">
+      <Filter>system\GameCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\GameEndUI\GameEndUISystem.cpp">
+      <Filter>system\GameEndUI</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\GameStart\AdaptGoSystem.cpp">
+      <Filter>system\GameStart</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\GameStart\AdaptPurposeSystem.cpp">
+      <Filter>system\GameStart</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\GameStart\AdaptReadySystem.cpp">
+      <Filter>system\GameStart</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\GameStart\GameStartBackGroundSystem.cpp">
+      <Filter>system\GameStart</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\GameStart\GameStartRenditionSystem.cpp">
+      <Filter>system\GameStart</Filter>
     </ClCompile>
     <ClCompile Include="code\system\LeverlUP\LevelUIAdaptSystem.cpp">
       <Filter>system\LeverlUP</Filter>
@@ -871,6 +1002,9 @@
     <ClCompile Include="code\system\OperateUI\OperateUISystem.cpp">
       <Filter>system\OperateUI</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\Player\PlayerAnimationSystem.cpp">
+      <Filter>system\Player</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\Player\PlayerCreateBigBomSystem.cpp">
       <Filter>system\Player</Filter>
     </ClCompile>
@@ -898,17 +1032,38 @@
     <ClCompile Include="code\system\ResultUI\ResultUIParentSystem.cpp">
       <Filter>system\ResultUI</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\ScaleByBlock\ScaleByBlockSystem.cpp">
+      <Filter>system\ScaleByBlock</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\SceneChanger\SceneChangerSystem.cpp">
       <Filter>system\SceneChanger</Filter>
     </ClCompile>
     <ClCompile Include="code\system\SceneTransitionSystem\SceneTransitionSystem.cpp">
       <Filter>system\SceneTransitionSystem</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\Score\PlusScoreAdaptUISystem.cpp">
+      <Filter>system\Score</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Score\PlusScoreIconSystem.cpp">
+      <Filter>system\Score</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\Score\ScoreIncrementSystem.cpp">
       <Filter>system\Score</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Score\ScoreUIScrollSystem.cpp">
       <Filter>system\Score</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Timer\AdapAnimationtBackTimerSystem.cpp">
+      <Filter>system\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Timer\TimeAdaptAinmationSystem.cpp">
+      <Filter>system\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Timer\TimerAdaptVignetSystem.cpp">
+      <Filter>system\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Timer\TimerAnimationSystem.cpp">
+      <Filter>system\Timer</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Timer\TimerDecrementSystem.cpp">
       <Filter>system\Timer</Filter>
@@ -931,142 +1086,6 @@
     <ClCompile Include="code\system\scrap\ScrapToPlayerCollisionSystem.cpp">
       <Filter>system\scrap</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\FloorUI\FloorUIController.cpp">
-      <Filter>component\FloorUI</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\FloorUI\FloorUIStatus.cpp">
-      <Filter>component\FloorUI</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\FloorUI\FloorUISystem.cpp">
-      <Filter>system\FloorUI</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\FloatingFloor\CheckIsUnderPlayer.cpp">
-      <Filter>system\FloatingFloor</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\GameEndUI\GameEndUIStatus.cpp">
-      <Filter>component\GameEndUI</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\GameEndUI\GameEndUISystem.cpp">
-      <Filter>system\GameEndUI</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Timer\TimerAnimationSystem.cpp">
-      <Filter>system\Timer</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\Timer\TimerAnimationStatus.cpp">
-      <Filter>component\Timer</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Timer\TimeAdaptAinmationSystem.cpp">
-      <Filter>system\Timer</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\Block\BlockCombinationStatus.cpp">
-      <Filter>component\Block</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Block\DeleteBlockForAdvantageSystem.cpp">
-      <Filter>system\Block</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Timer\AdapAnimationtBackTimerSystem.cpp">
-      <Filter>system\Timer</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Score\PlusScoreAdaptUISystem.cpp">
-      <Filter>system\Score</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Score\PlusScoreIconSystem.cpp">
-      <Filter>system\Score</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Timer\TimerAdaptVignetSystem.cpp">
-      <Filter>system\Timer</Filter>
-    </ClCompile>
-    <ClCompile Include="code\KetaShake.cpp" />
-    <ClCompile Include="code\KetaRandom.cpp" />
-    <ClCompile Include="code\component\Piller\FloatingFloorAnimationStatus.cpp">
-      <Filter>component\Piller</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\FloatingFloor\FloatingFloorAnimationSystem.cpp">
-      <Filter>system\FloatingFloor</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\GameCamera\CameraRenditionStatus.cpp">
-      <Filter>component\GameCamera</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\GameCamera\CameraShakeSystem.cpp">
-      <Filter>system\GameCamera</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Block\BackPlaneChangeCloseSystem.cpp">
-      <Filter>system\Block</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Block\BlockApearSystem.cpp">
-      <Filter>system\Block</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Player\PlayerAnimationSystem.cpp">
-      <Filter>system\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\Player\PlayerAnimationStatus.cpp">
-      <Filter>component\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\GameStart\GameStartStatus.cpp">
-      <Filter>component\GameStart</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\GameStart\GameStartRenditionSystem.cpp">
-      <Filter>system\GameStart</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\GameStart\AdaptPurposeSystem.cpp">
-      <Filter>system\GameStart</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\GameStart\AdaptGoSystem.cpp">
-      <Filter>system\GameStart</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\GameStart\AdaptReadySystem.cpp">
-      <Filter>system\GameStart</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\GameStart\GameStartBackGroundSystem.cpp">
-      <Filter>system\GameStart</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\Block\BlockFrontPlaneStatus.cpp">
-      <Filter>component\Block</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Block\FrontPlaneDeleteSystem.cpp">
-      <Filter>system\Block</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Block\BackPlaneCloseSystem.cpp">
-      <Filter>system\Block</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Block\SkullSinisterEffectSystem.cpp">
-      <Filter>system\Block</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\DeleteEntityStatus\DeleteEntityStatus.cpp">
-      <Filter>component\DeleteEntity</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\DeleteEntitySystem\DeleteEntitySystem.cpp">
-      <Filter>system\DeleteEntity</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\ScaleByBlockStatus\ScaleByBlockStatus.cpp">
-      <Filter>component\ScaleByBlock</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\ScaleByBlock\ScaleByBlockSystem.cpp">
-      <Filter>system\ScaleByBlock</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\EffectByBlock\EffectByBlockAnimationStatus.cpp">
-      <Filter>component\EffectByBlock</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\EffectByBlock\EffectByBlockAnimationSystem.cpp">
-      <Filter>system\EffectByBlock</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Block\CombiArrayRemoveSystem.cpp">
-      <Filter>system\Block</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\Fuse\FuseStatus.cpp">
-      <Filter>component\Fuse</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Fuse\FuseAdaptPosSystem.cpp">
-      <Filter>system\Fuse</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Fuse\FuseDeleteSystem.cpp">
-      <Filter>system\Fuse</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Fuse\FuseCreateSystem.cpp">
-      <Filter>system\Fuse</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Fuse\FuseChangeSystem.cpp">
-      <Filter>system\Fuse</Filter>
-    </ClCompile>
+    <ClCompile Include="code\main.cpp" />
   </ItemGroup>
 </Project>

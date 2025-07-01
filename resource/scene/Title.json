@@ -66,7 +66,7 @@
                     {
                         "fileName": "application/resource/sound/decision.wav",
                         "isLoop": false,
-                        "valume": 0.5
+                        "volume": 0.5
                     }
                 ],
                 "PlaneRenderer": [
@@ -1362,7 +1362,7 @@
                     {
                         "fileName": "application/resource/sound/Title.wav",
                         "isLoop": true,
-                        "valume": 0.3070000112056732
+                        "volume": 0.3070000112056732
                     }
                 ]
             },

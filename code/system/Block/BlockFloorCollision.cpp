@@ -45,7 +45,8 @@ void BlockFloorCollision::UpdateEntity(GameEntity* _entity) {
         // sphereのみ
         std::vector<SphereCollider>* entityColliders = getComponents<SphereCollider>(_entity);
         for (auto& entityCollider : *entityColliders) {
-            for (auto& [hitEntity, collisionState] : entityCollider.getCollisionStateMap()) {
+            for (auto& [hitEntityID, collisionState] : entityCollider.getCollisionStateMap()) {
+                GameEntity* hitEntity = ECSManager::getInstance()->getEntity(hitEntityID);
 
                 if (_entity->getDataType() == hitEntity->getDataType()) {
                     continue;

@@ -4,6 +4,7 @@
 
 // engine include
 #define ENGINE_INCLUDE
+#define RESOURCE_DIRECTORY
 #define ENGINE_ECS
 #include <EngineInclude.h>
 
@@ -18,7 +19,7 @@
 #ifdef _DEBUG
 /// editor
 #include "ECSEditor.h"
-#include "module/editor/EditorGroup.h"
+#include "module/editor/EditorController.h"
 /// debugger
 #include "ECSDebugger.h"
 #include "module/debugger/DebuggerGroup.h"
@@ -27,6 +28,7 @@
 #include "model/ModelManager.h"
 #include "texture/TextureManager.h"
 
+#include "component/animation/SpriteAnimation.h"
 #include "component/animation/SpriteAnimation.h"
 #include "component/BigBom/BigBomSpawner.h"
 #include "component/BigBom/BigBomStatus.h"
@@ -42,14 +44,17 @@
 #include "component/Combo/ComboStatus.h"
 #include "component/Combo/ComboUIStatus.h"
 #include "component/DeleteEntityStatus/DeleteEntityStatus.h"
+#include "component/DeleteEntityStatus/DeleteEntityStatus.h"
 #include "component/effect/post/VignetteParam.h"
 #include "component/effect/TextureEffectParam.h"
+#include "component/EffectByBlock/EffectByBlockAnimationStatus.h"
 #include "component/EffectByBlock/EffectByBlockAnimationStatus.h"
 #include "component/EffectByBlock/EffectByBlockSpawner.h"
 #include "component/EffectByBlock/EffectByBlockUIStatus.h"
 #include "component/Field/FieldStatus.h"
 #include "component/FloorUI/FloorUIController.h"
 #include "component/FloorUI/FloorUIStatus.h"
+#include "component/Fuse/FuseStatus.h"
 #include "component/GameCamera/CameraRenditionStatus.h"
 #include "component/GameEndUI/GameEndUIStatus.h"
 #include "component/GameStart/GameStartStatus.h"
@@ -71,7 +76,8 @@
 #include "component/ResultUI/ResultUIRankStatus.h"
 #include "component/ResultUI/ResultUIScoreStatus.h"
 #include "component/ScaleByBlockStatus/ScaleByBlockStatus.h"
-#include "component/SceneChanger.h"
+#include "component/ScaleByBlockStatus/ScaleByBlockStatus.h"
+#include "component/SceneChanger/SceneChanger.h"
 #include "component/SceneChanger/SceneChangerStatus.h"
 #include "component/SceneTransition/SceneTransition.h"
 #include "component/Score/ScoreStatus.h"
@@ -81,11 +87,6 @@
 #include "component/Timer/TimerAnimationStatus.h"
 #include "component/Timer/TimerStatus.h"
 #include "component/Timer/TimerUIStatus.h"
-#include"component/animation/SpriteAnimation.h"
-#include"component/DeleteEntityStatus/DeleteEntityStatus.h"
-#include"component/ScaleByBlockStatus/ScaleByBlockStatus.h"
-#include"component/EffectByBlock/EffectByBlockAnimationStatus.h"
-#include"component/Fuse/FuseStatus.h"
 
 // system
 #include "system/BigBom/BigBomCollisionExSystem.h"
@@ -102,10 +103,12 @@
 #include "system/Block/BlockMoveSystem.h"
 #include "system/Block/BlockSpawnSystem.h"
 #include "system/Block/BreakBlockSystem.h"
+#include "system/Block/CombiArrayRemoveSystem.h"
 #include "system/Block/DeleteBlockForAdvantageSystem.h"
 #include "system/Block/DeleteBlockSystem.h"
 #include "system/Block/FrontPlaneDeleteSystem.h"
 #include "system/Block/MoveTenpoSystem.h"
+#include "system/Block/SkullSinisterEffectSystem.h"
 #include "system/Block/SkullSinisterEffectSystem.h"
 #include "system/Bom/BomCollisionExSystem.h"
 #include "system/Bom/BomExplotionSystem.h"
@@ -117,6 +120,8 @@
 #include "system/Combo/ComboSystem.h"
 #include "system/Combo/ComboUIScrollSystem.h"
 #include "system/DeleteEntitySystem/DeleteEntitySystem.h"
+#include "system/DeleteEntitySystem/DeleteEntitySystem.h"
+#include "system/EffectByBlock/EffectByBlockAnimationSystem.h"
 #include "system/EffectByBlock/EffectByBlockAnimationSystem.h"
 #include "system/EffectByBlock/EffectByBlockDeleteSystem.h"
 #include "system/EffectByBlock/EffectByBlockDrawSystem.h"
@@ -131,6 +136,10 @@
 #include "system/Floor/DeleteFloorSystem.h"
 #include "system/Floor/FloorUpdateMatrixSystem.h"
 #include "system/FloorUI/FloorUISystem.h"
+#include "system/Fuse/FuseAdaptPosSystem.h"
+#include "system/Fuse/FuseChangeSystem.h"
+#include "system/Fuse/FuseCreateSystem.h"
+#include "system/Fuse/FuseDeleteSystem.h"
 #include "system/GameCamera/CameraShakeSystem.h"
 #include "system/GameEndUI/GameEndUISystem.h"
 #include "system/GameStart/AdaptGoSystem.h"
@@ -157,11 +166,13 @@
 #include "system/Player/PlayerInput.h"
 #include "system/Player/PlayerMoveSystem.h"
 #include "system/postRender/VignetteEffect.h"
+#include "system/render/BackGroundSpriteRenderSystem.h"
 #include "system/ResultUI/ResultFontSystem.h"
 #include "system/ResultUI/ResultKeySystem.h"
 #include "system/ResultUI/ResultRankSystem.h"
 #include "system/ResultUI/ResultScoreAdaptSystem.h"
 #include "system/ResultUI/ResultUIParentSystem.h"
+#include "system/ScaleByBlock/ScaleByBlockSystem.h"
 #include "system/ScaleByBlock/ScaleByBlockSystem.h"
 #include "system/SceneChanger/SceneChangerSystem.h"
 #include "system/SceneTransitionSystem/SceneTransitionSystem.h"
@@ -180,16 +191,6 @@
 #include "system/Timer/TimerUIScrollSystem.h"
 #include "system/UpdateButtonColorByState.h"
 #include "system/UsingCameraSetSystem.h"
-#include"system/Block/SkullSinisterEffectSystem.h"
-#include"system/DeleteEntitySystem/DeleteEntitySystem.h"
-#include"system/ScaleByBlock/ScaleByBlockSystem.h"
-#include"system/EffectByBlock/EffectByBlockAnimationSystem.h"
-#include"system/render/BackGroundSpriteRenderSystem.h"
-#include"system/Block/CombiArrayRemoveSystem.h"
-#include"system/Fuse/FuseAdaptPosSystem.h"
-#include"system/Fuse/FuseCreateSystem.h"
-#include"system/Fuse/FuseDeleteSystem.h"
-#include"system/Fuse/FuseChangeSystem.h"
 
 MyGame::MyGame() {}
 
@@ -219,7 +220,7 @@ void MyGame::Initialize() {
     // Editor の初期化
     ///=================================================================================================
     {
-        EditorGroup* editorGroup             = EditorGroup::getInstance();
+        EditorController* editorGroup        = EditorController::getInstance();
         std::unique_ptr<ECSEditor> ecsEditor = std::make_unique<ECSEditor>();
         editorGroup->addEditor(std::move(ecsEditor));
         std::unique_ptr<GlobalVariablesEditor> globalVariables = std::make_unique<GlobalVariablesEditor>();
@@ -253,8 +254,8 @@ void MyGame::Initialize() {
 
 void MyGame::Finalize() {
 #ifdef _DEBUG
-    EditorGroup* editorGroup     = EditorGroup::getInstance();
-    DebuggerGroup* debuggerGroup = DebuggerGroup::getInstance();
+    EditorController* editorGroup = EditorController::getInstance();
+    DebuggerGroup* debuggerGroup  = DebuggerGroup::getInstance();
     editorGroup->Finalize();
     debuggerGroup->Finalize();
 #endif // _DEBUG
@@ -463,10 +464,10 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<FuseChangeSystem>();
     ecsManager->registerSystem<AudioInitializeSystem>();
 
-     ecsManager->registerSystem<FuseAdaptPosSystem>();
+    ecsManager->registerSystem<FuseAdaptPosSystem>();
     ecsManager->registerSystem<FuseCreateSystem>();
-     ecsManager->registerSystem<FuseDeleteSystem>();
- 
+    ecsManager->registerSystem<FuseDeleteSystem>();
+
     ecsManager->registerSystem<BackPlaneCloseSystem>();
     ecsManager->registerSystem<FrontPlaneDeleteSystem>();
 
@@ -501,7 +502,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<EmitterWorkSystem>();
     ecsManager->registerSystem<PrimitiveNodeAnimationWorkSystem>();
     ecsManager->registerSystem<SpriteAnimationSystem>();
-    
+
     /// =================================================================================================
     // Render
     /// =================================================================================================

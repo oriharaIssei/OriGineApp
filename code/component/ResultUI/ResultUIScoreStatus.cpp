@@ -25,7 +25,7 @@ bool ResultUIScoreStatus::Edit() {
     int currentIndex                 = static_cast<int>(uiDigit_);
     if (ImGui::Combo("LevelUI Digit", &currentIndex, digitLabels, static_cast<int>(ResultUIDigit::COUNT))) {
         auto command = std::make_unique<SetterCommand<ResultUIScoreStatus::ResultUIDigit>>(&uiDigit_, static_cast<ResultUIDigit>(currentIndex));
-        EditorGroup::getInstance()->pushCommand(std::move(command));
+        EditorController::getInstance()->pushCommand(std::move(command));
     }
 
     isChange |= DragGuiVectorCommand<3, float>("offsetPos", offsetPos_);

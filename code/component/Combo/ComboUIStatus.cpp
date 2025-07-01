@@ -27,7 +27,7 @@ bool ComboUIStatus::Edit() {
     int currentIndex                 = static_cast<int>(timeDigit_);
     if (ImGui::Combo("Combo Digit", &currentIndex, digitLabels, static_cast<int>(TimeDigit::COUNT))) {
         auto command = std::make_unique<SetterCommand<ComboUIStatus::TimeDigit>>(&timeDigit_, static_cast<TimeDigit>(currentIndex));
-        EditorGroup::getInstance()->pushCommand(std::move(command));
+        EditorController::getInstance()->pushCommand(std::move(command));
         isChange = true;
     }
 

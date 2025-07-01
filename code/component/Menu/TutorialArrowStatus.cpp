@@ -34,7 +34,7 @@ bool TutorialArrowStatus::Edit() {
     int currentIndex = static_cast<int>(arrowDirection_);
     if (ImGui::Combo("Arrow Direction", &currentIndex, directionLabel, static_cast<int>(ArrowDirection::COUNT))) {
         auto command = std::make_unique<SetterCommand<ArrowDirection>>(&arrowDirection_, static_cast<ArrowDirection>(currentIndex));
-        EditorGroup::getInstance()->pushCommand(std::move(command));
+        EditorController::getInstance()->pushCommand(std::move(command));
     }
 
 #endif // _DEBUG

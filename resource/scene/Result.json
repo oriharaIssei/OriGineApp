@@ -276,7 +276,7 @@
                     {
                         "fileName": "application/resource/sound/decision.wav",
                         "isLoop": false,
-                        "valume": 0.5
+                        "volume": 0.5
                     }
                 ],
                 "PlaneRenderer": [
@@ -434,7 +434,7 @@
                     {
                         "fileName": "application/resource/sound/BreakFall.wav",
                         "isLoop": false,
-                        "valume": 0.5
+                        "volume": 0.5
                     }
                 ],
                 "ResultFontStatus": [
@@ -530,12 +530,12 @@
                     {
                         "fileName": "application/resource/sound/Tutorial_Open.wav",
                         "isLoop": false,
-                        "valume": 0.5870000123977661
+                        "volume": 0.5870000123977661
                     },
                     {
                         "fileName": "application/resource/sound/Score_Decision.wav",
                         "isLoop": false,
-                        "valume": 0.5
+                        "volume": 0.5
                     }
                 ],
                 "ResultUIParentStatus": [
@@ -949,7 +949,7 @@
                     {
                         "fileName": "application/resource/sound/BreakFall.wav",
                         "isLoop": false,
-                        "valume": 0.5
+                        "volume": 0.5
                     }
                 ],
                 "ResultUIRankStatus": [
@@ -1290,7 +1290,7 @@
                     {
                         "fileName": "application/resource/sound/Result.wav",
                         "isLoop": false,
-                        "valume": 0.3319999873638153
+                        "volume": 0.3319999873638153
                     }
                 ]
             },

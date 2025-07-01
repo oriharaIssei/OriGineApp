@@ -2,6 +2,7 @@
 
 /// ECS
 #define ENGINE_ECS
+#define ENGINE_INPUT
 // component
 #include "component/GameEndUI/GameEndUIStatus.h"
 #include "component/Menu/MenuStatus.h"

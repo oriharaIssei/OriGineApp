@@ -4,7 +4,7 @@
 #define ENGINE_SCENE
 #define RESOURCE_DIRECTORY
 #include "EngineInclude.h"
-#include "module/editor/EditorGroup.h"
+#include "module/editor/EditorController.h"
 #include "module/editor/IEditor.h"
 
 /// lib
@@ -36,7 +36,7 @@ bool SceneChanger::Edit() {
             bool isSelected = nextSceneName_ == sceneName;
             if (ImGui::Selectable(sceneName.c_str(), isSelected)) {
 
-                EditorGroup::getInstance()->pushCommand(
+                EditorController::getInstance()->pushCommand(
                     std::make_unique<SetterCommand<std::string>>(&nextSceneName_, sceneName));
 
                 changed = true;

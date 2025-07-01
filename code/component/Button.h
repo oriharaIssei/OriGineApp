@@ -2,7 +2,11 @@
 /// parent
 #include "component/IComponent.h"
 
+/// stl
+#include <vector>
+
 /// engine
+#include "input/Input.h"
 // component
 #include "component/renderer/Sprite.h"
 
@@ -42,7 +46,7 @@ private:
     Vec4f releaseColor_ = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
 
 public: // getter setter
-   const std::vector<PadButton>& getShortcutPadButton() const {
+    const std::vector<PadButton>& getShortcutPadButton() const {
         return shortcutPadButton_;
     }
     const std::vector<Key>& getShortcutKey() const {
@@ -97,5 +101,4 @@ public: // getter setter
     void setReleaseColor(const Vec4f& _color) {
         releaseColor_ = _color;
     }
-
 };
