@@ -109,16 +109,18 @@
                     }
                 ],
                 "PlayerInput": [
-                    null
+                    {
+                        "MaxJumpInputTime": 0.10000000149011612
+                    }
                 ],
                 "PlayerStatus": [
                     {
                         "baseSpeed": 1000.0,
                         "coolTimeAddRateBase": 0.699999988079071,
                         "coolTimeAddRateCommonRate": 0.800000011920929,
-                        "directionInterpolateRate": 0.20000000298023224,
+                        "directionInterpolateRate": 0.0010000000474974513,
                         "gearUpCoolTime": 0.4000000059604645,
-                        "jumpPower": 22.100000381469727,
+                        "jumpPower": 18.600000381469727,
                         "speedUpRateBase": 541.5,
                         "speedUpRateCommonRate": 6.900000095367432,
                         "wallJumpDirection": [
@@ -136,7 +138,7 @@
                             0.0,
                             0.0
                         ],
-                        "mass": 0.6000000238418579,
+                        "mass": 0.20000000298023224,
                         "useGravity": true,
                         "velocity": [
                             0.0,
@@ -366,6 +368,141 @@
                         "activeTime": 2.299999952316284,
                         "blendMode": 1,
                         "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -5876,6 +6013,126 @@
                             {
                                 "time": 0.0,
                                 "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
                                     0.10000000149011612,
                                     0.10000000149011612,
                                     0.10000000149011612
@@ -5974,6 +6231,126 @@
                         "updateSettings": 12578,
                         "uvInterpolationType": 0,
                         "velocityCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -11864,6 +12241,9 @@
     ],
     "Systems": [
         {
+            "CreateSpriteFromTimer": {
+                "Priority": 0
+            },
             "SettingGameCameraTarget": {
                 "Priority": 5
             },
@@ -11872,6 +12252,9 @@
             }
         },
         {
+            "ButtonInputSystem": {
+                "Priority": 0
+            },
             "CameraInputSystem": {
                 "Priority": 1
             },
@@ -11880,11 +12263,20 @@
             }
         },
         {
+            "ChangeSceneByButton": {
+                "Priority": 1
+            },
             "FallDetectionSystem": {
                 "Priority": 4
             },
+            "TimerCountDown": {
+                "Priority": 0
+            },
             "TransitionPlayerState": {
                 "Priority": 5
+            },
+            "UpdateButtonColorByState": {
+                "Priority": 0
             }
         },
         {
@@ -11927,6 +12319,9 @@
             },
             "TextureEffectAnimation": {
                 "Priority": 2
+            },
+            "TimerForSprite": {
+                "Priority": 0
             }
         },
         {
@@ -11954,6 +12349,9 @@
         },
         {
             "DistortionEffect": {
+                "Priority": 0
+            },
+            "VignetteEffect": {
                 "Priority": 0
             }
         }

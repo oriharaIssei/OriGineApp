@@ -31,6 +31,8 @@ public:
 
 private:
     Vec2f inputDirection_ = {0.0f, 0.0f};
+    float jumpInputTime_  = 0.0f; // ジャンプ入力の時間 (これによってジャンプ力が変わる)
+    float maxJumpTime_    = 0.1f; // ジャンプ入力の最大時間 (秒単位)
     bool isJumpInput_     = false; // ジャンプ入力があったかどうか
 
     /// <summary>
@@ -103,5 +105,9 @@ public:
     }
     void setJumpInput(bool _isJumpInput) {
         isJumpInput_ = _isJumpInput;
+    }
+
+    float getJumpInputTime() const {
+        return jumpInputTime_;
     }
 };

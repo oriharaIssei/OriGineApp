@@ -65,6 +65,12 @@ PlayerMoveState PlayerIdleState::TransitionState() const {
 
     if (playerStatus->isOnGround()) {
         if (playerInput->isJumpInput()) {
+
+            auto* rigidbody = getComponent<Rigidbody>(playerEntity);
+
+            Vec3f velocity = rigidbody->getVelocity();
+            velocity[Y]    = playerStatus->getJumpPower(); // ジャンプパワーをY軸に設定
+            rigidbody->setVelocity(velocity);
             return PlayerMoveState::JUMP;
         }
     }
@@ -146,14 +152,8 @@ void PlayerDashState::Update(float _deltaTime) {
 
     // 移動方向を回転
     Vec3f movementDirection = Vec3f(0.f, 0.f, 1.f) * MakeMatrix::RotateQuaternion(transform->rotate);
-    Vec3f velo              = (playerStatus->getCurrentSpeed() * _deltaTime) * movementDirection;
-    if (playerStatus->isOnGround()) {
-        // 地面にいる場合はY軸の速度を0にする
-        velo[Y] = 0.f;
-    } else {
-        // 空中にいる場合はY軸の速度を保持
-        velo[Y] = rigidbody->getVelocity()[Y];
-    }
+    float speedByFrame      = playerStatus->getCurrentSpeed() * _deltaTime;
+    Vec3f velo             = (speedByFrame) * movementDirection;
 
     rigidbody->setVelocity(velo);
 }
@@ -171,10 +171,10 @@ PlayerMoveState PlayerDashState::TransitionState() const {
 
     if (playerStatus->isOnGround()) {
         if (playerInput->isJumpInput()) {
-            //! TODO : JumpInit に書く
+            //! TODO : JumpInit に書く (落ちるときも Jumpに相当してしまっているため今は掛けない. FallDownStateを用意するべき)
             auto* rigidbody = getComponent<Rigidbody>(playerEntity);
 
-            Vec3f velocity = rigidbody->getVelocity(); // ジャンプ中はY軸の速度を保持
+            Vec3f velocity = rigidbody->getVelocity();
             velocity[Y]    = playerStatus->getJumpPower(); // ジャンプパワーをY軸に設定
             rigidbody->setVelocity(velocity);
             return PlayerMoveState::JUMP;
@@ -205,23 +205,25 @@ void PlayerJumpState::Update(float _deltaTime) {
     // 入力方向を取得
     Vec2f inputDirection = playerInput->getInputDirection();
 
-    // カメラの回転を取得
-    GameEntity* gameCamera           = getUniqueEntity("GameCamera");
-    const Quaternion& cameraRotation = getComponent<CameraTransform>(gameCamera)->rotate;
+    if (inputDirection.lengthSq() > 0.f) {
+        // カメラの回転を取得
+        GameEntity* gameCamera           = getUniqueEntity("GameCamera");
+        const Quaternion& cameraRotation = getComponent<CameraTransform>(gameCamera)->rotate;
 
-    // カメラの回転からヨー（y軸回転）だけを抽出
-    float cameraYaw              = cameraRotation.ToEulerAngles()[Y]; // y成分のみ
-    Quaternion cameraYawRotation = Quaternion::RotateAxisAngle(Vec3f(0.f, 1.f, 0.f), cameraYaw);
+        // カメラの回転からヨー（y軸回転）だけを抽出
+        float cameraYaw              = cameraRotation.ToEulerAngles()[Y]; // y成分のみ
+        Quaternion cameraYawRotation = Quaternion::RotateAxisAngle(Vec3f(0.f, 1.f, 0.f), cameraYaw);
 
-    // 入力方向の回転
-    float inputAngle         = std::atan2(inputDirection[X], inputDirection[Y]);
-    Quaternion inputRotation = Quaternion::RotateAxisAngle(Vec3f(0.f, 1.f, 0.f), inputAngle);
+        // 入力方向の回転
+        float inputAngle         = std::atan2(inputDirection[X], inputDirection[Y]);
+        Quaternion inputRotation = Quaternion::RotateAxisAngle(Vec3f(0.f, 1.f, 0.f), inputAngle);
 
-    // y軸のみの回転合成
-    Quaternion targetRotation = Quaternion::Normalize(cameraYawRotation * inputRotation);
+        // y軸のみの回転合成
+        Quaternion targetRotation = Quaternion::Normalize(cameraYawRotation * inputRotation);
 
-    // プレイヤーの回転を補間して設定
-    transform->rotate = Slerp(transform->rotate, targetRotation, playerStatus->getDirectionInterpolateRate());
+        // プレイヤーの回転を補間して設定
+        transform->rotate = Slerp(transform->rotate, targetRotation, playerStatus->getDirectionInterpolateRate());
+    }
 
     // 移動方向を回転
     // ジャンプ中は速度が落ちない,止まらない
