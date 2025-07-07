@@ -13,12 +13,13 @@
 enum class PlayerMoveState {
     IDLE      = 1 << 0, // 待機 (動いていない)
     DASH      = 1 << 1, // ダッシュ(基本移動)
-    JUMP      = 1 << 2, // ジャンプ
-    WALL_RUN  = 1 << 3, // 壁走り
-    WALL_JUMP = 1 << 4, // 壁ジャンプ
+    FALL_DOWN = 1 << 2, // 落下中 (ジャンプ ではない.)
+    JUMP      = 1 << 3, // ジャンプ
+    WALL_RUN  = 1 << 4, // 壁走り
+    WALL_JUMP = 1 << 5, // 壁ジャンプ
     // SLIDE    = 1 << 4, // スライド
 
-    Count = 5 // 5
+    Count = 6 // 5
 };
 
 #pragma region "Playser State"
@@ -77,6 +78,19 @@ class PlayerJumpState
 public:
     PlayerJumpState(int32_t _playerEntityID) : IPlayerMoveState(_playerEntityID, PlayerMoveState::JUMP) {}
     ~PlayerJumpState() override {};
+    void Initialize() override;
+    void Update(float _deltaTime) override;
+    void Finalize() override;
+    PlayerMoveState TransitionState() const override;
+
+private:
+};
+
+class PlayerFallDownState
+    : public IPlayerMoveState {
+public:
+    PlayerFallDownState(int32_t _playerEntityID) : IPlayerMoveState(_playerEntityID, PlayerMoveState::FALL_DOWN) {}
+    ~PlayerFallDownState() override {};
     void Initialize() override;
     void Update(float _deltaTime) override;
     void Finalize() override;

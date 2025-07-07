@@ -65,12 +65,6 @@ PlayerMoveState PlayerIdleState::TransitionState() const {
 
     if (playerStatus->isOnGround()) {
         if (playerInput->isJumpInput()) {
-
-            auto* rigidbody = getComponent<Rigidbody>(playerEntity);
-
-            Vec3f velocity = rigidbody->getVelocity();
-            velocity[Y]    = playerStatus->getJumpPower(); // ジャンプパワーをY軸に設定
-            rigidbody->setVelocity(velocity);
             return PlayerMoveState::JUMP;
         }
     }
@@ -153,7 +147,7 @@ void PlayerDashState::Update(float _deltaTime) {
     // 移動方向を回転
     Vec3f movementDirection = Vec3f(0.f, 0.f, 1.f) * MakeMatrix::RotateQuaternion(transform->rotate);
     float speedByFrame      = playerStatus->getCurrentSpeed() * _deltaTime;
-    Vec3f velo             = (speedByFrame) * movementDirection;
+    Vec3f velo              = (speedByFrame)*movementDirection;
 
     rigidbody->setVelocity(velo);
 }
@@ -171,20 +165,97 @@ PlayerMoveState PlayerDashState::TransitionState() const {
 
     if (playerStatus->isOnGround()) {
         if (playerInput->isJumpInput()) {
-            //! TODO : JumpInit に書く (落ちるときも Jumpに相当してしまっているため今は掛けない. FallDownStateを用意するべき)
-            auto* rigidbody = getComponent<Rigidbody>(playerEntity);
-
-            Vec3f velocity = rigidbody->getVelocity();
-            velocity[Y]    = playerStatus->getJumpPower(); // ジャンプパワーをY軸に設定
-            rigidbody->setVelocity(velocity);
             return PlayerMoveState::JUMP;
         }
     } else {
         // 空中にいる場合はジャンプ状態に遷移
-        return PlayerMoveState::JUMP;
+        return PlayerMoveState::FALL_DOWN;
     }
 
     return PlayerMoveState::DASH;
+}
+
+/// ====================================================================================
+
+/// ====================================================================================
+// JUMP
+/// ====================================================================================
+
+void PlayerFallDownState::Initialize() {
+    auto* playerEntity = getEntity(playerEntityID_);
+    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
+    auto playerStatus  = getComponent<PlayerStatus>(playerEntity);
+
+    Vec3f velocity = rigidbody->getVelocity();
+    velocity[Y]    = playerStatus->getJumpPower(); // ジャンプパワーをY軸に設定
+    rigidbody->setVelocity(velocity);
+}
+
+void PlayerFallDownState::Update(float _deltaTime) {
+    auto* playerEntity = getEntity(playerEntityID_);
+    auto* playerStatus = getComponent<PlayerStatus>(playerEntity);
+    auto* playerInput  = getComponent<PlayerInput>(playerEntity);
+    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
+    auto* transform    = getComponent<Transform>(playerEntity);
+
+    // 入力方向を取得
+    Vec2f inputDirection = playerInput->getInputDirection();
+
+    if (inputDirection.lengthSq() > 0.f) {
+        // カメラの回転を取得
+        GameEntity* gameCamera           = getUniqueEntity("GameCamera");
+        const Quaternion& cameraRotation = getComponent<CameraTransform>(gameCamera)->rotate;
+
+        // カメラの回転からヨー（y軸回転）だけを抽出
+        float cameraYaw              = cameraRotation.ToEulerAngles()[Y]; // y成分のみ
+        Quaternion cameraYawRotation = Quaternion::RotateAxisAngle(Vec3f(0.f, 1.f, 0.f), cameraYaw);
+
+        // 入力方向の回転
+        float inputAngle         = std::atan2(inputDirection[X], inputDirection[Y]);
+        Quaternion inputRotation = Quaternion::RotateAxisAngle(Vec3f(0.f, 1.f, 0.f), inputAngle);
+
+        // y軸のみの回転合成
+        Quaternion targetRotation = Quaternion::Normalize(cameraYawRotation * inputRotation);
+
+        // プレイヤーの回転を補間して設定
+        transform->rotate = Slerp(transform->rotate, targetRotation, playerStatus->getDirectionInterpolateRate());
+    }
+
+    // 移動方向を回転
+    // 落下中は 速度が落ちない,止まらない
+    Vec3f movementDirection = Vec3f(0.f, 0.f, 1.f) * MakeMatrix::RotateQuaternion(transform->rotate);
+
+    Vec3f oldVelo   = rigidbody->getVelocity();
+    Vec2f oldXZVelo = {oldVelo[X], oldVelo[Z]};
+
+    Vec3f velocity = {0.f, 0.f, 0.f};
+    if (oldXZVelo.length() > 0.f) {
+        velocity = (playerStatus->getCurrentSpeed() * _deltaTime) * movementDirection;
+    }
+
+    velocity[Y] = oldVelo[Y]; // 落下中はY軸の速度を保持
+    rigidbody->setVelocity(velocity);
+}
+
+void PlayerFallDownState::Finalize() {}
+
+PlayerMoveState PlayerFallDownState::TransitionState() const {
+    auto* playerEntity = getEntity(playerEntityID_);
+    auto playerStatus  = getComponent<PlayerStatus>(playerEntity);
+    auto playerInput   = getComponent<PlayerInput>(playerEntity);
+
+    if (playerStatus->isOnGround()) {
+        if (playerStatus->isCollisionWithWall()) {
+            return PlayerMoveState::WALL_RUN;
+        } else {
+            if (playerInput->getInputDirection().lengthSq() > 0.f) {
+                return PlayerMoveState::DASH;
+            }
+        }
+        return PlayerMoveState::IDLE;
+    }
+
+    return PlayerMoveState::FALL_DOWN;
 }
 
 /// ====================================================================================
@@ -236,7 +307,11 @@ void PlayerJumpState::Update(float _deltaTime) {
     if (oldXZVelo.length() > 0.f) {
         velocity = (playerStatus->getCurrentSpeed() * _deltaTime) * movementDirection;
     }
+
     velocity[Y] = oldVelo[Y]; // ジャンプ中はY軸の速度を保持
+    if (playerInput->isJumpInput()) {
+        velocity[Y] += playerStatus->getJumpPower() * _deltaTime;
+    }
     rigidbody->setVelocity(velocity);
 }
 
@@ -314,7 +389,7 @@ PlayerMoveState PlayerWallRunState::TransitionState() const {
     auto* playerEntity = getEntity(playerEntityID_);
 
     if (separationdLeftTime_ <= 0.0f) {
-        return PlayerMoveState::DASH;
+        return PlayerMoveState::FALL_DOWN;
     }
 
     auto playerInput = getComponent<PlayerInput>(playerEntity);

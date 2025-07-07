@@ -2,6 +2,7 @@
 
 /// engine
 #define ENGINE_ECS
+#define DELTA_TIME
 #include "EngineInclude.h"
 
 #include "input/Input.h"
@@ -19,7 +20,8 @@ void PlayerInputSystem::Finalize() {
 }
 
 void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
-    PlayerInput* playerInput = getComponent<PlayerInput>(_entity);
+    PlayerInput* playerInput   = getComponent<PlayerInput>(_entity);
+    PlayerStatus* playerStatus = getComponent<PlayerStatus>(_entity);
 
     // ゲームパッドか,キーボード 片方だけ 入力
     if (input_->isPadActive()) {
@@ -27,11 +29,42 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
         playerInput->setInputDirection(input_->getLStickVelocity().normalize());
 
         // ジャンプ
-        playerInput->setJumpInput(false);
-        for (auto button : playerInput->getJumpButton()) {
-            if (input_->isTriggerButton(button)) {
-                playerInput->setJumpInput(true);
-                break;
+        /// 一度ジャンプ入力を検知したら,
+        // ジャンプボタンが押されている間 PlayerInput JumpInputTime を加算し,
+        // ジャンプボタンが離されたら JumpInput を false にする
+        if (playerInput->isJumpInput()) {
+            // ジャンプ状態でない場合は、ジャンプ入力を継続しない
+            if (playerStatus->getState() != PlayerMoveState::JUMP) {
+                playerInput->setJumpInput(false);
+                playerInput->setJumpInputTime(0.0f);
+
+            } else {
+                bool isJumpButtonPressed = false;
+                for (auto button : playerInput->getJumpButton()) {
+                    if (input_->isPressButton(button)) {
+                        isJumpButtonPressed = true;
+                        break;
+                    }
+                }
+
+                // ジャンプボタンが押されている場合は、ジャンプ入力を継続
+                if (isJumpButtonPressed) {
+                    playerInput->setJumpInput(true);
+                    // ジャンプ入力時間を更新
+                    playerInput->setJumpInputTime(
+                        (std::min)(playerInput->getJumpInputTime() + getMainDeltaTime(), playerInput->getMaxJumpTime()));
+                } else {
+                    playerInput->setJumpInput(false);
+                    playerInput->setJumpInputTime(0.0f);
+                }
+            }
+        } else {
+            for (auto button : playerInput->getJumpButton()) {
+                if (input_->isTriggerButton(button)) {
+                    playerInput->setJumpInput(true);
+                    playerInput->setJumpInputTime(0.0f); // ジャンプ入力時間をリセット
+                    break;
+                }
             }
         }
 
@@ -69,11 +102,41 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
         playerInput->setInputDirection(Vec2f(float(right - left), float(front - back)));
 
         // ジャンプ
-        playerInput->setJumpInput(false);
-        for (auto key : playerInput->getJumpKeys()) {
-            if (input_->isTriggerKey(key)) {
-                playerInput->setJumpInput(true);
-                break;
+        if (playerInput->isJumpInput()) {
+            // ジャンプ状態でない場合は、ジャンプ入力を継続しない
+            if (playerStatus->getState() != PlayerMoveState::JUMP) {
+                playerInput->setJumpInput(false);
+                playerInput->setJumpInputTime(0.0f);
+
+            } else {
+                bool isJumpButtonPressed = false;
+                for (auto key : playerInput->getJumpKeys()) {
+                    if (input_->isPressKey(key)) {
+                        isJumpButtonPressed = true;
+                        break;
+                    }
+                }
+
+                // ジャンプボタンが押されている場合は、ジャンプ入力を継続
+                if (isJumpButtonPressed) {
+                    playerInput->setJumpInput(true);
+                    // ジャンプ入力時間を更新
+                    playerInput->setJumpInputTime(playerInput->getJumpInputTime() + getMainDeltaTime());
+                    if (playerInput->getJumpInputTime() >= playerInput->getMaxJumpTime()) {
+                        playerInput->setJumpInput(false);
+                        playerInput->setJumpInputTime(0.0f);
+                    }
+                } else {
+                    playerInput->setJumpInput(false);
+                    playerInput->setJumpInputTime(0.0f);
+                }
+            }
+        } else {
+            for (auto key : playerInput->getJumpKeys()) {
+                if (input_->isTriggerKey(key)) {
+                    playerInput->setJumpInput(true);
+                    break;
+                }
             }
         }
     }

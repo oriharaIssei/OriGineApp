@@ -31,9 +31,10 @@ public:
 
 private:
     Vec2f inputDirection_ = {0.0f, 0.0f};
-    float jumpInputTime_  = 0.0f; // ジャンプ入力の時間 (これによってジャンプ力が変わる)
-    float maxJumpTime_    = 0.1f; // ジャンプ入力の最大時間 (秒単位)
-    bool isJumpInput_     = false; // ジャンプ入力があったかどうか
+
+    bool isJumpInput_    = false; // ジャンプ入力があったかどうか
+    float jumpInputTime_ = 0.0f; // ジャンプ入力の時間 (これによってジャンプ力が変わる)
+    float maxJumpTime_   = 0.1f; // ジャンプ入力の最大時間 (秒単位)
 
     /// <summary>
     /// 移動 キー (ゲームパッドは スティックだから必要なし)
@@ -107,7 +108,13 @@ public:
         isJumpInput_ = _isJumpInput;
     }
 
+    const float getMaxJumpTime() const {
+        return maxJumpTime_;
+    }
     float getJumpInputTime() const {
         return jumpInputTime_;
+    }
+    void setJumpInputTime(float _jumpInputTime) {
+        jumpInputTime_ = _jumpInputTime;
     }
 };
