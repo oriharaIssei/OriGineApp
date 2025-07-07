@@ -178,18 +178,10 @@ PlayerMoveState PlayerDashState::TransitionState() const {
 /// ====================================================================================
 
 /// ====================================================================================
-// JUMP
+// fALL DOWN
 /// ====================================================================================
 
-void PlayerFallDownState::Initialize() {
-    auto* playerEntity = getEntity(playerEntityID_);
-    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
-    auto playerStatus  = getComponent<PlayerStatus>(playerEntity);
-
-    Vec3f velocity = rigidbody->getVelocity();
-    velocity[Y]    = playerStatus->getJumpPower(); // ジャンプパワーをY軸に設定
-    rigidbody->setVelocity(velocity);
-}
+void PlayerFallDownState::Initialize() {}
 
 void PlayerFallDownState::Update(float _deltaTime) {
     auto* playerEntity = getEntity(playerEntityID_);
@@ -264,7 +256,15 @@ PlayerMoveState PlayerFallDownState::TransitionState() const {
 // JUMP
 /// ====================================================================================
 
-void PlayerJumpState::Initialize() {}
+void PlayerJumpState::Initialize() {
+    auto* playerEntity = getEntity(playerEntityID_);
+    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
+    auto playerStatus  = getComponent<PlayerStatus>(playerEntity);
+
+    Vec3f velocity = rigidbody->getVelocity();
+    velocity[Y]    = playerStatus->getJumpPower(); // ジャンプパワーをY軸に設定
+    rigidbody->setVelocity(velocity);
+}
 
 void PlayerJumpState::Update(float _deltaTime) {
     auto* playerEntity = getEntity(playerEntityID_);
