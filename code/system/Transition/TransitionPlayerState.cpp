@@ -45,6 +45,10 @@ void TransitionPlayerState::UpdateEntity(GameEntity* _entity) {
             playerStatus->setPlayerMoveState(std::make_shared<PlayerDashState>(_entity->getID()));
             break;
         }
+        case PlayerMoveState::FALL_DOWN: {
+            playerStatus->setPlayerMoveState(std::make_shared<PlayerFallDownState>(_entity->getID()));
+            break;
+        }
         case PlayerMoveState::JUMP: {
             playerStatus->setPlayerMoveState(std::make_shared<PlayerJumpState>(_entity->getID()));
             break;

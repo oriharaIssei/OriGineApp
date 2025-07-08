@@ -51,8 +51,11 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
                 if (isJumpButtonPressed) {
                     playerInput->setJumpInput(true);
                     // ジャンプ入力時間を更新
-                    playerInput->setJumpInputTime(
-                        (std::min)(playerInput->getJumpInputTime() + getMainDeltaTime(), playerInput->getMaxJumpTime()));
+                    playerInput->setJumpInputTime(playerInput->getJumpInputTime() + getMainDeltaTime());
+                    if (playerInput->getJumpInputTime() >= playerInput->getMaxJumpTime()) {
+                        playerInput->setJumpInput(false);
+                        playerInput->setJumpInputTime(0.0f);
+                    }
                 } else {
                     playerInput->setJumpInput(false);
                     playerInput->setJumpInputTime(0.0f);
@@ -60,14 +63,12 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
             }
         } else {
             for (auto button : playerInput->getJumpButton()) {
-                if (input_->isTriggerButton(button)) {
+                if (input_->isPressButton(button)) {
                     playerInput->setJumpInput(true);
-                    playerInput->setJumpInputTime(0.0f); // ジャンプ入力時間をリセット
                     break;
                 }
             }
         }
-
     } else {
         bool front = false;
         bool back  = false;
