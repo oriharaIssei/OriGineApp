@@ -38,9 +38,6 @@ void PlayerIdleState::Initialize() {
     playerStatus->setGearUpCoolTime(playerStatus->getBaseGearupCoolTime());
     playerStatus->setGearLevel(0);
 
-    auto* rigidbody = getComponent<Rigidbody>(playerEntity);
-    rigidbody->setVelocity(Vec3f(0.f, 0.f, 0.f)); // ダッシュ終了時に速度をリセット
-
     int32_t emitterSize = ECSManager::getInstance()->getComponentArray<Emitter>()->getComponentSize(playerEntity);
 
     //! TODO: 速度でパーティクルの量を変える
@@ -50,12 +47,19 @@ void PlayerIdleState::Initialize() {
     }
 }
 
-void PlayerIdleState::Update(float /*_deltaTime*/) {}
+void PlayerIdleState::Update(float /*_deltaTime*/) {
+    auto* playerEntity = getEntity(playerEntityID_);
+    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
+    // 減速
+    rigidbody->setVelocity(rigidbody->getVelocity() * 0.6f);
+}
 
 void PlayerIdleState::Finalize() {
     auto* playerEntity = getEntity(playerEntityID_);
     auto playerStatus  = getComponent<PlayerStatus>(playerEntity);
+    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
     playerStatus->setCurrentSpeed(playerStatus->getBaseSpeed());
+    rigidbody->setVelocity({0.0f, 0.0f, 0.0f});
 }
 
 PlayerMoveState PlayerIdleState::TransitionState() const {
@@ -67,13 +71,15 @@ PlayerMoveState PlayerIdleState::TransitionState() const {
         if (playerInput->isJumpInput()) {
             return PlayerMoveState::JUMP;
         }
-    }
+        if (playerInput->getInputDirection().lengthSq() > 0.f) {
+            return PlayerMoveState::DASH;
+        }
 
-    if (playerInput->getInputDirection().lengthSq() > 0.f) {
-        return PlayerMoveState::DASH;
+        return PlayerMoveState::IDLE;
+    } else {
+        // 空中にいる場合はジャンプ状態に遷移
+        return PlayerMoveState::FALL_DOWN;
     }
-
-    return PlayerMoveState::IDLE;
 }
 
 /// ====================================================================================
@@ -146,13 +152,18 @@ void PlayerDashState::Update(float _deltaTime) {
 
     // 移動方向を回転
     Vec3f movementDirection = Vec3f(0.f, 0.f, 1.f) * MakeMatrix::RotateQuaternion(transform->rotate);
-    float speedByFrame      = playerStatus->getCurrentSpeed() * _deltaTime;
-    Vec3f velo              = (speedByFrame)*movementDirection;
-
+    Vec3f velo              = rigidbody->getVelocity();
+    float speed             = playerStatus->getCurrentSpeed() * _deltaTime;
+    velo += (speed * movementDirection);
+    if (velo.length() >= speed) {
+        // 速度が速すぎる場合は制限
+        velo = velo.normalize() * speed;
+    }
     rigidbody->setVelocity(velo);
 }
 
-void PlayerDashState::Finalize() {}
+void PlayerDashState::Finalize() {
+}
 
 PlayerMoveState PlayerDashState::TransitionState() const {
     auto* playerEntity = getEntity(playerEntityID_);
@@ -178,7 +189,7 @@ PlayerMoveState PlayerDashState::TransitionState() const {
 /// ====================================================================================
 
 /// ====================================================================================
-// fALL DOWN
+// FALL DOWN
 /// ====================================================================================
 
 void PlayerFallDownState::Initialize() {}
@@ -215,14 +226,21 @@ void PlayerFallDownState::Update(float _deltaTime) {
 
     // 移動方向を回転
     // 落下中は 速度が落ちない,止まらない
-    Vec3f movementDirection = Vec3f(0.f, 0.f, 1.f) * MakeMatrix::RotateQuaternion(transform->rotate);
 
     Vec3f oldVelo   = rigidbody->getVelocity();
     Vec2f oldXZVelo = {oldVelo[X], oldVelo[Z]};
 
-    Vec3f velocity = {0.f, 0.f, 0.f};
-    if (oldXZVelo.length() > 0.f) {
-        velocity = (playerStatus->getCurrentSpeed() * _deltaTime) * movementDirection;
+    Vec3f movementDirection = Vec3f(0.f, 0.f, 1.f) * MakeMatrix::RotateQuaternion(transform->rotate);
+    Vec3f velocity          = {0.f, 0.f, 0.f};
+    if (oldXZVelo.lengthSq() != 0.f) {
+        // 移動方向を回転
+        velocity    = rigidbody->getVelocity();
+        float speed = playerStatus->getCurrentSpeed() * _deltaTime;
+        velocity += (speed * movementDirection);
+        if (velocity.length() >= speed) {
+            // 速度が速すぎる場合は制限
+            velocity = velocity.normalize() * speed;
+        }
     }
 
     velocity[Y] = oldVelo[Y]; // 落下中はY軸の速度を保持
@@ -298,20 +316,27 @@ void PlayerJumpState::Update(float _deltaTime) {
 
     // 移動方向を回転
     // ジャンプ中は速度が落ちない,止まらない
-    Vec3f movementDirection = Vec3f(0.f, 0.f, 1.f) * MakeMatrix::RotateQuaternion(transform->rotate);
-
     Vec3f oldVelo   = rigidbody->getVelocity();
     Vec2f oldXZVelo = {oldVelo[X], oldVelo[Z]};
 
-    Vec3f velocity = {0.f, 0.f, 0.f};
-    if (oldXZVelo.length() > 0.f) {
-        velocity = (playerStatus->getCurrentSpeed() * _deltaTime) * movementDirection;
+    Vec3f movementDirection = Vec3f(0.f, 0.f, 1.f) * MakeMatrix::RotateQuaternion(transform->rotate);
+    Vec3f velocity          = {0.f, 0.f, 0.f};
+    if (oldXZVelo.lengthSq() != 0.f) {
+        // 移動方向を回転
+        velocity    = rigidbody->getVelocity();
+        float speed = playerStatus->getCurrentSpeed() * _deltaTime;
+        velocity += (speed * movementDirection);
+        if (velocity.length() >= speed) {
+            // 速度が速すぎる場合は制限
+            velocity = velocity.normalize() * speed;
+        }
     }
 
-    velocity[Y] = oldVelo[Y]; // ジャンプ中はY軸の速度を保持
+    velocity[Y] = oldVelo[Y]; // 落下中はY軸の速度を保持
     if (playerInput->isJumpInput()) {
-        velocity[Y] += playerStatus->getJumpPower() * _deltaTime;
+        velocity[Y] += oldVelo[Y] * _deltaTime;
     }
+
     rigidbody->setVelocity(velocity);
 }
 
