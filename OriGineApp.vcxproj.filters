@@ -32,6 +32,7 @@
     <ClInclude Include="code\system\Transition\UpdateButtonColorByState.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
+    <ClInclude Include="code\MyEditor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -52,5 +53,6 @@
     <ClCompile Include="code\system\Transition\UpdateButtonColorByState.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
+    <ClCompile Include="code\MyEditor.cpp" />
   </ItemGroup>
 </Project>

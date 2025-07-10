@@ -17,3 +17,12 @@ protected:
 	Engine* engine_ = nullptr;
 	GlobalVariables* variables_ = nullptr;
 };
+
+/// <summary>
+/// 使用される コンポーネントを登録する
+/// </summary>
+void RegisterUsingComponents();
+/// <summary>
+/// 使用される System を登録する
+/// </summary>
+void RegisterUsingSystems();

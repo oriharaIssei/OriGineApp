@@ -2,7 +2,6 @@
 
 /// engine
 #define ENGINE_SCENE
-#define ENGINE_ECS
 #include "EngineInclude.h"
 
 /// application
@@ -11,16 +10,14 @@
 #include "component/SceneChanger.h"
 
 ChangeSceneByButton::ChangeSceneByButton()
-    : ISystem(SystemType::StateTransition) {}
+    : ISystem(SystemCategory::StateTransition) {}
 
 ChangeSceneByButton::~ChangeSceneByButton() {}
 
 void ChangeSceneByButton::Initialize() {
-    sceneManager_ = SceneManager::getInstance();
 }
 
 void ChangeSceneByButton::Finalize() {
-    sceneManager_ = nullptr;
 }
 
 void ChangeSceneByButton::UpdateEntity(GameEntity* _entity) {
@@ -28,6 +25,6 @@ void ChangeSceneByButton::UpdateEntity(GameEntity* _entity) {
 
     if (button->isReleased()) {
         SceneChanger* sceneChanger = getComponent<SceneChanger>(_entity);
-        sceneManager_->changeScene(sceneChanger->getNextSceneName());
+        SceneManager::getInstance()->changeScene(sceneChanger->getNextSceneName());
     }
 }

@@ -1,8 +1,6 @@
 #pragma once
 #include "system/ISystem.h"
 
-class SceneManager;
-
 class ChangeSceneByButton
     : public ISystem {
 public:
@@ -16,5 +14,4 @@ protected:
     virtual void UpdateEntity(GameEntity* _entity) override;
 
 private:
-    SceneManager* sceneManager_ = nullptr;
 };
