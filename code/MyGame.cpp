@@ -27,6 +27,7 @@
 // Application Include
 /// =====================================================
 // component
+#include "component/animation/SkinningAnimationComponent.h"
 #include "component/Button.h"
 #include "component/cameraController/CameraController.h"
 #include "component/effect/CameraAction.h"
@@ -40,6 +41,7 @@
 #include "system/Collision/PlayerOnCollision.h"
 #include "system/effect/CameraActionSystem.h"
 #include "system/effect/EffectOnPlayerGearup.h"
+#include "system/effect/SkinningAnimationSystem.h"
 #include "system/effect/TimerForSprite.h"
 #include "system/Initialize/CreateSpriteFromTimer.h"
 #include "system/Initialize/SettingGameCameraTarget.h"
@@ -51,6 +53,8 @@
 #include "system/Movement/FollowCameraUpdateSystem.h"
 #include "system/Movement/PlayerMoveSystem.h"
 #include "system/postRender/RadialBlurEffect.h"
+#include "system/render/SkeletonRenderSystem.h"
+#include "system/render/SkinningMeshRenderSystem.h"
 #include "system/Transition/ChangeSceneByButton.h"
 #include "system/Transition/FallDetectionSystem.h"
 #include "system/Transition/TimerCountDown.h"
@@ -182,6 +186,7 @@ void MyGame::RegisterUsingComponents() {
     ecsManager->registerComponent<RadialBlurParam>();
 
     ecsManager->registerComponent<ModelNodeAnimation>();
+    ecsManager->registerComponent<SkinningAnimationComponent>();
     ecsManager->registerComponent<PrimitiveNodeAnimation>();
     ecsManager->registerComponent<CameraAction>();
 
@@ -252,6 +257,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<EffectOnPlayerGearup>();
     ecsManager->registerSystem<TimerForSprite>();
     ecsManager->registerSystem<CameraActionSystem>();
+    ecsManager->registerSystem<SkinningAnimationSystem>();
 
     /// =================================================================================================
     // Render
@@ -261,7 +267,10 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<TexturedMeshRenderSystem>();
     ecsManager->registerSystem<EffectTexturedMeshRenderSystem>();
     ecsManager->registerSystem<LineRenderSystem>();
+    ecsManager->registerSystem<BackGroundSpriteRenderSystem>();
 
+    ecsManager->registerSystem<SkinningMeshRenderSystem>();
+    ecsManager->registerSystem<SkeletonRenderSystem>();
 #ifdef _DEBUG
     ecsManager->registerSystem<ColliderRenderingSystem>();
 #endif // _DEBUG

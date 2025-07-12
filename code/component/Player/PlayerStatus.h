@@ -84,6 +84,7 @@ public:
     PlayerMoveState TransitionState() const override;
 
 private:
+    bool isAnimatedJumpUp_ = false; // アニメーションのジャンプアップを行うかどうか
 };
 
 class PlayerFallDownState
@@ -175,8 +176,9 @@ private:
     bool collisionWithWall_    = false; // 壁に衝突しているかどうか
     Vec3f wallCollisionNormal_ = Vec3f(0.0f, 0.0f, 0.0f); // 壁との衝突時の法線ベクトル
 
-    bool isGearUp_     = false; // ギアアップ中かどうか
-    int32_t gearLevel_ = 0; // ギアレベル
+    bool isGearUp_        = false; // ギアアップ中かどうか
+    int32_t gearLevel_    = 0; // ギアレベル
+    int32_t maxGearLevel_ = 4; // 最大ギアレベル
 
     bool isGoal_ = false; // ゴールに到達したかどうか
 
@@ -263,6 +265,9 @@ public:
     }
     void setGearLevel(int32_t _gearLevel) {
         gearLevel_ = _gearLevel;
+    }
+    int32_t getMaxGearLevel() const {
+        return maxGearLevel_;
     }
 
     float getDirectionInterpolateRate() const {

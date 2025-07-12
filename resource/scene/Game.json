@@ -2126,6 +2126,15 @@
                             {
                                 "time": 0.0,
                                 "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
                                     0.6203201413154602,
                                     0.9367088675498962,
                                     0.13042780756950378,
@@ -6830,6 +6839,14 @@
                             {
                                 "time": 0.0,
                                 "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
                                     0.10000000149011612,
                                     0.10000000149011612,
                                     0.10000000149011612
@@ -6928,6 +6945,14 @@
                         "updateSettings": 12578,
                         "uvInterpolationType": 0,
                         "velocityCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -13342,6 +13367,9 @@
             "PrimitiveNodeAnimationWorkSystem": {
                 "Priority": 1
             },
+            "SkinningAnimationSystem": {
+                "Priority": 0
+            },
             "TextureEffectAnimation": {
                 "Priority": 2
             },
@@ -13361,6 +13389,12 @@
             },
             "ParticleRenderSystem": {
                 "Priority": 3
+            },
+            "SkeletonRenderSystem": {
+                "Priority": 0
+            },
+            "SkinningMeshRenderSystem": {
+                "Priority": 0
             },
             "SkyboxRender": {
                 "Priority": -1

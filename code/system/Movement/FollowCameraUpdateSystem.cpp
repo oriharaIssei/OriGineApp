@@ -49,7 +49,7 @@ void FollowCameraUpdateSystem::UpdateEntity(GameEntity* _entity) {
         Vec3f lookDir               = Vec3f::Normalize(followTargetPosition - cameraTransform->translate);
         Quaternion targetQuaternion = Quaternion::LookAt(lookDir, axisY);
 
-        cameraTransform->rotate = Lerp(cameraTransform->rotate, targetQuaternion, cameraController->getRotateSensitivity());
+        cameraTransform->rotate = Slerp(cameraTransform->rotate, targetQuaternion, cameraController->getRotateSensitivity());
     }
 
     cameraTransform->UpdateMatrix();

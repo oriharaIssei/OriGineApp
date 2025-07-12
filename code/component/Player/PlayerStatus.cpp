@@ -3,6 +3,7 @@
 /// engine
 #include "ECSManager.h"
 // component
+#include "component/animation/SkinningAnimationComponent.h"
 #include "component/collider/CollisionPushBackInfo.h"
 #include "component/effect/particle/emitter/Emitter.h"
 #include "component/physics/Rigidbody.h"
@@ -51,7 +52,7 @@ void PlayerIdleState::Update(float /*_deltaTime*/) {
     auto* playerEntity = getEntity(playerEntityID_);
     auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
     // 減速
-    rigidbody->setVelocity(rigidbody->getVelocity() * 0.6f);
+    rigidbody->setVelocity(rigidbody->getVelocity() - rigidbody->getVelocity() * 0.8f);
 }
 
 void PlayerIdleState::Finalize() {
@@ -59,6 +60,7 @@ void PlayerIdleState::Finalize() {
     auto playerStatus  = getComponent<PlayerStatus>(playerEntity);
     auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
     playerStatus->setCurrentSpeed(playerStatus->getBaseSpeed());
+    // Jump がおかしくなるため しっかりと ゼロ にする
     rigidbody->setVelocity({0.0f, 0.0f, 0.0f});
 }
 
@@ -90,7 +92,13 @@ PlayerMoveState PlayerIdleState::TransitionState() const {
 
 void PlayerDashState::Initialize() {
     auto* playerEntity  = getEntity(playerEntityID_);
+    auto* playerStatus  = getComponent<PlayerStatus>(playerEntity);
     int32_t emitterSize = ECSManager::getInstance()->getComponentArray<Emitter>()->getComponentSize(playerEntity);
+
+    auto* skinningAnim = getComponent<SkinningAnimationComponent>(playerEntity);
+    if (skinningAnim) {
+        skinningAnim->setPlaybackSpeed(1, 1.f + float(playerStatus->getGearLevel()));
+    }
 
     //! TODO: 速度でパーティクルの量を変える
     for (int32_t i = 0; i < emitterSize; i++) {
@@ -110,23 +118,30 @@ void PlayerDashState::Update(float _deltaTime) {
     // gearLevel の更新
     playerStatus->minusGearUpCoolTime(_deltaTime);
 
-    if (playerStatus->getGearUpCoolTime() <= 0.f) {
-        playerStatus->setGearUp(true);
+    if (playerStatus->getGearLevel() <= playerStatus->getMaxGearLevel()) {
+        if (playerStatus->getGearUpCoolTime() <= 0.f) {
+            playerStatus->setGearUp(true);
 
-        int32_t addedGearLevel = playerStatus->getGearLevel() + 1;
-        playerStatus->setGearLevel(addedGearLevel);
+            int32_t addedGearLevel = playerStatus->getGearLevel() + 1;
+            playerStatus->setGearLevel(addedGearLevel);
 
-        playerStatus->setGearUpCoolTime(
-            GeometricSequence<float>(
-                playerStatus->getBaseGearupCoolTime(),
-                ArithmeticSequence<float>(playerStatus->getCoolTimeUpRateBase(), playerStatus->getCoolTimeUpRateCommonRate(), addedGearLevel - 1),
-                addedGearLevel));
+            playerStatus->setGearUpCoolTime(
+                GeometricSequence<float>(
+                    playerStatus->getBaseGearupCoolTime(),
+                    ArithmeticSequence<float>(playerStatus->getCoolTimeUpRateBase(), playerStatus->getCoolTimeUpRateCommonRate(), addedGearLevel - 1),
+                    addedGearLevel));
 
-        playerStatus->setCurrentSpeed(
-            ArithmeticSequence<float>(
-                playerStatus->getBaseSpeed(),
-                ArithmeticSequence<float>(playerStatus->getSpeedUpRateBase(), playerStatus->getSpeedUpRateCommonRate(), addedGearLevel - 1),
-                addedGearLevel));
+            playerStatus->setCurrentSpeed(
+                ArithmeticSequence<float>(
+                    playerStatus->getBaseSpeed(),
+                    ArithmeticSequence<float>(playerStatus->getSpeedUpRateBase(), playerStatus->getSpeedUpRateCommonRate(), addedGearLevel - 1),
+                    addedGearLevel));
+
+            auto* skinningAnim = getComponent<SkinningAnimationComponent>(playerEntity);
+            if (skinningAnim) {
+                skinningAnim->setPlaybackSpeed(1, 1.f + float(playerStatus->getGearLevel()));
+            }
+        }
     }
 
     // 入力方向を取得
@@ -150,19 +165,28 @@ void PlayerDashState::Update(float _deltaTime) {
     // プレイヤーの回転を補間して設定
     transform->rotate = Slerp(transform->rotate, targetRotation, playerStatus->getDirectionInterpolateRate());
 
-    // 移動方向を回転
     Vec3f movementDirection = Vec3f(0.f, 0.f, 1.f) * MakeMatrix::RotateQuaternion(transform->rotate);
-    Vec3f velo              = rigidbody->getVelocity();
-    float speed             = playerStatus->getCurrentSpeed() * _deltaTime;
-    velo += (speed * movementDirection);
-    if (velo.length() >= speed) {
-        // 速度が速すぎる場合は制限
-        velo = velo.normalize() * speed;
-    }
-    rigidbody->setVelocity(velo);
+    rigidbody->setVelocity(movementDirection * playerStatus->getCurrentSpeed());
 }
 
 void PlayerDashState::Finalize() {
+    auto* playerEntity = getEntity(playerEntityID_);
+    auto* playerStatus = getComponent<PlayerStatus>(playerEntity);
+    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
+
+    rigidbody->setAcceleration({0.0f, 0.0f, 0.0f}); // ダッシュ終了時に加速度をリセット
+    Vec3f velo = rigidbody->getVelocity();
+
+    float limitSpeed = playerStatus->getCurrentSpeed(); // このフレームに追加される速度を引く
+    if (velo.lengthSq() >= limitSpeed * limitSpeed) {
+        // 速度が速すぎる場合は制限
+        velo = velo.normalize() * limitSpeed;
+        rigidbody->setVelocity(velo);
+    }
+    auto* skinningAnim = getComponent<SkinningAnimationComponent>(playerEntity);
+    if (skinningAnim) {
+        skinningAnim->setPlaybackSpeed(1, 1.f);
+    }
 }
 
 PlayerMoveState PlayerDashState::TransitionState() const {
@@ -194,7 +218,7 @@ PlayerMoveState PlayerDashState::TransitionState() const {
 
 void PlayerFallDownState::Initialize() {}
 
-void PlayerFallDownState::Update(float _deltaTime) {
+void PlayerFallDownState::Update(float /*_deltaTime*/) {
     auto* playerEntity = getEntity(playerEntityID_);
     auto* playerStatus = getComponent<PlayerStatus>(playerEntity);
     auto* playerInput  = getComponent<PlayerInput>(playerEntity);
@@ -234,20 +258,33 @@ void PlayerFallDownState::Update(float _deltaTime) {
     Vec3f velocity          = {0.f, 0.f, 0.f};
     if (oldXZVelo.lengthSq() != 0.f) {
         // 移動方向を回転
-        velocity    = rigidbody->getVelocity();
-        float speed = playerStatus->getCurrentSpeed() * _deltaTime;
-        velocity += (speed * movementDirection);
-        if (velocity.length() >= speed) {
-            // 速度が速すぎる場合は制限
-            velocity = velocity.normalize() * speed;
-        }
+        velocity = movementDirection * oldXZVelo.length();
     }
 
     velocity[Y] = oldVelo[Y]; // 落下中はY軸の速度を保持
     rigidbody->setVelocity(velocity);
 }
 
-void PlayerFallDownState::Finalize() {}
+void PlayerFallDownState::Finalize() {
+    auto* playerEntity = getEntity(playerEntityID_);
+    auto* playerStatus = getComponent<PlayerStatus>(playerEntity);
+    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
+
+    rigidbody->setAcceleration({0.0f, 0.0f, 0.0f}); // ダッシュ終了時に加速度をリセット
+    Vec3f velo = rigidbody->getVelocity();
+
+    float limitSpeed = playerStatus->getCurrentSpeed(); // このフレームに追加される速度を引く
+    if (velo.lengthSq() >= limitSpeed * limitSpeed) {
+        // 速度が速すぎる場合は制限
+        velo = velo.normalize() * limitSpeed;
+        rigidbody->setVelocity(velo);
+    }
+
+    auto* skinningAnim = getComponent<SkinningAnimationComponent>(playerEntity);
+    if (skinningAnim) {
+        skinningAnim->Play(4); // 差し替え
+    }
+}
 
 PlayerMoveState PlayerFallDownState::TransitionState() const {
     auto* playerEntity = getEntity(playerEntityID_);
@@ -282,6 +319,13 @@ void PlayerJumpState::Initialize() {
     Vec3f velocity = rigidbody->getVelocity();
     velocity[Y]    = playerStatus->getJumpPower(); // ジャンプパワーをY軸に設定
     rigidbody->setVelocity(velocity);
+
+    isAnimatedJumpUp_  = false; // アニメーションのジャンプアップを行うかどうか
+    auto* skinningAnim = getComponent<SkinningAnimationComponent>(playerEntity);
+    if (skinningAnim) {
+        skinningAnim->endTransition();
+        skinningAnim->Play(2);
+    }
 }
 
 void PlayerJumpState::Update(float _deltaTime) {
@@ -316,31 +360,44 @@ void PlayerJumpState::Update(float _deltaTime) {
 
     // 移動方向を回転
     // ジャンプ中は速度が落ちない,止まらない
+
     Vec3f oldVelo   = rigidbody->getVelocity();
     Vec2f oldXZVelo = {oldVelo[X], oldVelo[Z]};
 
     Vec3f movementDirection = Vec3f(0.f, 0.f, 1.f) * MakeMatrix::RotateQuaternion(transform->rotate);
     Vec3f velocity          = {0.f, 0.f, 0.f};
     if (oldXZVelo.lengthSq() != 0.f) {
-        // 移動方向を回転
-        velocity    = rigidbody->getVelocity();
-        float speed = playerStatus->getCurrentSpeed() * _deltaTime;
-        velocity += (speed * movementDirection);
-        if (velocity.length() >= speed) {
-            // 速度が速すぎる場合は制限
-            velocity = velocity.normalize() * speed;
-        }
+        velocity = movementDirection * playerStatus->getCurrentSpeed(); // 移動方向を回転
     }
-
     velocity[Y] = oldVelo[Y]; // 落下中はY軸の速度を保持
     if (playerInput->isJumpInput()) {
-        velocity[Y] += oldVelo[Y] * _deltaTime;
+        velocity[Y] += playerStatus->getJumpPower() * _deltaTime;
     }
 
     rigidbody->setVelocity(velocity);
+
+    // ジャンプ中のアニメーションを制御
+    SkinningAnimationComponent* skinningAnimation = getComponent<SkinningAnimationComponent>(playerEntity);
+    if (!skinningAnimation) {
+        return; // アニメーションコンポーネントがない場合は何もしない
+    }
+    int32_t currentAnimationIndex = skinningAnimation->getCurrentAnimationIndex();
+    if (isAnimatedJumpUp_) {
+        isAnimatedJumpUp_ = !skinningAnimation->isEnd(currentAnimationIndex);
+        if (!isAnimatedJumpUp_) {
+            // ジャンプアップのアニメーションを再生
+            skinningAnimation->PlayNext(3); // 2 はジャンプアップのアニメーションインデックス
+        }
+    }
 }
 
-void PlayerJumpState::Finalize() {}
+void PlayerJumpState::Finalize() {
+    auto* playerEntity = getEntity(playerEntityID_);
+    auto* skinningAnim = getComponent<SkinningAnimationComponent>(playerEntity);
+    if (skinningAnim) {
+        skinningAnim->Play(4); // 差し替え
+    }
+}
 
 PlayerMoveState PlayerJumpState::TransitionState() const {
     auto* playerEntity = getEntity(playerEntityID_);
@@ -386,7 +443,7 @@ void PlayerWallRunState::Update(float _deltaTime) {
 
     // 移動方向を回転
     Vec3f movementDirection = axisZ * MakeMatrix::RotateQuaternion(transform->rotate);
-    Vec3f velo              = (playerStatus->getCurrentSpeed() * playerStatus->getWallRunRate() * _deltaTime) * movementDirection;
+    Vec3f velo              = (playerStatus->getCurrentSpeed() * playerStatus->getWallRunRate()) * movementDirection;
     Vec3f normal            = playerStatus->getWallCollisionNormal();
     velo -= normal * 0.02f;
 
@@ -453,7 +510,7 @@ void PlayerWallJumpState::Update(float _deltaTime) {
     auto* playerEntity = getEntity(playerEntityID_);
     auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
 
-    rigidbody->setVelocity(velo_ * _deltaTime); // 壁ジャンプの方向に速度を設定
+    rigidbody->setVelocity(velo_); // 壁ジャンプの方向に速度を設定
 
     leftTime_ -= _deltaTime; // 壁ジャンプの残り時間を減少
 }
