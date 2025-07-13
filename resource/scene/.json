@@ -1,0 +1,92 @@
+{
+    "CategoryActivity": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+    ],
+    "Entities": [
+        {
+            "Components": {
+                "SphereCollider": [
+                    {
+                        "center": [
+                            0.0,
+                            0.0,
+                            14.699999809265137
+                        ],
+                        "radius": 4.699999809265137,
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ]
+            },
+            "Name": "Entity",
+            "Systems": [],
+            "isUnique": false
+        }
+    ],
+    "Systems": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [
+            {
+                "Priority": 0,
+                "SystemName": "SpriteRenderSystem"
+            },
+            {
+                "Priority": 0,
+                "SystemName": "BackGroundSpriteRenderSystem"
+            },
+            {
+                "Priority": 0,
+                "SystemName": "ParticleRenderSystem"
+            },
+            {
+                "Priority": 0,
+                "SystemName": "ColliderRenderingSystem"
+            },
+            {
+                "Priority": 0,
+                "SystemName": "LineRenderSystem"
+            },
+            {
+                "Priority": 0,
+                "SystemName": "TexturedMeshRenderSystem"
+            },
+            {
+                "Priority": 0,
+                "SystemName": "EffectTexturedMeshRenderSystem"
+            },
+            {
+                "Priority": 0,
+                "SystemName": "SkyboxRender"
+            }
+        ],
+        []
+    ]
+}

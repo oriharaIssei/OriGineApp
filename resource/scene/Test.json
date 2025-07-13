@@ -1,4 +1,14 @@
 {
+    "CategoryActivity": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+    ],
     "Entities": [
         {
             "Components": {
@@ -83,71 +93,73 @@
             "Name": "Entity",
             "Systems": [
                 {
-                    "SystemName": "TexturedMeshRenderSystem",
-                    "SystemType": 6
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
                 }
             ],
             "isUnique": false
         }
     ],
     "Systems": [
-        {},
-        {},
-        {},
-        {
-            "MoveSystemByRigidBody": {
-                "Priority": 0
+        [],
+        [],
+        [],
+        [
+            {
+                "Priority": 0,
+                "SystemName": "MoveSystemByRigidBody"
             }
-        },
-        {
-            "CollisionCheckSystem": {
-                "Priority": 0
+        ],
+        [
+            {
+                "Priority": 0,
+                "SystemName": "CollisionCheckSystem"
             }
-        },
-        {
-            "EmitterWorkSystem": {
-                "Priority": 0
+        ],
+        [
+            {
+                "Priority": 0,
+                "SystemName": "EmitterWorkSystem"
             },
-            "PrimitiveNodeAnimationWorkSystem": {
-                "Priority": 0
+            {
+                "Priority": 0,
+                "SystemName": "PrimitiveNodeAnimationWorkSystem"
             },
-            "TextureEffectAnimation": {
-                "Priority": 0
+            {
+                "Priority": 0,
+                "SystemName": "TextureEffectAnimation"
             }
-        },
-        {
-            "ColliderRenderingSystem": {
-                "Priority": 0
+        ],
+        [
+            {
+                "Priority": 0,
+                "SystemName": "ParticleRenderSystem"
             },
-            "EffectTexturedMeshRenderSystem": {
-                "Priority": 0
+            {
+                "Priority": 0,
+                "SystemName": "LineRenderSystem"
             },
-            "LineRenderSystem": {
-                "Priority": 0
+            {
+                "Priority": 0,
+                "SystemName": "ColliderRenderingSystem"
             },
-            "ParticleRenderSystem": {
-                "Priority": 0
+            {
+                "Priority": 0,
+                "SystemName": "EffectTexturedMeshRenderSystem"
             },
-            "SkyboxRender": {
-                "Priority": 0
+            {
+                "Priority": 0,
+                "SystemName": "SkyboxRender"
             },
-            "SpriteRenderSystem": {
-                "Priority": 0
+            {
+                "Priority": 0,
+                "SystemName": "SpriteRenderSystem"
             },
-            "TexturedMeshRenderSystem": {
-                "Priority": 0
+            {
+                "Priority": 0,
+                "SystemName": "TexturedMeshRenderSystem"
             }
-        },
-        {
-            "GrayscaleEffect": {
-                "Priority": 0
-            },
-            "SmoothingEffect": {
-                "Priority": 0
-            },
-            "VignetteEffect": {
-                "Priority": 0
-            }
-        }
+        ],
+        []
     ]
 }

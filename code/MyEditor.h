@@ -9,7 +9,7 @@ public:
     MyEditor();
     virtual ~MyEditor();
 
-    virtual void Initialize() override;
+    virtual void Initialize(const std::string& _commandLine) override;
     virtual void Finalize() override;
     virtual void Run() override;
 

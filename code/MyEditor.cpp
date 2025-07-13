@@ -11,7 +11,7 @@
 MyEditor::MyEditor() {}
 MyEditor::~MyEditor() {}
 
-void MyEditor::Initialize() {
+void MyEditor::Initialize(const std::string& _commandLine) {
     ///=================================================================================================
     // Editor のための 初期化
     ///=================================================================================================
@@ -26,6 +26,11 @@ void MyEditor::Initialize() {
     RegisterUsingSystems();
 
     auto sceneEditorWindow = std::make_unique<SceneEditorWindow>();
+    if (!_commandLine.empty()) {
+        // コマンドライン引数がある場合、シーン名を設定する
+        sceneEditorWindow->getEditSceneName().setValue(_commandLine);
+    }
+
     editorController_->addEditor<SceneEditorWindow>(std::move(sceneEditorWindow));
     auto settingWindow = std::make_unique<SettingWindow>();
     editorController_->addEditor<SettingWindow>(std::move(settingWindow));

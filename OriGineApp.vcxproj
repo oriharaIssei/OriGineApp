@@ -69,8 +69,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Develop|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\..\generated\output\Release\</OutDir>
-    <IntDir>..\..\generated\obj\Release\OriGineApp\</IntDir>
+    <OutDir>..\..\generated\output\Develop\</OutDir>
+    <IntDir>..\..\generated\obj\Develop\OriGineApp\</IntDir>
     <TargetName>OriGineApp</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
@@ -122,7 +122,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>DEVELOP;_DEVELOP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(ProjectDir)code;$(ProjectDir);$(SolutionDir)math;$(SolutionDir)lib;$(SolutionDir)engine\code\ECS;$(SolutionDir)engine\code;$(SolutionDir)engine;$(SolutionDir);$(SolutionDir)externals;$(SolutionDir)externals\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>

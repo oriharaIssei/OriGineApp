@@ -1,0 +1,230 @@
+{
+    "CategoryActivity": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+    ],
+    "Entities": [
+        {
+            "Components": {
+                "SphereCollider": [
+                    {
+                        "center": [
+                            0.0,
+                            0.0,
+                            14.699999809265137
+                        ],
+                        "radius": 4.699999809265137,
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ]
+            },
+            "Name": "Entity",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "Emitter": [
+                    {
+                        "EmitterShape": {
+                            "radius": 0.23999999463558197,
+                            "spawnType": 1
+                        },
+                        "activeTime": 0.30000001192092896,
+                        "blendMode": 0,
+                        "colorInterpolationType": 0,
+                        "isActive": true,
+                        "isLoop": true,
+                        "originPos": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "particleColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "particleIsBillBoard": true,
+                        "particleLifeTime": 0.5,
+                        "particleUvRotate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "particleUvScale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "particleUvTranslate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "randMass": [
+                            1.0,
+                            1.0
+                        ],
+                        "shapeType": 0,
+                        "spawnCoolTime": 0.20000000298023224,
+                        "spawnParticleVal": 1,
+                        "startParticleRotateMax": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "startParticleRotateMin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "startParticleScaleMax": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "startParticleScaleMin": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "startParticleVelocityMax": [
+                            0.0,
+                            9.600000381469727,
+                            0.0
+                        ],
+                        "startParticleVelocityMin": [
+                            0.0,
+                            -4.699999809265137,
+                            0.0
+                        ],
+                        "textureFileName": "./application/resource/Texture/gimacho.png",
+                        "transformInterpolationType": 0,
+                        "updateParticleRotateMax": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "updateParticleRotateMin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "updateParticleScaleMax": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "updateParticleScaleMin": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "updateParticleVelocityMax": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "updateParticleVelocityMin": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "updateSettings": 0,
+                        "uvInterpolationType": 0
+                    }
+                ]
+            },
+            "Name": "Entity",
+            "Systems": [
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "EmitterWorkSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "ParticleRenderSystem"
+                }
+            ],
+            "isUnique": false
+        }
+    ],
+    "Systems": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [
+            {
+                "Priority": 0,
+                "SystemName": "EmitterWorkSystem"
+            }
+        ],
+        [
+            {
+                "Priority": 0,
+                "SystemName": "SpriteRenderSystem"
+            },
+            {
+                "Priority": 0,
+                "SystemName": "BackGroundSpriteRenderSystem"
+            },
+            {
+                "Priority": 0,
+                "SystemName": "ParticleRenderSystem"
+            },
+            {
+                "Priority": 0,
+                "SystemName": "LineRenderSystem"
+            },
+            {
+                "Priority": 0,
+                "SystemName": "ColliderRenderingSystem"
+            },
+            {
+                "Priority": 0,
+                "SystemName": "TexturedMeshRenderSystem"
+            },
+            {
+                "Priority": 0,
+                "SystemName": "EffectTexturedMeshRenderSystem"
+            },
+            {
+                "Priority": 0,
+                "SystemName": "SkyboxRender"
+            }
+        ],
+        []
+    ]
+}

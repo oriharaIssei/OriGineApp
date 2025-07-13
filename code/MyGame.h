@@ -12,7 +12,7 @@ public:
     MyGame();
     ~MyGame();
 
-    void Initialize() override;
+    void Initialize(const std::string& _commandLine) override;
     void Finalize() override;
 
     void Run();

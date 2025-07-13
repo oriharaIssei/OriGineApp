@@ -7,16 +7,18 @@
 
 #include <memory>
 
-int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
+int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR _lpCmdLine, int) {
     DxDebug::getInstance()->InitializeDebugger();
+
+    std::string cmdLine(_lpCmdLine);
 
     Logger::Initialize();
 
-#ifdef _DEBUG
+#ifdef DEBUG
     {
         std::unique_ptr<MyEditor> editorApp = std::make_unique<MyEditor>();
 
-        editorApp->Initialize();
+        editorApp->Initialize(cmdLine);
         DxDebug::getInstance()->CreateInfoQueue();
 
         editorApp->Run();
@@ -27,14 +29,14 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
     {
         std::unique_ptr<MyGame> gameApp = std::make_unique<MyGame>();
 
-        gameApp->Initialize();
+        gameApp->Initialize(cmdLine);
         DxDebug::getInstance()->CreateInfoQueue();
 
         gameApp->Run();
 
         gameApp->Finalize();
     }
-#endif // _DEBUG
+#endif // DEBUG
 
     Logger::Finalize();
 
