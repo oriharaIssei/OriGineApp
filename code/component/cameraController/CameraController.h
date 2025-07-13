@@ -32,6 +32,13 @@ private:
     Vec3f forward_     = {0.f, 0.f, 1.f}; // カメラの前方向
     float angleLimitY_ = 0.0f;
 
+    /// <summary>
+    /// 注視点のOffset
+    /// </summary>
+    Vec3f followTargetOffset_ = {0.f, 0.f, 0.f};
+    /// <summary>
+    /// 注視点との距離のOffset
+    /// </summary>
     Vec3f followOffset_             = {0.f, 0.f, 0.f};
     Vec3f interTarget_              = {0.f, 0.f, 0.f};
     Vec2f destinationAngleXY_       = {0.0f, 0.0f};
@@ -49,6 +56,9 @@ public:
 
     float getAngleLimitY() const { return angleLimitY_; }
     void setAngleLimitY(float angleLimitY) { angleLimitY_ = angleLimitY; }
+
+    const Vec3f& getFollowTargetOffset() const { return followTargetOffset_; }
+    void setFollowTargetOffset(const Vec3f& offset) { followTargetOffset_ = offset; }
 
     const Vec3f& getFollowOffset() const { return followOffset_; }
     void setFollowOffset(const Vec3f& offset) { followOffset_ = offset; }

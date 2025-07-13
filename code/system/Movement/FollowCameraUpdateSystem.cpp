@@ -25,28 +25,27 @@ void FollowCameraUpdateSystem::UpdateEntity(GameEntity* _entity) {
 
     if (cameraController->getFollowTarget()) {
         // ============= interTarget ============= //
-        cameraController->setInterTarget(
-            Lerp(
-                cameraController->getInterTarget(),
-                Vec3f(cameraController->getFollowTarget()->worldMat[3]),
-                cameraController->getInterTargetInterpolation()));
+        Vec3f followTargetPosition = Vec3f(cameraController->getFollowTarget()->worldMat[3]);
+        Vec3f interTarget          = Lerp(
+            cameraController->getInterTarget(),
+            followTargetPosition + cameraController->getFollowTargetOffset(),
+            cameraController->getInterTargetInterpolation());
+        cameraController->setInterTarget(interTarget);
 
         // ============= rotate ============= //
         // 角度からオフセットを回転
         Vec2f destinationAngleXY = cameraController->getDestinationAngleXY();
-        Vec3f offset             = cameraController->getFollowOffset();
+        Vec3f followOffset       = cameraController->getFollowOffset();
 
         // 回転行列を作成
         Matrix4x4 rotateMat = MakeMatrix::RotateX(destinationAngleXY[X]) * MakeMatrix::RotateY(destinationAngleXY[Y]);
-        Vec3f rotatedOffset = offset * rotateMat;
 
         // 新しいカメラ位置
-        Vec3f followTargetPosition = cameraController->getInterTarget();
-        cameraTransform->translate = followTargetPosition + rotatedOffset;
+        cameraTransform->translate = interTarget + (followOffset * rotateMat);
 
         // ============= look at target ============= //
         // カメラの向きをターゲットに向ける
-        Vec3f lookDir               = Vec3f::Normalize(followTargetPosition - cameraTransform->translate);
+        Vec3f lookDir               = Vec3f::Normalize(interTarget - cameraTransform->translate);
         Quaternion targetQuaternion = Quaternion::LookAt(lookDir, axisY);
 
         cameraTransform->rotate = Slerp(cameraTransform->rotate, targetQuaternion, cameraController->getRotateSensitivity());

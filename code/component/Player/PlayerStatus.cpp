@@ -125,17 +125,9 @@ void PlayerDashState::Update(float _deltaTime) {
             int32_t addedGearLevel = playerStatus->getGearLevel() + 1;
             playerStatus->setGearLevel(addedGearLevel);
 
-            playerStatus->setGearUpCoolTime(
-                GeometricSequence<float>(
-                    playerStatus->getBaseGearupCoolTime(),
-                    ArithmeticSequence<float>(playerStatus->getCoolTimeUpRateBase(), playerStatus->getCoolTimeUpRateCommonRate(), addedGearLevel - 1),
-                    addedGearLevel));
+            playerStatus->setGearUpCoolTime(playerStatus->CalculateCoolTimeByGearLevel(addedGearLevel));
 
-            playerStatus->setCurrentSpeed(
-                ArithmeticSequence<float>(
-                    playerStatus->getBaseSpeed(),
-                    ArithmeticSequence<float>(playerStatus->getSpeedUpRateBase(), playerStatus->getSpeedUpRateCommonRate(), addedGearLevel - 1),
-                    addedGearLevel));
+            playerStatus->setCurrentSpeed(playerStatus->CalculateSpeedByGearLevel(addedGearLevel));
 
             auto* skinningAnim = getComponent<SkinningAnimationComponent>(playerEntity);
             if (skinningAnim) {
@@ -563,7 +555,48 @@ bool PlayerStatus::Edit() {
 
     bool isChange = false;
 
-    isChange |= DragGuiCommand("baseSpeed", baseSpeed_);
+    if (ImGui::TreeNode("Speed")) {
+        isChange |= DragGuiCommand("baseSpeed", baseSpeed_);
+        isChange |= DragGuiCommand("speedUpRateBase", speedUpRateBase_);
+        isChange |= DragGuiCommand("speedUpRateCommonRate", speedUpRateCommonRate_);
+        if (ImGui::BeginTable("SpeedByGearLevel", 2, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg)) {
+            ImGui::TableSetupColumn("Gear Level");
+            ImGui::TableSetupColumn("Speed");
+            ImGui::TableHeadersRow();
+            for (int level = 1; level <= maxGearLevel_; ++level) {
+                ImGui::TableNextRow();
+                ImGui::TableSetColumnIndex(0);
+                ImGui::Text("%d", level);
+                ImGui::TableSetColumnIndex(1);
+                ImGui::Text("%.2f", CalculateSpeedByGearLevel(level));
+            }
+            ImGui::EndTable();
+        }
+        ImGui::TreePop();
+    }
+
+    if (ImGui::TreeNode("CollTime")) {
+        isChange |= DragGuiCommand("gearUpCoolTime", baseGearupCoolTime_);
+        isChange |= DragGuiCommand("coolTimeAddRateBase", coolTimeAddRateBase_);
+        isChange |= DragGuiCommand("coolTimeAddRateCommonRate", coolTimeAddRateCommonRate_);
+        if (ImGui::BeginTable("CoolTimeByGearLevel", 2, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg)) {
+            ImGui::TableSetupColumn("Gear Level");
+            ImGui::TableSetupColumn("CoolTime");
+            ImGui::TableHeadersRow();
+            for (int level = 1; level <= maxGearLevel_; ++level) {
+                ImGui::TableNextRow();
+                ImGui::TableSetColumnIndex(0);
+                ImGui::Text("%d", level);
+                ImGui::TableSetColumnIndex(1);
+                ImGui::Text("%.2f", CalculateCoolTimeByGearLevel(level));
+            }
+            ImGui::EndTable();
+        }
+        ImGui::TreePop();
+    }
+
+    isChange |= DragGuiCommand("directionInterpolateRate", directionInterpolateRate_);
+    isChange |= DragGuiCommand("jumpPower", jumpPower_);
     isChange |= DragGuiCommand("wallRunRate", wallRunRate_);
     if (DragGuiVectorCommand<3, float>("wallJumpDirection",
             wallJumpDirection_,
@@ -575,15 +608,6 @@ bool PlayerStatus::Edit() {
             })) {
         wallJumpDirection_ = wallJumpDirection_.normalize();
     }
-
-    isChange |= DragGuiCommand("speedUpRateBase", speedUpRateBase_);
-    isChange |= DragGuiCommand("speedUpRateCommonRate", speedUpRateCommonRate_);
-    isChange |= DragGuiCommand("coolTimeAddRateBase", coolTimeAddRateBase_);
-    isChange |= DragGuiCommand("coolTimeAddRateCommonRate", coolTimeAddRateCommonRate_);
-
-    isChange |= DragGuiCommand("jumpPower", jumpPower_);
-    isChange |= DragGuiCommand("gearUpCoolTime", baseGearupCoolTime_);
-    isChange |= DragGuiCommand("directionInterpolateRate", directionInterpolateRate_);
 
     return isChange;
 #else
@@ -626,6 +650,20 @@ void PlayerStatus::Debug() {
 }
 
 void PlayerStatus::Finalize() {}
+
+float PlayerStatus::CalculateSpeedByGearLevel(int32_t _gearLevel) const {
+    return ArithmeticSequence<float>(
+        baseSpeed_,
+        ArithmeticSequence<float>(speedUpRateBase_, speedUpRateCommonRate_, _gearLevel - 1),
+        _gearLevel);
+}
+
+float PlayerStatus::CalculateCoolTimeByGearLevel(int32_t _gearLevel) const {
+    return GeometricSequence<float>(
+        baseGearupCoolTime_,
+        ArithmeticSequence<float>(coolTimeAddRateBase_, coolTimeAddRateCommonRate_, _gearLevel - 1),
+        _gearLevel);
+}
 
 void to_json(nlohmann::json& j, const PlayerStatus& _playerStatus) {
     j["baseSpeed"]                = _playerStatus.baseSpeed_;

@@ -163,6 +163,9 @@ public:
     void Debug() override;
     void Finalize() override;
 
+    float CalculateSpeedByGearLevel(int32_t _gearLevel) const;
+    float CalculateCoolTimeByGearLevel(int32_t _gearLevel) const;
+
 private:
     EnumBitmask<PlayerMoveState> moveState_           = PlayerMoveState::IDLE; // 現在の移動状態
     EnumBitmask<PlayerMoveState> prevPlayerMoveState_ = PlayerMoveState::IDLE; // 前の移動状態
@@ -178,7 +181,7 @@ private:
 
     bool isGearUp_        = false; // ギアアップ中かどうか
     int32_t gearLevel_    = 0; // ギアレベル
-    int32_t maxGearLevel_ = 4; // 最大ギアレベル
+    int32_t maxGearLevel_ = 6; // 最大ギアレベル
 
     bool isGoal_ = false; // ゴールに到達したかどうか
 

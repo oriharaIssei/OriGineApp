@@ -22,6 +22,7 @@ bool CameraController::Edit() {
     }
     isEdit |= DragGuiCommand("angleLimitY", angleLimitY_, 0.01f, 0.00001f, std::numbers::pi_v<float> * 2.f, "%.3f");
 
+    isEdit |= DragGuiVectorCommand("followTargetOffset", followTargetOffset_, 0.01f, -100.0f, 100.0f);
     isEdit |= DragGuiVectorCommand("followOffset", followOffset_, 0.01f, -100.0f, 100.0f);
 
     ImGui::Spacing();
@@ -50,6 +51,7 @@ void to_json(nlohmann::json& j, const CameraController& c) {
     j["forward"]                  = c.forward_;
     j["angleLimitY"]              = c.angleLimitY_;
     j["followOffset"]             = c.followOffset_;
+    j["followTargetOffset"]       = c.followTargetOffset_;
     j["rotateSpeedPadStick"]      = c.rotateSpeedPadStick_;
     j["rotateSpeedMouse"]         = c.rotateSpeedMouse_;
     j["rotateSensitivity"]        = c.rotateSensitivity_;
@@ -62,6 +64,7 @@ void from_json(const nlohmann::json& j, CameraController& c) {
     j.at("forward").get_to(c.forward_);
     j.at("angleLimitY").get_to(c.angleLimitY_);
     j.at("followOffset").get_to(c.followOffset_);
+    j.at("followTargetOffset").get_to(c.followTargetOffset_);
     j.at("rotateSpeedPadStick").get_to(c.rotateSpeedPadStick_);
     j.at("rotateSpeedMouse").get_to(c.rotateSpeedMouse_);
     j.at("rotateSensitivity").get_to(c.rotateSensitivity_);
