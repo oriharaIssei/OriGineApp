@@ -13,6 +13,9 @@
 #include "component/Player/PlayerStatus.h"
 #include "component/SceneChanger.h"
 
+#include "component/cameraController/CameraController.h"
+#include "component/transform/CameraTransform.h"
+
 void TransitionPlayerState::UpdateEntity(GameEntity* _entity) {
     PlayerStatus* playerStatus = getComponent<PlayerStatus>(_entity);
 
@@ -79,5 +82,18 @@ void TransitionPlayerState::UpdateEntity(GameEntity* _entity) {
         }
 
         playerStatus->getPlayerMoveState()->Initialize();
+    }
+
+    /// =====================================================
+    // Fov Y
+    /// =====================================================
+    GameEntity* gameCamera             = getUniqueEntity("GameCamera");
+    CameraController* cameraController = getComponent<CameraController>(gameCamera);
+    if (cameraController) {
+        // fov 更新
+        CameraTransform* cameraTransform = getComponent<CameraTransform>(gameCamera);
+        if (cameraTransform) {
+            cameraTransform->fovAngleY = std::lerp(cameraTransform->fovAngleY, cameraController->CalculateFovY(playerStatus->getGearLevel()), cameraController->getFovYInterpolate());
+        };
     }
 }

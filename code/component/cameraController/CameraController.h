@@ -26,6 +26,8 @@ public:
 
     void Finalize() override;
 
+    float CalculateFovY(int32_t _level);
+
 private:
     Transform* followTarget_ = nullptr;
 
@@ -49,6 +51,11 @@ private:
 
     float maxRotateX_ = 0.0f;
     float minRotateX_ = 0.0f;
+
+    float fovYInterpolate_    = 0.1f;
+    float baseFovY_           = 45.0f * 3.141592654f / 180.0f; // 基準のFovY
+    float fovYRateBase_       = 1.0f; // FovYの倍率
+    float fovYRateCommonRate_ = 1.0f; // FovYの倍率の共通値
 
 public:
     const Vec3f& getForward() const { return forward_; }
@@ -89,4 +96,6 @@ public:
 
     const Transform* getFollowTarget() const { return followTarget_; }
     void setFollowTarget(Transform* target) { followTarget_ = target; }
+
+    float getFovYInterpolate() const { return fovYInterpolate_; }
 };

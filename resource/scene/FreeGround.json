@@ -309,13 +309,13 @@
                 ],
                 "PlayerStatus": [
                     {
-                        "baseSpeed": 10.0,
-                        "coolTimeAddRateBase": 2.0,
-                        "coolTimeAddRateCommonRate": 0.6000000238418579,
+                        "baseSpeed": 14.600000381469727,
+                        "coolTimeAddRateBase": 1.899999976158142,
+                        "coolTimeAddRateCommonRate": 0.029999999329447746,
                         "directionInterpolateRate": 0.08100000023841858,
-                        "gearUpCoolTime": 0.4000000059604645,
+                        "gearUpCoolTime": 0.6000000238418579,
                         "jumpPower": 8.600000381469727,
-                        "speedUpRateBase": 9.300000190734863,
+                        "speedUpRateBase": 13.5,
                         "speedUpRateCommonRate": -1.100000023841858,
                         "wallJumpDirection": [
                             -0.14878620207309723,
@@ -569,14 +569,15 @@
                 "CameraController": [
                     {
                         "angleLimitY": 1.5707963705062866,
+                        "baseFovY": 0.7850000262260437,
                         "followOffset": [
                             0.0,
                             0.05999999865889549,
-                            -2.5199999809265137
+                            -2.9000000953674316
                         ],
                         "followTargetOffset": [
                             0.0,
-                            1.940000057220459,
+                            2.140000104904175,
                             0.0
                         ],
                         "forward": [
@@ -584,11 +585,14 @@
                             0.0,
                             1.0
                         ],
-                        "interTargetInterpolation": 0.20999999344348907,
+                        "fovYInterpolate": 0.08399999886751175,
+                        "fovYRate": 0.009999999776482582,
+                        "fovYRateCommonRate": 0.009999999776482582,
+                        "interTargetInterpolation": 0.33000001311302185,
                         "maxRotateX": 0.5899999737739563,
                         "minRotateX": -0.7699999809265137,
-                        "rotateSensitivity": 0.4099999964237213,
-                        "rotateSpeedMouse": 0.010999999940395355,
+                        "rotateSensitivity": 0.47999998927116394,
+                        "rotateSpeedMouse": 0.007000000216066837,
                         "rotateSpeedPadStick": 0.10999999940395355
                     }
                 ],
@@ -596,7 +600,7 @@
                     {
                         "aspectRatio": 1.7777777910232544,
                         "farZ": 1000.0,
-                        "fovAngleY": 0.7853981852531433,
+                        "fovAngleY": 0.7850000262260437,
                         "nearZ": 0.10000000149011612,
                         "rotate": [
                             0.0,

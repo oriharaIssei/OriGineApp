@@ -39,9 +39,9 @@
                     },
                     {
                         "color": [
-                            0.5738396644592285,
                             0.0,
-                            0.0,
+                            0.10196078568696976,
+                            1.0,
                             1.0
                         ],
                         "enableLighting": true,
@@ -64,7 +64,7 @@
                 ],
                 "textureFilePath": [
                     "",
-                    ""
+                    "./application/resource/Texture/uvChecker.png"
                 ],
                 "transformBufferDatas": [
                     {
@@ -75,9 +75,9 @@
                             1.0
                         ],
                         "scale": [
-                            2.0,
-                            2.0,
-                            2.0
+                            1.0,
+                            1.0,
+                            1.0
                         ],
                         "translate": [
                             0.0,
@@ -93,9 +93,9 @@
                             1.0
                         ],
                         "scale": [
-                            2.0,
-                            2.0,
-                            2.0
+                            1.0,
+                            1.0,
+                            1.0
                         ],
                         "translate": [
                             0.0,
@@ -113,14 +113,14 @@
         ],
         "PlayerStatus": [
             {
-                "baseSpeed": 10.0,
-                "coolTimeAddRateBase": 0.699999988079071,
-                "coolTimeAddRateCommonRate": 0.800000011920929,
+                "baseSpeed": 14.600000381469727,
+                "coolTimeAddRateBase": 1.899999976158142,
+                "coolTimeAddRateCommonRate": 0.029999999329447746,
                 "directionInterpolateRate": 0.08100000023841858,
-                "gearUpCoolTime": 0.4000000059604645,
+                "gearUpCoolTime": 0.6000000238418579,
                 "jumpPower": 8.600000381469727,
-                "speedUpRateBase": 10.600000381469727,
-                "speedUpRateCommonRate": 4.400000095367432,
+                "speedUpRateBase": 13.5,
+                "speedUpRateCommonRate": -1.100000023841858,
                 "wallJumpDirection": [
                     -0.14878620207309723,
                     -0.2880076467990875,
@@ -204,7 +204,7 @@
                     0.0,
                     0.0
                 ],
-                "radius": 1.7400000095367432,
+                "radius": 0.9900000095367432,
                 "transform": {
                     "rotate": [
                         0.0,
@@ -219,7 +219,7 @@
                     ],
                     "translate": [
                         0.0,
-                        1.3700000047683716,
+                        0.949999988079071,
                         0.0
                     ]
                 }
@@ -240,7 +240,7 @@
                 ],
                 "translate": [
                     0.0,
-                    6.3019118309021,
+                    2.0799999237060547,
                     0.0
                 ]
             }
