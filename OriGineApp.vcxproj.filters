@@ -110,6 +110,7 @@
     <ClInclude Include="code\system\effect\TimerForSprite.h">
       <Filter>system\effect</Filter>
     </ClInclude>
+    <ClInclude Include="code\MyEditor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -187,5 +188,6 @@
     <ClCompile Include="code\system\effect\TimerForSprite.cpp">
       <Filter>system\effect</Filter>
     </ClCompile>
+    <ClCompile Include="code\MyEditor.cpp" />
   </ItemGroup>
 </Project>

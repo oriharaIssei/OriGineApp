@@ -533,8 +533,7 @@ PlayerMoveState PlayerWallJumpState::TransitionState() const {
 
 #pragma region "Player Status"
 
-void PlayerStatus::Initialize(GameEntity* _entity) {
-    playerMoveState_     = std::make_shared<PlayerIdleState>(_entity->getID());
+void PlayerStatus::Initialize(GameEntity* /*_entity*/) {
     moveState_           = PlayerMoveState::IDLE; // 初期状態は IDLE
     prevPlayerMoveState_ = PlayerMoveState::IDLE; // 前の移動状態を初期化
 

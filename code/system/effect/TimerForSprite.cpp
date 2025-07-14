@@ -54,7 +54,7 @@ void TimerForSprite::UpdateEntity(GameEntity* _entity) {
         timerForSpriteComponent->getDigitDecimalForSprite());
 
     for (int32_t i = 0; i < timerForSpriteComponent->getDigitForSprite(); ++i) {
-        auto sprite = ECSManager::getInstance()->getComponent<SpriteRenderer>(_entity, i);
+        auto sprite = getComponent<SpriteRenderer>(_entity, i);
         if (!sprite) {
             continue; // スプライトがない場合は何もしない
         }

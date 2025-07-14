@@ -102,6 +102,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
+    <ClInclude Include="code\MyEditor.h" />
     <ClInclude Include="code\MyGame.h" />
     <ClInclude Include="code\component\Button.h" />
     <ClInclude Include="code\component\Player\PlayerInput.h" />
@@ -130,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
+    <ClCompile Include="code\MyEditor.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
     <ClCompile Include="code\component\Button.cpp" />
     <ClCompile Include="code\component\Player\PlayerInput.cpp" />

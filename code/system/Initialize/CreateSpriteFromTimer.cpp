@@ -48,7 +48,7 @@ void CreateSpriteFromTimer::UpdateEntity(GameEntity* _entity) {
 
     // 整数部
     for (int i = 0; i < digitInteger; ++i) {
-        ECSManager::getInstance()->addComponent<SpriteRenderer>(_entity->getID(), SpriteRenderer{}, true);
+        addComponent<SpriteRenderer>(_entity, SpriteRenderer{}, true);
         auto* sprite = getComponent<SpriteRenderer>(_entity, i);
 
         sprite->setTexture(timerForSpriteComponent->getNumbersTexturePath(), false);
@@ -66,7 +66,7 @@ void CreateSpriteFromTimer::UpdateEntity(GameEntity* _entity) {
 
     // 小数部
     for (int i = digitInteger; i < digitAll; ++i) {
-        ECSManager::getInstance()->addComponent<SpriteRenderer>(_entity->getID(), SpriteRenderer{}, true);
+        addComponent<SpriteRenderer>(_entity, SpriteRenderer{}, true);
         auto* sprite = getComponent<SpriteRenderer>(_entity, i);
 
         sprite->setTexture(timerForSpriteComponent->getNumbersTexturePath(), false);

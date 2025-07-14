@@ -4,7 +4,7 @@
 #define DELTA_TIME
 #define ENGINE_ECS
 #include "EngineInclude.h"
-#include "sceneManager/SceneManager.h"
+#include "scene/SceneManager.h"
 
 /// application
 // component
@@ -31,6 +31,14 @@ void TransitionPlayerState::UpdateEntity(GameEntity* _entity) {
     }
 
     /// =====================================================
+    // PlayerMoveState の初期化 (必要なら)
+    /// =====================================================
+    if (!playerStatus->getPlayerMoveState()) {
+        playerStatus->setPlayerMoveState(std::make_shared<PlayerIdleState>(this->getScene(), _entity->getID()));
+        playerStatus->setState(PlayerMoveState::IDLE);
+    }
+
+    /// =====================================================
     // StateUpdate
     /// =====================================================
     playerStatus->setPrevState(playerStatus->getState());
@@ -44,33 +52,33 @@ void TransitionPlayerState::UpdateEntity(GameEntity* _entity) {
         int32_t animationIndex = -1;
         switch (playerStatus->getState()) {
         case PlayerMoveState::IDLE: {
-            playerStatus->setPlayerMoveState(std::make_shared<PlayerIdleState>(_entity->getID()));
+            playerStatus->setPlayerMoveState(std::make_shared<PlayerIdleState>(this->getScene(), _entity->getID()));
             animationIndex = 0; // IDLE アニメーションのインデックス
             break;
         }
         case PlayerMoveState::DASH: {
-            playerStatus->setPlayerMoveState(std::make_shared<PlayerDashState>(_entity->getID()));
+            playerStatus->setPlayerMoveState(std::make_shared<PlayerDashState>(this->getScene(), _entity->getID()));
             animationIndex = 1; // DASH アニメーションのインデックス
             break;
         }
         case PlayerMoveState::JUMP: {
-            playerStatus->setPlayerMoveState(std::make_shared<PlayerJumpState>(_entity->getID()));
+            playerStatus->setPlayerMoveState(std::make_shared<PlayerJumpState>(this->getScene(), _entity->getID()));
             animationIndex = 2;
             break;
         }
         case PlayerMoveState::FALL_DOWN: {
-            playerStatus->setPlayerMoveState(std::make_shared<PlayerFallDownState>(_entity->getID()));
+            playerStatus->setPlayerMoveState(std::make_shared<PlayerFallDownState>(this->getScene(), _entity->getID()));
             animationIndex = 3; // FALL_DOWN アニメーションのインデックス
             break;
         }
         case PlayerMoveState::WALL_RUN: {
             animationIndex = 1;
-            playerStatus->setPlayerMoveState(std::make_shared<PlayerWallRunState>(_entity->getID()));
+            playerStatus->setPlayerMoveState(std::make_shared<PlayerWallRunState>(this->getScene(), _entity->getID()));
             break;
         }
         case PlayerMoveState::WALL_JUMP: {
             animationIndex = 2;
-            playerStatus->setPlayerMoveState(std::make_shared<PlayerWallJumpState>(_entity->getID()));
+            playerStatus->setPlayerMoveState(std::make_shared<PlayerWallJumpState>(this->getScene(), _entity->getID()));
             break;
         }
         }
