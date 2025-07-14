@@ -4,13 +4,13 @@
 #include "Engine.h"
 #include "winApp/WinApp.h"
 /// ECS
-#include "ECSManager.h"
+
 // component
 #include "component/renderer/Sprite.h"
 #include "component/TimerComponent.h"
 
 CreateSpriteFromTimer::CreateSpriteFromTimer()
-    : ISystem(SystemType::Initialize) {}
+    : ISystem(SystemCategory::Initialize) {}
 
 CreateSpriteFromTimer::~CreateSpriteFromTimer() {}
 

@@ -3,7 +3,7 @@
 /// engine
 // camera
 #include "camera/CameraManager.h"
-#include "ECSManager.h"
+
 // component
 #include "component/transform/Transform.h"
 

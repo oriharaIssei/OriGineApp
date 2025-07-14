@@ -13,7 +13,7 @@
 /// math
 #include <math/MyEasing.h>
 
-EffectOnPlayerGearup::EffectOnPlayerGearup() : ISystem(SystemType::Effect) {}
+EffectOnPlayerGearup::EffectOnPlayerGearup() : ISystem(SystemCategory::Effect) {}
 
 EffectOnPlayerGearup::~EffectOnPlayerGearup() {}
 

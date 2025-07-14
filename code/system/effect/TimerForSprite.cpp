@@ -1,7 +1,7 @@
 #include "TimerForSprite.h"
 
 /// ECS
-#include "ECSManager.h"
+
 // component
 #include "component/renderer/Sprite.h"
 #include "component/TimerComponent.h"
@@ -33,7 +33,7 @@ static std::vector<int> CalculateDigitsFromFloat(float value, int intDigits, int
 }
 
 TimerForSprite::TimerForSprite()
-    : ISystem(SystemType::Effect) {}
+    : ISystem(SystemCategory::Effect) {}
 
 TimerForSprite::~TimerForSprite() {}
 

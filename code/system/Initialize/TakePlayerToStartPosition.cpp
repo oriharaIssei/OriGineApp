@@ -1,10 +1,10 @@
 #include "TakePlayerToStartPosition.h"
 
 #include "component/transform/Transform.h"
-#include "ECSManager.h"
+
 
 TakePlayerToStartPosition::TakePlayerToStartPosition()
-    : ISystem(SystemType::Initialize) {}
+    : ISystem(SystemCategory::Initialize) {}
 
 TakePlayerToStartPosition::~TakePlayerToStartPosition() {}
 
