@@ -1,6 +1,7 @@
 #include "MyGame.h"
 
 /// engine include
+#include "winApp/WinApp.h"
 #define ENGINE_INCLUDE
 #define ENGINE_ECS
 #include <EngineInclude.h>
@@ -21,6 +22,45 @@
 #include "logger/Logger.h"
 #include "module/debugger/DebuggerGroup.h"
 #endif // DEBUG
+
+/// =====================================================
+// Application Include
+/// =====================================================
+// component
+#include "component/animation/SkinningAnimationComponent.h"
+#include "component/Button.h"
+#include "component/cameraController/CameraController.h"
+#include "component/effect/CameraAction.h"
+#include "component/effect/post/RadialBlurParam.h"
+#include "component/Player/PlayerInput.h"
+#include "component/Player/PlayerStatus.h"
+#include "component/SceneChanger.h"
+#include "component/TimerComponent.h"
+
+// system
+#include "system/Collision/PlayerOnCollision.h"
+#include "system/effect/CameraActionSystem.h"
+#include "system/effect/EffectOnPlayerGearup.h"
+#include "system/effect/SkinningAnimationSystem.h"
+#include "system/effect/TimerForSprite.h"
+#include "system/Initialize/CreateSpriteFromTimer.h"
+#include "system/Initialize/SettingGameCameraTarget.h"
+#include "system/Initialize/TakePlayerToStartPosition.h"
+#include "system/Input/ButtonInputSystem.h"
+#include "system/Input/CameraInputSystem.h"
+#include "system/Input/PlayerInputSystem.h"
+#include "system/Movement//BillboardTransform.h"
+#include "system/Movement/FollowCameraUpdateSystem.h"
+#include "system/Movement/PlayerMoveSystem.h"
+#include "system/postRender/RadialBlurEffect.h"
+#include "system/render/SkeletonRenderSystem.h"
+#include "system/render/SkinningMeshRenderSystem.h"
+#include "system/Transition/ChangeSceneByButton.h"
+#include "system/Transition/FallDetectionSystem.h"
+#include "system/Transition/TimerCountDown.h"
+#include "system/Transition/TransitionPlayerState.h"
+#include "system/Transition/TransitionSceneByTimer.h"
+#include "system/Transition/UpdateButtonColorByState.h"
 
 MyGame::MyGame() {}
 
@@ -97,13 +137,18 @@ void MyGame::Finalize() {
 
 void MyGame::Run() {
     while (true) {
-        if (engine_->ProcessMessage()) {
+        if (engine_->ProcessMessage() || sceneManager_->isExitGame()) {
             break;
         }
+
         engine_->BeginFrame();
 
 #ifdef _DEBUG
         sceneManager_->DebugUpdate();
+#else
+        if (!engine_->getWinApp()->isActive()) {
+            continue;
+        }
 #endif // DEBUG
 
         sceneManager_->Update();
@@ -114,6 +159,10 @@ void MyGame::Run() {
 
 void MyGame::RegisterUsingComponents() {
     ECSManager* ecsManager = ECSManager::getInstance();
+
+    ecsManager->registerComponent<Audio>();
+
+    ecsManager->registerComponent<Button>();
 
     ecsManager->registerComponent<Transform>();
     ecsManager->registerComponent<CameraTransform>();
@@ -126,21 +175,35 @@ void MyGame::RegisterUsingComponents() {
 
     ecsManager->registerComponent<AABBCollider>();
     ecsManager->registerComponent<SphereCollider>();
+    ecsManager->registerComponent<CollisionPushBackInfo>();
 
     ecsManager->registerComponent<Emitter>();
     ecsManager->registerComponent<TextureEffectParam>();
-    ecsManager->registerComponent<VignetteParam>();
 
-    ecsManager->registerComponent<Audio>();
+    ecsManager->registerComponent<VignetteParam>();
+    ecsManager->registerComponent<DistortionEffectParam>();
+    ecsManager->registerComponent<DistortionEffectParam>();
+    ecsManager->registerComponent<RadialBlurParam>();
 
     ecsManager->registerComponent<ModelNodeAnimation>();
+    ecsManager->registerComponent<SkinningAnimationComponent>();
     ecsManager->registerComponent<PrimitiveNodeAnimation>();
+    ecsManager->registerComponent<CameraAction>();
 
     ecsManager->registerComponent<ModelMeshRenderer>();
     ecsManager->registerComponent<PlaneRenderer>();
+    ecsManager->registerComponent<RingRenderer>();
     ecsManager->registerComponent<SpriteRenderer>();
     ecsManager->registerComponent<LineRenderer>();
     ecsManager->registerComponent<SkyboxRenderer>();
+
+    ecsManager->registerComponent<CameraController>();
+    ecsManager->registerComponent<PlayerInput>();
+    ecsManager->registerComponent<PlayerStatus>();
+
+    ecsManager->registerComponent<SceneChanger>();
+    ecsManager->registerComponent<TimerComponent>();
+    ecsManager->registerComponent<TimerForSpriteComponent>();
 }
 
 void MyGame::RegisterUsingSystems() {
@@ -149,24 +212,41 @@ void MyGame::RegisterUsingSystems() {
     /// ====================================================================================================
     // Initialize
     /// ====================================================================================================
+    ecsManager->registerSystem<SettingGameCameraTarget>();
+    ecsManager->registerSystem<CreateSpriteFromTimer>();
+    ecsManager->registerSystem<TakePlayerToStartPosition>();
 
     /// ===================================================================================================
     // Input
     /// ===================================================================================================
+    ecsManager->registerSystem<PlayerInputSystem>();
+    ecsManager->registerSystem<CameraInputSystem>();
+    ecsManager->registerSystem<ButtonInputSystem>();
 
     /// ===================================================================================================
     // StateTransition
     /// ===================================================================================================
+    ecsManager->registerSystem<TransitionPlayerState>();
+    ecsManager->registerSystem<TimerCountDown>();
+    ecsManager->registerSystem<TransitionSceneByTimer>();
+    ecsManager->registerSystem<FallDetectionSystem>();
+    ecsManager->registerSystem<UpdateButtonColorByState>();
+    ecsManager->registerSystem<ChangeSceneByButton>();
 
     /// =================================================================================================
     // Movement
     /// =================================================================================================
     ecsManager->registerSystem<MoveSystemByRigidBody>();
+    ecsManager->registerSystem<FollowCameraUpdateSystem>();
+    ecsManager->registerSystem<PlayerMoveSystem>();
+    ecsManager->registerSystem<BillboardTransform>();
 
     /// =================================================================================================
     // Collision
     /// =================================================================================================
     ecsManager->registerSystem<CollisionCheckSystem>();
+    ecsManager->registerSystem<CollisionPushBackSystem>();
+    ecsManager->registerSystem<PlayerOnCollision>();
 
     /// =================================================================================================
     // Effect
@@ -174,6 +254,10 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<EmitterWorkSystem>();
     ecsManager->registerSystem<PrimitiveNodeAnimationWorkSystem>();
     ecsManager->registerSystem<TextureEffectAnimation>();
+    ecsManager->registerSystem<EffectOnPlayerGearup>();
+    ecsManager->registerSystem<TimerForSprite>();
+    ecsManager->registerSystem<CameraActionSystem>();
+    ecsManager->registerSystem<SkinningAnimationSystem>();
 
     /// =================================================================================================
     // Render
@@ -183,7 +267,14 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<TexturedMeshRenderSystem>();
     ecsManager->registerSystem<EffectTexturedMeshRenderSystem>();
     ecsManager->registerSystem<LineRenderSystem>();
+    ecsManager->registerSystem<BackGroundSpriteRenderSystem>();
+
+    ecsManager->registerSystem<SkinningMeshRenderSystem>();
+    ecsManager->registerSystem<SkeletonRenderSystem>();
+#ifdef _DEBUG
     ecsManager->registerSystem<ColliderRenderingSystem>();
+#endif // _DEBUG
+
     ecsManager->registerSystem<SkyboxRender>();
 
     /// =================================================================================================
@@ -192,4 +283,6 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<GrayscaleEffect>();
     ecsManager->registerSystem<SmoothingEffect>();
     ecsManager->registerSystem<VignetteEffect>();
+    ecsManager->registerSystem<RadialBlurEffect>();
+    ecsManager->registerSystem<DistortionEffect>();
 }

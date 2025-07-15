@@ -1,0 +1,362 @@
+{
+    "Entities": [
+        {
+            "Components": {
+                "Button": [
+                    {
+                        "hoverColor": [
+                            0.7552742958068848,
+                            0.7552742958068848,
+                            0.7552742958068848,
+                            1.0
+                        ],
+                        "normalColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "pressColor": [
+                            0.405063271522522,
+                            0.405063271522522,
+                            0.405063271522522,
+                            1.0
+                        ],
+                        "releaseColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "shortKeys": [
+                            28,
+                            57
+                        ],
+                        "shortcutPadButton": [
+                            4096,
+                            8192,
+                            16384,
+                            32768,
+                            64,
+                            128,
+                            256,
+                            512
+                        ]
+                    }
+                ],
+                "SceneChanger": [
+                    {
+                        "nextSceneName": "Game"
+                    }
+                ],
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.5,
+                            0.5
+                        ],
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
+                            512.0,
+                            128.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "./application/resource/Texture/Title.png",
+                        "textureSize": [
+                            512.0,
+                            128.0
+                        ],
+                        "translate": [
+                            640.0,
+                            160.74000549316406
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "TitleBar",
+            "Systems": [
+                {
+                    "SystemName": "ButtonInputSystem",
+                    "SystemType": 1
+                },
+                {
+                    "SystemName": "ChangeSceneByButton",
+                    "SystemType": 2
+                },
+                {
+                    "SystemName": "UpdateButtonColorByState",
+                    "SystemType": 2
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "Button": [
+                    {
+                        "hoverColor": [
+                            0.7568627595901489,
+                            0.7568627595901489,
+                            0.7568627595901489,
+                            1.0
+                        ],
+                        "normalColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "pressColor": [
+                            0.40392157435417175,
+                            0.40392157435417175,
+                            0.40392157435417175,
+                            1.0
+                        ],
+                        "releaseColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "shortKeys": [],
+                        "shortcutPadButton": []
+                    }
+                ],
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.5,
+                            0.5
+                        ],
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            0.699999988079071,
+                            0.699999988079071
+                        ],
+                        "size": [
+                            542.0,
+                            256.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "./application/resource/Texture/SpaceOrA.png",
+                        "textureSize": [
+                            512.0,
+                            256.0
+                        ],
+                        "translate": [
+                            640.0,
+                            532.6199951171875
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "ButtonSprite",
+            "Systems": [
+                {
+                    "SystemName": "ButtonInputSystem",
+                    "SystemType": 1
+                },
+                {
+                    "SystemName": "UpdateButtonColorByState",
+                    "SystemType": 2
+                },
+                {
+                    "SystemName": "SpriteRenderSystem",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "VignetteParam": [
+                    {
+                        "color": [
+                            0.8185653686523438,
+                            1.0,
+                            0.9104310274124146,
+                            1.0
+                        ],
+                        "vignettePow": 0.019999999552965164,
+                        "vignetteScale": 80.0
+                    }
+                ]
+            },
+            "Name": "Vignette",
+            "Systems": [
+                {
+                    "SystemName": "VignetteEffect",
+                    "SystemType": 7
+                }
+            ],
+            "isUnique": false
+        }
+    ],
+    "Systems": [
+        {
+            "CreateSpriteFromTimer": {
+                "Priority": 0
+            },
+            "SettingGameCameraTarget": {
+                "Priority": 5
+            },
+            "TakePlayerToStartPosition": {
+                "Priority": 3
+            }
+        },
+        {
+            "ButtonInputSystem": {
+                "Priority": 0
+            },
+            "CameraInputSystem": {
+                "Priority": 1
+            },
+            "PlayerInputSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "ChangeSceneByButton": {
+                "Priority": 1
+            },
+            "FallDetectionSystem": {
+                "Priority": 4
+            },
+            "TimerCountDown": {
+                "Priority": 0
+            },
+            "TransitionPlayerState": {
+                "Priority": 5
+            },
+            "UpdateButtonColorByState": {
+                "Priority": 0
+            }
+        },
+        {
+            "BillboardTransform": {
+                "Priority": 100
+            },
+            "FollowCameraUpdateSystem": {
+                "Priority": 0
+            },
+            "MoveSystemByRigidBody": {
+                "Priority": 10
+            },
+            "PlayerMoveSystem": {
+                "Priority": 3
+            }
+        },
+        {
+            "CollisionCheckSystem": {
+                "Priority": 0
+            },
+            "CollisionPushBackSystem": {
+                "Priority": 5
+            },
+            "PlayerOnCollision": {
+                "Priority": 10
+            }
+        },
+        {
+            "CameraActionSystem": {
+                "Priority": 1
+            },
+            "EffectOnPlayerGearup": {
+                "Priority": 0
+            },
+            "EmitterWorkSystem": {
+                "Priority": 1
+            },
+            "PrimitiveNodeAnimationWorkSystem": {
+                "Priority": 1
+            },
+            "TextureEffectAnimation": {
+                "Priority": 2
+            },
+            "TimerForSprite": {
+                "Priority": 0
+            }
+        },
+        {
+            "ColliderRenderingSystem": {
+                "Priority": 0
+            },
+            "EffectTexturedMeshRenderSystem": {
+                "Priority": 0
+            },
+            "LineRenderSystem": {
+                "Priority": 0
+            },
+            "ParticleRenderSystem": {
+                "Priority": 3
+            },
+            "SkyboxRender": {
+                "Priority": -1
+            },
+            "SpriteRenderSystem": {
+                "Priority": 5
+            },
+            "TexturedMeshRenderSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "DistortionEffect": {
+                "Priority": 0
+            },
+            "VignetteEffect": {
+                "Priority": 0
+            }
+        }
+    ]
+}

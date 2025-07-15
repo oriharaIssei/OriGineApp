@@ -1,0 +1,954 @@
+{
+    "Components": {
+        "Emitter": [
+            {
+                "EmitterShape": {
+                    "radius": 9.510000228881836,
+                    "spawnType": 1
+                },
+                "activeTime": 2.299999952316284,
+                "blendMode": 2,
+                "colorCurve": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.6203201413154602,
+                            0.9367088675498962,
+                            0.13042780756950378,
+                            1.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            0.0470588244497776
+                        ]
+                    },
+                    {
+                        "time": 0.21245135366916656,
+                        "value": [
+                            0.8902953863143921,
+                            0.8210611939430237,
+                            0.10893908143043518,
+                            0.5215686559677124
+                        ]
+                    },
+                    {
+                        "time": 0.4303501844406128,
+                        "value": [
+                            0.7257384061813354,
+                            0.35769450664520264,
+                            0.07961685210466385,
+                            1.0
+                        ]
+                    },
+                    {
+                        "time": 0.6264591217041016,
+                        "value": [
+                            0.8396624326705933,
+                            0.7224783301353455,
+                            0.12754367291927338,
+                            1.0
+                        ]
+                    },
+                    {
+                        "time": 0.9369649291038513,
+                        "value": [
+                            0.5940300822257996,
+                            0.8860759735107422,
+                            0.18693585693836212,
+                            1.0
+                        ]
+                    },
+                    {
+                        "time": 1.2093385457992554,
+                        "value": [
+                            0.5852437615394592,
+                            0.7848101258277893,
+                            0.09934304654598236,
+                            0.4156862795352936
+                        ]
+                    },
+                    {
+                        "time": 1.399999976158142,
+                        "value": [
+                            0.11462701857089996,
+                            0.6751054525375366,
+                            0.014242743141949177,
+                            0.003921568859368563
+                        ]
+                    }
+                ],
+                "colorInterpolationType": 0,
+                "isActive": true,
+                "isLoop": true,
+                "originPos": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "particleColor": [
+                    0.6203201413154602,
+                    0.9367088675498962,
+                    0.13042780756950378,
+                    1.0
+                ],
+                "particleIsBillBoard": true,
+                "particleLifeTime": 1.399999976158142,
+                "particleUvRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "particleUvScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "particleUvTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "randMass": [
+                    1.0,
+                    1.0
+                ],
+                "rotateCurve": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "scaleCurve": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.10000000149011612,
+                            0.10000000149011612,
+                            0.10000000149011612
+                        ]
+                    },
+                    {
+                        "time": 0.3050583600997925,
+                        "value": [
+                            0.5,
+                            0.5,
+                            1.0
+                        ]
+                    },
+                    {
+                        "time": 0.9914396405220032,
+                        "value": [
+                            0.6000000238418579,
+                            0.6000000238418579,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 1.399999976158142,
+                        "value": [
+                            0.10000000149011612,
+                            0.10000000149011612,
+                            0.10000000149011612
+                        ]
+                    }
+                ],
+                "shapeType": 0,
+                "spawnCoolTime": 0.10000000149011612,
+                "spawnParticleVal": 3,
+                "startParticleRotateMax": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "startParticleRotateMin": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "startParticleScaleMax": [
+                    0.5,
+                    0.5,
+                    0.5
+                ],
+                "startParticleScaleMin": [
+                    0.10000000149011612,
+                    0.10000000149011612,
+                    0.10000000149011612
+                ],
+                "startParticleVelocityMax": [
+                    0.0,
+                    0.0,
+                    -1.399999976158142
+                ],
+                "startParticleVelocityMin": [
+                    0.0,
+                    0.0,
+                    -10.600000381469727
+                ],
+                "textureFileName": "application/resource\\Texture/circle.png",
+                "transformInterpolationType": 0,
+                "updateParticleRotateMax": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "updateParticleRotateMin": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "updateParticleScaleMax": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "updateParticleScaleMin": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "updateParticleVelocityMax": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "updateParticleVelocityMin": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "updateSettings": 12578,
+                "uvInterpolationType": 0,
+                "uvRotateCurve": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "uvScaleCurve": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "uvTranslateCurve": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "velocityCurve": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            -10.600000381469727
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            -13.899999618530273
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            -7.900000095367432
+                        ]
+                    },
+                    {
+                        "time": 0.3704279959201813,
+                        "value": [
+                            1.7000000476837158,
+                            0.0,
+                            -6.5
+                        ]
+                    },
+                    {
+                        "time": 0.9424124360084534,
+                        "value": [
+                            0.6000000238418579,
+                            0.0,
+                            -4.803999900817871
+                        ]
+                    },
+                    {
+                        "time": 1.399999976158142,
+                        "value": [
+                            -1.100000023841858,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            }
+        ],
+        "RingRenderer": [
+            {
+                "InnerRadius": 0.009999999776482582,
+                "OuterRadius": 3.130000114440918,
+                "blendMode": 1,
+                "division": 64,
+                "isRenderer": true,
+                "material": {
+                    "color": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "enableLighting": false,
+                    "shininess": 0.0,
+                    "specularColor": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "uvRotate": 0.0,
+                    "uvScale": [
+                        1.0,
+                        1.0
+                    ],
+                    "uvTranslate": [
+                        0.0,
+                        0.0
+                    ]
+                },
+                "textureDirectory": "application/resource/Texture",
+                "textureFileName": "myNoise.png",
+                "transform": {
+                    "rotate": [
+                        0.0,
+                        -1.0,
+                        0.0,
+                        0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "translate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                }
+            }
+        ],
+        "TextureEffectParam": [
+            {
+                "dissolveAnimDuration": 5.059999942779541,
+                "dissolveAnimIsLoop": true,
+                "dissolveAnimIsPlay": true,
+                "dissolveAnimRotate": [
+                    {
+                        "time": 0.0,
+                        "value": 0.0
+                    },
+                    {
+                        "time": 5.059999942779541,
+                        "value": 6.289999961853027
+                    }
+                ],
+                "dissolveAnimScale": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            1.0,
+                            1.0
+                        ]
+                    }
+                ],
+                "dissolveAnimTranslate": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.10000000149011612,
+                            0.0
+                        ]
+                    }
+                ],
+                "dissolveTexPath": "application/resource/Texture/waveNoise.png",
+                "dissolveThreshold": 0.019999999552965164,
+                "dissolveUV": {
+                    "rotate": 0.0,
+                    "scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "translate": [
+                        0.10000000149011612,
+                        0.0
+                    ]
+                },
+                "distortionAnimDuration": 5.059999942779541,
+                "distortionAnimIsLoop": true,
+                "distortionAnimIsPlay": true,
+                "distortionAnimRotate": [
+                    {
+                        "time": 0.0,
+                        "value": 0.0
+                    }
+                ],
+                "distortionAnimScale": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            1.0,
+                            1.0
+                        ]
+                    }
+                ],
+                "distortionAnimTranslate": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 5.059999942779541,
+                        "value": [
+                            2.0,
+                            1.0
+                        ]
+                    }
+                ],
+                "distortionBias": 0.4690000116825104,
+                "distortionStrength": 2.630000114440918,
+                "distortionTexPath": "application/resource/Texture/waveNoise.png",
+                "distortionUV": {
+                    "rotate": 0.0,
+                    "scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "translate": [
+                        0.0,
+                        0.0
+                    ]
+                },
+                "effectFlag": 2,
+                "maskAnimDuration": 0.0,
+                "maskAnimIsLoop": false,
+                "maskAnimIsPlay": false,
+                "maskAnimRotate": [],
+                "maskAnimScale": [],
+                "maskAnimTranslate": [],
+                "maskTexPath": "",
+                "maskUV": {
+                    "rotate": 0.0,
+                    "scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "translate": [
+                        0.0,
+                        0.0
+                    ]
+                }
+            }
+        ],
+        "Transform": [
+            {
+                "rotate": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "translate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        ]
+    },
+    "Name": "Goal",
+    "Systems": [
+        {
+            "SystemName": "BillboardTransform",
+            "SystemType": 3
+        },
+        {
+            "SystemName": "TextureEffectAnimation",
+            "SystemType": 5
+        },
+        {
+            "SystemName": "EffectTexturedMeshRenderSystem",
+            "SystemType": 6
+        },
+        {
+            "SystemName": "ParticleRenderSystem",
+            "SystemType": 6
+        }
+    ],
+    "isUnique": true
+}

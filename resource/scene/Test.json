@@ -2,22 +2,111 @@
     "Entities": [
         {
             "Components": {
+                "SkyboxRenderer": [
+                    {
+                        "filePath": "application/resource/Texture/output_skybox.dds",
+                        "materialBuff": {
+                            "color": [
+                                0.649789035320282,
+                                0.4264598488807678,
+                                0.3783581852912903,
+                                1.0
+                            ]
+                        },
+                        "transformBuff": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.061921343207359314,
+                                1.2406729459762573,
+                                -1.5196669101715088
+                            ]
+                        }
+                    }
+                ]
+            },
+            "Name": "Skybox",
+            "Systems": [
+                {
+                    "SystemName": "SkyboxRender",
+                    "SystemType": 6
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "DirectionalLight": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "direction": [
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "intensity": 15.1899995803833,
+                        "isActive": true
+                    }
+                ]
+            },
+            "Name": "light",
+            "isUnique": false
+        },
+        {
+            "Components": {
                 "ModelMeshRenderer": [
                     {
                         "blendMode": 1,
-                        "directory": "application/resource/Models",
-                        "fileName": "sphere.obj",
+                        "directory": "./application/resource/Animations\\jogging",
+                        "fileName": "jogging.gltf",
                         "isRender": true,
                         "materialBufferDatas": [
                             {
                                 "color": [
-                                    1.0,
+                                    0.8860759735107422,
+                                    0.1726435273885727,
+                                    0.13459382951259613,
+                                    1.0
+                                ],
+                                "enableLighting": true,
+                                "shininess": 30.299999237060547,
+                                "specularColor": [
                                     1.0,
                                     1.0,
                                     1.0
                                 ],
-                                "enableLighting": false,
-                                "shininess": 0.0,
+                                "uvRotate": 0.0,
+                                "uvScale": [
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvTranslate": [
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "color": [
+                                    1.0,
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "enableLighting": true,
+                                "shininess": 45.20000076293945,
                                 "specularColor": [
                                     1.0,
                                     1.0,
@@ -35,9 +124,28 @@
                             }
                         ],
                         "textureFilePath": [
+                            "",
                             ""
                         ],
                         "transformBufferDatas": [
+                            {
+                                "rotate": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "scale": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "translate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "rotate": [
                                     0.0,
@@ -59,6 +167,17 @@
                         ]
                     }
                 ],
+                "SkinningAnimationComponent": [
+                    {
+                        "bindModeMeshRendererIndex": 0,
+                        "directory": "./application/resource/Animations\\jump",
+                        "duration": 6.0333333015441895,
+                        "fileName": "jump.gltf",
+                        "isLoop": true,
+                        "isPlay": true,
+                        "playbackSpeed": 1.0
+                    }
+                ],
                 "Transform": [
                     {
                         "rotate": [
@@ -75,7 +194,7 @@
                         "translate": [
                             0.0,
                             0.0,
-                            6.039999961853027
+                            0.0
                         ]
                     }
                 ]
@@ -83,7 +202,11 @@
             "Name": "Entity",
             "Systems": [
                 {
-                    "SystemName": "TexturedMeshRenderSystem",
+                    "SystemName": "SkinningAnimationSystem",
+                    "SystemType": 5
+                },
+                {
+                    "SystemName": "SkinningMeshRenderSystem",
                     "SystemType": 6
                 }
             ],
@@ -91,27 +214,93 @@
         }
     ],
     "Systems": [
-        {},
-        {},
-        {},
         {
-            "MoveSystemByRigidBody": {
+            "CreateSpriteFromTimer": {
                 "Priority": 0
+            },
+            "SettingGameCameraTarget": {
+                "Priority": 5
+            },
+            "TakePlayerToStartPosition": {
+                "Priority": 3
+            }
+        },
+        {
+            "ButtonInputSystem": {
+                "Priority": 0
+            },
+            "CameraInputSystem": {
+                "Priority": 1
+            },
+            "PlayerInputSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "ChangeSceneByButton": {
+                "Priority": 1
+            },
+            "FallDetectionSystem": {
+                "Priority": 4
+            },
+            "TimerCountDown": {
+                "Priority": 0
+            },
+            "TransitionPlayerState": {
+                "Priority": 5
+            },
+            "TransitionSceneByTimer": {
+                "Priority": 0
+            },
+            "UpdateButtonColorByState": {
+                "Priority": 0
+            }
+        },
+        {
+            "BillboardTransform": {
+                "Priority": 100
+            },
+            "FollowCameraUpdateSystem": {
+                "Priority": 0
+            },
+            "MoveSystemByRigidBody": {
+                "Priority": 10
+            },
+            "PlayerMoveSystem": {
+                "Priority": 3
             }
         },
         {
             "CollisionCheckSystem": {
                 "Priority": 0
+            },
+            "CollisionPushBackSystem": {
+                "Priority": 5
+            },
+            "PlayerOnCollision": {
+                "Priority": 10
             }
         },
         {
-            "EmitterWorkSystem": {
+            "CameraActionSystem": {
+                "Priority": 1
+            },
+            "EffectOnPlayerGearup": {
                 "Priority": 0
             },
+            "EmitterWorkSystem": {
+                "Priority": 1
+            },
             "PrimitiveNodeAnimationWorkSystem": {
+                "Priority": 1
+            },
+            "SkinningAnimationSystem": {
                 "Priority": 0
             },
             "TextureEffectAnimation": {
+                "Priority": 2
+            },
+            "TimerForSprite": {
                 "Priority": 0
             }
         },
@@ -126,23 +315,26 @@
                 "Priority": 0
             },
             "ParticleRenderSystem": {
+                "Priority": 3
+            },
+            "SkeletonRenderSystem": {
+                "Priority": 0
+            },
+            "SkinningMeshRenderSystem": {
                 "Priority": 0
             },
             "SkyboxRender": {
-                "Priority": 0
+                "Priority": -1
             },
             "SpriteRenderSystem": {
-                "Priority": 0
+                "Priority": 5
             },
             "TexturedMeshRenderSystem": {
                 "Priority": 0
             }
         },
         {
-            "GrayscaleEffect": {
-                "Priority": 0
-            },
-            "SmoothingEffect": {
+            "DistortionEffect": {
                 "Priority": 0
             },
             "VignetteEffect": {
