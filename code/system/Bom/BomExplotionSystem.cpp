@@ -86,7 +86,7 @@ void BomExplotionSystem::LaunchMethod(GameEntity* _entity) {
 
    
     transform->translate[Y] += bomStates_->GetLaunghSpeed() * Engine::getInstance()->getDeltaTime();
-    transform->translate[Z] = -1.0f;
+    transform->translate[Z] = -5.0f;
 
         // Quaternionに変換
     Quaternion q = Quaternion::FromEulerAngles(0.0f, bomStates_->GetRotateY(), 0.0f);
