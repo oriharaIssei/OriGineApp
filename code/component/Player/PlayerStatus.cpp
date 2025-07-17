@@ -37,7 +37,7 @@ void PlayerIdleState::Initialize() {
     auto playerStatus  = getComponent<PlayerStatus>(playerEntity);
     playerStatus->setCurrentSpeed(0.0f);
     playerStatus->setGearUpCoolTime(playerStatus->getBaseGearupCoolTime());
-    playerStatus->setGearLevel(0);
+    playerStatus->setGearLevel(kDefaultPlayerGearLevel);
 
     int32_t emitterSize = ECSManager::getInstance()->getComponentArray<Emitter>()->getComponentSize(playerEntity);
 
@@ -118,7 +118,7 @@ void PlayerDashState::Update(float _deltaTime) {
     // gearLevel の更新
     playerStatus->minusGearUpCoolTime(_deltaTime);
 
-    if (playerStatus->getGearLevel() <= playerStatus->getMaxGearLevel()) {
+    if (playerStatus->getGearLevel() < playerStatus->getMaxGearLevel()) {
         if (playerStatus->getGearUpCoolTime() <= 0.f) {
             playerStatus->setGearUp(true);
 
@@ -166,7 +166,6 @@ void PlayerDashState::Finalize() {
     auto* playerStatus = getComponent<PlayerStatus>(playerEntity);
     auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
 
-    rigidbody->setAcceleration({0.0f, 0.0f, 0.0f}); // ダッシュ終了時に加速度をリセット
     Vec3f velo = rigidbody->getVelocity();
 
     float limitSpeed = playerStatus->getCurrentSpeed(); // このフレームに追加される速度を引く
@@ -540,7 +539,7 @@ void PlayerStatus::Initialize(GameEntity* _entity) {
     prevPlayerMoveState_ = PlayerMoveState::IDLE; // 前の移動状態を初期化
 
     gearUpCoolTime_ = baseGearupCoolTime_; // ギアアップのクールタイムを初期化
-    gearLevel_      = 0; // ギアレベルを初期化
+    gearLevel_      = kDefaultPlayerGearLevel; // ギアレベルを初期化
     isGearUp_       = false; // ギアアップ状態を初期化
 
     currentSpeed_ = baseSpeed_; // 現在の速度を初期化

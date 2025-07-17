@@ -22,6 +22,8 @@ enum class PlayerMoveState {
     Count = 6 // 5
 };
 
+constexpr int32_t kDefaultPlayerGearLevel = 1;
+
 #pragma region "Playser State"
 class PlayerStatus; // 前方宣言
 class IPlayerMoveState {
