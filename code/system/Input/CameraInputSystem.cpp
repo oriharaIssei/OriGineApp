@@ -31,7 +31,7 @@ void CameraInputSystem::UpdateEntity(GameEntity* _entity) {
         if (input_->isPadActive()) { /// GamePad
             Vec2f rotateVelocity = input_->getRStickVelocity() * cameraController->getRotateSpeedPadStick();
             // input の x,yをそれぞれの角度に変換
-            destinationAngleXY += Vec2f(rotateVelocity[Y], rotateVelocity[X]);
+            destinationAngleXY += Vec2f(-rotateVelocity[Y], rotateVelocity[X]);
         } else { /// Mouse
             Vec2f rotateVelocity = input_->getMouseVelocity() * cameraController->getRotateSpeedMouse();
             // input の x,yをそれぞれの角度に変換
