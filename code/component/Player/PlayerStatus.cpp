@@ -91,19 +91,12 @@ PlayerMoveState PlayerIdleState::TransitionState() const {
 /// ====================================================================================
 
 void PlayerDashState::Initialize() {
-    auto* playerEntity  = getEntity(playerEntityID_);
-    auto* playerStatus  = getComponent<PlayerStatus>(playerEntity);
-    int32_t emitterSize = ECSManager::getInstance()->getComponentArray<Emitter>()->getComponentSize(playerEntity);
+    auto* playerEntity = getEntity(playerEntityID_);
+    auto* playerStatus = getComponent<PlayerStatus>(playerEntity);
 
     auto* skinningAnim = getComponent<SkinningAnimationComponent>(playerEntity);
     if (skinningAnim) {
         skinningAnim->setPlaybackSpeed(1, 1.f + float(playerStatus->getGearLevel()));
-    }
-
-    //! TODO: 速度でパーティクルの量を変える
-    for (int32_t i = 0; i < emitterSize; i++) {
-        auto* emitter = getComponent<Emitter>(playerEntity, i);
-        emitter->PlayStart();
     }
 }
 
@@ -303,15 +296,16 @@ PlayerMoveState PlayerFallDownState::TransitionState() const {
 /// ====================================================================================
 
 void PlayerJumpState::Initialize() {
+    releaseJumpPower_ = 0.f;
+
     auto* playerEntity = getEntity(playerEntityID_);
+    auto* playerStatus = getComponent<PlayerStatus>(playerEntity);
     auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
-    auto playerStatus  = getComponent<PlayerStatus>(playerEntity);
 
-    Vec3f velocity = rigidbody->getVelocity();
-    velocity[Y]    = playerStatus->getJumpPower(); // ジャンプパワーをY軸に設定
-    rigidbody->setVelocity(velocity);
+    rigidbody->setUseGravity(false);
 
-    isAnimatedJumpUp_  = false; // アニメーションのジャンプアップを行うかどうか
+    rigidbody->setVelocity(Y, playerStatus->getJumpPower()); // ジャンプパワーをY軸に設定
+
     auto* skinningAnim = getComponent<SkinningAnimationComponent>(playerEntity);
     if (skinningAnim) {
         skinningAnim->endTransition();
@@ -319,10 +313,10 @@ void PlayerJumpState::Initialize() {
     }
 }
 
-void PlayerJumpState::Update(float _deltaTime) {
+void PlayerJumpState::Update(float /*_deltaTime*/) {
     auto* playerEntity = getEntity(playerEntityID_);
-    auto* playerStatus = getComponent<PlayerStatus>(playerEntity);
     auto* playerInput  = getComponent<PlayerInput>(playerEntity);
+    auto* playerStatus = getComponent<PlayerStatus>(playerEntity);
     auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
     auto* transform    = getComponent<Transform>(playerEntity);
 
@@ -360,31 +354,22 @@ void PlayerJumpState::Update(float _deltaTime) {
     if (oldXZVelo.lengthSq() != 0.f) {
         velocity = movementDirection * playerStatus->getCurrentSpeed(); // 移動方向を回転
     }
-    velocity[Y] = oldVelo[Y]; // 落下中はY軸の速度を保持
-    if (playerInput->isJumpInput()) {
-        velocity[Y] += playerStatus->getJumpPower() * _deltaTime;
-    }
+    velocity[Y] = oldVelo[Y]; // ジャンプ中はY軸の速度を保持
 
     rigidbody->setVelocity(velocity);
 
-    // ジャンプ中のアニメーションを制御
-    SkinningAnimationComponent* skinningAnimation = getComponent<SkinningAnimationComponent>(playerEntity);
-    if (!skinningAnimation) {
-        return; // アニメーションコンポーネントがない場合は何もしない
-    }
-    int32_t currentAnimationIndex = skinningAnimation->getCurrentAnimationIndex();
-    if (isAnimatedJumpUp_) {
-        isAnimatedJumpUp_ = !skinningAnimation->isEnd(currentAnimationIndex);
-        if (!isAnimatedJumpUp_) {
-            // ジャンプアップのアニメーションを再生
-            skinningAnimation->PlayNext(3); // 2 はジャンプアップのアニメーションインデックス
-        }
-    }
+    releaseJumpPower_ += playerStatus->getFallPower();
 }
 
 void PlayerJumpState::Finalize() {
     auto* playerEntity = getEntity(playerEntityID_);
+    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
     auto* skinningAnim = getComponent<SkinningAnimationComponent>(playerEntity);
+
+    rigidbody->setUseGravity(true);
+
+    rigidbody->setVelocity(Y, releaseJumpPower_);
+
     if (skinningAnim) {
         skinningAnim->Play(4); // 差し替え
     }
@@ -405,6 +390,11 @@ PlayerMoveState PlayerJumpState::TransitionState() const {
         }
 
         return PlayerMoveState::IDLE;
+    } else {
+        if (!playerInput->isJumpInput()) {
+            // ジャンプ入力がない場合は落下状態に遷移
+            return PlayerMoveState::FALL_DOWN;
+        }
     }
 
     return PlayerMoveState::JUMP;
@@ -420,8 +410,6 @@ void PlayerWallRunState::Initialize() {
     auto* playerEntity = getEntity(playerEntityID_);
     auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
     prevVelo_          = rigidbody->getVelocity(); // 壁ジャンプ前の速度を保存
-
-    rigidbody->setUseGravity(false);
 
     separationdLeftTime_ = separationGraceTime_; // 壁との衝突判定の残り時間を初期化
 }
@@ -452,7 +440,6 @@ void PlayerWallRunState::Finalize() {
     auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
     // 壁走行終了時に速度をリセット
     rigidbody->setVelocity(prevVelo_); // 壁走行終了時に速度をリセット
-    rigidbody->setUseGravity(true);
 
     auto playerStatus = getComponent<PlayerStatus>(playerEntity);
     playerStatus->setCollisionWithWall(false); // 壁走行終了時に壁との衝突をリセット
@@ -596,6 +583,7 @@ bool PlayerStatus::Edit() {
 
     isChange |= DragGuiCommand("directionInterpolateRate", directionInterpolateRate_);
     isChange |= DragGuiCommand("jumpPower", jumpPower_);
+    isChange |= DragGuiCommand("fallPower", fallPower_);
     isChange |= DragGuiCommand("wallRunRate", wallRunRate_);
     if (DragGuiVectorCommand<3, float>("wallJumpDirection",
             wallJumpDirection_,
@@ -626,7 +614,7 @@ void PlayerStatus::Debug() {
         // {PlayerMoveState::SLIDE, "SLIDE"}
     };
 
-    ImGui::Text("MoveState  :  %s", moveStateName[moveState_.toEnum()]);
+    ImGui::Text("MoveState  : %s", moveStateName[moveState_.toEnum()]);
     ImGui::Text("Gear Level : %d", gearLevel_);
     ImGui::Spacing();
     ImGui::Text("Base Gear Up Cool Time : %.2f", baseGearupCoolTime_);
@@ -634,15 +622,19 @@ void PlayerStatus::Debug() {
     ImGui::Spacing();
     ImGui::Text("Base Speed          : %.2f", baseSpeed_);
     ImGui::Text("Current Speed       : %.2f", currentSpeed_);
+    ImGui::Text("Jump Power          : %.2f", jumpPower_);
+    ImGui::Text("Fall Power          : %.2f", fallPower_);
+
+    ImGui::Text("Is Gear Up          : %s", isGearUp_ ? "true" : "false");
     ImGui::Spacing();
-    ImGui::Text("Speed Up Rate Base : %.2f", speedUpRateBase_);
+    ImGui::Text("Speed Up Rate Base        : %.2f", speedUpRateBase_);
     ImGui::Text("Speed Up Rate Common Rate : %.2f", speedUpRateCommonRate_);
     ImGui::Spacing();
-    ImGui::Text("Cool Time Up Rate Base : %.2f", coolTimeAddRateBase_);
+    ImGui::Text("Cool Time Up Rate Base        : %.2f", coolTimeAddRateBase_);
     ImGui::Text("Cool Time Up Rate Common Rate : %.2f", coolTimeAddRateCommonRate_);
     ImGui::Spacing();
-    ImGui::Text("Wall Run Rate      : %.2f", wallRunRate_);
-    ImGui::Text("Wall Jump Direction : (%.2f, %.2f, %.2f)", wallJumpDirection_[X], wallJumpDirection_[Y], wallJumpDirection_[Z]);
+    ImGui::Text("Wall Run Rate             : %.2f", wallRunRate_);
+    ImGui::Text("Wall Jump Direction       : (%.2f, %.2f, %.2f)", wallJumpDirection_[X], wallJumpDirection_[Y], wallJumpDirection_[Z]);
     ImGui::Text("Direction Interpolate Rate: %.2f", directionInterpolateRate_);
 
 #endif
@@ -669,6 +661,7 @@ void to_json(nlohmann::json& j, const PlayerStatus& _playerStatus) {
     j["wallRunRate"]              = _playerStatus.wallRunRate_;
     j["wallJumpDirection"]        = _playerStatus.wallJumpDirection_;
     j["jumpPower"]                = _playerStatus.jumpPower_;
+    j["fallPower"]                = _playerStatus.fallPower_;
     j["gearUpCoolTime"]           = _playerStatus.baseGearupCoolTime_;
     j["directionInterpolateRate"] = _playerStatus.directionInterpolateRate_;
 
@@ -680,6 +673,7 @@ void to_json(nlohmann::json& j, const PlayerStatus& _playerStatus) {
 void from_json(const nlohmann::json& j, PlayerStatus& _playerStatus) {
     j.at("baseSpeed").get_to(_playerStatus.baseSpeed_);
     j.at("jumpPower").get_to(_playerStatus.jumpPower_);
+    j.at("fallPower").get_to(_playerStatus.fallPower_);
     j.at("wallRunRate").get_to(_playerStatus.wallRunRate_);
     j.at("wallJumpDirection").get_to(_playerStatus.wallJumpDirection_);
     j.at("gearUpCoolTime").get_to(_playerStatus.baseGearupCoolTime_);
