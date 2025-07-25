@@ -57,6 +57,7 @@
 #include "system/render/SkinningMeshRenderSystem.h"
 #include "system/Transition/ChangeSceneByButton.h"
 #include "system/Transition/FallDetectionSystem.h"
+#include "system/Transition/SceneTransition.h"
 #include "system/Transition/TimerCountDown.h"
 #include "system/Transition/TransitionPlayerState.h"
 #include "system/Transition/TransitionSceneByTimer.h"
@@ -184,6 +185,8 @@ void MyGame::RegisterUsingComponents() {
     ecsManager->registerComponent<DistortionEffectParam>();
     ecsManager->registerComponent<DistortionEffectParam>();
     ecsManager->registerComponent<RadialBlurParam>();
+    ecsManager->registerComponent<DissolveEffectParam>();
+    ecsManager->registerComponent<RandomEffectParam>();
 
     ecsManager->registerComponent<ModelNodeAnimation>();
     ecsManager->registerComponent<SkinningAnimationComponent>();
@@ -232,6 +235,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<FallDetectionSystem>();
     ecsManager->registerSystem<UpdateButtonColorByState>();
     ecsManager->registerSystem<ChangeSceneByButton>();
+    ecsManager->registerSystem<SceneTransition>();
 
     /// =================================================================================================
     // Movement
@@ -285,4 +289,6 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<VignetteEffect>();
     ecsManager->registerSystem<RadialBlurEffect>();
     ecsManager->registerSystem<DistortionEffect>();
+    ecsManager->registerSystem<DissolveEffect>();
+    ecsManager->registerSystem<RandomEffect>();
 }

@@ -22,6 +22,8 @@ enum class PlayerMoveState {
     Count = 6 // 5
 };
 
+constexpr int32_t kDefaultPlayerGearLevel = 1;
+
 #pragma region "Playser State"
 class PlayerStatus; // 前方宣言
 class IPlayerMoveState {
@@ -84,7 +86,7 @@ public:
     PlayerMoveState TransitionState() const override;
 
 private:
-    bool isAnimatedJumpUp_ = false; // アニメーションのジャンプアップを行うかどうか
+    float releaseJumpPower_ = 0.0f; // ジャンプボタンを離した時のジャンプパワー
 };
 
 class PlayerFallDownState
@@ -136,17 +138,6 @@ protected:
     float forcedJumpTime_ = 0.6f;
     float leftTime_       = 0.0f; // 壁ジャンプの残り時間
 };
-
-// class PlayerSlideState
-//     : public IPlayerMoveState {
-// public:
-//     PlayerSlideState(int32_t _playerEntityID) : IPlayerMoveState(_playerEntityID, PlayerMoveState::SLIDE) {}
-//     ~PlayerSlideState() override {};
-//     void Initialize() override;
-//     void Update(float _deltaTime) override;
-//     void Finalize() override;
-//     PlayerMoveState TransitionState() const override;
-// };
 #pragma endregion
 
 class PlayerStatus
@@ -203,6 +194,7 @@ private:
     float currentSpeed_ = 0.0f; // 現在の速度
 
     float jumpPower_ = 0.0f; // ジャンプのパワー
+    float fallPower_ = 0.0f; // 落下のパワー
 
     float directionInterpolateRate_ = 0.1f;
 
@@ -281,6 +273,7 @@ public:
         return baseSpeed_;
     }
     float getJumpPower() const { return jumpPower_; }
+    float getFallPower() const { return fallPower_; }
 
     float getCurrentSpeed() const {
         return currentSpeed_;

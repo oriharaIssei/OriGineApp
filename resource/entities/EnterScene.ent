@@ -1,0 +1,35 @@
+{
+    "Components": {
+        "DissolveEffectParam": [
+            {
+                "edgeWidth": 0.10000000149011612,
+                "isActive": true,
+                "outLineColor": [
+                    0.01687765121459961,
+                    0.7635530233383179,
+                    1.0,
+                    1.0
+                ],
+                "textureFilePath": "./application/resource/Texture/waveNoise.png",
+                "threshold": 0.5,
+                "uvRotate": 0.0,
+                "uvScale": [
+                    1.0,
+                    1.0
+                ],
+                "uvTranslate": [
+                    0.0,
+                    0.0
+                ]
+            }
+        ]
+    },
+    "Name": "EnterScene",
+    "Systems": [
+        {
+            "SystemName": "DissolveEffect",
+            "SystemType": 7
+        }
+    ],
+    "isUnique": true
+}

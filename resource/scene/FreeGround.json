@@ -196,6 +196,28 @@
         },
         {
             "Components": {
+                "DirectionalLight": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "direction": [
+                            -0.4238532781600952,
+                            -0.7754343152046204,
+                            -0.46802783012390137
+                        ],
+                        "intensity": 1.809999942779541,
+                        "isActive": true
+                    }
+                ]
+            },
+            "Name": "light",
+            "isUnique": false
+        },
+        {
+            "Components": {
                 "CollisionPushBackInfo": [
                     {
                         "pushBackType": 1
@@ -271,9 +293,9 @@
                                     1.0
                                 ],
                                 "scale": [
-                                    1.0,
-                                    1.0,
-                                    1.0
+                                    1.2999999523162842,
+                                    1.2999999523162842,
+                                    1.2999999523162842
                                 ],
                                 "translate": [
                                     0.0,
@@ -289,9 +311,9 @@
                                     1.0
                                 ],
                                 "scale": [
-                                    1.0,
-                                    1.0,
-                                    1.0
+                                    1.2999999523162842,
+                                    1.2999999523162842,
+                                    1.2999999523162842
                                 ],
                                 "translate": [
                                     0.0,
@@ -304,18 +326,19 @@
                 ],
                 "PlayerInput": [
                     {
-                        "MaxJumpInputTime": 0.6000000238418579
+                        "MaxJumpInputTime": 0.05000000074505806
                     }
                 ],
                 "PlayerStatus": [
                     {
-                        "baseSpeed": 14.600000381469727,
-                        "coolTimeAddRateBase": 1.899999976158142,
-                        "coolTimeAddRateCommonRate": 0.029999999329447746,
-                        "directionInterpolateRate": 0.08100000023841858,
+                        "baseSpeed": 11.800000190734863,
+                        "coolTimeAddRateBase": 1.2000000476837158,
+                        "coolTimeAddRateCommonRate": 0.07999999821186066,
+                        "directionInterpolateRate": 0.07999999821186066,
+                        "fallPower": 4.099999904632568,
                         "gearUpCoolTime": 0.6000000238418579,
-                        "jumpPower": 8.600000381469727,
-                        "speedUpRateBase": 13.5,
+                        "jumpPower": 0.15000000596046448,
+                        "speedUpRateBase": 19.200000762939453,
                         "speedUpRateCommonRate": -1.100000023841858,
                         "wallJumpDirection": [
                             -0.14878620207309723,
@@ -332,7 +355,8 @@
                             0.0,
                             0.0
                         ],
-                        "mass": 0.18000000715255737,
+                        "mass": 0.2800000011920929,
+                        "maxFallSpeed": 10.0,
                         "useGravity": true,
                         "velocity": [
                             0.0,
@@ -424,9 +448,9 @@
                 "Transform": [
                     {
                         "rotate": [
+                            -0.0,
                             0.0,
-                            0.0,
-                            0.0,
+                            -0.0,
                             1.0
                         ],
                         "scale": [
@@ -436,7 +460,7 @@
                         ],
                         "translate": [
                             0.0,
-                            2.0799999237060547,
+                            10.75355339050293,
                             0.0
                         ]
                     }
@@ -490,28 +514,6 @@
                 }
             ],
             "isUnique": true
-        },
-        {
-            "Components": {
-                "DirectionalLight": [
-                    {
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "direction": [
-                            -0.4238532781600952,
-                            -0.7754343152046204,
-                            -0.46802783012390137
-                        ],
-                        "intensity": 1.809999942779541,
-                        "isActive": true
-                    }
-                ]
-            },
-            "Name": "light",
-            "isUnique": false
         },
         {
             "Components": {
@@ -573,11 +575,11 @@
                         "followOffset": [
                             0.0,
                             0.05999999865889549,
-                            -2.9000000953674316
+                            -4.199999809265137
                         ],
                         "followTargetOffset": [
                             0.0,
-                            2.140000104904175,
+                            2.440000057220459,
                             0.0
                         ],
                         "forward": [
@@ -585,13 +587,13 @@
                             0.0,
                             1.0
                         ],
-                        "fovYInterpolate": 0.08399999886751175,
-                        "fovYRate": 0.009999999776482582,
-                        "fovYRateCommonRate": 0.009999999776482582,
-                        "interTargetInterpolation": 0.33000001311302185,
+                        "fovYInterpolate": 0.10000000149011612,
+                        "fovYRate": 0.06199999898672104,
+                        "fovYRateCommonRate": 0.028999999165534973,
+                        "interTargetInterpolation": 0.3700000047683716,
                         "maxRotateX": 0.5899999737739563,
                         "minRotateX": -0.7699999809265137,
-                        "rotateSensitivity": 0.47999998927116394,
+                        "rotateSensitivity": 1.0,
                         "rotateSpeedMouse": 0.007000000216066837,
                         "rotateSpeedPadStick": 0.10999999940395355
                     }
@@ -628,6 +630,51 @@
                 }
             ],
             "isUnique": true
+        },
+        {
+            "Components": {
+                "DissolveEffectParam": [
+                    {
+                        "edgeWidth": 0.0,
+                        "isActive": true,
+                        "outLineColor": [
+                            0.7130801677703857,
+                            0.3159216046333313,
+                            0.3159216046333313,
+                            1.0
+                        ],
+                        "textureFilePath": "./application/resource/Texture/bioNoise.png",
+                        "threshold": 0.0,
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.059999942779541,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "RandomEffectParam": [
+                    {
+                        "blendMode": 1,
+                        "maxTime": 1000.0
+                    }
+                ]
+            },
+            "Name": "Entity",
+            "Systems": [
+                {
+                    "SystemName": "DissolveEffect",
+                    "SystemType": 7
+                },
+                {
+                    "SystemName": "RandomEffect",
+                    "SystemType": 7
+                }
+            ],
+            "isUnique": false
         }
     ],
     "Systems": [
@@ -643,6 +690,9 @@
             }
         },
         {
+            "ButtonInputSystem": {
+                "Priority": 0
+            },
             "CameraInputSystem": {
                 "Priority": 1
             },
@@ -651,11 +701,20 @@
             }
         },
         {
+            "ChangeSceneByButton": {
+                "Priority": 1
+            },
             "FallDetectionSystem": {
                 "Priority": 4
             },
+            "TimerCountDown": {
+                "Priority": 0
+            },
             "TransitionPlayerState": {
                 "Priority": 5
+            },
+            "UpdateButtonColorByState": {
+                "Priority": 0
             }
         },
         {
@@ -684,14 +743,29 @@
             }
         },
         {
+            "CameraActionSystem": {
+                "Priority": 1
+            },
+            "EffectOnPlayerGearup": {
+                "Priority": 0
+            },
+            "EmitterWorkSystem": {
+                "Priority": 1
+            },
+            "PrimitiveNodeAnimationWorkSystem": {
+                "Priority": 1
+            },
             "SkinningAnimationSystem": {
+                "Priority": 0
+            },
+            "TextureEffectAnimation": {
+                "Priority": 2
+            },
+            "TimerForSprite": {
                 "Priority": 0
             }
         },
         {
-            "ColliderRenderingSystem": {
-                "Priority": 10
-            },
             "EffectTexturedMeshRenderSystem": {
                 "Priority": 0
             },
@@ -700,9 +774,6 @@
             },
             "ParticleRenderSystem": {
                 "Priority": 3
-            },
-            "SkeletonRenderSystem": {
-                "Priority": 10
             },
             "SkinningMeshRenderSystem": {
                 "Priority": 0
@@ -717,6 +788,19 @@
                 "Priority": 0
             }
         },
-        {}
+        {
+            "DissolveEffect": {
+                "Priority": 0
+            },
+            "DistortionEffect": {
+                "Priority": 0
+            },
+            "RandomEffect": {
+                "Priority": 0
+            },
+            "VignetteEffect": {
+                "Priority": 0
+            }
+        }
     ]
 }
