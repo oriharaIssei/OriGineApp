@@ -26,9 +26,9 @@
                                 1.0
                             ],
                             "translate": [
-                                0.27000001072883606,
-                                4.34999942779541,
-                                -15.960001945495605
+                                0.0,
+                                0.0,
+                                0.0
                             ]
                         }
                     }
@@ -54,6 +54,96 @@
                         "activeTime": 2.299999952316284,
                         "blendMode": 1,
                         "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -7774,6 +7864,86 @@
                             {
                                 "time": 0.0,
                                 "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
                                     0.10000000149011612,
                                     0.10000000149011612,
                                     0.10000000149011612
@@ -7872,6 +8042,86 @@
                         "updateSettings": 12578,
                         "uvInterpolationType": 0,
                         "velocityCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -13644,6 +13894,29 @@
                         "pushBackType": 1
                     }
                 ],
+                "DissolveEffectParam": [
+                    {
+                        "edgeWidth": 0.0010000000474974513,
+                        "isActive": false,
+                        "outLineColor": [
+                            0.01568627543747425,
+                            0.7647058963775635,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "./application/resource/Texture/bioNoise.png",
+                        "threshold": 0.0,
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
                 "Emitter": [],
                 "ModelMeshRenderer": [
                     {
@@ -13902,6 +14175,10 @@
                     "SystemType": 2
                 },
                 {
+                    "SystemName": "SceneTransition",
+                    "SystemType": 2
+                },
+                {
                     "SystemName": "TransitionPlayerState",
                     "SystemType": 2
                 },
@@ -13932,6 +14209,10 @@
                 {
                     "SystemName": "SkinningMeshRenderSystem",
                     "SystemType": 6
+                },
+                {
+                    "SystemName": "DissolveEffect",
+                    "SystemType": 7
                 }
             ],
             "isUnique": true
@@ -14091,6 +14372,125 @@
                 }
             ],
             "isUnique": false
+        },
+        {
+            "Components": {
+                "DissolveEffectParam": [
+                    {
+                        "edgeWidth": 0.0010000000474974513,
+                        "isActive": true,
+                        "outLineColor": [
+                            0.01687765121459961,
+                            0.7635530233383179,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "./application/resource/Texture/waveNoise.png",
+                        "threshold": 0.0,
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "EnterScene",
+            "Systems": [
+                {
+                    "SystemName": "DissolveEffect",
+                    "SystemType": 7
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "Button": [
+                    {
+                        "hoverColor": [
+                            0.800000011920929,
+                            0.800000011920929,
+                            0.800000011920929,
+                            1.0
+                        ],
+                        "normalColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "pressColor": [
+                            0.6000000238418579,
+                            0.6000000238418579,
+                            0.6000000238418579,
+                            1.0
+                        ],
+                        "releaseColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "shortKeys": [
+                            1
+                        ],
+                        "shortcutPadButton": []
+                    }
+                ],
+                "DissolveEffectParam": [
+                    {
+                        "edgeWidth": 0.004000000189989805,
+                        "isActive": false,
+                        "outLineColor": [
+                            0.01568627543747425,
+                            0.7647058963775635,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "./application/resource/Texture/bioNoise.png",
+                        "threshold": 0.0,
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "SceneChanger": [
+                    {
+                        "nextSceneName": "Title"
+                    }
+                ]
+            },
+            "Name": "Entity",
+            "Systems": [
+                {
+                    "SystemName": "ButtonInputSystem",
+                    "SystemType": 1
+                },
+                {
+                    "SystemName": "ChangeSceneByButton",
+                    "SystemType": 2
+                },
+                {
+                    "SystemName": "SceneTransition",
+                    "SystemType": 2
+                },
+                {
+                    "SystemName": "DissolveEffect",
+                    "SystemType": 7
+                }
+            ],
+            "isUnique": false
         }
     ],
     "Systems": [
@@ -14110,10 +14510,10 @@
                 "Priority": 0
             },
             "CameraInputSystem": {
-                "Priority": 1
+                "Priority": 3
             },
             "PlayerInputSystem": {
-                "Priority": 0
+                "Priority": 1
             }
         },
         {
@@ -14122,6 +14522,9 @@
             },
             "FallDetectionSystem": {
                 "Priority": 4
+            },
+            "SceneTransition": {
+                "Priority": 0
             },
             "TimerCountDown": {
                 "Priority": 0
@@ -14182,6 +14585,9 @@
             }
         },
         {
+            "ColliderRenderingSystem": {
+                "Priority": 0
+            },
             "EffectTexturedMeshRenderSystem": {
                 "Priority": 0
             },
@@ -14205,11 +14611,23 @@
             }
         },
         {
+            "DissolveEffect": {
+                "Priority": 10
+            },
             "DistortionEffect": {
                 "Priority": 0
             },
-            "VignetteEffect": {
+            "GrayscaleEffect": {
                 "Priority": 0
+            },
+            "RandomEffect": {
+                "Priority": 0
+            },
+            "SmoothingEffect": {
+                "Priority": 0
+            },
+            "VignetteEffect": {
+                "Priority": 10
             }
         }
     ]

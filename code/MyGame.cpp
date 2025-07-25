@@ -57,6 +57,7 @@
 #include "system/render/SkinningMeshRenderSystem.h"
 #include "system/Transition/ChangeSceneByButton.h"
 #include "system/Transition/FallDetectionSystem.h"
+#include "system/Transition/SceneTransition.h"
 #include "system/Transition/TimerCountDown.h"
 #include "system/Transition/TransitionPlayerState.h"
 #include "system/Transition/TransitionSceneByTimer.h"
@@ -234,6 +235,7 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<FallDetectionSystem>();
     ecsManager->registerSystem<UpdateButtonColorByState>();
     ecsManager->registerSystem<ChangeSceneByButton>();
+    ecsManager->registerSystem<SceneTransition>();
 
     /// =================================================================================================
     // Movement
