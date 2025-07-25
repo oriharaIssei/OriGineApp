@@ -75,9 +75,9 @@
                             1.0
                         ],
                         "scale": [
-                            1.0,
-                            1.0,
-                            1.0
+                            1.2999999523162842,
+                            1.2999999523162842,
+                            1.2999999523162842
                         ],
                         "translate": [
                             0.0,
@@ -93,9 +93,9 @@
                             1.0
                         ],
                         "scale": [
-                            1.0,
-                            1.0,
-                            1.0
+                            1.2999999523162842,
+                            1.2999999523162842,
+                            1.2999999523162842
                         ],
                         "translate": [
                             0.0,
@@ -108,18 +108,19 @@
         ],
         "PlayerInput": [
             {
-                "MaxJumpInputTime": 0.6000000238418579
+                "MaxJumpInputTime": 0.05000000074505806
             }
         ],
         "PlayerStatus": [
             {
-                "baseSpeed": 14.600000381469727,
-                "coolTimeAddRateBase": 1.899999976158142,
-                "coolTimeAddRateCommonRate": 0.029999999329447746,
-                "directionInterpolateRate": 0.08100000023841858,
+                "baseSpeed": 11.800000190734863,
+                "coolTimeAddRateBase": 1.2000000476837158,
+                "coolTimeAddRateCommonRate": 0.07999999821186066,
+                "directionInterpolateRate": 0.07999999821186066,
+                "fallPower": 4.099999904632568,
                 "gearUpCoolTime": 0.6000000238418579,
-                "jumpPower": 8.600000381469727,
-                "speedUpRateBase": 13.5,
+                "jumpPower": 0.15000000596046448,
+                "speedUpRateBase": 19.200000762939453,
                 "speedUpRateCommonRate": -1.100000023841858,
                 "wallJumpDirection": [
                     -0.14878620207309723,
@@ -136,7 +137,8 @@
                     0.0,
                     0.0
                 ],
-                "mass": 0.18000000715255737,
+                "mass": 0.2800000011920929,
+                "maxFallSpeed": 10.0,
                 "useGravity": true,
                 "velocity": [
                     0.0,
@@ -240,7 +242,7 @@
                 ],
                 "translate": [
                     0.0,
-                    2.0799999237060547,
+                    6.3019118309021,
                     0.0
                 ]
             }

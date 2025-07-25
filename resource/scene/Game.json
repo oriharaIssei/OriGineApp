@@ -26,9 +26,9 @@
                                 1.0
                             ],
                             "translate": [
-                                0.0,
-                                0.0,
-                                0.0
+                                0.27000001072883606,
+                                4.34999942779541,
+                                -15.960001945495605
                             ]
                         }
                     }
@@ -54,6 +54,51 @@
                         "activeTime": 2.299999952316284,
                         "blendMode": 1,
                         "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -7689,6 +7734,46 @@
                             {
                                 "time": 0.0,
                                 "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
                                     0.10000000149011612,
                                     0.10000000149011612,
                                     0.10000000149011612
@@ -7787,6 +7872,46 @@
                         "updateSettings": 12578,
                         "uvInterpolationType": 0,
                         "velocityCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -13622,7 +13747,7 @@
                 ],
                 "PlayerInput": [
                     {
-                        "MaxJumpInputTime": 0.28999999165534973
+                        "MaxJumpInputTime": 0.05000000074505806
                     }
                 ],
                 "PlayerStatus": [
@@ -13631,9 +13756,9 @@
                         "coolTimeAddRateBase": 1.2000000476837158,
                         "coolTimeAddRateCommonRate": 0.07999999821186066,
                         "directionInterpolateRate": 0.07999999821186066,
-                        "fallPower": 1.2999999523162842,
+                        "fallPower": 4.099999904632568,
                         "gearUpCoolTime": 0.6000000238418579,
-                        "jumpPower": 0.05000000074505806,
+                        "jumpPower": 0.15000000596046448,
                         "speedUpRateBase": 19.200000762939453,
                         "speedUpRateCommonRate": -1.100000023841858,
                         "wallJumpDirection": [
@@ -14057,9 +14182,6 @@
             }
         },
         {
-            "ColliderRenderingSystem": {
-                "Priority": 10
-            },
             "EffectTexturedMeshRenderSystem": {
                 "Priority": 0
             },
@@ -14068,9 +14190,6 @@
             },
             "ParticleRenderSystem": {
                 "Priority": 3
-            },
-            "SkeletonRenderSystem": {
-                "Priority": 10
             },
             "SkinningMeshRenderSystem": {
                 "Priority": 0
