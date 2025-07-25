@@ -184,6 +184,8 @@ void MyGame::RegisterUsingComponents() {
     ecsManager->registerComponent<DistortionEffectParam>();
     ecsManager->registerComponent<DistortionEffectParam>();
     ecsManager->registerComponent<RadialBlurParam>();
+    ecsManager->registerComponent<DissolveEffectParam>();
+    ecsManager->registerComponent<RandomEffectParam>();
 
     ecsManager->registerComponent<ModelNodeAnimation>();
     ecsManager->registerComponent<SkinningAnimationComponent>();
@@ -285,4 +287,6 @@ void MyGame::RegisterUsingSystems() {
     ecsManager->registerSystem<VignetteEffect>();
     ecsManager->registerSystem<RadialBlurEffect>();
     ecsManager->registerSystem<DistortionEffect>();
+    ecsManager->registerSystem<DissolveEffect>();
+    ecsManager->registerSystem<RandomEffect>();
 }
