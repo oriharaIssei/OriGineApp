@@ -28,6 +28,6 @@ void ChangeSceneByButton::UpdateEntity(GameEntity* _entity) {
 
     if (button->isReleased()) {
         SceneChanger* sceneChanger = getComponent<SceneChanger>(_entity);
-        sceneManager_->changeScene(sceneChanger->getNextSceneName());
+        sceneChanger->ChangeScene();
     }
 }

@@ -58,11 +58,11 @@
                 "followOffset": [
                     0.0,
                     0.05999999865889549,
-                    -2.9000000953674316
+                    -4.199999809265137
                 ],
                 "followTargetOffset": [
                     0.0,
-                    2.140000104904175,
+                    2.440000057220459,
                     0.0
                 ],
                 "forward": [
@@ -71,12 +71,12 @@
                     1.0
                 ],
                 "fovYInterpolate": 0.10000000149011612,
-                "fovYRate": 0.009999999776482582,
-                "fovYRateCommonRate": 0.009999999776482582,
-                "interTargetInterpolation": 0.33000001311302185,
+                "fovYRate": 0.06199999898672104,
+                "fovYRateCommonRate": 0.028999999165534973,
+                "interTargetInterpolation": 0.3700000047683716,
                 "maxRotateX": 0.5899999737739563,
                 "minRotateX": -0.7699999809265137,
-                "rotateSensitivity": 0.47999998927116394,
+                "rotateSensitivity": 1.0,
                 "rotateSpeedMouse": 0.007000000216066837,
                 "rotateSpeedPadStick": 0.10999999940395355
             }

@@ -50,7 +50,7 @@ void EffectOnPlayerGearup::UpdateEntity(GameEntity* _entity) {
             }
         }
 
-        if (playerStatus->getGearLevel() >= 3 && playerStatus->getGearLevel() % 2 == 0) {
+        if (playerStatus->getGearLevel() >= 2 && playerStatus->getGearLevel() % 2 == 0) {
             isEffectPlaying_ = true; // ギアアップの衝撃波を再生する
 
             // shockWaveRingの初期化Add commentMore actions

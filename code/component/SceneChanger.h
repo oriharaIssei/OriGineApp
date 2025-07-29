@@ -19,10 +19,18 @@ public:
 
     virtual void Finalize() override;
 
+    /// <summary>
+    /// SceneTransitionSystem を使用する場合に呼び出す
+    /// </summary>
+    void ChangeScene() {
+        isSceneChanged_ = true;
+    }
 private:
+    bool isSceneChanged_ = false;
     std::string nextSceneName_;
 
 public:
+    bool isChanged() const { return isSceneChanged_; }
     void setNextSceneName(const std::string& _nextSceneName) { nextSceneName_ = _nextSceneName; }
     const std::string& getNextSceneName() const { return nextSceneName_; }
 };

@@ -111,6 +111,7 @@
       <Filter>system\effect</Filter>
     </ClInclude>
     <ClInclude Include="code\MyEditor.h" />
+    <ClInclude Include="code\system\Transition\SceneTransition.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -189,5 +190,6 @@
       <Filter>system\effect</Filter>
     </ClCompile>
     <ClCompile Include="code\MyEditor.cpp" />
+    <ClCompile Include="code\system\Transition\SceneTransition.cpp" />
   </ItemGroup>
 </Project>

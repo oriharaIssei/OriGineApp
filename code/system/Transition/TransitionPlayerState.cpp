@@ -25,7 +25,7 @@ void TransitionPlayerState::UpdateEntity(GameEntity* _entity) {
     if (playerStatus->isGoal()) {
         SceneChanger* sceneChanger = getComponent<SceneChanger>(_entity);
         if (sceneChanger) {
-            SceneManager::getInstance()->changeScene(sceneChanger->getNextSceneName());
+            sceneChanger->ChangeScene();
             return;
         }
     }
