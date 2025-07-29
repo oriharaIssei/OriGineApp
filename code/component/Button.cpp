@@ -10,7 +10,6 @@
 #include "myGui/MyGui.h"
 #endif // _DEBUG
 
-
 void to_json(nlohmann::json& j, const Button& r) {
     /// ============ color ============ ///
     nlohmann::json normalColorJson  = nlohmann::json::object();
@@ -82,20 +81,21 @@ Button::~Button() {
 
 void Button::Initialize(GameEntity* /*_entity*/) {}
 
-bool Button::Edit() {
-    bool isChanged = false;
+void Button::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
+
 #ifdef _DEBUG
     if (ImGui::TreeNode("Button Colors")) {
-        isChanged |= ColorEditGuiCommand("Normal Color",  normalColor_);
-        isChanged |= ColorEditGuiCommand("Hover Color",   hoverColor_);
-        isChanged |= ColorEditGuiCommand("Press Color",   pressColor_);
-        isChanged |= ColorEditGuiCommand("Release Color", releaseColor_);
+        ColorEditGuiCommand("Normal Color##" + _parentLabel, normalColor_);
+        ColorEditGuiCommand("Hover Color##" + _parentLabel, hoverColor_);
+        ColorEditGuiCommand("Press Color##" + _parentLabel, pressColor_);
+        ColorEditGuiCommand("Release Color##" + _parentLabel, releaseColor_);
 
         ImGui::TreePop();
     }
 
     // key
-    if (ImGui::TreeNode("Shortcut Key")) {
+    std::string label = "Shortcut Key##" + _parentLabel;
+    if (ImGui::TreeNode(label.c_str())) {
         // key
         ImGui::Text("Key");
         std::string comboLabel = "";
@@ -103,14 +103,13 @@ bool Button::Edit() {
             ImGui::PushID(i);
             ImGui::Text("Key%d :: ", i);
             ImGui::SameLine();
-            comboLabel = "##Key" + std::to_string(i);
+            comboLabel = "##Key" + std::to_string(i) + _parentLabel;
             if (ImGui::BeginCombo(comboLabel.c_str(), keyNameMap.find(shortcutKey_[i])->second.c_str())) {
                 for (auto& key : keyNameMap) {
                     bool isSelected = (shortcutKey_[i] == key.first);
                     if (ImGui::Selectable(key.second.c_str(), isSelected)) {
                         auto command = std::make_unique<SetterCommand<Key>>(&shortcutKey_[i], key.first);
                         EditorController::getInstance()->pushCommand(std::move(command));
-                        isChanged = true;
                     }
                     if (isSelected) {
                         ImGui::SetItemDefaultFocus();
@@ -121,14 +120,15 @@ bool Button::Edit() {
             ImGui::PopID();
         }
         // add
-        if (ImGui::Button("Add Key")) {
+        label = "Add Key##" + _parentLabel;
+        if (ImGui::Button(label.c_str())) {
             auto command = std::make_unique<AddElementCommand<std::vector<Key>>>(&shortcutKey_, Key::ESCAPE);
             EditorController::getInstance()->pushCommand(std::move(command));
-            isChanged = true;
         }
         ImGui::SameLine();
         // remove
-        if (ImGui::Button("Remove Key")) {
+        label = "Remove Key##" + _parentLabel;
+        if (ImGui::Button(label.c_str())) {
             if (shortcutKey_.size() > 0) {
                 auto command = std::make_unique<EraseElementCommand<std::vector<Key>>>(&shortcutKey_, shortcutKey_.end() - 1);
                 EditorController::getInstance()->pushCommand(std::move(command));
@@ -139,7 +139,8 @@ bool Button::Edit() {
     }
 
     // pad button
-    if (ImGui::TreeNode("Shortcut PadButton")) {
+    label = "Shortcut PadButton##" + _parentLabel;
+    if (ImGui::TreeNode(label.c_str())) {
         // pad button
         ImGui::Text("PadButton");
         std::string comboLabel = "";
@@ -147,14 +148,13 @@ bool Button::Edit() {
             ImGui::PushID(i);
             ImGui::Text("PadButton%d :: ", i);
             ImGui::SameLine();
-            comboLabel = "##PadButton" + std::to_string(i);
+            comboLabel = "##PadButton" + std::to_string(i) + _parentLabel;
             if (ImGui::BeginCombo(comboLabel.c_str(), padButtonNameMap.find(shortcutPadButton_[i])->second.c_str())) {
                 for (auto& button : padButtonNameMap) {
                     bool isSelected = (shortcutPadButton_[i] == button.first);
                     if (ImGui::Selectable(button.second.c_str(), isSelected)) {
                         auto command = std::make_unique<SetterCommand<PadButton>>(&shortcutPadButton_[i], button.first);
                         EditorController::getInstance()->pushCommand(std::move(command));
-                        isChanged = true;
                     }
                     if (isSelected) {
                         ImGui::SetItemDefaultFocus();
@@ -164,19 +164,21 @@ bool Button::Edit() {
             }
             ImGui::PopID();
         }
+
         // add
-        if (ImGui::Button("Add PadButton")) {
+        label = "Add PadButton##" + _parentLabel;
+        if (ImGui::Button(label.c_str())) {
             auto command = std::make_unique<AddElementCommand<std::vector<PadButton>>>(&shortcutPadButton_, PadButton::UP);
             EditorController::getInstance()->pushCommand(std::move(command));
-            isChanged = true;
         }
         ImGui::SameLine();
+
         // remove
-        if (ImGui::Button("Remove PadButton")) {
+        label = "Remove PadButton##" + _parentLabel;
+        if (ImGui::Button(label.c_str())) {
             if (shortcutPadButton_.size() > 0) {
                 auto command = std::make_unique<EraseElementCommand<std::vector<PadButton>>>(&shortcutPadButton_, shortcutPadButton_.end() - 1);
                 EditorController::getInstance()->pushCommand(std::move(command));
-                isChanged = true;
             }
         }
 
@@ -184,8 +186,6 @@ bool Button::Edit() {
     }
 
 #endif // _DEBUG
-
-    return isChanged;
 }
 
 void Button::Finalize() {}

@@ -24,13 +24,13 @@ SceneChanger::~SceneChanger() {
 
 void SceneChanger::Initialize(GameEntity* /* _entity*/) {}
 
-bool SceneChanger::Edit() {
-    bool changed = false;
+void SceneChanger::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
 
     ImGui::Text("Next Scene Name :");
     ImGui::SameLine();
-    if (ImGui::BeginCombo("##NextSceneName", nextSceneName_.c_str())) {
+    std::string label = "##NextSceneName" + _parentLabel;
+    if (ImGui::BeginCombo(label.c_str(), nextSceneName_.c_str())) {
         for (const auto& [directory, sceneName] : myfs::searchFile(kApplicationResourceDirectory + "/scene/", "json")) {
             bool isSelected = nextSceneName_ == sceneName;
             if (ImGui::Selectable(sceneName.c_str(), isSelected)) {
@@ -38,7 +38,6 @@ bool SceneChanger::Edit() {
                 EditorController::getInstance()->pushCommand(
                     std::make_unique<SetterCommand<std::string>>(&nextSceneName_, sceneName));
 
-                changed = true;
             }
             if (isSelected) {
                 ImGui::SetItemDefaultFocus();
@@ -48,8 +47,6 @@ bool SceneChanger::Edit() {
     }
 
 #endif // _DEBUG
-
-    return changed;
 }
 
 void SceneChanger::Finalize() {}

@@ -38,17 +38,19 @@ void MyGame::Initialize(const std::string& _commandLine) {
     variables_->LoadAllFile();
     engine_->Initialize();
 
+    RegisterUsingComponents();
+    RegisterUsingSystems();
+
     if (!_commandLine.empty()) {
         // コマンドライン引数がある場合、シーン名を設定する
-        sceneManager_->getStartupSceneNameRef().setValue(_commandLine);
+        sceneManager_->Initialize(_commandLine);
         LOG_DEBUG("GetCommandLine : {}", _commandLine);
     } else {
+        // コマンドライン引数がない場合、デフォルトのシーン名を使用する
+        sceneManager_->Initialize();
         LOG_DEBUG("MyGame : No command line argument detected. Using default startup scene '{}'.", sceneManager_->getStartupSceneNameRef().GetValue()->c_str());
     }
 
-    RegisterUsingComponents();
-    RegisterUsingSystems();
-    sceneManager_->Initialize();
 }
 
 void MyGame::Finalize() {

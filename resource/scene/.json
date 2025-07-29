@@ -35,7 +35,7 @@
                             "translate": [
                                 0.0,
                                 0.0,
-                                0.0
+                                -0.07999999821186066
                             ]
                         }
                     }
@@ -56,15 +56,15 @@
         [
             {
                 "Priority": 0,
-                "SystemName": "SpriteRenderSystem"
-            },
-            {
-                "Priority": 0,
                 "SystemName": "BackGroundSpriteRenderSystem"
             },
             {
                 "Priority": 0,
-                "SystemName": "ParticleRenderSystem"
+                "SystemName": "SpriteRenderSystem"
+            },
+            {
+                "Priority": 0,
+                "SystemName": "LineRenderSystem"
             },
             {
                 "Priority": 0,
@@ -72,7 +72,7 @@
             },
             {
                 "Priority": 0,
-                "SystemName": "LineRenderSystem"
+                "SystemName": "ParticleRenderSystem"
             },
             {
                 "Priority": 0,

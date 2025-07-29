@@ -16,6 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
+    <ClInclude Include="code\MyEditor.h" />
     <ClInclude Include="code\MyGame.h" />
     <ClInclude Include="code\component\Button.h">
       <Filter>component</Filter>
@@ -32,10 +33,10 @@
     <ClInclude Include="code\system\Transition\UpdateButtonColorByState.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\MyEditor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
+    <ClCompile Include="code\MyEditor.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
     <ClCompile Include="code\component\Button.cpp">
       <Filter>component</Filter>
@@ -53,6 +54,5 @@
     <ClCompile Include="code\system\Transition\UpdateButtonColorByState.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\MyEditor.cpp" />
   </ItemGroup>
 </Project>
