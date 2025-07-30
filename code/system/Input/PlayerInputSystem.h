@@ -6,7 +6,7 @@ class Input;
 class PlayerInputSystem
     : public ISystem {
 public:
-    PlayerInputSystem() : ISystem(SystemType::Input) {}
+    PlayerInputSystem() : ISystem(SystemCategory::Input) {}
     ~PlayerInputSystem() {}
 
     void Initialize() override;

@@ -38,7 +38,7 @@
             "Systems": [
                 {
                     "SystemName": "SkyboxRender",
-                    "SystemType": 6
+                    "SystemCategory": 6
                 }
             ],
             "isUnique": true
@@ -203,11 +203,11 @@
             "Systems": [
                 {
                     "SystemName": "SkinningAnimationSystem",
-                    "SystemType": 5
+                    "SystemCategory": 5
                 },
                 {
                     "SystemName": "SkinningMeshRenderSystem",
-                    "SystemType": 6
+                    "SystemCategory": 6
                 }
             ],
             "isUnique": false

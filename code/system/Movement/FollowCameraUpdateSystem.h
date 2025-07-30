@@ -6,7 +6,7 @@
 class FollowCameraUpdateSystem
     : public ISystem {
 public:
-    FollowCameraUpdateSystem() : ISystem(SystemType::Movement) {}
+    FollowCameraUpdateSystem() : ISystem(SystemCategory::Movement) {}
     ~FollowCameraUpdateSystem() = default;
     void Initialize() override;
     void Finalize() override;

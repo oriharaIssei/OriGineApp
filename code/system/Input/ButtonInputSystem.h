@@ -6,7 +6,7 @@ class Input;
 class ButtonInputSystem
     : public ISystem {
 public:
-    ButtonInputSystem() : ISystem(SystemType::Input) {}
+    ButtonInputSystem() : ISystem(SystemCategory::Input) {}
     ~ButtonInputSystem() {}
 
     virtual void Initialize();

@@ -4,7 +4,7 @@
 class UpdateButtonColorByState
     : public ISystem {
 public:
-    UpdateButtonColorByState() : ISystem(SystemType::StateTransition) {}
+    UpdateButtonColorByState() : ISystem(SystemCategory::StateTransition) {}
     ~UpdateButtonColorByState() {}
 
     virtual void Initialize();

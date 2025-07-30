@@ -4,7 +4,7 @@
 class TransitionPlayerState
     : public ISystem {
 public:
-    TransitionPlayerState() : ISystem(SystemType::StateTransition) {};
+    TransitionPlayerState() : ISystem(SystemCategory::StateTransition) {};
     ~TransitionPlayerState() = default;
 
     void Initialize() override{}

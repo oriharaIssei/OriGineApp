@@ -1,6 +1,9 @@
 #pragma once
 #include "component/IComponent.h"
 
+/// engine
+#include "scene/Scene.h"
+
 /// util
 #include "util/EnumBitMask.h"
 
@@ -28,7 +31,7 @@ constexpr int32_t kDefaultPlayerGearLevel = 1;
 class PlayerStatus; // 前方宣言
 class IPlayerMoveState {
 public:
-    IPlayerMoveState(int32_t _playerEntityID, PlayerMoveState _state);
+    IPlayerMoveState(Scene* _scene, int32_t _playerEntityID, PlayerMoveState _state);
     virtual ~IPlayerMoveState();
 
     virtual void Initialize()             = 0;
@@ -38,6 +41,7 @@ public:
     virtual PlayerMoveState TransitionState() const = 0;
 
 protected:
+    Scene* scene_           = nullptr; // シーンへのポインタ
     int32_t playerEntityID_ = -1; // プレイヤーのエンティティID
 private:
     // このクラスが表す移動状態
@@ -52,9 +56,10 @@ public:
     }
 };
 
-class PlayerIdleState : public IPlayerMoveState {
+class PlayerIdleState
+    : public IPlayerMoveState {
 public:
-    PlayerIdleState(int32_t _playerEntityID) : IPlayerMoveState(_playerEntityID, PlayerMoveState::IDLE) {}
+    PlayerIdleState(Scene* _scene, int32_t _playerEntityID) : IPlayerMoveState(_scene,_playerEntityID, PlayerMoveState::IDLE) {}
     ~PlayerIdleState() override {};
 
     void Initialize() override;
@@ -66,7 +71,7 @@ public:
 class PlayerDashState
     : public IPlayerMoveState {
 public:
-    PlayerDashState(int32_t _playerEntityID) : IPlayerMoveState(_playerEntityID, PlayerMoveState::DASH) {}
+    PlayerDashState(Scene* _scene, int32_t _playerEntityID) : IPlayerMoveState(_scene, _playerEntityID, PlayerMoveState::DASH) {}
     ~PlayerDashState() override {};
 
     void Initialize() override;
@@ -78,7 +83,7 @@ public:
 class PlayerJumpState
     : public IPlayerMoveState {
 public:
-    PlayerJumpState(int32_t _playerEntityID) : IPlayerMoveState(_playerEntityID, PlayerMoveState::JUMP) {}
+    PlayerJumpState(Scene* _scene, int32_t _playerEntityID) : IPlayerMoveState(_scene, _playerEntityID, PlayerMoveState::JUMP) {}
     ~PlayerJumpState() override {};
     void Initialize() override;
     void Update(float _deltaTime) override;
@@ -92,7 +97,7 @@ private:
 class PlayerFallDownState
     : public IPlayerMoveState {
 public:
-    PlayerFallDownState(int32_t _playerEntityID) : IPlayerMoveState(_playerEntityID, PlayerMoveState::FALL_DOWN) {}
+    PlayerFallDownState(Scene* _scene, int32_t _playerEntityID) : IPlayerMoveState(_scene, _playerEntityID, PlayerMoveState::FALL_DOWN) {}
     ~PlayerFallDownState() override {};
     void Initialize() override;
     void Update(float _deltaTime) override;
@@ -105,7 +110,7 @@ private:
 class PlayerWallRunState
     : public IPlayerMoveState {
 public:
-    PlayerWallRunState(int32_t _playerEntityID) : IPlayerMoveState(_playerEntityID, PlayerMoveState::DASH) {}
+    PlayerWallRunState(Scene* _scene, int32_t _playerEntityID) : IPlayerMoveState(_scene, _playerEntityID, PlayerMoveState::DASH) {}
     ~PlayerWallRunState() override {};
 
     void Initialize() override;
@@ -123,7 +128,7 @@ protected:
 class PlayerWallJumpState
     : public IPlayerMoveState {
 public:
-    PlayerWallJumpState(int32_t _playerEntityID) : IPlayerMoveState(_playerEntityID, PlayerMoveState::WALL_JUMP) {}
+    PlayerWallJumpState(Scene* _scene, int32_t _playerEntityID) : IPlayerMoveState(_scene, _playerEntityID, PlayerMoveState::WALL_JUMP) {}
     ~PlayerWallJumpState() override {};
 
     void Initialize() override;
@@ -150,8 +155,8 @@ public:
     ~PlayerStatus() {}
 
     void Initialize(GameEntity* _entity) override;
-    bool Edit() override;
-    void Debug() override;
+    void Edit(Scene* _scene, GameEntity* _entity,  const std::string& _parentLabel) override;
+    void Debug(Scene* _scene, GameEntity* _entity, const std::string& _parentLabel) override;
     void Finalize() override;
 
     float CalculateSpeedByGearLevel(int32_t _gearLevel) const;

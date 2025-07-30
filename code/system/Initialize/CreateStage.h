@@ -4,7 +4,7 @@
 class CreateStage
     : public ISystem {
 public:
-    CreateStage() : ISystem(SystemType::Initialize, 0) {}
+    CreateStage() : ISystem(SystemCategory::Initialize, 0) {}
     void Initialize() override {}
     void Finalize() override {}
 

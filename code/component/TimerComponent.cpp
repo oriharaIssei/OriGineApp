@@ -18,16 +18,12 @@ void TimerComponent::Initialize(GameEntity* /*_entity*/) {
     currentTime_ = maxTime_;
 }
 
-bool TimerComponent::Edit() {
-    bool isChanged = false;
+void TimerComponent::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 
 #ifdef DEBUG
-    isChanged = CheckBoxCommand("IsStarted For Using System", isStarted_);
-    isChanged |= DragGuiCommand("Max Time (s)", maxTime_, 0.1f, 100.f, 1.f);
-
+    CheckBoxCommand("IsStarted For Using System##" + _parentLabel, isStarted_);
+    DragGuiCommand("Max Time (s)##" + _parentLabel, maxTime_, 0.1f, 100.f, 1.f);
 #endif // DEBUG
-
-    return isChanged;
 }
 
 void TimerComponent::Finalize() {
@@ -82,37 +78,38 @@ void TimerForSpriteComponent::Initialize(GameEntity* /*_entity*/) {
     }
 }
 
-bool TimerForSpriteComponent::Edit() {
-    bool isChanged = false;
+void TimerForSpriteComponent::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
+
 #ifdef DEBUG
     ImGui::Text("Sprite");
 
-    isChanged |= DragGuiVectorCommand("Offset", offset_, 0.1f);
-    isChanged |= DragGuiVectorCommand("SpriteSizeInteger", spriteSizeInteger_, 0.1f);
-    isChanged |= DragGuiVectorCommand("SpriteSizeDecimal", spriteSizeDecimal_, 0.1f);
+    DragGuiVectorCommand("Offset##" + _parentLabel, offset_, 0.1f);
+    DragGuiVectorCommand("SpriteSizeInteger##" + _parentLabel, spriteSizeInteger_, 0.1f);
+    DragGuiVectorCommand("SpriteSizeDecimal##" + _parentLabel, spriteSizeDecimal_, 0.1f);
 
     ImGui::Spacing();
 
-    isChanged |= DragGuiVectorCommand("AnchorOnWindow", anchorOnWindow_, 0.1f);
+    DragGuiVectorCommand("AnchorOnWindow##" + _parentLabel, anchorOnWindow_, 0.1f);
 
     ImGui::Spacing();
 
-    isChanged |= DragGuiVectorCommand("SpriteMarginInteger", spriteMarginInteger_, 0.1f);
-    isChanged |= DragGuiVectorCommand("SpriteMarginDecimal", spriteMarginDecimal_, 0.1f);
-    isChanged |= DragGuiVectorCommand("MarginBetweenIntegerAndDecimal", marginBetweenIntegerAndDecimal_, 0.1f);
+    DragGuiVectorCommand("SpriteMarginInteger##" + _parentLabel, spriteMarginInteger_, 0.1f);
+    DragGuiVectorCommand("SpriteMarginDecimal##" + _parentLabel, spriteMarginDecimal_, 0.1f);
+    DragGuiVectorCommand("MarginBetweenIntegerAndDecimal##" + _parentLabel, marginBetweenIntegerAndDecimal_, 0.1f);
 
     ImGui::Spacing();
 
-    auto askLoadTexture = [&]() {
+    auto askLoadTexture = [&](const std::string& _parentLabel) {
         bool askLoad = false;
 
-        askLoad = ImGui::Button("Load Texture");
+        std::string label = "Load Texture##" + _parentLabel;
+        askLoad           = ImGui::Button(label.c_str());
         askLoad |= ImGui::ImageButton(
             reinterpret_cast<ImTextureID>(TextureManager::getDescriptorGpuHandle(textureIndex_).ptr),
             ImVec2(18, 18), ImVec2(0, 0), ImVec2(1, 1), 6);
         return askLoad;
     };
-    if (askLoadTexture()) {
+    if (askLoadTexture(_parentLabel)) {
         std::string directory, fileName;
         std::string textureDefaultDirectory = std::string(kApplicationResourceDirectory) + "/Texture";
         if (myfs::selectFileDialog(textureDefaultDirectory, directory, fileName, {"png"})) {
@@ -132,12 +129,12 @@ bool TimerForSpriteComponent::Edit() {
 
     ImGui::Text("Digit");
 
-    isChanged |= InputGuiCommand("Digit For Sprite", digitForSprite_, "%d");
-    isChanged |= SlideGuiCommand("Digit Integer For Sprite", digitIntegerForSprite_, 0, digitForSprite_, "%d");
-    isChanged |= SlideGuiCommand("Digit Decimal For Sprite", digitDecimalForSprite_, 0, digitForSprite_ - digitIntegerForSprite_, "%d");
+    InputGuiCommand("Digit For Sprite##" + _parentLabel, digitForSprite_, "%d");
+    SlideGuiCommand("Digit Integer For Sprite##" + _parentLabel, digitIntegerForSprite_, 0, digitForSprite_, "%d");
+    SlideGuiCommand("Digit Decimal For Sprite##" + _parentLabel, digitDecimalForSprite_, 0, digitForSprite_ - digitIntegerForSprite_, "%d");
 
 #endif
-    return isChanged;
+
 }
 
 void TimerForSpriteComponent::settingOnLoadTexture(uint32_t _texIdx) {

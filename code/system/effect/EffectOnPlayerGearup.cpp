@@ -7,13 +7,15 @@
 
 // component
 #include "component/effect/particle/emitter/Emitter.h"
+#include "component/effect/post/DistortionEffectParam.h"
+#include "component/renderer/primitive/Primitive.h"
 #include "component/effect/post/RadialBlurParam.h"
 #include "component/Player/PlayerStatus.h"
 
 /// math
 #include <math/MyEasing.h>
 
-EffectOnPlayerGearup::EffectOnPlayerGearup() : ISystem(SystemType::Effect) {}
+EffectOnPlayerGearup::EffectOnPlayerGearup() : ISystem(SystemCategory::Effect) {}
 
 EffectOnPlayerGearup::~EffectOnPlayerGearup() {}
 
@@ -39,7 +41,7 @@ void EffectOnPlayerGearup::UpdateEntity(GameEntity* _entity) {
         Matrix4x4 rotateMat        = MakeMatrix::RotateQuaternion(playerTransform->rotate);
 
         // Emitterの再生
-        int32_t emitterSize = ECSManager::getInstance()->getComponentArray<Emitter>()->getComponentSize(_entity);
+        int32_t emitterSize = getComponentArray<Emitter>()->getComponentSize(_entity);
         for (int32_t i = 0; i < emitterSize; ++i) {
             Emitter* emitter = getComponent<Emitter>(_entity, i);
             if (emitter) {

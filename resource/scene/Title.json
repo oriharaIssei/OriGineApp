@@ -125,27 +125,27 @@
             "Systems": [
                 {
                     "SystemName": "ButtonInputSystem",
-                    "SystemType": 1
+                    "SystemCategory": 1
                 },
                 {
                     "SystemName": "ChangeSceneByButton",
-                    "SystemType": 2
+                    "SystemCategory": 2
                 },
                 {
                     "SystemName": "SceneTransition",
-                    "SystemType": 2
+                    "SystemCategory": 2
                 },
                 {
                     "SystemName": "UpdateButtonColorByState",
-                    "SystemType": 2
+                    "SystemCategory": 2
                 },
                 {
                     "SystemName": "SpriteRenderSystem",
-                    "SystemType": 6
+                    "SystemCategory": 6
                 },
                 {
                     "SystemName": "DissolveEffect",
-                    "SystemType": 7
+                    "SystemCategory": 7
                 }
             ],
             "isUnique": false
@@ -235,15 +235,15 @@
             "Systems": [
                 {
                     "SystemName": "ButtonInputSystem",
-                    "SystemType": 1
+                    "SystemCategory": 1
                 },
                 {
                     "SystemName": "UpdateButtonColorByState",
-                    "SystemType": 2
+                    "SystemCategory": 2
                 },
                 {
                     "SystemName": "SpriteRenderSystem",
-                    "SystemType": 6
+                    "SystemCategory": 6
                 }
             ],
             "isUnique": false
@@ -267,7 +267,7 @@
             "Systems": [
                 {
                     "SystemName": "VignetteEffect",
-                    "SystemType": 7
+                    "SystemCategory": 7
                 }
             ],
             "isUnique": false
@@ -285,7 +285,7 @@
             "Systems": [
                 {
                     "SystemName": "RandomEffect",
-                    "SystemType": 7
+                    "SystemCategory": 7
                 }
             ],
             "isUnique": false
@@ -320,7 +320,7 @@
             "Systems": [
                 {
                     "SystemName": "DissolveEffect",
-                    "SystemType": 7
+                    "SystemCategory": 7
                 }
             ],
             "isUnique": true

@@ -9,7 +9,7 @@ class Input;
 class CameraInputSystem
     : public ISystem {
 public:
-    CameraInputSystem() : ISystem(SystemType::Input) {}
+    CameraInputSystem() : ISystem(SystemCategory::Input) {}
     ~CameraInputSystem() = default;
 
     void Initialize() override;

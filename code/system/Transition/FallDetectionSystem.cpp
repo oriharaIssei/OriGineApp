@@ -3,9 +3,9 @@
 #include "component/physics/Rigidbody.h"
 #include "component/Player/PlayerStatus.h"
 #include "component/transform/Transform.h"
-#include "ECSManager.h"
 
-FallDetectionSystem::FallDetectionSystem() : ISystem(SystemType::StateTransition) {}
+
+FallDetectionSystem::FallDetectionSystem() : ISystem(SystemCategory::StateTransition) {}
 
 FallDetectionSystem::~FallDetectionSystem() {
 }

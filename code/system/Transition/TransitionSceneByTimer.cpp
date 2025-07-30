@@ -5,12 +5,12 @@
 #include "EngineInclude.h"
 
 /// ECS
-#include "ECS/ECSManager.h"
+
 // components
 #include "component/TimerComponent.h"
 
 TransitionSceneByTimer::TransitionSceneByTimer()
-    : ISystem(SystemType::StateTransition) {}
+    : ISystem(SystemCategory::StateTransition) {}
 
 TransitionSceneByTimer::~TransitionSceneByTimer() {}
 

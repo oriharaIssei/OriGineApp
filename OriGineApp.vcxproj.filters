@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\FrameWork.h" />
+    <ClInclude Include="code\MyEditor.h" />
     <ClInclude Include="code\MyGame.h" />
     <ClInclude Include="code\component\Button.h">
       <Filter>component</Filter>
@@ -50,6 +51,9 @@
     <ClInclude Include="code\component\SceneChanger.h">
       <Filter>component</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\Stage.h">
+      <Filter>component</Filter>
+    </ClInclude>
     <ClInclude Include="code\component\TimerComponent.h">
       <Filter>component</Filter>
     </ClInclude>
@@ -57,6 +61,9 @@
       <Filter>component\cameraController</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Initialize\CreateSpriteFromTimer.h">
+      <Filter>system\Initialize</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Initialize\CreateStage.h">
       <Filter>system\Initialize</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Initialize\SettingGameCameraTarget.h">
@@ -89,6 +96,9 @@
     <ClInclude Include="code\system\Transition\FallDetectionSystem.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Transition\SceneTransition.h">
+      <Filter>system\Transition</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\Transition\TimerCountDown.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
@@ -110,10 +120,13 @@
     <ClInclude Include="code\system\effect\TimerForSprite.h">
       <Filter>system\effect</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\SceneTransition.h" />
+    <ClInclude Include="code\system\render\StageDebugRender.h">
+      <Filter>system\render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
+    <ClCompile Include="code\MyEditor.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
     <ClCompile Include="code\component\Button.cpp">
       <Filter>component</Filter>
@@ -127,6 +140,9 @@
     <ClCompile Include="code\component\SceneChanger.cpp">
       <Filter>component</Filter>
     </ClCompile>
+    <ClCompile Include="code\component\Stage.cpp">
+      <Filter>component</Filter>
+    </ClCompile>
     <ClCompile Include="code\component\TimerComponent.cpp">
       <Filter>component</Filter>
     </ClCompile>
@@ -135,6 +151,9 @@
     </ClCompile>
     <ClCompile Include="code\main.cpp" />
     <ClCompile Include="code\system\Initialize\CreateSpriteFromTimer.cpp">
+      <Filter>system\Initialize</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Initialize\CreateStage.cpp">
       <Filter>system\Initialize</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Initialize\SettingGameCameraTarget.cpp">
@@ -167,6 +186,9 @@
     <ClCompile Include="code\system\Transition\FallDetectionSystem.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\Transition\SceneTransition.cpp">
+      <Filter>system\Transition</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\Transition\TimerCountDown.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
@@ -188,6 +210,8 @@
     <ClCompile Include="code\system\effect\TimerForSprite.cpp">
       <Filter>system\effect</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\SceneTransition.cpp" />
+    <ClCompile Include="code\system\render\StageDebugRender.cpp">
+      <Filter>system\render</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

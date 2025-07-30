@@ -1,7 +1,7 @@
 #include "TimerForSprite.h"
 
 /// ECS
-#include "ECSManager.h"
+
 // component
 #include "component/renderer/Sprite.h"
 #include "component/TimerComponent.h"
@@ -33,7 +33,7 @@ static std::vector<int> CalculateDigitsFromFloat(float value, int intDigits, int
 }
 
 TimerForSprite::TimerForSprite()
-    : ISystem(SystemType::Effect) {}
+    : ISystem(SystemCategory::Effect) {}
 
 TimerForSprite::~TimerForSprite() {}
 
@@ -54,7 +54,7 @@ void TimerForSprite::UpdateEntity(GameEntity* _entity) {
         timerForSpriteComponent->getDigitDecimalForSprite());
 
     for (int32_t i = 0; i < timerForSpriteComponent->getDigitForSprite(); ++i) {
-        auto sprite = ECSManager::getInstance()->getComponent<SpriteRenderer>(_entity, i);
+        auto sprite = getComponent<SpriteRenderer>(_entity, i);
         if (!sprite) {
             continue; // スプライトがない場合は何もしない
         }

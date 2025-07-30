@@ -1,7 +1,6 @@
 #include "PlayerStatus.h"
 
 /// engine
-#include "ECSManager.h"
 // component
 #include "component/animation/SkinningAnimationComponent.h"
 #include "component/collider/CollisionPushBackInfo.h"
@@ -25,7 +24,7 @@
 #include <math/Sequence.h>
 
 #pragma region "Player State"
-IPlayerMoveState::IPlayerMoveState(int32_t _playerEntityID, PlayerMoveState _state) : playerEntityID_(_playerEntityID), state_(_state) {}
+IPlayerMoveState::IPlayerMoveState(Scene* _scene, int32_t _playerEntityID, PlayerMoveState _state) : scene_(_scene), playerEntityID_(_playerEntityID), state_(_state) {}
 IPlayerMoveState::~IPlayerMoveState() {}
 
 /// ====================================================================================
@@ -33,41 +32,41 @@ IPlayerMoveState::~IPlayerMoveState() {}
 /// ====================================================================================
 
 void PlayerIdleState::Initialize() {
-    auto* playerEntity = getEntity(playerEntityID_);
-    auto playerStatus  = getComponent<PlayerStatus>(playerEntity);
+    auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto playerStatus  = scene_->getComponent<PlayerStatus>(playerEntity);
     playerStatus->setCurrentSpeed(0.0f);
     playerStatus->setGearUpCoolTime(playerStatus->getBaseGearupCoolTime());
     playerStatus->setGearLevel(kDefaultPlayerGearLevel);
 
-    int32_t emitterSize = ECSManager::getInstance()->getComponentArray<Emitter>()->getComponentSize(playerEntity);
+    int32_t emitterSize = scene_->getComponentArray<Emitter>()->getComponentSize(playerEntity);
 
     //! TODO: 速度でパーティクルの量を変える
     for (int32_t i = 0; i < emitterSize; i++) {
-        auto* emitter = getComponent<Emitter>(playerEntity, i);
+        auto* emitter = scene_->getComponent<Emitter>(playerEntity, i);
         emitter->PlayStop();
     }
 }
 
 void PlayerIdleState::Update(float /*_deltaTime*/) {
-    auto* playerEntity = getEntity(playerEntityID_);
-    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
+    auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
     // 減速
     rigidbody->setVelocity(rigidbody->getVelocity() - rigidbody->getVelocity() * 0.8f);
 }
 
 void PlayerIdleState::Finalize() {
-    auto* playerEntity = getEntity(playerEntityID_);
-    auto playerStatus  = getComponent<PlayerStatus>(playerEntity);
-    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
+    auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto playerStatus  = scene_->getComponent<PlayerStatus>(playerEntity);
+    auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
     playerStatus->setCurrentSpeed(playerStatus->getBaseSpeed());
     // Jump がおかしくなるため しっかりと ゼロ にする
     rigidbody->setVelocity({0.0f, 0.0f, 0.0f});
 }
 
 PlayerMoveState PlayerIdleState::TransitionState() const {
-    auto* playerEntity = getEntity(playerEntityID_);
-    auto playerStatus  = getComponent<PlayerStatus>(playerEntity);
-    auto playerInput   = getComponent<PlayerInput>(playerEntity);
+    auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto playerStatus  = scene_->getComponent<PlayerStatus>(playerEntity);
+    auto playerInput   = scene_->getComponent<PlayerInput>(playerEntity);
 
     if (playerStatus->isOnGround()) {
         if (playerInput->isJumpInput()) {
@@ -91,21 +90,21 @@ PlayerMoveState PlayerIdleState::TransitionState() const {
 /// ====================================================================================
 
 void PlayerDashState::Initialize() {
-    auto* playerEntity = getEntity(playerEntityID_);
-    auto* playerStatus = getComponent<PlayerStatus>(playerEntity);
+    auto* playerEntity  = scene_->getEntity(playerEntityID_);
+    auto* playerStatus  = scene_->getComponent<PlayerStatus>(playerEntity);
 
-    auto* skinningAnim = getComponent<SkinningAnimationComponent>(playerEntity);
+    auto* skinningAnim = scene_->getComponent<SkinningAnimationComponent>(playerEntity);
     if (skinningAnim) {
         skinningAnim->setPlaybackSpeed(1, 1.f + float(playerStatus->getGearLevel()));
     }
 }
 
 void PlayerDashState::Update(float _deltaTime) {
-    auto* playerEntity = getEntity(playerEntityID_);
-    auto* playerStatus = getComponent<PlayerStatus>(playerEntity);
-    auto* playerInput  = getComponent<PlayerInput>(playerEntity);
-    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
-    auto* transform    = getComponent<Transform>(playerEntity);
+    auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto* playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
+    auto* playerInput  = scene_->getComponent<PlayerInput>(playerEntity);
+    auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
+    auto* transform    = scene_->getComponent<Transform>(playerEntity);
 
     /// ---------------------------------------------------------------------
     // gearLevel の更新
@@ -122,7 +121,7 @@ void PlayerDashState::Update(float _deltaTime) {
 
             playerStatus->setCurrentSpeed(playerStatus->CalculateSpeedByGearLevel(addedGearLevel));
 
-            auto* skinningAnim = getComponent<SkinningAnimationComponent>(playerEntity);
+            auto* skinningAnim = scene_->getComponent<SkinningAnimationComponent>(playerEntity);
             if (skinningAnim) {
                 skinningAnim->setPlaybackSpeed(1, 1.f + float(playerStatus->getGearLevel()));
             }
@@ -133,8 +132,8 @@ void PlayerDashState::Update(float _deltaTime) {
     Vec2f inputDirection = playerInput->getInputDirection();
 
     // カメラの回転を取得
-    GameEntity* gameCamera           = getUniqueEntity("GameCamera");
-    const Quaternion& cameraRotation = getComponent<CameraTransform>(gameCamera)->rotate;
+    GameEntity* gameCamera           = scene_->getUniqueEntity("GameCamera");
+    const Quaternion& cameraRotation = scene_->getComponent<CameraTransform>(gameCamera)->rotate;
 
     // カメラの回転からヨー（y軸回転）だけを抽出
     float cameraYaw              = cameraRotation.ToEulerAngles()[Y]; // y成分のみ
@@ -155,9 +154,9 @@ void PlayerDashState::Update(float _deltaTime) {
 }
 
 void PlayerDashState::Finalize() {
-    auto* playerEntity = getEntity(playerEntityID_);
-    auto* playerStatus = getComponent<PlayerStatus>(playerEntity);
-    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
+    auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto* playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
+    auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
 
     Vec3f velo = rigidbody->getVelocity();
 
@@ -167,16 +166,16 @@ void PlayerDashState::Finalize() {
         velo = velo.normalize() * limitSpeed;
         rigidbody->setVelocity(velo);
     }
-    auto* skinningAnim = getComponent<SkinningAnimationComponent>(playerEntity);
+    auto* skinningAnim = scene_->getComponent<SkinningAnimationComponent>(playerEntity);
     if (skinningAnim) {
         skinningAnim->setPlaybackSpeed(1, 1.f);
     }
 }
 
 PlayerMoveState PlayerDashState::TransitionState() const {
-    auto* playerEntity = getEntity(playerEntityID_);
-    auto playerStatus  = getComponent<PlayerStatus>(playerEntity);
-    auto playerInput   = getComponent<PlayerInput>(playerEntity);
+    auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto playerStatus  = scene_->getComponent<PlayerStatus>(playerEntity);
+    auto playerInput   = scene_->getComponent<PlayerInput>(playerEntity);
 
     if (playerInput->getInputDirection().lengthSq() <= 0.f) {
         return PlayerMoveState::IDLE;
@@ -203,19 +202,19 @@ PlayerMoveState PlayerDashState::TransitionState() const {
 void PlayerFallDownState::Initialize() {}
 
 void PlayerFallDownState::Update(float /*_deltaTime*/) {
-    auto* playerEntity = getEntity(playerEntityID_);
-    auto* playerStatus = getComponent<PlayerStatus>(playerEntity);
-    auto* playerInput  = getComponent<PlayerInput>(playerEntity);
-    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
-    auto* transform    = getComponent<Transform>(playerEntity);
+    auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto* playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
+    auto* playerInput  = scene_->getComponent<PlayerInput>(playerEntity);
+    auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
+    auto* transform    = scene_->getComponent<Transform>(playerEntity);
 
     // 入力方向を取得
     Vec2f inputDirection = playerInput->getInputDirection();
 
     if (inputDirection.lengthSq() > 0.f) {
         // カメラの回転を取得
-        GameEntity* gameCamera           = getUniqueEntity("GameCamera");
-        const Quaternion& cameraRotation = getComponent<CameraTransform>(gameCamera)->rotate;
+        GameEntity* gameCamera           = scene_->getUniqueEntity("GameCamera");
+        const Quaternion& cameraRotation = scene_->getComponent<CameraTransform>(gameCamera)->rotate;
 
         // カメラの回転からヨー（y軸回転）だけを抽出
         float cameraYaw              = cameraRotation.ToEulerAngles()[Y]; // y成分のみ
@@ -250,9 +249,9 @@ void PlayerFallDownState::Update(float /*_deltaTime*/) {
 }
 
 void PlayerFallDownState::Finalize() {
-    auto* playerEntity = getEntity(playerEntityID_);
-    auto* playerStatus = getComponent<PlayerStatus>(playerEntity);
-    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
+    auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto* playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
+    auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
 
     rigidbody->setAcceleration({0.0f, 0.0f, 0.0f}); // ダッシュ終了時に加速度をリセット
     Vec3f velo = rigidbody->getVelocity();
@@ -264,16 +263,16 @@ void PlayerFallDownState::Finalize() {
         rigidbody->setVelocity(velo);
     }
 
-    auto* skinningAnim = getComponent<SkinningAnimationComponent>(playerEntity);
+    auto* skinningAnim = scene_->getComponent<SkinningAnimationComponent>(playerEntity);
     if (skinningAnim) {
         skinningAnim->Play(4); // 差し替え
     }
 }
 
 PlayerMoveState PlayerFallDownState::TransitionState() const {
-    auto* playerEntity = getEntity(playerEntityID_);
-    auto playerStatus  = getComponent<PlayerStatus>(playerEntity);
-    auto playerInput   = getComponent<PlayerInput>(playerEntity);
+    auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto playerStatus  = scene_->getComponent<PlayerStatus>(playerEntity);
+    auto playerInput   = scene_->getComponent<PlayerInput>(playerEntity);
 
     if (playerStatus->isOnGround()) {
         if (playerStatus->isCollisionWithWall()) {
@@ -298,35 +297,36 @@ PlayerMoveState PlayerFallDownState::TransitionState() const {
 void PlayerJumpState::Initialize() {
     releaseJumpPower_ = 0.f;
 
-    auto* playerEntity = getEntity(playerEntityID_);
-    auto* playerStatus = getComponent<PlayerStatus>(playerEntity);
-    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
+    auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
+    auto playerStatus  = scene_->getComponent<PlayerStatus>(playerEntity);
 
     rigidbody->setUseGravity(false);
-
     rigidbody->setVelocity(Y, playerStatus->getJumpPower()); // ジャンプパワーをY軸に設定
 
-    auto* skinningAnim = getComponent<SkinningAnimationComponent>(playerEntity);
+    auto* skinningAnim = scene_->getComponent<SkinningAnimationComponent>(playerEntity);
     if (skinningAnim) {
         skinningAnim->endTransition();
         skinningAnim->Play(2);
+        // ジャンプアップのアニメーションを再生
+        skinningAnim->PlayNext(3); // 2 はジャンプアップのアニメーションインデックス
     }
 }
 
 void PlayerJumpState::Update(float /*_deltaTime*/) {
-    auto* playerEntity = getEntity(playerEntityID_);
-    auto* playerInput  = getComponent<PlayerInput>(playerEntity);
-    auto* playerStatus = getComponent<PlayerStatus>(playerEntity);
-    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
-    auto* transform    = getComponent<Transform>(playerEntity);
+    auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto* playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
+    auto* playerInput  = scene_->getComponent<PlayerInput>(playerEntity);
+    auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
+    auto* transform    = scene_->getComponent<Transform>(playerEntity);
 
     // 入力方向を取得
     Vec2f inputDirection = playerInput->getInputDirection();
 
     if (inputDirection.lengthSq() > 0.f) {
         // カメラの回転を取得
-        GameEntity* gameCamera           = getUniqueEntity("GameCamera");
-        const Quaternion& cameraRotation = getComponent<CameraTransform>(gameCamera)->rotate;
+        GameEntity* gameCamera           = scene_->getUniqueEntity("GameCamera");
+        const Quaternion& cameraRotation = scene_->getComponent<CameraTransform>(gameCamera)->rotate;
 
         // カメラの回転からヨー（y軸回転）だけを抽出
         float cameraYaw              = cameraRotation.ToEulerAngles()[Y]; // y成分のみ
@@ -359,12 +359,13 @@ void PlayerJumpState::Update(float /*_deltaTime*/) {
     rigidbody->setVelocity(velocity);
 
     releaseJumpPower_ += playerStatus->getFallPower();
+    
 }
 
 void PlayerJumpState::Finalize() {
-    auto* playerEntity = getEntity(playerEntityID_);
-    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
-    auto* skinningAnim = getComponent<SkinningAnimationComponent>(playerEntity);
+    auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto* skinningAnim = scene_->getComponent<SkinningAnimationComponent>(playerEntity);
+    auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
 
     rigidbody->setUseGravity(true);
 
@@ -376,9 +377,9 @@ void PlayerJumpState::Finalize() {
 }
 
 PlayerMoveState PlayerJumpState::TransitionState() const {
-    auto* playerEntity = getEntity(playerEntityID_);
-    auto playerStatus  = getComponent<PlayerStatus>(playerEntity);
-    auto playerInput   = getComponent<PlayerInput>(playerEntity);
+    auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto playerStatus  = scene_->getComponent<PlayerStatus>(playerEntity);
+    auto playerInput   = scene_->getComponent<PlayerInput>(playerEntity);
 
     if (playerStatus->isOnGround()) {
         if (playerStatus->isCollisionWithWall()) {
@@ -407,18 +408,18 @@ PlayerMoveState PlayerJumpState::TransitionState() const {
 /// ====================================================================================
 
 void PlayerWallRunState::Initialize() {
-    auto* playerEntity = getEntity(playerEntityID_);
-    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
+    auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
     prevVelo_          = rigidbody->getVelocity(); // 壁ジャンプ前の速度を保存
 
     separationdLeftTime_ = separationGraceTime_; // 壁との衝突判定の残り時間を初期化
 }
 
 void PlayerWallRunState::Update(float _deltaTime) {
-    auto* playerEntity = getEntity(playerEntityID_);
-    auto* playerStatus = getComponent<PlayerStatus>(playerEntity);
-    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
-    auto* transform    = getComponent<Transform>(playerEntity);
+    auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto* playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
+    auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
+    auto* transform    = scene_->getComponent<Transform>(playerEntity);
 
     // 移動方向を回転
     Vec3f movementDirection = axisZ * MakeMatrix::RotateQuaternion(transform->rotate);
@@ -436,23 +437,23 @@ void PlayerWallRunState::Update(float _deltaTime) {
 }
 
 void PlayerWallRunState::Finalize() {
-    auto* playerEntity = getEntity(playerEntityID_);
-    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
+    auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
     // 壁走行終了時に速度をリセット
     rigidbody->setVelocity(prevVelo_); // 壁走行終了時に速度をリセット
 
-    auto playerStatus = getComponent<PlayerStatus>(playerEntity);
+    auto playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
     playerStatus->setCollisionWithWall(false); // 壁走行終了時に壁との衝突をリセット
 }
 
 PlayerMoveState PlayerWallRunState::TransitionState() const {
-    auto* playerEntity = getEntity(playerEntityID_);
+    auto* playerEntity = scene_->getEntity(playerEntityID_);
 
     if (separationdLeftTime_ <= 0.0f) {
         return PlayerMoveState::FALL_DOWN;
     }
 
-    auto playerInput = getComponent<PlayerInput>(playerEntity);
+    auto playerInput = scene_->getComponent<PlayerInput>(playerEntity);
     if (playerInput->isJumpInput()) {
         return PlayerMoveState::WALL_JUMP;
     }
@@ -467,9 +468,9 @@ PlayerMoveState PlayerWallRunState::TransitionState() const {
 /// ====================================================================================
 
 void PlayerWallJumpState::Initialize() {
-    auto* playerEntity = getEntity(playerEntityID_);
-    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
-    auto* playerStatus = getComponent<PlayerStatus>(playerEntity);
+    auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
+    auto* playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
 
     rigidbody->setAcceleration({0.0f, 0.0f, 0.0f}); // 壁ジャンプ時は加速度をリセット
     rigidbody->setUseGravity(false); // 無効
@@ -485,8 +486,8 @@ void PlayerWallJumpState::Initialize() {
 }
 
 void PlayerWallJumpState::Update(float _deltaTime) {
-    auto* playerEntity = getEntity(playerEntityID_);
-    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
+    auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
 
     rigidbody->setVelocity(velo_); // 壁ジャンプの方向に速度を設定
 
@@ -494,16 +495,16 @@ void PlayerWallJumpState::Update(float _deltaTime) {
 }
 
 void PlayerWallJumpState::Finalize() {
-    auto* playerEntity = getEntity(playerEntityID_);
-    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
+    auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
 
     rigidbody->setUseGravity(true); // 重力を有効
     rigidbody->setVelocity(prevVelo_); // 壁ジャンプ終了時に速度をリセット
 }
 
 PlayerMoveState PlayerWallJumpState::TransitionState() const {
-    auto* playerEntity = getEntity(playerEntityID_);
-    auto playerStatus  = getComponent<PlayerStatus>(playerEntity);
+    auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto playerStatus  = scene_->getComponent<PlayerStatus>(playerEntity);
 
     if (playerStatus->isOnGround()) {
         return PlayerMoveState::DASH;
@@ -520,8 +521,7 @@ PlayerMoveState PlayerWallJumpState::TransitionState() const {
 
 #pragma region "Player Status"
 
-void PlayerStatus::Initialize(GameEntity* _entity) {
-    playerMoveState_     = std::make_shared<PlayerIdleState>(_entity->getID());
+void PlayerStatus::Initialize(GameEntity* /*_entity*/) {
     moveState_           = PlayerMoveState::IDLE; // 初期状態は IDLE
     prevPlayerMoveState_ = PlayerMoveState::IDLE; // 前の移動状態を初期化
 
@@ -536,15 +536,13 @@ void PlayerStatus::Initialize(GameEntity* _entity) {
     wallCollisionNormal_ = Vec3f(0.0f, 0.0f, 0.0f); // 初期状態では壁との衝突がない
 }
 
-bool PlayerStatus::Edit() {
+void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEntity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
 
-    bool isChange = false;
-
     if (ImGui::TreeNode("Speed")) {
-        isChange |= DragGuiCommand("baseSpeed", baseSpeed_);
-        isChange |= DragGuiCommand("speedUpRateBase", speedUpRateBase_);
-        isChange |= DragGuiCommand("speedUpRateCommonRate", speedUpRateCommonRate_);
+         DragGuiCommand("baseSpeed", baseSpeed_);
+         DragGuiCommand("speedUpRateBase", speedUpRateBase_);
+         DragGuiCommand("speedUpRateCommonRate", speedUpRateCommonRate_);
         if (ImGui::BeginTable("SpeedByGearLevel", 2, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg)) {
             ImGui::TableSetupColumn("Gear Level");
             ImGui::TableSetupColumn("Speed");
@@ -562,9 +560,9 @@ bool PlayerStatus::Edit() {
     }
 
     if (ImGui::TreeNode("CollTime")) {
-        isChange |= DragGuiCommand("gearUpCoolTime", baseGearupCoolTime_);
-        isChange |= DragGuiCommand("coolTimeAddRateBase", coolTimeAddRateBase_);
-        isChange |= DragGuiCommand("coolTimeAddRateCommonRate", coolTimeAddRateCommonRate_);
+         DragGuiCommand("gearUpCoolTime", baseGearupCoolTime_);
+         DragGuiCommand("coolTimeAddRateBase", coolTimeAddRateBase_);
+         DragGuiCommand("coolTimeAddRateCommonRate", coolTimeAddRateCommonRate_);
         if (ImGui::BeginTable("CoolTimeByGearLevel", 2, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg)) {
             ImGui::TableSetupColumn("Gear Level");
             ImGui::TableSetupColumn("CoolTime");
@@ -581,10 +579,10 @@ bool PlayerStatus::Edit() {
         ImGui::TreePop();
     }
 
-    isChange |= DragGuiCommand("directionInterpolateRate", directionInterpolateRate_);
-    isChange |= DragGuiCommand("jumpPower", jumpPower_);
-    isChange |= DragGuiCommand("fallPower", fallPower_);
-    isChange |= DragGuiCommand("wallRunRate", wallRunRate_);
+     DragGuiCommand("directionInterpolateRate", directionInterpolateRate_);
+     DragGuiCommand("jumpPower", jumpPower_);
+     DragGuiCommand("fallPower", fallPower_);
+     DragGuiCommand("wallRunRate", wallRunRate_);
     if (DragGuiVectorCommand<3, float>("wallJumpDirection",
             wallJumpDirection_,
             0.01f,
@@ -596,13 +594,10 @@ bool PlayerStatus::Edit() {
         wallJumpDirection_ = wallJumpDirection_.normalize();
     }
 
-    return isChange;
-#else
-    return false;
 #endif // _DEBUG
 }
 
-void PlayerStatus::Debug() {
+void PlayerStatus::Debug(Scene* /*_scene*/, GameEntity* /*_entity*/, const std::string& /*_parentLabel*/) {
 #ifdef _DEBUG
 
     static std::map<PlayerMoveState, const char*> moveStateName = {

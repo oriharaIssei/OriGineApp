@@ -37,8 +37,7 @@
             "Name": "Skybox",
             "Systems": [
                 {
-                    "SystemName": "SkyboxRender",
-                    "SystemType": 6
+                    "SystemName": "SkyboxRender"
                 }
             ],
             "isUnique": true
@@ -184,12 +183,10 @@
             "Name": "ground",
             "Systems": [
                 {
-                    "SystemName": "CollisionCheckSystem",
-                    "SystemType": 4
+                    "SystemName": "CollisionCheckSystem"
                 },
                 {
-                    "SystemName": "TexturedMeshRenderSystem",
-                    "SystemType": 6
+                    "SystemName": "TexturedMeshRenderSystem"
                 }
             ],
             "isUnique": false
@@ -469,48 +466,37 @@
             "Name": "Player",
             "Systems": [
                 {
-                    "SystemName": "TakePlayerToStartPosition",
-                    "SystemType": 0
+                    "SystemName": "TakePlayerToStartPosition"
                 },
                 {
-                    "SystemName": "PlayerInputSystem",
-                    "SystemType": 1
+                    "SystemName": "PlayerInputSystem"
                 },
                 {
-                    "SystemName": "FallDetectionSystem",
-                    "SystemType": 2
+                    "SystemName": "FallDetectionSystem"
                 },
                 {
-                    "SystemName": "TransitionPlayerState",
-                    "SystemType": 2
+                    "SystemName": "TransitionPlayerState"
                 },
                 {
-                    "SystemName": "MoveSystemByRigidBody",
-                    "SystemType": 3
+                    "SystemName": "MoveSystemByRigidBody"
                 },
                 {
-                    "SystemName": "PlayerMoveSystem",
-                    "SystemType": 3
+                    "SystemName": "PlayerMoveSystem"
                 },
                 {
-                    "SystemName": "CollisionCheckSystem",
-                    "SystemType": 4
+                    "SystemName": "CollisionCheckSystem"
                 },
                 {
-                    "SystemName": "CollisionPushBackSystem",
-                    "SystemType": 4
+                    "SystemName": "CollisionPushBackSystem"
                 },
                 {
-                    "SystemName": "PlayerOnCollision",
-                    "SystemType": 4
+                    "SystemName": "PlayerOnCollision"
                 },
                 {
-                    "SystemName": "SkinningAnimationSystem",
-                    "SystemType": 5
+                    "SystemName": "SkinningAnimationSystem"
                 },
                 {
-                    "SystemName": "SkinningMeshRenderSystem",
-                    "SystemType": 6
+                    "SystemName": "SkinningMeshRenderSystem"
                 }
             ],
             "isUnique": true
@@ -621,12 +607,10 @@
             "Name": "GameCamera",
             "Systems": [
                 {
-                    "SystemName": "CameraInputSystem",
-                    "SystemType": 1
+                    "SystemName": "CameraInputSystem"
                 },
                 {
-                    "SystemName": "FollowCameraUpdateSystem",
-                    "SystemType": 3
+                    "SystemName": "FollowCameraUpdateSystem"
                 }
             ],
             "isUnique": true
@@ -666,12 +650,10 @@
             "Name": "Entity",
             "Systems": [
                 {
-                    "SystemName": "DissolveEffect",
-                    "SystemType": 7
+                    "SystemName": "DissolveEffect"
                 },
                 {
-                    "SystemName": "RandomEffect",
-                    "SystemType": 7
+                    "SystemName": "RandomEffect"
                 }
             ],
             "isUnique": false
@@ -687,9 +669,8 @@
             },
             "TakePlayerToStartPosition": {
                 "Priority": 3
-            }
-        },
-        {
+            },
+
             "ButtonInputSystem": {
                 "Priority": 0
             },
@@ -698,9 +679,8 @@
             },
             "PlayerInputSystem": {
                 "Priority": 0
-            }
-        },
-        {
+            },
+
             "ChangeSceneByButton": {
                 "Priority": 1
             },
@@ -715,9 +695,8 @@
             },
             "UpdateButtonColorByState": {
                 "Priority": 0
-            }
-        },
-        {
+            },
+
             "BillboardTransform": {
                 "Priority": 100
             },
@@ -729,9 +708,8 @@
             },
             "PlayerMoveSystem": {
                 "Priority": 3
-            }
-        },
-        {
+            },
+
             "CollisionCheckSystem": {
                 "Priority": 0
             },
@@ -740,9 +718,8 @@
             },
             "PlayerOnCollision": {
                 "Priority": 10
-            }
-        },
-        {
+            },
+
             "CameraActionSystem": {
                 "Priority": 1
             },
@@ -763,9 +740,8 @@
             },
             "TimerForSprite": {
                 "Priority": 0
-            }
-        },
-        {
+            },
+
             "EffectTexturedMeshRenderSystem": {
                 "Priority": 0
             },
@@ -786,9 +762,8 @@
             },
             "TexturedMeshRenderSystem": {
                 "Priority": 0
-            }
-        },
-        {
+            },
+
             "DissolveEffect": {
                 "Priority": 0
             },

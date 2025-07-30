@@ -5,11 +5,11 @@
 #include "EngineInclude.h"
 
 /// ECS
-#include "ECS/ECSManager.h"
+
 // component
 #include "component/TimerComponent.h"
 
-TimerCountDown::TimerCountDown() : ISystem(SystemType::StateTransition) {}
+TimerCountDown::TimerCountDown() : ISystem(SystemCategory::StateTransition) {}
 
 TimerCountDown::~TimerCountDown() {}
 

@@ -4,7 +4,7 @@
 class PlayerMoveSystem
     : public ISystem {
 public:
-    PlayerMoveSystem() : ISystem(SystemType::Movement) {}
+    PlayerMoveSystem() : ISystem(SystemCategory::Movement) {}
     ~PlayerMoveSystem() {}
 
     void Initialize() override;

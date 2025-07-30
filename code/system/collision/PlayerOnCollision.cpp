@@ -1,7 +1,7 @@
 #include "PlayerOnCollision.h"
 
 /// ECS
-#include "ECSManager.h"
+
 // component
 #include "component/collider/CollisionPushBackInfo.h"
 #include "component/physics/Rigidbody.h"

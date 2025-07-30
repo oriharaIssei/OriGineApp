@@ -4,7 +4,7 @@
 class BillboardTransform
     : public ISystem {
 public:
-    BillboardTransform() : ISystem(SystemType::Movement, 0) {};
+    BillboardTransform() : ISystem(SystemCategory::Movement, 0) {};
     ~BillboardTransform() override {}
 
     void Initialize();

@@ -11,7 +11,7 @@
 #include "component/SceneChanger.h"
 
 ChangeSceneByButton::ChangeSceneByButton()
-    : ISystem(SystemType::StateTransition) {}
+    : ISystem(SystemCategory::StateTransition) {}
 
 ChangeSceneByButton::~ChangeSceneByButton() {}
 

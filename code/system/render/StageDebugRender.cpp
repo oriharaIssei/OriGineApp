@@ -1,7 +1,7 @@
 #include "StageDebugRender.h"
 
 /// engine
-#include "ECSManager.h"
+
 
 // component
 #include "component/Stage.h"
@@ -78,13 +78,13 @@ void StageDebugRender::Initialize() {
     pointRenderer_ = LineRenderer(std::vector<Mesh<ColorVertexData>>());
     pointRenderer_.Initialize(nullptr);
     pointRenderer_.getMeshGroup()->push_back(Mesh<ColorVertexData>());
-    pointRenderer_.getMeshGroup()->back().Initialize(defaultMeshSize * sphereVertexSize, defaultMeshSize * sphereIndexSize);
+    pointRenderer_.getMeshGroup()->back().Initialize(UINT(defaultMeshSize * sphereVertexSize), UINT(defaultMeshSize * sphereIndexSize));
     pointMeshItr_ = pointRenderer_.getMeshGroup()->begin();
 
     linkRenderer_ = LineRenderer(std::vector<Mesh<ColorVertexData>>());
     linkRenderer_.Initialize(nullptr);
     linkRenderer_.getMeshGroup()->push_back(Mesh<ColorVertexData>());
-    linkRenderer_.getMeshGroup()->back().Initialize(defaultMeshSize * 2.f, defaultMeshSize * 2.f);
+    linkRenderer_.getMeshGroup()->back().Initialize(UINT(defaultMeshSize * 2.f), UINT(defaultMeshSize * 2.f));
     linkMeshItr_ = linkRenderer_.getMeshGroup()->begin();
 
     lineRenderSystem_.Initialize();
@@ -97,7 +97,7 @@ void StageDebugRender::Update() {
     linkMeshItr_->vertexes_.clear();
     linkMeshItr_->indexes_.clear();
 
-    auto stageArray = ECSManager::getInstance()->getComponentArray<Stage>();
+    auto stageArray = getComponentArray<Stage>();
     if (!stageArray) {
         return;
     }
@@ -116,7 +116,6 @@ void StageDebugRender::Finalize() {}
 void StageDebugRender::CreateMeshes(Stage* _stage) {
 
     // ControlPoint（球）描画
-    const float kRadius = 0.1f;
     const Vec4f kColor  = {0, 1, 0, 1}; // 緑
     for (const auto& cp : _stage->getControlPoints()) {
         // Capacityが足りなかったら 新しいMeshを作成する

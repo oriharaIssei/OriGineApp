@@ -6,7 +6,7 @@
 class SettingGameCameraTarget
     : public ISystem {
 public:
-    SettingGameCameraTarget() : ISystem(SystemType::Initialize) {}
+    SettingGameCameraTarget() : ISystem(SystemCategory::Initialize) {}
     ~SettingGameCameraTarget() = default;
 
     void Initialize() override;

@@ -5,7 +5,7 @@ class PlayerOnCollision
     : public ISystem {
 public:
     PlayerOnCollision(int32_t _priority = 0)
-        : ISystem(SystemType::Collision, _priority) {};
+        : ISystem(SystemCategory::Collision, _priority) {};
     void Initialize() override;
     // void Update() override;
     void Finalize() override;
