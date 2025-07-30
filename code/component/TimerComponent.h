@@ -14,7 +14,7 @@ public:
     ~TimerComponent() override;
 
     void Initialize(GameEntity* _entity) override;
-    bool Edit() override;
+    void Edit(Scene* _scene, GameEntity* _entity,  const std::string& _parentLabel) override;
     void Finalize() override;
 
 private:
@@ -51,7 +51,7 @@ public:
     ~TimerForSpriteComponent() override = default;
 
     void Initialize(GameEntity* _entity) override;
-    bool Edit() override;
+    void Edit(Scene* _scene, GameEntity* _entity,  const std::string& _parentLabel) override;
     void Finalize() override {}
 
 private:

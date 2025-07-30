@@ -1,4 +1,14 @@
 {
+    "CategoryActivity": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+    ],
     "Entities": [
         {
             "Components": {
@@ -37,8 +47,8 @@
             "Name": "Skybox",
             "Systems": [
                 {
-                    "SystemName": "SkyboxRender",
-                    "SystemType": 6
+                    "SystemCategory": 6,
+                    "SystemName": "SkyboxRender"
                 }
             ],
             "isUnique": true
@@ -54,6 +64,15 @@
                         "activeTime": 2.299999952316284,
                         "blendMode": 1,
                         "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -7944,6 +7963,14 @@
                             {
                                 "time": 0.0,
                                 "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
                                     0.10000000149011612,
                                     0.10000000149011612,
                                     0.10000000149011612
@@ -8042,6 +8069,14 @@
                         "updateSettings": 12578,
                         "uvInterpolationType": 0,
                         "velocityCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -11923,8 +11958,8 @@
                                 1.0
                             ],
                             "translate": [
-                                0.0,
-                                0.0
+                                0.818661630153656,
+                                0.409330815076828
                             ]
                         },
                         "effectFlag": 3,
@@ -11972,28 +12007,28 @@
             "Name": "Goal",
             "Systems": [
                 {
-                    "SystemName": "BillboardTransform",
-                    "SystemType": 3
+                    "SystemCategory": 3,
+                    "SystemName": "BillboardTransform"
                 },
                 {
-                    "SystemName": "CollisionCheckSystem",
-                    "SystemType": 4
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
                 },
                 {
-                    "SystemName": "EmitterWorkSystem",
-                    "SystemType": 5
+                    "SystemCategory": 5,
+                    "SystemName": "EmitterWorkSystem"
                 },
                 {
-                    "SystemName": "TextureEffectAnimation",
-                    "SystemType": 5
+                    "SystemCategory": 5,
+                    "SystemName": "TextureEffectAnimation"
                 },
                 {
-                    "SystemName": "EffectTexturedMeshRenderSystem",
-                    "SystemType": 6
+                    "SystemCategory": 6,
+                    "SystemName": "EffectTexturedMeshRenderSystem"
                 },
                 {
-                    "SystemName": "ParticleRenderSystem",
-                    "SystemType": 6
+                    "SystemCategory": 6,
+                    "SystemName": "ParticleRenderSystem"
                 }
             ],
             "isUnique": true
@@ -12114,16 +12149,16 @@
             "Name": "Floor",
             "Systems": [
                 {
-                    "SystemName": "CollisionCheckSystem",
-                    "SystemType": 4
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
                 },
                 {
-                    "SystemName": "TextureEffectAnimation",
-                    "SystemType": 5
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
                 },
                 {
-                    "SystemName": "TexturedMeshRenderSystem",
-                    "SystemType": 6
+                    "SystemCategory": 5,
+                    "SystemName": "TextureEffectAnimation"
                 }
             ],
             "isUnique": false
@@ -12148,6 +12183,7 @@
                 ]
             },
             "Name": "directionalLight",
+            "Systems": [],
             "isUnique": false
         },
         {
@@ -12203,7 +12239,7 @@
                                         ],
                                         "translate": [
                                             0.0,
-                                            0.0,
+                                            -10000.0,
                                             0.0
                                         ]
                                     }
@@ -12247,12 +12283,12 @@
             "Name": "PlayerShockWave",
             "Systems": [
                 {
-                    "SystemName": "EffectOnPlayerGearup",
-                    "SystemType": 5
+                    "SystemCategory": 7,
+                    "SystemName": "DistortionEffect"
                 },
                 {
-                    "SystemName": "DistortionEffect",
-                    "SystemType": 7
+                    "SystemCategory": 5,
+                    "SystemName": "EffectOnPlayerGearup"
                 }
             ],
             "isUnique": false
@@ -12369,8 +12405,8 @@
                         "dissolveUV": {
                             "rotate": 0.0,
                             "scale": [
-                                1.0,
-                                1.0
+                                0.0,
+                                0.0
                             ],
                             "translate": [
                                 0.0,
@@ -12421,7 +12457,7 @@
                                 0.2800000011920929
                             ],
                             "translate": [
-                                0.0,
+                                0.2383265197277069,
                                 0.0
                             ]
                         },
@@ -12460,7 +12496,7 @@
                             1.0
                         ],
                         "translate": [
-                            12.760000228881836,
+                            -14.576265335083008,
                             6.477044582366943,
                             48.091163635253906
                         ]
@@ -12470,16 +12506,16 @@
             "Name": "Wall",
             "Systems": [
                 {
-                    "SystemName": "CollisionCheckSystem",
-                    "SystemType": 4
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
                 },
                 {
-                    "SystemName": "TextureEffectAnimation",
-                    "SystemType": 5
+                    "SystemCategory": 5,
+                    "SystemName": "TextureEffectAnimation"
                 },
                 {
-                    "SystemName": "EffectTexturedMeshRenderSystem",
-                    "SystemType": 6
+                    "SystemCategory": 6,
+                    "SystemName": "EffectTexturedMeshRenderSystem"
                 }
             ],
             "isUnique": false
@@ -12599,12 +12635,12 @@
             "Name": "step",
             "Systems": [
                 {
-                    "SystemName": "CollisionCheckSystem",
-                    "SystemType": 4
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
                 },
                 {
-                    "SystemName": "TexturedMeshRenderSystem",
-                    "SystemType": 6
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
                 }
             ],
             "isUnique": false
@@ -12725,16 +12761,16 @@
             "Name": "Floor",
             "Systems": [
                 {
-                    "SystemName": "CollisionCheckSystem",
-                    "SystemType": 4
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
                 },
                 {
-                    "SystemName": "TextureEffectAnimation",
-                    "SystemType": 5
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
                 },
                 {
-                    "SystemName": "TexturedMeshRenderSystem",
-                    "SystemType": 6
+                    "SystemCategory": 5,
+                    "SystemName": "TextureEffectAnimation"
                 }
             ],
             "isUnique": false
@@ -12855,16 +12891,16 @@
             "Name": "FloorA",
             "Systems": [
                 {
-                    "SystemName": "CollisionCheckSystem",
-                    "SystemType": 4
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
                 },
                 {
-                    "SystemName": "TextureEffectAnimation",
-                    "SystemType": 5
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
                 },
                 {
-                    "SystemName": "TexturedMeshRenderSystem",
-                    "SystemType": 6
+                    "SystemCategory": 5,
+                    "SystemName": "TextureEffectAnimation"
                 }
             ],
             "isUnique": false
@@ -12985,16 +13021,16 @@
             "Name": "Floor",
             "Systems": [
                 {
-                    "SystemName": "CollisionCheckSystem",
-                    "SystemType": 4
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
                 },
                 {
-                    "SystemName": "TextureEffectAnimation",
-                    "SystemType": 5
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
                 },
                 {
-                    "SystemName": "TexturedMeshRenderSystem",
-                    "SystemType": 6
+                    "SystemCategory": 5,
+                    "SystemName": "TextureEffectAnimation"
                 }
             ],
             "isUnique": false
@@ -13115,16 +13151,16 @@
             "Name": "Floor",
             "Systems": [
                 {
-                    "SystemName": "CollisionCheckSystem",
-                    "SystemType": 4
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
                 },
                 {
-                    "SystemName": "TextureEffectAnimation",
-                    "SystemType": 5
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
                 },
                 {
-                    "SystemName": "TexturedMeshRenderSystem",
-                    "SystemType": 6
+                    "SystemCategory": 5,
+                    "SystemName": "TextureEffectAnimation"
                 }
             ],
             "isUnique": false
@@ -13241,8 +13277,8 @@
                         "dissolveUV": {
                             "rotate": 0.0,
                             "scale": [
-                                1.0,
-                                1.0
+                                0.0,
+                                0.0
                             ],
                             "translate": [
                                 0.0,
@@ -13293,7 +13329,7 @@
                                 0.2800000011920929
                             ],
                             "translate": [
-                                0.0,
+                                0.2383265197277069,
                                 0.0
                             ]
                         },
@@ -13342,16 +13378,16 @@
             "Name": "Wall",
             "Systems": [
                 {
-                    "SystemName": "CollisionCheckSystem",
-                    "SystemType": 4
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
                 },
                 {
-                    "SystemName": "TextureEffectAnimation",
-                    "SystemType": 5
+                    "SystemCategory": 5,
+                    "SystemName": "TextureEffectAnimation"
                 },
                 {
-                    "SystemName": "EffectTexturedMeshRenderSystem",
-                    "SystemType": 6
+                    "SystemCategory": 6,
+                    "SystemName": "EffectTexturedMeshRenderSystem"
                 }
             ],
             "isUnique": false
@@ -13468,8 +13504,8 @@
                         "dissolveUV": {
                             "rotate": 0.0,
                             "scale": [
-                                1.0,
-                                1.0
+                                0.0,
+                                0.0
                             ],
                             "translate": [
                                 0.0,
@@ -13520,7 +13556,7 @@
                                 0.2800000011920929
                             ],
                             "translate": [
-                                0.0,
+                                0.2383265197277069,
                                 0.0
                             ]
                         },
@@ -13569,16 +13605,16 @@
             "Name": "Wall",
             "Systems": [
                 {
-                    "SystemName": "CollisionCheckSystem",
-                    "SystemType": 4
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
                 },
                 {
-                    "SystemName": "TextureEffectAnimation",
-                    "SystemType": 5
+                    "SystemCategory": 5,
+                    "SystemName": "TextureEffectAnimation"
                 },
                 {
-                    "SystemName": "EffectTexturedMeshRenderSystem",
-                    "SystemType": 6
+                    "SystemCategory": 6,
+                    "SystemName": "EffectTexturedMeshRenderSystem"
                 }
             ],
             "isUnique": false
@@ -13639,6 +13675,7 @@
                 ]
             },
             "Name": "Invisible",
+            "Systems": [],
             "isUnique": false
         },
         {
@@ -13757,73 +13794,22 @@
             "Name": "Floor",
             "Systems": [
                 {
-                    "SystemName": "CollisionCheckSystem",
-                    "SystemType": 4
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
                 },
                 {
-                    "SystemName": "TextureEffectAnimation",
-                    "SystemType": 5
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
                 },
                 {
-                    "SystemName": "TexturedMeshRenderSystem",
-                    "SystemType": 6
+                    "SystemCategory": 5,
+                    "SystemName": "TextureEffectAnimation"
                 }
             ],
             "isUnique": false
         },
         {
             "Components": {
-                "CameraAction": [
-                    {
-                        "aspectRatioCurve": [
-                            {
-                                "time": 0.0,
-                                "value": 1.7777777910232544
-                            }
-                        ],
-                        "duration": 0.9100000262260437,
-                        "farZCurve": [],
-                        "fovCurve": [
-                            {
-                                "time": 0.0,
-                                "value": 0.7850000262260437
-                            },
-                            {
-                                "time": 0.05996124446392059,
-                                "value": 0.9010780453681946
-                            },
-                            {
-                                "time": 0.12344962358474731,
-                                "value": 0.9151197671890259
-                            },
-                            {
-                                "time": 0.1834108680486679,
-                                "value": 0.9900000095367432
-                            },
-                            {
-                                "time": 0.7265892028808594,
-                                "value": 1.0
-                            },
-                            {
-                                "time": 0.7830232977867126,
-                                "value": 0.8572856783866882
-                            },
-                            {
-                                "time": 0.8500388264656067,
-                                "value": 0.8278359770774841
-                            },
-                            {
-                                "time": 0.9100000262260437,
-                                "value": 0.7850000262260437
-                            }
-                        ],
-                        "isLoop": false,
-                        "isPlay": false,
-                        "nearZCurve": [],
-                        "positionCurve": [],
-                        "rotationCurve": []
-                    }
-                ],
                 "CameraController": [
                     {
                         "angleLimitY": 1.5707963705062866,
@@ -13877,12 +13863,12 @@
             "Name": "GameCamera",
             "Systems": [
                 {
-                    "SystemName": "CameraInputSystem",
-                    "SystemType": 1
+                    "SystemCategory": 1,
+                    "SystemName": "CameraInputSystem"
                 },
                 {
-                    "SystemName": "FollowCameraUpdateSystem",
-                    "SystemType": 3
+                    "SystemCategory": 3,
+                    "SystemName": "FollowCameraUpdateSystem"
                 }
             ],
             "isUnique": true
@@ -14163,56 +14149,56 @@
             "Name": "Player",
             "Systems": [
                 {
-                    "SystemName": "TakePlayerToStartPosition",
-                    "SystemType": 0
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionPushBackSystem"
                 },
                 {
-                    "SystemName": "PlayerInputSystem",
-                    "SystemType": 1
+                    "SystemCategory": 0,
+                    "SystemName": "TakePlayerToStartPosition"
                 },
                 {
-                    "SystemName": "FallDetectionSystem",
-                    "SystemType": 2
+                    "SystemCategory": 1,
+                    "SystemName": "PlayerInputSystem"
                 },
                 {
-                    "SystemName": "SceneTransition",
-                    "SystemType": 2
+                    "SystemCategory": 6,
+                    "SystemName": "SkinningMeshRenderSystem"
                 },
                 {
-                    "SystemName": "TransitionPlayerState",
-                    "SystemType": 2
+                    "SystemCategory": 2,
+                    "SystemName": "FallDetectionSystem"
                 },
                 {
-                    "SystemName": "MoveSystemByRigidBody",
-                    "SystemType": 3
+                    "SystemCategory": 2,
+                    "SystemName": "TransitionPlayerState"
                 },
                 {
-                    "SystemName": "PlayerMoveSystem",
-                    "SystemType": 3
+                    "SystemCategory": 2,
+                    "SystemName": "SceneTransition"
                 },
                 {
-                    "SystemName": "CollisionCheckSystem",
-                    "SystemType": 4
+                    "SystemCategory": 3,
+                    "SystemName": "MoveSystemByRigidBody"
                 },
                 {
-                    "SystemName": "CollisionPushBackSystem",
-                    "SystemType": 4
+                    "SystemCategory": 3,
+                    "SystemName": "PlayerMoveSystem"
                 },
                 {
-                    "SystemName": "PlayerOnCollision",
-                    "SystemType": 4
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
                 },
                 {
-                    "SystemName": "SkinningAnimationSystem",
-                    "SystemType": 5
+                    "SystemCategory": 4,
+                    "SystemName": "PlayerOnCollision"
                 },
                 {
-                    "SystemName": "SkinningMeshRenderSystem",
-                    "SystemType": 6
+                    "SystemCategory": 5,
+                    "SystemName": "SkinningAnimationSystem"
                 },
                 {
-                    "SystemName": "DissolveEffect",
-                    "SystemType": 7
+                    "SystemCategory": 7,
+                    "SystemName": "DissolveEffect"
                 }
             ],
             "isUnique": true
@@ -14241,6 +14227,7 @@
                 ]
             },
             "Name": "StartPosition",
+            "Systems": [],
             "isUnique": true
         },
         {
@@ -14359,16 +14346,16 @@
             "Name": "Floor",
             "Systems": [
                 {
-                    "SystemName": "CollisionCheckSystem",
-                    "SystemType": 4
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
                 },
                 {
-                    "SystemName": "TextureEffectAnimation",
-                    "SystemType": 5
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
                 },
                 {
-                    "SystemName": "TexturedMeshRenderSystem",
-                    "SystemType": 6
+                    "SystemCategory": 5,
+                    "SystemName": "TextureEffectAnimation"
                 }
             ],
             "isUnique": false
@@ -14402,8 +14389,8 @@
             "Name": "EnterScene",
             "Systems": [
                 {
-                    "SystemName": "DissolveEffect",
-                    "SystemType": 7
+                    "SystemCategory": 7,
+                    "SystemName": "DissolveEffect"
                 }
             ],
             "isUnique": true
@@ -14474,20 +14461,20 @@
             "Name": "Entity",
             "Systems": [
                 {
-                    "SystemName": "ButtonInputSystem",
-                    "SystemType": 1
+                    "SystemCategory": 2,
+                    "SystemName": "ChangeSceneByButton"
                 },
                 {
-                    "SystemName": "ChangeSceneByButton",
-                    "SystemType": 2
+                    "SystemCategory": 1,
+                    "SystemName": "ButtonInputSystem"
                 },
                 {
-                    "SystemName": "SceneTransition",
-                    "SystemType": 2
+                    "SystemCategory": 2,
+                    "SystemName": "SceneTransition"
                 },
                 {
-                    "SystemName": "DissolveEffect",
-                    "SystemType": 7
+                    "SystemCategory": 7,
+                    "SystemName": "DissolveEffect"
                 }
             ],
             "isUnique": false
@@ -14495,107 +14482,83 @@
     ],
     "Systems": [
         {
-            "CreateSpriteFromTimer": {
-                "Priority": 0
+            "BillboardTransform": {
+                "Priority": 100
             },
-            "SettingGameCameraTarget": {
-                "Priority": 5
-            },
-            "TakePlayerToStartPosition": {
-                "Priority": 3
-            }
-        },
-        {
             "ButtonInputSystem": {
                 "Priority": 0
             },
             "CameraInputSystem": {
                 "Priority": 3
             },
-            "PlayerInputSystem": {
-                "Priority": 1
-            }
-        },
-        {
             "ChangeSceneByButton": {
                 "Priority": 1
             },
-            "FallDetectionSystem": {
-                "Priority": 4
-            },
-            "SceneTransition": {
+            "ColliderRenderingSystem": {
                 "Priority": 0
             },
-            "TimerCountDown": {
-                "Priority": 0
-            },
-            "TransitionPlayerState": {
-                "Priority": 5
-            },
-            "UpdateButtonColorByState": {
-                "Priority": 0
-            }
-        },
-        {
-            "BillboardTransform": {
-                "Priority": 100
-            },
-            "FollowCameraUpdateSystem": {
-                "Priority": 0
-            },
-            "MoveSystemByRigidBody": {
-                "Priority": 10
-            },
-            "PlayerMoveSystem": {
-                "Priority": 3
-            }
-        },
-        {
             "CollisionCheckSystem": {
                 "Priority": 0
             },
             "CollisionPushBackSystem": {
                 "Priority": 5
             },
-            "PlayerOnCollision": {
+            "DissolveEffect": {
                 "Priority": 10
-            }
-        },
-        {
-            "CameraActionSystem": {
-                "Priority": 1
+            },
+            "DistortionEffect": {
+                "Priority": 0
             },
             "EffectOnPlayerGearup": {
-                "Priority": 0
-            },
-            "EmitterWorkSystem": {
-                "Priority": 1
-            },
-            "PrimitiveNodeAnimationWorkSystem": {
-                "Priority": 1
-            },
-            "SkinningAnimationSystem": {
-                "Priority": 0
-            },
-            "TextureEffectAnimation": {
-                "Priority": 2
-            },
-            "TimerForSprite": {
-                "Priority": 0
-            }
-        },
-        {
-            "ColliderRenderingSystem": {
                 "Priority": 0
             },
             "EffectTexturedMeshRenderSystem": {
                 "Priority": 0
             },
+            "EmitterWorkSystem": {
+                "Priority": 1
+            },
+            "FallDetectionSystem": {
+                "Priority": 4
+            },
+            "FollowCameraUpdateSystem": {
+                "Priority": 0
+            },
+            "GrayscaleEffect": {
+                "Priority": 0
+            },
             "LineRenderSystem": {
                 "Priority": 0
             },
+            "MoveSystemByRigidBody": {
+                "Priority": 10
+            },
             "ParticleRenderSystem": {
                 "Priority": 3
+            },
+            "PlayerInputSystem": {
+                "Priority": 1
+            },
+            "PlayerMoveSystem": {
+                "Priority": 3
+            },
+            "PlayerOnCollision": {
+                "Priority": 10
+            },
+            "PrimitiveNodeAnimationWorkSystem": {
+                "Priority": 1
+            },
+            "RandomEffect": {
+                "Priority": 0
+            },
+            "SceneTransition": {
+                "Priority": 0
+            },
+            "SettingGameCameraTarget": {
+                "Priority": 5
+            },
+            "SkinningAnimationSystem": {
+                "Priority": 0
             },
             "SkinningMeshRenderSystem": {
                 "Priority": 0
@@ -14603,27 +14566,25 @@
             "SkyboxRender": {
                 "Priority": -1
             },
+            "SmoothingEffect": {
+                "Priority": 0
+            },
             "SpriteRenderSystem": {
                 "Priority": 5
             },
+            "TakePlayerToStartPosition": {
+                "Priority": 3
+            },
+            "TextureEffectAnimation": {
+                "Priority": 2
+            },
             "TexturedMeshRenderSystem": {
                 "Priority": 0
-            }
-        },
-        {
-            "DissolveEffect": {
-                "Priority": 10
             },
-            "DistortionEffect": {
-                "Priority": 0
+            "TransitionPlayerState": {
+                "Priority": 5
             },
-            "GrayscaleEffect": {
-                "Priority": 0
-            },
-            "RandomEffect": {
-                "Priority": 0
-            },
-            "SmoothingEffect": {
+            "UpdateButtonColorByState": {
                 "Priority": 0
             },
             "VignetteEffect": {

@@ -2,10 +2,9 @@
 
 /// engine
 #include "Engine.h"
-#include "sceneManager/SceneManager.h"
+#include "scene/SceneManager.h"
 
 /// ECS
-#include "ECS/ECSManager.h"
 // component
 #include "component/effect/post/DissolveEffectParam.h"
 #include "component/SceneChanger.h"
@@ -13,7 +12,7 @@
 /// math
 #include "math/MyEasing.h"
 
-SceneTransition::SceneTransition() : ISystem(SystemType::StateTransition) {}
+SceneTransition::SceneTransition() : ISystem(SystemCategory::StateTransition) {}
 
 SceneTransition::~SceneTransition() {}
 
@@ -55,7 +54,7 @@ void SceneTransition::Update() {
         ExitSceneUpdate();
     } else {
         for (auto& entityID : entityIDs_) {
-            GameEntity* entity = ECSManager::getInstance()->getEntity(entityID);
+            GameEntity* entity = getEntity(entityID);
             UpdateEntity(entity);
         }
     }
@@ -68,13 +67,13 @@ void SceneTransition::Update() {
 }
 
 void SceneTransition::UpdateEntity(GameEntity* _entity) {
-    uint32_t compSize = (uint32_t)ECSManager::getInstance()->getComponentArray<SceneChanger>()->getComponentSize(_entity);
+    uint32_t compSize = (uint32_t)getComponentArray<SceneChanger>()->getComponentSize(_entity);
     if (compSize <= 0) {
         return;
     }
 
     for (uint32_t i = 0; i < compSize; ++i) {
-        SceneChanger* sceneChanger = ECSManager::getInstance()->getComponent<SceneChanger>(_entity, i);
+        SceneChanger* sceneChanger = getComponent<SceneChanger>(_entity, i);
         if (sceneChanger == nullptr) {
             continue;
         }
@@ -107,13 +106,13 @@ void SceneTransition::EnterSceneUpdate() {
         enterScene_            = false;
         exitScene_             = false;
 
-        uint32_t compSize = (uint32_t)ECSManager::getInstance()->getComponentArray<DissolveEffectParam>()->getComponentSize(enterSceneEntity);
+        uint32_t compSize = (uint32_t)getComponentArray<DissolveEffectParam>()->getComponentSize(enterSceneEntity);
         if (compSize <= 0) {
             return;
         }
 
         for (uint32_t i = 0; i < compSize; ++i) {
-            DissolveEffectParam* dissolveEffectParam = ECSManager::getInstance()->getComponent<DissolveEffectParam>(enterSceneEntity, i);
+            DissolveEffectParam* dissolveEffectParam = getComponent<DissolveEffectParam>(enterSceneEntity, i);
             if (dissolveEffectParam == nullptr) {
                 return;
             }
@@ -123,13 +122,13 @@ void SceneTransition::EnterSceneUpdate() {
         return;
     }
 
-    uint32_t compSize = (uint32_t)ECSManager::getInstance()->getComponentArray<DissolveEffectParam>()->getComponentSize(enterSceneEntity);
+    uint32_t compSize = (uint32_t)getComponentArray<DissolveEffectParam>()->getComponentSize(enterSceneEntity);
     if (compSize <= 0) {
         return;
     }
 
     for (uint32_t i = 0; i < compSize; ++i) {
-        DissolveEffectParam* dissolveEffectParam = ECSManager::getInstance()->getComponent<DissolveEffectParam>(enterSceneEntity, i);
+        DissolveEffectParam* dissolveEffectParam = getComponent<DissolveEffectParam>(enterSceneEntity, i);
         if (dissolveEffectParam == nullptr) {
             return;
         }
@@ -155,13 +154,13 @@ void SceneTransition::ExitSceneUpdate() {
         return;
     }
 
-    uint32_t compSize = (uint32_t)ECSManager::getInstance()->getComponentArray<DissolveEffectParam>()->getComponentSize(enterSceneEntity);
+    uint32_t compSize = (uint32_t)getComponentArray<DissolveEffectParam>()->getComponentSize(enterSceneEntity);
     if (compSize <= 0) {
         return;
     }
 
     for (uint32_t i = 0; i < compSize; ++i) {
-        DissolveEffectParam* dissolveEffectParam = ECSManager::getInstance()->getComponent<DissolveEffectParam>(enterSceneEntity, i);
+        DissolveEffectParam* dissolveEffectParam = getComponent<DissolveEffectParam>(enterSceneEntity, i);
         if (dissolveEffectParam == nullptr) {
             return;
         }

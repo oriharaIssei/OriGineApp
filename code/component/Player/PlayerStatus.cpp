@@ -92,7 +92,6 @@ PlayerMoveState PlayerIdleState::TransitionState() const {
 void PlayerDashState::Initialize() {
     auto* playerEntity  = scene_->getEntity(playerEntityID_);
     auto* playerStatus  = scene_->getComponent<PlayerStatus>(playerEntity);
-    int32_t emitterSize = scene_->getComponentArray<Emitter>()->getComponentSize(playerEntity);
 
     auto* skinningAnim = scene_->getComponent<SkinningAnimationComponent>(playerEntity);
     if (skinningAnim) {
@@ -298,22 +297,23 @@ PlayerMoveState PlayerFallDownState::TransitionState() const {
 void PlayerJumpState::Initialize() {
     releaseJumpPower_ = 0.f;
 
-    rigidbody->setUseGravity(false);
     auto* playerEntity = scene_->getEntity(playerEntityID_);
     auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
     auto playerStatus  = scene_->getComponent<PlayerStatus>(playerEntity);
 
+    rigidbody->setUseGravity(false);
     rigidbody->setVelocity(Y, playerStatus->getJumpPower()); // ジャンプパワーをY軸に設定
 
-    isAnimatedJumpUp_  = false; // アニメーションのジャンプアップを行うかどうか
     auto* skinningAnim = scene_->getComponent<SkinningAnimationComponent>(playerEntity);
     if (skinningAnim) {
         skinningAnim->endTransition();
         skinningAnim->Play(2);
+        // ジャンプアップのアニメーションを再生
+        skinningAnim->PlayNext(3); // 2 はジャンプアップのアニメーションインデックス
     }
 }
 
-void PlayerJumpState::Update(float _deltaTime) {
+void PlayerJumpState::Update(float /*_deltaTime*/) {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
     auto* playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
     auto* playerInput  = scene_->getComponent<PlayerInput>(playerEntity);
@@ -359,25 +359,13 @@ void PlayerJumpState::Update(float _deltaTime) {
     rigidbody->setVelocity(velocity);
 
     releaseJumpPower_ += playerStatus->getFallPower();
-    // ジャンプ中のアニメーションを制御
-    SkinningAnimationComponent* skinningAnimation = scene_->getComponent<SkinningAnimationComponent>(playerEntity);
-    if (!skinningAnimation) {
-        return; // アニメーションコンポーネントがない場合は何もしない
-    }
-    int32_t currentAnimationIndex = skinningAnimation->getCurrentAnimationIndex();
-    if (isAnimatedJumpUp_) {
-        isAnimatedJumpUp_ = !skinningAnimation->isEnd(currentAnimationIndex);
-        if (!isAnimatedJumpUp_) {
-            // ジャンプアップのアニメーションを再生
-            skinningAnimation->PlayNext(3); // 2 はジャンプアップのアニメーションインデックス
-        }
-    }
+    
 }
 
 void PlayerJumpState::Finalize() {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
     auto* skinningAnim = scene_->getComponent<SkinningAnimationComponent>(playerEntity);
-    auto* rigidbody    = getComponent<Rigidbody>(playerEntity);
+    auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
 
     rigidbody->setUseGravity(true);
 
@@ -548,15 +536,13 @@ void PlayerStatus::Initialize(GameEntity* /*_entity*/) {
     wallCollisionNormal_ = Vec3f(0.0f, 0.0f, 0.0f); // 初期状態では壁との衝突がない
 }
 
-bool PlayerStatus::Edit() {
+void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEntity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
 
-    bool isChange = false;
-
     if (ImGui::TreeNode("Speed")) {
-        isChange |= DragGuiCommand("baseSpeed", baseSpeed_);
-        isChange |= DragGuiCommand("speedUpRateBase", speedUpRateBase_);
-        isChange |= DragGuiCommand("speedUpRateCommonRate", speedUpRateCommonRate_);
+         DragGuiCommand("baseSpeed", baseSpeed_);
+         DragGuiCommand("speedUpRateBase", speedUpRateBase_);
+         DragGuiCommand("speedUpRateCommonRate", speedUpRateCommonRate_);
         if (ImGui::BeginTable("SpeedByGearLevel", 2, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg)) {
             ImGui::TableSetupColumn("Gear Level");
             ImGui::TableSetupColumn("Speed");
@@ -574,9 +560,9 @@ bool PlayerStatus::Edit() {
     }
 
     if (ImGui::TreeNode("CollTime")) {
-        isChange |= DragGuiCommand("gearUpCoolTime", baseGearupCoolTime_);
-        isChange |= DragGuiCommand("coolTimeAddRateBase", coolTimeAddRateBase_);
-        isChange |= DragGuiCommand("coolTimeAddRateCommonRate", coolTimeAddRateCommonRate_);
+         DragGuiCommand("gearUpCoolTime", baseGearupCoolTime_);
+         DragGuiCommand("coolTimeAddRateBase", coolTimeAddRateBase_);
+         DragGuiCommand("coolTimeAddRateCommonRate", coolTimeAddRateCommonRate_);
         if (ImGui::BeginTable("CoolTimeByGearLevel", 2, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg)) {
             ImGui::TableSetupColumn("Gear Level");
             ImGui::TableSetupColumn("CoolTime");
@@ -593,10 +579,10 @@ bool PlayerStatus::Edit() {
         ImGui::TreePop();
     }
 
-    isChange |= DragGuiCommand("directionInterpolateRate", directionInterpolateRate_);
-    isChange |= DragGuiCommand("jumpPower", jumpPower_);
-    isChange |= DragGuiCommand("fallPower", fallPower_);
-    isChange |= DragGuiCommand("wallRunRate", wallRunRate_);
+     DragGuiCommand("directionInterpolateRate", directionInterpolateRate_);
+     DragGuiCommand("jumpPower", jumpPower_);
+     DragGuiCommand("fallPower", fallPower_);
+     DragGuiCommand("wallRunRate", wallRunRate_);
     if (DragGuiVectorCommand<3, float>("wallJumpDirection",
             wallJumpDirection_,
             0.01f,
@@ -608,13 +594,10 @@ bool PlayerStatus::Edit() {
         wallJumpDirection_ = wallJumpDirection_.normalize();
     }
 
-    return isChange;
-#else
-    return false;
 #endif // _DEBUG
 }
 
-void PlayerStatus::Debug() {
+void PlayerStatus::Debug(Scene* /*_scene*/, GameEntity* /*_entity*/, const std::string& /*_parentLabel*/) {
 #ifdef _DEBUG
 
     static std::map<PlayerMoveState, const char*> moveStateName = {

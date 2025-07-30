@@ -16,7 +16,7 @@ class StageDebugRender
     : public ISystem {
 public:
     StageDebugRender()
-        : ISystem(SystemType::Render) {
+        : ISystem(SystemCategory::Render) {
     }
     ~StageDebugRender() override = default;
 

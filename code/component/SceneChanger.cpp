@@ -24,8 +24,8 @@ SceneChanger::~SceneChanger() {
 
 void SceneChanger::Initialize(GameEntity* /* _entity*/) {}
 
-bool SceneChanger::Edit() {
-    bool changed = false;
+void SceneChanger::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEntity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
+   
 #ifdef _DEBUG
 
     ImGui::Text("Next Scene Name :");
@@ -37,8 +37,6 @@ bool SceneChanger::Edit() {
 
                 EditorController::getInstance()->pushCommand(
                     std::make_unique<SetterCommand<std::string>>(&nextSceneName_, sceneName));
-
-                changed = true;
             }
             if (isSelected) {
                 ImGui::SetItemDefaultFocus();
@@ -48,8 +46,6 @@ bool SceneChanger::Edit() {
     }
 
 #endif // _DEBUG
-
-    return changed;
 }
 
 void SceneChanger::Finalize() {}

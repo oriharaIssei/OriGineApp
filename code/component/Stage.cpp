@@ -299,8 +299,7 @@ private:
 
 void Stage::Initialize(GameEntity* /*_entity*/) {}
 
-bool Stage::Edit() {
-    bool isChanged = false;
+void Stage::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 
 #ifdef DEBUG
     if (ImGui::Button("+ ControlPoint")) {
@@ -309,7 +308,6 @@ bool Stage::Edit() {
         Stage::ControlPoint newPoint;
         auto command = std::make_unique<AddControlPointCommand>(this, newPoint);
         EditorController::getInstance()->pushCommand(std::move(command));
-        isChanged = true;
     }
     if (ImGui::Button("+ Link")) {
         // リンクを追加するための制御点が必要
@@ -329,8 +327,6 @@ bool Stage::Edit() {
             }
 
             EditorController::getInstance()->pushCommand(std::move(commandCombo));
-
-            isChanged = true;
         }
     }
 
@@ -340,7 +336,6 @@ bool Stage::Edit() {
             // 制御点をZ座標でソートするコマンドを追加
             auto command = std::make_unique<SortControlPointsCommand>(this);
             EditorController::getInstance()->pushCommand(std::move(command));
-            isChanged = true;
         }
 
         std::string label = "";
@@ -430,7 +425,7 @@ bool Stage::Edit() {
                     std::remove_if(editLinks_.begin(), editLinks_.end(),
                         [i](const auto& p) { return p.first == static_cast<int32_t>(i); }),
                     editLinks_.end());
-                isChanged = true;
+               
                 if (isSelected)
                     ImGui::PopStyleColor();
                 ImGui::PopID();
@@ -477,8 +472,6 @@ bool Stage::Edit() {
     }
 
 #endif
-
-    return isChanged;
 }
 
 void Stage::Finalize() {
@@ -491,3 +484,7 @@ void Stage::Finalize() {
     controlPoints_.clear();
     links_.clear();
 }
+
+void to_json(nlohmann::json& /*j*/, const Stage& /*stage*/) {}
+
+void from_json(const nlohmann::json& /*j*/, Stage& /*stage*/) {}

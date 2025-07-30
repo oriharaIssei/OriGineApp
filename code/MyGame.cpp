@@ -2,9 +2,6 @@
 
 /// engine include
 #define ENGINE_INCLUDE
-#define ENGINE_ECS
-#define ENGINE_COMPONENTS
-#define ENGINE_SYSTEMS
 #include <EngineInclude.h>
 
 // scene

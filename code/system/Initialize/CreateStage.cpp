@@ -3,7 +3,7 @@
 /// engine
 #include "Engine.h"
 /// ECS
-#include "ECSManager.h"
+
 // component
 #include "component/collider/Collider.h"
 #include "component/renderer/primitive/Primitive.h"
@@ -51,10 +51,10 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
         transform.translate = mid;
         renderer.setTransform(transform);
 
-        ECSManager::getInstance()->addComponent<BoxRenderer>(_entity->getID(), renderer);
-        ECSManager::getInstance()->addComponent<AABBCollider>(_entity->getID(), collider);
+        addComponent<BoxRenderer>(_entity, renderer);
+        addComponent<AABBCollider>(_entity, collider);
     }
 
-    ECSManager::getInstance()->getSystem<CollisionCheckSystem>(SystemType::Collision)->addEntity(_entity);
-    ECSManager::getInstance()->getSystem<TexturedMeshRenderSystem>(SystemType::Render)->addEntity(_entity);
+    getScene()->getSystem(nameof<CollisionCheckSystem>())->addEntity(_entity);
+    getScene()->getSystem(nameof<TexturedMeshRenderSystem>())->addEntity(_entity);
 }

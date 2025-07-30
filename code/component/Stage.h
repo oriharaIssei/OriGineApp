@@ -11,7 +11,11 @@
 
 class Stage
     : public IComponent {
+public:
     friend class SortControlPointsCommand;
+
+    friend void to_json(nlohmann::json& j, const Stage& stage);
+    friend void from_json(const nlohmann::json& j, Stage& stage);
 
 public:
     Stage()           = default;
@@ -19,7 +23,7 @@ public:
 
     void Initialize(GameEntity* _entity);
 
-    bool Edit();
+    void Edit(Scene* _scene, GameEntity* _entity, const std::string& _parentLabel);
 
     void Finalize();
 
