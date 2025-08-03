@@ -9,33 +9,34 @@
 #include "component/Button.h"
 
 void ButtonInputSystem::Initialize() {
-    input_ = Input::getInstance();
 }
 
 void ButtonInputSystem::Finalize() {
 }
 
 void ButtonInputSystem::UpdateEntity(GameEntity* _entity) {
+    Input* input       = Input::getInstance();
+
     Button* button = getComponent<Button>(_entity);
 
     /// ====================== check Keyboard Input ====================== ///
     if (button != nullptr) {
         //! Shortcut で キャンセルの方法が無い
         for (auto key : button->getShortcutKey()) {
-            if (input_->isPressKey(key)) {
+            if (input->isPressKey(key)) {
                 button->setPressed(true);
             }
-            if (input_->isReleaseKey(key)) {
+            if (input->isReleaseKey(key)) {
                 button->setReleased(true);
             }
         }
 
         /// ====================== check Pad Input ====================== ///
         for (auto padButton : button->getShortcutPadButton()) {
-            if (input_->isPressButton(padButton)) {
+            if (input->isPressButton(padButton)) {
                 button->setPressed(true);
             }
-            if (input_->isReleaseButton(padButton)) {
+            if (input->isReleaseButton(padButton)) {
                 button->setReleased(true);
             }
         }
@@ -44,7 +45,7 @@ void ButtonInputSystem::UpdateEntity(GameEntity* _entity) {
     /// ====================== check Mouse Input ====================== ///
     SpriteRenderer* buttonSprite = getComponent<SpriteRenderer>(_entity);
     if (buttonSprite != nullptr) {
-        const Vec2f& mousePos   = input_->getCurrentMousePos();
+        const Vec2f& mousePos   = input->getCurrentMousePos();
         const Vec2f& buttonPos  = buttonSprite->getTranslate();
         const Vec2f& buttonSize = buttonSprite->getSpriteBuff()->scale_;
         const Vec2f& anchor     = buttonSprite->getAnchorPoint();
@@ -61,9 +62,9 @@ void ButtonInputSystem::UpdateEntity(GameEntity* _entity) {
             return;
         }
         if (button->isPressed()) {
-            button->setReleased(input_->isReleaseMouseButton(MouseButton::LEFT));
+            button->setReleased(input->isReleaseMouseButton(MouseButton::LEFT));
         } else {
-            button->setPressed(input_->isTriggerMouseButton(MouseButton::LEFT));
+            button->setPressed(input->isTriggerMouseButton(MouseButton::LEFT));
         }
     }
 }
