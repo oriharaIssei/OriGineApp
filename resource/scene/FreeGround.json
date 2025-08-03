@@ -1,14 +1,4 @@
 {
-    "CategoryActivity": [
-        true,
-        false,
-        false,
-        false,
-        false,
-        true,
-        true,
-        false
-    ],
     "Entities": [
         {
             "Components": {
@@ -47,7 +37,6 @@
             "Name": "Skybox",
             "Systems": [
                 {
-                    "SystemCategory": 6,
                     "SystemName": "SkyboxRender"
                 }
             ],
@@ -55,41 +44,44 @@
         },
         {
             "Components": {
-                "BoxRenderer": [
+                "Transform": [
                     {
-                        "blendMode": 1,
-                        "isRenderer": true,
-                        "material": {
-                            "color": [
-                                1.0,
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "enableLighting": true,
-                            "shininess": 0.0,
-                            "specularColor": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "uvRotate": 0.0,
-                            "uvScale": [
-                                1.0,
-                                1.0
-                            ],
-                            "uvTranslate": [
-                                0.0,
-                                0.0
-                            ]
-                        },
-                        "size": [
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
                             1.0,
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "translate": [
+                            0.0,
+                            2.0799999237060547,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "StartPosition",
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "max": [
+                            10000.0,
+                            10000.0,
+                            10000.0
+                        ],
+                        "min": [
+                            -10000.0,
+                            -10000.0,
+                            -10000.0
+                        ],
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -104,7 +96,7 @@
                             ],
                             "translate": [
                                 0.0,
-                                0.0,
+                                -10000.0,
                                 0.0
                             ]
                         }
@@ -119,22 +111,22 @@
                         "materialBufferDatas": [
                             {
                                 "color": [
-                                    1.0,
-                                    1.0,
-                                    1.0,
+                                    0.4388185739517212,
+                                    0.4388185739517212,
+                                    0.4388185739517212,
                                     1.0
                                 ],
                                 "enableLighting": true,
-                                "shininess": 90.0,
+                                "shininess": 63.56999969482422,
                                 "specularColor": [
-                                    1.0,
-                                    1.0,
-                                    1.0
+                                    0.24929603934288025,
+                                    0.19626484811306,
+                                    0.894514799118042
                                 ],
                                 "uvRotate": 0.0,
                                 "uvScale": [
-                                    1.0,
-                                    1.0
+                                    1000.0,
+                                    1000.0
                                 ],
                                 "uvTranslate": [
                                     0.0,
@@ -143,7 +135,7 @@
                             }
                         ],
                         "textureFilePath": [
-                            ""
+                            "./application/resource/Texture/uvChecker.png"
                         ],
                         "transformBufferDatas": [
                             {
@@ -154,13 +146,13 @@
                                     1.0
                                 ],
                                 "scale": [
-                                    1.0,
-                                    1.0,
-                                    1.0
+                                    10000.0,
+                                    10000.0,
+                                    10000.0
                                 ],
                                 "translate": [
                                     0.0,
-                                    0.0,
+                                    -10000.0,
                                     0.0
                                 ]
                             }
@@ -181,17 +173,19 @@
                             1.0
                         ],
                         "translate": [
-                            -1.9199999570846558,
-                            -0.7300000190734863,
-                            3.75
+                            0.0,
+                            0.0,
+                            0.0
                         ]
                     }
                 ]
             },
-            "Name": "Box\u0000ty",
+            "Name": "ground",
             "Systems": [
                 {
-                    "SystemCategory": 6,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
                     "SystemName": "TexturedMeshRenderSystem"
                 }
             ],
@@ -199,6 +193,34 @@
         },
         {
             "Components": {
+                "DirectionalLight": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "direction": [
+                            -0.4238532781600952,
+                            -0.7754343152046204,
+                            -0.46802783012390137
+                        ],
+                        "intensity": 1.809999942779541,
+                        "isActive": true
+                    }
+                ]
+            },
+            "Name": "light",
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "CollisionPushBackInfo": [
+                    {
+                        "pushBackType": 1
+                    }
+                ],
+                "Emitter": [],
                 "ModelMeshRenderer": [
                     {
                         "blendMode": 1,
@@ -209,12 +231,12 @@
                             {
                                 "color": [
                                     1.0,
-                                    1.0,
-                                    1.0,
+                                    0.28691983222961426,
+                                    0.28691983222961426,
                                     1.0
                                 ],
                                 "enableLighting": true,
-                                "shininess": 0.44999998807907104,
+                                "shininess": 60.0,
                                 "specularColor": [
                                     1.0,
                                     1.0,
@@ -232,13 +254,13 @@
                             },
                             {
                                 "color": [
-                                    1.0,
-                                    1.0,
+                                    0.0,
+                                    0.10196078568696976,
                                     1.0,
                                     1.0
                                 ],
                                 "enableLighting": true,
-                                "shininess": 0.0,
+                                "shininess": 5.139999866485596,
                                 "specularColor": [
                                     1.0,
                                     1.0,
@@ -257,7 +279,7 @@
                         ],
                         "textureFilePath": [
                             "",
-                            ""
+                            "./application/resource/Texture/uvChecker.png"
                         ],
                         "transformBufferDatas": [
                             {
@@ -268,9 +290,9 @@
                                     1.0
                                 ],
                                 "scale": [
-                                    1.0,
-                                    1.0,
-                                    1.0
+                                    1.2999999523162842,
+                                    1.2999999523162842,
+                                    1.2999999523162842
                                 ],
                                 "translate": [
                                     0.0,
@@ -286,9 +308,9 @@
                                     1.0
                                 ],
                                 "scale": [
-                                    1.0,
-                                    1.0,
-                                    1.0
+                                    1.2999999523162842,
+                                    1.2999999523162842,
+                                    1.2999999523162842
                                 ],
                                 "translate": [
                                     0.0,
@@ -299,28 +321,134 @@
                         ]
                     }
                 ],
+                "PlayerInput": [
+                    {
+                        "MaxJumpInputTime": 0.05000000074505806
+                    }
+                ],
+                "PlayerStatus": [
+                    {
+                        "baseSpeed": 11.800000190734863,
+                        "coolTimeAddRateBase": 1.2000000476837158,
+                        "coolTimeAddRateCommonRate": 0.07999999821186066,
+                        "directionInterpolateRate": 0.07999999821186066,
+                        "fallPower": 4.099999904632568,
+                        "gearUpCoolTime": 0.6000000238418579,
+                        "jumpPower": 0.15000000596046448,
+                        "speedUpRateBase": 19.200000762939453,
+                        "speedUpRateCommonRate": -1.100000023841858,
+                        "wallJumpDirection": [
+                            -0.14878620207309723,
+                            -0.2880076467990875,
+                            0.9459990859031677
+                        ],
+                        "wallRunRate": 1.7999999523162842
+                    }
+                ],
+                "Rigidbody": [
+                    {
+                        "acceleration": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "mass": 0.2800000011920929,
+                        "maxFallSpeed": 10.0,
+                        "useGravity": true,
+                        "velocity": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "SceneChanger": [
+                    {
+                        "nextSceneName": "Title"
+                    }
+                ],
                 "SkinningAnimationComponent": [
                     {
                         "Animations": [
+                            {
+                                "directory": "Animations\\idle",
+                                "duration": 6.0333333015441895,
+                                "fileName": "idle.gltf",
+                                "isLoop": true,
+                                "isPlay": true,
+                                "playbackSpeed": 1.0
+                            },
                             {
                                 "directory": "Animations\\jogging",
                                 "duration": 2.566666603088379,
                                 "fileName": "jogging.gltf",
                                 "isLoop": true,
-                                "isPlay": true,
+                                "isPlay": false,
+                                "playbackSpeed": 1.0
+                            },
+                            {
+                                "directory": "Animations\\jump",
+                                "duration": 0.2666666805744171,
+                                "fileName": "jump_up.gltf",
+                                "isLoop": false,
+                                "isPlay": false,
+                                "playbackSpeed": 1.3899999856948853
+                            },
+                            {
+                                "directory": "Animations\\jump",
+                                "duration": 0.7333333492279053,
+                                "fileName": "fall_idle.gltf",
+                                "isLoop": true,
+                                "isPlay": false,
+                                "playbackSpeed": 1.0
+                            },
+                            {
+                                "directory": "Animations\\jump",
+                                "duration": 0.10000000149011612,
+                                "fileName": "jump_down.gltf",
+                                "isLoop": false,
+                                "isPlay": false,
                                 "playbackSpeed": 1.0
                             }
                         ],
                         "bindModeMeshRendererIndex": 0
                     }
                 ],
+                "SphereCollider": [
+                    {
+                        "center": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "radius": 0.9900000095367432,
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.949999988079071,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
                 "Transform": [
                     {
                         "rotate": [
+                            -0.0,
                             0.0,
-                            0.7131813168525696,
-                            0.0,
-                            0.7009795904159546
+                            -0.0,
+                            1.0
                         ],
                         "scale": [
                             1.0,
@@ -328,371 +456,204 @@
                             1.0
                         ],
                         "translate": [
-                            1.72403883934021,
-                            -2.2705039978027344,
-                            7.940934658050537
+                            0.0,
+                            10.75355339050293,
+                            0.0
                         ]
                     }
                 ]
             },
-            "Name": "SkinA\u0000",
+            "Name": "Player",
             "Systems": [
                 {
-                    "SystemCategory": 5,
+                    "SystemName": "TakePlayerToStartPosition"
+                },
+                {
+                    "SystemName": "PlayerInputSystem"
+                },
+                {
+                    "SystemName": "FallDetectionSystem"
+                },
+                {
+                    "SystemName": "TransitionPlayerState"
+                },
+                {
+                    "SystemName": "MoveSystemByRigidBody"
+                },
+                {
+                    "SystemName": "PlayerMoveSystem"
+                },
+                {
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemName": "CollisionPushBackSystem"
+                },
+                {
+                    "SystemName": "PlayerOnCollision"
+                },
+                {
                     "SystemName": "SkinningAnimationSystem"
                 },
                 {
-                    "SystemCategory": 6,
                     "SystemName": "SkinningMeshRenderSystem"
                 }
             ],
-            "isUnique": false
+            "isUnique": true
         },
         {
             "Components": {
-                "ModelMeshRenderer": [
+                "CameraAction": [
                     {
-                        "blendMode": 1,
-                        "directory": "./application/resource/Animations\\jogging",
-                        "fileName": "jogging.gltf",
-                        "isRender": true,
-                        "materialBufferDatas": [
+                        "aspectRatioCurve": [
                             {
-                                "color": [
-                                    1.0,
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "enableLighting": true,
-                                "shininess": 0.0,
-                                "specularColor": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvRotate": 0.0,
-                                "uvScale": [
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvTranslate": [
-                                    0.0,
-                                    0.0
-                                ]
+                                "time": 0.0,
+                                "value": 1.7777777910232544
+                            }
+                        ],
+                        "duration": 0.9100000262260437,
+                        "farZCurve": [],
+                        "fovCurve": [
+                            {
+                                "time": 0.0,
+                                "value": 0.7850000262260437
                             },
                             {
-                                "color": [
-                                    1.0,
-                                    0.0,
-                                    0.0,
-                                    1.0
-                                ],
-                                "enableLighting": true,
-                                "shininess": 0.0,
-                                "specularColor": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvRotate": 0.0,
-                                "uvScale": [
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvTranslate": [
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ],
-                        "textureFilePath": [
-                            "",
-                            ""
-                        ],
-                        "transformBufferDatas": [
-                            {
-                                "rotate": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    1.0
-                                ],
-                                "scale": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "translate": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
+                                "time": 0.05996124446392059,
+                                "value": 0.9010780453681946
                             },
                             {
-                                "rotate": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    1.0
-                                ],
-                                "scale": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "translate": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ]
-                    }
-                ],
-                "SkinningAnimationComponent": [
-                    {
-                        "Animations": [
+                                "time": 0.12344962358474731,
+                                "value": 0.9151197671890259
+                            },
                             {
-                                "directory": "Animations\\jogging",
-                                "duration": 2.566666603088379,
-                                "fileName": "jogging.gltf",
-                                "isLoop": true,
-                                "isPlay": true,
-                                "playbackSpeed": 8.0
+                                "time": 0.1834108680486679,
+                                "value": 0.9900000095367432
+                            },
+                            {
+                                "time": 0.7265892028808594,
+                                "value": 1.0
+                            },
+                            {
+                                "time": 0.7830232977867126,
+                                "value": 0.8572856783866882
+                            },
+                            {
+                                "time": 0.8500388264656067,
+                                "value": 0.8278359770774841
+                            },
+                            {
+                                "time": 0.9100000262260437,
+                                "value": 0.7850000262260437
                             }
                         ],
-                        "bindModeMeshRendererIndex": 0
+                        "isLoop": false,
+                        "isPlay": false,
+                        "nearZCurve": [],
+                        "positionCurve": [],
+                        "rotationCurve": []
                     }
                 ],
-                "Transform": [
+                "CameraController": [
                     {
+                        "angleLimitY": 1.5707963705062866,
+                        "baseFovY": 0.7850000262260437,
+                        "followOffset": [
+                            0.0,
+                            0.05999999865889549,
+                            -4.199999809265137
+                        ],
+                        "followTargetOffset": [
+                            0.0,
+                            2.440000057220459,
+                            0.0
+                        ],
+                        "forward": [
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "fovYInterpolate": 0.10000000149011612,
+                        "fovYRate": 0.06199999898672104,
+                        "fovYRateCommonRate": 0.028999999165534973,
+                        "interTargetInterpolation": 0.3700000047683716,
+                        "maxRotateX": 0.5899999737739563,
+                        "minRotateX": -0.7699999809265137,
+                        "rotateSensitivity": 1.0,
+                        "rotateSpeedMouse": 0.007000000216066837,
+                        "rotateSpeedPadStick": 0.10999999940395355
+                    }
+                ],
+                "CameraTransform": [
+                    {
+                        "aspectRatio": 1.7777777910232544,
+                        "farZ": 1000.0,
+                        "fovAngleY": 0.7850000262260437,
+                        "nearZ": 0.10000000149011612,
                         "rotate": [
                             0.0,
-                            0.712601900100708,
                             0.0,
-                            0.7015686631202698
-                        ],
-                        "scale": [
-                            0.9999999403953552,
-                            1.0,
-                            0.9999999403953552
+                            0.0,
+                            1.0
                         ],
                         "translate": [
-                            3.101874351501465,
-                            -2.2709999084472656,
-                            7.951594352722168
+                            0.0,
+                            0.0,
+                            0.0
                         ]
                     }
                 ]
             },
-            "Name": "SkinB\u0000",
+            "Name": "GameCamera",
             "Systems": [
                 {
-                    "SystemCategory": 5,
-                    "SystemName": "SkinningAnimationSystem"
+                    "SystemName": "CameraInputSystem"
                 },
                 {
-                    "SystemCategory": 6,
-                    "SystemName": "SkinningMeshRenderSystem"
+                    "SystemName": "FollowCameraUpdateSystem"
                 }
             ],
-            "isUnique": false
+            "isUnique": true
         },
         {
             "Components": {
-                "GpuParticleEmitter": [
+                "DissolveEffectParam": [
                     {
-                        "Material": {
-                            "color": [
-                                1.0,
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "enableLighting": false,
-                            "shininess": 0.0,
-                            "specularColor": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "uvRotate": 0.0,
-                            "uvScale": [
-                                1.0,
-                                1.0
-                            ],
-                            "uvTranslate": [
-                                0.0,
-                                0.0
-                            ]
-                        },
-                        "blendMode": 1,
-                        "center": [
-                            -0.699999988079071,
-                            0.0,
-                            6.800000190734863
-                        ],
-                        "emitMaxParticleCount": 30,
-                        "emitMinParticleCount": 1,
-                        "frequencyTime": 0.15000000596046448,
+                        "edgeWidth": 0.0,
                         "isActive": true,
-                        "isBox": 0,
-                        "isEmitEdge": 0,
-                        "maxColor": [
-                            1.0,
-                            1.0,
+                        "outLineColor": [
+                            0.7130801677703857,
+                            0.3159216046333313,
+                            0.3159216046333313,
                             1.0
                         ],
-                        "maxLifeParticleTime": 1.7899999618530273,
-                        "maxScale": [
-                            1.0,
-                            1.0,
+                        "textureFilePath": "./application/resource/Texture/bioNoise.png",
+                        "threshold": 0.0,
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.059999942779541,
                             1.0
                         ],
-                        "maxVelocity": [
-                            3.0,
-                            3.0,
-                            3.0
-                        ],
-                        "minColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "minLifeParticleTime": 1.2699999809265137,
-                        "minScale": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "minVelocity": [
-                            0.0,
+                        "uvTranslate": [
                             0.0,
                             0.0
-                        ],
-                        "particleSize": 1024,
-                        "size": [
-                            20.0,
-                            20.0,
-                            20.0
-                        ],
-                        "texturePath": ""
+                        ]
+                    }
+                ],
+                "RandomEffectParam": [
+                    {
+                        "blendMode": 1,
+                        "maxTime": 1000.0
                     }
                 ]
             },
-            "Name": "GppA\u0000r",
+            "Name": "Entity",
             "Systems": [
                 {
-                    "SystemCategory": 5,
-                    "SystemName": "GpuParticleEmitterWorkSystem"
+                    "SystemName": "DissolveEffect"
                 },
                 {
-                    "SystemCategory": 0,
-                    "SystemName": "GpuParticleInitialize"
-                },
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "GpuParticleRenderSystem"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "GpuParticleEmitter": [
-                    {
-                        "Material": {
-                            "color": [
-                                1.0,
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "enableLighting": false,
-                            "shininess": 0.0,
-                            "specularColor": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "uvRotate": 0.0,
-                            "uvScale": [
-                                1.0,
-                                1.0
-                            ],
-                            "uvTranslate": [
-                                0.0,
-                                0.0
-                            ]
-                        },
-                        "blendMode": 1,
-                        "center": [
-                            0.0,
-                            0.0,
-                            6.099999904632568
-                        ],
-                        "emitMaxParticleCount": 30,
-                        "emitMinParticleCount": 1,
-                        "frequencyTime": 0.2800000011920929,
-                        "isActive": true,
-                        "isBox": 1,
-                        "isEmitEdge": 0,
-                        "maxColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "maxLifeParticleTime": 2.0,
-                        "maxScale": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "maxVelocity": [
-                            3.0,
-                            3.0,
-                            3.0
-                        ],
-                        "minColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "minLifeParticleTime": 1.0,
-                        "minScale": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "minVelocity": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "particleSize": 1024,
-                        "size": [
-                            20.0,
-                            20.0,
-                            20.0
-                        ],
-                        "texturePath": ""
-                    }
-                ]
-            },
-            "Name": "GppB\u0000y",
-            "Systems": [
-                {
-                    "SystemCategory": 5,
-                    "SystemName": "GpuParticleEmitterWorkSystem"
-                },
-                {
-                    "SystemCategory": 0,
-                    "SystemName": "GpuParticleInitialize"
-                },
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "GpuParticleRenderSystem"
+                    "SystemName": "RandomEffect"
                 }
             ],
             "isUnique": false
@@ -700,25 +661,119 @@
     ],
     "Systems": [
         {
-            "GpuParticleEmitterWorkSystem": {
+            "CreateSpriteFromTimer": {
                 "Priority": 0
             },
-            "GpuParticleInitialize": {
+            "SettingGameCameraTarget": {
+                "Priority": 5
+            },
+            "TakePlayerToStartPosition": {
+                "Priority": 3
+            },
+
+            "ButtonInputSystem": {
                 "Priority": 0
             },
-            "GpuParticleRenderSystem": {
+            "CameraInputSystem": {
+                "Priority": 1
+            },
+            "PlayerInputSystem": {
+                "Priority": 0
+            },
+
+            "ChangeSceneByButton": {
+                "Priority": 1
+            },
+            "FallDetectionSystem": {
+                "Priority": 4
+            },
+            "TimerCountDown": {
+                "Priority": 0
+            },
+            "TransitionPlayerState": {
+                "Priority": 5
+            },
+            "UpdateButtonColorByState": {
+                "Priority": 0
+            },
+
+            "BillboardTransform": {
+                "Priority": 100
+            },
+            "FollowCameraUpdateSystem": {
+                "Priority": 0
+            },
+            "MoveSystemByRigidBody": {
                 "Priority": 10
+            },
+            "PlayerMoveSystem": {
+                "Priority": 3
+            },
+
+            "CollisionCheckSystem": {
+                "Priority": 0
+            },
+            "CollisionPushBackSystem": {
+                "Priority": 5
+            },
+            "PlayerOnCollision": {
+                "Priority": 10
+            },
+
+            "CameraActionSystem": {
+                "Priority": 1
+            },
+            "EffectOnPlayerGearup": {
+                "Priority": 0
+            },
+            "EmitterWorkSystem": {
+                "Priority": 1
+            },
+            "PrimitiveNodeAnimationWorkSystem": {
+                "Priority": 1
             },
             "SkinningAnimationSystem": {
                 "Priority": 0
             },
-            "SkinningMeshRenderSystem": {
+            "TextureEffectAnimation": {
                 "Priority": 2
+            },
+            "TimerForSprite": {
+                "Priority": 0
+            },
+
+            "EffectTexturedMeshRenderSystem": {
+                "Priority": 0
+            },
+            "LineRenderSystem": {
+                "Priority": 0
+            },
+            "ParticleRenderSystem": {
+                "Priority": 3
+            },
+            "SkinningMeshRenderSystem": {
+                "Priority": 0
             },
             "SkyboxRender": {
                 "Priority": -1
             },
+            "SpriteRenderSystem": {
+                "Priority": 5
+            },
             "TexturedMeshRenderSystem": {
+                "Priority": 0
+            },
+
+            "DissolveEffect": {
+                "Priority": 0
+            },
+            "DistortionEffect": {
+                "Priority": 0
+            },
+            "RandomEffect": {
+                "Priority": 0
+            },
+            "VignetteEffect": {
                 "Priority": 0
             }
         }

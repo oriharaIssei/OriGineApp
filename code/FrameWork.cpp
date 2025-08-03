@@ -69,7 +69,6 @@ void RegisterUsingComponents() {
     componentRegistry->registerComponent<Rigidbody>();
 
     componentRegistry->registerComponent<Emitter>();
-    componentRegistry->registerComponent<GpuParticleEmitter>();
     componentRegistry->registerComponent<DissolveEffectParam>();
     componentRegistry->registerComponent<DistortionEffectParam>();
     componentRegistry->registerComponent<RadialBlurParam>();
@@ -101,8 +100,6 @@ void RegisterUsingSystems() {
     /// ====================================================================================================
     // Initialize
     /// ====================================================================================================
-    systemRegistry->registerSystem<GpuParticleInitialize>();
-
     systemRegistry->registerSystem<SettingGameCameraTarget>();
     systemRegistry->registerSystem<TakePlayerToStartPosition>();
 
@@ -131,6 +128,7 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<FollowCameraUpdateSystem>();
     systemRegistry->registerSystem<PlayerMoveSystem>();
 
+
     /// =================================================================================================
     // Collision
     /// =================================================================================================
@@ -147,7 +145,6 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<TextureEffectAnimation>();
     systemRegistry->registerSystem<SkinningAnimationSystem>();
     systemRegistry->registerSystem<SpriteAnimationSystem>();
-    systemRegistry->registerSystem<GpuParticleEmitterWorkSystem>();
 
     systemRegistry->registerSystem<EffectOnPlayerGearup>();
 
@@ -162,7 +159,6 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<SkinningMeshRenderSystem>();
     systemRegistry->registerSystem<EffectTexturedMeshRenderSystem>();
     systemRegistry->registerSystem<LineRenderSystem>();
-    systemRegistry->registerSystem<GpuParticleRenderSystem>();
 
     systemRegistry->registerSystem<SkeletonRenderSystem>();
     systemRegistry->registerSystem<ColliderRenderingSystem>();
@@ -177,4 +173,5 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<DissolveEffect>();
     systemRegistry->registerSystem<RandomEffect>();
     systemRegistry->registerSystem<RadialBlurEffect>();
+
 }

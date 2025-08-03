@@ -1,5 +1,7 @@
 {
     "Editor": {
+        "ECSEditor": true,
+        "GlobalVariablesEditor": false,
         "SceneEditorWindow": false,
         "SettingWindow": false
     }

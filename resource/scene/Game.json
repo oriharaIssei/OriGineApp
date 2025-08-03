@@ -38,7 +38,7 @@
                             "translate": [
                                 0.0,
                                 0.0,
-                                -3.359999656677246
+                                0.0
                             ]
                         }
                     }
@@ -64,69 +64,6 @@
                         "activeTime": 2.299999952316284,
                         "blendMode": 1,
                         "colorCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -8034,62 +7971,6 @@
                             {
                                 "time": 0.0,
                                 "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
                                     0.10000000149011612,
                                     0.10000000149011612,
                                     0.10000000149011612
@@ -8188,62 +8069,6 @@
                         "updateSettings": 12578,
                         "uvInterpolationType": 0,
                         "velocityCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -12133,8 +11958,8 @@
                                 1.0
                             ],
                             "translate": [
-                                0.7073436975479126,
-                                0.3536718487739563
+                                0.818661630153656,
+                                0.409330815076828
                             ]
                         },
                         "effectFlag": 3,
@@ -12182,28 +12007,28 @@
             "Name": "Goal",
             "Systems": [
                 {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
-                },
-                {
                     "SystemCategory": 3,
                     "SystemName": "BillboardTransform"
                 },
                 {
-                    "SystemCategory": 6,
-                    "SystemName": "EffectTexturedMeshRenderSystem"
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
                 },
                 {
                     "SystemCategory": 5,
                     "SystemName": "EmitterWorkSystem"
                 },
                 {
-                    "SystemCategory": 6,
-                    "SystemName": "ParticleRenderSystem"
-                },
-                {
                     "SystemCategory": 5,
                     "SystemName": "TextureEffectAnimation"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "EffectTexturedMeshRenderSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "ParticleRenderSystem"
                 }
             ],
             "isUnique": true
@@ -12324,12 +12149,12 @@
             "Name": "Floor",
             "Systems": [
                 {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
-                },
-                {
                     "SystemCategory": 6,
                     "SystemName": "TexturedMeshRenderSystem"
+                },
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
                 },
                 {
                     "SystemCategory": 5,
@@ -12632,7 +12457,7 @@
                                 0.2800000011920929
                             ],
                             "translate": [
-                                0.9809432029724121,
+                                0.2383265197277069,
                                 0.0
                             ]
                         },
@@ -12685,12 +12510,12 @@
                     "SystemName": "CollisionCheckSystem"
                 },
                 {
-                    "SystemCategory": 6,
-                    "SystemName": "EffectTexturedMeshRenderSystem"
-                },
-                {
                     "SystemCategory": 5,
                     "SystemName": "TextureEffectAnimation"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "EffectTexturedMeshRenderSystem"
                 }
             ],
             "isUnique": false
@@ -12810,12 +12635,12 @@
             "Name": "step",
             "Systems": [
                 {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
-                },
-                {
                     "SystemCategory": 6,
                     "SystemName": "TexturedMeshRenderSystem"
+                },
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
                 }
             ],
             "isUnique": false
@@ -12936,12 +12761,12 @@
             "Name": "Floor",
             "Systems": [
                 {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
-                },
-                {
                     "SystemCategory": 6,
                     "SystemName": "TexturedMeshRenderSystem"
+                },
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
                 },
                 {
                     "SystemCategory": 5,
@@ -13066,12 +12891,12 @@
             "Name": "FloorA",
             "Systems": [
                 {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
-                },
-                {
                     "SystemCategory": 6,
                     "SystemName": "TexturedMeshRenderSystem"
+                },
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
                 },
                 {
                     "SystemCategory": 5,
@@ -13196,12 +13021,12 @@
             "Name": "Floor",
             "Systems": [
                 {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
-                },
-                {
                     "SystemCategory": 6,
                     "SystemName": "TexturedMeshRenderSystem"
+                },
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
                 },
                 {
                     "SystemCategory": 5,
@@ -13326,12 +13151,12 @@
             "Name": "Floor",
             "Systems": [
                 {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
-                },
-                {
                     "SystemCategory": 6,
                     "SystemName": "TexturedMeshRenderSystem"
+                },
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
                 },
                 {
                     "SystemCategory": 5,
@@ -13504,7 +13329,7 @@
                                 0.2800000011920929
                             ],
                             "translate": [
-                                0.9809432029724121,
+                                0.2383265197277069,
                                 0.0
                             ]
                         },
@@ -13557,12 +13382,12 @@
                     "SystemName": "CollisionCheckSystem"
                 },
                 {
-                    "SystemCategory": 6,
-                    "SystemName": "EffectTexturedMeshRenderSystem"
-                },
-                {
                     "SystemCategory": 5,
                     "SystemName": "TextureEffectAnimation"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "EffectTexturedMeshRenderSystem"
                 }
             ],
             "isUnique": false
@@ -13731,7 +13556,7 @@
                                 0.2800000011920929
                             ],
                             "translate": [
-                                0.9809432029724121,
+                                0.2383265197277069,
                                 0.0
                             ]
                         },
@@ -13784,12 +13609,12 @@
                     "SystemName": "CollisionCheckSystem"
                 },
                 {
-                    "SystemCategory": 6,
-                    "SystemName": "EffectTexturedMeshRenderSystem"
-                },
-                {
                     "SystemCategory": 5,
                     "SystemName": "TextureEffectAnimation"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "EffectTexturedMeshRenderSystem"
                 }
             ],
             "isUnique": false
@@ -13969,12 +13794,12 @@
             "Name": "Floor",
             "Systems": [
                 {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
-                },
-                {
                     "SystemCategory": 6,
                     "SystemName": "TexturedMeshRenderSystem"
+                },
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
                 },
                 {
                     "SystemCategory": 5,
@@ -14325,7 +14150,7 @@
             "Systems": [
                 {
                     "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
+                    "SystemName": "CollisionPushBackSystem"
                 },
                 {
                     "SystemCategory": 0,
@@ -14336,14 +14161,6 @@
                     "SystemName": "PlayerInputSystem"
                 },
                 {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionPushBackSystem"
-                },
-                {
-                    "SystemCategory": 7,
-                    "SystemName": "DissolveEffect"
-                },
-                {
                     "SystemCategory": 6,
                     "SystemName": "SkinningMeshRenderSystem"
                 },
@@ -14352,8 +14169,12 @@
                     "SystemName": "FallDetectionSystem"
                 },
                 {
-                    "SystemCategory": 5,
-                    "SystemName": "SkinningAnimationSystem"
+                    "SystemCategory": 2,
+                    "SystemName": "TransitionPlayerState"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "SceneTransition"
                 },
                 {
                     "SystemCategory": 3,
@@ -14365,15 +14186,19 @@
                 },
                 {
                     "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 4,
                     "SystemName": "PlayerOnCollision"
                 },
                 {
-                    "SystemCategory": 2,
-                    "SystemName": "TransitionPlayerState"
+                    "SystemCategory": 5,
+                    "SystemName": "SkinningAnimationSystem"
                 },
                 {
-                    "SystemCategory": 2,
-                    "SystemName": "SceneTransition"
+                    "SystemCategory": 7,
+                    "SystemName": "DissolveEffect"
                 }
             ],
             "isUnique": true
@@ -14521,12 +14346,12 @@
             "Name": "Floor",
             "Systems": [
                 {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
-                },
-                {
                     "SystemCategory": 6,
                     "SystemName": "TexturedMeshRenderSystem"
+                },
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
                 },
                 {
                     "SystemCategory": 5,
@@ -14644,12 +14469,12 @@
                     "SystemName": "ButtonInputSystem"
                 },
                 {
-                    "SystemCategory": 7,
-                    "SystemName": "DissolveEffect"
-                },
-                {
                     "SystemCategory": 2,
                     "SystemName": "SceneTransition"
+                },
+                {
+                    "SystemCategory": 7,
+                    "SystemName": "DissolveEffect"
                 }
             ],
             "isUnique": false
@@ -14699,15 +14524,6 @@
             "FollowCameraUpdateSystem": {
                 "Priority": 0
             },
-            "GpuParticleEmitterWorkSystem": {
-                "Priority": 0
-            },
-            "GpuParticleInitialize": {
-                "Priority": 0
-            },
-            "GpuParticleRenderSystem": {
-                "Priority": 10
-            },
             "GrayscaleEffect": {
                 "Priority": 0
             },
@@ -14718,7 +14534,7 @@
                 "Priority": 10
             },
             "ParticleRenderSystem": {
-                "Priority": 10
+                "Priority": 3
             },
             "PlayerInputSystem": {
                 "Priority": 1
