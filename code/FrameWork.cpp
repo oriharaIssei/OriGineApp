@@ -20,6 +20,7 @@
 // application system
 #include "system/collision/PlayerOnCollision.h"
 #include "system/effect/EffectOnPlayerGearup.h"
+#include "system/Initialize/CreateStage.h"
 #include "system/Initialize/SettingGameCameraTarget.h"
 #include "system/Initialize/TakePlayerToStartPosition.h"
 #include "system/Input/ButtonInputSystem.h"
@@ -28,6 +29,7 @@
 #include "system/Movement/BillboardTransform.h"
 #include "system/Movement/FollowCameraUpdateSystem.h"
 #include "system/Movement/PlayerMoveSystem.h"
+#include "system/render/StageDebugRender.h"
 #include "system/Transition/ChangeSceneByButton.h"
 #include "system/Transition/FallDetectionSystem.h"
 #include "system/Transition/SceneTransition.h"
@@ -54,6 +56,8 @@ void RegisterUsingComponents() {
     componentRegistry->registerComponent<CameraTransform>();
     componentRegistry->registerComponent<Transform>();
 
+    componentRegistry->registerComponent<Stage>();
+
     componentRegistry->registerComponent<DirectionalLight>();
     componentRegistry->registerComponent<PointLight>();
     componentRegistry->registerComponent<SpotLight>();
@@ -69,6 +73,7 @@ void RegisterUsingComponents() {
     componentRegistry->registerComponent<Rigidbody>();
 
     componentRegistry->registerComponent<Emitter>();
+    componentRegistry->registerComponent<GpuParticleEmitter>();
     componentRegistry->registerComponent<DissolveEffectParam>();
     componentRegistry->registerComponent<DistortionEffectParam>();
     componentRegistry->registerComponent<RadialBlurParam>();
@@ -102,6 +107,7 @@ void RegisterUsingSystems() {
     /// ====================================================================================================
     systemRegistry->registerSystem<SettingGameCameraTarget>();
     systemRegistry->registerSystem<TakePlayerToStartPosition>();
+    systemRegistry->registerSystem<GpuParticleInitialize>();
 
     /// ===================================================================================================
     // Input
@@ -128,7 +134,6 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<FollowCameraUpdateSystem>();
     systemRegistry->registerSystem<PlayerMoveSystem>();
 
-
     /// =================================================================================================
     // Collision
     /// =================================================================================================
@@ -145,6 +150,7 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<TextureEffectAnimation>();
     systemRegistry->registerSystem<SkinningAnimationSystem>();
     systemRegistry->registerSystem<SpriteAnimationSystem>();
+    systemRegistry->registerSystem<GpuParticleEmitterWorkSystem>();
 
     systemRegistry->registerSystem<EffectOnPlayerGearup>();
 
@@ -159,6 +165,7 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<SkinningMeshRenderSystem>();
     systemRegistry->registerSystem<EffectTexturedMeshRenderSystem>();
     systemRegistry->registerSystem<LineRenderSystem>();
+    systemRegistry->registerSystem<GpuParticleRenderSystem>();
 
     systemRegistry->registerSystem<SkeletonRenderSystem>();
     systemRegistry->registerSystem<ColliderRenderingSystem>();
@@ -173,5 +180,4 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<DissolveEffect>();
     systemRegistry->registerSystem<RandomEffect>();
     systemRegistry->registerSystem<RadialBlurEffect>();
-
 }

@@ -10,6 +10,9 @@
     <Filter Include="component\cameraController">
       <UniqueIdentifier>{54DC1446-40EC-C016-A9A5-253595D4AFAF}</UniqueIdentifier>
     </Filter>
+    <Filter Include="editor">
+      <UniqueIdentifier>{AC2EC5FA-98D0-EFD0-818B-03256DCC7621}</UniqueIdentifier>
+    </Filter>
     <Filter Include="system">
       <UniqueIdentifier>{8AE4EE1C-7686-19F3-5F41-2D474B82A043}</UniqueIdentifier>
     </Filter>
@@ -59,6 +62,9 @@
     </ClInclude>
     <ClInclude Include="code\component\cameraController\CameraController.h">
       <Filter>component\cameraController</Filter>
+    </ClInclude>
+    <ClInclude Include="code\editor\StageEditor.h">
+      <Filter>editor</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Initialize\CreateSpriteFromTimer.h">
       <Filter>system\Initialize</Filter>
@@ -148,6 +154,9 @@
     </ClCompile>
     <ClCompile Include="code\component\cameraController\CameraController.cpp">
       <Filter>component\cameraController</Filter>
+    </ClCompile>
+    <ClCompile Include="code\editor\StageEditor.cpp">
+      <Filter>editor</Filter>
     </ClCompile>
     <ClCompile Include="code\main.cpp" />
     <ClCompile Include="code\system\Initialize\CreateSpriteFromTimer.cpp">

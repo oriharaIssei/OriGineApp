@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <PreprocessorDefinitions>DEBUG;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)code;$(ProjectDir);$(SolutionDir)math;$(SolutionDir)lib;$(SolutionDir)engine\code\ECS;$(SolutionDir)engine\code;$(SolutionDir)engine;$(SolutionDir);$(SolutionDir)externals;$(SolutionDir)externals\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)code;$(ProjectDir);$(SolutionDir)math;$(SolutionDir)util;$(SolutionDir)engine\code\ECS;$(SolutionDir)engine\code;$(SolutionDir)engine;$(SolutionDir);$(SolutionDir)externals;$(SolutionDir)externals\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -99,7 +99,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <PreprocessorDefinitions>DEVELOP;_DEVELOP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)code;$(ProjectDir);$(SolutionDir)math;$(SolutionDir)lib;$(SolutionDir)engine\code\ECS;$(SolutionDir)engine\code;$(SolutionDir)engine;$(SolutionDir);$(SolutionDir)externals;$(SolutionDir)externals\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)code;$(ProjectDir);$(SolutionDir)math;$(SolutionDir)util;$(SolutionDir)engine\code\ECS;$(SolutionDir)engine\code;$(SolutionDir)engine;$(SolutionDir);$(SolutionDir)externals;$(SolutionDir)externals\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -119,7 +119,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)code;$(ProjectDir);$(SolutionDir)math;$(SolutionDir)lib;$(SolutionDir)engine\code\ECS;$(SolutionDir)engine\code;$(SolutionDir)engine;$(SolutionDir);$(SolutionDir)externals;$(SolutionDir)externals\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)code;$(ProjectDir);$(SolutionDir)math;$(SolutionDir)util;$(SolutionDir)engine\code\ECS;$(SolutionDir)engine\code;$(SolutionDir)engine;$(SolutionDir);$(SolutionDir)externals;$(SolutionDir)externals\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -149,6 +149,7 @@
     <ClInclude Include="code\component\Stage.h" />
     <ClInclude Include="code\component\TimerComponent.h" />
     <ClInclude Include="code\component\cameraController\CameraController.h" />
+    <ClInclude Include="code\editor\StageEditor.h" />
     <ClInclude Include="code\system\Initialize\CreateSpriteFromTimer.h" />
     <ClInclude Include="code\system\Initialize\CreateStage.h" />
     <ClInclude Include="code\system\Initialize\SettingGameCameraTarget.h" />
@@ -182,6 +183,7 @@
     <ClCompile Include="code\component\Stage.cpp" />
     <ClCompile Include="code\component\TimerComponent.cpp" />
     <ClCompile Include="code\component\cameraController\CameraController.cpp" />
+    <ClCompile Include="code\editor\StageEditor.cpp" />
     <ClCompile Include="code\main.cpp" />
     <ClCompile Include="code\system\Initialize\CreateSpriteFromTimer.cpp" />
     <ClCompile Include="code\system\Initialize\CreateStage.cpp" />
