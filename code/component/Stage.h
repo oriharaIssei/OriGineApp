@@ -47,6 +47,8 @@ private:
 public:
     const std::vector<ControlPoint>& getControlPoints() const { return controlPoints_; }
     const std::vector<Link>& getLinks() const { return links_; }
+    std::vector<ControlPoint>& getControlPointsRef()  { return controlPoints_; }
+    std::vector<Link>& getLinksRef()  { return links_; }
     /// <summary>
     /// すべての制御点を削除
     /// </summary>
@@ -78,45 +80,7 @@ public:
 
 #ifdef DEBUG
 private:
-    /// <summary>
-    /// first = control point index , second = ControlPoint
-    /// </summary>
-    std::vector<std::pair<int32_t, ControlPoint>> editControlPoints_;
-    std::vector<std::pair<int32_t, Link>> editLinks_;
 
-    Vec2f clickedMousePos_;
-    Vec2f releasedMousePos_;
-
-public:
-    const std::vector<std::pair<int32_t, ControlPoint>>& getEditControlPoints() const {
-        return editControlPoints_;
-    }
-    const std::vector<std::pair<int32_t, Link>>& getEditLinks() const {
-        return editLinks_;
-    }
-
-    void addEditControlPoint(int32_t index) {
-        editControlPoints_.emplace_back(index, controlPoints_[index]);
-    }
-    void addEditLink(int32_t index) {
-        editLinks_.emplace_back(index, links_[index]);
-    }
-
-    void clearEditControlPoints() { editControlPoints_.clear(); }
-    void clearEditLinks() { editLinks_.clear(); }
-
-    void removeEditControlPoint(int32_t index) {
-        editControlPoints_.erase(
-            std::remove_if(editControlPoints_.begin(), editControlPoints_.end(),
-                [index](const auto& p) { return p.first == index; }),
-            editControlPoints_.end());
-    }
-    void removeEditLink(int32_t index) {
-        editLinks_.erase(
-            std::remove_if(editLinks_.begin(), editLinks_.end(),
-                [index](const auto& p) { return p.first == index; }),
-            editLinks_.end());
-    }
 
 #endif // DEBUG
 };

@@ -2,7 +2,6 @@
 
 /// engine
 
-
 // component
 #include "component/Stage.h"
 
@@ -12,7 +11,7 @@
 static constexpr uint32_t sphereDivision  = 8;
 static constexpr float sphereDivisionReal = static_cast<float>(sphereDivision);
 
-static constexpr float controlPointRadius  = 0.1f; // 制御点の半径
+static constexpr float controlPointRadius  = 0.04f; // 制御点の半径
 static constexpr uint32_t sphereVertexSize = 4 * sphereDivision * sphereDivision;
 static constexpr uint32_t sphereIndexSize  = 4 * sphereDivision * sphereDivision;
 
@@ -21,6 +20,7 @@ static constexpr uint32_t defaultMeshSize = 1000; // メッシュのデフォル
 static void CreateControlPointMesh(
     Mesh<ColorVertexData>* _mesh,
     const Vec3f& _pos,
+    const Vec3f& _radius,
     const Vec4f& _color) {
 
     const float kLatEvery = std::numbers::pi_v<float> / sphereDivisionReal; //* 緯度
@@ -28,9 +28,9 @@ static void CreateControlPointMesh(
 
     auto calculatePoint = [&](float lat, float lon) -> Vector3f {
         return {
-            _pos[X] + controlPointRadius * std::cos(lat) * std::cos(lon),
-            _pos[Y] + controlPointRadius * std::sin(lat),
-            _pos[Z] + controlPointRadius * std::cos(lat) * std::sin(lon)};
+            _pos[X] + _radius[X] * std::cos(lat) * std::cos(lon),
+            _pos[Y] + _radius[Y] * std::sin(lat),
+            _pos[Z] + _radius[Z] * std::cos(lat) * std::sin(lon)};
     };
 
     // 緯線（緯度方向の円）を描画
@@ -84,8 +84,14 @@ void StageDebugRender::Initialize() {
     linkRenderer_ = LineRenderer(std::vector<Mesh<ColorVertexData>>());
     linkRenderer_.Initialize(nullptr);
     linkRenderer_.getMeshGroup()->push_back(Mesh<ColorVertexData>());
-    linkRenderer_.getMeshGroup()->back().Initialize(UINT(defaultMeshSize * 2.f), UINT(defaultMeshSize * 2.f));
+    linkRenderer_.getMeshGroup()->back().Initialize(UINT(defaultMeshSize * 8), UINT(defaultMeshSize * 36));
     linkMeshItr_ = linkRenderer_.getMeshGroup()->begin();
+
+    linkNormalRenderer_ = LineRenderer(std::vector<Mesh<ColorVertexData>>());
+    linkNormalRenderer_.Initialize(nullptr);
+    linkNormalRenderer_.getMeshGroup()->push_back(Mesh<ColorVertexData>());
+    linkNormalRenderer_.getMeshGroup()->back().Initialize(UINT(defaultMeshSize * 2), UINT(defaultMeshSize * 2));
+    linkNormalMeshItr_ = linkNormalRenderer_.getMeshGroup()->begin();
 
     lineRenderSystem_.Initialize();
 }
@@ -96,6 +102,8 @@ void StageDebugRender::Update() {
     pointMeshItr_->indexes_.clear();
     linkMeshItr_->vertexes_.clear();
     linkMeshItr_->indexes_.clear();
+    linkNormalMeshItr_->vertexes_.clear();
+    linkNormalMeshItr_->indexes_.clear();
 
     auto stageArray = getComponentArray<Stage>();
     if (!stageArray) {
@@ -109,6 +117,8 @@ void StageDebugRender::Update() {
         // メッシュを作成
         CreateMeshes(stage);
     }
+
+    RenderAll();
 }
 
 void StageDebugRender::Finalize() {}
@@ -116,7 +126,8 @@ void StageDebugRender::Finalize() {}
 void StageDebugRender::CreateMeshes(Stage* _stage) {
 
     // ControlPoint（球）描画
-    const Vec4f kColor  = {0, 1, 0, 1}; // 緑
+    const Vec4f kColor        = {1, 1, 1, 1}; // 緑
+    const Vec3f defaultRadius = {controlPointRadius, controlPointRadius, controlPointRadius};
     for (const auto& cp : _stage->getControlPoints()) {
         // Capacityが足りなかったら 新しいMeshを作成する
         if (pointMeshItr_->getIndexCapacity() <= 0) {
@@ -129,12 +140,12 @@ void StageDebugRender::CreateMeshes(Stage* _stage) {
                 meshGroup->back().Initialize(defaultMeshSize * sphereVertexSize, defaultMeshSize * sphereIndexSize);
             }
         }
-        CreateControlPointMesh(pointMeshItr_._Ptr, cp.pos_, kColor);
+        CreateControlPointMesh(pointMeshItr_._Ptr, cp.pos_, defaultRadius, kColor);
     }
 
     // Link（線）描画
     const auto& cps       = _stage->getControlPoints();
-    const Vec4f linkColor = {1, 1, 0, 1}; // 黄色
+    const Vec4f linkColor = {0, 0, 1, 1}; // 黄色
     for (const auto& link : _stage->getLinks()) {
         if (link.from_ < 0 || link.from_ >= cps.size() || link.to_ < 0 || link.to_ >= cps.size()) {
             continue;
@@ -152,20 +163,103 @@ void StageDebugRender::CreateMeshes(Stage* _stage) {
             }
         }
 
-        const Vec3f& from = cps[link.from_].pos_;
-        const Vec3f& to   = cps[link.to_].pos_;
+        const Vec3f& from   = cps[link.from_].pos_;
+        const Vec3f& to     = cps[link.to_].pos_;
+        const Vec3f& normal = link.normal_.normalize();
 
-        // 頂点追加
-        uint32_t idx0 = (uint32_t)linkMeshItr_->vertexes_.size();
-        uint32_t idx1 = idx0 + 1;
-        linkMeshItr_->vertexes_.emplace_back(ColorVertexData{Vec4f(from, 1.f), linkColor});
-        linkMeshItr_->vertexes_.emplace_back(ColorVertexData{Vec4f(to, 1.f), linkColor});
-        linkMeshItr_->indexes_.emplace_back(idx0);
-        linkMeshItr_->indexes_.emplace_back(idx1);
+        Vec3f forward = Vec3f(to - from).normalize();
+        Vec3f right   = forward.cross(normal).normalize();
+        Vec3f up      = right.cross(forward).normalize();
+
+        float hw = link.width_ * 0.5f;
+        float hh = link.height_ * 0.5f;
+
+        Vec3f f0 = from + right * hw + up * hh;
+        Vec3f f1 = from - right * hw + up * hh;
+        Vec3f f2 = from - right * hw - up * hh;
+        Vec3f f3 = from + right * hw - up * hh;
+
+        Vec3f t0 = to + right * hw + up * hh;
+        Vec3f t1 = to - right * hw + up * hh;
+        Vec3f t2 = to - right * hw - up * hh;
+        Vec3f t3 = to + right * hw - up * hh;
+
+        std::vector<int> indices = {
+            0, 1, 2, 2, 3, 0,
+            4, 5, 6, 6, 7, 4,
+            0, 4, 5, 5, 1, 0,
+            3, 7, 6, 6, 2, 3,
+            0, 4, 7, 7, 3, 0,
+            1, 5, 6, 6, 2, 1};
+
+        {
+            uint32_t idx = (uint32_t)linkMeshItr_->vertexes_.size();
+
+            // 頂点追加
+            linkMeshItr_->vertexes_.emplace_back(ColorVertexData{Vec4f(f0, 1.f), linkColor});
+            linkMeshItr_->vertexes_.emplace_back(ColorVertexData{Vec4f(f1, 1.f), linkColor});
+            linkMeshItr_->vertexes_.emplace_back(ColorVertexData{Vec4f(f2, 1.f), linkColor});
+            linkMeshItr_->vertexes_.emplace_back(ColorVertexData{Vec4f(f3, 1.f), linkColor});
+            linkMeshItr_->vertexes_.emplace_back(ColorVertexData{Vec4f(t0, 1.f), linkColor});
+            linkMeshItr_->vertexes_.emplace_back(ColorVertexData{Vec4f(t1, 1.f), linkColor});
+            linkMeshItr_->vertexes_.emplace_back(ColorVertexData{Vec4f(t2, 1.f), linkColor});
+            linkMeshItr_->vertexes_.emplace_back(ColorVertexData{Vec4f(t3, 1.f), linkColor});
+
+            // インデックス 追加
+            for (const auto& index : indices) {
+                linkMeshItr_->indexes_.emplace_back(idx + index);
+            }
+        }
+
+        // リンクの法線を描画
+        if (linkNormalMeshItr_->getIndexCapacity() <= 0) {
+            linkNormalMeshItr_->TransferData();
+            ++linkNormalMeshItr_;
+            auto& meshGroup = linkNormalRenderer_.getMeshGroup();
+            if (linkNormalMeshItr_ == meshGroup->end()) {
+                linkNormalMeshItr_ = meshGroup->end();
+                meshGroup->push_back(Mesh<ColorVertexData>());
+                meshGroup->back().Initialize(defaultMeshSize * 2, defaultMeshSize * 2);
+            }
+        }
+
+        Vec3f midPoint    = (from + to) * 0.5f;
+        Vec3f normalPoint = midPoint + normal * (link.height_ + 1.f);
+        Vec4f linkNormalColor = {0, 1, 0, 1};
+        {
+            // 頂点追加
+            uint32_t idx0 = (uint32_t)linkNormalMeshItr_->vertexes_.size();
+            uint32_t idx1 = idx0 + 1;
+            linkNormalMeshItr_->vertexes_.emplace_back(ColorVertexData{Vec4f(midPoint, 1.f), linkNormalColor});
+            linkNormalMeshItr_->vertexes_.emplace_back(ColorVertexData{Vec4f(normalPoint, 1.f), linkNormalColor});
+            linkNormalMeshItr_->indexes_.emplace_back(idx0);
+            linkNormalMeshItr_->indexes_.emplace_back(idx1);
+        }
+
+        {
+            // リンクの幅を描画
+            Vec3f widthOffset = normal.cross(Vec3f(0, 1, 0)).normalize() * link.width_ * 0.5f;
+            Vec3f fromLeft    = from + widthOffset;
+            Vec3f fromRight   = from - widthOffset;
+            Vec3f toLeft      = to + widthOffset;
+            Vec3f toRight     = to - widthOffset;
+            // 頂点追加
+            uint32_t idx0 = (uint32_t)linkNormalMeshItr_->vertexes_.size();
+            uint32_t idx1 = idx0 + 1;
+            linkNormalMeshItr_->vertexes_.emplace_back(ColorVertexData{Vec4f(fromLeft, 1.f), linkColor});
+            linkNormalMeshItr_->vertexes_.emplace_back(ColorVertexData{Vec4f(fromRight, 1.f), linkColor});
+            linkNormalMeshItr_->indexes_.emplace_back(idx0);
+            linkNormalMeshItr_->indexes_.emplace_back(idx1);
+            idx0 = (uint32_t)linkNormalMeshItr_->vertexes_.size();
+            idx1 = idx0 + 1;
+            linkNormalMeshItr_->vertexes_.emplace_back(ColorVertexData{Vec4f(toLeft, 1.f), linkColor});
+            linkNormalMeshItr_->vertexes_.emplace_back(ColorVertexData{Vec4f(toRight, 1.f), linkColor});
+        }
     }
 
     pointMeshItr_->TransferData();
     linkMeshItr_->TransferData();
+    linkNormalMeshItr_->TransferData();
 }
 
 void StageDebugRender::RenderAll() {
@@ -185,6 +279,16 @@ void StageDebugRender::RenderAll() {
     // Link（線）
     linkRenderer_.getTransformBuff().SetForRootParameter(commandList, 0);
     for (auto& mesh : *linkRenderer_.getMeshGroup()) {
+        if (mesh.indexes_.empty())
+            continue;
+        commandList->IASetVertexBuffers(0, 1, &mesh.getVertexBufferView());
+        commandList->IASetIndexBuffer(&mesh.getIndexBufferView());
+        commandList->DrawIndexedInstanced((UINT)mesh.indexes_.size(), 1, 0, 0, 0);
+    }
+
+    // Link Normal（法線）
+    linkNormalRenderer_.getTransformBuff().SetForRootParameter(commandList, 0);
+    for (auto& mesh : *linkNormalRenderer_.getMeshGroup()) {
         if (mesh.indexes_.empty())
             continue;
         commandList->IASetVertexBuffers(0, 1, &mesh.getVertexBufferView());

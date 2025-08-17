@@ -3,6 +3,7 @@
         "ECSEditor": true,
         "GlobalVariablesEditor": false,
         "SceneEditorWindow": false,
-        "SettingWindow": false
+        "SettingWindow": false,
+        "StageEditorWindow": false
     }
 }

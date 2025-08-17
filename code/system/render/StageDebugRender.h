@@ -11,7 +11,6 @@ class Stage;
 #include "system/render/LineRenderSystem.h"
 #include "system/render/TexturedMeshRenderSystem.h"
 
-
 class StageDebugRender
     : public ISystem {
 public:
@@ -33,6 +32,9 @@ private:
     LineRenderSystem lineRenderSystem_; // 線を描画するためのシステム
     LineRenderer pointRenderer_; // 球（ControlPoint）用
     LineRenderer linkRenderer_; // 線（Link）用
+    LineRenderer linkNormalRenderer_; // リンクの法線を描画するためのシステム
+
     std::vector<Mesh<ColorVertexData>>::iterator pointMeshItr_;
     std::vector<Mesh<ColorVertexData>>::iterator linkMeshItr_;
+    std::vector<Mesh<ColorVertexData>>::iterator linkNormalMeshItr_;
 };

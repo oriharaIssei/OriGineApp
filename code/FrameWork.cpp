@@ -108,6 +108,7 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<SettingGameCameraTarget>();
     systemRegistry->registerSystem<TakePlayerToStartPosition>();
     systemRegistry->registerSystem<GpuParticleInitialize>();
+    systemRegistry->registerSystem<CreateStage>();
 
     /// ===================================================================================================
     // Input
@@ -169,6 +170,8 @@ void RegisterUsingSystems() {
 
     systemRegistry->registerSystem<SkeletonRenderSystem>();
     systemRegistry->registerSystem<ColliderRenderingSystem>();
+
+    systemRegistry->registerSystem<StageDebugRender>();
 
     /// =================================================================================================
     // PostRender
