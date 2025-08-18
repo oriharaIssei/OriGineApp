@@ -46,18 +46,23 @@ void Stage::SaveFile(const std::string& _directory, const std::string& _filename
     writer.WriteBeginGroup("Stage");
     // 制御点の保存
     writer.WriteBeginGroup("ControlPoints");
+    writer.Write("count", static_cast<int32_t>(controlPoints_.size()));
+    int32_t index = 0;
     for (const auto& point : controlPoints_) {
-        writer.Write<3, float>("pos", point.pos_);
+        writer.Write<3, float>(std::to_string(index) + "_pos", point.pos_);
+        ++index;
     }
     writer.WriteEndGroup();
     // リンクの保存
     writer.WriteBeginGroup("Links");
+    writer.Write("count", static_cast<int32_t>(links_.size()));
+    index = 0;
     for (const auto& link : links_) {
-        writer.Write("to", link.to_);
-        writer.Write("from", link.from_);
-        writer.Write<3, float>("normal", link.normal_);
-        writer.Write("height", link.height_);
-        writer.Write("width", link.width_);
+        writer.Write(std::to_string(index) + "_to", link.to_);
+        writer.Write(std::to_string(index) + "_from", link.from_);
+        writer.Write<3, float>(std::to_string(index) + "_normal", link.normal_);
+        writer.Write(std::to_string(index) + "_height", link.height_);
+        writer.Write(std::to_string(index) + "_width", link.width_);
     }
     writer.WriteEndGroup();
     writer.WriteEndGroup();
@@ -77,31 +82,28 @@ void Stage::LoadFile(const std::string& _directory, const std::string& _filename
     reader.ReadBeginGroup("Stage");
     // 制御点の読み込み
     reader.ReadBeginGroup("ControlPoints");
+    int32_t count = 0;
+    reader.Read("count", count);
     ControlPoint point;
-    while (true) {
-        try {
-            reader.Read<3, float>("pos", point.pos_);
-            controlPoints_.push_back(point);
-        } catch (const std::exception& e) {
-            break; // 例外が発生したら終了
-        }
+    for (size_t i = 0; i < count; ++i) {
+        reader.Read<3, float>(std::to_string(i) + "_pos", point.pos_);
+        controlPoints_.push_back(point);
     }
     reader.ReadEndGroup();
 
     // リンクの読み込み
     reader.ReadBeginGroup("Links");
+    count = 0;
+    reader.Read("count", count);
     Link link;
-    while (true) {
-        try {
-            reader.Read("to", link.to_);
-            reader.Read("from", link.from_);
-            reader.Read<3, float>("normal", link.normal_);
-            reader.Read("height", link.height_);
-            reader.Read("width", link.width_);
-            links_.push_back(link);
-        } catch (const std::exception& e) {
-            break; // 例外が発生したら終了
-        }
+    for (size_t i = 0; i < count; ++i) {
+        std::string indexStr = std::to_string(i);
+        reader.Read(indexStr+ "_to", link.to_);
+        reader.Read(indexStr +"_from", link.from_);
+        reader.Read<3, float>(indexStr +"_normal", link.normal_);
+        reader.Read(indexStr + "_height", link.height_);
+        reader.Read(indexStr + "_width", link.width_);
+        links_.push_back(link);
     }
     reader.ReadEndGroup();
 

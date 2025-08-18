@@ -1,9 +1,12 @@
 #include "CreateStage.h"
 
 /// engine
+#define RESOURCE_DIRECTORY
 #include "Engine.h"
-/// ECS
+#include "EngineInclude.h"
+#include "scene/SceneManager.h"
 
+/// ECS
 // component
 #include "component/collider/Collider.h"
 #include "component/renderer/primitive/Primitive.h"
@@ -57,4 +60,18 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
 
     getScene()->getSystem(nameof<CollisionCheckSystem>())->addEntity(_entity);
     getScene()->getSystem(nameof<TexturedMeshRenderSystem>())->addEntity(_entity);
+
+    // goal
+    int32_t goalIndex             = stage->getGoalPointIndex();
+    goalIndex                     = std::clamp(goalIndex, 0, static_cast<int32_t>(controlPoints.size() - 1));
+    Stage::ControlPoint goalPoint = controlPoints[goalIndex];
+
+    SceneSerializer serializer(getScene());
+    GameEntity* goalEntity = serializer.LoadEntity(kApplicationResourceDirectory + "/entities", "Goal");
+    if (goalEntity == nullptr) {
+        LOG_ERROR("Failed to load Goal entity.");
+        return;
+    }
+    Transform* goalTransform = getComponent<Transform>(goalEntity);
+    goalTransform->translate = goalPoint.pos_;
 }

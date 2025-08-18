@@ -76,20 +76,15 @@ void StageEditorWindow::Initialize() {
 void StageEditorWindow::Finalize() {}
 
 StageViewArea::StageViewArea() : Editor::Area(nameof<StageViewArea>()) {}
-
-StageViewArea::~StageViewArea() {
-}
+StageViewArea::~StageViewArea() {}
 
 void StageViewArea::Initialize() {
     addRegion(std::make_shared<StageViewRegion>(this));
 }
-
-void StageViewArea::Finalize() {
-}
+void StageViewArea::Finalize() {}
 
 StageViewArea::StageViewRegion::StageViewRegion(StageViewArea* _parent)
     : Editor::Region(nameof<StageViewRegion>()), parentWindow_(_parent) {}
-
 StageViewArea::StageViewRegion::~StageViewRegion() {}
 
 void StageViewArea::StageViewRegion::Initialize() {
@@ -219,6 +214,14 @@ void ControlPointEditArea::ControlPointEditRegion::DrawGui() {
 
             EditorController::getInstance()->pushCommand(std::move(commandCombo));
         }
+    }
+
+    int32_t goalIndex = stage->getGoalPointIndex();
+    if (ImGui::InputInt("GoalIndex", &goalIndex)) {
+        if (goalIndex < 0 || goalIndex >= static_cast<int32_t>(controlPoints.size())) {
+            goalIndex = -1; // 無効なインデックスは-1に設定
+        }
+        stage->setGoalPointIndex(goalIndex);
     }
 
     ImGui::Separator();
@@ -412,8 +415,6 @@ void StageFileSaveMenuItem::DrawGui() {
                 ImGui::EndMenu();
                 return;
             }
-            auto* currentScene = EditorController::getInstance()->getWindow<StageEditorWindow>()->getCurrentScene();
-            auto stage         = currentScene->getComponent<Stage>(currentScene->getUniqueEntity("Stage")->getID());
             stage->SaveFile(directory_, filename_);
             filename_ = stage->getFileName();
         }
@@ -433,7 +434,7 @@ void StageFileLoadMenuItem::Initialize() {
 }
 void StageFileLoadMenuItem::DrawGui() {
     if (ImGui::MenuItem("LoadStage")) {
-        if (!myfs::selectFileDialog(kApplicationResourceDirectory, directory_, filename_, {"stage"},true)) {
+        if (!myfs::selectFileDialog(kApplicationResourceDirectory, directory_, filename_, {"stage"}, true)) {
             directory_ = "/Stage";
             filename_  = "";
             return;

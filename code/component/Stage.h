@@ -50,7 +50,7 @@ private:
 
     std::vector<ControlPoint> controlPoints_;
     std::vector<Link> links_;
-
+    int32_t goalPointIndex_ = -1; // 目標地点のインデックス
 public:
     const std::vector<ControlPoint>& getControlPoints() const { return controlPoints_; }
     const std::vector<Link>& getLinks() const { return links_; }
@@ -59,6 +59,14 @@ public:
 
     const std::string& getDirectory() const { return directory_; }
     const std::string& getFileName() const { return fileName_; }
+
+    int32_t getGoalPointIndex() const { return goalPointIndex_; }
+    void setGoalPointIndex(int32_t index){ 
+        if (index < 0 || index >= controlPoints_.size()) {
+            return;
+        }
+        goalPointIndex_ = index; 
+    }
 
     /// <summary>
     /// すべての制御点を削除
