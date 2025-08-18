@@ -3,6 +3,9 @@
 #include <string>
 
 /// engine
+#define RESOURCE_DIRECTORY
+#include "EngineInclude.h"
+// directX12
 #include "directX12/RenderTexture.h"
 // camera
 #include "camera/CameraManager.h"
@@ -17,6 +20,7 @@
 #include "editor/EditorController.h"
 
 /// util
+#include "myFileSystem/MyFileSystem.h"
 #include "myGui/MyGui.h"
 #include "nameof.h"
 
@@ -53,10 +57,20 @@ void StageEditorWindow::Initialize() {
     scene_->registerSystem(nameof<StageDebugRender>(), 0, true, true);
 
     /// ========================================================
+    // windowFlags の初期化
+    /// ========================================================
+    windowFlags_ = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDocking;
+
+    /// ========================================================
     // Area の初期化
     /// ========================================================
     addArea(std::make_shared<StageViewArea>());
     addArea(std::make_shared<ControlPointEditArea>());
+
+    /// ========================================================
+    // Menu の初期化
+    /// ========================================================
+    addMenu(std::make_shared<StageFileMenu>());
 }
 
 void StageEditorWindow::Finalize() {}
@@ -192,7 +206,7 @@ void ControlPointEditArea::ControlPointEditRegion::DrawGui() {
                 commandCombo->addCommand(std::make_shared<AddLinkCommand>(stage, newLink));
             } else {
                 // 選択されている 制御点を 順に つなぐ
-                for (int32_t i = 0; i < parentArea_->editControlPoints_.size(); ++i) {
+                for (int32_t i = 1; i < parentArea_->editControlPoints_.size(); ++i) {
                     Stage::Link newLink;
                     newLink.from_ = prevCtlPoint;
                     newLink.to_   = parentArea_->editControlPoints_[i].first;
@@ -350,8 +364,91 @@ void ControlPointEditArea::ControlPointEditRegion::DrawGui() {
     }
 };
 
-void ControlPointEditArea::ControlPointEditRegion::Finalize() {
-};
+void ControlPointEditArea::ControlPointEditRegion::Finalize() {};
+
+#pragma region "Menu"
+StageFileMenu::StageFileMenu() : Editor::Menu(nameof<StageFileMenu>()) {}
+void StageFileMenu::Initialize() {
+    addMenuItem(std::make_shared<StageFileSaveMenuItem>());
+    addMenuItem(std::make_shared<StageFileLoadMenuItem>());
+}
+void StageFileMenu::Finalize() {}
+StageFileMenu::~StageFileMenu() {}
+
+StageFileSaveMenuItem::StageFileSaveMenuItem() : Editor::MenuItem(nameof<StageFileSaveMenuItem>()) {}
+StageFileSaveMenuItem::~StageFileSaveMenuItem() {}
+void StageFileSaveMenuItem::Initialize() {
+    directory_ = kApplicationResourceDirectory + "/Stage";
+    filename_  = "";
+}
+void StageFileSaveMenuItem::DrawGui() {
+    if (ImGui::BeginMenu("Save Stage")) {
+        auto* currentScene = EditorController::getInstance()->getWindow<StageEditorWindow>()->getCurrentScene();
+        auto stage         = currentScene->getComponent<Stage>(currentScene->getUniqueEntity("Stage")->getID());
+
+        // ファイルダイアログを開く
+        ImGui::InputText("Directory", &directory_, ImGuiInputTextFlags_ReadOnly);
+        ImGui::SameLine();
+        if (ImGui::Button("Search##StageFileSaveMenuItem")) {
+            // ディレクトリ選択ダイアログを開く
+            MyFileSystem::selectFolderDialog(kApplicationResourceDirectory + "/Stage", directory_);
+            if (directory_.empty()) {
+                LOG_ERROR("No directory selected.");
+                directory_ = kApplicationResourceDirectory + "/Stage";
+            }
+        }
+
+        if (ImGui::InputText("Filename", &filename_, ImGuiInputTextFlags_EnterReturnsTrue)) {
+            // Enterキーでファイル名を確定
+            if (filename_.empty()) {
+                LOG_ERROR("Filename cannot be empty.");
+                filename_ = stage->getFileName();
+            }
+        }
+        if (ImGui::Button("Save")) {
+            if ((directory_ == "") || (filename_ == "")) {
+                // ディレクトリまたはファイル名が空の場合
+                LOG_ERROR("Directory or filename is empty.");
+                ImGui::EndMenu();
+                return;
+            }
+            auto* currentScene = EditorController::getInstance()->getWindow<StageEditorWindow>()->getCurrentScene();
+            auto stage         = currentScene->getComponent<Stage>(currentScene->getUniqueEntity("Stage")->getID());
+            stage->SaveFile(directory_, filename_);
+            filename_ = stage->getFileName();
+        }
+        ImGui::EndMenu();
+    }
+}
+void StageFileSaveMenuItem::Finalize() {
+    directory_ = "";
+    filename_  = "";
+}
+
+StageFileLoadMenuItem::StageFileLoadMenuItem() : Editor::MenuItem(nameof<StageFileLoadMenuItem>()) {}
+StageFileLoadMenuItem::~StageFileLoadMenuItem() {}
+void StageFileLoadMenuItem::Initialize() {
+    directory_ = "/Stage";
+    filename_  = "";
+}
+void StageFileLoadMenuItem::DrawGui() {
+    if (ImGui::MenuItem("LoadStage")) {
+        if (!myfs::selectFileDialog(kApplicationResourceDirectory, directory_, filename_, {"stage"},true)) {
+            directory_ = "/Stage";
+            filename_  = "";
+            return;
+        }
+        auto* currentScene = EditorController::getInstance()->getWindow<StageEditorWindow>()->getCurrentScene();
+        auto stage         = currentScene->getComponent<Stage>(currentScene->getUniqueEntity("Stage")->getID());
+        stage->LoadFile(kApplicationResourceDirectory + "/" + directory_, filename_);
+    }
+}
+void StageFileLoadMenuItem::Finalize() {
+    directory_ = "";
+    filename_  = "";
+}
+
+#pragma endregion
 
 #pragma region "Commands"
 AddControlPointCommand::AddControlPointCommand(Stage* stage, const Stage::ControlPoint& point)

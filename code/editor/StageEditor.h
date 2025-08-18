@@ -138,6 +138,41 @@ public:
     }
 };
 
+class StageFileMenu
+    : public Editor::Menu {
+public:
+    StageFileMenu();
+    ~StageFileMenu();
+    void Initialize() override;
+    void Finalize() override;
+};
+class StageFileSaveMenuItem
+    : public Editor::MenuItem {
+public:
+    StageFileSaveMenuItem();
+    ~StageFileSaveMenuItem() override;
+    void Initialize() override;
+    void DrawGui() override;
+    void Finalize() override;
+
+private:
+    std::string directory_;
+    std::string filename_;
+};
+class StageFileLoadMenuItem
+    : public Editor::MenuItem {
+public:
+    StageFileLoadMenuItem();
+    ~StageFileLoadMenuItem() override;
+    void Initialize() override;
+    void DrawGui() override;
+    void Finalize() override;
+
+private:
+    std::string directory_;
+    std::string filename_;
+};
+
 /// ==========================================
 // command
 /// ==========================================
