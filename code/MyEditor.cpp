@@ -5,6 +5,7 @@
 #include "editor/EditorController.h"
 #include "editor/sceneEditor/SceneEditor.h"
 #include "editor/setting/SettingWindow.h"
+#include "editor/StageEditor.h"
 
 #include "Engine.h"
 
@@ -34,6 +35,9 @@ void MyEditor::Initialize(const std::string& _commandLine) {
     editorController_->addEditor<SceneEditorWindow>(std::move(sceneEditorWindow));
     auto settingWindow = std::make_unique<SettingWindow>();
     editorController_->addEditor<SettingWindow>(std::move(settingWindow));
+
+    auto stageEditorWindow = std::make_unique<StageEditorWindow>();
+    editorController_->addEditor<StageEditorWindow>(std::move(stageEditorWindow));
 
     editorController_->Initialize();
 }

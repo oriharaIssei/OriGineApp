@@ -4,7 +4,8 @@
 /// stl
 #include <vector>
 
-/// engine
+/// util
+#include "binaryIO/BinaryIO.h"
 
 /// math
 #include <math/Vector3.h>
@@ -27,6 +28,9 @@ public:
 
     void Finalize();
 
+    void SaveFile(const std::string& _directory, const std::string& _filename);
+    void LoadFile(const std::string& _directory, const std::string& _filename);
+
 public:
     struct ControlPoint {
         Vec3f pos_;
@@ -35,18 +39,35 @@ public:
         int32_t to_;
         int32_t from_;
 
-        Vec3f normal_;
+        Vec3f normal_ = {0.f, 1.f, 0.f};
         float height_ = 3.f;
         float width_  = 5.f;
     };
 
 private:
+    std::string directory_;
+    std::string fileName_;
+
     std::vector<ControlPoint> controlPoints_;
     std::vector<Link> links_;
-
+    int32_t goalPointIndex_ = -1; // 目標地点のインデックス
 public:
     const std::vector<ControlPoint>& getControlPoints() const { return controlPoints_; }
     const std::vector<Link>& getLinks() const { return links_; }
+    std::vector<ControlPoint>& getControlPointsRef() { return controlPoints_; }
+    std::vector<Link>& getLinksRef() { return links_; }
+
+    const std::string& getDirectory() const { return directory_; }
+    const std::string& getFileName() const { return fileName_; }
+
+    int32_t getGoalPointIndex() const { return goalPointIndex_; }
+    void setGoalPointIndex(int32_t index){ 
+        if (index < 0 || index >= controlPoints_.size()) {
+            return;
+        }
+        goalPointIndex_ = index; 
+    }
+
     /// <summary>
     /// すべての制御点を削除
     /// </summary>
@@ -78,45 +99,5 @@ public:
 
 #ifdef DEBUG
 private:
-    /// <summary>
-    /// first = control point index , second = ControlPoint
-    /// </summary>
-    std::vector<std::pair<int32_t, ControlPoint>> editControlPoints_;
-    std::vector<std::pair<int32_t, Link>> editLinks_;
-
-    Vec2f clickedMousePos_;
-    Vec2f releasedMousePos_;
-
-public:
-    const std::vector<std::pair<int32_t, ControlPoint>>& getEditControlPoints() const {
-        return editControlPoints_;
-    }
-    const std::vector<std::pair<int32_t, Link>>& getEditLinks() const {
-        return editLinks_;
-    }
-
-    void addEditControlPoint(int32_t index) {
-        editControlPoints_.emplace_back(index, controlPoints_[index]);
-    }
-    void addEditLink(int32_t index) {
-        editLinks_.emplace_back(index, links_[index]);
-    }
-
-    void clearEditControlPoints() { editControlPoints_.clear(); }
-    void clearEditLinks() { editLinks_.clear(); }
-
-    void removeEditControlPoint(int32_t index) {
-        editControlPoints_.erase(
-            std::remove_if(editControlPoints_.begin(), editControlPoints_.end(),
-                [index](const auto& p) { return p.first == index; }),
-            editControlPoints_.end());
-    }
-    void removeEditLink(int32_t index) {
-        editLinks_.erase(
-            std::remove_if(editLinks_.begin(), editLinks_.end(),
-                [index](const auto& p) { return p.first == index; }),
-            editLinks_.end());
-    }
-
 #endif // DEBUG
 };

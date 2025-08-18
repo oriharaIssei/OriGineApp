@@ -14,9 +14,7 @@
 #ifdef _DEBUG
 /// editor
 #include "editor/EditorController.h"
-/// debugger
 #include "logger/Logger.h"
-#include "module/debugger/DebuggerGroup.h"
 #endif // DEBUG
 
 MyGame::MyGame() {}

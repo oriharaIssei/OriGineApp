@@ -3,7 +3,7 @@
 #include "application/code/MyEditor.h"
 #include "application/code/MyGame.h"
 
-#include "lib/logger/Logger.h"
+#include "logger/Logger.h"
 
 #include <memory>
 
