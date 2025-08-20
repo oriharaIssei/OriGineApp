@@ -35,6 +35,7 @@
 #include "system/Transition/SceneTransition.h"
 #include "system/Transition/TransitionPlayerState.h"
 #include "system/Transition/UpdateButtonColorByState.h"
+#include "system/Movement/UpdateCameraForward.h"
 
 //
 // / =====================================================
@@ -134,6 +135,7 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<BillboardTransform>();
     systemRegistry->registerSystem<FollowCameraUpdateSystem>();
     systemRegistry->registerSystem<PlayerMoveSystem>();
+    systemRegistry->registerSystem<UpdateCameraForward>();
 
     /// =================================================================================================
     // Collision
