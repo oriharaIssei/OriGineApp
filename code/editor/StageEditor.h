@@ -1,6 +1,8 @@
 #pragma once
+#ifdef _DEBUG
 
 #include "editor/IEditor.h"
+
 
 /// stl
 #include <memory>
@@ -354,3 +356,5 @@ private:
 };
 
 #pragma endregion "Commands"
+
+#endif // _DEBUG

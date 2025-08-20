@@ -6,6 +6,7 @@
 /// engine
 #define RESOURCE_DIRECTORY
 #include "EngineInclude.h"
+#include "logger/Logger.h"
 
 #ifdef DEBUG
 #include "myGui/MyGui.h"
@@ -13,7 +14,7 @@
 #endif // DEBUG
 
 void Stage::Initialize(GameEntity* /*_entity*/) {
-    if (!directory_.empty() && !directory_.empty()) {
+    if (!directory_.empty() && !fileName_.empty()) {
         LoadFile(directory_, fileName_);
     } else {
         LOG_ERROR("Stage::Initialize: Directory or file name is empty.");
@@ -28,7 +29,8 @@ void Stage::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_unused]] co
     std::string label = "SearchFile##" + _parentLabel;
     if (ImGui::Button(label.c_str())) {
         // ファイル選択ダイアログを開く
-        if (myfs::selectFileDialog(kApplicationResourceDirectory, directory_, fileName_, {"stage"})) {
+        if (myfs::selectFileDialog(kApplicationResourceDirectory, directory_, fileName_, {"stage"},true)) {
+            directory_ = kApplicationResourceDirectory + "/" + directory_;
             LoadFile(directory_, fileName_);
         }
     }
@@ -65,6 +67,11 @@ void Stage::SaveFile(const std::string& _directory, const std::string& _filename
         writer.Write(std::to_string(index) + "_width", link.width_);
     }
     writer.WriteEndGroup();
+
+    // 開始地点と目標地点のインデックスを保存
+    writer.Write("startPointIndex", startPointIndex_);
+    writer.Write("goalPointIndex", goalPointIndex_);
+
     writer.WriteEndGroup();
     writer.WriteEnd();
 }
@@ -106,6 +113,10 @@ void Stage::LoadFile(const std::string& _directory, const std::string& _filename
         links_.push_back(link);
     }
     reader.ReadEndGroup();
+
+    // 開始地点と目標地点のインデックスを読み込み
+    reader.Read("startPointIndex", startPointIndex_);
+    reader.Read("goalPointIndex", goalPointIndex_);
 
     reader.ReadEndGroup();
 

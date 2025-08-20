@@ -1,3 +1,5 @@
+#ifdef _DEBUG
+
 #include "StageEditor.h"
 
 #include <string>
@@ -217,11 +219,18 @@ void ControlPointEditArea::ControlPointEditRegion::DrawGui() {
     }
 
     int32_t goalIndex = stage->getGoalPointIndex();
-    if (ImGui::InputInt("GoalIndex", &goalIndex)) {
+    if (ImGui::InputInt("GoalPointIndex", &goalIndex)) {
         if (goalIndex < 0 || goalIndex >= static_cast<int32_t>(controlPoints.size())) {
             goalIndex = -1; // 無効なインデックスは-1に設定
         }
         stage->setGoalPointIndex(goalIndex);
+    }
+    int32_t startIndex = stage->getStartPointIndex();
+    if (ImGui::InputInt("StartPointIndex", &startIndex)) {
+        if (startIndex < 0 || startIndex >= static_cast<int32_t>(controlPoints.size())) {
+            startIndex = -1; // 無効なインデックスは-1に設定
+        }
+        stage->setStartPointIndex(startIndex);
     }
 
     ImGui::Separator();
@@ -673,3 +682,5 @@ void ClearSelectedLinksCommand::Undo() {
 }
 
 #pragma endregion "Commands"
+
+#endif // _DEBUG

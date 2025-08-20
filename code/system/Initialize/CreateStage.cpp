@@ -13,11 +13,13 @@
 #include "component/transform/Transform.h"
 // system
 #include "system/collision/CollisionCheckSystem.h"
+#include "system/Initialize/TakePlayerToStartPosition.h"
 #include "system/render/TexturedMeshRenderSystem.h"
 
 #include "component/Stage.h"
 
 void CreateStage::UpdateEntity(GameEntity* _entity) {
+
     auto stage = getComponent<Stage>(_entity);
 
     if (stage == nullptr) {
@@ -33,8 +35,11 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
         auto& toPoint   = controlPoints[link.to_];
         auto& fromPoint = controlPoints[link.from_];
 
-        min = toPoint.pos_ - Vec3f(link.width_ * 0.5f, link.height_ * 0.5f, 0.f);
-        max = fromPoint.pos_ + Vec3f(link.width_ * 0.5f, link.height_ * 0.5f, 0.f);
+        Vec3f from = fromPoint.pos_ - Vec3f(link.width_ * 0.5f, link.height_ * 0.5f, 0.f);
+        Vec3f to   = toPoint.pos_ + Vec3f(link.width_ * 0.5f, link.height_ * 0.5f, 0.f);
+
+        min = MinElement(from, to);
+        max = MaxElement(from, to);
 
         // aabb
         AABBCollider collider;
@@ -54,12 +59,16 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
         transform.translate = mid;
         renderer.setTransform(transform);
 
-        addComponent<BoxRenderer>(_entity, renderer);
-        addComponent<AABBCollider>(_entity, collider);
-    }
+        int32_t index          = CreateEntity("Wall");
+        GameEntity* wallEntity = getEntity(index);
+        wallEntity->setShouldSave(false);
 
-    getScene()->getSystem(nameof<CollisionCheckSystem>())->addEntity(_entity);
-    getScene()->getSystem(nameof<TexturedMeshRenderSystem>())->addEntity(_entity);
+        addComponent<BoxRenderer>(wallEntity, renderer);
+        addComponent<AABBCollider>(wallEntity, collider);
+
+        getScene()->getSystem(nameof<CollisionCheckSystem>())->addEntity(wallEntity);
+        getScene()->getSystem(nameof<TexturedMeshRenderSystem>())->addEntity(wallEntity);
+    }
 
     // goal
     int32_t goalIndex             = stage->getGoalPointIndex();
@@ -72,6 +81,18 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
         LOG_ERROR("Failed to load Goal entity.");
         return;
     }
+    goalEntity->setShouldSave(false);
     Transform* goalTransform = getComponent<Transform>(goalEntity);
     goalTransform->translate = goalPoint.pos_;
+
+    // start
+    int32_t startIndex                    = stage->getStartPointIndex();
+    startIndex                            = std::clamp(startIndex, 0, static_cast<int32_t>(controlPoints.size() - 1));
+    const Stage::ControlPoint& startPoint = controlPoints[startIndex];
+
+    int32_t startPosEntityID   = CreateEntity("StartPosition", true);
+    GameEntity* startPosEntity = getEntity(startPosEntityID);
+    Transform startPos;
+    startPos.translate = startPoint.pos_;
+    addComponent<Transform>(startPosEntity, startPos);
 }
