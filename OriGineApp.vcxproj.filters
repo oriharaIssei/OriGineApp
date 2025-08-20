@@ -223,7 +223,6 @@
     <ClCompile Include="code\system\render\StageDebugRender.cpp">
       <Filter>system\render</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Movement\UpdateCameraFoward.cpp" />
     <ClCompile Include="code\system\Movement\UpdateCameraForward.cpp" />
   </ItemGroup>
 </Project>

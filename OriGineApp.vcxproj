@@ -208,7 +208,6 @@
     <ClCompile Include="code\system\effect\EffectOnPlayerGearup.cpp" />
     <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
     <ClCompile Include="code\system\render\StageDebugRender.cpp" />
-    <ClCompile Include="code\system\Movement\UpdateCameraFoward.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">
