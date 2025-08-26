@@ -29,13 +29,13 @@
 #include "system/Movement/BillboardTransform.h"
 #include "system/Movement/FollowCameraUpdateSystem.h"
 #include "system/Movement/PlayerMoveSystem.h"
+#include "system/Movement/UpdateCameraForward.h"
 #include "system/render/StageDebugRender.h"
 #include "system/Transition/ChangeSceneByButton.h"
 #include "system/Transition/FallDetectionSystem.h"
 #include "system/Transition/SceneTransition.h"
 #include "system/Transition/TransitionPlayerState.h"
 #include "system/Transition/UpdateButtonColorByState.h"
-#include "system/Movement/UpdateCameraForward.h"
 
 //
 // / =====================================================
@@ -69,6 +69,7 @@ void RegisterUsingComponents() {
     componentRegistry->registerComponent<SpriteAnimation>();
 
     componentRegistry->registerComponent<AABBCollider>();
+    componentRegistry->registerComponent<OBBCollider>();
     componentRegistry->registerComponent<SphereCollider>();
     componentRegistry->registerComponent<CollisionPushBackInfo>();
     componentRegistry->registerComponent<Rigidbody>();
