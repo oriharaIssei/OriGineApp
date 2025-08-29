@@ -55,22 +55,16 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
         Vec3f from = fromPoint.pos_;
         Vec3f to   = toPoint.pos_;
 
-        min = fromPoint.pos_ - Vec3f(link.width_ * 0.5f, link.height_ * 0.5f, 0.f);
-        max = toPoint.pos_ + Vec3f(link.width_ * 0.5f, link.height_ * 0.5f, 0.f);
-
         const Vec3f& normal = link.normal_.normalize();
-       
+
         // aabbか OBBか
         if (fabs(normal[X]) > 0.999f) {
             // X 軸に直交する壁 (YZ 平面に並行)
+            // デフォルトが Y == 1 なので heightとwidthを入れ替える
             AABBCollider collider;
 
-            min = Vec3f(from[X] - link.width_ * 0.5f,
-                from[Y] - link.height_ * 0.5f,
-                from[Z]);
-            max = Vec3f(to[X] + link.width_ * 0.5f,
-                to[Y] + link.height_ * 0.5f,
-                to[Z]);
+            min = fromPoint.pos_ - Vec3f(link.height_ * 0.5f, link.width_ * 0.5f, 0.f);
+            max = toPoint.pos_ + Vec3f(link.height_ * 0.5f, link.width_ * 0.5f, 0.f);
 
             collider.setLocalMin(min);
             collider.setLocalMax(max);
@@ -80,14 +74,11 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
 
         } else if (fabs(normal[Y]) > 0.999f) {
             // Y 軸に直交する床/天井 (XZ 平面に並行)
+            // これがデフォルト
             AABBCollider collider;
 
-            min = Vec3f(from[X] - link.width_ * 0.5f,
-                from[Y],
-                from[Z] - link.height_ * 0.5f);
-            max = Vec3f(to[X] + link.width_ * 0.5f,
-                to[Y],
-                to[Z] + link.height_ * 0.5f);
+            min = fromPoint.pos_ - Vec3f(link.width_ * 0.5f, link.height_ * 0.5f, 0.f);
+            max = toPoint.pos_ + Vec3f(link.width_ * 0.5f, link.height_ * 0.5f, 0.f);
 
             collider.setLocalMin(min);
             collider.setLocalMax(max);
@@ -128,9 +119,9 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
 
             Matrix4x4 rotMat = {
                 right[X], right[Y], right[Z], 0.f,
-                up[X],    up[Y],    up[Z],    0.f,
+                up[X], up[Y], up[Z], 0.f,
                 -forward[X], -forward[Y], -forward[Z], 0.f,
-                0.f,      0.f,      0.f,      1.f};
+                0.f, 0.f, 0.f, 1.f};
             Quaternion rot = Quaternion::FromMatrix(rotMat);
 
             collider.setRotate(rot);

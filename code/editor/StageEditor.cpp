@@ -56,7 +56,7 @@ void StageEditorWindow::Initialize() {
     // Editor用 Entity 初期化
     int stageEntityID = scene_->getEntityRepositoryRef()->CreateEntity("Stage", true);
     scene_->addComponent(nameof<Stage>(), stageEntityID, true);
-    scene_->registerSystem(nameof<StageDebugRender>(), 0, true, true);
+    scene_->registerSystem(nameof<StageDebugRender>(), 0, true);
 
     /// ========================================================
     // windowFlags の初期化
