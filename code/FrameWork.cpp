@@ -54,6 +54,8 @@ void RegisterUsingComponents() {
 
     componentRegistry->registerComponent<Audio>();
 
+    componentRegistry->registerComponent<SubScene>();
+
     componentRegistry->registerComponent<CameraTransform>();
     componentRegistry->registerComponent<Transform>();
 
@@ -132,6 +134,7 @@ void RegisterUsingSystems() {
     // Movement
     /// =================================================================================================
     systemRegistry->registerSystem<MoveSystemByRigidBody>();
+    systemRegistry->registerSystem<SubSceneUpdate>();
 
     systemRegistry->registerSystem<BillboardTransform>();
     systemRegistry->registerSystem<FollowCameraUpdateSystem>();
@@ -186,4 +189,5 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<DissolveEffect>();
     systemRegistry->registerSystem<RandomEffect>();
     systemRegistry->registerSystem<RadialBlurEffect>();
+    systemRegistry->registerSystem<SubSceneRender>();
 }
