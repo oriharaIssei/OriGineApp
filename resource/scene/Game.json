@@ -36,9 +36,9 @@
                                 1.0
                             ],
                             "translate": [
-                                0.0,
-                                0.0,
-                                0.0
+                                -4.708428382873535,
+                                2.9623026847839355,
+                                57.19034957885742
                             ]
                         }
                     }
@@ -757,6 +757,24 @@
                             0.0,
                             0.0
                         ]
+                    },
+                    {
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            4.300000190734863,
+                            4.190000057220459,
+                            4.179999828338623
+                        ]
                     }
                 ]
             },
@@ -809,9 +827,6 @@
             "FollowCameraUpdateSystem": {
                 "Priority": 1
             },
-            "GrayscaleEffect": {
-                "Priority": 0
-            },
             "LineRenderSystem": {
                 "Priority": 0
             },
@@ -833,9 +848,6 @@
             "PrimitiveNodeAnimationWorkSystem": {
                 "Priority": 1
             },
-            "RandomEffect": {
-                "Priority": 0
-            },
             "SceneTransition": {
                 "Priority": 0
             },
@@ -850,9 +862,6 @@
             },
             "SkyboxRender": {
                 "Priority": -1
-            },
-            "SmoothingEffect": {
-                "Priority": 0
             },
             "SpriteRenderSystem": {
                 "Priority": 5
