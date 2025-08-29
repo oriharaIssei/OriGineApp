@@ -36,9 +36,9 @@
                                 1.0
                             ],
                             "translate": [
-                                0.27590009570121765,
-                                11.238574028015137,
-                                -28.975597381591797
+                                0.0,
+                                0.0,
+                                -10.080000877380371
                             ]
                         }
                     }
@@ -66,7 +66,7 @@
                 "TextureEffectParam": [],
                 "Transform": []
             },
-            "Name": "Stage\u0000",
+            "Name": "Stage",
             "Systems": [
                 {
                     "SystemCategory": 0,
@@ -718,33 +718,6 @@
                 }
             ],
             "isUnique": false
-        },
-        {
-            "Components": {
-                "Transform": [
-                    {
-                        "rotate": [
-                            0.0,
-                            0.0,
-                            0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "translate": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "StartPosition",
-            "Systems": [],
-            "isUnique": true
         }
     ],
     "Systems": [
@@ -791,9 +764,6 @@
             "FollowCameraUpdateSystem": {
                 "Priority": 1
             },
-            "GrayscaleEffect": {
-                "Priority": 0
-            },
             "LineRenderSystem": {
                 "Priority": 0
             },
@@ -815,9 +785,6 @@
             "PrimitiveNodeAnimationWorkSystem": {
                 "Priority": 1
             },
-            "RandomEffect": {
-                "Priority": 0
-            },
             "SceneTransition": {
                 "Priority": 0
             },
@@ -832,9 +799,6 @@
             },
             "SkyboxRender": {
                 "Priority": -1
-            },
-            "SmoothingEffect": {
-                "Priority": 0
             },
             "SpriteRenderSystem": {
                 "Priority": 5

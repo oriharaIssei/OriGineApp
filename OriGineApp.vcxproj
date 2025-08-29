@@ -171,6 +171,7 @@
     <ClInclude Include="code\system\effect\EffectOnPlayerGearup.h" />
     <ClInclude Include="code\system\effect\TimerForSprite.h" />
     <ClInclude Include="code\system\render\StageDebugRender.h" />
+    <ClInclude Include="code\system\Movement\UpdateCameraForward.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -195,6 +196,7 @@
     <ClCompile Include="code\system\Movement\BillboardTransform.cpp" />
     <ClCompile Include="code\system\Movement\FollowCameraUpdateSystem.cpp" />
     <ClCompile Include="code\system\Movement\PlayerMoveSystem.cpp" />
+    <ClCompile Include="code\system\Movement\UpdateCameraForward.cpp" />
     <ClCompile Include="code\system\Transition\ChangeSceneByButton.cpp" />
     <ClCompile Include="code\system\Transition\FallDetectionSystem.cpp" />
     <ClCompile Include="code\system\Transition\SceneTransition.cpp" />

@@ -56,7 +56,7 @@ void StageEditorWindow::Initialize() {
     // Editor用 Entity 初期化
     int stageEntityID = scene_->getEntityRepositoryRef()->CreateEntity("Stage", true);
     scene_->addComponent(nameof<Stage>(), stageEntityID, true);
-    scene_->registerSystem(nameof<StageDebugRender>(), 0, true, true);
+    scene_->registerSystem(nameof<StageDebugRender>(), 0, true);
 
     /// ========================================================
     // windowFlags の初期化
@@ -218,19 +218,19 @@ void ControlPointEditArea::ControlPointEditRegion::DrawGui() {
         }
     }
 
-    int32_t goalIndex = stage->getGoalPointIndex();
-    if (ImGui::InputInt("GoalPointIndex", &goalIndex)) {
-        if (goalIndex < 0 || goalIndex >= static_cast<int32_t>(controlPoints.size())) {
-            goalIndex = -1; // 無効なインデックスは-1に設定
-        }
-        stage->setGoalPointIndex(goalIndex);
-    }
     int32_t startIndex = stage->getStartPointIndex();
     if (ImGui::InputInt("StartPointIndex", &startIndex)) {
         if (startIndex < 0 || startIndex >= static_cast<int32_t>(controlPoints.size())) {
             startIndex = -1; // 無効なインデックスは-1に設定
         }
         stage->setStartPointIndex(startIndex);
+    }
+    int32_t goalIndex = stage->getGoalPointIndex();
+    if (ImGui::InputInt("GoalPointIndex", &goalIndex)) {
+        if (goalIndex < 0 || goalIndex >= static_cast<int32_t>(controlPoints.size())) {
+            goalIndex = -1; // 無効なインデックスは-1に設定
+        }
+        stage->setGoalPointIndex(goalIndex);
     }
 
     ImGui::Separator();

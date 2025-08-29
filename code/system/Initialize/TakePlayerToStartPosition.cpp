@@ -17,8 +17,11 @@ void TakePlayerToStartPosition::UpdateEntity(GameEntity* _entity) {
     if (!transform) {
         return;
     }
-    GameEntity* sartPositionEntity    = getUniqueEntity("StartPosition");
-    Transform* startPositionTransform = getComponent<Transform>(sartPositionEntity);
+    GameEntity* startPositionEntity    = getUniqueEntity("StartPosition");
+    if (!startPositionEntity) {
+        return;
+    }
+    Transform* startPositionTransform = getComponent<Transform>(startPositionEntity);
 
     // 初期位置に移動
     transform->translate = startPositionTransform->translate;

@@ -29,7 +29,7 @@ void Stage::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_unused]] co
     std::string label = "SearchFile##" + _parentLabel;
     if (ImGui::Button(label.c_str())) {
         // ファイル選択ダイアログを開く
-        if (myfs::selectFileDialog(kApplicationResourceDirectory, directory_, fileName_, {"stage"},true)) {
+        if (myfs::selectFileDialog(kApplicationResourceDirectory, directory_, fileName_, {"stage"}, true)) {
             directory_ = kApplicationResourceDirectory + "/" + directory_;
             LoadFile(directory_, fileName_);
         }
@@ -65,6 +65,7 @@ void Stage::SaveFile(const std::string& _directory, const std::string& _filename
         writer.Write<3, float>(std::to_string(index) + "_normal", link.normal_);
         writer.Write(std::to_string(index) + "_height", link.height_);
         writer.Write(std::to_string(index) + "_width", link.width_);
+        ++index;
     }
     writer.WriteEndGroup();
 
@@ -105,9 +106,9 @@ void Stage::LoadFile(const std::string& _directory, const std::string& _filename
     Link link;
     for (size_t i = 0; i < count; ++i) {
         std::string indexStr = std::to_string(i);
-        reader.Read(indexStr+ "_to", link.to_);
-        reader.Read(indexStr +"_from", link.from_);
-        reader.Read<3, float>(indexStr +"_normal", link.normal_);
+        reader.Read(indexStr + "_to", link.to_);
+        reader.Read(indexStr + "_from", link.from_);
+        reader.Read<3, float>(indexStr + "_normal", link.normal_);
         reader.Read(indexStr + "_height", link.height_);
         reader.Read(indexStr + "_width", link.width_);
         links_.push_back(link);

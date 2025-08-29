@@ -129,6 +129,7 @@
     <ClInclude Include="code\system\render\StageDebugRender.h">
       <Filter>system\render</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Movement\UpdateCameraForward.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -222,5 +223,6 @@
     <ClCompile Include="code\system\render\StageDebugRender.cpp">
       <Filter>system\render</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\Movement\UpdateCameraForward.cpp" />
   </ItemGroup>
 </Project>

@@ -185,12 +185,12 @@ void StageDebugRender::CreateMeshes(Stage* _stage) {
         Vec3f t3 = to + right * hw - up * hh;
 
         std::vector<int> indices = {
-            0, 1, 2, 2, 3, 0,
-            4, 5, 6, 6, 7, 4,
-            0, 4, 5, 5, 1, 0,
-            3, 7, 6, 6, 2, 3,
-            0, 4, 7, 7, 3, 0,
-            1, 5, 6, 6, 2, 1};
+            0, 1, 2, 1, 3, 2,
+            4, 5, 6, 5, 6, 7,
+            0, 2, 4, 2, 6, 4,
+            1, 5, 3, 3, 5, 7,
+            2, 3, 6, 3, 7, 6,
+            0, 4, 1, 1, 4, 5};
 
         {
             uint32_t idx = (uint32_t)linkMeshItr_->vertexes_.size();
@@ -205,8 +205,16 @@ void StageDebugRender::CreateMeshes(Stage* _stage) {
             linkMeshItr_->vertexes_.emplace_back(ColorVertexData{Vec4f(t2, 1.f), linkColor});
             linkMeshItr_->vertexes_.emplace_back(ColorVertexData{Vec4f(t3, 1.f), linkColor});
 
-            // インデックス 追加
-            for (const auto& index : indices) {
+            // アウトライン（12本の辺）
+            std::vector<int> lineIndices = {
+                // from 側
+                0, 1, 1, 2, 2, 3, 3, 0,
+                // to 側
+                4, 5, 5, 6, 6, 7, 7, 4,
+                // from - to 接続
+                0, 4, 1, 5, 2, 6, 3, 7};
+
+            for (const auto& index : lineIndices) {
                 linkMeshItr_->indexes_.emplace_back(idx + index);
             }
         }
@@ -223,8 +231,8 @@ void StageDebugRender::CreateMeshes(Stage* _stage) {
             }
         }
 
-        Vec3f midPoint    = (from + to) * 0.5f;
-        Vec3f normalPoint = midPoint + normal * (link.height_ + 1.f);
+        Vec3f midPoint        = (from + to) * 0.5f;
+        Vec3f normalPoint     = midPoint + normal * (link.height_ + 1.f);
         Vec4f linkNormalColor = {0, 1, 0, 1};
         {
             // 頂点追加
