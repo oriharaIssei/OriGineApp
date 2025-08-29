@@ -4,6 +4,10 @@
 /// engine
 #include "scene/Scene.h"
 
+/// component
+class Rigidbody;
+struct Transform;
+
 /// util
 #include "util/EnumBitMask.h"
 
@@ -136,6 +140,8 @@ public:
     void Finalize() override;
 
     PlayerMoveState TransitionState() const override;
+
+    Vec3f nextControlPointPos(const Transform& _playerTransform, const Rigidbody& _playerRigidbody);
 
 protected:
     Vec3f prevVelo_       = Vec3f(0.0f, 0.0f, 0.0f); // 前の速度 着地後に戻す
