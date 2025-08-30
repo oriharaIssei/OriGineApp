@@ -148,7 +148,7 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
         addComponent<BoxRenderer>(createdEntity, renderer);
 
         getScene()->getSystem(nameof<CollisionCheckSystem>())->addEntity(createdEntity);
-        // getScene()->getSystem(nameof<TexturedMeshRenderSystem>())->addEntity(createdEntity);
+        getScene()->getSystem(nameof<TexturedMeshRenderSystem>())->addEntity(createdEntity);
     }
 
     // goal
