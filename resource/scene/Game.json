@@ -36,9 +36,9 @@
                                 1.0
                             ],
                             "translate": [
-                                -49.07469940185547,
-                                2.9638187885284424,
-                                12.140388488769531
+                                0.019999999552965164,
+                                -0.009999999776482582,
+                                -13.440001487731934
                             ]
                         }
                     }
@@ -444,7 +444,7 @@
                 ],
                 "SceneChanger": [
                     {
-                        "nextSceneName": "Title"
+                        "nextSceneName": "Result"
                     }
                 ],
                 "SkinningAnimationComponent": [
