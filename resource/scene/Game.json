@@ -36,9 +36,9 @@
                                 1.0
                             ],
                             "translate": [
-                                0.0,
-                                0.0,
-                                -15.120001792907715
+                                -49.07469940185547,
+                                2.9638187885284424,
+                                12.140388488769531
                             ]
                         }
                     }
@@ -537,7 +537,7 @@
                         ],
                         "translate": [
                             0.0,
-                            14.279999732971191,
+                            5.0,
                             4.820000171661377
                         ]
                     }
@@ -721,60 +721,6 @@
         },
         {
             "Components": {
-                "Transform": [
-                    {
-                        "rotate": [
-                            0.0,
-                            0.0,
-                            0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "translate": [
-                            0.0,
-                            14.279999732971191,
-                            4.820000171661377
-                        ]
-                    }
-                ]
-            },
-            "Name": "StartPosition",
-            "Systems": [],
-            "isUnique": true
-        },
-        {
-            "Components": {
-                "Transform": [
-                    {
-                        "rotate": [
-                            0.0,
-                            0.0,
-                            0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "translate": [
-                            0.0,
-                            14.279999732971191,
-                            4.820000171661377
-                        ]
-                    }
-                ]
-            },
-            "Name": "StartPosition",
-            "Systems": [],
-            "isUnique": false
-        },
-        {
-            "Components": {
                 "SpeedlineEffectParam": [
                     {
                         "color": [
@@ -805,33 +751,6 @@
                 }
             ],
             "isUnique": true
-        },
-        {
-            "Components": {
-                "Transform": [
-                    {
-                        "rotate": [
-                            0.0,
-                            0.0,
-                            0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "translate": [
-                            0.0,
-                            14.279999732971191,
-                            4.820000171661377
-                        ]
-                    }
-                ]
-            },
-            "Name": "StartPosition",
-            "Systems": [],
-            "isUnique": false
         }
     ],
     "Systems": [
