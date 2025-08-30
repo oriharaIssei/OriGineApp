@@ -172,6 +172,7 @@
     <ClInclude Include="code\system\effect\TimerForSprite.h" />
     <ClInclude Include="code\system\render\StageDebugRender.h" />
     <ClInclude Include="code\system\Movement\UpdateCameraForward.h" />
+    <ClInclude Include="code\system\effect\EffectOnPlayerRun.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -208,6 +209,7 @@
     <ClCompile Include="code\system\effect\EffectOnPlayerGearup.cpp" />
     <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
     <ClCompile Include="code\system\render\StageDebugRender.cpp" />
+    <ClCompile Include="code\system\effect\EffectOnPlayerRun.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">

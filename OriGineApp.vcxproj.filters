@@ -130,6 +130,7 @@
       <Filter>system\render</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Movement\UpdateCameraForward.h" />
+    <ClInclude Include="code\system\effect\EffectOnPlayerRun.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -224,5 +225,6 @@
       <Filter>system\render</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Movement\UpdateCameraForward.cpp" />
+    <ClCompile Include="code\system\effect\EffectOnPlayerRun.cpp" />
   </ItemGroup>
 </Project>

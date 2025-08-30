@@ -20,6 +20,7 @@
 // application system
 #include "system/collision/PlayerOnCollision.h"
 #include "system/effect/EffectOnPlayerGearup.h"
+#include "system/effect/EffectOnPlayerRun.h"
 #include "system/Initialize/CreateStage.h"
 #include "system/Initialize/SettingGameCameraTarget.h"
 #include "system/Initialize/TakePlayerToStartPosition.h"
@@ -149,6 +150,7 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<CollisionPushBackSystem>();
 
     systemRegistry->registerSystem<PlayerOnCollision>();
+    systemRegistry->registerSystem<EffectOnPlayerRun>();
 
     /// =================================================================================================
     // Effect
