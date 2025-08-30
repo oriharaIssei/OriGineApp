@@ -62,6 +62,7 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
         entityTransformData.Update();
         addComponent<Transform>(createdEntity, entityTransformData);
         Transform* entityTransform = getComponent<Transform>(createdEntity);
+        entityTransform->parent    = stageTransform;
         ///==========================================
         // Collider
         ///==========================================

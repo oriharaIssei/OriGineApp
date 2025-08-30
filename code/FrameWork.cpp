@@ -83,6 +83,7 @@ void RegisterUsingComponents() {
     componentRegistry->registerComponent<RadialBlurParam>();
     componentRegistry->registerComponent<RandomEffectParam>();
     componentRegistry->registerComponent<VignetteParam>();
+    componentRegistry->registerComponent<SpeedlineEffectParam>();
     componentRegistry->registerComponent<TextureEffectParam>();
 
     componentRegistry->registerComponent<ModelMeshRenderer>();
@@ -190,4 +191,5 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<RandomEffect>();
     systemRegistry->registerSystem<RadialBlurEffect>();
     systemRegistry->registerSystem<SubSceneRender>();
+    systemRegistry->registerSystem<SpeedlineEffect>();
 }
