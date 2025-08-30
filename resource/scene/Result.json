@@ -12,6 +12,67 @@
     "Entities": [
         {
             "Components": {
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.5,
+                            0.5
+                        ],
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "isRender": true,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
+                            512.0,
+                            128.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "./application/resource/Texture/clear.png",
+                        "textureSize": [
+                            512.0,
+                            128.0
+                        ],
+                        "translate": [
+                            640.0,
+                            160.74000549316406
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "ClearText",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "SpriteRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
                 "Button": [
                     {
                         "hoverColor": [
@@ -100,117 +161,6 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            1.0,
-                            1.0
-                        ],
-                        "size": [
-                            512.0,
-                            128.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "./application/resource/Texture/Title.png",
-                        "textureSize": [
-                            512.0,
-                            128.0
-                        ],
-                        "translate": [
-                            640.0,
-                            160.74000549316406
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "ClearText",
-            "Systems": [
-                {
-                    "SystemCategory": 2,
-                    "SystemName": "ChangeSceneByButton"
-                },
-                {
-                    "SystemCategory": 1,
-                    "SystemName": "ButtonInputSystem"
-                },
-                {
-                    "SystemCategory": 2,
-                    "SystemName": "SceneTransition"
-                },
-                {
-                    "SystemCategory": 2,
-                    "SystemName": "UpdateButtonColorByState"
-                },
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "SpriteRenderSystem"
-                },
-                {
-                    "SystemCategory": 7,
-                    "SystemName": "DissolveEffect"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "Button": [
-                    {
-                        "hoverColor": [
-                            0.7568627595901489,
-                            0.7568627595901489,
-                            0.7568627595901489,
-                            1.0
-                        ],
-                        "normalColor": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "pressColor": [
-                            0.40392157435417175,
-                            0.40392157435417175,
-                            0.40392157435417175,
-                            1.0
-                        ],
-                        "releaseColor": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "shortKeys": [],
-                        "shortcutPadButton": []
-                    }
-                ],
-                "SpriteRenderer": [
-                    {
-                        "anchorPoint": [
-                            0.5,
-                            0.5
-                        ],
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "isRender": true,
-                        "renderingPriority": 1,
-                        "rotate": 0.0,
-                        "scale": [
                             0.699999988079071,
                             0.699999988079071
                         ],
@@ -256,6 +206,14 @@
                 {
                     "SystemCategory": 6,
                     "SystemName": "SpriteRenderSystem"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "ChangeSceneByButton"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "SceneTransition"
                 }
             ],
             "isUnique": false
@@ -287,12 +245,7 @@
                 ]
             },
             "Name": "EnterScene",
-            "Systems": [
-                {
-                    "SystemCategory": 7,
-                    "SystemName": "DissolveEffect"
-                }
-            ],
+            "Systems": [],
             "isUnique": true
         }
     ],
