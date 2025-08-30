@@ -36,9 +36,9 @@
                                 1.0
                             ],
                             "translate": [
-                                -159.40396118164063,
-                                33.241085052490234,
-                                303.6746826171875
+                                0.0,
+                                0.0,
+                                0.0
                             ]
                         }
                     }
@@ -444,7 +444,7 @@
                 ],
                 "SceneChanger": [
                     {
-                        "nextSceneName": "Title"
+                        "nextSceneName": "Game"
                     }
                 ],
                 "SkinningAnimationComponent": [
@@ -939,6 +939,7 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
+                        "isRender": false,
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
@@ -1198,6 +1199,7 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
+                        "isRender": false,
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
@@ -1457,6 +1459,7 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
+                        "isRender": false,
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
