@@ -30,7 +30,7 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
     // Meshと当たり判定を作成
     auto& controlPoints = stage->getControlPoints();
     for (auto& link : stage->getLinks()) {
-        Vec3f min, max, mid, diffToFrom;
+        Vec3f min, max, mid, diffToFrom, direction;
 
         auto& toPoint   = controlPoints[link.to_];
         auto& fromPoint = controlPoints[link.from_];
@@ -38,6 +38,7 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
         Vec3f from          = fromPoint.pos_;
         Vec3f to            = toPoint.pos_;
         diffToFrom          = to - from;
+        direction           = diffToFrom.normalize();
         mid                 = from + (diffToFrom * 0.5f);
         const Vec3f& normal = link.normal_.normalize();
 
@@ -67,44 +68,56 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
         // Collider
         ///==========================================
         // aabbか OBBか
-        if (fabs(normal[X]) > 0.999f) {
-            // X 軸に直交する壁 (YZ 平面に並行)
-            // デフォルトが Y == 1 なので heightとwidthを入れ替える
-            AABBCollider collider;
 
-            Vec3f halfSize = Vec3f(link.height_ * 0.5f, link.width_ * 0.5f, diffToFrom[Z] * 0.5f);
-            min            = -halfSize;
-            max            = halfSize;
+        bool isAABB          = std::fabs(direction[X]) > 0.999f || std::fabs(direction[Y]) > 0.999f || std::fabs(direction[Z]) > 0.999f;
+        bool orthogonalAxisX = fabs(normal[X]) > 0.999f;
+        bool orthogonalAxisY = fabs(normal[Y]) > 0.999f;
+        isAABB               = isAABB && (orthogonalAxisX || orthogonalAxisY);
 
-            collider.setLocalMin(min);
-            collider.setLocalMax(max);
-            collider.setParent(entityTransform);
+        if (isAABB) {
+            if (orthogonalAxisX) {
+                // X 軸に直交する壁 (YZ 平面に並行)
+                // デフォルトが Y == 1 なので heightとwidthを入れ替える
+                AABBCollider collider;
+                collider.setActive(true);
 
-            addComponent<AABBCollider>(createdEntity, collider);
-        } else if (fabs(normal[Y]) > 0.999f) {
-            // Y 軸に直交する床/天井 (XZ 平面に並行)
-            // これがデフォルト
-            AABBCollider collider;
+                Vec3f halfSize = Vec3f(link.height_ * 0.5f, link.width_ * 0.5f, diffToFrom[Z] * 0.5f);
+                min            = -halfSize;
+                max            = halfSize;
 
-            Vec3f halfSize = Vec3f(link.width_ * 0.5f, link.height_ * 0.5f, diffToFrom[Z] * 0.5f);
-            min            = -halfSize;
-            max            = halfSize;
+                collider.setLocalMin(min);
+                collider.setLocalMax(max);
+                collider.setParent(entityTransform);
 
-            collider.setLocalMin(min);
-            collider.setLocalMax(max);
-            collider.setParent(entityTransform);
+                addComponent<AABBCollider>(createdEntity, collider);
+            } else {
+                // Y 軸に直交する床/天井 (XZ 平面に並行)
+                // これがデフォルト
+                AABBCollider collider;
+                collider.setActive(true);
 
-            addComponent<AABBCollider>(createdEntity, collider);
+                Vec3f halfSize = Vec3f(link.width_ * 0.5f, link.height_ * 0.5f, diffToFrom[Z] * 0.5f);
+                min            = -halfSize;
+                max            = halfSize;
+
+                collider.setLocalMin(min);
+                collider.setLocalMax(max);
+                collider.setParent(entityTransform);
+
+                addComponent<AABBCollider>(createdEntity, collider);
+            }
         } else {
             // 傾いている壁は OBB で表現
             OBBCollider collider;
+            collider.setActive(true);
+
             Vec3f halfSize = Vec3f(link.width_ * 0.5f, link.height_ * 0.5f, diffToFrom.length() * 0.5f);
 
             collider.setLocalCenter(mid);
             collider.setLocalHalfSize(halfSize);
 
             // forward, right, up から回転を作る
-            Vec3f forward = diffToFrom.normalize();
+            Vec3f forward = direction;
             Vec3f right   = forward.cross(normal).normalize();
             Vec3f up      = right.cross(forward).normalize();
 
@@ -132,11 +145,10 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
         transform.parent = entityTransform;
         renderer.setTransform(transform);
         transform.Update();
-
         addComponent<BoxRenderer>(createdEntity, renderer);
 
         getScene()->getSystem(nameof<CollisionCheckSystem>())->addEntity(createdEntity);
-        getScene()->getSystem(nameof<TexturedMeshRenderSystem>())->addEntity(createdEntity);
+        // getScene()->getSystem(nameof<TexturedMeshRenderSystem>())->addEntity(createdEntity);
     }
 
     // goal
@@ -163,6 +175,8 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
     Transform startPos;
     startPos.translate = startPoint.pos_;
     startPos.Update();
-    int32_t startPosEntityId = CreateEntity("StartPosition", true);
-    addComponent<Transform>(getEntity(startPosEntityId), startPos, false);
+    int32_t startPosEntityId   = CreateEntity("StartPosition", true);
+    GameEntity* startPosEntity = getEntity(startPosEntityId);
+    startPosEntity->setShouldSave(false);
+    addComponent<Transform>(startPosEntity, startPos, false);
 }

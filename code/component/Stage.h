@@ -41,7 +41,7 @@ public:
 
         Vec3f normal_ = {0.f, 1.f, 0.f};
         float height_ = 3.f;
-        float width_  = 5.f;
+        float width_  = 15.f;
     };
 
 private:
