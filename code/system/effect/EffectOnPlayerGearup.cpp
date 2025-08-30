@@ -8,9 +8,9 @@
 // component
 #include "component/effect/particle/emitter/Emitter.h"
 #include "component/effect/post/DistortionEffectParam.h"
-#include "component/renderer/primitive/Primitive.h"
 #include "component/effect/post/RadialBlurParam.h"
 #include "component/Player/PlayerStatus.h"
+#include "component/renderer/primitive/Primitive.h"
 
 /// math
 #include <math/MyEasing.h>
@@ -26,19 +26,16 @@ void EffectOnPlayerGearup::Finalize() {}
 void EffectOnPlayerGearup::UpdateEntity(GameEntity* _entity) {
     GameEntity* player         = getUniqueEntity("Player");
     PlayerStatus* playerStatus = getComponent<PlayerStatus>(player);
+    Transform* playerTransform = getComponent<Transform>(player);
 
-    // ギアアップの衝撃波を生成
-    DistortionEffectParam* distortionEffectParam = getComponent<DistortionEffectParam>(_entity);
-    auto& shockWaveRings                         = distortionEffectParam->getDistortionObjects();
-    RadialBlurParam* radialBlurParam             = getComponent<RadialBlurParam>(_entity);
-
-    // 前フレームにPlayerがGearupしていたかどうか
+    /// ==============================
+    // Effect PlayState Transition
+    /// ==============================
+    shockWaveState_.playState_.set(false);
     if (playerStatus->isGearUp()) {
 
-        Transform* playerTransform = getComponent<Transform>(player);
-        Transform* transform       = getComponent<Transform>(_entity);
-        transform->translate       = playerTransform->translate; // Playerの位置に合わせる
-        Matrix4x4 rotateMat        = MakeMatrix::RotateQuaternion(playerTransform->rotate);
+        Transform* transform = getComponent<Transform>(_entity);
+        transform->translate = playerTransform->translate; // Playerの位置に合わせる
 
         // Emitterの再生
         int32_t emitterSize = getComponentArray<Emitter>()->getComponentSize(_entity);
@@ -50,10 +47,31 @@ void EffectOnPlayerGearup::UpdateEntity(GameEntity* _entity) {
             }
         }
 
-        if (playerStatus->getGearLevel() >= 2 && playerStatus->getGearLevel() % 2 == 0) {
-            isEffectPlaying_ = true; // ギアアップの衝撃波を再生する
+        if (playerStatus->getGearLevel() >= 2) {
+            shockWaveState_.playState_.set(true);
+        }
+    }
 
-            // shockWaveRingの初期化Add commentMore actions
+    UpdateShockWaveRing(_entity, playerTransform);
+}
+
+void EffectOnPlayerGearup::UpdateShockWaveRing(GameEntity* _entity, Transform* _playerTransform) {
+    DistortionEffectParam* distortionEffectParam = getComponent<DistortionEffectParam>(_entity);
+
+    shockWaveState_.currentTime += getMainDeltaTime();
+    float t = shockWaveState_.currentTime / shockWaveState_.maxTime;
+
+    if (t >= 1.f) {
+        t = 1.f;
+        shockWaveState_.playState_.set(false);
+    }
+
+    shockWaveState_.playState_.sync();
+
+    auto& shockWaveRings = distortionEffectParam->getDistortionObjects();
+    if (!shockWaveState_.playState_.current()) {
+        if (shockWaveState_.playState_.isRelease()) {
+            // shockWaveRingのを見えない位置に隠す
             for (auto& [object, type] : shockWaveRings) {
                 if (type != PrimitiveType::Ring) {
                     continue;
@@ -62,22 +80,19 @@ void EffectOnPlayerGearup::UpdateEntity(GameEntity* _entity) {
                     continue;
                 }
 
-                RingRenderer* ringRenderer          = dynamic_cast<RingRenderer*>(object.get());
-                ringRenderer->getTransform().parent = playerTransform; // PlayerのTransformを親に設定
+                RingRenderer* ringRenderer = dynamic_cast<RingRenderer*>(object.get());
 
-                ringRenderer->getTransform().translate = shockWaveOffset_; // 初期位置を設定
-                ringRenderer->getTransform().rotate    = playerTransform->rotate;
-                ringRenderer->getPrimitive().setInnerRadius(minInnerRadius_);
-                ringRenderer->getPrimitive().setOuterRadius(minouterRadius_);
+                // 初期位置
+                ringRenderer->getTransform().translate[Y] = -10000.f;
             }
-
-            // radialBlurParam->Play(); // レイディアルブラーを有効にする
-            currentTime_ = 0.f; // 時間をリセットAdd commentMore actions
         }
+
+        return;
     }
 
-    if (!isEffectPlaying_) {
-        // shockWaveRingのを見えない位置に隠す
+    if (shockWaveState_.playState_.isTrigger()) {
+
+        // shockWaveRingの初期化Add commentMore actions
         for (auto& [object, type] : shockWaveRings) {
             if (type != PrimitiveType::Ring) {
                 continue;
@@ -86,48 +101,36 @@ void EffectOnPlayerGearup::UpdateEntity(GameEntity* _entity) {
                 continue;
             }
 
+            RingRenderer* ringRenderer          = dynamic_cast<RingRenderer*>(object.get());
+            ringRenderer->getTransform().parent = _playerTransform; // PlayerのTransformを親に設定
+
+            ringRenderer->getTransform().translate = shockWaveOffset_; // 初期位置を設定
+            ringRenderer->getTransform().rotate    = _playerTransform->rotate;
+            ringRenderer->getPrimitive().setInnerRadius(minInnerRadius_);
+            ringRenderer->getPrimitive().setOuterRadius(minOuterRadius_);
+        }
+
+        shockWaveState_.currentTime = 0.f; // 時間をリセット
+    }
+
+    /// shockWave Play
+    if (shockWaveState_.playState_.current()) {
+        float easeT = EaseInQuad(t);
+        // 衝撃波の拡大
+        for (auto& [object, type] : shockWaveRings) {
+            if (type != PrimitiveType::Ring) {
+                continue;
+            }
+            if (object == nullptr) {
+                continue;
+            }
             RingRenderer* ringRenderer = dynamic_cast<RingRenderer*>(object.get());
 
-            // 初期位置
-            ringRenderer->getTransform().translate[Y] = -10000.f;
+            float innerRadius = std::lerp(minInnerRadius_, maxInnerRadius_, easeT);
+            float outerRadius = std::lerp(minOuterRadius_, maxOuterRadius_, easeT);
+            ringRenderer->getPrimitive().setInnerRadius(innerRadius);
+            ringRenderer->getPrimitive().setOuterRadius(outerRadius);
+            ringRenderer->createMesh(&ringRenderer->getMeshGroup()->back());
         }
-
-        if (radialBlurParam) {
-            radialBlurParam->Stop(); // レイディアルブラーを無効にする
-        }
-        return;
-    }
-
-    currentTime_ += getMainDeltaTime();
-    float t = currentTime_ / maxTime_;
-
-    if (t >= 1.f) {
-        isEffectPlaying_ = false;
-    }
-
-    // Ring
-    for (auto& [object, type] : shockWaveRings) {
-        if (type != PrimitiveType::Ring) {
-            continue;
-        }
-        if (object == nullptr) {
-            continue;
-        }
-
-        RingRenderer* ringRenderer = dynamic_cast<RingRenderer*>(object.get());
-        ringRenderer->getPrimitive().setInnerRadius(std::lerp(minInnerRadius_, maxInnerRadius_, EaseInOutQuad(t)));
-        ringRenderer->getPrimitive().setOuterRadius(std::lerp(minouterRadius_, maxouterRadius_, EaseOutCubic(t)));
-
-        ringRenderer->createMesh(&ringRenderer->getMeshGroup()->back());
-
-        // レイディアルブラーの幅を設定
-        if (radialBlurParam) {
-            float halfMaxTime = maxTime_ * 0.5f;
-            if (currentTime_ < halfMaxTime) {
-                radialBlurParam->setWidth(std::lerp(minRadialBlurWidth_, maxRadialBlurWidth_, EaseOutCubic(currentTime_ / halfMaxTime)));
-            } else {
-                radialBlurParam->setWidth(std::lerp(maxRadialBlurWidth_, minRadialBlurWidth_, EaseInOutQuad((currentTime_ - halfMaxTime) / halfMaxTime)));
-            }
-        }
-    }
+    };
 }
