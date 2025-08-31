@@ -274,7 +274,7 @@
             "Components": {
                 "CollisionPushBackInfo": [
                     {
-                        "pushBackType": 1
+                        "pushBackType": 0
                     }
                 ],
                 "DissolveEffectParam": [
@@ -790,6 +790,11 @@
                         }
                     }
                 ],
+                "CollisionPushBackInfo": [
+                    {
+                        "pushBackType": 0
+                    }
+                ],
                 "SpriteAnimation": [
                     {
                         "colorAnimationState": {
@@ -939,7 +944,7 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
-                        "isRender": false,
+                        "isRender": true,
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
@@ -1050,6 +1055,11 @@
                         }
                     }
                 ],
+                "CollisionPushBackInfo": [
+                    {
+                        "pushBackType": 0
+                    }
+                ],
                 "SpriteAnimation": [
                     {
                         "colorAnimationState": {
@@ -1199,7 +1209,7 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
-                        "isRender": false,
+                        "isRender": true,
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
@@ -1310,6 +1320,11 @@
                         }
                     }
                 ],
+                "CollisionPushBackInfo": [
+                    {
+                        "pushBackType": 0
+                    }
+                ],
                 "SpriteAnimation": [
                     {
                         "colorAnimationState": {
@@ -1459,7 +1474,7 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
-                        "isRender": false,
+                        "isRender": true,
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [

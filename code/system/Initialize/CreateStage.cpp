@@ -9,6 +9,7 @@
 /// ECS
 // component
 #include "component/collider/Collider.h"
+#include "component/collider/CollisionPushBackInfo.h"
 #include "component/renderer/primitive/Primitive.h"
 #include "component/transform/Transform.h"
 // system
@@ -140,14 +141,27 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
         BoxRenderer renderer;
         Vec3f size = max - min;
         renderer.getPrimitive().setSize(size);
+        Material rendererMaterial                = renderer.getMaterial();
+        rendererMaterial.shininess_              = 50.f;
+        rendererMaterial.enableLighting_         = true;
+        rendererMaterial.environmentCoefficient_ = 0.05f;
+        renderer.setMaterial(rendererMaterial);
 
-        Transform transform;
-        transform.parent = entityTransform;
-        renderer.setTransform(transform);
-        transform.Update();
         addComponent<BoxRenderer>(createdEntity, renderer);
 
-        getScene()->getSystem(nameof<CollisionCheckSystem>())->addEntity(createdEntity);
+        ///==========================================
+        // CollisionPushBackInfo
+        ///==========================================
+        CollisionPushBackInfo pushBackInfo;
+        pushBackInfo.setPushBackType(CollisionPushBackType::PushBack);
+        addComponent<CollisionPushBackInfo>(createdEntity, pushBackInfo);
+
+        ///==========================================
+        // 動作する システムに登録
+        ///==========================================
+        getScene()
+            ->getSystem(nameof<CollisionCheckSystem>())
+            ->addEntity(createdEntity);
         getScene()->getSystem(nameof<TexturedMeshRenderSystem>())->addEntity(createdEntity);
     }
 

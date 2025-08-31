@@ -36,9 +36,9 @@
                                 1.0
                             ],
                             "translate": [
-                                0.019999999552965164,
-                                -0.009999999776482582,
-                                -13.440001487731934
+                                0.0,
+                                0.0,
+                                0.0
                             ]
                         }
                     }
@@ -274,7 +274,7 @@
             "Components": {
                 "CollisionPushBackInfo": [
                     {
-                        "pushBackType": 1
+                        "pushBackType": 0
                     }
                 ],
                 "DissolveEffectParam": [
@@ -743,7 +743,7 @@
                     }
                 ]
             },
-            "Name": "SpeedL",
+            "Name": "Speedline",
             "Systems": [
                 {
                     "SystemCategory": 7,
