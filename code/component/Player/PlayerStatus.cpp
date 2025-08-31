@@ -3,6 +3,7 @@
 /// engine
 // component
 #include "component/animation/SkinningAnimationComponent.h"
+#include "component/collider/Collider.h"
 #include "component/collider/CollisionPushBackInfo.h"
 #include "component/effect/particle/emitter/Emitter.h"
 #include "component/physics/Rigidbody.h"
@@ -409,8 +410,22 @@ PlayerMoveState PlayerJumpState::TransitionState() const {
 
 void PlayerWallRunState::Initialize() {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto* playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
     auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
     prevVelo_          = rigidbody->getVelocity(); // 壁ジャンプ前の速度を保存
+
+    const Vec3f& normal = playerStatus->getWallCollisionNormal();
+    Vec3f direction     = Vec3f::Cross(normal, Vec3f(0.0f, 1.0f, 0.0f));
+    if (direction.lengthSq() == 0.0f) {
+        direction = Vec3f::Cross(normal, Vec3f(1.0f, 0.0f, 0.0f));
+    }
+    direction = direction.normalize();
+    if (Vec3f::Dot(direction, prevVelo_) < 0.0f) {
+        direction = -direction;
+    }
+    // 移動方向を回転
+    Vec3f velo = (playerStatus->getCurrentSpeed() * playerStatus->getWallRunRate()) * direction;
+    rigidbody->setVelocity(velo);
 
     separationdLeftTime_ = separationGraceTime_; // 壁との衝突判定の残り時間を初期化
 }
@@ -418,16 +433,6 @@ void PlayerWallRunState::Initialize() {
 void PlayerWallRunState::Update(float _deltaTime) {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
     auto* playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
-    auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
-    auto* transform    = scene_->getComponent<Transform>(playerEntity);
-
-    // 移動方向を回転
-    Vec3f movementDirection = axisZ * MakeMatrix::RotateQuaternion(transform->rotate);
-    Vec3f velo              = (playerStatus->getCurrentSpeed() * playerStatus->getWallRunRate()) * movementDirection;
-    Vec3f normal            = playerStatus->getWallCollisionNormal();
-    velo -= normal * 0.02f;
-
-    rigidbody->setVelocity(velo);
 
     if (playerStatus->isCollisionWithWall()) {
         separationdLeftTime_ = separationGraceTime_;
@@ -536,13 +541,13 @@ Vec3f PlayerWallJumpState::nextControlPointPos(const Transform& _playerTransform
     for (const Stage::Link& link : stage->getLinks()) {
         Vec3f& linkFromPos = stage->getControlPointsRef()[link.from_].pos_;
         Vec3f diff         = linkFromPos - Vec3f(_playerTransform.worldMat[3]);
+
         // diffと playerVeloNormal の内積を計算
+        // 内積が正の場合、playerVeloNormal と同じ方向にある
         float dot = diff.dot(playerVeloNormal);
         if (dot <= 0.0f) {
             continue;
         }
-
-        // 内積が正の場合、playerVeloNormal と同じ方向にある
 
         if (nearestLinkFromPos) {
             // 既に最も近いリンクがある場合、距離を比較
