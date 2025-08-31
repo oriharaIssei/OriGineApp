@@ -196,6 +196,10 @@
             "Name": "BackToTitleButton",
             "Systems": [
                 {
+                    "SystemCategory": 2,
+                    "SystemName": "ChangeSceneByButton"
+                },
+                {
                     "SystemCategory": 1,
                     "SystemName": "ButtonInputSystem"
                 },
@@ -204,16 +208,12 @@
                     "SystemName": "UpdateButtonColorByState"
                 },
                 {
-                    "SystemCategory": 6,
-                    "SystemName": "SpriteRenderSystem"
-                },
-                {
-                    "SystemCategory": 2,
-                    "SystemName": "ChangeSceneByButton"
-                },
-                {
                     "SystemCategory": 2,
                     "SystemName": "SceneTransition"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "SpriteRenderSystem"
                 }
             ],
             "isUnique": false
