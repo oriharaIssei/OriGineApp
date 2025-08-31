@@ -19,6 +19,7 @@
 
 // application system
 #include "system/collision/PlayerOnCollision.h"
+#include "system/collision/TutorialColliderOnCollision.h"
 #include "system/effect/EffectOnPlayerGearup.h"
 #include "system/effect/EffectOnPlayerRun.h"
 #include "system/Initialize/CreateStage.h"
@@ -150,7 +151,7 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<CollisionPushBackSystem>();
 
     systemRegistry->registerSystem<PlayerOnCollision>();
-    systemRegistry->registerSystem<EffectOnPlayerRun>();
+    systemRegistry->registerSystem<TutorialColliderOnCollision>();
 
     /// =================================================================================================
     // Effect
@@ -163,6 +164,7 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<GpuParticleEmitterWorkSystem>();
 
     systemRegistry->registerSystem<EffectOnPlayerGearup>();
+    systemRegistry->registerSystem<EffectOnPlayerRun>();
 
     /// =================================================================================================
     // Render

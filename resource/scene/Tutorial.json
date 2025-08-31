@@ -799,7 +799,7 @@
                     {
                         "colorAnimationState": {
                             "isLoop": false,
-                            "isPlay": true
+                            "isPlay": false
                         },
                         "colorCurve": [
                             {
@@ -870,7 +870,7 @@
                     {
                         "colorAnimationState": {
                             "isLoop": false,
-                            "isPlay": true
+                            "isPlay": false
                         },
                         "colorCurve": [
                             {
@@ -940,7 +940,7 @@
                             1.0,
                             1.0,
                             1.0,
-                            1.0
+                            0.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -948,21 +948,21 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            1.0,
-                            1.0
+                            0.800000011920929,
+                            0.800000011920929
                         ],
                         "size": [
-                            364.0,
-                            512.0
+                            513.0,
+                            558.0
                         ],
                         "textureLeftTop": [
                             0.0,
                             0.0
                         ],
-                        "texturePath": "",
+                        "texturePath": "./application/resource/Texture/RunTutorial.png",
                         "textureSize": [
-                            0.0,
-                            0.0
+                            513.0,
+                            558.0
                         ],
                         "translate": [
                             250.0,
@@ -1007,16 +1007,16 @@
                     "SystemName": "CollisionCheckSystem"
                 },
                 {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionPushBackSystem"
-                },
-                {
                     "SystemCategory": 5,
                     "SystemName": "SpriteAnimationSystem"
                 },
                 {
                     "SystemCategory": 6,
                     "SystemName": "SpriteRenderSystem"
+                },
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "TutorialColliderOnCollision"
                 }
             ],
             "isUnique": false
@@ -1064,7 +1064,7 @@
                     {
                         "colorAnimationState": {
                             "isLoop": false,
-                            "isPlay": true
+                            "isPlay": false
                         },
                         "colorCurve": [
                             {
@@ -1135,7 +1135,7 @@
                     {
                         "colorAnimationState": {
                             "isLoop": false,
-                            "isPlay": true
+                            "isPlay": false
                         },
                         "colorCurve": [
                             {
@@ -1205,7 +1205,7 @@
                             1.0,
                             1.0,
                             1.0,
-                            1.0
+                            0.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -1213,21 +1213,21 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            1.0,
-                            1.0
+                            0.800000011920929,
+                            0.800000011920929
                         ],
                         "size": [
-                            364.0,
-                            512.0
+                            513.0,
+                            417.0
                         ],
                         "textureLeftTop": [
                             0.0,
                             0.0
                         ],
-                        "texturePath": "",
+                        "texturePath": "./application/resource/Texture/JumpTutorial.png",
                         "textureSize": [
-                            0.0,
-                            0.0
+                            513.0,
+                            417.0
                         ],
                         "translate": [
                             250.0,
@@ -1272,16 +1272,16 @@
                     "SystemName": "CollisionCheckSystem"
                 },
                 {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionPushBackSystem"
-                },
-                {
                     "SystemCategory": 5,
                     "SystemName": "SpriteAnimationSystem"
                 },
                 {
                     "SystemCategory": 6,
                     "SystemName": "SpriteRenderSystem"
+                },
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "TutorialColliderOnCollision"
                 }
             ],
             "isUnique": false
@@ -1329,7 +1329,7 @@
                     {
                         "colorAnimationState": {
                             "isLoop": false,
-                            "isPlay": true
+                            "isPlay": false
                         },
                         "colorCurve": [
                             {
@@ -1400,7 +1400,7 @@
                     {
                         "colorAnimationState": {
                             "isLoop": false,
-                            "isPlay": true
+                            "isPlay": false
                         },
                         "colorCurve": [
                             {
@@ -1470,7 +1470,7 @@
                             1.0,
                             1.0,
                             1.0,
-                            1.0
+                            0.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -1478,21 +1478,21 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            1.0,
-                            1.0
+                            0.800000011920929,
+                            0.800000011920929
                         ],
                         "size": [
-                            364.0,
-                            512.0
+                            512.0,
+                            254.0
                         ],
                         "textureLeftTop": [
                             0.0,
                             0.0
                         ],
-                        "texturePath": "",
+                        "texturePath": "./application/resource/Texture/WallRunTutorial.png",
                         "textureSize": [
-                            0.0,
-                            0.0
+                            512.0,
+                            254.0
                         ],
                         "translate": [
                             250.0,
@@ -1537,16 +1537,16 @@
                     "SystemName": "CollisionCheckSystem"
                 },
                 {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionPushBackSystem"
-                },
-                {
                     "SystemCategory": 5,
                     "SystemName": "SpriteAnimationSystem"
                 },
                 {
                     "SystemCategory": 6,
                     "SystemName": "SpriteRenderSystem"
+                },
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "TutorialColliderOnCollision"
                 }
             ],
             "isUnique": false
@@ -1658,6 +1658,9 @@
             },
             "TransitionPlayerState": {
                 "Priority": 5
+            },
+            "TutorialColliderOnCollision": {
+                "Priority": 1
             },
             "UpdateButtonColorByState": {
                 "Priority": 0

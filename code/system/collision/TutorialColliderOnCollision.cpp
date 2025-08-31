@@ -41,12 +41,12 @@ void TutorialColliderOnCollision::UpdateEntity(GameEntity* _entity) {
                 if (state == CollisionState::Enter) {
                     auto spriteAnimation = getComponent<SpriteAnimation>(_entity);
                     if (spriteAnimation != nullptr) {
-                        spriteAnimation->PlayStart();
+                        spriteAnimation->PlayColorAnimation();
                     }
                 } else if (state == CollisionState::Exit) {
                     auto spriteAnimation = getComponent<SpriteAnimation>(_entity, 1);
                     if (spriteAnimation != nullptr) {
-                        spriteAnimation->PlayStart();
+                        spriteAnimation->PlayColorAnimation();
                     }
                 }
             }
