@@ -229,12 +229,12 @@
                         "fovYInterpolate": 0.10000000149011612,
                         "fovYRate": 0.06199999898672104,
                         "fovYRateCommonRate": 0.028999999165534973,
-                        "interTargetInterpolation": 0.3700000047683716,
+                        "interTargetInterpolation": 0.1899999976158142,
                         "maxRotateX": 0.5899999737739563,
-                        "minRotateX": -0.7699999809265137,
+                        "minRotateX": -0.11999999731779099,
                         "rotateSensitivity": 1.0,
                         "rotateSpeedMouse": 0.007000000216066837,
-                        "rotateSpeedPadStick": 0.10999999940395355
+                        "rotateSpeedPadStick": 0.14000000059604645
                     }
                 ],
                 "CameraTransform": [
@@ -408,15 +408,15 @@
                 ],
                 "PlayerStatus": [
                     {
-                        "baseSpeed": 11.800000190734863,
+                        "baseSpeed": 14.600000381469727,
                         "coolTimeAddRateBase": 1.2000000476837158,
                         "coolTimeAddRateCommonRate": 0.07999999821186066,
-                        "directionInterpolateRate": 0.07999999821186066,
+                        "directionInterpolateRate": 0.7799999713897705,
                         "fallPower": 4.099999904632568,
                         "gearUpCoolTime": 0.6000000238418579,
                         "jumpPower": 0.15000000596046448,
-                        "speedUpRateBase": 19.200000762939453,
-                        "speedUpRateCommonRate": -1.100000023841858,
+                        "speedUpRateBase": 8.600000381469727,
+                        "speedUpRateCommonRate": -0.800000011920929,
                         "wallJumpDirection": [
                             -0.14878620207309723,
                             -0.2880076467990875,
@@ -564,6 +564,10 @@
                 {
                     "SystemCategory": 7,
                     "SystemName": "DissolveEffect"
+                },
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "EffectOnPlayerRun"
                 },
                 {
                     "SystemCategory": 6,
@@ -733,7 +737,7 @@
                         "fadePow": 1.440000057220459,
                         "fadeStart": 0.3700000047683716,
                         "intensity": 4.239999771118164,
-                        "isActive": true,
+                        "isActive": false,
                         "radialTextureFilePath": "./application/resource/texture//bioNoise.png",
                         "screenCenterUV": [
                             0.5,
@@ -767,6 +771,9 @@
             "ChangeSceneByButton": {
                 "Priority": 1
             },
+            "ColliderRenderingSystem": {
+                "Priority": 10
+            },
             "CollisionCheckSystem": {
                 "Priority": 0
             },
@@ -783,6 +790,9 @@
                 "Priority": 1
             },
             "EffectOnPlayerGearup": {
+                "Priority": 0
+            },
+            "EffectOnPlayerRun": {
                 "Priority": 0
             },
             "EffectTexturedMeshRenderSystem": {

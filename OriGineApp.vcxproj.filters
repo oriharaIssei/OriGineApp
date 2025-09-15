@@ -132,6 +132,13 @@
     <ClInclude Include="code\system\Movement\UpdateCameraForward.h" />
     <ClInclude Include="code\system\effect\EffectOnPlayerRun.h" />
     <ClInclude Include="code\system\collision\TutorialColliderOnCollision.h" />
+    <ClInclude Include="code\component\Player\State\IPlayerMoveState.h" />
+    <ClInclude Include="code\component\Player\State\PlayerDashState.h" />
+    <ClInclude Include="code\component\Player\State\PlayerFallDownState.h" />
+    <ClInclude Include="code\component\Player\State\PlayerIdleState.h" />
+    <ClInclude Include="code\component\Player\State\PlayerJumpState.h" />
+    <ClInclude Include="code\component\Player\State\PlayerWallJumpState.h" />
+    <ClInclude Include="code\component\Player\State\PlayerWallRunState.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -228,5 +235,12 @@
     <ClCompile Include="code\system\Movement\UpdateCameraForward.cpp" />
     <ClCompile Include="code\system\effect\EffectOnPlayerRun.cpp" />
     <ClCompile Include="code\system\collision\TutorialColliderOnCollision.cpp" />
+    <ClCompile Include="code\component\Player\State\IPlayerMoveState.cpp" />
+    <ClCompile Include="code\component\Player\State\PlayerDashState.cpp" />
+    <ClCompile Include="code\component\Player\State\PlayerFallDownState.cpp" />
+    <ClCompile Include="code\component\Player\State\PlayerIdleState.cpp" />
+    <ClCompile Include="code\component\Player\State\PlayerJumpState.cpp" />
+    <ClCompile Include="code\component\Player\State\PlayerWallJumpState.cpp" />
+    <ClCompile Include="code\component\Player\State\PlayerWallRunState.cpp" />
   </ItemGroup>
 </Project>

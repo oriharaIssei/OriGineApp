@@ -15,39 +15,39 @@ void CameraController::Initialize(GameEntity* /*_entity*/) {
 void CameraController::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/,[[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
 
-    if (DragGuiVectorCommand<3, float>("forward##" + _parentLabel, forward_, 0.01f, -1.f, 1.f, "%.3f", [this](Vector<3, float>* _v) {
+    if (DragGuiVectorCommand<3, float>("forward" + _parentLabel, forward_, 0.01f, -1.f, 1.f, "%.3f", [this](Vector<3, float>* _v) {
             *_v = Vec3f::Normalize(Vec3f(_v->v[X], _v->v[Y], _v->v[Z]));
         })) {
         forward_ = Vec3f::Normalize(forward_); // 正規化
     }
-    DragGuiCommand("angleLimitY##" + _parentLabel, angleLimitY_, 0.01f, 0.00001f, std::numbers::pi_v<float> * 2.f, "%.3f");
+    DragGuiCommand("angleLimitY" + _parentLabel, angleLimitY_, 0.01f, 0.00001f, std::numbers::pi_v<float> * 2.f, "%.3f");
 
-    DragGuiVectorCommand("followTargetOffset##" + _parentLabel, followTargetOffset_, 0.01f, -100.0f, 100.0f);
-    DragGuiVectorCommand("followOffset##" + _parentLabel, followOffset_, 0.01f, -100.0f, 100.0f);
-
-    ImGui::Spacing();
-
-    DragGuiCommand("rotateSpeedPadStick##" + _parentLabel, rotateSpeedPadStick_, 0.01f, -100.0f, 100.0f);
-    DragGuiCommand("rotateSpeedMouse##" + _parentLabel, rotateSpeedMouse_, 0.01f, -100.0f, 100.0f);
-
-    DragGuiCommand("rotateSensitivity##" + _parentLabel, rotateSensitivity_, 0.01f, -1.f, 1.f);
-    DragGuiCommand("interTargetInterpolation##" + _parentLabel, interTargetInterpolation_, 0.01f, -1.f, 1.0f);
+    DragGuiVectorCommand("followTargetOffset" + _parentLabel, followTargetOffset_, 0.01f, -100.0f, 100.0f);
+    DragGuiVectorCommand("followOffset" + _parentLabel, followOffset_, 0.01f, -100.0f, 100.0f);
 
     ImGui::Spacing();
 
-    DragGuiCommand("maxRotateX##" + _parentLabel, maxRotateX_, 0.01f, -100.0f, 100.0f);
-    DragGuiCommand("minRotateX##" + _parentLabel, minRotateX_, 0.01f, -100.0f, 100.0f);
+    DragGuiCommand("rotateSpeedPadStick" + _parentLabel, rotateSpeedPadStick_, 0.01f, -100.0f, 100.0f);
+    DragGuiCommand("rotateSpeedMouse" + _parentLabel, rotateSpeedMouse_, 0.01f, -100.0f, 100.0f);
+
+    DragGuiCommand("rotateSensitivity" + _parentLabel, rotateSensitivity_, 0.01f, -1.f, 1.f);
+    DragGuiCommand("interTargetInterpolation" + _parentLabel, interTargetInterpolation_, 0.01f, -1.f, 1.0f);
+
+    ImGui::Spacing();
+
+    DragGuiCommand("maxRotateX" + _parentLabel, maxRotateX_, 0.01f, -100.0f, 100.0f);
+    DragGuiCommand("minRotateX" + _parentLabel, minRotateX_, 0.01f, -100.0f, 100.0f);
 
     ImGui::Spacing();
 
     std::string label = "Fov##"  + _parentLabel;
     if (ImGui::TreeNode(label.c_str())) {
-        DragGuiCommand("fovYInterpolate##" + _parentLabel, fovYInterpolate_, 0.001f, 0.0f, 1.0f);
-        DragGuiCommand("baseFovY##" + _parentLabel, baseFovY_, 0.01f);
-        DragGuiCommand("fovYRateBase##" + _parentLabel, fovYRateBase_, 0.001f);
-        DragGuiCommand("fovYRateCommonRate##" + _parentLabel, fovYRateCommonRate_, 0.001f);
+        DragGuiCommand("fovYInterpolate" + _parentLabel, fovYInterpolate_, 0.001f, 0.0f, 1.0f);
+        DragGuiCommand("baseFovY" + _parentLabel, baseFovY_, 0.01f);
+        DragGuiCommand("fovYRateBase" + _parentLabel, fovYRateBase_, 0.001f);
+        DragGuiCommand("fovYRateCommonRate" + _parentLabel, fovYRateCommonRate_, 0.001f);
 
-        label = "FovY By Gear Level##" + _parentLabel;
+        label = "FovY By Gear Level" + _parentLabel;
         if (ImGui::BeginTable(label.c_str(), 2, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg)) {
             ImGui::TableSetupColumn("Gear Level");
             ImGui::TableSetupColumn("FovY");

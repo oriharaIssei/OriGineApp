@@ -8,6 +8,7 @@
 // component
 #include "component/Player/PlayerInput.h"
 #include "component/Player/PlayerStatus.h"
+#include "component/Player/State/IPlayerMoveState.h"
 
 void PlayerMoveSystem::Initialize() {
 }

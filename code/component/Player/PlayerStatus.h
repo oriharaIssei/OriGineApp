@@ -7,11 +7,14 @@
 /// component
 class Rigidbody;
 struct Transform;
+class PlayerInput;
+class IPlayerMoveState;
 
 /// util
 #include "util/EnumBitMask.h"
 
 /// math
+#include <math/Quaternion.h>
 #include <math/Vector3.h>
 
 /// <summary>
@@ -29,127 +32,7 @@ enum class PlayerMoveState {
     Count = 6 // 5
 };
 
-constexpr int32_t kDefaultPlayerGearLevel = 1;
-
-#pragma region "Playser State"
-class PlayerStatus; // 前方宣言
-class IPlayerMoveState {
-public:
-    IPlayerMoveState(Scene* _scene, int32_t _playerEntityID, PlayerMoveState _state);
-    virtual ~IPlayerMoveState();
-
-    virtual void Initialize()             = 0;
-    virtual void Update(float _deltaTime) = 0;
-    virtual void Finalize()               = 0;
-
-    virtual PlayerMoveState TransitionState() const = 0;
-
-protected:
-    Scene* scene_           = nullptr; // シーンへのポインタ
-    int32_t playerEntityID_ = -1; // プレイヤーのエンティティID
-private:
-    // このクラスが表す移動状態
-    PlayerMoveState state_ = PlayerMoveState::IDLE;
-
-public:
-    const PlayerMoveState& getState() const {
-        return state_;
-    }
-    void setState(const PlayerMoveState& _state) {
-        state_ = _state;
-    }
-};
-
-class PlayerIdleState
-    : public IPlayerMoveState {
-public:
-    PlayerIdleState(Scene* _scene, int32_t _playerEntityID) : IPlayerMoveState(_scene,_playerEntityID, PlayerMoveState::IDLE) {}
-    ~PlayerIdleState() override {};
-
-    void Initialize() override;
-    void Update(float _deltaTime) override;
-    void Finalize() override;
-    PlayerMoveState TransitionState() const override;
-};
-
-class PlayerDashState
-    : public IPlayerMoveState {
-public:
-    PlayerDashState(Scene* _scene, int32_t _playerEntityID) : IPlayerMoveState(_scene, _playerEntityID, PlayerMoveState::DASH) {}
-    ~PlayerDashState() override {};
-
-    void Initialize() override;
-    void Update(float _deltaTime) override;
-    void Finalize() override;
-    PlayerMoveState TransitionState() const override;
-};
-
-class PlayerJumpState
-    : public IPlayerMoveState {
-public:
-    PlayerJumpState(Scene* _scene, int32_t _playerEntityID) : IPlayerMoveState(_scene, _playerEntityID, PlayerMoveState::JUMP) {}
-    ~PlayerJumpState() override {};
-    void Initialize() override;
-    void Update(float _deltaTime) override;
-    void Finalize() override;
-    PlayerMoveState TransitionState() const override;
-
-private:
-    float releaseJumpPower_ = 0.0f; // ジャンプボタンを離した時のジャンプパワー
-};
-
-class PlayerFallDownState
-    : public IPlayerMoveState {
-public:
-    PlayerFallDownState(Scene* _scene, int32_t _playerEntityID) : IPlayerMoveState(_scene, _playerEntityID, PlayerMoveState::FALL_DOWN) {}
-    ~PlayerFallDownState() override {};
-    void Initialize() override;
-    void Update(float _deltaTime) override;
-    void Finalize() override;
-    PlayerMoveState TransitionState() const override;
-
-private:
-};
-
-class PlayerWallRunState
-    : public IPlayerMoveState {
-public:
-    PlayerWallRunState(Scene* _scene, int32_t _playerEntityID) : IPlayerMoveState(_scene, _playerEntityID, PlayerMoveState::DASH) {}
-    ~PlayerWallRunState() override {};
-
-    void Initialize() override;
-    void Update(float _deltaTime) override;
-    void Finalize() override;
-
-    PlayerMoveState TransitionState() const override;
-
-protected:
-    Vec3f prevVelo_            = Vec3f(0.0f, 0.0f, 0.0f); // 前の速度 壁走り前の速度を保存
-    float separationGraceTime_ = 0.04f; // オブジェクトが離れていると判定するまでの猶予時間
-    float separationdLeftTime_ = 0.0f; // 壁との衝突判定の残り時間
-};
-
-class PlayerWallJumpState
-    : public IPlayerMoveState {
-public:
-    PlayerWallJumpState(Scene* _scene, int32_t _playerEntityID) : IPlayerMoveState(_scene, _playerEntityID, PlayerMoveState::WALL_JUMP) {}
-    ~PlayerWallJumpState() override {};
-
-    void Initialize() override;
-    void Update(float _deltaTime) override;
-    void Finalize() override;
-
-    PlayerMoveState TransitionState() const override;
-
-    Vec3f nextControlPointPos(const Transform& _playerTransform, const Rigidbody& _playerRigidbody);
-
-protected:
-    Vec3f prevVelo_       = Vec3f(0.0f, 0.0f, 0.0f); // 前の速度 着地後に戻す
-    Vec3f velo_           = Vec3f(0.0f, 0.0f, 0.0f); // 壁ジャンプの方向
-    float forcedJumpTime_ = 0.6f;
-    float leftTime_       = 0.0f; // 壁ジャンプの残り時間
-};
-#pragma endregion
+constexpr int32_t kDefaultPlayerGearLevel = 1; // デフォルトのギアレベル
 
 class PlayerStatus
     : public IComponent {
@@ -157,8 +40,8 @@ class PlayerStatus
     friend void from_json(const nlohmann::json& j, PlayerStatus& _playerStatus);
 
 public:
-    PlayerStatus() : IComponent() {}
-    ~PlayerStatus() {}
+    PlayerStatus();
+    ~PlayerStatus();
 
     void Initialize(GameEntity* _entity) override;
     void Edit(Scene* _scene, GameEntity* _entity,  const std::string& _parentLabel) override;
@@ -167,6 +50,9 @@ public:
 
     float CalculateSpeedByGearLevel(int32_t _gearLevel) const;
     float CalculateCoolTimeByGearLevel(int32_t _gearLevel) const;
+
+    
+    void UpdateVelocity(PlayerInput* _input,Transform* _transform, Rigidbody* _rigidbody, const Quaternion& _cameraRotation,float _deltaTime);
 
 private:
     EnumBitmask<PlayerMoveState> moveState_           = PlayerMoveState::IDLE; // 現在の移動状態
@@ -177,15 +63,14 @@ private:
     /// ==========================================
     // プレイヤーの状態を表す変数群
     bool onGround_ = false; // 地面にいるかどうか
-
+    bool isGearUp_        = false; // ギアアップ中かどうか
     bool collisionWithWall_    = false; // 壁に衝突しているかどうか
+    bool isGoal_ = false; // ゴールに到達したかどうか
+
     Vec3f wallCollisionNormal_ = Vec3f(0.0f, 0.0f, 0.0f); // 壁との衝突時の法線ベクトル
 
-    bool isGearUp_        = false; // ギアアップ中かどうか
     int32_t gearLevel_    = 0; // ギアレベル
     int32_t maxGearLevel_ = 6; // 最大ギアレベル
-
-    bool isGoal_ = false; // ゴールに到達したかどうか
 
     /// ==========================================
     // 能力値
@@ -201,7 +86,8 @@ private:
     float wallRunRate_           = 0.0f; // 壁走りの速度
     Vec3f wallJumpDirection_     = Vec3f(0.0f, 0.0f, 0.0f); // 壁ジャンプの方向
 
-    // 現在の速度は gearLevel_ に応じて変化する
+    // currentMaxSpeed は gearLevel に応じて変化する
+    float currentMaxSpeed_ = 0.0f; // 現在の最大速度 
     float currentSpeed_ = 0.0f; // 現在の速度
 
     float jumpPower_ = 0.0f; // ジャンプのパワー
@@ -285,6 +171,13 @@ public:
     }
     float getJumpPower() const { return jumpPower_; }
     float getFallPower() const { return fallPower_; }
+
+    float getCurrentMaxSpeed() const {
+        return currentMaxSpeed_;
+    }
+    void setCurrentMaxSpeed(float _currentMaxSpeed) {
+        currentMaxSpeed_ = _currentMaxSpeed;
+    }
 
     float getCurrentSpeed() const {
         return currentSpeed_;
