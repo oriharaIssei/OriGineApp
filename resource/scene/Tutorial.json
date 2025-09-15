@@ -36,9 +36,9 @@
                                 1.0
                             ],
                             "translate": [
-                                0.0,
-                                0.0,
-                                0.0
+                                1.2300001382827759,
+                                9.640405654907227,
+                                -18.558069229125977
                             ]
                         }
                     }
@@ -1565,9 +1565,6 @@
             },
             "ChangeSceneByButton": {
                 "Priority": 1
-            },
-            "ColliderRenderingSystem": {
-                "Priority": 0
             },
             "CollisionCheckSystem": {
                 "Priority": 0

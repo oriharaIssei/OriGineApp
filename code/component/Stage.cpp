@@ -26,7 +26,7 @@ void Stage::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_unused]] co
     ImGui::Text("Directory : %s", directory_.c_str());
     ImGui::Text("FileName : %s", fileName_.c_str());
     ImGui::SameLine();
-    std::string label = "SearchFile##" + _parentLabel;
+    std::string label = "SearchFile" + _parentLabel;
     if (ImGui::Button(label.c_str())) {
         // ファイル選択ダイアログを開く
         if (myfs::selectFileDialog(kApplicationResourceDirectory, directory_, fileName_, {"stage"}, true)) {

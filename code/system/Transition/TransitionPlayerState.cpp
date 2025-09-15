@@ -13,6 +13,13 @@
 #include "component/Player/PlayerStatus.h"
 #include "component/SceneChanger.h"
 
+#include "component/Player/State/PlayerIdleState.h"
+#include "component/Player/State/PlayerDashState.h"
+#include "component/Player/State/PlayerJumpState.h"
+#include "component/Player/State/PlayerFallDownState.h"
+#include "component/Player/State/PlayerWallRunState.h"
+#include "component/Player/State/PlayerWallJumpState.h"
+
 #include "component/cameraController/CameraController.h"
 #include "component/transform/CameraTransform.h"
 

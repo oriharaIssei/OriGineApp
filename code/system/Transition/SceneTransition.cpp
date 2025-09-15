@@ -17,14 +17,10 @@ SceneTransition::SceneTransition() : ISystem(SystemCategory::StateTransition) {}
 SceneTransition::~SceneTransition() {}
 
 void SceneTransition::Initialize() {
-    auto* enterSceneEntity = getUniqueEntity("EnterScene");
-    if (enterSceneEntity) {
-        enterScene_    = true;
-        exitScene_     = false;
-        usingEntityId_ = enterSceneEntity->getID();
+    enterScene_ = true;
+    exitScene_  = false;
 
-        currentTransitionTime_ = maxTransitionTime_;
-    }
+    currentTransitionTime_ = maxTransitionTime_;
 }
 
 void SceneTransition::Finalize() {
@@ -49,6 +45,9 @@ void SceneTransition::Update() {
     eraseDeadEntity();
 
     if (enterScene_) {
+        auto* enterSceneEntity = getUniqueEntity("EnterScene");
+        usingEntityId_         = enterSceneEntity->getID();
+
         EnterSceneUpdate();
     } else if (exitScene_) {
         ExitSceneUpdate();
@@ -131,6 +130,9 @@ void SceneTransition::EnterSceneUpdate() {
         DissolveEffectParam* dissolveEffectParam = getComponent<DissolveEffectParam>(enterSceneEntity, i);
         if (dissolveEffectParam == nullptr) {
             return;
+        }
+        if (!dissolveEffectParam->isActive()) {
+            dissolveEffectParam->Play();
         }
         dissolveEffectParam->setThreshold(EaseInQuad(currentTransitionTime_ / maxTransitionTime_));
     }
