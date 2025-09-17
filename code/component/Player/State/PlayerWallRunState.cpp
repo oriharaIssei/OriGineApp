@@ -3,9 +3,9 @@
 /// component
 #include "component/animation/SkinningAnimationComponent.h"
 #include "component/physics/Rigidbody.h"
+#include "component/Player/PlayerInput.h"
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
-#include "component/Player/PlayerInput.h"
 
 void PlayerWallRunState::Initialize() {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
@@ -23,7 +23,7 @@ void PlayerWallRunState::Initialize() {
         direction = -direction;
     }
     // 移動方向を回転
-    Vec3f velo = (playerStatus->getCurrentSpeed() * playerStatus->getWallRunRate()) * direction;
+    Vec3f velo = (rigidbody->getMaxXZSpeed() * playerStatus->getWallRunRate()) * direction;
     rigidbody->setVelocity(velo);
 
     separationdLeftTime_ = separationGraceTime_; // 壁との衝突判定の残り時間を初期化

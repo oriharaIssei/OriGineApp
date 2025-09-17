@@ -44,15 +44,14 @@ public:
     ~PlayerStatus();
 
     void Initialize(GameEntity* _entity) override;
-    void Edit(Scene* _scene, GameEntity* _entity,  const std::string& _parentLabel) override;
+    void Edit(Scene* _scene, GameEntity* _entity, const std::string& _parentLabel) override;
     void Debug(Scene* _scene, GameEntity* _entity, const std::string& _parentLabel) override;
     void Finalize() override;
 
     float CalculateSpeedByGearLevel(int32_t _gearLevel) const;
     float CalculateCoolTimeByGearLevel(int32_t _gearLevel) const;
 
-    
-    void UpdateVelocity(PlayerInput* _input,Transform* _transform, Rigidbody* _rigidbody, const Quaternion& _cameraRotation,float _deltaTime);
+    void UpdateAccel(PlayerInput* _input, Transform* _transform, Rigidbody* _rigidbody, const Quaternion& _cameraRotation);
 
 private:
     EnumBitmask<PlayerMoveState> moveState_           = PlayerMoveState::IDLE; // 現在の移動状態
@@ -62,10 +61,10 @@ private:
 
     /// ==========================================
     // プレイヤーの状態を表す変数群
-    bool onGround_ = false; // 地面にいるかどうか
-    bool isGearUp_        = false; // ギアアップ中かどうか
-    bool collisionWithWall_    = false; // 壁に衝突しているかどうか
-    bool isGoal_ = false; // ゴールに到達したかどうか
+    bool onGround_          = false; // 地面にいるかどうか
+    bool isGearUp_          = false; // ギアアップ中かどうか
+    bool collisionWithWall_ = false; // 壁に衝突しているかどうか
+    bool isGoal_            = false; // ゴールに到達したかどうか
 
     Vec3f wallCollisionNormal_ = Vec3f(0.0f, 0.0f, 0.0f); // 壁との衝突時の法線ベクトル
 
@@ -79,7 +78,7 @@ private:
     float coolTimeAddRateBase_       = 1.0f;
     float coolTimeAddRateCommonRate_ = 1.f;
 
-    // 基本速度
+    // 速度
     float baseSpeed_             = 0.0f; // 基本速度 (ギアレベル0の時の速度)
     float speedUpRateBase_       = 1.0f; // ギアアップ時の速度上昇率の基本値
     float speedUpRateCommonRate_ = 1.f; // ギアアップ時の速度上昇率の共通値
@@ -87,8 +86,7 @@ private:
     Vec3f wallJumpDirection_     = Vec3f(0.0f, 0.0f, 0.0f); // 壁ジャンプの方向
 
     // currentMaxSpeed は gearLevel に応じて変化する
-    float currentMaxSpeed_ = 0.0f; // 現在の最大速度 
-    float currentSpeed_ = 0.0f; // 現在の速度
+    float currentMaxSpeed_     = 0.0f; // 現在の最大速度
 
     float jumpPower_ = 0.0f; // ジャンプのパワー
     float fallPower_ = 0.0f; // 落下のパワー
@@ -177,13 +175,6 @@ public:
     }
     void setCurrentMaxSpeed(float _currentMaxSpeed) {
         currentMaxSpeed_ = _currentMaxSpeed;
-    }
-
-    float getCurrentSpeed() const {
-        return currentSpeed_;
-    }
-    void setCurrentSpeed(float _currentSpeed) {
-        currentSpeed_ = _currentSpeed;
     }
 
     float getWallRunRate() const {

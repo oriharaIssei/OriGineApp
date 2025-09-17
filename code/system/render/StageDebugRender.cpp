@@ -271,6 +271,7 @@ void StageDebugRender::CreateMeshes(Stage* _stage) {
 }
 
 void StageDebugRender::RenderAll() {
+    lineRenderSystem_.settingPSO(BlendMode::Alpha);
     lineRenderSystem_.StartRender();
     auto commandList = lineRenderSystem_.getDxCommand()->getCommandList();
 

@@ -25,7 +25,7 @@ void PlayerWallJumpState::Initialize() {
     wallJumpDirection[Y] += WALLJUMP_EPSILON_Y;
     wallJumpDirection = wallJumpDirection.normalize();
 
-    velo_ = wallJumpDirection * (playerStatus->getCurrentSpeed() * playerStatus->getWallRunRate());
+    velo_ = wallJumpDirection * (rigidbody->getMaxXZSpeed() * playerStatus->getWallRunRate());
 
     leftTime_ = forcedJumpTime_; // 壁ジャンプの残り時間を初期化
 }

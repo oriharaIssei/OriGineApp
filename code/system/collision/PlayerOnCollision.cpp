@@ -49,10 +49,7 @@ void PlayerOnCollision::UpdateEntity(GameEntity* _entity) {
             acceleration[Y] = 0.f;
             rigidbody->setAcceleration(acceleration);
 
-            Vec3f velo = rigidbody->getVelocity();
-            // Y軸の速度を0にする
-            velo[Y] = 0.f;
-            rigidbody->setVelocity(velo);
+            rigidbody->setVelocity(Y,0.f);
         } else {
             Vec3f localNormal = collNormal;
 

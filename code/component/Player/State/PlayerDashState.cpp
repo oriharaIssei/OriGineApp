@@ -15,6 +15,10 @@ void PlayerDashState::Initialize() {
     if (skinningAnim) {
         skinningAnim->setPlaybackSpeed(1, 1.f + float(playerStatus->getGearLevel()));
     }
+
+    auto* rigidbody = scene_->getComponent<Rigidbody>(playerEntity);
+    rigidbody->setMaxXZSpeed(playerStatus->getCurrentMaxSpeed());
+
 }
 
 void PlayerDashState::Update(float _deltaTime) {
@@ -38,6 +42,7 @@ void PlayerDashState::Update(float _deltaTime) {
             playerStatus->setGearUpCoolTime(playerStatus->CalculateCoolTimeByGearLevel(addedGearLevel));
 
             playerStatus->setCurrentMaxSpeed(playerStatus->CalculateSpeedByGearLevel(addedGearLevel));
+            rigidbody->setMaxXZSpeed(playerStatus->getCurrentMaxSpeed());
 
             auto* skinningAnim = scene_->getComponent<SkinningAnimationComponent>(playerEntity);
             if (skinningAnim) {
@@ -46,7 +51,7 @@ void PlayerDashState::Update(float _deltaTime) {
         }
     }
 
-   playerStatus->UpdateVelocity(playerInput, transform, rigidbody, scene_->getComponent<CameraTransform>(scene_->getUniqueEntity("GameCamera"))->rotate,_deltaTime);
+   playerStatus->UpdateAccel(playerInput, transform, rigidbody, scene_->getComponent<CameraTransform>(scene_->getUniqueEntity("GameCamera"))->rotate);
 }
 
 void PlayerDashState::Finalize() {

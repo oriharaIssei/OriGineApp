@@ -1,9 +1,9 @@
 #include "PlayerStatus.h"
 
 /// component
-#include "component/transform/Transform.h"
 #include "component/physics/Rigidbody.h"
 #include "component/Player/PlayerInput.h"
+#include "component/transform/Transform.h"
 
 /// externals
 #ifdef _DEBUG
@@ -24,8 +24,6 @@ void PlayerStatus::Initialize(GameEntity* /*_entity*/) {
     gearUpCoolTime_ = baseGearupCoolTime_; // ギアアップのクールタイムを初期化
     gearLevel_      = kDefaultPlayerGearLevel; // ギアレベルを初期化
     isGearUp_       = false; // ギアアップ状態を初期化
-
-    currentSpeed_ = baseSpeed_; // 現在の速度を初期化
 
     onGround_            = true; // 初期状態では地面にいる
     collisionWithWall_   = false; // 初期状態では壁に衝突していない
@@ -112,7 +110,7 @@ void PlayerStatus::Debug(Scene* /*_scene*/, GameEntity* /*_entity*/, const std::
     ImGui::Text("Gear Up Cool Time      : %.2f", gearUpCoolTime_);
     ImGui::Spacing();
     ImGui::Text("Base Speed          : %.2f", baseSpeed_);
-    ImGui::Text("Current Speed       : %.2f", currentSpeed_);
+    ImGui::Text("CurrentMax Speed       : %.2f", currentMaxSpeed_);
     ImGui::Text("Jump Power          : %.2f", jumpPower_);
     ImGui::Text("Fall Power          : %.2f", fallPower_);
 
@@ -147,7 +145,7 @@ float PlayerStatus::CalculateCoolTimeByGearLevel(int32_t _gearLevel) const {
         _gearLevel);
 }
 
-void PlayerStatus::UpdateVelocity(PlayerInput* _input, Transform* _transform, Rigidbody* _rigidbody, const Quaternion& _cameraRotation,float _deltaTime) {
+void PlayerStatus::UpdateAccel(PlayerInput* _input, Transform* _transform, Rigidbody* _rigidbody, const Quaternion& _cameraRotation) {
     // 入力方向を取得
     Vec2f inputDirection = _input->getInputDirection();
 
@@ -156,27 +154,25 @@ void PlayerStatus::UpdateVelocity(PlayerInput* _input, Transform* _transform, Ri
     Quaternion cameraYawRotation = Quaternion::RotateAxisAngle(Vec3f(0.f, 1.f, 0.f), cameraYaw);
 
     // 入力方向の回転
-    if (inputDirection.lengthSq() >= 0.0f) {
-        float inputAngle         = std::atan2(inputDirection[X], inputDirection[Y]);
-        Quaternion inputRotation = Quaternion::RotateAxisAngle(Vec3f(0.f, 1.f, 0.f), inputAngle);
-
-        // y軸のみの回転合成
-        Quaternion targetRotation = Quaternion::Normalize(cameraYawRotation * inputRotation);
-
-        // プレイヤーの回転を補間して設定
-        _transform->rotate = Slerp(_transform->rotate, targetRotation, directionInterpolateRate_);
+    if (inputDirection.lengthSq() <= 0.0f) {
+        return;
     }
+
+    float inputAngle         = std::atan2(inputDirection[X], inputDirection[Y]);
+    Quaternion inputRotation = Quaternion::RotateAxisAngle(Vec3f(0.f, 1.f, 0.f), inputAngle);
+
+    // y軸のみの回転合成
+    Quaternion targetRotation = Quaternion::Normalize(cameraYawRotation * inputRotation);
+
+    // プレイヤーの回転を補間して設定
+    _transform->rotate = Slerp(_transform->rotate, targetRotation, directionInterpolateRate_);
 
     // 移動速度の計算
-    Vector3 velo            = _rigidbody->getVelocity();
     Vec3f movementDirection = Vec3f(0.f, 0.f, 1.f) * MakeMatrix::RotateQuaternion(_transform->rotate);
-    velo += movementDirection * (currentMaxSpeed_ * 2.f * _deltaTime);
+    Vec3f accel             = movementDirection * (currentMaxSpeed_ * 2.f);
 
-    if (Vec2f(velo[X], velo[Z]).lengthSq() >= currentMaxSpeed_ * currentMaxSpeed_) {
-        velo = velo.normalize() * currentMaxSpeed_;
-    }
-
-    _rigidbody->setVelocity(velo);
+    _rigidbody->setAcceleration(X, accel[X]);
+    _rigidbody->setAcceleration(Z, accel[Z]);
 }
 
 void to_json(nlohmann::json& j, const PlayerStatus& _playerStatus) {

@@ -10,7 +10,8 @@
 void PlayerIdleState::Initialize() {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
     auto playerStatus  = scene_->getComponent<PlayerStatus>(playerEntity);
-    playerStatus->setCurrentSpeed(0.0f);
+    auto rigidbody     = scene_->getComponent<Rigidbody>(playerEntity);
+    rigidbody->setAcceleration({0.f, 0.0f, 0.0f});
     playerStatus->setCurrentMaxSpeed(0.0f);
     playerStatus->setGearUpCoolTime(playerStatus->getBaseGearupCoolTime());
     playerStatus->setGearLevel(kDefaultPlayerGearLevel);
@@ -36,6 +37,7 @@ void PlayerIdleState::Finalize() {
     auto playerStatus  = scene_->getComponent<PlayerStatus>(playerEntity);
     auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
     playerStatus->setCurrentMaxSpeed(playerStatus->getBaseSpeed());
+    rigidbody->setMaxXZSpeed(playerStatus->getBaseSpeed());
     // Jump がおかしくなるため しっかりと ゼロ にする
     rigidbody->setVelocity({0.0f, 0.0f, 0.0f});
 }
