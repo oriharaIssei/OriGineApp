@@ -2,8 +2,9 @@
 
 /// component
 #include "component/physics/Rigidbody.h"
-#include "component/Player/PlayerInput.h"
 #include "component/transform/Transform.h"
+#include "PlayerInput.h"
+#include "State/PlayerState.h"
 
 /// externals
 #ifdef _DEBUG
@@ -17,18 +18,7 @@
 PlayerStatus::PlayerStatus() {}
 PlayerStatus::~PlayerStatus() {}
 
-void PlayerStatus::Initialize(GameEntity* /*_entity*/) {
-    moveState_           = PlayerMoveState::IDLE; // 初期状態は IDLE
-    prevPlayerMoveState_ = PlayerMoveState::IDLE; // 前の移動状態を初期化
-
-    gearUpCoolTime_ = baseGearupCoolTime_; // ギアアップのクールタイムを初期化
-    gearLevel_      = kDefaultPlayerGearLevel; // ギアレベルを初期化
-    isGearUp_       = false; // ギアアップ状態を初期化
-
-    onGround_            = true; // 初期状態では地面にいる
-    collisionWithWall_   = false; // 初期状態では壁に衝突していない
-    wallCollisionNormal_ = Vec3f(0.0f, 0.0f, 0.0f); // 初期状態では壁との衝突がない
-}
+void PlayerStatus::Initialize(GameEntity* /*_entity*/) {}
 
 void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEntity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
@@ -41,7 +31,7 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEnt
             ImGui::TableSetupColumn("Gear Level");
             ImGui::TableSetupColumn("Speed");
             ImGui::TableHeadersRow();
-            for (int level = 1; level <= maxGearLevel_; ++level) {
+            for (int level = 1; level <= kMaxPlayerGearLevel; ++level) {
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
                 ImGui::Text("%d", level);
@@ -61,7 +51,7 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEnt
             ImGui::TableSetupColumn("Gear Level");
             ImGui::TableSetupColumn("CoolTime");
             ImGui::TableHeadersRow();
-            for (int level = 1; level <= maxGearLevel_; ++level) {
+            for (int level = 1; level <= kMaxPlayerGearLevel; ++level) {
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
                 ImGui::Text("%d", level);
@@ -94,18 +84,6 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEnt
 void PlayerStatus::Debug(Scene* /*_scene*/, GameEntity* /*_entity*/, const std::string& /*_parentLabel*/) {
 #ifdef _DEBUG
 
-    static std::map<PlayerMoveState, const char*> moveStateName = {
-        {PlayerMoveState::IDLE, "IDLE"},
-        {PlayerMoveState::DASH, "DASH"},
-        {PlayerMoveState::JUMP, "JUMP"},
-        {PlayerMoveState::WALL_RUN, "WALL_RUN"},
-        {PlayerMoveState::WALL_JUMP, "WALL_JUMP"}
-        // {PlayerMoveState::SLIDE, "SLIDE"}
-    };
-
-    ImGui::Text("MoveState  : %s", moveStateName[moveState_.toEnum()]);
-    ImGui::Text("Gear Level : %d", gearLevel_);
-    ImGui::Spacing();
     ImGui::Text("Base Gear Up Cool Time : %.2f", baseGearupCoolTime_);
     ImGui::Text("Gear Up Cool Time      : %.2f", gearUpCoolTime_);
     ImGui::Spacing();
@@ -114,7 +92,6 @@ void PlayerStatus::Debug(Scene* /*_scene*/, GameEntity* /*_entity*/, const std::
     ImGui::Text("Jump Power          : %.2f", jumpPower_);
     ImGui::Text("Fall Power          : %.2f", fallPower_);
 
-    ImGui::Text("Is Gear Up          : %s", isGearUp_ ? "true" : "false");
     ImGui::Spacing();
     ImGui::Text("Speed Up Rate Base        : %.2f", speedUpRateBase_);
     ImGui::Text("Speed Up Rate Common Rate : %.2f", speedUpRateCommonRate_);

@@ -2,10 +2,13 @@
 
 /// component
 #include "component/animation/SkinningAnimationComponent.h"
-#include "component/physics/Rigidbody.h"
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
+
+#include "component/physics/Rigidbody.h"
 #include "component/Player/PlayerInput.h"
+#include "component/Player/PlayerStatus.h"
+#include "component/Player/State/PlayerState.h"
 #include "component/Stage.h"
 
 void PlayerWallJumpState::Initialize() {
@@ -49,9 +52,9 @@ void PlayerWallJumpState::Finalize() {
 
 PlayerMoveState PlayerWallJumpState::TransitionState() const {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
-    auto playerStatus  = scene_->getComponent<PlayerStatus>(playerEntity);
+    auto state  = scene_->getComponent<PlayerState>(playerEntity);
 
-    if (playerStatus->isOnGround()) {
+    if (state->isOnGround()) {
         return PlayerMoveState::DASH;
     }
     if (leftTime_ <= 0.0f) {

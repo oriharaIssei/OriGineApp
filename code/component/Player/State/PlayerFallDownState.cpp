@@ -2,10 +2,13 @@
 
 /// component
 #include "component/animation/SkinningAnimationComponent.h"
-#include "component/physics/Rigidbody.h"
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
+
+#include "component/physics/Rigidbody.h"
 #include "component/Player/PlayerInput.h"
+#include "component/Player/PlayerStatus.h"
+#include "component/Player/State/PlayerState.h"
 
 void PlayerFallDownState::Initialize() {}
 
@@ -42,11 +45,11 @@ void PlayerFallDownState::Finalize() {
 
 PlayerMoveState PlayerFallDownState::TransitionState() const {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
-    auto playerStatus  = scene_->getComponent<PlayerStatus>(playerEntity);
+    auto state  = scene_->getComponent<PlayerState>(playerEntity);
     auto playerInput   = scene_->getComponent<PlayerInput>(playerEntity);
 
-    if (playerStatus->isOnGround()) {
-        if (playerStatus->isCollisionWithWall()) {
+    if (state->isOnGround()) {
+        if (state->isCollisionWithWall()) {
             return PlayerMoveState::WALL_RUN;
         } else {
             if (playerInput->getInputDirection().lengthSq() > 0.f) {

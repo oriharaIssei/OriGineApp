@@ -6,15 +6,18 @@
 #include "component/physics/Rigidbody.h"
 
 #include "component/Player/PlayerInput.h"
+#include "component/Player/PlayerStatus.h"
+#include "component/Player/State/PlayerState.h"
 
 void PlayerIdleState::Initialize() {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
     auto playerStatus  = scene_->getComponent<PlayerStatus>(playerEntity);
+    auto* state        = scene_->getComponent<PlayerState>(playerEntity);
     auto rigidbody     = scene_->getComponent<Rigidbody>(playerEntity);
     rigidbody->setAcceleration({0.f, 0.0f, 0.0f});
     playerStatus->setCurrentMaxSpeed(0.0f);
     playerStatus->setGearUpCoolTime(playerStatus->getBaseGearupCoolTime());
-    playerStatus->setGearLevel(kDefaultPlayerGearLevel);
+    state->setGearLevel(kDefaultPlayerGearLevel);
 
     int32_t emitterSize = scene_->getComponentArray<Emitter>()->getComponentSize(playerEntity);
 
@@ -36,6 +39,7 @@ void PlayerIdleState::Finalize() {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
     auto playerStatus  = scene_->getComponent<PlayerStatus>(playerEntity);
     auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
+
     playerStatus->setCurrentMaxSpeed(playerStatus->getBaseSpeed());
     rigidbody->setMaxXZSpeed(playerStatus->getBaseSpeed());
     // Jump がおかしくなるため しっかりと ゼロ にする
@@ -44,10 +48,10 @@ void PlayerIdleState::Finalize() {
 
 PlayerMoveState PlayerIdleState::TransitionState() const {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
-    auto playerStatus  = scene_->getComponent<PlayerStatus>(playerEntity);
+    auto state  = scene_->getComponent<PlayerState>(playerEntity);
     auto playerInput   = scene_->getComponent<PlayerInput>(playerEntity);
 
-    if (playerStatus->isOnGround()) {
+    if (state->isOnGround()) {
         if (playerInput->isJumpInput()) {
             return PlayerMoveState::JUMP;
         }

@@ -7,7 +7,7 @@
 
 // component
 #include "component/Player/PlayerInput.h"
-#include "component/Player/PlayerStatus.h"
+#include "component/Player/State/PlayerState.h"
 #include "component/Player/State/IPlayerMoveState.h"
 
 void PlayerMoveSystem::Initialize() {
@@ -17,8 +17,8 @@ void PlayerMoveSystem::Finalize() {
 }
 
 void PlayerMoveSystem::UpdateEntity(GameEntity* _entity) {
-    PlayerStatus* playerStatus = getComponent<PlayerStatus>(_entity);
+    PlayerState* state= getComponent<PlayerState>(_entity);
 
     const float deltaTime = getMainDeltaTime();
-    playerStatus->getPlayerMoveState()->Update(deltaTime);
+    state->getPlayerMoveState()->Update(deltaTime);
 }

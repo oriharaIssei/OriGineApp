@@ -139,6 +139,7 @@
     <ClInclude Include="code\component\Player\State\PlayerJumpState.h" />
     <ClInclude Include="code\component\Player\State\PlayerWallJumpState.h" />
     <ClInclude Include="code\component\Player\State\PlayerWallRunState.h" />
+    <ClInclude Include="code\component\Player\State\PlayerState.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -242,5 +243,6 @@
     <ClCompile Include="code\component\Player\State\PlayerJumpState.cpp" />
     <ClCompile Include="code\component\Player\State\PlayerWallJumpState.cpp" />
     <ClCompile Include="code\component\Player\State\PlayerWallRunState.cpp" />
+    <ClCompile Include="code\component\Player\State\PlayerState.cpp" />
   </ItemGroup>
 </Project>

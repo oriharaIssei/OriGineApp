@@ -2,6 +2,9 @@
 
 #include "IPlayerMoveState.h"
 
+#include "component/physics/Rigidbody.h"
+#include "component/transform/Transform.h"
+
 class PlayerWallJumpState
     : public IPlayerMoveState {
 public:

@@ -9,21 +9,23 @@
 
 void PlayerWallRunState::Initialize() {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
-    auto* playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
+    auto* state = scene_->getComponent<PlayerState>(playerEntity);
     auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
     prevVelo_          = rigidbody->getVelocity(); // 壁ジャンプ前の速度を保存
 
-    const Vec3f& normal = playerStatus->getWallCollisionNormal();
+    const Vec3f& normal = state->getWallCollisionNormal();
     Vec3f direction     = Vec3f::Cross(normal, Vec3f(0.0f, 1.0f, 0.0f));
     if (direction.lengthSq() == 0.0f) {
         direction = Vec3f::Cross(normal, Vec3f(1.0f, 0.0f, 0.0f));
     }
+
     direction = direction.normalize();
     if (Vec3f::Dot(direction, prevVelo_) < 0.0f) {
         direction = -direction;
     }
+
     // 移動方向を回転
-    Vec3f velo = (rigidbody->getMaxXZSpeed() * playerStatus->getWallRunRate()) * direction;
+    Vec3f velo = rigidbody->getMaxXZSpeed() * direction;
     rigidbody->setVelocity(velo);
 
     separationdLeftTime_ = separationGraceTime_; // 壁との衝突判定の残り時間を初期化
@@ -31,9 +33,9 @@ void PlayerWallRunState::Initialize() {
 
 void PlayerWallRunState::Update(float _deltaTime) {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
-    auto* playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
+    auto* state        = scene_->getComponent<PlayerState>(playerEntity);
 
-    if (playerStatus->isCollisionWithWall()) {
+    if (state->isCollisionWithWall()) {
         separationdLeftTime_ = separationGraceTime_;
     } else {
         separationdLeftTime_ -= _deltaTime; // 壁との衝突判定の残り時間を減少
@@ -46,8 +48,8 @@ void PlayerWallRunState::Finalize() {
     // 壁走行終了時に速度をリセット
     rigidbody->setVelocity(prevVelo_); // 壁走行終了時に速度をリセット
 
-    auto playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
-    playerStatus->setCollisionWithWall(false); // 壁走行終了時に壁との衝突をリセット
+    auto* state = scene_->getComponent<PlayerState>(playerEntity);
+    state->setCollisionWithWall(false); // 壁走行終了時に壁との衝突をリセット
 }
 
 PlayerMoveState PlayerWallRunState::TransitionState() const {

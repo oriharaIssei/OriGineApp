@@ -3,9 +3,11 @@
 /// component
 #include "component/animation/SkinningAnimationComponent.h"
 #include "component/physics/Rigidbody.h"
+#include "component/Player/PlayerInput.h"
+#include "component/Player/PlayerStatus.h"
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
-#include "component/Player/PlayerInput.h"
+#include "PlayerState.h"
 
 void PlayerJumpState::Initialize() {
     releaseJumpPower_ = 0.f;
@@ -26,7 +28,7 @@ void PlayerJumpState::Initialize() {
     }
 }
 
-void PlayerJumpState::Update(float _deltaTime) {
+void PlayerJumpState::Update(float /*_deltaTime*/) {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
     auto* playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
     auto* playerInput  = scene_->getComponent<PlayerInput>(playerEntity);
@@ -54,11 +56,11 @@ void PlayerJumpState::Finalize() {
 
 PlayerMoveState PlayerJumpState::TransitionState() const {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
-    auto playerStatus  = scene_->getComponent<PlayerStatus>(playerEntity);
+    auto state  = scene_->getComponent<PlayerState>(playerEntity);
     auto playerInput   = scene_->getComponent<PlayerInput>(playerEntity);
 
-    if (playerStatus->isOnGround()) {
-        if (playerStatus->isCollisionWithWall()) {
+    if (state->isOnGround()) {
+        if (state->isCollisionWithWall()) {
             return PlayerMoveState::WALL_RUN;
         } else {
             if (playerInput->getInputDirection().lengthSq() > 0.f) {

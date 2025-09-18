@@ -14,6 +14,7 @@
 #include "component/cameraController/CameraController.h"
 #include "component/Player/PlayerInput.h"
 #include "component/Player/PlayerStatus.h"
+#include "component/Player/State/PlayerState.h"
 #include "component/SceneChanger.h"
 #include "component/Stage.h"
 
@@ -101,6 +102,7 @@ void RegisterUsingComponents() {
 
     componentRegistry->registerComponent<PlayerInput>();
     componentRegistry->registerComponent<PlayerStatus>();
+    componentRegistry->registerComponent<PlayerState>();
 
     componentRegistry->registerComponent<Button>();
     componentRegistry->registerComponent<SceneChanger>();

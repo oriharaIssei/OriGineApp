@@ -8,31 +8,10 @@
 class Rigidbody;
 struct Transform;
 class PlayerInput;
-class IPlayerMoveState;
-
-/// util
-#include "util/EnumBitMask.h"
 
 /// math
 #include <math/Quaternion.h>
 #include <math/Vector3.h>
-
-/// <summary>
-/// プレイヤーの 移動状態 を表す列挙体
-/// </summary>
-enum class PlayerMoveState {
-    IDLE      = 1 << 0, // 待機 (動いていない)
-    DASH      = 1 << 1, // ダッシュ(基本移動)
-    FALL_DOWN = 1 << 2, // 落下中 (ジャンプ ではない.)
-    JUMP      = 1 << 3, // ジャンプ
-    WALL_RUN  = 1 << 4, // 壁走り
-    WALL_JUMP = 1 << 5, // 壁ジャンプ
-    // SLIDE    = 1 << 4, // スライド
-
-    Count = 6 // 5
-};
-
-constexpr int32_t kDefaultPlayerGearLevel = 1; // デフォルトのギアレベル
 
 class PlayerStatus
     : public IComponent {
@@ -54,23 +33,6 @@ public:
     void UpdateAccel(PlayerInput* _input, Transform* _transform, Rigidbody* _rigidbody, const Quaternion& _cameraRotation);
 
 private:
-    EnumBitmask<PlayerMoveState> moveState_           = PlayerMoveState::IDLE; // 現在の移動状態
-    EnumBitmask<PlayerMoveState> prevPlayerMoveState_ = PlayerMoveState::IDLE; // 前の移動状態
-
-    std::shared_ptr<IPlayerMoveState> playerMoveState_ = nullptr; // 現在の移動状態を管理するクラス
-
-    /// ==========================================
-    // プレイヤーの状態を表す変数群
-    bool onGround_          = false; // 地面にいるかどうか
-    bool isGearUp_          = false; // ギアアップ中かどうか
-    bool collisionWithWall_ = false; // 壁に衝突しているかどうか
-    bool isGoal_            = false; // ゴールに到達したかどうか
-
-    Vec3f wallCollisionNormal_ = Vec3f(0.0f, 0.0f, 0.0f); // 壁との衝突時の法線ベクトル
-
-    int32_t gearLevel_    = 0; // ギアレベル
-    int32_t maxGearLevel_ = 6; // 最大ギアレベル
-
     /// ==========================================
     // 能力値
     float baseGearupCoolTime_        = 1.0f; // ギアアップの基本クールタイム (秒単位)
@@ -86,7 +48,7 @@ private:
     Vec3f wallJumpDirection_     = Vec3f(0.0f, 0.0f, 0.0f); // 壁ジャンプの方向
 
     // currentMaxSpeed は gearLevel に応じて変化する
-    float currentMaxSpeed_     = 0.0f; // 現在の最大速度
+    float currentMaxSpeed_ = 0.0f; // 現在の最大速度
 
     float jumpPower_ = 0.0f; // ジャンプのパワー
     float fallPower_ = 0.0f; // 落下のパワー
@@ -94,72 +56,6 @@ private:
     float directionInterpolateRate_ = 0.1f;
 
 public:
-    PlayerMoveState getState() const {
-        return moveState_.toEnum();
-    }
-    void setState(const PlayerMoveState& _state) {
-        moveState_ = _state;
-    }
-
-    PlayerMoveState getPrevState() const {
-        return prevPlayerMoveState_.toEnum();
-    }
-    void setPrevState(const PlayerMoveState& _prevState) {
-        prevPlayerMoveState_ = _prevState;
-    }
-
-    std::shared_ptr<IPlayerMoveState> getPlayerMoveState() const {
-        return playerMoveState_;
-    }
-    void setPlayerMoveState(std::shared_ptr<IPlayerMoveState> _playerMoveState) {
-        playerMoveState_ = _playerMoveState;
-    }
-
-    bool isGoal() const {
-        return isGoal_;
-    }
-    void setGoal(bool _isGoal) {
-        isGoal_ = _isGoal;
-    }
-
-    bool isOnGround() const {
-        return onGround_;
-    }
-    void setOnGround(bool _onGround) {
-        onGround_ = _onGround;
-    }
-
-    bool isCollisionWithWall() const {
-        return collisionWithWall_;
-    }
-    void setCollisionWithWall(bool _collisionWithWall, const Vec3f& _wallCollisionNormal) {
-        collisionWithWall_   = _collisionWithWall;
-        wallCollisionNormal_ = _wallCollisionNormal;
-    }
-    void setCollisionWithWall(bool _collisionWithWall) {
-        collisionWithWall_ = _collisionWithWall;
-    }
-    const Vec3f& getWallCollisionNormal() const {
-        return wallCollisionNormal_;
-    }
-
-    bool isGearUp() const {
-        return isGearUp_;
-    }
-    void setGearUp(bool _isGearUp) {
-        isGearUp_ = _isGearUp;
-    }
-
-    int32_t getGearLevel() const {
-        return gearLevel_;
-    }
-    void setGearLevel(int32_t _gearLevel) {
-        gearLevel_ = _gearLevel;
-    }
-    int32_t getMaxGearLevel() const {
-        return maxGearLevel_;
-    }
-
     float getDirectionInterpolateRate() const {
         return directionInterpolateRate_;
     }
