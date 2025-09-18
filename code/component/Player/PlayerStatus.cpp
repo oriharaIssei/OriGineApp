@@ -67,16 +67,7 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEnt
     DragGuiCommand("jumpPower", jumpPower_);
     DragGuiCommand("fallPower", fallPower_);
     DragGuiCommand("wallRunRate", wallRunRate_);
-    if (DragGuiVectorCommand<3, float>("wallJumpDirection",
-            wallJumpDirection_,
-            0.01f,
-            -1.f, 1.f,
-            "%.4f",
-            [](Vector<3, float>* _v) {
-                *_v = Vec3f(*_v).normalize();
-            })) {
-        wallJumpDirection_ = wallJumpDirection_.normalize();
-    }
+    DragGuiVectorCommand<3, float>("WallJumpOffset", wallJumpOffset_, 0.01f);
 
 #endif // _DEBUG
 }
@@ -100,7 +91,7 @@ void PlayerStatus::Debug(Scene* /*_scene*/, GameEntity* /*_entity*/, const std::
     ImGui::Text("Cool Time Up Rate Common Rate : %.2f", coolTimeAddRateCommonRate_);
     ImGui::Spacing();
     ImGui::Text("Wall Run Rate             : %.2f", wallRunRate_);
-    ImGui::Text("Wall Jump Direction       : (%.2f, %.2f, %.2f)", wallJumpDirection_[X], wallJumpDirection_[Y], wallJumpDirection_[Z]);
+    ImGui::Text("Wall Jump Offset       : (%.2f, %.2f, %.2f)", wallJumpOffset_[X], wallJumpOffset_[Y], wallJumpOffset_[Z]);
     ImGui::Text("Direction Interpolate Rate: %.2f", directionInterpolateRate_);
 
 #endif
@@ -155,7 +146,7 @@ void PlayerStatus::UpdateAccel(PlayerInput* _input, Transform* _transform, Rigid
 void to_json(nlohmann::json& j, const PlayerStatus& _playerStatus) {
     j["baseSpeed"]                = _playerStatus.baseSpeed_;
     j["wallRunRate"]              = _playerStatus.wallRunRate_;
-    j["wallJumpDirection"]        = _playerStatus.wallJumpDirection_;
+    j["wallJumpOffset"]           = _playerStatus.wallJumpOffset_;
     j["jumpPower"]                = _playerStatus.jumpPower_;
     j["fallPower"]                = _playerStatus.fallPower_;
     j["gearUpCoolTime"]           = _playerStatus.baseGearupCoolTime_;
@@ -171,7 +162,7 @@ void from_json(const nlohmann::json& j, PlayerStatus& _playerStatus) {
     j.at("jumpPower").get_to(_playerStatus.jumpPower_);
     j.at("fallPower").get_to(_playerStatus.fallPower_);
     j.at("wallRunRate").get_to(_playerStatus.wallRunRate_);
-    j.at("wallJumpDirection").get_to(_playerStatus.wallJumpDirection_);
+    j.at("wallJumpOffset").get_to(_playerStatus.wallJumpOffset_);
     j.at("gearUpCoolTime").get_to(_playerStatus.baseGearupCoolTime_);
     j.at("directionInterpolateRate").get_to(_playerStatus.directionInterpolateRate_);
 

@@ -44,8 +44,11 @@ private:
     float baseSpeed_             = 0.0f; // 基本速度 (ギアレベル0の時の速度)
     float speedUpRateBase_       = 1.0f; // ギアアップ時の速度上昇率の基本値
     float speedUpRateCommonRate_ = 1.f; // ギアアップ時の速度上昇率の共通値
-    float wallRunRate_           = 0.0f; // 壁走りの速度
-    Vec3f wallJumpDirection_     = Vec3f(0.0f, 0.0f, 0.0f); // 壁ジャンプの方向
+
+    // 壁系
+    float wallRunRate_    = 0.0f; // 壁走りの速度倍率
+    Vec3f wallJumpOffset_ = {0.0f, 1.0f, 0.0f};
+    float wallJumpRate_   = 0.0f; // 壁ジャンプ(壁から地面に行くとき)の速度倍率
 
     // currentMaxSpeed は gearLevel に応じて変化する
     float currentMaxSpeed_ = 0.0f; // 現在の最大速度
@@ -80,11 +83,11 @@ public:
         wallRunRate_ = _wallRunRate;
     }
 
-    const Vec3f& getWallJumpDirection() const {
-        return wallJumpDirection_;
+    const Vec3f& getWallJumpOffset() const {
+        return wallJumpOffset_;
     }
-    void setWallJumpDirection(const Vec3f& _wallJumpDirection) {
-        wallJumpDirection_ = _wallJumpDirection;
+    void setWallJumpOffset(const Vec3f& _wallJumpOffset) {
+        wallJumpOffset_ = _wallJumpOffset;
     }
 
     float getBaseGearupCoolTime() const {

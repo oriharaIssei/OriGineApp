@@ -27,6 +27,7 @@ void PlayerWallRunState::Initialize() {
     // 移動方向を回転
     Vec3f velo = rigidbody->getMaxXZSpeed() * direction;
     rigidbody->setVelocity(velo);
+    rigidbody->setUseGravity(false); // 重力を無効
 
     separationdLeftTime_ = separationGraceTime_; // 壁との衝突判定の残り時間を初期化
 }
@@ -45,6 +46,7 @@ void PlayerWallRunState::Update(float _deltaTime) {
 void PlayerWallRunState::Finalize() {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
     auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
+    rigidbody->setUseGravity(true); // 重力を有効
     // 壁走行終了時に速度をリセット
     rigidbody->setVelocity(prevVelo_); // 壁走行終了時に速度をリセット
 

@@ -2,7 +2,30 @@
     "Components": {
         "CollisionPushBackInfo": [
             {
-                "pushBackType": 1
+                "pushBackType": 0
+            }
+        ],
+        "DissolveEffectParam": [
+            {
+                "edgeWidth": 0.0010000000474974513,
+                "isActive": false,
+                "outLineColor": [
+                    0.01568627543747425,
+                    0.7647058963775635,
+                    1.0,
+                    1.0
+                ],
+                "textureFilePath": "./application/resource/Texture/bioNoise.png",
+                "threshold": 0.0,
+                "uvRotate": 0.0,
+                "uvScale": [
+                    1.0,
+                    1.0
+                ],
+                "uvTranslate": [
+                    0.0,
+                    0.0
+                ]
             }
         ],
         "Emitter": [],
@@ -111,21 +134,24 @@
                 "MaxJumpInputTime": 0.05000000074505806
             }
         ],
+        "PlayerState": [
+            null
+        ],
         "PlayerStatus": [
             {
-                "baseSpeed": 11.800000190734863,
+                "baseSpeed": 14.600000381469727,
                 "coolTimeAddRateBase": 1.2000000476837158,
                 "coolTimeAddRateCommonRate": 0.07999999821186066,
-                "directionInterpolateRate": 0.07999999821186066,
+                "directionInterpolateRate": 0.7799999713897705,
                 "fallPower": 4.099999904632568,
                 "gearUpCoolTime": 0.6000000238418579,
                 "jumpPower": 0.15000000596046448,
-                "speedUpRateBase": 19.200000762939453,
-                "speedUpRateCommonRate": -1.100000023841858,
-                "wallJumpDirection": [
-                    -0.14878620207309723,
-                    -0.2880076467990875,
-                    0.9459990859031677
+                "speedUpRateBase": 8.600000381469727,
+                "speedUpRateCommonRate": -0.800000011920929,
+                "wallJumpOffset": [
+                    0.0,
+                    1.0,
+                    0.0
                 ],
                 "wallRunRate": 1.7999999523162842
             }
@@ -138,7 +164,8 @@
                     0.0
                 ],
                 "mass": 0.2800000011920929,
-                "maxFallSpeed": 10.0,
+                "maxFallSpeed": 30.0,
+                "maxXZSpeed": 100.0,
                 "useGravity": true,
                 "velocity": [
                     0.0,
@@ -149,7 +176,7 @@
         ],
         "SceneChanger": [
             {
-                "nextSceneName": "Title"
+                "nextSceneName": "Result"
             }
         ],
         "SkinningAnimationComponent": [
@@ -242,8 +269,8 @@
                 ],
                 "translate": [
                     0.0,
-                    6.3019118309021,
-                    0.0
+                    5.0,
+                    4.820000171661377
                 ]
             }
         ]
@@ -251,48 +278,60 @@
     "Name": "Player",
     "Systems": [
         {
-            "SystemName": "TakePlayerToStartPosition",
-            "SystemType": 0
+            "SystemCategory": 4,
+            "SystemName": "CollisionCheckSystem"
         },
         {
-            "SystemName": "PlayerInputSystem",
-            "SystemType": 1
+            "SystemCategory": 0,
+            "SystemName": "TakePlayerToStartPosition"
         },
         {
-            "SystemName": "FallDetectionSystem",
-            "SystemType": 2
+            "SystemCategory": 1,
+            "SystemName": "PlayerInputSystem"
         },
         {
-            "SystemName": "TransitionPlayerState",
-            "SystemType": 2
+            "SystemCategory": 4,
+            "SystemName": "CollisionPushBackSystem"
         },
         {
-            "SystemName": "MoveSystemByRigidBody",
-            "SystemType": 3
+            "SystemCategory": 7,
+            "SystemName": "DissolveEffect"
         },
         {
-            "SystemName": "PlayerMoveSystem",
-            "SystemType": 3
+            "SystemCategory": 5,
+            "SystemName": "EffectOnPlayerRun"
         },
         {
-            "SystemName": "CollisionCheckSystem",
-            "SystemType": 4
+            "SystemCategory": 6,
+            "SystemName": "SkinningMeshRenderSystem"
         },
         {
-            "SystemName": "CollisionPushBackSystem",
-            "SystemType": 4
+            "SystemCategory": 2,
+            "SystemName": "FallDetectionSystem"
         },
         {
-            "SystemName": "PlayerOnCollision",
-            "SystemType": 4
+            "SystemCategory": 3,
+            "SystemName": "MoveSystemByRigidBody"
         },
         {
-            "SystemName": "SkinningAnimationSystem",
-            "SystemType": 5
+            "SystemCategory": 3,
+            "SystemName": "PlayerMoveSystem"
         },
         {
-            "SystemName": "SkinningMeshRenderSystem",
-            "SystemType": 6
+            "SystemCategory": 4,
+            "SystemName": "PlayerOnCollision"
+        },
+        {
+            "SystemCategory": 2,
+            "SystemName": "TransitionPlayerState"
+        },
+        {
+            "SystemCategory": 2,
+            "SystemName": "SceneTransition"
+        },
+        {
+            "SystemCategory": 5,
+            "SystemName": "SkinningAnimationSystem"
         }
     ],
     "isUnique": true

@@ -25,8 +25,11 @@ void EffectOnPlayerGearup::Initialize() {}
 void EffectOnPlayerGearup::Finalize() {}
 
 void EffectOnPlayerGearup::UpdateEntity(GameEntity* _entity) {
-    GameEntity* player         = getUniqueEntity("Player");
-    PlayerState* state  = getComponent<PlayerState>(player);
+    GameEntity* player = getUniqueEntity("Player");
+    if (!player) {
+        return;
+    }
+    PlayerState* state         = getComponent<PlayerState>(player);
     Transform* playerTransform = getComponent<Transform>(player);
 
     if (!state) {

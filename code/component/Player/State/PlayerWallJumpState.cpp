@@ -12,20 +12,22 @@
 #include "component/Stage.h"
 
 void PlayerWallJumpState::Initialize() {
-    constexpr float WALLJUMP_EPSILON_Y = 1.2f;
-    auto* playerEntity                 = scene_->getEntity(playerEntityID_);
-    auto* transform                    = scene_->getComponent<Transform>(playerEntity);
-    auto* rigidbody                    = scene_->getComponent<Rigidbody>(playerEntity);
-    auto* playerStatus                 = scene_->getComponent<PlayerStatus>(playerEntity);
+    auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto* transform    = scene_->getComponent<Transform>(playerEntity);
+    auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
+    auto* playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
 
     rigidbody->setAcceleration({0.0f, 0.0f, 0.0f}); // 壁ジャンプ時は加速度をリセット
     rigidbody->setUseGravity(false); // 無効
     prevVelo_ = rigidbody->getVelocity(); // 壁ジャンプ前の速度を保存
 
     // 目的のControlPoint への 差分ベクトルを進行方向とする
-    Vec3f wallJumpDirection = nextControlPointPos(*transform, *rigidbody) - transform->translate;
-    // 少し上にいくように誤差をプラス
-    wallJumpDirection[Y] += WALLJUMP_EPSILON_Y;
+    Vec3f targetNormal = Vec3f(0.0f, 1.f, 0.f);
+
+    Vec3f wallJumpDirection = nextControlPointPos(targetNormal, transform, rigidbody) - transform->translate;
+
+    Vec3f jumpOffset = playerStatus->getWallJumpOffset() * MakeMatrix::RotateAxisAngle(axisZ, targetNormal);
+    wallJumpDirection += jumpOffset;
     wallJumpDirection = wallJumpDirection.normalize();
 
     velo_ = wallJumpDirection * (rigidbody->getMaxXZSpeed() * playerStatus->getWallRunRate());
@@ -52,7 +54,7 @@ void PlayerWallJumpState::Finalize() {
 
 PlayerMoveState PlayerWallJumpState::TransitionState() const {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
-    auto state  = scene_->getComponent<PlayerState>(playerEntity);
+    auto state         = scene_->getComponent<PlayerState>(playerEntity);
 
     if (state->isOnGround()) {
         return PlayerMoveState::DASH;
@@ -64,7 +66,7 @@ PlayerMoveState PlayerWallJumpState::TransitionState() const {
     return this->getState();
 }
 
-Vec3f PlayerWallJumpState::nextControlPointPos(const Transform& _playerTransform, const Rigidbody& _playerRigidbody) {
+Vec3f PlayerWallJumpState::nextControlPointPos(Vec3f& _targetNormal, const Transform* _playerTransform, const Rigidbody* _playerRigidbody) const {
     Vec3f targetPointPos;
 
     GameEntity* stageEntity = scene_->getUniqueEntity("Stage");
@@ -73,39 +75,48 @@ Vec3f PlayerWallJumpState::nextControlPointPos(const Transform& _playerTransform
         return targetPointPos;
     }
 
-    Vec3f playerVeloNormal = _playerRigidbody.getVelocity().normalize();
+    Vec3f playerVeloNormal = _playerRigidbody->getVelocity().normalize();
 
-    Vec3f* nearestLinkFromPos = nullptr;
-    // Playerの位置と方向ベクトルから targetPointPos を取得
-    for (const Stage::Link& link : stage->getLinks()) {
-        Vec3f& linkFromPos = stage->getControlPointsRef()[link.from_].pos_;
-        Vec3f diff         = linkFromPos - Vec3f(_playerTransform.worldMat[3]);
+    Stage::Link* nearestLink = nullptr;
+    Vec3f* nearestPoint      = nullptr;
+    auto isNearestPoint      = [&nearestLink, &nearestPoint, _playerTransform, &targetPointPos, &playerVeloNormal](Stage::Link& link, Vec3f& point) {
+        Vec3f diff = point - Vec3f(_playerTransform->worldMat[3]);
 
         // diffと playerVeloNormal の内積を計算
         // 内積が正の場合、playerVeloNormal と同じ方向にある
         float dot = diff.dot(playerVeloNormal);
         if (dot <= 0.0f) {
-            continue;
+            return;
         }
 
-        if (nearestLinkFromPos) {
-            // 既に最も近いリンクがある場合、距離を比較
-            float currentDistance = diff.lengthSq();
-            float nearestDistance = Vec3f(*nearestLinkFromPos - Vec3f(_playerTransform.worldMat[3])).lengthSq();
-            if (currentDistance < nearestDistance) {
-                nearestLinkFromPos = &linkFromPos; // より近いリンクを保存
+        // 既に最も近いリンクがある場合、距離を比較
+        float currentDistance = diff.lengthSq();
+        if (nearestLink && nearestPoint) {
+            if (currentDistance * currentDistance < nearestPoint->lengthSq()) {
+                nearestPoint = &point;
+                nearestLink  = &link; // より近いリンクを保存
             }
         } else {
-            nearestLinkFromPos = &linkFromPos; // 最初のリンクを保存
+            nearestPoint = &point;
+            nearestLink  = &link; // より近いリンクを保存
         }
+    };
+
+    // Playerの位置と方向ベクトルから targetPointPos を取得
+    for (Stage::Link& link : stage->getLinksRef()) {
+        Vec3f& linkFromPos = stage->getControlPointsRef()[link.from_].pos_;
+        Vec3f& linkToPos   = stage->getControlPointsRef()[link.to_].pos_;
+
+        isNearestPoint(*nearestLink, linkFromPos);
+        isNearestPoint(*nearestLink, linkToPos);
     }
 
-    if (nearestLinkFromPos) {
-        // 最も近いリンクが見つかった場合、その位置を targetPointPos に設定
-        targetPointPos = *nearestLinkFromPos;
+    if (nearestLink && nearestPoint) {
+        targetPointPos = *nearestPoint;
+        _targetNormal  = nearestLink->normal_;
     } else {
         // 見つからなかった場合は、プレイヤーの位置をそのまま返す
-        targetPointPos = Vec3f(_playerTransform.worldMat[3]);
+        targetPointPos = Vec3f(_playerTransform->worldMat[3]);
     }
     return targetPointPos;
 }

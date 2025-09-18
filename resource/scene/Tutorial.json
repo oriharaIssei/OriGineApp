@@ -36,9 +36,9 @@
                                 1.0
                             ],
                             "translate": [
-                                1.2300001382827759,
-                                9.640405654907227,
-                                -18.558069229125977
+                                0.0,
+                                0.0,
+                                0.0
                             ]
                         }
                     }
@@ -406,21 +406,24 @@
                         "MaxJumpInputTime": 0.05000000074505806
                     }
                 ],
+                "PlayerState": [
+                    null
+                ],
                 "PlayerStatus": [
                     {
-                        "baseSpeed": 11.800000190734863,
+                        "baseSpeed": 14.600000381469727,
                         "coolTimeAddRateBase": 1.2000000476837158,
                         "coolTimeAddRateCommonRate": 0.07999999821186066,
-                        "directionInterpolateRate": 0.07999999821186066,
+                        "directionInterpolateRate": 0.7799999713897705,
                         "fallPower": 4.099999904632568,
                         "gearUpCoolTime": 0.6000000238418579,
                         "jumpPower": 0.15000000596046448,
-                        "speedUpRateBase": 19.200000762939453,
-                        "speedUpRateCommonRate": -1.100000023841858,
-                        "wallJumpDirection": [
-                            -0.14878620207309723,
-                            -0.2880076467990875,
-                            0.9459990859031677
+                        "speedUpRateBase": 8.600000381469727,
+                        "speedUpRateCommonRate": -0.800000011920929,
+                        "wallJumpOffset": [
+                            0.0,
+                            1.8899999856948853,
+                            1.590000033378601
                         ],
                         "wallRunRate": 1.7999999523162842
                     }
@@ -433,7 +436,8 @@
                             0.0
                         ],
                         "mass": 0.2800000011920929,
-                        "maxFallSpeed": 10.0,
+                        "maxFallSpeed": 30.0,
+                        "maxXZSpeed": 100.0,
                         "useGravity": true,
                         "velocity": [
                             0.0,
@@ -444,7 +448,7 @@
                 ],
                 "SceneChanger": [
                     {
-                        "nextSceneName": "Game"
+                        "nextSceneName": "Result"
                     }
                 ],
                 "SkinningAnimationComponent": [
@@ -537,8 +541,8 @@
                         ],
                         "translate": [
                             0.0,
-                            1.0,
-                            0.0
+                            5.0,
+                            4.820000171661377
                         ]
                     }
                 ]
