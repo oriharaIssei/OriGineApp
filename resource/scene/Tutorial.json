@@ -36,9 +36,9 @@
                                 1.0
                             ],
                             "translate": [
-                                -0.9877469539642334,
-                                7.106633186340332,
-                                -23.48752784729004
+                                0.009999504312872887,
+                                4.969007968902588,
+                                -16.700706481933594
                             ]
                         }
                     }
@@ -1570,6 +1570,9 @@
             "ChangeSceneByButton": {
                 "Priority": 1
             },
+            "ColliderRenderingSystem": {
+                "Priority": 0
+            },
             "CollisionCheckSystem": {
                 "Priority": 0
             },
@@ -1630,6 +1633,9 @@
             "SettingGameCameraTarget": {
                 "Priority": 5
             },
+            "SkeletonRenderSystem": {
+                "Priority": 0
+            },
             "SkinningAnimationSystem": {
                 "Priority": 0
             },
@@ -1667,6 +1673,9 @@
                 "Priority": 0
             },
             "UpdateCameraForward": {
+                "Priority": 0
+            },
+            "VelocityRenderingSystem": {
                 "Priority": 0
             }
         }

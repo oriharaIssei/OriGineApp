@@ -187,6 +187,7 @@ void RegisterUsingSystems() {
 
     systemRegistry->registerSystem<SkeletonRenderSystem>();
     systemRegistry->registerSystem<ColliderRenderingSystem>();
+    systemRegistry->registerSystem<VelocityRenderingSystem>();
 
     systemRegistry->registerSystem<StageDebugRender>();
 
