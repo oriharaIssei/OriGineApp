@@ -9,13 +9,15 @@
 #include "component/Player/PlayerInput.h"
 #include "component/Player/PlayerStatus.h"
 #include "component/Player/State/PlayerState.h"
-#include "component/Stage.h"
+#include "component/Stage/Stage.h"
+#include "component/Stage/StageWall.h"
 
 void PlayerWallJumpState::Initialize() {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
     auto* transform    = scene_->getComponent<Transform>(playerEntity);
     auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
     auto* playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
+    auto* playerState  = scene_->getComponent<PlayerState>(playerEntity);
 
     rigidbody->setAcceleration({0.0f, 0.0f, 0.0f}); // 壁ジャンプ時は加速度をリセット
     rigidbody->setUseGravity(false); // 無効
@@ -24,7 +26,13 @@ void PlayerWallJumpState::Initialize() {
     // 目的のControlPoint への 差分ベクトルを進行方向とする
     Vec3f targetNormal = Vec3f(0.0f, 1.f, 0.f);
 
-    Vec3f wallJumpDirection = nextControlPointPos(targetNormal, transform, rigidbody) - transform->translate;
+    GameEntity* wallEntity  = scene_->getEntity(playerState->getWallEntityIndex());
+    Vec3f wallJumpDirection = Vec3f(0.0f, 1.f, 0.f);
+    if (wallEntity) {
+        wallJumpDirection = nextControlPointPos(scene_->getComponent<StageWall>(wallEntity), targetNormal, transform, rigidbody) - transform->translate;
+    } else {
+        LOG_ERROR("壁のエンティティが見つかりません");
+    }
 
     Vec3f jumpOffset = playerStatus->getWallJumpOffset() * MakeMatrix::RotateAxisAngle(axisZ, targetNormal);
     wallJumpDirection += jumpOffset;
@@ -66,12 +74,12 @@ PlayerMoveState PlayerWallJumpState::TransitionState() const {
     return this->getState();
 }
 
-Vec3f PlayerWallJumpState::nextControlPointPos(Vec3f& _targetNormal, const Transform* _playerTransform, const Rigidbody* _playerRigidbody) const {
+Vec3f PlayerWallJumpState::nextControlPointPos(const StageWall* _stageWall, Vec3f& _targetNormal, const Transform* _playerTransform, const Rigidbody* _playerRigidbody) const {
     Vec3f targetPointPos;
 
     GameEntity* stageEntity = scene_->getUniqueEntity("Stage");
     Stage* stage            = scene_->getComponent<Stage>(stageEntity);
-    if (!stageEntity || !stage) {
+    if (!stageEntity || !stage || !_stageWall) {
         return targetPointPos;
     }
 
@@ -103,12 +111,21 @@ Vec3f PlayerWallJumpState::nextControlPointPos(Vec3f& _targetNormal, const Trans
     };
 
     // Playerの位置と方向ベクトルから targetPointPos を取得
+    int32_t linkIndex = 0;
+
     for (Stage::Link& link : stage->getLinksRef()) {
+        // 現在接触している壁のリンクは除外
+        if (linkIndex == _stageWall->getLinkIndex()) {
+            ++linkIndex;
+            continue;
+        }
         Vec3f& linkFromPos = stage->getControlPointsRef()[link.from_].pos_;
         Vec3f& linkToPos   = stage->getControlPointsRef()[link.to_].pos_;
 
-        isNearestPoint(*nearestLink, linkFromPos);
-        isNearestPoint(*nearestLink, linkToPos);
+        isNearestPoint(link, linkFromPos);
+        isNearestPoint(link, linkToPos);
+
+        ++linkIndex;
     }
 
     if (nearestLink && nearestPoint) {

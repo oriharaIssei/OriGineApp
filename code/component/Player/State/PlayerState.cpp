@@ -25,7 +25,7 @@ void PlayerState::Initialize(GameEntity* /*_entity*/) {
     gearUpCoolTime_      = 0.0f;
 }
 
-void PlayerState::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEntity* _entity, const std::string& _parentLabel) {
+void PlayerState::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEntity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
     static std::map<PlayerMoveState, const char*> moveStateName = {
         {PlayerMoveState::IDLE, "IDLE"},
         {PlayerMoveState::DASH, "DASH"},
@@ -45,13 +45,25 @@ void PlayerState::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEnti
     ImGui::Spacing();
 
     ImGui::Text("Is Gear Up        : %s", isGearUp_ ? "true" : "false");
-    ImGui::Text("Gear Up Cool Time : %f", gearUpCoolTime_ );
+    ImGui::Text("Gear Up Cool Time : %f", gearUpCoolTime_);
 
     ImGui::Spacing();
     ImGui::Text("Wall Collision    : %s", collisionWithWall_ ? "true" : "false");
 }
 
 void PlayerState::Finalize() {}
+
+void PlayerState::OnCollisionWall(const Vec3f& _collisionNormal, int32_t _entityIndex) {
+    collisionWithWall_   = true;
+    wallCollisionNormal_ = _collisionNormal;
+    wallEntityIndex_     = _entityIndex;
+}
+
+void PlayerState::OffCollisionWall() {
+    collisionWithWall_   = false;
+    wallCollisionNormal_ = {0.f, 0.f, 0.f};
+    wallEntityIndex_     = -1;
+}
 
 void to_json(nlohmann::json& /*j*/, const PlayerState& /*p*/) {
     // 保存するものはない

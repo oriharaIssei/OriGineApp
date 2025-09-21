@@ -26,7 +26,7 @@ void PlayerOnCollision::UpdateEntity(GameEntity* _entity) {
         return;
     }
     state->setOnGround(false);
-    state->setCollisionWithWall(false);
+    state->OffCollisionWall();
 
     for (auto& [entityId, info] : pushBackInfo->getCollisionInfoMap()) {
         Vec3f collNormal           = info.collVec.normalize();
@@ -63,7 +63,7 @@ void PlayerOnCollision::UpdateEntity(GameEntity* _entity) {
                 if (collidedEntity->getDataType().find("Wall") != std::string::npos) {
                     // 壁と衝突した場合、地面にいると判断する
                     state->setOnGround(true);
-                    state->setCollisionWithWall(true, collNormal);
+                    state->OnCollisionWall(collNormal, entityId);
                 }
             }
         }

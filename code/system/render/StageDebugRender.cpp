@@ -3,7 +3,7 @@
 /// engine
 
 // component
-#include "component/Stage.h"
+#include "component/Stage/Stage.h"
 
 /// math
 #include <numbers>

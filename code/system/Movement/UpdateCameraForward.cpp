@@ -3,7 +3,7 @@
 /// ECS
 // component
 #include "component/cameraController/CameraController.h"
-#include "component/Stage.h"
+#include "component/Stage/Stage.h"
 #include "component/transform/CameraTransform.h"
 
 static Vec3f SegmentOnPoint(const Vec3f& _point, const Vec3f& _start, const Vec3f& _end) {

@@ -5,6 +5,8 @@
 #include "component/physics/Rigidbody.h"
 #include "component/transform/Transform.h"
 
+class StageWall;
+
 class PlayerWallJumpState
     : public IPlayerMoveState {
 public:
@@ -17,7 +19,7 @@ public:
 
     PlayerMoveState TransitionState() const override;
 
-    Vec3f nextControlPointPos(Vec3f& _targetNormal, const Transform* _playerTransform, const Rigidbody* _playerRigidbody) const;
+    Vec3f nextControlPointPos(const StageWall* _stageWall, Vec3f& _targetNormal, const Transform* _playerTransform, const Rigidbody* _playerRigidbody) const;
 
 protected:
     Vec3f prevVelo_       = Vec3f(0.0f, 0.0f, 0.0f); // 前の速度 着地後に戻す

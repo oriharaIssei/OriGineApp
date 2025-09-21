@@ -54,7 +54,7 @@
     <ClInclude Include="code\component\SceneChanger.h">
       <Filter>component</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\Stage.h">
+    <ClInclude Include="code\component\Stage\Stage.h">
       <Filter>component</Filter>
     </ClInclude>
     <ClInclude Include="code\component\TimerComponent.h">
@@ -140,6 +140,8 @@
     <ClInclude Include="code\component\Player\State\PlayerWallJumpState.h" />
     <ClInclude Include="code\component\Player\State\PlayerWallRunState.h" />
     <ClInclude Include="code\component\Player\State\PlayerState.h" />
+    <ClInclude Include="code\component\Stage\StageFloor.h" />
+    <ClInclude Include="code\component\Stage\StageWall.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -157,7 +159,7 @@
     <ClCompile Include="code\component\SceneChanger.cpp">
       <Filter>component</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\Stage.cpp">
+    <ClCompile Include="code\component\Stage\Stage.cpp">
       <Filter>component</Filter>
     </ClCompile>
     <ClCompile Include="code\component\TimerComponent.cpp">
@@ -244,5 +246,7 @@
     <ClCompile Include="code\component\Player\State\PlayerWallJumpState.cpp" />
     <ClCompile Include="code\component\Player\State\PlayerWallRunState.cpp" />
     <ClCompile Include="code\component\Player\State\PlayerState.cpp" />
+    <ClCompile Include="code\component\Stage\StageFloor.cpp" />
+    <ClCompile Include="code\component\Stage\StageWall.cpp" />
   </ItemGroup>
 </Project>

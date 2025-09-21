@@ -44,6 +44,9 @@ public:
     void Edit(Scene* _scene, GameEntity* _entity, const std::string& _parentLabel) override;
     void Finalize() override;
 
+    void OnCollisionWall(const Vec3f& _collisionNormal, int32_t _entityIndex);
+    void OffCollisionWall();
+
 private:
     EnumBitmask<PlayerMoveState> moveStateEnum_    = PlayerMoveState::IDLE;
     EnumBitmask<PlayerMoveState> preMoveStateEnum_ = PlayerMoveState::IDLE;
@@ -56,6 +59,8 @@ private:
     bool collisionWithWall_    = false;
     bool isGoal_               = false;
     Vec3f wallCollisionNormal_ = {0.f, 0.f, 0.f};
+    // 現在 接触している壁 のエンティティID
+    int32_t wallEntityIndex_ = -1;
 
     int32_t gearLevel_    = 0;
     float gearUpCoolTime_ = 0.0f;
@@ -106,13 +111,10 @@ public:
     bool isCollisionWithWall() const {
         return collisionWithWall_;
     }
-    void setCollisionWithWall(bool _collisionWithWall, const Vec3f& _wallCollisionNormal) {
-        collisionWithWall_   = _collisionWithWall;
-        wallCollisionNormal_ = _wallCollisionNormal;
+    int32_t getWallEntityIndex() const {
+        return wallEntityIndex_;
     }
-    void setCollisionWithWall(bool _collisionWithWall) {
-        collisionWithWall_ = _collisionWithWall;
-    }
+
     const Vec3f& getWallCollisionNormal() const {
         return wallCollisionNormal_;
     }

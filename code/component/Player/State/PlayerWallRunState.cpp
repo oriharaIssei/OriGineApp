@@ -49,9 +49,6 @@ void PlayerWallRunState::Finalize() {
     rigidbody->setUseGravity(true); // 重力を有効
     // 壁走行終了時に速度をリセット
     rigidbody->setVelocity(prevVelo_); // 壁走行終了時に速度をリセット
-
-    auto* state = scene_->getComponent<PlayerState>(playerEntity);
-    state->setCollisionWithWall(false); // 壁走行終了時に壁との衝突をリセット
 }
 
 PlayerMoveState PlayerWallRunState::TransitionState() const {

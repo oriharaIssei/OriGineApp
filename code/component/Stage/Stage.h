@@ -10,6 +10,9 @@
 /// math
 #include <math/Vector3.h>
 
+/// <summary>
+/// ステージを構成する情報
+/// </summary>
 class Stage
     : public IComponent {
 public:
@@ -105,8 +108,4 @@ public:
         }
         links_.erase(links_.begin() + index);
     }
-
-#ifdef DEBUG
-private:
-#endif // DEBUG
 };
