@@ -28,17 +28,20 @@ void PlayerWallJumpState::Initialize() {
 
     GameEntity* wallEntity  = scene_->getEntity(playerState->getWallEntityIndex());
     Vec3f wallJumpDirection = Vec3f(0.0f, 1.f, 0.f);
-    if (wallEntity) {
-        wallJumpDirection = nextControlPointPos(scene_->getComponent<StageWall>(wallEntity), targetNormal, transform, rigidbody) - transform->translate;
-    } else {
-        LOG_ERROR("壁のエンティティが見つかりません");
-    }
+
+    Vec3f nextPos     = nextControlPointPos(scene_->getComponent<StageWall>(wallEntity), targetNormal, transform, rigidbody);
+    wallJumpDirection = nextPos - transform->translate;
 
     Vec3f jumpOffset = playerStatus->getWallJumpOffset() * MakeMatrix::RotateAxisAngle(axisZ, targetNormal);
     wallJumpDirection += jumpOffset;
     wallJumpDirection = wallJumpDirection.normalize();
 
     velo_ = wallJumpDirection * (rigidbody->getMaxXZSpeed() * playerStatus->getWallRunRate());
+
+    GameEntity* wallJumpTargetEntity   = scene_->getUniqueEntity("WallJumpTargetPos");
+    auto wallJumpTargetTransform       = scene_->getComponent<Transform>(wallJumpTargetEntity);
+    wallJumpTargetTransform->translate = nextPos + jumpOffset;
+    wallJumpTargetTransform->Update();
 
     leftTime_ = forcedJumpTime_; // 壁ジャンプの残り時間を初期化
 }
@@ -87,26 +90,29 @@ Vec3f PlayerWallJumpState::nextControlPointPos(const StageWall* _stageWall, Vec3
 
     Stage::Link* nearestLink = nullptr;
     Vec3f* nearestPoint      = nullptr;
-    auto isNearestPoint      = [&nearestLink, &nearestPoint, _playerTransform, &targetPointPos, &playerVeloNormal](Stage::Link& link, Vec3f& point) {
+    float nearLengthSq       = std::numeric_limits<float>::max();
+    auto isNearestPoint      = [&nearestLink, &nearestPoint, &nearLengthSq, _playerTransform, &targetPointPos, &playerVeloNormal](Stage::Link& link, Vec3f& point) {
         Vec3f diff = point - Vec3f(_playerTransform->worldMat[3]);
 
         // diffと playerVeloNormal の内積を計算
         // 内積が正の場合、playerVeloNormal と同じ方向にある
-        float dot = diff.dot(playerVeloNormal);
-        if (dot <= 0.0f) {
+        float dot = diff.normalize().dot(playerVeloNormal);
+        if (dot <= 0.5f) {
             return;
         }
 
         // 既に最も近いリンクがある場合、距離を比較
         float currentDistance = diff.lengthSq();
         if (nearestLink && nearestPoint) {
-            if (currentDistance * currentDistance < nearestPoint->lengthSq()) {
+            if (currentDistance < nearLengthSq) {
                 nearestPoint = &point;
                 nearestLink  = &link; // より近いリンクを保存
+                nearLengthSq = currentDistance;
             }
         } else {
             nearestPoint = &point;
-            nearestLink  = &link; // より近いリンクを保存
+            nearestLink  = &link;
+            nearLengthSq = currentDistance;
         }
     };
 

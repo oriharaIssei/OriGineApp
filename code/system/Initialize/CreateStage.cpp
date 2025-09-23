@@ -69,6 +69,7 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
             wallTag.setLinkIndex(linkIndex);
             wallTag.setToPointIndex(link.to_);
             wallTag.setFromPointIndex(link.from_);
+            wallTag.setWidth(link.width_);
 
             addComponent<StageWall>(createdEntity, wallTag);
         } else {
@@ -76,6 +77,7 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
             floorTag.setLinkIndex(linkIndex);
             floorTag.setToPointIndex(link.to_);
             floorTag.setFromPointIndex(link.from_);
+            floorTag.setWidth(link.width_);
 
             addComponent<StageFloor>(createdEntity, floorTag);
         }
@@ -106,7 +108,7 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
                 AABBCollider collider;
                 collider.setActive(true);
 
-                Vec3f halfSize = Vec3f(link.height_ * 0.5f, link.width_ * 0.5f, diffToFrom[Z] * 0.5f);
+                Vec3f halfSize = Vec3f(link.height_ * 0.5f, link.width_ * 0.5f, (diffToFrom[Z] * 0.5f) + Stage::kObjectMargin);
                 min            = -halfSize;
                 max            = halfSize;
 
@@ -121,7 +123,7 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
                 AABBCollider collider;
                 collider.setActive(true);
 
-                Vec3f halfSize = Vec3f(link.width_ * 0.5f, link.height_ * 0.5f, diffToFrom[Z] * 0.5f);
+                Vec3f halfSize = Vec3f(link.width_ * 0.5f, link.height_ * 0.5f, (diffToFrom[Z] * 0.5f) + Stage::kObjectMargin);
                 min            = -halfSize;
                 max            = halfSize;
 
@@ -136,7 +138,7 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
             OBBCollider collider;
             collider.setActive(true);
 
-            Vec3f halfSize = Vec3f(link.width_ * 0.5f, link.height_ * 0.5f, diffToFrom.length() * 0.5f);
+            Vec3f halfSize = Vec3f(link.width_ * 0.5f, link.height_ * 0.5f, (diffToFrom.length() * 0.5f) + Stage::kObjectMargin);
 
             collider.setLocalCenter(mid);
             collider.setLocalHalfSize(halfSize);

@@ -21,6 +21,8 @@ public:
     friend void to_json(nlohmann::json& j, const Stage& stage);
     friend void from_json(const nlohmann::json& j, Stage& stage);
 
+    static constexpr float kObjectMargin = 3.f; // オブジェクト生成時, toとfromにプラスされる余白
+
 public:
     Stage()           = default;
     ~Stage() override = default;

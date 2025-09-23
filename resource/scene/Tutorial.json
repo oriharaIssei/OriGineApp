@@ -36,9 +36,9 @@
                                 1.0
                             ],
                             "translate": [
-                                0.009999504312872887,
-                                4.969007968902588,
-                                -16.700706481933594
+                                0.0,
+                                0.0,
+                                0.0
                             ]
                         }
                     }
@@ -245,9 +245,9 @@
                         "nearZ": 0.10000000149011612,
                         "rotate": [
                             0.0,
+                            0.019996998831629753,
                             0.0,
-                            0.0,
-                            1.0
+                            0.9998000264167786
                         ],
                         "translate": [
                             0.0,
@@ -422,8 +422,8 @@
                         "speedUpRateCommonRate": -0.800000011920929,
                         "wallJumpOffset": [
                             0.0,
-                            2.0899999141693115,
-                            1.590000033378601
+                            2.0999999046325684,
+                            2.450000047683716
                         ],
                         "wallRunRate": 1.7999999523162842
                     }
@@ -541,7 +541,7 @@
                         ],
                         "translate": [
                             0.0,
-                            1.0,
+                            1.9800000190734863,
                             0.0
                         ]
                     }
@@ -1554,6 +1554,92 @@
                 }
             ],
             "isUnique": false
+        },
+        {
+            "Components": {
+                "BoxRenderer": [],
+                "SphereRenderer": [
+                    {
+                        "blendMode": 1,
+                        "divisionLatitude": 8,
+                        "divisionLongitude": 16,
+                        "isRenderer": true,
+                        "material": {
+                            "color": [
+                                0.8860759735107422,
+                                0.0,
+                                1.0,
+                                1.0
+                            ],
+                            "enableLighting": false,
+                            "shininess": 0.0,
+                            "specularColor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "uvRotate": 0.0,
+                            "uvScale": [
+                                1.0,
+                                1.0
+                            ],
+                            "uvTranslate": [
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "radius": 1.6699999570846558,
+                        "textureDirectory": "",
+                        "textureFileName": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            -12.337985038757324,
+                            0.718306303024292,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "WallJumpTargetPos",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": true
         }
     ],
     "Systems": [
