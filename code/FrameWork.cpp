@@ -14,8 +14,11 @@
 #include "component/cameraController/CameraController.h"
 #include "component/Player/PlayerInput.h"
 #include "component/Player/PlayerStatus.h"
+#include "component/Player/State/PlayerState.h"
 #include "component/SceneChanger.h"
-#include "component/Stage.h"
+#include "component/Stage/Stage.h"
+#include "component/Stage/StageFloor.h"
+#include "component/Stage/StageWall.h"
 
 // application system
 #include "system/collision/PlayerOnCollision.h"
@@ -62,6 +65,8 @@ void RegisterUsingComponents() {
     componentRegistry->registerComponent<Transform>();
 
     componentRegistry->registerComponent<Stage>();
+    componentRegistry->registerComponent<StageFloor>();
+    componentRegistry->registerComponent<StageWall>();
 
     componentRegistry->registerComponent<DirectionalLight>();
     componentRegistry->registerComponent<PointLight>();
@@ -101,6 +106,7 @@ void RegisterUsingComponents() {
 
     componentRegistry->registerComponent<PlayerInput>();
     componentRegistry->registerComponent<PlayerStatus>();
+    componentRegistry->registerComponent<PlayerState>();
 
     componentRegistry->registerComponent<Button>();
     componentRegistry->registerComponent<SceneChanger>();
@@ -181,6 +187,7 @@ void RegisterUsingSystems() {
 
     systemRegistry->registerSystem<SkeletonRenderSystem>();
     systemRegistry->registerSystem<ColliderRenderingSystem>();
+    systemRegistry->registerSystem<VelocityRenderingSystem>();
 
     systemRegistry->registerSystem<StageDebugRender>();
 

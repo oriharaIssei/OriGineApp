@@ -1,9 +1,10 @@
 #include "PlayerStatus.h"
 
 /// component
-#include "component/transform/Transform.h"
 #include "component/physics/Rigidbody.h"
-#include "component/Player/PlayerInput.h"
+#include "component/transform/Transform.h"
+#include "PlayerInput.h"
+#include "State/PlayerState.h"
 
 /// externals
 #ifdef _DEBUG
@@ -17,20 +18,7 @@
 PlayerStatus::PlayerStatus() {}
 PlayerStatus::~PlayerStatus() {}
 
-void PlayerStatus::Initialize(GameEntity* /*_entity*/) {
-    moveState_           = PlayerMoveState::IDLE; // 初期状態は IDLE
-    prevPlayerMoveState_ = PlayerMoveState::IDLE; // 前の移動状態を初期化
-
-    gearUpCoolTime_ = baseGearupCoolTime_; // ギアアップのクールタイムを初期化
-    gearLevel_      = kDefaultPlayerGearLevel; // ギアレベルを初期化
-    isGearUp_       = false; // ギアアップ状態を初期化
-
-    currentSpeed_ = baseSpeed_; // 現在の速度を初期化
-
-    onGround_            = true; // 初期状態では地面にいる
-    collisionWithWall_   = false; // 初期状態では壁に衝突していない
-    wallCollisionNormal_ = Vec3f(0.0f, 0.0f, 0.0f); // 初期状態では壁との衝突がない
-}
+void PlayerStatus::Initialize(GameEntity* /*_entity*/) {}
 
 void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEntity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
@@ -43,7 +31,7 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEnt
             ImGui::TableSetupColumn("Gear Level");
             ImGui::TableSetupColumn("Speed");
             ImGui::TableHeadersRow();
-            for (int level = 1; level <= maxGearLevel_; ++level) {
+            for (int level = 1; level <= kMaxPlayerGearLevel; ++level) {
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
                 ImGui::Text("%d", level);
@@ -63,7 +51,7 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEnt
             ImGui::TableSetupColumn("Gear Level");
             ImGui::TableSetupColumn("CoolTime");
             ImGui::TableHeadersRow();
-            for (int level = 1; level <= maxGearLevel_; ++level) {
+            for (int level = 1; level <= kMaxPlayerGearLevel; ++level) {
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
                 ImGui::Text("%d", level);
@@ -79,16 +67,7 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEnt
     DragGuiCommand("jumpPower", jumpPower_);
     DragGuiCommand("fallPower", fallPower_);
     DragGuiCommand("wallRunRate", wallRunRate_);
-    if (DragGuiVectorCommand<3, float>("wallJumpDirection",
-            wallJumpDirection_,
-            0.01f,
-            -1.f, 1.f,
-            "%.4f",
-            [](Vector<3, float>* _v) {
-                *_v = Vec3f(*_v).normalize();
-            })) {
-        wallJumpDirection_ = wallJumpDirection_.normalize();
-    }
+    DragGuiVectorCommand<3, float>("WallJumpOffset", wallJumpOffset_, 0.01f);
 
 #endif // _DEBUG
 }
@@ -96,27 +75,14 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEnt
 void PlayerStatus::Debug(Scene* /*_scene*/, GameEntity* /*_entity*/, const std::string& /*_parentLabel*/) {
 #ifdef _DEBUG
 
-    static std::map<PlayerMoveState, const char*> moveStateName = {
-        {PlayerMoveState::IDLE, "IDLE"},
-        {PlayerMoveState::DASH, "DASH"},
-        {PlayerMoveState::JUMP, "JUMP"},
-        {PlayerMoveState::WALL_RUN, "WALL_RUN"},
-        {PlayerMoveState::WALL_JUMP, "WALL_JUMP"}
-        // {PlayerMoveState::SLIDE, "SLIDE"}
-    };
-
-    ImGui::Text("MoveState  : %s", moveStateName[moveState_.toEnum()]);
-    ImGui::Text("Gear Level : %d", gearLevel_);
-    ImGui::Spacing();
     ImGui::Text("Base Gear Up Cool Time : %.2f", baseGearupCoolTime_);
     ImGui::Text("Gear Up Cool Time      : %.2f", gearUpCoolTime_);
     ImGui::Spacing();
     ImGui::Text("Base Speed          : %.2f", baseSpeed_);
-    ImGui::Text("Current Speed       : %.2f", currentSpeed_);
+    ImGui::Text("CurrentMax Speed       : %.2f", currentMaxSpeed_);
     ImGui::Text("Jump Power          : %.2f", jumpPower_);
     ImGui::Text("Fall Power          : %.2f", fallPower_);
 
-    ImGui::Text("Is Gear Up          : %s", isGearUp_ ? "true" : "false");
     ImGui::Spacing();
     ImGui::Text("Speed Up Rate Base        : %.2f", speedUpRateBase_);
     ImGui::Text("Speed Up Rate Common Rate : %.2f", speedUpRateCommonRate_);
@@ -125,7 +91,7 @@ void PlayerStatus::Debug(Scene* /*_scene*/, GameEntity* /*_entity*/, const std::
     ImGui::Text("Cool Time Up Rate Common Rate : %.2f", coolTimeAddRateCommonRate_);
     ImGui::Spacing();
     ImGui::Text("Wall Run Rate             : %.2f", wallRunRate_);
-    ImGui::Text("Wall Jump Direction       : (%.2f, %.2f, %.2f)", wallJumpDirection_[X], wallJumpDirection_[Y], wallJumpDirection_[Z]);
+    ImGui::Text("Wall Jump Offset       : (%.2f, %.2f, %.2f)", wallJumpOffset_[X], wallJumpOffset_[Y], wallJumpOffset_[Z]);
     ImGui::Text("Direction Interpolate Rate: %.2f", directionInterpolateRate_);
 
 #endif
@@ -147,7 +113,7 @@ float PlayerStatus::CalculateCoolTimeByGearLevel(int32_t _gearLevel) const {
         _gearLevel);
 }
 
-void PlayerStatus::UpdateVelocity(PlayerInput* _input, Transform* _transform, Rigidbody* _rigidbody, const Quaternion& _cameraRotation,float _deltaTime) {
+void PlayerStatus::UpdateAccel(PlayerInput* _input, Transform* _transform, Rigidbody* _rigidbody, const Quaternion& _cameraRotation) {
     // 入力方向を取得
     Vec2f inputDirection = _input->getInputDirection();
 
@@ -156,33 +122,31 @@ void PlayerStatus::UpdateVelocity(PlayerInput* _input, Transform* _transform, Ri
     Quaternion cameraYawRotation = Quaternion::RotateAxisAngle(Vec3f(0.f, 1.f, 0.f), cameraYaw);
 
     // 入力方向の回転
-    if (inputDirection.lengthSq() >= 0.0f) {
-        float inputAngle         = std::atan2(inputDirection[X], inputDirection[Y]);
-        Quaternion inputRotation = Quaternion::RotateAxisAngle(Vec3f(0.f, 1.f, 0.f), inputAngle);
-
-        // y軸のみの回転合成
-        Quaternion targetRotation = Quaternion::Normalize(cameraYawRotation * inputRotation);
-
-        // プレイヤーの回転を補間して設定
-        _transform->rotate = Slerp(_transform->rotate, targetRotation, directionInterpolateRate_);
+    if (inputDirection.lengthSq() <= 0.0f) {
+        return;
     }
+
+    float inputAngle         = std::atan2(inputDirection[X], inputDirection[Y]);
+    Quaternion inputRotation = Quaternion::RotateAxisAngle(Vec3f(0.f, 1.f, 0.f), inputAngle);
+
+    // y軸のみの回転合成
+    Quaternion targetRotation = Quaternion::Normalize(cameraYawRotation * inputRotation);
+
+    // プレイヤーの回転を補間して設定
+    _transform->rotate = Slerp(_transform->rotate, targetRotation, directionInterpolateRate_);
 
     // 移動速度の計算
-    Vector3 velo            = _rigidbody->getVelocity();
     Vec3f movementDirection = Vec3f(0.f, 0.f, 1.f) * MakeMatrix::RotateQuaternion(_transform->rotate);
-    velo += movementDirection * (currentMaxSpeed_ * 2.f * _deltaTime);
+    Vec3f accel             = movementDirection * (currentMaxSpeed_ * 2.f);
 
-    if (Vec2f(velo[X], velo[Z]).lengthSq() >= currentMaxSpeed_ * currentMaxSpeed_) {
-        velo = velo.normalize() * currentMaxSpeed_;
-    }
-
-    _rigidbody->setVelocity(velo);
+    _rigidbody->setAcceleration(X, accel[X]);
+    _rigidbody->setAcceleration(Z, accel[Z]);
 }
 
 void to_json(nlohmann::json& j, const PlayerStatus& _playerStatus) {
     j["baseSpeed"]                = _playerStatus.baseSpeed_;
     j["wallRunRate"]              = _playerStatus.wallRunRate_;
-    j["wallJumpDirection"]        = _playerStatus.wallJumpDirection_;
+    j["wallJumpOffset"]           = _playerStatus.wallJumpOffset_;
     j["jumpPower"]                = _playerStatus.jumpPower_;
     j["fallPower"]                = _playerStatus.fallPower_;
     j["gearUpCoolTime"]           = _playerStatus.baseGearupCoolTime_;
@@ -198,7 +162,7 @@ void from_json(const nlohmann::json& j, PlayerStatus& _playerStatus) {
     j.at("jumpPower").get_to(_playerStatus.jumpPower_);
     j.at("fallPower").get_to(_playerStatus.fallPower_);
     j.at("wallRunRate").get_to(_playerStatus.wallRunRate_);
-    j.at("wallJumpDirection").get_to(_playerStatus.wallJumpDirection_);
+    j.at("wallJumpOffset").get_to(_playerStatus.wallJumpOffset_);
     j.at("gearUpCoolTime").get_to(_playerStatus.baseGearupCoolTime_);
     j.at("directionInterpolateRate").get_to(_playerStatus.directionInterpolateRate_);
 

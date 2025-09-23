@@ -10,6 +10,7 @@
 #include "component/effect/post/DistortionEffectParam.h"
 #include "component/effect/post/RadialBlurParam.h"
 #include "component/Player/PlayerStatus.h"
+#include "component/Player/State/PlayerState.h"
 #include "component/renderer/primitive/Primitive.h"
 
 /// math
@@ -24,15 +25,22 @@ void EffectOnPlayerGearup::Initialize() {}
 void EffectOnPlayerGearup::Finalize() {}
 
 void EffectOnPlayerGearup::UpdateEntity(GameEntity* _entity) {
-    GameEntity* player         = getUniqueEntity("Player");
-    PlayerStatus* playerStatus = getComponent<PlayerStatus>(player);
+    GameEntity* player = getUniqueEntity("Player");
+    if (!player) {
+        return;
+    }
+    PlayerState* state         = getComponent<PlayerState>(player);
     Transform* playerTransform = getComponent<Transform>(player);
+
+    if (!state) {
+        return;
+    }
 
     /// ==============================
     // Effect PlayState Transition
     /// ==============================
     shockWaveState_.playState_.set(false);
-    if (playerStatus->isGearUp()) {
+    if (state->isGearUp()) {
 
         Transform* transform = getComponent<Transform>(_entity);
         transform->translate = playerTransform->translate; // Playerの位置に合わせる
@@ -47,7 +55,7 @@ void EffectOnPlayerGearup::UpdateEntity(GameEntity* _entity) {
             }
         }
 
-        if (playerStatus->getGearLevel() >= 2) {
+        if (state->getGearLevel() >= 2) {
             shockWaveState_.playState_.set(true);
         }
     }

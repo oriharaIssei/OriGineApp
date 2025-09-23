@@ -92,6 +92,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\externals\assimp\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <Profile>true</Profile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Develop|x64'">
@@ -144,6 +145,7 @@
     <ClInclude Include="code\component\Player\State\PlayerFallDownState.h" />
     <ClInclude Include="code\component\Player\State\PlayerIdleState.h" />
     <ClInclude Include="code\component\Player\State\PlayerJumpState.h" />
+    <ClInclude Include="code\component\Player\State\PlayerState.h" />
     <ClInclude Include="code\component\Player\State\PlayerWallJumpState.h" />
     <ClInclude Include="code\component\Player\State\PlayerWallRunState.h" />
     <ClInclude Include="code\FrameWork.h" />
@@ -153,7 +155,7 @@
     <ClInclude Include="code\component\Player\PlayerInput.h" />
     <ClInclude Include="code\component\Player\PlayerStatus.h" />
     <ClInclude Include="code\component\SceneChanger.h" />
-    <ClInclude Include="code\component\Stage.h" />
+    <ClInclude Include="code\component\Stage\Stage.h" />
     <ClInclude Include="code\component\TimerComponent.h" />
     <ClInclude Include="code\component\cameraController\CameraController.h" />
     <ClInclude Include="code\editor\StageEditor.h" />
@@ -181,6 +183,8 @@
     <ClInclude Include="code\system\Movement\UpdateCameraForward.h" />
     <ClInclude Include="code\system\effect\EffectOnPlayerRun.h" />
     <ClInclude Include="code\system\collision\TutorialColliderOnCollision.h" />
+    <ClInclude Include="code\component\Stage\StageFloor.h" />
+    <ClInclude Include="code\component\Stage\StageWall.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\component\Player\State\IPlayerMoveState.cpp" />
@@ -188,6 +192,7 @@
     <ClCompile Include="code\component\Player\State\PlayerFallDownState.cpp" />
     <ClCompile Include="code\component\Player\State\PlayerIdleState.cpp" />
     <ClCompile Include="code\component\Player\State\PlayerJumpState.cpp" />
+    <ClCompile Include="code\component\Player\State\PlayerState.cpp" />
     <ClCompile Include="code\component\Player\State\PlayerWallJumpState.cpp" />
     <ClCompile Include="code\component\Player\State\PlayerWallRunState.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
@@ -197,7 +202,7 @@
     <ClCompile Include="code\component\Player\PlayerInput.cpp" />
     <ClCompile Include="code\component\Player\PlayerStatus.cpp" />
     <ClCompile Include="code\component\SceneChanger.cpp" />
-    <ClCompile Include="code\component\Stage.cpp" />
+    <ClCompile Include="code\component\Stage\Stage.cpp" />
     <ClCompile Include="code\component\TimerComponent.cpp" />
     <ClCompile Include="code\component\cameraController\CameraController.cpp" />
     <ClCompile Include="code\editor\StageEditor.cpp" />
@@ -226,6 +231,8 @@
     <ClCompile Include="code\system\render\StageDebugRender.cpp" />
     <ClCompile Include="code\system\effect\EffectOnPlayerRun.cpp" />
     <ClCompile Include="code\system\collision\TutorialColliderOnCollision.cpp" />
+    <ClCompile Include="code\component\Stage\StageFloor.cpp" />
+    <ClCompile Include="code\component\Stage\StageWall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">

@@ -2,24 +2,33 @@
 
 /// component
 #include "component/animation/SkinningAnimationComponent.h"
-#include "component/physics/Rigidbody.h"
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
+
+#include "component/physics/Rigidbody.h"
 #include "component/Player/PlayerInput.h"
+#include "component/Player/PlayerStatus.h"
+#include "component/Player/State/PlayerState.h"
 
 void PlayerDashState::Initialize() {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
-    auto* playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
+    auto* state = scene_->getComponent<PlayerState>(playerEntity);
+    auto* status       = scene_->getComponent<PlayerStatus>(playerEntity);
 
     auto* skinningAnim = scene_->getComponent<SkinningAnimationComponent>(playerEntity);
     if (skinningAnim) {
-        skinningAnim->setPlaybackSpeed(1, 1.f + float(playerStatus->getGearLevel()));
+        skinningAnim->setPlaybackSpeed(1, 1.f + float(state->getGearLevel()));
     }
+
+    auto* rigidbody = scene_->getComponent<Rigidbody>(playerEntity);
+    rigidbody->setMaxXZSpeed(status->getCurrentMaxSpeed());
+
 }
 
 void PlayerDashState::Update(float _deltaTime) {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
     auto* playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
+    auto* state        = scene_->getComponent<PlayerState>(playerEntity);
     auto* playerInput  = scene_->getComponent<PlayerInput>(playerEntity);
     auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
     auto* transform    = scene_->getComponent<Transform>(playerEntity);
@@ -28,25 +37,26 @@ void PlayerDashState::Update(float _deltaTime) {
     // gearLevel の更新
     playerStatus->minusGearUpCoolTime(_deltaTime);
 
-    if (playerStatus->getGearLevel() < playerStatus->getMaxGearLevel()) {
+    if (state->getGearLevel() < kMaxPlayerGearLevel) {
         if (playerStatus->getGearUpCoolTime() <= 0.f) {
-            playerStatus->setGearUp(true);
+            state->setGearUp(true);
 
-            int32_t addedGearLevel = playerStatus->getGearLevel() + 1;
-            playerStatus->setGearLevel(addedGearLevel);
+            int32_t addedGearLevel = state->getGearLevel() + 1;
+            state->setGearLevel(addedGearLevel);
 
             playerStatus->setGearUpCoolTime(playerStatus->CalculateCoolTimeByGearLevel(addedGearLevel));
 
             playerStatus->setCurrentMaxSpeed(playerStatus->CalculateSpeedByGearLevel(addedGearLevel));
+            rigidbody->setMaxXZSpeed(playerStatus->getCurrentMaxSpeed());
 
             auto* skinningAnim = scene_->getComponent<SkinningAnimationComponent>(playerEntity);
             if (skinningAnim) {
-                skinningAnim->setPlaybackSpeed(1, 1.f + float(playerStatus->getGearLevel()));
+                skinningAnim->setPlaybackSpeed(1, 1.f + float(state->getGearLevel()));
             }
         }
     }
 
-   playerStatus->UpdateVelocity(playerInput, transform, rigidbody, scene_->getComponent<CameraTransform>(scene_->getUniqueEntity("GameCamera"))->rotate,_deltaTime);
+   playerStatus->UpdateAccel(playerInput, transform, rigidbody, scene_->getComponent<CameraTransform>(scene_->getUniqueEntity("GameCamera"))->rotate);
 }
 
 void PlayerDashState::Finalize() {
@@ -70,14 +80,14 @@ void PlayerDashState::Finalize() {
 
 PlayerMoveState PlayerDashState::TransitionState() const {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
-    auto playerStatus  = scene_->getComponent<PlayerStatus>(playerEntity);
+    auto state  = scene_->getComponent<PlayerState>(playerEntity);
     auto playerInput   = scene_->getComponent<PlayerInput>(playerEntity);
 
     if (playerInput->getInputDirection().lengthSq() <= 0.f) {
         return PlayerMoveState::IDLE;
     }
 
-    if (playerStatus->isOnGround()) {
+    if (state->isOnGround()) {
         if (playerInput->isJumpInput()) {
             return PlayerMoveState::JUMP;
         }

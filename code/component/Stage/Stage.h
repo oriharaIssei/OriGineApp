@@ -10,6 +10,9 @@
 /// math
 #include <math/Vector3.h>
 
+/// <summary>
+/// ステージを構成する情報
+/// </summary>
 class Stage
     : public IComponent {
 public:
@@ -17,6 +20,8 @@ public:
 
     friend void to_json(nlohmann::json& j, const Stage& stage);
     friend void from_json(const nlohmann::json& j, Stage& stage);
+
+    static constexpr float kObjectMargin = 3.f; // オブジェクト生成時, toとfromにプラスされる余白
 
 public:
     Stage()           = default;
@@ -105,8 +110,4 @@ public:
         }
         links_.erase(links_.begin() + index);
     }
-
-#ifdef DEBUG
-private:
-#endif // DEBUG
 };

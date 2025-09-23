@@ -17,7 +17,9 @@
 #include "system/Initialize/TakePlayerToStartPosition.h"
 #include "system/render/TexturedMeshRenderSystem.h"
 
-#include "component/Stage.h"
+#include "component/Stage/Stage.h"
+#include "component/Stage/StageFloor.h"
+#include "component/Stage/StageWall.h"
 
 void CreateStage::UpdateEntity(GameEntity* _entity) {
 
@@ -30,6 +32,7 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
 
     // Meshと当たり判定を作成
     auto& controlPoints = stage->getControlPoints();
+    int32_t linkIndex   = 0;
     for (auto& link : stage->getLinks()) {
         Vec3f min, max, mid, diffToFrom, direction;
 
@@ -46,15 +49,38 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
         ///==========================================
         // Entity
         ///==========================================
+        bool isWall = true;
 
         std::string entityName = "Wall";
         if (fabs(link.normal_[Y]) > 0.7f) {
             entityName = "Ground";
+            isWall     = false;
         }
         int32_t index             = CreateEntity(entityName);
         GameEntity* createdEntity = getEntity(index);
 
         createdEntity->setShouldSave(false);
+
+        ///==========================================
+        // Tag
+        ///==========================================
+        if (isWall) {
+            StageWall wallTag;
+            wallTag.setLinkIndex(linkIndex);
+            wallTag.setToPointIndex(link.to_);
+            wallTag.setFromPointIndex(link.from_);
+            wallTag.setWidth(link.width_);
+
+            addComponent<StageWall>(createdEntity, wallTag);
+        } else {
+            StageFloor floorTag;
+            floorTag.setLinkIndex(linkIndex);
+            floorTag.setToPointIndex(link.to_);
+            floorTag.setFromPointIndex(link.from_);
+            floorTag.setWidth(link.width_);
+
+            addComponent<StageFloor>(createdEntity, floorTag);
+        }
 
         ///==========================================
         // Transform
@@ -82,7 +108,7 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
                 AABBCollider collider;
                 collider.setActive(true);
 
-                Vec3f halfSize = Vec3f(link.height_ * 0.5f, link.width_ * 0.5f, diffToFrom[Z] * 0.5f);
+                Vec3f halfSize = Vec3f(link.height_ * 0.5f, link.width_ * 0.5f, (diffToFrom[Z] * 0.5f) + Stage::kObjectMargin);
                 min            = -halfSize;
                 max            = halfSize;
 
@@ -97,7 +123,7 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
                 AABBCollider collider;
                 collider.setActive(true);
 
-                Vec3f halfSize = Vec3f(link.width_ * 0.5f, link.height_ * 0.5f, diffToFrom[Z] * 0.5f);
+                Vec3f halfSize = Vec3f(link.width_ * 0.5f, link.height_ * 0.5f, (diffToFrom[Z] * 0.5f) + Stage::kObjectMargin);
                 min            = -halfSize;
                 max            = halfSize;
 
@@ -112,7 +138,7 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
             OBBCollider collider;
             collider.setActive(true);
 
-            Vec3f halfSize = Vec3f(link.width_ * 0.5f, link.height_ * 0.5f, diffToFrom.length() * 0.5f);
+            Vec3f halfSize = Vec3f(link.width_ * 0.5f, link.height_ * 0.5f, (diffToFrom.length() * 0.5f) + Stage::kObjectMargin);
 
             collider.setLocalCenter(mid);
             collider.setLocalHalfSize(halfSize);
@@ -163,6 +189,8 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
             ->getSystem(nameof<CollisionCheckSystem>())
             ->addEntity(createdEntity);
         getScene()->getSystem(nameof<TexturedMeshRenderSystem>())->addEntity(createdEntity);
+
+        ++linkIndex;
     }
 
     // goal

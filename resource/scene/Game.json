@@ -406,6 +406,11 @@
                         "MaxJumpInputTime": 0.05000000074505806
                     }
                 ],
+                "PlayerState": [
+                    {
+                        "gearUpCoolTime": 0.0
+                    }
+                ],
                 "PlayerStatus": [
                     {
                         "baseSpeed": 14.600000381469727,
@@ -433,7 +438,8 @@
                             0.0
                         ],
                         "mass": 0.2800000011920929,
-                        "maxFallSpeed": 10.0,
+                        "maxFallSpeed": 30.0,
+                        "maxXZSpeed": 100.0,
                         "useGravity": true,
                         "velocity": [
                             0.0,

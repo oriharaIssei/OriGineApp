@@ -3,7 +3,6 @@
 
 #include "editor/IEditor.h"
 
-
 /// stl
 #include <memory>
 
@@ -13,7 +12,7 @@
 
 /// ECS
 // component
-#include "component/Stage.h"
+#include "component/Stage/Stage.h"
 
 class StageEditorWindow
     : public Editor::Window {

@@ -36,9 +36,9 @@
                                 1.0
                             ],
                             "translate": [
-                                1.2300001382827759,
-                                9.640405654907227,
-                                -18.558069229125977
+                                0.0,
+                                0.0,
+                                0.0
                             ]
                         }
                     }
@@ -245,9 +245,9 @@
                         "nearZ": 0.10000000149011612,
                         "rotate": [
                             0.0,
+                            0.019996998831629753,
                             0.0,
-                            0.0,
-                            1.0
+                            0.9998000264167786
                         ],
                         "translate": [
                             0.0,
@@ -406,21 +406,24 @@
                         "MaxJumpInputTime": 0.05000000074505806
                     }
                 ],
+                "PlayerState": [
+                    null
+                ],
                 "PlayerStatus": [
                     {
-                        "baseSpeed": 11.800000190734863,
+                        "baseSpeed": 14.600000381469727,
                         "coolTimeAddRateBase": 1.2000000476837158,
                         "coolTimeAddRateCommonRate": 0.07999999821186066,
-                        "directionInterpolateRate": 0.07999999821186066,
+                        "directionInterpolateRate": 0.7799999713897705,
                         "fallPower": 4.099999904632568,
                         "gearUpCoolTime": 0.6000000238418579,
                         "jumpPower": 0.15000000596046448,
-                        "speedUpRateBase": 19.200000762939453,
-                        "speedUpRateCommonRate": -1.100000023841858,
-                        "wallJumpDirection": [
-                            -0.14878620207309723,
-                            -0.2880076467990875,
-                            0.9459990859031677
+                        "speedUpRateBase": 8.600000381469727,
+                        "speedUpRateCommonRate": -0.800000011920929,
+                        "wallJumpOffset": [
+                            0.0,
+                            2.0999999046325684,
+                            2.450000047683716
                         ],
                         "wallRunRate": 1.7999999523162842
                     }
@@ -433,7 +436,8 @@
                             0.0
                         ],
                         "mass": 0.2800000011920929,
-                        "maxFallSpeed": 10.0,
+                        "maxFallSpeed": 30.0,
+                        "maxXZSpeed": 100.0,
                         "useGravity": true,
                         "velocity": [
                             0.0,
@@ -444,7 +448,7 @@
                 ],
                 "SceneChanger": [
                     {
-                        "nextSceneName": "Game"
+                        "nextSceneName": "Result"
                     }
                 ],
                 "SkinningAnimationComponent": [
@@ -537,7 +541,7 @@
                         ],
                         "translate": [
                             0.0,
-                            1.0,
+                            1.9800000190734863,
                             0.0
                         ]
                     }
@@ -1550,6 +1554,92 @@
                 }
             ],
             "isUnique": false
+        },
+        {
+            "Components": {
+                "BoxRenderer": [],
+                "SphereRenderer": [
+                    {
+                        "blendMode": 1,
+                        "divisionLatitude": 8,
+                        "divisionLongitude": 16,
+                        "isRenderer": true,
+                        "material": {
+                            "color": [
+                                0.8860759735107422,
+                                0.0,
+                                1.0,
+                                1.0
+                            ],
+                            "enableLighting": false,
+                            "shininess": 0.0,
+                            "specularColor": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "uvRotate": 0.0,
+                            "uvScale": [
+                                1.0,
+                                1.0
+                            ],
+                            "uvTranslate": [
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "radius": 1.6699999570846558,
+                        "textureDirectory": "",
+                        "textureFileName": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            -12.337985038757324,
+                            0.718306303024292,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "WallJumpTargetPos",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": true
         }
     ],
     "Systems": [
@@ -1565,6 +1655,9 @@
             },
             "ChangeSceneByButton": {
                 "Priority": 1
+            },
+            "ColliderRenderingSystem": {
+                "Priority": 0
             },
             "CollisionCheckSystem": {
                 "Priority": 0
@@ -1626,6 +1719,9 @@
             "SettingGameCameraTarget": {
                 "Priority": 5
             },
+            "SkeletonRenderSystem": {
+                "Priority": 0
+            },
             "SkinningAnimationSystem": {
                 "Priority": 0
             },
@@ -1663,6 +1759,9 @@
                 "Priority": 0
             },
             "UpdateCameraForward": {
+                "Priority": 0
+            },
+            "VelocityRenderingSystem": {
                 "Priority": 0
             }
         }

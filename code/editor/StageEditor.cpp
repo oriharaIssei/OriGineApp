@@ -31,6 +31,8 @@ StageEditorWindow::StageEditorWindow() : Editor::Window(nameof<StageEditorWindow
 StageEditorWindow::~StageEditorWindow() {}
 
 void StageEditorWindow::Initialize() {
+    isOpen_    = false;
+    isFocused_ = false;
     /// ========================================================
     // Scene の初期化
     /// ========================================================
@@ -95,7 +97,8 @@ void StageViewArea::StageViewRegion::Initialize() {
 }
 
 void StageViewArea::StageViewRegion::DrawGui() {
-    currentScene_ = EditorController::getInstance()->getWindow<StageEditorWindow>()->getCurrentScene();
+    auto stageEditorWindow = EditorController::getInstance()->getWindow<StageEditorWindow>();
+    currentScene_          = stageEditorWindow->getCurrentScene();
     if (!currentScene_) {
         LOG_ERROR("StageViewRegion::UpdateScene: No current scene found.");
         return;
@@ -109,6 +112,11 @@ void StageViewArea::StageViewRegion::DrawGui() {
 
     if (parentWindow_->isFocused().current()) {
         debugCamera_->Update();
+
+        // windowを動かないようにする
+        stageEditorWindow->addWindowFlags(ImGuiWindowFlags_NoMove);
+    } else {
+        stageEditorWindow->removeWindowFlags(ImGuiWindowFlags_NoMove);
     }
     debugCamera_->DebugUpdate();
 
@@ -394,9 +402,17 @@ void StageFileSaveMenuItem::Initialize() {
     filename_  = "";
 }
 void StageFileSaveMenuItem::DrawGui() {
-    if (ImGui::BeginMenu("Save Stage")) {
-        auto* currentScene = EditorController::getInstance()->getWindow<StageEditorWindow>()->getCurrentScene();
-        auto stage         = currentScene->getComponent<Stage>(currentScene->getUniqueEntity("Stage")->getID());
+    auto* currentScene = EditorController::getInstance()->getWindow<StageEditorWindow>()->getCurrentScene();
+    auto stage         = currentScene->getComponent<Stage>(currentScene->getUniqueEntity("Stage")->getID());
+
+    this->isSelected_.set(ImGui::BeginMenu("Save Stage"));
+    if (this->isSelected_.isTrigger()) {
+        directory_ = kApplicationResourceDirectory + "/Stage";
+        filename_  = stage->getFileName();
+    }
+
+    // 開いていたら表示
+    if (this->isSelected_.current()) {
 
         // ファイルダイアログを開く
         ImGui::InputText("Directory", &directory_, ImGuiInputTextFlags_ReadOnly);
@@ -430,6 +446,7 @@ void StageFileSaveMenuItem::DrawGui() {
         ImGui::EndMenu();
     }
 }
+
 void StageFileSaveMenuItem::Finalize() {
     directory_ = "";
     filename_  = "";
@@ -570,6 +587,14 @@ void SortControlPointsCommand::Execute() {
     for (auto& [index, ctlPoint] : parentWindow_->getEditControlPointsRef()) {
         index = indexBind_[index];
     }
+
+    // start, goal index も変換
+    if (stage_->getStartPointIndex() != -1) {
+        stage_->setStartPointIndex(indexBind_[stage_->getStartPointIndex()]);
+    }
+    if (stage_->getGoalPointIndex() != -1) {
+        stage_->setGoalPointIndex(indexBind_[stage_->getGoalPointIndex()]);
+    }
 }
 
 void SortControlPointsCommand::Undo() {
@@ -585,6 +610,14 @@ void SortControlPointsCommand::Undo() {
     // parentWindow_->editControlPoints_ のインデックスを元に戻す
     for (auto& pair : parentWindow_->getEditControlPointsRef()) {
         pair.first = indexBind_.at(pair.first);
+    }
+
+    // start, goal index も元に戻す
+    if (stage_->getStartPointIndex() != -1) {
+        stage_->setStartPointIndex(indexBind_.at(stage_->getStartPointIndex()));
+    }
+    if (stage_->getGoalPointIndex() != -1) {
+        stage_->setGoalPointIndex(indexBind_.at(stage_->getGoalPointIndex()));
     }
 }
 

@@ -6,11 +6,12 @@
 #include <vector>
 
 /// engine
+#include "scene/Scene.h"
 // lib
 #include "input/Input.h"
 
 /// component
-#include "component/Player/PlayerStatus.h"
+#include "component/Player/State/PlayerState.h"
 
 /// math
 #include "math/Vector2.h"

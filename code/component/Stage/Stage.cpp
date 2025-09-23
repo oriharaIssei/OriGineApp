@@ -7,10 +7,10 @@
 #define RESOURCE_DIRECTORY
 #include "EngineInclude.h"
 #include "logger/Logger.h"
+#include "myFileSystem/MyFileSystem.h"
 
 #ifdef DEBUG
 #include "myGui/MyGui.h"
-#include "util/myFileSystem/MyFileSystem.h"
 #endif // DEBUG
 
 void Stage::Initialize(GameEntity* /*_entity*/) {
@@ -43,6 +43,9 @@ void Stage::Finalize() {
 }
 
 void Stage::SaveFile(const std::string& _directory, const std::string& _filename) {
+    // ディレクトリが存在する場合は削除してから保存
+    myfs::deleteFile(_directory + "/" + _filename + ".stage");
+
     BinaryWriter writer(_directory, _filename + ".stage");
     writer.WriteBegin();
     writer.WriteBeginGroup("Stage");

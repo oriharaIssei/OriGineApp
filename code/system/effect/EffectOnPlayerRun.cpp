@@ -7,7 +7,7 @@
 /// ECS
 // component
 #include "component/effect/post/SpeedlineEffectParam.h"
-#include "component/Player/PlayerStatus.h"
+#include "component/Player/State/PlayerState.h"
 
 /// math
 #include "math/MyEasing.h"
@@ -19,8 +19,8 @@ void EffectOnPlayerRun::Initialize() {}
 void EffectOnPlayerRun::Finalize() {}
 
 void EffectOnPlayerRun::UpdateEntity(GameEntity* entity) {
-    auto playerStatus = getComponent<PlayerStatus>(entity);
-    if (playerStatus == nullptr) {
+    auto state = getComponent<PlayerState>(entity);
+    if (state == nullptr) {
         return;
     }
 
@@ -28,14 +28,14 @@ void EffectOnPlayerRun::UpdateEntity(GameEntity* entity) {
     if (speedlineParams == nullptr) {
         return;
     }
-    if (playerStatus->getState() == PlayerMoveState::IDLE || playerStatus->getGearLevel() < 2) {
+    if (state->getStateEnum() == PlayerMoveState::IDLE || state->getGearLevel() < 2) {
         for (auto& speedlineParam : *speedlineParams) {
             speedlineParam.Stop();
         }
         return;
     }
 
-    float intensityT = static_cast<float>(playerStatus->getGearLevel()) / static_cast<float>(playerStatus->getMaxGearLevel());
+    float intensityT = static_cast<float>(state->getGearLevel()) / static_cast<float>(kMaxPlayerGearLevel);
     intensityT       = EaseOutCubic(intensityT);
     float intensity  = std::lerp(0.f, maxIntensity, intensityT);
     for (auto& speedlineParam : *speedlineParams) {
