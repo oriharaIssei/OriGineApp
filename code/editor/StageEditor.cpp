@@ -274,6 +274,7 @@ void ControlPointEditArea::ControlPointEditRegion::DrawGui() {
                 auto removeCommand = std::make_unique<RemoveControlPointCommand>(stage, i);
                 EditorController::getInstance()->pushCommand(std::move(removeCommand));
 
+                ImGui::PopID();
                 continue;
             }
             if (isSelected) {
@@ -370,6 +371,30 @@ void ControlPointEditArea::ControlPointEditRegion::DrawGui() {
             }
             if (isSelected) {
                 ImGui::PopStyleColor();
+            }
+
+            label = "ToPointIndex##Link " + std::to_string(i);
+            DragGuiCommand(label, link.to_, 1, 0, int32_t(controlPoints.size()), "%d");
+            label = "ToPointPos##Link " + std::to_string(i);
+            if (link.to_ >= 0 && link.to_ < static_cast<int32_t>(controlPoints.size())) {
+                DragGuiVectorCommand<3, float>(label, controlPoints[link.to_].pos_, 0.01f);
+            } else {
+                ImGui::Text("Invalid Index");
+            }
+
+            label = "FromPointIndex##Link " + std::to_string(i);
+            DragGuiCommand(label, link.from_, 1, 0, int32_t(controlPoints.size()), "%d");
+            label = "FromPointPos##Link " + std::to_string(i);
+            if (link.from_ >= 0 && link.from_ < static_cast<int32_t>(controlPoints.size())) {
+                DragGuiVectorCommand<3, float>(label, controlPoints[link.from_].pos_, 0.01f);
+            } else {
+                ImGui::Text("Invalid Index");
+            }
+
+            // fromZ > toZ なら 入れ替える.
+            // z 順序を保つため
+            if (controlPoints[link.from_].pos_[Z] > controlPoints[link.to_].pos_[Z]) {
+                std::swap(link.from_, link.to_);
             }
 
             label = "Normal##Link " + std::to_string(i);
