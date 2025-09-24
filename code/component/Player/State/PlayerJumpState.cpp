@@ -28,7 +28,7 @@ void PlayerJumpState::Initialize() {
     }
 }
 
-void PlayerJumpState::Update(float /*_deltaTime*/) {
+void PlayerJumpState::Update(float _deltaTime) {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
     auto* playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
     auto* playerInput  = scene_->getComponent<PlayerInput>(playerEntity);
@@ -37,7 +37,7 @@ void PlayerJumpState::Update(float /*_deltaTime*/) {
 
     playerStatus->UpdateAccel(playerInput, transform, rigidbody, scene_->getComponent<CameraTransform>(scene_->getUniqueEntity("GameCamera"))->rotate);
 
-    releaseJumpPower_ += playerStatus->getFallPower();
+    releaseJumpPower_ += playerStatus->getFallPower() * _deltaTime;
 }
 
 void PlayerJumpState::Finalize() {
@@ -56,7 +56,7 @@ void PlayerJumpState::Finalize() {
 
 PlayerMoveState PlayerJumpState::TransitionState() const {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
-    auto state  = scene_->getComponent<PlayerState>(playerEntity);
+    auto state         = scene_->getComponent<PlayerState>(playerEntity);
     auto playerInput   = scene_->getComponent<PlayerInput>(playerEntity);
 
     if (state->isOnGround()) {

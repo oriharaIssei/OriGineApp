@@ -404,7 +404,7 @@
                 ],
                 "PlayerInput": [
                     {
-                        "MaxJumpInputTime": 0.05000000074505806
+                        "MaxJumpInputTime": 0.09000000357627869
                     }
                 ],
                 "PlayerState": [
@@ -416,7 +416,7 @@
                         "coolTimeAddRateBase": 1.2000000476837158,
                         "coolTimeAddRateCommonRate": 0.07999999821186066,
                         "directionInterpolateRate": 0.7799999713897705,
-                        "fallPower": 4.099999904632568,
+                        "fallPower": 116.5,
                         "gearUpCoolTime": 0.6000000238418579,
                         "jumpPower": 0.15000000596046448,
                         "speedUpRateBase": 8.600000381469727,
@@ -436,7 +436,7 @@
                             0.0,
                             0.0
                         ],
-                        "mass": 0.2800000011920929,
+                        "mass": 0.07999999821186066,
                         "maxFallSpeed": 30.0,
                         "maxXZSpeed": 100.0,
                         "useGravity": true,
