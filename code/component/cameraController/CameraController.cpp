@@ -12,7 +12,7 @@
 void CameraController::Initialize(GameEntity* /*_entity*/) {
 }
 
-void CameraController::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/,[[maybe_unused]] const std::string& _parentLabel) {
+void CameraController::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
 
     if (DragGuiVectorCommand<3, float>("forward" + _parentLabel, forward_, 0.01f, -1.f, 1.f, "%.3f", [this](Vector<3, float>* _v) {
@@ -20,6 +20,7 @@ void CameraController::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/,[[maybe_u
         })) {
         forward_ = Vec3f::Normalize(forward_); // 正規化
     }
+    DragGuiCommand("Fix For Forward Speed" + _parentLabel, fixForForwardSpeed_, 0.01f, 0.0f);
     DragGuiCommand("angleLimitY" + _parentLabel, angleLimitY_, 0.01f, 0.00001f, std::numbers::pi_v<float> * 2.f, "%.3f");
 
     DragGuiVectorCommand("followTargetOffset" + _parentLabel, followTargetOffset_, 0.01f, -100.0f, 100.0f);
@@ -40,7 +41,7 @@ void CameraController::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/,[[maybe_u
 
     ImGui::Spacing();
 
-    std::string label = "Fov##"  + _parentLabel;
+    std::string label = "Fov##" + _parentLabel;
     if (ImGui::TreeNode(label.c_str())) {
         DragGuiCommand("fovYInterpolate" + _parentLabel, fovYInterpolate_, 0.001f, 0.0f, 1.0f);
         DragGuiCommand("baseFovY" + _parentLabel, baseFovY_, 0.01f);
@@ -92,6 +93,7 @@ void to_json(nlohmann::json& j, const CameraController& c) {
     j["fovYRate"]                 = c.fovYRateBase_;
     j["fovYRateCommonRate"]       = c.fovYRateCommonRate_;
     j["fovYInterpolate"]          = c.fovYInterpolate_;
+    j["fixForForwardSpeed"]       = c.fixForForwardSpeed_;
 }
 
 void from_json(const nlohmann::json& j, CameraController& c) {
@@ -108,4 +110,6 @@ void from_json(const nlohmann::json& j, CameraController& c) {
     j.at("baseFovY").get_to(c.baseFovY_);
     j.at("fovYRate").get_to(c.fovYRateBase_);
     j.at("fovYRateCommonRate").get_to(c.fovYRateCommonRate_);
+    j.at("fovYInterpolate").get_to(c.fovYInterpolate_);
+    j.at("fixForForwardSpeed").get_to(c.fixForForwardSpeed_);
 }

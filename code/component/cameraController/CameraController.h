@@ -22,7 +22,7 @@ public:
 
     void Initialize(GameEntity* _entity) override;
 
-    void Edit(Scene* _scene, GameEntity* _entity,  const std::string& _parentLabel) override;
+    void Edit(Scene* _scene, GameEntity* _entity, const std::string& _parentLabel) override;
 
     void Finalize() override;
 
@@ -56,6 +56,7 @@ private:
     float baseFovY_           = 45.0f * 3.141592654f / 180.0f; // 基準のFovY
     float fovYRateBase_       = 1.0f; // FovYの倍率
     float fovYRateCommonRate_ = 1.0f; // FovYの倍率の共通値
+    float fixForForwardSpeed_ = 0.1f; // 正面方向への 補正速度
 
 public:
     const Vec3f& getForward() const { return forward_; }
@@ -98,4 +99,8 @@ public:
     void setFollowTarget(Transform* target) { followTarget_ = target; }
 
     float getFovYInterpolate() const { return fovYInterpolate_; }
+    void setFovYInterpolate(float interpolate) { fovYInterpolate_ = interpolate; }
+
+    float getFixForForwardSpeed() const { return fixForForwardSpeed_; }
+    void setFixForForwardSpeed(float speed) { fixForForwardSpeed_ = speed; }
 };
