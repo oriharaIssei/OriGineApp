@@ -21,7 +21,7 @@ public:
     friend void to_json(nlohmann::json& j, const Stage& stage);
     friend void from_json(const nlohmann::json& j, Stage& stage);
 
-    static constexpr float kObjectMargin = 3.f; // オブジェクト生成時, toとfromにプラスされる余白
+    static constexpr float kObjectMargin = 1.f; // オブジェクト生成時, toとfromにプラスされる余白
 
 public:
     Stage()           = default;
@@ -46,7 +46,7 @@ public:
 
         Vec3f normal_ = {0.f, 1.f, 0.f};
         float height_ = 3.f;
-        float width_  = 15.f;
+        float width_  = 22.f;
     };
 
 private:

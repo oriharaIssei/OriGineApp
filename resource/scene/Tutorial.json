@@ -60,7 +60,7 @@
                 "Stage": [
                     {
                         "directory": "./application/resource/Stage",
-                        "fileName": "tutorial"
+                        "fileName": "test"
                     }
                 ],
                 "TextureEffectParam": [],
