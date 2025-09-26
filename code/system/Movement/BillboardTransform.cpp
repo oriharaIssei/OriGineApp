@@ -48,7 +48,7 @@ void BillboardTransform::UpdateEntity(GameEntity* _entity) {
 
         // クォータニオン作成
         transform->rotate = Quaternion::RotateAxisAngle(normal, angle);
-        transform->Update();
+        transform->UpdateMatrix();
 
         // 次のコンポーネントへ
         ++componentIndex;

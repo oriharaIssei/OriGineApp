@@ -373,20 +373,20 @@ void ControlPointEditArea::ControlPointEditRegion::DrawGui() {
                 ImGui::PopStyleColor();
             }
 
-            label = "ToPointIndex##Link " + std::to_string(i);
-            DragGuiCommand(label, link.to_, 1, 0, int32_t(controlPoints.size()), "%d");
-            label = "ToPointPos##Link " + std::to_string(i);
-            if (link.to_ >= 0 && link.to_ < static_cast<int32_t>(controlPoints.size())) {
-                DragGuiVectorCommand<3, float>(label, controlPoints[link.to_].pos_, 0.01f);
+            label = "FromPointIndex##Link " + std::to_string(i);
+            DragGuiCommand(label, link.from_, 1, 0, int32_t(controlPoints.size()) - 1, "%d");
+            label = "FromPointPos##Link " + std::to_string(i);
+            if (link.from_ >= 0 && link.from_ < static_cast<int32_t>(controlPoints.size())) {
+                DragGuiVectorCommand<3, float>(label, controlPoints[link.from_].pos_, 0.01f);
             } else {
                 ImGui::Text("Invalid Index");
             }
 
-            label = "FromPointIndex##Link " + std::to_string(i);
-            DragGuiCommand(label, link.from_, 1, 0, int32_t(controlPoints.size()), "%d");
-            label = "FromPointPos##Link " + std::to_string(i);
-            if (link.from_ >= 0 && link.from_ < static_cast<int32_t>(controlPoints.size())) {
-                DragGuiVectorCommand<3, float>(label, controlPoints[link.from_].pos_, 0.01f);
+            label = "ToPointIndex##Link " + std::to_string(i);
+            DragGuiCommand(label, link.to_, 1, 0, int32_t(controlPoints.size()) - 1, "%d");
+            label = "ToPointPos##Link " + std::to_string(i);
+            if (link.to_ >= 0 && link.to_ < static_cast<int32_t>(controlPoints.size())) {
+                DragGuiVectorCommand<3, float>(label, controlPoints[link.to_].pos_, 0.01f);
             } else {
                 ImGui::Text("Invalid Index");
             }
@@ -396,6 +396,8 @@ void ControlPointEditArea::ControlPointEditRegion::DrawGui() {
             if (controlPoints[link.from_].pos_[Z] > controlPoints[link.to_].pos_[Z]) {
                 std::swap(link.from_, link.to_);
             }
+
+            ImGui::Spacing();
 
             label = "Normal##Link " + std::to_string(i);
             if (DragGuiVectorCommand(label, link.normal_, 0.01f)) {
@@ -584,6 +586,9 @@ void ClearLinksCommand::Undo() {
 }
 
 void SortControlPointsCommand::Execute() {
+    if (!indexedPoints_.empty()) {
+        indexedPoints_.clear();
+    }
     // ソート前のインデックスと制御点のペアを作成
     for (int32_t i = 0; i < stage_->controlPoints_.size(); ++i) {
         indexedPoints_.emplace_back(i, stage_->controlPoints_[i]);

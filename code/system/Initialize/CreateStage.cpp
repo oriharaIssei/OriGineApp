@@ -1,5 +1,6 @@
 #include "CreateStage.h"
 
+
 /// engine
 #define RESOURCE_DIRECTORY
 #include "Engine.h"
@@ -20,6 +21,9 @@
 #include "component/Stage/Stage.h"
 #include "component/Stage/StageFloor.h"
 #include "component/Stage/StageWall.h"
+
+///math
+#include <DirectXMath.h>
 
 void CreateStage::UpdateEntity(GameEntity* _entity) {
 
@@ -87,7 +91,7 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
         ///==========================================
         Transform entityTransformData;
         entityTransformData.translate = mid;
-        entityTransformData.Update();
+        entityTransformData.UpdateMatrix();
         addComponent<Transform>(createdEntity, entityTransformData);
         Transform* entityTransform = getComponent<Transform>(createdEntity);
         entityTransform->parent    = stageTransform;
@@ -139,23 +143,24 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
             collider.setActive(true);
 
             Vec3f halfSize = Vec3f(link.width_ * 0.5f, link.height_ * 0.5f, (diffToFrom.length() * 0.5f) + Stage::kObjectMargin);
+            min            = -halfSize;
+            max            = halfSize;
 
-            collider.setLocalCenter(mid);
+            collider.setLocalCenter(Vec3f(0.f, 0.f, 0.f));
             collider.setLocalHalfSize(halfSize);
 
             // forward, right, up から回転を作る
             Vec3f forward = direction;
             Vec3f right   = forward.cross(normal).normalize();
             Vec3f up      = right.cross(forward).normalize();
-
             Matrix4x4 rotMat = {
                 right[X], right[Y], right[Z], 0.f,
                 up[X], up[Y], up[Z], 0.f,
                 -forward[X], -forward[Y], -forward[Z], 0.f,
                 0.f, 0.f, 0.f, 1.f};
-            Quaternion rot = Quaternion::FromMatrix(rotMat);
 
-            collider.setRotate(rot);
+            Quaternion rot          = rotMat.decomposeMatrixToQuaternion().normalize();
+            entityTransform->rotate = rot;
             collider.setParent(entityTransform);
 
             addComponent<OBBCollider>(createdEntity, collider);
@@ -207,18 +212,18 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
     goalEntity->setShouldSave(false);
     Transform* goalTransform = getComponent<Transform>(goalEntity);
     goalTransform->translate = goalPoint.pos_;
-    goalTransform->Update();
+    goalTransform->UpdateMatrix();
 
     // start
     int32_t startIndex                    = stage->getStartPointIndex();
     startIndex                            = std::clamp(startIndex, 0, static_cast<int32_t>(controlPoints.size() - 1));
     const Stage::ControlPoint& startPoint = controlPoints[startIndex];
 
-    Transform startPos;
-    startPos.translate = startPoint.pos_;
-    startPos.Update();
+    Transform startTransform;
+    startTransform.translate = startPoint.pos_;
+    startTransform.UpdateMatrix();
     int32_t startPosEntityId   = CreateEntity("StartPosition", true);
     GameEntity* startPosEntity = getEntity(startPosEntityId);
     startPosEntity->setShouldSave(false);
-    addComponent<Transform>(startPosEntity, startPos, false);
+    addComponent<Transform>(startPosEntity, startTransform, false);
 }

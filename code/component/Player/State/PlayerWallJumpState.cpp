@@ -41,7 +41,7 @@ void PlayerWallJumpState::Initialize() {
     GameEntity* wallJumpTargetEntity   = scene_->getUniqueEntity("WallJumpTargetPos");
     auto wallJumpTargetTransform       = scene_->getComponent<Transform>(wallJumpTargetEntity);
     wallJumpTargetTransform->translate = nextPos + jumpOffset;
-    wallJumpTargetTransform->Update();
+    wallJumpTargetTransform->UpdateMatrix();
 
     leftTime_ = forcedJumpTime_; // 壁ジャンプの残り時間を初期化
 }

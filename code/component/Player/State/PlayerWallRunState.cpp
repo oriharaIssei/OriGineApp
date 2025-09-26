@@ -62,7 +62,7 @@ void PlayerWallRunState::Update(float _deltaTime) {
     float t     = climbTimer_ / climbTime_;
 
     transform->translate[Y] = std::lerp(currentHeight_, wallRunHeight_, t);
-    transform->Update();
+    transform->UpdateMatrix();
 
     if (state->isCollisionWithWall()) {
         separationLeftTime_ = separationGraceTime_;
