@@ -162,13 +162,13 @@ void StageViewArea::StageViewRegion::UseImGuizmo(const ImVec2& _sceneViewPos, co
         LOG_ERROR("controlPointEditArea not found in SceneEditorWindow.");
         return;
     }
-    auto controlPointEditArea = dynamic_cast<ControlPointEditArea*>(stageEditorWindow->getArea("EntityInspectorArea").get());
+    auto controlPointEditArea = dynamic_cast<ControlPointEditArea*>(stageEditorWindow->getArea("ControlPointEditArea").get());
     if (!controlPointEditArea) {
         LOG_ERROR("controlPointEditArea not found in SceneEditorWindow.");
         return;
     }
 
-    if (controlPointEditArea->getEditControlPoints().empty()) {
+    if (controlPointEditArea->getEditControlPoints().empty() && controlPointEditArea->getEditLinks().empty()) {
         return;
     }
 
@@ -180,11 +180,12 @@ void StageViewArea::StageViewRegion::UseImGuizmo(const ImVec2& _sceneViewPos, co
 
     /// ==========================================
     // Guizmo による座標の編集
-    auto editControlPointPos = [&](int32_t _index) {
-        if (_index < 0 || controlPointEditArea->getEditControlPoints().size() <= _index) {
+    auto editControlPointPos = [&, this](int32_t _index) {
+        auto stage = currentScene_->getComponent<Stage>(currentScene_->getUniqueEntity("Stage"));
+        if (_index < 0 || stage->getControlPoints().size() <= _index) {
             return;
         }
-        Stage::ControlPoint& ctlPoint = controlPointEditArea->getEditControlPointsRef()[_index].second;
+        Stage::ControlPoint& ctlPoint = stage->getControlPointsRef()[_index];
 
         // transform 行列の作成
         Vec3f scale(1.f, 1.f, 1.f);
