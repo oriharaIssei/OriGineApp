@@ -21,6 +21,9 @@
 /// editor
 #include "editor/EditorController.h"
 
+/// externals
+#include <imgui/ImGuizmo/ImGuizmo.h>
+
 /// util
 #include "myFileSystem/MyFileSystem.h"
 #include "myGui/MyGui.h"
@@ -31,8 +34,9 @@ StageEditorWindow::StageEditorWindow() : Editor::Window(nameof<StageEditorWindow
 StageEditorWindow::~StageEditorWindow() {}
 
 void StageEditorWindow::Initialize() {
-    isOpen_    = false;
-    isFocused_ = false;
+    // 最大化を有効
+    isMaximized_ = true;
+
     /// ========================================================
     // Scene の初期化
     /// ========================================================
@@ -63,7 +67,6 @@ void StageEditorWindow::Initialize() {
     /// ========================================================
     // windowFlags の初期化
     /// ========================================================
-    windowFlags_ = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDocking;
 
     /// ========================================================
     // Area の初期化
@@ -112,11 +115,6 @@ void StageViewArea::StageViewRegion::DrawGui() {
 
     if (parentWindow_->isFocused().current()) {
         debugCamera_->Update();
-
-        // windowを動かないようにする
-        stageEditorWindow->addWindowFlags(ImGuiWindowFlags_NoMove);
-    } else {
-        stageEditorWindow->removeWindowFlags(ImGuiWindowFlags_NoMove);
     }
     debugCamera_->DebugUpdate();
 
@@ -139,6 +137,123 @@ void StageViewArea::StageViewRegion::UpdateScene() {
     }
 }
 
+void StageViewArea::StageViewRegion::UseImGuizmo(const ImVec2& _sceneViewPos, const Vec2f& _originalResolution) {
+    // マウス座標を取得
+    Vec2f mousePos       = Input::getInstance()->getCurrentMousePos();
+    const Vec2f areaSize = parentWindow_->areaSize_;
+
+    // マウス座標をゲーム内の座標に変換
+    Vec2f gamePos = ConvertMouseToSceneView(mousePos, _sceneViewPos, areaSize.toImVec2(), _originalResolution);
+    Input::getInstance()->setVirtualMousePos(gamePos);
+
+    // ImGuizmo のフレーム開始
+    ImGuizmo::BeginFrame();
+
+    // ImGuizmo の設定
+    ImGuizmo::SetOrthographic(false); // 透視投影かどうか
+    ImGuizmo::SetDrawlist();
+
+    // ImGuizmo のウィンドウサイズ・位置を設定
+    ImGuizmo::SetRect(_sceneViewPos.x, _sceneViewPos.y, areaSize[X], areaSize[Y]);
+
+    Vec2f virtualMousePos = Input::getInstance()->getVirtualMousePos();
+
+    auto stageEditorWindow = EditorController::getInstance()->getWindow<StageEditorWindow>();
+    if (!stageEditorWindow) {
+        LOG_ERROR("controlPointEditArea not found in SceneEditorWindow.");
+        return;
+    }
+    auto controlPointEditArea = dynamic_cast<ControlPointEditArea*>(stageEditorWindow->getArea("EntityInspectorArea").get());
+    if (!controlPointEditArea) {
+        LOG_ERROR("controlPointEditArea not found in SceneEditorWindow.");
+        return;
+    }
+
+    if (controlPointEditArea->getEditControlPoints().empty()) {
+        return;
+    }
+
+    // ビュー行列とプロジェクション行列の取得
+    float viewMatrix[16];
+    float projectionMatrix[16];
+    debugCamera_->getCameraTransform().viewMat.toFloatArray(viewMatrix); // カメラのビュー行列を取得
+    debugCamera_->getCameraTransform().projectionMat.toFloatArray(projectionMatrix); // カメラのプロジェクション行列を取得
+
+    /// ==========================================
+    // Guizmo による座標の編集
+    auto editControlPointPos = [&](int32_t _index) {
+        if (_index < 0 || controlPointEditArea->getEditControlPoints().size() <= _index) {
+            return;
+        }
+        Stage::ControlPoint& ctlPoint = controlPointEditArea->getEditControlPointsRef()[_index].second;
+
+        // transform 行列の作成
+        Vec3f scale(1.f, 1.f, 1.f);
+        Quaternion rotate  = Quaternion::Identity();
+        Matrix4x4 worldMat = MakeMatrix::Affine(scale, rotate, ctlPoint.pos_);
+        //  worldMat を float[16] に変換
+        float matrix[16];
+        worldMat.toFloatArray(matrix);
+
+        // ギズモの操作タイプ
+        static ImGuizmo::OPERATION currentGizmoOperation = ImGuizmo::TRANSLATE;
+
+        if (ImGuizmo::Manipulate(
+                viewMatrix,
+                projectionMatrix,
+                currentGizmoOperation,
+                ImGuizmo::LOCAL,
+                matrix)) {
+
+            worldMat.fromFloatArray(matrix);
+
+            worldMat.decomposeMatrixToComponents(scale, rotate, ctlPoint.pos_);
+        }
+
+        /// ==========================================
+        // Editor Command
+        static bool wasUsingGuizmo = false;
+        bool isUsingGuizmo         = ImGuizmo::IsUsing();
+        static GuiValuePool<Vec3f> vec3fPool;
+        static GuiValuePool<Quaternion> quatPool;
+
+        // Guizmo Trigger
+        if (isUsingGuizmo) {
+            // ImGuizmoが使用中ならば、他の操作は無効化
+            ImGui::SetMouseCursor(ImGuiMouseCursor_Arrow);
+            if (!wasUsingGuizmo) {
+                vec3fPool.setValue(std::to_string(_index) + "Translate", ctlPoint.pos_);
+            }
+        } else {
+            // ImGuizmoが使用されていない場合は、通常のマウスカーソルに戻す
+            ImGui::SetMouseCursor(ImGuiMouseCursor_Hand);
+
+            if (wasUsingGuizmo) {
+                auto commandCombo = std::make_unique<CommandCombo>();
+
+                /// S,R,T を コマンドで更新するように
+                commandCombo->addCommand(std::make_unique<SetterCommand<Vec3f>>(&ctlPoint.pos_, ctlPoint.pos_, vec3fPool.popValue(std::to_string(_index) + "Translate")));
+
+                // push
+                EditorController::getInstance()->pushCommand(std::move(commandCombo));
+            }
+        }
+
+        wasUsingGuizmo = isUsingGuizmo;
+    };
+
+    // 選択されている 制御点を 順に 編集する
+    for (int32_t i = 0; i < controlPointEditArea->getEditControlPoints().size(); ++i) {
+        editControlPointPos(i);
+    }
+    for (int32_t i = 0; i < controlPointEditArea->getEditLinks().size(); ++i) {
+        const auto& link = controlPointEditArea->getEditLinks()[i].second;
+
+        editControlPointPos(link.from_);
+        editControlPointPos(link.to_);
+    }
+}
+
 void StageViewArea::StageViewRegion::DrawScene() {
     CameraManager* cameraManager  = CameraManager::getInstance();
     CameraTransform prevTransform = cameraManager->getTransform();
@@ -155,6 +270,13 @@ void StageViewArea::StageViewRegion::DrawScene() {
     cameraManager->setTransform(prevTransform);
 
     ImGui::Image(reinterpret_cast<ImTextureID>(currentScene_->getSceneView()->getBackBufferSrvHandle().ptr), parentWindow_->areaSize_.toImVec2());
+
+    ImVec2 imageLeftTop  = ImGui::GetItemRectMin();
+    ImVec2 imageRightBot = ImGui::GetItemRectMax();
+    Vec2f imageSize      = {imageRightBot.x - imageLeftTop.x,
+             imageRightBot.y - imageLeftTop.y};
+
+    UseImGuizmo(imageLeftTop, imageSize);
 }
 
 ControlPointEditArea::ControlPointEditArea() : Editor::Area(nameof<ControlPointEditArea>()) {}
@@ -338,8 +460,9 @@ void ControlPointEditArea::ControlPointEditRegion::DrawGui() {
                         [i](const auto& p) { return p.first == i; }),
                     parentArea_->editLinks_.end());
 
-                if (isSelected)
+                if (isSelected) {
                     ImGui::PopStyleColor();
+                }
                 ImGui::PopID();
                 continue;
             }

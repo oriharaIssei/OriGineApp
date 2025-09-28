@@ -58,6 +58,7 @@ public:
 
     private:
         void UpdateScene();
+        void UseImGuizmo(const ImVec2& _sceneViewPos, const Vec2f& _originalResolution);
         void DrawScene();
 
     private:

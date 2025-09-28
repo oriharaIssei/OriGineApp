@@ -128,6 +128,7 @@ void StageDebugRender::CreateMeshes(Stage* _stage) {
     // ControlPoint（球）描画
     const Vec4f kColor        = {1, 1, 1, 1}; // 緑
     const Vec3f defaultRadius = {controlPointRadius, controlPointRadius, controlPointRadius};
+    int32_t index             = 0;
     for (const auto& cp : _stage->getControlPoints()) {
         // Capacityが足りなかったら 新しいMeshを作成する
         if (pointMeshItr_->getIndexCapacity() <= 0) {
@@ -140,7 +141,14 @@ void StageDebugRender::CreateMeshes(Stage* _stage) {
                 meshGroup->back().Initialize(defaultMeshSize * sphereVertexSize, defaultMeshSize * sphereIndexSize);
             }
         }
+        Vec4f color = kColor;
+        if (index == _stage->getStartPointIndex()) {
+            color = {0, 1, 0, 1}; // 緑
+        } else if (index == _stage->getGoalPointIndex()) {
+            color = {1, 0, 0, 1}; // 赤
+        }
         CreateControlPointMesh(pointMeshItr_._Ptr, cp.pos_, defaultRadius, kColor);
+        ++index;
     }
 
     // Link（線）描画

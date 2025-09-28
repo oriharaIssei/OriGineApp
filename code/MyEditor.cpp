@@ -33,18 +33,8 @@ void MyEditor::Initialize(const std::string& _commandLine) {
         sceneEditorWindow->getEditSceneName().setValue(_commandLine);
     }
 
-    editorController_->addEditor<SceneEditorWindow>(std::move(sceneEditorWindow));
-    auto settingWindow = std::make_unique<SettingWindow>();
-    editorController_->addEditor<SettingWindow>(std::move(settingWindow));
-
     auto stageEditorWindow = std::make_unique<StageEditorWindow>();
     editorController_->addEditor<StageEditorWindow>(std::move(stageEditorWindow));
-
-    auto editorWindowMenu = std::make_unique<EditorWindowMenu>();
-    editorWindowMenu->addMenuItem(std::make_shared<WindowItem<SceneEditorWindow>>());
-    editorWindowMenu->addMenuItem(std::make_shared<WindowItem<SettingWindow>>());
-    editorWindowMenu->addMenuItem(std::make_shared<WindowItem<StageEditorWindow>>());
-    editorController_->addMainMenu<EditorWindowMenu>(std::move(editorWindowMenu));
 
     editorController_->Initialize();
 }
