@@ -1,6 +1,5 @@
 #pragma once
 #include "FrameWork.h"
-#ifdef _DEBUG
 
 class EditorController;
 class MyEditor
@@ -21,5 +20,3 @@ public:
     bool isEndRequest() const { return isEndRequest_; }
     void setEndRequest(bool endRequest) { isEndRequest_ = endRequest; }
 };
-
-#endif // _DEBUG

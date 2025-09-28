@@ -1,10 +1,6 @@
 #include "MyEditor.h"
 
-#ifdef _DEBUG
-
 #include "editor/EditorController.h"
-#include "editor/sceneEditor/SceneEditor.h"
-#include "editor/setting/SettingWindow.h"
 #include "editor/StageEditor.h"
 #include "editor/window/EditorWindowMenu.h"
 
@@ -13,7 +9,7 @@
 MyEditor::MyEditor() {}
 MyEditor::~MyEditor() {}
 
-void MyEditor::Initialize(const std::string& _commandLine) {
+void MyEditor::Initialize(const std::string& /*_commandLine*/) {
     ///=================================================================================================
     // Editor のための 初期化
     ///=================================================================================================
@@ -26,12 +22,6 @@ void MyEditor::Initialize(const std::string& _commandLine) {
 
     RegisterUsingComponents();
     RegisterUsingSystems();
-
-    auto sceneEditorWindow = std::make_unique<SceneEditorWindow>();
-    if (!_commandLine.empty()) {
-        // コマンドライン引数がある場合、シーン名を設定する
-        sceneEditorWindow->getEditSceneName().setValue(_commandLine);
-    }
 
     auto stageEditorWindow = std::make_unique<StageEditorWindow>();
     editorController_->addEditor<StageEditorWindow>(std::move(stageEditorWindow));
@@ -61,5 +51,3 @@ void MyEditor::Run() {
         engine_->EndFrame();
     }
 }
-
-#endif

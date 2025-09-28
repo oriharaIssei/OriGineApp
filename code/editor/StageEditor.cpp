@@ -1,5 +1,3 @@
-#ifdef _DEBUG
-
 #include "StageEditor.h"
 
 #include <string>
@@ -22,6 +20,7 @@
 #include "editor/EditorController.h"
 
 /// externals
+#include <imgui/imgui.h>
 #include <imgui/ImGuizmo/ImGuizmo.h>
 
 /// util
@@ -868,5 +867,3 @@ void ClearSelectedLinksCommand::Undo() {
 }
 
 #pragma endregion "Commands"
-
-#endif // _DEBUG

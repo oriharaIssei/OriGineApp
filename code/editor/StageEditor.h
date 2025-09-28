@@ -1,5 +1,4 @@
 #pragma once
-#ifdef _DEBUG
 
 #include "editor/IEditor.h"
 
@@ -356,5 +355,3 @@ private:
 };
 
 #pragma endregion "Commands"
-
-#endif // _DEBUG
