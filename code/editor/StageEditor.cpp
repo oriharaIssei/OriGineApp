@@ -514,12 +514,6 @@ void ControlPointEditArea::ControlPointEditRegion::DrawGui() {
                 ImGui::Text("Invalid Index");
             }
 
-            // fromZ > toZ なら 入れ替える.
-            // z 順序を保つため
-            if (controlPoints[link.from_].pos_[Z] > controlPoints[link.to_].pos_[Z]) {
-                std::swap(link.from_, link.to_);
-            }
-
             ImGui::Spacing();
 
             label = "Normal##Link " + std::to_string(i);
