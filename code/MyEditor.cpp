@@ -1,6 +1,10 @@
 #include "MyEditor.h"
 
+#ifdef _DEBUG
+
 #include "editor/EditorController.h"
+#include "editor/sceneEditor/SceneEditor.h"
+#include "editor/setting/SettingWindow.h"
 #include "editor/StageEditor.h"
 #include "editor/window/EditorWindowMenu.h"
 
@@ -9,7 +13,7 @@
 MyEditor::MyEditor() {}
 MyEditor::~MyEditor() {}
 
-void MyEditor::Initialize(const std::string& /*_commandLine*/) {
+void MyEditor::Initialize(const std::string& _commandLine) {
     ///=================================================================================================
     // Editor のための 初期化
     ///=================================================================================================
@@ -23,8 +27,24 @@ void MyEditor::Initialize(const std::string& /*_commandLine*/) {
     RegisterUsingComponents();
     RegisterUsingSystems();
 
+    auto sceneEditorWindow = std::make_unique<SceneEditorWindow>();
+    if (!_commandLine.empty()) {
+        // コマンドライン引数がある場合、シーン名を設定する
+        sceneEditorWindow->getEditSceneName().setValue(_commandLine);
+    }
+
+    editorController_->addEditor<SceneEditorWindow>(std::move(sceneEditorWindow));
+    auto settingWindow = std::make_unique<SettingWindow>();
+    editorController_->addEditor<SettingWindow>(std::move(settingWindow));
+
     auto stageEditorWindow = std::make_unique<StageEditorWindow>();
     editorController_->addEditor<StageEditorWindow>(std::move(stageEditorWindow));
+
+    auto editorWindowMenu = std::make_unique<EditorWindowMenu>();
+    editorWindowMenu->addMenuItem(std::make_shared<WindowItem<SceneEditorWindow>>());
+    editorWindowMenu->addMenuItem(std::make_shared<WindowItem<SettingWindow>>());
+    editorWindowMenu->addMenuItem(std::make_shared<WindowItem<StageEditorWindow>>());
+    editorController_->addMainMenu<EditorWindowMenu>(std::move(editorWindowMenu));
 
     editorController_->Initialize();
 }
@@ -51,3 +71,5 @@ void MyEditor::Run() {
         engine_->EndFrame();
     }
 }
+
+#endif
