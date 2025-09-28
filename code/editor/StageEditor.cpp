@@ -33,9 +33,6 @@ StageEditorWindow::StageEditorWindow() : Editor::Window(nameof<StageEditorWindow
 StageEditorWindow::~StageEditorWindow() {}
 
 void StageEditorWindow::Initialize() {
-    // 最大化を有効
-    isMaximized_ = true;
-
     /// ========================================================
     // Scene の初期化
     /// ========================================================
@@ -66,7 +63,12 @@ void StageEditorWindow::Initialize() {
     /// ========================================================
     // windowFlags の初期化
     /// ========================================================
+    isMaximized_ = false;
 
+    isFocused_ = false;
+    isOpen_    = false;
+
+    windowFlags_ = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDocking;
     /// ========================================================
     // Area の初期化
     /// ========================================================
@@ -114,6 +116,10 @@ void StageViewArea::StageViewRegion::DrawGui() {
 
     if (parentWindow_->isFocused().current()) {
         debugCamera_->Update();
+        // windowを動かないようにする
+        stageEditorWindow->addWindowFlags(ImGuiWindowFlags_NoMove);
+    } else {
+        stageEditorWindow->removeWindowFlags(ImGuiWindowFlags_NoMove);
     }
     debugCamera_->DebugUpdate();
 
@@ -145,16 +151,6 @@ void StageViewArea::StageViewRegion::UseImGuizmo(const ImVec2& _sceneViewPos, co
     Vec2f gamePos = ConvertMouseToSceneView(mousePos, _sceneViewPos, areaSize.toImVec2(), _originalResolution);
     Input::getInstance()->setVirtualMousePos(gamePos);
 
-    // ImGuizmo のフレーム開始
-    ImGuizmo::BeginFrame();
-
-    // ImGuizmo の設定
-    ImGuizmo::SetOrthographic(false); // 透視投影かどうか
-    ImGuizmo::SetDrawlist();
-
-    // ImGuizmo のウィンドウサイズ・位置を設定
-    ImGuizmo::SetRect(_sceneViewPos.x, _sceneViewPos.y, areaSize[X], areaSize[Y]);
-
     Vec2f virtualMousePos = Input::getInstance()->getVirtualMousePos();
 
     auto stageEditorWindow = EditorController::getInstance()->getWindow<StageEditorWindow>();
@@ -185,6 +181,17 @@ void StageViewArea::StageViewRegion::UseImGuizmo(const ImVec2& _sceneViewPos, co
         if (_index < 0 || stage->getControlPoints().size() <= _index) {
             return;
         }
+
+        // ImGuizmo のフレーム開始
+        ImGuizmo::BeginFrame();
+
+        // ImGuizmo の設定
+        ImGuizmo::SetOrthographic(false); // 透視投影かどうか
+        ImGuizmo::SetDrawlist();
+
+        // ImGuizmo のウィンドウサイズ・位置を設定
+        ImGuizmo::SetRect(_sceneViewPos.x, _sceneViewPos.y, areaSize[X], areaSize[Y]);
+
         Stage::ControlPoint& ctlPoint = stage->getControlPointsRef()[_index];
 
         // transform 行列の作成
@@ -212,8 +219,8 @@ void StageViewArea::StageViewRegion::UseImGuizmo(const ImVec2& _sceneViewPos, co
 
         /// ==========================================
         // Editor Command
-        static bool wasUsingGuizmo = false;
-        bool isUsingGuizmo         = ImGuizmo::IsUsing();
+        static std::unordered_map<int32_t, bool> wasUsingGuizmoMap;
+        bool isUsingGuizmo = ImGuizmo::IsUsing();
         static GuiValuePool<Vec3f> vec3fPool;
         static GuiValuePool<Quaternion> quatPool;
 
@@ -221,14 +228,14 @@ void StageViewArea::StageViewRegion::UseImGuizmo(const ImVec2& _sceneViewPos, co
         if (isUsingGuizmo) {
             // ImGuizmoが使用中ならば、他の操作は無効化
             ImGui::SetMouseCursor(ImGuiMouseCursor_Arrow);
-            if (!wasUsingGuizmo) {
+            if (!wasUsingGuizmoMap[_index]) {
                 vec3fPool.setValue(std::to_string(_index) + "Translate", ctlPoint.pos_);
             }
         } else {
             // ImGuizmoが使用されていない場合は、通常のマウスカーソルに戻す
             ImGui::SetMouseCursor(ImGuiMouseCursor_Hand);
 
-            if (wasUsingGuizmo) {
+            if (wasUsingGuizmoMap[_index]) {
                 auto commandCombo = std::make_unique<CommandCombo>();
 
                 /// S,R,T を コマンドで更新するように
@@ -239,12 +246,12 @@ void StageViewArea::StageViewRegion::UseImGuizmo(const ImVec2& _sceneViewPos, co
             }
         }
 
-        wasUsingGuizmo = isUsingGuizmo;
+        wasUsingGuizmoMap[_index] = isUsingGuizmo;
     };
 
     // 選択されている 制御点を 順に 編集する
-    for (int32_t i = 0; i < controlPointEditArea->getEditControlPoints().size(); ++i) {
-        editControlPointPos(i);
+    for (const auto [index, ctlpoint] : controlPointEditArea->getEditControlPoints()) {
+        editControlPointPos(index);
     }
     for (int32_t i = 0; i < controlPointEditArea->getEditLinks().size(); ++i) {
         const auto& link = controlPointEditArea->getEditLinks()[i].second;
