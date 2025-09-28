@@ -14,7 +14,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR _lpCmdLine, int) {
 
     Logger::Initialize();
 
-#ifdef DEBUG
     {
         std::unique_ptr<MyEditor> editorApp = std::make_unique<MyEditor>();
 
@@ -25,18 +24,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR _lpCmdLine, int) {
 
         editorApp->Finalize();
     }
-#else
-    {
-        std::unique_ptr<MyGame> gameApp = std::make_unique<MyGame>();
-
-        gameApp->Initialize(cmdLine);
-        DxDebug::getInstance()->CreateInfoQueue();
-
-        gameApp->Run();
-
-        gameApp->Finalize();
-    }
-#endif // DEBUG
 
     Logger::Finalize();
 
