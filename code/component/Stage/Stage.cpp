@@ -7,7 +7,10 @@
 #define RESOURCE_DIRECTORY
 #include "EngineInclude.h"
 #include "logger/Logger.h"
-#include "myFileSystem/MyFileSystem.h"
+#include "scene/Scene.h"
+
+/// ecs
+#include "system/Initialize/CreateStage.h"
 
 #ifdef DEBUG
 #include "myGui/MyGui.h"
@@ -21,7 +24,7 @@ void Stage::Initialize(GameEntity* /*_entity*/) {
     }
 }
 
-void Stage::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
+void Stage::Edit(Scene* _scene, GameEntity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef DEBUG
     ImGui::Text("Directory : %s", directory_.c_str());
     ImGui::Text("FileName : %s", fileName_.c_str());
@@ -34,7 +37,16 @@ void Stage::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_unused]] co
             LoadFile(directory_, fileName_);
         }
     }
-#endif
+
+    // ファイルに変更があったら 読み込み直す
+    if (fileWatcher_) {
+        if (fileWatcher_->isChanged()) {
+            ReloadFile();
+            _scene->getSystemRunnerRef()->UpdateCategory(SystemCategory::Initialize);
+        }
+    }
+
+#endif // DEBUG
 }
 
 void Stage::Finalize() {
@@ -127,6 +139,20 @@ void Stage::LoadFile(const std::string& _directory, const std::string& _filename
     LOG_INFO("Stage loaded from: {}", _directory + "/" + _filename);
     directory_ = _directory;
     fileName_  = _filename;
+#ifndef _RELEASE
+    if (fileWatcher_) {
+        fileWatcher_->Stop();
+        fileWatcher_->setFilePath(directory_ + "/" + fileName_ + +".stage");
+        fileWatcher_->Start();
+    } else {
+        fileWatcher_ = std::make_shared<FileWatcher>(directory_ + "/" + fileName_ + +".stage");
+        fileWatcher_->Start();
+    }
+#endif // _RELEASE
+}
+
+void Stage::ReloadFile() {
+    LoadFile(directory_, fileName_);
 }
 
 void to_json(nlohmann::json& j, const Stage& stage) {

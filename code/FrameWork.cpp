@@ -42,6 +42,10 @@
 #include "system/Transition/TransitionPlayerState.h"
 #include "system/Transition/UpdateButtonColorByState.h"
 
+#ifndef _RELEASE
+#include "system/Transition/StageReloadSystem.h"
+#endif // _RELEASE
+
 //
 // / =====================================================
 // Application Include
@@ -138,6 +142,10 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<SceneTransition>();
     systemRegistry->registerSystem<TransitionPlayerState>();
     systemRegistry->registerSystem<UpdateButtonColorByState>();
+
+#ifndef _RELEASE
+    systemRegistry->registerSystem<StageReloadSystem>();
+#endif // _RELEASE
 
     /// =================================================================================================
     // Movement

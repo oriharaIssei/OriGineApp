@@ -2,10 +2,12 @@
 #include "component/IComponent.h"
 
 /// stl
+#include <memory>
 #include <vector>
 
 /// util
 #include "binaryIO/BinaryIO.h"
+#include "myFileSystem/MyFileSystem.h"
 
 /// math
 #include <math/Vector3.h>
@@ -36,6 +38,9 @@ public:
     void SaveFile(const std::string& _directory, const std::string& _filename);
     void LoadFile(const std::string& _directory, const std::string& _filename);
 
+#ifndef _RELEASE
+    void ReloadFile();
+#endif // DEBUG
 public:
     struct ControlPoint {
         Vec3f pos_;
@@ -53,7 +58,12 @@ private:
     std::string directory_;
     std::string fileName_;
 
-    std::vector<ControlPoint> controlPoints_;
+#ifndef _RELEASE
+    std::shared_ptr<FileWatcher> fileWatcher_ = nullptr;
+#endif // DEBUG
+
+    std::vector<ControlPoint>
+        controlPoints_;
     std::vector<Link> links_;
     int32_t startPointIndex_ = -1; // 開始地点のインデックス
     int32_t goalPointIndex_  = -1; // 目標地点のインデックス
@@ -64,7 +74,9 @@ public:
     std::vector<Link>& getLinksRef() { return links_; }
 
     const std::string& getDirectory() const { return directory_; }
+    void setDirectory(const std::string& dir) { directory_ = dir; }
     const std::string& getFileName() const { return fileName_; }
+    void setFileName(const std::string& name) { fileName_ = name; }
 
     int32_t getStartPointIndex() const { return startPointIndex_; }
     void setStartPointIndex(int32_t index) {
@@ -110,4 +122,8 @@ public:
         }
         links_.erase(links_.begin() + index);
     }
+
+#ifndef _RELEASE
+    FileWatcher* getFileWatcher() { return fileWatcher_.get(); }
+#endif // DEBUG
 };

@@ -92,7 +92,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\externals\assimp\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <Profile>true</Profile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Develop|x64'">
@@ -119,7 +118,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_RELEASE;RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(ProjectDir)code;$(ProjectDir);$(SolutionDir)math;$(SolutionDir)util;$(SolutionDir)engine\code\ECS;$(SolutionDir)engine\code;$(SolutionDir)engine;$(SolutionDir);$(SolutionDir)externals;$(SolutionDir)externals\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -140,6 +139,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="code\FrameWork.h" />
+    <ClInclude Include="code\MyEditor.h" />
+    <ClInclude Include="code\MyGame.h" />
+    <ClInclude Include="code\component\Button.h" />
+    <ClInclude Include="code\component\Player\PlayerInput.h" />
+    <ClInclude Include="code\component\Player\PlayerStatus.h" />
     <ClInclude Include="code\component\Player\State\IPlayerMoveState.h" />
     <ClInclude Include="code\component\Player\State\PlayerDashState.h" />
     <ClInclude Include="code\component\Player\State\PlayerFallDownState.h" />
@@ -148,14 +153,10 @@
     <ClInclude Include="code\component\Player\State\PlayerState.h" />
     <ClInclude Include="code\component\Player\State\PlayerWallJumpState.h" />
     <ClInclude Include="code\component\Player\State\PlayerWallRunState.h" />
-    <ClInclude Include="code\FrameWork.h" />
-    <ClInclude Include="code\MyEditor.h" />
-    <ClInclude Include="code\MyGame.h" />
-    <ClInclude Include="code\component\Button.h" />
-    <ClInclude Include="code\component\Player\PlayerInput.h" />
-    <ClInclude Include="code\component\Player\PlayerStatus.h" />
     <ClInclude Include="code\component\SceneChanger.h" />
     <ClInclude Include="code\component\Stage\Stage.h" />
+    <ClInclude Include="code\component\Stage\StageFloor.h" />
+    <ClInclude Include="code\component\Stage\StageWall.h" />
     <ClInclude Include="code\component\TimerComponent.h" />
     <ClInclude Include="code\component\cameraController\CameraController.h" />
     <ClInclude Include="code\editor\StageEditor.h" />
@@ -169,24 +170,29 @@
     <ClInclude Include="code\system\Movement\BillboardTransform.h" />
     <ClInclude Include="code\system\Movement\FollowCameraUpdateSystem.h" />
     <ClInclude Include="code\system\Movement\PlayerMoveSystem.h" />
+    <ClInclude Include="code\system\Movement\UpdateCameraForward.h" />
     <ClInclude Include="code\system\Transition\ChangeSceneByButton.h" />
     <ClInclude Include="code\system\Transition\FallDetectionSystem.h" />
     <ClInclude Include="code\system\Transition\SceneTransition.h" />
+    <ClInclude Include="code\system\Transition\StageReloadSystem.h" />
     <ClInclude Include="code\system\Transition\TimerCountDown.h" />
     <ClInclude Include="code\system\Transition\TransitionPlayerState.h" />
     <ClInclude Include="code\system\Transition\TransitionSceneByTimer.h" />
     <ClInclude Include="code\system\Transition\UpdateButtonColorByState.h" />
     <ClInclude Include="code\system\collision\PlayerOnCollision.h" />
+    <ClInclude Include="code\system\collision\TutorialColliderOnCollision.h" />
     <ClInclude Include="code\system\effect\EffectOnPlayerGearup.h" />
+    <ClInclude Include="code\system\effect\EffectOnPlayerRun.h" />
     <ClInclude Include="code\system\effect\TimerForSprite.h" />
     <ClInclude Include="code\system\render\StageDebugRender.h" />
-    <ClInclude Include="code\system\Movement\UpdateCameraForward.h" />
-    <ClInclude Include="code\system\effect\EffectOnPlayerRun.h" />
-    <ClInclude Include="code\system\collision\TutorialColliderOnCollision.h" />
-    <ClInclude Include="code\component\Stage\StageFloor.h" />
-    <ClInclude Include="code\component\Stage\StageWall.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\FrameWork.cpp" />
+    <ClCompile Include="code\MyEditor.cpp" />
+    <ClCompile Include="code\MyGame.cpp" />
+    <ClCompile Include="code\component\Button.cpp" />
+    <ClCompile Include="code\component\Player\PlayerInput.cpp" />
+    <ClCompile Include="code\component\Player\PlayerStatus.cpp" />
     <ClCompile Include="code\component\Player\State\IPlayerMoveState.cpp" />
     <ClCompile Include="code\component\Player\State\PlayerDashState.cpp" />
     <ClCompile Include="code\component\Player\State\PlayerFallDownState.cpp" />
@@ -195,14 +201,10 @@
     <ClCompile Include="code\component\Player\State\PlayerState.cpp" />
     <ClCompile Include="code\component\Player\State\PlayerWallJumpState.cpp" />
     <ClCompile Include="code\component\Player\State\PlayerWallRunState.cpp" />
-    <ClCompile Include="code\FrameWork.cpp" />
-    <ClCompile Include="code\MyEditor.cpp" />
-    <ClCompile Include="code\MyGame.cpp" />
-    <ClCompile Include="code\component\Button.cpp" />
-    <ClCompile Include="code\component\Player\PlayerInput.cpp" />
-    <ClCompile Include="code\component\Player\PlayerStatus.cpp" />
     <ClCompile Include="code\component\SceneChanger.cpp" />
     <ClCompile Include="code\component\Stage\Stage.cpp" />
+    <ClCompile Include="code\component\Stage\StageFloor.cpp" />
+    <ClCompile Include="code\component\Stage\StageWall.cpp" />
     <ClCompile Include="code\component\TimerComponent.cpp" />
     <ClCompile Include="code\component\cameraController\CameraController.cpp" />
     <ClCompile Include="code\editor\StageEditor.cpp" />
@@ -221,18 +223,17 @@
     <ClCompile Include="code\system\Transition\ChangeSceneByButton.cpp" />
     <ClCompile Include="code\system\Transition\FallDetectionSystem.cpp" />
     <ClCompile Include="code\system\Transition\SceneTransition.cpp" />
+    <ClCompile Include="code\system\Transition\StageReloadSystem.cpp" />
     <ClCompile Include="code\system\Transition\TimerCountDown.cpp" />
     <ClCompile Include="code\system\Transition\TransitionPlayerState.cpp" />
     <ClCompile Include="code\system\Transition\TransitionSceneByTimer.cpp" />
     <ClCompile Include="code\system\Transition\UpdateButtonColorByState.cpp" />
     <ClCompile Include="code\system\collision\PlayerOnCollision.cpp" />
+    <ClCompile Include="code\system\collision\TutorialColliderOnCollision.cpp" />
     <ClCompile Include="code\system\effect\EffectOnPlayerGearup.cpp" />
+    <ClCompile Include="code\system\effect\EffectOnPlayerRun.cpp" />
     <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
     <ClCompile Include="code\system\render\StageDebugRender.cpp" />
-    <ClCompile Include="code\system\effect\EffectOnPlayerRun.cpp" />
-    <ClCompile Include="code\system\collision\TutorialColliderOnCollision.cpp" />
-    <ClCompile Include="code\component\Stage\StageFloor.cpp" />
-    <ClCompile Include="code\component\Stage\StageWall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">

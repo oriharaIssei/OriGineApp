@@ -7,6 +7,12 @@
     <Filter Include="component\Player">
       <UniqueIdentifier>{34847955-207D-98A7-49AF-7D2C350778B3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\Player\State">
+      <UniqueIdentifier>{848A22EA-7084-4B3C-59F1-E14C458AB1A8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\Stage">
+      <UniqueIdentifier>{BBBDD102-2749-3FC7-305A-C2BB9C649BC7}</UniqueIdentifier>
+    </Filter>
     <Filter Include="component\cameraController">
       <UniqueIdentifier>{54DC1446-40EC-C016-A9A5-253595D4AFAF}</UniqueIdentifier>
     </Filter>
@@ -51,11 +57,41 @@
     <ClInclude Include="code\component\Player\PlayerStatus.h">
       <Filter>component\Player</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\Player\State\IPlayerMoveState.h">
+      <Filter>component\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Player\State\PlayerDashState.h">
+      <Filter>component\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Player\State\PlayerFallDownState.h">
+      <Filter>component\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Player\State\PlayerIdleState.h">
+      <Filter>component\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Player\State\PlayerJumpState.h">
+      <Filter>component\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Player\State\PlayerState.h">
+      <Filter>component\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Player\State\PlayerWallJumpState.h">
+      <Filter>component\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Player\State\PlayerWallRunState.h">
+      <Filter>component\Player\State</Filter>
+    </ClInclude>
     <ClInclude Include="code\component\SceneChanger.h">
       <Filter>component</Filter>
     </ClInclude>
     <ClInclude Include="code\component\Stage\Stage.h">
-      <Filter>component</Filter>
+      <Filter>component\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Stage\StageFloor.h">
+      <Filter>component\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Stage\StageWall.h">
+      <Filter>component\Stage</Filter>
     </ClInclude>
     <ClInclude Include="code\component\TimerComponent.h">
       <Filter>component</Filter>
@@ -96,6 +132,9 @@
     <ClInclude Include="code\system\Movement\PlayerMoveSystem.h">
       <Filter>system\Movement</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Movement\UpdateCameraForward.h">
+      <Filter>system\Movement</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\Transition\ChangeSceneByButton.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
@@ -103,6 +142,9 @@
       <Filter>system\Transition</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Transition\SceneTransition.h">
+      <Filter>system\Transition</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Transition\StageReloadSystem.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Transition\TimerCountDown.h">
@@ -120,7 +162,13 @@
     <ClInclude Include="code\system\collision\PlayerOnCollision.h">
       <Filter>system\collision</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\collision\TutorialColliderOnCollision.h">
+      <Filter>system\collision</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\effect\EffectOnPlayerGearup.h">
+      <Filter>system\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\effect\EffectOnPlayerRun.h">
       <Filter>system\effect</Filter>
     </ClInclude>
     <ClInclude Include="code\system\effect\TimerForSprite.h">
@@ -129,19 +177,6 @@
     <ClInclude Include="code\system\render\StageDebugRender.h">
       <Filter>system\render</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Movement\UpdateCameraForward.h" />
-    <ClInclude Include="code\system\effect\EffectOnPlayerRun.h" />
-    <ClInclude Include="code\system\collision\TutorialColliderOnCollision.h" />
-    <ClInclude Include="code\component\Player\State\IPlayerMoveState.h" />
-    <ClInclude Include="code\component\Player\State\PlayerDashState.h" />
-    <ClInclude Include="code\component\Player\State\PlayerFallDownState.h" />
-    <ClInclude Include="code\component\Player\State\PlayerIdleState.h" />
-    <ClInclude Include="code\component\Player\State\PlayerJumpState.h" />
-    <ClInclude Include="code\component\Player\State\PlayerWallJumpState.h" />
-    <ClInclude Include="code\component\Player\State\PlayerWallRunState.h" />
-    <ClInclude Include="code\component\Player\State\PlayerState.h" />
-    <ClInclude Include="code\component\Stage\StageFloor.h" />
-    <ClInclude Include="code\component\Stage\StageWall.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -156,11 +191,41 @@
     <ClCompile Include="code\component\Player\PlayerStatus.cpp">
       <Filter>component\Player</Filter>
     </ClCompile>
+    <ClCompile Include="code\component\Player\State\IPlayerMoveState.cpp">
+      <Filter>component\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Player\State\PlayerDashState.cpp">
+      <Filter>component\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Player\State\PlayerFallDownState.cpp">
+      <Filter>component\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Player\State\PlayerIdleState.cpp">
+      <Filter>component\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Player\State\PlayerJumpState.cpp">
+      <Filter>component\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Player\State\PlayerState.cpp">
+      <Filter>component\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Player\State\PlayerWallJumpState.cpp">
+      <Filter>component\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Player\State\PlayerWallRunState.cpp">
+      <Filter>component\Player\State</Filter>
+    </ClCompile>
     <ClCompile Include="code\component\SceneChanger.cpp">
       <Filter>component</Filter>
     </ClCompile>
     <ClCompile Include="code\component\Stage\Stage.cpp">
-      <Filter>component</Filter>
+      <Filter>component\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Stage\StageFloor.cpp">
+      <Filter>component\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Stage\StageWall.cpp">
+      <Filter>component\Stage</Filter>
     </ClCompile>
     <ClCompile Include="code\component\TimerComponent.cpp">
       <Filter>component</Filter>
@@ -202,6 +267,9 @@
     <ClCompile Include="code\system\Movement\PlayerMoveSystem.cpp">
       <Filter>system\Movement</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\Movement\UpdateCameraForward.cpp">
+      <Filter>system\Movement</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\Transition\ChangeSceneByButton.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
@@ -209,6 +277,9 @@
       <Filter>system\Transition</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Transition\SceneTransition.cpp">
+      <Filter>system\Transition</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Transition\StageReloadSystem.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Transition\TimerCountDown.cpp">
@@ -226,7 +297,13 @@
     <ClCompile Include="code\system\collision\PlayerOnCollision.cpp">
       <Filter>system\collision</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\collision\TutorialColliderOnCollision.cpp">
+      <Filter>system\collision</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\effect\EffectOnPlayerGearup.cpp">
+      <Filter>system\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\effect\EffectOnPlayerRun.cpp">
       <Filter>system\effect</Filter>
     </ClCompile>
     <ClCompile Include="code\system\effect\TimerForSprite.cpp">
@@ -235,18 +312,5 @@
     <ClCompile Include="code\system\render\StageDebugRender.cpp">
       <Filter>system\render</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Movement\UpdateCameraForward.cpp" />
-    <ClCompile Include="code\system\effect\EffectOnPlayerRun.cpp" />
-    <ClCompile Include="code\system\collision\TutorialColliderOnCollision.cpp" />
-    <ClCompile Include="code\component\Player\State\IPlayerMoveState.cpp" />
-    <ClCompile Include="code\component\Player\State\PlayerDashState.cpp" />
-    <ClCompile Include="code\component\Player\State\PlayerFallDownState.cpp" />
-    <ClCompile Include="code\component\Player\State\PlayerIdleState.cpp" />
-    <ClCompile Include="code\component\Player\State\PlayerJumpState.cpp" />
-    <ClCompile Include="code\component\Player\State\PlayerWallJumpState.cpp" />
-    <ClCompile Include="code\component\Player\State\PlayerWallRunState.cpp" />
-    <ClCompile Include="code\component\Player\State\PlayerState.cpp" />
-    <ClCompile Include="code\component\Stage\StageFloor.cpp" />
-    <ClCompile Include="code\component\Stage\StageWall.cpp" />
   </ItemGroup>
 </Project>

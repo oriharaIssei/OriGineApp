@@ -467,7 +467,11 @@ void StageFileSaveMenuItem::DrawGui() {
                 ImGui::EndMenu();
                 return;
             }
+
             stage->SaveFile(directory_, filename_);
+            stage->setDirectory(directory_);
+            stage->setFileName(filename_);
+
             filename_ = stage->getFileName();
         }
         ImGui::EndMenu();
