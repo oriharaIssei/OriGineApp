@@ -62,7 +62,15 @@ void PlayerState::OnCollisionWall(const Vec3f& _collisionNormal, int32_t _entity
 void PlayerState::OffCollisionWall() {
     collisionWithWall_   = false;
     wallCollisionNormal_ = {0.f, 0.f, 0.f};
-    wallEntityIndex_     = -1;
+    // wallEntityIndex_     = -1; // 保持しておく
+}
+
+void PlayerState::OnCollisionGround(int32_t _entityIndex) {
+    onGround_             = true;
+    lastFloorEntityIndex_ = _entityIndex;
+}
+void PlayerState::OffCollisionGround() {
+    onGround_ = false;
 }
 
 void to_json(nlohmann::json& /*j*/, const PlayerState& /*p*/) {

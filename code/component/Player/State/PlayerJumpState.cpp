@@ -59,15 +59,14 @@ PlayerMoveState PlayerJumpState::TransitionState() const {
     auto state         = scene_->getComponent<PlayerState>(playerEntity);
     auto playerInput   = scene_->getComponent<PlayerInput>(playerEntity);
 
-    if (state->isOnGround()) {
-        if (state->isCollisionWithWall()) {
-            return PlayerMoveState::WALL_RUN;
-        } else {
-            if (playerInput->getInputDirection().lengthSq() > 0.f) {
-                return PlayerMoveState::DASH;
-            }
-        }
+    if (state->isCollisionWithWall()) {
+        return PlayerMoveState::WALL_RUN;
+    }
 
+    if (state->isOnGround()) {
+        if (playerInput->getInputDirection().lengthSq() > 0.f) {
+            return PlayerMoveState::DASH;
+        }
         return PlayerMoveState::IDLE;
     } else {
         if (!playerInput->isJumpInput()) {

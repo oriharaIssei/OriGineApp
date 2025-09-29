@@ -12,6 +12,9 @@
 #include "component/Stage/Stage.h"
 #include "component/Stage/StageWall.h"
 
+/// log
+#include "logger/Logger.h"
+
 void PlayerWallJumpState::Initialize() {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
     auto* transform    = scene_->getComponent<Transform>(playerEntity);
@@ -21,7 +24,7 @@ void PlayerWallJumpState::Initialize() {
 
     rigidbody->setAcceleration({0.0f, 0.0f, 0.0f}); // 壁ジャンプ時は加速度をリセット
     rigidbody->setUseGravity(false); // 無効
-    prevVelo_ = rigidbody->getVelocity(); // 壁ジャンプ前の速度を保存
+    prevSpeed_ = rigidbody->getVelocity().length(); // 壁ジャンプ前の速度を保存
 
     // 目的のControlPoint への 差分ベクトルを進行方向とする
     Vec3f targetNormal = Vec3f(0.0f, 1.f, 0.f);
@@ -32,7 +35,7 @@ void PlayerWallJumpState::Initialize() {
     Vec3f nextPos     = nextControlPointPos(scene_->getComponent<StageWall>(wallEntity), targetNormal, transform, rigidbody);
     wallJumpDirection = nextPos - transform->translate;
 
-    Vec3f jumpOffset = playerStatus->getWallJumpOffset() * MakeMatrix::RotateAxisAngle(axisZ, targetNormal);
+    Vec3f jumpOffset = playerStatus->getWallJumpOffset() * MakeMatrix::RotateAxisAngle(axisY, targetNormal);
     wallJumpDirection += jumpOffset;
     wallJumpDirection = wallJumpDirection.normalize();
 
@@ -60,7 +63,7 @@ void PlayerWallJumpState::Finalize() {
     auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
 
     rigidbody->setUseGravity(true); // 重力を有効
-    rigidbody->setVelocity(prevVelo_); // 壁ジャンプ終了時に速度をリセット
+    rigidbody->setVelocity(velo_.normalize() * prevSpeed_); // 壁ジャンプ終了時に速度をリセット
 }
 
 PlayerMoveState PlayerWallJumpState::TransitionState() const {
@@ -83,6 +86,7 @@ Vec3f PlayerWallJumpState::nextControlPointPos(const StageWall* _stageWall, Vec3
     GameEntity* stageEntity = scene_->getUniqueEntity("Stage");
     Stage* stage            = scene_->getComponent<Stage>(stageEntity);
     if (!stageEntity || !stage || !_stageWall) {
+        LOG_WARN("Stage or StageWall is nullptr");
         return targetPointPos;
     }
 
@@ -138,6 +142,7 @@ Vec3f PlayerWallJumpState::nextControlPointPos(const StageWall* _stageWall, Vec3
         targetPointPos = *nearestPoint;
         _targetNormal  = nearestLink->normal_;
     } else {
+        LOG_WARN("No valid target control point found for wall jump.");
         // 見つからなかった場合は、プレイヤーの位置をそのまま返す
         targetPointPos = Vec3f(_playerTransform->worldMat[3]);
     }
