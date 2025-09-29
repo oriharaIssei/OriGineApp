@@ -1,5 +1,6 @@
 #pragma once
 
+#ifdef _DEBUG
 #include "editor/IEditor.h"
 
 /// stl
@@ -57,7 +58,6 @@ public:
 
     private:
         void UpdateScene();
-        void UseImGuizmo(const ImVec2& _sceneViewPos, const Vec2f& _originalResolution);
         void DrawScene();
 
     private:
@@ -355,3 +355,5 @@ private:
 };
 
 #pragma endregion "Commands"
+
+#endif // _DEBUG

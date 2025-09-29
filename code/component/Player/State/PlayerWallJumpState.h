@@ -22,7 +22,7 @@ public:
     Vec3f nextControlPointPos(const StageWall* _stageWall, Vec3f& _targetNormal, const Transform* _playerTransform, const Rigidbody* _playerRigidbody) const;
 
 protected:
-    Vec3f prevVelo_       = Vec3f(0.0f, 0.0f, 0.0f); // 前の速度 着地後に戻す
+    float prevSpeed_      = 0.f;
     Vec3f velo_           = Vec3f(0.0f, 0.0f, 0.0f); // 壁ジャンプの方向
     float forcedJumpTime_ = 0.6f;
     float leftTime_       = 0.0f; // 壁ジャンプの残り時間

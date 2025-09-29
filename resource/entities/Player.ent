@@ -131,7 +131,7 @@
         ],
         "PlayerInput": [
             {
-                "MaxJumpInputTime": 0.05000000074505806
+                "MaxJumpInputTime": 0.09000000357627869
             }
         ],
         "PlayerState": [
@@ -143,15 +143,15 @@
                 "coolTimeAddRateBase": 1.2000000476837158,
                 "coolTimeAddRateCommonRate": 0.07999999821186066,
                 "directionInterpolateRate": 0.7799999713897705,
-                "fallPower": 4.099999904632568,
+                "fallPower": 116.5,
                 "gearUpCoolTime": 0.6000000238418579,
                 "jumpPower": 0.15000000596046448,
                 "speedUpRateBase": 8.600000381469727,
                 "speedUpRateCommonRate": -0.800000011920929,
                 "wallJumpOffset": [
                     0.0,
-                    2.0999999046325684,
-                    2.450000047683716
+                    3.0999999046325684,
+                    3.240000009536743
                 ],
                 "wallRunRate": 1.7999999523162842
             }
@@ -163,7 +163,7 @@
                     0.0,
                     0.0
                 ],
-                "mass": 0.2800000011920929,
+                "mass": 0.07999999821186066,
                 "maxFallSpeed": 30.0,
                 "maxXZSpeed": 100.0,
                 "useGravity": true,
@@ -269,8 +269,8 @@
                 ],
                 "translate": [
                     0.0,
-                    1.0,
-                    0.0
+                    3.0,
+                    3.0
                 ]
             }
         ]

@@ -24,7 +24,7 @@ void Stage::Initialize(GameEntity* /*_entity*/) {
     }
 }
 
-void Stage::Edit(Scene* _scene, GameEntity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
+void Stage::Edit([[maybe_unused]] Scene* _scene, GameEntity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef DEBUG
     ImGui::Text("Directory : %s", directory_.c_str());
     ImGui::Text("FileName : %s", fileName_.c_str());

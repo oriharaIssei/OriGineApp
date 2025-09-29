@@ -11,6 +11,9 @@
 #include "component/Stage/Stage.h"
 #include "component/Stage/StageWall.h"
 
+/// log
+#include "logger/Logger.h"
+
 void PlayerWallRunState::Initialize() {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
     auto* state        = scene_->getComponent<PlayerState>(playerEntity);
@@ -34,8 +37,8 @@ void PlayerWallRunState::Initialize() {
     StageWall* wall = scene_->getComponent<StageWall>(scene_->getEntity(state->getWallEntityIndex()));
     getWallData(wall);
     // 壁走りの高さを計算
-    wallRunHeight_  = calculateWallRunHeight(transform);
-    currentHeight_  = transform->translate[Y];
+    wallRunHeight_ = calculateWallRunHeight(transform);
+    currentHeight_ = transform->translate[Y];
 
     // 移動方向を回転
     Vec3f velo = rigidbody->getMaxXZSpeed() * direction;
@@ -96,11 +99,13 @@ PlayerMoveState PlayerWallRunState::TransitionState() const {
 
 void PlayerWallRunState::getWallData(StageWall* _wall) {
     if (_wall == nullptr) {
+        LOG_WARN("Wall is nullptr.");
         return;
     }
 
     Stage* stage = scene_->getComponent<Stage>(scene_->getUniqueEntity("Stage"));
     if (stage == nullptr) {
+        LOG_WARN("Stage is nullptr.");
         return;
     }
 
