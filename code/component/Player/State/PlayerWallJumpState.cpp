@@ -5,6 +5,7 @@
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
 
+#include "component/collider/Collider.h"
 #include "component/physics/Rigidbody.h"
 #include "component/Player/PlayerInput.h"
 #include "component/Player/PlayerStatus.h"
@@ -16,16 +17,23 @@
 #include "logger/Logger.h"
 
 void PlayerWallJumpState::Initialize() {
-    auto* playerEntity = scene_->getEntity(playerEntityID_);
-    auto* transform    = scene_->getComponent<Transform>(playerEntity);
-    auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
-    auto* playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
-    auto* playerState  = scene_->getComponent<PlayerState>(playerEntity);
+    auto* playerEntity             = scene_->getEntity(playerEntityID_);
+    auto* transform                = scene_->getComponent<Transform>(playerEntity);
+    auto* rigidbody                = scene_->getComponent<Rigidbody>(playerEntity);
+    auto* playerStatus             = scene_->getComponent<PlayerStatus>(playerEntity);
+    auto* playerState              = scene_->getComponent<PlayerState>(playerEntity);
+    SphereCollider* playerCollider = scene_->getComponent<SphereCollider>(playerEntity);
 
+    /// ========================================
+    // 速度の初期化
+    /// ========================================
     rigidbody->setAcceleration({0.0f, 0.0f, 0.0f}); // 壁ジャンプ時は加速度をリセット
     rigidbody->setUseGravity(false); // 無効
     prevSpeed_ = rigidbody->getVelocity().length(); // 壁ジャンプ前の速度を保存
 
+    /// ========================================
+    // 目的地を決め, 方向を決める
+    /// ========================================
     // 目的のControlPoint への 差分ベクトルを進行方向とする
     Vec3f targetNormal = Vec3f(0.0f, 1.f, 0.f);
 
@@ -35,16 +43,19 @@ void PlayerWallJumpState::Initialize() {
     Vec3f nextPos     = nextControlPointPos(scene_->getComponent<StageWall>(wallEntity), targetNormal, transform, rigidbody);
     wallJumpDirection = nextPos - transform->translate;
 
-    Vec3f jumpOffset = playerStatus->getWallJumpOffset() * MakeMatrix::RotateAxisAngle(axisY, targetNormal);
+    // offset + コライダーを中心に考えたほうが楽なのでコライダーのオフセットも考慮する
+    Vec3f jumpOffset = (playerCollider->getLocalCenter() + playerStatus->getWallJumpOffset()) * targetNormal;
     wallJumpDirection += jumpOffset;
     wallJumpDirection = wallJumpDirection.normalize();
 
     velo_ = wallJumpDirection * (rigidbody->getMaxXZSpeed() * playerStatus->getWallRunRate());
 
+#ifndef _RELEASE
     GameEntity* wallJumpTargetEntity   = scene_->getUniqueEntity("WallJumpTargetPos");
     auto wallJumpTargetTransform       = scene_->getComponent<Transform>(wallJumpTargetEntity);
     wallJumpTargetTransform->translate = nextPos + jumpOffset;
     wallJumpTargetTransform->UpdateMatrix();
+#endif // DEBUG
 
     leftTime_ = forcedJumpTime_; // 壁ジャンプの残り時間を初期化
 }
@@ -101,7 +112,7 @@ Vec3f PlayerWallJumpState::nextControlPointPos(const StageWall* _stageWall, Vec3
         // diffと playerVeloNormal の内積を計算
         // 内積が正の場合、playerVeloNormal と同じ方向にある
         float dot = diff.normalize().dot(playerVeloNormal);
-        if (dot <= 0.5f) {
+        if (dot <= 0.7f) {
             return;
         }
 
