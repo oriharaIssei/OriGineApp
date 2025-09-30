@@ -1,6 +1,11 @@
 #pragma once
 #include "system/ISystem.h"
 
+class Stage;
+class StageFloor;
+
+#include <Vector3.h>
+
 class FallDetectionSystem
     : public ISystem {
 public:
@@ -14,4 +19,6 @@ public:
 
 protected:
     virtual void UpdateEntity(GameEntity* _entity) override;
+
+    Vec3f RetryPos(Stage* _stage, StageFloor* _stageFloor, const Vec3f& _currentPos);
 };

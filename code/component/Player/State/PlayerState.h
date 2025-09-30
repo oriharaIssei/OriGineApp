@@ -47,6 +47,9 @@ public:
     void OnCollisionWall(const Vec3f& _collisionNormal, int32_t _entityIndex);
     void OffCollisionWall();
 
+    void OnCollisionGround(int32_t _entityIndex);
+    void OffCollisionGround();
+
 private:
     EnumBitmask<PlayerMoveState> moveStateEnum_    = PlayerMoveState::IDLE;
     EnumBitmask<PlayerMoveState> preMoveStateEnum_ = PlayerMoveState::IDLE;
@@ -59,8 +62,9 @@ private:
     bool collisionWithWall_    = false;
     bool isGoal_               = false;
     Vec3f wallCollisionNormal_ = {0.f, 0.f, 0.f};
-    // 現在 接触している壁 のエンティティID
-    int32_t wallEntityIndex_ = -1;
+
+    int32_t wallEntityIndex_      = -1; // 現在 接触している壁 のエンティティID
+    int32_t lastFloorEntityIndex_ = -1; // 最後に接地した床のエンティティID
 
     int32_t gearLevel_    = 0;
     float gearUpCoolTime_ = 0.0f;
@@ -104,8 +108,8 @@ public:
     bool isOnGround() const {
         return onGround_;
     }
-    void setOnGround(bool _onGround) {
-        onGround_ = _onGround;
+    int32_t getLastFloorEntityIndex() const {
+        return lastFloorEntityIndex_;
     }
 
     bool isCollisionWithWall() const {
