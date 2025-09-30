@@ -14,6 +14,9 @@
 /// log
 #include "logger/Logger.h"
 
+/// math
+#include "MyEasing.h"
+
 void PlayerWallRunState::Initialize() {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
     auto* state        = scene_->getComponent<PlayerState>(playerEntity);
@@ -78,8 +81,6 @@ void PlayerWallRunState::Finalize() {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
     auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
     rigidbody->setUseGravity(true); // 重力を有効
-    // 壁走行終了時に速度をリセット
-    rigidbody->setVelocity(prevVelo_); // 壁走行終了時に速度をリセット
 }
 
 PlayerMoveState PlayerWallRunState::TransitionState() const {
@@ -133,7 +134,7 @@ float PlayerWallRunState::calculateWallRunHeight(Transform* _transform) {
     t = std::clamp(t, 0.0f, 1.0f);
 
     // t に対応する座標を取得
-    Vec3f onWallPos = Lerp(wallStartPos_, wallEndPos_, t);
+    Vec3f onWallPos = Lerp(wallStartPos_, wallEndPos_, EaseOutCubic(t));
 
     return onWallPos[Y];
 }
