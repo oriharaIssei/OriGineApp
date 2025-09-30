@@ -41,10 +41,18 @@ void PlayerWallJumpState::Initialize() {
     Vec3f wallJumpDirection = Vec3f(0.0f, 1.f, 0.f);
 
     Vec3f nextPos     = nextControlPointPos(scene_->getComponent<StageWall>(wallEntity), targetNormal, transform, rigidbody);
-    wallJumpDirection = nextPos - transform->translate;
+    wallJumpDirection = nextPos - (transform->translate + playerCollider->getLocalCenter());
 
-    // offset + コライダーを中心に考えたほうが楽なのでコライダーのオフセットも考慮する
-    Vec3f jumpOffset = (playerCollider->getLocalCenter() + playerStatus->getWallJumpOffset()) * targetNormal;
+    Vec3f forward = rigidbody->getVelocity().normalize();
+    Vec3f right   = Vec3f::Cross(targetNormal, forward).normalize();
+    forward       = Vec3f::Cross(right, targetNormal).normalize();
+    Matrix4x4 rotateMat =
+        {right[X], right[Y], right[Z], 0.0f,
+            targetNormal[X], targetNormal[Y], targetNormal[Z], 0.0f,
+            forward[X], forward[Y], forward[Z], 0.0f,
+            0.0f, 0.0f, 0.0f, 1.0f};
+
+    Vec3f jumpOffset = playerStatus->getWallJumpOffset() * rotateMat;
     wallJumpDirection += jumpOffset;
     wallJumpDirection = wallJumpDirection.normalize();
 
@@ -92,6 +100,8 @@ PlayerMoveState PlayerWallJumpState::TransitionState() const {
 }
 
 Vec3f PlayerWallJumpState::nextControlPointPos(const StageWall* _stageWall, Vec3f& _targetNormal, const Transform* _playerTransform, const Rigidbody* _playerRigidbody) const {
+    constexpr Vec3f kDistanceWeight = Vec3f(0.9f, 1.15f, 1.05f);
+
     Vec3f targetPointPos;
 
     GameEntity* stageEntity = scene_->getUniqueEntity("Stage");
@@ -101,18 +111,21 @@ Vec3f PlayerWallJumpState::nextControlPointPos(const StageWall* _stageWall, Vec3
         return targetPointPos;
     }
 
+    Vec3f refPos           = stage->getControlPoints()[_stageWall->getToPointIndex()].pos_;
     Vec3f playerVeloNormal = _playerRigidbody->getVelocity().normalize();
 
     Stage::Link* nearestLink = nullptr;
     Vec3f* nearestPoint      = nullptr;
     float nearLengthSq       = std::numeric_limits<float>::max();
-    auto isNearestPoint      = [&nearestLink, &nearestPoint, &nearLengthSq, _playerTransform, &targetPointPos, &playerVeloNormal](Stage::Link& link, Vec3f& point) {
-        Vec3f diff = point - Vec3f(_playerTransform->worldMat[3]);
+    auto isNearestPoint      = [&nearestLink, &nearestPoint, &nearLengthSq, &targetPointPos, &playerVeloNormal](const Vec3f& _refPoint, Stage::Link& link, Vec3f& point) {
+        Vec3f diff = point - _refPoint;
+
+        diff = diff * kDistanceWeight; // Y軸を少し伸ばして距離を測る
 
         // diffと playerVeloNormal の内積を計算
         // 内積が正の場合、playerVeloNormal と同じ方向にある
         float dot = diff.normalize().dot(playerVeloNormal);
-        if (dot <= 0.7f) {
+        if (dot <= 0.6f) {
             return;
         }
 
@@ -143,8 +156,8 @@ Vec3f PlayerWallJumpState::nextControlPointPos(const StageWall* _stageWall, Vec3
         Vec3f& linkFromPos = stage->getControlPointsRef()[link.from_].pos_;
         Vec3f& linkToPos   = stage->getControlPointsRef()[link.to_].pos_;
 
-        isNearestPoint(link, linkFromPos);
-        isNearestPoint(link, linkToPos);
+        isNearestPoint(refPos, link, linkFromPos);
+        isNearestPoint(refPos, link, linkToPos);
 
         ++linkIndex;
     }
