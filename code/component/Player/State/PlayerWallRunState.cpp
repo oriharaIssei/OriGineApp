@@ -7,6 +7,7 @@
 #include "component/transform/Transform.h"
 
 #include "component/Player/PlayerInput.h"
+#include "component/Player/PlayerStatus.h"
 
 #include "component/Stage/Stage.h"
 #include "component/Stage/StageWall.h"
@@ -18,7 +19,10 @@
 #include "MyEasing.h"
 
 void PlayerWallRunState::Initialize() {
+    constexpr int32_t thresholdGearLevel = 2;
+
     auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto* playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
     auto* state        = scene_->getComponent<PlayerState>(playerEntity);
     auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
     auto* transform    = scene_->getComponent<Transform>(playerEntity);
@@ -43,17 +47,34 @@ void PlayerWallRunState::Initialize() {
     wallRunHeight_ = calculateWallRunHeight(transform);
     currentHeight_ = transform->translate[Y];
 
+    float speed = rigidbody->getMaxXZSpeed();
+
+    // 基準レベル未満なら レベル+1
+    int32_t gearLevel = state->getGearLevel();
+    if (gearLevel < thresholdGearLevel) {
+        state->setGearUp(true);
+
+        int32_t addedGearLevel = state->getGearLevel() + 1;
+        state->setGearLevel(addedGearLevel);
+
+        playerStatus->setGearUpCoolTime(playerStatus->CalculateCoolTimeByGearLevel(addedGearLevel));
+
+        playerStatus->setCurrentMaxSpeed(playerStatus->CalculateSpeedByGearLevel(addedGearLevel));
+        rigidbody->setMaxXZSpeed(playerStatus->getCurrentMaxSpeed());
+
+        speed = rigidbody->getMaxXZSpeed();
+    }
+
     // 移動方向を回転
-    Vec3f velo = rigidbody->getMaxXZSpeed() * direction;
+    Vec3f velo = speed * direction;
     rigidbody->setVelocity(velo);
     rigidbody->setUseGravity(false); // 重力を無効
 
-    // 回転
-    Quaternion frontQuat  = Quaternion::RotateAxisVector(axisY, direction).normalize();
-    Quaternion toWallQuat = Quaternion::RotateAxisVector(axisX, wallNormal_).normalize();
-    transform->rotate     = Quaternion::Normalize(toWallQuat * frontQuat);
+    // 壁との衝突判定の残り時間を初期化
+    separationLeftTime_ = separationGraceTime_;
 
-    separationLeftTime_ = separationGraceTime_; // 壁との衝突判定の残り時間を初期化
+    // 壁を登るタイマーをリセット
+    climbTimer_ = 0.0f;
 }
 
 void PlayerWallRunState::Update(float _deltaTime) {
