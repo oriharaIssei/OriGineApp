@@ -17,12 +17,11 @@
 #include "logger/Logger.h"
 
 void PlayerWallJumpState::Initialize() {
-    auto* playerEntity             = scene_->getEntity(playerEntityID_);
-    auto* transform                = scene_->getComponent<Transform>(playerEntity);
-    auto* rigidbody                = scene_->getComponent<Rigidbody>(playerEntity);
-    auto* playerStatus             = scene_->getComponent<PlayerStatus>(playerEntity);
-    auto* playerState              = scene_->getComponent<PlayerState>(playerEntity);
-    SphereCollider* playerCollider = scene_->getComponent<SphereCollider>(playerEntity);
+    auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto* transform    = scene_->getComponent<Transform>(playerEntity);
+    auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
+    auto* playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
+    auto* playerState  = scene_->getComponent<PlayerState>(playerEntity);
 
     /// ========================================
     // 速度の初期化
@@ -40,8 +39,11 @@ void PlayerWallJumpState::Initialize() {
     GameEntity* wallEntity  = scene_->getEntity(playerState->getWallEntityIndex());
     Vec3f wallJumpDirection = Vec3f(0.0f, 1.f, 0.f);
 
-    Vec3f nextPos     = nextControlPointPos(scene_->getComponent<StageWall>(wallEntity), targetNormal, transform, rigidbody);
-    wallJumpDirection = nextPos - (transform->translate + playerCollider->getLocalCenter());
+    Vec3f nextPos = nextControlPointPos(scene_->getComponent<StageWall>(wallEntity), targetNormal, transform, rigidbody);
+    transform->UpdateMatrix();
+    // Playerは足が中心なので, 高さを補正
+    Vec3f playerPos   = Vec3f(transform->worldMat[3]) + Vec3f(0.f, kPlayerHeight * 0.5f, 0.f);
+    wallJumpDirection = nextPos - transform->translate;
 
     Vec3f forward = rigidbody->getVelocity().normalize();
     Vec3f right   = Vec3f::Cross(targetNormal, forward).normalize();

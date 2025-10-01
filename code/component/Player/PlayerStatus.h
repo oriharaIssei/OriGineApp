@@ -13,6 +13,7 @@ class PlayerInput;
 #include <math/Quaternion.h>
 #include <math/Vector3.h>
 
+constexpr float kPlayerHeight = 2.0f;
 class PlayerStatus
     : public IComponent {
     friend void to_json(nlohmann::json& j, const PlayerStatus& _playerStatus);
