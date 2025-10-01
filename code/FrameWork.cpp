@@ -11,6 +11,7 @@
 
 // application component
 #include "component/Button.h"
+#include "component/ButtonGroup.h"
 #include "component/cameraController/CameraController.h"
 #include "component/Player/PlayerInput.h"
 #include "component/Player/PlayerStatus.h"
@@ -36,6 +37,7 @@
 #include "system/Movement/PlayerMoveSystem.h"
 #include "system/Movement/UpdateCameraForward.h"
 #include "system/render/StageDebugRender.h"
+#include "system/Transition/ButtonGroupSystem.h"
 #include "system/Transition/ChangeSceneByButton.h"
 #include "system/Transition/FallDetectionSystem.h"
 #include "system/Transition/SceneTransition.h"
@@ -113,6 +115,7 @@ void RegisterUsingComponents() {
     componentRegistry->registerComponent<PlayerState>();
 
     componentRegistry->registerComponent<Button>();
+    componentRegistry->registerComponent<ButtonGroup>();
     componentRegistry->registerComponent<SceneChanger>();
 }
 
@@ -142,6 +145,7 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<SceneTransition>();
     systemRegistry->registerSystem<TransitionPlayerState>();
     systemRegistry->registerSystem<UpdateButtonColorByState>();
+    systemRegistry->registerSystem<ButtonGroupSystem>();
 
 #ifndef _RELEASE
     systemRegistry->registerSystem<StageReloadSystem>();

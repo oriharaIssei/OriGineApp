@@ -1,0 +1,460 @@
+{
+    "CategoryActivity": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+    ],
+    "Entities": [
+        {
+            "Components": {
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "color": [
+                            0.04641348123550415,
+                            0.04641348123550415,
+                            0.04641348123550415,
+                            1.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "isRender": true,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            2.0,
+                            2.0
+                        ],
+                        "size": [
+                            1280.0,
+                            720.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "./application/resource/Texture/uvChecker.png",
+                        "textureSize": [
+                            512.0,
+                            512.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "Entity",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "BackGroundSpriteRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "ButtonGroup": [
+                    {
+                        "buttonNumbers": [
+                            {
+                                "buttonNumber": 0,
+                                "entityID": 2
+                            },
+                            {
+                                "buttonNumber": 1,
+                                "entityID": 3
+                            }
+                        ],
+                        "decideKeys": [
+                            28,
+                            57
+                        ],
+                        "decidePadButtons": [
+                            4096,
+                            8192
+                        ],
+                        "selectAddKeys": [
+                            31,
+                            32
+                        ],
+                        "selectAddPadButtons": [
+                            8,
+                            512
+                        ],
+                        "selectSubKeys": [
+                            17,
+                            30
+                        ],
+                        "selectSubPadButtons": [
+                            256,
+                            4
+                        ],
+                        "startButtonNumber": 0
+                    }
+                ]
+            },
+            "Name": "ButtonGroup",
+            "Systems": [
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "ButtonGroupSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "Button": [
+                    {
+                        "hoverColor": [
+                            0.7215189933776855,
+                            0.7215189933776855,
+                            0.7215189933776855,
+                            1.0
+                        ],
+                        "normalColor": [
+                            0.34117648005485535,
+                            0.34117648005485535,
+                            0.34117648005485535,
+                            1.0
+                        ],
+                        "pressColor": [
+                            0.6000000238418579,
+                            0.6000000238418579,
+                            0.6000000238418579,
+                            1.0
+                        ],
+                        "releaseColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "shortKeys": [],
+                        "shortcutPadButton": []
+                    }
+                ],
+                "DissolveEffectParam": [
+                    {
+                        "edgeWidth": 0.0020000000949949026,
+                        "isActive": false,
+                        "outLineColor": [
+                            0.2545888125896454,
+                            0.8515215516090393,
+                            0.9282700419425964,
+                            1.0
+                        ],
+                        "textureFilePath": "./application/resource/Texture/waveNoise.png",
+                        "threshold": 0.0,
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            0.30000001192092896,
+                            0.30000001192092896
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "SceneChanger": [
+                    {
+                        "nextSceneName": "Tutorial"
+                    }
+                ],
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.5,
+                            0.5
+                        ],
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "isRender": true,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
+                            256.0,
+                            256.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "./application/resource/Texture/gimacho.png",
+                        "textureSize": [
+                            1024.0,
+                            1024.0
+                        ],
+                        "translate": [
+                            256.0,
+                            360.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "toTutorialButton",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "SpriteRenderSystem"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "ChangeSceneByButton"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "UpdateButtonColorByState"
+                },
+                {
+                    "SystemCategory": 7,
+                    "SystemName": "DissolveEffect"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "SceneTransition"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "Button": [
+                    {
+                        "hoverColor": [
+                            0.800000011920929,
+                            0.800000011920929,
+                            0.800000011920929,
+                            1.0
+                        ],
+                        "normalColor": [
+                            0.3417721390724182,
+                            0.3417721390724182,
+                            0.3417721390724182,
+                            1.0
+                        ],
+                        "pressColor": [
+                            0.6000000238418579,
+                            0.6000000238418579,
+                            0.6000000238418579,
+                            1.0
+                        ],
+                        "releaseColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "shortKeys": [],
+                        "shortcutPadButton": []
+                    }
+                ],
+                "DissolveEffectParam": [
+                    {
+                        "edgeWidth": 0.012000000104308128,
+                        "isActive": false,
+                        "outLineColor": [
+                            0.07450980693101883,
+                            0.6000000238418579,
+                            0.7960784435272217,
+                            1.0
+                        ],
+                        "textureFilePath": "./application/resource/Texture/bioNoise.png",
+                        "threshold": 0.9070000052452087,
+                        "uvRotate": 0.9100000262260437,
+                        "uvScale": [
+                            0.4000000059604645,
+                            0.4000000059604645
+                        ],
+                        "uvTranslate": [
+                            -0.699999988079071,
+                            0.0
+                        ]
+                    }
+                ],
+                "SceneChanger": [
+                    {
+                        "nextSceneName": "01"
+                    }
+                ],
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.5,
+                            0.5
+                        ],
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "isRender": true,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
+                            256.0,
+                            256.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "./application/resource/Texture/gimacho.png",
+                        "textureSize": [
+                            1024.0,
+                            1024.0
+                        ],
+                        "translate": [
+                            640.0,
+                            360.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "to01Stage",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "SpriteRenderSystem"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "ChangeSceneByButton"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "UpdateButtonColorByState"
+                },
+                {
+                    "SystemCategory": 7,
+                    "SystemName": "DissolveEffect"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "SceneTransition"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "DissolveEffectParam": [
+                    {
+                        "edgeWidth": 0.00800000037997961,
+                        "isActive": true,
+                        "outLineColor": [
+                            0.30194589495658875,
+                            0.894514799118042,
+                            0.8570103645324707,
+                            1.0
+                        ],
+                        "textureFilePath": "./application/resource/Texture/bioNoise.png",
+                        "threshold": 0.0,
+                        "uvRotate": 0.2800000011920929,
+                        "uvScale": [
+                            0.5,
+                            0.5
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "DistortionEffectParam": []
+            },
+            "Name": "EnterScene",
+            "Systems": [
+                {
+                    "SystemCategory": 7,
+                    "SystemName": "DissolveEffect"
+                }
+            ],
+            "isUnique": true
+        }
+    ],
+    "Systems": [
+        {
+            "BackGroundSpriteRenderSystem": {
+                "Priority": -1
+            },
+            "ButtonGroupSystem": {
+                "Priority": 2
+            },
+            "ButtonInputSystem": {
+                "Priority": 0
+            },
+            "ChangeSceneByButton": {
+                "Priority": 3
+            },
+            "DissolveEffect": {
+                "Priority": 0
+            },
+            "SceneTransition": {
+                "Priority": 5
+            },
+            "SpriteRenderSystem": {
+                "Priority": 0
+            },
+            "UpdateButtonColorByState": {
+                "Priority": 0
+            }
+        }
+    ]
+}
