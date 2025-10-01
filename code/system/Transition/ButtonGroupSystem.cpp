@@ -127,7 +127,7 @@ void ButtonGroupSystem::UpdateEntity(GameEntity* _entity) {
 
         // 次のボタンを取得
         currentButtonNumber += delta;
-        currentButtonNumber = std::clamp(currentButtonNumber, 0, (int32_t)buttonGroup->getButtonNumbers().size());
+        currentButtonNumber = std::clamp(currentButtonNumber, 0, (int32_t)buttonGroup->getButtonNumbers().size() - 1);
 
         currentButton = getComponent<Button>(getEntity(buttonGroup->getEntityId(currentButtonNumber)));
         currentButton->setHovered(true);
