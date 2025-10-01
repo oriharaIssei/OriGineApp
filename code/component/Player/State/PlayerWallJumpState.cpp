@@ -28,7 +28,6 @@ void PlayerWallJumpState::Initialize() {
     /// ========================================
     rigidbody->setAcceleration({0.0f, 0.0f, 0.0f}); // 壁ジャンプ時は加速度をリセット
     rigidbody->setUseGravity(false); // 無効
-    prevSpeed_ = rigidbody->getVelocity().length(); // 壁ジャンプ前の速度を保存
 
     /// ========================================
     // 目的地を決め, 方向を決める
@@ -40,11 +39,7 @@ void PlayerWallJumpState::Initialize() {
     Vec3f wallJumpDirection = Vec3f(0.0f, 1.f, 0.f);
 
     Vec3f nextPos = nextControlPointPos(scene_->getComponent<StageWall>(wallEntity), targetNormal, transform, rigidbody);
-    transform->UpdateMatrix();
-    // Playerは足が中心なので, 高さを補正
-    Vec3f playerPos   = Vec3f(transform->worldMat[3]) + Vec3f(0.f, kPlayerHeight * 0.5f, 0.f);
-    wallJumpDirection = nextPos - transform->translate;
-
+ 
     Vec3f forward = rigidbody->getVelocity().normalize();
     Vec3f right   = Vec3f::Cross(targetNormal, forward).normalize();
     forward       = Vec3f::Cross(right, targetNormal).normalize();
@@ -54,8 +49,9 @@ void PlayerWallJumpState::Initialize() {
             forward[X], forward[Y], forward[Z], 0.0f,
             0.0f, 0.0f, 0.0f, 1.0f};
 
-    Vec3f jumpOffset = playerStatus->getWallJumpOffset() * rotateMat;
-    wallJumpDirection += jumpOffset;
+    Vec3f jumpOffset  = playerStatus->getWallJumpOffset() * rotateMat;
+    wallJumpDirection = (nextPos + jumpOffset) - transform->translate;
+
     wallJumpDirection = wallJumpDirection.normalize();
 
     velo_ = wallJumpDirection * (rigidbody->getMaxXZSpeed() * playerStatus->getWallRunRate());
@@ -84,7 +80,6 @@ void PlayerWallJumpState::Finalize() {
     auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
 
     rigidbody->setUseGravity(true); // 重力を有効
-    rigidbody->setVelocity(velo_.normalize() * prevSpeed_); // 壁ジャンプ終了時に速度をリセット
 }
 
 PlayerMoveState PlayerWallJumpState::TransitionState() const {

@@ -139,19 +139,19 @@
         ],
         "PlayerStatus": [
             {
-                "baseSpeed": 14.600000381469727,
-                "coolTimeAddRateBase": 1.2000000476837158,
-                "coolTimeAddRateCommonRate": 0.07999999821186066,
+                "baseSpeed": 7.599999904632568,
+                "coolTimeAddRateBase": 0.8700000047683716,
+                "coolTimeAddRateCommonRate": 0.20999999344348907,
                 "directionInterpolateRate": 0.7799999713897705,
                 "fallPower": 116.5,
-                "gearUpCoolTime": 0.6000000238418579,
+                "gearUpCoolTime": 0.36000001430511475,
                 "jumpPower": 0.15000000596046448,
-                "speedUpRateBase": 8.600000381469727,
-                "speedUpRateCommonRate": -0.800000011920929,
+                "speedUpRateBase": 9.800000190734863,
+                "speedUpRateCommonRate": -1.100000023841858,
                 "wallJumpOffset": [
                     0.0,
-                    3.0999999046325684,
-                    3.240000009536743
+                    3.799999952316284,
+                    2.0
                 ],
                 "wallRunRate": 1.7999999523162842
             }
@@ -233,7 +233,7 @@
                     0.0,
                     0.0
                 ],
-                "radius": 0.9900000095367432,
+                "radius": 0.699999988079071,
                 "transform": {
                     "rotate": [
                         0.0,
@@ -248,7 +248,7 @@
                     ],
                     "translate": [
                         0.0,
-                        0.949999988079071,
+                        0.0,
                         0.0
                     ]
                 }
