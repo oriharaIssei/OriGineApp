@@ -177,6 +177,8 @@
     <ClInclude Include="code\system\render\StageDebugRender.h">
       <Filter>system\render</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\ButtonGroup.h" />
+    <ClInclude Include="code\system\Transition\ButtonGroupSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -312,5 +314,7 @@
     <ClCompile Include="code\system\render\StageDebugRender.cpp">
       <Filter>system\render</Filter>
     </ClCompile>
+    <ClCompile Include="code\component\ButtonGroup.cpp" />
+    <ClCompile Include="code\system\Transition\ButtonGroupSystem.cpp" />
   </ItemGroup>
 </Project>

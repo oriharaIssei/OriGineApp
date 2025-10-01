@@ -79,7 +79,7 @@
                 ],
                 "SceneChanger": [
                     {
-                        "nextSceneName": "tutorial"
+                        "nextSceneName": "StageSelect"
                     }
                 ],
                 "SpriteRenderer": [
