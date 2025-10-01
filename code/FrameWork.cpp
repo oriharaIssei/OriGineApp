@@ -65,6 +65,7 @@ void RegisterUsingComponents() {
 
     componentRegistry->registerComponent<Audio>();
 
+    componentRegistry->registerComponent<EntityReferenceList>();
     componentRegistry->registerComponent<SubScene>();
 
     componentRegistry->registerComponent<CameraTransform>();
@@ -129,7 +130,8 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<TakePlayerToStartPosition>();
     systemRegistry->registerSystem<GpuParticleInitialize>();
     systemRegistry->registerSystem<CreateStage>();
-
+    systemRegistry->registerSystem<ResolveEntityReferences>();
+    
     /// ===================================================================================================
     // Input
     /// ===================================================================================================

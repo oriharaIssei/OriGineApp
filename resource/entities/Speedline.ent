@@ -1,0 +1,33 @@
+{
+    "Components": {
+        "SpeedlineEffectParam": [
+            {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "density": 0.07999999821186066,
+                "fadePow": 1.440000057220459,
+                "fadeStart": 0.3700000047683716,
+                "intensity": 4.239999771118164,
+                "isActive": false,
+                "radialTextureFilePath": "./application/resource/texture//bioNoise.png",
+                "screenCenterUV": [
+                    0.5,
+                    0.5
+                ],
+                "time": 9.34000015258789
+            }
+        ]
+    },
+    "Name": "Speedline",
+    "Systems": [
+        {
+            "SystemCategory": 7,
+            "SystemName": "SpeedlineEffect"
+        }
+    ],
+    "isUnique": true
+}
