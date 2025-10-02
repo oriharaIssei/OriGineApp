@@ -179,6 +179,7 @@
     </ClInclude>
     <ClInclude Include="code\component\ButtonGroup.h" />
     <ClInclude Include="code\system\Transition\ButtonGroupSystem.h" />
+    <ClInclude Include="code\system\Transition\TimeLimitJudgeSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -316,5 +317,6 @@
     </ClCompile>
     <ClCompile Include="code\component\ButtonGroup.cpp" />
     <ClCompile Include="code\system\Transition\ButtonGroupSystem.cpp" />
+    <ClCompile Include="code\system\Transition\TimeLimitJudgeSystem.cpp" />
   </ItemGroup>
 </Project>

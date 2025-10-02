@@ -14,7 +14,7 @@ public:
     ~TimerComponent() override;
 
     void Initialize(GameEntity* _entity) override;
-    void Edit(Scene* _scene, GameEntity* _entity,  const std::string& _parentLabel) override;
+    void Edit(Scene* _scene, GameEntity* _entity, const std::string& _parentLabel) override;
     void Finalize() override;
 
 private:
@@ -51,23 +51,25 @@ public:
     ~TimerForSpriteComponent() override = default;
 
     void Initialize(GameEntity* _entity) override;
-    void Edit(Scene* _scene, GameEntity* _entity,  const std::string& _parentLabel) override;
+    void Edit(Scene* _scene, GameEntity* _entity, const std::string& _parentLabel) override;
     void Finalize() override {}
 
 private:
     void settingOnLoadTexture(uint32_t _texIdx);
 
 private:
-    int digitForSprite_        = 0; // 表示する桁数
-    int digitIntegerForSprite_ = 0; // 整数部の桁数
-    int digitDecimalForSprite_ = 0; // 小数部の桁数
+    int32_t spritesEntityId_ = -1; // スプライトを持つエンティティID
+
+    int32_t digitForSprite_        = 0; // 表示する桁数
+    int32_t digitIntegerForSprite_ = 0; // 整数部の桁数
+    int32_t digitDecimalForSprite_ = 0; // 小数部の桁数
 
     uint32_t textureIndex_          = 0; // 数字のテクスチャインデックス
     std::string numbersTexturePath_ = ""; // 数字のテクスチャ名
     Vec2f numbersTextureSize_       = {0.f, 0.f}; // 数字のテクスチャサイズ
     Vec2f numberTileSize_           = {0.f, 0.f}; // 数字のタイルサイズ
 
-    Vec2f anchorOnWindow_ = {0.5f, 0.5f}; // ウィンドウ上のアンカー位置
+    Vec2f anchorOnWindow_ = {0.5f, 0.2f}; // ウィンドウ上のアンカー位置
     Vec2f offset_         = {0.f, 0.f}; // オフセット位置
 
     // 整数部・小数部のスプライトサイズ
@@ -82,6 +84,9 @@ private:
     Vec2f marginBetweenIntegerAndDecimal_ = {0.f, 0.f}; // 整数部と小数部の間のスペース
 
 public:
+    int32_t getSpritesEntityId() const { return spritesEntityId_; }
+    void setSpritesEntityId(int32_t id) { spritesEntityId_ = id; }
+
     const std::string& getNumbersTexturePath() const { return numbersTexturePath_; }
     uint32_t getTextureIndex() const { return textureIndex_; }
 

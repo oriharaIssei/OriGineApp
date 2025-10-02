@@ -20,12 +20,15 @@
 #include "component/Stage/Stage.h"
 #include "component/Stage/StageFloor.h"
 #include "component/Stage/StageWall.h"
+#include "component/TimerComponent.h"
 
 // application system
 #include "system/collision/PlayerOnCollision.h"
 #include "system/collision/TutorialColliderOnCollision.h"
 #include "system/effect/EffectOnPlayerGearup.h"
 #include "system/effect/EffectOnPlayerRun.h"
+#include "system/effect/TimerForSprite.h"
+#include "system/Initialize/CreateSpriteFromTimer.h"
 #include "system/Initialize/CreateStage.h"
 #include "system/Initialize/SettingGameCameraTarget.h"
 #include "system/Initialize/TakePlayerToStartPosition.h"
@@ -41,6 +44,8 @@
 #include "system/Transition/ChangeSceneByButton.h"
 #include "system/Transition/FallDetectionSystem.h"
 #include "system/Transition/SceneTransition.h"
+#include "system/Transition/TimeLimitJudgeSystem.h"
+#include "system/Transition/TimerCountDown.h"
 #include "system/Transition/TransitionPlayerState.h"
 #include "system/Transition/UpdateButtonColorByState.h"
 
@@ -109,6 +114,9 @@ void RegisterUsingComponents() {
     componentRegistry->registerComponent<SkyboxRenderer>();
     componentRegistry->registerComponent<SpriteRenderer>();
 
+    componentRegistry->registerComponent<TimerComponent>();
+    componentRegistry->registerComponent<TimerForSpriteComponent>();
+
     componentRegistry->registerComponent<CameraController>();
 
     componentRegistry->registerComponent<PlayerInput>();
@@ -131,7 +139,8 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<GpuParticleInitialize>();
     systemRegistry->registerSystem<CreateStage>();
     systemRegistry->registerSystem<ResolveEntityReferences>();
-    
+    systemRegistry->registerSystem<CreateSpriteFromTimer>();
+
     /// ===================================================================================================
     // Input
     /// ===================================================================================================
@@ -148,6 +157,8 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<TransitionPlayerState>();
     systemRegistry->registerSystem<UpdateButtonColorByState>();
     systemRegistry->registerSystem<ButtonGroupSystem>();
+    systemRegistry->registerSystem<TimerCountDown>();
+    systemRegistry->registerSystem<TimeLimitJudgeSystem>();
 
 #ifndef _RELEASE
     systemRegistry->registerSystem<StageReloadSystem>();
@@ -198,6 +209,8 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<EffectTexturedMeshRenderSystem>();
     systemRegistry->registerSystem<LineRenderSystem>();
     systemRegistry->registerSystem<GpuParticleRenderSystem>();
+
+    systemRegistry->registerSystem<TimerForSprite>();
 
     systemRegistry->registerSystem<SkeletonRenderSystem>();
     systemRegistry->registerSystem<ColliderRenderingSystem>();
