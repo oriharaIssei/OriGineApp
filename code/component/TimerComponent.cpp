@@ -21,8 +21,8 @@ void TimerComponent::Initialize(GameEntity* /*_entity*/) {
 void TimerComponent::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 
 #ifdef DEBUG
-    CheckBoxCommand("IsStarted For Using System" + _parentLabel, isStarted_);
-    DragGuiCommand("Max Time (s)" + _parentLabel, maxTime_, 0.1f, 100.f, 1.f);
+    CheckBoxCommand("IsStarted For Using System##" + _parentLabel, isStarted_);
+    DragGuiCommand("Max Time (s)##" + _parentLabel, maxTime_, 0.1f, 100.f, 1.f);
 #endif // DEBUG
 }
 
@@ -83,26 +83,26 @@ void TimerForSpriteComponent::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [
 #ifdef DEBUG
     ImGui::Text("Sprite");
 
-    DragGuiVectorCommand("Offset" + _parentLabel, offset_, 0.1f);
-    DragGuiVectorCommand("SpriteSizeInteger" + _parentLabel, spriteSizeInteger_, 0.1f);
-    DragGuiVectorCommand("SpriteSizeDecimal" + _parentLabel, spriteSizeDecimal_, 0.1f);
+    DragGuiVectorCommand("Offset##" + _parentLabel, offset_, 0.1f);
+    DragGuiVectorCommand("SpriteSizeInteger##" + _parentLabel, spriteSizeInteger_, 0.1f);
+    DragGuiVectorCommand("SpriteSizeDecimal##" + _parentLabel, spriteSizeDecimal_, 0.1f);
 
     ImGui::Spacing();
 
-    DragGuiVectorCommand("AnchorOnWindow" + _parentLabel, anchorOnWindow_, 0.1f);
+    DragGuiVectorCommand("AnchorOnWindow##" + _parentLabel, anchorOnWindow_, 0.1f);
 
     ImGui::Spacing();
 
-    DragGuiVectorCommand("SpriteMarginInteger" + _parentLabel, spriteMarginInteger_, 0.1f);
-    DragGuiVectorCommand("SpriteMarginDecimal" + _parentLabel, spriteMarginDecimal_, 0.1f);
-    DragGuiVectorCommand("MarginBetweenIntegerAndDecimal" + _parentLabel, marginBetweenIntegerAndDecimal_, 0.1f);
+    DragGuiVectorCommand("SpriteMarginInteger##" + _parentLabel, spriteMarginInteger_, 0.1f);
+    DragGuiVectorCommand("SpriteMarginDecimal##" + _parentLabel, spriteMarginDecimal_, 0.1f);
+    DragGuiVectorCommand("MarginBetweenIntegerAndDecimal##" + _parentLabel, marginBetweenIntegerAndDecimal_, 0.1f);
 
     ImGui::Spacing();
 
     auto askLoadTexture = [&](const std::string& _parentLabel) {
         bool askLoad = false;
 
-        std::string label = "Load Texture" + _parentLabel;
+        std::string label = "Load Texture##" + _parentLabel;
         askLoad           = ImGui::Button(label.c_str());
         askLoad |= ImGui::ImageButton(
             reinterpret_cast<ImTextureID>(TextureManager::getDescriptorGpuHandle(textureIndex_).ptr),
@@ -129,9 +129,9 @@ void TimerForSpriteComponent::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [
 
     ImGui::Text("Digit");
 
-    InputGuiCommand("Digit For Sprite" + _parentLabel, digitForSprite_, "%d");
-    SlideGuiCommand("Digit Integer For Sprite" + _parentLabel, digitIntegerForSprite_, 0, digitForSprite_, "%d");
-    SlideGuiCommand("Digit Decimal For Sprite" + _parentLabel, digitDecimalForSprite_, 0, digitForSprite_ - digitIntegerForSprite_, "%d");
+    InputGuiCommand("Digit For Sprite##" + _parentLabel, digitForSprite_, "%d");
+    SlideGuiCommand("Digit Integer For Sprite##" + _parentLabel, digitIntegerForSprite_, 0, digitForSprite_, "%d");
+    SlideGuiCommand("Digit Decimal For Sprite##" + _parentLabel, digitDecimalForSprite_, 0, digitForSprite_ - digitIntegerForSprite_, "%d");
 
 #endif
 

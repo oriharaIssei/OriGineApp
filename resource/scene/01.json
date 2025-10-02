@@ -305,6 +305,68 @@
                 }
             ],
             "isUnique": false
+        },
+        {
+            "Components": {
+                "TimerComponent": [
+                    {
+                        "isStarted": true,
+                        "maxTime": 120.0
+                    }
+                ],
+                "TimerForSpriteComponent": [
+                    {
+                        "anchorOnWindow": [
+                            0.5199999809265137,
+                            0.11999999731779099
+                        ],
+                        "digitDecimalForSprite": 2,
+                        "digitForSprite": 5,
+                        "digitIntegerForSprite": 3,
+                        "marginBetweenIntegerAndDecimal": [
+                            0.0,
+                            10.0
+                        ],
+                        "numbersTexturePath": "./application/resource/Texture//timerNumbers.png",
+                        "offset": [
+                            0.5,
+                            0.5
+                        ],
+                        "spriteMarginDecimal": [
+                            0.0,
+                            0.0
+                        ],
+                        "spriteMarginInteger": [
+                            0.0,
+                            0.0
+                        ],
+                        "spriteSizeDecimal": [
+                            32.0,
+                            32.0
+                        ],
+                        "spriteSizeInteger": [
+                            52.0,
+                            52.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "Timer",
+            "Systems": [
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "CreateSpriteFromTimer"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "TimerCountDown"
+                },
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "TimerForSprite"
+                }
+            ],
+            "isUnique": false
         }
     ],
     "Systems": [
@@ -329,6 +391,9 @@
             },
             "CollisionPushBackSystem": {
                 "Priority": 5
+            },
+            "CreateSpriteFromTimer": {
+                "Priority": 1
             },
             "CreateStage": {
                 "Priority": 1
@@ -391,7 +456,7 @@
                 "Priority": 0
             },
             "SkinningAnimationSystem": {
-                "Priority": 0
+                "Priority": 1
             },
             "SkinningMeshRenderSystem": {
                 "Priority": 0
@@ -403,7 +468,7 @@
                 "Priority": 0
             },
             "SpriteAnimationSystem": {
-                "Priority": 0
+                "Priority": 1
             },
             "SpriteRenderSystem": {
                 "Priority": 5
@@ -415,6 +480,12 @@
                 "Priority": 2
             },
             "TexturedMeshRenderSystem": {
+                "Priority": 0
+            },
+            "TimerCountDown": {
+                "Priority": 1
+            },
+            "TimerForSprite": {
                 "Priority": 0
             },
             "TransitionPlayerState": {

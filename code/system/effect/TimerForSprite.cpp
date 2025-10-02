@@ -48,15 +48,23 @@ void TimerForSprite::UpdateEntity(GameEntity* _entity) {
         return; // タイマーコンポーネントがない場合は何もしない
     }
 
+    auto timerSpritesEntity = getEntity(timerForSpriteComponent->getSpritesEntityId());
+    if (!timerSpritesEntity) {
+        return; // スプライトエンティティがない場合は何もしない
+    }
+
     std::vector<int> digits = CalculateDigitsFromFloat(
         timerComponent->getCurrentTime(),
         timerForSpriteComponent->getDigitIntegerForSprite(),
         timerForSpriteComponent->getDigitDecimalForSprite());
 
     for (int32_t i = 0; i < timerForSpriteComponent->getDigitForSprite(); ++i) {
-        auto sprite = getComponent<SpriteRenderer>(_entity, i);
+        auto sprite = getComponent<SpriteRenderer>(timerSpritesEntity, i);
         if (!sprite) {
             continue; // スプライトがない場合は何もしない
+        }
+        if (int32_t(digits.size()) <= i) {
+            return;
         }
         float spriteLeftTopY     = sprite->getTextureLeftTop()[Y];
         float spriteTextureSizeX = sprite->getTextureSize()[X];

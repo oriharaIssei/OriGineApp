@@ -3,11 +3,13 @@
 /// engine
 #include "Engine.h"
 #include "winApp/WinApp.h"
-/// ECS
 
+/// ECS
 // component
 #include "component/renderer/Sprite.h"
 #include "component/TimerComponent.h"
+// system
+#include "system/render/SpriteRenderSystem.h"
 
 CreateSpriteFromTimer::CreateSpriteFromTimer()
     : ISystem(SystemCategory::Initialize) {}
@@ -46,10 +48,21 @@ void CreateSpriteFromTimer::UpdateEntity(GameEntity* _entity) {
     pos[X] -= widthInteger;
     pos[X] += widthBetween * 0.5f;
 
+    // Sprite用のEntityを作成
+    int32_t spriteEntityId   = CreateEntity("TimerForSprite_Sprites", false);
+    GameEntity* spriteEntity = getEntity(spriteEntityId);
+    spriteEntity->setShouldSave(false); // セーブしない
+
+    getScene()->getSystemRunnerRef()->getSystemRef<SpriteRenderSystem>()->addEntity(spriteEntity);
+
+    timerForSpriteComponent->setSpritesEntityId(spriteEntityId);
+
     // 整数部
     for (int i = 0; i < digitInteger; ++i) {
-        addComponent<SpriteRenderer>(_entity, SpriteRenderer{}, true);
-        auto* sprite = getComponent<SpriteRenderer>(_entity, i);
+        addComponent<SpriteRenderer>(spriteEntity, SpriteRenderer{}, true);
+        auto* sprite = getComponent<SpriteRenderer>(spriteEntity, i);
+
+        sprite->setIsRender(true);
 
         sprite->setTexture(timerForSpriteComponent->getNumbersTexturePath(), false);
         sprite->setAnchorPoint({0.5f, 0.5f});
@@ -66,8 +79,8 @@ void CreateSpriteFromTimer::UpdateEntity(GameEntity* _entity) {
 
     // 小数部
     for (int i = digitInteger; i < digitAll; ++i) {
-        addComponent<SpriteRenderer>(_entity, SpriteRenderer{}, true);
-        auto* sprite = getComponent<SpriteRenderer>(_entity, i);
+        addComponent<SpriteRenderer>(spriteEntity, SpriteRenderer{}, true);
+        auto* sprite = getComponent<SpriteRenderer>(spriteEntity, i);
 
         sprite->setTexture(timerForSpriteComponent->getNumbersTexturePath(), false);
         sprite->setAnchorPoint({0.5f, 0.5f});
