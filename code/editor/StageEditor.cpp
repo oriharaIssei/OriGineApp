@@ -2,7 +2,6 @@
 
 #ifdef _DEBUG
 
-
 #include <string>
 
 /// engine
@@ -339,10 +338,8 @@ void ControlPointEditArea::ControlPointEditRegion::DrawGui() {
             if (ImGui::Button("X")) {
                 stage->removeLink(i);
                 // 選択リストからも削除
-                parentArea_->editLinks_.erase(
-                    std::remove_if(parentArea_->editLinks_.begin(), parentArea_->editLinks_.end(),
-                        [i](const auto& p) { return p.first == i; }),
-                    parentArea_->editLinks_.end());
+                auto command = std::make_unique<RemoveLinkCommand>(stage, i);
+                EditorController::getInstance()->pushCommand(std::move(command));
 
                 if (isSelected) {
                     ImGui::PopStyleColor();
@@ -532,10 +529,43 @@ RemoveControlPointCommand::~RemoveControlPointCommand() {}
 void RemoveControlPointCommand::Execute() {
     removedPoint_ = stage_->getControlPoints()[index_];
     stage_->removeControlPoint(index_);
+
+    int32_t linkIndex = 0;
+    for (auto& link : stage_->getLinksRef()) {
+        if (link.to_ == index_) {
+            link.to_ = -1; // 無効化
+            hasControlPointLinksIndex_.emplace_back(linkIndex, true);
+        } else if (link.to_ >= index_) {
+            link.to_--;
+        }
+        if (link.from_ == index_) {
+            link.from_ = -1; // 無効化
+            hasControlPointLinksIndex_.emplace_back(linkIndex, false);
+        } else if (link.from_ >= index_) {
+            link.from_--;
+        }
+        linkIndex++;
+    }
 }
 
 void RemoveControlPointCommand::Undo() {
-    stage_->addControlPoint(removedPoint_);
+    stage_->insertControlPoint(index_, removedPoint_);
+
+    for (auto& link : stage_->getLinksRef()) {
+        if (link.to_ >= index_) {
+            link.to_++;
+        }
+        if (link.from_ >= index_) {
+            link.from_++;
+        }
+    }
+    for (const auto& [linkIdx, isTo] : hasControlPointLinksIndex_) {
+        if (isTo) {
+            stage_->getLinksRef()[linkIdx].to_ = index_;
+        } else {
+            stage_->getLinksRef()[linkIdx].from_ = index_;
+        }
+    }
 }
 
 ClearControlPointsCommand::ClearControlPointsCommand(Stage* stage)
@@ -573,7 +603,7 @@ void RemoveLinkCommand::Execute() {
     stage_->removeLink(index_);
 }
 void RemoveLinkCommand::Undo() {
-    stage_->addLink(removedLink_);
+    stage_->insertLink(index_, removedLink_);
 }
 
 ClearLinksCommand::ClearLinksCommand(Stage* stage)

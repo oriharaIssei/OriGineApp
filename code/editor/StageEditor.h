@@ -204,6 +204,8 @@ public:
 private:
     Stage* stage_;
     int32_t index_;
+    // first = linkIndex, second = isTo (true: to, false: from)
+    std::vector<std::pair<int32_t, bool>> hasControlPointLinksIndex_;
     Stage::ControlPoint removedPoint_; // 削除した制御点の情報
 };
 class ClearControlPointsCommand

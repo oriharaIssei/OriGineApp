@@ -106,8 +106,14 @@ public:
     void addControlPoint(const ControlPoint& point) {
         controlPoints_.emplace_back(point);
     }
+    void insertControlPoint(int32_t _index, const ControlPoint& point) {
+        controlPoints_.insert(controlPoints_.begin() + _index, point);
+    }
     void addLink(const Link& link) {
         links_.emplace_back(link);
+    }
+    void insertLink(int32_t _index, const Link& link) {
+        links_.insert(links_.begin() + _index, link);
     }
 
     void removeControlPoint(int32_t index) {
