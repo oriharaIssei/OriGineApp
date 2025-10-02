@@ -30,6 +30,7 @@
 #include "system/effect/TimerForSprite.h"
 #include "system/Initialize/CreateSpriteFromTimer.h"
 #include "system/Initialize/CreateStage.h"
+#include "system/Initialize/GetClearTime.h"
 #include "system/Initialize/SettingGameCameraTarget.h"
 #include "system/Initialize/TakePlayerToStartPosition.h"
 #include "system/Input/ButtonInputSystem.h"
@@ -44,6 +45,7 @@
 #include "system/Transition/ChangeSceneByButton.h"
 #include "system/Transition/FallDetectionSystem.h"
 #include "system/Transition/SceneTransition.h"
+#include "system/Transition/SetClearTime.h"
 #include "system/Transition/TimeLimitJudgeSystem.h"
 #include "system/Transition/TimerCountDown.h"
 #include "system/Transition/TransitionPlayerState.h"
@@ -140,6 +142,7 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<CreateStage>();
     systemRegistry->registerSystem<ResolveEntityReferences>();
     systemRegistry->registerSystem<CreateSpriteFromTimer>();
+    systemRegistry->registerSystem<GetClearTime>();
 
     /// ===================================================================================================
     // Input
@@ -159,6 +162,7 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<ButtonGroupSystem>();
     systemRegistry->registerSystem<TimerCountDown>();
     systemRegistry->registerSystem<TimeLimitJudgeSystem>();
+    systemRegistry->registerSystem<SetClearTime>();
 
 #ifndef _RELEASE
     systemRegistry->registerSystem<StageReloadSystem>();

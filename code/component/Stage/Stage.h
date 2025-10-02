@@ -25,6 +25,12 @@ public:
 
     static constexpr float kObjectMargin = 1.f; // オブジェクト生成時, toとfromにプラスされる余白
 
+private:
+    static float clearTime_; // クリアタイム（秒）
+public:
+    static float getClearTime() { return clearTime_; }
+    static void setClearTime(float time) { clearTime_ = time; }
+
 public:
     Stage()           = default;
     ~Stage() override = default;

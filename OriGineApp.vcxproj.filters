@@ -180,6 +180,8 @@
     <ClInclude Include="code\component\ButtonGroup.h" />
     <ClInclude Include="code\system\Transition\ButtonGroupSystem.h" />
     <ClInclude Include="code\system\Transition\TimeLimitJudgeSystem.h" />
+    <ClInclude Include="code\system\Transition\SetClearTime.h" />
+    <ClInclude Include="code\system\Initialize\GetClearTime.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -318,5 +320,7 @@
     <ClCompile Include="code\component\ButtonGroup.cpp" />
     <ClCompile Include="code\system\Transition\ButtonGroupSystem.cpp" />
     <ClCompile Include="code\system\Transition\TimeLimitJudgeSystem.cpp" />
+    <ClCompile Include="code\system\Transition\SetClearTime.cpp" />
+    <ClCompile Include="code\system\Initialize\GetClearTime.cpp" />
   </ItemGroup>
 </Project>

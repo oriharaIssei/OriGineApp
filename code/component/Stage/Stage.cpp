@@ -16,6 +16,8 @@
 #include "myGui/MyGui.h"
 #endif // DEBUG
 
+float Stage::clearTime_ = 0.f;
+
 void Stage::Initialize(GameEntity* /*_entity*/) {
     if (!directory_.empty() && !fileName_.empty()) {
         LoadFile(directory_, fileName_);

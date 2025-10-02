@@ -391,6 +391,9 @@
             "SceneTransition": {
                 "Priority": 0
             },
+            "SetClearTime": {
+                "Priority": 0
+            },
             "SettingGameCameraTarget": {
                 "Priority": 5
             },

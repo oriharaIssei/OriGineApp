@@ -78,6 +78,10 @@
             "SystemName": "TimeLimitJudgeSystem"
         },
         {
+            "SystemCategory": 2,
+            "SystemName": "SetClearTime"
+        },
+        {
             "SystemCategory": 0,
             "SystemName": "CreateSpriteFromTimer"
         },
