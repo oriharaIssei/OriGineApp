@@ -177,6 +177,7 @@
     <ClInclude Include="code\system\Transition\FallDetectionSystem.h" />
     <ClInclude Include="code\system\Transition\SceneTransition.h" />
     <ClInclude Include="code\system\Transition\StageReloadSystem.h" />
+    <ClInclude Include="code\system\Transition\TimeLimitJudgeSystem.h" />
     <ClInclude Include="code\system\Transition\TimerCountDown.h" />
     <ClInclude Include="code\system\Transition\TransitionPlayerState.h" />
     <ClInclude Include="code\system\Transition\TransitionSceneByTimer.h" />
@@ -228,6 +229,7 @@
     <ClCompile Include="code\system\Transition\FallDetectionSystem.cpp" />
     <ClCompile Include="code\system\Transition\SceneTransition.cpp" />
     <ClCompile Include="code\system\Transition\StageReloadSystem.cpp" />
+    <ClCompile Include="code\system\Transition\TimeLimitJudgeSystem.cpp" />
     <ClCompile Include="code\system\Transition\TimerCountDown.cpp" />
     <ClCompile Include="code\system\Transition\TransitionPlayerState.cpp" />
     <ClCompile Include="code\system\Transition\TransitionSceneByTimer.cpp" />

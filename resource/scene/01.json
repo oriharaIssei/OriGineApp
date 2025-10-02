@@ -36,9 +36,9 @@
                                 1.0
                             ],
                             "translate": [
-                                0.0,
-                                0.0,
-                                0.0
+                                0.2047664225101471,
+                                3.9452574253082275,
+                                -13.68576717376709
                             ]
                         }
                     }
@@ -308,6 +308,34 @@
         },
         {
             "Components": {
+                "DissolveEffectParam": [
+                    {
+                        "edgeWidth": 0.00800000037997961,
+                        "isActive": false,
+                        "outLineColor": [
+                            0.1314782202243805,
+                            0.6885846257209778,
+                            0.8902953863143921,
+                            1.0
+                        ],
+                        "textureFilePath": "./application/resource/Texture/waveNoise.png",
+                        "threshold": 0.0,
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            0.6700000166893005,
+                            0.5799999833106995
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "SceneChanger": [
+                    {
+                        "nextSceneName": "Result"
+                    }
+                ],
                 "TimerComponent": [
                     {
                         "isStarted": true,
@@ -354,8 +382,20 @@
             "Name": "Timer",
             "Systems": [
                 {
+                    "SystemCategory": 2,
+                    "SystemName": "TimeLimitJudgeSystem"
+                },
+                {
                     "SystemCategory": 0,
                     "SystemName": "CreateSpriteFromTimer"
+                },
+                {
+                    "SystemCategory": 7,
+                    "SystemName": "DissolveEffect"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "SceneTransition"
                 },
                 {
                     "SystemCategory": 2,
@@ -417,7 +457,7 @@
                 "Priority": 1
             },
             "FallDetectionSystem": {
-                "Priority": 4
+                "Priority": 6
             },
             "FollowCameraUpdateSystem": {
                 "Priority": 1
@@ -482,8 +522,11 @@
             "TexturedMeshRenderSystem": {
                 "Priority": 0
             },
+            "TimeLimitJudgeSystem": {
+                "Priority": 10
+            },
             "TimerCountDown": {
-                "Priority": 1
+                "Priority": 7
             },
             "TimerForSprite": {
                 "Priority": 0

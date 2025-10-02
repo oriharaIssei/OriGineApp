@@ -44,6 +44,7 @@
 #include "system/Transition/ChangeSceneByButton.h"
 #include "system/Transition/FallDetectionSystem.h"
 #include "system/Transition/SceneTransition.h"
+#include "system/Transition/TimeLimitJudgeSystem.h"
 #include "system/Transition/TimerCountDown.h"
 #include "system/Transition/TransitionPlayerState.h"
 #include "system/Transition/UpdateButtonColorByState.h"
@@ -157,6 +158,7 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<UpdateButtonColorByState>();
     systemRegistry->registerSystem<ButtonGroupSystem>();
     systemRegistry->registerSystem<TimerCountDown>();
+    systemRegistry->registerSystem<TimeLimitJudgeSystem>();
 
 #ifndef _RELEASE
     systemRegistry->registerSystem<StageReloadSystem>();
