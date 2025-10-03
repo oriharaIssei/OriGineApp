@@ -1,0 +1,107 @@
+{
+    "Components": {
+        "DistortionEffectParam": [
+            {
+                "distortionBias": 0.07000000029802322,
+                "distortionObjects": [
+                    {
+                        "objectData": {
+                            "InnerRadius": 3.569999933242798,
+                            "OuterRadius": 6.050000190734863,
+                            "blendMode": 1,
+                            "division": 32,
+                            "isRenderer": true,
+                            "material": {
+                                "color": [
+                                    1.0,
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "enableLighting": false,
+                                "shininess": 0.0,
+                                "specularColor": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "uvRotate": 0.0,
+                                "uvScale": [
+                                    3.0,
+                                    0.33000001311302185
+                                ],
+                                "uvTranslate": [
+                                    0.0,
+                                    0.3400000035762787
+                                ]
+                            },
+                            "textureDirectory": "./application/resource/Texture",
+                            "textureFileName": "gradationLine.png",
+                            "transform": {
+                                "rotate": [
+                                    0.0,
+                                    1.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "scale": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "translate": [
+                                    0.0,
+                                    -10000.0,
+                                    0.0
+                                ]
+                            }
+                        },
+                        "objectType": 1
+                    }
+                ],
+                "distortionStrength": 0.5,
+                "uvRotate": 0.0,
+                "uvScale": [
+                    1.0,
+                    1.0
+                ],
+                "uvTranslate": [
+                    0.0,
+                    0.0
+                ]
+            }
+        ],
+        "Transform": [
+            {
+                "rotate": [
+                    -0.0,
+                    0.0,
+                    -0.0,
+                    1.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "translate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        ]
+    },
+    "Name": "PlayerShockWave",
+    "Systems": [
+        {
+            "SystemCategory": 7,
+            "SystemName": "DistortionEffect"
+        },
+        {
+            "SystemCategory": 5,
+            "SystemName": "EffectOnPlayerGearup"
+        }
+    ],
+    "isUnique": false
+}

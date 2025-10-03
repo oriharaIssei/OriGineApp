@@ -11,15 +11,26 @@
 
 // application component
 #include "component/Button.h"
+#include "component/ButtonGroup.h"
 #include "component/cameraController/CameraController.h"
 #include "component/Player/PlayerInput.h"
 #include "component/Player/PlayerStatus.h"
+#include "component/Player/State/PlayerState.h"
 #include "component/SceneChanger.h"
-#include "component/Stage.h"
+#include "component/Stage/Stage.h"
+#include "component/Stage/StageFloor.h"
+#include "component/Stage/StageWall.h"
+#include "component/TimerComponent.h"
 
 // application system
 #include "system/collision/PlayerOnCollision.h"
+#include "system/collision/TutorialColliderOnCollision.h"
 #include "system/effect/EffectOnPlayerGearup.h"
+#include "system/effect/EffectOnPlayerRun.h"
+#include "system/effect/TimerForSprite.h"
+#include "system/Initialize/CreateSpriteFromTimer.h"
+#include "system/Initialize/CreateStage.h"
+#include "system/Initialize/GetClearTime.h"
 #include "system/Initialize/SettingGameCameraTarget.h"
 #include "system/Initialize/TakePlayerToStartPosition.h"
 #include "system/Input/ButtonInputSystem.h"
@@ -28,11 +39,21 @@
 #include "system/Movement/BillboardTransform.h"
 #include "system/Movement/FollowCameraUpdateSystem.h"
 #include "system/Movement/PlayerMoveSystem.h"
+#include "system/Movement/UpdateCameraForward.h"
+#include "system/render/StageDebugRender.h"
+#include "system/Transition/ButtonGroupSystem.h"
 #include "system/Transition/ChangeSceneByButton.h"
 #include "system/Transition/FallDetectionSystem.h"
 #include "system/Transition/SceneTransition.h"
+#include "system/Transition/SetClearTime.h"
+#include "system/Transition/TimeLimitJudgeSystem.h"
+#include "system/Transition/TimerCountDown.h"
 #include "system/Transition/TransitionPlayerState.h"
 #include "system/Transition/UpdateButtonColorByState.h"
+
+#ifndef _RELEASE
+#include "system/Transition/StageReloadSystem.h"
+#endif // _RELEASE
 
 //
 // / =====================================================
@@ -51,8 +72,15 @@ void RegisterUsingComponents() {
 
     componentRegistry->registerComponent<Audio>();
 
+    componentRegistry->registerComponent<EntityReferenceList>();
+    componentRegistry->registerComponent<SubScene>();
+
     componentRegistry->registerComponent<CameraTransform>();
     componentRegistry->registerComponent<Transform>();
+
+    componentRegistry->registerComponent<Stage>();
+    componentRegistry->registerComponent<StageFloor>();
+    componentRegistry->registerComponent<StageWall>();
 
     componentRegistry->registerComponent<DirectionalLight>();
     componentRegistry->registerComponent<PointLight>();
@@ -64,16 +92,19 @@ void RegisterUsingComponents() {
     componentRegistry->registerComponent<SpriteAnimation>();
 
     componentRegistry->registerComponent<AABBCollider>();
+    componentRegistry->registerComponent<OBBCollider>();
     componentRegistry->registerComponent<SphereCollider>();
     componentRegistry->registerComponent<CollisionPushBackInfo>();
     componentRegistry->registerComponent<Rigidbody>();
 
     componentRegistry->registerComponent<Emitter>();
+    componentRegistry->registerComponent<GpuParticleEmitter>();
     componentRegistry->registerComponent<DissolveEffectParam>();
     componentRegistry->registerComponent<DistortionEffectParam>();
     componentRegistry->registerComponent<RadialBlurParam>();
     componentRegistry->registerComponent<RandomEffectParam>();
     componentRegistry->registerComponent<VignetteParam>();
+    componentRegistry->registerComponent<SpeedlineEffectParam>();
     componentRegistry->registerComponent<TextureEffectParam>();
 
     componentRegistry->registerComponent<ModelMeshRenderer>();
@@ -85,12 +116,17 @@ void RegisterUsingComponents() {
     componentRegistry->registerComponent<SkyboxRenderer>();
     componentRegistry->registerComponent<SpriteRenderer>();
 
+    componentRegistry->registerComponent<TimerComponent>();
+    componentRegistry->registerComponent<TimerForSpriteComponent>();
+
     componentRegistry->registerComponent<CameraController>();
 
     componentRegistry->registerComponent<PlayerInput>();
     componentRegistry->registerComponent<PlayerStatus>();
+    componentRegistry->registerComponent<PlayerState>();
 
     componentRegistry->registerComponent<Button>();
+    componentRegistry->registerComponent<ButtonGroup>();
     componentRegistry->registerComponent<SceneChanger>();
 }
 
@@ -102,6 +138,11 @@ void RegisterUsingSystems() {
     /// ====================================================================================================
     systemRegistry->registerSystem<SettingGameCameraTarget>();
     systemRegistry->registerSystem<TakePlayerToStartPosition>();
+    systemRegistry->registerSystem<GpuParticleInitialize>();
+    systemRegistry->registerSystem<CreateStage>();
+    systemRegistry->registerSystem<ResolveEntityReferences>();
+    systemRegistry->registerSystem<CreateSpriteFromTimer>();
+    systemRegistry->registerSystem<GetClearTime>();
 
     /// ===================================================================================================
     // Input
@@ -118,16 +159,25 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<SceneTransition>();
     systemRegistry->registerSystem<TransitionPlayerState>();
     systemRegistry->registerSystem<UpdateButtonColorByState>();
+    systemRegistry->registerSystem<ButtonGroupSystem>();
+    systemRegistry->registerSystem<TimerCountDown>();
+    systemRegistry->registerSystem<TimeLimitJudgeSystem>();
+    systemRegistry->registerSystem<SetClearTime>();
+
+#ifndef _RELEASE
+    systemRegistry->registerSystem<StageReloadSystem>();
+#endif // _RELEASE
 
     /// =================================================================================================
     // Movement
     /// =================================================================================================
     systemRegistry->registerSystem<MoveSystemByRigidBody>();
+    systemRegistry->registerSystem<SubSceneUpdate>();
 
     systemRegistry->registerSystem<BillboardTransform>();
     systemRegistry->registerSystem<FollowCameraUpdateSystem>();
     systemRegistry->registerSystem<PlayerMoveSystem>();
-
+    systemRegistry->registerSystem<UpdateCameraForward>();
 
     /// =================================================================================================
     // Collision
@@ -136,6 +186,7 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<CollisionPushBackSystem>();
 
     systemRegistry->registerSystem<PlayerOnCollision>();
+    systemRegistry->registerSystem<TutorialColliderOnCollision>();
 
     /// =================================================================================================
     // Effect
@@ -145,8 +196,10 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<TextureEffectAnimation>();
     systemRegistry->registerSystem<SkinningAnimationSystem>();
     systemRegistry->registerSystem<SpriteAnimationSystem>();
+    systemRegistry->registerSystem<GpuParticleEmitterWorkSystem>();
 
     systemRegistry->registerSystem<EffectOnPlayerGearup>();
+    systemRegistry->registerSystem<EffectOnPlayerRun>();
 
     /// =================================================================================================
     // Render
@@ -159,9 +212,15 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<SkinningMeshRenderSystem>();
     systemRegistry->registerSystem<EffectTexturedMeshRenderSystem>();
     systemRegistry->registerSystem<LineRenderSystem>();
+    systemRegistry->registerSystem<GpuParticleRenderSystem>();
+
+    systemRegistry->registerSystem<TimerForSprite>();
 
     systemRegistry->registerSystem<SkeletonRenderSystem>();
     systemRegistry->registerSystem<ColliderRenderingSystem>();
+    systemRegistry->registerSystem<VelocityRenderingSystem>();
+
+    systemRegistry->registerSystem<StageDebugRender>();
 
     /// =================================================================================================
     // PostRender
@@ -173,5 +232,6 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<DissolveEffect>();
     systemRegistry->registerSystem<RandomEffect>();
     systemRegistry->registerSystem<RadialBlurEffect>();
-
+    systemRegistry->registerSystem<SubSceneRender>();
+    systemRegistry->registerSystem<SpeedlineEffect>();
 }

@@ -85,18 +85,18 @@ void Button::Initialize(GameEntity* /*_entity*/) {}
 
 void Button::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
-    std::string label = "Button Colors##" + _parentLabel;
+    std::string label = "Button Colors" + _parentLabel;
     if (ImGui::TreeNode(label.c_str())) {
-        ColorEditGuiCommand("Normal Color##" + _parentLabel, normalColor_);
-        ColorEditGuiCommand("Hover Color##" + _parentLabel, hoverColor_);
-        ColorEditGuiCommand("Press Color##" + _parentLabel, pressColor_);
-        ColorEditGuiCommand("Release Color##" + _parentLabel, releaseColor_);
+        ColorEditGuiCommand("Normal Color" + _parentLabel, normalColor_);
+        ColorEditGuiCommand("Hover Color" + _parentLabel, hoverColor_);
+        ColorEditGuiCommand("Press Color" + _parentLabel, pressColor_);
+        ColorEditGuiCommand("Release Color" + _parentLabel, releaseColor_);
 
         ImGui::TreePop();
     }
 
     // key
-    label = "Shortcut Key##" + _parentLabel;
+    label = "Shortcut Key" + _parentLabel;
     if (ImGui::TreeNode(label.c_str())) {
         // key
         ImGui::Text("Key");
@@ -123,7 +123,7 @@ void Button::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_unused]] c
             ImGui::PopID();
         }
         // add
-        label = "Add Key##" + _parentLabel;
+        label = "Add Key" + _parentLabel;
         if (ImGui::Button(label.c_str())) {
             auto command = std::make_unique<AddElementCommand<std::vector<Key>>>(&shortcutKey_, Key::ESCAPE);
             EditorController::getInstance()->pushCommand(std::move(command));
@@ -131,7 +131,7 @@ void Button::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_unused]] c
         }
         ImGui::SameLine();
         // remove
-        label = "Remove Key##" + _parentLabel;
+        label = "Remove Key" + _parentLabel;
         if (ImGui::Button(label.c_str())) {
             if (shortcutKey_.size() > 0) {
                 auto command = std::make_unique<EraseElementCommand<std::vector<Key>>>(&shortcutKey_, shortcutKey_.end() - 1);
@@ -143,7 +143,7 @@ void Button::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_unused]] c
     }
 
     // pad button
-    label = "Shortcut PadButton##" + _parentLabel;
+    label = "Shortcut PadButton" + _parentLabel;
     if (ImGui::TreeNode(label.c_str())) {
         // pad button
         ImGui::Text("PadButton");
@@ -170,7 +170,7 @@ void Button::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_unused]] c
             ImGui::PopID();
         }
         // add
-        label = "Add PadButton##" + _parentLabel;
+        label = "Add PadButton" + _parentLabel;
         if (ImGui::Button(label.c_str())) {
             auto command = std::make_unique<AddElementCommand<std::vector<PadButton>>>(&shortcutPadButton_, PadButton::UP);
             EditorController::getInstance()->pushCommand(std::move(command));
@@ -178,7 +178,7 @@ void Button::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_unused]] c
         }
         ImGui::SameLine();
         // remove
-        label = "Remove PadButton##" + _parentLabel;
+        label = "Remove PadButton" + _parentLabel;
         if (ImGui::Button(label.c_str())) {
             if (shortcutPadButton_.size() > 0) {
                 auto command = std::make_unique<EraseElementCommand<std::vector<PadButton>>>(&shortcutPadButton_, shortcutPadButton_.end() - 1);

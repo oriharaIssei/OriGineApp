@@ -1,0 +1,106 @@
+{
+    "Components": {
+        "DissolveEffectParam": [
+            {
+                "edgeWidth": 0.00800000037997961,
+                "isActive": false,
+                "outLineColor": [
+                    0.1314782202243805,
+                    0.6885846257209778,
+                    0.8902953863143921,
+                    1.0
+                ],
+                "textureFilePath": "./application/resource/Texture/waveNoise.png",
+                "threshold": 0.0,
+                "uvRotate": 0.0,
+                "uvScale": [
+                    0.6700000166893005,
+                    0.5799999833106995
+                ],
+                "uvTranslate": [
+                    0.0,
+                    0.0
+                ]
+            }
+        ],
+        "SceneChanger": [
+            {
+                "nextSceneName": "Result"
+            }
+        ],
+        "TimerComponent": [
+            {
+                "isStarted": true,
+                "maxTime": 120.0
+            }
+        ],
+        "TimerForSpriteComponent": [
+            {
+                "anchorOnWindow": [
+                    0.5199999809265137,
+                    0.11999999731779099
+                ],
+                "digitDecimalForSprite": 2,
+                "digitForSprite": 5,
+                "digitIntegerForSprite": 3,
+                "marginBetweenIntegerAndDecimal": [
+                    0.0,
+                    10.0
+                ],
+                "numbersTexturePath": "./application/resource/Texture//timerNumbers.png",
+                "offset": [
+                    0.5,
+                    0.5
+                ],
+                "spriteMarginDecimal": [
+                    0.0,
+                    0.0
+                ],
+                "spriteMarginInteger": [
+                    0.0,
+                    0.0
+                ],
+                "spriteSizeDecimal": [
+                    32.0,
+                    32.0
+                ],
+                "spriteSizeInteger": [
+                    52.0,
+                    52.0
+                ]
+            }
+        ]
+    },
+    "Name": "Timer",
+    "Systems": [
+        {
+            "SystemCategory": 2,
+            "SystemName": "TimeLimitJudgeSystem"
+        },
+        {
+            "SystemCategory": 2,
+            "SystemName": "SetClearTime"
+        },
+        {
+            "SystemCategory": 0,
+            "SystemName": "CreateSpriteFromTimer"
+        },
+        {
+            "SystemCategory": 7,
+            "SystemName": "DissolveEffect"
+        },
+        {
+            "SystemCategory": 2,
+            "SystemName": "SceneTransition"
+        },
+        {
+            "SystemCategory": 2,
+            "SystemName": "TimerCountDown"
+        },
+        {
+            "SystemCategory": 5,
+            "SystemName": "TimerForSprite"
+        }
+    ],
+    "isUnique": false
+}

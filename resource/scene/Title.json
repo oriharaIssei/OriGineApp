@@ -1,4 +1,14 @@
 {
+    "CategoryActivity": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+    ],
     "Entities": [
         {
             "Components": {
@@ -69,7 +79,7 @@
                 ],
                 "SceneChanger": [
                     {
-                        "nextSceneName": "Game"
+                        "nextSceneName": "StageSelect"
                     }
                 ],
                 "SpriteRenderer": [
@@ -86,6 +96,7 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
+                        "isRender": true,
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
@@ -124,28 +135,28 @@
             "Name": "TitleBar",
             "Systems": [
                 {
-                    "SystemName": "ButtonInputSystem",
-                    "SystemCategory": 1
+                    "SystemCategory": 2,
+                    "SystemName": "ChangeSceneByButton"
                 },
                 {
-                    "SystemName": "ChangeSceneByButton",
-                    "SystemCategory": 2
+                    "SystemCategory": 1,
+                    "SystemName": "ButtonInputSystem"
                 },
                 {
-                    "SystemName": "SceneTransition",
-                    "SystemCategory": 2
+                    "SystemCategory": 7,
+                    "SystemName": "DissolveEffect"
                 },
                 {
-                    "SystemName": "UpdateButtonColorByState",
-                    "SystemCategory": 2
+                    "SystemCategory": 2,
+                    "SystemName": "SceneTransition"
                 },
                 {
-                    "SystemName": "SpriteRenderSystem",
-                    "SystemCategory": 6
+                    "SystemCategory": 6,
+                    "SystemName": "SpriteRenderSystem"
                 },
                 {
-                    "SystemName": "DissolveEffect",
-                    "SystemCategory": 7
+                    "SystemCategory": 2,
+                    "SystemName": "UpdateButtonColorByState"
                 }
             ],
             "isUnique": false
@@ -196,6 +207,7 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
+                        "isRender": true,
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
@@ -234,40 +246,16 @@
             "Name": "ButtonSprite",
             "Systems": [
                 {
-                    "SystemName": "ButtonInputSystem",
-                    "SystemCategory": 1
+                    "SystemCategory": 1,
+                    "SystemName": "ButtonInputSystem"
                 },
                 {
-                    "SystemName": "UpdateButtonColorByState",
-                    "SystemCategory": 2
+                    "SystemCategory": 6,
+                    "SystemName": "SpriteRenderSystem"
                 },
                 {
-                    "SystemName": "SpriteRenderSystem",
-                    "SystemCategory": 6
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "VignetteParam": [
-                    {
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "vignettePow": 0.009999999776482582,
-                        "vignetteScale": 180.0
-                    }
-                ]
-            },
-            "Name": "Vignette",
-            "Systems": [
-                {
-                    "SystemName": "VignetteEffect",
-                    "SystemCategory": 7
+                    "SystemCategory": 2,
+                    "SystemName": "UpdateButtonColorByState"
                 }
             ],
             "isUnique": false
@@ -284,8 +272,8 @@
             "Name": "Random",
             "Systems": [
                 {
-                    "SystemName": "RandomEffect",
-                    "SystemCategory": 7
+                    "SystemCategory": 7,
+                    "SystemName": "RandomEffect"
                 }
             ],
             "isUnique": false
@@ -319,8 +307,8 @@
             "Name": "EnterScene",
             "Systems": [
                 {
-                    "SystemName": "DissolveEffect",
-                    "SystemCategory": 7
+                    "SystemCategory": 7,
+                    "SystemName": "DissolveEffect"
                 }
             ],
             "isUnique": true
@@ -328,107 +316,77 @@
     ],
     "Systems": [
         {
-            "CreateSpriteFromTimer": {
-                "Priority": 0
+            "BillboardTransform": {
+                "Priority": 100
             },
-            "SettingGameCameraTarget": {
-                "Priority": 5
-            },
-            "TakePlayerToStartPosition": {
-                "Priority": 3
-            }
-        },
-        {
             "ButtonInputSystem": {
                 "Priority": 0
             },
             "CameraInputSystem": {
                 "Priority": 1
             },
-            "PlayerInputSystem": {
-                "Priority": 0
-            }
-        },
-        {
             "ChangeSceneByButton": {
                 "Priority": 1
             },
-            "FallDetectionSystem": {
-                "Priority": 4
-            },
-            "SceneTransition": {
+            "ColliderRenderingSystem": {
                 "Priority": 0
             },
-            "TimerCountDown": {
-                "Priority": 0
-            },
-            "TransitionPlayerState": {
-                "Priority": 5
-            },
-            "UpdateButtonColorByState": {
-                "Priority": 0
-            }
-        },
-        {
-            "BillboardTransform": {
-                "Priority": 100
-            },
-            "FollowCameraUpdateSystem": {
-                "Priority": 0
-            },
-            "MoveSystemByRigidBody": {
-                "Priority": 10
-            },
-            "PlayerMoveSystem": {
-                "Priority": 3
-            }
-        },
-        {
             "CollisionCheckSystem": {
                 "Priority": 0
             },
             "CollisionPushBackSystem": {
                 "Priority": 5
             },
-            "PlayerOnCollision": {
+            "DissolveEffect": {
                 "Priority": 10
-            }
-        },
-        {
-            "CameraActionSystem": {
-                "Priority": 1
             },
             "EffectOnPlayerGearup": {
-                "Priority": 0
-            },
-            "EmitterWorkSystem": {
-                "Priority": 1
-            },
-            "PrimitiveNodeAnimationWorkSystem": {
-                "Priority": 1
-            },
-            "SkinningAnimationSystem": {
-                "Priority": 0
-            },
-            "TextureEffectAnimation": {
-                "Priority": 2
-            },
-            "TimerForSprite": {
-                "Priority": 0
-            }
-        },
-        {
-            "ColliderRenderingSystem": {
                 "Priority": 0
             },
             "EffectTexturedMeshRenderSystem": {
                 "Priority": 0
             },
+            "EmitterWorkSystem": {
+                "Priority": 1
+            },
+            "FallDetectionSystem": {
+                "Priority": 4
+            },
+            "FollowCameraUpdateSystem": {
+                "Priority": 0
+            },
             "LineRenderSystem": {
                 "Priority": 0
             },
+            "MoveSystemByRigidBody": {
+                "Priority": 10
+            },
             "ParticleRenderSystem": {
                 "Priority": 3
+            },
+            "PlayerInputSystem": {
+                "Priority": 0
+            },
+            "PlayerMoveSystem": {
+                "Priority": 3
+            },
+            "PlayerOnCollision": {
+                "Priority": 10
+            },
+            "PrimitiveNodeAnimationWorkSystem": {
+                "Priority": 1
+            },
+            "RandomEffect": {
+                "Priority": 0
+            },
+            "SceneTransition": {
+                "Priority": 0
+            },
+            "SettingGameCameraTarget": {
+                "Priority": 5
+            },
+            "SkinningAnimationSystem": {
+                "Priority": 0
             },
             "SkinningMeshRenderSystem": {
                 "Priority": 0
@@ -439,25 +397,20 @@
             "SpriteRenderSystem": {
                 "Priority": 5
             },
+            "TakePlayerToStartPosition": {
+                "Priority": 3
+            },
+            "TextureEffectAnimation": {
+                "Priority": 2
+            },
             "TexturedMeshRenderSystem": {
                 "Priority": 0
-            }
-        },
-        {
-            "DissolveEffect": {
-                "Priority": 10
             },
-            "DistortionEffect": {
-                "Priority": 1
+            "TransitionPlayerState": {
+                "Priority": 5
             },
-            "RandomEffect": {
+            "UpdateButtonColorByState": {
                 "Priority": 0
-            },
-            "SmoothingEffect": {
-                "Priority": 0
-            },
-            "VignetteEffect": {
-                "Priority": 10
             }
         }
     ]

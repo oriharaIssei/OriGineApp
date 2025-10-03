@@ -9,9 +9,8 @@ void PlayerInput::Initialize(GameEntity* /* _entity*/) {
 }
 
 void PlayerInput::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
-
 #ifdef _DEBUG
-    DragGuiCommand("MaxJumpInputTime##" + _parentLabel, maxJumpTime_, 0.01f, 0.01f);
+    DragGuiCommand("MaxJumpInputTime" + _parentLabel, maxJumpTime_, 0.01f, 0.01f);
 #endif // _DEBUG
 }
 

@@ -9,7 +9,8 @@
 
 /// component
 #include "component/Player/PlayerInput.h"
-#include "component/Player/PlayerStatus.h"
+#include "component/Player/State/PlayerState.h"
+
 
 void PlayerInputSystem::Initialize() {
     input_ = Input::getInstance();
@@ -21,7 +22,7 @@ void PlayerInputSystem::Finalize() {
 
 void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
     PlayerInput* playerInput   = getComponent<PlayerInput>(_entity);
-    PlayerStatus* playerStatus = getComponent<PlayerStatus>(_entity);
+    PlayerState* state = getComponent<PlayerState>(_entity);
 
     // ゲームパッドか,キーボード 片方だけ 入力
     if (input_->isPadActive()) {
@@ -34,7 +35,7 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
         // ジャンプボタンが離されたら JumpInput を false にする
         if (playerInput->isJumpInput()) {
             // ジャンプ状態でない場合は、ジャンプ入力を継続しない
-            if (playerStatus->getState() != PlayerMoveState::JUMP) {
+            if (state->getStateEnum() != PlayerMoveState::JUMP) {
                 playerInput->setJumpInput(false);
                 playerInput->setJumpInputTime(0.0f);
 
@@ -105,7 +106,7 @@ void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
         // ジャンプ
         if (playerInput->isJumpInput()) {
             // ジャンプ状態でない場合は、ジャンプ入力を継続しない
-            if (playerStatus->getState() != PlayerMoveState::JUMP) {
+            if (state->getStateEnum() != PlayerMoveState::JUMP) {
                 playerInput->setJumpInput(false);
                 playerInput->setJumpInputTime(0.0f);
 
