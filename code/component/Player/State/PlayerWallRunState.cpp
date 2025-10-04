@@ -73,6 +73,20 @@ void PlayerWallRunState::Initialize() {
     // 壁との衝突判定の残り時間を初期化
     separationLeftTime_ = separationGraceTime_;
 
+    // forward, right, up から回転を作る
+    Vec3f forward    = direction;
+    Vec3f right      = forward.cross(wallNormal_).normalize();
+    Vec3f up         = right.cross(forward).normalize();
+    Matrix4x4 rotMat = {
+        right[X], right[Y], right[Z], 0.f,
+        up[X], up[Y], up[Z], 0.f,
+        forward[X], forward[Y], forward[Z], 0.f,
+        0.f, 0.f, 0.f, 1.f};
+
+    Quaternion rot    = rotMat.decomposeMatrixToQuaternion().normalize();
+    transform->rotate = rot;
+    transform->UpdateMatrix();
+
     // 壁を登るタイマーをリセット
     climbTimer_ = 0.0f;
 }
@@ -88,7 +102,10 @@ void PlayerWallRunState::Update(float _deltaTime) {
     climbTimer_ = std::min(climbTimer_, climbTime_);
     float t     = climbTimer_ / climbTime_;
 
+    // 段々上に行く
     transform->translate[Y] = std::lerp(currentHeight_, wallRunHeight_, t);
+    // 衝突が途切れないようにめり込ませる
+    transform->translate[X] -= wallNormal_[X] * 0.1f;
     transform->UpdateMatrix();
 
     if (state->isCollisionWithWall()) {
@@ -101,7 +118,10 @@ void PlayerWallRunState::Update(float _deltaTime) {
 void PlayerWallRunState::Finalize() {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
     auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
+    auto* transform    = scene_->getComponent<Transform>(playerEntity);
     rigidbody->setUseGravity(true); // 重力を有効
+
+    transform->rotate = Quaternion::Identity();
 }
 
 PlayerMoveState PlayerWallRunState::TransitionState() const {
