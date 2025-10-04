@@ -6,7 +6,7 @@
 
 /// app
 // component
-#include "component/cameraController/CameraController.h"
+#include "component/Camera/CameraController.h"
 
 void SettingGameCameraTarget::Initialize() {
 }

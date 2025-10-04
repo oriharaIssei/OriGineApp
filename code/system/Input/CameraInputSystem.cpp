@@ -8,7 +8,7 @@
 #define DELTA_TIME
 #include "EngineInclude.h"
 // component
-#include "component/cameraController/CameraController.h"
+#include "component/Camera/CameraController.h"
 // lib
 #include "input/Input.h"
 

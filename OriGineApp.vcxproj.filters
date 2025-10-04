@@ -96,7 +96,7 @@
     <ClInclude Include="code\component\TimerComponent.h">
       <Filter>component</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\cameraController\CameraController.h">
+    <ClInclude Include="code\component\Camera\CameraController.h">
       <Filter>component\cameraController</Filter>
     </ClInclude>
     <ClInclude Include="code\editor\StageEditor.h">
@@ -235,7 +235,7 @@
     <ClCompile Include="code\component\TimerComponent.cpp">
       <Filter>component</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\cameraController\CameraController.cpp">
+    <ClCompile Include="code\component\Camera\CameraController.cpp">
       <Filter>component\cameraController</Filter>
     </ClCompile>
     <ClCompile Include="code\editor\StageEditor.cpp">

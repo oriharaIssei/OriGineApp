@@ -171,16 +171,17 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
         BoxRenderer renderer;
         Vec3f size = max - min;
         renderer.getPrimitive().setSize(size);
+        renderer.setMaterialIndex(0);
         addComponent<BoxRenderer>(createdEntity, renderer);
 
         ///==========================================
         // Material
         ///==========================================
         Material material                = {};
-        material.shininess_                      = 50.f;
-        material.enableLighting_                 = true;
-        material.environmentCoefficient_         = 0.05f;
-        addComponent<Material>(createdEntity, material);
+        material.shininess_              = 50.f;
+        material.enableLighting_         = true;
+        material.environmentCoefficient_ = 0.05f;
+        addComponent<Material>(createdEntity, material, false);
 
         ///==========================================
         // CollisionPushBackInfo

@@ -13,4 +13,9 @@ public:
     void Update(float _deltaTime) override;
     void Finalize() override;
     PlayerMoveState TransitionState() const override;
+
+private:
+    const int32_t kThresholdGearLevelOfCameraOffset_ = 2;
+    const float kCameraOffsetLerpTime_               = 0.6f;
+    float cameraOffsetLerpTimer_                     = 0.0f;
 };

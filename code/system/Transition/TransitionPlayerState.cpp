@@ -20,7 +20,7 @@
 #include "component/Player/State/PlayerWallRunState.h"
 #include "component/Player/State/PlayerWallJumpState.h"
 
-#include "component/cameraController/CameraController.h"
+#include "component/Camera/CameraController.h"
 #include "component/transform/CameraTransform.h"
 
 void TransitionPlayerState::UpdateEntity(GameEntity* _entity) {

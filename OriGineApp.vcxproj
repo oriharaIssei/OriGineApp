@@ -159,7 +159,7 @@
     <ClInclude Include="code\component\Stage\StageFloor.h" />
     <ClInclude Include="code\component\Stage\StageWall.h" />
     <ClInclude Include="code\component\TimerComponent.h" />
-    <ClInclude Include="code\component\cameraController\CameraController.h" />
+    <ClInclude Include="code\component\Camera\CameraController.h" />
     <ClInclude Include="code\editor\StageEditor.h" />
     <ClInclude Include="code\system\Initialize\CreateSpriteFromTimer.h" />
     <ClInclude Include="code\system\Initialize\CreateStage.h" />
@@ -212,7 +212,7 @@
     <ClCompile Include="code\component\Stage\StageFloor.cpp" />
     <ClCompile Include="code\component\Stage\StageWall.cpp" />
     <ClCompile Include="code\component\TimerComponent.cpp" />
-    <ClCompile Include="code\component\cameraController\CameraController.cpp" />
+    <ClCompile Include="code\component\Camera\CameraController.cpp" />
     <ClCompile Include="code\editor\StageEditor.cpp" />
     <ClCompile Include="code\main.cpp" />
     <ClCompile Include="code\system\Initialize\CreateSpriteFromTimer.cpp" />

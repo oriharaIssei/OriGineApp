@@ -12,7 +12,7 @@
 // application component
 #include "component/Button.h"
 #include "component/ButtonGroup.h"
-#include "component/cameraController/CameraController.h"
+#include "component/Camera/CameraController.h"
 #include "component/Player/PlayerInput.h"
 #include "component/Player/PlayerStatus.h"
 #include "component/Player/State/PlayerState.h"

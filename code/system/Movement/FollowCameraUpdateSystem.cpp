@@ -5,7 +5,7 @@
 #include "camera/CameraManager.h"
 #include "EngineInclude.h"
 // component
-#include "component/cameraController/CameraController.h"
+#include "component/Camera/CameraController.h"
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
 
@@ -13,11 +13,9 @@
 #include <algorithm>
 #include <numbers>
 
-void FollowCameraUpdateSystem::Initialize() {
-}
+void FollowCameraUpdateSystem::Initialize() {}
 
-void FollowCameraUpdateSystem::Finalize() {
-}
+void FollowCameraUpdateSystem::Finalize() {}
 
 void FollowCameraUpdateSystem::UpdateEntity(GameEntity* _entity) {
     CameraController* cameraController = getComponent<CameraController>(_entity);
@@ -27,17 +25,18 @@ void FollowCameraUpdateSystem::UpdateEntity(GameEntity* _entity) {
         // ============= interTarget ============= //
         Vec3f followTargetPosition = Vec3f(cameraController->getFollowTarget()->worldMat[3]);
 
-        Vec3f interTarget          = Vec3f();
-        interTarget = Lerp(
+        Vec3f interTarget = Vec3f();
+        interTarget       = Lerp(
             cameraController->getInterTarget(),
-            followTargetPosition + cameraController->getFollowTargetOffset(),
+            followTargetPosition + cameraController->getCurrentTargetOffset(),
             cameraController->getInterTargetInterpolation());
         cameraController->setInterTarget(interTarget);
 
         // ============= rotate ============= //
         // 角度からオフセットを回転
         Vec2f destinationAngleXY = cameraController->getDestinationAngleXY();
-        Vec3f followOffset       = cameraController->getFollowOffset();
+
+        Vec3f followOffset = cameraController->getCurrentOffset();
 
         // 回転行列を作成
         Matrix4x4 rotateMat = MakeMatrix::RotateX(destinationAngleXY[X]) * MakeMatrix::RotateY(destinationAngleXY[Y]);
