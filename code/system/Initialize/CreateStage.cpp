@@ -1,6 +1,5 @@
 #include "CreateStage.h"
 
-
 /// engine
 #define RESOURCE_DIRECTORY
 #include "Engine.h"
@@ -22,7 +21,7 @@
 #include "component/Stage/StageFloor.h"
 #include "component/Stage/StageWall.h"
 
-///math
+/// math
 #include <DirectXMath.h>
 
 void CreateStage::UpdateEntity(GameEntity* _entity) {
@@ -150,9 +149,9 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
             collider.setLocalHalfSize(halfSize);
 
             // forward, right, up から回転を作る
-            Vec3f forward = direction;
-            Vec3f right   = forward.cross(normal).normalize();
-            Vec3f up      = right.cross(forward).normalize();
+            Vec3f forward    = direction;
+            Vec3f right      = forward.cross(normal).normalize();
+            Vec3f up         = right.cross(forward).normalize();
             Matrix4x4 rotMat = {
                 right[X], right[Y], right[Z], 0.f,
                 up[X], up[Y], up[Z], 0.f,
@@ -172,13 +171,16 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
         BoxRenderer renderer;
         Vec3f size = max - min;
         renderer.getPrimitive().setSize(size);
-        Material rendererMaterial                = renderer.getMaterial();
-        rendererMaterial.shininess_              = 50.f;
-        rendererMaterial.enableLighting_         = true;
-        rendererMaterial.environmentCoefficient_ = 0.05f;
-        renderer.setMaterial(rendererMaterial);
-
         addComponent<BoxRenderer>(createdEntity, renderer);
+
+        ///==========================================
+        // Material
+        ///==========================================
+        Material material                = {};
+        material.shininess_                      = 50.f;
+        material.enableLighting_                 = true;
+        material.environmentCoefficient_         = 0.05f;
+        addComponent<Material>(createdEntity, material);
 
         ///==========================================
         // CollisionPushBackInfo

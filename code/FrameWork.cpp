@@ -82,6 +82,7 @@ void RegisterUsingComponents() {
     componentRegistry->registerComponent<StageFloor>();
     componentRegistry->registerComponent<StageWall>();
 
+    componentRegistry->registerComponent<Material>();
     componentRegistry->registerComponent<DirectionalLight>();
     componentRegistry->registerComponent<PointLight>();
     componentRegistry->registerComponent<SpotLight>();
@@ -90,6 +91,7 @@ void RegisterUsingComponents() {
     componentRegistry->registerComponent<PrimitiveNodeAnimation>();
     componentRegistry->registerComponent<SkinningAnimationComponent>();
     componentRegistry->registerComponent<SpriteAnimation>();
+    componentRegistry->registerComponent<MaterialAnimation>();
 
     componentRegistry->registerComponent<AABBCollider>();
     componentRegistry->registerComponent<OBBCollider>();
@@ -106,6 +108,7 @@ void RegisterUsingComponents() {
     componentRegistry->registerComponent<VignetteParam>();
     componentRegistry->registerComponent<SpeedlineEffectParam>();
     componentRegistry->registerComponent<TextureEffectParam>();
+    componentRegistry->registerComponent<MaterialEffectPipeLine>();
 
     componentRegistry->registerComponent<ModelMeshRenderer>();
     componentRegistry->registerComponent<LineRenderer>();
@@ -197,6 +200,8 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<SkinningAnimationSystem>();
     systemRegistry->registerSystem<SpriteAnimationSystem>();
     systemRegistry->registerSystem<GpuParticleEmitterWorkSystem>();
+    systemRegistry->registerSystem<MaterialAnimationWorkSystem>();
+    systemRegistry->registerSystem<MaterialEffect>();
 
     systemRegistry->registerSystem<EffectOnPlayerGearup>();
     systemRegistry->registerSystem<EffectOnPlayerRun>();
@@ -210,7 +215,6 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<ParticleRenderSystem>();
     systemRegistry->registerSystem<TexturedMeshRenderSystem>();
     systemRegistry->registerSystem<SkinningMeshRenderSystem>();
-    systemRegistry->registerSystem<EffectTexturedMeshRenderSystem>();
     systemRegistry->registerSystem<LineRenderSystem>();
     systemRegistry->registerSystem<GpuParticleRenderSystem>();
 
