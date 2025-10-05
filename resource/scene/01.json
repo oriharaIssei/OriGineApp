@@ -36,9 +36,9 @@
                                 1.0
                             ],
                             "translate": [
-                                2.0999999046325684,
-                                23.218496322631836,
-                                -12.681139945983887
+                                0.0,
+                                0.0,
+                                0.0
                             ]
                         }
                     }
@@ -277,6 +277,18 @@
                     "SystemName": "ResolveEntityReferences"
                 }
             ],
+            "isUnique": false
+        },
+        {
+            "Components": null,
+            "Name": "Entity",
+            "Systems": [],
+            "isUnique": false
+        },
+        {
+            "Components": null,
+            "Name": "Entity",
+            "Systems": [],
             "isUnique": false
         }
     ],

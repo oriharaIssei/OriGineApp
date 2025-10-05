@@ -16,6 +16,6 @@ public:
 
 private:
     const int32_t kThresholdGearLevelOfCameraOffset_ = 2;
-    const float kCameraOffsetLerpTime_               = 0.6f;
+    const float kCameraOffsetLerpTime_               = 1.3f;
     float cameraOffsetLerpTimer_                     = 0.0f;
 };

@@ -137,7 +137,7 @@ void PlayerStatus::UpdateAccel(PlayerInput* _input, Transform* _transform, Rigid
 
     // 移動速度の計算
     Vec3f movementDirection = Vec3f(0.f, 0.f, 1.f) * MakeMatrix::RotateQuaternion(_transform->rotate);
-    Vec3f accel             = movementDirection * (currentMaxSpeed_ * 2.f);
+    Vec3f accel             = movementDirection * (currentMaxSpeed_ * 4.f);
 
     _rigidbody->setAcceleration(X, accel[X]);
     _rigidbody->setAcceleration(Z, accel[Z]);

@@ -37,16 +37,17 @@ private:
     /// <summary>
     /// 注視点のOffset
     /// </summary>
-    Vec3f currentTargetOffset_ = {0.f, 0.f, 0.f};
-    Vec3f firstTargetOffset_   = {0.f, 0.f, 0.f};
-    Vec3f targetOffsetOnDash_  = {0.f, 0.f, 0.f};
+    Vec3f currentTargetOffset_   = {0.f, 0.f, 0.f};
+    Vec3f firstTargetOffset_     = {0.f, 0.f, 0.f};
+    Vec3f targetOffsetOnDash_    = {0.f, 0.f, 0.f};
+    Vec3f targetOffsetOnWallRun_ = Vec3f(0.f, 0.f, 0.f);
     /// <summary>
     /// 注視点との距離のOffset
     /// </summary>
+    Vec3f currentOffset_   = {0.f, 0.f, 0.f};
     Vec3f firstOffset_     = {0.f, 0.f, 0.f};
     Vec3f offsetOnDash_    = {0.f, 0.f, 0.f};
     Vec3f offsetOnWallRun_ = Vec3f(0.f, 0.f, 0.f);
-    Vec3f currentOffset_   = {0.f, 0.f, 0.f};
 
     Vec3f interTarget_              = {0.f, 0.f, 0.f};
     Vec2f destinationAngleXY_       = {0.0f, 0.0f};
@@ -64,11 +65,6 @@ private:
     float fovYRateCommonRate_ = 1.0f; // FovYの倍率の共通値
     float fixForForwardSpeed_ = 0.1f; // 正面方向への 補正速度
 
-    /// <summary>
-    /// 壁ジャンプ時に使用する変数郡
-    /// </summary>
-    Quaternion rotateOffsetOnWallRun_ = Quaternion::Identity();
-
 public:
     const Vec3f& getForward() const { return forward_; }
     void setForward(const Vec3f& forward) { forward_ = forward; }
@@ -85,6 +81,9 @@ public:
     const Vec3f& getTargetOffsetOnDash() const { return targetOffsetOnDash_; }
     void setTargetOffsetOnDash(const Vec3f& _offset) { targetOffsetOnDash_ = _offset; }
 
+    const Vec3f& getTargetOffsetOnWallRun() const { return targetOffsetOnWallRun_; }
+    void setTargetOffsetOnWallRun(const Vec3f& _offset) { targetOffsetOnWallRun_ = _offset; }
+
     const Vec3f& getCurrentOffset() const { return currentOffset_; }
     void setCurrentOffset(const Vec3f& offset) { currentOffset_ = offset; }
 
@@ -93,6 +92,9 @@ public:
 
     const Vec3f& getOffsetOnDash() const { return offsetOnDash_; }
     void setOffsetOnDash(const Vec3f& offset) { offsetOnDash_ = offset; }
+
+    const Vec3f& getOffsetOnWallRun() const { return offsetOnWallRun_; }
+    void setOffsetOnWallRun(const Vec3f& offset) { offsetOnWallRun_ = offset; }
 
     const Vec3f& getInterTarget() const { return interTarget_; }
     void setInterTarget(const Vec3f& target) { interTarget_ = target; }
@@ -126,7 +128,4 @@ public:
 
     float getFixForForwardSpeed() const { return fixForForwardSpeed_; }
     void setFixForForwardSpeed(float speed) { fixForForwardSpeed_ = speed; }
-
-    const Quaternion& getRotateOffsetOnWallRun() const { return rotateOffsetOnWallRun_; }
-    Vec3f getOffsetOnWallRun() const { return offsetOnWallRun_; }
 };

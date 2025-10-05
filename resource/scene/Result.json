@@ -119,6 +119,7 @@
                     {
                         "edgeWidth": 0.004999999888241291,
                         "isActive": true,
+                        "materialIndex": -1,
                         "outLineColor": [
                             0.01568627543747425,
                             0.7647058963775635,
@@ -126,16 +127,7 @@
                             1.0
                         ],
                         "textureFilePath": "./application/resource/Texture/bioNoise.png",
-                        "threshold": 0.0,
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
+                        "threshold": 0.0
                     }
                 ],
                 "SceneChanger": [
@@ -224,6 +216,7 @@
                     {
                         "edgeWidth": 0.10000000149011612,
                         "isActive": true,
+                        "materialIndex": -1,
                         "outLineColor": [
                             0.01687765121459961,
                             0.7635530233383179,
@@ -231,16 +224,7 @@
                             1.0
                         ],
                         "textureFilePath": "./application/resource/Texture/waveNoise.png",
-                        "threshold": 0.5,
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
+                        "threshold": 0.5
                     }
                 ]
             },

@@ -9,6 +9,8 @@
 #include "component/Player/PlayerInput.h"
 #include "component/Player/PlayerStatus.h"
 
+#include "component/Camera/CameraController.h"
+
 #include "component/Stage/Stage.h"
 #include "component/Stage/StageWall.h"
 
@@ -74,18 +76,11 @@ void PlayerWallRunState::Initialize() {
     separationLeftTime_ = separationGraceTime_;
 
     // forward, right, up から回転を作る
-    Vec3f forward    = direction;
-    Vec3f right      = forward.cross(wallNormal_).normalize();
-    Vec3f up         = right.cross(forward).normalize();
-    Matrix4x4 rotMat = {
-        right[X], right[Y], right[Z], 0.f,
-        up[X], up[Y], up[Z], 0.f,
-        forward[X], forward[Y], forward[Z], 0.f,
-        0.f, 0.f, 0.f, 1.f};
-
-    Quaternion rot    = rotMat.decomposeMatrixToQuaternion().normalize();
-    transform->rotate = rot;
+    float angle       = std::atan2(-wallNormal_[X], wallNormal_[Y]);
+    transform->rotate = Quaternion::RotateAxisAngle(axisZ, angle);
     transform->UpdateMatrix();
+
+    cameraRotateSigne_ = wallNormal_[X] < 0.0f ? -1.0f : 1.0f;
 
     // 壁を登るタイマーをリセット
     climbTimer_ = 0.0f;
@@ -112,6 +107,29 @@ void PlayerWallRunState::Update(float _deltaTime) {
         separationLeftTime_ = separationGraceTime_;
     } else {
         separationLeftTime_ -= _deltaTime; // 壁との衝突判定の残り時間を減少
+    }
+
+    /// TODO: カメラの処理をここに書くべきではない
+    // カメラの傾きを徐々に変える
+    CameraController* cameraController = scene_->getComponent<CameraController>(scene_->getUniqueEntity("GameCamera"));
+
+    if (cameraController) {
+        // カメラのオフセットを徐々に元に戻す
+        cameraAngleLerpTimer_ += _deltaTime;
+        float t = cameraAngleLerpTimer_ / kCameraAngleLerpTime_;
+        t       = std::clamp(t, 0.f, 1.f);
+
+        Vec3f targetOffset         = cameraController->getOffsetOnWallRun();
+        const Vec3f& currentOffset = cameraController->getCurrentOffset();
+        targetOffset[X] *= cameraRotateSigne_; // 壁の向きに合わせて左右反転
+        Vec3f newOffset = Lerp<3, float>(currentOffset, targetOffset, EaseOutCubic(t));
+        cameraController->setCurrentOffset(newOffset);
+
+        Vec3f targetTargetOffset         = cameraController->getTargetOffsetOnWallRun();
+        const Vec3f& currentTargetOffset = cameraController->getCurrentTargetOffset();
+        targetTargetOffset[X] *= cameraRotateSigne_; // 壁の向きに合わせて左右反転
+        Vec3f newTargetOffset = Lerp<3, float>(currentTargetOffset, targetTargetOffset, EaseOutCubic(t));
+        cameraController->setCurrentTargetOffset(newTargetOffset);
     }
 }
 

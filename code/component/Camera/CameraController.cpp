@@ -25,13 +25,20 @@ void CameraController::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_
     DragGuiCommand("Fix For Forward Speed##" + _parentLabel, fixForForwardSpeed_, 0.01f, 0.0f);
     DragGuiCommand("angleLimitY##" + _parentLabel, angleLimitY_, 0.01f, 0.00001f, std::numbers::pi_v<float> * 2.f, "%.3f");
 
-    DragGuiVectorCommand("FirstTargetOffset##" + _parentLabel, firstTargetOffset_, 0.01f);
-    DragGuiVectorCommand("TargetOffsetOnDash##" + _parentLabel, targetOffsetOnDash_, 0.01f);
+    std::string label = "Offset##" + _parentLabel;
+    if (ImGui::TreeNode(label.c_str())) {
+        DragGuiVectorCommand("FirstTargetOffset##" + _parentLabel, firstTargetOffset_, 0.01f);
+        DragGuiVectorCommand("TargetOffsetOnDash##" + _parentLabel, targetOffsetOnDash_, 0.01f);
+        DragGuiVectorCommand("TargetOffsetOnWallRun##" + _parentLabel, targetOffsetOnWallRun_, 0.01f);
 
-    DragGuiVectorCommand("firstOffset##" + _parentLabel, firstOffset_, 0.01f);
-    DragGuiVectorCommand("offsetOnDash##" + _parentLabel, offsetOnDash_, 0.01f);
-    DragGuiVectorCommand("offsetOnWallRun##" + _parentLabel, offsetOnWallRun_, 0.01f);
-    DragGuiVectorCommand("rotateOffsetOnWallRun##" + _parentLabel, rotateOffsetOnWallRun_, 0.01f);
+        ImGui::Spacing();
+
+        DragGuiVectorCommand("firstOffset##" + _parentLabel, firstOffset_, 0.01f);
+        DragGuiVectorCommand("offsetOnDash##" + _parentLabel, offsetOnDash_, 0.01f);
+        DragGuiVectorCommand("offsetOnWallRun##" + _parentLabel, offsetOnWallRun_, 0.01f);
+
+        ImGui::TreePop();
+    }
 
     ImGui::Spacing();
 
@@ -48,7 +55,7 @@ void CameraController::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_
 
     ImGui::Spacing();
 
-    std::string label = "Fov##" + _parentLabel;
+    label = "Fov##" + _parentLabel;
     if (ImGui::TreeNode(label.c_str())) {
         DragGuiCommand("fovYInterpolate" + _parentLabel, fovYInterpolate_, 0.001f, 0.0f, 1.0f);
         DragGuiCommand("baseFovY" + _parentLabel, baseFovY_, 0.01f);
@@ -91,9 +98,9 @@ void to_json(nlohmann::json& j, const CameraController& c) {
     j["firstOffset"]              = c.firstOffset_;
     j["offsetOnDash"]             = c.offsetOnDash_;
     j["offsetOnWallRun"]          = c.offsetOnWallRun_;
-    j["rotateOffsetOnWallRun"]    = c.rotateOffsetOnWallRun_;
     j["firstTargetOffset"]        = c.firstTargetOffset_;
     j["targetOffsetOnDash"]       = c.targetOffsetOnDash_;
+    j["targetOffsetOnWallRun"]    = c.targetOffsetOnWallRun_;
     j["rotateSpeedPadStick"]      = c.rotateSpeedPadStick_;
     j["rotateSpeedMouse"]         = c.rotateSpeedMouse_;
     j["rotateSensitivity"]        = c.rotateSensitivity_;
@@ -110,21 +117,15 @@ void to_json(nlohmann::json& j, const CameraController& c) {
 void from_json(const nlohmann::json& j, CameraController& c) {
     j.at("forward").get_to(c.forward_);
     j.at("angleLimitY").get_to(c.angleLimitY_);
-    if (j.contains("firstOffset")) {
-        j.at("firstOffset").get_to(c.firstOffset_);
-    }
-    if (j.contains("offsetOnDash")) {
-        j.at("offsetOnDash").get_to(c.offsetOnDash_);
-    }
-    if (j.contains("offsetOnWallRun")) {
-        j.at("offsetOnWallRun").get_to(c.offsetOnWallRun_);
-    }
-    if (j.contains("rotateOffsetOnWallRun")) {
-        j.at("rotateOffsetOnWallRun").get_to(c.rotateOffsetOnWallRun_);
-    }
+
+    j.at("firstOffset").get_to(c.firstOffset_);
+    j.at("offsetOnDash").get_to(c.offsetOnDash_);
+    j.at("offsetOnWallRun").get_to(c.offsetOnWallRun_);
 
     j.at("firstTargetOffset").get_to(c.firstTargetOffset_);
     j.at("targetOffsetOnDash").get_to(c.targetOffsetOnDash_);
+    j.at("targetOffsetOnWallRun").get_to(c.targetOffsetOnWallRun_);
+
     j.at("rotateSpeedPadStick").get_to(c.rotateSpeedPadStick_);
     j.at("rotateSpeedMouse").get_to(c.rotateSpeedMouse_);
     j.at("rotateSensitivity").get_to(c.rotateSensitivity_);

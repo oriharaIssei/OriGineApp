@@ -146,6 +146,7 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<ResolveEntityReferences>();
     systemRegistry->registerSystem<CreateSpriteFromTimer>();
     systemRegistry->registerSystem<GetClearTime>();
+    systemRegistry->registerSystem<CameraInitialize>();
 
     /// ===================================================================================================
     // Input

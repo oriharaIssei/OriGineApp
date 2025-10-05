@@ -25,4 +25,7 @@ protected:
     Vec3f velo_           = Vec3f(0.0f, 0.0f, 0.0f); // 壁ジャンプの方向
     float forcedJumpTime_ = 0.9f;
     float leftTime_       = 0.0f; // 壁ジャンプの残り時間
+
+    const float kCameraOffsetLerpTime_ = 0.4f;
+    float cameraOffsetLerpTimer_       = 0.0f;
 };

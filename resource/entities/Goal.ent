@@ -35,6 +35,15 @@
                     {
                         "time": 0.0,
                         "value": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
                             0.6203201413154602,
                             0.9367088675498962,
                             0.13042780756950378,
@@ -160,6 +169,14 @@
                     {
                         "time": 0.0,
                         "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
                             0.10000000149011612,
                             0.10000000149011612,
                             0.10000000149011612
@@ -258,6 +275,14 @@
                 "updateSettings": 4386,
                 "uvInterpolationType": 0,
                 "velocityCurve": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
                     {
                         "time": 0.0,
                         "value": [
@@ -454,10 +479,6 @@
         {
             "SystemCategory": 4,
             "SystemName": "CollisionCheckSystem"
-        },
-        {
-            "SystemCategory": 3,
-            "SystemName": "BillboardTransform"
         },
         {
             "SystemCategory": 5,
