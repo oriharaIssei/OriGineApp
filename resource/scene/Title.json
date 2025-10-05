@@ -57,7 +57,7 @@
                 "DissolveEffectParam": [
                     {
                         "edgeWidth": 0.004999999888241291,
-                        "isActive": true,
+                        "isActive": false,
                         "materialIndex": 0,
                         "outLineColor": [
                             0.01568627543747425,
@@ -282,7 +282,7 @@
             "Components": {
                 "DissolveEffectParam": [
                     {
-                        "edgeWidth": 0.0020000000949949026,
+                        "edgeWidth": 0.003000000026077032,
                         "isActive": false,
                         "materialIndex": 0,
                         "outLineColor": [
@@ -291,8 +291,8 @@
                             0.8059071898460388,
                             1.0
                         ],
-                        "textureFilePath": "./application/resource/Texture/waveNoise.png",
-                        "threshold": 0.0
+                        "textureFilePath": "./application/resource/Texture/bioNoise.png",
+                        "threshold": 1.0
                     }
                 ],
                 "Material": [
@@ -312,12 +312,12 @@
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
-                            1.0,
-                            1.0
+                            0.800000011920929,
+                            0.3700000047683716
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.0
+                            0.4300000071525574
                         ]
                     }
                 ]
@@ -385,7 +385,7 @@
                             1.0
                         ],
                         "uvTranslate": [
-                            0.3499999940395355,
+                            0.3199999928474426,
                             0.0
                         ]
                     }
@@ -570,8 +570,8 @@
                             1.0
                         ],
                         "uvTranslate": [
-                            -0.9169456362724304,
-                            0.9169456362724304
+                            -0.7796604633331299,
+                            0.7796604633331299
                         ]
                     }
                 ],

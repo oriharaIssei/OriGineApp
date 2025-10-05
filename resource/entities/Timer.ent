@@ -4,6 +4,7 @@
             {
                 "edgeWidth": 0.00800000037997961,
                 "isActive": false,
+                "materialIndex": 0,
                 "outLineColor": [
                     0.1314782202243805,
                     0.6885846257209778,
@@ -11,11 +12,28 @@
                     1.0
                 ],
                 "textureFilePath": "./application/resource/Texture/waveNoise.png",
-                "threshold": 0.0,
+                "threshold": 0.0
+            }
+        ],
+        "Material": [
+            {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "enableLighting": false,
+                "shininess": 0.0,
+                "specularColor": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
                 "uvRotate": 0.0,
                 "uvScale": [
-                    0.6700000166893005,
-                    0.5799999833106995
+                    1.0,
+                    1.0
                 ],
                 "uvTranslate": [
                     0.0,
@@ -31,7 +49,7 @@
         "TimerComponent": [
             {
                 "isStarted": true,
-                "maxTime": 120.0
+                "maxTime": 320.0
             }
         ],
         "TimerForSpriteComponent": [
@@ -78,10 +96,6 @@
             "SystemName": "TimeLimitJudgeSystem"
         },
         {
-            "SystemCategory": 2,
-            "SystemName": "SetClearTime"
-        },
-        {
             "SystemCategory": 0,
             "SystemName": "CreateSpriteFromTimer"
         },
@@ -102,5 +116,5 @@
             "SystemName": "TimerForSprite"
         }
     ],
-    "isUnique": false
+    "isUnique": true
 }

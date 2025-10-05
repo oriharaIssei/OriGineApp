@@ -221,9 +221,11 @@ void RegisterUsingSystems() {
 
     systemRegistry->registerSystem<TimerForSprite>();
 
+#ifndef _RELEASE
     systemRegistry->registerSystem<SkeletonRenderSystem>();
     systemRegistry->registerSystem<ColliderRenderingSystem>();
     systemRegistry->registerSystem<VelocityRenderingSystem>();
+#endif // _RELEASE
 
     systemRegistry->registerSystem<StageDebugRender>();
 

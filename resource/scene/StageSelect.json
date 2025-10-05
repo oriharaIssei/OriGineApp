@@ -97,15 +97,15 @@
                 "Button": [
                     {
                         "hoverColor": [
-                            0.7215189933776855,
-                            0.7215189933776855,
-                            0.7215189933776855,
+                            0.894514799118042,
+                            0.894514799118042,
+                            0.894514799118042,
                             1.0
                         ],
                         "normalColor": [
-                            0.34117648005485535,
-                            0.34117648005485535,
-                            0.34117648005485535,
+                            0.4135020971298218,
+                            0.4135020971298218,
+                            0.4135020971298218,
                             1.0
                         ],
                         "pressColor": [
@@ -250,15 +250,15 @@
                 "Button": [
                     {
                         "hoverColor": [
-                            0.800000011920929,
-                            0.800000011920929,
-                            0.800000011920929,
+                            0.8941176533699036,
+                            0.8941176533699036,
+                            0.8941176533699036,
                             1.0
                         ],
                         "normalColor": [
-                            0.3417721390724182,
-                            0.3417721390724182,
-                            0.3417721390724182,
+                            0.4117647111415863,
+                            0.4117647111415863,
+                            0.4117647111415863,
                             1.0
                         ],
                         "pressColor": [
@@ -403,7 +403,7 @@
                 "DissolveEffectParam": [
                     {
                         "edgeWidth": 0.00800000037997961,
-                        "isActive": true,
+                        "isActive": false,
                         "materialIndex": 0,
                         "outLineColor": [
                             0.30194589495658875,
@@ -457,9 +457,9 @@
                 "Material": [
                     {
                         "color": [
-                            1.0,
-                            1.0,
-                            1.0,
+                            0.04571918025612831,
+                            0.08931277692317963,
+                            0.10126584768295288,
                             1.0
                         ],
                         "enableLighting": false,
@@ -471,12 +471,12 @@
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
-                            0.8500000238418579,
-                            1.1299999952316284
+                            1.0,
+                            1.0
                         ],
                         "uvTranslate": [
-                            0.07000000029802322,
-                            -0.009999999776482582
+                            0.0,
+                            -0.019999999552965164
                         ]
                     }
                 ],
@@ -536,8 +536,8 @@
                         ],
                         "translate": [
                             0.0,
-                            0.0,
-                            1.4900000095367432
+                            -0.3100000023841858,
+                            1.25
                         ]
                     }
                 ]
@@ -559,8 +559,8 @@
             "Components": {
                 "DistortionEffectParam": [
                     {
-                        "distortionBias": 0.7699999809265137,
-                        "distortionStrength": 1.3700000047683716,
+                        "distortionBias": 0.5,
+                        "distortionStrength": 1.7100000381469727,
                         "isActive": true,
                         "materialIndex": 0,
                         "textuerPath": "./application/resource/Texture/waveNoise.png",
@@ -584,12 +584,12 @@
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
-                            0.17000000178813934,
-                            0.25
+                            0.75,
+                            0.5799999833106995
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.20005793869495392
+                            0.04157022759318352
                         ]
                     }
                 ],
@@ -597,7 +597,7 @@
                     {
                         "InterpolationType": 0,
                         "colorCurve": [],
-                        "duration": 8.0,
+                        "duration": 4.800000190734863,
                         "isLoop": true,
                         "isPlay": true,
                         "uvRotateCurve": [],
@@ -611,7 +611,7 @@
                                 ]
                             },
                             {
-                                "time": 8.0,
+                                "time": 4.800000190734863,
                                 "value": [
                                     0.0,
                                     1.0
@@ -668,38 +668,12 @@
                             1.0
                         ],
                         "uvTranslate": [
-                            0.2600554823875427,
+                            0.8379407525062561,
                             0.0
                         ]
                     }
                 ],
-                "MaterialAnimation": [
-                    {
-                        "InterpolationType": 0,
-                        "colorCurve": [],
-                        "duration": 6.0,
-                        "isLoop": true,
-                        "isPlay": true,
-                        "uvRotateCurve": [],
-                        "uvScaleCurve": [],
-                        "uvTranslateCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 6.0,
-                                "value": [
-                                    1.0,
-                                    0.0
-                                ]
-                            }
-                        ]
-                    }
-                ],
+                "MaterialAnimation": [],
                 "MaterialEffectPipeLine": [
                     {
                         "baseTexturePath": "./application/resource/Texture/gradationLine.png",
@@ -720,10 +694,6 @@
                 {
                     "SystemCategory": 5,
                     "SystemName": "MaterialEffect"
-                },
-                {
-                    "SystemCategory": 5,
-                    "SystemName": "MaterialAnimationWorkSystem"
                 }
             ],
             "isUnique": false

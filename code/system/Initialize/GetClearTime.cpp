@@ -20,4 +20,5 @@ void GetClearTime::UpdateEntity(GameEntity* _entity) {
     }
 
     timerComp->setMaxTime(Stage::getClearTime());
+    timerComp->setCurrentTime(Stage::getClearTime());
 }

@@ -116,8 +116,8 @@ void PlayerWallRunState::Update(float _deltaTime) {
     if (cameraController) {
         // カメラのオフセットを徐々に元に戻す
         cameraAngleLerpTimer_ += _deltaTime;
-        float t = cameraAngleLerpTimer_ / kCameraAngleLerpTime_;
-        t       = std::clamp(t, 0.f, 1.f);
+        t = cameraAngleLerpTimer_ / kCameraAngleLerpTime_;
+        t = std::clamp(t, 0.f, 1.f);
 
         Vec3f targetOffset         = cameraController->getOffsetOnWallRun();
         const Vec3f& currentOffset = cameraController->getCurrentOffset();

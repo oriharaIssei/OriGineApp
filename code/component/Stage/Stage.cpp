@@ -153,9 +153,11 @@ void Stage::LoadFile(const std::string& _directory, const std::string& _filename
 #endif // _RELEASE
 }
 
+#ifndef _RELEASE
 void Stage::ReloadFile() {
     LoadFile(directory_, fileName_);
 }
+#endif // _RELEASE
 
 void to_json(nlohmann::json& j, const Stage& stage) {
     j["directory"] = stage.directory_;

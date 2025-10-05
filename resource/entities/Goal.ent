@@ -1,5 +1,37 @@
 {
     "Components": {
+        "AABBCollider": [
+            {
+                "max": [
+                    11.0,
+                    15.0,
+                    6.0
+                ],
+                "min": [
+                    -11.0,
+                    -5.0,
+                    -3.0
+                ],
+                "transform": {
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "translate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                }
+            }
+        ],
         "CollisionPushBackInfo": [
             {
                 "pushBackType": 0
@@ -14,6 +46,15 @@
                 "activeTime": 2.299999952316284,
                 "blendMode": 1,
                 "colorCurve": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
                     {
                         "time": 0.0,
                         "value": [
@@ -177,6 +218,14 @@
                     {
                         "time": 0.0,
                         "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
                             0.10000000149011612,
                             0.10000000149011612,
                             0.10000000149011612
@@ -275,6 +324,14 @@
                 "updateSettings": 4386,
                 "uvInterpolationType": 0,
                 "velocityCurve": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
                     {
                         "time": 0.0,
                         "value": [
@@ -424,34 +481,7 @@
             }
         ],
         "RingRenderer": [],
-        "SphereCollider": [
-            {
-                "center": [
-                    0.0,
-                    0.0,
-                    0.0
-                ],
-                "radius": 4.0,
-                "transform": {
-                    "rotate": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ],
-                    "scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "translate": [
-                        0.0,
-                        0.0,
-                        0.0
-                    ]
-                }
-            }
-        ],
+        "SphereCollider": [],
         "TextureEffectParam": [],
         "Transform": [
             {
@@ -469,7 +499,7 @@
                 "translate": [
                     0.0,
                     18.0,
-                    2220.0
+                    1.0
                 ]
             }
         ]
