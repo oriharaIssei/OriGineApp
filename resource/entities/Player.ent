@@ -29,8 +29,8 @@
                     1.0,
                     1.0
                 ],
-                "enableLighting": false,
-                "shininess": 0.0,
+                "enableLighting": true,
+                "shininess": 68.0,
                 "specularColor": [
                     1.0,
                     1.0,
@@ -58,8 +58,8 @@
                     0
                 ],
                 "textureFilePath": [
-                    "",
-                    "./application/resource/Texture/uvChecker.png"
+                    "./application/resource/Texture/myNoise.png",
+                    "./application/resource/..\\..\\engine\\resource\\Texture/white1x1.png"
                 ],
                 "transformBufferDatas": [
                     {

@@ -4,6 +4,9 @@
     <Filter Include="component">
       <UniqueIdentifier>{18DEAB42-8448-60B9-CD86-115F39303E0E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\Camera">
+      <UniqueIdentifier>{90A76536-7CA0-8488-A5D2-690D912A6494}</UniqueIdentifier>
+    </Filter>
     <Filter Include="component\Player">
       <UniqueIdentifier>{34847955-207D-98A7-49AF-7D2C350778B3}</UniqueIdentifier>
     </Filter>
@@ -12,9 +15,6 @@
     </Filter>
     <Filter Include="component\Stage">
       <UniqueIdentifier>{BBBDD102-2749-3FC7-305A-C2BB9C649BC7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="component\cameraController">
-      <UniqueIdentifier>{54DC1446-40EC-C016-A9A5-253595D4AFAF}</UniqueIdentifier>
     </Filter>
     <Filter Include="editor">
       <UniqueIdentifier>{AC2EC5FA-98D0-EFD0-818B-03256DCC7621}</UniqueIdentifier>
@@ -50,6 +50,12 @@
     <ClInclude Include="code\MyGame.h" />
     <ClInclude Include="code\component\Button.h">
       <Filter>component</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\ButtonGroup.h">
+      <Filter>component</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Camera\CameraController.h">
+      <Filter>component\Camera</Filter>
     </ClInclude>
     <ClInclude Include="code\component\Player\PlayerInput.h">
       <Filter>component\Player</Filter>
@@ -96,9 +102,6 @@
     <ClInclude Include="code\component\TimerComponent.h">
       <Filter>component</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\Camera\CameraController.h">
-      <Filter>component\cameraController</Filter>
-    </ClInclude>
     <ClInclude Include="code\editor\StageEditor.h">
       <Filter>editor</Filter>
     </ClInclude>
@@ -106,6 +109,9 @@
       <Filter>system\Initialize</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Initialize\CreateStage.h">
+      <Filter>system\Initialize</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Initialize\GetClearTime.h">
       <Filter>system\Initialize</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Initialize\SettingGameCameraTarget.h">
@@ -135,6 +141,9 @@
     <ClInclude Include="code\system\Movement\UpdateCameraForward.h">
       <Filter>system\Movement</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Transition\ButtonGroupSystem.h">
+      <Filter>system\Transition</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\Transition\ChangeSceneByButton.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
@@ -144,7 +153,13 @@
     <ClInclude Include="code\system\Transition\SceneTransition.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Transition\SetClearTime.h">
+      <Filter>system\Transition</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\Transition\StageReloadSystem.h">
+      <Filter>system\Transition</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Transition\TimeLimitJudgeSystem.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Transition\TimerCountDown.h">
@@ -177,11 +192,6 @@
     <ClInclude Include="code\system\render\StageDebugRender.h">
       <Filter>system\render</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\ButtonGroup.h" />
-    <ClInclude Include="code\system\Transition\ButtonGroupSystem.h" />
-    <ClInclude Include="code\system\Transition\TimeLimitJudgeSystem.h" />
-    <ClInclude Include="code\system\Transition\SetClearTime.h" />
-    <ClInclude Include="code\system\Initialize\GetClearTime.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -189,6 +199,12 @@
     <ClCompile Include="code\MyGame.cpp" />
     <ClCompile Include="code\component\Button.cpp">
       <Filter>component</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\ButtonGroup.cpp">
+      <Filter>component</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Camera\CameraController.cpp">
+      <Filter>component\Camera</Filter>
     </ClCompile>
     <ClCompile Include="code\component\Player\PlayerInput.cpp">
       <Filter>component\Player</Filter>
@@ -235,9 +251,6 @@
     <ClCompile Include="code\component\TimerComponent.cpp">
       <Filter>component</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\Camera\CameraController.cpp">
-      <Filter>component\cameraController</Filter>
-    </ClCompile>
     <ClCompile Include="code\editor\StageEditor.cpp">
       <Filter>editor</Filter>
     </ClCompile>
@@ -246,6 +259,9 @@
       <Filter>system\Initialize</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Initialize\CreateStage.cpp">
+      <Filter>system\Initialize</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Initialize\GetClearTime.cpp">
       <Filter>system\Initialize</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Initialize\SettingGameCameraTarget.cpp">
@@ -275,6 +291,9 @@
     <ClCompile Include="code\system\Movement\UpdateCameraForward.cpp">
       <Filter>system\Movement</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\Transition\ButtonGroupSystem.cpp">
+      <Filter>system\Transition</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\Transition\ChangeSceneByButton.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
@@ -284,7 +303,13 @@
     <ClCompile Include="code\system\Transition\SceneTransition.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\Transition\SetClearTime.cpp">
+      <Filter>system\Transition</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\Transition\StageReloadSystem.cpp">
+      <Filter>system\Transition</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Transition\TimeLimitJudgeSystem.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Transition\TimerCountDown.cpp">
@@ -317,10 +342,5 @@
     <ClCompile Include="code\system\render\StageDebugRender.cpp">
       <Filter>system\render</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\ButtonGroup.cpp" />
-    <ClCompile Include="code\system\Transition\ButtonGroupSystem.cpp" />
-    <ClCompile Include="code\system\Transition\TimeLimitJudgeSystem.cpp" />
-    <ClCompile Include="code\system\Transition\SetClearTime.cpp" />
-    <ClCompile Include="code\system\Initialize\GetClearTime.cpp" />
   </ItemGroup>
 </Project>

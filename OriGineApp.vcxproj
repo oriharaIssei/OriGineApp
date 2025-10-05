@@ -139,11 +139,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="code\component\ButtonGroup.h" />
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\MyEditor.h" />
     <ClInclude Include="code\MyGame.h" />
     <ClInclude Include="code\component\Button.h" />
+    <ClInclude Include="code\component\ButtonGroup.h" />
+    <ClInclude Include="code\component\Camera\CameraController.h" />
     <ClInclude Include="code\component\Player\PlayerInput.h" />
     <ClInclude Include="code\component\Player\PlayerStatus.h" />
     <ClInclude Include="code\component\Player\State\IPlayerMoveState.h" />
@@ -159,10 +160,10 @@
     <ClInclude Include="code\component\Stage\StageFloor.h" />
     <ClInclude Include="code\component\Stage\StageWall.h" />
     <ClInclude Include="code\component\TimerComponent.h" />
-    <ClInclude Include="code\component\Camera\CameraController.h" />
     <ClInclude Include="code\editor\StageEditor.h" />
     <ClInclude Include="code\system\Initialize\CreateSpriteFromTimer.h" />
     <ClInclude Include="code\system\Initialize\CreateStage.h" />
+    <ClInclude Include="code\system\Initialize\GetClearTime.h" />
     <ClInclude Include="code\system\Initialize\SettingGameCameraTarget.h" />
     <ClInclude Include="code\system\Initialize\TakePlayerToStartPosition.h" />
     <ClInclude Include="code\system\Input\ButtonInputSystem.h" />
@@ -176,6 +177,7 @@
     <ClInclude Include="code\system\Transition\ChangeSceneByButton.h" />
     <ClInclude Include="code\system\Transition\FallDetectionSystem.h" />
     <ClInclude Include="code\system\Transition\SceneTransition.h" />
+    <ClInclude Include="code\system\Transition\SetClearTime.h" />
     <ClInclude Include="code\system\Transition\StageReloadSystem.h" />
     <ClInclude Include="code\system\Transition\TimeLimitJudgeSystem.h" />
     <ClInclude Include="code\system\Transition\TimerCountDown.h" />
@@ -188,15 +190,14 @@
     <ClInclude Include="code\system\effect\EffectOnPlayerRun.h" />
     <ClInclude Include="code\system\effect\TimerForSprite.h" />
     <ClInclude Include="code\system\render\StageDebugRender.h" />
-    <ClInclude Include="code\system\Initialize\GetClearTime.h" />
-    <ClInclude Include="code\system\Transition\SetClearTime.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="code\component\ButtonGroup.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\MyEditor.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
     <ClCompile Include="code\component\Button.cpp" />
+    <ClCompile Include="code\component\ButtonGroup.cpp" />
+    <ClCompile Include="code\component\Camera\CameraController.cpp" />
     <ClCompile Include="code\component\Player\PlayerInput.cpp" />
     <ClCompile Include="code\component\Player\PlayerStatus.cpp" />
     <ClCompile Include="code\component\Player\State\IPlayerMoveState.cpp" />
@@ -212,11 +213,11 @@
     <ClCompile Include="code\component\Stage\StageFloor.cpp" />
     <ClCompile Include="code\component\Stage\StageWall.cpp" />
     <ClCompile Include="code\component\TimerComponent.cpp" />
-    <ClCompile Include="code\component\Camera\CameraController.cpp" />
     <ClCompile Include="code\editor\StageEditor.cpp" />
     <ClCompile Include="code\main.cpp" />
     <ClCompile Include="code\system\Initialize\CreateSpriteFromTimer.cpp" />
     <ClCompile Include="code\system\Initialize\CreateStage.cpp" />
+    <ClCompile Include="code\system\Initialize\GetClearTime.cpp" />
     <ClCompile Include="code\system\Initialize\SettingGameCameraTarget.cpp" />
     <ClCompile Include="code\system\Initialize\TakePlayerToStartPosition.cpp" />
     <ClCompile Include="code\system\Input\ButtonInputSystem.cpp" />
@@ -230,6 +231,7 @@
     <ClCompile Include="code\system\Transition\ChangeSceneByButton.cpp" />
     <ClCompile Include="code\system\Transition\FallDetectionSystem.cpp" />
     <ClCompile Include="code\system\Transition\SceneTransition.cpp" />
+    <ClCompile Include="code\system\Transition\SetClearTime.cpp" />
     <ClCompile Include="code\system\Transition\StageReloadSystem.cpp" />
     <ClCompile Include="code\system\Transition\TimeLimitJudgeSystem.cpp" />
     <ClCompile Include="code\system\Transition\TimerCountDown.cpp" />
@@ -242,8 +244,6 @@
     <ClCompile Include="code\system\effect\EffectOnPlayerRun.cpp" />
     <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
     <ClCompile Include="code\system\render\StageDebugRender.cpp" />
-    <ClCompile Include="code\system\Initialize\GetClearTime.cpp" />
-    <ClCompile Include="code\system\Transition\SetClearTime.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">
