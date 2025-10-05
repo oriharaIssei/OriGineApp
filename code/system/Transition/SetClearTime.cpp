@@ -18,5 +18,5 @@ void SetClearTime::UpdateEntity(GameEntity* _entity) {
     if (timerComp == nullptr) {
         return;
     }
-    Stage::setClearTime(timerComp->getMaxTime());
+    Stage::setClearTime(timerComp->getCurrentTime());
 }

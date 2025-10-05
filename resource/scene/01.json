@@ -36,9 +36,9 @@
                                 1.0
                             ],
                             "translate": [
-                                0.0,
-                                0.0,
-                                0.0
+                                0.4196772277355194,
+                                4.3013081550598145,
+                                0.1729515790939331
                             ]
                         }
                     }
@@ -136,6 +136,7 @@
                     {
                         "edgeWidth": 0.004000000189989805,
                         "isActive": false,
+                        "materialIndex": 0,
                         "outLineColor": [
                             0.01568627543747425,
                             0.7647058963775635,
@@ -143,7 +144,24 @@
                             1.0
                         ],
                         "textureFilePath": "./application/resource/Texture/bioNoise.png",
-                        "threshold": 0.0,
+                        "threshold": 0.0
+                    }
+                ],
+                "Material": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
                         "uvRotate": 0.0,
                         "uvScale": [
                             1.0,
@@ -191,30 +209,7 @@
                         "divisionLatitude": 8,
                         "divisionLongitude": 16,
                         "isRenderer": true,
-                        "material": {
-                            "color": [
-                                0.8860759735107422,
-                                0.0,
-                                1.0,
-                                1.0
-                            ],
-                            "enableLighting": false,
-                            "shininess": 0.0,
-                            "specularColor": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "uvRotate": 0.0,
-                            "uvScale": [
-                                1.0,
-                                1.0
-                            ],
-                            "uvTranslate": [
-                                0.0,
-                                0.0
-                            ]
-                        },
+                        "materialIndex": -1,
                         "radius": 0.4399999976158142,
                         "textureDirectory": "",
                         "textureFileName": "",
@@ -309,6 +304,18 @@
                 }
             ],
             "isUnique": false
+        },
+        {
+            "Components": null,
+            "Name": "Entity",
+            "Systems": [],
+            "isUnique": false
+        },
+        {
+            "Components": null,
+            "Name": "Entity",
+            "Systems": [],
+            "isUnique": false
         }
     ],
     "Systems": [
@@ -352,9 +359,6 @@
             "EffectOnPlayerRun": {
                 "Priority": 0
             },
-            "EffectTexturedMeshRenderSystem": {
-                "Priority": 0
-            },
             "EmitterWorkSystem": {
                 "Priority": 1
             },
@@ -365,6 +369,9 @@
                 "Priority": 1
             },
             "LineRenderSystem": {
+                "Priority": 0
+            },
+            "MaterialAnimationWorkSystem": {
                 "Priority": 0
             },
             "MoveSystemByRigidBody": {

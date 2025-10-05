@@ -12,7 +12,7 @@
 // application component
 #include "component/Button.h"
 #include "component/ButtonGroup.h"
-#include "component/cameraController/CameraController.h"
+#include "component/Camera/CameraController.h"
 #include "component/Player/PlayerInput.h"
 #include "component/Player/PlayerStatus.h"
 #include "component/Player/State/PlayerState.h"
@@ -82,6 +82,7 @@ void RegisterUsingComponents() {
     componentRegistry->registerComponent<StageFloor>();
     componentRegistry->registerComponent<StageWall>();
 
+    componentRegistry->registerComponent<Material>();
     componentRegistry->registerComponent<DirectionalLight>();
     componentRegistry->registerComponent<PointLight>();
     componentRegistry->registerComponent<SpotLight>();
@@ -90,6 +91,7 @@ void RegisterUsingComponents() {
     componentRegistry->registerComponent<PrimitiveNodeAnimation>();
     componentRegistry->registerComponent<SkinningAnimationComponent>();
     componentRegistry->registerComponent<SpriteAnimation>();
+    componentRegistry->registerComponent<MaterialAnimation>();
 
     componentRegistry->registerComponent<AABBCollider>();
     componentRegistry->registerComponent<OBBCollider>();
@@ -106,6 +108,7 @@ void RegisterUsingComponents() {
     componentRegistry->registerComponent<VignetteParam>();
     componentRegistry->registerComponent<SpeedlineEffectParam>();
     componentRegistry->registerComponent<TextureEffectParam>();
+    componentRegistry->registerComponent<MaterialEffectPipeLine>();
 
     componentRegistry->registerComponent<ModelMeshRenderer>();
     componentRegistry->registerComponent<LineRenderer>();
@@ -143,6 +146,7 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<ResolveEntityReferences>();
     systemRegistry->registerSystem<CreateSpriteFromTimer>();
     systemRegistry->registerSystem<GetClearTime>();
+    systemRegistry->registerSystem<CameraInitialize>();
 
     /// ===================================================================================================
     // Input
@@ -197,6 +201,8 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<SkinningAnimationSystem>();
     systemRegistry->registerSystem<SpriteAnimationSystem>();
     systemRegistry->registerSystem<GpuParticleEmitterWorkSystem>();
+    systemRegistry->registerSystem<MaterialAnimationWorkSystem>();
+    systemRegistry->registerSystem<MaterialEffect>();
 
     systemRegistry->registerSystem<EffectOnPlayerGearup>();
     systemRegistry->registerSystem<EffectOnPlayerRun>();
@@ -210,15 +216,16 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<ParticleRenderSystem>();
     systemRegistry->registerSystem<TexturedMeshRenderSystem>();
     systemRegistry->registerSystem<SkinningMeshRenderSystem>();
-    systemRegistry->registerSystem<EffectTexturedMeshRenderSystem>();
     systemRegistry->registerSystem<LineRenderSystem>();
     systemRegistry->registerSystem<GpuParticleRenderSystem>();
 
     systemRegistry->registerSystem<TimerForSprite>();
 
+#ifndef _RELEASE
     systemRegistry->registerSystem<SkeletonRenderSystem>();
     systemRegistry->registerSystem<ColliderRenderingSystem>();
     systemRegistry->registerSystem<VelocityRenderingSystem>();
+#endif // _RELEASE
 
     systemRegistry->registerSystem<StageDebugRender>();
 

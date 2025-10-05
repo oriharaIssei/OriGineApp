@@ -5,6 +5,7 @@
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
 
+#include "component/Camera/CameraController.h"
 #include "component/collider/Collider.h"
 #include "component/physics/Rigidbody.h"
 #include "component/Player/PlayerInput.h"
@@ -15,6 +16,8 @@
 
 /// log
 #include "logger/Logger.h"
+/// math
+#include "MyEasing.h"
 
 void PlayerWallJumpState::Initialize() {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
@@ -39,7 +42,7 @@ void PlayerWallJumpState::Initialize() {
     Vec3f wallJumpDirection = Vec3f(0.0f, 1.f, 0.f);
 
     Vec3f nextPos = nextControlPointPos(scene_->getComponent<StageWall>(wallEntity), targetNormal, transform, rigidbody);
- 
+
     Vec3f forward = rigidbody->getVelocity().normalize();
     Vec3f right   = Vec3f::Cross(targetNormal, forward).normalize();
     forward       = Vec3f::Cross(right, targetNormal).normalize();
@@ -73,6 +76,26 @@ void PlayerWallJumpState::Update(float _deltaTime) {
     rigidbody->setVelocity(velo_); // 壁ジャンプの方向に速度を設定
 
     leftTime_ -= _deltaTime; // 壁ジャンプの残り時間を減少
+
+    ///! TODO : ここにカメラの処理を書くべきではない
+    CameraController* cameraController = scene_->getComponent<CameraController>(scene_->getUniqueEntity("GameCamera"));
+
+    if (cameraController) {
+        // カメラのオフセットを徐々に元に戻す
+        cameraOffsetLerpTimer_ += _deltaTime;
+        float t = cameraOffsetLerpTimer_ / kCameraOffsetLerpTime_;
+        t       = std::clamp(t, 0.f, 1.f);
+
+        const Vec3f& targetOffset  = cameraController->getOffsetOnDash();
+        const Vec3f& currentOffset = cameraController->getCurrentOffset();
+        Vec3f newOffset            = Lerp<3, float>(currentOffset, targetOffset, EaseOutCubic(t));
+        cameraController->setCurrentOffset(newOffset);
+
+        const Vec3f& targetTargetOffset  = cameraController->getTargetOffsetOnDash();
+        const Vec3f& currentTargetOffset = cameraController->getCurrentTargetOffset();
+        Vec3f newTargetOffset            = Lerp<3, float>(currentTargetOffset, targetTargetOffset, EaseOutCubic(t));
+        cameraController->setCurrentTargetOffset(newTargetOffset);
+    }
 }
 
 void PlayerWallJumpState::Finalize() {

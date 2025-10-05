@@ -37,11 +37,18 @@ private:
     /// <summary>
     /// 注視点のOffset
     /// </summary>
-    Vec3f followTargetOffset_ = {0.f, 0.f, 0.f};
+    Vec3f currentTargetOffset_   = {0.f, 0.f, 0.f};
+    Vec3f firstTargetOffset_     = {0.f, 0.f, 0.f};
+    Vec3f targetOffsetOnDash_    = {0.f, 0.f, 0.f};
+    Vec3f targetOffsetOnWallRun_ = Vec3f(0.f, 0.f, 0.f);
     /// <summary>
     /// 注視点との距離のOffset
     /// </summary>
-    Vec3f followOffset_             = {0.f, 0.f, 0.f};
+    Vec3f currentOffset_   = {0.f, 0.f, 0.f};
+    Vec3f firstOffset_     = {0.f, 0.f, 0.f};
+    Vec3f offsetOnDash_    = {0.f, 0.f, 0.f};
+    Vec3f offsetOnWallRun_ = Vec3f(0.f, 0.f, 0.f);
+
     Vec3f interTarget_              = {0.f, 0.f, 0.f};
     Vec2f destinationAngleXY_       = {0.0f, 0.0f};
     float rotateSpeedPadStick_      = 0.0f;
@@ -65,11 +72,29 @@ public:
     float getAngleLimitY() const { return angleLimitY_; }
     void setAngleLimitY(float angleLimitY) { angleLimitY_ = angleLimitY; }
 
-    const Vec3f& getFollowTargetOffset() const { return followTargetOffset_; }
-    void setFollowTargetOffset(const Vec3f& offset) { followTargetOffset_ = offset; }
+    const Vec3f& getCurrentTargetOffset() const { return currentTargetOffset_; }
+    void setCurrentTargetOffset(const Vec3f& _offset) { currentTargetOffset_ = _offset; }
 
-    const Vec3f& getFollowOffset() const { return followOffset_; }
-    void setFollowOffset(const Vec3f& offset) { followOffset_ = offset; }
+    const Vec3f& getFirstTargetOffset() const { return firstTargetOffset_; }
+    void setFirstTargetOffset(const Vec3f& offset) { firstTargetOffset_ = offset; }
+
+    const Vec3f& getTargetOffsetOnDash() const { return targetOffsetOnDash_; }
+    void setTargetOffsetOnDash(const Vec3f& _offset) { targetOffsetOnDash_ = _offset; }
+
+    const Vec3f& getTargetOffsetOnWallRun() const { return targetOffsetOnWallRun_; }
+    void setTargetOffsetOnWallRun(const Vec3f& _offset) { targetOffsetOnWallRun_ = _offset; }
+
+    const Vec3f& getCurrentOffset() const { return currentOffset_; }
+    void setCurrentOffset(const Vec3f& offset) { currentOffset_ = offset; }
+
+    const Vec3f& getFirstOffset() const { return firstOffset_; }
+    void setFirstOffset(const Vec3f& offset) { firstOffset_ = offset; }
+
+    const Vec3f& getOffsetOnDash() const { return offsetOnDash_; }
+    void setOffsetOnDash(const Vec3f& offset) { offsetOnDash_ = offset; }
+
+    const Vec3f& getOffsetOnWallRun() const { return offsetOnWallRun_; }
+    void setOffsetOnWallRun(const Vec3f& offset) { offsetOnWallRun_ = offset; }
 
     const Vec3f& getInterTarget() const { return interTarget_; }
     void setInterTarget(const Vec3f& target) { interTarget_ = target; }

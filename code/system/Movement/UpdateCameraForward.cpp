@@ -2,7 +2,7 @@
 
 /// ECS
 // component
-#include "component/cameraController/CameraController.h"
+#include "component/Camera/CameraController.h"
 #include "component/Stage/Stage.h"
 #include "component/transform/CameraTransform.h"
 

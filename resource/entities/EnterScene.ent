@@ -4,6 +4,7 @@
             {
                 "edgeWidth": 0.0010000000474974513,
                 "isActive": true,
+                "materialIndex": 0,
                 "outLineColor": [
                     0.01687765121459961,
                     0.7635530233383179,
@@ -11,7 +12,24 @@
                     1.0
                 ],
                 "textureFilePath": "./application/resource/Texture/waveNoise.png",
-                "threshold": 0.0,
+                "threshold": 0.0
+            }
+        ],
+        "Material": [
+            {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "enableLighting": false,
+                "shininess": 0.0,
+                "specularColor": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
                 "uvRotate": 0.0,
                 "uvScale": [
                     1.0,
@@ -20,6 +38,33 @@
                 "uvTranslate": [
                     0.0,
                     0.0
+                ]
+            }
+        ],
+        "MaterialAnimation": [
+            {
+                "InterpolationType": 0,
+                "colorCurve": [],
+                "duration": 1.600000023841858,
+                "isLoop": true,
+                "isPlay": true,
+                "uvRotateCurve": [],
+                "uvScaleCurve": [],
+                "uvTranslateCurve": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 1.600000023841858,
+                        "value": [
+                            1.0,
+                            1.0
+                        ]
+                    }
                 ]
             }
         ]

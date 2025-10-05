@@ -50,7 +50,7 @@ void EffectOnPlayerGearup::UpdateEntity(GameEntity* _entity) {
         for (int32_t i = 0; i < emitterSize; ++i) {
             Emitter* emitter = getComponent<Emitter>(_entity, i);
             if (emitter) {
-                emitter->setOriginePos(emitterOffset_);
+                emitter->setOriginPos(emitterOffset_);
                 emitter->PlayStart();
             }
         }

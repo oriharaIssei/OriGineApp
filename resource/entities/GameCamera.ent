@@ -4,17 +4,17 @@
             {
                 "angleLimitY": 1.5707963705062866,
                 "baseFovY": 0.7850000262260437,
-                "fixForForwardSpeed": 0.33000001311302185,
-                "followOffset": [
+                "firstOffset": [
                     0.0,
-                    0.05999999865889549,
+                    0.25,
                     -4.199999809265137
                 ],
-                "followTargetOffset": [
+                "firstTargetOffset": [
                     0.0,
-                    2.440000057220459,
+                    2.130000114440918,
                     0.0
                 ],
+                "fixForForwardSpeed": 0.33000001311302185,
                 "forward": [
                     0.0,
                     0.0,
@@ -26,9 +26,29 @@
                 "interTargetInterpolation": 0.3700000047683716,
                 "maxRotateX": 0.5899999737739563,
                 "minRotateX": -0.7699999809265137,
+                "offsetOnDash": [
+                    0.0,
+                    0.6299999952316284,
+                    -2.1600000858306885
+                ],
+                "offsetOnWallRun": [
+                    2.0999999046325684,
+                    0.23000000417232513,
+                    -1.6799999475479126
+                ],
                 "rotateSensitivity": 1.0,
                 "rotateSpeedMouse": 0.007000000216066837,
-                "rotateSpeedPadStick": 0.10999999940395355
+                "rotateSpeedPadStick": 0.10999999940395355,
+                "targetOffsetOnDash": [
+                    0.0,
+                    2.990000009536743,
+                    -0.8799999952316284
+                ],
+                "targetOffsetOnWallRun": [
+                    1.7899999618530273,
+                    0.949999988079071,
+                    0.0
+                ]
             }
         ],
         "CameraTransform": [

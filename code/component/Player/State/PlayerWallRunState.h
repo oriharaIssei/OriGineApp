@@ -35,4 +35,8 @@ protected:
     float currentHeight_ = 0.0f; // 現在の高さ
     float climbTime_     = 0.3f; // 壁を登る時間(currentHeight_がwallRunHeight_になるまでの時間)
     float climbTimer_    = 0.0f; // 壁を登りのタイマー
+
+    float cameraRotateSigne_          = 1.0f;
+    const float kCameraAngleLerpTime_ = 0.8f;
+    float cameraAngleLerpTimer_       = 0.0f;
 };

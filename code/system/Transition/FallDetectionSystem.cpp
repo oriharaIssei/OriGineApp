@@ -70,13 +70,6 @@ Vec3f FallDetectionSystem::RetryPos(Stage* _stage, StageFloor* _stageFloor, cons
 
     auto& controlPoints = _stage->getControlPoints();
     const Vec3f& from   = controlPoints[_stageFloor->getFromPointIndex()].pos_;
-    const Vec3f& to     = controlPoints[_stageFloor->getToPointIndex()].pos_;
-    Vec3f fromDiff      = controlPoints[_stageFloor->getFromPointIndex()].pos_ - _currentPos;
-    Vec3f toDiff        = controlPoints[_stageFloor->getToPointIndex()].pos_ - _currentPos;
 
-    if (fromDiff.lengthSq() <= toDiff.lengthSq()) {
-        return from + Vec3f(0.0f, kSpawnHeight, kSpawnEpsilonZ);
-    } else {
-        return to + Vec3f(0.0f, kSpawnHeight, -kSpawnEpsilonZ);
-    }
+    return from + Vec3f(0.0f, kSpawnHeight, kSpawnEpsilonZ);
 }
