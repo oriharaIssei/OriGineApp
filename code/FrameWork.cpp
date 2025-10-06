@@ -109,6 +109,7 @@ void RegisterUsingComponents() {
     componentRegistry->registerComponent<SpeedlineEffectParam>();
     componentRegistry->registerComponent<TextureEffectParam>();
     componentRegistry->registerComponent<MaterialEffectPipeLine>();
+    componentRegistry->registerComponent<GradationTextureComponent>();
 
     componentRegistry->registerComponent<ModelMeshRenderer>();
     componentRegistry->registerComponent<LineRenderer>();
@@ -241,4 +242,5 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<RadialBlurEffect>();
     systemRegistry->registerSystem<SubSceneRender>();
     systemRegistry->registerSystem<SpeedlineEffect>();
+    systemRegistry->registerSystem<GradationEffect>();
 }
