@@ -159,6 +159,19 @@ void Stage::ReloadFile() {
 }
 #endif // _RELEASE
 
+void Stage::setStartPointIndex(int32_t index) {
+    if (index < 0 || index >= controlPoints_.size()) {
+        return;
+    }
+    startPointIndex_ = index;
+}
+void Stage::setGoalPointIndex(int32_t index) {
+    if (index < 0 || index >= controlPoints_.size()) {
+        return;
+    }
+    goalPointIndex_ = index;
+}
+
 void to_json(nlohmann::json& j, const Stage& stage) {
     j["directory"] = stage.directory_;
     j["fileName"]  = stage.fileName_;

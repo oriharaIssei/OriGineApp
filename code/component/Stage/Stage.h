@@ -10,6 +10,7 @@
 #include "myFileSystem/MyFileSystem.h"
 
 /// math
+#include <math/Quaternion.h>
 #include <math/Vector3.h>
 
 /// <summary>
@@ -51,6 +52,11 @@ public:
     struct ControlPoint {
         Vec3f pos_;
     };
+    struct Step {
+        int32_t pointIndex_;
+        Vec3f size_        = {22.f, 1.2f, 0.8f};
+        Quaternion rotate_ = Quaternion::Identity();
+    };
     struct Link {
         int32_t to_;
         int32_t from_;
@@ -68,16 +74,18 @@ private:
     std::shared_ptr<FileWatcher> fileWatcher_ = nullptr;
 #endif // DEBUG
 
-    std::vector<ControlPoint>
-        controlPoints_;
+    std::vector<ControlPoint> controlPoints_;
     std::vector<Link> links_;
+    std::vector<Step> steps_;
     int32_t startPointIndex_ = -1; // 開始地点のインデックス
     int32_t goalPointIndex_  = -1; // 目標地点のインデックス
 public:
     const std::vector<ControlPoint>& getControlPoints() const { return controlPoints_; }
     const std::vector<Link>& getLinks() const { return links_; }
+    const std::vector<Step>& getSteps() const { return steps_; }
     std::vector<ControlPoint>& getControlPointsRef() { return controlPoints_; }
     std::vector<Link>& getLinksRef() { return links_; }
+    std::vector<Step>& getStepsRef() { return steps_; }
 
     const std::string& getDirectory() const { return directory_; }
     void setDirectory(const std::string& dir) { directory_ = dir; }
@@ -85,20 +93,10 @@ public:
     void setFileName(const std::string& name) { fileName_ = name; }
 
     int32_t getStartPointIndex() const { return startPointIndex_; }
-    void setStartPointIndex(int32_t index) {
-        if (index < 0 || index >= controlPoints_.size()) {
-            return;
-        }
-        startPointIndex_ = index;
-    }
+    void setStartPointIndex(int32_t index);
 
     int32_t getGoalPointIndex() const { return goalPointIndex_; }
-    void setGoalPointIndex(int32_t index) {
-        if (index < 0 || index >= controlPoints_.size()) {
-            return;
-        }
-        goalPointIndex_ = index;
-    }
+    void setGoalPointIndex(int32_t index);
 
     /// <summary>
     /// すべての制御点を削除
@@ -109,30 +107,44 @@ public:
     /// </summary>
     void clearLinks() { links_.clear(); }
 
-    void addControlPoint(const ControlPoint& point) {
-        controlPoints_.emplace_back(point);
+    void clearSteps() { steps_.clear(); }
+
+    void addControlPoint(const ControlPoint& _point) {
+        controlPoints_.emplace_back(_point);
     }
-    void insertControlPoint(int32_t _index, const ControlPoint& point) {
-        controlPoints_.insert(controlPoints_.begin() + _index, point);
+    void insertControlPoint(int32_t _index, const ControlPoint& _point) {
+        controlPoints_.insert(controlPoints_.begin() + _index, _point);
     }
-    void addLink(const Link& link) {
-        links_.emplace_back(link);
+    void addLink(const Link& _link) {
+        links_.emplace_back(_link);
     }
-    void insertLink(int32_t _index, const Link& link) {
-        links_.insert(links_.begin() + _index, link);
+    void insertLink(int32_t _index, const Link& _link) {
+        links_.insert(links_.begin() + _index, _link);
+    }
+    void addStep(const Step& _step) {
+        steps_.emplace_back(_step);
+    }
+    void insertStep(int32_t _index, const Step& _step) {
+        steps_.insert(steps_.begin() + _index, _step);
     }
 
-    void removeControlPoint(int32_t index) {
-        if (index < 0 || index >= controlPoints_.size()) {
+    void removeControlPoint(int32_t _index) {
+        if (_index < 0 || _index >= controlPoints_.size()) {
             return;
         }
-        controlPoints_.erase(controlPoints_.begin() + index);
+        controlPoints_.erase(controlPoints_.begin() + _index);
     }
-    void removeLink(int32_t index) {
-        if (index < 0 || index >= links_.size()) {
+    void removeLink(int32_t _index) {
+        if (_index < 0 || _index >= links_.size()) {
             return;
         }
-        links_.erase(links_.begin() + index);
+        links_.erase(links_.begin() + _index);
+    }
+    void removeStep(int32_t _index) {
+        if (_index < 0 || _index >= steps_.size()) {
+            return;
+        }
+        links_.erase(links_.begin() + _index);
     }
 
 #ifndef _RELEASE

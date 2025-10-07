@@ -190,6 +190,9 @@
     <ClInclude Include="code\system\effect\EffectOnPlayerRun.h" />
     <ClInclude Include="code\system\effect\TimerForSprite.h" />
     <ClInclude Include="code\system\render\StageDebugRender.h" />
+    <ClInclude Include="code\editor\ControlEditArea.h" />
+    <ClInclude Include="code\editor\LinkEditArea.h" />
+    <ClInclude Include="code\editor\StepEditArea.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -244,6 +247,9 @@
     <ClCompile Include="code\system\effect\EffectOnPlayerRun.cpp" />
     <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
     <ClCompile Include="code\system\render\StageDebugRender.cpp" />
+    <ClCompile Include="code\editor\ControlEditArea.cpp" />
+    <ClCompile Include="code\editor\LinkEditArea.cpp" />
+    <ClCompile Include="code\editor\StepEditArea.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">
