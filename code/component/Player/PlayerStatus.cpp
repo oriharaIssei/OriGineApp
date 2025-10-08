@@ -18,7 +18,10 @@
 PlayerStatus::PlayerStatus() {}
 PlayerStatus::~PlayerStatus() {}
 
-void PlayerStatus::Initialize(GameEntity* /*_entity*/) {}
+void PlayerStatus::Initialize(GameEntity* /*_entity*/) {
+    gearUpCoolTime_  = baseGearupCoolTime_;
+    currentMaxSpeed_ = baseSpeed_;
+}
 
 void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEntity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG

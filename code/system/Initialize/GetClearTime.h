@@ -1,6 +1,8 @@
 #pragma once
 #include "system/ISystem.h"
 
+static float clearTime = 0.0f;
+
 class GetClearTime
     : public ISystem {
 public:

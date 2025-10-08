@@ -1,7 +1,6 @@
 #include "GetClearTime.h"
 
 /// component
-#include "component/Stage/Stage.h"
 #include "component/TimerComponent.h"
 
 GetClearTime::GetClearTime() : ISystem(SystemCategory::Initialize) {}
@@ -19,6 +18,6 @@ void GetClearTime::UpdateEntity(GameEntity* _entity) {
         return;
     }
 
-    timerComp->setMaxTime(Stage::getClearTime());
-    timerComp->setCurrentTime(Stage::getClearTime());
+    timerComp->setMaxTime(clearTime);
+    timerComp->setCurrentTime(clearTime);
 }

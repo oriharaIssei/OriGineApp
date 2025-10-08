@@ -90,25 +90,10 @@
     <ClInclude Include="code\component\SceneChanger.h">
       <Filter>component</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\Stage\Stage.h">
-      <Filter>component\Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\Stage\StageFloor.h">
-      <Filter>component\Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\Stage\StageWall.h">
-      <Filter>component\Stage</Filter>
-    </ClInclude>
     <ClInclude Include="code\component\TimerComponent.h">
       <Filter>component</Filter>
     </ClInclude>
-    <ClInclude Include="code\editor\StageEditor.h">
-      <Filter>editor</Filter>
-    </ClInclude>
     <ClInclude Include="code\system\Initialize\CreateSpriteFromTimer.h">
-      <Filter>system\Initialize</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Initialize\CreateStage.h">
       <Filter>system\Initialize</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Initialize\GetClearTime.h">
@@ -156,9 +141,6 @@
     <ClInclude Include="code\system\Transition\SetClearTime.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\StageReloadSystem.h">
-      <Filter>system\Transition</Filter>
-    </ClInclude>
     <ClInclude Include="code\system\Transition\TimeLimitJudgeSystem.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
@@ -188,9 +170,6 @@
     </ClInclude>
     <ClInclude Include="code\system\effect\TimerForSprite.h">
       <Filter>system\effect</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\render\StageDebugRender.h">
-      <Filter>system\render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -239,26 +218,11 @@
     <ClCompile Include="code\component\SceneChanger.cpp">
       <Filter>component</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\Stage\Stage.cpp">
-      <Filter>component\Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\Stage\StageFloor.cpp">
-      <Filter>component\Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\Stage\StageWall.cpp">
-      <Filter>component\Stage</Filter>
-    </ClCompile>
     <ClCompile Include="code\component\TimerComponent.cpp">
       <Filter>component</Filter>
     </ClCompile>
-    <ClCompile Include="code\editor\StageEditor.cpp">
-      <Filter>editor</Filter>
-    </ClCompile>
     <ClCompile Include="code\main.cpp" />
     <ClCompile Include="code\system\Initialize\CreateSpriteFromTimer.cpp">
-      <Filter>system\Initialize</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Initialize\CreateStage.cpp">
       <Filter>system\Initialize</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Initialize\GetClearTime.cpp">
@@ -306,9 +270,6 @@
     <ClCompile Include="code\system\Transition\SetClearTime.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\StageReloadSystem.cpp">
-      <Filter>system\Transition</Filter>
-    </ClCompile>
     <ClCompile Include="code\system\Transition\TimeLimitJudgeSystem.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
@@ -338,9 +299,6 @@
     </ClCompile>
     <ClCompile Include="code\system\effect\TimerForSprite.cpp">
       <Filter>system\effect</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\render\StageDebugRender.cpp">
-      <Filter>system\render</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -11,7 +11,6 @@
 #include "component/Player/PlayerStatus.h"
 #include "component/Player/State/PlayerState.h"
 
-#include "component/Stage/Stage.h"
 #include "component/TimerComponent.h"
 
 void PlayerOnCollision::Initialize() {
@@ -21,7 +20,7 @@ void PlayerOnCollision::Finalize() {
 }
 
 static const float GROUND_CHECK_THRESHOLD = 0.7f; // 地面と判断するための閾値
-static const float WALL_CHECK_THRESHOLD   = 0.7f; // 壁と判断するための閾値
+// static const float WALL_CHECK_THRESHOLD   = 0.7f; // 壁と判断するための閾値
 
 void PlayerOnCollision::UpdateEntity(GameEntity* _entity) {
     auto* state        = getComponent<PlayerState>(_entity);
@@ -39,8 +38,8 @@ void PlayerOnCollision::UpdateEntity(GameEntity* _entity) {
 
         // ゴール と 衝突したか
         if (collidedEntity->getDataType().find("Goal") != std::string::npos) {
-            GameEntity* timer = getUniqueEntity("Timer");
-            Stage::setClearTime(getComponent<TimerComponent>(timer)->getCurrentTime());
+            // GameEntity* timer = getUniqueEntity("Timer");
+            // Stage::setClearTime(getComponent<TimerComponent>(timer)->getCurrentTime());
 
             // ゴールと衝突した場合は、ゴールに到達したと判断する
             state->setGoal(true);
@@ -67,12 +66,7 @@ void PlayerOnCollision::UpdateEntity(GameEntity* _entity) {
                 localNormal = localNormal * MakeMatrix::RotateQuaternion(transform->rotate).inverse();
             }
 
-            if (std::abs(localNormal[X]) > WALL_CHECK_THRESHOLD) {
-                if (collidedEntity->getDataType().find("Wall") != std::string::npos) {
-                    // 壁と衝突した場合、地面にいると判断する
-                    state->OnCollisionWall(collNormal, entityId);
-                }
-            }
+            state->OnCollisionWall(collNormal, entityId);
         }
     }
 }

@@ -11,8 +11,6 @@
 #include "component/Player/PlayerInput.h"
 #include "component/Player/PlayerStatus.h"
 #include "component/Player/State/PlayerState.h"
-#include "component/Stage/Stage.h"
-#include "component/Stage/StageWall.h"
 
 /// log
 #include "logger/Logger.h"
@@ -21,7 +19,6 @@
 
 void PlayerWallJumpState::Initialize() {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
-    auto* transform    = scene_->getComponent<Transform>(playerEntity);
     auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
     auto* playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
     auto* playerState  = scene_->getComponent<PlayerState>(playerEntity);
@@ -58,7 +55,6 @@ void PlayerWallJumpState::Finalize() {
 
 PlayerMoveState PlayerWallJumpState::TransitionState() const {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
-    auto state         = scene_->getComponent<PlayerState>(playerEntity);
 
     return PlayerMoveState::FALL_DOWN;
 }

@@ -11,9 +11,6 @@
 
 #include "component/Camera/CameraController.h"
 
-#include "component/Stage/Stage.h"
-#include "component/Stage/StageWall.h"
-
 /// log
 #include "logger/Logger.h"
 
@@ -41,13 +38,6 @@ void PlayerWallRunState::Initialize() {
     if (Vec3f::Dot(direction, prevVelo_) < 0.0f) {
         direction = -direction;
     }
-
-    // 壁の情報を取得
-    StageWall* wall = scene_->getComponent<StageWall>(scene_->getEntity(state->getWallEntityIndex()));
-    getWallData(wall);
-    // 壁走りの高さを計算
-    wallRunHeight_ = calculateWallRunHeight(transform);
-    currentHeight_ = transform->translate[Y];
 
     float speed = rigidbody->getMaxXZSpeed();
 
@@ -81,9 +71,6 @@ void PlayerWallRunState::Initialize() {
     transform->UpdateMatrix();
 
     cameraRotateSigne_ = wallNormal_[X] < 0.0f ? -1.0f : 1.0f;
-
-    // 壁を登るタイマーをリセット
-    climbTimer_ = 0.0f;
 }
 
 void PlayerWallRunState::Update(float _deltaTime) {
@@ -91,14 +78,6 @@ void PlayerWallRunState::Update(float _deltaTime) {
     auto* state        = scene_->getComponent<PlayerState>(playerEntity);
     auto* transform    = scene_->getComponent<Transform>(playerEntity);
 
-    wallRunHeight_ = calculateWallRunHeight(transform);
-
-    climbTimer_ += _deltaTime;
-    climbTimer_ = std::min(climbTimer_, climbTime_);
-    float t     = climbTimer_ / climbTime_;
-
-    // 段々上に行く
-    transform->translate[Y] = std::lerp(currentHeight_, wallRunHeight_, t);
     // 衝突が途切れないようにめり込ませる
     transform->translate[X] -= wallNormal_[X] * 0.1f;
     transform->UpdateMatrix();
@@ -116,8 +95,8 @@ void PlayerWallRunState::Update(float _deltaTime) {
     if (cameraController) {
         // カメラのオフセットを徐々に元に戻す
         cameraAngleLerpTimer_ += _deltaTime;
-        t = cameraAngleLerpTimer_ / kCameraAngleLerpTime_;
-        t = std::clamp(t, 0.f, 1.f);
+        float t = cameraAngleLerpTimer_ / kCameraAngleLerpTime_;
+        t       = std::clamp(t, 0.f, 1.f);
 
         Vec3f targetOffset         = cameraController->getOffsetOnWallRun();
         const Vec3f& currentOffset = cameraController->getCurrentOffset();
@@ -155,45 +134,4 @@ PlayerMoveState PlayerWallRunState::TransitionState() const {
     }
 
     return PlayerMoveState::WALL_RUN;
-}
-
-void PlayerWallRunState::getWallData(StageWall* _wall) {
-    if (_wall == nullptr) {
-        LOG_WARN("Wall is nullptr.");
-        return;
-    }
-
-    Stage* stage = scene_->getComponent<Stage>(scene_->getUniqueEntity("Stage"));
-    if (stage == nullptr) {
-        LOG_WARN("Stage is nullptr.");
-        return;
-    }
-
-    wallStartPos_ = stage->getControlPoints()[_wall->getFromPointIndex()].pos_;
-    wallEndPos_   = stage->getControlPoints()[_wall->getToPointIndex()].pos_;
-}
-
-float PlayerWallRunState::calculateWallRunHeight(Transform* _transform) {
-    Vec3f playerPos(_transform->worldMat[3]);
-
-    // 壁の上下方向ベクトル
-    Vec3f wallDir    = wallEndPos_ - wallStartPos_;
-    float wallLength = wallDir.length();
-    if (wallLength < std::numeric_limits<float>::epsilon()) {
-        return 0.0f; // 高さがゼロなら抜ける
-    }
-
-    // 正規化
-    Vec3f wallUp = wallDir / wallLength;
-
-    // playerPos を wallStartPos_ から wallDir に射影 → パラメータ t
-    float t = Vec3f(playerPos - wallStartPos_).dot(wallUp) / wallLength;
-
-    // clamp して 0.0 ≤ t ≤ 1.0 に収める（線分内に制限）
-    t = std::clamp(t, 0.0f, 1.0f);
-
-    // t に対応する座標を取得
-    Vec3f onWallPos = Lerp(wallStartPos_, wallEndPos_, EaseOutCubic(t));
-
-    return onWallPos[Y];
 }
