@@ -66,11 +66,12 @@ void PlayerWallRunState::Initialize() {
     separationLeftTime_ = separationGraceTime_;
 
     // forward, right, up から回転を作る
-    float angle       = std::atan2(-wallNormal_[X], wallNormal_[Y]);
+    float angle       = std::atan2(-direction[X], direction[Y]);
     transform->rotate = Quaternion::RotateAxisAngle(axisZ, angle);
     transform->UpdateMatrix();
 
-    cameraRotateSigne_ = wallNormal_[X] < 0.0f ? -1.0f : 1.0f;
+    angle       = std::atan2(direction[X], direction[Z]);
+    rotateYMat_ = MakeMatrix::RotateY(angle);
 }
 
 void PlayerWallRunState::Update(float _deltaTime) {
@@ -79,7 +80,7 @@ void PlayerWallRunState::Update(float _deltaTime) {
     auto* transform    = scene_->getComponent<Transform>(playerEntity);
 
     // 衝突が途切れないようにめり込ませる
-    transform->translate[X] -= wallNormal_[X] * 0.1f;
+    transform->translate -= wallNormal_ * 0.1f;
     transform->UpdateMatrix();
 
     if (state->isCollisionWithWall()) {
@@ -100,14 +101,14 @@ void PlayerWallRunState::Update(float _deltaTime) {
 
         Vec3f targetOffset         = cameraController->getOffsetOnWallRun();
         const Vec3f& currentOffset = cameraController->getCurrentOffset();
-        targetOffset[X] *= cameraRotateSigne_; // 壁の向きに合わせて左右反転
-        Vec3f newOffset = Lerp<3, float>(currentOffset, targetOffset, EaseOutCubic(t));
+        targetOffset               = targetOffset * rotateYMat_; // 壁の向きに合わせて左右反転
+        Vec3f newOffset            = Lerp<3, float>(currentOffset, targetOffset, EaseOutCubic(t));
         cameraController->setCurrentOffset(newOffset);
 
         Vec3f targetTargetOffset         = cameraController->getTargetOffsetOnWallRun();
         const Vec3f& currentTargetOffset = cameraController->getCurrentTargetOffset();
-        targetTargetOffset[X] *= cameraRotateSigne_; // 壁の向きに合わせて左右反転
-        Vec3f newTargetOffset = Lerp<3, float>(currentTargetOffset, targetTargetOffset, EaseOutCubic(t));
+        targetTargetOffset               = targetTargetOffset * rotateYMat_; // 壁の向きに合わせて左右反転
+        Vec3f newTargetOffset            = Lerp<3, float>(currentTargetOffset, targetTargetOffset, EaseOutCubic(t));
         cameraController->setCurrentTargetOffset(newTargetOffset);
     }
 }

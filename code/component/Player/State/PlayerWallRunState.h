@@ -2,7 +2,11 @@
 
 #include "IPlayerMoveState.h"
 
+/// Component
 struct Transform;
+
+/// Math
+#include "Matrix4x4.h"
 
 class PlayerWallRunState
     : public IPlayerMoveState {
@@ -21,11 +25,10 @@ protected:
     float separationGraceTime_ = 0.04f; // オブジェクトが離れていると判定するまでの猶予時間
     float separationLeftTime_  = 0.0f; // 壁との衝突判定の残り時間
 
-    Vec3f wallNormal_   = Vec3f(0.0f, 0.0f, 0.0f); // 壁の法線
-    Vec3f wallStartPos_ = Vec3f(0.0f, 0.0f, 0.0f); // 壁の始点
-    Vec3f wallEndPos_   = Vec3f(0.0f, 0.0f, 0.0f); // 壁の終点
+    Vec3f wallNormal_ = Vec3f(0.0f, 0.0f, 0.0f); // 壁の法線
 
-    float cameraRotateSigne_          = 1.0f;
+    Matrix4x4 rotateYMat_ = Matrix4x4();
+
     const float kCameraAngleLerpTime_ = 0.8f;
     float cameraAngleLerpTimer_       = 0.0f;
 };

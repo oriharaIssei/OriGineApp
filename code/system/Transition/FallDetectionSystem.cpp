@@ -9,14 +9,11 @@
 
 FallDetectionSystem::FallDetectionSystem() : ISystem(SystemCategory::StateTransition) {}
 
-FallDetectionSystem::~FallDetectionSystem() {
-}
+FallDetectionSystem::~FallDetectionSystem() {}
 
-void FallDetectionSystem::Initialize() {
-}
+void FallDetectionSystem::Initialize() {}
 
-void FallDetectionSystem::Finalize() {
-}
+void FallDetectionSystem::Finalize() {}
 
 void FallDetectionSystem::UpdateEntity(GameEntity* _entity) {
     constexpr float kFallThresholdY = -20.0f;

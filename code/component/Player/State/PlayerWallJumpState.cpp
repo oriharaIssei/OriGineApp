@@ -54,7 +54,6 @@ void PlayerWallJumpState::Finalize() {
 }
 
 PlayerMoveState PlayerWallJumpState::TransitionState() const {
-    auto* playerEntity = scene_->getEntity(playerEntityID_);
-
+  
     return PlayerMoveState::FALL_DOWN;
 }
