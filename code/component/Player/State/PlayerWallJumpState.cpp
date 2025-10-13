@@ -23,25 +23,29 @@ void PlayerWallJumpState::Initialize() {
     auto* playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
     auto* playerState  = scene_->getComponent<PlayerState>(playerEntity);
 
-    /// ========================================
-    // 速度の初期化
-    /// ========================================
-    rigidbody->setAcceleration({0.0f, 0.0f, 0.0f}); // 壁ジャンプ時は加速度をリセット
-    rigidbody->setUseGravity(false); // 無効
+    rigidbody->setAcceleration({0.0f, 0.0f, 0.0f});
+    rigidbody->setUseGravity(false);
 
-    /// ========================================
-    // 目的地を決め, 方向を決める
-    /// ========================================
-    // 目的のControlPoint への 差分ベクトルを進行方向とする
+    // 壁情報
+    const Vec3f& wallNormal        = playerState->getWallCollisionNormal().normalize();
+    const Vec3f& wallJumpDirection = playerStatus->getWallJumpOffset();
 
-    Vec3f targetNormal = playerState->getWallCollisionNormal();
+    // プレイヤーの進行方向（正面）
+    Vec3f velocityDirection = rigidbody->getVelocity();
+    velocityDirection.normalize();
 
-    Vec3f wallJumpDirection = playerStatus->getWallJumpOffset() * targetNormal;
+    // --- 壁ローカル → ワールド変換 ---
+    // wallJumpDirection = (x:外, y:上, z:沿う)
+    Vec3f jumpDirWorld =
+        wallNormal * wallJumpDirection[X] + axisY * wallJumpDirection[Y] + velocityDirection * wallJumpDirection[Z];
 
-    wallJumpDirection = wallJumpDirection.normalize();
+    jumpDirWorld.normalize();
 
-    velo_ = wallJumpDirection * (rigidbody->getMaxXZSpeed() * playerStatus->getWallRunRate());
-    rigidbody->setVelocity(velo_); // 壁ジャンプの方向に速度を設定
+    // --- 最終速度設定 ---
+    float jumpSpeed = rigidbody->getMaxXZSpeed() * playerStatus->getWallRunRate();
+    velo_           = jumpDirWorld * jumpSpeed;
+
+    rigidbody->setVelocity(velo_);
 }
 
 void PlayerWallJumpState::Update(float /*_deltaTime*/) {}
@@ -54,6 +58,6 @@ void PlayerWallJumpState::Finalize() {
 }
 
 PlayerMoveState PlayerWallJumpState::TransitionState() const {
-  
+
     return PlayerMoveState::FALL_DOWN;
 }
