@@ -17,7 +17,4 @@ public:
 
 protected:
     void UpdateEntity(GameEntity* _entity);
-
-protected:
-    Input* input_ = nullptr;
 };

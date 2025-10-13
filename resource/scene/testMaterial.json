@@ -124,11 +124,17 @@
             "Components": {
                 "DistortionEffectParam": [
                     {
-                        "distortionBias": 0.5,
-                        "distortionStrength": 1.100000023841858,
+                        "distortionBias": [
+                            0.44999998807907104,
+                            0.41999998688697815
+                        ],
+                        "distortionStrength": [
+                            0.11999999731779099,
+                            0.17000000178813934
+                        ],
                         "isActive": true,
                         "materialIndex": 0,
-                        "textuerPath": "./application/resource/Texture/myNoise.png",
+                        "textuerPath": "./application/resource/Texture/bioNoise.png",
                         "use3dObjectList": false
                     }
                 ],
@@ -154,7 +160,7 @@
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.5668289661407471
+                            -0.9243660569190979
                         ]
                     }
                 ],
@@ -162,7 +168,7 @@
                     {
                         "InterpolationType": 0,
                         "colorCurve": [],
-                        "duration": 2.0,
+                        "duration": 5.400000095367432,
                         "isLoop": true,
                         "isPlay": true,
                         "uvRotateCurve": [],
@@ -176,10 +182,10 @@
                                 ]
                             },
                             {
-                                "time": 2.0,
+                                "time": 5.400000095367432,
                                 "value": [
                                     0.0,
-                                    1.0
+                                    -1.0
                                 ]
                             }
                         ]
@@ -199,7 +205,7 @@
             "Components": {
                 "DissolveEffectParam": [
                     {
-                        "edgeWidth": 0.023000000044703484,
+                        "edgeWidth": 0.020999999716877937,
                         "isActive": true,
                         "materialIndex": 0,
                         "outLineColor": [
@@ -209,7 +215,7 @@
                             1.0
                         ],
                         "textureFilePath": "./application/resource/Texture/uvChecker.png",
-                        "threshold": 0.09200000017881393
+                        "threshold": 0.08699999749660492
                     }
                 ],
                 "Material": [
@@ -240,7 +246,7 @@
                 ],
                 "MaterialEffectPipeLine": [
                     {
-                        "baseTexturePath": "./application/resource/Texture/bioNoise.png",
+                        "baseTexturePath": "./application/resource/Texture/Electric.png",
                         "effectEntityIdList": [
                             {
                                 "effectType": 1,
@@ -264,14 +270,13 @@
         },
         {
             "Components": {
-                "DistortionEffectParam": [
+                "GradationTextureComponent": [
                     {
-                        "distortionBias": 0.0,
-                        "distortionObjects": [],
-                        "distortionStrength": 0.0,
+                        "inputChannel": 3,
                         "isActive": true,
-                        "materialIndex": -1,
-                        "use3dObjectList": true
+                        "materialIndex": 0,
+                        "outputChannel": 3,
+                        "texturePath": "./application/resource/Texture/gradation.png"
                     }
                 ],
                 "Material": [
@@ -296,7 +301,7 @@
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.0
+                            -0.6200000047683716
                         ]
                     }
                 ]

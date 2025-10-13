@@ -27,7 +27,8 @@ protected:
 
     Vec3f wallNormal_ = Vec3f(0.0f, 0.0f, 0.0f); // 壁の法線
 
-    Matrix4x4 rotateYMat_ = Matrix4x4();
+    Matrix4x4 wallYZRotate_ = MakeMatrix::Identity();
+    Quaternion wallRotate_  = Quaternion::Identity();
 
     const float kCameraAngleLerpTime_ = 0.8f;
     float cameraAngleLerpTimer_       = 0.0f;

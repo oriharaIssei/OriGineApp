@@ -65,13 +65,24 @@ void PlayerWallRunState::Initialize() {
     // 壁との衝突判定の残り時間を初期化
     separationLeftTime_ = separationGraceTime_;
 
-    // forward, right, up から回転を作る
-    float angle       = std::atan2(-direction[X], direction[Y]);
-    transform->rotate = Quaternion::RotateAxisAngle(axisZ, angle);
-    transform->UpdateMatrix();
+    float angleY = std::atan2(direction[X], direction[Z]);
+    wallRotate_  = Quaternion::RotateAxisAngle(axisY, angleY);
 
-    angle       = std::atan2(direction[X], direction[Z]);
-    rotateYMat_ = MakeMatrix::RotateY(angle);
+    // 壁法線
+    Vec3f n = wallNormal_;
+
+    // Y軸を固定して「正面方向を壁面に沿わせる」
+    Vec3f forward = Vec3f::Cross(axisY, n);
+    if (forward.lengthSq() < 1e-6f)
+        forward = Vec3f::Cross(axisX, n);
+    forward = forward.normalize();
+
+    // --- Y軸回り回転角を求める ---
+    angleY      = std::atan2(forward[X], forward[Z]);
+    wallRotate_ = Quaternion::RotateAxisAngle(axisY, angleY);
+
+    transform->rotate = wallRotate_;
+    transform->UpdateMatrix();
 }
 
 void PlayerWallRunState::Update(float _deltaTime) {
@@ -101,13 +112,13 @@ void PlayerWallRunState::Update(float _deltaTime) {
 
         Vec3f targetOffset         = cameraController->getOffsetOnWallRun();
         const Vec3f& currentOffset = cameraController->getCurrentOffset();
-        targetOffset               = targetOffset * rotateYMat_; // 壁の向きに合わせて左右反転
+        targetOffset               = targetOffset * wallYZRotate_; // 壁の向きに合わせて左右反転
         Vec3f newOffset            = Lerp<3, float>(currentOffset, targetOffset, EaseOutCubic(t));
         cameraController->setCurrentOffset(newOffset);
 
         Vec3f targetTargetOffset         = cameraController->getTargetOffsetOnWallRun();
         const Vec3f& currentTargetOffset = cameraController->getCurrentTargetOffset();
-        targetTargetOffset               = targetTargetOffset * rotateYMat_; // 壁の向きに合わせて左右反転
+        targetTargetOffset               = targetTargetOffset * wallYZRotate_; // 壁の向きに合わせて左右反転
         Vec3f newTargetOffset            = Lerp<3, float>(currentTargetOffset, targetTargetOffset, EaseOutCubic(t));
         cameraController->setCurrentTargetOffset(newTargetOffset);
     }

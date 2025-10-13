@@ -16,29 +16,30 @@
 #include <numbers>
 
 void CameraInputSystem::Initialize() {
-    input_ = Input::getInstance();
 }
 
 void CameraInputSystem::Finalize() {
-    input_ = nullptr;
 }
 
 void CameraInputSystem::UpdateEntity(GameEntity* _entity) {
+    Input* input                       = Input::getInstance();
     CameraController* cameraController = getComponent<CameraController>(_entity);
 
     Vec2f destinationAngleXY = cameraController->getDestinationAngleXY();
 
     if (cameraController->getFollowTarget()) {
         Vec2f rotateVelocity = {0.f, 0.f};
-        if (input_->isPadActive()) { /// GamePad
-            rotateVelocity = input_->getRStickVelocity() * cameraController->getRotateSpeedPadStick();
+        if (input->isPadActive()) { /// GamePad
+            rotateVelocity = input->getRStickVelocity() * cameraController->getRotateSpeedPadStick();
             // input の x,yをそれぞれの角度に変換
             rotateVelocity = Vec2f(-rotateVelocity[Y], rotateVelocity[X]);
         } else { /// Mouse
-            rotateVelocity = input_->getMouseVelocity() * cameraController->getRotateSpeedMouse();
+            rotateVelocity = input->getMouseVelocity() * cameraController->getRotateSpeedMouse();
             // input の x,yをそれぞれの角度に変換
             rotateVelocity = Vec2f(rotateVelocity[Y], rotateVelocity[X]);
         }
+
+        destinationAngleXY += rotateVelocity;
 
         // 角度制限を適用
         destinationAngleXY[X] = std::clamp(destinationAngleXY[X], cameraController->getMinRotateX(), cameraController->getMaxRotateX());
