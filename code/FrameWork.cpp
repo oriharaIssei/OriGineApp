@@ -13,6 +13,7 @@
 #include "component/Button.h"
 #include "component/ButtonGroup.h"
 #include "component/Camera/CameraController.h"
+#include "component/MouseCondition.h"
 #include "component/Player/PlayerInput.h"
 #include "component/Player/PlayerStatus.h"
 #include "component/Player/State/PlayerState.h"
@@ -28,32 +29,33 @@
 #include "system/effect/EffectOnPlayerGearup.h"
 #include "system/effect/EffectOnPlayerRun.h"
 #include "system/effect/TimerForSprite.h"
-#include "system/Initialize/CreateSpriteFromTimer.h"
-#include "system/Initialize/CreateStage.h"
-#include "system/Initialize/GetClearTime.h"
-#include "system/Initialize/SettingGameCameraTarget.h"
-#include "system/Initialize/TakePlayerToStartPosition.h"
-#include "system/Input/ButtonInputSystem.h"
-#include "system/Input/CameraInputSystem.h"
-#include "system/Input/PlayerInputSystem.h"
-#include "system/Movement/BillboardTransform.h"
-#include "system/Movement/FollowCameraUpdateSystem.h"
-#include "system/Movement/PlayerMoveSystem.h"
-#include "system/Movement/UpdateCameraForward.h"
+#include "system/initialize/CreateSpriteFromTimer.h"
+#include "system/initialize/CreateStage.h"
+#include "system/initialize/GetClearTime.h"
+#include "system/initialize/SettingGameCameraTarget.h"
+#include "system/initialize/TakePlayerToStartPosition.h"
+#include "system/input/ButtonInputSystem.h"
+#include "system/input/CameraInputSystem.h"
+#include "system/input/PlayerInputSystem.h"
+#include "system/movement/BillboardTransform.h"
+#include "system/movement/FollowCameraUpdateSystem.h"
+#include "system/movement/PlayerMoveSystem.h"
+#include "system/movement/UpdateCameraForward.h"
 #include "system/render/StageDebugRender.h"
-#include "system/Transition/ButtonGroupSystem.h"
-#include "system/Transition/ChangeSceneByButton.h"
-#include "system/Transition/FallDetectionSystem.h"
-#include "system/Transition/SceneTransition.h"
-#include "system/Transition/SetClearTime.h"
-#include "system/Transition/ShowGameUIByInputDevice.h"
-#include "system/Transition/TimeLimitJudgeSystem.h"
-#include "system/Transition/TimerCountDown.h"
-#include "system/Transition/TransitionPlayerState.h"
-#include "system/Transition/UpdateButtonColorByState.h"
+#include "system/transition/ApplyMouseConditionSystem.h"
+#include "system/transition/ButtonGroupSystem.h"
+#include "system/transition/ChangeSceneByButton.h"
+#include "system/transition/FallDetectionSystem.h"
+#include "system/transition/SceneTransition.h"
+#include "system/transition/SetClearTime.h"
+#include "system/transition/ShowGameUIByInputDevice.h"
+#include "system/transition/TimeLimitJudgeSystem.h"
+#include "system/transition/TimerCountDown.h"
+#include "system/transition/TransitionPlayerState.h"
+#include "system/transition/UpdateButtonColorByState.h"
 
 #ifndef _RELEASE
-#include "system/Transition/StageReloadSystem.h"
+#include "system/transition/StageReloadSystem.h"
 #endif // _RELEASE
 
 //
@@ -72,6 +74,8 @@ void RegisterUsingComponents() {
     ComponentRegistry* componentRegistry = ComponentRegistry::getInstance();
 
     componentRegistry->registerComponent<Audio>();
+
+    componentRegistry->registerComponent<MouseCondition>();
 
     componentRegistry->registerComponent<EntityReferenceList>();
     componentRegistry->registerComponent<SubScene>();
@@ -170,6 +174,7 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<TimeLimitJudgeSystem>();
     systemRegistry->registerSystem<SetClearTime>();
     systemRegistry->registerSystem<ShowGameUIByInputDevice>();
+    systemRegistry->registerSystem<ApplyMouseConditionSystem>();
 
 #ifndef _RELEASE
     systemRegistry->registerSystem<StageReloadSystem>();

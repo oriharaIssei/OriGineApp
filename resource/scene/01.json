@@ -742,10 +742,36 @@
                 }
             ],
             "isUnique": false
+        },
+        {
+            "Components": {
+                "MouseCondition": [
+                    {
+                        "fixCursorPos": [
+                            0.0,
+                            0.0
+                        ],
+                        "isActive": true,
+                        "isFixCursor": true,
+                        "isShowCursor": false
+                    }
+                ]
+            },
+            "Name": "mouseCondition",
+            "Systems": [
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "ApplyMouseConditionSystem"
+                }
+            ],
+            "isUnique": false
         }
     ],
     "Systems": [
         {
+            "ApplyMouseConditionSystem": {
+                "Priority": 0
+            },
             "BillboardTransform": {
                 "Priority": 100
             },
@@ -873,7 +899,7 @@
                 "Priority": 5
             },
             "UpdateButtonColorByState": {
-                "Priority": 0
+                "Priority": 1
             },
             "UpdateCameraForward": {
                 "Priority": 0

@@ -105,73 +105,73 @@
     <ClInclude Include="code\editor\StageEditor.h">
       <Filter>editor</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Initialize\CreateSpriteFromTimer.h">
+    <ClInclude Include="code\system\initialize\CreateSpriteFromTimer.h">
       <Filter>system\Initialize</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Initialize\CreateStage.h">
+    <ClInclude Include="code\system\initialize\CreateStage.h">
       <Filter>system\Initialize</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Initialize\GetClearTime.h">
+    <ClInclude Include="code\system\initialize\GetClearTime.h">
       <Filter>system\Initialize</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Initialize\SettingGameCameraTarget.h">
+    <ClInclude Include="code\system\initialize\SettingGameCameraTarget.h">
       <Filter>system\Initialize</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Initialize\TakePlayerToStartPosition.h">
+    <ClInclude Include="code\system\initialize\TakePlayerToStartPosition.h">
       <Filter>system\Initialize</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Input\ButtonInputSystem.h">
+    <ClInclude Include="code\system\input\ButtonInputSystem.h">
       <Filter>system\Input</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Input\CameraInputSystem.h">
+    <ClInclude Include="code\system\input\CameraInputSystem.h">
       <Filter>system\Input</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Input\PlayerInputSystem.h">
+    <ClInclude Include="code\system\input\PlayerInputSystem.h">
       <Filter>system\Input</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Movement\BillboardTransform.h">
+    <ClInclude Include="code\system\movement\BillboardTransform.h">
       <Filter>system\Movement</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Movement\FollowCameraUpdateSystem.h">
+    <ClInclude Include="code\system\movement\FollowCameraUpdateSystem.h">
       <Filter>system\Movement</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Movement\PlayerMoveSystem.h">
+    <ClInclude Include="code\system\movement\PlayerMoveSystem.h">
       <Filter>system\Movement</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Movement\UpdateCameraForward.h">
+    <ClInclude Include="code\system\movement\UpdateCameraForward.h">
       <Filter>system\Movement</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\ButtonGroupSystem.h">
+    <ClInclude Include="code\system\transition\ButtonGroupSystem.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\ChangeSceneByButton.h">
+    <ClInclude Include="code\system\transition\ChangeSceneByButton.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\FallDetectionSystem.h">
+    <ClInclude Include="code\system\transition\FallDetectionSystem.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\SceneTransition.h">
+    <ClInclude Include="code\system\transition\SceneTransition.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\SetClearTime.h">
+    <ClInclude Include="code\system\transition\SetClearTime.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\StageReloadSystem.h">
+    <ClInclude Include="code\system\transition\StageReloadSystem.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\TimeLimitJudgeSystem.h">
+    <ClInclude Include="code\system\transition\TimeLimitJudgeSystem.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\TimerCountDown.h">
+    <ClInclude Include="code\system\transition\TimerCountDown.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\TransitionPlayerState.h">
+    <ClInclude Include="code\system\transition\TransitionPlayerState.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\TransitionSceneByTimer.h">
+    <ClInclude Include="code\system\transition\TransitionSceneByTimer.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\UpdateButtonColorByState.h">
+    <ClInclude Include="code\system\transition\UpdateButtonColorByState.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
     <ClInclude Include="code\system\collision\PlayerOnCollision.h">
@@ -192,7 +192,9 @@
     <ClInclude Include="code\system\render\StageDebugRender.h">
       <Filter>system\render</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\ShowGameUIByInputDevice.h" />
+    <ClInclude Include="code\system\transition\ShowGameUIByInputDevice.h" />
+    <ClInclude Include="code\component\MouseCondition.h" />
+    <ClInclude Include="code\system\transition\ApplyMouseConditionSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -256,73 +258,73 @@
       <Filter>editor</Filter>
     </ClCompile>
     <ClCompile Include="code\main.cpp" />
-    <ClCompile Include="code\system\Initialize\CreateSpriteFromTimer.cpp">
+    <ClCompile Include="code\system\initialize\CreateSpriteFromTimer.cpp">
       <Filter>system\Initialize</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Initialize\CreateStage.cpp">
+    <ClCompile Include="code\system\initialize\CreateStage.cpp">
       <Filter>system\Initialize</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Initialize\GetClearTime.cpp">
+    <ClCompile Include="code\system\initialize\GetClearTime.cpp">
       <Filter>system\Initialize</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Initialize\SettingGameCameraTarget.cpp">
+    <ClCompile Include="code\system\initialize\SettingGameCameraTarget.cpp">
       <Filter>system\Initialize</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Initialize\TakePlayerToStartPosition.cpp">
+    <ClCompile Include="code\system\initialize\TakePlayerToStartPosition.cpp">
       <Filter>system\Initialize</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Input\ButtonInputSystem.cpp">
+    <ClCompile Include="code\system\input\ButtonInputSystem.cpp">
       <Filter>system\Input</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Input\CameraInputSystem.cpp">
+    <ClCompile Include="code\system\input\CameraInputSystem.cpp">
       <Filter>system\Input</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Input\PlayerInputSystem.cpp">
+    <ClCompile Include="code\system\input\PlayerInputSystem.cpp">
       <Filter>system\Input</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Movement\BillboardTransform.cpp">
+    <ClCompile Include="code\system\movement\BillboardTransform.cpp">
       <Filter>system\Movement</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Movement\FollowCameraUpdateSystem.cpp">
+    <ClCompile Include="code\system\movement\FollowCameraUpdateSystem.cpp">
       <Filter>system\Movement</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Movement\PlayerMoveSystem.cpp">
+    <ClCompile Include="code\system\movement\PlayerMoveSystem.cpp">
       <Filter>system\Movement</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Movement\UpdateCameraForward.cpp">
+    <ClCompile Include="code\system\movement\UpdateCameraForward.cpp">
       <Filter>system\Movement</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\ButtonGroupSystem.cpp">
+    <ClCompile Include="code\system\transition\ButtonGroupSystem.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\ChangeSceneByButton.cpp">
+    <ClCompile Include="code\system\transition\ChangeSceneByButton.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\FallDetectionSystem.cpp">
+    <ClCompile Include="code\system\transition\FallDetectionSystem.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\SceneTransition.cpp">
+    <ClCompile Include="code\system\transition\SceneTransition.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\SetClearTime.cpp">
+    <ClCompile Include="code\system\transition\SetClearTime.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\StageReloadSystem.cpp">
+    <ClCompile Include="code\system\transition\StageReloadSystem.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\TimeLimitJudgeSystem.cpp">
+    <ClCompile Include="code\system\transition\TimeLimitJudgeSystem.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\TimerCountDown.cpp">
+    <ClCompile Include="code\system\transition\TimerCountDown.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\TransitionPlayerState.cpp">
+    <ClCompile Include="code\system\transition\TransitionPlayerState.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\TransitionSceneByTimer.cpp">
+    <ClCompile Include="code\system\transition\TransitionSceneByTimer.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\UpdateButtonColorByState.cpp">
+    <ClCompile Include="code\system\transition\UpdateButtonColorByState.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
     <ClCompile Include="code\system\collision\PlayerOnCollision.cpp">
@@ -343,6 +345,8 @@
     <ClCompile Include="code\system\render\StageDebugRender.cpp">
       <Filter>system\render</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\ShowGameUIByInputDevice.cpp" />
+    <ClCompile Include="code\system\transition\ShowGameUIByInputDevice.cpp" />
+    <ClCompile Include="code\component\MouseCondition.cpp" />
+    <ClCompile Include="code\system\transition\ApplyMouseConditionSystem.cpp" />
   </ItemGroup>
 </Project>
