@@ -36,9 +36,9 @@
                                 1.0
                             ],
                             "translate": [
-                                0.0,
-                                0.0,
-                                0.0
+                                58.79241180419922,
+                                55.67736053466797,
+                                -73.86519622802734
                             ]
                         }
                     }
@@ -69,8 +69,8 @@
                             1.0
                         ],
                         "translate": [
-                            4.581019401550293,
                             0.0,
+                            1.7239999771118164,
                             0.0
                         ]
                     }
@@ -252,143 +252,12 @@
                 "AABBCollider": [
                     {
                         "max": [
-                            1000.0,
-                            1000.0,
-                            1000.0
-                        ],
-                        "min": [
-                            -1000.0,
-                            -1000.0,
-                            -1000.0
-                        ],
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "BoxRenderer": [
-                    {
-                        "blendMode": 1,
-                        "isRenderer": true,
-                        "materialIndex": 0,
-                        "size": [
-                            2000.0,
-                            2000.0,
-                            2000.0
-                        ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "CollisionPushBackInfo": [
-                    {
-                        "pushBackType": 1
-                    }
-                ],
-                "Material": [
-                    {
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "enableLighting": true,
-                        "shininess": 10.420000076293945,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "Transform": [
-                    {
-                        "rotate": [
-                            0.0,
-                            0.0,
-                            0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "translate": [
-                            0.0,
-                            -1000.0,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "Floor",
-            "Systems": [
-                {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
-                },
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "TexturedMeshRenderSystem"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "AABBCollider": [
-                    {
-                        "max": [
-                            20.0,
+                            5.0,
                             10.0,
                             20.0
                         ],
                         "min": [
-                            -20.0,
+                            -5.0,
                             -10.0,
                             -20.0
                         ],
@@ -418,7 +287,7 @@
                         "isRenderer": true,
                         "materialIndex": 0,
                         "size": [
-                            40.0,
+                            10.0,
                             20.0,
                             40.0
                         ],
@@ -489,9 +358,9 @@
                             1.0
                         ],
                         "translate": [
-                            -24.285432815551758,
                             0.0,
-                            11.5600004196167
+                            -10.0,
+                            0.0
                         ]
                     }
                 ]
@@ -514,14 +383,14 @@
                 "AABBCollider": [
                     {
                         "max": [
-                            20.0,
+                            5.0,
                             10.0,
-                            20.0
+                            12.0
                         ],
                         "min": [
-                            -20.0,
+                            -5.0,
                             -10.0,
-                            -20.0
+                            -12.0
                         ],
                         "transform": {
                             "rotate": [
@@ -549,9 +418,9 @@
                         "isRenderer": true,
                         "materialIndex": 0,
                         "size": [
-                            40.0,
+                            10.0,
                             20.0,
-                            40.0
+                            24.0
                         ],
                         "textureDirectory": "",
                         "textureFileName": "",
@@ -620,9 +489,926 @@
                             1.0
                         ],
                         "translate": [
-                            27.426071166992188,
                             0.0,
-                            24.844194412231445
+                            -10.0,
+                            40.79404067993164
+                        ]
+                    }
+                ]
+            },
+            "Name": "Wall",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "max": [
+                            10.0,
+                            10.0,
+                            10.0
+                        ],
+                        "min": [
+                            -10.0,
+                            -10.0,
+                            -10.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "BoxRenderer": [
+                    {
+                        "blendMode": 1,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            20.0,
+                            20.0,
+                            20.0
+                        ],
+                        "textureDirectory": "",
+                        "textureFileName": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "pushBackType": 1
+                    }
+                ],
+                "Material": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 24.139999389648438,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            4.715235710144043,
+                            -8.76695728302002,
+                            66.69981384277344
+                        ]
+                    }
+                ]
+            },
+            "Name": "Wall",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "max": [
+                            11.0,
+                            10.0,
+                            3.0
+                        ],
+                        "min": [
+                            -11.0,
+                            -10.0,
+                            -3.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "BoxRenderer": [
+                    {
+                        "blendMode": 1,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            22.0,
+                            20.0,
+                            6.0
+                        ],
+                        "textureDirectory": "",
+                        "textureFileName": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "pushBackType": 1
+                    }
+                ],
+                "Material": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 24.139999389648438,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            15.633169174194336,
+                            0.9271905422210693,
+                            82.3255615234375
+                        ]
+                    }
+                ]
+            },
+            "Name": "Wall",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "max": [
+                            5.0,
+                            10.0,
+                            5.0
+                        ],
+                        "min": [
+                            -5.0,
+                            -10.0,
+                            -5.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "BoxRenderer": [
+                    {
+                        "blendMode": 1,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            10.0,
+                            20.0,
+                            10.0
+                        ],
+                        "textureDirectory": "",
+                        "textureFileName": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "pushBackType": 1
+                    }
+                ],
+                "Material": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 24.139999389648438,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            38.89820861816406,
+                            -5.27457857131958,
+                            72.35136413574219
+                        ]
+                    }
+                ]
+            },
+            "Name": "Wall",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "max": [
+                            15.0,
+                            10.0,
+                            3.0
+                        ],
+                        "min": [
+                            -15.0,
+                            -10.0,
+                            -3.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "BoxRenderer": [
+                    {
+                        "blendMode": 1,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            30.0,
+                            20.0,
+                            6.0
+                        ],
+                        "textureDirectory": "",
+                        "textureFileName": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "pushBackType": 1
+                    }
+                ],
+                "Material": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 24.139999389648438,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            62.20102310180664,
+                            -5.339405059814453,
+                            72.63137817382813
+                        ]
+                    }
+                ]
+            },
+            "Name": "Wall",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "max": [
+                            8.0,
+                            10.0,
+                            8.0
+                        ],
+                        "min": [
+                            -8.0,
+                            -10.0,
+                            -8.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "BoxRenderer": [
+                    {
+                        "blendMode": 1,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            16.0,
+                            20.0,
+                            16.0
+                        ],
+                        "textureDirectory": "",
+                        "textureFileName": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "pushBackType": 1
+                    }
+                ],
+                "Material": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 24.139999389648438,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            128.89544677734375,
+                            0.1393277645111084,
+                            74.22676849365234
+                        ]
+                    }
+                ]
+            },
+            "Name": "Wall",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "max": [
+                            15.0,
+                            10.0,
+                            3.0
+                        ],
+                        "min": [
+                            -15.0,
+                            -10.0,
+                            -3.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "BoxRenderer": [
+                    {
+                        "blendMode": 1,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            30.0,
+                            20.0,
+                            6.0
+                        ],
+                        "textureDirectory": "",
+                        "textureFileName": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "pushBackType": 1
+                    }
+                ],
+                "Material": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 24.139999389648438,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            95.29228973388672,
+                            1.4578931331634521,
+                            79.2369384765625
+                        ]
+                    }
+                ]
+            },
+            "Name": "Wall",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "max": [
+                            14.0,
+                            10.0,
+                            3.0
+                        ],
+                        "min": [
+                            -14.0,
+                            -10.0,
+                            -3.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "BoxRenderer": [
+                    {
+                        "blendMode": 1,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            28.0,
+                            20.0,
+                            6.0
+                        ],
+                        "textureDirectory": "",
+                        "textureFileName": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "pushBackType": 1
+                    }
+                ],
+                "Material": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 24.139999389648438,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            101.86467742919922,
+                            3.1480000019073486,
+                            66.3984146118164
                         ]
                     }
                 ]
