@@ -46,6 +46,7 @@
 #include "system/Transition/FallDetectionSystem.h"
 #include "system/Transition/SceneTransition.h"
 #include "system/Transition/SetClearTime.h"
+#include "system/Transition/ShowGameUIByInputDevice.h"
 #include "system/Transition/TimeLimitJudgeSystem.h"
 #include "system/Transition/TimerCountDown.h"
 #include "system/Transition/TransitionPlayerState.h"
@@ -168,6 +169,7 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<TimerCountDown>();
     systemRegistry->registerSystem<TimeLimitJudgeSystem>();
     systemRegistry->registerSystem<SetClearTime>();
+    systemRegistry->registerSystem<ShowGameUIByInputDevice>();
 
 #ifndef _RELEASE
     systemRegistry->registerSystem<StageReloadSystem>();

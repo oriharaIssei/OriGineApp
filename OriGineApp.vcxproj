@@ -190,6 +190,7 @@
     <ClInclude Include="code\system\effect\EffectOnPlayerRun.h" />
     <ClInclude Include="code\system\effect\TimerForSprite.h" />
     <ClInclude Include="code\system\render\StageDebugRender.h" />
+    <ClInclude Include="code\system\Transition\ShowGameUIByInputDevice.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -244,6 +245,7 @@
     <ClCompile Include="code\system\effect\EffectOnPlayerRun.cpp" />
     <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
     <ClCompile Include="code\system\render\StageDebugRender.cpp" />
+    <ClCompile Include="code\system\Transition\ShowGameUIByInputDevice.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">

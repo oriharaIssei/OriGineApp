@@ -192,6 +192,7 @@
     <ClInclude Include="code\system\render\StageDebugRender.h">
       <Filter>system\render</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Transition\ShowGameUIByInputDevice.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -342,5 +343,6 @@
     <ClCompile Include="code\system\render\StageDebugRender.cpp">
       <Filter>system\render</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\Transition\ShowGameUIByInputDevice.cpp" />
   </ItemGroup>
 </Project>
