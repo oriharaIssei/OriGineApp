@@ -195,6 +195,8 @@
     <ClInclude Include="code\system\transition\ShowGameUIByInputDevice.h" />
     <ClInclude Include="code\component\MouseCondition.h" />
     <ClInclude Include="code\system\transition\ApplyMouseConditionSystem.h" />
+    <ClInclude Include="code\system\transition\SubSceneActivateByButton.h" />
+    <ClInclude Include="code\system\transition\SubSceneDeactivateByButton.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -348,5 +350,7 @@
     <ClCompile Include="code\system\transition\ShowGameUIByInputDevice.cpp" />
     <ClCompile Include="code\component\MouseCondition.cpp" />
     <ClCompile Include="code\system\transition\ApplyMouseConditionSystem.cpp" />
+    <ClCompile Include="code\system\transition\SubSceneActivateByButton.cpp" />
+    <ClCompile Include="code\system\transition\SubSceneDeactivateByButton.cpp" />
   </ItemGroup>
 </Project>

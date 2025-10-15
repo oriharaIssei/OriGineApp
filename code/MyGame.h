@@ -17,7 +17,6 @@ public:
 
     void Run();
 
-
 private:
     SceneManager* sceneManager_ = nullptr;
 };

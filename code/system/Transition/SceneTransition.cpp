@@ -46,9 +46,11 @@ void SceneTransition::Update() {
 
     if (enterScene_) {
         auto* enterSceneEntity = getUniqueEntity("EnterScene");
-        usingEntityId_         = enterSceneEntity->getID();
+        if (enterSceneEntity) {
+            usingEntityId_ = enterSceneEntity->getID();
 
-        EnterSceneUpdate();
+            EnterSceneUpdate();
+        }
     } else if (exitScene_) {
         ExitSceneUpdate();
     } else {

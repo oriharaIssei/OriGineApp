@@ -153,6 +153,7 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<CreateSpriteFromTimer>();
     systemRegistry->registerSystem<GetClearTime>();
     systemRegistry->registerSystem<CameraInitialize>();
+    systemRegistry->registerSystem<RegisterWindowResizeEvent>();
 
     /// ===================================================================================================
     // Input
