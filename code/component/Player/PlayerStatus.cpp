@@ -117,7 +117,7 @@ float PlayerStatus::CalculateCoolTimeByGearLevel(int32_t _gearLevel) const {
 }
 
 void PlayerStatus::UpdateAccel(PlayerInput* _input, Transform* _transform, Rigidbody* _rigidbody, const Quaternion& _cameraRotation) {
-    constexpr float kPlayerAccelRate = 4.0f;
+    constexpr float kPlayerAccelRate = 8.0f;
 
     // 入力方向を取得
     Vec2f inputDirection = _input->getInputDirection();

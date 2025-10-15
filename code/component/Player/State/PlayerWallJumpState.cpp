@@ -32,14 +32,14 @@ void PlayerWallJumpState::Initialize() {
 
     // プレイヤーの進行方向（正面）
     Vec3f velocityDirection = rigidbody->getVelocity();
-    velocityDirection.normalize();
+    velocityDirection       = velocityDirection.normalize();
 
     // --- 壁ローカル → ワールド変換 ---
     // wallJumpDirection = (x:外, y:上, z:沿う)
     Vec3f jumpDirWorld =
         wallNormal * wallJumpDirection[X] + axisY * wallJumpDirection[Y] + velocityDirection * wallJumpDirection[Z];
 
-    jumpDirWorld.normalize();
+    jumpDirWorld = jumpDirWorld.normalize();
 
     // --- 最終速度設定 ---
     float jumpSpeed = rigidbody->getMaxXZSpeed() * playerStatus->getWallRunRate();
