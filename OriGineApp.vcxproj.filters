@@ -16,9 +16,6 @@
     <Filter Include="component\Stage">
       <UniqueIdentifier>{BBBDD102-2749-3FC7-305A-C2BB9C649BC7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="editor">
-      <UniqueIdentifier>{AC2EC5FA-98D0-EFD0-818B-03256DCC7621}</UniqueIdentifier>
-    </Filter>
     <Filter Include="system">
       <UniqueIdentifier>{8AE4EE1C-7686-19F3-5F41-2D474B82A043}</UniqueIdentifier>
     </Filter>
@@ -104,9 +101,6 @@
     </ClInclude>
     <ClInclude Include="code\component\TimerComponent.h">
       <Filter>component</Filter>
-    </ClInclude>
-    <ClInclude Include="code\editor\StageEditor.h">
-      <Filter>editor</Filter>
     </ClInclude>
     <ClInclude Include="code\system\collision\PlayerOnCollision.h">
       <Filter>system\collision</Filter>
@@ -271,9 +265,6 @@
     </ClCompile>
     <ClCompile Include="code\component\TimerComponent.cpp">
       <Filter>component</Filter>
-    </ClCompile>
-    <ClCompile Include="code\editor\StageEditor.cpp">
-      <Filter>editor</Filter>
     </ClCompile>
     <ClCompile Include="code\main.cpp" />
     <ClCompile Include="code\system\collision\PlayerOnCollision.cpp">

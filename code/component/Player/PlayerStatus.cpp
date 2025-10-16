@@ -18,7 +18,10 @@
 PlayerStatus::PlayerStatus() {}
 PlayerStatus::~PlayerStatus() {}
 
-void PlayerStatus::Initialize(GameEntity* /*_entity*/) {}
+void PlayerStatus::Initialize(GameEntity* /*_entity*/) {
+    gearUpCoolTime_  = baseGearupCoolTime_;
+    currentMaxSpeed_ = baseSpeed_;
+}
 
 void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEntity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
@@ -114,31 +117,32 @@ float PlayerStatus::CalculateCoolTimeByGearLevel(int32_t _gearLevel) const {
 }
 
 void PlayerStatus::UpdateAccel(PlayerInput* _input, Transform* _transform, Rigidbody* _rigidbody, const Quaternion& _cameraRotation) {
+    constexpr float kPlayerAccelRate = 8.0f;
+
     // 入力方向を取得
     Vec2f inputDirection = _input->getInputDirection();
-
-    // カメラの回転からヨー（y軸回転）だけを抽出
-    float cameraYaw              = _cameraRotation.ToEulerAngles()[Y]; // y成分のみ
-    Quaternion cameraYawRotation = Quaternion::RotateAxisAngle(Vec3f(0.f, 1.f, 0.f), cameraYaw);
-
-    // 入力方向の回転
     if (inputDirection.lengthSq() <= 0.0f) {
         return;
     }
 
-    float inputAngle         = std::atan2(inputDirection[X], inputDirection[Y]);
-    Quaternion inputRotation = Quaternion::RotateAxisAngle(Vec3f(0.f, 1.f, 0.f), inputAngle);
+    // カメラのヨー（Y軸回転角）を取得
+    // --- 安定したカメラYaw抽出 ---
+    float cameraYaw = _cameraRotation.ToYaw();
 
-    // y軸のみの回転合成
-    Quaternion targetRotation = Quaternion::Normalize(cameraYawRotation * inputRotation);
+    // 入力方向を3Dベクトルに変換（Zが前、Xが右）
+    Vec3f inputDir3D = {inputDirection[X], 0.0f, inputDirection[Y]};
+    inputDir3D.normalize();
 
-    // プレイヤーの回転を補間して設定
-    _transform->rotate = Slerp(_transform->rotate, targetRotation, directionInterpolateRate_);
+    // カメラの向きに合わせて入力方向を回転（ローカル→ワールド変換）
+    Vec3f moveDirWorld = inputDir3D * MakeMatrix::RotateY(cameraYaw);
+    moveDirWorld.normalize();
 
-    // 移動速度の計算
-    Vec3f movementDirection = Vec3f(0.f, 0.f, 1.f) * MakeMatrix::RotateQuaternion(_transform->rotate);
-    Vec3f accel             = movementDirection * (currentMaxSpeed_ * 4.f);
+    // プレイヤーの回転をカメラ方向に合わせる
+    Quaternion targetRotation = Quaternion::LookAt(moveDirWorld, axisY);
+    _transform->rotate        = Slerp(_transform->rotate, targetRotation, directionInterpolateRate_);
 
+    // 移動加速度を設定
+    Vec3f accel = moveDirWorld * (currentMaxSpeed_ * kPlayerAccelRate);
     _rigidbody->setAcceleration(X, accel[X]);
     _rigidbody->setAcceleration(Z, accel[Z]);
 }

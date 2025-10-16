@@ -14,4 +14,7 @@ public:
     PlayerMoveState TransitionState() const override;
 
 private:
+    const int32_t kThresholdGearLevelOfCameraOffset_ = 2;
+    const float kCameraOffsetLerpTime_               = 2.3f;
+    float cameraOffsetLerpTimer_                     = 0.0f;
 };
