@@ -456,8 +456,8 @@
                 "SpriteRenderer": [
                     {
                         "anchorPoint": [
-                            0.0,
-                            0.0
+                            0.5,
+                            0.5
                         ],
                         "color": [
                             1.0,
@@ -472,7 +472,7 @@
                         "isFlipX": false,
                         "isFlipY": false,
                         "isRender": true,
-                        "renderingPriority": 1,
+                        "renderingPriority": 10,
                         "rotate": 0.0,
                         "scale": [
                             1.3600000143051147,
@@ -492,8 +492,8 @@
                             190.0
                         ],
                         "translate": [
-                            537.5999755859375,
-                            378.0
+                            960.0,
+                            540.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -505,8 +505,8 @@
                             0.0
                         ],
                         "windowRatioPos": [
-                            0.2800000011920929,
-                            0.3499999940395355
+                            0.5,
+                            0.5
                         ],
                         "windowRatioSize": [
                             0.2666666805744171,
@@ -515,8 +515,8 @@
                     },
                     {
                         "anchorPoint": [
-                            0.0,
-                            0.0
+                            0.5,
+                            0.5
                         ],
                         "color": [
                             1.0,
@@ -530,12 +530,12 @@
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
-                        "isRender": false,
-                        "renderingPriority": 1,
+                        "isRender": true,
+                        "renderingPriority": 10,
                         "rotate": 0.0,
                         "scale": [
-                            3.0999999046325684,
-                            3.0999999046325684
+                            1.3600000143051147,
+                            1.3600000143051147
                         ],
                         "size": [
                             512.0,
@@ -547,12 +547,12 @@
                         ],
                         "texturePath": "./application/resource/Texture/PadOperationMap.png",
                         "textureSize": [
-                            512.0,
+                            256.0,
                             190.0
                         ],
                         "translate": [
-                            537.5999755859375,
-                            378.0
+                            960.0,
+                            540.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -564,8 +564,8 @@
                             0.0
                         ],
                         "windowRatioPos": [
-                            0.2800000011920929,
-                            0.3499999940395355
+                            0.5,
+                            0.5
                         ],
                         "windowRatioSize": [
                             0.2666666805744171,
