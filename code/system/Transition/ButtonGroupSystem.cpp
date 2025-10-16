@@ -132,5 +132,7 @@ void ButtonGroupSystem::UpdateEntity(GameEntity* _entity) {
 
         currentButton = getComponent<Button>(getEntity(buttonGroup->getEntityId(currentButtonNumber)));
         currentButton->setHovered(true);
+
+        buttonGroup->setCurrentButtonNumber(currentButtonNumber);
     }
 }

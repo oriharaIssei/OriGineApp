@@ -39,6 +39,7 @@
 #include "system/input/PlayerInputSystem.h"
 #include "system/movement/BillboardTransform.h"
 #include "system/movement/FollowCameraUpdateSystem.h"
+#include "system/movement/MenuUpdate.h"
 #include "system/movement/PlayerMoveSystem.h"
 #include "system/movement/UpdateCameraForward.h"
 #include "system/render/StageDebugRender.h"
@@ -49,6 +50,8 @@
 #include "system/transition/SceneTransition.h"
 #include "system/transition/SetClearTime.h"
 #include "system/transition/ShowGameUIByInputDevice.h"
+#include "system/transition/SubSceneActivateByButton.h"
+#include "system/transition/SubSceneDeactivateByButton.h"
 #include "system/transition/TimeLimitJudgeSystem.h"
 #include "system/transition/TimerCountDown.h"
 #include "system/transition/TransitionPlayerState.h"
@@ -58,7 +61,6 @@
 #include "system/transition/StageReloadSystem.h"
 #endif // _RELEASE
 
-//
 // / =====================================================
 // Application Include
 /// =====================================================
@@ -176,6 +178,8 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<SetClearTime>();
     systemRegistry->registerSystem<ShowGameUIByInputDevice>();
     systemRegistry->registerSystem<ApplyMouseConditionSystem>();
+    systemRegistry->registerSystem<SubSceneActivateByButton>();
+    systemRegistry->registerSystem<SubSceneDeactivateByButton>();
 
 #ifndef _RELEASE
     systemRegistry->registerSystem<StageReloadSystem>();
@@ -191,6 +195,8 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<FollowCameraUpdateSystem>();
     systemRegistry->registerSystem<PlayerMoveSystem>();
     systemRegistry->registerSystem<UpdateCameraForward>();
+
+    systemRegistry->registerSystem<MenuUpdate>();
 
     /// =================================================================================================
     // Collision

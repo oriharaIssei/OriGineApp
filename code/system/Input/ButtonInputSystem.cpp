@@ -18,6 +18,10 @@ void ButtonInputSystem::Finalize() {
 void ButtonInputSystem::UpdateEntity(GameEntity* _entity) {
     Button* button = getComponent<Button>(_entity);
 
+    button->setHovered(false);
+    button->setPressed(false);
+    button->setReleased(false);
+
     /// ====================== check Keyboard Input ====================== ///
     if (button != nullptr) {
         //! Shortcut で キャンセルの方法が無い

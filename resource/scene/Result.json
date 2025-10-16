@@ -24,6 +24,10 @@
                             1.0,
                             1.0
                         ],
+                        "defaultWindowSize": [
+                            1280.0,
+                            720.0
+                        ],
                         "isFlipX": false,
                         "isFlipY": false,
                         "isRender": true,
@@ -58,6 +62,14 @@
                         "uvTranslate": [
                             0.0,
                             0.0
+                        ],
+                        "windowRatioPos": [
+                            0.5,
+                            0.22325000166893005
+                        ],
+                        "windowRatioSize": [
+                            0.4000000059604645,
+                            0.17777778208255768
                         ]
                     }
                 ]
@@ -173,6 +185,10 @@
                             1.0,
                             1.0
                         ],
+                        "defaultWindowSize": [
+                            1280.0,
+                            720.0
+                        ],
                         "isFlipX": false,
                         "isFlipY": false,
                         "isRender": true,
@@ -207,6 +223,14 @@
                         "uvTranslate": [
                             0.0,
                             0.0
+                        ],
+                        "windowRatioPos": [
+                            0.5,
+                            0.7397499680519104
+                        ],
+                        "windowRatioSize": [
+                            0.4234375059604645,
+                            0.35555556416511536
                         ]
                     }
                 ]
@@ -534,8 +558,14 @@
             "Components": {
                 "DistortionEffectParam": [
                     {
-                        "distortionBias": 0.5199999809265137,
-                        "distortionStrength": 0.25,
+                        "distortionBias": [
+                            0.0,
+                            0.0
+                        ],
+                        "distortionStrength": [
+                            0.0,
+                            0.0
+                        ],
                         "isActive": true,
                         "materialIndex": 0,
                         "textuerPath": "./application/resource/Texture/bioNoise.png",
@@ -564,7 +594,7 @@
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.4736272990703583
+                            0.9321356415748596
                         ]
                     }
                 ],
@@ -609,8 +639,14 @@
             "Components": {
                 "DistortionEffectParam": [
                     {
-                        "distortionBias": 0.5299999713897705,
-                        "distortionStrength": 0.6899999976158142,
+                        "distortionBias": [
+                            0.0,
+                            0.0
+                        ],
+                        "distortionStrength": [
+                            0.0,
+                            0.0
+                        ],
                         "isActive": true,
                         "materialIndex": 0,
                         "textuerPath": "./application/resource/Texture/waveNoise.png",
@@ -639,7 +675,7 @@
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.34195011854171753
+                            0.740047037601471
                         ]
                     }
                 ],
@@ -718,7 +754,7 @@
                 "Priority": 0
             },
             "CameraInitialize": {
-                "Priority": 0
+                "Priority": 1
             },
             "ChangeSceneByButton": {
                 "Priority": 1
@@ -740,6 +776,9 @@
             },
             "MaterialEffect": {
                 "Priority": 5
+            },
+            "RegisterWindowResizeEvent": {
+                "Priority": 0
             },
             "SceneTransition": {
                 "Priority": 0

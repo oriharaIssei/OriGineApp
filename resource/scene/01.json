@@ -132,73 +132,40 @@
                         "shortcutPadButton": []
                     }
                 ],
-                "DissolveEffectParam": [
+                "DissolveEffectParam": [],
+                "Material": [],
+                "SceneChanger": [],
+                "SubScene": [
                     {
-                        "edgeWidth": 0.004000000189989805,
                         "isActive": false,
-                        "materialIndex": 0,
-                        "outLineColor": [
-                            0.01568627543747425,
-                            0.7647058963775635,
-                            1.0,
-                            1.0
-                        ],
-                        "textureFilePath": "./application/resource/Texture/bioNoise.png",
-                        "threshold": 0.0
-                    }
-                ],
-                "Material": [
-                    {
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "enableLighting": false,
-                        "shininess": 0.0,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "SceneChanger": [
-                    {
-                        "nextSceneName": "Title"
+                        "sceneName": "menu"
                     }
                 ]
             },
-            "Name": "Entity",
+            "Name": "Menu",
             "Systems": [
-                {
-                    "SystemCategory": 2,
-                    "SystemName": "ChangeSceneByButton"
-                },
                 {
                     "SystemCategory": 1,
                     "SystemName": "ButtonInputSystem"
                 },
                 {
+                    "SystemCategory": 3,
+                    "SystemName": "MenuUpdate"
+                },
+                {
                     "SystemCategory": 7,
-                    "SystemName": "DissolveEffect"
+                    "SystemName": "SubSceneRender"
                 },
                 {
                     "SystemCategory": 2,
-                    "SystemName": "SceneTransition"
+                    "SystemName": "SubSceneActivateByButton"
+                },
+                {
+                    "SystemCategory": 3,
+                    "SystemName": "SubSceneUpdate"
                 }
             ],
-            "isUnique": false
+            "isUnique": true
         },
         {
             "Components": {
@@ -361,6 +328,10 @@
                             1.0,
                             1.0
                         ],
+                        "defaultWindowSize": [
+                            1280.0,
+                            720.0
+                        ],
                         "isFlipX": false,
                         "isFlipY": false,
                         "isRender": true,
@@ -393,6 +364,14 @@
                             1.0
                         ],
                         "uvTranslate": [
+                            0.0,
+                            0.0
+                        ],
+                        "windowRatioPos": [
+                            0.0,
+                            0.0
+                        ],
+                        "windowRatioSize": [
                             0.0,
                             0.0
                         ]
@@ -456,6 +435,10 @@
                             1.0,
                             1.0
                         ],
+                        "defaultWindowSize": [
+                            1280.0,
+                            720.0
+                        ],
                         "isFlipX": false,
                         "isFlipY": false,
                         "isRender": true,
@@ -488,6 +471,14 @@
                             1.0
                         ],
                         "uvTranslate": [
+                            0.0,
+                            0.0
+                        ],
+                        "windowRatioPos": [
+                            0.0,
+                            0.0
+                        ],
+                        "windowRatioSize": [
                             0.0,
                             0.0
                         ]
@@ -597,6 +588,10 @@
                             1.0,
                             1.0
                         ],
+                        "defaultWindowSize": [
+                            1280.0,
+                            720.0
+                        ],
                         "isFlipX": false,
                         "isFlipY": false,
                         "isRender": true,
@@ -629,6 +624,14 @@
                             1.0
                         ],
                         "uvTranslate": [
+                            0.0,
+                            0.0
+                        ],
+                        "windowRatioPos": [
+                            0.0,
+                            0.0
+                        ],
+                        "windowRatioSize": [
                             0.0,
                             0.0
                         ]
@@ -692,6 +695,10 @@
                             1.0,
                             1.0
                         ],
+                        "defaultWindowSize": [
+                            1280.0,
+                            720.0
+                        ],
                         "isFlipX": false,
                         "isFlipY": false,
                         "isRender": true,
@@ -724,6 +731,14 @@
                             1.0
                         ],
                         "uvTranslate": [
+                            0.0,
+                            0.0
+                        ],
+                        "windowRatioPos": [
+                            0.0,
+                            0.0
+                        ],
+                        "windowRatioSize": [
                             0.0,
                             0.0
                         ]
@@ -778,6 +793,9 @@
             "ButtonInputSystem": {
                 "Priority": 0
             },
+            "CameraInitialize": {
+                "Priority": 1
+            },
             "CameraInputSystem": {
                 "Priority": 3
             },
@@ -826,6 +844,9 @@
             "MaterialAnimationWorkSystem": {
                 "Priority": 0
             },
+            "MenuUpdate": {
+                "Priority": 0
+            },
             "MoveSystemByRigidBody": {
                 "Priority": 10
             },
@@ -843,6 +864,9 @@
             },
             "PrimitiveNodeAnimationWorkSystem": {
                 "Priority": 1
+            },
+            "RegisterWindowResizeEvent": {
+                "Priority": 0
             },
             "ResolveEntityReferences": {
                 "Priority": 0
@@ -876,6 +900,15 @@
             },
             "SpriteRenderSystem": {
                 "Priority": 5
+            },
+            "SubSceneActivateByButton": {
+                "Priority": 0
+            },
+            "SubSceneRender": {
+                "Priority": 100
+            },
+            "SubSceneUpdate": {
+                "Priority": 0
             },
             "TakePlayerToStartPosition": {
                 "Priority": 3

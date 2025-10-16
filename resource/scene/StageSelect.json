@@ -182,6 +182,10 @@
                             1.0,
                             1.0
                         ],
+                        "defaultWindowSize": [
+                            1280.0,
+                            720.0
+                        ],
                         "isFlipX": false,
                         "isFlipY": false,
                         "isRender": true,
@@ -216,6 +220,14 @@
                         "uvTranslate": [
                             0.0,
                             0.0
+                        ],
+                        "windowRatioPos": [
+                            0.22812500596046448,
+                            0.5
+                        ],
+                        "windowRatioSize": [
+                            0.4000000059604645,
+                            0.7111111283302307
                         ]
                     }
                 ]
@@ -335,6 +347,10 @@
                             1.0,
                             1.0
                         ],
+                        "defaultWindowSize": [
+                            1280.0,
+                            720.0
+                        ],
                         "isFlipX": false,
                         "isFlipY": false,
                         "isRender": true,
@@ -369,6 +385,14 @@
                         "uvTranslate": [
                             0.0,
                             0.0
+                        ],
+                        "windowRatioPos": [
+                            0.7718750238418579,
+                            0.5
+                        ],
+                        "windowRatioSize": [
+                            0.4000000059604645,
+                            0.7111111283302307
                         ]
                     }
                 ]
@@ -559,8 +583,14 @@
             "Components": {
                 "DistortionEffectParam": [
                     {
-                        "distortionBias": 0.5,
-                        "distortionStrength": 1.7100000381469727,
+                        "distortionBias": [
+                            0.0,
+                            0.0
+                        ],
+                        "distortionStrength": [
+                            0.0,
+                            0.0
+                        ],
                         "isActive": true,
                         "materialIndex": 0,
                         "textuerPath": "./application/resource/Texture/waveNoise.png",
@@ -589,7 +619,7 @@
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.04157022759318352
+                            0.4833512306213379
                         ]
                     }
                 ],
@@ -708,7 +738,7 @@
                 "Priority": 0
             },
             "CameraInitialize": {
-                "Priority": 0
+                "Priority": 1
             },
             "ChangeSceneByButton": {
                 "Priority": 3
@@ -721,6 +751,9 @@
             },
             "MaterialEffect": {
                 "Priority": 5
+            },
+            "RegisterWindowResizeEvent": {
+                "Priority": 0
             },
             "SceneTransition": {
                 "Priority": 5

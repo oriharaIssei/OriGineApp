@@ -112,6 +112,10 @@
                             1.0,
                             1.0
                         ],
+                        "defaultWindowSize": [
+                            1280.0,
+                            720.0
+                        ],
                         "isFlipX": false,
                         "isFlipY": false,
                         "isRender": true,
@@ -146,6 +150,14 @@
                         "uvTranslate": [
                             0.0,
                             0.0
+                        ],
+                        "windowRatioPos": [
+                            0.5,
+                            0.22325000166893005
+                        ],
+                        "windowRatioSize": [
+                            0.4000000059604645,
+                            0.17777778208255768
                         ]
                     }
                 ]
@@ -223,6 +235,10 @@
                             1.0,
                             1.0
                         ],
+                        "defaultWindowSize": [
+                            1280.0,
+                            720.0
+                        ],
                         "isFlipX": false,
                         "isFlipY": false,
                         "isRender": true,
@@ -257,6 +273,14 @@
                         "uvTranslate": [
                             0.0,
                             0.0
+                        ],
+                        "windowRatioPos": [
+                            0.5,
+                            0.7397499680519104
+                        ],
+                        "windowRatioSize": [
+                            0.4234375059604645,
+                            0.35555556416511536
                         ]
                     }
                 ]
@@ -576,8 +600,8 @@
                             1.0
                         ],
                         "uvTranslate": [
-                            -0.9553954601287842,
-                            0.9553954601287842
+                            -0.9703033566474915,
+                            0.9703033566474915
                         ]
                     }
                 ],
@@ -683,7 +707,7 @@
                 "Priority": 0
             },
             "CameraInitialize": {
-                "Priority": 0
+                "Priority": 1
             },
             "CameraInputSystem": {
                 "Priority": 1
@@ -738,6 +762,9 @@
             },
             "PrimitiveNodeAnimationWorkSystem": {
                 "Priority": 1
+            },
+            "RegisterWindowResizeEvent": {
+                "Priority": 0
             },
             "SceneTransition": {
                 "Priority": 0
