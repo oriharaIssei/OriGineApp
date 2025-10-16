@@ -11,6 +11,10 @@
 /// lib
 #include "globalVariables/GlobalVariables.h"
 
+/// component
+#include "component/renderer/Sprite.h"
+#include "component/SubScene.h"
+
 #ifdef _DEBUG
 /// editor
 #include "editor/EditorController.h"

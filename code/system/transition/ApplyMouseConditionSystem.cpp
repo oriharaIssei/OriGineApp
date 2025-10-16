@@ -1,0 +1,33 @@
+#include "ApplyMouseConditionSystem.h"
+
+/// engine
+#include "input/Input.h"
+
+/// component
+#include "component/MouseCondition.h"
+
+ApplyMouseConditionSystem::ApplyMouseConditionSystem() : ISystem(SystemCategory::StateTransition) {}
+ApplyMouseConditionSystem::~ApplyMouseConditionSystem() = default;
+
+void ApplyMouseConditionSystem::Initialize() {}
+void ApplyMouseConditionSystem::Finalize() {}
+
+void ApplyMouseConditionSystem::UpdateEntity(GameEntity* _entity) {
+    auto* conditions = getComponents<MouseCondition>(_entity);
+    if (conditions == nullptr) {
+        return;
+    }
+
+    Input* input = Input::getInstance();
+    for (auto& condition : *conditions) {
+        if (!condition.isActive()) {
+            continue;
+        }
+
+        input->ShowMouseCursor(condition.isShowCursor());
+
+        if (condition.isFixCursor()) {
+            input->setMousePos(condition.fixCursorPos());
+        }
+    }
+}

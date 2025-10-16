@@ -112,6 +112,10 @@
                             1.0,
                             1.0
                         ],
+                        "defaultWindowSize": [
+                            1280.0,
+                            720.0
+                        ],
                         "isFlipX": false,
                         "isFlipY": false,
                         "isRender": true,
@@ -146,6 +150,14 @@
                         "uvTranslate": [
                             0.0,
                             0.0
+                        ],
+                        "windowRatioPos": [
+                            0.5,
+                            0.22325000166893005
+                        ],
+                        "windowRatioSize": [
+                            0.4000000059604645,
+                            0.17777778208255768
                         ]
                     }
                 ]
@@ -223,6 +235,10 @@
                             1.0,
                             1.0
                         ],
+                        "defaultWindowSize": [
+                            1280.0,
+                            720.0
+                        ],
                         "isFlipX": false,
                         "isFlipY": false,
                         "isRender": true,
@@ -257,6 +273,14 @@
                         "uvTranslate": [
                             0.0,
                             0.0
+                        ],
+                        "windowRatioPos": [
+                            0.5,
+                            0.7397499680519104
+                        ],
+                        "windowRatioSize": [
+                            0.4234375059604645,
+                            0.35555556416511536
                         ]
                     }
                 ]
@@ -541,8 +565,14 @@
             "Components": {
                 "DistortionEffectParam": [
                     {
-                        "distortionBias": 0.4399999976158142,
-                        "distortionStrength": 0.6499999761581421,
+                        "distortionBias": [
+                            0.6200000047683716,
+                            0.5699999928474426
+                        ],
+                        "distortionStrength": [
+                            0.47999998927116394,
+                            0.5699999928474426
+                        ],
                         "isActive": true,
                         "materialIndex": 0,
                         "textuerPath": "./application/resource/Texture/waveNoise.png",
@@ -570,8 +600,8 @@
                             1.0
                         ],
                         "uvTranslate": [
-                            -0.7796604633331299,
-                            0.7796604633331299
+                            -0.9703033566474915,
+                            0.9703033566474915
                         ]
                     }
                 ],
@@ -601,7 +631,8 @@
                             }
                         ]
                     }
-                ]
+                ],
+                "MaterialEffectPipeLine": []
             },
             "Name": "Distortion",
             "Systems": [
@@ -610,6 +641,60 @@
                     "SystemName": "MaterialAnimationWorkSystem"
                 }
             ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "GradationTextureComponent": [
+                    {
+                        "inputChannel": 3,
+                        "isActive": true,
+                        "materialIndex": 0,
+                        "outputChannel": 3,
+                        "texturePath": "./application/resource/Texture/gradation.png"
+                    }
+                ],
+                "Material": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "MaterialAnimation": [
+                    {
+                        "InterpolationType": 0,
+                        "colorCurve": [],
+                        "duration": 0.0,
+                        "isLoop": false,
+                        "isPlay": false,
+                        "uvRotateCurve": [],
+                        "uvScaleCurve": [],
+                        "uvTranslateCurve": []
+                    }
+                ]
+            },
+            "Name": "Entity",
+            "Systems": [],
             "isUnique": false
         }
     ],
@@ -622,7 +707,7 @@
                 "Priority": 0
             },
             "CameraInitialize": {
-                "Priority": 0
+                "Priority": 1
             },
             "CameraInputSystem": {
                 "Priority": 1
@@ -651,6 +736,9 @@
             "FollowCameraUpdateSystem": {
                 "Priority": 0
             },
+            "GradationEffect": {
+                "Priority": 0
+            },
             "MaterialAnimationWorkSystem": {
                 "Priority": 0
             },
@@ -674,6 +762,9 @@
             },
             "PrimitiveNodeAnimationWorkSystem": {
                 "Priority": 1
+            },
+            "RegisterWindowResizeEvent": {
+                "Priority": 0
             },
             "SceneTransition": {
                 "Priority": 0

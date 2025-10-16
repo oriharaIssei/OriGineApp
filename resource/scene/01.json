@@ -36,9 +36,9 @@
                                 1.0
                             ],
                             "translate": [
-                                0.4196772277355194,
-                                4.3013081550598145,
-                                0.1729515790939331
+                                0.0,
+                                0.0,
+                                0.0
                             ]
                         }
                     }
@@ -129,38 +129,55 @@
                         "shortKeys": [
                             1
                         ],
-                        "shortcutPadButton": []
+                        "shortcutPadButton": [
+                            16
+                        ]
                     }
                 ],
-                "DissolveEffectParam": [
+                "DissolveEffectParam": [],
+                "Material": [],
+                "SceneChanger": [],
+                "SpriteRenderer": [
                     {
-                        "edgeWidth": 0.004000000189989805,
-                        "isActive": false,
-                        "materialIndex": 0,
-                        "outLineColor": [
-                            0.01568627543747425,
-                            0.7647058963775635,
-                            1.0,
-                            1.0
+                        "anchorPoint": [
+                            0.0,
+                            0.0
                         ],
-                        "textureFilePath": "./application/resource/Texture/bioNoise.png",
-                        "threshold": 0.0
-                    }
-                ],
-                "Material": [
-                    {
                         "color": [
                             1.0,
                             1.0,
                             1.0,
                             1.0
                         ],
-                        "enableLighting": false,
-                        "shininess": 0.0,
-                        "specularColor": [
-                            1.0,
+                        "defaultWindowSize": [
+                            1280.0,
+                            720.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "isRender": true,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
                             1.0,
                             1.0
+                        ],
+                        "size": [
+                            48.0,
+                            48.000003814697266
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "./application/resource/Texture/menuButtonKey.png",
+                        "textureSize": [
+                            16.0,
+                            16.0
+                        ],
+                        "translate": [
+                            72.95999908447266,
+                            30.96000099182129
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -170,35 +187,115 @@
                         "uvTranslate": [
                             0.0,
                             0.0
+                        ],
+                        "windowRatioPos": [
+                            0.05700000002980232,
+                            0.0430000014603138
+                        ],
+                        "windowRatioSize": [
+                            0.03750000149011612,
+                            0.06666667014360428
+                        ]
+                    },
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "defaultWindowSize": [
+                            1280.0,
+                            720.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "isRender": true,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
+                            48.0,
+                            48.000003814697266
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "./application/resource/Texture/menuButtonGamePadButton.png",
+                        "textureSize": [
+                            16.0,
+                            16.0
+                        ],
+                        "translate": [
+                            72.95999908447266,
+                            30.96000099182129
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ],
+                        "windowRatioPos": [
+                            0.05700000002980232,
+                            0.0430000014603138
+                        ],
+                        "windowRatioSize": [
+                            0.03750000149011612,
+                            0.06666667014360428
                         ]
                     }
                 ],
-                "SceneChanger": [
+                "SubScene": [
                     {
-                        "nextSceneName": "Title"
+                        "isActive": false,
+                        "sceneName": "menu"
                     }
                 ]
             },
-            "Name": "Entity",
+            "Name": "Menu",
             "Systems": [
-                {
-                    "SystemCategory": 2,
-                    "SystemName": "ChangeSceneByButton"
-                },
                 {
                     "SystemCategory": 1,
                     "SystemName": "ButtonInputSystem"
                 },
                 {
-                    "SystemCategory": 7,
-                    "SystemName": "DissolveEffect"
+                    "SystemCategory": 3,
+                    "SystemName": "MenuUpdate"
                 },
                 {
                     "SystemCategory": 2,
-                    "SystemName": "SceneTransition"
+                    "SystemName": "ShowGameUIByInputDevice"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "SpriteRenderSystem"
+                },
+                {
+                    "SystemCategory": 7,
+                    "SystemName": "SubSceneRender"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "SubSceneActivateByButton"
+                },
+                {
+                    "SystemCategory": 3,
+                    "SystemName": "SubSceneUpdate"
                 }
             ],
-            "isUnique": false
+            "isUnique": true
         },
         {
             "Components": {
@@ -306,25 +403,42 @@
             "isUnique": false
         },
         {
-            "Components": null,
-            "Name": "Entity",
-            "Systems": [],
-            "isUnique": false
-        },
-        {
-            "Components": null,
-            "Name": "Entity",
-            "Systems": [],
+            "Components": {
+                "MouseCondition": [
+                    {
+                        "fixCursorPos": [
+                            500.0,
+                            500.0
+                        ],
+                        "isActive": true,
+                        "isFixCursor": true,
+                        "isShowCursor": false
+                    }
+                ]
+            },
+            "Name": "mouseCondition",
+            "Systems": [
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "ApplyMouseConditionSystem"
+                }
+            ],
             "isUnique": false
         }
     ],
     "Systems": [
         {
+            "ApplyMouseConditionSystem": {
+                "Priority": 0
+            },
             "BillboardTransform": {
                 "Priority": 100
             },
             "ButtonInputSystem": {
                 "Priority": 0
+            },
+            "CameraInitialize": {
+                "Priority": 1
             },
             "CameraInputSystem": {
                 "Priority": 3
@@ -374,6 +488,9 @@
             "MaterialAnimationWorkSystem": {
                 "Priority": 0
             },
+            "MenuUpdate": {
+                "Priority": 0
+            },
             "MoveSystemByRigidBody": {
                 "Priority": 10
             },
@@ -392,6 +509,9 @@
             "PrimitiveNodeAnimationWorkSystem": {
                 "Priority": 1
             },
+            "RegisterWindowResizeEvent": {
+                "Priority": 0
+            },
             "ResolveEntityReferences": {
                 "Priority": 0
             },
@@ -403,6 +523,9 @@
             },
             "SettingGameCameraTarget": {
                 "Priority": 5
+            },
+            "ShowGameUIByInputDevice": {
+                "Priority": 0
             },
             "SkeletonRenderSystem": {
                 "Priority": 0
@@ -424,6 +547,15 @@
             },
             "SpriteRenderSystem": {
                 "Priority": 5
+            },
+            "SubSceneActivateByButton": {
+                "Priority": 0
+            },
+            "SubSceneRender": {
+                "Priority": 100
+            },
+            "SubSceneUpdate": {
+                "Priority": 0
             },
             "TakePlayerToStartPosition": {
                 "Priority": 3
@@ -447,7 +579,7 @@
                 "Priority": 5
             },
             "UpdateButtonColorByState": {
-                "Priority": 0
+                "Priority": 1
             },
             "UpdateCameraForward": {
                 "Priority": 0

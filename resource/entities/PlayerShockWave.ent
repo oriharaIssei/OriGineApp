@@ -2,64 +2,35 @@
     "Components": {
         "DistortionEffectParam": [
             {
-                "distortionBias": 0.07000000029802322,
-                "distortionObjects": [
-                    {
-                        "objectData": {
-                            "InnerRadius": 3.569999933242798,
-                            "OuterRadius": 6.050000190734863,
-                            "blendMode": 1,
-                            "division": 32,
-                            "isRenderer": true,
-                            "material": {
-                                "color": [
-                                    1.0,
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "enableLighting": false,
-                                "shininess": 0.0,
-                                "specularColor": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "uvRotate": 0.0,
-                                "uvScale": [
-                                    3.0,
-                                    0.33000001311302185
-                                ],
-                                "uvTranslate": [
-                                    0.0,
-                                    0.3400000035762787
-                                ]
-                            },
-                            "textureDirectory": "./application/resource/Texture",
-                            "textureFileName": "gradationLine.png",
-                            "transform": {
-                                "rotate": [
-                                    0.0,
-                                    1.0,
-                                    0.0,
-                                    0.0
-                                ],
-                                "scale": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "translate": [
-                                    0.0,
-                                    -10000.0,
-                                    0.0
-                                ]
-                            }
-                        },
-                        "objectType": 1
-                    }
+                "distortionBias": [
+                    0.0,
+                    0.0
                 ],
-                "distortionStrength": 0.5,
+                "distortionObjects": [],
+                "distortionStrength": [
+                    0.0,
+                    0.0
+                ],
+                "isActive": true,
+                "materialIndex": 0,
+                "use3dObjectList": true
+            }
+        ],
+        "Material": [
+            {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "enableLighting": false,
+                "shininess": 0.0,
+                "specularColor": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
                 "uvRotate": 0.0,
                 "uvScale": [
                     1.0,

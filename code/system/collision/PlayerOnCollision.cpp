@@ -40,7 +40,9 @@ void PlayerOnCollision::UpdateEntity(GameEntity* _entity) {
         // ゴール と 衝突したか
         if (collidedEntity->getDataType().find("Goal") != std::string::npos) {
             GameEntity* timer = getUniqueEntity("Timer");
-            Stage::setClearTime(getComponent<TimerComponent>(timer)->getCurrentTime());
+            if (timer) {
+                Stage::setClearTime(getComponent<TimerComponent>(timer)->getCurrentTime());
+            }
 
             // ゴールと衝突した場合は、ゴールに到達したと判断する
             state->setGoal(true);
