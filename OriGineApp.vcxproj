@@ -139,13 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="code\system\transition\ApplyMouseConditionSystem.h" />
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\MyEditor.h" />
     <ClInclude Include="code\MyGame.h" />
     <ClInclude Include="code\component\Button.h" />
     <ClInclude Include="code\component\ButtonGroup.h" />
     <ClInclude Include="code\component\Camera\CameraController.h" />
+    <ClInclude Include="code\component\MouseCondition.h" />
     <ClInclude Include="code\component\Player\PlayerInput.h" />
     <ClInclude Include="code\component\Player\PlayerStatus.h" />
     <ClInclude Include="code\component\Player\State\IPlayerMoveState.h" />
@@ -162,6 +162,11 @@
     <ClInclude Include="code\component\Stage\StageWall.h" />
     <ClInclude Include="code\component\TimerComponent.h" />
     <ClInclude Include="code\editor\StageEditor.h" />
+    <ClInclude Include="code\system\collision\PlayerOnCollision.h" />
+    <ClInclude Include="code\system\collision\TutorialColliderOnCollision.h" />
+    <ClInclude Include="code\system\effect\EffectOnPlayerGearup.h" />
+    <ClInclude Include="code\system\effect\EffectOnPlayerRun.h" />
+    <ClInclude Include="code\system\effect\TimerForSprite.h" />
     <ClInclude Include="code\system\initialize\CreateSpriteFromTimer.h" />
     <ClInclude Include="code\system\initialize\CreateStage.h" />
     <ClInclude Include="code\system\initialize\GetClearTime.h" />
@@ -172,13 +177,17 @@
     <ClInclude Include="code\system\input\PlayerInputSystem.h" />
     <ClInclude Include="code\system\movement\BillboardTransform.h" />
     <ClInclude Include="code\system\movement\FollowCameraUpdateSystem.h" />
+    <ClInclude Include="code\system\movement\MenuUpdate.h" />
     <ClInclude Include="code\system\movement\PlayerMoveSystem.h" />
     <ClInclude Include="code\system\movement\UpdateCameraForward.h" />
+    <ClInclude Include="code\system\render\StageDebugRender.h" />
+    <ClInclude Include="code\system\transition\ApplyMouseConditionSystem.h" />
     <ClInclude Include="code\system\transition\ButtonGroupSystem.h" />
     <ClInclude Include="code\system\transition\ChangeSceneByButton.h" />
     <ClInclude Include="code\system\transition\FallDetectionSystem.h" />
     <ClInclude Include="code\system\transition\SceneTransition.h" />
     <ClInclude Include="code\system\transition\SetClearTime.h" />
+    <ClInclude Include="code\system\transition\ShowGameUIByInputDevice.h" />
     <ClInclude Include="code\system\transition\StageReloadSystem.h" />
     <ClInclude Include="code\system\transition\SubSceneActivateByButton.h" />
     <ClInclude Include="code\system\transition\SubSceneDeactivateByButton.h" />
@@ -187,24 +196,15 @@
     <ClInclude Include="code\system\transition\TransitionPlayerState.h" />
     <ClInclude Include="code\system\transition\TransitionSceneByTimer.h" />
     <ClInclude Include="code\system\transition\UpdateButtonColorByState.h" />
-    <ClInclude Include="code\system\collision\PlayerOnCollision.h" />
-    <ClInclude Include="code\system\collision\TutorialColliderOnCollision.h" />
-    <ClInclude Include="code\system\effect\EffectOnPlayerGearup.h" />
-    <ClInclude Include="code\system\effect\EffectOnPlayerRun.h" />
-    <ClInclude Include="code\system\effect\TimerForSprite.h" />
-    <ClInclude Include="code\system\render\StageDebugRender.h" />
-    <ClInclude Include="code\system\transition\ShowGameUIByInputDevice.h" />
-    <ClInclude Include="code\component\MouseCondition.h" />
-    <ClInclude Include="code\system\movement\MenuUpdate.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="code\system\transition\ApplyMouseConditionSystem.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\MyEditor.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
     <ClCompile Include="code\component\Button.cpp" />
     <ClCompile Include="code\component\ButtonGroup.cpp" />
     <ClCompile Include="code\component\Camera\CameraController.cpp" />
+    <ClCompile Include="code\component\MouseCondition.cpp" />
     <ClCompile Include="code\component\Player\PlayerInput.cpp" />
     <ClCompile Include="code\component\Player\PlayerStatus.cpp" />
     <ClCompile Include="code\component\Player\State\IPlayerMoveState.cpp" />
@@ -222,6 +222,11 @@
     <ClCompile Include="code\component\TimerComponent.cpp" />
     <ClCompile Include="code\editor\StageEditor.cpp" />
     <ClCompile Include="code\main.cpp" />
+    <ClCompile Include="code\system\collision\PlayerOnCollision.cpp" />
+    <ClCompile Include="code\system\collision\TutorialColliderOnCollision.cpp" />
+    <ClCompile Include="code\system\effect\EffectOnPlayerGearup.cpp" />
+    <ClCompile Include="code\system\effect\EffectOnPlayerRun.cpp" />
+    <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
     <ClCompile Include="code\system\initialize\CreateSpriteFromTimer.cpp" />
     <ClCompile Include="code\system\initialize\CreateStage.cpp" />
     <ClCompile Include="code\system\initialize\GetClearTime.cpp" />
@@ -232,30 +237,25 @@
     <ClCompile Include="code\system\input\PlayerInputSystem.cpp" />
     <ClCompile Include="code\system\movement\BillboardTransform.cpp" />
     <ClCompile Include="code\system\movement\FollowCameraUpdateSystem.cpp" />
+    <ClCompile Include="code\system\movement\MenuUpdate.cpp" />
     <ClCompile Include="code\system\movement\PlayerMoveSystem.cpp" />
     <ClCompile Include="code\system\movement\UpdateCameraForward.cpp" />
+    <ClCompile Include="code\system\render\StageDebugRender.cpp" />
+    <ClCompile Include="code\system\transition\ApplyMouseConditionSystem.cpp" />
     <ClCompile Include="code\system\transition\ButtonGroupSystem.cpp" />
     <ClCompile Include="code\system\transition\ChangeSceneByButton.cpp" />
     <ClCompile Include="code\system\transition\FallDetectionSystem.cpp" />
     <ClCompile Include="code\system\transition\SceneTransition.cpp" />
     <ClCompile Include="code\system\transition\SetClearTime.cpp" />
+    <ClCompile Include="code\system\transition\ShowGameUIByInputDevice.cpp" />
     <ClCompile Include="code\system\transition\StageReloadSystem.cpp" />
     <ClCompile Include="code\system\transition\SubSceneActivateByButton.cpp" />
+    <ClCompile Include="code\system\transition\SubSceneDeactivateByButton.cpp" />
     <ClCompile Include="code\system\transition\TimeLimitJudgeSystem.cpp" />
     <ClCompile Include="code\system\transition\TimerCountDown.cpp" />
     <ClCompile Include="code\system\transition\TransitionPlayerState.cpp" />
     <ClCompile Include="code\system\transition\TransitionSceneByTimer.cpp" />
     <ClCompile Include="code\system\transition\UpdateButtonColorByState.cpp" />
-    <ClCompile Include="code\system\collision\PlayerOnCollision.cpp" />
-    <ClCompile Include="code\system\collision\TutorialColliderOnCollision.cpp" />
-    <ClCompile Include="code\system\effect\EffectOnPlayerGearup.cpp" />
-    <ClCompile Include="code\system\effect\EffectOnPlayerRun.cpp" />
-    <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
-    <ClCompile Include="code\system\render\StageDebugRender.cpp" />
-    <ClCompile Include="code\system\transition\ShowGameUIByInputDevice.cpp" />
-    <ClCompile Include="code\component\MouseCondition.cpp" />
-    <ClCompile Include="code\system\transition\SubSceneDeactivateByButton.cpp" />
-    <ClCompile Include="code\system\movement\MenuUpdate.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">
