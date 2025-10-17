@@ -20,5 +20,8 @@ public:
     PlayerMoveState TransitionState() const override;
 
 protected:
-    Vec3f velo_ = Vec3f(0.0f, 0.0f, 0.0f); // 壁ジャンプの方向
+    Vec3f velo_ = Vec3f(0.0f, 0.0f, 0.0f); // 壁ジャンプの速度
+
+    const float kForceJumpTime_ = 0.14f;
+    float forceJumpTimer_       = 0.0f;
 };

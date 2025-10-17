@@ -46,18 +46,39 @@ void PlayerWallJumpState::Initialize() {
     velo_           = jumpDirWorld * jumpSpeed;
 
     rigidbody->setVelocity(velo_);
+
+    forceJumpTimer_ = 0.f;
 }
 
-void PlayerWallJumpState::Update(float /*_deltaTime*/) {}
+void PlayerWallJumpState::Update(float _deltaTime) {
+    forceJumpTimer_ += _deltaTime;
+}
 
 void PlayerWallJumpState::Finalize() {
     auto* playerEntity = scene_->getEntity(playerEntityID_);
     auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
 
     rigidbody->setUseGravity(true); // 重力を有効
+
+    forceJumpTimer_ = kForceJumpTime_; // 強制時間を終了させる
 }
 
 PlayerMoveState PlayerWallJumpState::TransitionState() const {
+    auto* playerEntity = scene_->getEntity(playerEntityID_);
 
-    return PlayerMoveState::FALL_DOWN;
+    auto* playerState = scene_->getComponent<PlayerState>(playerEntity);
+
+    if (playerState->isOnGround()) {
+        return PlayerMoveState::DASH;
+    }
+    if (playerState->isCollisionWithWall()) {
+        return PlayerMoveState::WALL_RUN;
+    }
+
+    // 強制時間が終了したら 落下状態へ
+    if (forceJumpTimer_ >= kForceJumpTime_) {
+        return PlayerMoveState::FALL_DOWN;
+    }
+
+    return PlayerMoveState::WALL_JUMP;
 }
