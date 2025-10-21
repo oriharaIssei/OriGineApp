@@ -2,6 +2,9 @@
 
 #include "system/ISystem.h"
 
+/// <summary>
+/// TimerComponentのカウントダウンを行うシステム
+/// </summary>
 class TimerCountDown
     : public ISystem {
 public:
@@ -11,5 +14,5 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(GameEntity* _entity) override;
+    void UpdateEntity(Entity* _entity) override;
 };

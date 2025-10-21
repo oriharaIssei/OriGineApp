@@ -7,6 +7,9 @@
 /// engine
 #include "input/Input.h"
 
+/// <summary>
+/// 1シーン内で複数のボタンをグループ化し、選択と決定の操作を管理するコンポーネント
+/// </summary>
 class ButtonGroup
     : public IComponent {
     friend void to_json(nlohmann::json& j, const ButtonGroup& r);
@@ -16,8 +19,8 @@ public:
     ButtonGroup()           = default;
     ~ButtonGroup() override = default;
 
-    void Initialize(GameEntity* _entity) override;
-    void Edit(Scene* _scene, GameEntity* _entity, const std::string& _parentLabel) override;
+    void Initialize(Entity* _entity) override;
+    void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
     void Finalize() override;
 
 private:

@@ -13,7 +13,7 @@ void ButtonGroupSystem::Initialize() {}
 
 void ButtonGroupSystem::Finalize() {}
 
-void ButtonGroupSystem::UpdateEntity(GameEntity* _entity) {
+void ButtonGroupSystem::UpdateEntity(Entity* _entity) {
     Input* input      = Input::getInstance();
     auto* buttonGroup = getComponent<ButtonGroup>(_entity);
     if (buttonGroup == nullptr) {

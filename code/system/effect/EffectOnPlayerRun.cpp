@@ -18,7 +18,7 @@ EffectOnPlayerRun::~EffectOnPlayerRun() {}
 void EffectOnPlayerRun::Initialize() {}
 void EffectOnPlayerRun::Finalize() {}
 
-void EffectOnPlayerRun::UpdateEntity(GameEntity* entity) {
+void EffectOnPlayerRun::UpdateEntity(Entity* entity) {
     auto state = getComponent<PlayerState>(entity);
     if (state == nullptr) {
         return;

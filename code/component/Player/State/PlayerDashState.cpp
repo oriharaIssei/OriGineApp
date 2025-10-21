@@ -19,11 +19,13 @@ void PlayerDashState::Initialize() {
     auto* state        = scene_->getComponent<PlayerState>(playerEntity);
     auto* status       = scene_->getComponent<PlayerStatus>(playerEntity);
 
+    // gearLevel に応じてアニメーション速度と移動速度を設定
     auto* skinningAnim = scene_->getComponent<SkinningAnimationComponent>(playerEntity);
     if (skinningAnim) {
         skinningAnim->setPlaybackSpeed(1, 1.f + float(state->getGearLevel()));
     }
 
+    // 移動速度の設定
     auto* rigidbody = scene_->getComponent<Rigidbody>(playerEntity);
     rigidbody->setMaxXZSpeed(status->getCurrentMaxSpeed());
 
@@ -42,7 +44,9 @@ void PlayerDashState::Update(float _deltaTime) {
     // gearLevel の更新
     playerStatus->minusGearUpCoolTime(_deltaTime);
 
+    // ギアレベルが最大に達していない場合、
     if (state->getGearLevel() < kMaxPlayerGearLevel) {
+        // クールタイムが0以下になったらギアレベルを上げる
         if (playerStatus->getGearUpCoolTime() <= 0.f) {
             state->setGearUp(true);
 
@@ -61,6 +65,7 @@ void PlayerDashState::Update(float _deltaTime) {
         }
     }
 
+    // 速度更新
     playerStatus->UpdateAccel(playerInput, transform, rigidbody, scene_->getComponent<CameraTransform>(scene_->getUniqueEntity("GameCamera"))->rotate);
 
     if (kThresholdGearLevelOfCameraOffset_ >= state->getGearLevel()) {
@@ -112,16 +117,17 @@ PlayerMoveState PlayerDashState::TransitionState() const {
     auto state         = scene_->getComponent<PlayerState>(playerEntity);
     auto playerInput   = scene_->getComponent<PlayerInput>(playerEntity);
 
+    // 入力がない場合はアイドル状態に遷移
     if (playerInput->getInputDirection().lengthSq() <= 0.f) {
         return PlayerMoveState::IDLE;
     }
-
+    // 地面にいる場合
     if (state->isOnGround()) {
         if (playerInput->isJumpInput()) {
             return PlayerMoveState::JUMP;
         }
     } else {
-        // 空中にいる場合はジャンプ状態に遷移
+        // 空中にいる場合は落下状態に遷移
         return PlayerMoveState::FALL_DOWN;
     }
 

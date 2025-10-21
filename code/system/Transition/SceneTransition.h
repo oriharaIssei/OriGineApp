@@ -1,6 +1,9 @@
 #pragma once
 #include "system/ISystem.h"
 
+/// <summary>
+/// シーン遷移システム(エフェクトの再生管理など)
+/// </summary>
 class SceneTransition
     : public ISystem {
 public:
@@ -15,7 +18,7 @@ public:
     virtual void Update() override;
 
 protected:
-    virtual void UpdateEntity(GameEntity* _entity) override;
+    virtual void UpdateEntity(Entity* _entity) override;
 
     void EnterSceneUpdate();
     void ExitSceneUpdate();

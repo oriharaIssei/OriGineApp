@@ -11,7 +11,7 @@ void SubSceneActivateByButton::Initialize() {}
 
 void SubSceneActivateByButton::Finalize() {}
 
-void SubSceneActivateByButton::UpdateEntity(GameEntity* _entity) {
+void SubSceneActivateByButton::UpdateEntity(Entity* _entity) {
     auto subScene = getComponent<SubScene>(_entity);
     // 多重初期化防止
     if (subScene->isActive()) {

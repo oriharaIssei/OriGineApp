@@ -3,6 +3,9 @@
 /// parent
 #include "component/Player/State/IPlayerMoveState.h"
 
+/// <summary>
+/// Playerのダッシュ状態クラス(基本移動)
+/// </summary>
 class PlayerDashState
     : public IPlayerMoveState {
 public:
@@ -16,6 +19,6 @@ public:
 
 private:
     const int32_t kThresholdGearLevelOfCameraOffset_ = 2;
-    const float kCameraOffsetLerpTime_               = 1.3f;
+    const float kCameraOffsetLerpTime_               = 2.3f;
     float cameraOffsetLerpTimer_                     = 0.0f;
 };

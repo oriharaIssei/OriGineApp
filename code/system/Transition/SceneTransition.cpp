@@ -44,6 +44,7 @@ void SceneTransition::Update() {
 
     eraseDeadEntity();
 
+    // シーンに入るエフェクトの更新
     if (enterScene_) {
         auto* enterSceneEntity = getUniqueEntity("EnterScene");
         if (!enterSceneEntity) {
@@ -53,11 +54,11 @@ void SceneTransition::Update() {
         usingEntityId_ = enterSceneEntity->getID();
 
         EnterSceneUpdate();
-    } else if (exitScene_) {
+    } else if (exitScene_) { // シーンから出るエフェクトの更新
         ExitSceneUpdate();
     } else {
         for (auto& entityID : entityIDs_) {
-            GameEntity* entity = getEntity(entityID);
+            Entity* entity = getEntity(entityID);
             UpdateEntity(entity);
         }
     }
@@ -69,12 +70,13 @@ void SceneTransition::Update() {
 #endif
 }
 
-void SceneTransition::UpdateEntity(GameEntity* _entity) {
+void SceneTransition::UpdateEntity(Entity* _entity) {
     uint32_t compSize = (uint32_t)getComponentArray<SceneChanger>()->getComponentSize(_entity);
     if (compSize <= 0) {
         return;
     }
 
+    // シーン遷移の検知
     for (uint32_t i = 0; i < compSize; ++i) {
         SceneChanger* sceneChanger = getComponent<SceneChanger>(_entity, i);
         if (sceneChanger == nullptr) {
@@ -94,7 +96,7 @@ void SceneTransition::UpdateEntity(GameEntity* _entity) {
 
 void SceneTransition::EnterSceneUpdate() {
 
-    GameEntity* enterSceneEntity = getEntity(usingEntityId_);
+    Entity* enterSceneEntity = getEntity(usingEntityId_);
     if (enterSceneEntity == nullptr) {
         return;
     }
@@ -150,12 +152,12 @@ void SceneTransition::ExitSceneUpdate() {
         exitScene_             = false;
 
         // シーン変更を実行
-        GameEntity* sceneChangerEntity = getEntity(usingEntityId_);
+        Entity* sceneChangerEntity = getEntity(usingEntityId_);
         SceneChanger* sceneChanger     = getComponent<SceneChanger>(sceneChangerEntity, sceneChangerComponentId_);
         SceneManager::getInstance()->changeScene(sceneChanger->getNextSceneName());
     }
 
-    GameEntity* enterSceneEntity = getEntity(usingEntityId_);
+    Entity* enterSceneEntity = getEntity(usingEntityId_);
     if (enterSceneEntity == nullptr) {
         return;
     }

@@ -17,7 +17,7 @@ void FollowCameraUpdateSystem::Initialize() {}
 
 void FollowCameraUpdateSystem::Finalize() {}
 
-void FollowCameraUpdateSystem::UpdateEntity(GameEntity* _entity) {
+void FollowCameraUpdateSystem::UpdateEntity(Entity* _entity) {
     CameraController* cameraController = getComponent<CameraController>(_entity);
     CameraTransform* cameraTransform   = getComponent<CameraTransform>(_entity);
 

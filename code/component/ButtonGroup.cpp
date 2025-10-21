@@ -10,9 +10,9 @@
 #include "editor/EditorController.h"
 #include "myGui/MyGui.h"
 
-void ButtonGroup::Initialize(GameEntity* /*_entity*/) {}
+void ButtonGroup::Initialize(Entity* /*_entity*/) {}
 
-void ButtonGroup::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEntity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
+void ButtonGroup::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
     auto componentArray = _scene->getComponentRepositoryRef()->getComponentArray<Button>();
     if (!componentArray) {

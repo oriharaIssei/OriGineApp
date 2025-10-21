@@ -3,6 +3,9 @@
 #ifdef _DEBUG
 
 class EditorController;
+/// <summary>
+/// 編集用のアプリケーションフレームワーク
+/// </summary>
 class MyEditor
     : public FrameWork {
 public:

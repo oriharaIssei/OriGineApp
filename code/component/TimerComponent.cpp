@@ -14,11 +14,11 @@ TimerComponent::TimerComponent() {}
 
 TimerComponent::~TimerComponent() {}
 
-void TimerComponent::Initialize(GameEntity* /*_entity*/) {
+void TimerComponent::Initialize(Entity* /*_entity*/) {
     currentTime_ = maxTime_;
 }
 
-void TimerComponent::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
+void TimerComponent::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 
 #ifdef DEBUG
     CheckBoxCommand("IsStarted For Using System##" + _parentLabel, isStarted_);
@@ -70,7 +70,7 @@ void from_json(const nlohmann::json& j, TimerForSpriteComponent& c) {
     j.at("digitDecimalForSprite").get_to(c.digitDecimalForSprite_);
 }
 
-void TimerForSpriteComponent::Initialize(GameEntity* /*_entity*/) {
+void TimerForSpriteComponent::Initialize(Entity* /*_entity*/) {
     if (!this->numbersTexturePath_.empty()) {
         textureIndex_ = TextureManager::LoadTexture(this->numbersTexturePath_, [this](uint32_t _newIdx) {
             this->settingOnLoadTexture(_newIdx);
@@ -78,7 +78,7 @@ void TimerForSpriteComponent::Initialize(GameEntity* /*_entity*/) {
     }
 }
 
-void TimerForSpriteComponent::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
+void TimerForSpriteComponent::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 
 #ifdef DEBUG
     ImGui::Text("Sprite");

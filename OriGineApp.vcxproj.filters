@@ -16,9 +16,6 @@
     <Filter Include="component\Stage">
       <UniqueIdentifier>{BBBDD102-2749-3FC7-305A-C2BB9C649BC7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="editor">
-      <UniqueIdentifier>{AC2EC5FA-98D0-EFD0-818B-03256DCC7621}</UniqueIdentifier>
-    </Filter>
     <Filter Include="system">
       <UniqueIdentifier>{8AE4EE1C-7686-19F3-5F41-2D474B82A043}</UniqueIdentifier>
     </Filter>
@@ -105,9 +102,6 @@
     <ClInclude Include="code\component\TimerComponent.h">
       <Filter>component</Filter>
     </ClInclude>
-    <ClInclude Include="code\editor\StageEditor.h">
-      <Filter>editor</Filter>
-    </ClInclude>
     <ClInclude Include="code\system\collision\PlayerOnCollision.h">
       <Filter>system\collision</Filter>
     </ClInclude>
@@ -159,9 +153,6 @@
     <ClInclude Include="code\system\movement\PlayerMoveSystem.h">
       <Filter>system\movement</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\movement\UpdateCameraForward.h">
-      <Filter>system\movement</Filter>
-    </ClInclude>
     <ClInclude Include="code\system\render\StageDebugRender.h">
       <Filter>system\render</Filter>
     </ClInclude>
@@ -186,9 +177,6 @@
     <ClInclude Include="code\system\transition\ShowGameUIByInputDevice.h">
       <Filter>system\transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\transition\StageReloadSystem.h">
-      <Filter>system\transition</Filter>
-    </ClInclude>
     <ClInclude Include="code\system\transition\SubSceneActivateByButton.h">
       <Filter>system\transition</Filter>
     </ClInclude>
@@ -202,9 +190,6 @@
       <Filter>system\transition</Filter>
     </ClInclude>
     <ClInclude Include="code\system\transition\TransitionPlayerState.h">
-      <Filter>system\transition</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\transition\TransitionSceneByTimer.h">
       <Filter>system\transition</Filter>
     </ClInclude>
     <ClInclude Include="code\system\transition\UpdateButtonColorByState.h">
@@ -272,9 +257,6 @@
     <ClCompile Include="code\component\TimerComponent.cpp">
       <Filter>component</Filter>
     </ClCompile>
-    <ClCompile Include="code\editor\StageEditor.cpp">
-      <Filter>editor</Filter>
-    </ClCompile>
     <ClCompile Include="code\main.cpp" />
     <ClCompile Include="code\system\collision\PlayerOnCollision.cpp">
       <Filter>system\collision</Filter>
@@ -327,9 +309,6 @@
     <ClCompile Include="code\system\movement\PlayerMoveSystem.cpp">
       <Filter>system\movement</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\movement\UpdateCameraForward.cpp">
-      <Filter>system\movement</Filter>
-    </ClCompile>
     <ClCompile Include="code\system\render\StageDebugRender.cpp">
       <Filter>system\render</Filter>
     </ClCompile>
@@ -354,9 +333,6 @@
     <ClCompile Include="code\system\transition\ShowGameUIByInputDevice.cpp">
       <Filter>system\transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\transition\StageReloadSystem.cpp">
-      <Filter>system\transition</Filter>
-    </ClCompile>
     <ClCompile Include="code\system\transition\SubSceneActivateByButton.cpp">
       <Filter>system\transition</Filter>
     </ClCompile>
@@ -370,9 +346,6 @@
       <Filter>system\transition</Filter>
     </ClCompile>
     <ClCompile Include="code\system\transition\TransitionPlayerState.cpp">
-      <Filter>system\transition</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\transition\TransitionSceneByTimer.cpp">
       <Filter>system\transition</Filter>
     </ClCompile>
     <ClCompile Include="code\system\transition\UpdateButtonColorByState.cpp">

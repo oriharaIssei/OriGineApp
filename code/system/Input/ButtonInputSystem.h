@@ -3,6 +3,10 @@
 #include "system/ISystem.h"
 
 class Input;
+
+/// <summary>
+/// ボタン入力を処理するシステム
+/// </summary>
 class ButtonInputSystem
     : public ISystem {
 public:
@@ -13,7 +17,7 @@ public:
     virtual void Finalize();
 
 protected:
-    virtual void UpdateEntity(GameEntity* _entity);
+    virtual void UpdateEntity(Entity* _entity);
 
 private:
     Input* input_ = nullptr;

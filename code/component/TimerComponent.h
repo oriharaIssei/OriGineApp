@@ -4,6 +4,9 @@
 /// math
 #include <math/Vector2.h>
 
+/// <summary>
+/// Timerコンポーネント
+/// </summary>
 class TimerComponent
     : public IComponent {
     friend void to_json(nlohmann::json& j, const TimerComponent& c);
@@ -13,8 +16,8 @@ public:
     TimerComponent();
     ~TimerComponent() override;
 
-    void Initialize(GameEntity* _entity) override;
-    void Edit(Scene* _scene, GameEntity* _entity, const std::string& _parentLabel) override;
+    void Initialize(Entity* _entity) override;
+    void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
     void Finalize() override;
 
 private:
@@ -50,8 +53,8 @@ public:
     TimerForSpriteComponent()           = default;
     ~TimerForSpriteComponent() override = default;
 
-    void Initialize(GameEntity* _entity) override;
-    void Edit(Scene* _scene, GameEntity* _entity, const std::string& _parentLabel) override;
+    void Initialize(Entity* _entity) override;
+    void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
     void Finalize() override {}
 
 private:

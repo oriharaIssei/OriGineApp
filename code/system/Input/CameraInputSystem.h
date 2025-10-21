@@ -6,6 +6,9 @@
 /// engine
 class Input;
 
+/// <summary>
+/// Cameraの入力処理を行うシステム
+/// </summary>
 class CameraInputSystem
     : public ISystem {
 public:
@@ -16,8 +19,5 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(GameEntity* _entity);
-
-protected:
-    Input* input_ = nullptr;
+    void UpdateEntity(Entity* _entity);
 };

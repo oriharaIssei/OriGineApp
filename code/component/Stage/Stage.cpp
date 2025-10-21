@@ -11,6 +11,7 @@
 
 /// ecs
 #include "system/Initialize/CreateStage.h"
+#include "system/SystemRunner.h"
 
 #ifdef DEBUG
 #include "myGui/MyGui.h"
@@ -18,7 +19,7 @@
 
 float Stage::clearTime_ = 0.f;
 
-void Stage::Initialize(GameEntity* /*_entity*/) {
+void Stage::Initialize(Entity* /*_entity*/) {
     if (!directory_.empty() && !fileName_.empty()) {
         LoadFile(directory_, fileName_);
     } else {
@@ -26,7 +27,7 @@ void Stage::Initialize(GameEntity* /*_entity*/) {
     }
 }
 
-void Stage::Edit([[maybe_unused]] Scene* _scene, GameEntity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
+void Stage::Edit([[maybe_unused]] Scene* _scene, Entity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef DEBUG
     ImGui::Text("Directory : %s", directory_.c_str());
     ImGui::Text("FileName : %s", fileName_.c_str());

@@ -11,7 +11,7 @@
 #include "component/effect/post/RadialBlurParam.h"
 #include "component/Player/PlayerStatus.h"
 #include "component/Player/State/PlayerState.h"
-#include "component/renderer/primitive/Primitive.h"
+#include "component/renderer/primitive/RingRenderer.h"
 
 /// math
 #include <math/MyEasing.h>
@@ -24,8 +24,8 @@ void EffectOnPlayerGearup::Initialize() {}
 
 void EffectOnPlayerGearup::Finalize() {}
 
-void EffectOnPlayerGearup::UpdateEntity(GameEntity* _entity) {
-    GameEntity* player = getUniqueEntity("Player");
+void EffectOnPlayerGearup::UpdateEntity(Entity* _entity) {
+    Entity* player = getUniqueEntity("Player");
     if (!player) {
         return;
     }
@@ -63,7 +63,7 @@ void EffectOnPlayerGearup::UpdateEntity(GameEntity* _entity) {
     UpdateShockWaveRing(_entity, playerTransform);
 }
 
-void EffectOnPlayerGearup::UpdateShockWaveRing(GameEntity* _entity, Transform* _playerTransform) {
+void EffectOnPlayerGearup::UpdateShockWaveRing(Entity* _entity, Transform* _playerTransform) {
     DistortionEffectParam* distortionEffectParam = getComponent<DistortionEffectParam>(_entity);
 
     shockWaveState_.currentTime += getMainDeltaTime();

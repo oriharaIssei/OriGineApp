@@ -6,6 +6,9 @@ class StageFloor;
 
 #include <Vector3.h>
 
+/// <summary>
+/// 落下判定システム
+/// </summary>
 class FallDetectionSystem
     : public ISystem {
 public:
@@ -18,7 +21,7 @@ public:
     virtual void Finalize();
 
 protected:
-    virtual void UpdateEntity(GameEntity* _entity) override;
+    virtual void UpdateEntity(Entity* _entity) override;
 
     Vec3f RetryPos(Stage* _stage, StageFloor* _stageFloor, const Vec3f& _currentPos);
 };

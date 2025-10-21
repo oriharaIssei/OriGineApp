@@ -22,9 +22,9 @@ SceneChanger::SceneChanger() {
 SceneChanger::~SceneChanger() {
 }
 
-void SceneChanger::Initialize(GameEntity* /* _entity*/) {}
+void SceneChanger::Initialize(Entity* /* _entity*/) {}
 
-void SceneChanger::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEntity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
+void SceneChanger::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
    
 #ifdef _DEBUG
 

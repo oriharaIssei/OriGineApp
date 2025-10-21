@@ -2,6 +2,9 @@
 
 #include "system/ISystem.h"
 
+/// <summary>
+/// ボタン入力でサブシーンを有効化するシステム
+/// </summary>
 class SubSceneActivateByButton
     : public ISystem {
 public:
@@ -11,5 +14,5 @@ public:
     void Finalize() override;
 
 private:
-    void UpdateEntity(GameEntity* _entity) override;
+    void UpdateEntity(Entity* _entity) override;
 };

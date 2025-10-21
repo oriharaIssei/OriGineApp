@@ -1,6 +1,9 @@
 #pragma once
 #include "system/ISystem.h"
 
+/// <summary>
+/// Transformをビルボード化するシステム
+/// </summary>
 class BillboardTransform
     : public ISystem {
 public:
@@ -11,5 +14,5 @@ public:
     void Finalize();
 
 private:
-    void UpdateEntity(GameEntity* _entity) override;
+    void UpdateEntity(Entity* _entity) override;
 };
