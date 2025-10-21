@@ -114,7 +114,6 @@ void RegisterUsingComponents() {
     componentRegistry->registerComponent<RandomEffectParam>();
     componentRegistry->registerComponent<VignetteParam>();
     componentRegistry->registerComponent<SpeedlineEffectParam>();
-    componentRegistry->registerComponent<TextureEffectParam>();
     componentRegistry->registerComponent<MaterialEffectPipeLine>();
     componentRegistry->registerComponent<GradationTextureComponent>();
 
@@ -212,7 +211,6 @@ void RegisterUsingSystems() {
     /// =================================================================================================
     systemRegistry->registerSystem<EmitterWorkSystem>();
     systemRegistry->registerSystem<PrimitiveNodeAnimationWorkSystem>();
-    systemRegistry->registerSystem<TextureEffectAnimation>();
     systemRegistry->registerSystem<SkinningAnimationSystem>();
     systemRegistry->registerSystem<SpriteAnimationSystem>();
     systemRegistry->registerSystem<GpuParticleEmitterWorkSystem>();

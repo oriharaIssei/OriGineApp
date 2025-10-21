@@ -18,7 +18,7 @@ void TransitionSceneByTimer::Initialize() {}
 
 void TransitionSceneByTimer::Finalize() {}
 
-void TransitionSceneByTimer::UpdateEntity(GameEntity* _entity) {
+void TransitionSceneByTimer::UpdateEntity(Entity* _entity) {
     auto timerComponent = getComponent<TimerComponent>(_entity);
     if (timerComponent) {
         if (!timerComponent->isStarted()) {

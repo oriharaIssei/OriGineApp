@@ -81,9 +81,9 @@ Button::Button() {
 Button::~Button() {
 }
 
-void Button::Initialize(GameEntity* /*_entity*/) {}
+void Button::Initialize(Entity* /*_entity*/) {}
 
-void Button::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
+void Button::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
     std::string label = "Button Colors" + _parentLabel;
     if (ImGui::TreeNode(label.c_str())) {

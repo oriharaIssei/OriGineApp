@@ -9,6 +9,7 @@
 #include "component/renderer/Sprite.h"
 #include "component/TimerComponent.h"
 // system
+#include "system/SystemRunner.h"
 #include "system/render/SpriteRenderSystem.h"
 
 CreateSpriteFromTimer::CreateSpriteFromTimer()
@@ -20,7 +21,7 @@ void CreateSpriteFromTimer::Initialize() {}
 
 void CreateSpriteFromTimer::Finalize() {}
 
-void CreateSpriteFromTimer::UpdateEntity(GameEntity* _entity) {
+void CreateSpriteFromTimer::UpdateEntity(Entity* _entity) {
     auto timerComponent          = getComponent<TimerComponent>(_entity);
     auto timerForSpriteComponent = getComponent<TimerForSpriteComponent>(_entity);
     if (!timerComponent || !timerForSpriteComponent) {
@@ -50,7 +51,7 @@ void CreateSpriteFromTimer::UpdateEntity(GameEntity* _entity) {
 
     // Sprite用のEntityを作成
     int32_t spriteEntityId   = CreateEntity("TimerForSprite_Sprites", false);
-    GameEntity* spriteEntity = getEntity(spriteEntityId);
+    Entity* spriteEntity = getEntity(spriteEntityId);
     spriteEntity->setShouldSave(false); // セーブしない
 
     getScene()->getSystemRunnerRef()->getSystemRef<SpriteRenderSystem>()->addEntity(spriteEntity);

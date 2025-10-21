@@ -1,7 +1,7 @@
 #include "TutorialColliderOnCollision.h"
 
 #include "component/animation/SpriteAnimation.h"
-#include "component/collider/Collider.h"
+#include "component/collision/collider/AABBCollider.h"
 #include "component/renderer/Sprite.h"
 
 TutorialColliderOnCollision::TutorialColliderOnCollision() : ISystem(SystemCategory::Collision) {}
@@ -20,7 +20,7 @@ void TutorialColliderOnCollision::Update() {
     ISystem::Update();
 }
 
-void TutorialColliderOnCollision::UpdateEntity(GameEntity* _entity) {
+void TutorialColliderOnCollision::UpdateEntity(Entity* _entity) {
     if (_entity == nullptr) {
         return;
     }

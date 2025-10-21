@@ -24,9 +24,9 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(GameEntity* _entity) override;
+    void UpdateEntity(Entity* _entity) override;
 
-    void UpdateShockWaveRing(GameEntity* _entity, Transform* _playerTransform);
+    void UpdateShockWaveRing(Entity* _entity, Transform* _playerTransform);
 
 protected:
     const Vec3f emitterOffset_ = {0.0f, 0.0f, 8.f};

@@ -41,7 +41,7 @@ void TimerForSprite::Initialize() {}
 
 void TimerForSprite::Finalize() {}
 
-void TimerForSprite::UpdateEntity(GameEntity* _entity) {
+void TimerForSprite::UpdateEntity(Entity* _entity) {
     auto timerComponent          = getComponent<TimerComponent>(_entity);
     auto timerForSpriteComponent = getComponent<TimerForSpriteComponent>(_entity);
     if (!timerComponent) {

@@ -23,7 +23,7 @@
 #include "component/Camera/CameraController.h"
 #include "component/transform/CameraTransform.h"
 
-void TransitionPlayerState::UpdateEntity(GameEntity* _entity) {
+void TransitionPlayerState::UpdateEntity(Entity* _entity) {
     PlayerState* state = getComponent<PlayerState>(_entity);
 
     // 一フレームだけ trueになればいいので 毎フレーム 初期化
@@ -102,7 +102,7 @@ void TransitionPlayerState::UpdateEntity(GameEntity* _entity) {
     /// =====================================================
     // Fov Y
     /// =====================================================
-    GameEntity* gameCamera             = getUniqueEntity("GameCamera");
+    Entity* gameCamera             = getUniqueEntity("GameCamera");
     CameraController* cameraController = getComponent<CameraController>(gameCamera);
     if (cameraController) {
         // fov 更新

@@ -11,6 +11,6 @@ public:
     virtual void Finalize();
 
 protected:
-    virtual void UpdateEntity(GameEntity* _entity) override;
+    virtual void UpdateEntity(Entity* _entity) override;
 
 };

@@ -22,4 +22,4 @@ UpdateCameraForward::~UpdateCameraForward() {}
 void UpdateCameraForward::Initialize() {}
 void UpdateCameraForward::Finalize() {}
 
-void UpdateCameraForward::UpdateEntity(GameEntity* /*_entity*/) {}
+void UpdateCameraForward::UpdateEntity(Entity* /*_entity*/) {}

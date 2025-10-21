@@ -16,7 +16,7 @@ void PlayerMoveSystem::Initialize() {
 void PlayerMoveSystem::Finalize() {
 }
 
-void PlayerMoveSystem::UpdateEntity(GameEntity* _entity) {
+void PlayerMoveSystem::UpdateEntity(Entity* _entity) {
     PlayerState* state = getComponent<PlayerState>(_entity);
 
     const float deltaTime = getMainDeltaTime();

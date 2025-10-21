@@ -18,7 +18,7 @@ public:
     virtual void Finalize();
 
 protected:
-    virtual void UpdateEntity(GameEntity* _entity) override;
+    virtual void UpdateEntity(Entity* _entity) override;
 
     Vec3f RetryPos(Stage* _stage, StageFloor* _stageFloor, const Vec3f& _currentPos);
 };

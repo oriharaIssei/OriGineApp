@@ -11,7 +11,7 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(GameEntity* entity) override;
+    void UpdateEntity(Entity* entity) override;
 
 private:
     const float maxIntensity = 3.8f;

@@ -9,12 +9,12 @@
 #include "math/Sequence.h"
 #include <numbers>
 
-void CameraController::Initialize(GameEntity* /*_entity*/) {
+void CameraController::Initialize(Entity* /*_entity*/) {
     currentOffset_       = firstOffset_;
     currentTargetOffset_ = firstTargetOffset_;
 }
 
-void CameraController::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
+void CameraController::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
 
     if (DragGuiVectorCommand<3, float>("forward##" + _parentLabel, forward_, 0.01f, -1.f, 1.f, "%.3f", [this](Vector<3, float>* _v) {

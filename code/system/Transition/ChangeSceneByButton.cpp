@@ -23,7 +23,7 @@ void ChangeSceneByButton::Finalize() {
     sceneManager_ = nullptr;
 }
 
-void ChangeSceneByButton::UpdateEntity(GameEntity* _entity) {
+void ChangeSceneByButton::UpdateEntity(Entity* _entity) {
     Button* button = getComponent<Button>(_entity);
 
     if (button->isReleased()) {

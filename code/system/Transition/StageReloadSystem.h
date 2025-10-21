@@ -14,7 +14,7 @@ public:
     void Finalize() override;
 
 private:
-    void UpdateEntity(GameEntity* _entity);
+    void UpdateEntity(Entity* _entity);
 };
 
 #endif // _RELEASE

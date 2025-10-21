@@ -14,8 +14,8 @@ public:
     SceneChanger();
     virtual ~SceneChanger();
 
-    virtual void Initialize(GameEntity* _entity) override;
-    virtual void Edit(Scene* _scene, GameEntity* _entity,  const std::string& _parentLabel) override;
+    virtual void Initialize(Entity* _entity) override;
+    virtual void Edit(Scene* _scene, Entity* _entity,  const std::string& _parentLabel) override;
 
     virtual void Finalize() override;
 

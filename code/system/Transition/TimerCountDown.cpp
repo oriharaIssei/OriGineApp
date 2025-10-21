@@ -17,7 +17,7 @@ void TimerCountDown::Initialize() {}
 
 void TimerCountDown::Finalize() {}
 
-void TimerCountDown::UpdateEntity(GameEntity* _entity) {
+void TimerCountDown::UpdateEntity(Entity* _entity) {
     auto timerComponent = getComponent<TimerComponent>(_entity);
     if (timerComponent) {
         timerComponent->setCurrentTime(timerComponent->getCurrentTime() - getMainDeltaTime());

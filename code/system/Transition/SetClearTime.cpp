@@ -10,7 +10,7 @@ SetClearTime::~SetClearTime() {}
 void SetClearTime::Initialize() {}
 void SetClearTime::Finalize() {}
 
-void SetClearTime::UpdateEntity(GameEntity* _entity) {
+void SetClearTime::UpdateEntity(Entity* _entity) {
     if (_entity == nullptr) {
         return;
     }

@@ -9,7 +9,7 @@ SubSceneDeactivateByButton::~SubSceneDeactivateByButton() {}
 void SubSceneDeactivateByButton::Initialize() {}
 void SubSceneDeactivateByButton::Finalize() {}
 
-void SubSceneDeactivateByButton::UpdateEntity(GameEntity* _entity) {
+void SubSceneDeactivateByButton::UpdateEntity(Entity* _entity) {
     auto* buttons = getComponents<Button>(_entity);
     if (!buttons) {
         return;

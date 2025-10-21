@@ -6,7 +6,6 @@
 #include "component/transform/Transform.h"
 
 #include "component/Camera/CameraController.h"
-#include "component/collider/Collider.h"
 #include "component/physics/Rigidbody.h"
 #include "component/Player/PlayerInput.h"
 #include "component/Player/PlayerStatus.h"

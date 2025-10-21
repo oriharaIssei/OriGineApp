@@ -5,7 +5,7 @@
 // component
 #include "component/transform/Transform.h"
 
-#include "component/collider/CollisionPushBackInfo.h"
+#include "component/collision/CollisionPushBackInfo.h"
 #include "component/physics/Rigidbody.h"
 
 #include "component/Player/PlayerStatus.h"
@@ -22,7 +22,7 @@ void PlayerOnCollision::Finalize() {
 static const float GROUND_CHECK_THRESHOLD = 0.7f; // 地面と判断するための閾値
 // static const float WALL_CHECK_THRESHOLD   = 0.7f; // 壁と判断するための閾値
 
-void PlayerOnCollision::UpdateEntity(GameEntity* _entity) {
+void PlayerOnCollision::UpdateEntity(Entity* _entity) {
     auto* state        = getComponent<PlayerState>(_entity);
     auto* pushBackInfo = getComponent<CollisionPushBackInfo>(_entity);
 
@@ -34,11 +34,11 @@ void PlayerOnCollision::UpdateEntity(GameEntity* _entity) {
 
     for (auto& [entityId, info] : pushBackInfo->getCollisionInfoMap()) {
         Vec3f collNormal           = info.collVec.normalize();
-        GameEntity* collidedEntity = getEntity(entityId);
+        Entity* collidedEntity = getEntity(entityId);
 
         // ゴール と 衝突したか
         if (collidedEntity->getDataType().find("Goal") != std::string::npos) {
-            // GameEntity* timer = getUniqueEntity("Timer");
+            // Entity* timer = getUniqueEntity("Timer");
             // Stage::setClearTime(getComponent<TimerComponent>(timer)->getCurrentTime());
 
             // ゴールと衝突した場合は、ゴールに到達したと判断する

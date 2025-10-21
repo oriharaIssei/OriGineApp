@@ -15,7 +15,7 @@ public:
     virtual void Update() override;
 
 protected:
-    virtual void UpdateEntity(GameEntity* _entity) override;
+    virtual void UpdateEntity(Entity* _entity) override;
 
     void EnterSceneUpdate();
     void ExitSceneUpdate();

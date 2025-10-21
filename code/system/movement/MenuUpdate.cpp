@@ -3,6 +3,8 @@
 /// component
 #include "component/SubScene.h"
 /// system
+#include "system/SystemRunner.h"
+
 #include "system/movement/MoveSystemByRigidBody.h"
 #include "system/movement/PlayerMoveSystem.h"
 #include "system/movement/UpdateCameraForward.h"
@@ -13,7 +15,7 @@ MenuUpdate::~MenuUpdate() {}
 void MenuUpdate::Initialize() {}
 void MenuUpdate::Finalize() {}
 
-void MenuUpdate::UpdateEntity(GameEntity* _entity) {
+void MenuUpdate::UpdateEntity(Entity* _entity) {
     auto currentScene = getScene();
     auto menuScene    = getComponent<SubScene>(_entity);
     if (!menuScene || !currentScene) {

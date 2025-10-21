@@ -11,7 +11,7 @@ TimeLimitJudgeSystem::~TimeLimitJudgeSystem() {}
 void TimeLimitJudgeSystem::Initialize() {}
 void TimeLimitJudgeSystem::Finalize() {}
 
-void TimeLimitJudgeSystem::UpdateEntity(GameEntity* _entity) {
+void TimeLimitJudgeSystem::UpdateEntity(Entity* _entity) {
     auto timerComp = getComponent<TimerComponent>(_entity);
     if (!timerComp) {
         return;

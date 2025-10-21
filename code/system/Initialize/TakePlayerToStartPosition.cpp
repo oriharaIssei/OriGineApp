@@ -12,12 +12,12 @@ void TakePlayerToStartPosition::Initialize() {}
 
 void TakePlayerToStartPosition::Finalize() {}
 
-void TakePlayerToStartPosition::UpdateEntity(GameEntity* _entity) {
+void TakePlayerToStartPosition::UpdateEntity(Entity* _entity) {
     Transform* transform = getComponent<Transform>(_entity);
     if (!transform) {
         return;
     }
-    GameEntity* startPositionEntity    = getUniqueEntity("StartPosition");
+    Entity* startPositionEntity    = getUniqueEntity("StartPosition");
     if (!startPositionEntity) {
         return;
     }

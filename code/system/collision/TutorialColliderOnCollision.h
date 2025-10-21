@@ -13,8 +13,8 @@ public:
     void Update() override;
 
 protected:
-    void UpdateEntity(GameEntity* _entity) override;
+    void UpdateEntity(Entity* _entity) override;
 
 protected:
-    GameEntity* playerEntity_         = nullptr;
+    Entity* playerEntity_         = nullptr;
 };

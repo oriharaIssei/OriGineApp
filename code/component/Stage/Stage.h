@@ -35,9 +35,9 @@ public:
     Stage()           = default;
     ~Stage() override = default;
 
-    void Initialize(GameEntity* _entity);
+    void Initialize(Entity* _entity);
 
-    void Edit(Scene* _scene, GameEntity* _entity, const std::string& _parentLabel);
+    void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel);
 
     void Finalize();
 

@@ -11,7 +11,7 @@ void StageReloadSystem::Initialize() {
 
 void StageReloadSystem::Finalize() {
 }
-void StageReloadSystem::UpdateEntity(GameEntity* _entity) {
+void StageReloadSystem::UpdateEntity(Entity* _entity) {
     // StageReloadComponentを持っているエンティティを探す
     auto stageReloadComponents = getComponents<Stage>(_entity);
     if (stageReloadComponents == nullptr) {

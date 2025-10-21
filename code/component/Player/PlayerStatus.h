@@ -23,9 +23,9 @@ public:
     PlayerStatus();
     ~PlayerStatus();
 
-    void Initialize(GameEntity* _entity) override;
-    void Edit(Scene* _scene, GameEntity* _entity, const std::string& _parentLabel) override;
-    void Debug(Scene* _scene, GameEntity* _entity, const std::string& _parentLabel) override;
+    void Initialize(Entity* _entity) override;
+    void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
+    void Debug(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
     void Finalize() override;
 
     float CalculateSpeedByGearLevel(int32_t _gearLevel) const;

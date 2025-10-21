@@ -21,7 +21,7 @@ void CameraInputSystem::Initialize() {
 void CameraInputSystem::Finalize() {
 }
 
-void CameraInputSystem::UpdateEntity(GameEntity* _entity) {
+void CameraInputSystem::UpdateEntity(Entity* _entity) {
     Input* input                       = Input::getInstance();
     CameraController* cameraController = getComponent<CameraController>(_entity);
 

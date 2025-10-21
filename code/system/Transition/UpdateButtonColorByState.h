@@ -11,5 +11,5 @@ public:
     virtual void Finalize();
 
 protected:
-    virtual void UpdateEntity(GameEntity* _entity);
+    virtual void UpdateEntity(Entity* _entity);
 };

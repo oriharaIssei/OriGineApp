@@ -13,7 +13,7 @@ public:
     virtual void Finalize() override;
 
 protected:
-    virtual void UpdateEntity(GameEntity* _entity) override;
+    virtual void UpdateEntity(Entity* _entity) override;
 
 private:
     SceneManager* sceneManager_ = nullptr;

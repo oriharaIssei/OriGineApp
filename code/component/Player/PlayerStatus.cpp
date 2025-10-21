@@ -18,12 +18,12 @@
 PlayerStatus::PlayerStatus() {}
 PlayerStatus::~PlayerStatus() {}
 
-void PlayerStatus::Initialize(GameEntity* /*_entity*/) {
+void PlayerStatus::Initialize(Entity* /*_entity*/) {
     gearUpCoolTime_  = baseGearupCoolTime_;
     currentMaxSpeed_ = baseSpeed_;
 }
 
-void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEntity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
+void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
 
     if (ImGui::TreeNode("Speed")) {
@@ -75,7 +75,7 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEnt
 #endif // _DEBUG
 }
 
-void PlayerStatus::Debug(Scene* /*_scene*/, GameEntity* /*_entity*/, const std::string& /*_parentLabel*/) {
+void PlayerStatus::Debug(Scene* /*_scene*/, Entity* /*_entity*/, const std::string& /*_parentLabel*/) {
 #ifdef _DEBUG
 
     ImGui::Text("Base Gear Up Cool Time : %.2f", baseGearupCoolTime_);

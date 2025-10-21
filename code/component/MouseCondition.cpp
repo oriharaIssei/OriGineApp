@@ -10,9 +10,9 @@
 MouseCondition::MouseCondition() {}
 MouseCondition::~MouseCondition() {}
 
-void MouseCondition::Initialize(GameEntity* /*_entity*/) {}
+void MouseCondition::Initialize(Entity* /*_entity*/) {}
 
-void MouseCondition::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEntity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
+void MouseCondition::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
     std::string label = "IsActive##" + _parentLabel;
     CheckBoxCommand(label, isActive_);

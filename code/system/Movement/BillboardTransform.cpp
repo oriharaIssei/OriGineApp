@@ -13,7 +13,7 @@ void BillboardTransform::Initialize() {
 void BillboardTransform::Finalize() {
 }
 
-void BillboardTransform::UpdateEntity(GameEntity* _entity) {
+void BillboardTransform::UpdateEntity(Entity* _entity) {
     int32_t componentIndex = 0;
 
     const CameraTransform& cameraTransform = CameraManager::getInstance()->getTransform();
