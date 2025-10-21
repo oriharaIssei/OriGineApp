@@ -2,6 +2,9 @@
 
 #include "system/ISystem.h"
 
+/// <summary>
+/// ButtonGroupによるボタン操作システム
+/// </summary>
 class ButtonGroupSystem
     : public ISystem {
 public:

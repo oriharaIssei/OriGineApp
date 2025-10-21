@@ -41,7 +41,6 @@
 #include "system/movement/FollowCameraUpdateSystem.h"
 #include "system/movement/MenuUpdate.h"
 #include "system/movement/PlayerMoveSystem.h"
-#include "system/movement/UpdateCameraForward.h"
 #include "system/render/StageDebugRender.h"
 #include "system/transition/ApplyMouseConditionSystem.h"
 #include "system/transition/ButtonGroupSystem.h"
@@ -56,10 +55,6 @@
 #include "system/transition/TimerCountDown.h"
 #include "system/transition/TransitionPlayerState.h"
 #include "system/transition/UpdateButtonColorByState.h"
-
-#ifndef _RELEASE
-#include "system/transition/StageReloadSystem.h"
-#endif // _RELEASE
 
 // / =====================================================
 // Application Include
@@ -180,10 +175,6 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<SubSceneActivateByButton>();
     systemRegistry->registerSystem<SubSceneDeactivateByButton>();
 
-#ifndef _RELEASE
-    systemRegistry->registerSystem<StageReloadSystem>();
-#endif // _RELEASE
-
     /// =================================================================================================
     // Movement
     /// =================================================================================================
@@ -193,7 +184,6 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<BillboardTransform>();
     systemRegistry->registerSystem<FollowCameraUpdateSystem>();
     systemRegistry->registerSystem<PlayerMoveSystem>();
-    systemRegistry->registerSystem<UpdateCameraForward>();
 
     systemRegistry->registerSystem<MenuUpdate>();
 

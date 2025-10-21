@@ -1,6 +1,9 @@
 #pragma once
 #include "system/ISystem.h"
 
+/// <summary>
+/// Playerの衝突反応システム
+/// </summary>
 class PlayerOnCollision
     : public ISystem {
 public:

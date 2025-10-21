@@ -6,6 +6,9 @@
 /// Engine
 class SceneManager;
 
+/// <summary>
+/// ゲーム本体
+/// </summary>
 class MyGame
     : public FrameWork {
 public:

@@ -3,6 +3,9 @@
 
 class Input;
 
+/// <summary>
+/// PlayerのInputを処理するシステム
+/// </summary>
 class PlayerInputSystem
     : public ISystem {
 public:

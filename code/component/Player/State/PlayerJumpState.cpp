@@ -35,8 +35,10 @@ void PlayerJumpState::Update(float _deltaTime) {
     auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
     auto* transform    = scene_->getComponent<Transform>(playerEntity);
 
+    // 移動処理
     playerStatus->UpdateAccel(playerInput, transform, rigidbody, scene_->getComponent<CameraTransform>(scene_->getUniqueEntity("GameCamera"))->rotate);
 
+    // ジャンプ力の蓄積
     releaseJumpPower_ += playerStatus->getFallPower() * _deltaTime;
 }
 
@@ -46,7 +48,7 @@ void PlayerJumpState::Finalize() {
     auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
 
     rigidbody->setUseGravity(true);
-
+    // 蓄えたジャンプ力を適用
     rigidbody->setVelocity(Y, releaseJumpPower_);
 
     if (skinningAnim) {

@@ -3,6 +3,10 @@
 #include "system/ISystem.h"
 
 class Input;
+
+/// <summary>
+/// ボタン入力を処理するシステム
+/// </summary>
 class ButtonInputSystem
     : public ISystem {
 public:

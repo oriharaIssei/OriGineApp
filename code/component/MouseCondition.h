@@ -4,9 +4,9 @@
 /// math
 #include "math/Vector2.h"
 
-//=====================================
-// マウスの状態を表すコンポーネント
-//=====================================
+/// <summary>
+/// マウスの状態を指定するコンポーネント
+/// </summary>
 class MouseCondition
     : public IComponent {
     friend void to_json(nlohmann::json& j, const MouseCondition& c);

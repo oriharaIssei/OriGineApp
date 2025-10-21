@@ -108,7 +108,7 @@ void TransitionPlayerState::UpdateEntity(Entity* _entity) {
         // fov 更新
         CameraTransform* cameraTransform = getComponent<CameraTransform>(gameCamera);
         if (cameraTransform) {
-            cameraTransform->fovAngleY = std::lerp(cameraTransform->fovAngleY, cameraController->CalculateFovY(state->getGearLevel()), cameraController->getFovYInterpolate());
+            cameraTransform->fovAngleY = std::lerp(cameraTransform->fovAngleY, cameraController->CalculateFovYByPlayerGearLevel(state->getGearLevel()), cameraController->getFovYInterpolate());
         };
     }
 }

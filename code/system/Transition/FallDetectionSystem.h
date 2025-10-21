@@ -6,6 +6,9 @@ class StageFloor;
 
 #include <Vector3.h>
 
+/// <summary>
+/// 落下判定システム
+/// </summary>
 class FallDetectionSystem
     : public ISystem {
 public:

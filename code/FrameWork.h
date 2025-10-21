@@ -5,6 +5,12 @@
 class Engine;
 class GlobalVariables;
 
+/// <summary>
+/// Applicationの土台となる フレームワーク クラス
+/// </summary>
+/// <remarks>
+/// 各アプリケーションはこのクラスを継承して実装する
+/// </remarks>
 class FrameWork {
 public:
     FrameWork();
@@ -13,6 +19,9 @@ public:
     virtual void Initialize(const std::string& _commandLine) = 0;
     virtual void Finalize()   = 0;
 
+    /// <summary>
+    /// Applicationのメインループ
+    /// </summary>
     virtual void Run() = 0;
 
 protected:

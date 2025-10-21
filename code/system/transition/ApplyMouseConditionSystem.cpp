@@ -27,6 +27,7 @@ void ApplyMouseConditionSystem::UpdateEntity(Entity* _entity) {
         input->ShowMouseCursor(condition.isShowCursor());
 
         if (condition.isFixCursor()) {
+            // マウスの座標を指定し続けることで、実質的にマウスを固定する
             input->setMousePos(condition.fixCursorPos());
         }
     }

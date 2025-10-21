@@ -3,6 +3,9 @@
 
 class SceneManager;
 
+/// <summary>
+/// SceneManagerによるシーン切り替えをボタン入力で行うシステム
+/// </summary>
 class ChangeSceneByButton
     : public ISystem {
 public:

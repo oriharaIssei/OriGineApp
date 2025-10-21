@@ -2,6 +2,9 @@
 
 #include "system/ISystem.h"
 
+/// <summary>
+/// TimerComponentのカウントダウンを行うシステム
+/// </summary>
 class TimerCountDown
     : public ISystem {
 public:

@@ -6,6 +6,9 @@
 /// engine
 class Input;
 
+/// <summary>
+/// Cameraの入力処理を行うシステム
+/// </summary>
 class CameraInputSystem
     : public ISystem {
 public:

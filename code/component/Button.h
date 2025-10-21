@@ -14,9 +14,9 @@
 #include <Vector4.h>
 #include <stdint.h>
 
-///=====================================================
-// Sprite を Button として扱うためのクラス
-///=====================================================
+/// <summary>
+/// Sprite を Button として扱うためのクラス
+/// </summary>
 class Button
     : public IComponent {
     friend void to_json(nlohmann::json& j, const Button& r);

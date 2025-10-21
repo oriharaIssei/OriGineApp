@@ -19,8 +19,8 @@ void PlayerOnCollision::Initialize() {
 void PlayerOnCollision::Finalize() {
 }
 
-static const float GROUND_CHECK_THRESHOLD = 0.7f; // 地面と判断するための閾値
-// static const float WALL_CHECK_THRESHOLD   = 0.7f; // 壁と判断するための閾値
+static const float kGroundCheckThreshold = 0.7f; // 地面と判断するための閾値
+static const float kWallCheckThreshold = 0.7f; // 壁と判断するための閾値
 
 void PlayerOnCollision::UpdateEntity(Entity* _entity) {
     auto* state        = getComponent<PlayerState>(_entity);
@@ -46,7 +46,7 @@ void PlayerOnCollision::UpdateEntity(Entity* _entity) {
             continue;
         }
 
-        if (collNormal[Y] > GROUND_CHECK_THRESHOLD) {
+        if (collNormal[Y] > kGroundCheckThreshold) {
             // 上方向に衝突した場合は、地面にいると判断する
             state->OnCollisionGround(entityId);
 

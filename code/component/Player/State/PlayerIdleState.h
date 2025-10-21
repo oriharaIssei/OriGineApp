@@ -3,6 +3,9 @@
 /// parent
 #include "IPlayerMoveState.h"
 
+/// <summary>
+/// Playerの待機状態を表すクラス
+/// </summary>
 class PlayerIdleState
     : public IPlayerMoveState {
 public:

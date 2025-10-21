@@ -44,6 +44,7 @@ void SceneTransition::Update() {
 
     eraseDeadEntity();
 
+    // シーンに入るエフェクトの更新
     if (enterScene_) {
         auto* enterSceneEntity = getUniqueEntity("EnterScene");
         if (!enterSceneEntity) {
@@ -53,7 +54,7 @@ void SceneTransition::Update() {
         usingEntityId_ = enterSceneEntity->getID();
 
         EnterSceneUpdate();
-    } else if (exitScene_) {
+    } else if (exitScene_) { // シーンから出るエフェクトの更新
         ExitSceneUpdate();
     } else {
         for (auto& entityID : entityIDs_) {
@@ -75,6 +76,7 @@ void SceneTransition::UpdateEntity(Entity* _entity) {
         return;
     }
 
+    // シーン遷移の検知
     for (uint32_t i = 0; i < compSize; ++i) {
         SceneChanger* sceneChanger = getComponent<SceneChanger>(_entity, i);
         if (sceneChanger == nullptr) {

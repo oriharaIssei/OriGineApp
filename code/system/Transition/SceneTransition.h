@@ -1,6 +1,9 @@
 #pragma once
 #include "system/ISystem.h"
 
+/// <summary>
+/// シーン遷移システム(エフェクトの再生管理など)
+/// </summary>
 class SceneTransition
     : public ISystem {
 public:

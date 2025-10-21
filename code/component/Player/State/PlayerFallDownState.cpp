@@ -25,6 +25,7 @@ void PlayerFallDownState::Update(float _deltaTime) {
     auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
     auto* transform    = scene_->getComponent<Transform>(playerEntity);
 
+    // 速度更新
     playerStatus->UpdateAccel(playerInput, transform, rigidbody, scene_->getComponent<CameraTransform>(scene_->getUniqueEntity("GameCamera"))->rotate);
 
     ///! TODO : ここにカメラの処理を書くべきではない
@@ -86,9 +87,11 @@ PlayerMoveState PlayerFallDownState::TransitionState() const {
     auto state         = scene_->getComponent<PlayerState>(playerEntity);
     auto playerInput   = scene_->getComponent<PlayerInput>(playerEntity);
 
+    // 壁走り判定
     if (state->isCollisionWithWall()) {
         return PlayerMoveState::WALL_RUN;
     }
+    // 着地判定
     if (state->isOnGround()) {
         if (playerInput->getInputDirection().lengthSq() > 0.f) {
             return PlayerMoveState::DASH;

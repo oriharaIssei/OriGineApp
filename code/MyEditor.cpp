@@ -28,7 +28,7 @@ void MyEditor::Initialize(const std::string& _commandLine) {
 
     auto sceneEditorWindow = std::make_unique<SceneEditorWindow>();
     if (!_commandLine.empty()) {
-        // コマンドライン引数がある場合、シーン名を設定する
+        // コマンドライン引数がある場合、シーン名を設定する(コマンドラインで指定されたシーンで開始するように)
         sceneEditorWindow->getEditSceneName().setValue(_commandLine);
     }
 

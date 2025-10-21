@@ -72,7 +72,7 @@ void CameraController::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[maybe_unus
                 ImGui::TableSetColumnIndex(0);
                 ImGui::Text("%d", level);
                 ImGui::TableSetColumnIndex(1);
-                ImGui::Text("%.2f", CalculateFovY(level));
+                ImGui::Text("%.2f", CalculateFovYByPlayerGearLevel(level));
             }
             ImGui::EndTable();
         }
@@ -85,7 +85,7 @@ void CameraController::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[maybe_unus
 void CameraController::Finalize() {
 }
 
-float CameraController::CalculateFovY(int32_t _level) const {
+float CameraController::CalculateFovYByPlayerGearLevel(int32_t _level) const {
     return ArithmeticSequence<float>(
         baseFovY_,
         ArithmeticSequence<float>(fovYRateBase_, fovYRateCommonRate_, _level - 1),

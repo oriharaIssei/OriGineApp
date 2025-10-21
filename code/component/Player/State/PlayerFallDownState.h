@@ -3,6 +3,9 @@
 /// parent
 #include "component/Player/State/IPlayerMoveState.h"
 
+/// <summary>
+/// Playerの落下状態 (ジャンプではない)
+/// </summary>
 class PlayerFallDownState
     : public IPlayerMoveState {
 public:

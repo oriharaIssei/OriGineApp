@@ -17,6 +17,13 @@ static constexpr uint32_t sphereIndexSize  = 4 * sphereDivision * sphereDivision
 
 static constexpr uint32_t defaultMeshSize = 1000; // メッシュのデフォルトサイズ
 
+/// <summary>
+/// ControlPoint用の球メッシュを作成
+/// </summary>
+/// <param name="_mesh"></param>
+/// <param name="_pos"></param>
+/// <param name="_radius"></param>
+/// <param name="_color"></param>
 static void CreateControlPointMesh(
     Mesh<ColorVertexData>* _mesh,
     const Vec3f& _pos,

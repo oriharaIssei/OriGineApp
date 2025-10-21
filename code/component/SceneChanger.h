@@ -5,6 +5,9 @@
 /// stl
 #include <string>
 
+/// <summary>
+/// シーンを変更するコンポーネント
+/// </summary>
 class SceneChanger
     : public IComponent {
     friend void to_json(nlohmann::json& j, const SceneChanger& r);

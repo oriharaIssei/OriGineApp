@@ -7,6 +7,9 @@
 /// engine
 #include "input/Input.h"
 
+/// <summary>
+/// 1シーン内で複数のボタンをグループ化し、選択と決定の操作を管理するコンポーネント
+/// </summary>
 class ButtonGroup
     : public IComponent {
     friend void to_json(nlohmann::json& j, const ButtonGroup& r);

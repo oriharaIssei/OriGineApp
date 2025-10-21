@@ -178,7 +178,6 @@
     <ClInclude Include="code\system\movement\FollowCameraUpdateSystem.h" />
     <ClInclude Include="code\system\movement\MenuUpdate.h" />
     <ClInclude Include="code\system\movement\PlayerMoveSystem.h" />
-    <ClInclude Include="code\system\movement\UpdateCameraForward.h" />
     <ClInclude Include="code\system\render\StageDebugRender.h" />
     <ClInclude Include="code\system\transition\ApplyMouseConditionSystem.h" />
     <ClInclude Include="code\system\transition\ButtonGroupSystem.h" />
@@ -187,13 +186,11 @@
     <ClInclude Include="code\system\transition\SceneTransition.h" />
     <ClInclude Include="code\system\transition\SetClearTime.h" />
     <ClInclude Include="code\system\transition\ShowGameUIByInputDevice.h" />
-    <ClInclude Include="code\system\transition\StageReloadSystem.h" />
     <ClInclude Include="code\system\transition\SubSceneActivateByButton.h" />
     <ClInclude Include="code\system\transition\SubSceneDeactivateByButton.h" />
     <ClInclude Include="code\system\transition\TimeLimitJudgeSystem.h" />
     <ClInclude Include="code\system\transition\TimerCountDown.h" />
     <ClInclude Include="code\system\transition\TransitionPlayerState.h" />
-    <ClInclude Include="code\system\transition\TransitionSceneByTimer.h" />
     <ClInclude Include="code\system\transition\UpdateButtonColorByState.h" />
   </ItemGroup>
   <ItemGroup>
@@ -237,7 +234,6 @@
     <ClCompile Include="code\system\movement\FollowCameraUpdateSystem.cpp" />
     <ClCompile Include="code\system\movement\MenuUpdate.cpp" />
     <ClCompile Include="code\system\movement\PlayerMoveSystem.cpp" />
-    <ClCompile Include="code\system\movement\UpdateCameraForward.cpp" />
     <ClCompile Include="code\system\render\StageDebugRender.cpp" />
     <ClCompile Include="code\system\transition\ApplyMouseConditionSystem.cpp" />
     <ClCompile Include="code\system\transition\ButtonGroupSystem.cpp" />
@@ -246,13 +242,11 @@
     <ClCompile Include="code\system\transition\SceneTransition.cpp" />
     <ClCompile Include="code\system\transition\SetClearTime.cpp" />
     <ClCompile Include="code\system\transition\ShowGameUIByInputDevice.cpp" />
-    <ClCompile Include="code\system\transition\StageReloadSystem.cpp" />
     <ClCompile Include="code\system\transition\SubSceneActivateByButton.cpp" />
     <ClCompile Include="code\system\transition\SubSceneDeactivateByButton.cpp" />
     <ClCompile Include="code\system\transition\TimeLimitJudgeSystem.cpp" />
     <ClCompile Include="code\system\transition\TimerCountDown.cpp" />
     <ClCompile Include="code\system\transition\TransitionPlayerState.cpp" />
-    <ClCompile Include="code\system\transition\TransitionSceneByTimer.cpp" />
     <ClCompile Include="code\system\transition\UpdateButtonColorByState.cpp" />
   </ItemGroup>
   <ItemGroup>

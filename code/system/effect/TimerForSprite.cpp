@@ -6,6 +6,13 @@
 #include "component/renderer/Sprite.h"
 #include "component/TimerComponent.h"
 
+/// <summary>
+/// 浮動小数点数から整数部と小数部の各桁の数字を抽出する
+/// </summary>
+/// <param name="value">変換前</param>
+/// <param name="intDigits">整数部の桁数</param>
+/// <param name="fracDigits">小数部の桁数</param>
+/// <returns></returns>
 static std::vector<int> CalculateDigitsFromFloat(float value, int intDigits, int fracDigits) {
     std::vector<int> digits;
 
@@ -53,11 +60,13 @@ void TimerForSprite::UpdateEntity(Entity* _entity) {
         return; // スプライトエンティティがない場合は何もしない
     }
 
+    // 浮動小数点数から各桁の数字を抽出
     std::vector<int> digits = CalculateDigitsFromFloat(
         timerComponent->getCurrentTime(),
         timerForSpriteComponent->getDigitIntegerForSprite(),
         timerForSpriteComponent->getDigitDecimalForSprite());
 
+    // 各スプライトに数字を適用
     for (int32_t i = 0; i < timerForSpriteComponent->getDigitForSprite(); ++i) {
         auto sprite = getComponent<SpriteRenderer>(timerSpritesEntity, i);
         if (!sprite) {

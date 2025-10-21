@@ -14,6 +14,10 @@ class PlayerInput;
 #include <math/Vector3.h>
 
 constexpr float kPlayerHeight = 2.0f;
+
+/// <summary>
+/// Playerのステータスを管理するコンポーネント
+/// </summary>
 class PlayerStatus
     : public IComponent {
     friend void to_json(nlohmann::json& j, const PlayerStatus& _playerStatus);
@@ -28,7 +32,15 @@ public:
     void Debug(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
     void Finalize() override;
 
+    /// <summary>
+    /// ギアレベルに応じた速度を計算する
+    /// </summary>
+    /// <param name="_gearLevel"></param>
+    /// <returns></returns>
     float CalculateSpeedByGearLevel(int32_t _gearLevel) const;
+    /// <summary>
+    /// ギアレベルに応じたクールタイムを計算する
+    /// </summary>
     float CalculateCoolTimeByGearLevel(int32_t _gearLevel) const;
 
     void UpdateAccel(PlayerInput* _input, Transform* _transform, Rigidbody* _rigidbody, const Quaternion& _cameraRotation);

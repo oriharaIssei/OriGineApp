@@ -1,6 +1,9 @@
 #pragma once
 #include "system/ISystem.h"
 
+/// <summary>
+/// Playerの移動を制御するシステム
+/// </summary>
 class PlayerMoveSystem
     : public ISystem {
 public:

@@ -3,6 +3,9 @@
 /// parent
 #include "system/ISystem.h"
 
+/// <summary>
+/// ゲームカメラのターゲット設定を行うシステム
+/// </summary>
 class SettingGameCameraTarget
     : public ISystem {
 public:

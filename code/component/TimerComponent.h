@@ -4,6 +4,9 @@
 /// math
 #include <math/Vector2.h>
 
+/// <summary>
+/// Timerコンポーネント
+/// </summary>
 class TimerComponent
     : public IComponent {
     friend void to_json(nlohmann::json& j, const TimerComponent& c);

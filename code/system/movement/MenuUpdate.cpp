@@ -7,7 +7,6 @@
 
 #include "system/movement/MoveSystemByRigidBody.h"
 #include "system/movement/PlayerMoveSystem.h"
-#include "system/movement/UpdateCameraForward.h"
 
 MenuUpdate::MenuUpdate() : ISystem(SystemCategory::Movement) {}
 MenuUpdate::~MenuUpdate() {}
@@ -33,7 +32,6 @@ void MenuUpdate::UpdateEntity(Entity* _entity) {
 
         systemRunner->DeactivateSystem<PlayerMoveSystem>();
         systemRunner->DeactivateSystem<MoveSystemByRigidBody>();
-        systemRunner->DeactivateSystem<UpdateCameraForward>();
     } else {
         // メニューが非アクティブなら ゲームのUpdateを再開
         systemRunner->setCategoryActivity(SystemCategory::Input, true);
@@ -43,6 +41,5 @@ void MenuUpdate::UpdateEntity(Entity* _entity) {
 
         systemRunner->ActivateSystem<PlayerMoveSystem>();
         systemRunner->ActivateSystem<MoveSystemByRigidBody>();
-        systemRunner->ActivateSystem<UpdateCameraForward>();
     }
 }

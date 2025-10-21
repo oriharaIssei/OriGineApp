@@ -3,6 +3,9 @@
 /// parent
 #include "component/Player/State/IPlayerMoveState.h"
 
+/// <summary>
+/// Playerのダッシュ状態クラス(基本移動)
+/// </summary>
 class PlayerDashState
     : public IPlayerMoveState {
 public:

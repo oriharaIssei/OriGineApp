@@ -1,6 +1,9 @@
 #pragma once
 #include "system/ISystem.h"
 
+/// <summary>
+/// Transformをビルボード化するシステム
+/// </summary>
 class BillboardTransform
     : public ISystem {
 public:

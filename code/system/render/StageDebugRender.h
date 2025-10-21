@@ -11,6 +11,9 @@ class Stage;
 #include "system/render/LineRenderSystem.h"
 #include "system/render/TexturedMeshRenderSystem.h"
 
+/// <summary>
+/// Stageをデバッグ描画(ライン描画)するシステム
+/// </summary>
 class StageDebugRender
     : public ISystem {
 public:

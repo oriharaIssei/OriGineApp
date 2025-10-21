@@ -7,6 +7,9 @@
 
 class StageWall;
 
+/// <summary>
+/// Playerの壁ジャンプ状態
+/// </summary>
 class PlayerWallJumpState
     : public IPlayerMoveState {
 public:

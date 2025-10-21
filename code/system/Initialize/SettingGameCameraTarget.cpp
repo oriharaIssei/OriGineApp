@@ -14,6 +14,7 @@ void SettingGameCameraTarget::Initialize() {
 void SettingGameCameraTarget::Update() {
     Entity* playerEntity = getUniqueEntity("Player");
     Entity* cameraEntity = getUniqueEntity("GameCamera");
+    // カメラのターゲットをプレイヤーに設定
     if (cameraEntity) {
         CameraController* cameraController = getComponent<CameraController>(cameraEntity);
         if (cameraController) {

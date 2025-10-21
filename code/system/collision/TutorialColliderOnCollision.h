@@ -1,6 +1,9 @@
 #pragma once
 #include "system/ISystem.h"
 
+/// <summary>
+/// チュートリアル用の衝突反応システム
+/// </summary>
 class TutorialColliderOnCollision
     : public ISystem {
 public:

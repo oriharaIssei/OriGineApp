@@ -8,6 +8,9 @@ struct Transform;
 /// Math
 #include "Matrix4x4.h"
 
+/// <summary>
+/// Playerの壁走り状態
+/// </summary>
 class PlayerWallRunState
     : public IPlayerMoveState {
 public:

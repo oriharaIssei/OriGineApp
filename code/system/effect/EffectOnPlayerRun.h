@@ -1,6 +1,9 @@
 #pragma once
 #include "system/ISystem.h"
 
+/// <summary>
+/// Playerが走っているときにエフェクトを発生させるシステム
+/// </summary>
 class EffectOnPlayerRun
     : public ISystem {
 public:

@@ -1,6 +1,9 @@
 #pragma once
 #include "system/ISystem.h"
 
+/// <summary>
+/// ステージをクリアしたときのタイムを取得するシステム
+/// </summary>
 class GetClearTime
     : public ISystem {
 public:

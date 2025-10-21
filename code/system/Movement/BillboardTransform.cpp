@@ -18,13 +18,10 @@ void BillboardTransform::UpdateEntity(Entity* _entity) {
 
     const CameraTransform& cameraTransform = CameraManager::getInstance()->getTransform();
 
-    while (true) {
-        Transform* transform = getComponent<Transform>(_entity, componentIndex);
-        if (!transform) {
-            break; // コンポーネントが無い場合は終了
-        }
+    auto transforms = getComponents<Transform>(_entity);
+    for (auto& transform : *transforms) {
         // カメラの視線ベクトル（ワールド空間でのカメラ→ビルボード方向、正規化済み）
-        Vec3f lookAt = Vec3f(transform->translate - cameraTransform.translate).normalize(); // D3DXVECTOR3 LookAt(-cx, -cy, -cz);
+        Vec3f lookAt = Vec3f(transform.translate - cameraTransform.translate).normalize(); // D3DXVECTOR3 LookAt(-cx, -cy, -cz);
 
         // ビルボードのローカルY軸（上方向）
         Vec3f nAxis = Vec3f(0.0f, 0.f, 1.0f);
@@ -47,8 +44,12 @@ void BillboardTransform::UpdateEntity(Entity* _entity) {
         }
 
         // クォータニオン作成
-        transform->rotate = Quaternion::RotateAxisAngle(normal, angle);
-        transform->UpdateMatrix();
+        transform.rotate = Quaternion::RotateAxisAngle(normal, angle);
+        transform.UpdateMatrix();
+    }
+
+    while (true) {
+        
 
         // 次のコンポーネントへ
         ++componentIndex;
