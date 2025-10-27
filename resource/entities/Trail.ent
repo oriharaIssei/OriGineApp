@@ -1,0 +1,90 @@
+{
+    "Components": {
+        "Material": [
+            {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "enableLighting": false,
+                "shininess": 0.0,
+                "specularColor": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "uvRotate": 0.0,
+                "uvScale": [
+                    1.0,
+                    1.0
+                ],
+                "uvTranslate": [
+                    0.0,
+                    0.0
+                ]
+            }
+        ],
+        "PlaneRenderer": [
+            {
+                "blendMode": 1,
+                "isRenderer": true,
+                "materialIndex": 0,
+                "textureDirectory": "./application/resource/Texture",
+                "textureFileName": "lazer.png",
+                "transform": {
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "translate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                }
+            }
+        ],
+        "SplinePoints": [
+            {
+                "capacity": 64,
+                "endUv": [
+                    1.0,
+                    1.0
+                ],
+                "fadeoutTime": 0.10999999940395355,
+                "segmentDivide": 16,
+                "segmentLength": 0.5,
+                "startUv": [
+                    0.0,
+                    0.0
+                ],
+                "width": 0.2800000011920929
+            }
+        ]
+    },
+    "Name": "Trail",
+    "Systems": [
+        {
+            "SystemCategory": 5,
+            "SystemName": "CreateMeshFromSpline"
+        },
+        {
+            "SystemCategory": 6,
+            "SystemName": "TexturedMeshRenderSystem"
+        },
+        {
+            "SystemCategory": 3,
+            "SystemName": "PlayerPathSplineGenerator"
+        }
+    ],
+    "isUnique": true
+}

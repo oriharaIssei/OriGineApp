@@ -26,6 +26,10 @@
                     [
                         "./application/resource/entities",
                         "Timer"
+                    ],
+                    [
+                        "./application/resource/entities",
+                        "Trail"
                     ]
                 ]
             }

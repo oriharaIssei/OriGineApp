@@ -12,123 +12,19 @@
     "Entities": [
         {
             "Components": {
-                "Material": [
-                    {
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "enableLighting": false,
-                        "shininess": 0.0,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "MaterialEffectPipeLine": [
-                    {
-                        "baseTexturePath": "./application/resource/Texture/uvChecker.png",
-                        "effectEntityIdList": [
-                            {
-                                "effectType": 0,
-                                "entityID": 2
-                            }
-                        ],
-                        "isActive": true,
-                        "materialIndex": 0,
-                        "priority": 1
-                    }
-                ],
-                "ModelMeshRenderer": [
-                    {
-                        "blendMode": 1,
-                        "directory": "./application/resource/Models",
-                        "fileName": "Plane.obj",
-                        "isRender": true,
-                        "materialIndexDatas": [
-                            0
-                        ],
-                        "textureFilePath": [
-                            ""
-                        ],
-                        "transformBufferDatas": [
-                            {
-                                "rotate": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    1.0
-                                ],
-                                "scale": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "translate": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ]
-                    }
-                ],
-                "Transform": [
-                    {
-                        "rotate": [
-                            0.0,
-                            0.0,
-                            0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "translate": [
-                            0.0,
-                            0.0,
-                            1.7599999904632568
-                        ]
-                    }
-                ]
-            },
-            "Name": "Entity",
-            "Systems": [
-                {
-                    "SystemCategory": 5,
-                    "SystemName": "MaterialEffect"
-                },
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "TexturedMeshRenderSystem"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
                 "DistortionEffectParam": [
                     {
-                        "distortionBias": 0.5,
-                        "distortionStrength": 1.100000023841858,
+                        "distortionBias": [
+                            0.5199999809265137,
+                            0.0
+                        ],
+                        "distortionStrength": [
+                            0.2199999988079071,
+                            0.0
+                        ],
                         "isActive": true,
                         "materialIndex": 0,
-                        "textuerPath": "./application/resource/Texture/myNoise.png",
+                        "textuerPath": "./application/resource/Texture/bioNoise.png",
                         "use3dObjectList": false
                     }
                 ],
@@ -149,12 +45,12 @@
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
-                            1.0,
-                            1.0
+                            0.5299999713897705,
+                            0.6800000071525574
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.5668289661407471
+                            0.04321505129337311
                         ]
                     }
                 ],
@@ -162,7 +58,7 @@
                     {
                         "InterpolationType": 0,
                         "colorCurve": [],
-                        "duration": 2.0,
+                        "duration": 7.099999904632568,
                         "isLoop": true,
                         "isPlay": true,
                         "uvRotateCurve": [],
@@ -176,7 +72,7 @@
                                 ]
                             },
                             {
-                                "time": 2.0,
+                                "time": 7.099999904632568,
                                 "value": [
                                     0.0,
                                     1.0
@@ -186,7 +82,7 @@
                     }
                 ]
             },
-            "Name": "Entity",
+            "Name": "distortion",
             "Systems": [
                 {
                     "SystemCategory": 5,
@@ -199,17 +95,17 @@
             "Components": {
                 "DissolveEffectParam": [
                     {
-                        "edgeWidth": 0.023000000044703484,
+                        "edgeWidth": 0.0,
                         "isActive": true,
                         "materialIndex": 0,
                         "outLineColor": [
-                            0.9198312163352966,
-                            0.07374174892902374,
-                            0.07374174892902374,
+                            1.0,
+                            1.0,
+                            1.0,
                             1.0
                         ],
-                        "textureFilePath": "./application/resource/Texture/uvChecker.png",
-                        "threshold": 0.09200000017881393
+                        "textureFilePath": "./application/resource/Texture/circle.png",
+                        "threshold": 0.028999999165534973
                     }
                 ],
                 "Material": [
@@ -240,11 +136,11 @@
                 ],
                 "MaterialEffectPipeLine": [
                     {
-                        "baseTexturePath": "./application/resource/Texture/bioNoise.png",
+                        "baseTexturePath": "./application/resource/Texture/gradationLine.png",
                         "effectEntityIdList": [
                             {
                                 "effectType": 1,
-                                "entityID": 1
+                                "entityID": 0
                             }
                         ],
                         "isActive": true,
@@ -253,7 +149,7 @@
                     }
                 ]
             },
-            "Name": "Entity",
+            "Name": "dissolve",
             "Systems": [
                 {
                     "SystemCategory": 5,
@@ -264,14 +160,13 @@
         },
         {
             "Components": {
-                "DistortionEffectParam": [
+                "GradationTextureComponent": [
                     {
-                        "distortionBias": 0.0,
-                        "distortionObjects": [],
-                        "distortionStrength": 0.0,
+                        "inputChannel": 3,
                         "isActive": true,
-                        "materialIndex": -1,
-                        "use3dObjectList": true
+                        "materialIndex": 0,
+                        "outputChannel": 3,
+                        "texturePath": "./application/resource/Texture/gradation.png"
                     }
                 ],
                 "Material": [
@@ -301,8 +196,115 @@
                     }
                 ]
             },
-            "Name": "Entity",
+            "Name": "Gradation",
             "Systems": [],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "Material": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            1.0,
+                            1.0
+                        ]
+                    }
+                ],
+                "MaterialEffectPipeLine": [
+                    {
+                        "baseTexturePath": "./application/resource/Texture/uvChecker.png",
+                        "effectEntityIdList": [
+                            {
+                                "effectType": 0,
+                                "entityID": 1
+                            },
+                            {
+                                "effectType": 2,
+                                "entityID": 2
+                            }
+                        ],
+                        "isActive": true,
+                        "materialIndex": 0,
+                        "priority": 2
+                    }
+                ],
+                "PlaneRenderer": [
+                    {
+                        "blendMode": 1,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "textureDirectory": "./application/resource/Texture",
+                        "textureFileName": "lazer.png",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            5.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0,
+                            4.900000095367432
+                        ]
+                    }
+                ]
+            },
+            "Name": "Entity",
+            "Systems": [
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "MaterialEffect"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
             "isUnique": false
         }
     ],

@@ -18,6 +18,7 @@
 #include "component/Player/PlayerStatus.h"
 #include "component/Player/State/PlayerState.h"
 #include "component/SceneChanger.h"
+#include "component/spline/SplinePoints.h"
 #include "component/Stage/Stage.h"
 #include "component/Stage/StageFloor.h"
 #include "component/Stage/StageWall.h"
@@ -26,6 +27,7 @@
 // application system
 #include "system/collision/PlayerOnCollision.h"
 #include "system/collision/TutorialColliderOnCollision.h"
+#include "system/effect/CreateMeshFromSpline.h"
 #include "system/effect/EffectOnPlayerGearup.h"
 #include "system/effect/EffectOnPlayerRun.h"
 #include "system/effect/TimerForSprite.h"
@@ -41,6 +43,7 @@
 #include "system/movement/FollowCameraUpdateSystem.h"
 #include "system/movement/MenuUpdate.h"
 #include "system/movement/PlayerMoveSystem.h"
+#include "system/movement/PlayerPathSplineGenerator.h"
 #include "system/render/StageDebugRender.h"
 #include "system/transition/ApplyMouseConditionSystem.h"
 #include "system/transition/ButtonGroupSystem.h"
@@ -83,6 +86,8 @@ void RegisterUsingComponents() {
     componentRegistry->registerComponent<Stage>();
     componentRegistry->registerComponent<StageFloor>();
     componentRegistry->registerComponent<StageWall>();
+
+    componentRegistry->registerComponent<SplinePoints>();
 
     componentRegistry->registerComponent<Material>();
     componentRegistry->registerComponent<DirectionalLight>();
@@ -185,6 +190,8 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<FollowCameraUpdateSystem>();
     systemRegistry->registerSystem<PlayerMoveSystem>();
 
+    systemRegistry->registerSystem<PlayerPathSplineGenerator>();
+
     systemRegistry->registerSystem<MenuUpdate>();
 
     /// =================================================================================================
@@ -206,6 +213,7 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<GpuParticleEmitterWorkSystem>();
     systemRegistry->registerSystem<MaterialAnimationWorkSystem>();
     systemRegistry->registerSystem<MaterialEffect>();
+    systemRegistry->registerSystem<CreateMeshFromSpline>();
 
     systemRegistry->registerSystem<EffectOnPlayerGearup>();
     systemRegistry->registerSystem<EffectOnPlayerRun>();

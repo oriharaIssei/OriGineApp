@@ -195,6 +195,10 @@
     <ClInclude Include="code\system\transition\UpdateButtonColorByState.h">
       <Filter>system\transition</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\Player\State\PlayerMoveStateFactory.h" />
+    <ClInclude Include="code\component\spline\SplinePoints.h" />
+    <ClInclude Include="code\system\effect\CreateMeshFromSpline.h" />
+    <ClInclude Include="code\system\movement\PlayerPathSplineGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -351,5 +355,9 @@
     <ClCompile Include="code\system\transition\UpdateButtonColorByState.cpp">
       <Filter>system\transition</Filter>
     </ClCompile>
+    <ClCompile Include="code\component\Player\State\PlayerMoveStateFactory.cpp" />
+    <ClCompile Include="code\component\spline\SplinePoints.cpp" />
+    <ClCompile Include="code\system\effect\CreateMeshFromSpline.cpp" />
+    <ClCompile Include="code\system\movement\PlayerPathSplineGenerator.cpp" />
   </ItemGroup>
 </Project>

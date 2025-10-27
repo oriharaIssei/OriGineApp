@@ -50,16 +50,14 @@
         "ModelMeshRenderer": [
             {
                 "blendMode": 1,
-                "directory": "./application/resource/Animations\\jogging",
-                "fileName": "jogging.gltf",
+                "directory": "./application/resource/Models",
+                "fileName": "Player.obj",
                 "isRender": true,
                 "materialIndexDatas": [
-                    0,
                     0
                 ],
                 "textureFilePath": [
-                    "./application/resource/Texture/myNoise.png",
-                    "./application/resource/..\\..\\engine\\resource\\Texture/white1x1.png"
+                    ""
                 ],
                 "transformBufferDatas": [
                     {
@@ -70,27 +68,9 @@
                             1.0
                         ],
                         "scale": [
-                            1.2999999523162842,
-                            1.2999999523162842,
-                            1.2999999523162842
-                        ],
-                        "translate": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ]
-                    },
-                    {
-                        "rotate": [
-                            0.0,
-                            0.0,
-                            0.0,
+                            1.0,
+                            1.0,
                             1.0
-                        ],
-                        "scale": [
-                            1.2999999523162842,
-                            1.2999999523162842,
-                            1.2999999523162842
                         ],
                         "translate": [
                             0.0,
@@ -151,61 +131,15 @@
                 "nextSceneName": "Result"
             }
         ],
-        "SkinningAnimationComponent": [
-            {
-                "Animations": [
-                    {
-                        "directory": "Animations\\idle",
-                        "duration": 6.0333333015441895,
-                        "fileName": "idle.gltf",
-                        "isLoop": true,
-                        "isPlay": true,
-                        "playbackSpeed": 1.0
-                    },
-                    {
-                        "directory": "Animations\\jogging",
-                        "duration": 2.566666603088379,
-                        "fileName": "jogging.gltf",
-                        "isLoop": true,
-                        "isPlay": false,
-                        "playbackSpeed": 1.0
-                    },
-                    {
-                        "directory": "Animations\\jump",
-                        "duration": 0.2666666805744171,
-                        "fileName": "jump_up.gltf",
-                        "isLoop": false,
-                        "isPlay": false,
-                        "playbackSpeed": 1.3899999856948853
-                    },
-                    {
-                        "directory": "Animations\\jump",
-                        "duration": 0.7333333492279053,
-                        "fileName": "fall_idle.gltf",
-                        "isLoop": true,
-                        "isPlay": false,
-                        "playbackSpeed": 1.0
-                    },
-                    {
-                        "directory": "Animations\\jump",
-                        "duration": 0.10000000149011612,
-                        "fileName": "jump_down.gltf",
-                        "isLoop": false,
-                        "isPlay": false,
-                        "playbackSpeed": 1.0
-                    }
-                ],
-                "bindModeMeshRendererIndex": 0
-            }
-        ],
+        "SkinningAnimationComponent": [],
         "SphereCollider": [
             {
                 "center": [
                     0.0,
-                    0.6800000071525574,
+                    0.0,
                     0.0
                 ],
-                "radius": 0.6800000071525574,
+                "radius": 1.0700000524520874,
                 "transform": {
                     "rotate": [
                         0.0,
@@ -274,10 +208,6 @@
             "SystemName": "EffectOnPlayerRun"
         },
         {
-            "SystemCategory": 6,
-            "SystemName": "SkinningMeshRenderSystem"
-        },
-        {
             "SystemCategory": 2,
             "SystemName": "FallDetectionSystem"
         },
@@ -290,6 +220,10 @@
             "SystemName": "MoveSystemByRigidBody"
         },
         {
+            "SystemCategory": 6,
+            "SystemName": "TexturedMeshRenderSystem"
+        },
+        {
             "SystemCategory": 3,
             "SystemName": "PlayerMoveSystem"
         },
@@ -300,10 +234,6 @@
         {
             "SystemCategory": 2,
             "SystemName": "SceneTransition"
-        },
-        {
-            "SystemCategory": 5,
-            "SystemName": "SkinningAnimationSystem"
         }
     ],
     "isUnique": true

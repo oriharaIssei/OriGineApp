@@ -15,7 +15,6 @@ public:
 
 protected:
     void UpdateEntity(Entity* entity) override;
-
 private:
     const float maxIntensity = 3.8f;
 };
