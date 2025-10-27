@@ -10,15 +10,9 @@
 // component
 #include "component/animation/SkinningAnimationComponent.h"
 #include "component/Player/PlayerInput.h"
+#include "component/Player/State/PlayerMoveStateFactory.h"
 #include "component/Player/State/PlayerState.h"
 #include "component/SceneChanger.h"
-
-#include "component/Player/State/PlayerIdleState.h"
-#include "component/Player/State/PlayerDashState.h"
-#include "component/Player/State/PlayerJumpState.h"
-#include "component/Player/State/PlayerFallDownState.h"
-#include "component/Player/State/PlayerWallRunState.h"
-#include "component/Player/State/PlayerWallJumpState.h"
 
 #include "component/Camera/CameraController.h"
 #include "component/transform/CameraTransform.h"
@@ -41,7 +35,7 @@ void TransitionPlayerState::UpdateEntity(Entity* _entity) {
     // PlayerMoveState の初期化 (必要なら)
     /// =====================================================
     if (!state->getPlayerMoveState()) {
-        state->setPlayerMoveState(std::make_shared<PlayerIdleState>(this->getScene(), _entity->getID()));
+        state->setPlayerMoveState(CreatePlayerMoveStateByEnum(PlayerMoveState::IDLE, this->getScene(), _entity->getID()));
         state->setState(PlayerMoveState::IDLE);
     }
 
@@ -53,56 +47,16 @@ void TransitionPlayerState::UpdateEntity(Entity* _entity) {
 
     // 状態が変わった場合、状態を更新
     if (state->getStateEnum() != state->getPrevStateEnum()) {
-        auto* skinningAnimation = getComponent<SkinningAnimationComponent>(_entity);
         state->getPlayerMoveState()->Finalize();
 
-        int32_t animationIndex = -1;
-        switch (state->getStateEnum()) {
-        case PlayerMoveState::IDLE: {
-            state->setPlayerMoveState(std::make_shared<PlayerIdleState>(this->getScene(), _entity->getID()));
-            animationIndex = 0; // IDLE アニメーションのインデックス
-            break;
-        }
-        case PlayerMoveState::DASH: {
-            state->setPlayerMoveState(std::make_shared<PlayerDashState>(this->getScene(), _entity->getID()));
-            animationIndex = 1; // DASH アニメーションのインデックス
-            break;
-        }
-        case PlayerMoveState::JUMP: {
-            state->setPlayerMoveState(std::make_shared<PlayerJumpState>(this->getScene(), _entity->getID()));
-            animationIndex = 2;
-            break;
-        }
-        case PlayerMoveState::FALL_DOWN: {
-            state->setPlayerMoveState(std::make_shared<PlayerFallDownState>(this->getScene(), _entity->getID()));
-            animationIndex = 3; // FALL_DOWN アニメーションのインデックス
-            break;
-        }
-        case PlayerMoveState::WALL_RUN: {
-            animationIndex = 1;
-            state->setPlayerMoveState(std::make_shared<PlayerWallRunState>(this->getScene(), _entity->getID()));
-            break;
-        }
-        case PlayerMoveState::WALL_JUMP: {
-            animationIndex = 2;
-            state->setPlayerMoveState(std::make_shared<PlayerWallJumpState>(this->getScene(), _entity->getID()));
-            break;
-        }
-        }
-
-        // アニメーションのインデックスが有効な場合のみ、アニメーションを再生
-        if (animationIndex >= 0 && animationIndex < skinningAnimation->getAnimationTable().size()) {
-            skinningAnimation->endTransition(); // トランジションを終了
-            skinningAnimation->PlayNext(animationIndex, 0.08f); // トランジションのブレンド時間を設定
-        }
-
+        state->setPlayerMoveState(CreatePlayerMoveStateByEnum(state->getStateEnum(), this->getScene(), _entity->getID()));
         state->getPlayerMoveState()->Initialize();
     }
 
     /// =====================================================
     // Fov Y
     /// =====================================================
-    Entity* gameCamera             = getUniqueEntity("GameCamera");
+    Entity* gameCamera                 = getUniqueEntity("GameCamera");
     CameraController* cameraController = getComponent<CameraController>(gameCamera);
     if (cameraController) {
         // fov 更新
