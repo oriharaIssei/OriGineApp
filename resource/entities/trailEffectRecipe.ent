@@ -1,0 +1,29 @@
+{
+    "Components": {
+        "EntityReferenceList": [
+            {
+                "entityFileList": [
+                    [
+                        "./application/resource/entities",
+                        "trailDissolve"
+                    ],
+                    [
+                        "./application/resource/entities",
+                        "trailDistortion1Entity"
+                    ],
+                    [
+                        "./application/resource/entities",
+                        "trailGradationEntity"
+                    ],
+                    [
+                        "./application/resource/entities",
+                        "trailDistortion2Entity"
+                    ]
+                ]
+            }
+        ]
+    },
+    "Name": "trailEffectRecipe",
+    "Systems": [],
+    "isUnique": false
+}

@@ -5,6 +5,8 @@
 #include "EngineInclude.h"
 
 // component
+#include "component/Player/State/PlayerState.h"
+
 #include "component/spline/SplinePoints.h"
 #include "component/transform/Transform.h"
 
@@ -34,38 +36,43 @@ void PlayerPathSplineGenerator::UpdateEntity(Entity* _entity) {
         return;
     }
 
-    // segmentLength_ の安全チェック
-    if (splinePoints->segmentLength_ <= 1e-6f) {
-        return; // 無効な設定
-    }
+    // idle状態は 処理しない
+    PlayerState* state = getComponent<PlayerState>(playerEntity);
+    if (state->getStateEnum() != PlayerMoveState::IDLE) {
 
-    Vec3f playerPos = playerTransform->translate;
-
-    // 最低4点確保
-    if (splinePoints->points_.size() < 4) {
-        int32_t diff = 4 - static_cast<int32_t>(splinePoints->points_.size());
-        for (int32_t i = 0; i < diff; ++i) {
-            splinePoints->pushPoint(playerPos);
-        }
-    }
-
-    // --- 新しいポイントの追加処理 ---
-    Vec3f lastPoint = splinePoints->points_.back();
-    Vec3f distance  = playerPos - lastPoint;
-    float distLen   = distance.length();
-
-    if (distLen >= splinePoints->segmentLength_ * 0.5f) {
-        Vec3f direction = distance;
-        if (distLen > 1e-6f) {
-            direction /= distLen;
-        } else {
-            direction = Vec3f(0.0f, 0.0f, 0.0f);
+        // segmentLength_ の安全チェック
+        if (splinePoints->segmentLength_ <= 1e-6f) {
+            return; // 無効な設定
         }
 
-        int32_t segmentsToAdd = static_cast<int32_t>(distLen / splinePoints->segmentLength_);
-        for (int32_t i = 1; i <= segmentsToAdd; ++i) {
-            Vec3f newPoint = lastPoint + direction * (splinePoints->segmentLength_ * static_cast<float>(i));
-            splinePoints->pushPoint(newPoint);
+        Vec3f playerPos = playerTransform->translate;
+
+        // 最低4点確保
+        if (splinePoints->points_.size() < 4) {
+            int32_t diff = 4 - static_cast<int32_t>(splinePoints->points_.size());
+            for (int32_t i = 0; i < diff; ++i) {
+                splinePoints->pushPoint(playerPos);
+            }
+        }
+
+        // --- 新しいポイントの追加処理 ---
+        Vec3f lastPoint = splinePoints->points_.back();
+        Vec3f distance  = playerPos - lastPoint;
+        float distLen   = distance.length();
+
+        if (distLen >= splinePoints->segmentLength_ * 0.5f) {
+            Vec3f direction = distance;
+            if (distLen > 1e-6f) {
+                direction /= distLen;
+            } else {
+                direction = Vec3f(0.0f, 0.0f, 0.0f);
+            }
+
+            int32_t segmentsToAdd = static_cast<int32_t>(distLen / splinePoints->segmentLength_);
+            for (int32_t i = 1; i <= segmentsToAdd; ++i) {
+                Vec3f newPoint = lastPoint + direction * (splinePoints->segmentLength_ * static_cast<float>(i));
+                splinePoints->pushPoint(newPoint);
+            }
         }
     }
 
@@ -84,7 +91,7 @@ void PlayerPathSplineGenerator::UpdateEntity(Entity* _entity) {
 
         if (len > segLen * 1.5f) {
             // 長すぎる → 分割
-            int divs  = std::max(1, static_cast<int>(len / segLen));
+            int divs = std::max(1, static_cast<int>(len / segLen));
 
             Vec3f dir = Vec3f(0.0f, 0.0f, 0.0f);
             if (len > kEpsilon) {

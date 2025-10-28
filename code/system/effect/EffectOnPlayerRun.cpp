@@ -60,10 +60,7 @@ void EffectOnPlayerRun::UpdateEntity(Entity* entity) {
     }
 
     // エミッターも再生
-    constexpr Vec3f emitterOffset = Vec3f(0.f, -0.46f, -0.687f);
-    Transform* playerTransform    = getComponent<Transform>(entity);
-
-    Vec3f offset = emitterOffset * MakeMatrix::RotateQuaternion(playerTransform->rotate);
+    Transform* playerTransform = getComponent<Transform>(entity);
     for (auto& emitter : *playerEmitters) {
         if (!emitter.IsActive()) {
             emitter.PlayStart();
@@ -72,6 +69,6 @@ void EffectOnPlayerRun::UpdateEntity(Entity* entity) {
         }
 
         emitter.PlayContinue();
-        emitter.setOriginPos(playerTransform->translate + offset);
+        emitter.setOriginPos(playerTransform->translate);
     }
 }
