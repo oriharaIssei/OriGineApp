@@ -2,13 +2,13 @@
     "Components": {
         "DissolveEffectParam": [
             {
-                "edgeWidth": 0.0,
+                "edgeWidth": 0.013000000268220901,
                 "isActive": true,
                 "materialIndex": 0,
                 "outLineColor": [
-                    1.0,
-                    1.0,
-                    1.0,
+                    0.12177536636590958,
+                    0.37996983528137207,
+                    0.8016877770423889,
                     1.0
                 ],
                 "textureFilePath": "./application/resource/Texture/circle.png",
@@ -47,11 +47,7 @@
                 "effectEntityIdList": [
                     {
                         "effectType": 1,
-                        "entityID": 3
-                    },
-                    {
-                        "effectType": 1,
-                        "entityID": 5
+                        "entityID": 17
                     }
                 ],
                 "isActive": true,

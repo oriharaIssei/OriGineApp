@@ -87,8 +87,8 @@ void CreateMeshFromSpline::UpdateEntity(Entity* _entity) {
         Vec3f right = dir.cross(up).normalize();
         up          = right.cross(dir).normalize();
 
-        Vec2f minUV = Vec2f(0.f, std::lerp(splinePointsComp->startUv_[Y], splinePointsComp->endUv_[Y], prevTotalLength / allLength));
-        Vec2f maxUV = Vec2f(1.f, std::lerp(splinePointsComp->startUv_[Y], splinePointsComp->endUv_[Y], totalLength / allLength));
+        Vec2f minUV = Vec2f(splinePointsComp->startUv_[X], std::lerp(splinePointsComp->startUv_[Y], splinePointsComp->endUv_[Y], prevTotalLength / allLength));
+        Vec2f maxUV = Vec2f(splinePointsComp->endUv_[X], std::lerp(splinePointsComp->startUv_[Y], splinePointsComp->endUv_[Y], totalLength / allLength));
 
         Vec2f uv[4];
         uv[0] = minUV;

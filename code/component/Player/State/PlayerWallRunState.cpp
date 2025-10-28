@@ -33,8 +33,8 @@ void PlayerWallRunState::Initialize() {
     if (direction.lengthSq() == 0.0f) {
         direction = Vec3f::Cross(wallNormal_, axisX);
     }
-
     direction = direction.normalize();
+
     if (Vec3f::Dot(direction, prevVelo_) < 0.0f) {
         direction = -direction;
     }
@@ -65,24 +65,32 @@ void PlayerWallRunState::Initialize() {
     // 壁との衝突判定の残り時間を初期化
     separationLeftTime_ = separationGraceTime_;
 
-    float angleY = std::atan2(direction[X], direction[Z]);
-    wallRotate_  = Quaternion::RotateAxisAngle(axisY, angleY);
+    // プレイヤーの向きを移動方向に合わせる
+    Vec3f forward                = direction;
+    Quaternion lookForward       = Quaternion::LookAt(forward, axisY);
+    constexpr float kAngleOffset = 0.89f; // 追加で傾ける角度(ラジアン)
+    bool isRightWall             = Vec3f::Dot(Vec3f::Cross(axisY, wallNormal_), direction) > 0.0f;
+    Quaternion angleOffset       = Quaternion::RotateAxisAngle(forward, isRightWall ? kAngleOffset : -kAngleOffset);
+    transform->rotate            = lookForward * angleOffset;
 
-    // 壁法線
-    Vec3f n = wallNormal_;
-
-    // Y軸を固定して「正面方向を壁面に沿わせる」
-    Vec3f forward = Vec3f::Cross(axisY, n);
-    if (forward.lengthSq() < 1e-6f)
-        forward = Vec3f::Cross(axisX, n);
-    forward = forward.normalize();
-
-    // --- Y軸回り回転角を求める ---
-    angleY      = std::atan2(forward[X], forward[Z]);
-    wallRotate_ = Quaternion::RotateAxisAngle(axisY, angleY);
-
-    transform->rotate = wallRotate_;
     transform->UpdateMatrix();
+
+    // カメラのオフセットを計算
+    CameraController* cameraController = scene_->getComponent<CameraController>(scene_->getUniqueEntity("GameCamera"));
+
+    Vec3f targetTargetOffset = cameraController->getTargetOffsetOnWallRun();
+    cameraTargetOffsetOnWallRun_ =
+        wallNormal_ * targetTargetOffset[X] // 横方向
+        + axisY * targetTargetOffset[Y] // 上方向
+        + direction * targetTargetOffset[Z]; // 前方向
+    cameraTargetOffsetOnWallRun_ = cameraTargetOffsetOnWallRun_.normalize() * targetTargetOffset.length();
+
+    Vec3f offsetOnWallRun = cameraController->getOffsetOnWallRun();
+    cameraOffsetOnWallRun_ =
+        wallNormal_ * offsetOnWallRun[X] // 横方向
+        + axisY * offsetOnWallRun[Y] // 上方向
+        + direction * offsetOnWallRun[Z]; // 前方向
+    cameraOffsetOnWallRun_ = cameraOffsetOnWallRun_.normalize() * offsetOnWallRun.length();
 }
 
 void PlayerWallRunState::Update(float _deltaTime) {
@@ -110,16 +118,12 @@ void PlayerWallRunState::Update(float _deltaTime) {
         float t = cameraAngleLerpTimer_ / kCameraAngleLerpTime_;
         t       = std::clamp(t, 0.f, 1.f);
 
-        Vec3f targetOffset         = cameraController->getOffsetOnWallRun();
         const Vec3f& currentOffset = cameraController->getCurrentOffset();
-        targetOffset               = targetOffset * wallYZRotate_; // 壁の向きに合わせて左右反転
-        Vec3f newOffset            = Lerp<3, float>(currentOffset, targetOffset, EaseOutCubic(t));
+        Vec3f newOffset            = Lerp<3, float>(currentOffset, cameraOffsetOnWallRun_, EaseOutCubic(t));
         cameraController->setCurrentOffset(newOffset);
 
-        Vec3f targetTargetOffset         = cameraController->getTargetOffsetOnWallRun();
         const Vec3f& currentTargetOffset = cameraController->getCurrentTargetOffset();
-        targetTargetOffset               = targetTargetOffset * wallYZRotate_; // 壁の向きに合わせて左右反転
-        Vec3f newTargetOffset            = Lerp<3, float>(currentTargetOffset, targetTargetOffset, EaseOutCubic(t));
+        Vec3f newTargetOffset            = Lerp<3, float>(currentTargetOffset, cameraTargetOffsetOnWallRun_, EaseOutCubic(t));
         cameraController->setCurrentTargetOffset(newTargetOffset);
     }
 }

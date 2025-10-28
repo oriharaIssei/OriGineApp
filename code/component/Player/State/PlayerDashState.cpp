@@ -10,6 +10,7 @@
 #include "component/Player/PlayerInput.h"
 #include "component/Player/PlayerStatus.h"
 #include "component/Player/State/PlayerState.h"
+#include "component/renderer/MeshRenderer.h"
 
 /// math
 #include "MyEasing.h"
@@ -44,18 +45,19 @@ void PlayerDashState::Update(float _deltaTime) {
     // gearLevel の更新
     playerStatus->minusGearUpCoolTime(_deltaTime);
 
+    int32_t gearLevel = state->getGearLevel();
     // ギアレベルが最大に達していない場合、
-    if (state->getGearLevel() < kMaxPlayerGearLevel) {
+    if (gearLevel < kMaxPlayerGearLevel) {
         // クールタイムが0以下になったらギアレベルを上げる
         if (playerStatus->getGearUpCoolTime() <= 0.f) {
             state->setGearUp(true);
 
-            int32_t addedGearLevel = state->getGearLevel() + 1;
-            state->setGearLevel(addedGearLevel);
+            ++gearLevel;
+            state->setGearLevel(gearLevel);
 
-            playerStatus->setGearUpCoolTime(playerStatus->CalculateCoolTimeByGearLevel(addedGearLevel));
+            playerStatus->setGearUpCoolTime(playerStatus->CalculateCoolTimeByGearLevel(gearLevel));
 
-            playerStatus->setCurrentMaxSpeed(playerStatus->CalculateSpeedByGearLevel(addedGearLevel));
+            playerStatus->setCurrentMaxSpeed(playerStatus->CalculateSpeedByGearLevel(gearLevel));
             rigidbody->setMaxXZSpeed(playerStatus->getCurrentMaxSpeed());
 
             auto* skinningAnim = scene_->getComponent<SkinningAnimationComponent>(playerEntity);
@@ -68,7 +70,16 @@ void PlayerDashState::Update(float _deltaTime) {
     // 速度更新
     playerStatus->UpdateAccel(playerInput, transform, rigidbody, scene_->getComponent<CameraTransform>(scene_->getUniqueEntity("GameCamera"))->rotate);
 
-    if (kThresholdGearLevelOfCameraOffset_ >= state->getGearLevel()) {
+    // タイヤを回転させる
+    constexpr float kRotateSpeedFactor   = 0.064f;
+    Quaternion addedRotate               = Quaternion::RotateAxisAngle(axisX, gearLevel * kRotateSpeedFactor);
+    ModelMeshRenderer* modelMeshRenderer = scene_->getComponent<ModelMeshRenderer>(playerEntity);
+    if (modelMeshRenderer) {
+        Transform& meshTransform = modelMeshRenderer->getTransform(0);
+        meshTransform.rotate     = addedRotate * meshTransform.rotate;
+    }
+
+    if (kThresholdGearLevelOfCameraOffset_ >= gearLevel) {
         return;
     }
 

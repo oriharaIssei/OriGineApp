@@ -131,6 +131,12 @@ void ButtonGroupSystem::UpdateEntity(Entity* _entity) {
         currentButtonNumber = std::clamp(currentButtonNumber, 0, (int32_t)buttonGroup->getButtonNumbers().size() - 1);
 
         currentButton = getComponent<Button>(getEntity(buttonGroup->getEntityId(currentButtonNumber)));
+
+        // 次のボタンが存在しなければ戻す
+        if (!currentButton) {
+            currentButtonNumber -= delta;
+            currentButton = getComponent<Button>(getEntity(buttonGroup->getEntityId(currentButtonNumber)));
+        }
         currentButton->setHovered(true);
 
         buttonGroup->setCurrentButtonNumber(currentButtonNumber);

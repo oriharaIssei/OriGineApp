@@ -74,58 +74,59 @@ void PlayerPathSplineGenerator::UpdateEntity(Entity* _entity) {
                 splinePoints->pushPoint(newPoint);
             }
         }
-    }
 
-    // --- 新しい配列で再構築 ---
-    std::deque<Vec3f> newPoints;
-    const float segLen = splinePoints->segmentLength_;
+        // --- 新しい配列で再構築 ---
+        std::deque<Vec3f> newPoints;
+        const float segLen = splinePoints->segmentLength_;
 
-    for (int32_t i = 0; i < static_cast<int32_t>(splinePoints->points_.size()) - 1; ++i) {
-        Vec3f current = splinePoints->points_[i];
-        Vec3f next    = splinePoints->points_[i + 1];
-        Vec3f delta   = next - current;
-        float len     = delta.length();
+        for (int32_t i = 0; i < static_cast<int32_t>(splinePoints->points_.size()) - 1; ++i) {
+            Vec3f current = splinePoints->points_[i];
+            Vec3f next    = splinePoints->points_[i + 1];
+            Vec3f delta   = next - current;
+            float len     = delta.length();
 
-        // 現在の点は常に残す
-        newPoints.push_back(current);
+            // 現在の点は常に残す
+            newPoints.push_back(current);
 
-        if (len > segLen * 1.5f) {
-            // 長すぎる → 分割
-            int divs = std::max(1, static_cast<int>(len / segLen));
+            if (len > segLen * 1.5f) {
+                // 長すぎる → 分割
+                int divs = std::max(1, static_cast<int>(len / segLen));
 
-            Vec3f dir = Vec3f(0.0f, 0.0f, 0.0f);
-            if (len > kEpsilon) {
-                dir = delta / len;
+                Vec3f dir = Vec3f(0.0f, 0.0f, 0.0f);
+                if (len > kEpsilon) {
+                    dir = delta / len;
+                }
+
+                for (int j = 1; j < divs; ++j) {
+                    newPoints.push_back(current + dir * (segLen * static_cast<float>(j)));
+                }
+            } else if (len < segLen * 0.5f && (i + 1) < static_cast<int>(splinePoints->points_.size() - 1)) {
+                // 短すぎる → 統合
+                Vec3f merged     = (current + next) * 0.5f;
+                newPoints.back() = merged;
+                ++i; // 次をスキップ（統合済み）
             }
-
-            for (int j = 1; j < divs; ++j) {
-                newPoints.push_back(current + dir * (segLen * static_cast<float>(j)));
-            }
-        } else if (len < segLen * 0.5f && (i + 1) < static_cast<int>(splinePoints->points_.size() - 1)) {
-            // 短すぎる → 統合
-            Vec3f merged     = (current + next) * 0.5f;
-            newPoints.back() = merged;
-            ++i; // 次をスキップ（統合済み）
         }
-    }
+        // 最後の点を追加
+        newPoints.push_back(splinePoints->points_.back());
 
-    // 最後の点を追加
-    newPoints.push_back(splinePoints->points_.back());
-
-    // fadeoutTimer 処理
-    splinePoints->fadeoutTimer_ += getMainDeltaTime();
-    if (splinePoints->fadeoutTimer_ >= splinePoints->fadeoutTime_) {
-        splinePoints->fadeoutTimer_ = 0.0f;
-        if (!newPoints.empty()) {
+        // 容量制限
+        while (newPoints.size() > splinePoints->capacity_) {
             newPoints.pop_front();
         }
-    }
 
-    // 容量制限
-    while (newPoints.size() > splinePoints->capacity_) {
-        newPoints.pop_front();
-    }
+        // 差し替え
+        splinePoints->points_ = std::move(newPoints);
 
-    // 差し替え
-    splinePoints->points_ = std::move(newPoints);
+    } else {
+        // IDLE状態なら fadeoutTimer を進める
+        // fadeoutTimer 処理
+        splinePoints->fadeoutTimer_ += getMainDeltaTime();
+        if (splinePoints->fadeoutTimer_ >= splinePoints->fadeoutTime_) {
+            splinePoints->fadeoutTimer_ = 0.0f;
+            if (!splinePoints->points_.empty()) {
+                splinePoints->points_.pop_front();
+            }
+        }
+    }
 }
