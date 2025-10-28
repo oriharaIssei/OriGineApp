@@ -51,19 +51,6 @@ void TrailEffectInitialize::UpdateEntity(Entity* _entity) {
             MaterialEffectType::Distortion, distortion1Entity->getID());
     }
 
-    // dissolveに distortionEffect2を 設定
-    auto distortion2Entity = getUniqueEntity("trailDistortion2Entity");
-    if (!distortion2Entity) {
-        LOG_ERROR("distortion2Entity is nullptr");
-        return;
-    }
-    auto distortion2EffectParam =
-        getComponent<DistortionEffectParam>(distortion2Entity);
-    if (distortion2EffectParam) {
-        dissolveMaterialEffectPipeline->AddEffectEntity(
-            MaterialEffectType::Distortion, distortion2Entity->getID());
-    }
-
     // trailに dissolveEffectを 設定
     if (dissolveMaterialEffectPipeline) {
         materialEffectPipeLine->AddEffectEntity(

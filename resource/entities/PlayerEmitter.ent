@@ -107,6 +107,24 @@
                     {
                         "time": 0.0,
                         "value": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
                             1.0,
                             1.0,
                             1.0,
@@ -177,7 +195,7 @@
                     1.0
                 ],
                 "shapeType": 1,
-                "spawnCoolTime": 0.6010000109672546,
+                "spawnCoolTime": 0.20100000500679016,
                 "spawnParticleVal": 5,
                 "startParticleRotateMax": [
                     0.0,
@@ -190,9 +208,9 @@
                     0.0
                 ],
                 "startParticleScaleMax": [
-                    0.8999999761581421,
-                    0.20000000298023224,
-                    0.20000000298023224
+                    0.6000000238418579,
+                    0.6000000238418579,
+                    0.6000000238418579
                 ],
                 "startParticleScaleMin": [
                     0.20000000298023224,
@@ -209,7 +227,7 @@
                     0.0,
                     0.0
                 ],
-                "textureFileName": "./application/resource/Texture/nonBluer_circle.png",
+                "textureFileName": "./application/resource/Texture/circle.png",
                 "transformInterpolationType": 0,
                 "updateParticleRotateMax": [
                     0.0,
@@ -241,7 +259,7 @@
                     0.0,
                     0.0
                 ],
-                "updateSettings": 256,
+                "updateSettings": 4352,
                 "uvInterpolationType": 0
             }
         ],
