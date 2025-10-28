@@ -38,7 +38,7 @@
                             "translate": [
                                 0.0,
                                 0.0,
-                                0.0
+                                -13.440001487731934
                             ]
                         }
                     }
@@ -391,6 +391,10 @@
                             [
                                 "./application/resource/entities",
                                 "Trail"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "PlayerEmitter"
                             ]
                         ]
                     }
@@ -427,6 +431,40 @@
                 }
             ],
             "isUnique": false
+        },
+        {
+            "Components": {
+                "EntityReferenceList": [
+                    {
+                        "entityFileList": [
+                            [
+                                "./application/resource/entities",
+                                "trailDissolve"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "trailDistortion1Entity"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "trailGradationEntity"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "trailDistortion2Entity"
+                            ]
+                        ]
+                    }
+                ]
+            },
+            "Name": "trailEffectRecipe",
+            "Systems": [
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "ResolveEntityReferences"
+                }
+            ],
+            "isUnique": true
         }
     ],
     "Systems": [
@@ -493,6 +531,9 @@
             },
             "MaterialAnimationWorkSystem": {
                 "Priority": 0
+            },
+            "MaterialEffect": {
+                "Priority": 10
             },
             "MenuUpdate": {
                 "Priority": 0
@@ -580,6 +621,9 @@
             },
             "TimerForSprite": {
                 "Priority": 0
+            },
+            "TrailEffectInitialize": {
+                "Priority": 100
             },
             "TransitionPlayerState": {
                 "Priority": 5

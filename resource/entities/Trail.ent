@@ -18,17 +18,35 @@
                 "uvRotate": 0.0,
                 "uvScale": [
                     1.0,
-                    1.0
+                    0.550000011920929
                 ],
                 "uvTranslate": [
                     0.0,
-                    0.0
+                    0.44999998807907104
                 ]
+            }
+        ],
+        "MaterialEffectPipeLine": [
+            {
+                "baseTexturePath": "./application/resource/Texture/lazer.png",
+                "effectEntityIdList": [
+                    {
+                        "effectType": 0,
+                        "entityID": 15
+                    },
+                    {
+                        "effectType": 2,
+                        "entityID": 17
+                    }
+                ],
+                "isActive": true,
+                "materialIndex": 0,
+                "priority": 10
             }
         ],
         "PlaneRenderer": [
             {
-                "blendMode": 1,
+                "blendMode": 2,
                 "isRenderer": true,
                 "materialIndex": 0,
                 "textureDirectory": "./application/resource/Texture",
@@ -60,14 +78,14 @@
                     1.0,
                     1.0
                 ],
-                "fadeoutTime": 0.10999999940395355,
+                "fadeoutTime": 0.05000000074505806,
                 "segmentDivide": 16,
-                "segmentLength": 0.5,
+                "segmentLength": 0.36000001430511475,
                 "startUv": [
                     0.0,
                     0.0
                 ],
-                "width": 0.2800000011920929
+                "width": 0.8600000143051147
             }
         ]
     },
@@ -78,12 +96,20 @@
             "SystemName": "CreateMeshFromSpline"
         },
         {
+            "SystemCategory": 5,
+            "SystemName": "MaterialEffect"
+        },
+        {
             "SystemCategory": 6,
             "SystemName": "TexturedMeshRenderSystem"
         },
         {
             "SystemCategory": 3,
             "SystemName": "PlayerPathSplineGenerator"
+        },
+        {
+            "SystemCategory": 0,
+            "SystemName": "TrailEffectInitialize"
         }
     ],
     "isUnique": true

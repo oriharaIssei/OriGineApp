@@ -3,12 +3,35 @@
         "Emitter": [
             {
                 "EmitterShape": {
-                    "radius": 0.0,
+                    "max": [
+                        1.5,
+                        2.0,
+                        1.5
+                    ],
+                    "min": [
+                        -1.5,
+                        0.0,
+                        -1.5
+                    ],
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
                     "spawnType": 0
                 },
-                "activeTime": 4.300000190734863,
+                "activeTime": 5.0,
                 "blendMode": 2,
                 "colorCurve": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
                     {
                         "time": 0.0,
                         "value": [
@@ -153,9 +176,9 @@
                     1.0,
                     1.0
                 ],
-                "shapeType": 0,
-                "spawnCoolTime": 0.0010000000474974513,
-                "spawnParticleVal": 2,
+                "shapeType": 1,
+                "spawnCoolTime": 0.6010000109672546,
+                "spawnParticleVal": 5,
                 "startParticleRotateMax": [
                     0.0,
                     0.0,
@@ -167,7 +190,7 @@
                     0.0
                 ],
                 "startParticleScaleMax": [
-                    0.20000000298023224,
+                    0.8999999761581421,
                     0.20000000298023224,
                     0.20000000298023224
                 ],

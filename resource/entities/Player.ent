@@ -50,35 +50,12 @@
         "ModelMeshRenderer": [
             {
                 "blendMode": 1,
-                "directory": "./application/resource/Models",
+                "directory": "./application/resource/Models\\player",
                 "fileName": "Player.obj",
                 "isRender": true,
-                "materialIndexDatas": [
-                    0
-                ],
-                "textureFilePath": [
-                    ""
-                ],
-                "transformBufferDatas": [
-                    {
-                        "rotate": [
-                            0.0,
-                            0.0,
-                            0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "translate": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ]
+                "materialIndexDatas": [],
+                "textureFilePath": [],
+                "transformBufferDatas": []
             }
         ],
         "PlayerInput": [

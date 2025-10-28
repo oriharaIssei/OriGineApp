@@ -1,0 +1,71 @@
+{
+    "Components": {
+        "DissolveEffectParam": [
+            {
+                "edgeWidth": 0.0,
+                "isActive": true,
+                "materialIndex": 0,
+                "outLineColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "textureFilePath": "./application/resource/Texture/circle.png",
+                "threshold": 0.028999999165534973
+            }
+        ],
+        "Material": [
+            {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "enableLighting": false,
+                "shininess": 0.0,
+                "specularColor": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "uvRotate": 0.0,
+                "uvScale": [
+                    1.0,
+                    1.0
+                ],
+                "uvTranslate": [
+                    0.0,
+                    0.0
+                ]
+            }
+        ],
+        "MaterialEffectPipeLine": [
+            {
+                "baseTexturePath": "./application/resource/Texture/gradationLine.png",
+                "effectEntityIdList": [
+                    {
+                        "effectType": 1,
+                        "entityID": 3
+                    },
+                    {
+                        "effectType": 1,
+                        "entityID": 5
+                    }
+                ],
+                "isActive": true,
+                "materialIndex": 0,
+                "priority": 0
+            }
+        ]
+    },
+    "Name": "trailDissolve",
+    "Systems": [
+        {
+            "SystemCategory": 5,
+            "SystemName": "MaterialEffect"
+        }
+    ],
+    "isUnique": true
+}

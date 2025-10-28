@@ -36,6 +36,7 @@
 #include "system/initialize/GetClearTime.h"
 #include "system/initialize/SettingGameCameraTarget.h"
 #include "system/initialize/TakePlayerToStartPosition.h"
+#include "system/initialize/TrailEffectInitialize.h"
 #include "system/input/ButtonInputSystem.h"
 #include "system/input/CameraInputSystem.h"
 #include "system/input/PlayerInputSystem.h"
@@ -155,6 +156,7 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<GetClearTime>();
     systemRegistry->registerSystem<CameraInitialize>();
     systemRegistry->registerSystem<RegisterWindowResizeEvent>();
+    systemRegistry->registerSystem<TrailEffectInitialize>();
 
     /// ===================================================================================================
     // Input
