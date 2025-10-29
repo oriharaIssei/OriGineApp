@@ -2,17 +2,17 @@
     "Components": {
         "DissolveEffectParam": [
             {
-                "edgeWidth": 0.013000000268220901,
+                "edgeWidth": 0.02800000086426735,
                 "isActive": true,
                 "materialIndex": 0,
                 "outLineColor": [
-                    0.12177536636590958,
-                    0.37996983528137207,
-                    0.8016877770423889,
+                    1.0,
+                    1.0,
+                    1.0,
                     1.0
                 ],
                 "textureFilePath": "./application/resource/Texture/circle.png",
-                "threshold": 0.028999999165534973
+                "threshold": 0.03200000151991844
             }
         ],
         "Material": [

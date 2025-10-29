@@ -13,6 +13,8 @@
 #endif // _DEBUG
 
 /// math
+#include <math/mathEnv.h>
+#include <math/Quaternion.h>
 #include <math/Sequence.h>
 
 PlayerStatus::PlayerStatus() {}
@@ -116,12 +118,14 @@ float PlayerStatus::CalculateCoolTimeByGearLevel(int32_t _gearLevel) const {
         _gearLevel);
 }
 
-void PlayerStatus::UpdateAccel(PlayerInput* _input, Transform* _transform, Rigidbody* _rigidbody, const Quaternion& _cameraRotation) {
+void PlayerStatus::UpdateAccel(float _deltaTime, PlayerInput* _input, Transform* _transform, Rigidbody* _rigidbody, const Quaternion& _cameraRotation) {
     constexpr float kPlayerAccelRate = 8.0f;
 
     // 入力方向を取得
     Vec2f inputDirection = _input->getInputDirection();
+
     if (inputDirection.lengthSq() <= 0.0f) {
+        _input->setWorldInputDirection(Vec3f());
         return;
     }
 
@@ -135,11 +139,24 @@ void PlayerStatus::UpdateAccel(PlayerInput* _input, Transform* _transform, Rigid
 
     // カメラの向きに合わせて入力方向を回転（ローカル→ワールド変換）
     Vec3f moveDirWorld = inputDir3D * MakeMatrix::RotateY(cameraYaw);
-    moveDirWorld.normalize();
+    moveDirWorld       = moveDirWorld.normalize();
+    // ワールド方向に変換した入力方向を保存
+    _input->setWorldInputDirection(moveDirWorld);
 
-    // プレイヤーの回転をカメラ方向に合わせる
-    Quaternion targetRotation = Quaternion::LookAt(moveDirWorld, axisY);
-    _transform->rotate        = Slerp(_transform->rotate, targetRotation, directionInterpolateRate_);
+    // 現在の移動方向と補間
+    Vec3f currentDir = _rigidbody->getVelocity();
+    if (currentDir.lengthSq() <= kEpsilon) {
+        currentDir = axisZ * MakeMatrix::RotateQuaternion(_transform->rotate);
+    }
+    currentDir[Y] = 0.0f;
+    currentDir    = currentDir.normalize();
+
+    float alpha  = 1.0f - std::exp(-directionInterpolateRate_ * _deltaTime);
+    moveDirWorld = Lerp<3, float>(currentDir, moveDirWorld, alpha);
+    moveDirWorld = moveDirWorld.normalize();
+
+    // プレイヤーの回転をカメラ方向に合わせる(更新分だけ回転)
+    _transform->rotate = Quaternion::LookAt(moveDirWorld, axisY);
 
     // 移動加速度を設定
     Vec3f accel = moveDirWorld * (currentMaxSpeed_ * kPlayerAccelRate);

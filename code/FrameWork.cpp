@@ -14,6 +14,7 @@
 #include "component/ButtonGroup.h"
 #include "component/Camera/CameraController.h"
 #include "component/MouseCondition.h"
+#include "component/player/PlayerEffectControlParam.h"
 #include "component/Player/PlayerInput.h"
 #include "component/Player/PlayerStatus.h"
 #include "component/Player/State/PlayerState.h"
@@ -135,6 +136,7 @@ void RegisterUsingComponents() {
     componentRegistry->registerComponent<PlayerInput>();
     componentRegistry->registerComponent<PlayerStatus>();
     componentRegistry->registerComponent<PlayerState>();
+    componentRegistry->registerComponent<PlayerEffectControlParam>();
 
     componentRegistry->registerComponent<Button>();
     componentRegistry->registerComponent<ButtonGroup>();

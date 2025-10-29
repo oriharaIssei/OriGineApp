@@ -38,7 +38,7 @@
                 ],
                 "uvTranslate": [
                     0.0,
-                    0.29696542024612427
+                    0.8434225916862488
                 ]
             }
         ],
@@ -46,7 +46,7 @@
             {
                 "InterpolationType": 0,
                 "colorCurve": [],
-                "duration": 7.099999904632568,
+                "duration": 3.0999999046325684,
                 "isLoop": true,
                 "isPlay": true,
                 "uvRotateCurve": [],
@@ -60,7 +60,7 @@
                         ]
                     },
                     {
-                        "time": 7.099999904632568,
+                        "time": 3.0999999046325684,
                         "value": [
                             0.0,
                             1.0

@@ -6,12 +6,15 @@
 #include "EngineInclude.h"
 
 // component
+#include "component/material/Material.h"
+#include "component/renderer/primitive/RingRenderer.h"
+
 #include "component/effect/particle/emitter/Emitter.h"
 #include "component/effect/post/DistortionEffectParam.h"
-#include "component/effect/post/RadialBlurParam.h"
+
+#include "component/Player/PlayerEffectControlParam.h"
 #include "component/Player/PlayerStatus.h"
 #include "component/Player/State/PlayerState.h"
-#include "component/renderer/primitive/RingRenderer.h"
 
 /// math
 #include <math/MyEasing.h>
@@ -55,8 +58,21 @@ void EffectOnPlayerGearup::UpdateEntity(Entity* _entity) {
             }
         }
 
+        // trailの色をGearLevelに応じて変化
+        PlayerEffectControlParam* effectControlParam = getComponent<PlayerEffectControlParam>(player);
+        if (effectControlParam) {
+            Material* material = getComponent<Material>(getUniqueEntity("Trail"));
+            if (material) {
+                Vector4f trailColor = effectControlParam->getTrailColorByGearLevel(state->getGearLevel());
+                material->color_    = trailColor;
+                material->UpdateUvMatrix();
+            }
+        }
+
+        // GearLevelに応じて衝撃波を発生
         if (state->getGearLevel() >= 2) {
             shockWaveState_.playState_.set(true);
+            shockWaveState_.currentTime = 0.f;
         }
     }
 

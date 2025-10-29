@@ -14,16 +14,17 @@
                     [
                         "./application/resource/entities",
                         "trailGradationEntity"
-                    ],
-                    [
-                        "./application/resource/entities",
-                        "trailDistortion2Entity"
                     ]
                 ]
             }
         ]
     },
     "Name": "trailEffectRecipe",
-    "Systems": [],
-    "isUnique": false
+    "Systems": [
+        {
+            "SystemCategory": 0,
+            "SystemName": "ResolveEntityReferences"
+        }
+    ],
+    "isUnique": true
 }

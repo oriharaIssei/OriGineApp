@@ -6,8 +6,10 @@
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
 
+#include "component/Player/PlayerEffectControlParam.h"
 #include "component/Player/PlayerInput.h"
 #include "component/Player/PlayerStatus.h"
+#include "component/Player/State/PlayerState.h"
 
 #include "component/Camera/CameraController.h"
 
@@ -66,12 +68,13 @@ void PlayerWallRunState::Initialize() {
     separationLeftTime_ = separationGraceTime_;
 
     // プレイヤーの向きを移動方向に合わせる
-    Vec3f forward                = direction;
-    Quaternion lookForward       = Quaternion::LookAt(forward, axisY);
-    constexpr float kAngleOffset = 0.89f; // 追加で傾ける角度(ラジアン)
-    bool isRightWall             = Vec3f::Dot(Vec3f::Cross(axisY, wallNormal_), direction) > 0.0f;
-    Quaternion angleOffset       = Quaternion::RotateAxisAngle(forward, isRightWall ? kAngleOffset : -kAngleOffset);
-    transform->rotate            = lookForward * angleOffset;
+    PlayerEffectControlParam* effectParam = scene_->getComponent<PlayerEffectControlParam>(playerEntity);
+    Vec3f forward                         = direction;
+    Quaternion lookForward                = Quaternion::LookAt(forward, axisY);
+    float rotateOffsetOnWallRun              = effectParam->getRotateOffsetOnWallRun();
+    bool isRightWall                      = Vec3f::Dot(Vec3f::Cross(axisY, wallNormal_), direction) > 0.0f;
+    Quaternion angleOffset                   = Quaternion::RotateAxisAngle(forward, isRightWall ? rotateOffsetOnWallRun : -rotateOffsetOnWallRun);
+    transform->rotate                     = lookForward * angleOffset;
 
     transform->UpdateMatrix();
 

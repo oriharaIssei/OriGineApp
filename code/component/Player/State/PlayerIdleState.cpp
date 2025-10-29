@@ -18,8 +18,15 @@ void PlayerIdleState::Initialize() {
     auto playerStatus  = scene_->getComponent<PlayerStatus>(playerEntity);
     auto* state        = scene_->getComponent<PlayerState>(playerEntity);
     auto rigidbody     = scene_->getComponent<Rigidbody>(playerEntity);
+    auto playerInput   = scene_->getComponent<PlayerInput>(playerEntity);
+
+    /// 初期化処理
+    // 入力方向をリセット
+    playerInput->setWorldInputDirection({0.f, 0.f, 0.f});
+    // 速度をゼロにする
     rigidbody->setAcceleration({0.f, 0.0f, 0.0f});
     playerStatus->setCurrentMaxSpeed(0.0f);
+    // ギアアップのクールタイム&ギアレベルをリセット
     playerStatus->setGearUpCoolTime(playerStatus->getBaseGearupCoolTime());
     state->setGearLevel(kDefaultPlayerGearLevel);
 

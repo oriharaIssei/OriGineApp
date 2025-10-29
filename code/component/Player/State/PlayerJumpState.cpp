@@ -36,7 +36,7 @@ void PlayerJumpState::Update(float _deltaTime) {
     auto* transform    = scene_->getComponent<Transform>(playerEntity);
 
     // 移動処理
-    playerStatus->UpdateAccel(playerInput, transform, rigidbody, scene_->getComponent<CameraTransform>(scene_->getUniqueEntity("GameCamera"))->rotate);
+    playerStatus->UpdateAccel(_deltaTime,playerInput, transform, rigidbody, scene_->getComponent<CameraTransform>(scene_->getUniqueEntity("GameCamera"))->rotate);
 
     // ジャンプ力の蓄積
     releaseJumpPower_ += playerStatus->getFallPower() * _deltaTime;

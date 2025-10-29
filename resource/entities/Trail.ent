@@ -3,9 +3,9 @@
         "Material": [
             {
                 "color": [
-                    1.0,
-                    1.0,
-                    1.0,
+                    0.47679322957992554,
+                    0.09053032100200653,
+                    0.09053032100200653,
                     1.0
                 ],
                 "enableLighting": false,
@@ -32,11 +32,11 @@
                 "effectEntityIdList": [
                     {
                         "effectType": 0,
-                        "entityID": 15
+                        "entityID": 16
                     },
                     {
                         "effectType": 2,
-                        "entityID": 17
+                        "entityID": 18
                     }
                 ],
                 "isActive": true,
@@ -73,19 +73,19 @@
         ],
         "SplinePoints": [
             {
-                "capacity": 64,
+                "capacity": 32,
                 "endUv": [
                     1.0,
                     1.0
                 ],
-                "fadeoutTime": 0.05000000074505806,
+                "fadeoutTime": 0.029999999329447746,
                 "segmentDivide": 16,
-                "segmentLength": 0.36000001430511475,
+                "segmentLength": 0.6899999976158142,
                 "startUv": [
                     0.0,
                     0.0
                 ],
-                "width": 0.8600000143051147
+                "width": 0.8100000023841858
             }
         ]
     },

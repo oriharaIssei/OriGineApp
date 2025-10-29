@@ -26,11 +26,13 @@ public:
     ~PlayerInput() {}
 
     void Initialize(Entity* _entity) override;
-    void Edit(Scene* _scene, Entity* _entity,  const std::string& _parentLabel) override;
+    void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
     void Finalize() override;
 
 private:
     Vec2f inputDirection_ = {0.0f, 0.0f};
+    // effectに使う
+    Vec3f worldInputDirection_ = {0.0f, 0.0f, 0.0f};
 
     bool isJumpInput_    = false; // ジャンプ入力があったかどうか
     float jumpInputTime_ = 0.0f; // ジャンプ入力の時間 (これによってジャンプ力が変わる)
@@ -99,6 +101,13 @@ public:
     }
     void setInputDirection(const Vec2f& _inputDirection) {
         inputDirection_ = _inputDirection;
+    }
+
+    const Vec3f& getWorldInputDirection() const {
+        return worldInputDirection_;
+    }
+    void setWorldInputDirection(const Vec3f& _worldInputDirection) {
+        worldInputDirection_ = _worldInputDirection;
     }
 
     bool isJumpInput() const {

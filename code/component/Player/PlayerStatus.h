@@ -43,7 +43,7 @@ public:
     /// </summary>
     float CalculateCoolTimeByGearLevel(int32_t _gearLevel) const;
 
-    void UpdateAccel(PlayerInput* _input, Transform* _transform, Rigidbody* _rigidbody, const Quaternion& _cameraRotation);
+    void UpdateAccel(float _deltaTime, PlayerInput* _input, Transform* _transform, Rigidbody* _rigidbody, const Quaternion& _cameraRotation);
 
 private:
     /// ==========================================

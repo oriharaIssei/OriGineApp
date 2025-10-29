@@ -36,9 +36,9 @@
                                 1.0
                             ],
                             "translate": [
-                                0.0011975765228271484,
-                                1.0071457624435425,
-                                -7.7298197746276855
+                                0.0,
+                                0.0,
+                                0.0
                             ]
                         }
                     }
@@ -149,8 +149,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -162,8 +162,8 @@
                             1.0
                         ],
                         "size": [
-                            48.0,
-                            48.000003814697266
+                            72.0,
+                            72.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -175,8 +175,8 @@
                             16.0
                         ],
                         "translate": [
-                            72.95999908447266,
-                            30.96000099182129
+                            109.44000244140625,
+                            46.44000244140625
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -208,8 +208,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -221,8 +221,8 @@
                             1.0
                         ],
                         "size": [
-                            48.0,
-                            48.000003814697266
+                            72.0,
+                            72.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -234,8 +234,8 @@
                             16.0
                         ],
                         "translate": [
-                            72.95999908447266,
-                            30.96000099182129
+                            109.44000244140625,
+                            46.44000244140625
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -448,10 +448,6 @@
                             [
                                 "./application/resource/entities",
                                 "trailGradationEntity"
-                            ],
-                            [
-                                "./application/resource/entities",
-                                "trailDistortion2Entity"
                             ]
                         ]
                     }
@@ -486,9 +482,6 @@
             },
             "ChangeSceneByButton": {
                 "Priority": 1
-            },
-            "ColliderRenderingSystem": {
-                "Priority": 0
             },
             "CollisionCheckSystem": {
                 "Priority": 0

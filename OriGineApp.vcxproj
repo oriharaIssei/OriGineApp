@@ -197,6 +197,7 @@
     <ClInclude Include="code\system\effect\CreateMeshFromSpline.h" />
     <ClInclude Include="code\system\movement\PlayerPathSplineGenerator.h" />
     <ClInclude Include="code\system\initialize\TrailEffectInitialize.h" />
+    <ClInclude Include="code\component\Player\PlayerEffectControlParam.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\component\Player\State\PlayerMoveStateFactory.cpp" />
@@ -258,6 +259,7 @@
     <ClCompile Include="code\system\effect\CreateMeshFromSpline.cpp" />
     <ClCompile Include="code\system\movement\PlayerPathSplineGenerator.cpp" />
     <ClCompile Include="code\system\initialize\TrailEffectInitialize.cpp" />
+    <ClCompile Include="code\component\Player\PlayerEffectControlParam.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">

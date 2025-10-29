@@ -68,16 +68,7 @@ void PlayerDashState::Update(float _deltaTime) {
     }
 
     // 速度更新
-    playerStatus->UpdateAccel(playerInput, transform, rigidbody, scene_->getComponent<CameraTransform>(scene_->getUniqueEntity("GameCamera"))->rotate);
-
-    // タイヤを回転させる
-    constexpr float kRotateSpeedFactor   = 0.064f;
-    Quaternion addedRotate               = Quaternion::RotateAxisAngle(axisX, gearLevel * kRotateSpeedFactor);
-    ModelMeshRenderer* modelMeshRenderer = scene_->getComponent<ModelMeshRenderer>(playerEntity);
-    if (modelMeshRenderer) {
-        Transform& meshTransform = modelMeshRenderer->getTransform(0);
-        meshTransform.rotate     = addedRotate * meshTransform.rotate;
-    }
+    playerStatus->UpdateAccel(_deltaTime, playerInput, transform, rigidbody, scene_->getComponent<CameraTransform>(scene_->getUniqueEntity("GameCamera"))->rotate);
 
     if (kThresholdGearLevelOfCameraOffset_ >= gearLevel) {
         return;
