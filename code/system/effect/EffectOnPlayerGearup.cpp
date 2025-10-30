@@ -58,7 +58,7 @@ void EffectOnPlayerGearup::UpdateEntity(Entity* _entity) {
             }
         }
 
-        // trailの色をGearLevelに応じて変化
+        // trailの色をGearLevelに応じて変化www
         PlayerEffectControlParam* effectControlParam = getComponent<PlayerEffectControlParam>(player);
         if (effectControlParam) {
             Material* material = getComponent<Material>(getUniqueEntity("Trail"));

@@ -26,7 +26,7 @@ enum class PlayerMoveState {
 };
 
 constexpr int32_t kDefaultPlayerGearLevel = 1; // デフォルトのギアレベル
-constexpr int32_t kMaxPlayerGearLevel     = 6; // 最大のギアレベル
+constexpr int32_t kMaxPlayerGearLevel     = 7; // 最大のギアレベル
 
 /// <summary>
 /// プレイヤーの状態を表す変数群

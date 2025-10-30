@@ -47,7 +47,7 @@ void PlayerDashState::Update(float _deltaTime) {
 
     int32_t gearLevel = state->getGearLevel();
     // ギアレベルが最大に達していない場合、
-    if (gearLevel < kMaxPlayerGearLevel) {
+    if (gearLevel < kMaxPlayerGearLevel - 1) {
         // クールタイムが0以下になったらギアレベルを上げる
         if (playerStatus->getGearUpCoolTime() <= 0.f) {
             state->setGearUp(true);

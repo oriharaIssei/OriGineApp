@@ -44,6 +44,7 @@ void PlayerEffectControlParam::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[ma
 #ifdef _DEBUG
     // ギアレベルに応じたトレイルカラー
     std::string label = "";
+
     if (ImGui::BeginTable("TrailColorByGearLevel", 2, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg)) {
         ImGui::TableSetupColumn("Gear Level");
         ImGui::TableSetupColumn("TrailColor");
@@ -82,6 +83,10 @@ void to_json(nlohmann::json& j, const PlayerEffectControlParam& _p) {
 
 void from_json(const nlohmann::json& j, PlayerEffectControlParam& _p) {
     j.at("trailColorByGearLevel").get_to(_p.trailColorByGearLevel_);
+    while (_p.trailColorByGearLevel_.size() != kMaxPlayerGearLevel) {
+        _p.trailColorByGearLevel_.emplace_back(Vector4f(1.f, 1.f, 1.f, 1.f));
+    }
+
     j.at("rotateOffsetOnWallRun").get_to(_p.rotateOffsetOnWallRun_);
     j.at("maxWheelSpinSpeed").get_to(_p.maxWheelSpinSpeed_);
     j.at("wheelTiltAngleRate").get_to(_p.wheelTiltAngleRate_);

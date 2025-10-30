@@ -48,19 +48,19 @@ void CreateMeshFromSpline::Initialize() {}
 void CreateMeshFromSpline::Finalize() {}
 
 void CreateMeshFromSpline::UpdateEntity(Entity* _entity) {
-    auto splinePointsComp = getComponent<SplinePoints>(_entity);
-    if (splinePointsComp == nullptr || splinePointsComp->points_.size() < 4) {
-        return;
-    }
     auto planeRendererComp = getComponent<PlaneRenderer>(_entity);
     if (planeRendererComp == nullptr) {
         return;
     }
 
-    auto splinePoints = CatmullRomSpline(splinePointsComp->points_, splinePointsComp->segmentDivide_);
-    if (splinePoints.empty()) {
+    auto splinePointsComp = getComponent<SplinePoints>(_entity);
+    if (splinePointsComp == nullptr || splinePointsComp->points_.size() < 4) {
+        planeRendererComp->setIsRender(false);
         return;
     }
+    planeRendererComp->setIsRender(true);
+
+    auto splinePoints = CatmullRomSpline(splinePointsComp->points_, splinePointsComp->segmentDivide_);
 
     // メッシュ生成
     // 十字型にするため,縦方向と横方向の2つのメッシュを作成
@@ -74,18 +74,18 @@ void CreateMeshFromSpline::UpdateEntity(Entity* _entity) {
     float totalLength     = 0.0f;
     float prevTotalLength = 0.0f;
     for (int32_t i = 0; i < segmentCount; i++) {
-        Vec3f dir = splinePointsComp->points_[i + 1] - splinePointsComp->points_[i];
+        const Vec3f& p0 = splinePointsComp->points_[i];
+        const Vec3f& p1 = splinePointsComp->points_[i + 1];
+
+        Vec3f dir = p1 - p0;
 
         prevTotalLength = totalLength;
         totalLength += dir.length();
 
         dir = dir.normalize();
 
-        float pitch = atan2(dir[Z], dir[Y]);
-
-        Vec3f up    = axisY * MakeMatrix::RotateX(pitch);
+        Vec3f up    = axisY;
         Vec3f right = dir.cross(up).normalize();
-        up          = right.cross(dir).normalize();
 
         Vec2f minUV = Vec2f(splinePointsComp->startUv_[X], std::lerp(splinePointsComp->startUv_[Y], splinePointsComp->endUv_[Y], prevTotalLength / allLength));
         Vec2f maxUV = Vec2f(splinePointsComp->endUv_[X], std::lerp(splinePointsComp->startUv_[Y], splinePointsComp->endUv_[Y], totalLength / allLength));
@@ -96,40 +96,58 @@ void CreateMeshFromSpline::UpdateEntity(Entity* _entity) {
         uv[2] = Vec2f(minUV[0], maxUV[1]);
         uv[3] = maxUV;
 
-        TextureVertexData vertData;
-        // 縦方向メッシュ
-        Vec3f vert[4];
-        vert[0] = splinePointsComp->points_[i] - right * (splinePointsComp->width_ * 0.5f);
-        vert[1] = splinePointsComp->points_[i] + right * (splinePointsComp->width_ * 0.5f);
-        vert[2] = splinePointsComp->points_[i + 1] - right * (splinePointsComp->width_ * 0.5f);
-        vert[3] = splinePointsComp->points_[i + 1] + right * (splinePointsComp->width_ * 0.5f);
-        for (int32_t j = 0; j < 4; j++) {
-            vertData.pos      = Vec4f(vert[j][0], vert[j][1], vert[j][2], 1.0f);
-            vertData.texCoord = uv[j];
-            vertData.normal   = up;
-            verticalVertexes.push_back(vertData);
+        // === 縦メッシュ ===
+        {
+            TextureVertexData vertData;
+
+            Vec3f left0  = p0 - right * (splinePointsComp->width_ * 0.5f);
+            Vec3f right0 = p0 + right * (splinePointsComp->width_ * 0.5f);
+            Vec3f left1  = p1 - right * (splinePointsComp->width_ * 0.5f);
+            Vec3f right1 = p1 + right * (splinePointsComp->width_ * 0.5f);
+
+            // 最初のセグメントは4頂点、それ以降は2頂点だけ追加
+            if (i == 0) {
+                TextureVertexData v0{Vec4f(left0, 1.0f), uv[0], up};
+                TextureVertexData v1{Vec4f(right0, 1.0f), uv[1], up};
+                verticalVertexes.push_back(v0);
+                verticalVertexes.push_back(v1);
+            }
+
+            TextureVertexData v2{Vec4f(left1, 1.0f), uv[2], up};
+            TextureVertexData v3{Vec4f(right1, 1.0f), uv[3], up};
+            verticalVertexes.push_back(v2);
+            verticalVertexes.push_back(v3);
+
+            uint32_t base = static_cast<uint32_t>(verticalVertexes.size() - 4);
+            indices.push_back(base + 0);
+            indices.push_back(base + 2);
+            indices.push_back(base + 1);
+            indices.push_back(base + 1);
+            indices.push_back(base + 2);
+            indices.push_back(base + 3);
         }
 
-        // 横方向メッシュ
-        vert[0] = splinePointsComp->points_[i] - up * (splinePointsComp->width_ * 0.5f);
-        vert[1] = splinePointsComp->points_[i] + up * (splinePointsComp->width_ * 0.5f);
-        vert[2] = splinePointsComp->points_[i + 1] - up * (splinePointsComp->width_ * 0.5f);
-        vert[3] = splinePointsComp->points_[i + 1] + up * (splinePointsComp->width_ * 0.5f);
+        // === 横メッシュ ===
+        {
+            TextureVertexData vertData;
 
-        for (int32_t j = 0; j < 4; j++) {
-            vertData.pos      = Vec4f(vert[j][0], vert[j][1], vert[j][2], 1.0f);
-            vertData.texCoord = uv[j];
-            vertData.normal   = right;
-            horizontalVertexes.push_back(vertData);
+            Vec3f down0 = p0 - up * (splinePointsComp->width_ * 0.5f);
+            Vec3f up0   = p0 + up * (splinePointsComp->width_ * 0.5f);
+            Vec3f down1 = p1 - up * (splinePointsComp->width_ * 0.5f);
+            Vec3f up1   = p1 + up * (splinePointsComp->width_ * 0.5f);
+
+            if (i == 0) {
+                TextureVertexData v0{Vec4f(down0, 1.0f), uv[0], right};
+                TextureVertexData v1{Vec4f(up0, 1.0f), uv[1], right};
+                horizontalVertexes.push_back(v0);
+                horizontalVertexes.push_back(v1);
+            }
+
+            TextureVertexData v2{Vec4f(down1, 1.0f), uv[2], right};
+            TextureVertexData v3{Vec4f(up1, 1.0f), uv[3], right};
+            horizontalVertexes.push_back(v2);
+            horizontalVertexes.push_back(v3);
         }
-
-        uint32_t baseIndex = static_cast<uint32_t>(i * 4);
-        indices.push_back(baseIndex + 0);
-        indices.push_back(baseIndex + 2);
-        indices.push_back(baseIndex + 1);
-        indices.push_back(baseIndex + 1);
-        indices.push_back(baseIndex + 2);
-        indices.push_back(baseIndex + 3);
     }
 
     std::vector<TextureMesh> meshGroup;
