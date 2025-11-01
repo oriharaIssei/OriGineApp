@@ -46,20 +46,20 @@ void PlayerPathSplineGenerator::UpdateEntity(Entity* _entity) {
             return; // 無効な設定
         }
 
-        Vec3f playerPos = playerTransform->translate;
+        Vec3f newPoint = playerTransform->getWorldTranslate();
 
         // 最低4点確保
         if (splinePoints->points_.size() < 4) {
             int32_t diff = 4 - static_cast<int32_t>(splinePoints->points_.size());
             for (int32_t i = 0; i < diff; ++i) {
-                splinePoints->pushPoint(playerPos);
+                splinePoints->pushPoint(newPoint);
             }
         }
 
         // --- 新しいポイントの追加処理 ---
         const float segLen     = splinePoints->segmentLength_;
         const Vec3f& lastPoint = splinePoints->points_.back();
-        Vec3f distance         = playerPos - lastPoint;
+        Vec3f distance         = newPoint - lastPoint;
         float distLen          = distance.length();
 
         if (distLen - segLen >= kThresholdSplitOrMerger) {
@@ -70,10 +70,11 @@ void PlayerPathSplineGenerator::UpdateEntity(Entity* _entity) {
                 direction = Vec3f(0.0f, 0.0f, 0.0f);
             }
 
+            // 分割して追加
             int32_t segmentsToAdd = static_cast<int32_t>(distLen / segLen);
             for (int32_t i = 1; i <= segmentsToAdd; ++i) {
-                Vec3f newPoint = lastPoint + direction * (segLen * static_cast<float>(i));
-                splinePoints->pushPoint(newPoint);
+                Vec3f dividedPoint = lastPoint + direction * (segLen * static_cast<float>(i));
+                splinePoints->pushPoint(dividedPoint);
             }
         }
 

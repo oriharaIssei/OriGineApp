@@ -26,6 +26,7 @@ public:
 public:
     int32_t capacity_      = 100;
     int32_t segmentDivide_ = 16;
+
     Vec2f startUv_         = Vec2f(0.0f, 0.0f);
     Vec2f endUv_           = Vec2f(1.0f, 1.0f); // endは splineの最長時のメッシュに依存する
     float segmentLength_   = 0.5f;

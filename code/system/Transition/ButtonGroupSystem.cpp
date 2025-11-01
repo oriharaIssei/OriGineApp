@@ -22,10 +22,13 @@ void ButtonGroupSystem::UpdateEntity(Entity* _entity) {
 
     int32_t currentButtonNumber = buttonGroup->getCurrentButtonNumber();
     Button* currentButton       = getComponent<Button>(getEntity(buttonGroup->getEntityId(currentButtonNumber)));
+    if (!currentButton) {
+        return;
+    }
     currentButton->setHovered(true);
 
     // 外部システムの入力に従う (ボタンのショートカットやマウスでの選択など)
-    for (const auto& [entityID, index] : buttonGroup->getButtonNumbers()) {
+    for (const auto& [index, entityID] : buttonGroup->getButtonNumbers()) {
         auto* button = getComponent<Button>(getEntity(entityID));
         if (button == nullptr || button == currentButton) {
             continue;

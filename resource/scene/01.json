@@ -400,7 +400,7 @@
                     }
                 ]
             },
-            "Name": "GameEntityRef",
+            "Name": "EntityRef",
             "Systems": [
                 {
                     "SystemCategory": 0,

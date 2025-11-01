@@ -48,19 +48,20 @@ public:
     std::unordered_map<int32_t, int32_t>& getButtonNumbers() { return buttonNumbers_; }
 
     int32_t getButtonNumber(int32_t _entityId) const {
-        auto it = buttonNumbers_.find(_entityId);
-        if (it != buttonNumbers_.end()) {
-            return it->second;
-        }
-        return -1; // 見つからなかった場合のデフォルト値
-    }
-    int32_t getEntityId(int32_t _buttonNumber) const {
         for (const auto& pair : buttonNumbers_) {
-            if (pair.second == _buttonNumber) {
+            if (pair.second == _entityId) {
                 return pair.first;
             }
         }
         return -1; // 見つからなかった場合のデフォルト値
+    }
+    int32_t getEntityId(int32_t _buttonNumber) const {
+        auto it = buttonNumbers_.find(_buttonNumber);
+        if (it != buttonNumbers_.end()) {
+            return it->second;
+        }
+        return -1; // 見つからなかった場合のデフォルト値
+        
     }
 
     const std::vector<Key>& getSelectAddKeys() const { return selectAddKeys_; }

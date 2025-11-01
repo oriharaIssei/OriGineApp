@@ -60,6 +60,7 @@
 #include "system/transition/TimerCountDown.h"
 #include "system/transition/TransitionPlayerState.h"
 #include "system/transition/UpdateButtonColorByState.h"
+#include "system/transition/ExitApplicationByButton.h"
 
 // / =====================================================
 // Application Include
@@ -183,6 +184,7 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<ApplyMouseConditionSystem>();
     systemRegistry->registerSystem<SubSceneActivateByButton>();
     systemRegistry->registerSystem<SubSceneDeactivateByButton>();
+    systemRegistry->registerSystem<ExitApplicationByButton>();
 
     /// =================================================================================================
     // Movement

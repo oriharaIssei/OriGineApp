@@ -402,10 +402,6 @@
                             {
                                 "buttonNumber": 1,
                                 "entityID": 1
-                            },
-                            {
-                                "buttonNumber": 2,
-                                "entityID": 2
                             }
                         ],
                         "decideKeys": [

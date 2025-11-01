@@ -47,12 +47,12 @@
                     {
                         "buttonNumbers": [
                             {
-                                "buttonNumber": 0,
-                                "entityID": 2
+                                "buttonNumber": 2,
+                                "entityID": 0
                             },
                             {
-                                "buttonNumber": 1,
-                                "entityID": 3
+                                "buttonNumber": 3,
+                                "entityID": 1
                             }
                         ],
                         "decideKeys": [
@@ -183,8 +183,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -196,8 +196,8 @@
                             1.0
                         ],
                         "size": [
-                            512.0,
-                            512.0
+                            768.0,
+                            768.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -209,8 +209,8 @@
                             512.0
                         ],
                         "translate": [
-                            292.0,
-                            360.0
+                            438.0,
+                            540.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -239,12 +239,12 @@
                     "SystemName": "ChangeSceneByButton"
                 },
                 {
-                    "SystemCategory": 2,
-                    "SystemName": "SceneTransition"
-                },
-                {
                     "SystemCategory": 7,
                     "SystemName": "DissolveEffect"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "SceneTransition"
                 },
                 {
                     "SystemCategory": 6,
@@ -348,8 +348,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -361,8 +361,8 @@
                             1.0
                         ],
                         "size": [
-                            512.0,
-                            512.0
+                            768.0,
+                            768.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -374,8 +374,8 @@
                             512.0
                         ],
                         "translate": [
-                            988.0,
-                            360.0
+                            1482.0,
+                            540.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -404,12 +404,12 @@
                     "SystemName": "ChangeSceneByButton"
                 },
                 {
-                    "SystemCategory": 2,
-                    "SystemName": "SceneTransition"
-                },
-                {
                     "SystemCategory": 7,
                     "SystemName": "DissolveEffect"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "SceneTransition"
                 },
                 {
                     "SystemCategory": 6,
@@ -500,7 +500,7 @@
                         ],
                         "uvTranslate": [
                             0.0,
-                            -0.019999999552965164
+                            0.05999999865889549
                         ]
                     }
                 ],
@@ -511,6 +511,10 @@
                             {
                                 "effectType": 0,
                                 "entityID": 7
+                            },
+                            {
+                                "effectType": 2,
+                                "entityID": 9
                             }
                         ],
                         "isActive": true,
@@ -560,8 +564,8 @@
                         ],
                         "translate": [
                             0.0,
-                            -0.3100000023841858,
-                            1.25
+                            0.019999999552965164,
+                            1.2599999904632568
                         ]
                     }
                 ]
@@ -584,12 +588,12 @@
                 "DistortionEffectParam": [
                     {
                         "distortionBias": [
-                            0.0,
+                            0.25,
                             0.0
                         ],
                         "distortionStrength": [
-                            0.0,
-                            0.0
+                            1.8899999856948853,
+                            1.75
                         ],
                         "isActive": true,
                         "materialIndex": 0,
@@ -614,12 +618,12 @@
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
-                            0.75,
-                            0.5799999833106995
+                            1.0,
+                            1.0
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.4833512306213379
+                            0.04964158311486244
                         ]
                     }
                 ],
@@ -664,7 +668,7 @@
             "Components": {
                 "DissolveEffectParam": [
                     {
-                        "edgeWidth": 0.028999999165534973,
+                        "edgeWidth": 0.01600000075995922,
                         "isActive": true,
                         "materialIndex": 0,
                         "outLineColor": [
@@ -674,7 +678,7 @@
                             1.0
                         ],
                         "textureFilePath": "./application/resource/Texture/gradationLine.png",
-                        "threshold": 0.12600000202655792
+                        "threshold": 0.07699999958276749
                     }
                 ],
                 "Material": [
@@ -727,10 +731,78 @@
                 }
             ],
             "isUnique": false
+        },
+        {
+            "Components": {
+                "MouseCondition": [
+                    {
+                        "fixCursorPos": [
+                            0.0,
+                            0.0
+                        ],
+                        "isActive": true,
+                        "isFixCursor": false,
+                        "isShowCursor": true
+                    }
+                ]
+            },
+            "Name": "mouseCondition",
+            "Systems": [
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "ApplyMouseConditionSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "GradationTextureComponent": [
+                    {
+                        "inputChannel": 3,
+                        "isActive": true,
+                        "materialIndex": 0,
+                        "outputChannel": 3,
+                        "texturePath": "./application/resource/Texture/gradation.png"
+                    }
+                ],
+                "Material": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "Gradation",
+            "Systems": [],
+            "isUnique": false
         }
     ],
     "Systems": [
         {
+            "ApplyMouseConditionSystem": {
+                "Priority": 0
+            },
             "ButtonGroupSystem": {
                 "Priority": 2
             },

@@ -2,7 +2,7 @@
     "Components": {
         "DissolveEffectParam": [
             {
-                "edgeWidth": 0.0,
+                "edgeWidth": 0.024000000208616257,
                 "isActive": true,
                 "materialIndex": 0,
                 "outLineColor": [
@@ -32,7 +32,7 @@
                 ],
                 "uvRotate": 0.0,
                 "uvScale": [
-                    1.0,
+                    0.4699999988079071,
                     1.0
                 ],
                 "uvTranslate": [

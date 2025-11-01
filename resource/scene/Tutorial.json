@@ -63,7 +63,6 @@
                         "fileName": "tutorial"
                     }
                 ],
-                "TextureEffectParam": [],
                 "Transform": []
             },
             "Name": "Stage",
@@ -136,7 +135,7 @@
                     {
                         "edgeWidth": 0.004000000189989805,
                         "isActive": false,
-                        "materialIndex": -1,
+                        "materialIndex": 0,
                         "outLineColor": [
                             0.01568627543747425,
                             0.7647058963775635,
@@ -387,8 +386,8 @@
                             0.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -400,8 +399,8 @@
                             0.800000011920929
                         ],
                         "size": [
-                            513.0,
-                            558.0
+                            769.5,
+                            837.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -413,8 +412,8 @@
                             558.0
                         ],
                         "translate": [
-                            250.0,
-                            360.0
+                            375.0,
+                            540.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -664,8 +663,8 @@
                             0.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -677,8 +676,8 @@
                             0.800000011920929
                         ],
                         "size": [
-                            513.0,
-                            417.0
+                            769.5,
+                            625.5
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -690,8 +689,8 @@
                             417.0
                         ],
                         "translate": [
-                            250.0,
-                            360.0
+                            375.0,
+                            540.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -941,8 +940,8 @@
                             0.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -954,8 +953,8 @@
                             0.800000011920929
                         ],
                         "size": [
-                            512.0,
-                            254.0
+                            768.0,
+                            381.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -967,8 +966,8 @@
                             254.0
                         ],
                         "translate": [
-                            250.0,
-                            360.0
+                            375.0,
+                            540.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -1118,12 +1117,24 @@
                             [
                                 "./application/resource/entities",
                                 "Speedline"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "Timer"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "Trail"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "PlayerEmitter"
                             ]
                         ]
                     }
                 ]
             },
-            "Name": "EntityRef",
+            "Name": "GameEntityRef",
             "Systems": [
                 {
                     "SystemCategory": 0,
@@ -1131,6 +1142,36 @@
                 }
             ],
             "isUnique": false
+        },
+        {
+            "Components": {
+                "EntityReferenceList": [
+                    {
+                        "entityFileList": [
+                            [
+                                "./application/resource/entities",
+                                "trailDissolve"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "trailDistortion1Entity"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "trailGradationEntity"
+                            ]
+                        ]
+                    }
+                ]
+            },
+            "Name": "trailEffectRecipe",
+            "Systems": [
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "ResolveEntityReferences"
+                }
+            ],
+            "isUnique": true
         }
     ],
     "Systems": [
@@ -1237,9 +1278,6 @@
             "TakePlayerToStartPosition": {
                 "Priority": 3
             },
-            "TextureEffectAnimation": {
-                "Priority": 2
-            },
             "TexturedMeshRenderSystem": {
                 "Priority": 0
             },
@@ -1250,9 +1288,6 @@
                 "Priority": 1
             },
             "UpdateButtonColorByState": {
-                "Priority": 0
-            },
-            "UpdateCameraForward": {
                 "Priority": 0
             },
             "VelocityRenderingSystem": {

@@ -22,6 +22,18 @@
                     [
                         "./application/resource/entities",
                         "Speedline"
+                    ],
+                    [
+                        "./application/resource/entities",
+                        "Timer"
+                    ],
+                    [
+                        "./application/resource/entities",
+                        "Trail"
+                    ],
+                    [
+                        "./application/resource/entities",
+                        "PlayerEmitter"
                     ]
                 ]
             }

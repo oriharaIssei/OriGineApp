@@ -30,6 +30,10 @@
                     [
                         "./application/resource/entities",
                         "Trail"
+                    ],
+                    [
+                        "./application/resource/entities",
+                        "PlayerEmitter"
                     ]
                 ]
             }
