@@ -1,6 +1,9 @@
 #pragma once
 #include "system/ISystem.h"
 
+/// <summary>
+/// Timerの数字をSpriteとして表示するためにSpriteを生成するシステム
+/// </summary>
 class CreateSpriteFromTimer
     : public ISystem {
 public:
@@ -12,5 +15,5 @@ public:
     virtual void Finalize();
 
 protected:
-    virtual void UpdateEntity(GameEntity* _entity) override;
+    virtual void UpdateEntity(Entity* _entity) override;
 };

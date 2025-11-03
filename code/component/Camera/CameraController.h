@@ -11,6 +11,9 @@
 #include "math/Vector2.h"
 #include "math/Vector3.h"
 
+/// <summary>
+/// カメラの挙動を制御するためのデータ
+/// </summary>
 class CameraController
     : public IComponent {
     friend void to_json(nlohmann::json& j, const CameraController& _cameraController);
@@ -20,13 +23,18 @@ public:
     CameraController() {}
     ~CameraController() override {}
 
-    void Initialize(GameEntity* _entity) override;
+    void Initialize(Entity* _entity) override;
 
-    void Edit(Scene* _scene, GameEntity* _entity, const std::string& _parentLabel) override;
+    void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
 
     void Finalize() override;
 
-    float CalculateFovY(int32_t _level) const;
+    /// <summary>
+    /// PlayerのギアレベルからFovYを計算する
+    /// </summary>
+    /// <param name="_level"></param>
+    /// <returns></returns>
+    float CalculateFovYByPlayerGearLevel(int32_t _level) const;
 
 private:
     Transform* followTarget_ = nullptr;

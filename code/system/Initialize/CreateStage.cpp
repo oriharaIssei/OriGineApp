@@ -8,9 +8,10 @@
 
 /// ECS
 // component
-#include "component/collider/Collider.h"
-#include "component/collider/CollisionPushBackInfo.h"
-#include "component/renderer/primitive/Primitive.h"
+#include "component/collision/collider/AABBCollider.h"
+#include "component/collision/collider/OBBCollider.h"
+#include "component/collision/CollisionPushBackInfo.h"
+#include "component/renderer/primitive/BoxRenderer.h"
 #include "component/transform/Transform.h"
 // system
 #include "system/collision/CollisionCheckSystem.h"
@@ -24,7 +25,7 @@
 /// math
 #include <DirectXMath.h>
 
-void CreateStage::UpdateEntity(GameEntity* _entity) {
+void CreateStage::UpdateEntity(Entity* _entity) {
 
     auto stage = getComponent<Stage>(_entity);
 
@@ -35,7 +36,13 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
 
     // Meshと当たり判定を作成
     auto& controlPoints = stage->getControlPoints();
-    int32_t linkIndex   = 0;
+
+    if (controlPoints.empty()) {
+        LOG_WARN("Stage has no control points.");
+        return;
+    }
+
+    int32_t linkIndex = 0;
     for (auto& link : stage->getLinks()) {
         Vec3f min, max, mid, diffToFrom, direction;
 
@@ -59,8 +66,8 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
             entityName = "Ground";
             isWall     = false;
         }
-        int32_t index             = CreateEntity(entityName);
-        GameEntity* createdEntity = getEntity(index);
+        int32_t index         = CreateEntity(entityName);
+        Entity* createdEntity = getEntity(index);
 
         createdEntity->setShouldSave(false);
 
@@ -193,10 +200,20 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
         ///==========================================
         // 動作する システムに登録
         ///==========================================
-        getScene()
-            ->getSystem(nameof<CollisionCheckSystem>())
-            ->addEntity(createdEntity);
-        getScene()->getSystem(nameof<TexturedMeshRenderSystem>())->addEntity(createdEntity);
+        ISystem* collisionSystem = getScene()->getSystem(nameof<CollisionCheckSystem>());
+        if (collisionSystem) {
+            collisionSystem->addEntity(createdEntity);
+        } else {
+            LOG_INFO("This scene don't have CollisionCheckSystem");
+        }
+        ISystem* renderSystem = getScene()->getSystem(nameof<TexturedMeshRenderSystem>());
+        if (renderSystem) {
+            renderSystem->addEntity(createdEntity);
+        } else {
+            LOG_INFO("This scene don't have TexturedMeshRenderSystem");
+        }
+
+        entityTransform->UpdateMatrix();
 
         ++linkIndex;
     }
@@ -207,7 +224,7 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
     Stage::ControlPoint goalPoint = controlPoints[goalIndex];
 
     SceneSerializer serializer(getScene());
-    GameEntity* goalEntity = serializer.LoadEntity(kApplicationResourceDirectory + "/entities", "Goal");
+    Entity* goalEntity = serializer.LoadEntity(kApplicationResourceDirectory + "/entities", "Goal");
     if (goalEntity == nullptr) {
         LOG_ERROR("Failed to load Goal entity.");
         return;
@@ -225,8 +242,8 @@ void CreateStage::UpdateEntity(GameEntity* _entity) {
     Transform startTransform;
     startTransform.translate = startPoint.pos_;
     startTransform.UpdateMatrix();
-    int32_t startPosEntityId   = CreateEntity("StartPosition", true);
-    GameEntity* startPosEntity = getEntity(startPosEntityId);
+    int32_t startPosEntityId = CreateEntity("StartPosition", true);
+    Entity* startPosEntity   = getEntity(startPosEntityId);
     startPosEntity->setShouldSave(false);
     addComponent<Transform>(startPosEntity, startTransform, false);
 }

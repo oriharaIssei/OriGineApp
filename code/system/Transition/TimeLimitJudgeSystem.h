@@ -1,6 +1,9 @@
 #pragma once
 #include "system/ISystem.h"
 
+/// <summary>
+/// 時間制限によるゲームオーバー判定を行うシステム
+/// </summary>
 class TimeLimitJudgeSystem
     : public ISystem {
 public:
@@ -10,5 +13,5 @@ public:
     void Initialize() override;
 
 private:
-    void UpdateEntity(GameEntity* _entity) override;
+    void UpdateEntity(Entity* _entity) override;
 };

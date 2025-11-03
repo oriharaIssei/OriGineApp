@@ -17,6 +17,9 @@
 #include "math/Vector2.h"
 #include "math/Vector3.h"
 
+/// <summary>
+/// Playerの移動状態を表すインターフェース
+/// </summary>
 class IPlayerMoveState {
 public:
     IPlayerMoveState(Scene* _scene, int32_t _playerEntityID, PlayerMoveState _state);
@@ -26,6 +29,10 @@ public:
     virtual void Update(float _deltaTime) = 0;
     virtual void Finalize()               = 0;
 
+    /// <summary>
+    /// Playerの状態遷移を行う(遷移条件,遷移先は派生クラスで実装)
+    /// </summary>
+    /// <returns></returns>
     virtual PlayerMoveState TransitionState() const = 0;
 
 protected:

@@ -1,6 +1,9 @@
 #pragma once
 #include "system/ISystem.h"
 
+/// <summary>
+/// Player の状態遷移を管理するシステム
+/// </summary>
 class TransitionPlayerState
     : public ISystem {
 public:
@@ -11,5 +14,5 @@ public:
     void Finalize() override{}
 
 protected:
-    void UpdateEntity(GameEntity* _entity) override;
+    void UpdateEntity(Entity* _entity) override;
 };

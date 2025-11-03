@@ -6,13 +6,12 @@
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
 
+#include "component/Player/PlayerEffectControlParam.h"
 #include "component/Player/PlayerInput.h"
 #include "component/Player/PlayerStatus.h"
+#include "component/Player/State/PlayerState.h"
 
 #include "component/Camera/CameraController.h"
-
-#include "component/Stage/Stage.h"
-#include "component/Stage/StageWall.h"
 
 /// log
 #include "logger/Logger.h"
@@ -36,18 +35,11 @@ void PlayerWallRunState::Initialize() {
     if (direction.lengthSq() == 0.0f) {
         direction = Vec3f::Cross(wallNormal_, axisX);
     }
-
     direction = direction.normalize();
+
     if (Vec3f::Dot(direction, prevVelo_) < 0.0f) {
         direction = -direction;
     }
-
-    // 壁の情報を取得
-    StageWall* wall = scene_->getComponent<StageWall>(scene_->getEntity(state->getWallEntityIndex()));
-    getWallData(wall);
-    // 壁走りの高さを計算
-    wallRunHeight_ = calculateWallRunHeight(transform);
-    currentHeight_ = transform->translate[Y];
 
     float speed = rigidbody->getMaxXZSpeed();
 
@@ -75,15 +67,37 @@ void PlayerWallRunState::Initialize() {
     // 壁との衝突判定の残り時間を初期化
     separationLeftTime_ = separationGraceTime_;
 
-    // forward, right, up から回転を作る
-    float angle       = std::atan2(-wallNormal_[X], wallNormal_[Y]);
-    transform->rotate = Quaternion::RotateAxisAngle(axisZ, angle);
+    // プレイヤーの向きを移動方向に合わせる
+    PlayerEffectControlParam* effectParam = scene_->getComponent<PlayerEffectControlParam>(playerEntity);
+    Vec3f forward                         = direction;
+    Quaternion lookForward                = Quaternion::LookAt(forward, axisY);
+    float rotateOffsetOnWallRun           = effectParam->getRotateOffsetOnWallRun();
+    bool isRightWall                      = Vec3f::Dot(Vec3f::Cross(axisY, wallNormal_), direction) > 0.0f;
+    Quaternion angleOffset                = Quaternion::RotateAxisAngle(forward, isRightWall ? rotateOffsetOnWallRun : -rotateOffsetOnWallRun);
+    transform->rotate                     = lookForward * angleOffset;
+
     transform->UpdateMatrix();
 
-    cameraRotateSigne_ = wallNormal_[X] < 0.0f ? -1.0f : 1.0f;
+    // カメラのオフセットを計算
+    Entity* cameraEntity               = scene_->getUniqueEntity("GameCamera");
+    CameraController* cameraController = scene_->getComponent<CameraController>(cameraEntity);
 
-    // 壁を登るタイマーをリセット
-    climbTimer_ = 0.0f;
+    Vec3f targetTargetOffset = cameraController->getTargetOffsetOnWallRun();
+    cameraTargetOffsetOnWallRun_ =
+        wallNormal_ * targetTargetOffset[X] // 横方向
+        + axisY * targetTargetOffset[Y] // 上方向
+        + direction * targetTargetOffset[Z]; // 前方向
+    cameraTargetOffsetOnWallRun_ = cameraTargetOffsetOnWallRun_.normalize() * targetTargetOffset.length();
+
+    Vec3f offsetOnWallRun = cameraController->getOffsetOnWallRun();
+    cameraOffsetOnWallRun_ =
+        wallNormal_ * offsetOnWallRun[X] // 横方向
+        + axisY * offsetOnWallRun[Y] // 上方向
+        + direction * offsetOnWallRun[Z]; // 前方向
+    cameraOffsetOnWallRun_ = cameraOffsetOnWallRun_.normalize() * offsetOnWallRun.length();
+
+    // カメラの傾きを徐々に変えるためのタイマーをリセット
+    cameraAngleLerpTimer_ = 0.0f;
 }
 
 void PlayerWallRunState::Update(float _deltaTime) {
@@ -91,16 +105,8 @@ void PlayerWallRunState::Update(float _deltaTime) {
     auto* state        = scene_->getComponent<PlayerState>(playerEntity);
     auto* transform    = scene_->getComponent<Transform>(playerEntity);
 
-    wallRunHeight_ = calculateWallRunHeight(transform);
-
-    climbTimer_ += _deltaTime;
-    climbTimer_ = std::min(climbTimer_, climbTime_);
-    float t     = climbTimer_ / climbTime_;
-
-    // 段々上に行く
-    transform->translate[Y] = std::lerp(currentHeight_, wallRunHeight_, t);
     // 衝突が途切れないようにめり込ませる
-    transform->translate[X] -= wallNormal_[X] * 0.1f;
+    transform->translate -= wallNormal_ * 0.1f;
     transform->UpdateMatrix();
 
     if (state->isCollisionWithWall()) {
@@ -111,24 +117,30 @@ void PlayerWallRunState::Update(float _deltaTime) {
 
     /// TODO: カメラの処理をここに書くべきではない
     // カメラの傾きを徐々に変える
-    CameraController* cameraController = scene_->getComponent<CameraController>(scene_->getUniqueEntity("GameCamera"));
+    Entity* gameCameraEntity = scene_->getUniqueEntity("GameCamera");
+    if (!gameCameraEntity) {
+        return;
+    }
 
+    cameraAngleLerpTimer_ += _deltaTime;
+    float t = cameraAngleLerpTimer_ / kCameraAngleLerpTime_;
+    t       = std::clamp(t, 0.f, 1.f);
+
+    // 一度だけ実行
+    if (t >= 1) {
+        return;
+    }
+
+    CameraController* cameraController = scene_->getComponent<CameraController>(gameCameraEntity);
     if (cameraController) {
         // カメラのオフセットを徐々に元に戻す
-        cameraAngleLerpTimer_ += _deltaTime;
-        t = cameraAngleLerpTimer_ / kCameraAngleLerpTime_;
-        t = std::clamp(t, 0.f, 1.f);
-
-        Vec3f targetOffset         = cameraController->getOffsetOnWallRun();
         const Vec3f& currentOffset = cameraController->getCurrentOffset();
-        targetOffset[X] *= cameraRotateSigne_; // 壁の向きに合わせて左右反転
-        Vec3f newOffset = Lerp<3, float>(currentOffset, targetOffset, EaseOutCubic(t));
+        Vec3f newOffset            = Lerp<3, float>(currentOffset, cameraOffsetOnWallRun_, EaseOutCubic(t));
         cameraController->setCurrentOffset(newOffset);
 
-        Vec3f targetTargetOffset         = cameraController->getTargetOffsetOnWallRun();
         const Vec3f& currentTargetOffset = cameraController->getCurrentTargetOffset();
-        targetTargetOffset[X] *= cameraRotateSigne_; // 壁の向きに合わせて左右反転
-        Vec3f newTargetOffset = Lerp<3, float>(currentTargetOffset, targetTargetOffset, EaseOutCubic(t));
+        Vec3f newTargetOffset            = Lerp<3, float>(currentTargetOffset, cameraTargetOffsetOnWallRun_, EaseOutCubic(t));
+
         cameraController->setCurrentTargetOffset(newTargetOffset);
     }
 }
@@ -138,6 +150,8 @@ void PlayerWallRunState::Finalize() {
     auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
     auto* transform    = scene_->getComponent<Transform>(playerEntity);
     rigidbody->setUseGravity(true); // 重力を有効
+
+    transform->translate += wallNormal_ * 0.1f;
 
     transform->rotate = Quaternion::Identity();
 }
@@ -155,45 +169,4 @@ PlayerMoveState PlayerWallRunState::TransitionState() const {
     }
 
     return PlayerMoveState::WALL_RUN;
-}
-
-void PlayerWallRunState::getWallData(StageWall* _wall) {
-    if (_wall == nullptr) {
-        LOG_WARN("Wall is nullptr.");
-        return;
-    }
-
-    Stage* stage = scene_->getComponent<Stage>(scene_->getUniqueEntity("Stage"));
-    if (stage == nullptr) {
-        LOG_WARN("Stage is nullptr.");
-        return;
-    }
-
-    wallStartPos_ = stage->getControlPoints()[_wall->getFromPointIndex()].pos_;
-    wallEndPos_   = stage->getControlPoints()[_wall->getToPointIndex()].pos_;
-}
-
-float PlayerWallRunState::calculateWallRunHeight(Transform* _transform) {
-    Vec3f playerPos(_transform->worldMat[3]);
-
-    // 壁の上下方向ベクトル
-    Vec3f wallDir    = wallEndPos_ - wallStartPos_;
-    float wallLength = wallDir.length();
-    if (wallLength < std::numeric_limits<float>::epsilon()) {
-        return 0.0f; // 高さがゼロなら抜ける
-    }
-
-    // 正規化
-    Vec3f wallUp = wallDir / wallLength;
-
-    // playerPos を wallStartPos_ から wallDir に射影 → パラメータ t
-    float t = Vec3f(playerPos - wallStartPos_).dot(wallUp) / wallLength;
-
-    // clamp して 0.0 ≤ t ≤ 1.0 に収める（線分内に制限）
-    t = std::clamp(t, 0.0f, 1.0f);
-
-    // t に対応する座標を取得
-    Vec3f onWallPos = Lerp(wallStartPos_, wallEndPos_, EaseOutCubic(t));
-
-    return onWallPos[Y];
 }

@@ -14,10 +14,12 @@
 #include "component/ButtonGroup.h"
 #include "component/Camera/CameraController.h"
 #include "component/MouseCondition.h"
+#include "component/player/PlayerEffectControlParam.h"
 #include "component/Player/PlayerInput.h"
 #include "component/Player/PlayerStatus.h"
 #include "component/Player/State/PlayerState.h"
 #include "component/SceneChanger.h"
+#include "component/spline/SplinePoints.h"
 #include "component/Stage/Stage.h"
 #include "component/Stage/StageFloor.h"
 #include "component/Stage/StageWall.h"
@@ -26,6 +28,7 @@
 // application system
 #include "system/collision/PlayerOnCollision.h"
 #include "system/collision/TutorialColliderOnCollision.h"
+#include "system/effect/CreateMeshFromSpline.h"
 #include "system/effect/EffectOnPlayerGearup.h"
 #include "system/effect/EffectOnPlayerRun.h"
 #include "system/effect/TimerForSprite.h"
@@ -34,6 +37,7 @@
 #include "system/initialize/GetClearTime.h"
 #include "system/initialize/SettingGameCameraTarget.h"
 #include "system/initialize/TakePlayerToStartPosition.h"
+#include "system/initialize/TrailEffectInitialize.h"
 #include "system/input/ButtonInputSystem.h"
 #include "system/input/CameraInputSystem.h"
 #include "system/input/PlayerInputSystem.h"
@@ -41,11 +45,13 @@
 #include "system/movement/FollowCameraUpdateSystem.h"
 #include "system/movement/MenuUpdate.h"
 #include "system/movement/PlayerMoveSystem.h"
-#include "system/movement/UpdateCameraForward.h"
+#include "system/movement/PlayerPathSplineGenerator.h"
+#include "system/movement/PlayerUpdateOnTitle.h"
 #include "system/render/StageDebugRender.h"
 #include "system/transition/ApplyMouseConditionSystem.h"
 #include "system/transition/ButtonGroupSystem.h"
 #include "system/transition/ChangeSceneByButton.h"
+#include "system/transition/ExitApplicationByButton.h"
 #include "system/transition/FallDetectionSystem.h"
 #include "system/transition/SceneTransition.h"
 #include "system/transition/SetClearTime.h"
@@ -56,10 +62,6 @@
 #include "system/transition/TimerCountDown.h"
 #include "system/transition/TransitionPlayerState.h"
 #include "system/transition/UpdateButtonColorByState.h"
-
-#ifndef _RELEASE
-#include "system/transition/StageReloadSystem.h"
-#endif // _RELEASE
 
 // / =====================================================
 // Application Include
@@ -89,6 +91,8 @@ void RegisterUsingComponents() {
     componentRegistry->registerComponent<StageFloor>();
     componentRegistry->registerComponent<StageWall>();
 
+    componentRegistry->registerComponent<SplinePoints>();
+
     componentRegistry->registerComponent<Material>();
     componentRegistry->registerComponent<DirectionalLight>();
     componentRegistry->registerComponent<PointLight>();
@@ -114,7 +118,6 @@ void RegisterUsingComponents() {
     componentRegistry->registerComponent<RandomEffectParam>();
     componentRegistry->registerComponent<VignetteParam>();
     componentRegistry->registerComponent<SpeedlineEffectParam>();
-    componentRegistry->registerComponent<TextureEffectParam>();
     componentRegistry->registerComponent<MaterialEffectPipeLine>();
     componentRegistry->registerComponent<GradationTextureComponent>();
 
@@ -135,6 +138,7 @@ void RegisterUsingComponents() {
     componentRegistry->registerComponent<PlayerInput>();
     componentRegistry->registerComponent<PlayerStatus>();
     componentRegistry->registerComponent<PlayerState>();
+    componentRegistry->registerComponent<PlayerEffectControlParam>();
 
     componentRegistry->registerComponent<Button>();
     componentRegistry->registerComponent<ButtonGroup>();
@@ -156,6 +160,7 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<GetClearTime>();
     systemRegistry->registerSystem<CameraInitialize>();
     systemRegistry->registerSystem<RegisterWindowResizeEvent>();
+    systemRegistry->registerSystem<TrailEffectInitialize>();
 
     /// ===================================================================================================
     // Input
@@ -180,21 +185,20 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<ApplyMouseConditionSystem>();
     systemRegistry->registerSystem<SubSceneActivateByButton>();
     systemRegistry->registerSystem<SubSceneDeactivateByButton>();
-
-#ifndef _RELEASE
-    systemRegistry->registerSystem<StageReloadSystem>();
-#endif // _RELEASE
+    systemRegistry->registerSystem<ExitApplicationByButton>();
 
     /// =================================================================================================
     // Movement
     /// =================================================================================================
     systemRegistry->registerSystem<MoveSystemByRigidBody>();
     systemRegistry->registerSystem<SubSceneUpdate>();
-
     systemRegistry->registerSystem<BillboardTransform>();
     systemRegistry->registerSystem<FollowCameraUpdateSystem>();
     systemRegistry->registerSystem<PlayerMoveSystem>();
-    systemRegistry->registerSystem<UpdateCameraForward>();
+
+    systemRegistry->registerSystem<PlayerUpdateOnTitle>();
+
+    systemRegistry->registerSystem<PlayerPathSplineGenerator>();
 
     systemRegistry->registerSystem<MenuUpdate>();
 
@@ -212,12 +216,12 @@ void RegisterUsingSystems() {
     /// =================================================================================================
     systemRegistry->registerSystem<EmitterWorkSystem>();
     systemRegistry->registerSystem<PrimitiveNodeAnimationWorkSystem>();
-    systemRegistry->registerSystem<TextureEffectAnimation>();
     systemRegistry->registerSystem<SkinningAnimationSystem>();
     systemRegistry->registerSystem<SpriteAnimationSystem>();
     systemRegistry->registerSystem<GpuParticleEmitterWorkSystem>();
     systemRegistry->registerSystem<MaterialAnimationWorkSystem>();
     systemRegistry->registerSystem<MaterialEffect>();
+    systemRegistry->registerSystem<CreateMeshFromSpline>();
 
     systemRegistry->registerSystem<EffectOnPlayerGearup>();
     systemRegistry->registerSystem<EffectOnPlayerRun>();

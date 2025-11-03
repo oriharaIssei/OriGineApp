@@ -1,5 +1,9 @@
 #pragma once
 #include "system/ISystem.h"
+
+/// <summary>
+/// プレイヤーをスタート位置に移動させるシステム
+/// </summary>
 class TakePlayerToStartPosition
     : public ISystem {
 public:
@@ -11,6 +15,5 @@ public:
     virtual void Finalize();
 
 protected:
-    virtual void UpdateEntity(GameEntity* _entity) override;
-
+    virtual void UpdateEntity(Entity* _entity) override;
 };

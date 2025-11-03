@@ -24,9 +24,9 @@
                         1.0
                     ],
                     "translate": [
-                        0.07259266078472137,
-                        2.8433725833892822,
-                        -1.1633141040802002
+                        0.9968023896217346,
+                        2.980666399002075,
+                        -9.730731010437012
                     ]
                 }
             }
@@ -35,8 +35,8 @@
     "Name": "Skybox",
     "Systems": [
         {
-            "SystemName": "SkyboxRender",
-            "SystemType": 6
+            "SystemCategory": 6,
+            "SystemName": "SkyboxRender"
         }
     ],
     "isUnique": true

@@ -12,7 +12,7 @@ ApplyMouseConditionSystem::~ApplyMouseConditionSystem() = default;
 void ApplyMouseConditionSystem::Initialize() {}
 void ApplyMouseConditionSystem::Finalize() {}
 
-void ApplyMouseConditionSystem::UpdateEntity(GameEntity* _entity) {
+void ApplyMouseConditionSystem::UpdateEntity(Entity* _entity) {
     auto* conditions = getComponents<MouseCondition>(_entity);
     if (conditions == nullptr) {
         return;
@@ -27,6 +27,7 @@ void ApplyMouseConditionSystem::UpdateEntity(GameEntity* _entity) {
         input->ShowMouseCursor(condition.isShowCursor());
 
         if (condition.isFixCursor()) {
+            // マウスの座標を指定し続けることで、実質的にマウスを固定する
             input->setMousePos(condition.fixCursorPos());
         }
     }

@@ -7,6 +7,9 @@
 /// engine
 #include "input/Input.h"
 
+/// <summary>
+/// 1シーン内で複数のボタンをグループ化し、選択と決定の操作を管理するコンポーネント
+/// </summary>
 class ButtonGroup
     : public IComponent {
     friend void to_json(nlohmann::json& j, const ButtonGroup& r);
@@ -16,8 +19,8 @@ public:
     ButtonGroup()           = default;
     ~ButtonGroup() override = default;
 
-    void Initialize(GameEntity* _entity) override;
-    void Edit(Scene* _scene, GameEntity* _entity, const std::string& _parentLabel) override;
+    void Initialize(Entity* _entity) override;
+    void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
     void Finalize() override;
 
 private:
@@ -45,19 +48,20 @@ public:
     std::unordered_map<int32_t, int32_t>& getButtonNumbers() { return buttonNumbers_; }
 
     int32_t getButtonNumber(int32_t _entityId) const {
-        auto it = buttonNumbers_.find(_entityId);
-        if (it != buttonNumbers_.end()) {
-            return it->second;
-        }
-        return -1; // 見つからなかった場合のデフォルト値
-    }
-    int32_t getEntityId(int32_t _buttonNumber) const {
         for (const auto& pair : buttonNumbers_) {
-            if (pair.second == _buttonNumber) {
+            if (pair.second == _entityId) {
                 return pair.first;
             }
         }
         return -1; // 見つからなかった場合のデフォルト値
+    }
+    int32_t getEntityId(int32_t _buttonNumber) const {
+        auto it = buttonNumbers_.find(_buttonNumber);
+        if (it != buttonNumbers_.end()) {
+            return it->second;
+        }
+        return -1; // 見つからなかった場合のデフォルト値
+        
     }
 
     const std::vector<Key>& getSelectAddKeys() const { return selectAddKeys_; }

@@ -1,6 +1,9 @@
 #pragma once
 #include "system/ISystem.h"
 
+/// <summary>
+/// Timerの数値をSpriteに適用するシステム
+/// </summary>
 class TimerForSprite
     : public ISystem {
 public:
@@ -13,5 +16,5 @@ public:
     virtual void Finalize();
 
 protected:
-    virtual void UpdateEntity(GameEntity* _entity) override;
+    virtual void UpdateEntity(Entity* _entity) override;
 };

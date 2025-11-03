@@ -5,13 +5,12 @@
 // component
 #include "component/transform/Transform.h"
 
-#include "component/collider/CollisionPushBackInfo.h"
+#include "component/collision/CollisionPushBackInfo.h"
 #include "component/physics/Rigidbody.h"
 
 #include "component/Player/PlayerStatus.h"
 #include "component/Player/State/PlayerState.h"
 
-#include "component/Stage/Stage.h"
 #include "component/TimerComponent.h"
 
 void PlayerOnCollision::Initialize() {
@@ -20,12 +19,13 @@ void PlayerOnCollision::Initialize() {
 void PlayerOnCollision::Finalize() {
 }
 
-static const float GROUND_CHECK_THRESHOLD = 0.7f; // 地面と判断するための閾値
-static const float WALL_CHECK_THRESHOLD   = 0.7f; // 壁と判断するための閾値
+static const float kGroundCheckThreshold = 0.7f; // 地面と判断するための閾値
+static const float kWallCheckThreshold   = 0.3f; // 壁と判断するための閾値
 
-void PlayerOnCollision::UpdateEntity(GameEntity* _entity) {
+void PlayerOnCollision::UpdateEntity(Entity* _entity) {
     auto* state        = getComponent<PlayerState>(_entity);
     auto* pushBackInfo = getComponent<CollisionPushBackInfo>(_entity);
+    auto* rigidbody    = getComponent<Rigidbody>(_entity);
 
     if (state == nullptr) {
         return;
@@ -34,26 +34,23 @@ void PlayerOnCollision::UpdateEntity(GameEntity* _entity) {
     state->OffCollisionWall();
 
     for (auto& [entityId, info] : pushBackInfo->getCollisionInfoMap()) {
-        Vec3f collNormal           = info.collVec.normalize();
-        GameEntity* collidedEntity = getEntity(entityId);
+        Vec3f collNormal       = info.collVec.normalize();
+        Entity* collidedEntity = getEntity(entityId);
 
         // ゴール と 衝突したか
         if (collidedEntity->getDataType().find("Goal") != std::string::npos) {
-            GameEntity* timer = getUniqueEntity("Timer");
-            if (timer) {
-                Stage::setClearTime(getComponent<TimerComponent>(timer)->getCurrentTime());
-            }
+            // Entity* timer = getUniqueEntity("Timer");
+            // Stage::setClearTime(getComponent<TimerComponent>(timer)->getCurrentTime());
 
             // ゴールと衝突した場合は、ゴールに到達したと判断する
             state->setGoal(true);
             continue;
         }
 
-        if (collNormal[Y] > GROUND_CHECK_THRESHOLD) {
+        if (collNormal[Y] > kGroundCheckThreshold) {
             // 上方向に衝突した場合は、地面にいると判断する
             state->OnCollisionGround(entityId);
 
-            auto* rigidbody    = getComponent<Rigidbody>(_entity);
             Vec3f acceleration = rigidbody->getAcceleration();
 
             // Y軸の加速度を0にする
@@ -61,19 +58,16 @@ void PlayerOnCollision::UpdateEntity(GameEntity* _entity) {
             rigidbody->setAcceleration(acceleration);
 
             rigidbody->setVelocity(Y, 0.f);
-        } else {
-            Vec3f localNormal = collNormal;
+        } else if (std::abs(collNormal[X]) + std::abs(collNormal[Z]) > kGroundCheckThreshold) {
+            // 壁と衝突した場合
+            float dotVN = rigidbody->getVelocity().normalize().dot(collNormal);
 
-            Transform* transform = getComponent<Transform>(collidedEntity);
-            if (transform) {
-                localNormal = localNormal * MakeMatrix::RotateQuaternion(transform->rotate).inverse();
-            }
+            // どれくらい平行に動いているか (1.0 = 完全に平行, 0.0 = 完全に垂直)
+            float parallelFactor = 1.f - std::fabs(dotVN);
 
-            if (std::abs(localNormal[X]) > WALL_CHECK_THRESHOLD) {
-                if (collidedEntity->getDataType().find("Wall") != std::string::npos) {
-                    // 壁と衝突した場合、地面にいると判断する
-                    state->OnCollisionWall(collNormal, entityId);
-                }
+            // 壁に沿って移動している場合は壁衝突とみなす
+            if (parallelFactor > kWallCheckThreshold) {
+                state->OnCollisionWall(collNormal, entityId);
             }
         }
     }

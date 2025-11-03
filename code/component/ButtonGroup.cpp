@@ -10,9 +10,9 @@
 #include "editor/EditorController.h"
 #include "myGui/MyGui.h"
 
-void ButtonGroup::Initialize(GameEntity* /*_entity*/) {}
+void ButtonGroup::Initialize(Entity* /*_entity*/) {}
 
-void ButtonGroup::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEntity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
+void ButtonGroup::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
     auto componentArray = _scene->getComponentRepositoryRef()->getComponentArray<Button>();
     if (!componentArray) {
@@ -20,8 +20,8 @@ void ButtonGroup::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEnti
         return;
     }
 
-    auto allButtons = componentArray->getAllComponents();
-    if (allButtons->empty()) {
+    auto& allButtons = componentArray->getAllComponents();
+    if (allButtons.empty()) {
         if (!buttonNumbers_.empty()) {
             buttonNumbers_.clear();
         }
@@ -39,18 +39,25 @@ void ButtonGroup::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEnti
 
     std::string label = "ButtonNumbers##" + _parentLabel;
     if (ImGui::TreeNode(label.c_str())) {
+        buttonNumbers_.clear();
+        int32_t buttonIndex            = 0;
         const auto& buttonBindEntityId = componentArray->getEntityIndexBind();
         for (const auto& [id, index] : buttonBindEntityId) {
             if (id < 0) {
                 continue;
             }
-            if (buttonNumbers_.find(id) == buttonNumbers_.end()) {
-                buttonNumbers_[id] = int32_t(buttonNumbers_.size());
+            // ボタンコンポーネントが存在しない場合はスキップ
+            Entity* buttonEntity = _scene->getEntityRepositoryRef()->getEntity(id);
+            if (!buttonEntity || !componentArray->getComponents(buttonEntity)) {
+                continue;
             }
+
+            buttonNumbers_[buttonIndex] = id;
 
             ImGui::Text("EntityID [%d] :", id);
             ImGui::SameLine();
-            ImGui::Text("Button No. %d ", buttonNumbers_[id]);
+            ImGui::Text("Button No. %d ", buttonIndex);
+            ++buttonIndex;
 
             ImGui::Spacing();
         }

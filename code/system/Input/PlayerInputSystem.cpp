@@ -20,7 +20,7 @@ void PlayerInputSystem::Finalize() {
     input_ = nullptr;
 }
 
-void PlayerInputSystem::UpdateEntity(GameEntity* _entity) {
+void PlayerInputSystem::UpdateEntity(Entity* _entity) {
     PlayerInput* playerInput   = getComponent<PlayerInput>(_entity);
     PlayerState* state = getComponent<PlayerState>(_entity);
 

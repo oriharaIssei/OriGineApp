@@ -3,6 +3,9 @@
 
 class Input;
 
+/// <summary>
+/// PlayerのInputを処理するシステム
+/// </summary>
 class PlayerInputSystem
     : public ISystem {
 public:
@@ -14,7 +17,7 @@ public:
     void Finalize() override;
 
 private:
-    void UpdateEntity(GameEntity* _entity) override;
+    void UpdateEntity(Entity* _entity) override;
 
 
 private:

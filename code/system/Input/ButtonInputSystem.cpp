@@ -15,7 +15,7 @@ void ButtonInputSystem::Initialize() {
 void ButtonInputSystem::Finalize() {
 }
 
-void ButtonInputSystem::UpdateEntity(GameEntity* _entity) {
+void ButtonInputSystem::UpdateEntity(Entity* _entity) {
     Button* button = getComponent<Button>(_entity);
 
     button->setHovered(false);

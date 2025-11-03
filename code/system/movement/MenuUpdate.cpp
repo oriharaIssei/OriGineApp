@@ -3,9 +3,11 @@
 /// component
 #include "component/SubScene.h"
 /// system
+#include "system/SystemRunner.h"
+
+#include "system/movement/FollowCameraUpdateSystem.h"
 #include "system/movement/MoveSystemByRigidBody.h"
 #include "system/movement/PlayerMoveSystem.h"
-#include "system/movement/UpdateCameraForward.h"
 
 MenuUpdate::MenuUpdate() : ISystem(SystemCategory::Movement) {}
 MenuUpdate::~MenuUpdate() {}
@@ -13,7 +15,7 @@ MenuUpdate::~MenuUpdate() {}
 void MenuUpdate::Initialize() {}
 void MenuUpdate::Finalize() {}
 
-void MenuUpdate::UpdateEntity(GameEntity* _entity) {
+void MenuUpdate::UpdateEntity(Entity* _entity) {
     auto currentScene = getScene();
     auto menuScene    = getComponent<SubScene>(_entity);
     if (!menuScene || !currentScene) {
@@ -31,7 +33,7 @@ void MenuUpdate::UpdateEntity(GameEntity* _entity) {
 
         systemRunner->DeactivateSystem<PlayerMoveSystem>();
         systemRunner->DeactivateSystem<MoveSystemByRigidBody>();
-        systemRunner->DeactivateSystem<UpdateCameraForward>();
+        systemRunner->DeactivateSystem<FollowCameraUpdateSystem>();
     } else {
         // メニューが非アクティブなら ゲームのUpdateを再開
         systemRunner->setCategoryActivity(SystemCategory::Input, true);
@@ -41,6 +43,6 @@ void MenuUpdate::UpdateEntity(GameEntity* _entity) {
 
         systemRunner->ActivateSystem<PlayerMoveSystem>();
         systemRunner->ActivateSystem<MoveSystemByRigidBody>();
-        systemRunner->ActivateSystem<UpdateCameraForward>();
+        systemRunner->ActivateSystem<FollowCameraUpdateSystem>();
     }
 }

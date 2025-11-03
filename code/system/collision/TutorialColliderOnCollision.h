@@ -1,6 +1,9 @@
 #pragma once
 #include "system/ISystem.h"
 
+/// <summary>
+/// チュートリアル用の衝突反応システム
+/// </summary>
 class TutorialColliderOnCollision
     : public ISystem {
 public:
@@ -13,8 +16,8 @@ public:
     void Update() override;
 
 protected:
-    void UpdateEntity(GameEntity* _entity) override;
+    void UpdateEntity(Entity* _entity) override;
 
 protected:
-    GameEntity* playerEntity_         = nullptr;
+    Entity* playerEntity_         = nullptr;
 };

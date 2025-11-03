@@ -1,6 +1,9 @@
 #pragma once
 #include "system/ISystem.h"
 
+/// <summary>
+/// Playerの移動を制御するシステム
+/// </summary>
 class PlayerMoveSystem
     : public ISystem {
 public:
@@ -12,5 +15,5 @@ public:
     void Finalize() override;
 
 private:
-    void UpdateEntity(GameEntity* _entity) override;
+    void UpdateEntity(Entity* _entity) override;
 };

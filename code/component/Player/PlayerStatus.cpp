@@ -13,14 +13,20 @@
 #endif // _DEBUG
 
 /// math
+#include <math/Interpolation.h>
+#include <math/mathEnv.h>
+#include <math/Quaternion.h>
 #include <math/Sequence.h>
 
 PlayerStatus::PlayerStatus() {}
 PlayerStatus::~PlayerStatus() {}
 
-void PlayerStatus::Initialize(GameEntity* /*_entity*/) {}
+void PlayerStatus::Initialize(Entity* /*_entity*/) {
+    gearUpCoolTime_  = baseGearupCoolTime_;
+    currentMaxSpeed_ = baseSpeed_;
+}
 
-void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEntity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
+void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
 
     if (ImGui::TreeNode("Speed")) {
@@ -72,7 +78,7 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEnt
 #endif // _DEBUG
 }
 
-void PlayerStatus::Debug(Scene* /*_scene*/, GameEntity* /*_entity*/, const std::string& /*_parentLabel*/) {
+void PlayerStatus::Debug(Scene* /*_scene*/, Entity* /*_entity*/, const std::string& /*_parentLabel*/) {
 #ifdef _DEBUG
 
     ImGui::Text("Base Gear Up Cool Time : %.2f", baseGearupCoolTime_);
@@ -113,32 +119,47 @@ float PlayerStatus::CalculateCoolTimeByGearLevel(int32_t _gearLevel) const {
         _gearLevel);
 }
 
-void PlayerStatus::UpdateAccel(PlayerInput* _input, Transform* _transform, Rigidbody* _rigidbody, const Quaternion& _cameraRotation) {
+void PlayerStatus::UpdateAccel(float _deltaTime, PlayerInput* _input, Transform* _transform, Rigidbody* _rigidbody, const Quaternion& _cameraRotation) {
+    constexpr float kPlayerAccelRate = 8.0f;
+
     // 入力方向を取得
     Vec2f inputDirection = _input->getInputDirection();
 
-    // カメラの回転からヨー（y軸回転）だけを抽出
-    float cameraYaw              = _cameraRotation.ToEulerAngles()[Y]; // y成分のみ
-    Quaternion cameraYawRotation = Quaternion::RotateAxisAngle(Vec3f(0.f, 1.f, 0.f), cameraYaw);
-
-    // 入力方向の回転
     if (inputDirection.lengthSq() <= 0.0f) {
+        _input->setWorldInputDirection(Vec3f());
         return;
     }
 
-    float inputAngle         = std::atan2(inputDirection[X], inputDirection[Y]);
-    Quaternion inputRotation = Quaternion::RotateAxisAngle(Vec3f(0.f, 1.f, 0.f), inputAngle);
+    // カメラのヨー（Y軸回転角）を取得
+    // --- 安定したカメラYaw抽出 ---
+    float cameraYaw = _cameraRotation.ToYaw();
 
-    // y軸のみの回転合成
-    Quaternion targetRotation = Quaternion::Normalize(cameraYawRotation * inputRotation);
+    // 入力方向を3Dベクトルに変換（Zが前、Xが右）
+    Vec3f inputDir3D = {inputDirection[X], 0.0f, inputDirection[Y]};
+    inputDir3D = inputDir3D.normalize();
 
-    // プレイヤーの回転を補間して設定
-    _transform->rotate = Slerp(_transform->rotate, targetRotation, directionInterpolateRate_);
+    // カメラの向きに合わせて入力方向を回転（ローカル→ワールド変換）
+    Vec3f moveDirWorld = inputDir3D * MakeMatrix::RotateY(cameraYaw);
+    moveDirWorld       = moveDirWorld.normalize();
+    // ワールド方向に変換した入力方向を保存
+    _input->setWorldInputDirection(moveDirWorld);
 
-    // 移動速度の計算
-    Vec3f movementDirection = Vec3f(0.f, 0.f, 1.f) * MakeMatrix::RotateQuaternion(_transform->rotate);
-    Vec3f accel             = movementDirection * (currentMaxSpeed_ * 4.f);
+    // 現在の移動方向と補間
+    Vec3f currentDir = _rigidbody->getVelocity();
+    if (currentDir.lengthSq() <= kEpsilon) {
+        currentDir = axisZ * MakeMatrix::RotateQuaternion(_transform->rotate);
+    }
+    currentDir[Y] = 0.0f;
+    currentDir    = currentDir.normalize();
 
+    moveDirWorld = LerpByDeltaTime(currentDir, moveDirWorld, _deltaTime, directionInterpolateRate_);
+    moveDirWorld = moveDirWorld.normalize();
+
+    // プレイヤーの回転をカメラ方向に合わせる(更新分だけ回転)
+    _transform->rotate = Quaternion::LookAt(moveDirWorld, axisY);
+
+    // 移動加速度を設定
+    Vec3f accel = moveDirWorld * (currentMaxSpeed_ * kPlayerAccelRate);
     _rigidbody->setAcceleration(X, accel[X]);
     _rigidbody->setAcceleration(Z, accel[Z]);
 }

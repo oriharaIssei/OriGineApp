@@ -3,6 +3,9 @@
 /// parent
 #include "system/ISystem.h"
 
+/// <summary>
+/// カメラの追従処理を行うシステム
+/// </summary>
 class FollowCameraUpdateSystem
     : public ISystem {
 public:
@@ -12,5 +15,5 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(GameEntity* _entity) override;
+    void UpdateEntity(Entity* _entity) override;
 };

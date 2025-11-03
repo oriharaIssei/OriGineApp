@@ -13,7 +13,7 @@ void ButtonGroupSystem::Initialize() {}
 
 void ButtonGroupSystem::Finalize() {}
 
-void ButtonGroupSystem::UpdateEntity(GameEntity* _entity) {
+void ButtonGroupSystem::UpdateEntity(Entity* _entity) {
     Input* input      = Input::getInstance();
     auto* buttonGroup = getComponent<ButtonGroup>(_entity);
     if (buttonGroup == nullptr) {
@@ -22,10 +22,13 @@ void ButtonGroupSystem::UpdateEntity(GameEntity* _entity) {
 
     int32_t currentButtonNumber = buttonGroup->getCurrentButtonNumber();
     Button* currentButton       = getComponent<Button>(getEntity(buttonGroup->getEntityId(currentButtonNumber)));
+    if (!currentButton) {
+        return;
+    }
     currentButton->setHovered(true);
 
     // 外部システムの入力に従う (ボタンのショートカットやマウスでの選択など)
-    for (const auto& [entityID, index] : buttonGroup->getButtonNumbers()) {
+    for (const auto& [index, entityID] : buttonGroup->getButtonNumbers()) {
         auto* button = getComponent<Button>(getEntity(entityID));
         if (button == nullptr || button == currentButton) {
             continue;
@@ -131,6 +134,12 @@ void ButtonGroupSystem::UpdateEntity(GameEntity* _entity) {
         currentButtonNumber = std::clamp(currentButtonNumber, 0, (int32_t)buttonGroup->getButtonNumbers().size() - 1);
 
         currentButton = getComponent<Button>(getEntity(buttonGroup->getEntityId(currentButtonNumber)));
+
+        // 次のボタンが存在しなければ戻す
+        if (!currentButton) {
+            currentButtonNumber -= delta;
+            currentButton = getComponent<Button>(getEntity(buttonGroup->getEntityId(currentButtonNumber)));
+        }
         currentButton->setHovered(true);
 
         buttonGroup->setCurrentButtonNumber(currentButtonNumber);

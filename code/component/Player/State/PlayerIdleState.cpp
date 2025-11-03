@@ -11,6 +11,7 @@
 #include "component/Player/State/PlayerState.h"
 
 /// math
+#include "math/Interpolation.h"
 #include "MyEasing.h"
 
 void PlayerIdleState::Initialize() {
@@ -18,8 +19,15 @@ void PlayerIdleState::Initialize() {
     auto playerStatus  = scene_->getComponent<PlayerStatus>(playerEntity);
     auto* state        = scene_->getComponent<PlayerState>(playerEntity);
     auto rigidbody     = scene_->getComponent<Rigidbody>(playerEntity);
+    auto playerInput   = scene_->getComponent<PlayerInput>(playerEntity);
+
+    /// 初期化処理
+    // 入力方向をリセット
+    playerInput->setWorldInputDirection({0.f, 0.f, 0.f});
+    // 速度をゼロにする
     rigidbody->setAcceleration({0.f, 0.0f, 0.0f});
     playerStatus->setCurrentMaxSpeed(0.0f);
+    // ギアアップのクールタイム&ギアレベルをリセット
     playerStatus->setGearUpCoolTime(playerStatus->getBaseGearupCoolTime());
     state->setGearLevel(kDefaultPlayerGearLevel);
 
@@ -27,11 +35,13 @@ void PlayerIdleState::Initialize() {
 }
 
 void PlayerIdleState::Update(float _deltaTime) {
+    constexpr float kDecelerationRate = 1.8f;
+
     auto* playerEntity = scene_->getEntity(playerEntityID_);
     auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
 
     // 減速
-    rigidbody->setVelocity(rigidbody->getVelocity() - (rigidbody->getVelocity() * 0.76f));
+    rigidbody->setVelocity(LerpByDeltaTime(rigidbody->getVelocity(), Vec3f(), _deltaTime, kDecelerationRate));
 
     ///! TODO : ここにカメラの処理を書くべきではない
     CameraController* cameraController = scene_->getComponent<CameraController>(scene_->getUniqueEntity("GameCamera"));

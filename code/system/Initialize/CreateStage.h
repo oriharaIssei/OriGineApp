@@ -1,6 +1,9 @@
 #pragma once
 #include "system/ISystem.h"
 
+/// <summary>
+/// ステージ情報からMesh,Collider等を生成するシステム
+/// </summary>
 class CreateStage
     : public ISystem {
 public:
@@ -9,5 +12,5 @@ public:
     void Finalize() override {}
 
 protected:
-    void UpdateEntity(GameEntity* _entity) override;
+    void UpdateEntity(Entity* _entity) override;
 };

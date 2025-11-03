@@ -12,49 +12,6 @@
     "Entities": [
         {
             "Components": {
-                "SkyboxRenderer": [
-                    {
-                        "filePath": "application/resource/Texture/output_skybox.dds",
-                        "materialBuff": {
-                            "color": [
-                                0.649789035320282,
-                                0.4264598488807678,
-                                0.3783581852912903,
-                                1.0
-                            ]
-                        },
-                        "transformBuff": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ]
-            },
-            "Name": "Skybox",
-            "Systems": [
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "SkyboxRender"
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
                 "AABBCollider": [],
                 "ModelMeshRenderer": [],
                 "Stage": [
@@ -63,7 +20,6 @@
                         "fileName": "01"
                     }
                 ],
-                "TextureEffectParam": [],
                 "Transform": []
             },
             "Name": "Stage",
@@ -150,8 +106,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -163,8 +119,8 @@
                             1.0
                         ],
                         "size": [
-                            48.0,
-                            48.000003814697266
+                            72.0,
+                            72.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -176,8 +132,8 @@
                             16.0
                         ],
                         "translate": [
-                            72.95999908447266,
-                            30.96000099182129
+                            109.44000244140625,
+                            46.44000244140625
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -209,8 +165,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -222,8 +178,8 @@
                             1.0
                         ],
                         "size": [
-                            48.0,
-                            48.000003814697266
+                            72.0,
+                            72.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -235,8 +191,8 @@
                             16.0
                         ],
                         "translate": [
-                            72.95999908447266,
-                            30.96000099182129
+                            109.44000244140625,
+                            46.44000244140625
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -388,12 +344,20 @@
                             [
                                 "./application/resource/entities",
                                 "Timer"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "Trail"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "Skybox"
                             ]
                         ]
                     }
                 ]
             },
-            "Name": "GameEntityRef",
+            "Name": "EntityRef",
             "Systems": [
                 {
                     "SystemCategory": 0,
@@ -424,6 +388,36 @@
                 }
             ],
             "isUnique": false
+        },
+        {
+            "Components": {
+                "EntityReferenceList": [
+                    {
+                        "entityFileList": [
+                            [
+                                "./application/resource/entities",
+                                "trailDissolve"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "trailDistortion1Entity"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "trailGradationEntity"
+                            ]
+                        ]
+                    }
+                ]
+            },
+            "Name": "trailEffectRecipe",
+            "Systems": [
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "ResolveEntityReferences"
+                }
+            ],
+            "isUnique": true
         }
     ],
     "Systems": [
@@ -446,14 +440,14 @@
             "ChangeSceneByButton": {
                 "Priority": 1
             },
-            "ColliderRenderingSystem": {
-                "Priority": 0
-            },
             "CollisionCheckSystem": {
                 "Priority": 0
             },
             "CollisionPushBackSystem": {
                 "Priority": 5
+            },
+            "CreateMeshFromSpline": {
+                "Priority": 0
             },
             "CreateSpriteFromTimer": {
                 "Priority": 1
@@ -488,6 +482,9 @@
             "MaterialAnimationWorkSystem": {
                 "Priority": 0
             },
+            "MaterialEffect": {
+                "Priority": 10
+            },
             "MenuUpdate": {
                 "Priority": 0
             },
@@ -505,6 +502,9 @@
             },
             "PlayerOnCollision": {
                 "Priority": 10
+            },
+            "PlayerPathSplineGenerator": {
+                "Priority": 100
             },
             "PrimitiveNodeAnimationWorkSystem": {
                 "Priority": 1
@@ -560,9 +560,6 @@
             "TakePlayerToStartPosition": {
                 "Priority": 3
             },
-            "TextureEffectAnimation": {
-                "Priority": 2
-            },
             "TexturedMeshRenderSystem": {
                 "Priority": 0
             },
@@ -575,14 +572,14 @@
             "TimerForSprite": {
                 "Priority": 0
             },
+            "TrailEffectInitialize": {
+                "Priority": 100
+            },
             "TransitionPlayerState": {
                 "Priority": 5
             },
             "UpdateButtonColorByState": {
                 "Priority": 1
-            },
-            "UpdateCameraForward": {
-                "Priority": 0
             },
             "VelocityRenderingSystem": {
                 "Priority": 0

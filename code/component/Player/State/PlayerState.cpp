@@ -10,7 +10,7 @@ PlayerState::PlayerState()
 
 PlayerState::~PlayerState() {}
 
-void PlayerState::Initialize(GameEntity* /*_entity*/) {
+void PlayerState::Initialize(Entity* /*_entity*/) {
     moveStateEnum_    = PlayerMoveState::IDLE;
     preMoveStateEnum_ = PlayerMoveState::IDLE;
     moveState_        = nullptr;
@@ -25,7 +25,7 @@ void PlayerState::Initialize(GameEntity* /*_entity*/) {
     gearUpCoolTime_      = 0.0f;
 }
 
-void PlayerState::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] GameEntity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
+void PlayerState::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
     static std::map<PlayerMoveState, const char*> moveStateName = {
         {PlayerMoveState::IDLE, "IDLE"},
         {PlayerMoveState::DASH, "DASH"},
@@ -71,6 +71,11 @@ void PlayerState::OnCollisionGround(int32_t _entityIndex) {
 }
 void PlayerState::OffCollisionGround() {
     onGround_ = false;
+}
+
+void PlayerState::setPlayerMoveState(std::shared_ptr<IPlayerMoveState> _playerMoveState) {
+    moveState_     = _playerMoveState;
+    moveStateEnum_ = moveState_->getState();
 }
 
 void to_json(nlohmann::json& /*j*/, const PlayerState& /*p*/) {

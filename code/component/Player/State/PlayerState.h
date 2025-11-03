@@ -26,7 +26,7 @@ enum class PlayerMoveState {
 };
 
 constexpr int32_t kDefaultPlayerGearLevel = 1; // デフォルトのギアレベル
-constexpr int32_t kMaxPlayerGearLevel     = 6; // 最大のギアレベル
+constexpr int32_t kMaxPlayerGearLevel     = 7; // 最大のギアレベル
 
 /// <summary>
 /// プレイヤーの状態を表す変数群
@@ -40,8 +40,8 @@ public:
     PlayerState();
     ~PlayerState() override;
 
-    void Initialize(GameEntity* _entity) override;
-    void Edit(Scene* _scene, GameEntity* _entity, const std::string& _parentLabel) override;
+    void Initialize(Entity* _entity) override;
+    void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
     void Finalize() override;
 
     void OnCollisionWall(const Vec3f& _collisionNormal, int32_t _entityIndex);
@@ -73,9 +73,6 @@ public:
     PlayerMoveState getStateEnum() const {
         return moveStateEnum_.toEnum();
     }
-    void setState(const PlayerMoveState& _state) {
-        moveStateEnum_ = _state;
-    }
 
     PlayerMoveState getPrevStateEnum() const {
         return preMoveStateEnum_.toEnum();
@@ -87,9 +84,7 @@ public:
     std::shared_ptr<IPlayerMoveState> getPlayerMoveState() const {
         return moveState_;
     }
-    void setPlayerMoveState(std::shared_ptr<IPlayerMoveState> _playerMoveState) {
-        moveState_ = _playerMoveState;
-    }
+    void setPlayerMoveState(std::shared_ptr<IPlayerMoveState> _playerMoveState);
 
     int32_t getGearLevel() const {
         return gearLevel_;

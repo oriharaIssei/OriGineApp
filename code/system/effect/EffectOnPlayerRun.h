@@ -1,6 +1,9 @@
 #pragma once
 #include "system/ISystem.h"
 
+/// <summary>
+/// Playerが走っているときにエフェクトを発生させるシステム
+/// </summary>
 class EffectOnPlayerRun
     : public ISystem {
 public:
@@ -11,8 +14,8 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(GameEntity* entity) override;
+    void UpdateEntity(Entity* entity) override;
 
 private:
-    const float maxIntensity = 3.8f;
+    const float maxIntensity_      = 3.8f;
 };

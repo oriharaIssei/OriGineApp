@@ -9,12 +9,12 @@
 #include "math/Sequence.h"
 #include <numbers>
 
-void CameraController::Initialize(GameEntity* /*_entity*/) {
+void CameraController::Initialize(Entity* /*_entity*/) {
     currentOffset_       = firstOffset_;
     currentTargetOffset_ = firstTargetOffset_;
 }
 
-void CameraController::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
+void CameraController::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
 
     if (DragGuiVectorCommand<3, float>("forward##" + _parentLabel, forward_, 0.01f, -1.f, 1.f, "%.3f", [this](Vector<3, float>* _v) {
@@ -42,27 +42,27 @@ void CameraController::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_
 
     ImGui::Spacing();
 
-    DragGuiCommand("rotateSpeedPadStick" + _parentLabel, rotateSpeedPadStick_, 0.01f, -100.0f, 100.0f);
-    DragGuiCommand("rotateSpeedMouse" + _parentLabel, rotateSpeedMouse_, 0.01f, -100.0f, 100.0f);
+    DragGuiCommand("rotateSpeedPadStick##" + _parentLabel, rotateSpeedPadStick_, 0.01f);
+    DragGuiCommand("rotateSpeedMouse##" + _parentLabel, rotateSpeedMouse_, 0.01f);
 
-    DragGuiCommand("rotateSensitivity" + _parentLabel, rotateSensitivity_, 0.01f, -1.f, 1.f);
-    DragGuiCommand("interTargetInterpolation" + _parentLabel, interTargetInterpolation_, 0.01f, -1.f, 1.0f);
+    DragGuiCommand("rotateSensitivity##" + _parentLabel, rotateSensitivity_, 0.01f);
+    DragGuiCommand("interTargetInterpolation##" + _parentLabel, interTargetInterpolation_, 0.01f);
 
     ImGui::Spacing();
 
-    DragGuiCommand("maxRotateX" + _parentLabel, maxRotateX_, 0.01f, -100.0f, 100.0f);
-    DragGuiCommand("minRotateX" + _parentLabel, minRotateX_, 0.01f, -100.0f, 100.0f);
+    DragGuiCommand("maxRotateX##" + _parentLabel, maxRotateX_, 0.01f);
+    DragGuiCommand("minRotateX##" + _parentLabel, minRotateX_, 0.01f);
 
     ImGui::Spacing();
 
     label = "Fov##" + _parentLabel;
     if (ImGui::TreeNode(label.c_str())) {
-        DragGuiCommand("fovYInterpolate" + _parentLabel, fovYInterpolate_, 0.001f, 0.0f, 1.0f);
-        DragGuiCommand("baseFovY" + _parentLabel, baseFovY_, 0.01f);
-        DragGuiCommand("fovYRateBase" + _parentLabel, fovYRateBase_, 0.001f);
-        DragGuiCommand("fovYRateCommonRate" + _parentLabel, fovYRateCommonRate_, 0.001f);
+        DragGuiCommand("fovYInterpolate##" + _parentLabel, fovYInterpolate_, 0.001f);
+        DragGuiCommand("baseFovY##" + _parentLabel, baseFovY_, 0.01f);
+        DragGuiCommand("fovYRateBase##" + _parentLabel, fovYRateBase_, 0.001f);
+        DragGuiCommand("fovYRateCommonRate##" + _parentLabel, fovYRateCommonRate_, 0.001f);
 
-        label = "FovY By Gear Level" + _parentLabel;
+        label = "FovY By Gear Level##" + _parentLabel;
         if (ImGui::BeginTable(label.c_str(), 2, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg)) {
             ImGui::TableSetupColumn("Gear Level");
             ImGui::TableSetupColumn("FovY");
@@ -72,7 +72,7 @@ void CameraController::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_
                 ImGui::TableSetColumnIndex(0);
                 ImGui::Text("%d", level);
                 ImGui::TableSetColumnIndex(1);
-                ImGui::Text("%.2f", CalculateFovY(level));
+                ImGui::Text("%.2f", CalculateFovYByPlayerGearLevel(level));
             }
             ImGui::EndTable();
         }
@@ -85,7 +85,7 @@ void CameraController::Edit(Scene* /*_scene*/, GameEntity* /*_entity*/, [[maybe_
 void CameraController::Finalize() {
 }
 
-float CameraController::CalculateFovY(int32_t _level) const {
+float CameraController::CalculateFovYByPlayerGearLevel(int32_t _level) const {
     return ArithmeticSequence<float>(
         baseFovY_,
         ArithmeticSequence<float>(fovYRateBase_, fovYRateCommonRate_, _level - 1),
