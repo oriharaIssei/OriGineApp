@@ -14,7 +14,7 @@ struct Transform;
 class PlayerWallRunState
     : public IPlayerMoveState {
 public:
-    PlayerWallRunState(Scene* _scene, int32_t _playerEntityID) : IPlayerMoveState(_scene, _playerEntityID, PlayerMoveState::DASH) {}
+    PlayerWallRunState(Scene* _scene, int32_t _playerEntityID) : IPlayerMoveState(_scene, _playerEntityID, PlayerMoveState::WALL_RUN) {}
     ~PlayerWallRunState() override {};
 
     void Initialize() override;
@@ -33,6 +33,6 @@ protected:
     Vec3f cameraTargetOffsetOnWallRun_ = Vec3f(0.0f, 0.0f, 0.0f);
     Vec3f cameraOffsetOnWallRun_       = Vec3f(0.0f, 0.0f, 0.0f);
 
-        const float kCameraAngleLerpTime_ = 0.8f;
-    float cameraAngleLerpTimer_           = 0.0f;
+    const float kCameraAngleLerpTime_ = 0.8f;
+    float cameraAngleLerpTimer_       = 0.0f;
 };

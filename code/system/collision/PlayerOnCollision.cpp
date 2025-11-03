@@ -58,7 +58,7 @@ void PlayerOnCollision::UpdateEntity(Entity* _entity) {
             rigidbody->setAcceleration(acceleration);
 
             rigidbody->setVelocity(Y, 0.f);
-        } else {
+        } else if (std::abs(collNormal[X]) + std::abs(collNormal[Z]) > kGroundCheckThreshold) {
             // 壁と衝突した場合
             float dotVN = rigidbody->getVelocity().normalize().dot(collNormal);
 

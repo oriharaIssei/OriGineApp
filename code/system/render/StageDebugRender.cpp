@@ -118,11 +118,10 @@ void StageDebugRender::Update() {
     }
     /// ステージは 1つしかない前提 なので ザルチェック
     for (auto& [stageEntityIndex, stageIndex] : stageArray->getEntityIndexBind()) {
-        std::vector<Stage>& stages = stageArray->getAllComponents()[stageIndex][stageIndex];
+        Stage& stage = stageArray->getAllComponents()[stageIndex][stageIndex];
 
-        Stage* stage = &stages.back();
         // メッシュを作成
-        CreateMeshes(stage);
+        CreateMeshes(&stage);
     }
 
     RenderAll();

@@ -11,6 +11,7 @@
 #include "component/Player/State/PlayerState.h"
 
 /// math
+#include "math/Interpolation.h"
 #include "MyEasing.h"
 
 void PlayerIdleState::Initialize() {
@@ -34,11 +35,13 @@ void PlayerIdleState::Initialize() {
 }
 
 void PlayerIdleState::Update(float _deltaTime) {
+    constexpr float kDecelerationRate = 1.8f;
+
     auto* playerEntity = scene_->getEntity(playerEntityID_);
     auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
 
     // 減速
-    rigidbody->setVelocity(rigidbody->getVelocity() - (rigidbody->getVelocity() * 0.76f));
+    rigidbody->setVelocity(LerpByDeltaTime(rigidbody->getVelocity(), Vec3f(), _deltaTime, kDecelerationRate));
 
     ///! TODO : ここにカメラの処理を書くべきではない
     CameraController* cameraController = scene_->getComponent<CameraController>(scene_->getUniqueEntity("GameCamera"));

@@ -20,8 +20,8 @@ void ButtonGroup::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* 
         return;
     }
 
-    auto allButtons = componentArray->getAllComponents();
-    if (allButtons->empty()) {
+    auto& allButtons = componentArray->getAllComponents();
+    if (allButtons.empty()) {
         if (!buttonNumbers_.empty()) {
             buttonNumbers_.clear();
         }

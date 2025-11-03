@@ -12,49 +12,6 @@
     "Entities": [
         {
             "Components": {
-                "SkyboxRenderer": [
-                    {
-                        "filePath": "application/resource/Texture/output_skybox.dds",
-                        "materialBuff": {
-                            "color": [
-                                0.649789035320282,
-                                0.4264598488807678,
-                                0.3783581852912903,
-                                1.0
-                            ]
-                        },
-                        "transformBuff": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ]
-            },
-            "Name": "Skybox",
-            "Systems": [
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "SkyboxRender"
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
                 "AABBCollider": [],
                 "ModelMeshRenderer": [],
                 "Stage": [
@@ -394,7 +351,7 @@
                             ],
                             [
                                 "./application/resource/entities",
-                                "PlayerEmitter"
+                                "Skybox"
                             ]
                         ]
                     }

@@ -59,11 +59,6 @@ void PlayerDashState::Update(float _deltaTime) {
 
             playerStatus->setCurrentMaxSpeed(playerStatus->CalculateSpeedByGearLevel(gearLevel));
             rigidbody->setMaxXZSpeed(playerStatus->getCurrentMaxSpeed());
-
-            auto* skinningAnim = scene_->getComponent<SkinningAnimationComponent>(playerEntity);
-            if (skinningAnim) {
-                skinningAnim->setPlaybackSpeed(1, 1.f + float(state->getGearLevel()));
-            }
         }
     }
 

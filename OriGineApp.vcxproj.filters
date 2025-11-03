@@ -202,6 +202,7 @@
     <ClInclude Include="code\system\initialize\TrailEffectInitialize.h" />
     <ClInclude Include="code\component\Player\PlayerEffectControlParam.h" />
     <ClInclude Include="code\system\transition\ExitApplicationByButton.h" />
+    <ClInclude Include="code\system\movement\PlayerUpdateOnTitle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -365,5 +366,6 @@
     <ClCompile Include="code\system\initialize\TrailEffectInitialize.cpp" />
     <ClCompile Include="code\component\Player\PlayerEffectControlParam.cpp" />
     <ClCompile Include="code\system\transition\ExitApplicationByButton.cpp" />
+    <ClCompile Include="code\system\movement\PlayerUpdateOnTitle.cpp" />
   </ItemGroup>
 </Project>

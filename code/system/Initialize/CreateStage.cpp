@@ -36,7 +36,13 @@ void CreateStage::UpdateEntity(Entity* _entity) {
 
     // Meshと当たり判定を作成
     auto& controlPoints = stage->getControlPoints();
-    int32_t linkIndex   = 0;
+
+    if (controlPoints.empty()) {
+        LOG_WARN("Stage has no control points.");
+        return;
+    }
+
+    int32_t linkIndex = 0;
     for (auto& link : stage->getLinks()) {
         Vec3f min, max, mid, diffToFrom, direction;
 
@@ -194,10 +200,20 @@ void CreateStage::UpdateEntity(Entity* _entity) {
         ///==========================================
         // 動作する システムに登録
         ///==========================================
-        getScene()
-            ->getSystem(nameof<CollisionCheckSystem>())
-            ->addEntity(createdEntity);
-        getScene()->getSystem(nameof<TexturedMeshRenderSystem>())->addEntity(createdEntity);
+        ISystem* collisionSystem = getScene()->getSystem(nameof<CollisionCheckSystem>());
+        if (collisionSystem) {
+            collisionSystem->addEntity(createdEntity);
+        } else {
+            LOG_INFO("This scene don't have CollisionCheckSystem");
+        }
+        ISystem* renderSystem = getScene()->getSystem(nameof<TexturedMeshRenderSystem>());
+        if (renderSystem) {
+            renderSystem->addEntity(createdEntity);
+        } else {
+            LOG_INFO("This scene don't have TexturedMeshRenderSystem");
+        }
+
+        entityTransform->UpdateMatrix();
 
         ++linkIndex;
     }

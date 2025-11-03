@@ -57,7 +57,7 @@ void MyGame::Finalize() {
 
 void MyGame::Run() {
     while (true) {
-        if (engine_->ProcessMessage()) {
+        if (engine_->ProcessMessage() || sceneManager_->isExitGame()) {
             break;
         }
         engine_->BeginFrame();

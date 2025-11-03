@@ -25,8 +25,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -38,8 +38,8 @@
                             1.0
                         ],
                         "size": [
-                            512.0,
-                            128.0
+                            768.0,
+                            192.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -51,8 +51,8 @@
                             128.0
                         ],
                         "translate": [
-                            640.0,
-                            160.74000549316406
+                            960.0,
+                            241.11000061035156
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -170,7 +170,7 @@
                 ],
                 "SceneChanger": [
                     {
-                        "nextSceneName": "Title"
+                        "nextSceneName": "StageSelect"
                     }
                 ],
                 "SpriteRenderer": [
@@ -186,8 +186,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -199,8 +199,8 @@
                             0.699999988079071
                         ],
                         "size": [
-                            542.0,
-                            256.0
+                            813.0,
+                            384.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -212,8 +212,8 @@
                             256.0
                         ],
                         "translate": [
-                            640.0,
-                            532.6199951171875
+                            960.0,
+                            798.9299926757813
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -235,7 +235,7 @@
                     }
                 ]
             },
-            "Name": "BackToTitleButton",
+            "Name": "BackToStageSelectButton",
             "Systems": [
                 {
                     "SystemCategory": 2,
@@ -559,12 +559,12 @@
                 "DistortionEffectParam": [
                     {
                         "distortionBias": [
-                            0.0,
-                            0.0
+                            1.350000023841858,
+                            1.4600000381469727
                         ],
                         "distortionStrength": [
-                            0.0,
-                            0.0
+                            2.009999990463257,
+                            2.7100000381469727
                         ],
                         "isActive": true,
                         "materialIndex": 0,
@@ -594,7 +594,7 @@
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.9321356415748596
+                            0.7001306414604187
                         ]
                     }
                 ],
@@ -640,12 +640,12 @@
                 "DistortionEffectParam": [
                     {
                         "distortionBias": [
-                            0.0,
+                            0.6100000143051147,
                             0.0
                         ],
                         "distortionStrength": [
-                            0.0,
-                            0.0
+                            2.630000114440918,
+                            2.819999933242798
                         ],
                         "isActive": true,
                         "materialIndex": 0,
@@ -675,7 +675,7 @@
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.740047037601471
+                            0.4946514964103699
                         ]
                     }
                 ],
@@ -746,10 +746,36 @@
                 }
             ],
             "isUnique": false
+        },
+        {
+            "Components": {
+                "MouseCondition": [
+                    {
+                        "fixCursorPos": [
+                            0.0,
+                            0.0
+                        ],
+                        "isActive": true,
+                        "isFixCursor": false,
+                        "isShowCursor": true
+                    }
+                ]
+            },
+            "Name": "MouseCondition",
+            "Systems": [
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "ApplyMouseConditionSystem"
+                }
+            ],
+            "isUnique": false
         }
     ],
     "Systems": [
         {
+            "ApplyMouseConditionSystem": {
+                "Priority": 0
+            },
             "ButtonInputSystem": {
                 "Priority": 0
             },

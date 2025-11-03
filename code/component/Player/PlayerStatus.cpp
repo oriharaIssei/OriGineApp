@@ -13,6 +13,7 @@
 #endif // _DEBUG
 
 /// math
+#include <math/Interpolation.h>
 #include <math/mathEnv.h>
 #include <math/Quaternion.h>
 #include <math/Sequence.h>
@@ -135,7 +136,7 @@ void PlayerStatus::UpdateAccel(float _deltaTime, PlayerInput* _input, Transform*
 
     // 入力方向を3Dベクトルに変換（Zが前、Xが右）
     Vec3f inputDir3D = {inputDirection[X], 0.0f, inputDirection[Y]};
-    inputDir3D.normalize();
+    inputDir3D = inputDir3D.normalize();
 
     // カメラの向きに合わせて入力方向を回転（ローカル→ワールド変換）
     Vec3f moveDirWorld = inputDir3D * MakeMatrix::RotateY(cameraYaw);
@@ -151,8 +152,7 @@ void PlayerStatus::UpdateAccel(float _deltaTime, PlayerInput* _input, Transform*
     currentDir[Y] = 0.0f;
     currentDir    = currentDir.normalize();
 
-    float alpha  = 1.0f - std::exp(-directionInterpolateRate_ * _deltaTime);
-    moveDirWorld = Lerp<3, float>(currentDir, moveDirWorld, alpha);
+    moveDirWorld = LerpByDeltaTime(currentDir, moveDirWorld, _deltaTime, directionInterpolateRate_);
     moveDirWorld = moveDirWorld.normalize();
 
     // プレイヤーの回転をカメラ方向に合わせる(更新分だけ回転)

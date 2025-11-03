@@ -73,6 +73,11 @@ void PlayerState::OffCollisionGround() {
     onGround_ = false;
 }
 
+void PlayerState::setPlayerMoveState(std::shared_ptr<IPlayerMoveState> _playerMoveState) {
+    moveState_     = _playerMoveState;
+    moveStateEnum_ = moveState_->getState();
+}
+
 void to_json(nlohmann::json& /*j*/, const PlayerState& /*p*/) {
     // 保存するものはない
 }

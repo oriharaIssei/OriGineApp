@@ -55,15 +55,12 @@
         },
         {
             "Components": {
-                "AABBCollider": [],
-                "ModelMeshRenderer": [],
                 "Stage": [
                     {
                         "directory": "./application/resource/Stage",
                         "fileName": "tutorial"
                     }
-                ],
-                "Transform": []
+                ]
             },
             "Name": "Stage",
             "Systems": [
@@ -204,12 +201,12 @@
                 "AABBCollider": [
                     {
                         "max": [
-                            8.0,
+                            14.0,
                             30.0,
                             300.0
                         ],
                         "min": [
-                            -8.0,
+                            -14.0,
                             0.0,
                             0.0
                         ],
@@ -481,12 +478,12 @@
                 "AABBCollider": [
                     {
                         "max": [
-                            8.0,
+                            14.0,
                             30.0,
                             110.0
                         ],
                         "min": [
-                            -8.0,
+                            -14.0,
                             0.0,
                             0.0
                         ],
@@ -758,12 +755,12 @@
                 "AABBCollider": [
                     {
                         "max": [
-                            8.0,
+                            14.0,
                             30.0,
                             200.0
                         ],
                         "min": [
-                            -8.0,
+                            -14.0,
                             0.0,
                             0.0
                         ],
@@ -1120,21 +1117,17 @@
                             ],
                             [
                                 "./application/resource/entities",
-                                "Timer"
-                            ],
-                            [
-                                "./application/resource/entities",
                                 "Trail"
                             ],
                             [
                                 "./application/resource/entities",
-                                "PlayerEmitter"
+                                "Skybox"
                             ]
                         ]
                     }
                 ]
             },
-            "Name": "GameEntityRef",
+            "Name": "EntityRef",
             "Systems": [
                 {
                     "SystemCategory": 0,
@@ -1172,15 +1165,74 @@
                 }
             ],
             "isUnique": true
+        },
+        {
+            "Components": {
+                "EntityReferenceList": [
+                    {
+                        "entityFileList": [
+                            [
+                                "./application/resource/entities",
+                                "trailDissolve"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "trailDistortion1Entity"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "trailGradationEntity"
+                            ]
+                        ]
+                    }
+                ]
+            },
+            "Name": "trailEffectRecipe",
+            "Systems": [
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "ResolveEntityReferences"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "MouseCondition": [
+                    {
+                        "fixCursorPos": [
+                            500.0,
+                            500.0
+                        ],
+                        "isActive": true,
+                        "isFixCursor": true,
+                        "isShowCursor": false
+                    }
+                ]
+            },
+            "Name": "MouseCondition",
+            "Systems": [
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "ApplyMouseConditionSystem"
+                }
+            ],
+            "isUnique": false
         }
     ],
     "Systems": [
         {
+            "ApplyMouseConditionSystem": {
+                "Priority": 0
+            },
             "BillboardTransform": {
                 "Priority": 100
             },
             "ButtonInputSystem": {
                 "Priority": 0
+            },
+            "CameraInitialize": {
+                "Priority": 1
             },
             "CameraInputSystem": {
                 "Priority": 3
@@ -1197,8 +1249,14 @@
             "CollisionPushBackSystem": {
                 "Priority": 5
             },
+            "CreateMeshFromSpline": {
+                "Priority": 0
+            },
+            "CreateSpriteFromTimer": {
+                "Priority": 1
+            },
             "CreateStage": {
-                "Priority": 2
+                "Priority": 1
             },
             "DissolveEffect": {
                 "Priority": 10
@@ -1216,12 +1274,21 @@
                 "Priority": 1
             },
             "FallDetectionSystem": {
-                "Priority": 4
+                "Priority": 6
             },
             "FollowCameraUpdateSystem": {
                 "Priority": 1
             },
             "LineRenderSystem": {
+                "Priority": 0
+            },
+            "MaterialAnimationWorkSystem": {
+                "Priority": 0
+            },
+            "MaterialEffect": {
+                "Priority": 10
+            },
+            "MenuUpdate": {
                 "Priority": 0
             },
             "MoveSystemByRigidBody": {
@@ -1239,11 +1306,14 @@
             "PlayerOnCollision": {
                 "Priority": 10
             },
+            "PlayerPathSplineGenerator": {
+                "Priority": 100
+            },
             "PrimitiveNodeAnimationWorkSystem": {
                 "Priority": 1
             },
             "RegisterWindowResizeEvent": {
-                "Priority": 1
+                "Priority": 0
             },
             "ResolveEntityReferences": {
                 "Priority": 0
@@ -1251,14 +1321,20 @@
             "SceneTransition": {
                 "Priority": 0
             },
+            "SetClearTime": {
+                "Priority": 0
+            },
             "SettingGameCameraTarget": {
                 "Priority": 5
+            },
+            "ShowGameUIByInputDevice": {
+                "Priority": 0
             },
             "SkeletonRenderSystem": {
                 "Priority": 0
             },
             "SkinningAnimationSystem": {
-                "Priority": 0
+                "Priority": 1
             },
             "SkinningMeshRenderSystem": {
                 "Priority": 0
@@ -1270,10 +1346,19 @@
                 "Priority": 0
             },
             "SpriteAnimationSystem": {
-                "Priority": 0
+                "Priority": 1
             },
             "SpriteRenderSystem": {
                 "Priority": 5
+            },
+            "SubSceneActivateByButton": {
+                "Priority": 0
+            },
+            "SubSceneRender": {
+                "Priority": 100
+            },
+            "SubSceneUpdate": {
+                "Priority": 0
             },
             "TakePlayerToStartPosition": {
                 "Priority": 3
@@ -1281,14 +1366,26 @@
             "TexturedMeshRenderSystem": {
                 "Priority": 0
             },
+            "TimeLimitJudgeSystem": {
+                "Priority": 10
+            },
+            "TimerCountDown": {
+                "Priority": 7
+            },
+            "TimerForSprite": {
+                "Priority": 0
+            },
+            "TrailEffectInitialize": {
+                "Priority": 100
+            },
             "TransitionPlayerState": {
                 "Priority": 5
             },
             "TutorialColliderOnCollision": {
-                "Priority": 1
+                "Priority": 4
             },
             "UpdateButtonColorByState": {
-                "Priority": 0
+                "Priority": 1
             },
             "VelocityRenderingSystem": {
                 "Priority": 0

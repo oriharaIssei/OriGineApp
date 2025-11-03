@@ -14,5 +14,5 @@ public:
     void Finalize() override {}
 
 private:
-    void UpdateEntity(Entity& _entity);
+    void UpdateEntity(Entity* _entity) override;
 };

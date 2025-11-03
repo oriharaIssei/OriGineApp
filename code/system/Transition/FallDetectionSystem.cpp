@@ -21,7 +21,7 @@ void FallDetectionSystem::Finalize() {
 }
 
 void FallDetectionSystem::UpdateEntity(Entity* _entity) {
-    constexpr float kFallThresholdY = -20.0f;
+    constexpr float kFallThresholdY = -26.0f;
     Transform* transform            = getComponent<Transform>(_entity);
 
     if (!transform) {
@@ -32,9 +32,11 @@ void FallDetectionSystem::UpdateEntity(Entity* _entity) {
         PlayerStatus* playerStatus = getComponent<PlayerStatus>(_entity);
         PlayerState* playerState   = getComponent<PlayerState>(_entity);
 
+        StageFloor* stageFloor = getComponent<StageFloor>(getEntity(playerState->getLastFloorEntityIndex()));
+
         transform->translate = RetryPos(
             getComponent<Stage>(getUniqueEntity("Stage")),
-            getComponent<StageFloor>(getEntity(playerState->getLastFloorEntityIndex())),
+            stageFloor,
             transform->translate);
 
         if (playerStatus) {
@@ -68,8 +70,9 @@ Vec3f FallDetectionSystem::RetryPos(Stage* _stage, StageFloor* _stageFloor, cons
         }
     }
 
-    auto& controlPoints = _stage->getControlPoints();
-    const Vec3f& from   = controlPoints[_stageFloor->getFromPointIndex()].pos_;
+    auto& controlPoints     = _stage->getControlPoints();
+    const Stage::Link& link = _stage->getLinks()[_stageFloor->getLinkIndex()];
+    Vec3f from              = controlPoints[_stageFloor->getFromPointIndex()].pos_ + Vec3f(0.f, link.height_ * 0.5f, 0.f);
 
     return from + Vec3f(0.0f, kSpawnHeight, kSpawnEpsilonZ);
 }

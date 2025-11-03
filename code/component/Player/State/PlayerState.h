@@ -73,9 +73,6 @@ public:
     PlayerMoveState getStateEnum() const {
         return moveStateEnum_.toEnum();
     }
-    void setState(const PlayerMoveState& _state) {
-        moveStateEnum_ = _state;
-    }
 
     PlayerMoveState getPrevStateEnum() const {
         return preMoveStateEnum_.toEnum();
@@ -87,9 +84,7 @@ public:
     std::shared_ptr<IPlayerMoveState> getPlayerMoveState() const {
         return moveState_;
     }
-    void setPlayerMoveState(std::shared_ptr<IPlayerMoveState> _playerMoveState) {
-        moveState_ = _playerMoveState;
-    }
+    void setPlayerMoveState(std::shared_ptr<IPlayerMoveState> _playerMoveState);
 
     int32_t getGearLevel() const {
         return gearLevel_;

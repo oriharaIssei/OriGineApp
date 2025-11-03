@@ -71,15 +71,16 @@ void PlayerWallRunState::Initialize() {
     PlayerEffectControlParam* effectParam = scene_->getComponent<PlayerEffectControlParam>(playerEntity);
     Vec3f forward                         = direction;
     Quaternion lookForward                = Quaternion::LookAt(forward, axisY);
-    float rotateOffsetOnWallRun              = effectParam->getRotateOffsetOnWallRun();
+    float rotateOffsetOnWallRun           = effectParam->getRotateOffsetOnWallRun();
     bool isRightWall                      = Vec3f::Dot(Vec3f::Cross(axisY, wallNormal_), direction) > 0.0f;
-    Quaternion angleOffset                   = Quaternion::RotateAxisAngle(forward, isRightWall ? rotateOffsetOnWallRun : -rotateOffsetOnWallRun);
+    Quaternion angleOffset                = Quaternion::RotateAxisAngle(forward, isRightWall ? rotateOffsetOnWallRun : -rotateOffsetOnWallRun);
     transform->rotate                     = lookForward * angleOffset;
 
     transform->UpdateMatrix();
 
     // カメラのオフセットを計算
-    CameraController* cameraController = scene_->getComponent<CameraController>(scene_->getUniqueEntity("GameCamera"));
+    Entity* cameraEntity               = scene_->getUniqueEntity("GameCamera");
+    CameraController* cameraController = scene_->getComponent<CameraController>(cameraEntity);
 
     Vec3f targetTargetOffset = cameraController->getTargetOffsetOnWallRun();
     cameraTargetOffsetOnWallRun_ =
@@ -94,6 +95,9 @@ void PlayerWallRunState::Initialize() {
         + axisY * offsetOnWallRun[Y] // 上方向
         + direction * offsetOnWallRun[Z]; // 前方向
     cameraOffsetOnWallRun_ = cameraOffsetOnWallRun_.normalize() * offsetOnWallRun.length();
+
+    // カメラの傾きを徐々に変えるためのタイマーをリセット
+    cameraAngleLerpTimer_ = 0.0f;
 }
 
 void PlayerWallRunState::Update(float _deltaTime) {
@@ -113,20 +117,30 @@ void PlayerWallRunState::Update(float _deltaTime) {
 
     /// TODO: カメラの処理をここに書くべきではない
     // カメラの傾きを徐々に変える
-    CameraController* cameraController = scene_->getComponent<CameraController>(scene_->getUniqueEntity("GameCamera"));
+    Entity* gameCameraEntity = scene_->getUniqueEntity("GameCamera");
+    if (!gameCameraEntity) {
+        return;
+    }
 
+    cameraAngleLerpTimer_ += _deltaTime;
+    float t = cameraAngleLerpTimer_ / kCameraAngleLerpTime_;
+    t       = std::clamp(t, 0.f, 1.f);
+
+    // 一度だけ実行
+    if (t >= 1) {
+        return;
+    }
+
+    CameraController* cameraController = scene_->getComponent<CameraController>(gameCameraEntity);
     if (cameraController) {
         // カメラのオフセットを徐々に元に戻す
-        cameraAngleLerpTimer_ += _deltaTime;
-        float t = cameraAngleLerpTimer_ / kCameraAngleLerpTime_;
-        t       = std::clamp(t, 0.f, 1.f);
-
         const Vec3f& currentOffset = cameraController->getCurrentOffset();
         Vec3f newOffset            = Lerp<3, float>(currentOffset, cameraOffsetOnWallRun_, EaseOutCubic(t));
         cameraController->setCurrentOffset(newOffset);
 
         const Vec3f& currentTargetOffset = cameraController->getCurrentTargetOffset();
         Vec3f newTargetOffset            = Lerp<3, float>(currentTargetOffset, cameraTargetOffsetOnWallRun_, EaseOutCubic(t));
+
         cameraController->setCurrentTargetOffset(newTargetOffset);
     }
 }
@@ -136,6 +150,8 @@ void PlayerWallRunState::Finalize() {
     auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
     auto* transform    = scene_->getComponent<Transform>(playerEntity);
     rigidbody->setUseGravity(true); // 重力を有効
+
+    transform->translate += wallNormal_ * 0.1f;
 
     transform->rotate = Quaternion::Identity();
 }

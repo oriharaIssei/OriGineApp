@@ -12,12 +12,43 @@
     "Entities": [
         {
             "Components": {
+                "CameraTransform": [
+                    {
+                        "aspectRatio": 1.7777777910232544,
+                        "farZ": 1000.0,
+                        "fovAngleY": 0.7853981852531433,
+                        "nearZ": 0.10000000149011612,
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "InitCamera",
+            "Systems": [
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "CameraInitialize"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
                 "Material": [
                     {
                         "color": [
-                            1.0,
-                            1.0,
-                            1.0,
+                            0.04571918025612831,
+                            0.08931277692317963,
+                            0.10126584768295288,
                             1.0
                         ],
                         "enableLighting": false,
@@ -30,11 +61,11 @@
                         "uvRotate": 0.0,
                         "uvScale": [
                             1.0,
-                            0.550000011920929
+                            1.0
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.44999998807907104
+                            0.05999999865889549
                         ]
                     }
                 ],
@@ -44,16 +75,12 @@
                         "effectEntityIdList": [
                             {
                                 "effectType": 0,
-                                "entityID": 2
-                            },
-                            {
-                                "effectType": 2,
-                                "entityID": 4
+                                "entityID": 3
                             }
                         ],
                         "isActive": true,
                         "materialIndex": 0,
-                        "priority": 0
+                        "priority": 5
                     }
                 ],
                 "PlaneRenderer": [
@@ -61,8 +88,8 @@
                         "blendMode": 1,
                         "isRenderer": true,
                         "materialIndex": 0,
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureDirectory": "./application/resource/Texture",
+                        "textureFileName": "lazer.png",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -98,13 +125,13 @@
                         ],
                         "translate": [
                             0.0,
-                            0.0,
-                            4.25
+                            0.019999999552965164,
+                            3.2200000286102295
                         ]
                     }
                 ]
             },
-            "Name": "Entity",
+            "Name": "BG_Effect",
             "Systems": [
                 {
                     "SystemCategory": 5,
@@ -119,90 +146,19 @@
         },
         {
             "Components": {
-                "DissolveEffectParam": [
-                    {
-                        "edgeWidth": 0.0,
-                        "isActive": true,
-                        "materialIndex": 0,
-                        "outLineColor": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "textureFilePath": "./application/resource/Texture/circle.png",
-                        "threshold": 0.028999999165534973
-                    }
-                ],
-                "Material": [
-                    {
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "enableLighting": false,
-                        "shininess": 0.0,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "MaterialEffectPipeLine": [
-                    {
-                        "baseTexturePath": "./application/resource/Texture/gradationLine.png",
-                        "effectEntityIdList": [
-                            {
-                                "effectType": 1,
-                                "entityID": 3
-                            },
-                            {
-                                "effectType": 1,
-                                "entityID": 5
-                            }
-                        ],
-                        "isActive": true,
-                        "materialIndex": 0,
-                        "priority": 0
-                    }
-                ]
-            },
-            "Name": "trailDissolve",
-            "Systems": [
-                {
-                    "SystemCategory": 5,
-                    "SystemName": "MaterialEffect"
-                }
-            ],
-            "isUnique": true
-        },
-        {
-            "Components": {
                 "DistortionEffectParam": [
                     {
                         "distortionBias": [
-                            0.5199999809265137,
+                            0.25,
                             0.0
                         ],
                         "distortionStrength": [
-                            0.5799999833106995,
-                            -0.8600000143051147
+                            1.8899999856948853,
+                            1.75
                         ],
                         "isActive": true,
                         "materialIndex": 0,
-                        "textuerPath": "./application/resource/Texture/bioNoise.png",
+                        "textuerPath": "./application/resource/Texture/waveNoise.png",
                         "use3dObjectList": false
                     }
                 ],
@@ -223,12 +179,12 @@
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
-                            0.5299999713897705,
-                            0.6800000071525574
+                            1.0,
+                            1.0
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.807470440864563
+                            0.745345950126648
                         ]
                     }
                 ],
@@ -236,7 +192,7 @@
                     {
                         "InterpolationType": 0,
                         "colorCurve": [],
-                        "duration": 7.099999904632568,
+                        "duration": 4.800000190734863,
                         "isLoop": true,
                         "isPlay": true,
                         "uvRotateCurve": [],
@@ -250,7 +206,7 @@
                                 ]
                             },
                             {
-                                "time": 7.099999904632568,
+                                "time": 4.800000190734863,
                                 "value": [
                                     0.0,
                                     1.0
@@ -260,14 +216,82 @@
                     }
                 ]
             },
-            "Name": "trailDistortion1Entity",
+            "Name": "Distortion",
             "Systems": [
                 {
                     "SystemCategory": 5,
                     "SystemName": "MaterialAnimationWorkSystem"
                 }
             ],
-            "isUnique": true
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "DissolveEffectParam": [
+                    {
+                        "edgeWidth": 0.01600000075995922,
+                        "isActive": true,
+                        "materialIndex": 0,
+                        "outLineColor": [
+                            0.08331997692584991,
+                            0.6582278609275818,
+                            0.3453032672405243,
+                            1.0
+                        ],
+                        "textureFilePath": "./application/resource/Texture/gradationLine.png",
+                        "threshold": 0.07699999958276749
+                    }
+                ],
+                "Material": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.8379407525062561,
+                            0.0
+                        ]
+                    }
+                ],
+                "MaterialAnimation": [],
+                "MaterialEffectPipeLine": [
+                    {
+                        "baseTexturePath": "./application/resource/Texture/gradationLine.png",
+                        "effectEntityIdList": [
+                            {
+                                "effectType": 1,
+                                "entityID": 2
+                            }
+                        ],
+                        "isActive": true,
+                        "materialIndex": 0,
+                        "priority": 0
+                    }
+                ]
+            },
+            "Name": "Dissolve",
+            "Systems": [
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "MaterialEffect"
+                }
+            ],
+            "isUnique": false
         },
         {
             "Components": {
@@ -307,28 +331,12 @@
                     }
                 ]
             },
-            "Name": "trailGradationEntity",
+            "Name": "Gradation",
             "Systems": [],
-            "isUnique": true
+            "isUnique": false
         },
         {
             "Components": {
-                "DistortionEffectParam": [
-                    {
-                        "distortionBias": [
-                            0.0,
-                            0.0
-                        ],
-                        "distortionStrength": [
-                            1.1699999570846558,
-                            3.859999895095825
-                        ],
-                        "isActive": true,
-                        "materialIndex": 0,
-                        "textuerPath": "./application/resource/Texture/waveNoise.png",
-                        "use3dObjectList": false
-                    }
-                ],
                 "Material": [
                     {
                         "color": [
@@ -346,65 +354,137 @@
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
-                            0.5299999713897705,
-                            0.6800000071525574
+                            1.0,
+                            1.0
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.807470440864563
+                            0.0
                         ]
                     }
                 ],
-                "MaterialAnimation": [
+                "MaterialEffectPipeLine": [
                     {
-                        "InterpolationType": 0,
-                        "colorCurve": [],
-                        "duration": 7.099999904632568,
-                        "isLoop": true,
-                        "isPlay": true,
-                        "uvRotateCurve": [],
-                        "uvScaleCurve": [],
-                        "uvTranslateCurve": [
+                        "baseTexturePath": "./application/resource/Texture/lazer.png",
+                        "effectEntityIdList": [
                             {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0
-                                ]
+                                "effectType": 0,
+                                "entityID": 3
                             },
                             {
-                                "time": 7.099999904632568,
-                                "value": [
-                                    0.0,
-                                    1.0
-                                ]
+                                "effectType": 2,
+                                "entityID": 4
                             }
+                        ],
+                        "isActive": true,
+                        "materialIndex": 0,
+                        "priority": 0
+                    }
+                ],
+                "SphereRenderer": [
+                    {
+                        "blendMode": 1,
+                        "divisionLatitude": 8,
+                        "divisionLongitude": 16,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "radius": 1.0,
+                        "textureDirectory": "",
+                        "textureFileName": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            0.6899999976158142,
+                            0.0,
+                            2.9000000953674316
                         ]
                     }
                 ]
             },
-            "Name": "trailDistortion2Entity",
+            "Name": "Entity",
             "Systems": [
                 {
                     "SystemCategory": 5,
-                    "SystemName": "MaterialAnimationWorkSystem"
+                    "SystemName": "MaterialEffect"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
                 }
             ],
-            "isUnique": true
+            "isUnique": false
         }
     ],
     "Systems": [
         {
+            "ApplyMouseConditionSystem": {
+                "Priority": 0
+            },
+            "ButtonGroupSystem": {
+                "Priority": 2
+            },
+            "ButtonInputSystem": {
+                "Priority": 0
+            },
+            "CameraInitialize": {
+                "Priority": 1
+            },
+            "ChangeSceneByButton": {
+                "Priority": 3
+            },
+            "DissolveEffect": {
+                "Priority": 0
+            },
             "MaterialAnimationWorkSystem": {
                 "Priority": 0
             },
             "MaterialEffect": {
+                "Priority": 5
+            },
+            "RegisterWindowResizeEvent": {
                 "Priority": 0
             },
-            "ResolveEntityReferences": {
-                "Priority": 0
+            "SceneTransition": {
+                "Priority": 5
+            },
+            "SpriteRenderSystem": {
+                "Priority": 1
             },
             "TexturedMeshRenderSystem": {
+                "Priority": 0
+            },
+            "UpdateButtonColorByState": {
                 "Priority": 0
             }
         }

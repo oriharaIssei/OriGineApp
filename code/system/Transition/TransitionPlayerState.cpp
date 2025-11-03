@@ -36,27 +36,29 @@ void TransitionPlayerState::UpdateEntity(Entity* _entity) {
     /// =====================================================
     if (!state->getPlayerMoveState()) {
         state->setPlayerMoveState(CreatePlayerMoveStateByEnum(PlayerMoveState::IDLE, this->getScene(), _entity->getID()));
-        state->setState(PlayerMoveState::IDLE);
     }
 
     /// =====================================================
     // StateUpdate
     /// =====================================================
     state->setPrevState(state->getStateEnum());
-    state->setState(state->getPlayerMoveState()->TransitionState());
+    PlayerMoveState newState = state->getPlayerMoveState()->TransitionState();
 
     // 状態が変わった場合、状態を更新
-    if (state->getStateEnum() != state->getPrevStateEnum()) {
+    if (newState != state->getPrevStateEnum()) {
         state->getPlayerMoveState()->Finalize();
 
-        state->setPlayerMoveState(CreatePlayerMoveStateByEnum(state->getStateEnum(), this->getScene(), _entity->getID()));
+        state->setPlayerMoveState(CreatePlayerMoveStateByEnum(newState, this->getScene(), _entity->getID()));
         state->getPlayerMoveState()->Initialize();
     }
 
     /// =====================================================
     // Fov Y
     /// =====================================================
-    Entity* gameCamera                 = getUniqueEntity("GameCamera");
+    Entity* gameCamera = getUniqueEntity("GameCamera");
+    if (!gameCamera) {
+        return;
+    }
     CameraController* cameraController = getComponent<CameraController>(gameCamera);
     if (cameraController) {
         // fov 更新

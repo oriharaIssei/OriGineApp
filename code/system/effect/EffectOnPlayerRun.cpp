@@ -39,18 +39,6 @@ void EffectOnPlayerRun::UpdateEntity(Entity* entity) {
         return;
     }
 
-    auto playerEmitterEntity             = getUniqueEntity("PlayerEmitter");
-    std::vector<Emitter>* playerEmitters = nullptr;
-    if (playerEmitterEntity) {
-        playerEmitters = getComponents<Emitter>(playerEmitterEntity);
-    }
-
-    auto speedlineParams = getComponents<SpeedlineEffectParam>(getUniqueEntity("Speedline"));
-
-    if (!speedlineParams || !playerEmitters) {
-        return;
-    }
-
     // タイヤの回転
     ModelMeshRenderer* modelMeshRenderer = getComponent<ModelMeshRenderer>(entity);
     if (modelMeshRenderer) {
@@ -92,14 +80,20 @@ void EffectOnPlayerRun::UpdateEntity(Entity* entity) {
         }
     }
 
+    Entity* speedlineEntity                            = getUniqueEntity("Speedline");
+    std::vector<SpeedlineEffectParam>* speedlineParams = nullptr;
+    if (speedlineEntity) {
+        speedlineParams = getComponents<SpeedlineEffectParam>(speedlineEntity);
+    }
+
+    if (!speedlineParams) {
+        return;
+    }
+
     // プレイヤーが止まっているか, ギアレベルが低い場合は エフェクトを停止
     if (state->getStateEnum() == PlayerMoveState::IDLE || state->getGearLevel() < 2) {
         for (auto& speedlineParam : *speedlineParams) {
             speedlineParam.Stop();
-        }
-        for (auto& emitter : *playerEmitters) {
-            emitter.setLeftActiveTime(0.f);
-            emitter.setIsLoop(false);
         }
 
         return;
@@ -114,18 +108,5 @@ void EffectOnPlayerRun::UpdateEntity(Entity* entity) {
         auto& paramData = speedlineParam.getParamData();
         paramData.time -= getMainDeltaTime();
         paramData.intensity = std::lerp(paramData.intensity, intensity, 0.1f);
-    }
-
-    // エミッターも再生
-    Transform* playerTransform = getComponent<Transform>(entity);
-    for (auto& emitter : *playerEmitters) {
-        if (!emitter.IsActive()) {
-            emitter.PlayStart();
-            emitter.setLeftActiveTime(1.f);
-            emitter.setIsLoop(true);
-        }
-
-        emitter.PlayContinue();
-        emitter.setOriginPos(playerTransform->translate);
     }
 }

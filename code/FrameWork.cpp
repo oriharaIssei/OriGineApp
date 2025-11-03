@@ -46,10 +46,12 @@
 #include "system/movement/MenuUpdate.h"
 #include "system/movement/PlayerMoveSystem.h"
 #include "system/movement/PlayerPathSplineGenerator.h"
+#include "system/movement/PlayerUpdateOnTitle.h"
 #include "system/render/StageDebugRender.h"
 #include "system/transition/ApplyMouseConditionSystem.h"
 #include "system/transition/ButtonGroupSystem.h"
 #include "system/transition/ChangeSceneByButton.h"
+#include "system/transition/ExitApplicationByButton.h"
 #include "system/transition/FallDetectionSystem.h"
 #include "system/transition/SceneTransition.h"
 #include "system/transition/SetClearTime.h"
@@ -60,7 +62,6 @@
 #include "system/transition/TimerCountDown.h"
 #include "system/transition/TransitionPlayerState.h"
 #include "system/transition/UpdateButtonColorByState.h"
-#include "system/transition/ExitApplicationByButton.h"
 
 // / =====================================================
 // Application Include
@@ -191,10 +192,11 @@ void RegisterUsingSystems() {
     /// =================================================================================================
     systemRegistry->registerSystem<MoveSystemByRigidBody>();
     systemRegistry->registerSystem<SubSceneUpdate>();
-
     systemRegistry->registerSystem<BillboardTransform>();
     systemRegistry->registerSystem<FollowCameraUpdateSystem>();
     systemRegistry->registerSystem<PlayerMoveSystem>();
+
+    systemRegistry->registerSystem<PlayerUpdateOnTitle>();
 
     systemRegistry->registerSystem<PlayerPathSplineGenerator>();
 

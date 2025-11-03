@@ -33,7 +33,7 @@
                     ],
                     [
                         "./application/resource/entities",
-                        "PlayerEmitter"
+                        "Skybox"
                     ]
                 ]
             }
