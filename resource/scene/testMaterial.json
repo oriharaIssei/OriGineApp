@@ -113,9 +113,9 @@
                 "Transform": [
                     {
                         "rotate": [
+                            -0.0,
                             0.0,
-                            0.0,
-                            0.0,
+                            -0.0,
                             1.0
                         ],
                         "scale": [
@@ -124,9 +124,9 @@
                             1.0
                         ],
                         "translate": [
-                            0.0,
+                            -1.0664125680923462,
                             0.019999999552965164,
-                            3.2200000286102295
+                            6.21999979019165
                         ]
                     }
                 ]
@@ -184,7 +184,7 @@
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.745345950126648
+                            0.6259927749633789
                         ]
                     }
                 ],
@@ -297,10 +297,10 @@
             "Components": {
                 "GradationTextureComponent": [
                     {
-                        "inputChannel": 3,
+                        "inputChannel": 0,
                         "isActive": true,
                         "materialIndex": 0,
-                        "outputChannel": 3,
+                        "outputChannel": 0,
                         "texturePath": "./application/resource/Texture/gradation.png"
                     }
                 ],
@@ -378,7 +378,7 @@
                         ],
                         "isActive": true,
                         "materialIndex": 0,
-                        "priority": 0
+                        "priority": 3
                     }
                 ],
                 "SphereRenderer": [
@@ -414,9 +414,9 @@
                 "Transform": [
                     {
                         "rotate": [
+                            -0.0,
                             0.0,
-                            0.0,
-                            0.0,
+                            -0.0,
                             1.0
                         ],
                         "scale": [
@@ -425,9 +425,9 @@
                             1.0
                         ],
                         "translate": [
-                            0.6899999976158142,
+                            1.5566160678863525,
                             0.0,
-                            2.9000000953674316
+                            6.739999771118164
                         ]
                     }
                 ]

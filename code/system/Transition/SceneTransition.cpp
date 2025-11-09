@@ -66,7 +66,6 @@ void SceneTransition::Update() {
 #ifdef _DEBUG
     // 計測終了
     deltaTimer_.Update();
-    runningTime_ = deltaTimer_.getDeltaTime();
 #endif
 }
 
