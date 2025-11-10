@@ -42,7 +42,7 @@ void MyGame::Initialize(const std::string& _commandLine) {
         sceneManager_->getStartupSceneNameRef().setValue(_commandLine);
         LOG_DEBUG("GetCommandLine : {}", _commandLine);
     } else {
-        LOG_DEBUG("MyGame : No command line argument detected. Using default startup scene '{}'.", sceneManager_->getStartupSceneNameRef().GetValue()->c_str());
+        LOG_DEBUG("No command line argument detected. Using default startup scene '{}'.", sceneManager_->getStartupSceneNameRef().getValue()->c_str());
     }
 
     RegisterUsingComponents();

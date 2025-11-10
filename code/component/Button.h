@@ -6,13 +6,15 @@
 #include <vector>
 
 /// engine
-#include <input/Input.h>
+#include "input/GamePadInput.h"
+#include "input/KeyboardInput.h"
+
 // component
 #include "component/renderer/Sprite.h"
 
 /// math
-#include <Vector4.h>
 #include <stdint.h>
+#include <Vector4.h>
 
 /// <summary>
 /// Sprite を Button として扱うためのクラス
@@ -28,7 +30,7 @@ public:
 
     void Initialize(Entity* _entity);
 
-    void Edit(Scene* _scene, Entity* _entity,  const std::string& _parentLabel);
+    void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel);
 
     void Finalize();
 

@@ -7,7 +7,7 @@
 
 /// engine
 // lib
-#include "input/Input.h"
+#include "input/InputManager.h"
 
 /// math
 #include "math/Vector2.h"

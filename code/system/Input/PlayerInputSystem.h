@@ -1,8 +1,6 @@
 #pragma once
 #include "system/ISystem.h"
 
-class Input;
-
 /// <summary>
 /// PlayerのInputを処理するシステム
 /// </summary>
@@ -18,8 +16,4 @@ public:
 
 private:
     void UpdateEntity(Entity* _entity) override;
-
-
-private:
-    Input* input_ = nullptr;
 };

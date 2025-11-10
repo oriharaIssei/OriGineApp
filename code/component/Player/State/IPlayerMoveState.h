@@ -8,7 +8,7 @@
 /// engine
 #include "scene/Scene.h"
 // lib
-#include "input/Input.h"
+#include "input/InputManager.h"
 
 /// component
 #include "component/Player/State/PlayerState.h"

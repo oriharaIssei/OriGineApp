@@ -1,7 +1,7 @@
 #include "ButtonGroupSystem.h"
 
 /// engine
-#include "input/Input.h"
+#include "input/InputManager.h"
 
 /// component
 #include "component/Button.h"
@@ -14,7 +14,11 @@ void ButtonGroupSystem::Initialize() {}
 void ButtonGroupSystem::Finalize() {}
 
 void ButtonGroupSystem::UpdateEntity(Entity* _entity) {
-    Input* input      = Input::getInstance();
+    InputManager* inputManager = InputManager::getInstance();
+    KeyboardInput* keyInput    = inputManager->getKeyboard();
+    MouseInput* mouseInput     = inputManager->getMouse();
+    GamePadInput* gamePadInput = inputManager->getGamePad();
+
     auto* buttonGroup = getComponent<ButtonGroup>(_entity);
     if (buttonGroup == nullptr) {
         return;
@@ -55,15 +59,16 @@ void ButtonGroupSystem::UpdateEntity(Entity* _entity) {
     bool isReleased = currentButton->isReleased();
 
     // 決定ボタンの判定
-    if (input->isPadActive()) {
+    // pad が有効な場合は pad 優先
+    if (gamePadInput->isActive()) {
         for (const auto& button : buttonGroup->getDecidePadButtons()) {
             if (isPressed) {
-                if (input->isPressButton(button)) {
+                if (gamePadInput->isPress(button)) {
                     isPressed = true;
                     break;
                 }
             } else {
-                if (input->isReleaseButton(button)) {
+                if (gamePadInput->isRelease(button)) {
                     isReleased = true;
                     break;
                 }
@@ -73,12 +78,12 @@ void ButtonGroupSystem::UpdateEntity(Entity* _entity) {
     if (!isReleased) {
         for (const auto& key : buttonGroup->getDecideKeys()) {
             if (isPressed) {
-                if (input->isPressKey(key)) {
+                if (keyInput->isPress(key)) {
                     isPressed = true;
                     break;
                 }
             } else {
-                if (input->isTriggerKey(key)) {
+                if (keyInput->isTrigger(key)) {
                     isReleased = true;
                     break;
                 }
@@ -96,15 +101,15 @@ void ButtonGroupSystem::UpdateEntity(Entity* _entity) {
     // 選択ボタンの変更
     int32_t delta = 0;
 
-    if (input->isPadActive()) {
+    if (gamePadInput->isActive()) {
         for (const auto& button : buttonGroup->getSelectAddPadButtons()) {
-            if (input->isTriggerButton(button)) {
+            if (gamePadInput->isTrigger(button)) {
                 ++delta;
                 break;
             }
         }
         for (const auto& button : buttonGroup->getSelectSubPadButtons()) {
-            if (input->isTriggerButton(button)) {
+            if (gamePadInput->isTrigger(button)) {
                 --delta;
                 break;
             }
@@ -112,12 +117,12 @@ void ButtonGroupSystem::UpdateEntity(Entity* _entity) {
     }
 
     for (const auto& key : buttonGroup->getSelectAddKeys()) {
-        if (input->isTriggerKey(key)) {
+        if (keyInput->isTrigger(key)) {
             ++delta;
         }
     }
     for (const auto& key : buttonGroup->getSelectSubKeys()) {
-        if (input->isTriggerKey(key)) {
+        if (keyInput->isTrigger(key)) {
             --delta;
         }
     }

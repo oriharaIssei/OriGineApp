@@ -3,7 +3,7 @@
 /// engine
 // ecs
 
-#include "input/Input.h"
+#include "input/InputManager.h"
 
 /// externals
 // imgui

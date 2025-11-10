@@ -1,7 +1,7 @@
 #include "ShowGameUIByInputDevice.h"
 
 /// engine
-#include "input/Input.h"
+#include "input/InputManager.h"
 
 /// component
 #include "component/renderer/Sprite.h"
@@ -12,7 +12,7 @@ void ShowGameUIByInputDevice::Initialize() {}
 void ShowGameUIByInputDevice::Finalize() {}
 
 void ShowGameUIByInputDevice::UpdateEntity(Entity* _entity) {
-    bool isGamePad = Input::getInstance()->isPadActive();
+    bool isGamePad = InputManager::getInstance()->getGamePad()->isActive();
 
     // ui Entity は keyUI, padUI の2つの SpriteRenderer を持っている
     auto keyUI = getComponent<SpriteRenderer>(_entity);

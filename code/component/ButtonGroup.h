@@ -5,7 +5,7 @@
 #include <unordered_map>
 
 /// engine
-#include "input/Input.h"
+#include "input/InputManager.h"
 
 /// <summary>
 /// 1シーン内で複数のボタンをグループ化し、選択と決定の操作を管理するコンポーネント

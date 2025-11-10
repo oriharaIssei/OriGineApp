@@ -2,8 +2,6 @@
 
 #include "system/ISystem.h"
 
-class Input;
-
 /// <summary>
 /// ボタン入力を処理するシステム
 /// </summary>
@@ -18,7 +16,4 @@ public:
 
 protected:
     virtual void UpdateEntity(Entity* _entity);
-
-private:
-    Input* input_ = nullptr;
 };
