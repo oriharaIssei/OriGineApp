@@ -3,15 +3,17 @@
 /// stl
 #include <algorithm>
 
+/// engine
+// input
+#include "input/GamePadInput.h"
+#include "input/KeyboardInput.h"
+#include "input/MouseInput.h"
 /// ecs
 #define ENGINE_ECS
 #define DELTA_TIME
 #include "EngineInclude.h"
 // component
 #include "component/Camera/CameraController.h"
-// lib
-#include "input/InputManager.h"
-
 /// math
 #include <numbers>
 
@@ -19,8 +21,8 @@ void CameraInputSystem::Initialize() {}
 void CameraInputSystem::Finalize() {}
 
 void CameraInputSystem::UpdateEntity(Entity* _entity) {
-    GamePadInput* padInput = InputManager::getInstance()->getGamePad();
-    MouseInput* mouseInput = InputManager::getInstance()->getMouse();
+    GamePadInput* padInput = getScene()->getGamePadInput();
+    MouseInput* mouseInput = getScene()->getMouseInput();
 
     CameraController* cameraController = getComponent<CameraController>(_entity);
 
@@ -42,7 +44,7 @@ void CameraInputSystem::UpdateEntity(Entity* _entity) {
 
         // 角度制限を適用
         destinationAngleXY[X] = std::clamp(destinationAngleXY[X], cameraController->getMinRotateX(), cameraController->getMaxRotateX());
-       
+
         cameraController->setDestinationAngleXY(destinationAngleXY);
     }
 }

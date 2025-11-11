@@ -4,7 +4,9 @@
 #define ENGINE_ECS
 #include "EngineInclude.h"
 // ingput
-#include "input/InputManager.h"
+#include "input/GamePadInput.h"
+#include "input/KeyboardInput.h"
+#include "input/MouseInput.h"
 // component
 #include "component/Button.h"
 
@@ -13,11 +15,9 @@ void ButtonInputSystem::Initialize() {}
 void ButtonInputSystem::Finalize() {}
 
 void ButtonInputSystem::UpdateEntity(Entity* _entity) {
-    InputManager* inputManager = InputManager::getInstance();
-
-    KeyboardInput* keyInput = inputManager->getKeyboard();
-    MouseInput* mouseInput  = inputManager->getMouse();
-    GamePadInput* padInput  = inputManager->getGamePad();
+    KeyboardInput* keyInput = getScene()->getKeyboardInput();
+    MouseInput* mouseInput  = getScene()->getMouseInput();
+    GamePadInput* padInput  = getScene()->getGamePadInput();
 
     std::vector<Button>* buttons = getComponents<Button>(_entity);
 

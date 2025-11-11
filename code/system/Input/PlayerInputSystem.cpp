@@ -4,8 +4,9 @@
 #define ENGINE_ECS
 #define DELTA_TIME
 #include "EngineInclude.h"
-
-#include "input/InputManager.h"
+// input
+#include "input/GamePadInput.h"
+#include "input/KeyboardInput.h"
 
 /// component
 #include "component/Player/PlayerInput.h"
@@ -15,8 +16,8 @@ void PlayerInputSystem::Initialize() {}
 void PlayerInputSystem::Finalize() {}
 
 void PlayerInputSystem::UpdateEntity(Entity* _entity) {
-    KeyboardInput* keyInput = InputManager::getInstance()->getKeyboard();
-    GamePadInput* padInput  = InputManager::getInstance()->getGamePad();
+    KeyboardInput* keyInput = getScene()->getKeyboardInput();
+    GamePadInput* padInput  = getScene()->getGamePadInput();
 
     PlayerInput* playerInput = getComponent<PlayerInput>(_entity);
     PlayerState* state       = getComponent<PlayerState>(_entity);

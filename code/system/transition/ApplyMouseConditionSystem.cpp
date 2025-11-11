@@ -1,7 +1,7 @@
 #include "ApplyMouseConditionSystem.h"
 
 /// engine
-#include "input/InputManager.h"
+#include "input/MouseInput.h"
 
 /// component
 #include "component/MouseCondition.h"
@@ -18,7 +18,7 @@ void ApplyMouseConditionSystem::UpdateEntity(Entity* _entity) {
         return;
     }
 
-    MouseInput* mouseInput = InputManager::getInstance()->getMouse();
+    MouseInput* mouseInput = getScene()->getMouseInput();
 
     for (auto& condition : *conditions) {
         if (!condition.isActive()) {

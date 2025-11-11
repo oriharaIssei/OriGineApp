@@ -1,7 +1,8 @@
 #include "ButtonGroupSystem.h"
 
 /// engine
-#include "input/InputManager.h"
+#include "input/GamePadInput.h"
+#include "input/KeyboardInput.h"
 
 /// component
 #include "component/Button.h"
@@ -14,10 +15,8 @@ void ButtonGroupSystem::Initialize() {}
 void ButtonGroupSystem::Finalize() {}
 
 void ButtonGroupSystem::UpdateEntity(Entity* _entity) {
-    InputManager* inputManager = InputManager::getInstance();
-    KeyboardInput* keyInput    = inputManager->getKeyboard();
-    MouseInput* mouseInput     = inputManager->getMouse();
-    GamePadInput* gamePadInput = inputManager->getGamePad();
+    KeyboardInput* keyInput    = getScene()->getKeyboardInput();
+    GamePadInput* gamePadInput = getScene()->getGamePadInput();
 
     auto* buttonGroup = getComponent<ButtonGroup>(_entity);
     if (buttonGroup == nullptr) {
