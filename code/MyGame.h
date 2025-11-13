@@ -25,10 +25,10 @@ public:
     void Run();
 
 private:
-    SceneManager* sceneManager_ = nullptr;
+    std::unique_ptr<SceneManager> sceneManager_ = nullptr;
 
 #ifdef _DEVELOP
-    bool isRecording_                         = true;
+    bool isRecording_                         = false;
     std::unique_ptr<ReplayRecorder> recorder_ = nullptr;
 #endif // _DEVELOP
 };

@@ -11,6 +11,7 @@
 #include "component/Player/PlayerStatus.h"
 #include "component/Player/State/PlayerState.h"
 
+#include "component/Stage/Stage.h"
 #include "component/TimerComponent.h"
 
 void PlayerOnCollision::Initialize() {
@@ -30,6 +31,7 @@ void PlayerOnCollision::UpdateEntity(Entity* _entity) {
     if (state == nullptr) {
         return;
     }
+    // 毎フレーム、地面・壁との衝突状態をリセット
     state->OffCollisionGround();
     state->OffCollisionWall();
 
@@ -39,8 +41,12 @@ void PlayerOnCollision::UpdateEntity(Entity* _entity) {
 
         // ゴール と 衝突したか
         if (collidedEntity->getDataType().find("Goal") != std::string::npos) {
-            // Entity* timer = getUniqueEntity("Timer");
-            // Stage::setClearTime(getComponent<TimerComponent>(timer)->getCurrentTime());
+            Entity* timer = getUniqueEntity("Timer");
+
+            // クリア時間をセット
+            if (timer) {
+                Stage::setClearTime(getComponent<TimerComponent>(timer)->getCurrentTime());
+            }
 
             // ゴールと衝突した場合は、ゴールに到達したと判断する
             state->setGoal(true);

@@ -15,12 +15,12 @@
 /// log
 #include "logger/Logger.h"
 
-std::vector<std::string> ParseCommandLine(LPSTR lpCmdLine);
+std::vector<std::string> ParseCommandLine();
 
-int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR _lpCmdLine, int) {
+int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
     DxDebug::getInstance()->InitializeDebugger();
 
-    std::string cmdLine(_lpCmdLine);
+    std::vector<std::string> cmdLines = ParseCommandLine();
 
     Logger::Initialize();
 
@@ -28,7 +28,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR _lpCmdLine, int) {
     {
         std::unique_ptr<MyEditor> editorApp = std::make_unique<MyEditor>();
 
-        editorApp->Initialize(cmdLine);
+        editorApp->Initialize(cmdLines);
         DxDebug::getInstance()->CreateInfoQueue();
 
         editorApp->Run();
@@ -39,7 +39,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR _lpCmdLine, int) {
     {
         std::unique_ptr<MyGame> gameApp = std::make_unique<MyGame>();
 
-        gameApp->Initialize(cmdLine);
+        gameApp->Initialize(cmdLines);
         DxDebug::getInstance()->CreateInfoQueue();
 
         gameApp->Run();
@@ -53,7 +53,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR _lpCmdLine, int) {
     return 0;
 }
 
-std::vector<std::string> ParseCommandLine(LPSTR lpCmdLine) {
+std::vector<std::string> ParseCommandLine() {
     int argc     = 0;
     LPWSTR* argv = CommandLineToArgvW(GetCommandLineW(), &argc);
 

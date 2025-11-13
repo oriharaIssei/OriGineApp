@@ -15,13 +15,9 @@ ChangeSceneByButton::ChangeSceneByButton()
 
 ChangeSceneByButton::~ChangeSceneByButton() {}
 
-void ChangeSceneByButton::Initialize() {
-    sceneManager_ = SceneManager::getInstance();
-}
+void ChangeSceneByButton::Initialize() {}
 
-void ChangeSceneByButton::Finalize() {
-    sceneManager_ = nullptr;
-}
+void ChangeSceneByButton::Finalize() {}
 
 void ChangeSceneByButton::UpdateEntity(Entity* _entity) {
     Button* button = getComponent<Button>(_entity);

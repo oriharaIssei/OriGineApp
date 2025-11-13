@@ -15,7 +15,7 @@ void ExitApplicationByButton::UpdateEntity(Entity* _entity) {
     }
     for (const auto& button : *buttons) {
         if (button.isReleased()) {
-            SceneManager::getInstance()->setExitGame(true);
+            getScene()->getSceneManager()->setExitGame(true);
             return;
         }
     }

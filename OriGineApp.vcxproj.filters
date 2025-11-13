@@ -16,6 +16,9 @@
     <Filter Include="component\Stage">
       <UniqueIdentifier>{BBBDD102-2749-3FC7-305A-C2BB9C649BC7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\spline">
+      <UniqueIdentifier>{72396CA7-5E32-8BF9-8764-707E73BC6A05}</UniqueIdentifier>
+    </Filter>
     <Filter Include="system">
       <UniqueIdentifier>{8AE4EE1C-7686-19F3-5F41-2D474B82A043}</UniqueIdentifier>
     </Filter>
@@ -57,6 +60,9 @@
     <ClInclude Include="code\component\MouseCondition.h">
       <Filter>component</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\Player\PlayerEffectControlParam.h">
+      <Filter>component\Player</Filter>
+    </ClInclude>
     <ClInclude Include="code\component\Player\PlayerInput.h">
       <Filter>component\Player</Filter>
     </ClInclude>
@@ -76,6 +82,9 @@
       <Filter>component\Player\State</Filter>
     </ClInclude>
     <ClInclude Include="code\component\Player\State\PlayerJumpState.h">
+      <Filter>component\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\Player\State\PlayerMoveStateFactory.h">
       <Filter>component\Player\State</Filter>
     </ClInclude>
     <ClInclude Include="code\component\Player\State\PlayerState.h">
@@ -102,11 +111,17 @@
     <ClInclude Include="code\component\TimerComponent.h">
       <Filter>component</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\spline\SplinePoints.h">
+      <Filter>component\spline</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\collision\PlayerOnCollision.h">
       <Filter>system\collision</Filter>
     </ClInclude>
     <ClInclude Include="code\system\collision\TutorialColliderOnCollision.h">
       <Filter>system\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\effect\CreateMeshFromSpline.h">
+      <Filter>system\effect</Filter>
     </ClInclude>
     <ClInclude Include="code\system\effect\EffectOnPlayerGearup.h">
       <Filter>system\effect</Filter>
@@ -132,6 +147,9 @@
     <ClInclude Include="code\system\initialize\TakePlayerToStartPosition.h">
       <Filter>system\initialize</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\initialize\TrailEffectInitialize.h">
+      <Filter>system\initialize</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\input\ButtonInputSystem.h">
       <Filter>system\input</Filter>
     </ClInclude>
@@ -153,6 +171,12 @@
     <ClInclude Include="code\system\movement\PlayerMoveSystem.h">
       <Filter>system\movement</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\movement\PlayerPathSplineGenerator.h">
+      <Filter>system\movement</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\movement\PlayerUpdateOnTitle.h">
+      <Filter>system\movement</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\render\StageDebugRender.h">
       <Filter>system\render</Filter>
     </ClInclude>
@@ -163,6 +187,9 @@
       <Filter>system\transition</Filter>
     </ClInclude>
     <ClInclude Include="code\system\transition\ChangeSceneByButton.h">
+      <Filter>system\transition</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\transition\ExitApplicationByButton.h">
       <Filter>system\transition</Filter>
     </ClInclude>
     <ClInclude Include="code\system\transition\FallDetectionSystem.h">
@@ -195,14 +222,6 @@
     <ClInclude Include="code\system\transition\UpdateButtonColorByState.h">
       <Filter>system\transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\Player\State\PlayerMoveStateFactory.h" />
-    <ClInclude Include="code\component\spline\SplinePoints.h" />
-    <ClInclude Include="code\system\effect\CreateMeshFromSpline.h" />
-    <ClInclude Include="code\system\movement\PlayerPathSplineGenerator.h" />
-    <ClInclude Include="code\system\initialize\TrailEffectInitialize.h" />
-    <ClInclude Include="code\component\Player\PlayerEffectControlParam.h" />
-    <ClInclude Include="code\system\transition\ExitApplicationByButton.h" />
-    <ClInclude Include="code\system\movement\PlayerUpdateOnTitle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -219,6 +238,9 @@
     </ClCompile>
     <ClCompile Include="code\component\MouseCondition.cpp">
       <Filter>component</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Player\PlayerEffectControlParam.cpp">
+      <Filter>component\Player</Filter>
     </ClCompile>
     <ClCompile Include="code\component\Player\PlayerInput.cpp">
       <Filter>component\Player</Filter>
@@ -239,6 +261,9 @@
       <Filter>component\Player\State</Filter>
     </ClCompile>
     <ClCompile Include="code\component\Player\State\PlayerJumpState.cpp">
+      <Filter>component\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\Player\State\PlayerMoveStateFactory.cpp">
       <Filter>component\Player\State</Filter>
     </ClCompile>
     <ClCompile Include="code\component\Player\State\PlayerState.cpp">
@@ -265,12 +290,18 @@
     <ClCompile Include="code\component\TimerComponent.cpp">
       <Filter>component</Filter>
     </ClCompile>
+    <ClCompile Include="code\component\spline\SplinePoints.cpp">
+      <Filter>component\spline</Filter>
+    </ClCompile>
     <ClCompile Include="code\main.cpp" />
     <ClCompile Include="code\system\collision\PlayerOnCollision.cpp">
       <Filter>system\collision</Filter>
     </ClCompile>
     <ClCompile Include="code\system\collision\TutorialColliderOnCollision.cpp">
       <Filter>system\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\effect\CreateMeshFromSpline.cpp">
+      <Filter>system\effect</Filter>
     </ClCompile>
     <ClCompile Include="code\system\effect\EffectOnPlayerGearup.cpp">
       <Filter>system\effect</Filter>
@@ -296,6 +327,9 @@
     <ClCompile Include="code\system\initialize\TakePlayerToStartPosition.cpp">
       <Filter>system\initialize</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\initialize\TrailEffectInitialize.cpp">
+      <Filter>system\initialize</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\input\ButtonInputSystem.cpp">
       <Filter>system\input</Filter>
     </ClCompile>
@@ -317,6 +351,12 @@
     <ClCompile Include="code\system\movement\PlayerMoveSystem.cpp">
       <Filter>system\movement</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\movement\PlayerPathSplineGenerator.cpp">
+      <Filter>system\movement</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\movement\PlayerUpdateOnTitle.cpp">
+      <Filter>system\movement</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\render\StageDebugRender.cpp">
       <Filter>system\render</Filter>
     </ClCompile>
@@ -327,6 +367,9 @@
       <Filter>system\transition</Filter>
     </ClCompile>
     <ClCompile Include="code\system\transition\ChangeSceneByButton.cpp">
+      <Filter>system\transition</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\transition\ExitApplicationByButton.cpp">
       <Filter>system\transition</Filter>
     </ClCompile>
     <ClCompile Include="code\system\transition\FallDetectionSystem.cpp">
@@ -359,13 +402,5 @@
     <ClCompile Include="code\system\transition\UpdateButtonColorByState.cpp">
       <Filter>system\transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\Player\State\PlayerMoveStateFactory.cpp" />
-    <ClCompile Include="code\component\spline\SplinePoints.cpp" />
-    <ClCompile Include="code\system\effect\CreateMeshFromSpline.cpp" />
-    <ClCompile Include="code\system\movement\PlayerPathSplineGenerator.cpp" />
-    <ClCompile Include="code\system\initialize\TrailEffectInitialize.cpp" />
-    <ClCompile Include="code\component\Player\PlayerEffectControlParam.cpp" />
-    <ClCompile Include="code\system\transition\ExitApplicationByButton.cpp" />
-    <ClCompile Include="code\system\movement\PlayerUpdateOnTitle.cpp" />
   </ItemGroup>
 </Project>

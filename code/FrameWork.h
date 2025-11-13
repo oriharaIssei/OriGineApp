@@ -1,6 +1,8 @@
 #pragma once
 
+/// stl
 #include <string>
+#include <vector>
 
 class Engine;
 class GlobalVariables;
