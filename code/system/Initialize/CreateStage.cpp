@@ -176,8 +176,8 @@ void CreateStage::UpdateEntity(Entity* _entity) {
         // BoxRenderer
         ///==========================================
         BoxRenderer renderer;
-        Vec3f size = max - min;
-        renderer.getPrimitive().setSize(size);
+        Vec3f size                        = max - min;
+        renderer.getPrimitive().halfSize_ = size * 0.5f;
         renderer.setMaterialIndex(0);
         addComponent<BoxRenderer>(createdEntity, renderer);
 

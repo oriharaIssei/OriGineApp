@@ -128,10 +128,10 @@ void EffectOnPlayerGearup::UpdateShockWaveRing(Entity* _entity, Transform* _play
             RingRenderer* ringRenderer          = dynamic_cast<RingRenderer*>(object.get());
             ringRenderer->getTransform().parent = _playerTransform; // PlayerのTransformを親に設定
 
-            ringRenderer->getTransform().translate = shockWaveOffset_; // 初期位置を設定
-            ringRenderer->getTransform().rotate    = _playerTransform->rotate;
-            ringRenderer->getPrimitive().setInnerRadius(minInnerRadius_);
-            ringRenderer->getPrimitive().setOuterRadius(minOuterRadius_);
+            ringRenderer->getTransform().translate    = shockWaveOffset_; // 初期位置を設定
+            ringRenderer->getTransform().rotate       = _playerTransform->rotate;
+            ringRenderer->getPrimitive().innerRadius_ = minInnerRadius_;
+            ringRenderer->getPrimitive().outerRadius_ = minOuterRadius_;
         }
 
         shockWaveState_.currentTime = 0.f; // 時間をリセット
@@ -150,11 +150,11 @@ void EffectOnPlayerGearup::UpdateShockWaveRing(Entity* _entity, Transform* _play
             }
             RingRenderer* ringRenderer = dynamic_cast<RingRenderer*>(object.get());
 
-            float innerRadius = std::lerp(minInnerRadius_, maxInnerRadius_, easeT);
-            float outerRadius = std::lerp(minOuterRadius_, maxOuterRadius_, easeT);
-            ringRenderer->getPrimitive().setInnerRadius(innerRadius);
-            ringRenderer->getPrimitive().setOuterRadius(outerRadius);
-            ringRenderer->createMesh(&ringRenderer->getMeshGroup()->back());
+            float innerRadius                         = std::lerp(minInnerRadius_, maxInnerRadius_, easeT);
+            float outerRadius                         = std::lerp(minOuterRadius_, maxOuterRadius_, easeT);
+            ringRenderer->getPrimitive().innerRadius_ = innerRadius;
+            ringRenderer->getPrimitive().outerRadius_ = outerRadius;
+            ringRenderer->CreateMesh(&ringRenderer->getMeshGroup()->back());
         }
     };
 }

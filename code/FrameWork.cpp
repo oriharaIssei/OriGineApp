@@ -129,6 +129,7 @@ void RegisterUsingComponents() {
     componentRegistry->registerComponent<SphereRenderer>();
     componentRegistry->registerComponent<SkyboxRenderer>();
     componentRegistry->registerComponent<SpriteRenderer>();
+    componentRegistry->registerComponent<CylinderRenderer>();
 
     componentRegistry->registerComponent<TimerComponent>();
     componentRegistry->registerComponent<TimerForSpriteComponent>();
