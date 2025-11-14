@@ -30,6 +30,7 @@ void PlayerWallRunState::Initialize() {
 
     prevVelo_ = rigidbody->getVelocity(); // 壁ジャンプ前の速度を保存
 
+    // 進行方向を計算
     wallNormal_     = state->getWallCollisionNormal();
     Vec3f direction = Vec3f::Cross(wallNormal_, axisY);
     if (direction.lengthSq() == 0.0f) {
@@ -41,7 +42,7 @@ void PlayerWallRunState::Initialize() {
         direction = -direction;
     }
 
-    float speed = rigidbody->getMaxXZSpeed();
+    playerSpeed_ = rigidbody->getMaxXZSpeed();
 
     // 基準レベル未満なら レベル+1
     int32_t gearLevel = state->getGearLevel();
@@ -56,11 +57,11 @@ void PlayerWallRunState::Initialize() {
         playerStatus->setCurrentMaxSpeed(playerStatus->CalculateSpeedByGearLevel(addedGearLevel));
         rigidbody->setMaxXZSpeed(playerStatus->getCurrentMaxSpeed());
 
-        speed = rigidbody->getMaxXZSpeed();
+        playerSpeed_ = rigidbody->getMaxXZSpeed();
     }
 
     // 移動方向を回転
-    Vec3f velo = speed * direction;
+    Vec3f velo = playerSpeed_ * direction;
     rigidbody->setVelocity(velo);
     rigidbody->setUseGravity(false); // 重力を無効
 
@@ -77,6 +78,12 @@ void PlayerWallRunState::Initialize() {
     transform->rotate                     = lookForward * angleOffset;
 
     transform->UpdateMatrix();
+
+    // speedRate_ と speedRumpUpTime_ をリセット
+    speedRate_ = playerStatus->getWallRunRate();
+
+    speedRumpUpTime_  = playerStatus->getWallRunRampUpTime();
+    speedRumpUpTimer_ = 0.0f;
 
     // カメラのオフセットを計算
     Entity* cameraEntity               = scene_->getUniqueEntity("GameCamera");
@@ -109,11 +116,24 @@ void PlayerWallRunState::Update(float _deltaTime) {
     transform->translate -= wallNormal_ * 0.1f;
     transform->UpdateMatrix();
 
+    // 壁との衝突判定の残り時間を更新
+    // これが0以下になると 壁から離れた と判定される
     if (state->isCollisionWithWall()) {
         separationLeftTime_ = separationGraceTime_;
     } else {
-        separationLeftTime_ -= _deltaTime; // 壁との衝突判定の残り時間を減少
+        separationLeftTime_ -= _deltaTime;
     }
+
+    // RumpUp 処理
+    speedRumpUpTimer_ += _deltaTime;
+    float rumpUpT = speedRumpUpTimer_ / speedRumpUpTime_;
+    rumpUpT       = std::clamp(rumpUpT, 0.f, 1.f);
+    float currentSpeedRate_    = std::lerp(1.f, speedRate_, EaseOutCubic(rumpUpT));
+    // 速度を更新
+    auto* rigidbody = scene_->getComponent<Rigidbody>(playerEntity);
+    Vec3f direction = rigidbody->getVelocity().normalize();
+    Vec3f newVelo   = direction * (playerSpeed_ * currentSpeedRate_);
+    rigidbody->setVelocity(newVelo);
 
     /// TODO: カメラの処理をここに書くべきではない
     // カメラの傾きを徐々に変える

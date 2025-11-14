@@ -70,9 +70,12 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity*
     }
 
     DragGuiCommand("directionInterpolateRate", directionInterpolateRate_);
+
     DragGuiCommand("jumpPower", jumpPower_);
     DragGuiCommand("fallPower", fallPower_);
+
     DragGuiCommand("wallRunRate", wallRunRate_);
+    DragGuiCommand("wallRunRampUpTime", wallRunRampUpTime_, 0.01f);
     DragGuiVectorCommand<3, float>("WallJumpOffset", wallJumpOffset_, 0.01f);
 
 #endif // _DEBUG
@@ -97,6 +100,7 @@ void PlayerStatus::Debug(Scene* /*_scene*/, Entity* /*_entity*/, const std::stri
     ImGui::Text("Cool Time Up Rate Common Rate : %.2f", coolTimeAddRateCommonRate_);
     ImGui::Spacing();
     ImGui::Text("Wall Run Rate             : %.2f", wallRunRate_);
+    ImGui::Text("Wall Run Ramp Up Time     : %.2f", wallRunRampUpTime_);
     ImGui::Text("Wall Jump Offset       : (%.2f, %.2f, %.2f)", wallJumpOffset_[X], wallJumpOffset_[Y], wallJumpOffset_[Z]);
     ImGui::Text("Direction Interpolate Rate: %.2f", directionInterpolateRate_);
 
@@ -136,7 +140,7 @@ void PlayerStatus::UpdateAccel(float _deltaTime, PlayerInput* _input, Transform*
 
     // 入力方向を3Dベクトルに変換（Zが前、Xが右）
     Vec3f inputDir3D = {inputDirection[X], 0.0f, inputDirection[Y]};
-    inputDir3D = inputDir3D.normalize();
+    inputDir3D       = inputDir3D.normalize();
 
     // カメラの向きに合わせて入力方向を回転（ローカル→ワールド変換）
     Vec3f moveDirWorld = inputDir3D * MakeMatrix::RotateY(cameraYaw);
@@ -167,6 +171,7 @@ void PlayerStatus::UpdateAccel(float _deltaTime, PlayerInput* _input, Transform*
 void to_json(nlohmann::json& j, const PlayerStatus& _playerStatus) {
     j["baseSpeed"]                = _playerStatus.baseSpeed_;
     j["wallRunRate"]              = _playerStatus.wallRunRate_;
+    j["wallRunRumpUpTime"]        = _playerStatus.wallRunRampUpTime_;
     j["wallJumpOffset"]           = _playerStatus.wallJumpOffset_;
     j["jumpPower"]                = _playerStatus.jumpPower_;
     j["fallPower"]                = _playerStatus.fallPower_;
@@ -183,6 +188,7 @@ void from_json(const nlohmann::json& j, PlayerStatus& _playerStatus) {
     j.at("jumpPower").get_to(_playerStatus.jumpPower_);
     j.at("fallPower").get_to(_playerStatus.fallPower_);
     j.at("wallRunRate").get_to(_playerStatus.wallRunRate_);
+    j.at("wallRunRumpUpTime").get_to(_playerStatus.wallRunRampUpTime_);
     j.at("wallJumpOffset").get_to(_playerStatus.wallJumpOffset_);
     j.at("gearUpCoolTime").get_to(_playerStatus.baseGearupCoolTime_);
     j.at("directionInterpolateRate").get_to(_playerStatus.directionInterpolateRate_);

@@ -59,9 +59,10 @@ private:
     float speedUpRateCommonRate_ = 1.f; // ギアアップ時の速度上昇率の共通値
 
     // 壁系
-    float wallRunRate_    = 0.0f; // 壁走りの速度倍率
-    Vec3f wallJumpOffset_ = {0.0f, 1.0f, 0.0f};
-    float wallJumpRate_   = 0.0f; // 壁ジャンプ(壁から地面に行くとき)の速度倍率
+    float wallRunRate_       = 0.0f; // 壁走りの速度倍率
+    float wallRunRampUpTime_ = 0.2f; // 壁走りの速度倍率が最大になるまでの時間
+    Vec3f wallJumpOffset_    = {0.0f, 1.0f, 0.0f};
+    float wallJumpRate_      = 0.0f; // 壁ジャンプ(壁から地面に行くとき)の速度倍率
 
     // currentMaxSpeed は gearLevel に応じて変化する
     float currentMaxSpeed_ = 0.0f; // 現在の最大速度
@@ -94,6 +95,10 @@ public:
     }
     void setWallRunRate(float _wallRunRate) {
         wallRunRate_ = _wallRunRate;
+    }
+
+    float getWallRunRampUpTime() const {
+        return wallRunRampUpTime_;
     }
 
     const Vec3f& getWallJumpOffset() const {
