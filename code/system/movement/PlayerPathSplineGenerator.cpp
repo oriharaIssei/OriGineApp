@@ -5,8 +5,8 @@
 #include "EngineInclude.h"
 
 // component
+#include "component/physics/Rigidbody.h"
 #include "component/Player/State/PlayerState.h"
-
 #include "component/spline/SplinePoints.h"
 #include "component/transform/Transform.h"
 
@@ -36,10 +36,10 @@ void PlayerPathSplineGenerator::UpdateEntity(Entity* _entity) {
         return;
     }
 
-    // gearLevelが一定以上ならポイント追加処理
-    constexpr int32_t kThresholdTrailActivateGearLevel = 1;
-    PlayerState* state                                 = getComponent<PlayerState>(playerEntity);
-    if (state->getGearLevel() > kThresholdTrailActivateGearLevel) {
+    // 速度が 0以上ならポイント追加処理
+    constexpr float kFadeOutThresholdSpeed = 1.f;
+    Rigidbody* rigidBody = getComponent<Rigidbody>(playerEntity);
+    if (rigidBody->getVelocity().lengthSq() > kFadeOutThresholdSpeed * kFadeOutThresholdSpeed) {
 
         // segmentLength_ の安全チェック
         if (splinePoints->segmentLength_ <= kEpsilon) {
@@ -120,13 +120,16 @@ void PlayerPathSplineGenerator::UpdateEntity(Entity* _entity) {
         // 差し替え
         splinePoints->points_ = std::move(newPoints);
 
+        // fadeoutTimer リセット(次回の削除がすぐに始まるように)
+        splinePoints->fadeoutTimer_ = splinePoints->fadeoutTime_;
+
     } else {
-        // IDLE状態なら fadeoutTimer を進める
-        // fadeoutTimer 処理
-        splinePoints->fadeoutTimer_ += getMainDeltaTime();
-        if (splinePoints->fadeoutTimer_ >= splinePoints->fadeoutTime_) {
-            splinePoints->fadeoutTimer_ = 0.0f;
-            if (!splinePoints->points_.empty()) {
+        // 古いポイントの削除処理
+        if (!splinePoints->points_.empty()) {
+            // fadeoutTimer 処理
+            splinePoints->fadeoutTimer_ += getMainDeltaTime();
+            if (splinePoints->fadeoutTimer_ >= splinePoints->fadeoutTime_) {
+                splinePoints->fadeoutTimer_ = 0.0f;
                 splinePoints->points_.pop_front();
             }
         }

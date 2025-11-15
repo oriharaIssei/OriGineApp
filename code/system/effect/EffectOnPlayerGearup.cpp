@@ -42,6 +42,8 @@ void EffectOnPlayerGearup::UpdateEntity(Entity* _entity) {
     /// ==============================
     // Effect PlayState Transition
     /// ==============================
+
+    shockWaveState_.playState_.sync();
     shockWaveState_.playState_.set(false);
     if (state->isGearUp()) {
 
@@ -58,7 +60,7 @@ void EffectOnPlayerGearup::UpdateEntity(Entity* _entity) {
             }
         }
 
-        // trailの色をGearLevelに応じて変化www
+        // trailの色をGearLevelに応じて変化
         PlayerEffectControlParam* effectControlParam = getComponent<PlayerEffectControlParam>(player);
         if (effectControlParam) {
             Material* material = getComponent<Material>(getUniqueEntity("Trail"));
@@ -82,17 +84,8 @@ void EffectOnPlayerGearup::UpdateEntity(Entity* _entity) {
 void EffectOnPlayerGearup::UpdateShockWaveRing(Entity* _entity, Transform* _playerTransform) {
     DistortionEffectParam* distortionEffectParam = getComponent<DistortionEffectParam>(_entity);
 
-    shockWaveState_.currentTime += getMainDeltaTime();
-    float t = shockWaveState_.currentTime / shockWaveState_.maxTime;
-
-    if (t >= 1.f) {
-        t = 1.f;
-        shockWaveState_.playState_.set(false);
-    }
-
-    shockWaveState_.playState_.sync();
-
     auto& shockWaveRings = distortionEffectParam->getDistortionObjects();
+    // 更新時 以外
     if (!shockWaveState_.playState_.current()) {
         if (shockWaveState_.playState_.isRelease()) {
             // shockWaveRingのを見えない位置に隠す
@@ -114,6 +107,7 @@ void EffectOnPlayerGearup::UpdateShockWaveRing(Entity* _entity, Transform* _play
         return;
     }
 
+    // 初期化処理
     if (shockWaveState_.playState_.isTrigger()) {
 
         // shockWaveRingの初期化Add commentMore actions
@@ -139,7 +133,18 @@ void EffectOnPlayerGearup::UpdateShockWaveRing(Entity* _entity, Transform* _play
 
     /// shockWave Play
     if (shockWaveState_.playState_.current()) {
+
+        shockWaveState_.currentTime += getMainDeltaTime();
+        float t = shockWaveState_.currentTime / shockWaveState_.maxTime;
+
+        if (t >= 1.f) {
+            t = 1.f;
+            shockWaveState_.playState_.set(false);
+        }
+
+        shockWaveState_.playState_.sync();
         float easeT = EaseInQuad(t);
+
         // 衝撃波の拡大
         for (auto& [object, type] : shockWaveRings) {
             if (type != PrimitiveType::Ring) {

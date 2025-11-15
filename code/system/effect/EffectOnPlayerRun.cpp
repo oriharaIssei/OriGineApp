@@ -80,6 +80,7 @@ void EffectOnPlayerRun::UpdateEntity(Entity* entity) {
         }
     }
 
+    // スピードラインエフェクト
     Entity* speedlineEntity                            = getUniqueEntity("Speedline");
     std::vector<SpeedlineEffectParam>* speedlineParams = nullptr;
     if (speedlineEntity) {

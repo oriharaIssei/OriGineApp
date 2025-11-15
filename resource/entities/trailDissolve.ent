@@ -2,17 +2,17 @@
     "Components": {
         "DissolveEffectParam": [
             {
-                "edgeWidth": 0.024000000208616257,
+                "edgeWidth": 0.032999999821186066,
                 "isActive": true,
                 "materialIndex": 0,
                 "outLineColor": [
-                    1.0,
-                    1.0,
-                    1.0,
+                    0.5105485320091248,
+                    0.5105485320091248,
+                    0.5105485320091248,
                     1.0
                 ],
                 "textureFilePath": "./application/resource/Texture/circle.png",
-                "threshold": 0.03200000151991844
+                "threshold": 0.06300000101327896
             }
         ],
         "Material": [
@@ -32,7 +32,7 @@
                 ],
                 "uvRotate": 0.0,
                 "uvScale": [
-                    0.4699999988079071,
+                    1.0,
                     1.0
                 ],
                 "uvTranslate": [
@@ -43,11 +43,11 @@
         ],
         "MaterialEffectPipeLine": [
             {
-                "baseTexturePath": "./application/resource/Texture/gradationLine.png",
+                "baseTexturePath": "./application/resource/Texture/bioNoise.png",
                 "effectEntityIdList": [
                     {
                         "effectType": 1,
-                        "entityID": 17
+                        "entityID": 16
                     }
                 ],
                 "isActive": true,
