@@ -222,6 +222,8 @@
     <ClInclude Include="code\system\transition\UpdateButtonColorByState.h">
       <Filter>system\transition</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\initialize\GoalEffectInitialize.h" />
+    <ClInclude Include="code\system\initialize\GoalShellEffectInitialize.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -402,5 +404,7 @@
     <ClCompile Include="code\system\transition\UpdateButtonColorByState.cpp">
       <Filter>system\transition</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\initialize\GoalEffectInitialize.cpp" />
+    <ClCompile Include="code\system\initialize\GoalShellEffectInitialize.cpp" />
   </ItemGroup>
 </Project>

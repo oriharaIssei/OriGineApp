@@ -73,7 +73,8 @@
         ],
         "PlaneRenderer": [
             {
-                "blendMode": 5,
+                "blendMode": 2,
+                "isCulling": true,
                 "isRenderer": false,
                 "materialIndex": 0,
                 "textureDirectory": "./application/resource/Texture",

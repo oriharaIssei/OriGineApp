@@ -35,6 +35,8 @@
 #include "system/initialize/CreateSpriteFromTimer.h"
 #include "system/initialize/CreateStage.h"
 #include "system/initialize/GetClearTime.h"
+#include "system/initialize/GoalEffectInitialize.h"
+#include "system/initialize/GoalShellEffectInitialize.h"
 #include "system/initialize/SettingGameCameraTarget.h"
 #include "system/initialize/TakePlayerToStartPosition.h"
 #include "system/initialize/TrailEffectInitialize.h"
@@ -162,6 +164,9 @@ void RegisterUsingSystems() {
     systemRegistry->registerSystem<CameraInitialize>();
     systemRegistry->registerSystem<RegisterWindowResizeEvent>();
     systemRegistry->registerSystem<TrailEffectInitialize>();
+
+    systemRegistry->registerSystem<GoalEffectInitialize>();
+    systemRegistry->registerSystem<GoalShellEffectInitialize>();
 
     /// ===================================================================================================
     // Input

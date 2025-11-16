@@ -44,8 +44,8 @@ void EffectOnPlayerGearup::UpdateEntity(Entity* _entity) {
     /// ==============================
 
     shockWaveState_.playState_.sync();
-    shockWaveState_.playState_.set(false);
     if (state->isGearUp()) {
+        shockWaveState_.playState_.set(false);
 
         Transform* transform = getComponent<Transform>(_entity);
         transform->translate = playerTransform->translate; // Playerの位置に合わせる
@@ -119,13 +119,13 @@ void EffectOnPlayerGearup::UpdateShockWaveRing(Entity* _entity, Transform* _play
                 continue;
             }
 
-            RingRenderer* ringRenderer          = dynamic_cast<RingRenderer*>(object.get());
-            ringRenderer->getTransform().parent = _playerTransform; // PlayerのTransformを親に設定
+            RingRenderer* ringRenderer = dynamic_cast<RingRenderer*>(object.get());
 
-            ringRenderer->getTransform().translate    = shockWaveOffset_; // 初期位置を設定
+            ringRenderer->getTransform().translate    = _playerTransform->translate + shockWaveOffset_; // 初期位置を設定
             ringRenderer->getTransform().rotate       = _playerTransform->rotate;
             ringRenderer->getPrimitive().innerRadius_ = minInnerRadius_;
             ringRenderer->getPrimitive().outerRadius_ = minOuterRadius_;
+            ringRenderer->getTransform().UpdateMatrix();
         }
 
         shockWaveState_.currentTime = 0.f; // 時間をリセット
@@ -142,7 +142,6 @@ void EffectOnPlayerGearup::UpdateShockWaveRing(Entity* _entity, Transform* _play
             shockWaveState_.playState_.set(false);
         }
 
-        shockWaveState_.playState_.sync();
         float easeT = EaseInQuad(t);
 
         // 衝撃波の拡大
@@ -159,7 +158,8 @@ void EffectOnPlayerGearup::UpdateShockWaveRing(Entity* _entity, Transform* _play
             float outerRadius                         = std::lerp(minOuterRadius_, maxOuterRadius_, easeT);
             ringRenderer->getPrimitive().innerRadius_ = innerRadius;
             ringRenderer->getPrimitive().outerRadius_ = outerRadius;
-            ringRenderer->CreateMesh(&ringRenderer->getMeshGroup()->back());
+            TextureMesh* mesh                         = &ringRenderer->getMeshGroup()->back();
+            ringRenderer->CreateMesh(mesh);
         }
     };
 }

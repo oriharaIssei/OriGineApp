@@ -170,6 +170,7 @@
     <ClInclude Include="code\system\effect\EffectOnPlayerGearup.h" />
     <ClInclude Include="code\system\effect\EffectOnPlayerRun.h" />
     <ClInclude Include="code\system\effect\TimerForSprite.h" />
+    <ClInclude Include="code\system\initialize\GoalShellEffectInitialize.h" />
     <ClInclude Include="code\system\initialize\CreateSpriteFromTimer.h" />
     <ClInclude Include="code\system\initialize\CreateStage.h" />
     <ClInclude Include="code\system\initialize\GetClearTime.h" />
@@ -200,6 +201,7 @@
     <ClInclude Include="code\system\transition\TimerCountDown.h" />
     <ClInclude Include="code\system\transition\TransitionPlayerState.h" />
     <ClInclude Include="code\system\transition\UpdateButtonColorByState.h" />
+    <ClInclude Include="code\system\initialize\GoalEffectInitialize.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -234,6 +236,7 @@
     <ClCompile Include="code\system\effect\EffectOnPlayerGearup.cpp" />
     <ClCompile Include="code\system\effect\EffectOnPlayerRun.cpp" />
     <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
+    <ClCompile Include="code\system\initialize\GoalShellEffectInitialize.cpp" />
     <ClCompile Include="code\system\initialize\CreateSpriteFromTimer.cpp" />
     <ClCompile Include="code\system\initialize\CreateStage.cpp" />
     <ClCompile Include="code\system\initialize\GetClearTime.cpp" />
@@ -264,6 +267,7 @@
     <ClCompile Include="code\system\transition\TimerCountDown.cpp" />
     <ClCompile Include="code\system\transition\TransitionPlayerState.cpp" />
     <ClCompile Include="code\system\transition\UpdateButtonColorByState.cpp" />
+    <ClCompile Include="code\system\initialize\GoalEffectInitialize.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">
