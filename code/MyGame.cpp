@@ -79,6 +79,14 @@ void MyGame::Initialize(const std::vector<std::string>& _commandLines) {
     isRecording_ = true; //! TODO : CommandLineのなどで制御できるようにする
     recorder_    = std::make_unique<ReplayRecorder>();
     recorder_->Initialize(sceneManager_->getStartupSceneName());
+    // 初期化時の入力を記録
+    if (isRecording_ == true) {
+        InputManager* inputManager = InputManager::getInstance();
+        recorder_->RecordFrame(engine_->getDeltaTime(),
+            inputManager->getKeyboard(),
+            inputManager->getMouse(),
+            inputManager->getGamePad());
+    }
 #endif // _DEVELOP
 }
 
