@@ -37,8 +37,8 @@ void PlayerPathSplineGenerator::UpdateEntity(Entity* _entity) {
     }
 
     // 速度が 0以上ならポイント追加処理
-    constexpr float kFadeOutThresholdSpeed = 1.f;
-    Rigidbody* rigidBody = getComponent<Rigidbody>(playerEntity);
+    constexpr float kFadeOutThresholdSpeed = 8.f;
+    Rigidbody* rigidBody                   = getComponent<Rigidbody>(playerEntity);
     if (rigidBody->getVelocity().lengthSq() > kFadeOutThresholdSpeed * kFadeOutThresholdSpeed) {
 
         // segmentLength_ の安全チェック
