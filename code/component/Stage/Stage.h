@@ -136,6 +136,6 @@ public:
     }
 
 #ifndef _RELEASE
-    FileWatcher* GetFileWatcher() { return fileWatcher_.Get(); }
+    FileWatcher* GetFileWatcher() { return fileWatcher_.get(); }
 #endif // DEBUG
 };

@@ -55,5 +55,5 @@ void to_json(nlohmann::json& j, const SceneChanger& r) {
 }
 
 void from_json(const nlohmann::json& j, SceneChanger& r) {
-    j.at("nextSceneName").Get_to(r.nextSceneName_);
+    j.at("nextSceneName").get_to(r.nextSceneName_);
 }

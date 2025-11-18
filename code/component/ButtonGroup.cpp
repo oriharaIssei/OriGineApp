@@ -194,14 +194,14 @@ void to_json(nlohmann::json& j, const ButtonGroup& r) {
 
 void from_json(const nlohmann::json& j, ButtonGroup& r) {
     if (j.contains("startButtonNumber")) {
-        r.startButtonNumber_ = j.at("startButtonNumber").Get<int32_t>();
+        r.startButtonNumber_ = j.at("startButtonNumber").get<int32_t>();
     }
     if (j.contains("buttonNumbers") && j.at("buttonNumbers").is_array()) {
         r.buttonNumbers_.clear();
         for (const auto& buttonNumberJson : j.at("buttonNumbers")) {
             if (buttonNumberJson.contains("entityID") && buttonNumberJson.contains("buttonNumber")) {
-                int32_t entityID           = buttonNumberJson.at("entityID").Get<int32_t>();
-                int32_t buttonNumber       = buttonNumberJson.at("buttonNumber").Get<int32_t>();
+                int32_t entityID           = buttonNumberJson.at("entityID").get<int32_t>();
+                int32_t buttonNumber       = buttonNumberJson.at("buttonNumber").get<int32_t>();
                 r.buttonNumbers_[entityID] = buttonNumber;
             }
         }
@@ -209,37 +209,37 @@ void from_json(const nlohmann::json& j, ButtonGroup& r) {
     if (j.contains("selectAddKeys") && j.at("selectAddKeys").is_array()) {
         r.selectAddKeys_.clear();
         for (const auto& key : j.at("selectAddKeys")) {
-            r.selectAddKeys_.push_back(key.Get<Key>());
+            r.selectAddKeys_.push_back(key.get<Key>());
         }
     }
     if (j.contains("selectAddPadButtons") && j.at("selectAddPadButtons").is_array()) {
         r.selectAddPadButtons_.clear();
         for (const auto& button : j.at("selectAddPadButtons")) {
-            r.selectAddPadButtons_.push_back(button.Get<PadButton>());
+            r.selectAddPadButtons_.push_back(button.get<PadButton>());
         }
     }
     if (j.contains("selectSubKeys") && j.at("selectSubKeys").is_array()) {
         r.selectSubKeys_.clear();
         for (const auto& key : j.at("selectSubKeys")) {
-            r.selectSubKeys_.push_back(key.Get<Key>());
+            r.selectSubKeys_.push_back(key.get<Key>());
         }
     }
     if (j.contains("selectSubPadButtons") && j.at("selectSubPadButtons").is_array()) {
         r.selectSubPadButtons_.clear();
         for (const auto& button : j.at("selectSubPadButtons")) {
-            r.selectSubPadButtons_.push_back(button.Get<PadButton>());
+            r.selectSubPadButtons_.push_back(button.get<PadButton>());
         }
     }
     if (j.contains("decideKeys") && j.at("decideKeys").is_array()) {
         r.decideKeys_.clear();
         for (const auto& key : j.at("decideKeys")) {
-            r.decideKeys_.push_back(key.Get<Key>());
+            r.decideKeys_.push_back(key.get<Key>());
         }
     }
     if (j.contains("decidePadButtons") && j.at("decidePadButtons").is_array()) {
         r.decidePadButtons_.clear();
         for (const auto& button : j.at("decidePadButtons")) {
-            r.decidePadButtons_.push_back(button.Get<PadButton>());
+            r.decidePadButtons_.push_back(button.get<PadButton>());
         }
     }
 }

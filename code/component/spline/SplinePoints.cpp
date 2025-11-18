@@ -64,11 +64,11 @@ void to_json(nlohmann::json& j, const SplinePoints& c) {
 }
 
 void from_json(const nlohmann::json& j, SplinePoints& c) {
-    j.at("capacity").Get_to(c.capacity_);
-    j.at("segmentDivide").Get_to(c.segmentDivide_);
-    j.at("startUv").Get_to(c.startUv_);
-    j.at("endUv").Get_to(c.endUv_);
-    j.at("segmentLength").Get_to(c.segmentLength_);
-    j.at("width").Get_to(c.width_);
+    j.at("capacity").get_to(c.capacity_);
+    j.at("segmentDivide").get_to(c.segmentDivide_);
+    j.at("startUv").get_to(c.startUv_);
+    j.at("endUv").get_to(c.endUv_);
+    j.at("segmentLength").get_to(c.segmentLength_);
+    j.at("width").get_to(c.width_);
     c.fadeoutTime_ = j.value("fadeoutTime", c.fadeoutTime_);
 }

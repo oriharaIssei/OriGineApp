@@ -82,13 +82,13 @@ void to_json(nlohmann::json& j, const PlayerEffectControlParam& _p) {
 }
 
 void from_json(const nlohmann::json& j, PlayerEffectControlParam& _p) {
-    j.at("trailColorByGearLevel").Get_to(_p.trailColorByGearLevel_);
+    j.at("trailColorByGearLevel").get_to(_p.trailColorByGearLevel_);
     while (_p.trailColorByGearLevel_.size() != kMaxPlayerGearLevel) {
         _p.trailColorByGearLevel_.emplace_back(Vector4f(1.f, 1.f, 1.f, 1.f));
     }
 
-    j.at("rotateOffsetOnWallRun").Get_to(_p.rotateOffsetOnWallRun_);
-    j.at("maxWheelSpinSpeed").Get_to(_p.maxWheelSpinSpeed_);
-    j.at("wheelTiltAngleRate").Get_to(_p.wheelTiltAngleRate_);
-    j.at("wheelTiltAngleMaxAccel").Get_to(_p.wheelTiltAngleMaxAccel_);
+    j.at("rotateOffsetOnWallRun").get_to(_p.rotateOffsetOnWallRun_);
+    j.at("maxWheelSpinSpeed").get_to(_p.maxWheelSpinSpeed_);
+    j.at("wheelTiltAngleRate").get_to(_p.wheelTiltAngleRate_);
+    j.at("wheelTiltAngleMaxAccel").get_to(_p.wheelTiltAngleMaxAccel_);
 }

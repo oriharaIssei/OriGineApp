@@ -97,7 +97,7 @@ void EffectOnPlayerGearup::UpdateShockWaveRing(Entity* _entity, Transform* _play
                     continue;
                 }
 
-                RingRenderer* ringRenderer = dynamic_cast<RingRenderer*>(object.Get());
+                RingRenderer* ringRenderer = dynamic_cast<RingRenderer*>(object.get());
 
                 // 初期位置
                 ringRenderer->GetTransform().translate[Y] = -10000.f;
@@ -119,7 +119,7 @@ void EffectOnPlayerGearup::UpdateShockWaveRing(Entity* _entity, Transform* _play
                 continue;
             }
 
-            RingRenderer* ringRenderer = dynamic_cast<RingRenderer*>(object.Get());
+            RingRenderer* ringRenderer = dynamic_cast<RingRenderer*>(object.get());
 
             ringRenderer->GetTransform().translate    = _playerTransform->translate + shockWaveOffset_; // 初期位置を設定
             ringRenderer->GetTransform().rotate       = _playerTransform->rotate;
@@ -152,7 +152,7 @@ void EffectOnPlayerGearup::UpdateShockWaveRing(Entity* _entity, Transform* _play
             if (object == nullptr) {
                 continue;
             }
-            RingRenderer* ringRenderer = dynamic_cast<RingRenderer*>(object.Get());
+            RingRenderer* ringRenderer = dynamic_cast<RingRenderer*>(object.get());
 
             float innerRadius                         = std::lerp(minInnerRadius_, maxInnerRadius_, easeT);
             float outerRadius                         = std::lerp(minOuterRadius_, maxOuterRadius_, easeT);

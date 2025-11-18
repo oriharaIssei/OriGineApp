@@ -166,6 +166,6 @@ void to_json(nlohmann::json& j, const Stage& stage) {
 }
 
 void from_json(const nlohmann::json& j, Stage& stage) {
-    j.at("directory").Get_to(stage.directory_);
-    j.at("fileName").Get_to(stage.fileName_);
+    j.at("directory").get_to(stage.directory_);
+    j.at("fileName").get_to(stage.fileName_);
 }

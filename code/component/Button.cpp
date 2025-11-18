@@ -62,7 +62,7 @@ void from_json(const nlohmann::json& j, Button& r) {
     if (j.contains("shortKeys") && j.at("shortKeys").is_array()) {
         r.shortcutKey_.clear();
         for (const auto& key : j.at("shortKeys")) {
-            r.shortcutKey_.push_back(key.Get<Key>());
+            r.shortcutKey_.push_back(key.get<Key>());
         }
     }
 
@@ -70,7 +70,7 @@ void from_json(const nlohmann::json& j, Button& r) {
     if (j.contains("shortcutPadButton") && j.at("shortcutPadButton").is_array()) {
         r.shortcutPadButton_.clear();
         for (const auto& button : j.at("shortcutPadButton")) {
-            r.shortcutPadButton_.push_back(button.Get<PadButton>());
+            r.shortcutPadButton_.push_back(button.get<PadButton>());
         }
     }
 }
