@@ -40,9 +40,9 @@ void MyGame::Initialize(const std::vector<std::string>& _commandLines) {
     ///=================================================================================================
     // Game のための 初期化
     ///=================================================================================================
-    variables_ = GlobalVariables::getInstance();
+    variables_ = GlobalVariables::GetInstance();
 
-    engine_       = Engine::getInstance();
+    engine_       = Engine::GetInstance();
     sceneManager_ = std::make_unique<SceneManager>();
 
     variables_->LoadAllFile();
@@ -60,7 +60,7 @@ void MyGame::Initialize(const std::vector<std::string>& _commandLines) {
             }
             // コマンドライン引数がある場合、シーン名を設定する
             const std::string& sceneName = *commandLineItr;
-            sceneManager_->getStartupSceneNameRef().setValue(sceneName);
+            sceneManager_->GetStartupSceneNameRef().SetValue(sceneName);
             LOG_DEBUG("GetCommandLine : {}", sceneName);
         }
 
@@ -71,21 +71,21 @@ void MyGame::Initialize(const std::vector<std::string>& _commandLines) {
     RegisterUsingComponents();
     RegisterUsingSystems();
 
-    InputManager* inputManager = InputManager::getInstance();
+    InputManager* inputManager = InputManager::GetInstance();
 
-    sceneManager_->Initialize(inputManager->getKeyboard(), inputManager->getMouse(), inputManager->getGamePad());
+    sceneManager_->Initialize(inputManager->GetKeyboard(), inputManager->GetMouse(), inputManager->GetGamePad());
 
 #ifdef _DEVELOP
     isRecording_ = true; //! TODO : CommandLineのなどで制御できるようにする
     recorder_    = std::make_unique<ReplayRecorder>();
-    recorder_->Initialize(sceneManager_->getStartupSceneName());
+    recorder_->Initialize(sceneManager_->GetStartupSceneName());
     // 初期化時の入力を記録
     if (isRecording_ == true) {
-        InputManager* inputManager = InputManager::getInstance();
-        recorder_->RecordFrame(engine_->getDeltaTime(),
-            inputManager->getKeyboard(),
-            inputManager->getMouse(),
-            inputManager->getGamePad());
+        InputManager* inputManager = InputManager::GetInstance();
+        recorder_->RecordFrame(engine_->GetDeltaTime(),
+            inputManager->GetKeyboard(),
+            inputManager->GetMouse(),
+            inputManager->GetGamePad());
     }
 #endif // _DEVELOP
 }
@@ -101,7 +101,7 @@ void MyGame::Finalize() {
 
 void MyGame::Run() {
     while (true) {
-        if (engine_->ProcessMessage() || sceneManager_->isExitGame()) {
+        if (engine_->ProcessMessage() || sceneManager_->IsExitGame()) {
             break;
         }
         engine_->BeginFrame();
@@ -109,11 +109,11 @@ void MyGame::Run() {
 #ifdef _DEVELOP
         if (isRecording_ == true) {
             // 入力の記録
-            InputManager* inputManager = InputManager::getInstance();
-            recorder_->RecordFrame(engine_->getDeltaTime(),
-                inputManager->getKeyboard(),
-                inputManager->getMouse(),
-                inputManager->getGamePad());
+            InputManager* inputManager = InputManager::GetInstance();
+            recorder_->RecordFrame(engine_->GetDeltaTime(),
+                inputManager->GetKeyboard(),
+                inputManager->GetMouse(),
+                inputManager->GetGamePad());
         }
 #endif // _DEVELOP
 
@@ -121,9 +121,9 @@ void MyGame::Run() {
         sceneManager_->Update();
         sceneManager_->Render();
         // windowに描画
-        Engine::getInstance()->ScreenPreDraw();
-        sceneManager_->getCurrentScene()->getSceneView()->DrawTexture();
-        Engine::getInstance()->ScreenPostDraw();
+        Engine::GetInstance()->ScreenPreDraw();
+        sceneManager_->GetCurrentScene()->GetSceneView()->DrawTexture();
+        Engine::GetInstance()->ScreenPostDraw();
 
         engine_->EndFrame();
     }

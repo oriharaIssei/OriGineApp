@@ -16,9 +16,9 @@ void BillboardTransform::Finalize() {
 void BillboardTransform::UpdateEntity(Entity* _entity) {
     int32_t componentIndex = 0;
 
-    const CameraTransform& cameraTransform = CameraManager::getInstance()->getTransform();
+    const CameraTransform& cameraTransform = CameraManager::GetInstance()->GetTransform();
 
-    auto transforms = getComponents<Transform>(_entity);
+    auto transforms = GetComponents<Transform>(_entity);
     for (auto& transform : *transforms) {
         // カメラの視線ベクトル（ワールド空間でのカメラ→ビルボード方向、正規化済み）
         Vec3f lookAt = Vec3f(transform.translate - cameraTransform.translate).normalize(); // D3DXVECTOR3 LookAt(-cx, -cy, -cz);

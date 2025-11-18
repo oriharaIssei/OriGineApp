@@ -15,12 +15,12 @@ void TimeLimitJudgeSystem::Initialize() {}
 void TimeLimitJudgeSystem::Finalize() {}
 
 void TimeLimitJudgeSystem::UpdateEntity(Entity* _entity) {
-    auto timerComp = getComponent<TimerComponent>(_entity);
+    auto timerComp = GetComponent<TimerComponent>(_entity);
     if (!timerComp) {
         return;
     }
-    if (timerComp->getCurrentTime() <= -kEpsilon) {
-        SceneChanger* sceneChanger = getComponent<SceneChanger>(_entity);
+    if (timerComp->GetCurrentTime() <= -kEpsilon) {
+        SceneChanger* sceneChanger = GetComponent<SceneChanger>(_entity);
         if (!sceneChanger) {
             return;
         }

@@ -17,7 +17,7 @@ void TrailEffectInitialize::Finalize() {}
 
 void TrailEffectInitialize::UpdateEntity(Entity* _entity) {
     MaterialEffectPipeLine* materialEffectPipeLine =
-        getComponent<MaterialEffectPipeLine>(_entity);
+        GetComponent<MaterialEffectPipeLine>(_entity);
 
     if (materialEffectPipeLine == nullptr) {
         return;
@@ -25,49 +25,49 @@ void TrailEffectInitialize::UpdateEntity(Entity* _entity) {
     materialEffectPipeLine->ClearEffectEntity();
 
     // dissolveEffect 設定
-    auto dissolveEntity = getUniqueEntity("trailDissolve");
+    auto dissolveEntity = GetUniqueEntity("trailDissolve");
     if (!dissolveEntity) {
         LOG_ERROR("dissolveEntity is nullptr");
         return;
     }
 
     auto dissolveMaterialEffectPipeline =
-        getComponent<MaterialEffectPipeLine>(dissolveEntity);
+        GetComponent<MaterialEffectPipeLine>(dissolveEntity);
     if (!dissolveMaterialEffectPipeline) {
         return;
     }
     dissolveMaterialEffectPipeline->ClearEffectEntity();
 
     // dissolveに distortionEffect1を 設定
-    auto distortion1Entity = getUniqueEntity("trailDistortion1Entity");
+    auto distortion1Entity = GetUniqueEntity("trailDistortion1Entity");
     if (!distortion1Entity) {
         LOG_ERROR("distortion1Entity is nullptr");
         return;
     }
     auto distortion1EffectParam =
-        getComponent<DistortionEffectParam>(distortion1Entity);
+        GetComponent<DistortionEffectParam>(distortion1Entity);
     if (distortion1EffectParam) {
         dissolveMaterialEffectPipeline->AddEffectEntity(
-            MaterialEffectType::Distortion, distortion1Entity->getID());
+            MaterialEffectType::Distortion, distortion1Entity->GetID());
     }
 
     // trailに dissolveEffectを 設定
     if (dissolveMaterialEffectPipeline) {
         materialEffectPipeLine->AddEffectEntity(
-            MaterialEffectType::Dissolve, dissolveEntity->getID());
+            MaterialEffectType::Dissolve, dissolveEntity->GetID());
 
-        auto gradationEntity = getUniqueEntity("trailGradationEntity");
+        auto gradationEntity = GetUniqueEntity("trailGradationEntity");
         if (!gradationEntity) {
             LOG_ERROR("gradationEntity is nullptr");
             return;
         }
         auto gradationTextureComponent =
-            getComponent<GradationTextureComponent>(gradationEntity);
+            GetComponent<GradationTextureComponent>(gradationEntity);
         // trailに Gradationを設定
         if (gradationTextureComponent) {
             materialEffectPipeLine->AddEffectEntity(
-                MaterialEffectType::Gradation, gradationEntity->getID());
+                MaterialEffectType::Gradation, gradationEntity->GetID());
         }
     }
-    materialEffectPipeLine->setPriority(10);
+    materialEffectPipeLine->SetPriority(10);
 }

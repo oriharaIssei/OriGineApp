@@ -28,12 +28,12 @@ void EffectOnPlayerGearup::Initialize() {}
 void EffectOnPlayerGearup::Finalize() {}
 
 void EffectOnPlayerGearup::UpdateEntity(Entity* _entity) {
-    Entity* player = getUniqueEntity("Player");
+    Entity* player = GetUniqueEntity("Player");
     if (!player) {
         return;
     }
-    PlayerState* state         = getComponent<PlayerState>(player);
-    Transform* playerTransform = getComponent<Transform>(player);
+    PlayerState* state         = GetComponent<PlayerState>(player);
+    Transform* playerTransform = GetComponent<Transform>(player);
 
     if (!state) {
         return;
@@ -43,37 +43,37 @@ void EffectOnPlayerGearup::UpdateEntity(Entity* _entity) {
     // Effect PlayState Transition
     /// ==============================
 
-    shockWaveState_.playState_.sync();
-    if (state->isGearUp()) {
-        shockWaveState_.playState_.set(false);
+    shockWaveState_.playState_.Sync();
+    if (state->IsGearUp()) {
+        shockWaveState_.playState_.Set(false);
 
-        Transform* transform = getComponent<Transform>(_entity);
+        Transform* transform = GetComponent<Transform>(_entity);
         transform->translate = playerTransform->translate; // Playerの位置に合わせる
 
         // Emitterの再生
-        int32_t emitterSize = getComponentArray<Emitter>()->getComponentSize(_entity);
+        int32_t emitterSize = GetComponentArray<Emitter>()->GetComponentSize(_entity);
         for (int32_t i = 0; i < emitterSize; ++i) {
-            Emitter* emitter = getComponent<Emitter>(_entity, i);
+            Emitter* emitter = GetComponent<Emitter>(_entity, i);
             if (emitter) {
-                emitter->setOriginPos(emitterOffset_);
+                emitter->SetOriginPos(emitterOffset_);
                 emitter->PlayStart();
             }
         }
 
         // trailの色をGearLevelに応じて変化
-        PlayerEffectControlParam* effectControlParam = getComponent<PlayerEffectControlParam>(player);
+        PlayerEffectControlParam* effectControlParam = GetComponent<PlayerEffectControlParam>(player);
         if (effectControlParam) {
-            Material* material = getComponent<Material>(getUniqueEntity("Trail"));
+            Material* material = GetComponent<Material>(GetUniqueEntity("Trail"));
             if (material) {
-                Vector4f trailColor = effectControlParam->getTrailColorByGearLevel(state->getGearLevel());
+                Vector4f trailColor = effectControlParam->GetTrailColorByGearLevel(state->GetGearLevel());
                 material->color_    = trailColor;
                 material->UpdateUvMatrix();
             }
         }
 
         // GearLevelに応じて衝撃波を発生
-        if (state->getGearLevel() >= 2) {
-            shockWaveState_.playState_.set(true);
+        if (state->GetGearLevel() >= 2) {
+            shockWaveState_.playState_.Set(true);
             shockWaveState_.currentTime = 0.f;
         }
     }
@@ -82,12 +82,12 @@ void EffectOnPlayerGearup::UpdateEntity(Entity* _entity) {
 }
 
 void EffectOnPlayerGearup::UpdateShockWaveRing(Entity* _entity, Transform* _playerTransform) {
-    DistortionEffectParam* distortionEffectParam = getComponent<DistortionEffectParam>(_entity);
+    DistortionEffectParam* distortionEffectParam = GetComponent<DistortionEffectParam>(_entity);
 
-    auto& shockWaveRings = distortionEffectParam->getDistortionObjects();
+    auto& shockWaveRings = distortionEffectParam->GetDistortionObjects();
     // 更新時 以外
-    if (!shockWaveState_.playState_.current()) {
-        if (shockWaveState_.playState_.isRelease()) {
+    if (!shockWaveState_.playState_.Current()) {
+        if (shockWaveState_.playState_.IsRelease()) {
             // shockWaveRingのを見えない位置に隠す
             for (auto& [object, type] : shockWaveRings) {
                 if (type != PrimitiveType::Ring) {
@@ -97,10 +97,10 @@ void EffectOnPlayerGearup::UpdateShockWaveRing(Entity* _entity, Transform* _play
                     continue;
                 }
 
-                RingRenderer* ringRenderer = dynamic_cast<RingRenderer*>(object.get());
+                RingRenderer* ringRenderer = dynamic_cast<RingRenderer*>(object.Get());
 
                 // 初期位置
-                ringRenderer->getTransform().translate[Y] = -10000.f;
+                ringRenderer->GetTransform().translate[Y] = -10000.f;
             }
         }
 
@@ -108,7 +108,7 @@ void EffectOnPlayerGearup::UpdateShockWaveRing(Entity* _entity, Transform* _play
     }
 
     // 初期化処理
-    if (shockWaveState_.playState_.isTrigger()) {
+    if (shockWaveState_.playState_.IsTrigger()) {
 
         // shockWaveRingの初期化Add commentMore actions
         for (auto& [object, type] : shockWaveRings) {
@@ -119,27 +119,27 @@ void EffectOnPlayerGearup::UpdateShockWaveRing(Entity* _entity, Transform* _play
                 continue;
             }
 
-            RingRenderer* ringRenderer = dynamic_cast<RingRenderer*>(object.get());
+            RingRenderer* ringRenderer = dynamic_cast<RingRenderer*>(object.Get());
 
-            ringRenderer->getTransform().translate    = _playerTransform->translate + shockWaveOffset_; // 初期位置を設定
-            ringRenderer->getTransform().rotate       = _playerTransform->rotate;
-            ringRenderer->getPrimitive().innerRadius_ = minInnerRadius_;
-            ringRenderer->getPrimitive().outerRadius_ = minOuterRadius_;
-            ringRenderer->getTransform().UpdateMatrix();
+            ringRenderer->GetTransform().translate    = _playerTransform->translate + shockWaveOffset_; // 初期位置を設定
+            ringRenderer->GetTransform().rotate       = _playerTransform->rotate;
+            ringRenderer->GetPrimitive().innerRadius_ = minInnerRadius_;
+            ringRenderer->GetPrimitive().outerRadius_ = minOuterRadius_;
+            ringRenderer->GetTransform().UpdateMatrix();
         }
 
         shockWaveState_.currentTime = 0.f; // 時間をリセット
     }
 
     /// shockWave Play
-    if (shockWaveState_.playState_.current()) {
+    if (shockWaveState_.playState_.Current()) {
 
-        shockWaveState_.currentTime += getMainDeltaTime();
+        shockWaveState_.currentTime += GetMainDeltaTime();
         float t = shockWaveState_.currentTime / shockWaveState_.maxTime;
 
         if (t >= 1.f) {
             t = 1.f;
-            shockWaveState_.playState_.set(false);
+            shockWaveState_.playState_.Set(false);
         }
 
         float easeT = EaseInQuad(t);
@@ -152,13 +152,13 @@ void EffectOnPlayerGearup::UpdateShockWaveRing(Entity* _entity, Transform* _play
             if (object == nullptr) {
                 continue;
             }
-            RingRenderer* ringRenderer = dynamic_cast<RingRenderer*>(object.get());
+            RingRenderer* ringRenderer = dynamic_cast<RingRenderer*>(object.Get());
 
             float innerRadius                         = std::lerp(minInnerRadius_, maxInnerRadius_, easeT);
             float outerRadius                         = std::lerp(minOuterRadius_, maxOuterRadius_, easeT);
-            ringRenderer->getPrimitive().innerRadius_ = innerRadius;
-            ringRenderer->getPrimitive().outerRadius_ = outerRadius;
-            TextureMesh* mesh                         = &ringRenderer->getMeshGroup()->back();
+            ringRenderer->GetPrimitive().innerRadius_ = innerRadius;
+            ringRenderer->GetPrimitive().outerRadius_ = outerRadius;
+            TextureMesh* mesh                         = &ringRenderer->GetMeshGroup()->back();
             ringRenderer->CreateMesh(mesh);
         }
     };

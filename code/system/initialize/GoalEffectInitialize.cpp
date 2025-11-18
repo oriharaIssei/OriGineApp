@@ -14,7 +14,7 @@ void GoalEffectInitialize::Finalize() {
 }
 
 void GoalEffectInitialize::UpdateEntity(Entity* entity) {
-    auto materialEffectPipeLine = getComponent<MaterialEffectPipeLine>(entity);
+    auto materialEffectPipeLine = GetComponent<MaterialEffectPipeLine>(entity);
     if (materialEffectPipeLine == nullptr) {
         return;
     }

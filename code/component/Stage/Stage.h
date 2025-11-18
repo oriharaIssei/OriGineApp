@@ -28,8 +28,8 @@ public:
 private:
     static float clearTime_; // クリアタイム（秒）
 public:
-    static float getClearTime() { return clearTime_; }
-    static void setClearTime(float time) { clearTime_ = time; }
+    static float GetClearTime() { return clearTime_; }
+    static void SetClearTime(float time) { clearTime_ = time; }
 
 public:
     Stage()           = default;
@@ -74,26 +74,26 @@ private:
     int32_t startPointIndex_ = -1; // 開始地点のインデックス
     int32_t goalPointIndex_  = -1; // 目標地点のインデックス
 public:
-    const std::vector<ControlPoint>& getControlPoints() const { return controlPoints_; }
-    const std::vector<Link>& getLinks() const { return links_; }
-    std::vector<ControlPoint>& getControlPointsRef() { return controlPoints_; }
-    std::vector<Link>& getLinksRef() { return links_; }
+    const std::vector<ControlPoint>& GetControlPoints() const { return controlPoints_; }
+    const std::vector<Link>& GetLinks() const { return links_; }
+    std::vector<ControlPoint>& GetControlPointsRef() { return controlPoints_; }
+    std::vector<Link>& GetLinksRef() { return links_; }
 
-    const std::string& getDirectory() const { return directory_; }
-    void setDirectory(const std::string& dir) { directory_ = dir; }
-    const std::string& getFileName() const { return fileName_; }
-    void setFileName(const std::string& name) { fileName_ = name; }
+    const std::string& GetDirectory() const { return directory_; }
+    void SetDirectory(const std::string& dir) { directory_ = dir; }
+    const std::string& GetFileName() const { return fileName_; }
+    void SetFileName(const std::string& name) { fileName_ = name; }
 
-    int32_t getStartPointIndex() const { return startPointIndex_; }
-    void setStartPointIndex(int32_t index) {
+    int32_t GetStartPointIndex() const { return startPointIndex_; }
+    void SetStartPointIndex(int32_t index) {
         if (index < 0 || index >= controlPoints_.size()) {
             return;
         }
         startPointIndex_ = index;
     }
 
-    int32_t getGoalPointIndex() const { return goalPointIndex_; }
-    void setGoalPointIndex(int32_t index) {
+    int32_t GetGoalPointIndex() const { return goalPointIndex_; }
+    void SetGoalPointIndex(int32_t index) {
         if (index < 0 || index >= controlPoints_.size()) {
             return;
         }
@@ -136,6 +136,6 @@ public:
     }
 
 #ifndef _RELEASE
-    FileWatcher* getFileWatcher() { return fileWatcher_.get(); }
+    FileWatcher* GetFileWatcher() { return fileWatcher_.Get(); }
 #endif // DEBUG
 };

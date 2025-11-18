@@ -43,10 +43,10 @@ private:
     PlayerMoveState state_ = PlayerMoveState::IDLE;
 
 public:
-    const PlayerMoveState& getState() const {
+    const PlayerMoveState& GetState() const {
         return state_;
     }
-    void setState(const PlayerMoveState& _state) {
+    void SetState(const PlayerMoveState& _state) {
         state_ = _state;
     }
 };

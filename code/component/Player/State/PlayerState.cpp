@@ -16,7 +16,7 @@ void PlayerState::Initialize(Entity* /*_entity*/) {
     moveState_        = nullptr;
 
     onGround_          = false;
-    isGearUp_          = false;
+    IsGearUp_          = false;
     collisionWithWall_ = false;
     isGoal_            = false;
 
@@ -44,7 +44,7 @@ void PlayerState::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* 
 
     ImGui::Spacing();
 
-    ImGui::Text("Is Gear Up        : %s", isGearUp_ ? "true" : "false");
+    ImGui::Text("Is Gear Up        : %s", IsGearUp_ ? "true" : "false");
     ImGui::Text("Gear Up Cool Time : %f", gearUpCoolTime_);
 
     ImGui::Spacing();
@@ -73,9 +73,9 @@ void PlayerState::OffCollisionGround() {
     onGround_ = false;
 }
 
-void PlayerState::setPlayerMoveState(std::shared_ptr<IPlayerMoveState> _playerMoveState) {
+void PlayerState::SetPlayerMoveState(std::shared_ptr<IPlayerMoveState> _playerMoveState) {
     moveState_     = _playerMoveState;
-    moveStateEnum_ = moveState_->getState();
+    moveStateEnum_ = moveState_->GetState();
 }
 
 void to_json(nlohmann::json& /*j*/, const PlayerState& /*p*/) {

@@ -12,19 +12,19 @@ void SubSceneActivateByButton::Initialize() {}
 void SubSceneActivateByButton::Finalize() {}
 
 void SubSceneActivateByButton::UpdateEntity(Entity* _entity) {
-    auto subScene = getComponent<SubScene>(_entity);
+    auto subScene = GetComponent<SubScene>(_entity);
     // 多重初期化防止
-    if (subScene->isActive()) {
+    if (subScene->IsActive()) {
         return;
     }
 
-    auto buttons = getComponents<Button>(_entity);
+    auto buttons = GetComponents<Button>(_entity);
     if (buttons == nullptr) {
         return;
     }
     for (auto& button : *buttons) {
         // ボタンが押されたらシーンをアクティブにする
-        if (button.isReleased()) {
+        if (button.IsReleased()) {
             subScene->Activate();
             return;
         }

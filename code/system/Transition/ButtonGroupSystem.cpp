@@ -15,113 +15,113 @@ void ButtonGroupSystem::Initialize() {}
 void ButtonGroupSystem::Finalize() {}
 
 void ButtonGroupSystem::UpdateEntity(Entity* _entity) {
-    KeyboardInput* keyInput    = getScene()->getKeyboardInput();
-    GamePadInput* gamePadInput = getScene()->getGamePadInput();
+    KeyboardInput* keyInput    = GetScene()->GetKeyboardInput();
+    GamePadInput* gamePadInput = GetScene()->GetGamePadInput();
 
-    auto* buttonGroup = getComponent<ButtonGroup>(_entity);
+    auto* buttonGroup = GetComponent<ButtonGroup>(_entity);
     if (buttonGroup == nullptr) {
         return;
     }
 
-    int32_t currentButtonNumber = buttonGroup->getCurrentButtonNumber();
-    Button* currentButton       = getComponent<Button>(getEntity(buttonGroup->getEntityId(currentButtonNumber)));
+    int32_t currentButtonNumber = buttonGroup->GetCurrentButtonNumber();
+    Button* currentButton       = GetComponent<Button>(GetEntity(buttonGroup->GetEntityId(currentButtonNumber)));
     if (!currentButton) {
         return;
     }
-    currentButton->setHovered(true);
+    currentButton->SetHovered(true);
 
     // 外部システムの入力に従う (ボタンのショートカットやマウスでの選択など)
-    for (const auto& [index, entityID] : buttonGroup->getButtonNumbers()) {
-        auto* button = getComponent<Button>(getEntity(entityID));
+    for (const auto& [index, entityID] : buttonGroup->GetButtonNumbers()) {
+        auto* button = GetComponent<Button>(GetEntity(entityID));
         if (button == nullptr || button == currentButton) {
             continue;
         }
 
-        bool isInput = button->isHovered() || button->isPressed() || button->isReleased();
+        bool isInput = button->isHovered() || button->isPressed() || button->IsReleased();
 
         // 選択されているボタンの更新
         if (isInput) {
             // 初期化
             if (currentButton != nullptr) {
-                currentButton->setHovered(false);
-                currentButton->setPressed(false);
-                currentButton->setReleased(false);
+                currentButton->SetHovered(false);
+                currentButton->SetPressed(false);
+                currentButton->SetReleased(false);
             }
             currentButtonNumber = index;
-            buttonGroup->setCurrentButtonNumber(currentButtonNumber);
+            buttonGroup->SetCurrentButtonNumber(currentButtonNumber);
             // 直接移動させたら return
             return;
         }
     }
 
     bool isPressed  = currentButton->isPressed();
-    bool isReleased = currentButton->isReleased();
+    bool IsReleased = currentButton->IsReleased();
 
     // 決定ボタンの判定
     // pad が有効な場合は pad 優先
-    if (gamePadInput->isActive()) {
-        for (const auto& button : buttonGroup->getDecidePadButtons()) {
+    if (gamePadInput->IsActive()) {
+        for (const auto& button : buttonGroup->GetDecidePadButtons()) {
             if (isPressed) {
-                if (gamePadInput->isPress(button)) {
+                if (gamePadInput->IsPress(button)) {
                     isPressed = true;
                     break;
                 }
             } else {
-                if (gamePadInput->isRelease(button)) {
-                    isReleased = true;
+                if (gamePadInput->IsRelease(button)) {
+                    IsReleased = true;
                     break;
                 }
             }
         }
     }
-    if (!isReleased) {
-        for (const auto& key : buttonGroup->getDecideKeys()) {
+    if (!IsReleased) {
+        for (const auto& key : buttonGroup->GetDecideKeys()) {
             if (isPressed) {
-                if (keyInput->isPress(key)) {
+                if (keyInput->IsPress(key)) {
                     isPressed = true;
                     break;
                 }
             } else {
-                if (keyInput->isTrigger(key)) {
-                    isReleased = true;
+                if (keyInput->IsTrigger(key)) {
+                    IsReleased = true;
                     break;
                 }
             }
         }
     }
 
-    currentButton->setPressed(isPressed);
-    currentButton->setReleased(isReleased);
+    currentButton->SetPressed(isPressed);
+    currentButton->SetReleased(IsReleased);
 
-    if (isReleased) {
+    if (IsReleased) {
         return;
     }
 
     // 選択ボタンの変更
     int32_t delta = 0;
 
-    if (gamePadInput->isActive()) {
-        for (const auto& button : buttonGroup->getSelectAddPadButtons()) {
-            if (gamePadInput->isTrigger(button)) {
+    if (gamePadInput->IsActive()) {
+        for (const auto& button : buttonGroup->GetSelectAddPadButtons()) {
+            if (gamePadInput->IsTrigger(button)) {
                 ++delta;
                 break;
             }
         }
-        for (const auto& button : buttonGroup->getSelectSubPadButtons()) {
-            if (gamePadInput->isTrigger(button)) {
+        for (const auto& button : buttonGroup->GetSelectSubPadButtons()) {
+            if (gamePadInput->IsTrigger(button)) {
                 --delta;
                 break;
             }
         }
     }
 
-    for (const auto& key : buttonGroup->getSelectAddKeys()) {
-        if (keyInput->isTrigger(key)) {
+    for (const auto& key : buttonGroup->GetSelectAddKeys()) {
+        if (keyInput->IsTrigger(key)) {
             ++delta;
         }
     }
-    for (const auto& key : buttonGroup->getSelectSubKeys()) {
-        if (keyInput->isTrigger(key)) {
+    for (const auto& key : buttonGroup->GetSelectSubKeys()) {
+        if (keyInput->IsTrigger(key)) {
             --delta;
         }
     }
@@ -130,22 +130,22 @@ void ButtonGroupSystem::UpdateEntity(Entity* _entity) {
         delta = std::clamp(delta, -1, 1);
 
         // 初期化
-        currentButton->setPressed(false);
-        currentButton->setHovered(false);
+        currentButton->SetPressed(false);
+        currentButton->SetHovered(false);
 
         // 次のボタンを取得
         currentButtonNumber += delta;
-        currentButtonNumber = std::clamp(currentButtonNumber, 0, (int32_t)buttonGroup->getButtonNumbers().size() - 1);
+        currentButtonNumber = std::clamp(currentButtonNumber, 0, (int32_t)buttonGroup->GetButtonNumbers().size() - 1);
 
-        currentButton = getComponent<Button>(getEntity(buttonGroup->getEntityId(currentButtonNumber)));
+        currentButton = GetComponent<Button>(GetEntity(buttonGroup->GetEntityId(currentButtonNumber)));
 
         // 次のボタンが存在しなければ戻す
         if (!currentButton) {
             currentButtonNumber -= delta;
-            currentButton = getComponent<Button>(getEntity(buttonGroup->getEntityId(currentButtonNumber)));
+            currentButton = GetComponent<Button>(GetEntity(buttonGroup->GetEntityId(currentButtonNumber)));
         }
-        currentButton->setHovered(true);
+        currentButton->SetHovered(true);
 
-        buttonGroup->setCurrentButtonNumber(currentButtonNumber);
+        buttonGroup->SetCurrentButtonNumber(currentButtonNumber);
     }
 }

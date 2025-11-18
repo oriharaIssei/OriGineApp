@@ -21,21 +21,21 @@ void CameraInputSystem::Initialize() {}
 void CameraInputSystem::Finalize() {}
 
 void CameraInputSystem::UpdateEntity(Entity* _entity) {
-    GamePadInput* padInput = getScene()->getGamePadInput();
-    MouseInput* mouseInput = getScene()->getMouseInput();
+    GamePadInput* padInput = GetScene()->GetGamePadInput();
+    MouseInput* mouseInput = GetScene()->GetMouseInput();
 
-    CameraController* cameraController = getComponent<CameraController>(_entity);
+    CameraController* cameraController = GetComponent<CameraController>(_entity);
 
-    Vec2f destinationAngleXY = cameraController->getDestinationAngleXY();
+    Vec2f destinationAngleXY = cameraController->GetDestinationAngleXY();
 
-    if (cameraController->getFollowTarget()) {
+    if (cameraController->GetFollowTarget()) {
         Vec2f rotateVelocity = {0.f, 0.f};
-        if (padInput->isActive()) { /// GamePad
-            rotateVelocity = padInput->getRStick() * cameraController->getRotateSpeedPadStick();
+        if (padInput->IsActive()) { /// GamePad
+            rotateVelocity = padInput->GetRStick() * cameraController->GetRotateSpeedPadStick();
             // input の x,yをそれぞれの角度に変換
             rotateVelocity = Vec2f(-rotateVelocity[Y], rotateVelocity[X]);
         } else { /// Mouse
-            rotateVelocity = mouseInput->getVelocity() * cameraController->getRotateSpeedMouse();
+            rotateVelocity = mouseInput->GetVelocity() * cameraController->GetRotateSpeedMouse();
             // input の x,yをそれぞれの角度に変換
             rotateVelocity = Vec2f(rotateVelocity[Y], rotateVelocity[X]);
         }
@@ -43,8 +43,8 @@ void CameraInputSystem::UpdateEntity(Entity* _entity) {
         destinationAngleXY += rotateVelocity;
 
         // 角度制限を適用
-        destinationAngleXY[X] = std::clamp(destinationAngleXY[X], cameraController->getMinRotateX(), cameraController->getMaxRotateX());
+        destinationAngleXY[X] = std::clamp(destinationAngleXY[X], cameraController->GetMinRotateX(), cameraController->GetMaxRotateX());
 
-        cameraController->setDestinationAngleXY(destinationAngleXY);
+        cameraController->SetDestinationAngleXY(destinationAngleXY);
     }
 }

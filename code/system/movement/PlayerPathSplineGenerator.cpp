@@ -22,31 +22,31 @@ void PlayerPathSplineGenerator::Finalize() {}
 void PlayerPathSplineGenerator::UpdateEntity(Entity* _entity) {
     constexpr float kThresholdSplitOrMerger = 0.3f;
 
-    auto playerEntity = getUniqueEntity("Player");
+    auto playerEntity = GetUniqueEntity("Player");
     if (playerEntity == nullptr) {
         return;
     }
-    auto playerTransform = getComponent<Transform>(playerEntity);
+    auto playerTransform = GetComponent<Transform>(playerEntity);
     if (playerTransform == nullptr) {
         return;
     }
 
-    auto splinePoints = getComponent<SplinePoints>(_entity);
+    auto splinePoints = GetComponent<SplinePoints>(_entity);
     if (splinePoints == nullptr) {
         return;
     }
 
     // 速度が 0以上ならポイント追加処理
     constexpr float kFadeOutThresholdSpeed = 8.f;
-    Rigidbody* rigidBody                   = getComponent<Rigidbody>(playerEntity);
-    if (rigidBody->getVelocity().lengthSq() > kFadeOutThresholdSpeed * kFadeOutThresholdSpeed) {
+    Rigidbody* rigidBody                   = GetComponent<Rigidbody>(playerEntity);
+    if (rigidBody->GetVelocity().lengthSq() > kFadeOutThresholdSpeed * kFadeOutThresholdSpeed) {
 
         // segmentLength_ の安全チェック
         if (splinePoints->segmentLength_ <= kEpsilon) {
             return; // 無効な設定
         }
 
-        Vec3f newPoint = playerTransform->getWorldTranslate();
+        Vec3f newPoint = playerTransform->GetWorldTranslate();
 
         // 最低4点確保
         if (splinePoints->points_.size() < 4) {
@@ -131,7 +131,7 @@ void PlayerPathSplineGenerator::UpdateEntity(Entity* _entity) {
         // 古いポイントの削除処理
         if (!splinePoints->points_.empty()) {
             // fadeoutTimer 処理
-            splinePoints->fadeoutTimer_ += getMainDeltaTime();
+            splinePoints->fadeoutTimer_ += GetMainDeltaTime();
             if (splinePoints->fadeoutTimer_ >= splinePoints->fadeoutTime_) {
                 splinePoints->fadeoutTimer_ = 0.0f;
                 splinePoints->points_.pop_front();

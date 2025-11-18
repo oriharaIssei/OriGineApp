@@ -14,23 +14,23 @@ void UpdateButtonColorByState::Finalize() {
 
 static const float interpolate = 0.1f;
 void UpdateButtonColorByState::UpdateEntity(Entity* _entity) {
-    Button* button = getComponent<Button>(_entity);
+    Button* button = GetComponent<Button>(_entity);
     if (button == nullptr) {
         return;
     }
 
-    SpriteRenderer* sprite = getComponent<SpriteRenderer>(_entity);
+    SpriteRenderer* sprite = GetComponent<SpriteRenderer>(_entity);
     if (sprite == nullptr) {
         return;
     }
 
-    if (button->isReleased()) {
-        sprite->setColor(Lerp<4, float>(sprite->getColor(), button->getReleaseColor(), interpolate));
+    if (button->IsReleased()) {
+        sprite->SetColor(Lerp<4, float>(sprite->GetColor(), button->GetReleaseColor(), interpolate));
     } else if (button->isPressed()) {
-        sprite->setColor(Lerp<4, float>(sprite->getColor(), button->getPressColor(),interpolate));
+        sprite->SetColor(Lerp<4, float>(sprite->GetColor(), button->GetPressColor(),interpolate));
     } else if (button->isHovered()) {
-        sprite->setColor(Lerp<4,float>(sprite->getColor(),button->getHoverColor(),interpolate));
+        sprite->SetColor(Lerp<4,float>(sprite->GetColor(),button->GetHoverColor(),interpolate));
     } else {
-        sprite->setColor(Lerp<4, float>(sprite->getColor(), button->getNormalColor(), interpolate));
+        sprite->SetColor(Lerp<4, float>(sprite->GetColor(), button->GetNormalColor(), interpolate));
     }
 }

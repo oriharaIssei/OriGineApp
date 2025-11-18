@@ -17,20 +17,20 @@
 #include "MyEasing.h"
 
 void PlayerWallJumpState::Initialize() {
-    auto* playerEntity = scene_->getEntity(playerEntityID_);
-    auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
-    auto* playerStatus = scene_->getComponent<PlayerStatus>(playerEntity);
-    auto* playerState  = scene_->getComponent<PlayerState>(playerEntity);
+    auto* playerEntity = scene_->GetEntity(playerEntityID_);
+    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntity);
+    auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntity);
+    auto* playerState  = scene_->GetComponent<PlayerState>(playerEntity);
 
-    rigidbody->setAcceleration({0.0f, 0.0f, 0.0f});
-    rigidbody->setUseGravity(false);
+    rigidbody->SetAcceleration({0.0f, 0.0f, 0.0f});
+    rigidbody->SetUseGravity(false);
 
     // 壁情報
-    const Vec3f& wallNormal        = playerState->getWallCollisionNormal().normalize();
-    const Vec3f& wallJumpDirection = playerStatus->getWallJumpOffset();
+    const Vec3f& wallNormal        = playerState->GetWallCollisionNormal().normalize();
+    const Vec3f& wallJumpDirection = playerStatus->GetWallJumpOffset();
 
     // プレイヤーの進行方向（正面）
-    Vec3f velocityDirection = rigidbody->getVelocity();
+    Vec3f velocityDirection = rigidbody->GetVelocity();
     velocityDirection       = velocityDirection.normalize();
 
     // --- 壁ローカル → ワールド変換 ---
@@ -41,10 +41,10 @@ void PlayerWallJumpState::Initialize() {
     jumpDirWorld = jumpDirWorld.normalize();
 
     // --- 最終速度設定 ---
-    float jumpSpeed = rigidbody->getMaxXZSpeed() * playerStatus->getWallRunRate();
+    float jumpSpeed = rigidbody->GetMaxXZSpeed() * playerStatus->GetWallRunRate();
     velo_           = jumpDirWorld * jumpSpeed;
 
-    rigidbody->setVelocity(velo_);
+    rigidbody->SetVelocity(velo_);
 
     forceJumpTimer_ = 0.f;
 }
@@ -54,23 +54,23 @@ void PlayerWallJumpState::Update(float _deltaTime) {
 }
 
 void PlayerWallJumpState::Finalize() {
-    auto* playerEntity = scene_->getEntity(playerEntityID_);
-    auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
+    auto* playerEntity = scene_->GetEntity(playerEntityID_);
+    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntity);
 
-    rigidbody->setUseGravity(true); // 重力を有効
+    rigidbody->SetUseGravity(true); // 重力を有効
 
     forceJumpTimer_ = kForceJumpTime_; // 強制時間を終了させる
 }
 
 PlayerMoveState PlayerWallJumpState::TransitionState() const {
-    auto* playerEntity = scene_->getEntity(playerEntityID_);
+    auto* playerEntity = scene_->GetEntity(playerEntityID_);
 
-    auto* playerState = scene_->getComponent<PlayerState>(playerEntity);
+    auto* playerState = scene_->GetComponent<PlayerState>(playerEntity);
 
-    if (playerState->isOnGround()) {
+    if (playerState->IsOnGround()) {
         return PlayerMoveState::DASH;
     }
-    if (playerState->isCollisionWithWall()) {
+    if (playerState->IsCollisionWithWall()) {
         return PlayerMoveState::WALL_RUN;
     }
 

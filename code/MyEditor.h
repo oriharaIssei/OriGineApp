@@ -22,7 +22,7 @@ protected:
 
 public:
     bool isEndRequest() const { return isEndRequest_; }
-    void setEndRequest(bool endRequest) { isEndRequest_ = endRequest; }
+    void SetEndRequest(bool endRequest) { isEndRequest_ = endRequest; }
 };
 
 #endif // _DEBUG

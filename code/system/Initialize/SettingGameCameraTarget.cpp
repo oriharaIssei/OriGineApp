@@ -12,13 +12,13 @@ void SettingGameCameraTarget::Initialize() {
 }
 
 void SettingGameCameraTarget::Update() {
-    Entity* playerEntity = getUniqueEntity("Player");
-    Entity* cameraEntity = getUniqueEntity("GameCamera");
+    Entity* playerEntity = GetUniqueEntity("Player");
+    Entity* cameraEntity = GetUniqueEntity("GameCamera");
     // カメラのターゲットをプレイヤーに設定
     if (cameraEntity) {
-        CameraController* cameraController = getComponent<CameraController>(cameraEntity);
+        CameraController* cameraController = GetComponent<CameraController>(cameraEntity);
         if (cameraController) {
-            cameraController->setFollowTarget(getComponent<Transform>(playerEntity));
+            cameraController->SetFollowTarget(GetComponent<Transform>(playerEntity));
         }
     }
 }

@@ -49,36 +49,36 @@ void TimerForSprite::Initialize() {}
 void TimerForSprite::Finalize() {}
 
 void TimerForSprite::UpdateEntity(Entity* _entity) {
-    auto timerComponent          = getComponent<TimerComponent>(_entity);
-    auto timerForSpriteComponent = getComponent<TimerForSpriteComponent>(_entity);
+    auto timerComponent          = GetComponent<TimerComponent>(_entity);
+    auto timerForSpriteComponent = GetComponent<TimerForSpriteComponent>(_entity);
     if (!timerComponent) {
         return; // タイマーコンポーネントがない場合は何もしない
     }
 
-    auto timerSpritesEntity = getEntity(timerForSpriteComponent->getSpritesEntityId());
+    auto timerSpritesEntity = GetEntity(timerForSpriteComponent->GetSpritesEntityId());
     if (!timerSpritesEntity) {
         return; // スプライトエンティティがない場合は何もしない
     }
 
     // 浮動小数点数から各桁の数字を抽出
     std::vector<int> digits = CalculateDigitsFromFloat(
-        timerComponent->getCurrentTime(),
-        timerForSpriteComponent->getDigitIntegerForSprite(),
-        timerForSpriteComponent->getDigitDecimalForSprite());
+        timerComponent->GetCurrentTime(),
+        timerForSpriteComponent->GetDigitIntegerForSprite(),
+        timerForSpriteComponent->GetDigitDecimalForSprite());
 
     // 各スプライトに数字を適用
-    for (int32_t i = 0; i < timerForSpriteComponent->getDigitForSprite(); ++i) {
-        auto sprite = getComponent<SpriteRenderer>(timerSpritesEntity, i);
+    for (int32_t i = 0; i < timerForSpriteComponent->GetDigitForSprite(); ++i) {
+        auto sprite = GetComponent<SpriteRenderer>(timerSpritesEntity, i);
         if (!sprite) {
             continue; // スプライトがない場合は何もしない
         }
         if (int32_t(digits.size()) <= i) {
             return;
         }
-        float spriteLeftTopY     = sprite->getTextureLeftTop()[Y];
-        float spriteTextureSizeX = sprite->getTextureSize()[X];
+        float spriteLeftTopY     = sprite->GetTextureLeftTop()[Y];
+        float spriteTextureSizeX = sprite->GetTextureSize()[X];
 
-        sprite->setTextureLeftTop(
+        sprite->SetTextureLeftTop(
             {spriteTextureSizeX * digits[i], spriteLeftTopY});
     }
 }

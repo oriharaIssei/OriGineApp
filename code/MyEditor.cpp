@@ -6,7 +6,7 @@
 #include "editor/debugReplayer/DebugReplayWindow.h"
 #include "editor/EditorController.h"
 #include "editor/sceneEditor/SceneEditor.h"
-#include "editor/setting/SettingWindow.h"
+#include "editor/Setting/SettingWindow.h"
 #include "editor/window/EditorWindowMenu.h"
 
 #include "Engine.h"
@@ -18,9 +18,9 @@ void MyEditor::Initialize(const std::vector<std::string>& _commandLines) {
     ///=================================================================================================
     // Editor のための 初期化
     ///=================================================================================================
-    variables_        = GlobalVariables::getInstance();
-    engine_           = Engine::getInstance();
-    editorController_ = EditorController::getInstance();
+    variables_        = GlobalVariables::GetInstance();
+    engine_           = Engine::GetInstance();
+    editorController_ = EditorController::GetInstance();
 
     variables_->LoadAllFile();
     engine_->Initialize();
@@ -54,19 +54,19 @@ void MyEditor::Initialize(const std::vector<std::string>& _commandLines) {
 
     if (isReplayerMode) {
         auto debugReplayWindow = std::make_unique<DebugReplayWindow>();
-        editorController_->addEditor<DebugReplayWindow>(std::move(debugReplayWindow));
+        editorController_->AddEditor<DebugReplayWindow>(std::move(debugReplayWindow));
     } else {
         auto sceneEditorWindow = std::make_unique<SceneEditorWindow>();
-        editorController_->addEditor<SceneEditorWindow>(std::move(sceneEditorWindow));
+        editorController_->AddEditor<SceneEditorWindow>(std::move(sceneEditorWindow));
 
         auto settingWindow = std::make_unique<SettingWindow>();
-        editorController_->addEditor<SettingWindow>(std::move(settingWindow));
+        editorController_->AddEditor<SettingWindow>(std::move(settingWindow));
 
         auto editorWindowMenu = std::make_unique<EditorWindowMenu>();
-        editorWindowMenu->addMenuItem(std::make_shared<WindowItem<SceneEditorWindow>>());
+        editorWindowMenu->AddMenuItem(std::make_shared<WindowItem<SceneEditorWindow>>());
 
-        editorWindowMenu->addMenuItem(std::make_shared<WindowItem<SettingWindow>>());
-        editorController_->addMainMenu<EditorWindowMenu>(std::move(editorWindowMenu));
+        editorWindowMenu->AddMenuItem(std::make_shared<WindowItem<SettingWindow>>());
+        editorController_->AddMainMenu<EditorWindowMenu>(std::move(editorWindowMenu));
     }
     editorController_->Initialize();
 }

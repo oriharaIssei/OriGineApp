@@ -37,7 +37,7 @@ public:
 private:
     bool isHovered_  = false;
     bool isPressed_  = false;
-    bool isReleased_ = false;
+    bool IsReleased_ = false;
 
     std::vector<PadButton> shortcutPadButton_;
     std::vector<Key> shortcutKey_;
@@ -47,60 +47,60 @@ private:
     Vec4f pressColor_   = Vec4f(0.6f, 0.6f, 0.6f, 1.0f);
     Vec4f releaseColor_ = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
 
-public: // getter setter
-    const std::vector<PadButton>& getShortcutPadButton() const {
+public: // Getter Setter
+    const std::vector<PadButton>& GetShortcutPadButton() const {
         return shortcutPadButton_;
     }
-    const std::vector<Key>& getShortcutKey() const {
+    const std::vector<Key>& GetShortcutKey() const {
         return shortcutKey_;
     }
 
     bool isHovered() const {
         return isHovered_;
     }
-    void setHovered(bool _hovered) {
+    void SetHovered(bool _hovered) {
         isHovered_ = _hovered;
     }
 
     bool isPressed() const {
         return isPressed_;
     }
-    void setPressed(bool _pressed) {
+    void SetPressed(bool _pressed) {
         isPressed_ = _pressed;
     }
 
-    bool isReleased() const {
-        return isReleased_;
+    bool IsReleased() const {
+        return IsReleased_;
     }
-    void setReleased(bool _released) {
-        isReleased_ = _released;
+    void SetReleased(bool _released) {
+        IsReleased_ = _released;
     }
 
-    const Vec4f& getNormalColor() const {
+    const Vec4f& GetNormalColor() const {
         return normalColor_;
     }
-    void setNormalColor(const Vec4f& _color) {
+    void SetNormalColor(const Vec4f& _color) {
         normalColor_ = _color;
     }
 
-    const Vec4f& getHoverColor() const {
+    const Vec4f& GetHoverColor() const {
         return hoverColor_;
     }
-    void setHoverColor(const Vec4f& _color) {
+    void SetHoverColor(const Vec4f& _color) {
         hoverColor_ = _color;
     }
 
-    const Vec4f& getPressColor() const {
+    const Vec4f& GetPressColor() const {
         return pressColor_;
     }
-    void setPressColor(const Vec4f& _color) {
+    void SetPressColor(const Vec4f& _color) {
         pressColor_ = _color;
     }
 
-    const Vec4f& getReleaseColor() const {
+    const Vec4f& GetReleaseColor() const {
         return releaseColor_;
     }
-    void setReleaseColor(const Vec4f& _color) {
+    void SetReleaseColor(const Vec4f& _color) {
         releaseColor_ = _color;
     }
 };

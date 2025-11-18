@@ -20,12 +20,12 @@ private:
     int32_t fromPointIndex_ = -1; // この床のリンク元のインデックス
     float width_            = 0.5f; // 床の幅
 public:
-    int32_t getLinkIndex() const { return linkIndex_; }
-    void setLinkIndex(int32_t _linkIndex) { linkIndex_ = _linkIndex; }
-    int32_t getToPointIndex() const { return toPointIndex_; }
-    void setToPointIndex(int32_t _toPointIndex) { toPointIndex_ = _toPointIndex; }
-    int32_t getFromPointIndex() const { return fromPointIndex_; }
-    void setFromPointIndex(int32_t _fromPointIndex) { fromPointIndex_ = _fromPointIndex; }
-    float getWidth() const { return width_; }
-    void setWidth(float _width) { width_ = _width; }
+    int32_t GetLinkIndex() const { return linkIndex_; }
+    void SetLinkIndex(int32_t _linkIndex) { linkIndex_ = _linkIndex; }
+    int32_t GetToPointIndex() const { return toPointIndex_; }
+    void SetToPointIndex(int32_t _toPointIndex) { toPointIndex_ = _toPointIndex; }
+    int32_t GetFromPointIndex() const { return fromPointIndex_; }
+    void SetFromPointIndex(int32_t _fromPointIndex) { fromPointIndex_ = _fromPointIndex; }
+    float GetWidth() const { return width_; }
+    void SetWidth(float _width) { width_ = _width; }
 };

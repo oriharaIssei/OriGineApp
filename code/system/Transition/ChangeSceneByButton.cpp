@@ -20,10 +20,10 @@ void ChangeSceneByButton::Initialize() {}
 void ChangeSceneByButton::Finalize() {}
 
 void ChangeSceneByButton::UpdateEntity(Entity* _entity) {
-    Button* button = getComponent<Button>(_entity);
+    Button* button = GetComponent<Button>(_entity);
 
-    if (button->isReleased()) {
-        SceneChanger* sceneChanger = getComponent<SceneChanger>(_entity);
+    if (button->IsReleased()) {
+        SceneChanger* sceneChanger = GetComponent<SceneChanger>(_entity);
         sceneChanger->ChangeScene();
     }
 }

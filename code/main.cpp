@@ -18,7 +18,7 @@
 std::vector<std::string> ParseCommandLine();
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
-    DxDebug::getInstance()->InitializeDebugger();
+    DxDebug::GetInstance()->InitializeDebugger();
 
     std::vector<std::string> cmdLines = ParseCommandLine();
 
@@ -29,7 +29,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
         std::unique_ptr<MyEditor> editorApp = std::make_unique<MyEditor>();
 
         editorApp->Initialize(cmdLines);
-        DxDebug::getInstance()->CreateInfoQueue();
+        DxDebug::GetInstance()->CreateInfoQueue();
 
         editorApp->Run();
 
@@ -40,7 +40,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
         std::unique_ptr<MyGame> gameApp = std::make_unique<MyGame>();
 
         gameApp->Initialize(cmdLines);
-        DxDebug::getInstance()->CreateInfoQueue();
+        DxDebug::GetInstance()->CreateInfoQueue();
 
         gameApp->Run();
 

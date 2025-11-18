@@ -73,64 +73,64 @@ private:
     float directionInterpolateRate_ = 0.1f;
 
 public:
-    float getDirectionInterpolateRate() const {
+    float GetDirectionInterpolateRate() const {
         return directionInterpolateRate_;
     }
 
-    float getBaseSpeed() const {
+    float GetBaseSpeed() const {
         return baseSpeed_;
     }
-    float getJumpPower() const { return jumpPower_; }
-    float getFallPower() const { return fallPower_; }
+    float GetJumpPower() const { return jumpPower_; }
+    float GetFallPower() const { return fallPower_; }
 
-    float getCurrentMaxSpeed() const {
+    float GetCurrentMaxSpeed() const {
         return currentMaxSpeed_;
     }
-    void setCurrentMaxSpeed(float _currentMaxSpeed) {
+    void SetCurrentMaxSpeed(float _currentMaxSpeed) {
         currentMaxSpeed_ = _currentMaxSpeed;
     }
 
-    float getWallRunRate() const {
+    float GetWallRunRate() const {
         return wallRunRate_;
     }
-    void setWallRunRate(float _wallRunRate) {
+    void SetWallRunRate(float _wallRunRate) {
         wallRunRate_ = _wallRunRate;
     }
 
-    float getWallRunRampUpTime() const {
+    float GetWallRunRampUpTime() const {
         return wallRunRampUpTime_;
     }
 
-    const Vec3f& getWallJumpOffset() const {
+    const Vec3f& GetWallJumpOffset() const {
         return wallJumpOffset_;
     }
-    void setWallJumpOffset(const Vec3f& _wallJumpOffset) {
+    void SetWallJumpOffset(const Vec3f& _wallJumpOffset) {
         wallJumpOffset_ = _wallJumpOffset;
     }
 
-    float getBaseGearupCoolTime() const {
+    float GetBaseGearupCoolTime() const {
         return baseGearupCoolTime_;
     }
-    float getGearUpCoolTime() const {
+    float GetGearUpCoolTime() const {
         return gearUpCoolTime_;
     }
-    void setGearUpCoolTime(float _gearUpCoolTime) {
+    void SetGearUpCoolTime(float _gearUpCoolTime) {
         gearUpCoolTime_ = _gearUpCoolTime;
     }
     void minusGearUpCoolTime(float _deltaTime) {
         gearUpCoolTime_ -= _deltaTime;
     }
 
-    float getCoolTimeUpRateBase() const {
+    float GetCoolTimeUpRateBase() const {
         return coolTimeAddRateBase_;
     }
-    float getCoolTimeUpRateCommonRate() const {
+    float GetCoolTimeUpRateCommonRate() const {
         return coolTimeAddRateCommonRate_;
     }
-    float getSpeedUpRateBase() const {
+    float GetSpeedUpRateBase() const {
         return speedUpRateBase_;
     }
-    float getSpeedUpRateCommonRate() const {
+    float GetSpeedUpRateCommonRate() const {
         return speedUpRateCommonRate_;
     }
 };

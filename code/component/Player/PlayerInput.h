@@ -34,7 +34,7 @@ private:
     // effectに使う
     Vec3f worldInputDirection_ = {0.0f, 0.0f, 0.0f};
 
-    bool isJumpInput_    = false; // ジャンプ入力があったかどうか
+    bool IsJumpInput_    = false; // ジャンプ入力があったかどうか
     float jumpInputTime_ = 0.0f; // ジャンプ入力の時間 (これによってジャンプ力が変わる)
     float maxJumpTime_   = 0.1f; // ジャンプ入力の最大時間 (秒単位)
 
@@ -68,62 +68,62 @@ private:
         PadButton::R_SHOULDER};
 
 public:
-    const std::vector<Key>& getMoveFrontKeys() const {
+    const std::vector<Key>& GetMoveFrontKeys() const {
         return moveFrontKeys_;
     }
-    const std::vector<Key>& getMoveBackKeys() const {
+    const std::vector<Key>& GetMoveBackKeys() const {
         return moveBackKeys_;
     }
-    const std::vector<Key>& getMoveLeftKeys() const {
+    const std::vector<Key>& GetMoveLeftKeys() const {
         return moveLeftKeys_;
     }
-    const std::vector<Key>& getMoveRightKeys() const {
+    const std::vector<Key>& GetMoveRightKeys() const {
         return moveRightKeys_;
     }
 
-    const std::vector<Key>& getJumpKeys() const {
+    const std::vector<Key>& GetJumpKeys() const {
         return jumpKeys_;
     }
 
-    const std::vector<PadButton>& getJumpButton() const {
+    const std::vector<PadButton>& GetJumpButton() const {
         return jumpButton_;
     }
 
-    const std::vector<Key>& getSlideKeys() const {
+    const std::vector<Key>& GetSlideKeys() const {
         return slideKeys_;
     }
-    const std::vector<PadButton>& getSlideButton() const {
+    const std::vector<PadButton>& GetSlideButton() const {
         return slideButton_;
     }
 
-    const Vec2f& getInputDirection() const {
+    const Vec2f& GetInputDirection() const {
         return inputDirection_;
     }
-    void setInputDirection(const Vec2f& _inputDirection) {
+    void SetInputDirection(const Vec2f& _inputDirection) {
         inputDirection_ = _inputDirection;
     }
 
-    const Vec3f& getWorldInputDirection() const {
+    const Vec3f& GetWorldInputDirection() const {
         return worldInputDirection_;
     }
-    void setWorldInputDirection(const Vec3f& _worldInputDirection) {
+    void SetWorldInputDirection(const Vec3f& _worldInputDirection) {
         worldInputDirection_ = _worldInputDirection;
     }
 
-    bool isJumpInput() const {
-        return isJumpInput_;
+    bool IsJumpInput() const {
+        return IsJumpInput_;
     }
-    void setJumpInput(bool _isJumpInput) {
-        isJumpInput_ = _isJumpInput;
+    void SetJumpInput(bool _IsJumpInput) {
+        IsJumpInput_ = _IsJumpInput;
     }
 
-    const float getMaxJumpTime() const {
+    const float GetMaxJumpTime() const {
         return maxJumpTime_;
     }
-    float getJumpInputTime() const {
+    float GetJumpInputTime() const {
         return jumpInputTime_;
     }
-    void setJumpInputTime(float _jumpInputTime) {
+    void SetJumpInputTime(float _jumpInputTime) {
         jumpInputTime_ = _jumpInputTime;
     }
 };

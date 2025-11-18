@@ -27,74 +27,74 @@ void PlayerUpdateOnTitle::Finalize() {
 }
 
 void PlayerUpdateOnTitle::UpdateEntity(Entity* _entity) {
-    auto* playerInput = getComponent<PlayerInput>(_entity);
+    auto* playerInput = GetComponent<PlayerInput>(_entity);
     if (playerInput == nullptr) {
         LOG_ERROR("PlayerInput component is missing.");
         return;
     }
-    auto* playerState = getComponent<PlayerState>(_entity);
+    auto* playerState = GetComponent<PlayerState>(_entity);
     if (playerState == nullptr) {
         LOG_ERROR("PlayerState component is missing.");
         return;
     }
-    auto* playerStatus = getComponent<PlayerStatus>(_entity);
+    auto* playerStatus = GetComponent<PlayerStatus>(_entity);
     if (playerStatus == nullptr) {
         LOG_ERROR("PlayerStatus component is missing.");
         return;
     }
 
     // ジャンプ入力を無効化
-    playerInput->setJumpInput(false);
+    playerInput->SetJumpInput(false);
 
     // タイトル画面では常に地面に接地している状態にする
     playerState->OnCollisionGround(-1);
 
     // 更新処理 ほぼ PlayerDashState と同じ
-    float deltaTime = getMainDeltaTime();
-    auto* transform = getComponent<Transform>(_entity);
-    auto* rigidbody = getComponent<Rigidbody>(_entity);
+    float deltaTime = GetMainDeltaTime();
+    auto* transform = GetComponent<Transform>(_entity);
+    auto* rigidbody = GetComponent<Rigidbody>(_entity);
 
     playerStatus->minusGearUpCoolTime(deltaTime);
 
-    int32_t gearLevel = playerState->getGearLevel();
+    int32_t gearLevel = playerState->GetGearLevel();
     // ギアレベルが最大に達していない場合、
     if (gearLevel < kMaxPlayerGearLevel - 1) {
         // クールタイムが0以下になったらギアレベルを上げる
-        if (playerStatus->getGearUpCoolTime() <= 0.f) {
-            playerState->setGearUp(true);
+        if (playerStatus->GetGearUpCoolTime() <= 0.f) {
+            playerState->SetGearUp(true);
 
             ++gearLevel;
-            playerState->setGearLevel(gearLevel);
+            playerState->SetGearLevel(gearLevel);
 
-            playerStatus->setGearUpCoolTime(playerStatus->CalculateCoolTimeByGearLevel(gearLevel));
+            playerStatus->SetGearUpCoolTime(playerStatus->CalculateCoolTimeByGearLevel(gearLevel));
 
-            playerStatus->setCurrentMaxSpeed(playerStatus->CalculateSpeedByGearLevel(gearLevel));
-            rigidbody->setMaxXZSpeed(playerStatus->getCurrentMaxSpeed());
+            playerStatus->SetCurrentMaxSpeed(playerStatus->CalculateSpeedByGearLevel(gearLevel));
+            rigidbody->SetMaxXZSpeed(playerStatus->GetCurrentMaxSpeed());
         }
     }
 
     // 速度更新
     playerStatus->UpdateAccel(deltaTime, playerInput, transform, rigidbody, Quaternion::Identity());
-    if (playerInput->getInputDirection().length() >= kEpsilon) {
-        Vec3f newVelo = rigidbody->getVelocity() + rigidbody->getAcceleration() * deltaTime;
-        if (newVelo.lengthSq() >= rigidbody->getMaxXZSpeed()) {
-            newVelo = newVelo.normalize() * rigidbody->getMaxXZSpeed();
+    if (playerInput->GetInputDirection().length() >= kEpsilon) {
+        Vec3f newVelo = rigidbody->GetVelocity() + rigidbody->GetAcceleration() * deltaTime;
+        if (newVelo.lengthSq() >= rigidbody->GetMaxXZSpeed()) {
+            newVelo = newVelo.normalize() * rigidbody->GetMaxXZSpeed();
         }
-        rigidbody->setVelocity(newVelo);
+        rigidbody->SetVelocity(newVelo);
     } else {
         constexpr float kDecelerationRate = 1.6f;
         /// 初期化処理
         // 入力方向をリセット
-        playerInput->setWorldInputDirection({0.f, 0.f, 0.f});
+        playerInput->SetWorldInputDirection({0.f, 0.f, 0.f});
         // 速度をゼロにする
-        rigidbody->setAcceleration({0.f, 0.0f, 0.0f});
-        playerStatus->setCurrentMaxSpeed(0.0f);
+        rigidbody->SetAcceleration({0.f, 0.0f, 0.0f});
+        playerStatus->SetCurrentMaxSpeed(0.0f);
         // ギアアップのクールタイム&ギアレベルをリセット
-        playerStatus->setGearUpCoolTime(playerStatus->getBaseGearupCoolTime());
-        playerState->setGearLevel(kDefaultPlayerGearLevel);
+        playerStatus->SetGearUpCoolTime(playerStatus->GetBaseGearupCoolTime());
+        playerState->SetGearLevel(kDefaultPlayerGearLevel);
 
         // 速度を減衰させる
-        rigidbody->setVelocity(LerpByDeltaTime(rigidbody->getVelocity(), Vec3f(), deltaTime, kDecelerationRate));
+        rigidbody->SetVelocity(LerpByDeltaTime(rigidbody->GetVelocity(), Vec3f(), deltaTime, kDecelerationRate));
     }
     transform->UpdateMatrix();
 }

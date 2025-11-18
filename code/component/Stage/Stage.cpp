@@ -45,7 +45,7 @@ void Stage::Edit([[maybe_unused]] Scene* _scene, Entity* /*_entity*/, [[maybe_un
     if (fileWatcher_) {
         if (fileWatcher_->isChanged()) {
             ReloadFile();
-            _scene->getSystemRunnerRef()->UpdateCategory(SystemCategory::Initialize);
+            _scene->GetSystemRunnerRef()->UpdateCategory(SystemCategory::Initialize);
         }
     }
 
@@ -145,7 +145,7 @@ void Stage::LoadFile(const std::string& _directory, const std::string& _filename
 #ifndef _RELEASE
     if (fileWatcher_) {
         fileWatcher_->Stop();
-        fileWatcher_->setFilePath(directory_ + "/" + fileName_ + +".stage");
+        fileWatcher_->SetFilePath(directory_ + "/" + fileName_ + +".stage");
         fileWatcher_->Start();
     } else {
         fileWatcher_ = std::make_shared<FileWatcher>(directory_ + "/" + fileName_ + +".stage");
@@ -166,6 +166,6 @@ void to_json(nlohmann::json& j, const Stage& stage) {
 }
 
 void from_json(const nlohmann::json& j, Stage& stage) {
-    j.at("directory").get_to(stage.directory_);
-    j.at("fileName").get_to(stage.fileName_);
+    j.at("directory").Get_to(stage.directory_);
+    j.at("fileName").Get_to(stage.fileName_);
 }

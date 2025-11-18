@@ -20,30 +20,30 @@ void FollowCameraUpdateSystem::Initialize() {}
 void FollowCameraUpdateSystem::Finalize() {}
 
 void FollowCameraUpdateSystem::UpdateEntity(Entity* _entity) {
-    CameraController* cameraController = getComponent<CameraController>(_entity);
-    CameraTransform* cameraTransform   = getComponent<CameraTransform>(_entity);
-    const float deltaTime              = getMainDeltaTime();
+    CameraController* cameraController = GetComponent<CameraController>(_entity);
+    CameraTransform* cameraTransform   = GetComponent<CameraTransform>(_entity);
+    const float deltaTime              = GetMainDeltaTime();
 
-    if (cameraController->getFollowTarget()) {
+    if (cameraController->GetFollowTarget()) {
         // ======== 回転行列 ======== //
-        Vec2f destinationAngleXY  = cameraController->getDestinationAngleXY();
+        Vec2f destinationAngleXY  = cameraController->GetDestinationAngleXY();
         Matrix4x4 cameraRotateMat = MakeMatrix::RotateX(destinationAngleXY[X]) * MakeMatrix::RotateY(destinationAngleXY[Y]);
 
         // ======== ターゲット追従補間 ======== //
-        Vec3f followTargetPosition = Vec3f(cameraController->getFollowTarget()->getWorldTranslate());
-        Vec3f interTarget          = cameraController->getInterTarget();
+        Vec3f followTargetPosition = Vec3f(cameraController->GetFollowTarget()->GetWorldTranslate());
+        Vec3f interTarget          = cameraController->GetInterTarget();
         interTarget                = LerpByDeltaTime(
             interTarget,
             followTargetPosition,
             deltaTime,
-            cameraController->getInterTargetInterpolation());
-        cameraController->setInterTarget(interTarget);
+            cameraController->GetInterTargetInterpolation());
+        cameraController->SetInterTarget(interTarget);
 
         // ======== 注視点 (targetOffset) ======== //
-        Vec3f targetPosition = interTarget + (cameraController->getCurrentTargetOffset() * cameraRotateMat);
+        Vec3f targetPosition = interTarget + (cameraController->GetCurrentTargetOffset() * cameraRotateMat);
 
         // ======== カメラ位置 (offset) ======== //
-        Vec3f cameraPos            = interTarget + (cameraController->getCurrentOffset() * cameraRotateMat);
+        Vec3f cameraPos            = interTarget + (cameraController->GetCurrentOffset() * cameraRotateMat);
         cameraTransform->translate = cameraPos;
 
         // ======== カメラ回転 ======== //
@@ -53,10 +53,10 @@ void FollowCameraUpdateSystem::UpdateEntity(Entity* _entity) {
             cameraTransform->rotate,
             targetQuat,
             deltaTime,
-            cameraController->getRotateSensitivity());
+            cameraController->GetRotateSensitivity());
     }
 
     cameraTransform->UpdateMatrix();
-    CameraManager::getInstance()->setTransform(*cameraTransform);
-    CameraManager::getInstance()->DataConvertToBuffer();
+    CameraManager::GetInstance()->SetTransform(*cameraTransform);
+    CameraManager::GetInstance()->DataConvertToBuffer();
 }

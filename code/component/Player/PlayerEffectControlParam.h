@@ -48,26 +48,26 @@ private:
     float wheelTiltAngleMaxAccel_ = 0.0f;
 
 public:
-    Vector4f getTrailColorByGearLevel(int32_t _level) const {
+    Vector4f GetTrailColorByGearLevel(int32_t _level) const {
         return trailColorByGearLevel_[_level];
     }
-    float getRotateOffsetOnWallRun() const {
+    float GetRotateOffsetOnWallRun() const {
         return rotateOffsetOnWallRun_;
     }
-    float getMaxWheelSpinSpeedRate() const {
+    float GetMaxWheelSpinSpeedRate() const {
         return maxWheelSpinSpeed_;
     };
-    float getWheelTiltAngleRate() const {
+    float GetWheelTiltAngleRate() const {
         return wheelTiltAngleRate_;
     }
-    float getWheelTiltAngleMaxAccel() const {
+    float GetWheelTiltAngleMaxAccel() const {
         return wheelTiltAngleMaxAccel_;
     }
 
-    float getPreWheelTiltAngle() const {
+    float GetPreWheelTiltAngle() const {
         return preWheelTiltAngle_;
     }
-    void setPreWheelTiltAngle(float _angle) {
+    void SetPreWheelTiltAngle(float _angle) {
         preWheelTiltAngle_ = _angle;
     }
 };

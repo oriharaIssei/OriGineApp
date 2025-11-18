@@ -15,11 +15,11 @@ void ButtonInputSystem::Initialize() {}
 void ButtonInputSystem::Finalize() {}
 
 void ButtonInputSystem::UpdateEntity(Entity* _entity) {
-    KeyboardInput* keyInput = getScene()->getKeyboardInput();
-    MouseInput* mouseInput  = getScene()->getMouseInput();
-    GamePadInput* padInput  = getScene()->getGamePadInput();
+    KeyboardInput* keyInput = GetScene()->GetKeyboardInput();
+    MouseInput* mouseInput  = GetScene()->GetMouseInput();
+    GamePadInput* padInput  = GetScene()->GetGamePadInput();
 
-    std::vector<Button>* buttons = getComponents<Button>(_entity);
+    std::vector<Button>* buttons = GetComponents<Button>(_entity);
 
     if (buttons == nullptr) {
         return;
@@ -28,38 +28,38 @@ void ButtonInputSystem::UpdateEntity(Entity* _entity) {
     for (auto& button : *buttons) {
 
         // リセット
-        button.setHovered(false);
-        button.setPressed(false);
-        button.setReleased(false);
+        button.SetHovered(false);
+        button.SetPressed(false);
+        button.SetReleased(false);
 
         /// ====================== check Keyboard Input ====================== ///
         //! Shortcut で キャンセルの方法が無い
-        for (auto key : button.getShortcutKey()) {
-            if (keyInput->isPress(key)) {
-                button.setPressed(true);
+        for (auto key : button.GetShortcutKey()) {
+            if (keyInput->IsPress(key)) {
+                button.SetPressed(true);
             }
-            if (keyInput->isRelease(key)) {
-                button.setReleased(true);
+            if (keyInput->IsRelease(key)) {
+                button.SetReleased(true);
             }
         }
 
         /// ====================== check Pad Input ====================== ///
-        for (auto padButton : button.getShortcutPadButton()) {
-            if (padInput->isPress(padButton)) {
-                button.setPressed(true);
+        for (auto padButton : button.GetShortcutPadButton()) {
+            if (padInput->IsPress(padButton)) {
+                button.SetPressed(true);
             }
-            if (padInput->isRelease(padButton)) {
-                button.setReleased(true);
+            if (padInput->IsRelease(padButton)) {
+                button.SetReleased(true);
             }
         }
 
         /// ====================== check Mouse Input ====================== ///
-        SpriteRenderer* buttonSprite = getComponent<SpriteRenderer>(_entity);
+        SpriteRenderer* buttonSprite = GetComponent<SpriteRenderer>(_entity);
         if (buttonSprite != nullptr) {
-            const Vec2f& mousePos   = mouseInput->getPosition();
-            const Vec2f& buttonPos  = buttonSprite->getTranslate();
-            const Vec2f& buttonSize = buttonSprite->getSpriteBuff()->scale_;
-            const Vec2f& anchor     = buttonSprite->getAnchorPoint();
+            const Vec2f& mousePos   = mouseInput->GetPosition();
+            const Vec2f& buttonPos  = buttonSprite->GetTranslate();
+            const Vec2f& buttonSize = buttonSprite->GetSpriteBuff()->scale_;
+            const Vec2f& anchor     = buttonSprite->GetAnchorPoint();
 
             Vec2f buttonLeftTop     = buttonPos - buttonSize * anchor;
             Vec2f buttonRightBottom = buttonPos + buttonSize * (Vec2f(1.0f, 1.0f) - anchor);
@@ -67,7 +67,7 @@ void ButtonInputSystem::UpdateEntity(Entity* _entity) {
             // マウスがボタンの範囲内にあるかどうかを判定
             bool isMouseOverButton = (mousePos[X] >= buttonLeftTop[X] && mousePos[X] <= buttonRightBottom[X] && mousePos[Y] >= buttonLeftTop[Y] && mousePos[Y] <= buttonRightBottom[Y]);
 
-            button.setHovered(isMouseOverButton);
+            button.SetHovered(isMouseOverButton);
 
             // ボタンがホバーされている場合、クリック状態を更新
             if (!button.isHovered()) {
@@ -75,9 +75,9 @@ void ButtonInputSystem::UpdateEntity(Entity* _entity) {
             }
             // クリック状態を更新
             if (button.isPressed()) {
-                button.setReleased(mouseInput->isRelease(MouseButton::LEFT));
+                button.SetReleased(mouseInput->IsRelease(MouseButton::LEFT));
             } else {
-                button.setPressed(mouseInput->isRelease(MouseButton::LEFT));
+                button.SetPressed(mouseInput->IsRelease(MouseButton::LEFT));
             }
         }
     }

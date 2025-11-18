@@ -20,9 +20,9 @@
                     0.0,
                     1.0
                 ],
-                "fovYInterpolate": 0.10000000149011612,
-                "fovYRate": 0.06199999898672104,
-                "fovYRateCommonRate": 0.028999999165534973,
+                "fovYInterpolate": 0.11400000005960464,
+                "fovYRate": 0.14900000393390656,
+                "fovYRateCommonRate": -0.007000000216066837,
                 "interTargetInterpolation": 39.540000915527344,
                 "maxRotateX": 0.5899999737739563,
                 "minRotateX": -0.7699999809265137,

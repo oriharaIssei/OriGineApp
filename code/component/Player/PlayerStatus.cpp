@@ -127,10 +127,10 @@ void PlayerStatus::UpdateAccel(float _deltaTime, PlayerInput* _input, Transform*
     constexpr float kPlayerAccelRate = 8.0f;
 
     // 入力方向を取得
-    Vec2f inputDirection = _input->getInputDirection();
+    Vec2f inputDirection = _input->GetInputDirection();
 
     if (inputDirection.lengthSq() <= 0.0f) {
-        _input->setWorldInputDirection(Vec3f());
+        _input->SetWorldInputDirection(Vec3f());
         return;
     }
 
@@ -146,10 +146,10 @@ void PlayerStatus::UpdateAccel(float _deltaTime, PlayerInput* _input, Transform*
     Vec3f moveDirWorld = inputDir3D * MakeMatrix::RotateY(cameraYaw);
     moveDirWorld       = moveDirWorld.normalize();
     // ワールド方向に変換した入力方向を保存
-    _input->setWorldInputDirection(moveDirWorld);
+    _input->SetWorldInputDirection(moveDirWorld);
 
     // 現在の移動方向と補間
-    Vec3f currentDir = _rigidbody->getVelocity();
+    Vec3f currentDir = _rigidbody->GetVelocity();
     if (currentDir.lengthSq() <= kEpsilon) {
         currentDir = axisZ * MakeMatrix::RotateQuaternion(_transform->rotate);
     }
@@ -164,8 +164,8 @@ void PlayerStatus::UpdateAccel(float _deltaTime, PlayerInput* _input, Transform*
 
     // 移動加速度を設定
     Vec3f accel = moveDirWorld * (currentMaxSpeed_ * kPlayerAccelRate);
-    _rigidbody->setAcceleration(X, accel[X]);
-    _rigidbody->setAcceleration(Z, accel[Z]);
+    _rigidbody->SetAcceleration(X, accel[X]);
+    _rigidbody->SetAcceleration(Z, accel[Z]);
 }
 
 void to_json(nlohmann::json& j, const PlayerStatus& _playerStatus) {
@@ -184,17 +184,17 @@ void to_json(nlohmann::json& j, const PlayerStatus& _playerStatus) {
     j["coolTimeAddRateCommonRate"] = _playerStatus.coolTimeAddRateCommonRate_;
 }
 void from_json(const nlohmann::json& j, PlayerStatus& _playerStatus) {
-    j.at("baseSpeed").get_to(_playerStatus.baseSpeed_);
-    j.at("jumpPower").get_to(_playerStatus.jumpPower_);
-    j.at("fallPower").get_to(_playerStatus.fallPower_);
-    j.at("wallRunRate").get_to(_playerStatus.wallRunRate_);
-    j.at("wallRunRumpUpTime").get_to(_playerStatus.wallRunRampUpTime_);
-    j.at("wallJumpOffset").get_to(_playerStatus.wallJumpOffset_);
-    j.at("gearUpCoolTime").get_to(_playerStatus.baseGearupCoolTime_);
-    j.at("directionInterpolateRate").get_to(_playerStatus.directionInterpolateRate_);
+    j.at("baseSpeed").Get_to(_playerStatus.baseSpeed_);
+    j.at("jumpPower").Get_to(_playerStatus.jumpPower_);
+    j.at("fallPower").Get_to(_playerStatus.fallPower_);
+    j.at("wallRunRate").Get_to(_playerStatus.wallRunRate_);
+    j.at("wallRunRumpUpTime").Get_to(_playerStatus.wallRunRampUpTime_);
+    j.at("wallJumpOffset").Get_to(_playerStatus.wallJumpOffset_);
+    j.at("gearUpCoolTime").Get_to(_playerStatus.baseGearupCoolTime_);
+    j.at("directionInterpolateRate").Get_to(_playerStatus.directionInterpolateRate_);
 
-    j.at("speedUpRateBase").get_to(_playerStatus.speedUpRateBase_);
-    j.at("speedUpRateCommonRate").get_to(_playerStatus.speedUpRateCommonRate_);
-    j.at("coolTimeAddRateBase").get_to(_playerStatus.coolTimeAddRateBase_);
-    j.at("coolTimeAddRateCommonRate").get_to(_playerStatus.coolTimeAddRateCommonRate_);
+    j.at("speedUpRateBase").Get_to(_playerStatus.speedUpRateBase_);
+    j.at("speedUpRateCommonRate").Get_to(_playerStatus.speedUpRateCommonRate_);
+    j.at("coolTimeAddRateBase").Get_to(_playerStatus.coolTimeAddRateBase_);
+    j.at("coolTimeAddRateCommonRate").Get_to(_playerStatus.coolTimeAddRateCommonRate_);
 }

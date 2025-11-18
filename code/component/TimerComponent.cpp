@@ -36,8 +36,8 @@ void to_json(nlohmann::json& j, const TimerComponent& c) {
 }
 
 void from_json(const nlohmann::json& j, TimerComponent& c) {
-    j.at("maxTime").get_to(c.maxTime_);
-    j.at("isStarted").get_to(c.isStarted_);
+    j.at("maxTime").Get_to(c.maxTime_);
+    j.at("isStarted").Get_to(c.isStarted_);
 }
 
 void to_json(nlohmann::json& j, const TimerForSpriteComponent& c) {
@@ -56,24 +56,24 @@ void to_json(nlohmann::json& j, const TimerForSpriteComponent& c) {
 }
 
 void from_json(const nlohmann::json& j, TimerForSpriteComponent& c) {
-    j.at("numbersTexturePath").get_to(c.numbersTexturePath_);
-    j.at("offset").get_to(c.offset_);
-    j.at("spriteSizeInteger").get_to(c.spriteSizeInteger_);
-    j.at("spriteSizeDecimal").get_to(c.spriteSizeDecimal_);
-    j.at("spriteMarginInteger").get_to(c.spriteMarginInteger_);
-    j.at("spriteMarginDecimal").get_to(c.spriteMarginDecimal_);
-    j.at("marginBetweenIntegerAndDecimal").get_to(c.marginBetweenIntegerAndDecimal_);
+    j.at("numbersTexturePath").Get_to(c.numbersTexturePath_);
+    j.at("offset").Get_to(c.offset_);
+    j.at("spriteSizeInteger").Get_to(c.spriteSizeInteger_);
+    j.at("spriteSizeDecimal").Get_to(c.spriteSizeDecimal_);
+    j.at("spriteMarginInteger").Get_to(c.spriteMarginInteger_);
+    j.at("spriteMarginDecimal").Get_to(c.spriteMarginDecimal_);
+    j.at("marginBetweenIntegerAndDecimal").Get_to(c.marginBetweenIntegerAndDecimal_);
 
-    j.at("anchorOnWindow").get_to(c.anchorOnWindow_);
-    j.at("digitForSprite").get_to(c.digitForSprite_);
-    j.at("digitIntegerForSprite").get_to(c.digitIntegerForSprite_);
-    j.at("digitDecimalForSprite").get_to(c.digitDecimalForSprite_);
+    j.at("anchorOnWindow").Get_to(c.anchorOnWindow_);
+    j.at("digitForSprite").Get_to(c.digitForSprite_);
+    j.at("digitIntegerForSprite").Get_to(c.digitIntegerForSprite_);
+    j.at("digitDecimalForSprite").Get_to(c.digitDecimalForSprite_);
 }
 
 void TimerForSpriteComponent::Initialize(Entity* /*_entity*/) {
     if (!this->numbersTexturePath_.empty()) {
         textureIndex_ = TextureManager::LoadTexture(this->numbersTexturePath_, [this](uint32_t _newIdx) {
-            this->settingOnLoadTexture(_newIdx);
+            this->SettingOnLoadTexture(_newIdx);
         });
     }
 }
@@ -105,7 +105,7 @@ void TimerForSpriteComponent::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[may
         std::string label = "Load Texture##" + _parentLabel;
         askLoad           = ImGui::Button(label.c_str());
         askLoad |= ImGui::ImageButton(
-            reinterpret_cast<ImTextureID>(TextureManager::getDescriptorGpuHandle(textureIndex_).ptr),
+            reinterpret_cast<ImTextureID>(TextureManager::GetDescriptorGpuHandle(textureIndex_).ptr),
             ImVec2(18, 18), ImVec2(0, 0), ImVec2(1, 1), 6);
         return askLoad;
     };
@@ -117,10 +117,10 @@ void TimerForSpriteComponent::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[may
                 &this->numbersTexturePath_,
                 textureDefaultDirectory + "/" + directory + "/" + fileName,
                 [this](std::string*) { textureIndex_ = TextureManager::LoadTexture(this->numbersTexturePath_, [this](uint32_t _newIdx) {
-                                           this->settingOnLoadTexture(_newIdx);
+                                           this->SettingOnLoadTexture(_newIdx);
                                        }); }, true);
 
-            EditorController::getInstance()->pushCommand(std::move(command));
+            EditorController::GetInstance()->PushCommand(std::move(command));
         }
     }
 
@@ -137,8 +137,8 @@ void TimerForSpriteComponent::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[may
 
 }
 
-void TimerForSpriteComponent::settingOnLoadTexture(uint32_t _texIdx) {
-    const auto& metaData = TextureManager::getTexMetadata(_texIdx);
+void TimerForSpriteComponent::SettingOnLoadTexture(uint32_t _texIdx) {
+    const auto& metaData = TextureManager::GetTexMetadata(_texIdx);
 
     if (metaData.width == 0 || metaData.height == 0) {
         LOG_ERROR("Texture metadata is invalid. Width or height is zero.");

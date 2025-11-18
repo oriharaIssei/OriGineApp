@@ -42,8 +42,8 @@ void to_json(nlohmann::json& j, const MouseCondition& c) {
 }
 
 void from_json(const nlohmann::json& j, MouseCondition& c) {
-    j.at("isActive").get_to(c.isActive_);
-    j.at("isShowCursor").get_to(c.isShowCursor_);
-    j.at("isFixCursor").get_to(c.isFixCursor_);
-    j.at("fixCursorPos").get_to(c.fixCursorPos_);
+    j.at("isActive").Get_to(c.isActive_);
+    j.at("isShowCursor").Get_to(c.isShowCursor_);
+    j.at("isFixCursor").Get_to(c.isFixCursor_);
+    j.at("fixCursorPos").Get_to(c.fixCursorPos_);
 }

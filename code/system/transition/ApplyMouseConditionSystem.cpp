@@ -13,15 +13,15 @@ void ApplyMouseConditionSystem::Initialize() {}
 void ApplyMouseConditionSystem::Finalize() {}
 
 void ApplyMouseConditionSystem::UpdateEntity(Entity* _entity) {
-    auto* conditions = getComponents<MouseCondition>(_entity);
+    auto* conditions = GetComponents<MouseCondition>(_entity);
     if (conditions == nullptr) {
         return;
     }
 
-    MouseInput* mouseInput = getScene()->getMouseInput();
+    MouseInput* mouseInput = GetScene()->GetMouseInput();
 
     for (auto& condition : *conditions) {
-        if (!condition.isActive()) {
+        if (!condition.IsActive()) {
             continue;
         }
 
@@ -30,7 +30,7 @@ void ApplyMouseConditionSystem::UpdateEntity(Entity* _entity) {
         if (condition.isFixCursor()) {
             // マウスの座標を指定し続けることで、実質的にマウスを固定する
             // このシステムを使用して Mouse座標を固定することで Velocityを取得しながら Mouse座標を固定できる
-            mouseInput->setPosition(condition.fixCursorPos());
+            mouseInput->SetPosition(condition.fixCursorPos());
         }
     }
 }

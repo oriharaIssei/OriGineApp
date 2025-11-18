@@ -16,10 +16,10 @@ void GoalShellEffectInitialize::Finalize() {
 
 void GoalShellEffectInitialize::UpdateEntity(Entity* entity) {
     // 移動
-    Transform* transform = getComponent<Transform>(entity);
-    Entity* goalEntity   = getUniqueEntity("Goal");
+    Transform* transform = GetComponent<Transform>(entity);
+    Entity* goalEntity   = GetUniqueEntity("Goal");
     if (goalEntity) {
-        Transform* goalTransform = getComponent<Transform>(goalEntity);
+        Transform* goalTransform = GetComponent<Transform>(goalEntity);
         if (transform && goalTransform) {
             transform->translate = goalTransform->translate;
             transform->UpdateMatrix();
@@ -27,27 +27,27 @@ void GoalShellEffectInitialize::UpdateEntity(Entity* entity) {
     }
 
     // エフェクト準備 (pipelineの構築)
-    auto materialEffectPipeLine = getComponent<MaterialEffectPipeLine>(entity);
+    auto materialEffectPipeLine = GetComponent<MaterialEffectPipeLine>(entity);
     if (materialEffectPipeLine == nullptr) {
         return;
     }
 
     // 下準備 DissolveにDistortionを追加する
-    Entity* dissEffectEntity = getUniqueEntity("GoalShellEffectDiss");
-    Entity* distEffectEntity = getUniqueEntity("GoalShellEffectDist");
+    Entity* dissEffectEntity = GetUniqueEntity("GoalShellEffectDiss");
+    Entity* distEffectEntity = GetUniqueEntity("GoalShellEffectDist");
 
     if (!dissEffectEntity || !distEffectEntity) {
         return;
     }
 
-    auto dissEffectMaterialPipeline = getComponent<MaterialEffectPipeLine>(dissEffectEntity);
+    auto dissEffectMaterialPipeline = GetComponent<MaterialEffectPipeLine>(dissEffectEntity);
     if (!dissEffectMaterialPipeline) {
         return;
     }
 
     // Distortionエフェクトを追加
-    dissEffectMaterialPipeline->AddEffectEntity(MaterialEffectType::Distortion, distEffectEntity->getID());
+    dissEffectMaterialPipeline->AddEffectEntity(MaterialEffectType::Distortion, distEffectEntity->GetID());
 
     // 最後に Dissolveエフェクトをmainに追加
-    materialEffectPipeLine->AddEffectEntity(MaterialEffectType::Dissolve, dissEffectEntity->getID());
+    materialEffectPipeLine->AddEffectEntity(MaterialEffectType::Dissolve, dissEffectEntity->GetID());
 }

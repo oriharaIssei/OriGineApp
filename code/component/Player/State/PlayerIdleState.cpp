@@ -15,21 +15,21 @@
 #include "MyEasing.h"
 
 void PlayerIdleState::Initialize() {
-    auto* playerEntity = scene_->getEntity(playerEntityID_);
-    auto playerStatus  = scene_->getComponent<PlayerStatus>(playerEntity);
-    auto* state        = scene_->getComponent<PlayerState>(playerEntity);
-    auto rigidbody     = scene_->getComponent<Rigidbody>(playerEntity);
-    auto playerInput   = scene_->getComponent<PlayerInput>(playerEntity);
+    auto* playerEntity = scene_->GetEntity(playerEntityID_);
+    auto playerStatus  = scene_->GetComponent<PlayerStatus>(playerEntity);
+    auto* state        = scene_->GetComponent<PlayerState>(playerEntity);
+    auto rigidbody     = scene_->GetComponent<Rigidbody>(playerEntity);
+    auto playerInput   = scene_->GetComponent<PlayerInput>(playerEntity);
 
     /// 初期化処理
     // 入力方向をリセット
-    playerInput->setWorldInputDirection({0.f, 0.f, 0.f});
+    playerInput->SetWorldInputDirection({0.f, 0.f, 0.f});
     // 速度をゼロにする
-    rigidbody->setAcceleration({0.f, 0.0f, 0.0f});
-    playerStatus->setCurrentMaxSpeed(0.0f);
+    rigidbody->SetAcceleration({0.f, 0.0f, 0.0f});
+    playerStatus->SetCurrentMaxSpeed(0.0f);
     // ギアアップのクールタイム&ギアレベルをリセット
-    playerStatus->setGearUpCoolTime(playerStatus->getBaseGearupCoolTime());
-    state->setGearLevel(kDefaultPlayerGearLevel);
+    playerStatus->SetGearUpCoolTime(playerStatus->GetBaseGearupCoolTime());
+    state->SetGearLevel(kDefaultPlayerGearLevel);
 
     cameraOffsetLerpTimer_ = 0.0f;
 }
@@ -37,53 +37,53 @@ void PlayerIdleState::Initialize() {
 void PlayerIdleState::Update(float _deltaTime) {
     constexpr float kDecelerationRate = 1.8f;
 
-    auto* playerEntity = scene_->getEntity(playerEntityID_);
-    auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
+    auto* playerEntity = scene_->GetEntity(playerEntityID_);
+    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntity);
 
     // 減速
-    rigidbody->setVelocity(LerpByDeltaTime(rigidbody->getVelocity(), Vec3f(), _deltaTime, kDecelerationRate));
+    rigidbody->SetVelocity(LerpByDeltaTime(rigidbody->GetVelocity(), Vec3f(), _deltaTime, kDecelerationRate));
 
     ///! TODO : ここにカメラの処理を書くべきではない
-    CameraController* cameraController = scene_->getComponent<CameraController>(scene_->getUniqueEntity("GameCamera"));
+    CameraController* cameraController = scene_->GetComponent<CameraController>(scene_->GetUniqueEntity("GameCamera"));
     if (cameraController) {
         // カメラのオフセットを徐々に元に戻す
         cameraOffsetLerpTimer_ += _deltaTime;
         float t = cameraOffsetLerpTimer_ / kCameraOffsetLerpTime_;
         t       = std::clamp(t, 0.f, 1.f);
 
-        const Vec3f& targetOffset  = cameraController->getFirstOffset();
-        const Vec3f& currentOffset = cameraController->getCurrentOffset();
+        const Vec3f& targetOffset  = cameraController->GetFirstOffset();
+        const Vec3f& currentOffset = cameraController->GetCurrentOffset();
         Vec3f newOffset            = Lerp<3, float>(currentOffset, targetOffset, EaseOutCubic(t));
-        cameraController->setCurrentOffset(newOffset);
+        cameraController->SetCurrentOffset(newOffset);
 
-        const Vec3f& firstTargetOffset   = cameraController->getFirstTargetOffset();
-        const Vec3f& currentTargetOffset = cameraController->getCurrentTargetOffset();
+        const Vec3f& firstTargetOffset   = cameraController->GetFirstTargetOffset();
+        const Vec3f& currentTargetOffset = cameraController->GetCurrentTargetOffset();
         Vec3f newTargetOffset            = Lerp<3, float>(currentTargetOffset, firstTargetOffset, EaseOutCubic(t));
-        cameraController->setCurrentTargetOffset(newTargetOffset);
+        cameraController->SetCurrentTargetOffset(newTargetOffset);
     }
 }
 
 void PlayerIdleState::Finalize() {
-    auto* playerEntity = scene_->getEntity(playerEntityID_);
-    auto playerStatus  = scene_->getComponent<PlayerStatus>(playerEntity);
-    auto* rigidbody    = scene_->getComponent<Rigidbody>(playerEntity);
+    auto* playerEntity = scene_->GetEntity(playerEntityID_);
+    auto playerStatus  = scene_->GetComponent<PlayerStatus>(playerEntity);
+    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntity);
 
-    playerStatus->setCurrentMaxSpeed(playerStatus->getBaseSpeed());
-    rigidbody->setMaxXZSpeed(playerStatus->getBaseSpeed());
+    playerStatus->SetCurrentMaxSpeed(playerStatus->GetBaseSpeed());
+    rigidbody->SetMaxXZSpeed(playerStatus->GetBaseSpeed());
     // Jump がおかしくなるため しっかりと ゼロ にする
-    rigidbody->setVelocity({0.0f, 0.0f, 0.0f});
+    rigidbody->SetVelocity({0.0f, 0.0f, 0.0f});
 }
 
 PlayerMoveState PlayerIdleState::TransitionState() const {
-    auto* playerEntity = scene_->getEntity(playerEntityID_);
-    auto state         = scene_->getComponent<PlayerState>(playerEntity);
-    auto playerInput   = scene_->getComponent<PlayerInput>(playerEntity);
+    auto* playerEntity = scene_->GetEntity(playerEntityID_);
+    auto state         = scene_->GetComponent<PlayerState>(playerEntity);
+    auto playerInput   = scene_->GetComponent<PlayerInput>(playerEntity);
 
-    if (state->isOnGround()) {
-        if (playerInput->isJumpInput()) {
+    if (state->IsOnGround()) {
+        if (playerInput->IsJumpInput()) {
             return PlayerMoveState::JUMP;
         }
-        if (playerInput->getInputDirection().lengthSq() > 0.f) {
+        if (playerInput->GetInputDirection().lengthSq() > 0.f) {
             return PlayerMoveState::DASH;
         }
 

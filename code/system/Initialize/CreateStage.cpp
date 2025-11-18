@@ -27,15 +27,15 @@
 
 void CreateStage::UpdateEntity(Entity* _entity) {
 
-    auto stage = getComponent<Stage>(_entity);
+    auto stage = GetComponent<Stage>(_entity);
 
     if (stage == nullptr) {
         return;
     }
-    Transform* stageTransform = getComponent<Transform>(_entity);
+    Transform* stageTransform = GetComponent<Transform>(_entity);
 
     // Meshと当たり判定を作成
-    auto& controlPoints = stage->getControlPoints();
+    auto& controlPoints = stage->GetControlPoints();
 
     if (controlPoints.empty()) {
         LOG_WARN("Stage has no control points.");
@@ -43,7 +43,7 @@ void CreateStage::UpdateEntity(Entity* _entity) {
     }
 
     int32_t linkIndex = 0;
-    for (auto& link : stage->getLinks()) {
+    for (auto& link : stage->GetLinks()) {
         Vec3f min, max, mid, diffToFrom, direction;
 
         auto& toPoint   = controlPoints[link.to_];
@@ -67,29 +67,29 @@ void CreateStage::UpdateEntity(Entity* _entity) {
             isWall     = false;
         }
         int32_t index         = CreateEntity(entityName);
-        Entity* createdEntity = getEntity(index);
+        Entity* createdEntity = GetEntity(index);
 
-        createdEntity->setShouldSave(false);
+        createdEntity->SetShouldSave(false);
 
         ///==========================================
         // Tag
         ///==========================================
         if (isWall) {
             StageWall wallTag;
-            wallTag.setLinkIndex(linkIndex);
-            wallTag.setToPointIndex(link.to_);
-            wallTag.setFromPointIndex(link.from_);
-            wallTag.setWidth(link.width_);
+            wallTag.SetLinkIndex(linkIndex);
+            wallTag.SetToPointIndex(link.to_);
+            wallTag.SetFromPointIndex(link.from_);
+            wallTag.SetWidth(link.width_);
 
-            addComponent<StageWall>(createdEntity, wallTag);
+            AddComponent<StageWall>(createdEntity, wallTag);
         } else {
             StageFloor floorTag;
-            floorTag.setLinkIndex(linkIndex);
-            floorTag.setToPointIndex(link.to_);
-            floorTag.setFromPointIndex(link.from_);
-            floorTag.setWidth(link.width_);
+            floorTag.SetLinkIndex(linkIndex);
+            floorTag.SetToPointIndex(link.to_);
+            floorTag.SetFromPointIndex(link.from_);
+            floorTag.SetWidth(link.width_);
 
-            addComponent<StageFloor>(createdEntity, floorTag);
+            AddComponent<StageFloor>(createdEntity, floorTag);
         }
 
         ///==========================================
@@ -98,8 +98,8 @@ void CreateStage::UpdateEntity(Entity* _entity) {
         Transform entityTransformData;
         entityTransformData.translate = mid;
         entityTransformData.UpdateMatrix();
-        addComponent<Transform>(createdEntity, entityTransformData);
-        Transform* entityTransform = getComponent<Transform>(createdEntity);
+        AddComponent<Transform>(createdEntity, entityTransformData);
+        Transform* entityTransform = GetComponent<Transform>(createdEntity);
         entityTransform->parent    = stageTransform;
         ///==========================================
         // Collider
@@ -116,44 +116,44 @@ void CreateStage::UpdateEntity(Entity* _entity) {
                 // X 軸に直交する壁 (YZ 平面に並行)
                 // デフォルトが Y == 1 なので heightとwidthを入れ替える
                 AABBCollider collider;
-                collider.setActive(true);
+                collider.SetActive(true);
 
                 Vec3f halfSize = Vec3f(link.height_ * 0.5f, link.width_ * 0.5f, (diffToFrom[Z] * 0.5f) + Stage::kObjectMargin);
                 min            = -halfSize;
                 max            = halfSize;
 
-                collider.setLocalMin(min);
-                collider.setLocalMax(max);
-                collider.setParent(entityTransform);
+                collider.SetLocalMin(min);
+                collider.SetLocalMax(max);
+                collider.SetParent(entityTransform);
 
-                addComponent<AABBCollider>(createdEntity, collider);
+                AddComponent<AABBCollider>(createdEntity, collider);
             } else {
                 // Y 軸に直交する床/天井 (XZ 平面に並行)
                 // これがデフォルト
                 AABBCollider collider;
-                collider.setActive(true);
+                collider.SetActive(true);
 
                 Vec3f halfSize = Vec3f(link.width_ * 0.5f, link.height_ * 0.5f, (diffToFrom[Z] * 0.5f) + Stage::kObjectMargin);
                 min            = -halfSize;
                 max            = halfSize;
 
-                collider.setLocalMin(min);
-                collider.setLocalMax(max);
-                collider.setParent(entityTransform);
+                collider.SetLocalMin(min);
+                collider.SetLocalMax(max);
+                collider.SetParent(entityTransform);
 
-                addComponent<AABBCollider>(createdEntity, collider);
+                AddComponent<AABBCollider>(createdEntity, collider);
             }
         } else {
             // 傾いている壁は OBB で表現
             OBBCollider collider;
-            collider.setActive(true);
+            collider.SetActive(true);
 
             Vec3f halfSize = Vec3f(link.width_ * 0.5f, link.height_ * 0.5f, (diffToFrom.length() * 0.5f) + Stage::kObjectMargin);
             min            = -halfSize;
             max            = halfSize;
 
-            collider.setLocalCenter(Vec3f(0.f, 0.f, 0.f));
-            collider.setLocalHalfSize(halfSize);
+            collider.SetLocalCenter(Vec3f(0.f, 0.f, 0.f));
+            collider.SetLocalHalfSize(halfSize);
 
             // forward, right, up から回転を作る
             Vec3f forward    = direction;
@@ -167,9 +167,9 @@ void CreateStage::UpdateEntity(Entity* _entity) {
 
             Quaternion rot          = rotMat.decomposeMatrixToQuaternion().normalize();
             entityTransform->rotate = rot;
-            collider.setParent(entityTransform);
+            collider.SetParent(entityTransform);
 
-            addComponent<OBBCollider>(createdEntity, collider);
+            AddComponent<OBBCollider>(createdEntity, collider);
         }
 
         ///==========================================
@@ -177,9 +177,9 @@ void CreateStage::UpdateEntity(Entity* _entity) {
         ///==========================================
         BoxRenderer renderer;
         Vec3f size                        = max - min;
-        renderer.getPrimitive().halfSize_ = size * 0.5f;
-        renderer.setMaterialIndex(0);
-        addComponent<BoxRenderer>(createdEntity, renderer);
+        renderer.GetPrimitive().halfSize_ = size * 0.5f;
+        renderer.SetMaterialIndex(0);
+        AddComponent<BoxRenderer>(createdEntity, renderer);
 
         ///==========================================
         // Material
@@ -188,27 +188,27 @@ void CreateStage::UpdateEntity(Entity* _entity) {
         material.shininess_              = 50.f;
         material.enableLighting_         = true;
         material.environmentCoefficient_ = 0.05f;
-        addComponent<Material>(createdEntity, material, false);
+        AddComponent<Material>(createdEntity, material, false);
 
         ///==========================================
         // CollisionPushBackInfo
         ///==========================================
         CollisionPushBackInfo pushBackInfo;
-        pushBackInfo.setPushBackType(CollisionPushBackType::PushBack);
-        addComponent<CollisionPushBackInfo>(createdEntity, pushBackInfo);
+        pushBackInfo.SetPushBackType(CollisionPushBackType::PushBack);
+        AddComponent<CollisionPushBackInfo>(createdEntity, pushBackInfo);
 
         ///==========================================
         // 動作する システムに登録
         ///==========================================
-        ISystem* collisionSystem = getScene()->getSystem(nameof<CollisionCheckSystem>());
+        ISystem* collisionSystem = GetScene()->GetSystem(nameof<CollisionCheckSystem>());
         if (collisionSystem) {
-            collisionSystem->addEntity(createdEntity);
+            collisionSystem->AddEntity(createdEntity);
         } else {
             LOG_INFO("This scene don't have CollisionCheckSystem");
         }
-        ISystem* renderSystem = getScene()->getSystem(nameof<TexturedMeshRenderSystem>());
+        ISystem* renderSystem = GetScene()->GetSystem(nameof<TexturedMeshRenderSystem>());
         if (renderSystem) {
-            renderSystem->addEntity(createdEntity);
+            renderSystem->AddEntity(createdEntity);
         } else {
             LOG_INFO("This scene don't have TexturedMeshRenderSystem");
         }
@@ -219,23 +219,23 @@ void CreateStage::UpdateEntity(Entity* _entity) {
     }
 
     // goal
-    int32_t goalIndex             = stage->getGoalPointIndex();
+    int32_t goalIndex             = stage->GetGoalPointIndex();
     goalIndex                     = std::clamp(goalIndex, 0, static_cast<int32_t>(controlPoints.size() - 1));
     Stage::ControlPoint goalPoint = controlPoints[goalIndex];
 
-    SceneSerializer serializer(getScene());
+    SceneSerializer serializer(GetScene());
     Entity* goalEntity = serializer.LoadEntity(kApplicationResourceDirectory + "/entities", "Goal");
     if (goalEntity == nullptr) {
         LOG_ERROR("Failed to load Goal entity.");
         return;
     }
-    goalEntity->setShouldSave(false);
-    Transform* goalTransform = getComponent<Transform>(goalEntity);
+    goalEntity->SetShouldSave(false);
+    Transform* goalTransform = GetComponent<Transform>(goalEntity);
     goalTransform->translate = goalPoint.pos_;
     goalTransform->UpdateMatrix();
 
     // start
-    int32_t startIndex                    = stage->getStartPointIndex();
+    int32_t startIndex                    = stage->GetStartPointIndex();
     startIndex                            = std::clamp(startIndex, 0, static_cast<int32_t>(controlPoints.size() - 1));
     const Stage::ControlPoint& startPoint = controlPoints[startIndex];
 
@@ -243,7 +243,7 @@ void CreateStage::UpdateEntity(Entity* _entity) {
     startTransform.translate = startPoint.pos_;
     startTransform.UpdateMatrix();
     int32_t startPosEntityId = CreateEntity("StartPosition", true);
-    Entity* startPosEntity   = getEntity(startPosEntityId);
-    startPosEntity->setShouldSave(false);
-    addComponent<Transform>(startPosEntity, startTransform, false);
+    Entity* startPosEntity   = GetEntity(startPosEntityId);
+    startPosEntity->SetShouldSave(false);
+    AddComponent<Transform>(startPosEntity, startTransform, false);
 }

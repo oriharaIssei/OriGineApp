@@ -23,5 +23,5 @@ void to_json(nlohmann::json& j, const PlayerInput& _input) {
 }
 
 void from_json(const nlohmann::json& j, PlayerInput& _input) {
-    _input.maxJumpTime_ = j["MaxJumpInputTime"].get<float>();
+    _input.maxJumpTime_ = j["MaxJumpInputTime"].Get<float>();
 }
