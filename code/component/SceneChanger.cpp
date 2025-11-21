@@ -35,7 +35,7 @@ void SceneChanger::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity*
             bool isSelected = nextSceneName_ == sceneName;
             if (ImGui::Selectable(sceneName.c_str(), isSelected)) {
 
-                EditorController::getInstance()->pushCommand(
+                EditorController::GetInstance()->PushCommand(
                     std::make_unique<SetterCommand<std::string>>(&nextSceneName_, sceneName));
             }
             if (isSelected) {

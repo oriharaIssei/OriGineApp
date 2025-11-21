@@ -73,7 +73,7 @@ void from_json(const nlohmann::json& j, TimerForSpriteComponent& c) {
 void TimerForSpriteComponent::Initialize(Entity* /*_entity*/) {
     if (!this->numbersTexturePath_.empty()) {
         textureIndex_ = TextureManager::LoadTexture(this->numbersTexturePath_, [this](uint32_t _newIdx) {
-            this->settingOnLoadTexture(_newIdx);
+            this->SettingOnLoadTexture(_newIdx);
         });
     }
 }
@@ -105,7 +105,7 @@ void TimerForSpriteComponent::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[may
         std::string label = "Load Texture##" + _parentLabel;
         askLoad           = ImGui::Button(label.c_str());
         askLoad |= ImGui::ImageButton(
-            reinterpret_cast<ImTextureID>(TextureManager::getDescriptorGpuHandle(textureIndex_).ptr),
+            reinterpret_cast<ImTextureID>(TextureManager::GetDescriptorGpuHandle(textureIndex_).ptr),
             ImVec2(18, 18), ImVec2(0, 0), ImVec2(1, 1), 6);
         return askLoad;
     };
@@ -117,10 +117,10 @@ void TimerForSpriteComponent::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[may
                 &this->numbersTexturePath_,
                 textureDefaultDirectory + "/" + directory + "/" + fileName,
                 [this](std::string*) { textureIndex_ = TextureManager::LoadTexture(this->numbersTexturePath_, [this](uint32_t _newIdx) {
-                                           this->settingOnLoadTexture(_newIdx);
+                                           this->SettingOnLoadTexture(_newIdx);
                                        }); }, true);
 
-            EditorController::getInstance()->pushCommand(std::move(command));
+            EditorController::GetInstance()->PushCommand(std::move(command));
         }
     }
 
@@ -137,8 +137,8 @@ void TimerForSpriteComponent::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[may
 
 }
 
-void TimerForSpriteComponent::settingOnLoadTexture(uint32_t _texIdx) {
-    const auto& metaData = TextureManager::getTexMetadata(_texIdx);
+void TimerForSpriteComponent::SettingOnLoadTexture(uint32_t _texIdx) {
+    const auto& metaData = TextureManager::GetTexMetadata(_texIdx);
 
     if (metaData.width == 0 || metaData.height == 0) {
         LOG_ERROR("Texture metadata is invalid. Width or height is zero.");

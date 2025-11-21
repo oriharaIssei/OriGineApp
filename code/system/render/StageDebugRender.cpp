@@ -84,21 +84,21 @@ static void CreateControlPointMesh(
 void StageDebugRender::Initialize() {
     pointRenderer_ = LineRenderer(std::vector<Mesh<ColorVertexData>>());
     pointRenderer_.Initialize(nullptr);
-    pointRenderer_.getMeshGroup()->push_back(Mesh<ColorVertexData>());
-    pointRenderer_.getMeshGroup()->back().Initialize(UINT(defaultMeshSize * sphereVertexSize), UINT(defaultMeshSize * sphereIndexSize));
-    pointMeshItr_ = pointRenderer_.getMeshGroup()->begin();
+    pointRenderer_.GetMeshGroup()->push_back(Mesh<ColorVertexData>());
+    pointRenderer_.GetMeshGroup()->back().Initialize(UINT(defaultMeshSize * sphereVertexSize), UINT(defaultMeshSize * sphereIndexSize));
+    pointMeshItr_ = pointRenderer_.GetMeshGroup()->begin();
 
     linkRenderer_ = LineRenderer(std::vector<Mesh<ColorVertexData>>());
     linkRenderer_.Initialize(nullptr);
-    linkRenderer_.getMeshGroup()->push_back(Mesh<ColorVertexData>());
-    linkRenderer_.getMeshGroup()->back().Initialize(UINT(defaultMeshSize * 8), UINT(defaultMeshSize * 36));
-    linkMeshItr_ = linkRenderer_.getMeshGroup()->begin();
+    linkRenderer_.GetMeshGroup()->push_back(Mesh<ColorVertexData>());
+    linkRenderer_.GetMeshGroup()->back().Initialize(UINT(defaultMeshSize * 8), UINT(defaultMeshSize * 36));
+    linkMeshItr_ = linkRenderer_.GetMeshGroup()->begin();
 
     linkNormalRenderer_ = LineRenderer(std::vector<Mesh<ColorVertexData>>());
     linkNormalRenderer_.Initialize(nullptr);
-    linkNormalRenderer_.getMeshGroup()->push_back(Mesh<ColorVertexData>());
-    linkNormalRenderer_.getMeshGroup()->back().Initialize(UINT(defaultMeshSize * 2), UINT(defaultMeshSize * 2));
-    linkNormalMeshItr_ = linkNormalRenderer_.getMeshGroup()->begin();
+    linkNormalRenderer_.GetMeshGroup()->push_back(Mesh<ColorVertexData>());
+    linkNormalRenderer_.GetMeshGroup()->back().Initialize(UINT(defaultMeshSize * 2), UINT(defaultMeshSize * 2));
+    linkNormalMeshItr_ = linkNormalRenderer_.GetMeshGroup()->begin();
 
     lineRenderSystem_.Initialize();
 }
@@ -112,13 +112,13 @@ void StageDebugRender::Update() {
     linkNormalMeshItr_->vertexes_.clear();
     linkNormalMeshItr_->indexes_.clear();
 
-    auto stageArray = getComponentArray<Stage>();
+    auto stageArray = GetComponentArray<Stage>();
     if (!stageArray) {
         return;
     }
     /// ステージは 1つしかない前提 なので ザルチェック
-    for (auto& [stageEntityIndex, stageIndex] : stageArray->getEntityIndexBind()) {
-        Stage& stage = stageArray->getAllComponents()[stageIndex][stageIndex];
+    for (auto& [stageEntityIndex, stageIndex] : stageArray->GetEntityIndexBind()) {
+        Stage& stage = stageArray->GetAllComponents()[stageIndex][stageIndex];
 
         // メッシュを作成
         CreateMeshes(&stage);
@@ -136,12 +136,12 @@ void StageDebugRender::CreateMeshes(Stage* _stage) {
     const Vec3f defaultRadius = {controlPointRadius, controlPointRadius, controlPointRadius};
     {
         int32_t index = 0;
-        for (const auto& cp : _stage->getControlPoints()) {
+        for (const auto& cp : _stage->GetControlPoints()) {
             // Capacityが足りなかったら 新しいMeshを作成する
-            if (pointMeshItr_->getIndexCapacity() <= 0) {
+            if (pointMeshItr_->GetIndexCapacity() <= 0) {
                 pointMeshItr_->TransferData();
                 ++pointMeshItr_;
-                auto& meshGroup = pointRenderer_.getMeshGroup();
+                auto& meshGroup = pointRenderer_.GetMeshGroup();
                 if (pointMeshItr_ == meshGroup->end()) {
                     pointMeshItr_ = meshGroup->end();
                     meshGroup->push_back(Mesh<ColorVertexData>());
@@ -149,29 +149,29 @@ void StageDebugRender::CreateMeshes(Stage* _stage) {
                 }
             }
             Vec4f color = kColor;
-            if (index == _stage->getStartPointIndex()) {
+            if (index == _stage->GetStartPointIndex()) {
                 color = {0, 1, 0, 1}; // 緑
-            } else if (index == _stage->getGoalPointIndex()) {
+            } else if (index == _stage->GetGoalPointIndex()) {
                 color = {1, 0, 0, 1}; // 赤
             }
-            CreateControlPointMesh(pointMeshItr_._Ptr, cp.pos_, defaultRadius, kColor);
+            CreateControlPointMesh(pointMeshItr_._Ptr, cp.pos, defaultRadius, kColor);
             ++index;
         }
     }
 
     // Link（線）描画
-    const auto& cps       = _stage->getControlPoints();
+    const auto& cps       = _stage->GetControlPoints();
     const Vec4f linkColor = {0, 0, 1, 1}; // 黄色
-    for (const auto& link : _stage->getLinks()) {
-        if (link.from_ < 0 || link.from_ >= cps.size() || link.to_ < 0 || link.to_ >= cps.size()) {
+    for (const auto& link : _stage->GetLinks()) {
+        if (link.from < 0 || link.from >= cps.size() || link.to < 0 || link.to >= cps.size()) {
             continue;
         }
 
         // Capacityが足りなかったら 新しいMeshを作成する
-        if (linkMeshItr_->getIndexCapacity() <= 0) {
+        if (linkMeshItr_->GetIndexCapacity() <= 0) {
             linkMeshItr_->TransferData();
             ++linkMeshItr_;
-            auto& meshGroup = pointRenderer_.getMeshGroup();
+            auto& meshGroup = pointRenderer_.GetMeshGroup();
             if (linkMeshItr_ == meshGroup->end()) {
                 linkMeshItr_ = meshGroup->end();
                 meshGroup->push_back(Mesh<ColorVertexData>());
@@ -179,16 +179,16 @@ void StageDebugRender::CreateMeshes(Stage* _stage) {
             }
         }
 
-        const Vec3f& from   = cps[link.from_].pos_;
-        const Vec3f& to     = cps[link.to_].pos_;
-        const Vec3f& normal = link.normal_.normalize();
+        const Vec3f& from   = cps[link.from].pos;
+        const Vec3f& to     = cps[link.to].pos;
+        const Vec3f& normal = link.normal.normalize();
 
         Vec3f forward = Vec3f(to - from).normalize();
         Vec3f right   = forward.cross(normal).normalize();
         Vec3f up      = right.cross(forward).normalize();
 
-        float hw = link.width_ * 0.5f;
-        float hh = link.height_ * 0.5f;
+        float hw = link.width * 0.5f;
+        float hh = link.height * 0.5f;
 
         Vec3f f0 = from + right * hw + up * hh;
         Vec3f f1 = from - right * hw + up * hh;
@@ -236,10 +236,10 @@ void StageDebugRender::CreateMeshes(Stage* _stage) {
         }
 
         // リンクの法線を描画
-        if (linkNormalMeshItr_->getIndexCapacity() <= 0) {
+        if (linkNormalMeshItr_->GetIndexCapacity() <= 0) {
             linkNormalMeshItr_->TransferData();
             ++linkNormalMeshItr_;
-            auto& meshGroup = linkNormalRenderer_.getMeshGroup();
+            auto& meshGroup = linkNormalRenderer_.GetMeshGroup();
             if (linkNormalMeshItr_ == meshGroup->end()) {
                 linkNormalMeshItr_ = meshGroup->end();
                 meshGroup->push_back(Mesh<ColorVertexData>());
@@ -248,7 +248,7 @@ void StageDebugRender::CreateMeshes(Stage* _stage) {
         }
 
         Vec3f midPoint        = (from + to) * 0.5f;
-        Vec3f normalPoint     = midPoint + normal * (link.height_ + 1.f);
+        Vec3f normalPoint     = midPoint + normal * (link.height + 1.f);
         Vec4f linkNormalColor = {0, 1, 0, 1};
         {
             // 頂点追加
@@ -262,7 +262,7 @@ void StageDebugRender::CreateMeshes(Stage* _stage) {
 
         {
             // リンクの幅を描画
-            Vec3f widthOffset = normal.cross(Vec3f(0, 1, 0)).normalize() * link.width_ * 0.5f;
+            Vec3f widthOffset = normal.cross(Vec3f(0, 1, 0)).normalize() * link.width * 0.5f;
             Vec3f fromLeft    = from + widthOffset;
             Vec3f fromRight   = from - widthOffset;
             Vec3f toLeft      = to + widthOffset;
@@ -287,37 +287,37 @@ void StageDebugRender::CreateMeshes(Stage* _stage) {
 }
 
 void StageDebugRender::RenderAll() {
-    lineRenderSystem_.settingPSO(BlendMode::Alpha);
+    lineRenderSystem_.SetBlendMode(BlendMode::Alpha);
     lineRenderSystem_.StartRender();
-    auto commandList = lineRenderSystem_.getDxCommand()->getCommandList();
+    auto commandList = lineRenderSystem_.GetDxCommand()->GetCommandList();
 
     // ControlPoint（球）
-    pointRenderer_.getTransformBuff().SetForRootParameter(commandList, 0);
-    for (auto& mesh : *pointRenderer_.getMeshGroup()) {
+    pointRenderer_.GetTransformBuff().SetForRootParameter(commandList, 0);
+    for (auto& mesh : *pointRenderer_.GetMeshGroup()) {
         if (mesh.indexes_.empty())
             continue;
-        commandList->IASetVertexBuffers(0, 1, &mesh.getVertexBufferView());
-        commandList->IASetIndexBuffer(&mesh.getIndexBufferView());
+        commandList->IASetVertexBuffers(0, 1, &mesh.GetVertexBufferView());
+        commandList->IASetIndexBuffer(&mesh.GetIndexBufferView());
         commandList->DrawIndexedInstanced((UINT)mesh.indexes_.size(), 1, 0, 0, 0);
     }
 
     // Link（線）
-    linkRenderer_.getTransformBuff().SetForRootParameter(commandList, 0);
-    for (auto& mesh : *linkRenderer_.getMeshGroup()) {
+    linkRenderer_.GetTransformBuff().SetForRootParameter(commandList, 0);
+    for (auto& mesh : *linkRenderer_.GetMeshGroup()) {
         if (mesh.indexes_.empty())
             continue;
-        commandList->IASetVertexBuffers(0, 1, &mesh.getVertexBufferView());
-        commandList->IASetIndexBuffer(&mesh.getIndexBufferView());
+        commandList->IASetVertexBuffers(0, 1, &mesh.GetVertexBufferView());
+        commandList->IASetIndexBuffer(&mesh.GetIndexBufferView());
         commandList->DrawIndexedInstanced((UINT)mesh.indexes_.size(), 1, 0, 0, 0);
     }
 
     // Link Normal（法線）
-    linkNormalRenderer_.getTransformBuff().SetForRootParameter(commandList, 0);
-    for (auto& mesh : *linkNormalRenderer_.getMeshGroup()) {
+    linkNormalRenderer_.GetTransformBuff().SetForRootParameter(commandList, 0);
+    for (auto& mesh : *linkNormalRenderer_.GetMeshGroup()) {
         if (mesh.indexes_.empty())
             continue;
-        commandList->IASetVertexBuffers(0, 1, &mesh.getVertexBufferView());
-        commandList->IASetIndexBuffer(&mesh.getIndexBufferView());
+        commandList->IASetVertexBuffers(0, 1, &mesh.GetVertexBufferView());
+        commandList->IASetIndexBuffer(&mesh.GetIndexBufferView());
         commandList->DrawIndexedInstanced((UINT)mesh.indexes_.size(), 1, 0, 0, 0);
     }
 }

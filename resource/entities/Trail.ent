@@ -26,17 +26,44 @@
                 ]
             }
         ],
+        "MaterialAnimation": [
+            {
+                "InterpolationType": 0,
+                "colorCurve": [],
+                "duration": 4.800000190734863,
+                "isLoop": true,
+                "isPlay": false,
+                "uvRotateCurve": [],
+                "uvScaleCurve": [],
+                "uvTranslateCurve": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 4.800000190734863,
+                        "value": [
+                            0.0,
+                            1.0
+                        ]
+                    }
+                ]
+            }
+        ],
         "MaterialEffectPipeLine": [
             {
                 "baseTexturePath": "./application/resource/Texture/lazer.png",
                 "effectEntityIdList": [
                     {
                         "effectType": 0,
-                        "entityID": 16
+                        "entityID": 15
                     },
                     {
                         "effectType": 2,
-                        "entityID": 18
+                        "entityID": 17
                     }
                 ],
                 "isActive": true,
@@ -47,10 +74,11 @@
         "PlaneRenderer": [
             {
                 "blendMode": 2,
+                "isCulling": true,
                 "isRenderer": false,
                 "materialIndex": 0,
                 "textureDirectory": "./application/resource/Texture",
-                "textureFileName": "lazer.png",
+                "textureFileName": "gradation.png",
                 "transform": {
                     "rotate": [
                         0.0,
@@ -114,6 +142,10 @@
         {
             "SystemCategory": 5,
             "SystemName": "CreateMeshFromSpline"
+        },
+        {
+            "SystemCategory": 5,
+            "SystemName": "MaterialAnimationWorkSystem"
         },
         {
             "SystemCategory": 5,

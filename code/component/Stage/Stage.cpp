@@ -45,7 +45,7 @@ void Stage::Edit([[maybe_unused]] Scene* _scene, Entity* /*_entity*/, [[maybe_un
     if (fileWatcher_) {
         if (fileWatcher_->isChanged()) {
             ReloadFile();
-            _scene->getSystemRunnerRef()->UpdateCategory(SystemCategory::Initialize);
+            _scene->GetSystemRunnerRef()->UpdateCategory(SystemCategory::Initialize);
         }
     }
 
@@ -69,7 +69,7 @@ void Stage::SaveFile(const std::string& _directory, const std::string& _filename
     writer.Write("count", static_cast<int32_t>(controlPoints_.size()));
     int32_t index = 0;
     for (const auto& point : controlPoints_) {
-        writer.Write<3, float>(std::to_string(index) + "_pos", point.pos_);
+        writer.Write<3, float>(std::to_string(index) + "_pos", point.pos);
         ++index;
     }
     writer.WriteEndGroup();
@@ -78,11 +78,11 @@ void Stage::SaveFile(const std::string& _directory, const std::string& _filename
     writer.Write("count", static_cast<int32_t>(links_.size()));
     index = 0;
     for (const auto& link : links_) {
-        writer.Write(std::to_string(index) + "_to", link.to_);
-        writer.Write(std::to_string(index) + "_from", link.from_);
-        writer.Write<3, float>(std::to_string(index) + "_normal", link.normal_);
-        writer.Write(std::to_string(index) + "_height", link.height_);
-        writer.Write(std::to_string(index) + "_width", link.width_);
+        writer.Write(std::to_string(index) + "_to", link.to);
+        writer.Write(std::to_string(index) + "_from", link.from);
+        writer.Write<3, float>(std::to_string(index) + "_normal", link.normal);
+        writer.Write(std::to_string(index) + "_height", link.height);
+        writer.Write(std::to_string(index) + "_width", link.width);
         ++index;
     }
     writer.WriteEndGroup();
@@ -112,7 +112,7 @@ void Stage::LoadFile(const std::string& _directory, const std::string& _filename
     reader.Read("count", count);
     ControlPoint point;
     for (size_t i = 0; i < count; ++i) {
-        reader.Read<3, float>(std::to_string(i) + "_pos", point.pos_);
+        reader.Read<3, float>(std::to_string(i) + "_pos", point.pos);
         controlPoints_.push_back(point);
     }
     reader.ReadEndGroup();
@@ -124,11 +124,11 @@ void Stage::LoadFile(const std::string& _directory, const std::string& _filename
     Link link;
     for (size_t i = 0; i < count; ++i) {
         std::string indexStr = std::to_string(i);
-        reader.Read(indexStr + "_to", link.to_);
-        reader.Read(indexStr + "_from", link.from_);
-        reader.Read<3, float>(indexStr + "_normal", link.normal_);
-        reader.Read(indexStr + "_height", link.height_);
-        reader.Read(indexStr + "_width", link.width_);
+        reader.Read(indexStr + "_to", link.to);
+        reader.Read(indexStr + "_from", link.from);
+        reader.Read<3, float>(indexStr + "_normal", link.normal);
+        reader.Read(indexStr + "_height", link.height);
+        reader.Read(indexStr + "_width", link.width);
         links_.push_back(link);
     }
     reader.ReadEndGroup();
@@ -145,7 +145,7 @@ void Stage::LoadFile(const std::string& _directory, const std::string& _filename
 #ifndef _RELEASE
     if (fileWatcher_) {
         fileWatcher_->Stop();
-        fileWatcher_->setFilePath(directory_ + "/" + fileName_ + +".stage");
+        fileWatcher_->SetFilePath(directory_ + "/" + fileName_ + +".stage");
         fileWatcher_->Start();
     } else {
         fileWatcher_ = std::make_shared<FileWatcher>(directory_ + "/" + fileName_ + +".stage");

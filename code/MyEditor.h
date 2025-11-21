@@ -12,7 +12,7 @@ public:
     MyEditor();
     virtual ~MyEditor();
 
-    virtual void Initialize(const std::string& _commandLine) override;
+    virtual void Initialize(const std::vector<std::string>& _commandLines) override;
     virtual void Finalize() override;
     virtual void Run() override;
 
@@ -22,7 +22,7 @@ protected:
 
 public:
     bool isEndRequest() const { return isEndRequest_; }
-    void setEndRequest(bool endRequest) { isEndRequest_ = endRequest; }
+    void SetEndRequest(bool endRequest) { isEndRequest_ = endRequest; }
 };
 
 #endif // _DEBUG

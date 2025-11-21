@@ -18,13 +18,13 @@
 #include "component/transform/CameraTransform.h"
 
 void TransitionPlayerState::UpdateEntity(Entity* _entity) {
-    PlayerState* state = getComponent<PlayerState>(_entity);
+    PlayerState* state = GetComponent<PlayerState>(_entity);
 
     // 一フレームだけ trueになればいいので 毎フレーム 初期化
-    state->setGearUp(false);
+    state->SetGearUp(false);
 
-    if (state->isGoal()) {
-        SceneChanger* sceneChanger = getComponent<SceneChanger>(_entity);
+    if (state->IsGoal()) {
+        SceneChanger* sceneChanger = GetComponent<SceneChanger>(_entity);
         if (sceneChanger) {
             sceneChanger->ChangeScene();
             return;
@@ -34,37 +34,37 @@ void TransitionPlayerState::UpdateEntity(Entity* _entity) {
     /// =====================================================
     // PlayerMoveState の初期化 (必要なら)
     /// =====================================================
-    if (!state->getPlayerMoveState()) {
-        state->setPlayerMoveState(CreatePlayerMoveStateByEnum(PlayerMoveState::IDLE, this->getScene(), _entity->getID()));
+    if (!state->GetPlayerMoveState()) {
+        state->SetPlayerMoveState(CreatePlayerMoveStateByEnum(PlayerMoveState::IDLE, this->GetScene(), _entity->GetID()));
     }
 
     /// =====================================================
     // StateUpdate
     /// =====================================================
-    state->setPrevState(state->getStateEnum());
-    PlayerMoveState newState = state->getPlayerMoveState()->TransitionState();
+    state->SetPrevState(state->GetStateEnum());
+    PlayerMoveState newState = state->GetPlayerMoveState()->TransitionState();
 
     // 状態が変わった場合、状態を更新
-    if (newState != state->getPrevStateEnum()) {
-        state->getPlayerMoveState()->Finalize();
+    if (newState != state->GetPrevStateEnum()) {
+        state->GetPlayerMoveState()->Finalize();
 
-        state->setPlayerMoveState(CreatePlayerMoveStateByEnum(newState, this->getScene(), _entity->getID()));
-        state->getPlayerMoveState()->Initialize();
+        state->SetPlayerMoveState(CreatePlayerMoveStateByEnum(newState, this->GetScene(), _entity->GetID()));
+        state->GetPlayerMoveState()->Initialize();
     }
 
     /// =====================================================
     // Fov Y
     /// =====================================================
-    Entity* gameCamera = getUniqueEntity("GameCamera");
+    Entity* gameCamera = GetUniqueEntity("GameCamera");
     if (!gameCamera) {
         return;
     }
-    CameraController* cameraController = getComponent<CameraController>(gameCamera);
+    CameraController* cameraController = GetComponent<CameraController>(gameCamera);
     if (cameraController) {
         // fov 更新
-        CameraTransform* cameraTransform = getComponent<CameraTransform>(gameCamera);
+        CameraTransform* cameraTransform = GetComponent<CameraTransform>(gameCamera);
         if (cameraTransform) {
-            cameraTransform->fovAngleY = std::lerp(cameraTransform->fovAngleY, cameraController->CalculateFovYByPlayerGearLevel(state->getGearLevel()), cameraController->getFovYInterpolate());
+            cameraTransform->fovAngleY = std::lerp(cameraTransform->fovAngleY, cameraController->CalculateFovYByPlayerGearLevel(state->GetGearLevel()), cameraController->GetFovYInterpolate());
         };
     }
 }

@@ -14,13 +14,13 @@ void ButtonGroup::Initialize(Entity* /*_entity*/) {}
 
 void ButtonGroup::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
-    auto componentArray = _scene->getComponentRepositoryRef()->getComponentArray<Button>();
+    auto componentArray = _scene->GetComponentRepositoryRef()->GetComponentArray<Button>();
     if (!componentArray) {
         ImGui::Text(" No ButtonData.");
         return;
     }
 
-    auto& allButtons = componentArray->getAllComponents();
+    auto& allButtons = componentArray->GetAllComponents();
     if (allButtons.empty()) {
         if (!buttonNumbers_.empty()) {
             buttonNumbers_.clear();
@@ -41,14 +41,14 @@ void ButtonGroup::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* 
     if (ImGui::TreeNode(label.c_str())) {
         buttonNumbers_.clear();
         int32_t buttonIndex            = 0;
-        const auto& buttonBindEntityId = componentArray->getEntityIndexBind();
+        const auto& buttonBindEntityId = componentArray->GetEntityIndexBind();
         for (const auto& [id, index] : buttonBindEntityId) {
             if (id < 0) {
                 continue;
             }
             // ボタンコンポーネントが存在しない場合はスキップ
-            Entity* buttonEntity = _scene->getEntityRepositoryRef()->getEntity(id);
-            if (!buttonEntity || !componentArray->getComponents(buttonEntity)) {
+            Entity* buttonEntity = _scene->GetEntityRepositoryRef()->GetEntity(id);
+            if (!buttonEntity || !componentArray->GetComponents(buttonEntity)) {
                 continue;
             }
 
@@ -79,7 +79,7 @@ void ButtonGroup::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* 
                     bool isSelected = (_keyBinds[i] == key.first);
                     if (ImGui::Selectable(key.second.c_str(), isSelected)) {
                         auto command = std::make_unique<SetterCommand<Key>>(&_keyBinds[i], key.first);
-                        EditorController::getInstance()->pushCommand(std::move(command));
+                        EditorController::GetInstance()->PushCommand(std::move(command));
                     }
                     if (isSelected) {
                         ImGui::SetItemDefaultFocus();
@@ -93,7 +93,7 @@ void ButtonGroup::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* 
         editorLabel = "Add Key##" + _editParentLabel;
         if (ImGui::Button(editorLabel.c_str())) {
             auto command = std::make_unique<AddElementCommand<std::vector<Key>>>(&_keyBinds, Key::ESCAPE);
-            EditorController::getInstance()->pushCommand(std::move(command));
+            EditorController::GetInstance()->PushCommand(std::move(command));
         }
         ImGui::SameLine();
         // remove
@@ -101,7 +101,7 @@ void ButtonGroup::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* 
         if (ImGui::Button(editorLabel.c_str())) {
             if (_keyBinds.size() > 0) {
                 auto command = std::make_unique<EraseElementCommand<std::vector<Key>>>(&_keyBinds, _keyBinds.end() - 1);
-                EditorController::getInstance()->pushCommand(std::move(command));
+                EditorController::GetInstance()->PushCommand(std::move(command));
             }
         }
     };
@@ -117,7 +117,7 @@ void ButtonGroup::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* 
                     bool isSelected = (_padButtonBinds[i] == padButton.first);
                     if (ImGui::Selectable(padButton.second.c_str(), isSelected)) {
                         auto command = std::make_unique<SetterCommand<PadButton>>(&_padButtonBinds[i], padButton.first);
-                        EditorController::getInstance()->pushCommand(std::move(command));
+                        EditorController::GetInstance()->PushCommand(std::move(command));
                     }
                     if (isSelected) {
                         ImGui::SetItemDefaultFocus();
@@ -131,7 +131,7 @@ void ButtonGroup::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* 
         editorLabel = "Add PadButton##" + _editParentLabel;
         if (ImGui::Button(editorLabel.c_str())) {
             auto command = std::make_unique<AddElementCommand<std::vector<PadButton>>>(&_padButtonBinds, PadButton::A);
-            EditorController::getInstance()->pushCommand(std::move(command));
+            EditorController::GetInstance()->PushCommand(std::move(command));
         }
         ImGui::SameLine();
         // remove
@@ -139,7 +139,7 @@ void ButtonGroup::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* 
         if (ImGui::Button(editorLabel.c_str())) {
             if (_padButtonBinds.size() > 0) {
                 auto command = std::make_unique<EraseElementCommand<std::vector<PadButton>>>(&_padButtonBinds, _padButtonBinds.end() - 1);
-                EditorController::getInstance()->pushCommand(std::move(command));
+                EditorController::GetInstance()->PushCommand(std::move(command));
             }
         }
     };

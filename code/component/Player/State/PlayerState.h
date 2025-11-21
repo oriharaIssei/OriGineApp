@@ -26,7 +26,7 @@ enum class PlayerMoveState {
 };
 
 constexpr int32_t kDefaultPlayerGearLevel = 1; // デフォルトのギアレベル
-constexpr int32_t kMaxPlayerGearLevel     = 7; // 最大のギアレベル
+constexpr int32_t kMaxPlayerGearLevel     = 12; // 最大のギアレベル
 
 /// <summary>
 /// プレイヤーの状態を表す変数群
@@ -58,7 +58,7 @@ private:
     std::shared_ptr<IPlayerMoveState> moveState_ = nullptr;
 
     bool onGround_             = false;
-    bool isGearUp_             = false;
+    bool IsGearUp_             = false;
     bool collisionWithWall_    = false;
     bool isGoal_               = false;
     Vec3f wallCollisionNormal_ = {0.f, 0.f, 0.f};
@@ -70,58 +70,58 @@ private:
     float gearUpCoolTime_ = 0.0f;
 
 public:
-    PlayerMoveState getStateEnum() const {
+    PlayerMoveState GetStateEnum() const {
         return moveStateEnum_.toEnum();
     }
 
-    PlayerMoveState getPrevStateEnum() const {
+    PlayerMoveState GetPrevStateEnum() const {
         return preMoveStateEnum_.toEnum();
     }
-    void setPrevState(const PlayerMoveState& _prevState) {
+    void SetPrevState(const PlayerMoveState& _prevState) {
         preMoveStateEnum_ = _prevState;
     }
 
-    std::shared_ptr<IPlayerMoveState> getPlayerMoveState() const {
+    std::shared_ptr<IPlayerMoveState> GetPlayerMoveState() const {
         return moveState_;
     }
-    void setPlayerMoveState(std::shared_ptr<IPlayerMoveState> _playerMoveState);
+    void SetPlayerMoveState(std::shared_ptr<IPlayerMoveState> _playerMoveState);
 
-    int32_t getGearLevel() const {
+    int32_t GetGearLevel() const {
         return gearLevel_;
     }
-    void setGearLevel(int32_t _gearLevel) {
+    void SetGearLevel(int32_t _gearLevel) {
         gearLevel_ = _gearLevel;
     }
 
-    bool isGoal() const {
+    bool IsGoal() const {
         return isGoal_;
     }
-    void setGoal(bool _isGoal) {
+    void SetGoal(bool _isGoal) {
         isGoal_ = _isGoal;
     }
 
-    bool isOnGround() const {
+    bool IsOnGround() const {
         return onGround_;
     }
-    int32_t getLastFloorEntityIndex() const {
+    int32_t GetLastFloorEntityIndex() const {
         return lastFloorEntityIndex_;
     }
 
-    bool isCollisionWithWall() const {
+    bool IsCollisionWithWall() const {
         return collisionWithWall_;
     }
-    int32_t getWallEntityIndex() const {
+    int32_t GetWallEntityIndex() const {
         return wallEntityIndex_;
     }
 
-    const Vec3f& getWallCollisionNormal() const {
+    const Vec3f& GetWallCollisionNormal() const {
         return wallCollisionNormal_;
     }
 
-    bool isGearUp() const {
-        return isGearUp_;
+    bool IsGearUp() const {
+        return IsGearUp_;
     }
-    void setGearUp(bool _isGearUp) {
-        isGearUp_ = _isGearUp;
+    void SetGearUp(bool _IsGearUp) {
+        IsGearUp_ = _IsGearUp;
     }
 };

@@ -1,6 +1,8 @@
 #pragma once
 
+/// stl
 #include <string>
+#include <vector>
 
 class Engine;
 class GlobalVariables;
@@ -16,8 +18,8 @@ public:
     FrameWork();
     virtual ~FrameWork();
 
-    virtual void Initialize(const std::string& _commandLine) = 0;
-    virtual void Finalize()   = 0;
+    virtual void Initialize(const std::vector<std::string>& _commandLines) = 0;
+    virtual void Finalize()                                                = 0;
 
     /// <summary>
     /// Applicationのメインループ

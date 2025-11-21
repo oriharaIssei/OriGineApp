@@ -1,7 +1,9 @@
 #include "CameraController.h"
 
-/// external
 #ifdef _DEBUG
+/// copmonent
+#include "component/Player/State/PlayerState.h"
+/// gui
 #include "myGui/MyGui.h"
 #endif // _DEBUG
 
@@ -67,7 +69,7 @@ void CameraController::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[maybe_unus
             ImGui::TableSetupColumn("Gear Level");
             ImGui::TableSetupColumn("FovY");
             ImGui::TableHeadersRow();
-            for (int level = 1; level <= 6; ++level) {
+            for (int level = 1; level <= kMaxPlayerGearLevel; ++level) {
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
                 ImGui::Text("%d", level);

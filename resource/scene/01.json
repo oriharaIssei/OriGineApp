@@ -106,8 +106,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -119,8 +119,8 @@
                             1.0
                         ],
                         "size": [
-                            72.0,
-                            72.0
+                            48.0,
+                            48.000003814697266
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -132,8 +132,8 @@
                             16.0
                         ],
                         "translate": [
-                            109.44000244140625,
-                            46.44000244140625
+                            72.95999908447266,
+                            30.96000099182129
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -165,8 +165,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -178,8 +178,8 @@
                             1.0
                         ],
                         "size": [
-                            72.0,
-                            72.0
+                            48.0,
+                            48.000003814697266
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -191,8 +191,8 @@
                             16.0
                         ],
                         "translate": [
-                            109.44000244140625,
-                            46.44000244140625
+                            72.95999908447266,
+                            30.96000099182129
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -261,6 +261,7 @@
                         "blendMode": 1,
                         "divisionLatitude": 8,
                         "divisionLongitude": 16,
+                        "isCulling": true,
                         "isRenderer": true,
                         "materialIndex": -1,
                         "radius": 0.4399999976158142,
@@ -475,6 +476,9 @@
             },
             "FollowCameraUpdateSystem": {
                 "Priority": 1
+            },
+            "GoalShellEffectInitialize": {
+                "Priority": 100
             },
             "LineRenderSystem": {
                 "Priority": 0

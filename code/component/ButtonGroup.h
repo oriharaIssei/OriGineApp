@@ -5,7 +5,7 @@
 #include <unordered_map>
 
 /// engine
-#include "input/Input.h"
+#include "input/InputManager.h"
 
 /// <summary>
 /// 1シーン内で複数のボタンをグループ化し、選択と決定の操作を管理するコンポーネント
@@ -40,14 +40,14 @@ private:
     std::vector<PadButton> decidePadButtons_{};
 
 public:
-    int32_t getCurrentButtonNumber() const { return currentButtonNumber_; }
-    void setCurrentButtonNumber(int32_t _buttonNumber) { currentButtonNumber_ = _buttonNumber; }
-    int32_t getStartButtonNumber() const { return startButtonNumber_; }
-    void setStartButtonNumber(int32_t _buttonNumber) { startButtonNumber_ = _buttonNumber; }
+    int32_t GetCurrentButtonNumber() const { return currentButtonNumber_; }
+    void SetCurrentButtonNumber(int32_t _buttonNumber) { currentButtonNumber_ = _buttonNumber; }
+    int32_t GetStartButtonNumber() const { return startButtonNumber_; }
+    void SetStartButtonNumber(int32_t _buttonNumber) { startButtonNumber_ = _buttonNumber; }
 
-    std::unordered_map<int32_t, int32_t>& getButtonNumbers() { return buttonNumbers_; }
+    std::unordered_map<int32_t, int32_t>& GetButtonNumbers() { return buttonNumbers_; }
 
-    int32_t getButtonNumber(int32_t _entityId) const {
+    int32_t GetButtonNumber(int32_t _entityId) const {
         for (const auto& pair : buttonNumbers_) {
             if (pair.second == _entityId) {
                 return pair.first;
@@ -55,7 +55,7 @@ public:
         }
         return -1; // 見つからなかった場合のデフォルト値
     }
-    int32_t getEntityId(int32_t _buttonNumber) const {
+    int32_t GetEntityId(int32_t _buttonNumber) const {
         auto it = buttonNumbers_.find(_buttonNumber);
         if (it != buttonNumbers_.end()) {
             return it->second;
@@ -64,10 +64,10 @@ public:
         
     }
 
-    const std::vector<Key>& getSelectAddKeys() const { return selectAddKeys_; }
-    const std::vector<PadButton>& getSelectAddPadButtons() const { return selectAddPadButtons_; }
-    const std::vector<Key>& getSelectSubKeys() const { return selectSubKeys_; }
-    const std::vector<PadButton>& getSelectSubPadButtons() { return selectSubPadButtons_; }
-    const std::vector<Key>& getDecideKeys() const { return decideKeys_; }
-    const std::vector<PadButton>& getDecidePadButtons() const { return decidePadButtons_; }
+    const std::vector<Key>& GetSelectAddKeys() const { return selectAddKeys_; }
+    const std::vector<PadButton>& GetSelectAddPadButtons() const { return selectAddPadButtons_; }
+    const std::vector<Key>& GetSelectSubKeys() const { return selectSubKeys_; }
+    const std::vector<PadButton>& GetSelectSubPadButtons() { return selectSubPadButtons_; }
+    const std::vector<Key>& GetDecideKeys() const { return decideKeys_; }
+    const std::vector<PadButton>& GetDecidePadButtons() const { return decidePadButtons_; }
 };

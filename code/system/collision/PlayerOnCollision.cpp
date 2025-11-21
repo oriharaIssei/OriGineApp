@@ -11,6 +11,7 @@
 #include "component/Player/PlayerStatus.h"
 #include "component/Player/State/PlayerState.h"
 
+#include "component/Stage/Stage.h"
 #include "component/TimerComponent.h"
 
 void PlayerOnCollision::Initialize() {
@@ -23,27 +24,32 @@ static const float kGroundCheckThreshold = 0.7f; // 地面と判断するため�
 static const float kWallCheckThreshold   = 0.3f; // 壁と判断するための閾値
 
 void PlayerOnCollision::UpdateEntity(Entity* _entity) {
-    auto* state        = getComponent<PlayerState>(_entity);
-    auto* pushBackInfo = getComponent<CollisionPushBackInfo>(_entity);
-    auto* rigidbody    = getComponent<Rigidbody>(_entity);
+    auto* state        = GetComponent<PlayerState>(_entity);
+    auto* pushBackInfo = GetComponent<CollisionPushBackInfo>(_entity);
+    auto* rigidbody    = GetComponent<Rigidbody>(_entity);
 
     if (state == nullptr) {
         return;
     }
+    // 毎フレーム、地面・壁との衝突状態をリセット
     state->OffCollisionGround();
     state->OffCollisionWall();
 
-    for (auto& [entityId, info] : pushBackInfo->getCollisionInfoMap()) {
+    for (auto& [entityId, info] : pushBackInfo->GetCollisionInfoMap()) {
         Vec3f collNormal       = info.collVec.normalize();
-        Entity* collidedEntity = getEntity(entityId);
+        Entity* collidedEntity = GetEntity(entityId);
 
         // ゴール と 衝突したか
-        if (collidedEntity->getDataType().find("Goal") != std::string::npos) {
-            // Entity* timer = getUniqueEntity("Timer");
-            // Stage::setClearTime(getComponent<TimerComponent>(timer)->getCurrentTime());
+        if (collidedEntity->GetDataType().find("Goal") != std::string::npos) {
+            Entity* timer = GetUniqueEntity("Timer");
+
+            // クリア時間をセット
+            if (timer) {
+                Stage::SetClearTime(GetComponent<TimerComponent>(timer)->GetCurrentTime());
+            }
 
             // ゴールと衝突した場合は、ゴールに到達したと判断する
-            state->setGoal(true);
+            state->SetGoal(true);
             continue;
         }
 
@@ -51,16 +57,16 @@ void PlayerOnCollision::UpdateEntity(Entity* _entity) {
             // 上方向に衝突した場合は、地面にいると判断する
             state->OnCollisionGround(entityId);
 
-            Vec3f acceleration = rigidbody->getAcceleration();
+            Vec3f acceleration = rigidbody->GetAcceleration();
 
             // Y軸の加速度を0にする
             acceleration[Y] = 0.f;
-            rigidbody->setAcceleration(acceleration);
+            rigidbody->SetAcceleration(acceleration);
 
-            rigidbody->setVelocity(Y, 0.f);
+            rigidbody->SetVelocity(Y, 0.f);
         } else if (std::abs(collNormal[X]) + std::abs(collNormal[Z]) > kGroundCheckThreshold) {
             // 壁と衝突した場合
-            float dotVN = rigidbody->getVelocity().normalize().dot(collNormal);
+            float dotVN = rigidbody->GetVelocity().normalize().dot(collNormal);
 
             // どれくらい平行に動いているか (1.0 = 完全に平行, 0.0 = 完全に垂直)
             float parallelFactor = 1.f - std::fabs(dotVN);

@@ -13,15 +13,15 @@ void TakePlayerToStartPosition::Initialize() {}
 void TakePlayerToStartPosition::Finalize() {}
 
 void TakePlayerToStartPosition::UpdateEntity(Entity* _entity) {
-    Transform* transform = getComponent<Transform>(_entity);
+    Transform* transform = GetComponent<Transform>(_entity);
     if (!transform) {
         return;
     }
-    Entity* startPositionEntity    = getUniqueEntity("StartPosition");
+    Entity* startPositionEntity    = GetUniqueEntity("StartPosition");
     if (!startPositionEntity) {
         return;
     }
-    Transform* startPositionTransform = getComponent<Transform>(startPositionEntity);
+    Transform* startPositionTransform = GetComponent<Transform>(startPositionEntity);
 
     // 初期位置に移動
     transform->translate = startPositionTransform->translate;

@@ -48,17 +48,17 @@ void CreateMeshFromSpline::Initialize() {}
 void CreateMeshFromSpline::Finalize() {}
 
 void CreateMeshFromSpline::UpdateEntity(Entity* _entity) {
-    auto planeRendererComp = getComponent<PlaneRenderer>(_entity);
+    auto planeRendererComp = GetComponent<PlaneRenderer>(_entity);
     if (planeRendererComp == nullptr) {
         return;
     }
 
-    auto splinePointsComp = getComponent<SplinePoints>(_entity);
+    auto splinePointsComp = GetComponent<SplinePoints>(_entity);
     if (splinePointsComp == nullptr || splinePointsComp->points_.size() < 4) {
-        planeRendererComp->setIsRender(false);
+        planeRendererComp->SetIsRender(false);
         return;
     }
-    planeRendererComp->setIsRender(true);
+    planeRendererComp->SetIsRender(true);
 
     auto splinePoints = CatmullRomSpline(splinePointsComp->points_, splinePointsComp->segmentDivide_);
 
@@ -153,18 +153,18 @@ void CreateMeshFromSpline::UpdateEntity(Entity* _entity) {
     std::vector<TextureMesh> meshGroup;
     TextureMesh verticalMesh;
     verticalMesh.Initialize(static_cast<UINT>(verticalVertexes.size()), static_cast<UINT>(indices.size()));
-    verticalMesh.setVertexData(verticalVertexes);
-    verticalMesh.setIndexData(indices);
+    verticalMesh.SetVertexData(verticalVertexes);
+    verticalMesh.SetIndexData(indices);
     meshGroup.push_back(verticalMesh);
     TextureMesh horizontalMesh;
     horizontalMesh.Initialize(static_cast<UINT>(horizontalVertexes.size()), static_cast<UINT>(indices.size()));
-    horizontalMesh.setVertexData(horizontalVertexes);
-    horizontalMesh.setIndexData(indices);
+    horizontalMesh.SetVertexData(horizontalVertexes);
+    horizontalMesh.SetIndexData(indices);
     meshGroup.push_back(horizontalMesh);
 
     // メッシュ設定
-    planeRendererComp->setIsCulling(false);
-    planeRendererComp->setMeshGroup(meshGroup);
-    planeRendererComp->getMeshGroup()->at(0).TransferData();
-    planeRendererComp->getMeshGroup()->at(1).TransferData();
+    planeRendererComp->SetIsCulling(false);
+    planeRendererComp->SetMeshGroup(meshGroup);
+    planeRendererComp->GetMeshGroup()->at(0).TransferData();
+    planeRendererComp->GetMeshGroup()->at(1).TransferData();
 }

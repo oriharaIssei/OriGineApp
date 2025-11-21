@@ -2,14 +2,25 @@
 
 /// engine include
 #define ENGINE_INCLUDE
+#define RESOURCE_DIRECTORY
 #include <EngineInclude.h>
+// directX12object
+#include "directX12/RenderTexture.h"
 
 // scene
 #include "scene/Scene.h"
 #include "scene/SceneManager.h"
 
-/// lib
+// global variable
 #include "globalVariables/GlobalVariables.h"
+
+// input
+#include "input/InputManager.h"
+
+#ifdef _DEVELOP
+// debugReplay
+#include "debugReplayer/ReplayRecorder.h"
+#endif // _DEVELOP
 
 /// component
 #include "component/renderer/Sprite.h"
@@ -25,44 +36,94 @@ MyGame::MyGame() {}
 
 MyGame::~MyGame() {}
 
-void MyGame::Initialize(const std::string& _commandLine) {
+void MyGame::Initialize(const std::vector<std::string>& _commandLines) {
     ///=================================================================================================
     // Game のための 初期化
     ///=================================================================================================
-    variables_ = GlobalVariables::getInstance();
+    variables_ = GlobalVariables::GetInstance();
 
-    engine_       = Engine::getInstance();
-    sceneManager_ = SceneManager::getInstance();
+    engine_       = Engine::GetInstance();
+    sceneManager_ = std::make_unique<SceneManager>();
 
     variables_->LoadAllFile();
     engine_->Initialize();
 
-    if (!_commandLine.empty()) {
-        // コマンドライン引数がある場合、シーン名を設定する
-        sceneManager_->getStartupSceneNameRef().setValue(_commandLine);
-        LOG_DEBUG("GetCommandLine : {}", _commandLine);
-    } else {
-        LOG_DEBUG("MyGame : No command line argument detected. Using default startup scene '{}'.", sceneManager_->getStartupSceneNameRef().GetValue()->c_str());
+    /// コマンドライン引数の処理
+    auto commandLineItr = _commandLines.begin();
+    while (commandLineItr != _commandLines.end()) {
+        const std::string& commandLine = *commandLineItr;
+        // シーン名の指定
+        if (commandLine == "-s") {
+            ++commandLineItr;
+            if (commandLineItr == _commandLines.end()) {
+                break;
+            }
+            // コマンドライン引数がある場合、シーン名を設定する
+            const std::string& sceneName = *commandLineItr;
+            sceneManager_->GetStartupSceneNameRef().SetValue(sceneName);
+            LOG_DEBUG("GetCommandLine : {}", sceneName);
+        }
+
+        // 次の引数へ
+        ++commandLineItr;
     }
 
     RegisterUsingComponents();
     RegisterUsingSystems();
-    sceneManager_->Initialize();
+
+    InputManager* inputManager = InputManager::GetInstance();
+
+    sceneManager_->Initialize(inputManager->GetKeyboard(), inputManager->GetMouse(), inputManager->GetGamePad());
+
+#ifdef _DEVELOP
+    isRecording_ = true; //! TODO : CommandLineのなどで制御できるようにする
+    recorder_    = std::make_unique<ReplayRecorder>();
+    recorder_->Initialize(sceneManager_->GetStartupSceneName());
+    // 初期化時の入力を記録
+    if (isRecording_ == true) {
+        InputManager* inputManager = InputManager::GetInstance();
+        recorder_->RecordFrame(engine_->GetDeltaTime(),
+            inputManager->GetKeyboard(),
+            inputManager->GetMouse(),
+            inputManager->GetGamePad());
+    }
+#endif // _DEVELOP
 }
 
 void MyGame::Finalize() {
     sceneManager_->Finalize();
     engine_->Finalize();
+#ifdef _DEVELOP
+    const std::string directory = kApplicationResourceDirectory + '/' + kReplayFolderName;
+    recorder_->SaveToFile(directory);
+#endif // _DEVELOP
 }
 
 void MyGame::Run() {
     while (true) {
-        if (engine_->ProcessMessage() || sceneManager_->isExitGame()) {
+        if (engine_->ProcessMessage() || sceneManager_->IsExitGame()) {
             break;
         }
         engine_->BeginFrame();
 
+#ifdef _DEVELOP
+        if (isRecording_ == true) {
+            // 入力の記録
+            InputManager* inputManager = InputManager::GetInstance();
+            recorder_->RecordFrame(engine_->GetDeltaTime(),
+                inputManager->GetKeyboard(),
+                inputManager->GetMouse(),
+                inputManager->GetGamePad());
+        }
+#endif // _DEVELOP
+
+        // シーンの更新
         sceneManager_->Update();
+        sceneManager_->Render();
+        // windowに描画
+        Engine::GetInstance()->ScreenPreDraw();
+        sceneManager_->GetCurrentScene()->GetSceneView()->DrawTexture();
+        Engine::GetInstance()->ScreenPostDraw();
 
         engine_->EndFrame();
     }

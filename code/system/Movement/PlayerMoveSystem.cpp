@@ -17,10 +17,10 @@ void PlayerMoveSystem::Finalize() {
 }
 
 void PlayerMoveSystem::UpdateEntity(Entity* _entity) {
-    PlayerState* state = getComponent<PlayerState>(_entity);
+    PlayerState* state = GetComponent<PlayerState>(_entity);
 
-    const float deltaTime = getMainDeltaTime();
-    auto moveState        = state->getPlayerMoveState();
+    const float deltaTime = GetMainDeltaTime();
+    auto moveState        = state->GetPlayerMoveState();
     if (moveState) {
         moveState->Update(deltaTime);
     }

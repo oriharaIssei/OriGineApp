@@ -30,33 +30,33 @@ void EffectOnPlayerRun::Initialize() {}
 void EffectOnPlayerRun::Finalize() {}
 
 void EffectOnPlayerRun::UpdateEntity(Entity* entity) {
-    auto state              = getComponent<PlayerState>(entity);
-    auto status             = getComponent<PlayerStatus>(entity);
-    auto effectControlParam = getComponent<PlayerEffectControlParam>(entity);
-    auto rigidbody          = getComponent<Rigidbody>(entity);
+    auto state              = GetComponent<PlayerState>(entity);
+    auto status             = GetComponent<PlayerStatus>(entity);
+    auto effectControlParam = GetComponent<PlayerEffectControlParam>(entity);
+    auto rigidbody          = GetComponent<Rigidbody>(entity);
 
     if (!state || !effectControlParam || !rigidbody) {
         return;
     }
 
     // タイヤの回転
-    ModelMeshRenderer* modelMeshRenderer = getComponent<ModelMeshRenderer>(entity);
+    ModelMeshRenderer* modelMeshRenderer = GetComponent<ModelMeshRenderer>(entity);
     if (modelMeshRenderer) {
-        Transform& meshTransform = modelMeshRenderer->getTransform(0);
+        Transform& meshTransform = modelMeshRenderer->GetTransform(0);
 
-        auto playerInput = getComponent<PlayerInput>(entity);
-        Vec3f inputDir   = playerInput->getWorldInputDirection();
+        auto playerInput = GetComponent<PlayerInput>(entity);
+        Vec3f inputDir   = playerInput->GetWorldInputDirection();
 
         // 速度によって タイヤの回転速度を変える
         // 入力方向ベクトルが0のときは 回転しないようにする(Sqなのは,0か1しかないので軽くするため)
-        const Vec3f& velo    = rigidbody->getVelocity();
+        const Vec3f& velo    = rigidbody->GetVelocity();
         float wheelSpinSpeed = effectControlParam->CalculateWheelSpinSpeedBySpeed(velo.length() * inputDir.lengthSq(), status->CalculateSpeedByGearLevel(kMaxPlayerGearLevel));
         meshTransform.rotate *= Quaternion::RotateAxisAngle(axisX, wheelSpinSpeed);
         meshTransform.UpdateMatrix();
 
         // プレイヤーが曲がる時,タイヤを傾ける (地面にいるときだけ)
-        Transform* hostTransform = getComponent<Transform>(entity);
-        if (state->isOnGround()) {
+        Transform* hostTransform = GetComponent<Transform>(entity);
+        if (state->IsOnGround()) {
             if (inputDir.lengthSq() > kEpsilon) {
                 Vec3f currentDir = hostTransform->rotate.RotateVector(axisZ);
                 currentDir[Y]    = 0.f;
@@ -66,24 +66,25 @@ void EffectOnPlayerRun::UpdateEntity(Entity* entity) {
                 float wheelTiltAngle = effectControlParam->CalculateWheelTiltAngle(inputDir, currentDir);
 
                 // 段々と傾く(1秒に傾く角度が制限されている)
-                float preWheelTiltAngle = effectControlParam->getPreWheelTiltAngle();
+                float preWheelTiltAngle = effectControlParam->GetPreWheelTiltAngle();
                 float angleDiff         = wheelTiltAngle - preWheelTiltAngle;
-                float maxAngleChange    = effectControlParam->getWheelTiltAngleMaxAccel() * getMainDeltaTime();
+                float maxAngleChange    = effectControlParam->GetWheelTiltAngleMaxAccel() * GetMainDeltaTime();
                 wheelTiltAngle          = preWheelTiltAngle + std::clamp(angleDiff, -maxAngleChange, maxAngleChange);
 
                 // 傾きを適用
                 hostTransform->rotate *= Quaternion::RotateAxisAngle(axisZ, wheelTiltAngle);
                 hostTransform->UpdateMatrix();
 
-                effectControlParam->setPreWheelTiltAngle(wheelTiltAngle);
+                effectControlParam->SetPreWheelTiltAngle(wheelTiltAngle);
             }
         }
     }
 
-    Entity* speedlineEntity                            = getUniqueEntity("Speedline");
+    // スピードラインエフェクト
+    Entity* speedlineEntity                            = GetUniqueEntity("Speedline");
     std::vector<SpeedlineEffectParam>* speedlineParams = nullptr;
     if (speedlineEntity) {
-        speedlineParams = getComponents<SpeedlineEffectParam>(speedlineEntity);
+        speedlineParams = GetComponents<SpeedlineEffectParam>(speedlineEntity);
     }
 
     if (!speedlineParams) {
@@ -91,7 +92,7 @@ void EffectOnPlayerRun::UpdateEntity(Entity* entity) {
     }
 
     // プレイヤーが止まっているか, ギアレベルが低い場合は エフェクトを停止
-    if (state->getStateEnum() == PlayerMoveState::IDLE || state->getGearLevel() < 2) {
+    if (state->GetStateEnum() == PlayerMoveState::IDLE || state->GetGearLevel() < 2) {
         for (auto& speedlineParam : *speedlineParams) {
             speedlineParam.Stop();
         }
@@ -100,13 +101,13 @@ void EffectOnPlayerRun::UpdateEntity(Entity* entity) {
     }
 
     // 速度によって エフェクトの強さを変える
-    float intensityT = static_cast<float>(state->getGearLevel()) / static_cast<float>(kMaxPlayerGearLevel);
+    float intensityT = static_cast<float>(state->GetGearLevel()) / static_cast<float>(kMaxPlayerGearLevel);
     intensityT       = EaseOutCubic(intensityT);
     float intensity  = std::lerp(0.f, maxIntensity_, intensityT);
     for (auto& speedlineParam : *speedlineParams) {
         speedlineParam.Play();
-        auto& paramData = speedlineParam.getParamData();
-        paramData.time -= getMainDeltaTime();
+        auto& paramData = speedlineParam.GetParamData();
+        paramData.time -= GetMainDeltaTime();
         paramData.intensity = std::lerp(paramData.intensity, intensity, 0.1f);
     }
 }

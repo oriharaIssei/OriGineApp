@@ -6,10 +6,43 @@
                     0.0,
                     0.0
                 ],
-                "distortionObjects": [],
+                "distortionObjects": [
+                    {
+                        "objectData": {
+                            "InnerRadius": 0.5,
+                            "OuterRadius": 5.550000190734863,
+                            "blendMode": 1,
+                            "division": 16,
+                            "isCulling": true,
+                            "isRenderer": true,
+                            "materialIndex": 0,
+                            "textureDirectory": "./application/resource/Texture",
+                            "textureFileName": "waveNoise.png",
+                            "transform": {
+                                "rotate": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "scale": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "translate": [
+                                    0.0,
+                                    -1000.0,
+                                    0.0
+                                ]
+                            }
+                        },
+                        "objectType": 1
+                    }
+                ],
                 "distortionStrength": [
-                    0.0,
-                    0.0
+                    1.1100000143051147,
+                    2.5399999618530273
                 ],
                 "isActive": true,
                 "materialIndex": 0,

@@ -33,8 +33,8 @@ protected:
 
     struct AnimationState {
         AnimationState(bool _playState, float _currentTime, float _maxTime)
-            : playState_(_playState), currentTime(_currentTime), maxTime(_maxTime) {}
-        DiffValue<bool> playState_ = false; // 再生中かどうか
+            : playState(_playState), currentTime(_currentTime), maxTime(_maxTime) {}
+        DiffValue<bool> playState = false; // 再生中かどうか
         float currentTime          = 0.f;
         float maxTime              = 1.f;
     };

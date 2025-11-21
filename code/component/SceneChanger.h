@@ -34,6 +34,6 @@ private:
 
 public:
     bool isChanged() const { return isSceneChanged_; }
-    void setNextSceneName(const std::string& _nextSceneName) { nextSceneName_ = _nextSceneName; }
-    const std::string& getNextSceneName() const { return nextSceneName_; }
+    void SetNextSceneName(const std::string& _nextSceneName) { nextSceneName_ = _nextSceneName; }
+    const std::string& GetNextSceneName() const { return nextSceneName_; }
 };

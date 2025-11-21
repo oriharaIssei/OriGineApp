@@ -3,8 +3,12 @@
 /// parent
 #include "FrameWork.h"
 
+/// stl
+#include <memory>
+
 /// Engine
 class SceneManager;
+class ReplayRecorder;
 
 /// <summary>
 /// ゲーム本体
@@ -15,11 +19,16 @@ public:
     MyGame();
     ~MyGame();
 
-    void Initialize(const std::string& _commandLine) override;
+    void Initialize(const std::vector<std::string>& _commandLines) override;
     void Finalize() override;
 
     void Run();
 
 private:
-    SceneManager* sceneManager_ = nullptr;
+    std::unique_ptr<SceneManager> sceneManager_ = nullptr;
+
+#ifdef _DEVELOP
+    bool isRecording_                         = false;
+    std::unique_ptr<ReplayRecorder> recorder_ = nullptr;
+#endif // _DEVELOP
 };

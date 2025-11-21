@@ -22,20 +22,20 @@ void FallDetectionSystem::Finalize() {
 
 void FallDetectionSystem::UpdateEntity(Entity* _entity) {
     constexpr float kFallThresholdY = -26.0f;
-    Transform* transform            = getComponent<Transform>(_entity);
+    Transform* transform            = GetComponent<Transform>(_entity);
 
     if (!transform) {
         return;
     }
 
     if (transform->worldMat[3][Y] < kFallThresholdY) {
-        PlayerStatus* playerStatus = getComponent<PlayerStatus>(_entity);
-        PlayerState* playerState   = getComponent<PlayerState>(_entity);
+        PlayerStatus* playerStatus = GetComponent<PlayerStatus>(_entity);
+        PlayerState* playerState   = GetComponent<PlayerState>(_entity);
 
-        StageFloor* stageFloor = getComponent<StageFloor>(getEntity(playerState->getLastFloorEntityIndex()));
+        StageFloor* stageFloor = GetComponent<StageFloor>(GetEntity(playerState->GetLastFloorEntityIndex()));
 
         transform->translate = RetryPos(
-            getComponent<Stage>(getUniqueEntity("Stage")),
+            GetComponent<Stage>(GetUniqueEntity("Stage")),
             stageFloor,
             transform->translate);
 
@@ -46,11 +46,11 @@ void FallDetectionSystem::UpdateEntity(Entity* _entity) {
             playerState->Initialize(_entity);
         }
 
-        Rigidbody* rigidbody = getComponent<Rigidbody>(_entity);
+        Rigidbody* rigidbody = GetComponent<Rigidbody>(_entity);
         if (rigidbody) {
-            rigidbody->setAcceleration(Vec3f(0.0f, 0.0f, 0.0f));
-            rigidbody->setVelocity(Vec3f(0.0f, 0.0f, 0.0f));
-            rigidbody->setUseGravity(true);
+            rigidbody->SetAcceleration(Vec3f(0.0f, 0.0f, 0.0f));
+            rigidbody->SetVelocity(Vec3f(0.0f, 0.0f, 0.0f));
+            rigidbody->SetUseGravity(true);
         }
     }
 }
@@ -61,7 +61,7 @@ Vec3f FallDetectionSystem::RetryPos(Stage* _stage, StageFloor* _stageFloor, cons
     if (!_stage || !_stageFloor) {
         LOG_ERROR("Stage or StageFloor is nullptr. Returning default start position. \n Position: [ X: {}, Y: {}, Z: {}]", _currentPos[X], _currentPos[Y], _currentPos[Z]);
 
-        Transform* startPos = getComponent<Transform>(getUniqueEntity("StartPosition"));
+        Transform* startPos = GetComponent<Transform>(GetUniqueEntity("StartPosition"));
         if (startPos) {
             return startPos->translate;
         } else {
@@ -70,9 +70,9 @@ Vec3f FallDetectionSystem::RetryPos(Stage* _stage, StageFloor* _stageFloor, cons
         }
     }
 
-    auto& controlPoints     = _stage->getControlPoints();
-    const Stage::Link& link = _stage->getLinks()[_stageFloor->getLinkIndex()];
-    Vec3f from              = controlPoints[_stageFloor->getFromPointIndex()].pos_ + Vec3f(0.f, link.height_ * 0.5f, 0.f);
+    auto& controlPoints     = _stage->GetControlPoints();
+    const Stage::Link& link = _stage->GetLinks()[_stageFloor->GetLinkIndex()];
+    Vec3f from              = controlPoints[_stageFloor->GetFromPointIndex()].pos + Vec3f(0.f, link.height * 0.5f, 0.f);
 
     return from + Vec3f(0.0f, kSpawnHeight, kSpawnEpsilonZ);
 }

@@ -3,9 +3,6 @@
 /// parent
 #include "system/ISystem.h"
 
-/// engine
-class Input;
-
 /// <summary>
 /// Cameraの入力処理を行うシステム
 /// </summary>

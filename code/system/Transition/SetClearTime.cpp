@@ -14,9 +14,9 @@ void SetClearTime::UpdateEntity(Entity* _entity) {
     if (_entity == nullptr) {
         return;
     }
-    auto timerComp = getComponent<TimerComponent>(_entity);
+    auto timerComp = GetComponent<TimerComponent>(_entity);
     if (timerComp == nullptr) {
         return;
     }
-    Stage::setClearTime(timerComp->getCurrentTime());
+    Stage::SetClearTime(timerComp->GetCurrentTime());
 }

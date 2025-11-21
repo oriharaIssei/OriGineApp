@@ -74,66 +74,66 @@ private:
     float fixForForwardSpeed_ = 0.1f; // 正面方向への 補正速度
 
 public:
-    const Vec3f& getForward() const { return forward_; }
-    void setForward(const Vec3f& forward) { forward_ = forward; }
+    const Vec3f& GetForward() const { return forward_; }
+    void SetForward(const Vec3f& forward) { forward_ = forward; }
 
-    float getAngleLimitY() const { return angleLimitY_; }
-    void setAngleLimitY(float angleLimitY) { angleLimitY_ = angleLimitY; }
+    float GetAngleLimitY() const { return angleLimitY_; }
+    void SetAngleLimitY(float angleLimitY) { angleLimitY_ = angleLimitY; }
 
-    const Vec3f& getCurrentTargetOffset() const { return currentTargetOffset_; }
-    void setCurrentTargetOffset(const Vec3f& _offset) { currentTargetOffset_ = _offset; }
+    const Vec3f& GetCurrentTargetOffset() const { return currentTargetOffset_; }
+    void SetCurrentTargetOffset(const Vec3f& _offset) { currentTargetOffset_ = _offset; }
 
-    const Vec3f& getFirstTargetOffset() const { return firstTargetOffset_; }
-    void setFirstTargetOffset(const Vec3f& offset) { firstTargetOffset_ = offset; }
+    const Vec3f& GetFirstTargetOffset() const { return firstTargetOffset_; }
+    void SetFirstTargetOffset(const Vec3f& offset) { firstTargetOffset_ = offset; }
 
-    const Vec3f& getTargetOffsetOnDash() const { return targetOffsetOnDash_; }
-    void setTargetOffsetOnDash(const Vec3f& _offset) { targetOffsetOnDash_ = _offset; }
+    const Vec3f& GetTargetOffsetOnDash() const { return targetOffsetOnDash_; }
+    void SetTargetOffsetOnDash(const Vec3f& _offset) { targetOffsetOnDash_ = _offset; }
 
-    const Vec3f& getTargetOffsetOnWallRun() const { return targetOffsetOnWallRun_; }
-    void setTargetOffsetOnWallRun(const Vec3f& _offset) { targetOffsetOnWallRun_ = _offset; }
+    const Vec3f& GetTargetOffsetOnWallRun() const { return targetOffsetOnWallRun_; }
+    void SetTargetOffsetOnWallRun(const Vec3f& _offset) { targetOffsetOnWallRun_ = _offset; }
 
-    const Vec3f& getCurrentOffset() const { return currentOffset_; }
-    void setCurrentOffset(const Vec3f& offset) { currentOffset_ = offset; }
+    const Vec3f& GetCurrentOffset() const { return currentOffset_; }
+    void SetCurrentOffset(const Vec3f& offset) { currentOffset_ = offset; }
 
-    const Vec3f& getFirstOffset() const { return firstOffset_; }
-    void setFirstOffset(const Vec3f& offset) { firstOffset_ = offset; }
+    const Vec3f& GetFirstOffset() const { return firstOffset_; }
+    void SetFirstOffset(const Vec3f& offset) { firstOffset_ = offset; }
 
-    const Vec3f& getOffsetOnDash() const { return offsetOnDash_; }
-    void setOffsetOnDash(const Vec3f& offset) { offsetOnDash_ = offset; }
+    const Vec3f& GetOffsetOnDash() const { return offsetOnDash_; }
+    void SetOffsetOnDash(const Vec3f& offset) { offsetOnDash_ = offset; }
 
-    const Vec3f& getOffsetOnWallRun() const { return offsetOnWallRun_; }
-    void setOffsetOnWallRun(const Vec3f& offset) { offsetOnWallRun_ = offset; }
+    const Vec3f& GetOffsetOnWallRun() const { return offsetOnWallRun_; }
+    void SetOffsetOnWallRun(const Vec3f& offset) { offsetOnWallRun_ = offset; }
 
-    const Vec3f& getInterTarget() const { return interTarget_; }
-    void setInterTarget(const Vec3f& target) { interTarget_ = target; }
+    const Vec3f& GetInterTarget() const { return interTarget_; }
+    void SetInterTarget(const Vec3f& target) { interTarget_ = target; }
 
-    const Vec2f& getDestinationAngleXY() const { return destinationAngleXY_; }
-    void setDestinationAngleXY(const Vec2f& angle) { destinationAngleXY_ = angle; }
+    const Vec2f& GetDestinationAngleXY() const { return destinationAngleXY_; }
+    void SetDestinationAngleXY(const Vec2f& angle) { destinationAngleXY_ = angle; }
 
-    float getRotateSpeedMouse() const { return rotateSpeedMouse_; }
-    void setRotateSpeedMouse(float speed) { rotateSpeedMouse_ = speed; }
+    float GetRotateSpeedMouse() const { return rotateSpeedMouse_; }
+    void SetRotateSpeedMouse(float speed) { rotateSpeedMouse_ = speed; }
 
-    float getRotateSpeedPadStick() const { return rotateSpeedPadStick_; }
-    void setRotateSpeedPadStick(float speed) { rotateSpeedPadStick_ = speed; }
+    float GetRotateSpeedPadStick() const { return rotateSpeedPadStick_; }
+    void SetRotateSpeedPadStick(float speed) { rotateSpeedPadStick_ = speed; }
 
-    float getRotateSensitivity() const { return rotateSensitivity_; }
-    void setRotateSensitivity(float sensitivity) { rotateSensitivity_ = sensitivity; }
+    float GetRotateSensitivity() const { return rotateSensitivity_; }
+    void SetRotateSensitivity(float sensitivity) { rotateSensitivity_ = sensitivity; }
 
-    float getInterTargetInterpolation() const { return interTargetInterpolation_; }
-    void setInterTargetInterpolation(float interpolation) { interTargetInterpolation_ = interpolation; }
+    float GetInterTargetInterpolation() const { return interTargetInterpolation_; }
+    void SetInterTargetInterpolation(float interpolation) { interTargetInterpolation_ = interpolation; }
 
-    float getMaxRotateX() const { return maxRotateX_; }
-    void setMaxRotateX(float maxRotateX) { maxRotateX_ = maxRotateX; }
+    float GetMaxRotateX() const { return maxRotateX_; }
+    void SetMaxRotateX(float maxRotateX) { maxRotateX_ = maxRotateX; }
 
-    float getMinRotateX() const { return minRotateX_; }
-    void setMinRotateX(float minRotateX) { minRotateX_ = minRotateX; }
+    float GetMinRotateX() const { return minRotateX_; }
+    void SetMinRotateX(float minRotateX) { minRotateX_ = minRotateX; }
 
-    const Transform* getFollowTarget() const { return followTarget_; }
-    void setFollowTarget(Transform* target) { followTarget_ = target; }
+    const Transform* GetFollowTarget() const { return followTarget_; }
+    void SetFollowTarget(Transform* target) { followTarget_ = target; }
 
-    float getFovYInterpolate() const { return fovYInterpolate_; }
-    void setFovYInterpolate(float interpolate) { fovYInterpolate_ = interpolate; }
+    float GetFovYInterpolate() const { return fovYInterpolate_; }
+    void SetFovYInterpolate(float interpolate) { fovYInterpolate_ = interpolate; }
 
-    float getFixForForwardSpeed() const { return fixForForwardSpeed_; }
-    void setFixForForwardSpeed(float speed) { fixForForwardSpeed_ = speed; }
+    float GetFixForForwardSpeed() const { return fixForForwardSpeed_; }
+    void SetFixForForwardSpeed(float speed) { fixForForwardSpeed_ = speed; }
 };

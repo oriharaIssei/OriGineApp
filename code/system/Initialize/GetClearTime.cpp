@@ -14,11 +14,11 @@ void GetClearTime::UpdateEntity(Entity* _entity) {
     if (_entity == nullptr) {
         return;
     }
-    auto timerComp = getComponent<TimerComponent>(_entity);
+    auto timerComp = GetComponent<TimerComponent>(_entity);
     if (timerComp == nullptr) {
         return;
     }
 
-    timerComp->setMaxTime(Stage::getClearTime());
-    timerComp->setCurrentTime(Stage::getClearTime());
+    timerComp->SetMaxTime(Stage::GetClearTime());
+    timerComp->SetCurrentTime(Stage::GetClearTime());
 }

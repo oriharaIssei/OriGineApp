@@ -1,8 +1,6 @@
 #pragma once
 #include "system/ISystem.h"
 
-class SceneManager;
-
 /// <summary>
 /// SceneManagerによるシーン切り替えをボタン入力で行うシステム
 /// </summary>
@@ -17,7 +15,4 @@ public:
 
 protected:
     virtual void UpdateEntity(Entity* _entity) override;
-
-private:
-    SceneManager* sceneManager_ = nullptr;
 };

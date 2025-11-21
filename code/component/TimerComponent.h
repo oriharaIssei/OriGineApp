@@ -33,15 +33,15 @@ private:
 
 public:
     bool isStarted() const { return isStarted_; }
-    void setStarted(bool started) { isStarted_ = started; }
+    void SetStarted(bool started) { isStarted_ = started; }
 
-    float getMaxTime() const { return maxTime_; }
-    void setMaxTime(float time) { maxTime_ = time; }
+    float GetMaxTime() const { return maxTime_; }
+    void SetMaxTime(float time) { maxTime_ = time; }
 
-    float getCurrentTime() const { return currentTime_; }
-    void setCurrentTime(float time) { currentTime_ = time; }
+    float GetCurrentTime() const { return currentTime_; }
+    void SetCurrentTime(float time) { currentTime_ = time; }
 
-    void resetCurrentTime() { currentTime_ = maxTime_; }
+    void reSetCurrentTime() { currentTime_ = maxTime_; }
 };
 
 class TimerForSpriteComponent
@@ -58,7 +58,7 @@ public:
     void Finalize() override {}
 
 private:
-    void settingOnLoadTexture(uint32_t _texIdx);
+    void SettingOnLoadTexture(uint32_t _texIdx);
 
 private:
     int32_t spritesEntityId_ = -1; // スプライトを持つエンティティID
@@ -87,43 +87,43 @@ private:
     Vec2f marginBetweenIntegerAndDecimal_ = {0.f, 0.f}; // 整数部と小数部の間のスペース
 
 public:
-    int32_t getSpritesEntityId() const { return spritesEntityId_; }
-    void setSpritesEntityId(int32_t id) { spritesEntityId_ = id; }
+    int32_t GetSpritesEntityId() const { return spritesEntityId_; }
+    void SetSpritesEntityId(int32_t id) { spritesEntityId_ = id; }
 
-    const std::string& getNumbersTexturePath() const { return numbersTexturePath_; }
-    uint32_t getTextureIndex() const { return textureIndex_; }
+    const std::string& GetNumbersTexturePath() const { return numbersTexturePath_; }
+    uint32_t GetTextureIndex() const { return textureIndex_; }
 
-    const Vec2f& getNumbersTextureSize() const { return numbersTextureSize_; }
-    const Vec2f& getNumberTileSize() const { return numberTileSize_; }
-    void setNumbersTexturePath(const std::string& path) { numbersTexturePath_ = path; }
+    const Vec2f& GetNumbersTextureSize() const { return numbersTextureSize_; }
+    const Vec2f& GetNumberTileSize() const { return numberTileSize_; }
+    void SetNumbersTexturePath(const std::string& path) { numbersTexturePath_ = path; }
 
-    const Vec2f& getAnchorOnWindow() const { return anchorOnWindow_; }
-    void setAnchorOnWindow(const Vec2f& anchor) { anchorOnWindow_ = anchor; }
+    const Vec2f& GetAnchorOnWindow() const { return anchorOnWindow_; }
+    void SetAnchorOnWindow(const Vec2f& anchor) { anchorOnWindow_ = anchor; }
 
-    const Vec2f& getOffset() const { return offset_; }
-    void setOffset(const Vec2f& offset) { offset_ = offset; }
+    const Vec2f& GetOffset() const { return offset_; }
+    void SetOffset(const Vec2f& offset) { offset_ = offset; }
 
-    const Vec2f& getMarginBetweenIntegerAndDecimal() const { return marginBetweenIntegerAndDecimal_; }
-    void setMarginBetweenIntegerAndDecimal(const Vec2f& margin) { marginBetweenIntegerAndDecimal_ = margin; }
+    const Vec2f& GetMarginBetweenIntegerAndDecimal() const { return marginBetweenIntegerAndDecimal_; }
+    void SetMarginBetweenIntegerAndDecimal(const Vec2f& margin) { marginBetweenIntegerAndDecimal_ = margin; }
 
-    const Vec2f& getSpriteSizeInteger() const { return spriteSizeInteger_; }
-    void setSpriteSizeInteger(const Vec2f& size) { spriteSizeInteger_ = size; }
+    const Vec2f& GetSpriteSizeInteger() const { return spriteSizeInteger_; }
+    void SetSpriteSizeInteger(const Vec2f& size) { spriteSizeInteger_ = size; }
 
-    const Vec2f& getSpriteSizeDecimal() const { return spriteSizeDecimal_; }
-    void setSpriteSizeDecimal(const Vec2f& size) { spriteSizeDecimal_ = size; }
+    const Vec2f& GetSpriteSizeDecimal() const { return spriteSizeDecimal_; }
+    void SetSpriteSizeDecimal(const Vec2f& size) { spriteSizeDecimal_ = size; }
 
-    const Vec2f& getSpriteMarginInteger() const { return spriteMarginInteger_; }
-    void setSpriteMarginInteger(const Vec2f& margin) { spriteMarginInteger_ = margin; }
+    const Vec2f& GetSpriteMarginInteger() const { return spriteMarginInteger_; }
+    void SetSpriteMarginInteger(const Vec2f& margin) { spriteMarginInteger_ = margin; }
 
-    const Vec2f& getSpriteMarginDecimal() const { return spriteMarginDecimal_; }
-    void setSpriteMarginDecimal(const Vec2f& margin) { spriteMarginDecimal_ = margin; }
+    const Vec2f& GetSpriteMarginDecimal() const { return spriteMarginDecimal_; }
+    void SetSpriteMarginDecimal(const Vec2f& margin) { spriteMarginDecimal_ = margin; }
 
-    int getDigitForSprite() const { return digitForSprite_; }
-    void setDigitForSprite(int digit) { digitForSprite_ = digit; }
+    int GetDigitForSprite() const { return digitForSprite_; }
+    void SetDigitForSprite(int digit) { digitForSprite_ = digit; }
 
-    int getDigitIntegerForSprite() const { return digitIntegerForSprite_; }
-    void setDigitIntegerForSprite(int digit) { digitIntegerForSprite_ = digit; }
+    int GetDigitIntegerForSprite() const { return digitIntegerForSprite_; }
+    void SetDigitIntegerForSprite(int digit) { digitIntegerForSprite_ = digit; }
 
-    int getDigitDecimalForSprite() const { return digitDecimalForSprite_; }
-    void setDigitDecimalForSprite(int digit) { digitDecimalForSprite_ = digit; }
+    int GetDigitDecimalForSprite() const { return digitDecimalForSprite_; }
+    void SetDigitDecimalForSprite(int digit) { digitDecimalForSprite_ = digit; }
 };
