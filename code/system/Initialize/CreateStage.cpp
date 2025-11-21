@@ -46,15 +46,15 @@ void CreateStage::UpdateEntity(Entity* _entity) {
     for (auto& link : stage->GetLinks()) {
         Vec3f min, max, mid, diffToFrom, direction;
 
-        auto& toPoint   = controlPoints[link.to_];
-        auto& fromPoint = controlPoints[link.from_];
+        auto& toPoint   = controlPoints[link.to];
+        auto& fromPoint = controlPoints[link.from];
 
-        Vec3f from          = fromPoint.pos_;
-        Vec3f to            = toPoint.pos_;
+        Vec3f from          = fromPoint.pos;
+        Vec3f to            = toPoint.pos;
         diffToFrom          = to - from;
         direction           = diffToFrom.normalize();
         mid                 = from + (diffToFrom * 0.5f);
-        const Vec3f& normal = link.normal_.normalize();
+        const Vec3f& normal = link.normal.normalize();
 
         ///==========================================
         // Entity
@@ -62,7 +62,7 @@ void CreateStage::UpdateEntity(Entity* _entity) {
         bool isWall = true;
 
         std::string entityName = "Wall";
-        if (fabs(link.normal_[Y]) > 0.7f) {
+        if (fabs(link.normal[Y]) > 0.7f) {
             entityName = "Ground";
             isWall     = false;
         }
@@ -77,17 +77,17 @@ void CreateStage::UpdateEntity(Entity* _entity) {
         if (isWall) {
             StageWall wallTag;
             wallTag.SetLinkIndex(linkIndex);
-            wallTag.SetToPointIndex(link.to_);
-            wallTag.SetFromPointIndex(link.from_);
-            wallTag.SetWidth(link.width_);
+            wallTag.SetToPointIndex(link.to);
+            wallTag.SetFromPointIndex(link.from);
+            wallTag.SetWidth(link.width);
 
             AddComponent<StageWall>(createdEntity, wallTag);
         } else {
             StageFloor floorTag;
             floorTag.SetLinkIndex(linkIndex);
-            floorTag.SetToPointIndex(link.to_);
-            floorTag.SetFromPointIndex(link.from_);
-            floorTag.SetWidth(link.width_);
+            floorTag.SetToPointIndex(link.to);
+            floorTag.SetFromPointIndex(link.from);
+            floorTag.SetWidth(link.width);
 
             AddComponent<StageFloor>(createdEntity, floorTag);
         }
@@ -118,7 +118,7 @@ void CreateStage::UpdateEntity(Entity* _entity) {
                 AABBCollider collider;
                 collider.SetActive(true);
 
-                Vec3f halfSize = Vec3f(link.height_ * 0.5f, link.width_ * 0.5f, (diffToFrom[Z] * 0.5f) + Stage::kObjectMargin);
+                Vec3f halfSize = Vec3f(link.height * 0.5f, link.width * 0.5f, (diffToFrom[Z] * 0.5f) + Stage::kObjectMargin);
                 min            = -halfSize;
                 max            = halfSize;
 
@@ -133,7 +133,7 @@ void CreateStage::UpdateEntity(Entity* _entity) {
                 AABBCollider collider;
                 collider.SetActive(true);
 
-                Vec3f halfSize = Vec3f(link.width_ * 0.5f, link.height_ * 0.5f, (diffToFrom[Z] * 0.5f) + Stage::kObjectMargin);
+                Vec3f halfSize = Vec3f(link.width * 0.5f, link.height * 0.5f, (diffToFrom[Z] * 0.5f) + Stage::kObjectMargin);
                 min            = -halfSize;
                 max            = halfSize;
 
@@ -148,7 +148,7 @@ void CreateStage::UpdateEntity(Entity* _entity) {
             OBBCollider collider;
             collider.SetActive(true);
 
-            Vec3f halfSize = Vec3f(link.width_ * 0.5f, link.height_ * 0.5f, (diffToFrom.length() * 0.5f) + Stage::kObjectMargin);
+            Vec3f halfSize = Vec3f(link.width * 0.5f, link.height * 0.5f, (diffToFrom.length() * 0.5f) + Stage::kObjectMargin);
             min            = -halfSize;
             max            = halfSize;
 
@@ -231,7 +231,7 @@ void CreateStage::UpdateEntity(Entity* _entity) {
     }
     goalEntity->SetShouldSave(false);
     Transform* goalTransform = GetComponent<Transform>(goalEntity);
-    goalTransform->translate = goalPoint.pos_;
+    goalTransform->translate = goalPoint.pos;
     goalTransform->UpdateMatrix();
 
     // start
@@ -240,7 +240,7 @@ void CreateStage::UpdateEntity(Entity* _entity) {
     const Stage::ControlPoint& startPoint = controlPoints[startIndex];
 
     Transform startTransform;
-    startTransform.translate = startPoint.pos_;
+    startTransform.translate = startPoint.pos;
     startTransform.UpdateMatrix();
     int32_t startPosEntityId = CreateEntity("StartPosition", true);
     Entity* startPosEntity   = GetEntity(startPosEntityId);

@@ -154,7 +154,7 @@ void StageDebugRender::CreateMeshes(Stage* _stage) {
             } else if (index == _stage->GetGoalPointIndex()) {
                 color = {1, 0, 0, 1}; // 赤
             }
-            CreateControlPointMesh(pointMeshItr_._Ptr, cp.pos_, defaultRadius, kColor);
+            CreateControlPointMesh(pointMeshItr_._Ptr, cp.pos, defaultRadius, kColor);
             ++index;
         }
     }
@@ -163,7 +163,7 @@ void StageDebugRender::CreateMeshes(Stage* _stage) {
     const auto& cps       = _stage->GetControlPoints();
     const Vec4f linkColor = {0, 0, 1, 1}; // 黄色
     for (const auto& link : _stage->GetLinks()) {
-        if (link.from_ < 0 || link.from_ >= cps.size() || link.to_ < 0 || link.to_ >= cps.size()) {
+        if (link.from < 0 || link.from >= cps.size() || link.to < 0 || link.to >= cps.size()) {
             continue;
         }
 
@@ -179,16 +179,16 @@ void StageDebugRender::CreateMeshes(Stage* _stage) {
             }
         }
 
-        const Vec3f& from   = cps[link.from_].pos_;
-        const Vec3f& to     = cps[link.to_].pos_;
-        const Vec3f& normal = link.normal_.normalize();
+        const Vec3f& from   = cps[link.from].pos;
+        const Vec3f& to     = cps[link.to].pos;
+        const Vec3f& normal = link.normal.normalize();
 
         Vec3f forward = Vec3f(to - from).normalize();
         Vec3f right   = forward.cross(normal).normalize();
         Vec3f up      = right.cross(forward).normalize();
 
-        float hw = link.width_ * 0.5f;
-        float hh = link.height_ * 0.5f;
+        float hw = link.width * 0.5f;
+        float hh = link.height * 0.5f;
 
         Vec3f f0 = from + right * hw + up * hh;
         Vec3f f1 = from - right * hw + up * hh;
@@ -248,7 +248,7 @@ void StageDebugRender::CreateMeshes(Stage* _stage) {
         }
 
         Vec3f midPoint        = (from + to) * 0.5f;
-        Vec3f normalPoint     = midPoint + normal * (link.height_ + 1.f);
+        Vec3f normalPoint     = midPoint + normal * (link.height + 1.f);
         Vec4f linkNormalColor = {0, 1, 0, 1};
         {
             // 頂点追加
@@ -262,7 +262,7 @@ void StageDebugRender::CreateMeshes(Stage* _stage) {
 
         {
             // リンクの幅を描画
-            Vec3f widthOffset = normal.cross(Vec3f(0, 1, 0)).normalize() * link.width_ * 0.5f;
+            Vec3f widthOffset = normal.cross(Vec3f(0, 1, 0)).normalize() * link.width * 0.5f;
             Vec3f fromLeft    = from + widthOffset;
             Vec3f fromRight   = from - widthOffset;
             Vec3f toLeft      = to + widthOffset;
@@ -287,7 +287,7 @@ void StageDebugRender::CreateMeshes(Stage* _stage) {
 }
 
 void StageDebugRender::RenderAll() {
-    lineRenderSystem_.SettingPSO(BlendMode::Alpha);
+    lineRenderSystem_.SetBlendMode(BlendMode::Alpha);
     lineRenderSystem_.StartRender();
     auto commandList = lineRenderSystem_.GetDxCommand()->GetCommandList();
 

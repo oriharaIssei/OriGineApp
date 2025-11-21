@@ -43,9 +43,9 @@ void EffectOnPlayerGearup::UpdateEntity(Entity* _entity) {
     // Effect PlayState Transition
     /// ==============================
 
-    shockWaveState_.playState_.Sync();
+    shockWaveState_.playState.Sync();
     if (state->IsGearUp()) {
-        shockWaveState_.playState_.Set(false);
+        shockWaveState_.playState.Set(false);
 
         Transform* transform = GetComponent<Transform>(_entity);
         transform->translate = playerTransform->translate; // Playerの位置に合わせる
@@ -73,7 +73,7 @@ void EffectOnPlayerGearup::UpdateEntity(Entity* _entity) {
 
         // GearLevelに応じて衝撃波を発生
         if (state->GetGearLevel() >= 2) {
-            shockWaveState_.playState_.Set(true);
+            shockWaveState_.playState.Set(true);
             shockWaveState_.currentTime = 0.f;
         }
     }
@@ -86,8 +86,8 @@ void EffectOnPlayerGearup::UpdateShockWaveRing(Entity* _entity, Transform* _play
 
     auto& shockWaveRings = distortionEffectParam->GetDistortionObjects();
     // 更新時 以外
-    if (!shockWaveState_.playState_.Current()) {
-        if (shockWaveState_.playState_.IsRelease()) {
+    if (!shockWaveState_.playState.Current()) {
+        if (shockWaveState_.playState.IsRelease()) {
             // shockWaveRingのを見えない位置に隠す
             for (auto& [object, type] : shockWaveRings) {
                 if (type != PrimitiveType::Ring) {
@@ -108,7 +108,7 @@ void EffectOnPlayerGearup::UpdateShockWaveRing(Entity* _entity, Transform* _play
     }
 
     // 初期化処理
-    if (shockWaveState_.playState_.IsTrigger()) {
+    if (shockWaveState_.playState.IsTrigger()) {
 
         // shockWaveRingの初期化Add commentMore actions
         for (auto& [object, type] : shockWaveRings) {
@@ -132,14 +132,14 @@ void EffectOnPlayerGearup::UpdateShockWaveRing(Entity* _entity, Transform* _play
     }
 
     /// shockWave Play
-    if (shockWaveState_.playState_.Current()) {
+    if (shockWaveState_.playState.Current()) {
 
         shockWaveState_.currentTime += GetMainDeltaTime();
         float t = shockWaveState_.currentTime / shockWaveState_.maxTime;
 
         if (t >= 1.f) {
             t = 1.f;
-            shockWaveState_.playState_.Set(false);
+            shockWaveState_.playState.Set(false);
         }
 
         float easeT = EaseInQuad(t);

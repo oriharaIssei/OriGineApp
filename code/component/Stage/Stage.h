@@ -49,15 +49,15 @@ public:
 #endif // DEBUG
 public:
     struct ControlPoint {
-        Vec3f pos_;
+        Vec3f pos;
     };
     struct Link {
-        int32_t to_;
-        int32_t from_;
+        int32_t to;
+        int32_t from;
 
-        Vec3f normal_ = {0.f, 1.f, 0.f};
-        float height_ = 3.f;
-        float width_  = 22.f;
+        Vec3f normal = {0.f, 1.f, 0.f};
+        float height = 3.f;
+        float width  = 22.f;
     };
 
 private:

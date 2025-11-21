@@ -72,7 +72,7 @@ Vec3f FallDetectionSystem::RetryPos(Stage* _stage, StageFloor* _stageFloor, cons
 
     auto& controlPoints     = _stage->GetControlPoints();
     const Stage::Link& link = _stage->GetLinks()[_stageFloor->GetLinkIndex()];
-    Vec3f from              = controlPoints[_stageFloor->GetFromPointIndex()].pos_ + Vec3f(0.f, link.height_ * 0.5f, 0.f);
+    Vec3f from              = controlPoints[_stageFloor->GetFromPointIndex()].pos + Vec3f(0.f, link.height * 0.5f, 0.f);
 
     return from + Vec3f(0.0f, kSpawnHeight, kSpawnEpsilonZ);
 }
