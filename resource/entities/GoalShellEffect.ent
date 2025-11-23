@@ -3,10 +3,10 @@
         "Material": [
             {
                 "color": [
-                    0.05259127914905548,
-                    0.28587618470191956,
-                    0.8902953863143921,
-                    1.0
+                    0.70960533618927,
+                    0.05098040774464607,
+                    0.8901960849761963,
+                    0.21960784494876862
                 ],
                 "enableLighting": false,
                 "shininess": 0.0,
@@ -30,10 +30,15 @@
         "MaterialEffectPipeLine": [
             {
                 "baseTexturePath": "./application/resource/Texture/lazer.png",
-                "effectEntityIdList": [],
+                "effectEntityIdList": [
+                    {
+                        "effectType": 0,
+                        "entityID": 2
+                    }
+                ],
                 "isActive": true,
                 "materialIndex": 0,
-                "priority": 5
+                "priority": 0
             }
         ],
         "SphereRenderer": [
@@ -44,7 +49,7 @@
                 "isCulling": false,
                 "isRenderer": true,
                 "materialIndex": 0,
-                "radius": 8.520000457763672,
+                "radius": 8.850000381469727,
                 "textureDirectory": "./application/resource/Texture",
                 "textureFileName": "waveMask.png",
                 "transform": {
@@ -70,30 +75,26 @@
         "Transform": [
             {
                 "rotate": [
-                    -0.0,
-                    -0.06325805932283401,
-                    -0.0,
-                    0.9979972243309021
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
                 ],
                 "scale": [
                     1.0,
-                    0.9999999403953552,
+                    1.0,
                     1.0
                 ],
                 "translate": [
                     0.0,
-                    18.0,
-                    2220.0
+                    0.0,
+                    20.0
                 ]
             }
         ]
     },
     "Name": "GoalShellEffect",
     "Systems": [
-        {
-            "SystemCategory": 0,
-            "SystemName": "GoalShellEffectInitialize"
-        },
         {
             "SystemCategory": 5,
             "SystemName": "MaterialEffect"
