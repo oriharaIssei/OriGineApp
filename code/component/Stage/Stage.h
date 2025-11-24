@@ -10,6 +10,7 @@
 #include "myFileSystem/MyFileSystem.h"
 
 /// math
+#include <cstdint>
 #include <math/Vector3.h>
 
 /// <summary>
@@ -44,9 +45,6 @@ public:
     void SaveFile(const std::string& _directory, const std::string& _filename);
     void LoadFile(const std::string& _directory, const std::string& _filename);
 
-#ifndef _RELEASE
-    void ReloadFile();
-#endif // DEBUG
 public:
     struct ControlPoint {
         Vec3f pos;
@@ -59,25 +57,28 @@ public:
         float height = 3.f;
         float width  = 22.f;
     };
+    struct Obstacle {
+        int32_t controlPointIndex;
+        Vec3f size = Vec3f(22.f,3.f,1.f);
+    };
 
 private:
     std::string directory_;
     std::string fileName_;
 
-#ifndef _RELEASE
-    std::shared_ptr<FileWatcher> fileWatcher_ = nullptr;
-#endif // DEBUG
-
-    std::vector<ControlPoint>
-        controlPoints_;
+    std::vector<ControlPoint> controlPoints_;
     std::vector<Link> links_;
+    std::vector<Obstacle> obstacles_;
+
     int32_t startPointIndex_ = -1; // 開始地点のインデックス
     int32_t goalPointIndex_  = -1; // 目標地点のインデックス
 public:
     const std::vector<ControlPoint>& GetControlPoints() const { return controlPoints_; }
     const std::vector<Link>& GetLinks() const { return links_; }
+    const std::vector<Obstacle>& GetObstacles() const { return obstacles_; }
     std::vector<ControlPoint>& GetControlPointsRef() { return controlPoints_; }
     std::vector<Link>& GetLinksRef() { return links_; }
+    std::vector<Obstacle>& GetObstaclesRef() { return obstacles_; }
 
     const std::string& GetDirectory() const { return directory_; }
     void SetDirectory(const std::string& dir) { directory_ = dir; }
@@ -99,43 +100,4 @@ public:
         }
         goalPointIndex_ = index;
     }
-
-    /// <summary>
-    /// すべての制御点を削除
-    /// </summary>
-    void clearControlPoints() { controlPoints_.clear(); }
-    /// <summary>
-    /// すべてのリンクを削除
-    /// </summary>
-    void clearLinks() { links_.clear(); }
-
-    void addControlPoint(const ControlPoint& point) {
-        controlPoints_.emplace_back(point);
-    }
-    void insertControlPoint(int32_t _index, const ControlPoint& point) {
-        controlPoints_.insert(controlPoints_.begin() + _index, point);
-    }
-    void addLink(const Link& link) {
-        links_.emplace_back(link);
-    }
-    void insertLink(int32_t _index, const Link& link) {
-        links_.insert(links_.begin() + _index, link);
-    }
-
-    void removeControlPoint(int32_t index) {
-        if (index < 0 || index >= controlPoints_.size()) {
-            return;
-        }
-        controlPoints_.erase(controlPoints_.begin() + index);
-    }
-    void removeLink(int32_t index) {
-        if (index < 0 || index >= links_.size()) {
-            return;
-        }
-        links_.erase(links_.begin() + index);
-    }
-
-#ifndef _RELEASE
-    FileWatcher* GetFileWatcher() { return fileWatcher_.get(); }
-#endif // DEBUG
 };

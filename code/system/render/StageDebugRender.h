@@ -8,6 +8,8 @@
 #include "component/renderer/MeshRenderer.h"
 class Stage;
 
+/// ECS
+// system
 #include "system/render/LineRenderSystem.h"
 #include "system/render/TexturedMeshRenderSystem.h"
 
@@ -36,8 +38,10 @@ private:
     LineRenderer pointRenderer_; // 球（ControlPoint）用
     LineRenderer linkRenderer_; // 線（Link）用
     LineRenderer linkNormalRenderer_; // リンクの法線を描画するためのシステム
+    LineRenderer obstacleRenderer_; // 障害物用
 
     std::vector<Mesh<ColorVertexData>>::iterator pointMeshItr_;
     std::vector<Mesh<ColorVertexData>>::iterator linkMeshItr_;
     std::vector<Mesh<ColorVertexData>>::iterator linkNormalMeshItr_;
+    std::vector<Mesh<ColorVertexData>>::iterator obstacleMeshItr_;
 };

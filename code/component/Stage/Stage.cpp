@@ -41,14 +41,6 @@ void Stage::Edit([[maybe_unused]] Scene* _scene, Entity* /*_entity*/, [[maybe_un
         }
     }
 
-    // ファイルに変更があったら 読み込み直す
-    if (fileWatcher_) {
-        if (fileWatcher_->isChanged()) {
-            ReloadFile();
-            _scene->GetSystemRunnerRef()->UpdateCategory(SystemCategory::Initialize);
-        }
-    }
-
 #endif // DEBUG
 }
 
@@ -83,6 +75,17 @@ void Stage::SaveFile(const std::string& _directory, const std::string& _filename
         writer.Write<3, float>(std::to_string(index) + "_normal", link.normal);
         writer.Write(std::to_string(index) + "_height", link.height);
         writer.Write(std::to_string(index) + "_width", link.width);
+        ++index;
+    }
+    writer.WriteEndGroup();
+
+    // 障害物の保存
+    writer.WriteBeginGroup("Obstacles");
+    writer.Write("count", static_cast<int32_t>(obstacles_.size()));
+    index = 0;
+    for (const auto& obstacle : obstacles_) {
+        writer.Write(std::to_string(index) + "_controlPointIndex", obstacle.controlPointIndex);
+        writer.Write<3, float>(std::to_string(index) + "_size", obstacle.size);
         ++index;
     }
     writer.WriteEndGroup();
@@ -133,6 +136,19 @@ void Stage::LoadFile(const std::string& _directory, const std::string& _filename
     }
     reader.ReadEndGroup();
 
+    // 障害物の読み込み
+    reader.ReadBeginGroup("Obstacles");
+    count = 0;
+    reader.Read("count", count);
+    Obstacle obstacle;
+    for (size_t i = 0; i < count; ++i) {
+        std::string indexStr = std::to_string(i);
+        reader.Read(indexStr + "_controlPointIndex", obstacle.controlPointIndex);
+        reader.Read<3, float>(indexStr + "_size", obstacle.size);
+        obstacles_.push_back(obstacle);
+    }
+    reader.ReadEndGroup();
+
     // 開始地点と目標地点のインデックスを読み込み
     reader.Read("startPointIndex", startPointIndex_);
     reader.Read("goalPointIndex", goalPointIndex_);
@@ -142,23 +158,7 @@ void Stage::LoadFile(const std::string& _directory, const std::string& _filename
     LOG_INFO("Stage loaded from: {}", _directory + "/" + _filename);
     directory_ = _directory;
     fileName_  = _filename;
-#ifndef _RELEASE
-    if (fileWatcher_) {
-        fileWatcher_->Stop();
-        fileWatcher_->SetFilePath(directory_ + "/" + fileName_ + +".stage");
-        fileWatcher_->Start();
-    } else {
-        fileWatcher_ = std::make_shared<FileWatcher>(directory_ + "/" + fileName_ + +".stage");
-        fileWatcher_->Start();
-    }
-#endif // _RELEASE
 }
-
-#ifndef _RELEASE
-void Stage::ReloadFile() {
-    LoadFile(directory_, fileName_);
-}
-#endif // _RELEASE
 
 void to_json(nlohmann::json& j, const Stage& stage) {
     j["directory"] = stage.directory_;

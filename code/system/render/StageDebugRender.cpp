@@ -82,24 +82,33 @@ static void CreateControlPointMesh(
 }
 
 void StageDebugRender::Initialize() {
+    /// レンダラー初期化
+    // ControlPoint用
     pointRenderer_ = LineRenderer(std::vector<Mesh<ColorVertexData>>());
     pointRenderer_.Initialize(nullptr);
     pointRenderer_.GetMeshGroup()->push_back(Mesh<ColorVertexData>());
     pointRenderer_.GetMeshGroup()->back().Initialize(UINT(defaultMeshSize * sphereVertexSize), UINT(defaultMeshSize * sphereIndexSize));
     pointMeshItr_ = pointRenderer_.GetMeshGroup()->begin();
-
+    // Link用
     linkRenderer_ = LineRenderer(std::vector<Mesh<ColorVertexData>>());
     linkRenderer_.Initialize(nullptr);
     linkRenderer_.GetMeshGroup()->push_back(Mesh<ColorVertexData>());
     linkRenderer_.GetMeshGroup()->back().Initialize(UINT(defaultMeshSize * 8), UINT(defaultMeshSize * 36));
     linkMeshItr_ = linkRenderer_.GetMeshGroup()->begin();
-
+    // Link法線用
     linkNormalRenderer_ = LineRenderer(std::vector<Mesh<ColorVertexData>>());
     linkNormalRenderer_.Initialize(nullptr);
     linkNormalRenderer_.GetMeshGroup()->push_back(Mesh<ColorVertexData>());
     linkNormalRenderer_.GetMeshGroup()->back().Initialize(UINT(defaultMeshSize * 2), UINT(defaultMeshSize * 2));
     linkNormalMeshItr_ = linkNormalRenderer_.GetMeshGroup()->begin();
+    // 障害物用
+    obstacleRenderer_ = LineRenderer(std::vector<Mesh<ColorVertexData>>());
+    obstacleRenderer_.Initialize(nullptr);
+    obstacleRenderer_.GetMeshGroup()->push_back(Mesh<ColorVertexData>());
+    obstacleRenderer_.GetMeshGroup()->back().Initialize(UINT(defaultMeshSize * 8), UINT(defaultMeshSize * 36));
+    obstacleMeshItr_ = obstacleRenderer_.GetMeshGroup()->begin();
 
+    /// LineRenderSystem初期化
     lineRenderSystem_.Initialize();
 }
 
@@ -111,6 +120,8 @@ void StageDebugRender::Update() {
     linkMeshItr_->indexes_.clear();
     linkNormalMeshItr_->vertexes_.clear();
     linkNormalMeshItr_->indexes_.clear();
+    obstacleMeshItr_->vertexes_.clear();
+    obstacleMeshItr_->indexes_.clear();
 
     auto stageArray = GetComponentArray<Stage>();
     if (!stageArray) {
@@ -278,6 +289,55 @@ void StageDebugRender::CreateMeshes(Stage* _stage) {
             idx1 = idx0 + 1;
             linkNormalMeshItr_->vertexes_.emplace_back(ColorVertexData{Vec4f(toLeft, 1.f), linkColor});
             linkNormalMeshItr_->vertexes_.emplace_back(ColorVertexData{Vec4f(toRight, 1.f), linkColor});
+        }
+
+        {
+            for (auto& obstacle : _stage->GetObstacles()) {
+                // 障害物用メッシュ作成
+                if (obstacleMeshItr_->GetIndexCapacity() <= 0) {
+                    obstacleMeshItr_->TransferData();
+                    ++obstacleMeshItr_;
+                    auto& meshGroup = obstacleRenderer_.GetMeshGroup();
+                    if (obstacleMeshItr_ == meshGroup->end()) {
+                        obstacleMeshItr_ = meshGroup->end();
+                        meshGroup->push_back(Mesh<ColorVertexData>());
+                        meshGroup->back().Initialize(defaultMeshSize * 8, defaultMeshSize * 36);
+                    }
+                }
+                const Vec3f& pos = cps[obstacle.controlPointIndex].pos;
+
+                Vec3f halfSize = obstacle.size * 0.5f;
+                // left bottom front
+                Vec3f lbf = pos + Vec3f(-halfSize[X], -halfSize[Y], -halfSize[Z]);
+                Vec3f rbf = pos + Vec3f(halfSize[X], -halfSize[Y], -halfSize[Z]);
+                Vec3f ltf = pos + Vec3f(-halfSize[X], halfSize[Y], -halfSize[Z]);
+                Vec3f rtf = pos + Vec3f(halfSize[X], halfSize[Y], -halfSize[Z]);
+                Vec3f lbb = pos + Vec3f(-halfSize[X], -halfSize[Y], halfSize[Z]);
+                Vec3f rbb = pos + Vec3f(halfSize[X], -halfSize[Y], halfSize[Z]);
+                Vec3f ltb = pos + Vec3f(-halfSize[X], halfSize[Y], halfSize[Z]);
+                Vec3f rtb = pos + Vec3f(halfSize[X], halfSize[Y], halfSize[Z]);
+
+                std::vector<Vec3f> boxVertices = {
+                    lbf, rbf, ltf, rtf,
+                    lbb, rbb, ltb, rtb};
+                std::vector<int> boxIndices = {
+                    0, 1, 2, 1, 3, 2,
+                    4, 5, 6, 5, 7, 6,
+                    0, 2, 4, 2, 6, 4,
+                    1, 5, 3, 3, 5, 7,
+                    2, 3, 6, 3, 7, 6,
+                    0, 4, 1, 1, 4, 5};
+
+                // 頂点追加
+                uint32_t baseIdx = (uint32_t)obstacleMeshItr_->vertexes_.size();
+                for (const auto& vertex : boxVertices) {
+                    obstacleMeshItr_->vertexes_.emplace_back(ColorVertexData{Vec4f(vertex, 1.f), Vec4f(1.f, 0.f, 0.f, 1.f)});
+                }
+                // インデックス追加
+                for (const auto& index : boxIndices) {
+                    obstacleMeshItr_->indexes_.emplace_back(baseIdx + index);
+                }
+            }
         }
     }
 
