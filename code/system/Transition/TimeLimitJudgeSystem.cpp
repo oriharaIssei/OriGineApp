@@ -19,7 +19,7 @@ void TimeLimitJudgeSystem::UpdateEntity(Entity* _entity) {
     if (!timerComp) {
         return;
     }
-    if (timerComp->GetCurrentTime() <= -kEpsilon) {
+    if (timerComp->GetTime() <= -kEpsilon) {
         SceneChanger* sceneChanger = GetComponent<SceneChanger>(_entity);
         if (!sceneChanger) {
             return;

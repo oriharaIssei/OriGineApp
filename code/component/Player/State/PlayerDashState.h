@@ -1,7 +1,7 @@
 #pragma once
 
 /// parent
-#include "component/Player/State/IPlayerMoveState.h"
+#include "component/player/state/IPlayerMoveState.h"
 
 /// <summary>
 /// Playerのダッシュ状態クラス(基本移動)

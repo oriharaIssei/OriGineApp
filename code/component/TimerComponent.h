@@ -38,10 +38,10 @@ public:
     float GetMaxTime() const { return maxTime_; }
     void SetMaxTime(float time) { maxTime_ = time; }
 
-    float GetCurrentTime() const { return currentTime_; }
+    float GetTime() const { return currentTime_; }
     void SetCurrentTime(float time) { currentTime_ = time; }
 
-    void reSetCurrentTime() { currentTime_ = maxTime_; }
+    void ResetCurrentTime() { currentTime_ = maxTime_; }
 };
 
 class TimerForSpriteComponent

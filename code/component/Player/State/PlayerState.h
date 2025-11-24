@@ -3,6 +3,7 @@
 #include "component/IComponent.h"
 
 /// util
+#include "util/DiffValue.h"
 #include "util/EnumBitMask.h"
 
 /// math
@@ -20,9 +21,20 @@ enum class PlayerMoveState {
     JUMP      = 1 << 3, // ジャンプ
     WALL_RUN  = 1 << 4, // 壁走り
     WALL_JUMP = 1 << 5, // 壁ジャンプ
-    // SLIDE    = 1 << 4, // スライド
 
-    Count = 6 // 5
+    Count = 6
+};
+
+enum class PlayerStateFlag {
+    NONE       = 0,
+    ON_GROUND  = 1 << 0, // 地面に接地している
+    ON_WALL    = 1 << 1, // 壁に接触している
+    GEAR_UP    = 1 << 2, // ギアアップしている
+    IS_GOAL    = 1 << 3, // ゴールした
+    IS_PENALTY = 1 << 4, // ペナルティを受けている
+    IS_RESTART = 1 << 5, // リスタート中
+
+    Count = 6
 };
 
 constexpr int32_t kDefaultPlayerGearLevel = 1; // デフォルトのギアレベル
@@ -51,16 +63,13 @@ public:
     void OffCollisionGround();
 
 private:
-    EnumBitmask<PlayerMoveState> moveStateEnum_    = PlayerMoveState::IDLE;
-    EnumBitmask<PlayerMoveState> preMoveStateEnum_ = PlayerMoveState::IDLE;
+    DiffValue<EnumBitmask<PlayerMoveState>> moveStateEnum_;
 
     // TransitionPlayerState で更新される
     std::shared_ptr<IPlayerMoveState> moveState_ = nullptr;
 
-    bool onGround_             = false;
-    bool IsGearUp_             = false;
-    bool collisionWithWall_    = false;
-    bool isGoal_               = false;
+    DiffValue<EnumBitmask<PlayerStateFlag>> stateFlag_ = EnumBitmask<PlayerStateFlag>(0);
+
     Vec3f wallCollisionNormal_ = {0.f, 0.f, 0.f};
 
     int32_t wallEntityIndex_      = -1; // 現在 接触している壁 のエンティティID
@@ -71,20 +80,23 @@ private:
 
 public:
     PlayerMoveState GetStateEnum() const {
-        return moveStateEnum_.toEnum();
+        return moveStateEnum_.Current().ToEnum();
     }
-
-    PlayerMoveState GetPrevStateEnum() const {
-        return preMoveStateEnum_.toEnum();
-    }
-    void SetPrevState(const PlayerMoveState& _prevState) {
-        preMoveStateEnum_ = _prevState;
+    DiffValue<EnumBitmask<PlayerMoveState>>& GetStateEnumRef() {
+        return moveStateEnum_;
     }
 
     std::shared_ptr<IPlayerMoveState> GetPlayerMoveState() const {
         return moveState_;
     }
     void SetPlayerMoveState(std::shared_ptr<IPlayerMoveState> _playerMoveState);
+
+    PlayerStateFlag GetStateFlag() const {
+        return stateFlag_.Current().ToEnum();
+    }
+    DiffValue<EnumBitmask<PlayerStateFlag>>& GetStateFlagRef() {
+        return stateFlag_;
+    }
 
     int32_t GetGearLevel() const {
         return gearLevel_;
@@ -94,21 +106,18 @@ public:
     }
 
     bool IsGoal() const {
-        return isGoal_;
-    }
-    void SetGoal(bool _isGoal) {
-        isGoal_ = _isGoal;
+        return stateFlag_.Current() == PlayerStateFlag::IS_GOAL;
     }
 
     bool IsOnGround() const {
-        return onGround_;
+        return stateFlag_.Current() == PlayerStateFlag::ON_GROUND;
     }
     int32_t GetLastFloorEntityIndex() const {
         return lastFloorEntityIndex_;
     }
 
     bool IsCollisionWithWall() const {
-        return collisionWithWall_;
+        return stateFlag_.Current() == PlayerStateFlag::ON_WALL;
     }
     int32_t GetWallEntityIndex() const {
         return wallEntityIndex_;
@@ -118,10 +127,15 @@ public:
         return wallCollisionNormal_;
     }
 
-    bool IsGearUp() const {
-        return IsGearUp_;
+    bool IsPenalty() const {
+        return stateFlag_.Current() == PlayerStateFlag::IS_PENALTY;
     }
-    void SetGearUp(bool _IsGearUp) {
-        IsGearUp_ = _IsGearUp;
+
+    bool IsRestart() const {
+        return stateFlag_.Current() == PlayerStateFlag::IS_RESTART;
+    }
+
+    bool IsGearUp() const {
+        return stateFlag_.Current() == PlayerStateFlag::GEAR_UP;
     }
 };

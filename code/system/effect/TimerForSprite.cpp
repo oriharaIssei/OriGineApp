@@ -62,7 +62,7 @@ void TimerForSprite::UpdateEntity(Entity* _entity) {
 
     // 浮動小数点数から各桁の数字を抽出
     std::vector<int> digits = CalculateDigitsFromFloat(
-        timerComponent->GetCurrentTime(),
+        timerComponent->GetTime(),
         timerForSpriteComponent->GetDigitIntegerForSprite(),
         timerForSpriteComponent->GetDigitDecimalForSprite());
 

@@ -7,9 +7,9 @@
 
 #include "component/Camera/CameraController.h"
 #include "component/physics/Rigidbody.h"
-#include "component/Player/PlayerInput.h"
-#include "component/Player/PlayerStatus.h"
-#include "component/Player/State/PlayerState.h"
+#include "component/player/PlayerInput.h"
+#include "component/player/PlayerStatus.h"
+#include "component/player/state/PlayerState.h"
 #include "component/renderer/MeshRenderer.h"
 
 /// math
@@ -50,7 +50,8 @@ void PlayerDashState::Update(float _deltaTime) {
     if (gearLevel < kMaxPlayerGearLevel - 1) {
         // クールタイムが0以下になったらギアレベルを上げる
         if (playerStatus->GetGearUpCoolTime() <= 0.f) {
-            state->SetGearUp(true);
+            auto& stateFlag = state->GetStateFlagRef();
+            stateFlag.SetCurrent(stateFlag.Current() | PlayerStateFlag::GEAR_UP);
 
             ++gearLevel;
             state->SetGearLevel(gearLevel);

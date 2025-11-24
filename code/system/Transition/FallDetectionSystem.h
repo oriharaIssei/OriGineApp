@@ -22,6 +22,4 @@ public:
 
 protected:
     virtual void UpdateEntity(Entity* _entity) override;
-
-    Vec3f RetryPos(Stage* _stage, StageFloor* _stageFloor, const Vec3f& _currentPos);
 };

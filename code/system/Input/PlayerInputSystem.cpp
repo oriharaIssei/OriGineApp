@@ -9,8 +9,8 @@
 #include "input/KeyboardInput.h"
 
 /// component
-#include "component/Player/PlayerInput.h"
-#include "component/Player/State/PlayerState.h"
+#include "component/player/PlayerInput.h"
+#include "component/player/state/PlayerState.h"
 
 void PlayerInputSystem::Initialize() {}
 void PlayerInputSystem::Finalize() {}

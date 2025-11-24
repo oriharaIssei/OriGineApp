@@ -6,10 +6,10 @@
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
 
-#include "component/Player/PlayerEffectControlParam.h"
-#include "component/Player/PlayerInput.h"
-#include "component/Player/PlayerStatus.h"
-#include "component/Player/State/PlayerState.h"
+#include "component/player/PlayerEffectControlParam.h"
+#include "component/player/PlayerInput.h"
+#include "component/player/PlayerStatus.h"
+#include "component/player/state/PlayerState.h"
 
 #include "component/Camera/CameraController.h"
 
@@ -47,7 +47,8 @@ void PlayerWallRunState::Initialize() {
     // 基準レベル未満なら レベル+1
     int32_t gearLevel = state->GetGearLevel();
     if (gearLevel < thresholdGearLevel) {
-        state->SetGearUp(true);
+        auto& stateFlag = state->GetStateFlagRef();
+        stateFlag.SetCurrent(stateFlag.Current() | PlayerStateFlag::GEAR_UP);
 
         int32_t addedGearLevel = state->GetGearLevel() + 1;
         state->SetGearLevel(addedGearLevel);
@@ -126,9 +127,9 @@ void PlayerWallRunState::Update(float _deltaTime) {
 
     // RumpUp 処理
     speedRumpUpTimer_ += _deltaTime;
-    float rumpUpT = speedRumpUpTimer_ / speedRumpUpTime_;
-    rumpUpT       = std::clamp(rumpUpT, 0.f, 1.f);
-    float currentSpeedRate_    = std::lerp(1.f, speedRate_, EaseOutCubic(rumpUpT));
+    float rumpUpT           = speedRumpUpTimer_ / speedRumpUpTime_;
+    rumpUpT                 = std::clamp(rumpUpT, 0.f, 1.f);
+    float currentSpeedRate_ = std::lerp(1.f, speedRate_, EaseOutCubic(rumpUpT));
     // 速度を更新
     auto* rigidbody = scene_->GetComponent<Rigidbody>(playerEntity);
     Vec3f direction = rigidbody->GetVelocity().normalize();

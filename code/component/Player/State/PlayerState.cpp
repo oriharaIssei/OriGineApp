@@ -11,14 +11,15 @@ PlayerState::PlayerState()
 PlayerState::~PlayerState() {}
 
 void PlayerState::Initialize(Entity* /*_entity*/) {
-    moveStateEnum_    = PlayerMoveState::IDLE;
-    preMoveStateEnum_ = PlayerMoveState::IDLE;
-    moveState_        = nullptr;
+    // moveStateEnum の 初期化
+    // current,prev を IDLE に設定
+    moveStateEnum_.Set(PlayerMoveState::IDLE);
+    moveStateEnum_.Set(PlayerMoveState::IDLE);
+    moveState_ = nullptr;
 
-    onGround_          = false;
-    IsGearUp_          = false;
-    collisionWithWall_ = false;
-    isGoal_            = false;
+    // stateFlag の 初期化
+    stateFlag_.Set(EnumBitmask<PlayerStateFlag>(0));
+    stateFlag_.Set(EnumBitmask<PlayerStateFlag>(0));
 
     wallCollisionNormal_ = {0.f, 0.f, 0.f};
     gearLevel_           = kDefaultPlayerGearLevel;
@@ -35,47 +36,46 @@ void PlayerState::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* 
         // {PlayerMoveState::SLIDE, "SLIDE"}
     };
 
-    ImGui::Text("MoveState     : %s", moveStateName[moveStateEnum_.toEnum()]);
+    ImGui::Text("MoveState     : %s", moveStateName[moveStateEnum_.Current().ToEnum()]);
     ImGui::Text("Gear Level    : %d", gearLevel_);
     ImGui::Spacing();
 
-    ImGui::Text("Is On Ground  : %s", onGround_ ? "true" : "false");
-    ImGui::Text("Is Goal       : %s", isGoal_ ? "true" : "false");
+    ImGui::Text("Is On Ground  : %s", stateFlag_.Current() | PlayerStateFlag::ON_GROUND ? "true" : "false");
+    ImGui::Text("Is Goal       : %s", stateFlag_.Current() | PlayerStateFlag::IS_GOAL ? "true" : "false");
 
     ImGui::Spacing();
 
-    ImGui::Text("Is Gear Up        : %s", IsGearUp_ ? "true" : "false");
+    ImGui::Text("Is Gear Up        : %s", stateFlag_.Current() | PlayerStateFlag::GEAR_UP ? "true" : "false");
     ImGui::Text("Gear Up Cool Time : %f", gearUpCoolTime_);
 
     ImGui::Spacing();
-    ImGui::Text("Wall Collision    : %s", collisionWithWall_ ? "true" : "false");
+    ImGui::Text("Wall Collision    : %s", stateFlag_.Current() | PlayerStateFlag::ON_WALL ? "true" : "false");
 }
 
 void PlayerState::Finalize() {}
 
 void PlayerState::OnCollisionWall(const Vec3f& _collisionNormal, int32_t _entityIndex) {
-    collisionWithWall_   = true;
+    stateFlag_.SetCurrent(stateFlag_.Current() | PlayerStateFlag::ON_WALL);
     wallCollisionNormal_ = _collisionNormal;
     wallEntityIndex_     = _entityIndex;
 }
 
 void PlayerState::OffCollisionWall() {
-    collisionWithWall_   = false;
+    stateFlag_.SetCurrent(stateFlag_.Current() | ~static_cast<int32_t>(PlayerStateFlag::ON_WALL));
     wallCollisionNormal_ = {0.f, 0.f, 0.f};
     // wallEntityIndex_     = -1; // 保持しておく
 }
 
 void PlayerState::OnCollisionGround(int32_t _entityIndex) {
-    onGround_             = true;
+    stateFlag_.SetCurrent(stateFlag_.Current() | PlayerStateFlag::ON_GROUND);
     lastFloorEntityIndex_ = _entityIndex;
 }
 void PlayerState::OffCollisionGround() {
-    onGround_ = false;
+    stateFlag_.SetCurrent(stateFlag_.Current() | ~static_cast<int32_t>(PlayerStateFlag::ON_GROUND));
 }
 
 void PlayerState::SetPlayerMoveState(std::shared_ptr<IPlayerMoveState> _playerMoveState) {
-    moveState_     = _playerMoveState;
-    moveStateEnum_ = moveState_->GetState();
+    moveState_ = _playerMoveState;
 }
 
 void to_json(nlohmann::json& /*j*/, const PlayerState& /*p*/) {

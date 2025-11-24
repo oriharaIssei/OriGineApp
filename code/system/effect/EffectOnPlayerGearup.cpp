@@ -12,9 +12,9 @@
 #include "component/effect/particle/emitter/Emitter.h"
 #include "component/effect/post/DistortionEffectParam.h"
 
-#include "component/Player/PlayerEffectControlParam.h"
-#include "component/Player/PlayerStatus.h"
-#include "component/Player/State/PlayerState.h"
+#include "component/player/PlayerEffectControlParam.h"
+#include "component/player/PlayerStatus.h"
+#include "component/player/state/PlayerState.h"
 
 /// math
 #include <math/MyEasing.h>

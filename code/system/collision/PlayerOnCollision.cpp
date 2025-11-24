@@ -3,15 +3,13 @@
 /// ECS
 
 // component
-#include "component/transform/Transform.h"
-
 #include "component/collision/CollisionPushBackInfo.h"
 #include "component/physics/Rigidbody.h"
 
-#include "component/Player/PlayerStatus.h"
-#include "component/Player/State/PlayerState.h"
+#include "component/stage/StageObstacle.h"
 
-#include "component/Stage/Stage.h"
+#include "component/player/state/PlayerState.h"
+
 #include "component/TimerComponent.h"
 
 void PlayerOnCollision::Initialize() {
@@ -31,6 +29,9 @@ void PlayerOnCollision::UpdateEntity(Entity* _entity) {
     if (state == nullptr) {
         return;
     }
+
+    bool isPenalty = false;
+
     // 毎フレーム、地面・壁との衝突状態をリセット
     state->OffCollisionGround();
     state->OffCollisionWall();
@@ -41,15 +42,23 @@ void PlayerOnCollision::UpdateEntity(Entity* _entity) {
 
         // ゴール と 衝突したか
         if (collidedEntity->GetDataType().find("Goal") != std::string::npos) {
-            Entity* timer = GetUniqueEntity("Timer");
-
-            // クリア時間をセット
-            if (timer) {
-                Stage::SetClearTime(GetComponent<TimerComponent>(timer)->GetCurrentTime());
-            }
+            // 時間を更新しないようにする
+            auto* timer = GetComponent<TimerComponent>(_entity);
+            timer->SetStarted(false);
 
             // ゴールと衝突した場合は、ゴールに到達したと判断する
-            state->SetGoal(true);
+            isPenalty = true;
+            continue;
+        }
+
+        // 障害物 と 衝突したか
+        StageObstacle* obstacle = GetComponent<StageObstacle>(collidedEntity);
+        if (obstacle != nullptr) {
+            // 障害物と衝突した場合は、ペナルティ時間を加算する
+            auto* timer = GetComponent<TimerComponent>(_entity);
+            timer->SetCurrentTime(timer->GetTime() + obstacle->GetPenaltyTime());
+            isPenalty = true;
+
             continue;
         }
 
@@ -76,5 +85,11 @@ void PlayerOnCollision::UpdateEntity(Entity* _entity) {
                 state->OnCollisionWall(collNormal, entityId);
             }
         }
+    }
+
+    // ペナルティ状態を更新
+    if (isPenalty) {
+        auto& flag = state->GetStateFlagRef();
+        flag.SetCurrent(flag.Current() | PlayerStateFlag::IS_PENALTY);
     }
 }

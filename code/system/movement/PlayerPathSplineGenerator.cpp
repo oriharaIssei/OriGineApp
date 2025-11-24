@@ -6,7 +6,7 @@
 
 // component
 #include "component/physics/Rigidbody.h"
-#include "component/Player/State/PlayerState.h"
+#include "component/player/state/PlayerState.h"
 #include "component/spline/SplinePoints.h"
 #include "component/transform/Transform.h"
 

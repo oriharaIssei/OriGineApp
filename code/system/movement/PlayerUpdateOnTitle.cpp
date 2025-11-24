@@ -6,10 +6,10 @@
 
 // component
 #include "component/physics/Rigidbody.h"
-#include "component/Player/PlayerInput.h"
-#include "component/Player/PlayerStatus.h"
-#include "component/Player/State/PlayerDashState.h"
-#include "component/Player/State/PlayerState.h"
+#include "component/player/PlayerInput.h"
+#include "component/player/PlayerStatus.h"
+#include "component/player/state/PlayerDashState.h"
+#include "component/player/state/PlayerState.h"
 #include "component/transform/Transform.h"
 
 /// math
@@ -43,6 +43,9 @@ void PlayerUpdateOnTitle::UpdateEntity(Entity* _entity) {
         return;
     }
 
+    auto& stateFlag = playerState->GetStateFlagRef();
+    stateFlag.Sync();
+
     // ジャンプ入力を無効化
     playerInput->SetJumpInput(false);
 
@@ -61,7 +64,7 @@ void PlayerUpdateOnTitle::UpdateEntity(Entity* _entity) {
     if (gearLevel < kMaxPlayerGearLevel - 1) {
         // クールタイムが0以下になったらギアレベルを上げる
         if (playerStatus->GetGearUpCoolTime() <= 0.f) {
-            playerState->SetGearUp(true);
+            stateFlag.SetCurrent(stateFlag.Current() | PlayerStateFlag::GEAR_UP);
 
             ++gearLevel;
             playerState->SetGearLevel(gearLevel);

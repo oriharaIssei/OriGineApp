@@ -7,20 +7,17 @@
 #define ENGINE_SYSTEMS
 #include <EngineInclude.h>
 
-#include "globalVariables/GlobalVariables.h"
-
 // application component
 #include "component/Button.h"
 #include "component/ButtonGroup.h"
 #include "component/Camera/CameraController.h"
 #include "component/MouseCondition.h"
 #include "component/player/PlayerEffectControlParam.h"
-#include "component/Player/PlayerInput.h"
-#include "component/Player/PlayerStatus.h"
-#include "component/Player/State/PlayerState.h"
+#include "component/player/PlayerInput.h"
+#include "component/player/PlayerStatus.h"
+#include "component/player/state/PlayerState.h"
 #include "component/SceneChanger.h"
 #include "component/spline/SplinePoints.h"
-#include "component/Stage/Stage.h"
 #include "component/Stage/StageFloor.h"
 #include "component/Stage/StageWall.h"
 #include "component/TimerComponent.h"
@@ -49,14 +46,12 @@
 #include "system/movement/PlayerMoveSystem.h"
 #include "system/movement/PlayerPathSplineGenerator.h"
 #include "system/movement/PlayerUpdateOnTitle.h"
-#include "system/render/StageDebugRender.h"
 #include "system/transition/ApplyMouseConditionSystem.h"
 #include "system/transition/ButtonGroupSystem.h"
 #include "system/transition/ChangeSceneByButton.h"
 #include "system/transition/ExitApplicationByButton.h"
 #include "system/transition/FallDetectionSystem.h"
 #include "system/transition/SceneTransition.h"
-#include "system/transition/SetClearTime.h"
 #include "system/transition/ShowGameUIByInputDevice.h"
 #include "system/transition/SubSceneActivateByButton.h"
 #include "system/transition/SubSceneDeactivateByButton.h"
@@ -89,7 +84,6 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<CameraTransform>();
     componentRegistry->RegisterComponent<Transform>();
 
-    componentRegistry->RegisterComponent<Stage>();
     componentRegistry->RegisterComponent<StageFloor>();
     componentRegistry->RegisterComponent<StageWall>();
 
@@ -186,7 +180,6 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<ButtonGroupSystem>();
     systemRegistry->RegisterSystem<TimerCountDown>();
     systemRegistry->RegisterSystem<TimeLimitJudgeSystem>();
-    systemRegistry->RegisterSystem<SetClearTime>();
     systemRegistry->RegisterSystem<ShowGameUIByInputDevice>();
     systemRegistry->RegisterSystem<ApplyMouseConditionSystem>();
     systemRegistry->RegisterSystem<SubSceneActivateByButton>();
@@ -251,8 +244,6 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<ColliderRenderingSystem>();
     systemRegistry->RegisterSystem<VelocityRenderingSystem>();
 #endif // _RELEASE
-
-    systemRegistry->RegisterSystem<StageDebugRender>();
 
     /// =================================================================================================
     // PostRender
