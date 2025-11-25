@@ -1,7 +1,10 @@
 #include "TimerForSprite.h"
 
-/// ECS
+/// engine
+#include "Engine.h"
+#include "winApp/WinApp.h"
 
+/// ECS
 // component
 #include "component/renderer/Sprite.h"
 #include "component/TimerComponent.h"
@@ -66,6 +69,8 @@ void TimerForSprite::UpdateEntity(Entity* _entity) {
         timerForSpriteComponent->GetDigitIntegerForSprite(),
         timerForSpriteComponent->GetDigitDecimalForSprite());
 
+    Vec2f windowSize = Engine::GetInstance()->GetWinApp()->GetWindowSize();
+
     // 各スプライトに数字を適用
     for (int32_t i = 0; i < timerForSpriteComponent->GetDigitForSprite(); ++i) {
         auto sprite = GetComponent<SpriteRenderer>(timerSpritesEntity, i);
@@ -80,5 +85,7 @@ void TimerForSprite::UpdateEntity(Entity* _entity) {
 
         sprite->SetTextureLeftTop(
             {spriteTextureSizeX * digits[i], spriteLeftTopY});
+
+        sprite->CalculatePosRatioAndSizeRatio(windowSize);
     }
 }

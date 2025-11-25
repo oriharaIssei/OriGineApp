@@ -56,27 +56,54 @@ public:
     void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
     void Finalize() override;
 
+    /// <summary>
+    /// 壁と接触したときの処理
+    /// </summary>
+    /// <param name="_collisionNormal"></param>
+    /// <param name="_entityIndex"></param>
     void OnCollisionWall(const Vec3f& _collisionNormal, int32_t _entityIndex);
+    /// <summary>
+    /// 壁との接触がなくなったときの処理
+    /// </summary>
     void OffCollisionWall();
 
-    void OnCollisionGround(int32_t _entityIndex);
+    /// <summary>
+    /// 地面と接触したときの処理
+    /// </summary>
+    void OnCollisionGround();
+    /// <summary>
+    /// 地面との接触がなくなったときの処理
+    /// </summary>
     void OffCollisionGround();
 
-private:
-    DiffValue<EnumBitmask<PlayerMoveState>> moveStateEnum_;
+    /// <summary>
+    /// 障害物と接触したときの処理
+    /// </summary>
+    /// <param name="_penaltyTime">ペナルティー時間</param>
+    /// <param name="_invincibility"></param>
+    void OnCollisionObstacle(float _penaltyTime, float _invincibility);
+    /// <summary>
+    /// ペナルティを受ける
+    /// </summary>
+    /// <returns>ペナルティー時間</returns>
+    float SufferPenalty();
 
+private:
     // TransitionPlayerState で更新される
     std::shared_ptr<IPlayerMoveState> moveState_ = nullptr;
 
+    DiffValue<EnumBitmask<PlayerMoveState>> moveStateEnum_;
     DiffValue<EnumBitmask<PlayerStateFlag>> stateFlag_ = EnumBitmask<PlayerStateFlag>(0);
 
     Vec3f wallCollisionNormal_ = {0.f, 0.f, 0.f};
 
-    int32_t wallEntityIndex_      = -1; // 現在 接触している壁 のエンティティID
-    int32_t lastFloorEntityIndex_ = -1; // 最後に接地した床のエンティティID
+    int32_t wallEntityIndex_ = -1; // 現在 接触している壁 のエンティティID
 
     int32_t gearLevel_    = 0;
     float gearUpCoolTime_ = 0.0f;
+
+    float penaltyTime_   = 0.0f; // ペナルティ時間 /sec (制限時間から マイナスする時間)
+    float invincibility_ = 0.0f; // ペナルティ無敵時間
 
 public:
     PlayerMoveState GetStateEnum() const {
@@ -106,18 +133,15 @@ public:
     }
 
     bool IsGoal() const {
-        return stateFlag_.Current() == PlayerStateFlag::IS_GOAL;
+        return stateFlag_.Current().HasFlag(PlayerStateFlag::IS_GOAL);
     }
 
     bool IsOnGround() const {
-        return stateFlag_.Current() == PlayerStateFlag::ON_GROUND;
-    }
-    int32_t GetLastFloorEntityIndex() const {
-        return lastFloorEntityIndex_;
+        return stateFlag_.Current().HasFlag(PlayerStateFlag::ON_GROUND);
     }
 
     bool IsCollisionWithWall() const {
-        return stateFlag_.Current() == PlayerStateFlag::ON_WALL;
+        return stateFlag_.Current().HasFlag(PlayerStateFlag::ON_WALL);
     }
     int32_t GetWallEntityIndex() const {
         return wallEntityIndex_;
@@ -128,14 +152,14 @@ public:
     }
 
     bool IsPenalty() const {
-        return stateFlag_.Current() == PlayerStateFlag::IS_PENALTY;
+        return stateFlag_.Current().HasFlag(PlayerStateFlag::IS_PENALTY);
     }
 
     bool IsRestart() const {
-        return stateFlag_.Current() == PlayerStateFlag::IS_RESTART;
+        return stateFlag_.Current().HasFlag(PlayerStateFlag::IS_RESTART);
     }
 
     bool IsGearUp() const {
-        return stateFlag_.Current() == PlayerStateFlag::GEAR_UP;
+        return stateFlag_.Current().HasFlag(PlayerStateFlag::GEAR_UP);
     }
 };

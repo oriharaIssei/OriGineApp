@@ -18,6 +18,7 @@
 #include "component/player/state/PlayerState.h"
 #include "component/SceneChanger.h"
 #include "component/spline/SplinePoints.h"
+#include "component/stage/StageData.h"
 #include "component/Stage/StageFloor.h"
 #include "component/Stage/StageWall.h"
 #include "component/TimerComponent.h"
@@ -36,6 +37,7 @@
 #include "system/initialize/GoalShellEffectInitialize.h"
 #include "system/initialize/SettingGameCameraTarget.h"
 #include "system/initialize/TakePlayerToStartPosition.h"
+#include "system/initialize/TakeToGoalPosition.h"
 #include "system/initialize/TrailEffectInitialize.h"
 #include "system/input/ButtonInputSystem.h"
 #include "system/input/CameraInputSystem.h"
@@ -149,7 +151,6 @@ void RegisterUsingSystems() {
     // Initialize
     /// ====================================================================================================
     systemRegistry->RegisterSystem<SettingGameCameraTarget>();
-    systemRegistry->RegisterSystem<TakePlayerToStartPosition>();
     systemRegistry->RegisterSystem<GpuParticleInitialize>();
     systemRegistry->RegisterSystem<CreateStage>();
     systemRegistry->RegisterSystem<ResolveEntityReferences>();
@@ -161,6 +162,9 @@ void RegisterUsingSystems() {
 
     systemRegistry->RegisterSystem<GoalEffectInitialize>();
     systemRegistry->RegisterSystem<GoalShellEffectInitialize>();
+
+    systemRegistry->RegisterSystem<TakePlayerToStartPosition>();
+    systemRegistry->RegisterSystem<TakeToGoalPosition>();
 
     /// ===================================================================================================
     // Input

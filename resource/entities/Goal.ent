@@ -2,15 +2,15 @@
     "Components": {
         "AABBCollider": [
             {
-                "max": [
-                    11.0,
-                    15.0,
-                    6.0
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
                 ],
-                "min": [
-                    -11.0,
-                    -5.0,
-                    -3.0
+                "halfSize": [
+                    0.0,
+                    0.0,
+                    0.0
                 ],
                 "transform": {
                     "rotate": [
@@ -46,6 +46,15 @@
                 "activeTime": 2.299999952316284,
                 "blendMode": 1,
                 "colorCurve": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
                     {
                         "time": 0.0,
                         "value": [
@@ -226,6 +235,14 @@
                     {
                         "time": 0.0,
                         "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
                             0.10000000149011612,
                             0.10000000149011612,
                             0.10000000149011612
@@ -324,6 +341,14 @@
                 "updateSettings": 4386,
                 "uvInterpolationType": 0,
                 "velocityCurve": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
                     {
                         "time": 0.0,
                         "value": [
@@ -456,6 +481,7 @@
         "PlaneRenderer": [
             {
                 "blendMode": 1,
+                "isCulling": true,
                 "isRenderer": true,
                 "materialIndex": 0,
                 "textureDirectory": "./application/resource/Texture",
@@ -482,7 +508,6 @@
         ],
         "RingRenderer": [],
         "SphereCollider": [],
-        "TextureEffectParam": [],
         "Transform": [
             {
                 "rotate": [
@@ -521,6 +546,10 @@
         {
             "SystemCategory": 6,
             "SystemName": "TexturedMeshRenderSystem"
+        },
+        {
+            "SystemCategory": 0,
+            "SystemName": "TakeToGoalPosition"
         }
     ],
     "isUnique": true

@@ -180,19 +180,19 @@
     <ClInclude Include="code\system\movement\PlayerMoveSystem.h" />
     <ClInclude Include="code\system\movement\PlayerPathSplineGenerator.h" />
     <ClInclude Include="code\system\movement\PlayerUpdateOnTitle.h" />
-    <ClInclude Include="code\system\Transition\ApplyMouseConditionSystem.h" />
-    <ClInclude Include="code\system\Transition\ButtonGroupSystem.h" />
-    <ClInclude Include="code\system\Transition\ChangeSceneByButton.h" />
-    <ClInclude Include="code\system\Transition\ExitApplicationByButton.h" />
-    <ClInclude Include="code\system\Transition\FallDetectionSystem.h" />
-    <ClInclude Include="code\system\Transition\SceneTransition.h" />
-    <ClInclude Include="code\system\Transition\ShowGameUIByInputDevice.h" />
-    <ClInclude Include="code\system\Transition\SubSceneActivateByButton.h" />
-    <ClInclude Include="code\system\Transition\SubSceneDeactivateByButton.h" />
-    <ClInclude Include="code\system\Transition\TimeLimitJudgeSystem.h" />
-    <ClInclude Include="code\system\Transition\TimerCountDown.h" />
-    <ClInclude Include="code\system\Transition\TransitionPlayerState.h" />
-    <ClInclude Include="code\system\Transition\UpdateButtonColorByState.h" />
+    <ClInclude Include="code\system\transition\ApplyMouseConditionSystem.h" />
+    <ClInclude Include="code\system\transition\ButtonGroupSystem.h" />
+    <ClInclude Include="code\system\transition\ChangeSceneByButton.h" />
+    <ClInclude Include="code\system\transition\ExitApplicationByButton.h" />
+    <ClInclude Include="code\system\transition\FallDetectionSystem.h" />
+    <ClInclude Include="code\system\transition\SceneTransition.h" />
+    <ClInclude Include="code\system\transition\ShowGameUIByInputDevice.h" />
+    <ClInclude Include="code\system\transition\SubSceneActivateByButton.h" />
+    <ClInclude Include="code\system\transition\SubSceneDeactivateByButton.h" />
+    <ClInclude Include="code\system\transition\TimeLimitJudgeSystem.h" />
+    <ClInclude Include="code\system\transition\TimerCountDown.h" />
+    <ClInclude Include="code\system\transition\TransitionPlayerState.h" />
+    <ClInclude Include="code\system\transition\UpdateButtonColorByState.h" />
     <ClInclude Include="code\system\collision\PlayerOnCollision.h" />
     <ClInclude Include="code\system\collision\TutorialColliderOnCollision.h" />
     <ClInclude Include="code\system\effect\CreateMeshFromSpline.h" />
@@ -202,6 +202,8 @@
     <ClInclude Include="code\manager\PlayerProgressStore.h" />
     <ClInclude Include="code\component\stage\StageData.h" />
     <ClInclude Include="code\component\stage\StageObstacle.h" />
+    <ClInclude Include="code\system\initialize\TakeToGoalPosition.h" />
+    <ClInclude Include="code\system\transition\PenaltySystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -246,19 +248,19 @@
     <ClCompile Include="code\system\movement\PlayerMoveSystem.cpp" />
     <ClCompile Include="code\system\movement\PlayerPathSplineGenerator.cpp" />
     <ClCompile Include="code\system\movement\PlayerUpdateOnTitle.cpp" />
-    <ClCompile Include="code\system\Transition\ApplyMouseConditionSystem.cpp" />
-    <ClCompile Include="code\system\Transition\ButtonGroupSystem.cpp" />
-    <ClCompile Include="code\system\Transition\ChangeSceneByButton.cpp" />
-    <ClCompile Include="code\system\Transition\ExitApplicationByButton.cpp" />
-    <ClCompile Include="code\system\Transition\FallDetectionSystem.cpp" />
-    <ClCompile Include="code\system\Transition\SceneTransition.cpp" />
-    <ClCompile Include="code\system\Transition\ShowGameUIByInputDevice.cpp" />
-    <ClCompile Include="code\system\Transition\SubSceneActivateByButton.cpp" />
-    <ClCompile Include="code\system\Transition\SubSceneDeactivateByButton.cpp" />
-    <ClCompile Include="code\system\Transition\TimeLimitJudgeSystem.cpp" />
-    <ClCompile Include="code\system\Transition\TimerCountDown.cpp" />
-    <ClCompile Include="code\system\Transition\TransitionPlayerState.cpp" />
-    <ClCompile Include="code\system\Transition\UpdateButtonColorByState.cpp" />
+    <ClCompile Include="code\system\transition\ApplyMouseConditionSystem.cpp" />
+    <ClCompile Include="code\system\transition\ButtonGroupSystem.cpp" />
+    <ClCompile Include="code\system\transition\ChangeSceneByButton.cpp" />
+    <ClCompile Include="code\system\transition\ExitApplicationByButton.cpp" />
+    <ClCompile Include="code\system\transition\FallDetectionSystem.cpp" />
+    <ClCompile Include="code\system\transition\SceneTransition.cpp" />
+    <ClCompile Include="code\system\transition\ShowGameUIByInputDevice.cpp" />
+    <ClCompile Include="code\system\transition\SubSceneActivateByButton.cpp" />
+    <ClCompile Include="code\system\transition\SubSceneDeactivateByButton.cpp" />
+    <ClCompile Include="code\system\transition\TimeLimitJudgeSystem.cpp" />
+    <ClCompile Include="code\system\transition\TimerCountDown.cpp" />
+    <ClCompile Include="code\system\transition\TransitionPlayerState.cpp" />
+    <ClCompile Include="code\system\transition\UpdateButtonColorByState.cpp" />
     <ClCompile Include="code\system\collision\PlayerOnCollision.cpp" />
     <ClCompile Include="code\system\collision\TutorialColliderOnCollision.cpp" />
     <ClCompile Include="code\system\effect\CreateMeshFromSpline.cpp" />
@@ -268,6 +270,8 @@
     <ClCompile Include="code\manager\PlayerProgressStore.cpp" />
     <ClCompile Include="code\component\stage\StageData.cpp" />
     <ClCompile Include="code\component\stage\StageObstacle.cpp" />
+    <ClCompile Include="code\system\initialize\TakeToGoalPosition.cpp" />
+    <ClCompile Include="code\system\transition\PenaltySystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">

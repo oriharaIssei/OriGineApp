@@ -64,7 +64,7 @@ void PlayerOnCollision::UpdateEntity(Entity* _entity) {
 
         if (collNormal[Y] > kGroundCheckThreshold) {
             // 上方向に衝突した場合は、地面にいると判断する
-            state->OnCollisionGround(entityId);
+            state->OnCollisionGround();
 
             Vec3f acceleration = rigidbody->GetAcceleration();
 

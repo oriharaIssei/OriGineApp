@@ -162,43 +162,43 @@
     <ClInclude Include="code\system\movement\PlayerUpdateOnTitle.h">
       <Filter>system\Movement</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\ApplyMouseConditionSystem.h">
+    <ClInclude Include="code\system\transition\ApplyMouseConditionSystem.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\ButtonGroupSystem.h">
+    <ClInclude Include="code\system\transition\ButtonGroupSystem.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\ChangeSceneByButton.h">
+    <ClInclude Include="code\system\transition\ChangeSceneByButton.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\ExitApplicationByButton.h">
+    <ClInclude Include="code\system\transition\ExitApplicationByButton.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\FallDetectionSystem.h">
+    <ClInclude Include="code\system\transition\FallDetectionSystem.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\SceneTransition.h">
+    <ClInclude Include="code\system\transition\SceneTransition.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\ShowGameUIByInputDevice.h">
+    <ClInclude Include="code\system\transition\ShowGameUIByInputDevice.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\SubSceneActivateByButton.h">
+    <ClInclude Include="code\system\transition\SubSceneActivateByButton.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\SubSceneDeactivateByButton.h">
+    <ClInclude Include="code\system\transition\SubSceneDeactivateByButton.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\TimeLimitJudgeSystem.h">
+    <ClInclude Include="code\system\transition\TimeLimitJudgeSystem.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\TimerCountDown.h">
+    <ClInclude Include="code\system\transition\TimerCountDown.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\TransitionPlayerState.h">
+    <ClInclude Include="code\system\transition\TransitionPlayerState.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\UpdateButtonColorByState.h">
+    <ClInclude Include="code\system\transition\UpdateButtonColorByState.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
     <ClInclude Include="code\system\collision\PlayerOnCollision.h">
@@ -226,6 +226,8 @@
       <Filter>component\stage</Filter>
     </ClInclude>
     <ClInclude Include="code\component\stage\StageObstacle.h" />
+    <ClInclude Include="code\system\initialize\TakeToGoalPosition.h" />
+    <ClInclude Include="code\system\transition\PenaltySystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -346,43 +348,43 @@
     <ClCompile Include="code\system\movement\PlayerUpdateOnTitle.cpp">
       <Filter>system\Movement</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\ApplyMouseConditionSystem.cpp">
+    <ClCompile Include="code\system\transition\ApplyMouseConditionSystem.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\ButtonGroupSystem.cpp">
+    <ClCompile Include="code\system\transition\ButtonGroupSystem.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\ChangeSceneByButton.cpp">
+    <ClCompile Include="code\system\transition\ChangeSceneByButton.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\ExitApplicationByButton.cpp">
+    <ClCompile Include="code\system\transition\ExitApplicationByButton.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\FallDetectionSystem.cpp">
+    <ClCompile Include="code\system\transition\FallDetectionSystem.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\SceneTransition.cpp">
+    <ClCompile Include="code\system\transition\SceneTransition.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\ShowGameUIByInputDevice.cpp">
+    <ClCompile Include="code\system\transition\ShowGameUIByInputDevice.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\SubSceneActivateByButton.cpp">
+    <ClCompile Include="code\system\transition\SubSceneActivateByButton.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\SubSceneDeactivateByButton.cpp">
+    <ClCompile Include="code\system\transition\SubSceneDeactivateByButton.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\TimeLimitJudgeSystem.cpp">
+    <ClCompile Include="code\system\transition\TimeLimitJudgeSystem.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\TimerCountDown.cpp">
+    <ClCompile Include="code\system\transition\TimerCountDown.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\TransitionPlayerState.cpp">
+    <ClCompile Include="code\system\transition\TransitionPlayerState.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\UpdateButtonColorByState.cpp">
+    <ClCompile Include="code\system\transition\UpdateButtonColorByState.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
     <ClCompile Include="code\system\collision\PlayerOnCollision.cpp">
@@ -410,5 +412,7 @@
       <Filter>component\stage</Filter>
     </ClCompile>
     <ClCompile Include="code\component\stage\StageObstacle.cpp" />
+    <ClCompile Include="code\system\initialize\TakeToGoalPosition.cpp" />
+    <ClCompile Include="code\system\transition\PenaltySystem.cpp" />
   </ItemGroup>
 </Project>

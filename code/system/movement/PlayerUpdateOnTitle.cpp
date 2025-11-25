@@ -50,7 +50,7 @@ void PlayerUpdateOnTitle::UpdateEntity(Entity* _entity) {
     playerInput->SetJumpInput(false);
 
     // タイトル画面では常に地面に接地している状態にする
-    playerState->OnCollisionGround(-1);
+    playerState->OnCollisionGround();
 
     // 更新処理 ほぼ PlayerDashState と同じ
     float deltaTime = GetMainDeltaTime();

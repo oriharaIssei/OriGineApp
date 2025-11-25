@@ -55,23 +55,41 @@ void PlayerState::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* 
 void PlayerState::Finalize() {}
 
 void PlayerState::OnCollisionWall(const Vec3f& _collisionNormal, int32_t _entityIndex) {
-    stateFlag_.SetCurrent(stateFlag_.Current() | PlayerStateFlag::ON_WALL);
+    stateFlag_.CurrentRef().SetFlag(PlayerStateFlag::ON_WALL);
     wallCollisionNormal_ = _collisionNormal;
     wallEntityIndex_     = _entityIndex;
 }
 
 void PlayerState::OffCollisionWall() {
-    stateFlag_.SetCurrent(stateFlag_.Current() | ~static_cast<int32_t>(PlayerStateFlag::ON_WALL));
+    stateFlag_.CurrentRef().ClearFlag(PlayerStateFlag::ON_WALL);
     wallCollisionNormal_ = {0.f, 0.f, 0.f};
     // wallEntityIndex_     = -1; // 保持しておく
 }
 
-void PlayerState::OnCollisionGround(int32_t _entityIndex) {
-    stateFlag_.SetCurrent(stateFlag_.Current() | PlayerStateFlag::ON_GROUND);
-    lastFloorEntityIndex_ = _entityIndex;
+void PlayerState::OnCollisionGround() {
+    stateFlag_.CurrentRef().SetFlag(PlayerStateFlag::ON_GROUND);
 }
 void PlayerState::OffCollisionGround() {
-    stateFlag_.SetCurrent(stateFlag_.Current() | ~static_cast<int32_t>(PlayerStateFlag::ON_GROUND));
+    stateFlag_.CurrentRef().ClearFlag(PlayerStateFlag::ON_GROUND);
+}
+
+void PlayerState::OnCollisionObstacle(float _penaltyTime, float _invincibility) {
+    if (invincibility_ > 0.f) {
+        return;
+    }
+
+    stateFlag_.CurrentRef().SetFlag(PlayerStateFlag::IS_PENALTY);
+    penaltyTime_ = _penaltyTime;
+
+    invincibility_ = _invincibility;
+}
+
+float PlayerState::SufferPenalty() {
+    stateFlag_.CurrentRef().ClearFlag(PlayerStateFlag::IS_PENALTY);
+
+    float penalty = penaltyTime_;
+    penaltyTime_  = 0.0f;
+    return penalty;
 }
 
 void PlayerState::SetPlayerMoveState(std::shared_ptr<IPlayerMoveState> _playerMoveState) {
