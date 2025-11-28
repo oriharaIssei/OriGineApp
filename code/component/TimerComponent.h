@@ -2,6 +2,7 @@
 #include "component/IComponent.h"
 
 /// math
+#include <cstdint>
 #include <math/Vector2.h>
 
 /// <summary>
@@ -32,7 +33,7 @@ private:
     Vec2f spriteSize_;
 
 public:
-    bool isStarted() const { return isStarted_; }
+    bool IsStarted() const { return isStarted_; }
     void SetStarted(bool started) { isStarted_ = started; }
 
     float GetMaxTime() const { return maxTime_; }

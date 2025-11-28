@@ -42,7 +42,7 @@ void SceneTransition::Update() {
         return;
     }
 
-    eraseDeadEntity();
+    EraseDeadEntity();
 
     // シーンに入るエフェクトの更新
     if (enterScene_) {

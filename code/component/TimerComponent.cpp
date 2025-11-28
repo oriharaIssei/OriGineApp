@@ -19,7 +19,6 @@ void TimerComponent::Initialize(Entity* /*_entity*/) {
 }
 
 void TimerComponent::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
-
 #ifdef DEBUG
     CheckBoxCommand("IsStarted For Using System##" + _parentLabel, isStarted_);
     DragGuiCommand("Max Time (s)##" + _parentLabel, maxTime_, 0.1f, 100.f, 1.f);
@@ -134,7 +133,6 @@ void TimerForSpriteComponent::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[may
     SlideGuiCommand("Digit Decimal For Sprite##" + _parentLabel, digitDecimalForSprite_, 0, digitForSprite_ - digitIntegerForSprite_, "%d");
 
 #endif
-
 }
 
 void TimerForSpriteComponent::SettingOnLoadTexture(uint32_t _texIdx) {

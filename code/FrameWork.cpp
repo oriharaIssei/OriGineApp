@@ -20,6 +20,7 @@
 #include "component/spline/SplinePoints.h"
 #include "component/stage/StageData.h"
 #include "component/Stage/StageFloor.h"
+#include "component/stage/StageObstacle.h"
 #include "component/Stage/StageWall.h"
 #include "component/TimerComponent.h"
 
@@ -29,6 +30,7 @@
 #include "system/effect/CreateMeshFromSpline.h"
 #include "system/effect/EffectOnPlayerGearup.h"
 #include "system/effect/EffectOnPlayerRun.h"
+#include "system/effect/PenaltyTimeSpriteUpdate.h"
 #include "system/effect/TimerForSprite.h"
 #include "system/initialize/CreateSpriteFromTimer.h"
 #include "system/initialize/CreateStage.h"
@@ -53,6 +55,7 @@
 #include "system/transition/ChangeSceneByButton.h"
 #include "system/transition/ExitApplicationByButton.h"
 #include "system/transition/FallDetectionSystem.h"
+#include "system/transition/PenaltySystem.h"
 #include "system/transition/SceneTransition.h"
 #include "system/transition/ShowGameUIByInputDevice.h"
 #include "system/transition/SubSceneActivateByButton.h"
@@ -86,8 +89,8 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<CameraTransform>();
     componentRegistry->RegisterComponent<Transform>();
 
-    componentRegistry->RegisterComponent<StageFloor>();
-    componentRegistry->RegisterComponent<StageWall>();
+    componentRegistry->RegisterComponent<StageData>();
+    componentRegistry->RegisterComponent<StageObstacle>();
 
     componentRegistry->RegisterComponent<SplinePoints>();
 
@@ -189,6 +192,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<SubSceneActivateByButton>();
     systemRegistry->RegisterSystem<SubSceneDeactivateByButton>();
     systemRegistry->RegisterSystem<ExitApplicationByButton>();
+    systemRegistry->RegisterSystem<PenaltySystem>();
 
     /// =================================================================================================
     // Movement
@@ -225,6 +229,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<MaterialAnimationWorkSystem>();
     systemRegistry->RegisterSystem<MaterialEffect>();
     systemRegistry->RegisterSystem<CreateMeshFromSpline>();
+    systemRegistry->RegisterSystem<PenaltyTimeSpriteUpdate>();
 
     systemRegistry->RegisterSystem<EffectOnPlayerGearup>();
     systemRegistry->RegisterSystem<EffectOnPlayerRun>();

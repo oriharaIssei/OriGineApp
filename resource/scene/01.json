@@ -100,8 +100,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -113,8 +113,8 @@
                             1.0
                         ],
                         "size": [
-                            72.0,
-                            72.0
+                            48.0,
+                            48.000003814697266
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -126,8 +126,8 @@
                             16.0
                         ],
                         "translate": [
-                            109.44000244140625,
-                            46.44000244140625
+                            72.95999908447266,
+                            30.96000099182129
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -159,8 +159,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -172,8 +172,8 @@
                             1.0
                         ],
                         "size": [
-                            72.0,
-                            72.0
+                            48.0,
+                            48.000003814697266
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -185,8 +185,8 @@
                             16.0
                         ],
                         "translate": [
-                            109.44000244140625,
-                            46.44000244140625
+                            72.95999908447266,
+                            30.96000099182129
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -352,6 +352,10 @@
                             [
                                 "./application/resource/entities",
                                 "Goal"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "PenaltyTimerForSprite"
                             ]
                         ]
                     }
@@ -424,9 +428,9 @@
                 "Transform": [
                     {
                         "rotate": [
+                            -0.0,
                             0.0,
-                            0.0,
-                            0.0,
+                            -0.0,
                             1.0
                         ],
                         "scale": [
@@ -436,7 +440,7 @@
                         ],
                         "translate": [
                             0.0,
-                            0.0,
+                            6.42143440246582,
                             0.0
                         ]
                     }
@@ -472,6 +476,144 @@
             "Name": "GoalPosition",
             "Systems": [],
             "isUnique": true
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "center": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "halfSize": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "BoxRenderer": [
+                    {
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureDirectory": "",
+                        "textureFileName": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "pushBackType": 1
+                    }
+                ],
+                "Material": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 20.68000030517578,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "OBBCollider": [],
+                "StageObstacle": [
+                    {
+                        "penaltyTime": 1.5
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            22.000164031982422,
+                            3.0000216960906982,
+                            22.00023078918457
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
         }
     ],
     "Systems": [
@@ -493,6 +635,9 @@
             },
             "ChangeSceneByButton": {
                 "Priority": 1
+            },
+            "ColliderRenderingSystem": {
+                "Priority": 100
             },
             "CollisionCheckSystem": {
                 "Priority": 0
@@ -550,6 +695,12 @@
             },
             "ParticleRenderSystem": {
                 "Priority": 3
+            },
+            "PenaltySystem": {
+                "Priority": 0
+            },
+            "PenaltyTimeSpriteUpdate": {
+                "Priority": 0
             },
             "PlayerInputSystem": {
                 "Priority": 1
@@ -627,7 +778,7 @@
                 "Priority": 7
             },
             "TimerForSprite": {
-                "Priority": 0
+                "Priority": 1
             },
             "TrailEffectInitialize": {
                 "Priority": 100

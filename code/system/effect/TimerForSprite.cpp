@@ -54,7 +54,7 @@ void TimerForSprite::Finalize() {}
 void TimerForSprite::UpdateEntity(Entity* _entity) {
     auto timerComponent          = GetComponent<TimerComponent>(_entity);
     auto timerForSpriteComponent = GetComponent<TimerForSpriteComponent>(_entity);
-    if (!timerComponent) {
+    if (!timerComponent || !timerForSpriteComponent) {
         return; // タイマーコンポーネントがない場合は何もしない
     }
 

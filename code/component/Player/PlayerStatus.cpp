@@ -49,6 +49,8 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity*
         ImGui::TreePop();
     }
 
+    ImGui::Spacing();
+
     if (ImGui::TreeNode("CoolTime")) {
         DragGuiCommand("gearUpCoolTime", baseGearupCoolTime_);
         DragGuiCommand("coolTimeAddRateBase", coolTimeAddRateBase_);
@@ -69,10 +71,18 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity*
         ImGui::TreePop();
     }
 
+    DragGuiCommand("invincibilityTime", invincibilityTime_);
+
+    ImGui::Spacing();
+
     DragGuiCommand("directionInterpolateRate", directionInterpolateRate_);
+
+    ImGui::Spacing();
 
     DragGuiCommand("jumpPower", jumpPower_);
     DragGuiCommand("fallPower", fallPower_);
+
+    ImGui::Spacing();
 
     DragGuiCommand("wallRunRate", wallRunRate_);
     DragGuiCommand("wallRunRampUpTime", wallRunRampUpTime_, 0.01f);

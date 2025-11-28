@@ -5,6 +5,7 @@
 #include <deque>
 
 /// math
+#include "math/MyEasing.h"
 #include "math/Vector3.h"
 
 /// <summary>
@@ -24,22 +25,28 @@ public:
     void Finalize() override;
 
 public:
+    bool isCrossMesh_       = true;
+    EaseType widthEaseType_ = EaseType::EaseInOutSine;
+    EaseType uvEaseType_    = EaseType::EaseInOutSine;
+
     int32_t capacity_      = 100;
     int32_t segmentDivide_ = 16;
 
-    Vec2f startUv_         = Vec2f(0.0f, 0.0f);
-    Vec2f endUv_           = Vec2f(1.0f, 1.0f); // endは splineの最長時のメッシュに依存する
-    float segmentLength_   = 0.5f;
-    float width_           = 0.2f;
+    Vec2f startUv_       = Vec2f(0.0f, 0.0f);
+    Vec2f endUv_         = Vec2f(1.0f, 1.0f); // endは splineの最長時のメッシュに依存する
+    float segmentLength_ = 0.5f;
+    float startWidth_    = 0.2f;
+    float endWidth_      = 0.2f;
 
     float fadeoutTime_  = 0.5f;
     float fadeoutTimer_ = 0.f;
 
     std::deque<Vec3f> points_;
 
+public:
     /// <summary>
     /// 制御点を追加する(capacityを超過した場合,popfrontされる)
     /// </summary>
     /// <param name="_point"></param>
-    void pushPoint(const Vec3f& _point);
+    void PushPoint(const Vec3f& _point);
 };

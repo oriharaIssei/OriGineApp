@@ -228,6 +228,7 @@
     <ClInclude Include="code\component\stage\StageObstacle.h" />
     <ClInclude Include="code\system\initialize\TakeToGoalPosition.h" />
     <ClInclude Include="code\system\transition\PenaltySystem.h" />
+    <ClInclude Include="code\system\effect\PenaltyTimeSpriteUpdate.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -414,5 +415,6 @@
     <ClCompile Include="code\component\stage\StageObstacle.cpp" />
     <ClCompile Include="code\system\initialize\TakeToGoalPosition.cpp" />
     <ClCompile Include="code\system\transition\PenaltySystem.cpp" />
+    <ClCompile Include="code\system\effect\PenaltyTimeSpriteUpdate.cpp" />
   </ItemGroup>
 </Project>

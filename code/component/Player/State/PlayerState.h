@@ -154,6 +154,30 @@ public:
     bool IsPenalty() const {
         return stateFlag_.Current().HasFlag(PlayerStateFlag::IS_PENALTY);
     }
+    float GetPenaltyTime() const {
+        return penaltyTime_;
+    }
+    void SetPenaltyTime(float _time) {
+        penaltyTime_ = _time;
+    }
+    void SubtractPenaltyTime(float _time) {
+        penaltyTime_ -= _time;
+        if (penaltyTime_ < 0.0f) {
+            penaltyTime_ = 0.0f;
+        }
+    }
+    float GetInvincibilityTime() const {
+        return invincibility_;
+    }
+    void SetInvincibilityTime(float _time) {
+        invincibility_ = _time;
+    }
+    void SubtractInvincibilityTime(float _time) {
+        invincibility_ -= _time;
+        if (invincibility_ < 0.0f) {
+            invincibility_ = 0.0f;
+        }
+    }
 
     bool IsRestart() const {
         return stateFlag_.Current().HasFlag(PlayerStateFlag::IS_RESTART);

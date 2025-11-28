@@ -1,14 +1,38 @@
 #include "PenaltySystem.h"
 
+/// engine
+#include "Engine.h"
+#include "winApp/WinApp.h"
+
 /// component
+#include "component/animation/MaterialAnimation.h"
+#include "component/animation/SpriteAnimation.h"
 #include "component/player/state/PlayerState.h"
+#include "component/renderer/Sprite.h"
 #include "component/TimerComponent.h"
+
+/// system
+#include "system/SystemRunner.h"
+
+#include "system/effect/PenaltyTimeSpriteUpdate.h"
+#include "system/effect/SpriteAnimationSystem.h"
+#include "system/effect/TimerForSprite.h"
+
+/// math
+#include "math/mathEnv.h"
 
 PenaltySystem::PenaltySystem() : ISystem(SystemCategory::StateTransition) {}
 PenaltySystem::~PenaltySystem() {}
 
-void PenaltySystem::Initialize() {}
-void PenaltySystem::Finalize() {}
+void PenaltySystem::Initialize() {
+    createSpriteFromTimerSystem_ = std::make_unique<CreateSpriteFromTimer>();
+    createSpriteFromTimerSystem_->SetScene(GetScene());
+    createSpriteFromTimerSystem_->Initialize();
+}
+void PenaltySystem::Finalize() {
+    createSpriteFromTimerSystem_->Finalize();
+    createSpriteFromTimerSystem_.reset();
+}
 
 void PenaltySystem::UpdateEntity(Entity* _entity) {
     auto* playerState = GetComponent<PlayerState>(_entity);
@@ -29,4 +53,60 @@ void PenaltySystem::UpdateEntity(Entity* _entity) {
     }
     TimerComponent* timer = GetComponent<TimerComponent>(tierEntity);
     timer->SetCurrentTime(timer->GetTime() - penaltyTime);
+
+    /// ペナルティー時間を表示する
+    int32_t penaltyTimeUIEntityId = CreateEntity("PenaltyTimeUI");
+    Entity* penaltyTimeUIEntity   = GetEntity(penaltyTimeUIEntityId);
+    // Penaltyを表す時間
+    TimerComponent penaltyTimer = TimerComponent();
+    penaltyTimer.SetMaxTime(penaltyTime);
+    penaltyTimer.SetCurrentTime(penaltyTime);
+
+    // 情報だけ持つ事前コンポーネントから情報をコピー
+    Entity* forSpriteDataEntity              = GetUniqueEntity("PenaltyTimerForSprite");
+    TimerForSpriteComponent* forSpriteData   = GetComponent<TimerForSpriteComponent>(forSpriteDataEntity);
+    TimerForSpriteComponent timer4SpriteComp = *forSpriteData;
+    timer4SpriteComp.SetSpritesEntityId(penaltyTimeUIEntityId);
+
+    // 桁数を設定
+    int digitIntegralCount = (std::max)(CountIntegralDigits<float, int>(penaltyTime), timer4SpriteComp.GetDigitIntegerForSprite());
+    int decimalCount      = (std::max)(CountDecimalDigits<float, int>(penaltyTime), timer4SpriteComp.GetDigitDecimalForSprite());
+
+    timer4SpriteComp.SetDigitForSprite(digitIntegralCount + decimalCount);
+    timer4SpriteComp.SetDigitIntegerForSprite(digitIntegralCount);
+    timer4SpriteComp.SetDigitDecimalForSprite(decimalCount);
+
+    /// コンポーネントを追加
+    AddComponent<TimerComponent>(penaltyTimeUIEntity, penaltyTimer, false);
+    AddComponent<TimerForSpriteComponent>(penaltyTimeUIEntity, timer4SpriteComp);
+
+    /// スプライトを作成
+    createSpriteFromTimerSystem_->CreateSprites(penaltyTimeUIEntity, &timer4SpriteComp);
+    // animationを設定
+    auto sprites = GetComponents<SpriteRenderer>(penaltyTimeUIEntity);
+    if (!sprites) {
+        return;
+    }
+
+    SpriteAnimation animation = *GetComponent<SpriteAnimation>(forSpriteDataEntity);
+    animation.PlayStart();
+    int32_t spriteIndex = 0;
+    for (auto& sprite : *sprites) {
+        // それぞれの位置からアニメーションするように
+        for (auto& translate : animation.GetTranslateCurve()) {
+            translate.value += sprite.GetTranslate();
+        }
+
+        animation.SetSpriteComponentIndex(spriteIndex);
+        AddComponent<SpriteAnimation>(penaltyTimeUIEntity, animation);
+
+        ++spriteIndex;
+    }
+
+    { /// system に登録
+        auto systemRunner = GetScene()->GetSystemRunnerRef();
+        systemRunner->RegisterEntity<PenaltyTimeSpriteUpdate>(penaltyTimeUIEntity);
+        systemRunner->RegisterEntity<TimerForSprite>(penaltyTimeUIEntity);
+        systemRunner->RegisterEntity<SpriteAnimationSystem>(penaltyTimeUIEntity);
+    }
 }

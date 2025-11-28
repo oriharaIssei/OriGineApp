@@ -52,7 +52,7 @@ void PlayerPathSplineGenerator::UpdateEntity(Entity* _entity) {
         if (splinePoints->points_.size() < 4) {
             int32_t diff = 4 - static_cast<int32_t>(splinePoints->points_.size());
             for (int32_t i = 0; i < diff; ++i) {
-                splinePoints->pushPoint(newPoint);
+                splinePoints->PushPoint(newPoint);
             }
         }
 
@@ -77,7 +77,7 @@ void PlayerPathSplineGenerator::UpdateEntity(Entity* _entity) {
             if (segmentsToAdd < kSkipThreshold) {
                 for (int32_t i = 1; i <= segmentsToAdd; ++i) {
                     Vec3f dividedPoint = lastPoint + direction * (segLen * static_cast<float>(i));
-                    splinePoints->pushPoint(dividedPoint);
+                    splinePoints->PushPoint(dividedPoint);
                 }
             }
         }

@@ -13,6 +13,8 @@
 #include "component/SceneChanger.h"
 #include "component/TimerComponent.h"
 
+#include "component/material/Material.h"
+
 #include "component/stage/StageData.h"
 
 #include "component/player/PlayerStatus.h"
@@ -23,6 +25,9 @@
 
 #include "component/Camera/CameraController.h"
 #include "component/transform/CameraTransform.h"
+
+/// math
+#include "math/MyEasing.h"
 
 void TransitionPlayerState::UpdateEntity(Entity* _entity) {
     PlayerState* state = GetComponent<PlayerState>(_entity);
@@ -89,7 +94,7 @@ void TransitionPlayerState::UpdateEntity(Entity* _entity) {
     moveStateFlag.Set(state->GetPlayerMoveState()->TransitionState());
 
     // 状態が変わった場合、状態を更新
-    if (moveStateFlag.IsTrigger()) {
+    if (moveStateFlag.IsChanged()) {
         state->GetPlayerMoveState()->Finalize();
 
         state->SetPlayerMoveState(CreatePlayerMoveStateByEnum(moveStateFlag.Current().ToEnum(), this->GetScene(), _entity->GetID()));
@@ -113,5 +118,31 @@ void TransitionPlayerState::UpdateEntity(Entity* _entity) {
     }
 
     // state Update
-    state->GetStateFlagRef().Sync();
+    EnumBitmask<PlayerStateFlag> newFlag = state->GetStateFlagRef().Current();
+    newFlag.ClearFlag(PlayerStateFlag::GEAR_UP);
+    newFlag.ClearFlag(PlayerStateFlag::IS_GOAL);
+    newFlag.ClearFlag(PlayerStateFlag::IS_PENALTY);
+    newFlag.ClearFlag(PlayerStateFlag::IS_RESTART);
+
+    state->GetStateFlagRef().Set(newFlag);
+
+    ///! Penalty専用のエフェクトシステムを作る
+    // ペナルティ時間 更新
+    state->SubtractPenaltyTime(GetMainDeltaTime());
+    float currentInvisibleTime = state->GetInvincibilityTime();
+    if (currentInvisibleTime > 0.f) {
+        constexpr float kAmplitude = 13.f;
+        state->SubtractInvincibilityTime(GetMainDeltaTime());
+
+        PlayerStatus* playerStatus = GetComponent<PlayerStatus>(_entity);
+
+        // animation 更新
+        Material* material = GetComponent<Material>(_entity);
+        float t            = currentInvisibleTime / playerStatus->GetInvincibilityTime();
+        // 0~1 の間で 点滅させる
+        material->color_[A] = std::clamp(EaseInSine((sinf(t * kAmplitude) * 0.5f) + 0.5f), 0.f, 1.f);
+    } else {
+        Material* material  = GetComponent<Material>(_entity);
+        material->color_[A] = 1.f;
+    }
 }

@@ -18,5 +18,6 @@ void TakeToGoalPosition::UpdateEntity(Entity* _entity) {
         Transform* goalPos = GetComponent<Transform>(goalPositionEntity);
 
         transform->translate = goalPos->GetWorldTranslate();
+        transform->UpdateMatrix();
     }
 }

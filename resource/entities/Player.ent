@@ -402,8 +402,8 @@
                 ],
                 "translate": [
                     0.0,
-                    3.0,
-                    3.0
+                    6.42143440246582,
+                    0.0
                 ]
             }
         ]
@@ -429,6 +429,10 @@
         {
             "SystemCategory": 7,
             "SystemName": "DissolveEffect"
+        },
+        {
+            "SystemCategory": 2,
+            "SystemName": "PenaltySystem"
         },
         {
             "SystemCategory": 5,

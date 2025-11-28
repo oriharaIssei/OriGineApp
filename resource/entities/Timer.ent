@@ -65,17 +65,17 @@
                     0.0,
                     10.0
                 ],
-                "numbersTexturePath": "./application/resource/Texture//timerNumbers.png",
+                "numbersTexturePath": "./application/resource/Texture//NumbersUI.png",
                 "offset": [
-                    0.5,
-                    0.5
-                ],
-                "spriteMarginDecimal": [
                     0.0,
                     0.0
                 ],
+                "spriteMarginDecimal": [
+                    -0.30000001192092896,
+                    0.0
+                ],
                 "spriteMarginInteger": [
-                    0.0,
+                    -0.8999999761581421,
                     0.0
                 ],
                 "spriteSizeDecimal": [

@@ -81,7 +81,6 @@ void MyGame::Initialize(const std::vector<std::string>& _commandLines) {
     recorder_->Initialize(sceneManager_->GetStartupSceneName());
     // 初期化時の入力を記録
     if (isRecording_ == true) {
-        InputManager* inputManager = InputManager::GetInstance();
         recorder_->RecordFrame(engine_->GetDeltaTime(),
             inputManager->GetKeyboard(),
             inputManager->GetMouse(),

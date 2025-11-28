@@ -8,6 +8,7 @@
 
 #include "component/stage/StageObstacle.h"
 
+#include "component/player/PlayerStatus.h"
 #include "component/player/state/PlayerState.h"
 
 #include "component/TimerComponent.h"
@@ -30,7 +31,8 @@ void PlayerOnCollision::UpdateEntity(Entity* _entity) {
         return;
     }
 
-    bool isPenalty = false;
+    bool isPenalty    = false;
+    float penaltyTime = 0.f;
 
     // 毎フレーム、地面・壁との衝突状態をリセット
     state->OffCollisionGround();
@@ -55,11 +57,10 @@ void PlayerOnCollision::UpdateEntity(Entity* _entity) {
         StageObstacle* obstacle = GetComponent<StageObstacle>(collidedEntity);
         if (obstacle != nullptr) {
             // 障害物と衝突した場合は、ペナルティ時間を加算する
-            auto* timer = GetComponent<TimerComponent>(_entity);
-            timer->SetCurrentTime(timer->GetTime() + obstacle->GetPenaltyTime());
+            if (!isPenalty) {
+                penaltyTime = obstacle->GetPenaltyTime();
+            }
             isPenalty = true;
-
-            continue;
         }
 
         if (collNormal[Y] > kGroundCheckThreshold) {
@@ -89,7 +90,7 @@ void PlayerOnCollision::UpdateEntity(Entity* _entity) {
 
     // ペナルティ状態を更新
     if (isPenalty) {
-        auto& flag = state->GetStateFlagRef();
-        flag.SetCurrent(flag.Current() | PlayerStateFlag::IS_PENALTY);
+        PlayerStatus* status = GetComponent<PlayerStatus>(_entity);
+        state->OnCollisionObstacle(penaltyTime, status->GetInvincibilityTime());
     }
 }

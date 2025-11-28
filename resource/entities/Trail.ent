@@ -59,11 +59,11 @@
                 "effectEntityIdList": [
                     {
                         "effectType": 0,
-                        "entityID": 15
+                        "entityID": 19
                     },
                     {
                         "effectType": 2,
-                        "entityID": 17
+                        "entityID": 21
                     }
                 ],
                 "isActive": true,
@@ -106,14 +106,18 @@
                     1.0,
                     1.0
                 ],
+                "endWidth": 0.44999998807907104,
                 "fadeoutTime": 0.029999999329447746,
+                "isCrossMesh": true,
                 "segmentDivide": 16,
                 "segmentLength": 0.5899999737739563,
                 "startUv": [
                     0.0,
                     0.0
                 ],
-                "width": 0.44999998807907104
+                "startWidth": 0.44999998807907104,
+                "uvEaseType": 1,
+                "widthEaseType": 2
             }
         ],
         "Transform": [
