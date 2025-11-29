@@ -1,15 +1,13 @@
 #include "SettingGameCameraTarget.h"
 
 /// engine
-#define ENGINE_ECS
-#include "EngineInclude.h"
+#include "camera/CameraManager.h"
 
-/// app
 // component
-#include "component/Camera/CameraController.h"
+#include "component/camera/CameraController.h"
+#include "component/transform/CameraTransform.h"
 
-void SettingGameCameraTarget::Initialize() {
-}
+void SettingGameCameraTarget::Initialize() {}
 
 void SettingGameCameraTarget::Update() {
     Entity* playerEntity = GetUniqueEntity("Player");
@@ -20,6 +18,8 @@ void SettingGameCameraTarget::Update() {
         if (cameraController) {
             cameraController->SetFollowTarget(GetComponent<Transform>(playerEntity));
         }
+        CameraTransform* cameraTransform = GetComponent<CameraTransform>(cameraEntity);
+        CameraManager::GetInstance()->SetTransform(*cameraTransform);
     }
 }
 

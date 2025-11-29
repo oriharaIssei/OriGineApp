@@ -42,6 +42,10 @@
                     [
                         "./application/resource/entities",
                         "PenaltyTimerForSprite"
+                    ],
+                    [
+                        "./application/resource/entities",
+                        "StartTimer"
                     ]
                 ]
             }

@@ -4,7 +4,7 @@
 #include "component/effect/MaterialEffectPipeLine.h"
 #include "component/effect/post/DissolveEffectParam.h"
 #include "component/effect/post/DistortionEffectParam.h"
-#include "component/effect/post/GradationTextureComponent.h"
+#include "component/effect/post/GradationComponent.h"
 
 /// externals
 #include "logger/Logger.h"
@@ -62,7 +62,7 @@ void TrailEffectInitialize::UpdateEntity(Entity* _entity) {
             return;
         }
         auto gradationTextureComponent =
-            GetComponent<GradationTextureComponent>(gradationEntity);
+            GetComponent<GradationComponent>(gradationEntity);
         // trailに Gradationを設定
         if (gradationTextureComponent) {
             materialEffectPipeLine->AddEffectEntity(

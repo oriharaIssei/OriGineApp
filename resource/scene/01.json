@@ -100,8 +100,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -113,8 +113,8 @@
                             1.0
                         ],
                         "size": [
-                            48.0,
-                            48.000003814697266
+                            72.0,
+                            72.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -126,8 +126,8 @@
                             16.0
                         ],
                         "translate": [
-                            72.95999908447266,
-                            30.96000099182129
+                            109.44000244140625,
+                            46.44000244140625
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -159,8 +159,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -172,8 +172,8 @@
                             1.0
                         ],
                         "size": [
-                            48.0,
-                            48.000003814697266
+                            72.0,
+                            72.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -185,8 +185,8 @@
                             16.0
                         ],
                         "translate": [
-                            72.95999908447266,
-                            30.96000099182129
+                            109.44000244140625,
+                            46.44000244140625
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -210,7 +210,7 @@
                 "SubScene": [
                     {
                         "isActive": false,
-                        "renderingPriority": 0,
+                        "renderingPriority": 1,
                         "sceneName": "menu"
                     }
                 ]
@@ -356,6 +356,10 @@
                             [
                                 "./application/resource/entities",
                                 "PenaltyTimerForSprite"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "StartTimer"
                             ]
                         ]
                     }
@@ -627,11 +631,14 @@
             "ButtonInputSystem": {
                 "Priority": 0
             },
+            "CameraActionSystem": {
+                "Priority": 0
+            },
             "CameraInitialize": {
                 "Priority": 1
             },
             "CameraInputSystem": {
-                "Priority": 3
+                "Priority": 0
             },
             "ChangeSceneByButton": {
                 "Priority": 1
@@ -673,10 +680,7 @@
                 "Priority": 6
             },
             "FollowCameraUpdateSystem": {
-                "Priority": 1
-            },
-            "GoalShellEffectInitialize": {
-                "Priority": 100
+                "Priority": 4
             },
             "LineRenderSystem": {
                 "Priority": 0
@@ -691,7 +695,7 @@
                 "Priority": 0
             },
             "MoveSystemByRigidBody": {
-                "Priority": 10
+                "Priority": 5
             },
             "ParticleRenderSystem": {
                 "Priority": 3
@@ -703,7 +707,7 @@
                 "Priority": 0
             },
             "PlayerInputSystem": {
-                "Priority": 1
+                "Priority": 0
             },
             "PlayerMoveSystem": {
                 "Priority": 3
@@ -752,6 +756,12 @@
             },
             "SpriteRenderSystem": {
                 "Priority": 5
+            },
+            "StartSequenceSystem": {
+                "Priority": 1
+            },
+            "StartTimerInitialize": {
+                "Priority": 3
             },
             "SubSceneActivateByButton": {
                 "Priority": 0

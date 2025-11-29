@@ -38,6 +38,7 @@
 #include "system/initialize/GoalEffectInitialize.h"
 #include "system/initialize/GoalShellEffectInitialize.h"
 #include "system/initialize/SettingGameCameraTarget.h"
+#include "system/initialize/StartTimerInitialize.h"
 #include "system/initialize/TakePlayerToStartPosition.h"
 #include "system/initialize/TakeToGoalPosition.h"
 #include "system/initialize/TrailEffectInitialize.h"
@@ -50,6 +51,7 @@
 #include "system/movement/PlayerMoveSystem.h"
 #include "system/movement/PlayerPathSplineGenerator.h"
 #include "system/movement/PlayerUpdateOnTitle.h"
+#include "system/movement/StartSequenceSystem.h"
 #include "system/transition/ApplyMouseConditionSystem.h"
 #include "system/transition/ButtonGroupSystem.h"
 #include "system/transition/ChangeSceneByButton.h"
@@ -99,6 +101,7 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<PointLight>();
     componentRegistry->RegisterComponent<SpotLight>();
 
+    componentRegistry->RegisterComponent<CameraAction>();
     componentRegistry->RegisterComponent<ModelNodeAnimation>();
     componentRegistry->RegisterComponent<PrimitiveNodeAnimation>();
     componentRegistry->RegisterComponent<SkinningAnimationComponent>();
@@ -120,7 +123,7 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<VignetteParam>();
     componentRegistry->RegisterComponent<SpeedlineEffectParam>();
     componentRegistry->RegisterComponent<MaterialEffectPipeLine>();
-    componentRegistry->RegisterComponent<GradationTextureComponent>();
+    componentRegistry->RegisterComponent<GradationComponent>();
 
     componentRegistry->RegisterComponent<ModelMeshRenderer>();
     componentRegistry->RegisterComponent<LineRenderer>();
@@ -163,6 +166,8 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<RegisterWindowResizeEvent>();
     systemRegistry->RegisterSystem<TrailEffectInitialize>();
 
+    systemRegistry->RegisterSystem<StartTimerInitialize>();
+
     systemRegistry->RegisterSystem<GoalEffectInitialize>();
     systemRegistry->RegisterSystem<GoalShellEffectInitialize>();
 
@@ -197,9 +202,9 @@ void RegisterUsingSystems() {
     /// =================================================================================================
     // Movement
     /// =================================================================================================
-    systemRegistry->RegisterSystem<MoveSystemByRigidBody>();
-    systemRegistry->RegisterSystem<SubSceneUpdate>();
     systemRegistry->RegisterSystem<BillboardTransform>();
+
+    systemRegistry->RegisterSystem<MoveSystemByRigidBody>();
     systemRegistry->RegisterSystem<FollowCameraUpdateSystem>();
     systemRegistry->RegisterSystem<PlayerMoveSystem>();
 
@@ -207,6 +212,9 @@ void RegisterUsingSystems() {
 
     systemRegistry->RegisterSystem<PlayerPathSplineGenerator>();
 
+    systemRegistry->RegisterSystem<StartSequenceSystem>();
+
+    systemRegistry->RegisterSystem<SubSceneUpdate>();
     systemRegistry->RegisterSystem<MenuUpdate>();
 
     /// =================================================================================================
@@ -222,17 +230,21 @@ void RegisterUsingSystems() {
     // Effect
     /// =================================================================================================
     systemRegistry->RegisterSystem<EmitterWorkSystem>();
+    systemRegistry->RegisterSystem<GpuParticleEmitterWorkSystem>();
+
     systemRegistry->RegisterSystem<PrimitiveNodeAnimationWorkSystem>();
     systemRegistry->RegisterSystem<SkinningAnimationSystem>();
     systemRegistry->RegisterSystem<SpriteAnimationSystem>();
-    systemRegistry->RegisterSystem<GpuParticleEmitterWorkSystem>();
     systemRegistry->RegisterSystem<MaterialAnimationWorkSystem>();
+    systemRegistry->RegisterSystem<CameraActionSystem>();
+
     systemRegistry->RegisterSystem<MaterialEffect>();
     systemRegistry->RegisterSystem<CreateMeshFromSpline>();
-    systemRegistry->RegisterSystem<PenaltyTimeSpriteUpdate>();
 
     systemRegistry->RegisterSystem<EffectOnPlayerGearup>();
     systemRegistry->RegisterSystem<EffectOnPlayerRun>();
+
+    systemRegistry->RegisterSystem<PenaltyTimeSpriteUpdate>();
 
     /// =================================================================================================
     // Render
