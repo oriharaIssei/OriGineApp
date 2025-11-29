@@ -32,6 +32,7 @@
 #include "system/effect/EffectOnPlayerRun.h"
 #include "system/effect/PenaltyTimeSpriteUpdate.h"
 #include "system/effect/TimerForSprite.h"
+#include "system/initialize/BackFireInitialize.h"
 #include "system/initialize/CreateSpriteFromTimer.h"
 #include "system/initialize/CreateStage.h"
 #include "system/initialize/GetClearTime.h"
@@ -168,8 +169,7 @@ void RegisterUsingSystems() {
 
     systemRegistry->RegisterSystem<StartTimerInitialize>();
 
-    systemRegistry->RegisterSystem<GoalEffectInitialize>();
-    systemRegistry->RegisterSystem<GoalShellEffectInitialize>();
+    systemRegistry->RegisterSystem<BackFireInitialize>();
 
     systemRegistry->RegisterSystem<TakePlayerToStartPosition>();
     systemRegistry->RegisterSystem<TakeToGoalPosition>();

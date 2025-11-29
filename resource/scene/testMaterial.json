@@ -128,9 +128,9 @@
                 "Transform": [
                     {
                         "rotate": [
-                            -0.0,
                             0.0,
-                            -0.0,
+                            0.0,
+                            0.0,
                             1.0
                         ],
                         "scale": [
@@ -141,7 +141,7 @@
                         "translate": [
                             0.0,
                             0.0,
-                            10.239999771118164
+                            0.0
                         ]
                     }
                 ]
@@ -197,7 +197,7 @@
                             1.0
                         ],
                         "uvTranslate": [
-                            0.38644036650657654,
+                            0.7927960157394409,
                             0.0
                         ]
                     }
@@ -297,7 +297,7 @@
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.5097876787185669
+                            0.8090239763259888
                         ]
                     }
                 ],
@@ -344,7 +344,7 @@
                     {
                         "centerUv": [
                             0.0,
-                            0.20999999344348907
+                            0.47999998927116394
                         ],
                         "colorChannel": 3,
                         "direction": [
@@ -353,8 +353,8 @@
                         ],
                         "gradationType": 0,
                         "isActive": true,
-                        "pow": 3.509999990463257,
-                        "scale": 3.0
+                        "pow": 2.7799999713897705,
+                        "scale": 3.1700000762939453
                     }
                 ],
                 "Material": [
@@ -404,8 +404,8 @@
                         "textureDirectory": "",
                         "textureFileName": "",
                         "topRadius": [
-                            1.2999999523162842,
-                            1.2999999523162842
+                            1.100000023841858,
+                            1.100000023841858
                         ],
                         "transform": {
                             "rotate": [
@@ -474,10 +474,10 @@
                 "Transform": [
                     {
                         "rotate": [
-                            -0.0,
-                            -0.9711712598800659,
-                            -0.0,
-                            0.23838286101818085
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
                         ],
                         "scale": [
                             1.0,
@@ -487,7 +487,7 @@
                         "translate": [
                             0.0,
                             0.0,
-                            10.239999771118164
+                            0.0
                         ]
                     }
                 ]
@@ -543,7 +543,7 @@
                             0.17000000178813934
                         ],
                         "uvTranslate": [
-                            0.006410399917513132,
+                            0.7927960157394409,
                             0.0
                         ]
                     }
@@ -602,6 +602,18 @@
                 }
             ],
             "isUnique": false
+        },
+        {
+            "Components": {
+                "EntityReferenceList": [
+                    {
+                        "entityFileList": []
+                    }
+                ]
+            },
+            "Name": "BackFireRecipe",
+            "Systems": [],
+            "isUnique": true
         }
     ],
     "Systems": [
@@ -631,6 +643,9 @@
                 "Priority": 5
             },
             "RegisterWindowResizeEvent": {
+                "Priority": 0
+            },
+            "ResolveEntityReferences": {
                 "Priority": 0
             },
             "SceneTransition": {

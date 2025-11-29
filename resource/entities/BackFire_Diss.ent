@@ -1,0 +1,72 @@
+{
+    "Components": {
+        "DissolveEffectParam": [
+            {
+                "edgeWidth": 0.006000000052154064,
+                "isActive": true,
+                "materialIndex": 0,
+                "outLineColor": [
+                    0.28270041942596436,
+                    0.28270041942596436,
+                    0.28270041942596436,
+                    1.0
+                ],
+                "textureFilePath": "",
+                "threshold": 0.008999999612569809
+            }
+        ],
+        "Material": [
+            {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "enableLighting": false,
+                "shininess": 0.0,
+                "specularColor": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "uvRotate": 0.0,
+                "uvScale": [
+                    1.0,
+                    1.0
+                ],
+                "uvTranslate": [
+                    0.7929423451423645,
+                    0.0
+                ]
+            }
+        ],
+        "MaterialAnimation": [],
+        "MaterialEffectPipeLine": [
+            {
+                "baseTexturePath": "./application/resource/Texture/waveMask.png",
+                "effectEntityIdList": [
+                    {
+                        "effectType": 1,
+                        "entityID": 27
+                    },
+                    {
+                        "effectType": 1,
+                        "entityID": 27
+                    }
+                ],
+                "isActive": true,
+                "materialIndex": 0,
+                "priority": 0
+            }
+        ]
+    },
+    "Name": "BackFire_Diss",
+    "Systems": [
+        {
+            "SystemCategory": 5,
+            "SystemName": "MaterialEffect"
+        }
+    ],
+    "isUnique": true
+}

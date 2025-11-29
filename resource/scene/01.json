@@ -100,8 +100,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -113,8 +113,8 @@
                             1.0
                         ],
                         "size": [
-                            72.0,
-                            72.0
+                            48.0,
+                            48.000003814697266
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -126,8 +126,8 @@
                             16.0
                         ],
                         "translate": [
-                            109.44000244140625,
-                            46.44000244140625
+                            72.95999908447266,
+                            30.96000099182129
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -159,8 +159,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -172,8 +172,8 @@
                             1.0
                         ],
                         "size": [
-                            72.0,
-                            72.0
+                            48.0,
+                            48.000003814697266
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -185,8 +185,8 @@
                             16.0
                         ],
                         "translate": [
-                            109.44000244140625,
-                            46.44000244140625
+                            72.95999908447266,
+                            30.96000099182129
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -618,12 +618,57 @@
                 }
             ],
             "isUnique": false
+        },
+        {
+            "Components": {
+                "EntityReferenceList": [
+                    {
+                        "entityFileList": [
+                            [
+                                "./application/resource/entities",
+                                "BackFire"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "BackFire_Diss"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "BackFire_Dist"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "BackFire_Grad"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "BackFireSparks"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "BackFireSparks_Diss"
+                            ]
+                        ]
+                    }
+                ]
+            },
+            "Name": "BackFireRecipe",
+            "Systems": [
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "ResolveEntityReferences"
+                }
+            ],
+            "isUnique": true
         }
     ],
     "Systems": [
         {
             "ApplyMouseConditionSystem": {
                 "Priority": 0
+            },
+            "BackFireInitialize": {
+                "Priority": 1
             },
             "BillboardTransform": {
                 "Priority": 100

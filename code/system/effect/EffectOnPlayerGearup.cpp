@@ -7,6 +7,7 @@
 
 // component
 #include "component/material/Material.h"
+
 #include "component/renderer/primitive/RingRenderer.h"
 
 #include "component/effect/particle/emitter/Emitter.h"
@@ -62,13 +63,25 @@ void EffectOnPlayerGearup::UpdateEntity(Entity* _entity) {
 
         // trailの色をGearLevelに応じて変化
         PlayerEffectControlParam* effectControlParam = GetComponent<PlayerEffectControlParam>(player);
+        Vector4f trailColor                          = effectControlParam->GetTrailColorByGearLevel(state->GetGearLevel());
         if (effectControlParam) {
             Material* material = GetComponent<Material>(GetUniqueEntity("Trail"));
             if (material) {
-                Vector4f trailColor = effectControlParam->GetTrailColorByGearLevel(state->GetGearLevel());
-                material->color_    = trailColor;
+                material->color_ = trailColor;
                 material->UpdateUvMatrix();
             }
+        }
+
+        // BackFire の色をGearLevelに応じて変化
+        Entity* backFireEntity = GetUniqueEntity("BackFire");
+        if (backFireEntity) {
+            Material* material = GetComponent<Material>(backFireEntity);
+            material->color_   = trailColor;
+        }
+        Entity* backFireSparksEntity = GetUniqueEntity("BackFireSparks");
+        if (backFireSparksEntity) {
+            Material* material = GetComponent<Material>(backFireSparksEntity);
+            material->color_   = trailColor;
         }
 
         // GearLevelに応じて衝撃波を発生

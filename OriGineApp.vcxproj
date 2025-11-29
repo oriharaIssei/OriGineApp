@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="code\system\initialize\BackFireInitialize.h" />
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\MyEditor.h" />
     <ClInclude Include="code\MyGame.h" />
@@ -209,6 +210,7 @@
     <ClInclude Include="code\system\initialize\StartTimerInitialize.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\system\initialize\BackFireInitialize.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\MyEditor.cpp" />
     <ClCompile Include="code\MyGame.cpp" />

@@ -1,0 +1,51 @@
+{
+    "Components": {
+        "GradationComponent": [
+            {
+                "centerUv": [
+                    0.0,
+                    0.0
+                ],
+                "colorChannel": 3,
+                "direction": [
+                    0.0,
+                    1.0
+                ],
+                "gradationType": 0,
+                "isActive": true,
+                "materialIndex": 0,
+                "pow": 1.1799999475479126,
+                "scale": 0.5799999833106995
+            }
+        ],
+        "Material": [
+            {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "enableLighting": false,
+                "shininess": 0.0,
+                "specularColor": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "uvRotate": 0.0,
+                "uvScale": [
+                    1.0,
+                    1.0
+                ],
+                "uvTranslate": [
+                    0.0,
+                    0.0
+                ]
+            }
+        ]
+    },
+    "Name": "BackFire_Grad",
+    "Systems": [],
+    "isUnique": true
+}

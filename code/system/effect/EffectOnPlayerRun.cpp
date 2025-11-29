@@ -7,6 +7,7 @@
 /// ECS
 // component
 #include "component/renderer/MeshRenderer.h"
+#include "component/renderer/primitive/CylinderRenderer.h"
 
 #include "component/effect/particle/emitter/Emitter.h"
 #include "component/effect/post/SpeedlineEffectParam.h"
@@ -77,6 +78,35 @@ void EffectOnPlayerRun::UpdateEntity(Entity* entity) {
 
                 effectControlParam->SetPreWheelTiltAngle(wheelTiltAngle);
             }
+        }
+    }
+
+    // BackFire を 速度によって 強さを変える
+    constexpr float kMinBackFireScaleY  = 0.36f;
+    constexpr float kMaxBackFireScaleY  = 1.89f;
+    constexpr float kMinBackFireScaleXZ = 0.74f;
+    constexpr float kMaxBackFireScaleXZ = 1.56f;
+
+    Entity* backFireEntity       = GetUniqueEntity("BackFire");
+    Entity* backFireSparksEntity = GetUniqueEntity("BackFireSparks");
+    if (backFireEntity && backFireSparksEntity) {
+        auto* backFireCylinders       = GetComponents<CylinderRenderer>(backFireEntity);
+        auto* backFireSparksCylinders = GetComponents<CylinderRenderer>(backFireSparksEntity);
+
+        float currentSpeed = rigidbody->GetVelocity().length();
+        float t            = currentSpeed / status->CalculateSpeedByGearLevel(kMaxPlayerGearLevel);
+        t                  = EaseInCubic(t);
+        float xzScale      = std::lerp(kMinBackFireScaleXZ, kMaxBackFireScaleXZ, t);
+        float yScale       = std::lerp(kMinBackFireScaleY, kMaxBackFireScaleY, t);
+
+        Vec3f newScale = Vec3f(xzScale, yScale, xzScale);
+        for (auto& cylinder : *backFireCylinders) {
+            cylinder.GetTransform().scale = newScale;
+            cylinder.GetTransform().UpdateMatrix();
+        }
+        for (auto& cylinder : *backFireSparksCylinders) {
+            cylinder.GetTransform().scale = newScale;
+            cylinder.GetTransform().UpdateMatrix();
         }
     }
 

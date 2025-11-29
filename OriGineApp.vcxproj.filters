@@ -231,6 +231,7 @@
     <ClInclude Include="code\system\effect\PenaltyTimeSpriteUpdate.h" />
     <ClInclude Include="code\system\movement\StartSequenceSystem.h" />
     <ClInclude Include="code\system\initialize\StartTimerInitialize.h" />
+    <ClInclude Include="code\system\initialize\BackFireInitialize.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -420,5 +421,6 @@
     <ClCompile Include="code\system\effect\PenaltyTimeSpriteUpdate.cpp" />
     <ClCompile Include="code\system\movement\StartSequenceSystem.cpp" />
     <ClCompile Include="code\system\initialize\StartTimerInitialize.cpp" />
+    <ClCompile Include="code\system\initialize\BackFireInitialize.cpp" />
   </ItemGroup>
 </Project>
