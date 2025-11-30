@@ -46,7 +46,7 @@ void EffectOnPlayerGearup::UpdateEntity(Entity* _entity) {
 
     shockWaveState_.playState.Sync();
     if (state->IsGearUp()) {
-        shockWaveState_.playState.Set(false);
+        shockWaveState_.playState.SetCurrent(false);
 
         Transform* transform = GetComponent<Transform>(_entity);
         transform->translate = playerTransform->translate; // Playerの位置に合わせる
@@ -86,7 +86,7 @@ void EffectOnPlayerGearup::UpdateEntity(Entity* _entity) {
 
         // GearLevelに応じて衝撃波を発生
         if (state->GetGearLevel() >= 2) {
-            shockWaveState_.playState.Set(true);
+            shockWaveState_.playState.SetCurrent(true);
             shockWaveState_.currentTime = 0.f;
         }
     }
@@ -99,9 +99,12 @@ void EffectOnPlayerGearup::UpdateShockWaveRing(Entity* _entity, Transform* _play
 
     auto& shockWaveRings = distortionEffectParam->GetDistortionObjects();
     // 更新時 以外
-    if (!shockWaveState_.playState.Current()) {
-        if (shockWaveState_.playState.IsRelease()) {
-            // shockWaveRingのを見えない位置に隠す
+    if (shockWaveState_.playState.Current()) { /// shockWave Play
+
+        // 初期化処理
+        if (shockWaveState_.playState.IsTrigger()) {
+
+            // shockWaveRingの初期化Add commentMore actions
             for (auto& [object, type] : shockWaveRings) {
                 if (type != PrimitiveType::Ring) {
                     continue;
@@ -112,40 +115,15 @@ void EffectOnPlayerGearup::UpdateShockWaveRing(Entity* _entity, Transform* _play
 
                 RingRenderer* ringRenderer = dynamic_cast<RingRenderer*>(object.get());
 
-                // 初期位置
-                ringRenderer->GetTransform().translate[Y] = -10000.f;
+                ringRenderer->GetTransform().translate    = _playerTransform->translate + shockWaveOffset_; // 初期位置を設定
+                ringRenderer->GetTransform().rotate       = _playerTransform->rotate;
+                ringRenderer->GetPrimitive().innerRadius_ = minInnerRadius_;
+                ringRenderer->GetPrimitive().outerRadius_ = minOuterRadius_;
+                ringRenderer->GetTransform().UpdateMatrix();
             }
+
+            shockWaveState_.currentTime = 0.f; // 時間をリセット
         }
-
-        return;
-    }
-
-    // 初期化処理
-    if (shockWaveState_.playState.IsTrigger()) {
-
-        // shockWaveRingの初期化Add commentMore actions
-        for (auto& [object, type] : shockWaveRings) {
-            if (type != PrimitiveType::Ring) {
-                continue;
-            }
-            if (object == nullptr) {
-                continue;
-            }
-
-            RingRenderer* ringRenderer = dynamic_cast<RingRenderer*>(object.get());
-
-            ringRenderer->GetTransform().translate    = _playerTransform->translate + shockWaveOffset_; // 初期位置を設定
-            ringRenderer->GetTransform().rotate       = _playerTransform->rotate;
-            ringRenderer->GetPrimitive().innerRadius_ = minInnerRadius_;
-            ringRenderer->GetPrimitive().outerRadius_ = minOuterRadius_;
-            ringRenderer->GetTransform().UpdateMatrix();
-        }
-
-        shockWaveState_.currentTime = 0.f; // 時間をリセット
-    }
-
-    /// shockWave Play
-    if (shockWaveState_.playState.Current()) {
 
         shockWaveState_.currentTime += GetMainDeltaTime();
         float t = shockWaveState_.currentTime / shockWaveState_.maxTime;
@@ -174,5 +152,21 @@ void EffectOnPlayerGearup::UpdateShockWaveRing(Entity* _entity, Transform* _play
             TextureMesh* mesh                         = &ringRenderer->GetMeshGroup()->back();
             ringRenderer->CreateMesh(mesh);
         }
-    };
+    } else if (!shockWaveState_.playState.IsRelease()) {
+        // shockWaveRingのを見えない位置に隠す
+        for (auto& [object, type] : shockWaveRings) {
+            if (type != PrimitiveType::Ring) {
+                continue;
+            }
+            if (object == nullptr) {
+                continue;
+            }
+
+            RingRenderer* ringRenderer = dynamic_cast<RingRenderer*>(object.get());
+
+            // 初期位置
+            ringRenderer->GetTransform().translate[Y] = -10000.f;
+            ringRenderer->GetTransform().UpdateMatrix();
+        }
+    }
 }

@@ -54,6 +54,14 @@ void PenaltySystem::UpdateEntity(Entity* _entity) {
     TimerComponent* timer = GetComponent<TimerComponent>(tierEntity);
     timer->SetCurrentTime(timer->GetTime() - penaltyTime);
 
+    // ギアレベルを下げる
+    constexpr int32_t kThresholdPenaltyLevel = 4;
+    int32_t newGearLevel                     = playerState->GetGearLevel();
+    newGearLevel                             = (std::max)((std::min)(newGearLevel, kThresholdPenaltyLevel), newGearLevel / 2);
+    playerState->SetGearLevel(newGearLevel);
+
+    playerState->GetStateFlagRef().CurrentRef().SetFlag(PlayerStateFlag::GEAR_UP);
+
     /// ペナルティー時間を表示する
     int32_t penaltyTimeUIEntityId = CreateEntity("PenaltyTimeUI");
     Entity* penaltyTimeUIEntity   = GetEntity(penaltyTimeUIEntityId);
@@ -70,7 +78,7 @@ void PenaltySystem::UpdateEntity(Entity* _entity) {
 
     // 桁数を設定
     int digitIntegralCount = (std::max)(CountIntegralDigits<float, int>(penaltyTime), timer4SpriteComp.GetDigitIntegerForSprite());
-    int decimalCount      = (std::max)(CountDecimalDigits<float, int>(penaltyTime), timer4SpriteComp.GetDigitDecimalForSprite());
+    int decimalCount       = (std::max)(CountDecimalDigits<float, int>(penaltyTime), timer4SpriteComp.GetDigitDecimalForSprite());
 
     timer4SpriteComp.SetDigitForSprite(digitIntegralCount + decimalCount);
     timer4SpriteComp.SetDigitIntegerForSprite(digitIntegralCount);

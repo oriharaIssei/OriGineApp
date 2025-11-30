@@ -74,11 +74,10 @@ void PlayerPathSplineGenerator::UpdateEntity(Entity* _entity) {
             // あまりにも離れている場合は飛ばす
             constexpr int32_t kSkipThreshold = 18;
             int32_t segmentsToAdd            = static_cast<int32_t>(distLen / segLen);
-            if (segmentsToAdd < kSkipThreshold) {
-                for (int32_t i = 1; i <= segmentsToAdd; ++i) {
-                    Vec3f dividedPoint = lastPoint + direction * (segLen * static_cast<float>(i));
-                    splinePoints->PushPoint(dividedPoint);
-                }
+            segmentsToAdd                    = std::min(segmentsToAdd, kSkipThreshold);
+            for (int32_t i = 1; i <= segmentsToAdd; ++i) {
+                Vec3f dividedPoint = lastPoint + direction * (segLen * static_cast<float>(i));
+                splinePoints->PushPoint(dividedPoint);
             }
         }
 
@@ -126,7 +125,6 @@ void PlayerPathSplineGenerator::UpdateEntity(Entity* _entity) {
 
         // fadeoutTimer リセット(次回の削除がすぐに始まるように)
         splinePoints->fadeoutTimer_ = splinePoints->fadeoutTime_;
-
     } else {
         // 古いポイントの削除処理
         if (!splinePoints->points_.empty()) {

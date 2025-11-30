@@ -19,8 +19,11 @@ void PlayerOnCollision::Initialize() {
 void PlayerOnCollision::Finalize() {
 }
 
-static const float kGroundCheckThreshold = 0.7f; // 地面と判断するための閾値
-static const float kWallCheckThreshold   = 0.3f; // 壁と判断するための閾値
+static const float kGroundCheckThreshold     = 0.7f; // 地面と判断するための閾値
+static const float kWallCheckThreshold       = 0.43f; // 壁と判断するための閾値
+static const float kParallelPenaltyThreshold = 0.07f; // 障害物と判断するための閾値
+
+constexpr float kPenaltyTime = 1.2f;
 
 void PlayerOnCollision::UpdateEntity(Entity* _entity) {
     auto* state        = GetComponent<PlayerState>(_entity);
@@ -31,8 +34,9 @@ void PlayerOnCollision::UpdateEntity(Entity* _entity) {
         return;
     }
 
-    bool isPenalty    = false;
-    float penaltyTime = 0.f;
+    bool isPenalty            = false;
+    float penaltyTime         = 0.f;
+    Vec3f penaltyObjectNormal = Vec3f(0.f, 0.f, 0.f);
 
     // 毎フレーム、地面・壁との衝突状態をリセット
     state->OffCollisionGround();
@@ -45,23 +49,18 @@ void PlayerOnCollision::UpdateEntity(Entity* _entity) {
         // ゴール と 衝突したか
         if (collidedEntity->GetDataType().find("Goal") != std::string::npos) {
             // 時間を更新しないようにする
-            auto* timer = GetComponent<TimerComponent>(_entity);
-            timer->SetStarted(false);
+            Entity* timerEntity = GetUniqueEntity("Timer");
+            if (timerEntity) {
+                auto* timer = GetComponent<TimerComponent>(timerEntity);
+                timer->SetStarted(false);
+            }
 
             // ゴールと衝突した場合は、ゴールに到達したと判断する
-            isPenalty = true;
+            state->GetStateFlagRef().CurrentRef().SetFlag(PlayerStateFlag::IS_GOAL);
             continue;
         }
 
-        // 障害物 と 衝突したか
-        StageObstacle* obstacle = GetComponent<StageObstacle>(collidedEntity);
-        if (obstacle != nullptr) {
-            // 障害物と衝突した場合は、ペナルティ時間を加算する
-            if (!isPenalty) {
-                penaltyTime = obstacle->GetPenaltyTime();
-            }
-            isPenalty = true;
-        }
+        float absCollNXZ = std::abs(collNormal[X]) + std::abs(collNormal[Z]);
 
         if (collNormal[Y] > kGroundCheckThreshold) {
             // 上方向に衝突した場合は、地面にいると判断する
@@ -74,7 +73,7 @@ void PlayerOnCollision::UpdateEntity(Entity* _entity) {
             rigidbody->SetAcceleration(acceleration);
 
             rigidbody->SetVelocity(Y, 0.f);
-        } else if (std::abs(collNormal[X]) + std::abs(collNormal[Z]) > kGroundCheckThreshold) {
+        } else if (absCollNXZ > kGroundCheckThreshold) {
             // 壁と衝突した場合
             float dotVN = rigidbody->GetVelocity().normalize().dot(collNormal);
 
@@ -82,8 +81,15 @@ void PlayerOnCollision::UpdateEntity(Entity* _entity) {
             float parallelFactor = 1.f - std::fabs(dotVN);
 
             // 壁に沿って移動している場合は壁衝突とみなす
+            // 正面衝突の場合はペナルティを与える
             if (parallelFactor > kWallCheckThreshold) {
                 state->OnCollisionWall(collNormal, entityId);
+            } else if (parallelFactor < kParallelPenaltyThreshold) { // 基準値以下なら ペナルティ
+                if (!isPenalty) {
+                    isPenalty           = true;
+                    penaltyTime         = kPenaltyTime;
+                    penaltyObjectNormal = collNormal;
+                }
             }
         }
     }
@@ -92,5 +98,14 @@ void PlayerOnCollision::UpdateEntity(Entity* _entity) {
     if (isPenalty) {
         PlayerStatus* status = GetComponent<PlayerStatus>(_entity);
         state->OnCollisionObstacle(penaltyTime, status->GetInvincibilityTime());
+
+        if (state->IsPenalty()) {
+            // 壁ジャンプの反動を与える
+            constexpr float kReflectedSpeed = 36.f;
+            Vec3f currentVelocity           = rigidbody->GetVelocity();
+            currentVelocity                 = Reflect<float>(currentVelocity, penaltyObjectNormal);
+            currentVelocity                 = currentVelocity.normalize() * std::max(kReflectedSpeed, currentVelocity.length() * 0.5f);
+            rigidbody->SetVelocity(currentVelocity);
+        }
     }
 }

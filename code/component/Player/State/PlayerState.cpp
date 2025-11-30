@@ -81,7 +81,7 @@ void PlayerState::OnCollisionObstacle(float _penaltyTime, float _invincibility) 
     stateFlag_.CurrentRef().SetFlag(PlayerStateFlag::IS_PENALTY);
     penaltyTime_ = _penaltyTime;
 
-    invincibility_ = _invincibility;
+    invincibility_           = _invincibility;
 }
 
 float PlayerState::SufferPenalty() {
