@@ -88,6 +88,10 @@
                 {
                     "SystemCategory": 2,
                     "SystemName": "ButtonGroupSystem"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "ButtonScenePreviewSystem"
                 }
             ],
             "isUnique": false
@@ -230,6 +234,13 @@
                             0.7111111283302307
                         ]
                     }
+                ],
+                "SubScene": [
+                    {
+                        "isActive": true,
+                        "renderingPriority": -1,
+                        "sceneName": "Tutorial"
+                    }
                 ]
             },
             "Name": "toTutorialButton",
@@ -249,6 +260,10 @@
                 {
                     "SystemCategory": 6,
                     "SystemName": "SpriteRenderSystem"
+                },
+                {
+                    "SystemCategory": 7,
+                    "SystemName": "SubSceneRender"
                 },
                 {
                     "SystemCategory": 2,
@@ -395,6 +410,13 @@
                             0.7111111283302307
                         ]
                     }
+                ],
+                "SubScene": [
+                    {
+                        "isActive": true,
+                        "renderingPriority": -1,
+                        "sceneName": "01"
+                    }
                 ]
             },
             "Name": "to01Stage",
@@ -414,6 +436,10 @@
                 {
                     "SystemCategory": 6,
                     "SystemName": "SpriteRenderSystem"
+                },
+                {
+                    "SystemCategory": 7,
+                    "SystemName": "SubSceneRender"
                 },
                 {
                     "SystemCategory": 2,
@@ -525,6 +551,7 @@
                 "PlaneRenderer": [
                     {
                         "blendMode": 1,
+                        "isCulling": true,
                         "isRenderer": true,
                         "materialIndex": 0,
                         "textureDirectory": "./application/resource/Texture",
@@ -623,7 +650,7 @@
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.04964158311486244
+                            0.8781150579452515
                         ]
                     }
                 ],
@@ -757,13 +784,22 @@
         },
         {
             "Components": {
-                "GradationTextureComponent": [
+                "GradationComponent": [
                     {
-                        "inputChannel": 3,
+                        "centerUv": [
+                            0.0,
+                            0.44999998807907104
+                        ],
+                        "colorChannel": 3,
+                        "direction": [
+                            0.0,
+                            1.0
+                        ],
+                        "gradationType": 0,
                         "isActive": true,
                         "materialIndex": 0,
-                        "outputChannel": 3,
-                        "texturePath": "./application/resource/Texture/gradation.png"
+                        "pow": 2.1600000858306885,
+                        "scale": 0.9200000166893005
                     }
                 ],
                 "Material": [
@@ -809,6 +845,9 @@
             "ButtonInputSystem": {
                 "Priority": 0
             },
+            "ButtonScenePreviewSystem": {
+                "Priority": 10
+            },
             "CameraInitialize": {
                 "Priority": 1
             },
@@ -816,7 +855,7 @@
                 "Priority": 3
             },
             "DissolveEffect": {
-                "Priority": 0
+                "Priority": 10
             },
             "MaterialAnimationWorkSystem": {
                 "Priority": 0
@@ -832,6 +871,9 @@
             },
             "SpriteRenderSystem": {
                 "Priority": 1
+            },
+            "SubSceneRender": {
+                "Priority": 0
             },
             "TexturedMeshRenderSystem": {
                 "Priority": 0

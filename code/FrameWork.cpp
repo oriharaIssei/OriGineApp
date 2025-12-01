@@ -19,9 +19,7 @@
 #include "component/SceneChanger.h"
 #include "component/spline/SplinePoints.h"
 #include "component/stage/StageData.h"
-#include "component/Stage/StageFloor.h"
 #include "component/stage/StageObstacle.h"
-#include "component/Stage/StageWall.h"
 #include "component/TimerComponent.h"
 
 // application system
@@ -36,8 +34,6 @@
 #include "system/initialize/CreateSpriteFromTimer.h"
 #include "system/initialize/CreateStage.h"
 #include "system/initialize/GetClearTime.h"
-#include "system/initialize/GoalEffectInitialize.h"
-#include "system/initialize/GoalShellEffectInitialize.h"
 #include "system/initialize/SettingGameCameraTarget.h"
 #include "system/initialize/StartTimerInitialize.h"
 #include "system/initialize/TakePlayerToStartPosition.h"
@@ -55,6 +51,7 @@
 #include "system/movement/StartSequenceSystem.h"
 #include "system/transition/ApplyMouseConditionSystem.h"
 #include "system/transition/ButtonGroupSystem.h"
+#include "system/transition/ButtonScenePreviewSystem.h"
 #include "system/transition/ChangeSceneByButton.h"
 #include "system/transition/ExitApplicationByButton.h"
 #include "system/transition/FallDetectionSystem.h"
@@ -198,6 +195,8 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<SubSceneDeactivateByButton>();
     systemRegistry->RegisterSystem<ExitApplicationByButton>();
     systemRegistry->RegisterSystem<PenaltySystem>();
+
+    systemRegistry->RegisterSystem<ButtonScenePreviewSystem>();
 
     /// =================================================================================================
     // Movement

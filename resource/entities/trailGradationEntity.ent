@@ -1,12 +1,21 @@
 {
     "Components": {
-        "GradationTextureComponent": [
+        "GradationComponent": [
             {
-                "inputChannel": 3,
+                "centerUv": [
+                    0.0,
+                    0.5400000214576721
+                ],
+                "colorChannel": 3,
+                "direction": [
+                    0.0,
+                    1.0
+                ],
+                "gradationType": 0,
                 "isActive": true,
                 "materialIndex": 0,
-                "outputChannel": 3,
-                "texturePath": "./application/resource/Texture/gradation.png"
+                "pow": 3.7799999713897705,
+                "scale": 1.0499999523162842
             }
         ],
         "Material": [

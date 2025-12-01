@@ -118,12 +118,19 @@ void MyGame::Run() {
 
         // シーンの更新
         sceneManager_->Update();
+        // シーンの描画 (シーンが変更されたら描画しない)
         sceneManager_->Render();
+
         // windowに描画
         Engine::GetInstance()->ScreenPreDraw();
         sceneManager_->GetCurrentScene()->GetSceneView()->DrawTexture();
         Engine::GetInstance()->ScreenPostDraw();
 
         engine_->EndFrame();
+
+        // シーン変更の実行
+        if (sceneManager_->IsChangeScene()) {
+            sceneManager_->ExecuteSceneChange();
+        }
     }
 }

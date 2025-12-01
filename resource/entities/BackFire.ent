@@ -229,7 +229,7 @@
                 ],
                 "uvRotate": 0.0,
                 "uvScale": [
-                    1.0,
+                    0.6700000166893005,
                     1.0
                 ],
                 "uvTranslate": [
@@ -273,6 +273,14 @@
                     {
                         "effectType": 2,
                         "entityID": 47
+                    },
+                    {
+                        "effectType": 0,
+                        "entityID": 82
+                    },
+                    {
+                        "effectType": 2,
+                        "entityID": 84
                     }
                 ],
                 "isActive": true,

@@ -79,7 +79,13 @@ void CreateMeshFromSpline::CreateCrossPlaneMesh(PlaneRenderer* _planeRendererCom
 
     int32_t segmentCount = static_cast<int32_t>(_splinePointsComp->points_.size() - 1);
     // enduv が splineの最長時のメッシュに依存するため,あらかじめ計算しておく
-    float allLength       = static_cast<float>(_splinePointsComp->segmentLength_ * _splinePointsComp->capacity_);
+    float allLength = 0.f;
+    for (int32_t i = 0; i < segmentCount; i++) {
+        const Vec3f& p0 = _splinePointsComp->points_[i];
+        const Vec3f& p1 = _splinePointsComp->points_[i + 1];
+        allLength += Vec3f(p1 - p0).length();
+    }
+
     float totalLength     = 0.0f;
     float prevTotalLength = 0.0f;
     for (int32_t i = 0; i < segmentCount; i++) {

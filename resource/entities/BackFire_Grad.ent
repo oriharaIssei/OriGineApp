@@ -4,7 +4,7 @@
             {
                 "centerUv": [
                     0.0,
-                    0.0
+                    0.05000000074505806
                 ],
                 "colorChannel": 3,
                 "direction": [
@@ -14,8 +14,8 @@
                 "gradationType": 0,
                 "isActive": true,
                 "materialIndex": 0,
-                "pow": 1.1799999475479126,
-                "scale": 0.5799999833106995
+                "pow": 4.210000038146973,
+                "scale": 0.6700000166893005
             }
         ],
         "Material": [
