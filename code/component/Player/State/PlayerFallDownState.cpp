@@ -6,9 +6,9 @@
 #include "component/transform/Transform.h"
 
 #include "component/physics/Rigidbody.h"
-#include "component/Player/PlayerInput.h"
-#include "component/Player/PlayerStatus.h"
-#include "component/Player/State/PlayerState.h"
+#include "component/player/PlayerInput.h"
+#include "component/player/PlayerStatus.h"
+#include "component/player/state/PlayerState.h"
 
 #include "component/Camera/CameraController.h"
 

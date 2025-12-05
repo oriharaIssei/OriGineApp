@@ -88,6 +88,10 @@
                 {
                     "SystemCategory": 2,
                     "SystemName": "ButtonGroupSystem"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "ButtonScenePreviewSystem"
                 }
             ],
             "isUnique": false
@@ -189,7 +193,7 @@
                         "isFlipX": false,
                         "isFlipY": false,
                         "isRender": true,
-                        "renderingPriority": 1,
+                        "renderingPriority": 10,
                         "rotate": 0.0,
                         "scale": [
                             1.0,
@@ -230,6 +234,13 @@
                             0.7111111283302307
                         ]
                     }
+                ],
+                "SubScene": [
+                    {
+                        "isActive": true,
+                        "renderingPriority": -1,
+                        "sceneName": "Tutorial"
+                    }
                 ]
             },
             "Name": "toTutorialButton",
@@ -249,6 +260,10 @@
                 {
                     "SystemCategory": 6,
                     "SystemName": "SpriteRenderSystem"
+                },
+                {
+                    "SystemCategory": 7,
+                    "SystemName": "SubSceneRender"
                 },
                 {
                     "SystemCategory": 2,
@@ -354,7 +369,7 @@
                         "isFlipX": false,
                         "isFlipY": false,
                         "isRender": true,
-                        "renderingPriority": 1,
+                        "renderingPriority": 10,
                         "rotate": 0.0,
                         "scale": [
                             1.0,
@@ -395,6 +410,13 @@
                             0.7111111283302307
                         ]
                     }
+                ],
+                "SubScene": [
+                    {
+                        "isActive": true,
+                        "renderingPriority": -1,
+                        "sceneName": "01"
+                    }
                 ]
             },
             "Name": "to01Stage",
@@ -414,6 +436,10 @@
                 {
                     "SystemCategory": 6,
                     "SystemName": "SpriteRenderSystem"
+                },
+                {
+                    "SystemCategory": 7,
+                    "SystemName": "SubSceneRender"
                 },
                 {
                     "SystemCategory": 2,
@@ -525,6 +551,7 @@
                 "PlaneRenderer": [
                     {
                         "blendMode": 1,
+                        "isCulling": true,
                         "isRenderer": true,
                         "materialIndex": 0,
                         "textureDirectory": "./application/resource/Texture",
@@ -623,7 +650,7 @@
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.04964158311486244
+                            0.43704861402511597
                         ]
                     }
                 ],
@@ -757,13 +784,22 @@
         },
         {
             "Components": {
-                "GradationTextureComponent": [
+                "GradationComponent": [
                     {
-                        "inputChannel": 3,
+                        "centerUv": [
+                            0.0,
+                            0.44999998807907104
+                        ],
+                        "colorChannel": 3,
+                        "direction": [
+                            0.0,
+                            1.0
+                        ],
+                        "gradationType": 0,
                         "isActive": true,
                         "materialIndex": 0,
-                        "outputChannel": 3,
-                        "texturePath": "./application/resource/Texture/gradation.png"
+                        "pow": 2.1600000858306885,
+                        "scale": 0.9200000166893005
                     }
                 ],
                 "Material": [
@@ -796,6 +832,79 @@
             "Name": "Gradation",
             "Systems": [],
             "isUnique": false
+        },
+        {
+            "Components": {
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "color": [
+                            0.10588235408067703,
+                            0.10588235408067703,
+                            0.10588235408067703,
+                            0.4313725531101227
+                        ],
+                        "defaultWindowSize": [
+                            1920.0,
+                            1080.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "isRender": true,
+                        "renderingPriority": 0,
+                        "rotate": 0.0,
+                        "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
+                            1920.0,
+                            1080.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "",
+                        "textureSize": [
+                            0.0,
+                            0.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ],
+                        "windowRatioPos": [
+                            0.0,
+                            0.0
+                        ],
+                        "windowRatioSize": [
+                            1.0,
+                            1.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "Entity",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "SpriteRenderSystem"
+                }
+            ],
+            "isUnique": false
         }
     ],
     "Systems": [
@@ -809,6 +918,9 @@
             "ButtonInputSystem": {
                 "Priority": 0
             },
+            "ButtonScenePreviewSystem": {
+                "Priority": 10
+            },
             "CameraInitialize": {
                 "Priority": 1
             },
@@ -816,7 +928,7 @@
                 "Priority": 3
             },
             "DissolveEffect": {
-                "Priority": 0
+                "Priority": 10
             },
             "MaterialAnimationWorkSystem": {
                 "Priority": 0
@@ -832,6 +944,9 @@
             },
             "SpriteRenderSystem": {
                 "Priority": 1
+            },
+            "SubSceneRender": {
+                "Priority": 0
             },
             "TexturedMeshRenderSystem": {
                 "Priority": 0

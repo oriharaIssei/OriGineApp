@@ -83,8 +83,13 @@ void to_json(nlohmann::json& j, const PlayerEffectControlParam& _p) {
 
 void from_json(const nlohmann::json& j, PlayerEffectControlParam& _p) {
     j.at("trailColorByGearLevel").get_to(_p.trailColorByGearLevel_);
-    while (_p.trailColorByGearLevel_.size() != kMaxPlayerGearLevel) {
+
+    while (_p.trailColorByGearLevel_.size() <= kMaxPlayerGearLevel) {
         _p.trailColorByGearLevel_.emplace_back(Vector4f(1.f, 1.f, 1.f, 1.f));
+    }
+
+    while (_p.trailColorByGearLevel_.size() > kMaxPlayerGearLevel) {
+        _p.trailColorByGearLevel_.pop_back();
     }
 
     j.at("rotateOffsetOnWallRun").get_to(_p.rotateOffsetOnWallRun_);

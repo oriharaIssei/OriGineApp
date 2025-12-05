@@ -1,7 +1,7 @@
 #pragma once
 
 /// parent
-#include "component/Player/State/IPlayerMoveState.h"
+#include "component/player/state/IPlayerMoveState.h"
 
 /// <summary>
 /// Playerの落下状態 (ジャンプではない)

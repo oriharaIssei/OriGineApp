@@ -72,6 +72,8 @@ private:
 
     float directionInterpolateRate_ = 0.1f;
 
+    float invincibilityTime_ = 1.0f; // 障害物に当たったときの無敵時間 /sec
+
 public:
     float GetDirectionInterpolateRate() const {
         return directionInterpolateRate_;
@@ -132,5 +134,9 @@ public:
     }
     float GetSpeedUpRateCommonRate() const {
         return speedUpRateCommonRate_;
+    }
+
+    float GetInvincibilityTime() const {
+        return invincibilityTime_;
     }
 };

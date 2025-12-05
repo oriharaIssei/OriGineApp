@@ -6,9 +6,9 @@
 #include "EngineInclude.h"
 
 // component
-#include "component/Player/PlayerInput.h"
-#include "component/Player/State/IPlayerMoveState.h"
-#include "component/Player/State/PlayerState.h"
+#include "component/player/PlayerInput.h"
+#include "component/player/state/IPlayerMoveState.h"
+#include "component/player/state/PlayerState.h"
 
 void PlayerMoveSystem::Initialize() {
 }

@@ -20,6 +20,8 @@ void TimerCountDown::Finalize() {}
 void TimerCountDown::UpdateEntity(Entity* _entity) {
     auto timerComponent = GetComponent<TimerComponent>(_entity);
     if (timerComponent) {
-        timerComponent->SetCurrentTime(timerComponent->GetCurrentTime() - GetMainDeltaTime());
+        if (timerComponent->IsStarted()) {
+            timerComponent->SetCurrentTime(timerComponent->GetTime() - GetMainDeltaTime());
+        }
     }
 }

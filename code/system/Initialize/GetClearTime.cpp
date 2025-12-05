@@ -1,7 +1,9 @@
 #include "GetClearTime.h"
 
+/// app
+#include "manager/PlayerProgressStore.h"
+
 /// component
-#include "component/Stage/Stage.h"
 #include "component/TimerComponent.h"
 
 GetClearTime::GetClearTime() : ISystem(SystemCategory::Initialize) {}
@@ -19,6 +21,9 @@ void GetClearTime::UpdateEntity(Entity* _entity) {
         return;
     }
 
-    timerComp->SetMaxTime(Stage::GetClearTime());
-    timerComp->SetCurrentTime(Stage::GetClearTime());
+    PlayerProgressStore* progressStore = PlayerProgressStore::GetInstance();
+    float clearTime                    = progressStore->GetLastPlayStageProgressData().clearTime;
+
+    timerComp->SetMaxTime(clearTime);
+    timerComp->ResetCurrentTime();
 }

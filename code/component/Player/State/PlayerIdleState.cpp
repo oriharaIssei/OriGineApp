@@ -6,9 +6,9 @@
 #include "component/physics/Rigidbody.h"
 
 #include "component/Camera/CameraController.h"
-#include "component/Player/PlayerInput.h"
-#include "component/Player/PlayerStatus.h"
-#include "component/Player/State/PlayerState.h"
+#include "component/player/PlayerInput.h"
+#include "component/player/PlayerStatus.h"
+#include "component/player/state/PlayerState.h"
 
 /// math
 #include "math/Interpolation.h"
@@ -42,6 +42,14 @@ void PlayerIdleState::Update(float _deltaTime) {
 
     // 減速
     rigidbody->SetVelocity(LerpByDeltaTime(rigidbody->GetVelocity(), Vec3f(), _deltaTime, kDecelerationRate));
+
+    // 落下時間を更新
+    auto* state = scene_->GetComponent<PlayerState>(playerEntity);
+    if (state->IsOnGround()) {
+        fallDownTimer_ = kFallDownThresholdTime_;
+    } else {
+        fallDownTimer_ -= _deltaTime;
+    }
 
     ///! TODO : ここにカメラの処理を書くべきではない
     CameraController* cameraController = scene_->GetComponent<CameraController>(scene_->GetUniqueEntity("GameCamera"));
@@ -89,7 +97,9 @@ PlayerMoveState PlayerIdleState::TransitionState() const {
 
         return PlayerMoveState::IDLE;
     } else {
-        // 空中にいる場合はジャンプ状態に遷移
-        return PlayerMoveState::FALL_DOWN;
+        if (fallDownTimer_ <= 0.f) {
+            return PlayerMoveState::FALL_DOWN;
+        }
     }
+    return PlayerMoveState::IDLE;
 }

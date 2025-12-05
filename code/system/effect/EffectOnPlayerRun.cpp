@@ -7,17 +7,18 @@
 /// ECS
 // component
 #include "component/renderer/MeshRenderer.h"
+#include "component/renderer/primitive/CylinderRenderer.h"
 
 #include "component/effect/particle/emitter/Emitter.h"
 #include "component/effect/post/SpeedlineEffectParam.h"
-#include "component/Player/PlayerEffectControlParam.h"
+#include "component/player/PlayerEffectControlParam.h"
 
 #include "component/physics/Rigidbody.h"
 #include "component/transform/Transform.h"
 
-#include "component/Player/PlayerInput.h"
-#include "component/Player/PlayerStatus.h"
-#include "component/Player/State/PlayerState.h"
+#include "component/player/PlayerInput.h"
+#include "component/player/PlayerStatus.h"
+#include "component/player/state/PlayerState.h"
 
 /// math
 #include "math/mathEnv.h"
@@ -80,6 +81,55 @@ void EffectOnPlayerRun::UpdateEntity(Entity* entity) {
         }
     }
 
+    // trailの色をGearLevelに応じて変化
+    Vector4f trailColor = effectControlParam->GetTrailColorByGearLevel(state->GetGearLevel());
+    Entity* trailEntity = GetUniqueEntity("Trail");
+    if (effectControlParam) {
+        if (trailEntity) {
+            Material* material = GetComponent<Material>(trailEntity);
+            if (material) {
+                material->color_ = trailColor;
+                material->UpdateUvMatrix();
+            }
+        }
+
+        // BackFire を 速度によって 強さを変える
+        constexpr float kMinBackFireScaleY  = 0.36f;
+        constexpr float kMaxBackFireScaleY  = 1.89f;
+        constexpr float kMinBackFireScaleXZ = 0.74f;
+        constexpr float kMaxBackFireScaleXZ = 1.56f;
+
+        // BackFire の色をGearLevelに応じて変化
+        Entity* backFireEntity       = GetUniqueEntity("BackFire");
+        Entity* backFireSparksEntity = GetUniqueEntity("BackFireSparks");
+
+        if (backFireEntity && backFireSparksEntity) {
+            Material* material = GetComponent<Material>(backFireEntity);
+            material->color_   = trailColor;
+
+            material         = GetComponent<Material>(backFireSparksEntity);
+            material->color_ = trailColor;
+
+            auto* backFireCylinders       = GetComponents<CylinderRenderer>(backFireEntity);
+            auto* backFireSparksCylinders = GetComponents<CylinderRenderer>(backFireSparksEntity);
+
+            float currentSpeed = rigidbody->GetVelocity().length();
+            float t            = currentSpeed / status->CalculateSpeedByGearLevel(kMaxPlayerGearLevel);
+            t                  = EaseInCubic(t);
+            float xzScale      = std::lerp(kMinBackFireScaleXZ, kMaxBackFireScaleXZ, t);
+            float yScale       = std::lerp(kMinBackFireScaleY, kMaxBackFireScaleY, t);
+
+            Vec3f newScale = Vec3f(xzScale, yScale, xzScale);
+            for (auto& cylinder : *backFireCylinders) {
+                cylinder.GetTransform().scale = newScale;
+                cylinder.GetTransform().UpdateMatrix();
+            }
+            for (auto& cylinder : *backFireSparksCylinders) {
+                cylinder.GetTransform().scale = newScale;
+                cylinder.GetTransform().UpdateMatrix();
+            }
+        }
+    }
     // スピードラインエフェクト
     Entity* speedlineEntity                            = GetUniqueEntity("Speedline");
     std::vector<SpeedlineEffectParam>* speedlineParams = nullptr;

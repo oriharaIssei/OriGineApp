@@ -4,20 +4,23 @@
     <Filter Include="component">
       <UniqueIdentifier>{18DEAB42-8448-60B9-CD86-115F39303E0E}</UniqueIdentifier>
     </Filter>
-    <Filter Include="component\Camera">
-      <UniqueIdentifier>{90A76536-7CA0-8488-A5D2-690D912A6494}</UniqueIdentifier>
+    <Filter Include="component\camera">
+      <UniqueIdentifier>{B0BB0A81-9CB4-29D3-C5E6-0E58B13E09DF}</UniqueIdentifier>
     </Filter>
-    <Filter Include="component\Player">
-      <UniqueIdentifier>{34847955-207D-98A7-49AF-7D2C350778B3}</UniqueIdentifier>
+    <Filter Include="component\player">
+      <UniqueIdentifier>{54981EA0-4091-3DF2-69C3-2277551B1DFE}</UniqueIdentifier>
     </Filter>
-    <Filter Include="component\Player\State">
-      <UniqueIdentifier>{848A22EA-7084-4B3C-59F1-E14C458AB1A8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="component\Stage">
-      <UniqueIdentifier>{BBBDD102-2749-3FC7-305A-C2BB9C649BC7}</UniqueIdentifier>
+    <Filter Include="component\player\state">
+      <UniqueIdentifier>{C446D10A-B040-FA5C-99AD-906D854660C9}</UniqueIdentifier>
     </Filter>
     <Filter Include="component\spline">
       <UniqueIdentifier>{72396CA7-5E32-8BF9-8764-707E73BC6A05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\stage">
+      <UniqueIdentifier>{DBCD1405-4759-82C9-506A-05BEBC74DEC9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="manager">
+      <UniqueIdentifier>{605C8DB4-CC3B-0C50-D553-972641B272B1}</UniqueIdentifier>
     </Filter>
     <Filter Include="system">
       <UniqueIdentifier>{8AE4EE1C-7686-19F3-5F41-2D474B82A043}</UniqueIdentifier>
@@ -37,9 +40,6 @@
     <Filter Include="system\movement">
       <UniqueIdentifier>{2441A495-90CC-115A-99DD-944E05E86D5A}</UniqueIdentifier>
     </Filter>
-    <Filter Include="system\render">
-      <UniqueIdentifier>{D91782B5-45D8-FDEB-0E13-47697A9242C8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="system\transition">
       <UniqueIdentifier>{6491286B-D0A7-2601-191F-B2228574F788}</UniqueIdentifier>
     </Filter>
@@ -54,65 +54,71 @@
     <ClInclude Include="code\component\ButtonGroup.h">
       <Filter>component</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\Camera\CameraController.h">
-      <Filter>component\Camera</Filter>
-    </ClInclude>
     <ClInclude Include="code\component\MouseCondition.h">
       <Filter>component</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\Player\PlayerEffectControlParam.h">
-      <Filter>component\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\Player\PlayerInput.h">
-      <Filter>component\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\Player\PlayerStatus.h">
-      <Filter>component\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\Player\State\IPlayerMoveState.h">
-      <Filter>component\Player\State</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\Player\State\PlayerDashState.h">
-      <Filter>component\Player\State</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\Player\State\PlayerFallDownState.h">
-      <Filter>component\Player\State</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\Player\State\PlayerIdleState.h">
-      <Filter>component\Player\State</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\Player\State\PlayerJumpState.h">
-      <Filter>component\Player\State</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\Player\State\PlayerMoveStateFactory.h">
-      <Filter>component\Player\State</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\Player\State\PlayerState.h">
-      <Filter>component\Player\State</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\Player\State\PlayerWallJumpState.h">
-      <Filter>component\Player\State</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\Player\State\PlayerWallRunState.h">
-      <Filter>component\Player\State</Filter>
     </ClInclude>
     <ClInclude Include="code\component\SceneChanger.h">
       <Filter>component</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\Stage\Stage.h">
-      <Filter>component\Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\Stage\StageFloor.h">
-      <Filter>component\Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\Stage\StageWall.h">
-      <Filter>component\Stage</Filter>
-    </ClInclude>
     <ClInclude Include="code\component\TimerComponent.h">
       <Filter>component</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\camera\CameraController.h">
+      <Filter>component\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\player\PlayerEffectControlParam.h">
+      <Filter>component\player</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\player\PlayerInput.h">
+      <Filter>component\player</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\player\PlayerStatus.h">
+      <Filter>component\player</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\player\state\IPlayerMoveState.h">
+      <Filter>component\player\state</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\player\state\PlayerDashState.h">
+      <Filter>component\player\state</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\player\state\PlayerFallDownState.h">
+      <Filter>component\player\state</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\player\state\PlayerIdleState.h">
+      <Filter>component\player\state</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\player\state\PlayerJumpState.h">
+      <Filter>component\player\state</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\player\state\PlayerMoveStateFactory.h">
+      <Filter>component\player\state</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\player\state\PlayerState.h">
+      <Filter>component\player\state</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\player\state\PlayerWallJumpState.h">
+      <Filter>component\player\state</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\player\state\PlayerWallRunState.h">
+      <Filter>component\player\state</Filter>
+    </ClInclude>
     <ClInclude Include="code\component\spline\SplinePoints.h">
       <Filter>component\spline</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\stage\StageData.h">
+      <Filter>component\stage</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\stage\StageFloor.h">
+      <Filter>component\stage</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\stage\StageObstacle.h">
+      <Filter>component\stage</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\stage\StageWall.h">
+      <Filter>component\stage</Filter>
+    </ClInclude>
+    <ClInclude Include="code\manager\PlayerProgressStore.h">
+      <Filter>manager</Filter>
     </ClInclude>
     <ClInclude Include="code\system\collision\PlayerOnCollision.h">
       <Filter>system\collision</Filter>
@@ -129,8 +135,14 @@
     <ClInclude Include="code\system\effect\EffectOnPlayerRun.h">
       <Filter>system\effect</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\effect\PenaltyTimeSpriteUpdate.h">
+      <Filter>system\effect</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\effect\TimerForSprite.h">
       <Filter>system\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\initialize\BackFireInitialize.h">
+      <Filter>system\initialize</Filter>
     </ClInclude>
     <ClInclude Include="code\system\initialize\CreateSpriteFromTimer.h">
       <Filter>system\initialize</Filter>
@@ -141,10 +153,22 @@
     <ClInclude Include="code\system\initialize\GetClearTime.h">
       <Filter>system\initialize</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\initialize\GoalEffectInitialize.h">
+      <Filter>system\initialize</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\initialize\GoalShellEffectInitialize.h">
+      <Filter>system\initialize</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\initialize\SettingGameCameraTarget.h">
       <Filter>system\initialize</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\initialize\StartTimerInitialize.h">
+      <Filter>system\initialize</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\initialize\TakePlayerToStartPosition.h">
+      <Filter>system\initialize</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\initialize\TakeToGoalPosition.h">
       <Filter>system\initialize</Filter>
     </ClInclude>
     <ClInclude Include="code\system\initialize\TrailEffectInitialize.h">
@@ -177,8 +201,8 @@
     <ClInclude Include="code\system\movement\PlayerUpdateOnTitle.h">
       <Filter>system\movement</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\render\StageDebugRender.h">
-      <Filter>system\render</Filter>
+    <ClInclude Include="code\system\movement\StartSequenceSystem.h">
+      <Filter>system\movement</Filter>
     </ClInclude>
     <ClInclude Include="code\system\transition\ApplyMouseConditionSystem.h">
       <Filter>system\transition</Filter>
@@ -195,10 +219,10 @@
     <ClInclude Include="code\system\transition\FallDetectionSystem.h">
       <Filter>system\transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\transition\SceneTransition.h">
+    <ClInclude Include="code\system\transition\PenaltySystem.h">
       <Filter>system\transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\transition\SetClearTime.h">
+    <ClInclude Include="code\system\transition\SceneTransition.h">
       <Filter>system\transition</Filter>
     </ClInclude>
     <ClInclude Include="code\system\transition\ShowGameUIByInputDevice.h">
@@ -222,8 +246,7 @@
     <ClInclude Include="code\system\transition\UpdateButtonColorByState.h">
       <Filter>system\transition</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\initialize\GoalEffectInitialize.h" />
-    <ClInclude Include="code\system\initialize\GoalShellEffectInitialize.h" />
+    <ClInclude Include="code\system\transition\ButtonScenePreviewSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -235,67 +258,73 @@
     <ClCompile Include="code\component\ButtonGroup.cpp">
       <Filter>component</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\Camera\CameraController.cpp">
-      <Filter>component\Camera</Filter>
-    </ClCompile>
     <ClCompile Include="code\component\MouseCondition.cpp">
       <Filter>component</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\Player\PlayerEffectControlParam.cpp">
-      <Filter>component\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\Player\PlayerInput.cpp">
-      <Filter>component\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\Player\PlayerStatus.cpp">
-      <Filter>component\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\Player\State\IPlayerMoveState.cpp">
-      <Filter>component\Player\State</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\Player\State\PlayerDashState.cpp">
-      <Filter>component\Player\State</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\Player\State\PlayerFallDownState.cpp">
-      <Filter>component\Player\State</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\Player\State\PlayerIdleState.cpp">
-      <Filter>component\Player\State</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\Player\State\PlayerJumpState.cpp">
-      <Filter>component\Player\State</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\Player\State\PlayerMoveStateFactory.cpp">
-      <Filter>component\Player\State</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\Player\State\PlayerState.cpp">
-      <Filter>component\Player\State</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\Player\State\PlayerWallJumpState.cpp">
-      <Filter>component\Player\State</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\Player\State\PlayerWallRunState.cpp">
-      <Filter>component\Player\State</Filter>
     </ClCompile>
     <ClCompile Include="code\component\SceneChanger.cpp">
       <Filter>component</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\Stage\Stage.cpp">
-      <Filter>component\Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\Stage\StageFloor.cpp">
-      <Filter>component\Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\Stage\StageWall.cpp">
-      <Filter>component\Stage</Filter>
-    </ClCompile>
     <ClCompile Include="code\component\TimerComponent.cpp">
       <Filter>component</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\camera\CameraController.cpp">
+      <Filter>component\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\player\PlayerEffectControlParam.cpp">
+      <Filter>component\player</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\player\PlayerInput.cpp">
+      <Filter>component\player</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\player\PlayerStatus.cpp">
+      <Filter>component\player</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\player\state\IPlayerMoveState.cpp">
+      <Filter>component\player\state</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\player\state\PlayerDashState.cpp">
+      <Filter>component\player\state</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\player\state\PlayerFallDownState.cpp">
+      <Filter>component\player\state</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\player\state\PlayerIdleState.cpp">
+      <Filter>component\player\state</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\player\state\PlayerJumpState.cpp">
+      <Filter>component\player\state</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\player\state\PlayerMoveStateFactory.cpp">
+      <Filter>component\player\state</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\player\state\PlayerState.cpp">
+      <Filter>component\player\state</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\player\state\PlayerWallJumpState.cpp">
+      <Filter>component\player\state</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\player\state\PlayerWallRunState.cpp">
+      <Filter>component\player\state</Filter>
     </ClCompile>
     <ClCompile Include="code\component\spline\SplinePoints.cpp">
       <Filter>component\spline</Filter>
     </ClCompile>
+    <ClCompile Include="code\component\stage\StageData.cpp">
+      <Filter>component\stage</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\stage\StageFloor.cpp">
+      <Filter>component\stage</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\stage\StageObstacle.cpp">
+      <Filter>component\stage</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\stage\StageWall.cpp">
+      <Filter>component\stage</Filter>
+    </ClCompile>
     <ClCompile Include="code\main.cpp" />
+    <ClCompile Include="code\manager\PlayerProgressStore.cpp">
+      <Filter>manager</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\collision\PlayerOnCollision.cpp">
       <Filter>system\collision</Filter>
     </ClCompile>
@@ -311,8 +340,14 @@
     <ClCompile Include="code\system\effect\EffectOnPlayerRun.cpp">
       <Filter>system\effect</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\effect\PenaltyTimeSpriteUpdate.cpp">
+      <Filter>system\effect</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\effect\TimerForSprite.cpp">
       <Filter>system\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\initialize\BackFireInitialize.cpp">
+      <Filter>system\initialize</Filter>
     </ClCompile>
     <ClCompile Include="code\system\initialize\CreateSpriteFromTimer.cpp">
       <Filter>system\initialize</Filter>
@@ -323,10 +358,22 @@
     <ClCompile Include="code\system\initialize\GetClearTime.cpp">
       <Filter>system\initialize</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\initialize\GoalEffectInitialize.cpp">
+      <Filter>system\initialize</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\initialize\GoalShellEffectInitialize.cpp">
+      <Filter>system\initialize</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\initialize\SettingGameCameraTarget.cpp">
       <Filter>system\initialize</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\initialize\StartTimerInitialize.cpp">
+      <Filter>system\initialize</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\initialize\TakePlayerToStartPosition.cpp">
+      <Filter>system\initialize</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\initialize\TakeToGoalPosition.cpp">
       <Filter>system\initialize</Filter>
     </ClCompile>
     <ClCompile Include="code\system\initialize\TrailEffectInitialize.cpp">
@@ -359,8 +406,8 @@
     <ClCompile Include="code\system\movement\PlayerUpdateOnTitle.cpp">
       <Filter>system\movement</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\render\StageDebugRender.cpp">
-      <Filter>system\render</Filter>
+    <ClCompile Include="code\system\movement\StartSequenceSystem.cpp">
+      <Filter>system\movement</Filter>
     </ClCompile>
     <ClCompile Include="code\system\transition\ApplyMouseConditionSystem.cpp">
       <Filter>system\transition</Filter>
@@ -377,10 +424,10 @@
     <ClCompile Include="code\system\transition\FallDetectionSystem.cpp">
       <Filter>system\transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\transition\SceneTransition.cpp">
+    <ClCompile Include="code\system\transition\PenaltySystem.cpp">
       <Filter>system\transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\transition\SetClearTime.cpp">
+    <ClCompile Include="code\system\transition\SceneTransition.cpp">
       <Filter>system\transition</Filter>
     </ClCompile>
     <ClCompile Include="code\system\transition\ShowGameUIByInputDevice.cpp">
@@ -404,7 +451,6 @@
     <ClCompile Include="code\system\transition\UpdateButtonColorByState.cpp">
       <Filter>system\transition</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\initialize\GoalEffectInitialize.cpp" />
-    <ClCompile Include="code\system\initialize\GoalShellEffectInitialize.cpp" />
+    <ClCompile Include="code\system\transition\ButtonScenePreviewSystem.cpp" />
   </ItemGroup>
 </Project>

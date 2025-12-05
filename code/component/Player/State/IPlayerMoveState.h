@@ -11,7 +11,7 @@
 #include "input/InputManager.h"
 
 /// component
-#include "component/Player/State/PlayerState.h"
+#include "component/player/state/PlayerState.h"
 
 /// math
 #include "math/Vector2.h"

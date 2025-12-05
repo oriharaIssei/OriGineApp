@@ -81,7 +81,6 @@ void MyGame::Initialize(const std::vector<std::string>& _commandLines) {
     recorder_->Initialize(sceneManager_->GetStartupSceneName());
     // 初期化時の入力を記録
     if (isRecording_ == true) {
-        InputManager* inputManager = InputManager::GetInstance();
         recorder_->RecordFrame(engine_->GetDeltaTime(),
             inputManager->GetKeyboard(),
             inputManager->GetMouse(),
@@ -119,12 +118,19 @@ void MyGame::Run() {
 
         // シーンの更新
         sceneManager_->Update();
+        // シーンの描画 (シーンが変更されたら描画しない)
         sceneManager_->Render();
+
         // windowに描画
         Engine::GetInstance()->ScreenPreDraw();
         sceneManager_->GetCurrentScene()->GetSceneView()->DrawTexture();
         Engine::GetInstance()->ScreenPostDraw();
 
         engine_->EndFrame();
+
+        // シーン変更の実行
+        if (sceneManager_->IsChangeScene()) {
+            sceneManager_->ExecuteSceneChange();
+        }
     }
 }

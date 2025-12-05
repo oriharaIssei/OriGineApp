@@ -25,6 +25,7 @@ public:
 
 private:
     // ボタンのエンティティIDとボタン番号のマップ
+    // キー: ボタン番号, 値: エンティティID
     std::unordered_map<int32_t, int32_t> buttonNumbers_;
     int32_t startButtonNumber_   = 0;
     int32_t currentButtonNumber_ = 0;
@@ -61,7 +62,6 @@ public:
             return it->second;
         }
         return -1; // 見つからなかった場合のデフォルト値
-        
     }
 
     const std::vector<Key>& GetSelectAddKeys() const { return selectAddKeys_; }

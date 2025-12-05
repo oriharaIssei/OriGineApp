@@ -1,0 +1,175 @@
+{
+    "Components": {
+        "SpriteAnimation": [
+            {
+                "colorAnimationState": {
+                    "isLoop": true,
+                    "isPlay": false
+                },
+                "colorCurve": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            0.09803921729326248
+                        ]
+                    },
+                    {
+                        "time": 0.2490842491388321,
+                        "value": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ]
+                    },
+                    {
+                        "time": 0.8296703100204468,
+                        "value": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ]
+                    },
+                    {
+                        "time": 1.0,
+                        "value": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            0.09803921729326248
+                        ]
+                    }
+                ],
+                "colorInterpolationType": 0,
+                "duration": 1.0,
+                "rotateCurve": [],
+                "scaleCurve": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.11538461595773697,
+                        "value": [
+                            0.5833333134651184,
+                            0.5833333134651184
+                        ]
+                    },
+                    {
+                        "time": 0.28205129504203796,
+                        "value": [
+                            1.0,
+                            1.0
+                        ]
+                    },
+                    {
+                        "time": 0.8299999833106995,
+                        "value": [
+                            1.0,
+                            1.0
+                        ]
+                    },
+                    {
+                        "time": 1.0,
+                        "value": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "spriteComponentIndex": -1,
+                "transformAnimationState": {
+                    "isLoop": true,
+                    "isPlay": false
+                },
+                "transformInterpolationType": 0,
+                "translateCurve": [],
+                "uvAnimationState": {
+                    "isLoop": false,
+                    "isPlay": false
+                },
+                "uvInterpolationType": 0,
+                "uvRotateCurve": [],
+                "uvScaleCurve": [],
+                "uvTranslateCurve": []
+            }
+        ],
+        "TimerComponent": [
+            {
+                "isStarted": true,
+                "maxTime": 3.0
+            }
+        ],
+        "TimerForSpriteComponent": [
+            {
+                "anchorOnWindow": [
+                    0.6700000166893005,
+                    0.5
+                ],
+                "digitDecimalForSprite": 0,
+                "digitForSprite": 1,
+                "digitIntegerForSprite": 1,
+                "marginBetweenIntegerAndDecimal": [
+                    0.0,
+                    0.0
+                ],
+                "numbersTexturePath": "./application/resource/Texture//timerNumbers.png",
+                "offset": [
+                    0.0,
+                    0.0
+                ],
+                "spriteMarginDecimal": [
+                    0.0,
+                    0.0
+                ],
+                "spriteMarginInteger": [
+                    0.0,
+                    0.0
+                ],
+                "spriteSizeDecimal": [
+                    256.0,
+                    256.0
+                ],
+                "spriteSizeInteger": [
+                    256.0,
+                    256.0
+                ]
+            }
+        ]
+    },
+    "Name": "StartTimer",
+    "Systems": [
+        {
+            "SystemCategory": 0,
+            "SystemName": "CreateSpriteFromTimer"
+        },
+        {
+            "SystemCategory": 0,
+            "SystemName": "StartTimerInitialize"
+        },
+        {
+            "SystemCategory": 5,
+            "SystemName": "SpriteAnimationSystem"
+        },
+        {
+            "SystemCategory": 3,
+            "SystemName": "StartSequenceSystem"
+        },
+        {
+            "SystemCategory": 2,
+            "SystemName": "TimerCountDown"
+        },
+        {
+            "SystemCategory": 5,
+            "SystemName": "TimerForSprite"
+        }
+    ],
+    "isUnique": true
+}

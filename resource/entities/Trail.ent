@@ -18,7 +18,7 @@
                 "uvRotate": 0.0,
                 "uvScale": [
                     1.0,
-                    0.550000011920929
+                    1.0
                 ],
                 "uvTranslate": [
                     0.0,
@@ -59,11 +59,7 @@
                 "effectEntityIdList": [
                     {
                         "effectType": 0,
-                        "entityID": 15
-                    },
-                    {
-                        "effectType": 2,
-                        "entityID": 17
+                        "entityID": 78
                     }
                 ],
                 "isActive": true,
@@ -73,7 +69,7 @@
         ],
         "PlaneRenderer": [
             {
-                "blendMode": 2,
+                "blendMode": 1,
                 "isCulling": true,
                 "isRenderer": false,
                 "materialIndex": 0,
@@ -103,17 +99,21 @@
             {
                 "capacity": 32,
                 "endUv": [
-                    1.0,
+                    0.6000000238418579,
                     1.0
                 ],
+                "endWidth": 0.44999998807907104,
                 "fadeoutTime": 0.029999999329447746,
+                "isCrossMesh": true,
                 "segmentDivide": 16,
                 "segmentLength": 0.5899999737739563,
                 "startUv": [
-                    0.0,
+                    0.30000001192092896,
                     0.0
                 ],
-                "width": 0.44999998807907104
+                "startWidth": 0.44999998807907104,
+                "uvEaseType": 4,
+                "widthEaseType": 2
             }
         ],
         "Transform": [

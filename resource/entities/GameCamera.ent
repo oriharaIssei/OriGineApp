@@ -1,5 +1,6 @@
 {
     "Components": {
+        "CameraAction": [],
         "CameraController": [
             {
                 "angleLimitY": 1.5707963705062866,
@@ -65,8 +66,8 @@
                 ],
                 "translate": [
                     0.0,
-                    0.0,
-                    0.0
+                    4.489999771118164,
+                    -4.28000020980835
                 ]
             }
         ]

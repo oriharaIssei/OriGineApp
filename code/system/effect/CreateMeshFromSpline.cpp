@@ -5,6 +5,7 @@
 #include "component/spline/SplinePoints.h"
 
 /// math
+#include <math/MyEasing.h>
 #include <math/Vector3.h>
 
 Vec3f CatmullRomSpline(const Vec3f& _p0, const Vec3f& _p1, const Vec3f& _p2, const Vec3f& _p3, float _t) {
@@ -60,7 +61,15 @@ void CreateMeshFromSpline::UpdateEntity(Entity* _entity) {
     }
     planeRendererComp->SetIsRender(true);
 
-    auto splinePoints = CatmullRomSpline(splinePointsComp->points_, splinePointsComp->segmentDivide_);
+    if (splinePointsComp->isCrossMesh_) {
+        CreateCrossPlaneMesh(planeRendererComp, splinePointsComp);
+    } else {
+        CreateLinePlaneMesh(planeRendererComp, splinePointsComp);
+    }
+}
+
+void CreateMeshFromSpline::CreateCrossPlaneMesh(PlaneRenderer* _planeRendererComp, SplinePoints* _splinePointsComp) {
+    auto splinePoints = CatmullRomSpline(_splinePointsComp->points_, _splinePointsComp->segmentDivide_);
 
     // メッシュ生成
     // 十字型にするため,縦方向と横方向の2つのメッシュを作成
@@ -68,14 +77,20 @@ void CreateMeshFromSpline::UpdateEntity(Entity* _entity) {
     std::vector<TextureVertexData> horizontalVertexes;
     std::vector<uint32_t> indices;
 
-    int32_t segmentCount = static_cast<int32_t>(splinePointsComp->points_.size() - 1);
+    int32_t segmentCount = static_cast<int32_t>(_splinePointsComp->points_.size() - 1);
     // enduv が splineの最長時のメッシュに依存するため,あらかじめ計算しておく
-    float allLength       = static_cast<float>(splinePointsComp->segmentLength_ * splinePointsComp->capacity_);
+    float allLength = 0.f;
+    for (int32_t i = 0; i < segmentCount; i++) {
+        const Vec3f& p0 = _splinePointsComp->points_[i];
+        const Vec3f& p1 = _splinePointsComp->points_[i + 1];
+        allLength += Vec3f(p1 - p0).length();
+    }
+
     float totalLength     = 0.0f;
     float prevTotalLength = 0.0f;
     for (int32_t i = 0; i < segmentCount; i++) {
-        const Vec3f& p0 = splinePointsComp->points_[i];
-        const Vec3f& p1 = splinePointsComp->points_[i + 1];
+        const Vec3f& p0 = _splinePointsComp->points_[i];
+        const Vec3f& p1 = _splinePointsComp->points_[i + 1];
 
         Vec3f dir = p1 - p0;
 
@@ -87,8 +102,17 @@ void CreateMeshFromSpline::UpdateEntity(Entity* _entity) {
         Vec3f up    = axisY;
         Vec3f right = dir.cross(up).normalize();
 
-        Vec2f minUV = Vec2f(splinePointsComp->startUv_[X], std::lerp(splinePointsComp->startUv_[Y], splinePointsComp->endUv_[Y], prevTotalLength / allLength));
-        Vec2f maxUV = Vec2f(splinePointsComp->endUv_[X], std::lerp(splinePointsComp->startUv_[Y], splinePointsComp->endUv_[Y], totalLength / allLength));
+        float prevLengthRatio = prevTotalLength / allLength;
+        float lengthRatio     = totalLength / allLength;
+        int uvEasingType      = static_cast<int>(_splinePointsComp->uvEaseType_);
+
+        Vec2f minUV = Vec2f(_splinePointsComp->startUv_[X], std::lerp(_splinePointsComp->startUv_[Y], _splinePointsComp->endUv_[Y], EasingFunctions[uvEasingType](prevLengthRatio)));
+        Vec2f maxUV = Vec2f(_splinePointsComp->endUv_[X], std::lerp(_splinePointsComp->startUv_[Y], _splinePointsComp->endUv_[Y], EasingFunctions[uvEasingType](lengthRatio)));
+
+        int widthEasingType = static_cast<int>(_splinePointsComp->widthEaseType_);
+
+        float minWidthHalf = std::lerp(_splinePointsComp->startWidth_, _splinePointsComp->endWidth_, EasingFunctions[widthEasingType](prevLengthRatio)) * 0.5f;
+        float maxWidthHalf = std::lerp(_splinePointsComp->startWidth_, _splinePointsComp->endWidth_, EasingFunctions[widthEasingType](lengthRatio)) * 0.5f;
 
         Vec2f uv[4];
         uv[0] = minUV;
@@ -100,10 +124,10 @@ void CreateMeshFromSpline::UpdateEntity(Entity* _entity) {
         {
             TextureVertexData vertData;
 
-            Vec3f left0  = p0 - right * (splinePointsComp->width_ * 0.5f);
-            Vec3f right0 = p0 + right * (splinePointsComp->width_ * 0.5f);
-            Vec3f left1  = p1 - right * (splinePointsComp->width_ * 0.5f);
-            Vec3f right1 = p1 + right * (splinePointsComp->width_ * 0.5f);
+            Vec3f left0  = p0 - right * minWidthHalf;
+            Vec3f right0 = p0 + right * minWidthHalf;
+            Vec3f left1  = p1 - right * maxWidthHalf;
+            Vec3f right1 = p1 + right * maxWidthHalf;
 
             // 最初のセグメントは4頂点、それ以降は2頂点だけ追加
             if (i == 0) {
@@ -131,10 +155,10 @@ void CreateMeshFromSpline::UpdateEntity(Entity* _entity) {
         {
             TextureVertexData vertData;
 
-            Vec3f down0 = p0 - up * (splinePointsComp->width_ * 0.5f);
-            Vec3f up0   = p0 + up * (splinePointsComp->width_ * 0.5f);
-            Vec3f down1 = p1 - up * (splinePointsComp->width_ * 0.5f);
-            Vec3f up1   = p1 + up * (splinePointsComp->width_ * 0.5f);
+            Vec3f down0 = p0 - up * minWidthHalf;
+            Vec3f up0   = p0 + up * minWidthHalf;
+            Vec3f down1 = p1 - up * maxWidthHalf;
+            Vec3f up1   = p1 + up * maxWidthHalf;
 
             if (i == 0) {
                 TextureVertexData v0{Vec4f(down0, 1.0f), uv[0], right};
@@ -163,8 +187,94 @@ void CreateMeshFromSpline::UpdateEntity(Entity* _entity) {
     meshGroup.push_back(horizontalMesh);
 
     // メッシュ設定
-    planeRendererComp->SetIsCulling(false);
-    planeRendererComp->SetMeshGroup(meshGroup);
-    planeRendererComp->GetMeshGroup()->at(0).TransferData();
-    planeRendererComp->GetMeshGroup()->at(1).TransferData();
+    _planeRendererComp->SetIsCulling(false);
+    _planeRendererComp->SetMeshGroup(meshGroup);
+    _planeRendererComp->GetMeshGroup()->at(0).TransferData();
+    _planeRendererComp->GetMeshGroup()->at(1).TransferData();
+}
+
+void CreateMeshFromSpline::CreateLinePlaneMesh(PlaneRenderer* _planeRendererComp, SplinePoints* _splinePointsComp) {
+    auto splinePoints = CatmullRomSpline(_splinePointsComp->points_, _splinePointsComp->segmentDivide_);
+
+    // メッシュ生成
+    // 十字型にするため,縦方向と横方向の2つのメッシュを作成
+    std::vector<TextureVertexData> verticalVertexes;
+    std::vector<uint32_t> indices;
+
+    int32_t segmentCount = static_cast<int32_t>(_splinePointsComp->points_.size() - 1);
+    // enduv が splineの最長時のメッシュに依存するため,あらかじめ計算しておく
+    float allLength       = static_cast<float>(_splinePointsComp->segmentLength_ * _splinePointsComp->capacity_);
+    float totalLength     = 0.0f;
+    float prevTotalLength = 0.0f;
+    for (int32_t i = 0; i < segmentCount; i++) {
+        const Vec3f& p0 = _splinePointsComp->points_[i];
+        const Vec3f& p1 = _splinePointsComp->points_[i + 1];
+
+        Vec3f dir = p1 - p0;
+
+        prevTotalLength = totalLength;
+        totalLength += dir.length();
+
+        dir = dir.normalize();
+
+        Vec3f up    = axisY;
+        Vec3f right = dir.cross(up).normalize();
+
+        float prevLengthRatio = prevTotalLength / allLength;
+        float lengthRatio     = totalLength / allLength;
+        Vec2f minUV           = Vec2f(_splinePointsComp->startUv_[X], std::lerp(_splinePointsComp->startUv_[Y], _splinePointsComp->endUv_[Y], prevLengthRatio));
+        Vec2f maxUV           = Vec2f(_splinePointsComp->endUv_[X], std::lerp(_splinePointsComp->startUv_[Y], _splinePointsComp->endUv_[Y], lengthRatio));
+
+        float minWidthHalf = std::lerp(_splinePointsComp->startWidth_, _splinePointsComp->endWidth_, prevLengthRatio) * 0.5f;
+        float maxWidthHalf = std::lerp(_splinePointsComp->startWidth_, _splinePointsComp->endWidth_, lengthRatio) * 0.5f;
+
+        Vec2f uv[4];
+        uv[0] = minUV;
+        uv[1] = Vec2f(maxUV[0], minUV[1]);
+        uv[2] = Vec2f(minUV[0], maxUV[1]);
+        uv[3] = maxUV;
+
+        // === 縦メッシュ ===
+        {
+            TextureVertexData vertData;
+
+            Vec3f left0  = p0 - right * minWidthHalf;
+            Vec3f right0 = p0 + right * minWidthHalf;
+            Vec3f left1  = p1 - right * maxWidthHalf;
+            Vec3f right1 = p1 + right * maxWidthHalf;
+
+            // 最初のセグメントは4頂点、それ以降は2頂点だけ追加
+            if (i == 0) {
+                TextureVertexData v0{Vec4f(left0, 1.0f), uv[0], up};
+                TextureVertexData v1{Vec4f(right0, 1.0f), uv[1], up};
+                verticalVertexes.push_back(v0);
+                verticalVertexes.push_back(v1);
+            }
+
+            TextureVertexData v2{Vec4f(left1, 1.0f), uv[2], up};
+            TextureVertexData v3{Vec4f(right1, 1.0f), uv[3], up};
+            verticalVertexes.push_back(v2);
+            verticalVertexes.push_back(v3);
+
+            uint32_t base = static_cast<uint32_t>(verticalVertexes.size() - 4);
+            indices.push_back(base + 0);
+            indices.push_back(base + 2);
+            indices.push_back(base + 1);
+            indices.push_back(base + 1);
+            indices.push_back(base + 2);
+            indices.push_back(base + 3);
+        }
+    }
+
+    std::vector<TextureMesh> meshGroup;
+    TextureMesh verticalMesh;
+    verticalMesh.Initialize(static_cast<UINT>(verticalVertexes.size()), static_cast<UINT>(indices.size()));
+    verticalMesh.SetVertexData(verticalVertexes);
+    verticalMesh.SetIndexData(indices);
+    meshGroup.push_back(verticalMesh);
+
+    // メッシュ設定
+    _planeRendererComp->SetIsCulling(false);
+    _planeRendererComp->SetMeshGroup(meshGroup);
+    _planeRendererComp->GetMeshGroup()->at(0).TransferData();
 }

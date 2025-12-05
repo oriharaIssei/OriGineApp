@@ -2,16 +2,16 @@
 #include "system/ISystem.h"
 
 /// <summary>
-/// ステージをクリアした時間を設定するシステム
+/// GoalPositionの位置に移動させるシステム
 /// </summary>
-class SetClearTime
+class TakeToGoalPosition
     : public ISystem {
 public:
-    SetClearTime();
-    ~SetClearTime() override;
+    TakeToGoalPosition();
+    ~TakeToGoalPosition() override;
     void Initialize() override;
     void Finalize() override;
 
-private:
+protected:
     void UpdateEntity(Entity* _entity) override;
 };

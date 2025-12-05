@@ -1,0 +1,328 @@
+{
+    "Components": {
+        "CylinderRenderer": [
+            {
+                "blendMode": 1,
+                "bottomRadius": [
+                    0.07999999821186066,
+                    0.07999999821186066
+                ],
+                "height": 1.0,
+                "isCulling": false,
+                "isRenderer": true,
+                "materialIndex": 0,
+                "textureDirectory": "",
+                "textureFileName": "",
+                "topRadius": [
+                    0.30000001192092896,
+                    0.30000001192092896
+                ],
+                "transform": {
+                    "rotate": [
+                        -0.01200204249471426,
+                        0.0,
+                        -0.23457865417003632,
+                        0.972023069858551
+                    ],
+                    "scale": [
+                        0.7400000095367432,
+                        0.36000001430511475,
+                        0.7400000095367432
+                    ],
+                    "translate": [
+                        0.7099999785423279,
+                        1.4199999570846558,
+                        0.23999999463558197
+                    ]
+                }
+            },
+            {
+                "blendMode": 1,
+                "bottomRadius": [
+                    0.09000000357627869,
+                    0.09000000357627869
+                ],
+                "height": 1.340000033378601,
+                "isCulling": false,
+                "isRenderer": true,
+                "materialIndex": 0,
+                "textureDirectory": "",
+                "textureFileName": "",
+                "topRadius": [
+                    0.3799999952316284,
+                    0.3799999952316284
+                ],
+                "transform": {
+                    "rotate": [
+                        -0.1121334433555603,
+                        0.0,
+                        -0.16789141297340393,
+                        0.9794072508811951
+                    ],
+                    "scale": [
+                        0.7400000095367432,
+                        0.36000001430511475,
+                        0.7400000095367432
+                    ],
+                    "translate": [
+                        0.7799999713897705,
+                        1.3899999856948853,
+                        -0.28999999165534973
+                    ]
+                }
+            },
+            {
+                "blendMode": 1,
+                "bottomRadius": [
+                    0.10999999940395355,
+                    0.10999999940395355
+                ],
+                "height": 1.8799999952316284,
+                "isCulling": false,
+                "isRenderer": true,
+                "materialIndex": 0,
+                "textureDirectory": "",
+                "textureFileName": "",
+                "topRadius": [
+                    0.47999998927116394,
+                    0.47999998927116394
+                ],
+                "transform": {
+                    "rotate": [
+                        -0.23151399195194244,
+                        0.0,
+                        -0.1587504893541336,
+                        0.9597914218902588
+                    ],
+                    "scale": [
+                        0.7400000095367432,
+                        0.36000001430511475,
+                        0.7400000095367432
+                    ],
+                    "translate": [
+                        0.8799999952316284,
+                        1.2699999809265137,
+                        -0.8199999928474426
+                    ]
+                }
+            },
+            {
+                "blendMode": 1,
+                "bottomRadius": [
+                    0.07999999821186066,
+                    0.07999999821186066
+                ],
+                "height": 1.0,
+                "isCulling": false,
+                "isRenderer": true,
+                "materialIndex": 0,
+                "textureDirectory": "",
+                "textureFileName": "",
+                "topRadius": [
+                    0.30000001192092896,
+                    0.30000001192092896
+                ],
+                "transform": {
+                    "rotate": [
+                        0.005932819098234177,
+                        0.0,
+                        0.16927504539489746,
+                        0.9855509996414185
+                    ],
+                    "scale": [
+                        0.7400000095367432,
+                        0.36000001430511475,
+                        0.7400000095367432
+                    ],
+                    "translate": [
+                        -0.699999988079071,
+                        1.3899999856948853,
+                        0.23000000417232513
+                    ]
+                }
+            },
+            {
+                "blendMode": 1,
+                "bottomRadius": [
+                    0.09000000357627869,
+                    0.09000000357627869
+                ],
+                "height": 1.340000033378601,
+                "isCulling": false,
+                "isRenderer": true,
+                "materialIndex": 0,
+                "textureDirectory": "",
+                "textureFileName": "",
+                "topRadius": [
+                    0.3799999952316284,
+                    0.3799999952316284
+                ],
+                "transform": {
+                    "rotate": [
+                        -0.06104053556919098,
+                        0.0,
+                        0.20736859738826752,
+                        0.9763566851615906
+                    ],
+                    "scale": [
+                        0.7400000095367432,
+                        0.36000001430511475,
+                        0.7400000095367432
+                    ],
+                    "translate": [
+                        -0.7599999904632568,
+                        1.3799999952316284,
+                        -0.28999999165534973
+                    ]
+                }
+            },
+            {
+                "blendMode": 1,
+                "bottomRadius": [
+                    0.14000000059604645,
+                    0.14000000059604645
+                ],
+                "height": 1.8799999952316284,
+                "isCulling": false,
+                "isRenderer": true,
+                "materialIndex": 0,
+                "textureDirectory": "",
+                "textureFileName": "",
+                "topRadius": [
+                    0.47999998927116394,
+                    0.47999998927116394
+                ],
+                "transform": {
+                    "rotate": [
+                        -0.26847535371780396,
+                        0.0,
+                        0.13681679964065552,
+                        0.9535209536552429
+                    ],
+                    "scale": [
+                        0.7400000095367432,
+                        0.36000001430511475,
+                        0.7400000095367432
+                    ],
+                    "translate": [
+                        -0.8799999952316284,
+                        1.2699999809265137,
+                        -0.8199999928474426
+                    ]
+                }
+            }
+        ],
+        "Material": [
+            {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "enableLighting": false,
+                "shininess": 0.0,
+                "specularColor": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "uvRotate": 0.0,
+                "uvScale": [
+                    0.6700000166893005,
+                    1.0
+                ],
+                "uvTranslate": [
+                    0.0,
+                    0.0
+                ]
+            }
+        ],
+        "MaterialEffectPipeLine": [
+            {
+                "baseTexturePath": "./application/resource/Texture/white1x1.png",
+                "effectEntityIdList": [
+                    {
+                        "effectType": 0,
+                        "entityID": 26
+                    },
+                    {
+                        "effectType": 2,
+                        "entityID": 28
+                    },
+                    {
+                        "effectType": 0,
+                        "entityID": 26
+                    },
+                    {
+                        "effectType": 2,
+                        "entityID": 28
+                    },
+                    {
+                        "effectType": 0,
+                        "entityID": 26
+                    },
+                    {
+                        "effectType": 2,
+                        "entityID": 28
+                    },
+                    {
+                        "effectType": 0,
+                        "entityID": 45
+                    },
+                    {
+                        "effectType": 2,
+                        "entityID": 47
+                    },
+                    {
+                        "effectType": 0,
+                        "entityID": 82
+                    },
+                    {
+                        "effectType": 2,
+                        "entityID": 84
+                    }
+                ],
+                "isActive": true,
+                "materialIndex": 0,
+                "priority": 5
+            }
+        ],
+        "Transform": [
+            {
+                "rotate": [
+                    -0.19664624333381653,
+                    0.0,
+                    0.0,
+                    0.9804745316505432
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "translate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        ]
+    },
+    "Name": "BackFire",
+    "Systems": [
+        {
+            "SystemCategory": 0,
+            "SystemName": "BackFireInitialize"
+        },
+        {
+            "SystemCategory": 5,
+            "SystemName": "MaterialEffect"
+        },
+        {
+            "SystemCategory": 6,
+            "SystemName": "TexturedMeshRenderSystem"
+        }
+    ],
+    "isUnique": true
+}

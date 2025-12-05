@@ -1,0 +1,98 @@
+{
+    "Components": {
+        "DissolveEffectParam": [
+            {
+                "edgeWidth": 0.020999999716877937,
+                "isActive": true,
+                "materialIndex": 0,
+                "outLineColor": [
+                    0.4135020971298218,
+                    0.4135020971298218,
+                    0.4135020971298218,
+                    0.4274509847164154
+                ],
+                "textureFilePath": "./application/resource/Texture/Electric.png",
+                "threshold": 0.02500000037252903
+            }
+        ],
+        "Material": [
+            {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "enableLighting": false,
+                "shininess": 0.0,
+                "specularColor": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "uvRotate": -0.33000001311302185,
+                "uvScale": [
+                    1.0099999904632568,
+                    0.46000000834465027
+                ],
+                "uvTranslate": [
+                    0.7971183657646179,
+                    0.0
+                ]
+            }
+        ],
+        "MaterialAnimation": [
+            {
+                "InterpolationType": 0,
+                "colorCurve": [],
+                "duration": 3.9000000953674316,
+                "isLoop": true,
+                "isPlay": true,
+                "uvRotateCurve": [],
+                "uvScaleCurve": [],
+                "uvTranslateCurve": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 3.9000000953674316,
+                        "value": [
+                            1.0,
+                            0.0
+                        ]
+                    }
+                ]
+            }
+        ],
+        "MaterialEffectPipeLine": [
+            {
+                "baseTexturePath": "./application/resource/Texture/waveNoise.png",
+                "effectEntityIdList": [
+                    {
+                        "effectType": 1,
+                        "entityID": 27
+                    }
+                ],
+                "isActive": true,
+                "materialIndex": 0,
+                "priority": 0
+            }
+        ]
+    },
+    "Name": "BackFireSparks_Diss",
+    "Systems": [
+        {
+            "SystemCategory": 5,
+            "SystemName": "MaterialAnimationWorkSystem"
+        },
+        {
+            "SystemCategory": 5,
+            "SystemName": "MaterialEffect"
+        }
+    ],
+    "isUnique": true
+}

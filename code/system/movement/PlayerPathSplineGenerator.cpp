@@ -6,7 +6,7 @@
 
 // component
 #include "component/physics/Rigidbody.h"
-#include "component/Player/State/PlayerState.h"
+#include "component/player/state/PlayerState.h"
 #include "component/spline/SplinePoints.h"
 #include "component/transform/Transform.h"
 
@@ -52,7 +52,7 @@ void PlayerPathSplineGenerator::UpdateEntity(Entity* _entity) {
         if (splinePoints->points_.size() < 4) {
             int32_t diff = 4 - static_cast<int32_t>(splinePoints->points_.size());
             for (int32_t i = 0; i < diff; ++i) {
-                splinePoints->pushPoint(newPoint);
+                splinePoints->PushPoint(newPoint);
             }
         }
 
@@ -74,11 +74,10 @@ void PlayerPathSplineGenerator::UpdateEntity(Entity* _entity) {
             // あまりにも離れている場合は飛ばす
             constexpr int32_t kSkipThreshold = 18;
             int32_t segmentsToAdd            = static_cast<int32_t>(distLen / segLen);
-            if (segmentsToAdd < kSkipThreshold) {
-                for (int32_t i = 1; i <= segmentsToAdd; ++i) {
-                    Vec3f dividedPoint = lastPoint + direction * (segLen * static_cast<float>(i));
-                    splinePoints->pushPoint(dividedPoint);
-                }
+            segmentsToAdd                    = std::min(segmentsToAdd, kSkipThreshold);
+            for (int32_t i = 1; i <= segmentsToAdd; ++i) {
+                Vec3f dividedPoint = lastPoint + direction * (segLen * static_cast<float>(i));
+                splinePoints->PushPoint(dividedPoint);
             }
         }
 
@@ -126,7 +125,6 @@ void PlayerPathSplineGenerator::UpdateEntity(Entity* _entity) {
 
         // fadeoutTimer リセット(次回の削除がすぐに始まるように)
         splinePoints->fadeoutTimer_ = splinePoints->fadeoutTime_;
-
     } else {
         // 古いポイントの削除処理
         if (!splinePoints->points_.empty()) {

@@ -1,7 +1,10 @@
 #include "TimerForSprite.h"
 
-/// ECS
+/// engine
+#include "Engine.h"
+#include "winApp/WinApp.h"
 
+/// ECS
 // component
 #include "component/renderer/Sprite.h"
 #include "component/TimerComponent.h"
@@ -51,7 +54,7 @@ void TimerForSprite::Finalize() {}
 void TimerForSprite::UpdateEntity(Entity* _entity) {
     auto timerComponent          = GetComponent<TimerComponent>(_entity);
     auto timerForSpriteComponent = GetComponent<TimerForSpriteComponent>(_entity);
-    if (!timerComponent) {
+    if (!timerComponent || !timerForSpriteComponent) {
         return; // タイマーコンポーネントがない場合は何もしない
     }
 
@@ -62,9 +65,11 @@ void TimerForSprite::UpdateEntity(Entity* _entity) {
 
     // 浮動小数点数から各桁の数字を抽出
     std::vector<int> digits = CalculateDigitsFromFloat(
-        timerComponent->GetCurrentTime(),
+        timerComponent->GetTime(),
         timerForSpriteComponent->GetDigitIntegerForSprite(),
         timerForSpriteComponent->GetDigitDecimalForSprite());
+
+    Vec2f windowSize = Engine::GetInstance()->GetWinApp()->GetWindowSize();
 
     // 各スプライトに数字を適用
     for (int32_t i = 0; i < timerForSpriteComponent->GetDigitForSprite(); ++i) {
@@ -80,5 +85,7 @@ void TimerForSprite::UpdateEntity(Entity* _entity) {
 
         sprite->SetTextureLeftTop(
             {spriteTextureSizeX * digits[i], spriteLeftTopY});
+
+        sprite->CalculatePosRatioAndSizeRatio(windowSize);
     }
 }

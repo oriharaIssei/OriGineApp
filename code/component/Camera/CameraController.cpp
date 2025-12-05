@@ -2,7 +2,7 @@
 
 #ifdef _DEBUG
 /// copmonent
-#include "component/Player/State/PlayerState.h"
+#include "component/player/state/PlayerState.h"
 /// gui
 #include "myGui/MyGui.h"
 #endif // _DEBUG

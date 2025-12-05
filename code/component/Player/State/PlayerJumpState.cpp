@@ -3,8 +3,8 @@
 /// component
 #include "component/animation/SkinningAnimationComponent.h"
 #include "component/physics/Rigidbody.h"
-#include "component/Player/PlayerInput.h"
-#include "component/Player/PlayerStatus.h"
+#include "component/player/PlayerInput.h"
+#include "component/player/PlayerStatus.h"
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
 #include "PlayerState.h"
