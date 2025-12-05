@@ -43,11 +43,9 @@ void PlayerOnCollision::UpdateEntity(Entity* _entity) {
     state->OffCollisionWall();
 
     for (auto& [entityId, info] : pushBackInfo->GetCollisionInfoMap()) {
-        Vec3f collNormal       = info.collVec.normalize();
-        Entity* collidedEntity = GetEntity(entityId);
-
+        Entity* collEnt = GetEntity(entityId);
         // ゴール と 衝突したか
-        if (collidedEntity->GetDataType().find("Goal") != std::string::npos) {
+        if (collEnt->GetDataType().find("Goal") != std::string::npos) {
             // 時間を更新しないようにする
             Entity* timerEntity = GetUniqueEntity("Timer");
             if (timerEntity) {
@@ -59,6 +57,13 @@ void PlayerOnCollision::UpdateEntity(Entity* _entity) {
             state->GetStateFlagRef().CurrentRef().SetFlag(PlayerStateFlag::IS_GOAL);
             continue;
         }
+
+        // 壁、床と 衝突したか
+        if (info.pushBackType != CollisionPushBackType::PushBack) {
+            continue;
+        }
+
+        Vec3f collNormal       = info.collVec.normalize();
 
         float absCollNXZ = std::abs(collNormal[X]) + std::abs(collNormal[Z]);
 
@@ -101,10 +106,10 @@ void PlayerOnCollision::UpdateEntity(Entity* _entity) {
 
         if (state->IsPenalty()) {
             // 壁ジャンプの反動を与える
-            constexpr float kReflectedSpeed = 36.f;
+            constexpr float kReflectedSpeed = 48.f;
             Vec3f currentVelocity           = rigidbody->GetVelocity();
             currentVelocity                 = Reflect<float>(currentVelocity, penaltyObjectNormal);
-            currentVelocity                 = currentVelocity.normalize() * std::max(kReflectedSpeed, currentVelocity.length() * 0.5f);
+            currentVelocity                 = currentVelocity.normalize() * std::max(kReflectedSpeed, currentVelocity.length() * 0.7f);
             rigidbody->SetVelocity(currentVelocity);
         }
     }

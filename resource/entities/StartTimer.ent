@@ -84,6 +84,7 @@
                         ]
                     }
                 ],
+                "spriteComponentIndex": -1,
                 "transformAnimationState": {
                     "isLoop": true,
                     "isPlay": false
@@ -109,7 +110,7 @@
         "TimerForSpriteComponent": [
             {
                 "anchorOnWindow": [
-                    0.6499999761581421,
+                    0.6700000166893005,
                     0.5
                 ],
                 "digitDecimalForSprite": 0,
@@ -119,7 +120,7 @@
                     0.0,
                     0.0
                 ],
-                "numbersTexturePath": "./application/resource/Texture//NumbersUI.png",
+                "numbersTexturePath": "./application/resource/Texture//timerNumbers.png",
                 "offset": [
                     0.0,
                     0.0

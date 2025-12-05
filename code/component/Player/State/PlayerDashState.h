@@ -21,4 +21,7 @@ private:
     const int32_t kThresholdGearLevelOfCameraOffset_ = 2;
     const float kCameraOffsetLerpTime_               = 2.3f;
     float cameraOffsetLerpTimer_                     = 0.0f;
+
+    const float kFallDownThresholdTime_ = 0.2f; // 落下状態に遷移するまでの閾値時間
+    float fallDownTimer_                = 0.0f; // 落下時間計測用
 };

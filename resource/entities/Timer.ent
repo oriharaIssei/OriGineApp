@@ -65,7 +65,7 @@
                     0.0,
                     10.0
                 ],
-                "numbersTexturePath": "./application/resource/Texture//NumbersUI.png",
+                "numbersTexturePath": "./application/resource/Texture//timerNumbers.png",
                 "offset": [
                     0.0,
                     0.0

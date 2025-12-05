@@ -32,6 +32,17 @@ void PlayerInputSystem::UpdateEntity(Entity* _entity) {
         // ジャンプボタンが押されている間 PlayerInput JumpInputTime を加算し,
         // ジャンプボタンが離されたら JumpInput を false にする
         if (playerInput->IsJumpInput()) {
+            if (state->GetStateEnum() == PlayerMoveState::WALL_RUN) {
+
+                playerInput->SetJumpInput(false);
+                for (auto button : playerInput->GetJumpButton()) {
+                    if (padInput->IsTrigger(button)) {
+                        playerInput->SetJumpInput(true);
+                        break;
+                    }
+                }
+            }
+
             // ジャンプ状態でない場合は、ジャンプ入力を継続しない
             if (state->GetStateEnum() != PlayerMoveState::JUMP) {
                 playerInput->SetJumpInput(false);

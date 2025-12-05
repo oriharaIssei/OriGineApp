@@ -34,9 +34,10 @@ private:
     // effectに使う
     Vec3f worldInputDirection_ = {0.0f, 0.0f, 0.0f};
 
-    bool IsJumpInput_    = false; // ジャンプ入力があったかどうか
-    float jumpInputTime_ = 0.0f; // ジャンプ入力の時間 (これによってジャンプ力が変わる)
-    float maxJumpTime_   = 0.1f; // ジャンプ入力の最大時間 (秒単位)
+    bool isJumpInput_     = false; // ジャンプ入力があったかどうか
+    bool isWallJumpInput_ = false; // 壁ジャンプ入力があったかどうか
+    float jumpInputTime_  = 0.0f; // ジャンプ入力の時間 (これによってジャンプ力が変わる)
+    float maxJumpTime_    = 0.1f; // ジャンプ入力の最大時間 (秒単位)
 
     /// <summary>
     /// 移動 キー (ゲームパッドは スティックだから必要なし)
@@ -111,10 +112,17 @@ public:
     }
 
     bool IsJumpInput() const {
-        return IsJumpInput_;
+        return isJumpInput_;
     }
     void SetJumpInput(bool _IsJumpInput) {
-        IsJumpInput_ = _IsJumpInput;
+        isJumpInput_ = _IsJumpInput;
+    }
+
+    bool IsWallJumpInput() const {
+        return isWallJumpInput_;
+    }
+    void SetWallJumpInput(bool _isWallJumpInput) {
+        isWallJumpInput_ = _isWallJumpInput;
     }
 
     const float GetMaxJumpTime() const {

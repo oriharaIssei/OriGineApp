@@ -193,7 +193,7 @@
                         "isFlipX": false,
                         "isFlipY": false,
                         "isRender": true,
-                        "renderingPriority": 1,
+                        "renderingPriority": 10,
                         "rotate": 0.0,
                         "scale": [
                             1.0,
@@ -369,7 +369,7 @@
                         "isFlipX": false,
                         "isFlipY": false,
                         "isRender": true,
-                        "renderingPriority": 1,
+                        "renderingPriority": 10,
                         "rotate": 0.0,
                         "scale": [
                             1.0,
@@ -650,7 +650,7 @@
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.8781150579452515
+                            0.43704861402511597
                         ]
                     }
                 ],
@@ -831,6 +831,79 @@
             },
             "Name": "Gradation",
             "Systems": [],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "color": [
+                            0.10588235408067703,
+                            0.10588235408067703,
+                            0.10588235408067703,
+                            0.4313725531101227
+                        ],
+                        "defaultWindowSize": [
+                            1920.0,
+                            1080.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "isRender": true,
+                        "renderingPriority": 0,
+                        "rotate": 0.0,
+                        "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
+                            1920.0,
+                            1080.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "",
+                        "textureSize": [
+                            0.0,
+                            0.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ],
+                        "windowRatioPos": [
+                            0.0,
+                            0.0
+                        ],
+                        "windowRatioSize": [
+                            1.0,
+                            1.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "Entity",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "SpriteRenderSystem"
+                }
+            ],
             "isUnique": false
         }
     ],

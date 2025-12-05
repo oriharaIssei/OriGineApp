@@ -42,7 +42,7 @@ void PlayerDashState::Update(float _deltaTime) {
     auto* transform    = scene_->GetComponent<Transform>(playerEntity);
 
     /// ---------------------------------------------------------------------
-    // gearLevel の更新
+    // gearLevel の更新 (走っている間だけ)
     playerStatus->minusGearUpCoolTime(_deltaTime);
 
     int32_t gearLevel = state->GetGearLevel();
@@ -65,6 +65,13 @@ void PlayerDashState::Update(float _deltaTime) {
 
     // 速度更新
     playerStatus->UpdateAccel(_deltaTime, playerInput, transform, rigidbody, scene_->GetComponent<CameraTransform>(scene_->GetUniqueEntity("GameCamera"))->rotate);
+
+    // 落下時間を更新
+    if (state->IsOnGround()) {
+        fallDownTimer_ = kFallDownThresholdTime_;
+    } else {
+        fallDownTimer_ -= _deltaTime;
+    }
 
     if (kThresholdGearLevelOfCameraOffset_ >= gearLevel) {
         return;
@@ -126,7 +133,10 @@ PlayerMoveState PlayerDashState::TransitionState() const {
         }
     } else {
         // 空中にいる場合は落下状態に遷移
-        return PlayerMoveState::FALL_DOWN;
+        // 一定時間経過したら落下状態に遷移
+        if (fallDownTimer_ <= 0.f) {
+            return PlayerMoveState::FALL_DOWN;
+        }
     }
 
     return PlayerMoveState::DASH;

@@ -185,7 +185,7 @@ PlayerMoveState PlayerWallRunState::TransitionState() const {
     }
 
     auto playerInput = scene_->GetComponent<PlayerInput>(playerEntity);
-    if (playerInput->IsJumpInput()) {
+    if (playerInput->IsWallJumpInput()) {
         return PlayerMoveState::WALL_JUMP;
     }
 
