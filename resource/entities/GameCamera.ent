@@ -23,8 +23,8 @@
                 ],
                 "fovYInterpolate": 0.11400000005960464,
                 "fovYRate": 0.14900000393390656,
-                "fovYRateCommonRate": -0.007000000216066837,
-                "interTargetInterpolation": 39.540000915527344,
+                "fovYRateCommonRate": -0.004000000189989805,
+                "interTargetInterpolation": 19.829999923706055,
                 "maxRotateX": 0.5899999737739563,
                 "minRotateX": -0.7699999809265137,
                 "offsetOnDash": [
@@ -37,7 +37,7 @@
                     1.5499999523162842,
                     -2.2100000381469727
                 ],
-                "rotateSensitivity": 81.51000213623047,
+                "rotateSensitivity": 11.90999984741211,
                 "rotateSpeedMouse": 0.007000000216066837,
                 "rotateSpeedPadStick": 0.10999999940395355,
                 "targetOffsetOnDash": [
@@ -50,6 +50,55 @@
                     0.6600000262260437,
                     3.75
                 ]
+            }
+        ],
+        "CameraMotionBob": [
+            {
+                "cameraShakeSourceComponentId": 0,
+                "maxAmplitude": [
+                    0.30000001192092896,
+                    0.1899999976158142,
+                    0.07000000029802322
+                ],
+                "maxFrequency": [
+                    6.0,
+                    8.0,
+                    2.0
+                ],
+                "minAmplitude": [
+                    0.11999999731779099,
+                    0.07999999821186066,
+                    0.0
+                ],
+                "minFrequency": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "thresholdGearLevel": 3
+            }
+        ],
+        "CameraShakeSourceComponent": [
+            {
+                "X_Parameter_Amplitude": 0.36000001430511475,
+                "X_Parameter_Frequency": 14.039999961853027,
+                "Y_Parameter_Amplitude": 0.4300000071525574,
+                "Y_Parameter_Frequency": 9.149999618530273,
+                "Z_Parameter_Amplitude": 0.46000000834465027,
+                "Z_Parameter_Frequency": 1.0,
+                "cameraTransformIndex": 0,
+                "duration": 1.0,
+                "fragCoord": [
+                    631.16455078125,
+                    194.4982452392578
+                ],
+                "isActive": false,
+                "isLoop": true,
+                "resolution": [
+                    1920.0,
+                    1080.0
+                ],
+                "type": 1
             }
         ],
         "CameraTransform": [
@@ -65,9 +114,9 @@
                     0.9998000264167786
                 ],
                 "translate": [
-                    0.0,
-                    4.489999771118164,
-                    -4.28000020980835
+                    -1.7456669807434082,
+                    1.8017183542251587,
+                    12.032114028930664
                 ]
             }
         ]
@@ -75,8 +124,16 @@
     "Name": "GameCamera",
     "Systems": [
         {
+            "SystemCategory": 2,
+            "SystemName": "CameraMotionBobSystem"
+        },
+        {
             "SystemCategory": 1,
             "SystemName": "CameraInputSystem"
+        },
+        {
+            "SystemCategory": 5,
+            "SystemName": "CameraShake"
         },
         {
             "SystemCategory": 3,

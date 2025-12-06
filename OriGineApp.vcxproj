@@ -139,6 +139,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="code\system\Transition\CameraMotionBobSystem.h" />
+    <ClInclude Include="code\component\camera\CameraMotionBob.h" />
+    <ClInclude Include="code\system\effect\CameraShake.h" />
     <ClInclude Include="code\system\transition\ButtonScenePreviewSystem.h" />
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\MyEditor.h" />
@@ -152,15 +155,15 @@
     <ClInclude Include="code\component\player\PlayerEffectControlParam.h" />
     <ClInclude Include="code\component\player\PlayerInput.h" />
     <ClInclude Include="code\component\player\PlayerStatus.h" />
-    <ClInclude Include="code\component\player\state\IPlayerMoveState.h" />
-    <ClInclude Include="code\component\player\state\PlayerDashState.h" />
-    <ClInclude Include="code\component\player\state\PlayerFallDownState.h" />
-    <ClInclude Include="code\component\player\state\PlayerIdleState.h" />
-    <ClInclude Include="code\component\player\state\PlayerJumpState.h" />
-    <ClInclude Include="code\component\player\state\PlayerMoveStateFactory.h" />
-    <ClInclude Include="code\component\player\state\PlayerState.h" />
-    <ClInclude Include="code\component\player\state\PlayerWallJumpState.h" />
-    <ClInclude Include="code\component\player\state\PlayerWallRunState.h" />
+    <ClInclude Include="code\component\player\State\IPlayerMoveState.h" />
+    <ClInclude Include="code\component\player\State\PlayerDashState.h" />
+    <ClInclude Include="code\component\player\State\PlayerFallDownState.h" />
+    <ClInclude Include="code\component\player\State\PlayerIdleState.h" />
+    <ClInclude Include="code\component\player\State\PlayerJumpState.h" />
+    <ClInclude Include="code\component\player\State\PlayerMoveStateFactory.h" />
+    <ClInclude Include="code\component\player\State\PlayerState.h" />
+    <ClInclude Include="code\component\player\State\PlayerWallJumpState.h" />
+    <ClInclude Include="code\component\player\State\PlayerWallRunState.h" />
     <ClInclude Include="code\component\spline\SplinePoints.h" />
     <ClInclude Include="code\component\stage\StageData.h" />
     <ClInclude Include="code\component\stage\StageFloor.h" />
@@ -209,8 +212,12 @@
     <ClInclude Include="code\system\transition\TimerCountDown.h" />
     <ClInclude Include="code\system\transition\TransitionPlayerState.h" />
     <ClInclude Include="code\system\transition\UpdateButtonColorByState.h" />
+    <ClInclude Include="code\component\camera\CameraShakeSourceComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\system\Transition\CameraMotionBobSystem.cpp" />
+    <ClCompile Include="code\component\camera\CameraMotionBob.cpp" />
+    <ClCompile Include="code\system\effect\CameraShake.cpp" />
     <ClCompile Include="code\system\transition\ButtonScenePreviewSystem.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\MyEditor.cpp" />
@@ -224,15 +231,15 @@
     <ClCompile Include="code\component\player\PlayerEffectControlParam.cpp" />
     <ClCompile Include="code\component\player\PlayerInput.cpp" />
     <ClCompile Include="code\component\player\PlayerStatus.cpp" />
-    <ClCompile Include="code\component\player\state\IPlayerMoveState.cpp" />
-    <ClCompile Include="code\component\player\state\PlayerDashState.cpp" />
-    <ClCompile Include="code\component\player\state\PlayerFallDownState.cpp" />
-    <ClCompile Include="code\component\player\state\PlayerIdleState.cpp" />
-    <ClCompile Include="code\component\player\state\PlayerJumpState.cpp" />
-    <ClCompile Include="code\component\player\state\PlayerMoveStateFactory.cpp" />
-    <ClCompile Include="code\component\player\state\PlayerState.cpp" />
-    <ClCompile Include="code\component\player\state\PlayerWallJumpState.cpp" />
-    <ClCompile Include="code\component\player\state\PlayerWallRunState.cpp" />
+    <ClCompile Include="code\component\player\State\IPlayerMoveState.cpp" />
+    <ClCompile Include="code\component\player\State\PlayerDashState.cpp" />
+    <ClCompile Include="code\component\player\State\PlayerFallDownState.cpp" />
+    <ClCompile Include="code\component\player\State\PlayerIdleState.cpp" />
+    <ClCompile Include="code\component\player\State\PlayerJumpState.cpp" />
+    <ClCompile Include="code\component\player\State\PlayerMoveStateFactory.cpp" />
+    <ClCompile Include="code\component\player\State\PlayerState.cpp" />
+    <ClCompile Include="code\component\player\State\PlayerWallJumpState.cpp" />
+    <ClCompile Include="code\component\player\State\PlayerWallRunState.cpp" />
     <ClCompile Include="code\component\spline\SplinePoints.cpp" />
     <ClCompile Include="code\component\stage\StageData.cpp" />
     <ClCompile Include="code\component\stage\StageFloor.cpp" />
@@ -282,6 +289,7 @@
     <ClCompile Include="code\system\transition\TimerCountDown.cpp" />
     <ClCompile Include="code\system\transition\TransitionPlayerState.cpp" />
     <ClCompile Include="code\system\transition\UpdateButtonColorByState.cpp" />
+    <ClCompile Include="code\component\camera\CameraShakeSourceComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">

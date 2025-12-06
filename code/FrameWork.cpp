@@ -11,6 +11,8 @@
 #include "component/Button.h"
 #include "component/ButtonGroup.h"
 #include "component/Camera/CameraController.h"
+#include "component/camera/CameraMotionBob.h"
+#include "component/Camera/CameraShakeSourceComponent.h"
 #include "component/MouseCondition.h"
 #include "component/player/PlayerEffectControlParam.h"
 #include "component/player/PlayerInput.h"
@@ -25,6 +27,7 @@
 // application system
 #include "system/collision/PlayerOnCollision.h"
 #include "system/collision/TutorialColliderOnCollision.h"
+#include "system/effect/CameraShake.h"
 #include "system/effect/CreateMeshFromSpline.h"
 #include "system/effect/EffectOnPlayerGearup.h"
 #include "system/effect/EffectOnPlayerRun.h"
@@ -52,6 +55,7 @@
 #include "system/transition/ApplyMouseConditionSystem.h"
 #include "system/transition/ButtonGroupSystem.h"
 #include "system/transition/ButtonScenePreviewSystem.h"
+#include "system/Transition/CameraMotionBobSystem.h"
 #include "system/transition/ChangeSceneByButton.h"
 #include "system/transition/ExitApplicationByButton.h"
 #include "system/transition/FallDetectionSystem.h"
@@ -137,6 +141,8 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<TimerForSpriteComponent>();
 
     componentRegistry->RegisterComponent<CameraController>();
+    componentRegistry->RegisterComponent<CameraShakeSourceComponent>();
+    componentRegistry->RegisterComponent<CameraMotionBob>();
 
     componentRegistry->RegisterComponent<PlayerInput>();
     componentRegistry->RegisterComponent<PlayerStatus>();
@@ -195,6 +201,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<SubSceneDeactivateByButton>();
     systemRegistry->RegisterSystem<ExitApplicationByButton>();
     systemRegistry->RegisterSystem<PenaltySystem>();
+    systemRegistry->RegisterSystem<CameraMotionBobSystem>();
 
     systemRegistry->RegisterSystem<ButtonScenePreviewSystem>();
 
@@ -236,6 +243,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<SpriteAnimationSystem>();
     systemRegistry->RegisterSystem<MaterialAnimationWorkSystem>();
     systemRegistry->RegisterSystem<CameraActionSystem>();
+    systemRegistry->RegisterSystem<CameraShake>();
 
     systemRegistry->RegisterSystem<MaterialEffect>();
     systemRegistry->RegisterSystem<CreateMeshFromSpline>();
