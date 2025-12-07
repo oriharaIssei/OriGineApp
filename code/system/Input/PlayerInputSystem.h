@@ -1,6 +1,12 @@
 #pragma once
 #include "system/ISystem.h"
 
+/// ECS
+// component
+class IPlayerInputDevice;
+class PlayerInput;
+class PlayerState;
+
 /// <summary>
 /// PlayerのInputを処理するシステム
 /// </summary>
@@ -16,4 +22,7 @@ public:
 
 private:
     void UpdateEntity(Entity* _entity) override;
+
+    IPlayerInputDevice* SelectActiveDevice(IPlayerInputDevice* _padDevice, IPlayerInputDevice* _keyDevice);
+    void HandleJump(PlayerInput* _playerInput, PlayerState* _state, IPlayerInputDevice* _device);
 };
