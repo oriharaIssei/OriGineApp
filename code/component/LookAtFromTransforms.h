@@ -1,0 +1,34 @@
+#pragma once
+#include "component/IComponent.h"
+
+/// util
+#include "util/EnumBitmask.h"
+
+/// <summary>
+/// 2つの Transformコンポーネントを参照し、1つ目のTransformの位置から2つ目のTransformの位置を向くように設定するコンポーネント
+/// </summary>
+struct LookAtFromTransforms
+    : public IComponent {
+    friend void to_json(nlohmann::json& _j, const LookAtFromTransforms& _c);
+    friend void from_json(const nlohmann::json& _j, LookAtFromTransforms& _c);
+
+public:
+    LookAtFromTransforms();
+    ~LookAtFromTransforms() override;
+    void Initialize(Entity* _entity) override;
+    void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
+    void Finalize() override;
+
+public:
+    enum class RotateAxis : int32_t {
+        X = 0b1 << 0,
+        Y = 0b1 << 1,
+        Z = 0b1 << 2
+    };
+
+public:
+    EnumBitmask<LookAtFromTransforms::RotateAxis> rotateAxis = 0; // 回転を許可する軸のビットマスク
+
+    int32_t fromTransformEntity = -1; // 視点のTransformコンポーネントを持つエンティティ
+    int32_t toTransformEntity   = -1; // 注視点のTransformコンポーネントを持つエンティティ
+};

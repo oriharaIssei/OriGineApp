@@ -251,6 +251,11 @@
     <ClInclude Include="code\system\effect\CameraShake.h" />
     <ClInclude Include="code\component\camera\CameraMotionBob.h" />
     <ClInclude Include="code\system\Transition\CameraMotionBobSystem.h" />
+    <ClInclude Include="code\component\LookAtFromTransforms.h" />
+    <ClInclude Include="code\system\Movement\LookAtFromTransformsSystem.h" />
+    <ClInclude Include="code\system\Movement\Ui3dUpdateSystem.h" />
+    <ClInclude Include="code\system\Initialize\Ui3dObjectInitialize.h" />
+    <ClInclude Include="code\component\player\PlayerInputDevice.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -460,5 +465,10 @@
     <ClCompile Include="code\system\effect\CameraShake.cpp" />
     <ClCompile Include="code\component\camera\CameraMotionBob.cpp" />
     <ClCompile Include="code\system\Transition\CameraMotionBobSystem.cpp" />
+    <ClCompile Include="code\component\LookAtFromTransforms.cpp" />
+    <ClCompile Include="code\system\Movement\LookAtFromTransformsSystem.cpp" />
+    <ClCompile Include="code\system\Movement\Ui3dUpdateSystem.cpp" />
+    <ClCompile Include="code\system\Initialize\Ui3dObjectInitialize.cpp" />
+    <ClCompile Include="code\component\player\PlayerInputDevice.cpp" />
   </ItemGroup>
 </Project>

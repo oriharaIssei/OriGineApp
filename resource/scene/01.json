@@ -240,12 +240,12 @@
                     "SystemName": "SpriteRenderSystem"
                 },
                 {
-                    "SystemCategory": 7,
-                    "SystemName": "SubSceneRender"
-                },
-                {
                     "SystemCategory": 2,
                     "SystemName": "SubSceneActivateByButton"
+                },
+                {
+                    "SystemCategory": 7,
+                    "SystemName": "SubSceneRender"
                 },
                 {
                     "SystemCategory": 3,
@@ -6960,6 +6960,100 @@
                 }
             ],
             "isUnique": false
+        },
+        {
+            "Components": {
+                "Material": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "PlaneRenderer": [
+                    {
+                        "blendMode": 1,
+                        "isCulling": false,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "textureDirectory": "./application/resource/Texture",
+                        "textureFileName": "Electric.png",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            2.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            6.679999828338623,
+                            -3.75,
+                            14.520000457763672
+                        ]
+                    }
+                ]
+            },
+            "Name": "SpeedUI",
+            "Systems": [
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "Ui3dObjectInitialize"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "OverlayRenderSystem"
+                },
+                {
+                    "SystemCategory": 3,
+                    "SystemName": "Ui3dUpdateSystem"
+                }
+            ],
+            "isUnique": false
         }
     ],
     "Systems": [
@@ -7047,6 +7141,9 @@
             },
             "MoveSystemByRigidBody": {
                 "Priority": 5
+            },
+            "OverlayRenderSystem": {
+                "Priority": 100
             },
             "ParticleRenderSystem": {
                 "Priority": 3
@@ -7146,6 +7243,12 @@
             },
             "TransitionPlayerState": {
                 "Priority": 5
+            },
+            "Ui3dObjectInitialize": {
+                "Priority": 10
+            },
+            "Ui3dUpdateSystem": {
+                "Priority": 100
             },
             "UpdateButtonColorByState": {
                 "Priority": 1

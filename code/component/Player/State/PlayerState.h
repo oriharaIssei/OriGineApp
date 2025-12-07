@@ -4,7 +4,7 @@
 
 /// util
 #include "util/DiffValue.h"
-#include "util/EnumBitMask.h"
+#include "util/EnumBitmask.h"
 
 /// math
 #include <math/Vector3.h>

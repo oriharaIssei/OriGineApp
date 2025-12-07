@@ -13,6 +13,7 @@
 #include "component/Camera/CameraController.h"
 #include "component/camera/CameraMotionBob.h"
 #include "component/Camera/CameraShakeSourceComponent.h"
+#include "component/LookAtFromTransforms.h"
 #include "component/MouseCondition.h"
 #include "component/player/PlayerEffectControlParam.h"
 #include "component/player/PlayerInput.h"
@@ -42,16 +43,19 @@
 #include "system/initialize/TakePlayerToStartPosition.h"
 #include "system/initialize/TakeToGoalPosition.h"
 #include "system/initialize/TrailEffectInitialize.h"
+#include "system/Initialize/Ui3dObjectInitialize.h"
 #include "system/input/ButtonInputSystem.h"
 #include "system/input/CameraInputSystem.h"
 #include "system/input/PlayerInputSystem.h"
 #include "system/movement/BillboardTransform.h"
 #include "system/movement/FollowCameraUpdateSystem.h"
+#include "system/Movement/LookAtFromTransformsSystem.h"
 #include "system/movement/MenuUpdate.h"
 #include "system/movement/PlayerMoveSystem.h"
 #include "system/movement/PlayerPathSplineGenerator.h"
 #include "system/movement/PlayerUpdateOnTitle.h"
 #include "system/movement/StartSequenceSystem.h"
+#include "system/Movement/Ui3dUpdateSystem.h"
 #include "system/transition/ApplyMouseConditionSystem.h"
 #include "system/transition/ButtonGroupSystem.h"
 #include "system/transition/ButtonScenePreviewSystem.h"
@@ -92,6 +96,8 @@ void RegisterUsingComponents() {
 
     componentRegistry->RegisterComponent<CameraTransform>();
     componentRegistry->RegisterComponent<Transform>();
+
+    componentRegistry->RegisterComponent<LookAtFromTransforms>();
 
     componentRegistry->RegisterComponent<StageData>();
     componentRegistry->RegisterComponent<StageObstacle>();
@@ -167,6 +173,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<CreateSpriteFromTimer>();
     systemRegistry->RegisterSystem<GetClearTime>();
     systemRegistry->RegisterSystem<CameraInitialize>();
+    systemRegistry->RegisterSystem<Ui3dObjectInitialize>();
     systemRegistry->RegisterSystem<RegisterWindowResizeEvent>();
     systemRegistry->RegisterSystem<TrailEffectInitialize>();
 
@@ -223,6 +230,9 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<SubSceneUpdate>();
     systemRegistry->RegisterSystem<MenuUpdate>();
 
+    systemRegistry->RegisterSystem<LookAtFromTransformsSystem>();
+    systemRegistry->RegisterSystem<Ui3dUpdateSystem>();
+
     /// =================================================================================================
     // Collision
     /// =================================================================================================
@@ -261,6 +271,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<BackGroundSpriteRenderSystem>();
     systemRegistry->RegisterSystem<ParticleRenderSystem>();
     systemRegistry->RegisterSystem<TexturedMeshRenderSystem>();
+    systemRegistry->RegisterSystem<OverlayRenderSystem>();
     systemRegistry->RegisterSystem<SkinningMeshRenderSystem>();
     systemRegistry->RegisterSystem<LineRenderSystem>();
     systemRegistry->RegisterSystem<GpuParticleRenderSystem>();

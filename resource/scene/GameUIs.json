@@ -1,0 +1,175 @@
+{
+    "CategoryActivity": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+    ],
+    "Entities": [
+        {
+            "Components": {
+                "Transform": [
+                    {
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            -3.899982452392578,
+                            -1.8453866243362427,
+                            10.586098670959473
+                        ]
+                    }
+                ]
+            },
+            "Name": "Player",
+            "Systems": [],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "Transform": [
+                    {
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "Camera",
+            "Systems": [],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "LookAtFromTransforms": [
+                    {
+                        "fromTransformEntity": 0,
+                        "rotateAxis": 6,
+                        "toTransformEntity": 2
+                    }
+                ],
+                "Material": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "PlaneRenderer": [
+                    {
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "textureDirectory": "",
+                        "textureFileName": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            -0.02008533664047718,
+                            0.5126715898513794,
+                            -0.03360246121883392,
+                            0.8576918244361877
+                        ],
+                        "scale": [
+                            2.0,
+                            1.0,
+                            0.9999997019767761
+                        ],
+                        "translate": [
+                            3.9690001010894775,
+                            -2.640000104904175,
+                            14.800000190734863
+                        ]
+                    }
+                ]
+            },
+            "Name": "SpeedUI",
+            "Systems": [
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "LookAtFromTransformsSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        }
+    ],
+    "Systems": [
+        {
+            "LookAtFromTransformsSystem": {
+                "Priority": 0
+            },
+            "TexturedMeshRenderSystem": {
+                "Priority": 0
+            }
+        }
+    ]
+}

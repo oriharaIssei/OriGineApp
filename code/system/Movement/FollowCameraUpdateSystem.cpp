@@ -20,9 +20,11 @@ void FollowCameraUpdateSystem::Initialize() {}
 void FollowCameraUpdateSystem::Finalize() {}
 
 void FollowCameraUpdateSystem::UpdateEntity(Entity* _entity) {
-    CameraController* cameraController = GetComponent<CameraController>(_entity);
-    CameraTransform* cameraTransform   = GetComponent<CameraTransform>(_entity);
-    const float deltaTime              = GetMainDeltaTime();
+    auto* cameraController = GetComponent<CameraController>(_entity);
+    auto* cameraTransform  = GetComponent<CameraTransform>(_entity);
+    auto* transform        = GetComponent<Transform>(_entity);
+
+    const float deltaTime = GetMainDeltaTime();
 
     if (cameraController->GetFollowTarget()) {
         // ======== 回転行列 ======== //
@@ -54,6 +56,11 @@ void FollowCameraUpdateSystem::UpdateEntity(Entity* _entity) {
             targetQuat,
             deltaTime,
             cameraController->GetRotateSensitivity());
+
+        // transform に同期
+        transform->rotate    = cameraTransform->rotate;
+        transform->translate = cameraTransform->translate;
+        transform->UpdateMatrix();
     }
 
     cameraTransform->UpdateMatrix();
