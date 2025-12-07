@@ -221,6 +221,7 @@
     <ClInclude Include="code\component\ui\SpeedFor3dUIComponent.h" />
     <ClInclude Include="code\system\Initialize\CreatePlaneFromSpeed.h" />
     <ClInclude Include="code\system\effect\PlayerSpeedFor3dUI.h" />
+    <ClInclude Include="code\system\Initialize\SelectPreviewSceneInitialize.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\system\Transition\CameraMotionBobSystem.cpp" />
@@ -306,6 +307,7 @@
     <ClCompile Include="code\component\ui\SpeedFor3dUIComponent.cpp" />
     <ClCompile Include="code\system\Initialize\CreatePlaneFromSpeed.cpp" />
     <ClCompile Include="code\system\effect\PlayerSpeedFor3dUI.cpp" />
+    <ClCompile Include="code\system\Initialize\SelectPreviewSceneInitialize.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">

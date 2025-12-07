@@ -41,6 +41,7 @@
 #include "system/initialize/CreateSpriteFromTimer.h"
 #include "system/initialize/CreateStage.h"
 #include "system/initialize/GetClearTime.h"
+#include "system/Initialize/SelectPreviewSceneInitialize.h"
 #include "system/initialize/SettingGameCameraTarget.h"
 #include "system/initialize/StartTimerInitialize.h"
 #include "system/initialize/TakePlayerToStartPosition.h"
@@ -185,6 +186,8 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<StartTimerInitialize>();
 
     systemRegistry->RegisterSystem<BackFireInitialize>();
+
+    systemRegistry->RegisterSystem<SelectPreviewSceneInitialize>();
 
     systemRegistry->RegisterSystem<TakePlayerToStartPosition>();
     systemRegistry->RegisterSystem<TakeToGoalPosition>();
