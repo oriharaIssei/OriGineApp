@@ -15,6 +15,7 @@
 // component
 #include "component/Camera/CameraController.h"
 /// math
+#include "math/mathEnv.h"
 #include <numbers>
 
 void CameraInputSystem::Initialize() {}
@@ -40,7 +41,12 @@ void CameraInputSystem::UpdateEntity(Entity* _entity) {
             rotateVelocity = Vec2f(rotateVelocity[Y], rotateVelocity[X]);
         }
 
+        // 自動注視は入力があったら解除
+        bool isInputCamera = rotateVelocity.lengthSq() <= kEpsilon;
+        cameraController->SetIsAutoLookAtPlayer(isInputCamera);
+
         destinationAngleXY += rotateVelocity;
+        destinationAngleXY[Y] = std::fmod(destinationAngleXY[Y], kTao); // Y軸は360度回転可能
 
         // 角度制限を適用
         destinationAngleXY[X] = std::clamp(destinationAngleXY[X], cameraController->GetMinRotateX(), cameraController->GetMaxRotateX());

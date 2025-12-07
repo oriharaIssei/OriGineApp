@@ -1,5 +1,8 @@
 #include "FollowCameraUpdateSystem.h"
 
+/// stl
+#include <algorithm>
+
 /// engine
 #define DELTA_TIME
 #define ENGINE_ECS
@@ -12,7 +15,6 @@
 
 /// math
 #include "math/Interpolation.h"
-#include <algorithm>
 #include <numbers>
 
 void FollowCameraUpdateSystem::Initialize() {}
@@ -28,7 +30,22 @@ void FollowCameraUpdateSystem::UpdateEntity(Entity* _entity) {
 
     if (cameraController->GetFollowTarget()) {
         // ======== 回転行列 ======== //
-        Vec2f destinationAngleXY  = cameraController->GetDestinationAngleXY();
+        Vec2f destinationAngleXY = cameraController->GetDestinationAngleXY();
+
+        // 自動注視処理
+        if (cameraController->GetIsAutoLookAtPlayer()) {
+            Vec3f toTarget = Vec3f::Normalize(
+                Vec3f(cameraController->GetFollowTarget()->GetWorldTranslate()) - cameraTransform->translate);
+            float targetAngleY = std::atan2(toTarget[X], toTarget[Z]);
+
+            float currentY = destinationAngleXY[Y];
+            float t        = deltaTime * cameraController->GetInterTargetInterpolation();
+
+            destinationAngleXY[Y] = LerpAngle(currentY, targetAngleY, t);
+
+            cameraController->SetDestinationAngleXY(destinationAngleXY);
+        }
+
         Matrix4x4 cameraRotateMat = MakeMatrix4x4::RotateX(destinationAngleXY[X]) * MakeMatrix4x4::RotateY(destinationAngleXY[Y]);
 
         // ======== ターゲット追従補間 ======== //

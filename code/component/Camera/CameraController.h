@@ -39,8 +39,9 @@ public:
 private:
     Transform* followTarget_ = nullptr;
 
-    Vec3f forward_     = {0.f, 0.f, 1.f}; // カメラの前方向
-    float angleLimitY_ = 0.0f;
+    Vec3f forward_           = {0.f, 0.f, 1.f}; // カメラの前方向
+    float angleLimitY_       = 0.0f;
+    bool isAutoLookAtPlayer_ = true; // 自動でプレイヤーを注視するかどうか
 
     /// <summary>
     /// 注視点のOffset
@@ -74,6 +75,9 @@ private:
     float fixForForwardSpeed_ = 0.1f; // 正面方向への 補正速度
 
 public:
+    bool GetIsAutoLookAtPlayer() const { return isAutoLookAtPlayer_; }
+    void SetIsAutoLookAtPlayer(bool isAutoLookAtPlayer) { isAutoLookAtPlayer_ = isAutoLookAtPlayer; }
+
     const Vec3f& GetForward() const { return forward_; }
     void SetForward(const Vec3f& forward) { forward_ = forward; }
 
