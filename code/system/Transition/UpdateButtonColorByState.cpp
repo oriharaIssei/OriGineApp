@@ -4,7 +4,7 @@
 #define ENGINE_ECS
 #include "EngineInclude.h"
 // component
-#include "component/Button.h"
+#include "component/ui/Button.h"
 
 void UpdateButtonColorByState::Initialize() {
 }

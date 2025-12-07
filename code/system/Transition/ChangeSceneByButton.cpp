@@ -7,7 +7,7 @@
 
 /// application
 // component
-#include "component/Button.h"
+#include "component/ui/Button.h"
 #include "component/SceneChanger.h"
 
 ChangeSceneByButton::ChangeSceneByButton()

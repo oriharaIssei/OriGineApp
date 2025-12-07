@@ -28,7 +28,7 @@ void Ui3dUpdateSystem::UpdateEntity(Entity* _entity) {
     worldDir       = worldDir.normalize();
 
     // --- カメラのローカル空間へ変換 ---
-    Matrix4x4 invCam = MakeMatrix::RotateQuaternion(camTransform->rotate).inverse();
+    Matrix4x4 invCam = MakeMatrix4x4::RotateQuaternion(camTransform->rotate).inverse();
     Vec3f localDir   = Vec3f(worldDir * invCam).normalize();
 
     // --- UI のローカル回転を設定 ---

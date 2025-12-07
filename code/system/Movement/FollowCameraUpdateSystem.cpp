@@ -29,7 +29,7 @@ void FollowCameraUpdateSystem::UpdateEntity(Entity* _entity) {
     if (cameraController->GetFollowTarget()) {
         // ======== 回転行列 ======== //
         Vec2f destinationAngleXY  = cameraController->GetDestinationAngleXY();
-        Matrix4x4 cameraRotateMat = MakeMatrix::RotateX(destinationAngleXY[X]) * MakeMatrix::RotateY(destinationAngleXY[Y]);
+        Matrix4x4 cameraRotateMat = MakeMatrix4x4::RotateX(destinationAngleXY[X]) * MakeMatrix4x4::RotateY(destinationAngleXY[Y]);
 
         // ======== ターゲット追従補間 ======== //
         Vec3f followTargetPosition = Vec3f(cameraController->GetFollowTarget()->GetWorldTranslate());

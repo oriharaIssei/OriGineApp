@@ -5,8 +5,8 @@
 #include "input/KeyboardInput.h"
 
 /// component
-#include "component/Button.h"
-#include "component/ButtonGroup.h"
+#include "component/ui/Button.h"
+#include "component/ui/ButtonGroup.h"
 
 ButtonGroupSystem::ButtonGroupSystem() : ISystem(SystemCategory::StateTransition) {}
 

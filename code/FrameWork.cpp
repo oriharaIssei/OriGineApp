@@ -8,8 +8,6 @@
 #include <EngineInclude.h>
 
 // application component
-#include "component/Button.h"
-#include "component/ButtonGroup.h"
 #include "component/Camera/CameraController.h"
 #include "component/camera/CameraMotionBob.h"
 #include "component/Camera/CameraShakeSourceComponent.h"
@@ -24,6 +22,9 @@
 #include "component/stage/StageData.h"
 #include "component/stage/StageObstacle.h"
 #include "component/TimerComponent.h"
+#include "component/ui/Button.h"
+#include "component/ui/ButtonGroup.h"
+#include "component/ui/SpeedFor3dUIComponent.h"
 
 // application system
 #include "system/collision/PlayerOnCollision.h"
@@ -33,8 +34,10 @@
 #include "system/effect/EffectOnPlayerGearup.h"
 #include "system/effect/EffectOnPlayerRun.h"
 #include "system/effect/PenaltyTimeSpriteUpdate.h"
+#include "system/effect/PlayerSpeedFor3dUI.h"
 #include "system/effect/TimerForSprite.h"
 #include "system/initialize/BackFireInitialize.h"
+#include "system/Initialize/CreatePlaneFromSpeed.h"
 #include "system/initialize/CreateSpriteFromTimer.h"
 #include "system/initialize/CreateStage.h"
 #include "system/initialize/GetClearTime.h"
@@ -146,6 +149,8 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<TimerComponent>();
     componentRegistry->RegisterComponent<TimerForSpriteComponent>();
 
+    componentRegistry->RegisterComponent<SpeedFor3dUIComponent>();
+
     componentRegistry->RegisterComponent<CameraController>();
     componentRegistry->RegisterComponent<CameraShakeSourceComponent>();
     componentRegistry->RegisterComponent<CameraMotionBob>();
@@ -183,6 +188,7 @@ void RegisterUsingSystems() {
 
     systemRegistry->RegisterSystem<TakePlayerToStartPosition>();
     systemRegistry->RegisterSystem<TakeToGoalPosition>();
+    systemRegistry->RegisterSystem<CreatePlaneFromSpeed>();
 
     /// ===================================================================================================
     // Input
@@ -258,6 +264,9 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<MaterialEffect>();
     systemRegistry->RegisterSystem<CreateMeshFromSpline>();
 
+    systemRegistry->RegisterSystem<PlayerSpeedFor3dUI>();
+    systemRegistry->RegisterSystem<TimerForSprite>();
+
     systemRegistry->RegisterSystem<EffectOnPlayerGearup>();
     systemRegistry->RegisterSystem<EffectOnPlayerRun>();
 
@@ -275,8 +284,6 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<SkinningMeshRenderSystem>();
     systemRegistry->RegisterSystem<LineRenderSystem>();
     systemRegistry->RegisterSystem<GpuParticleRenderSystem>();
-
-    systemRegistry->RegisterSystem<TimerForSprite>();
 
 #ifndef _RELEASE
     systemRegistry->RegisterSystem<SkeletonRenderSystem>();

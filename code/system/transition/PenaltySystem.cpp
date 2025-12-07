@@ -77,12 +77,8 @@ void PenaltySystem::UpdateEntity(Entity* _entity) {
     timer4SpriteComp.SetSpritesEntityId(penaltyTimeUIEntityId);
 
     // 桁数を設定
-    int digitIntegralCount = (std::max)(CountIntegralDigits<float, int>(penaltyTime), timer4SpriteComp.GetDigitIntegerForSprite());
-    int decimalCount       = (std::max)(CountDecimalDigits<float, int>(penaltyTime), timer4SpriteComp.GetDigitDecimalForSprite());
-
-    timer4SpriteComp.SetDigitForSprite(digitIntegralCount + decimalCount);
-    timer4SpriteComp.SetDigitIntegerForSprite(digitIntegralCount);
-    timer4SpriteComp.SetDigitDecimalForSprite(decimalCount);
+    timer4SpriteComp.digitInteger = (std::max)(CountIntegralDigits<float, int>(penaltyTime), timer4SpriteComp.digitInteger);
+    timer4SpriteComp.digitDecimal = (std::max)(CountDecimalDigits<float, int>(penaltyTime), timer4SpriteComp.digitDecimal);
 
     /// コンポーネントを追加
     AddComponent<TimerComponent>(penaltyTimeUIEntity, penaltyTimer, false);

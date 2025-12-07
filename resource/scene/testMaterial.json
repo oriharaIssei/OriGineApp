@@ -43,43 +43,6 @@
         },
         {
             "Components": {
-                "CylinderRenderer": [
-                    {
-                        "blendMode": 1,
-                        "bottomRadius": [
-                            0.20000000298023224,
-                            0.20000000298023224
-                        ],
-                        "height": 4.210000038146973,
-                        "isCulling": false,
-                        "isRenderer": true,
-                        "materialIndex": 0,
-                        "textureDirectory": "",
-                        "textureFileName": "",
-                        "topRadius": [
-                            1.0,
-                            1.0
-                        ],
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
                 "Material": [
                     {
                         "color": [
@@ -117,296 +80,24 @@
                             {
                                 "effectType": 2,
                                 "entityID": 4
-                            }
-                        ],
-                        "isActive": true,
-                        "materialIndex": 0,
-                        "priority": 5
-                    }
-                ],
-                "SphereRenderer": [],
-                "Transform": [
-                    {
-                        "rotate": [
-                            0.0,
-                            0.0,
-                            0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "translate": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "BackFire",
-            "Systems": [
-                {
-                    "SystemCategory": 5,
-                    "SystemName": "MaterialEffect"
-                },
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "TexturedMeshRenderSystem"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "DissolveEffectParam": [
-                    {
-                        "edgeWidth": 0.006000000052154064,
-                        "isActive": true,
-                        "materialIndex": 0,
-                        "outLineColor": [
-                            0.28270041942596436,
-                            0.28270041942596436,
-                            0.28270041942596436,
-                            1.0
-                        ],
-                        "textureFilePath": "",
-                        "threshold": 0.008999999612569809
-                    }
-                ],
-                "Material": [
-                    {
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "enableLighting": false,
-                        "shininess": 0.0,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.7927960157394409,
-                            0.0
-                        ]
-                    }
-                ],
-                "MaterialAnimation": [
-                    {
-                        "InterpolationType": 0,
-                        "colorCurve": [],
-                        "duration": 2.0,
-                        "isLoop": true,
-                        "isPlay": true,
-                        "uvRotateCurve": [],
-                        "uvScaleCurve": [],
-                        "uvTranslateCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0
-                                ]
                             },
                             {
-                                "time": 2.0,
-                                "value": [
-                                    1.0,
-                                    0.0
-                                ]
-                            }
-                        ]
-                    }
-                ],
-                "MaterialEffectPipeLine": [
-                    {
-                        "baseTexturePath": "./application/resource/Texture/gradationLine.png",
-                        "effectEntityIdList": [
-                            {
-                                "effectType": 1,
-                                "entityID": 3
+                                "effectType": 2,
+                                "entityID": 5
                             }
                         ],
                         "isActive": true,
                         "materialIndex": 0,
                         "priority": 0
                     }
-                ]
-            },
-            "Name": "BackFire_Diss",
-            "Systems": [
-                {
-                    "SystemCategory": 5,
-                    "SystemName": "MaterialAnimationWorkSystem"
-                },
-                {
-                    "SystemCategory": 5,
-                    "SystemName": "MaterialEffect"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "DistortionEffectParam": [
-                    {
-                        "distortionBias": [
-                            0.27000001072883606,
-                            0.0
-                        ],
-                        "distortionStrength": [
-                            6.929999828338623,
-                            2.0
-                        ],
-                        "isActive": true,
-                        "materialIndex": 0,
-                        "textuerPath": "./application/resource/Texture/waveNoise.png",
-                        "use3dObjectList": false
-                    }
                 ],
-                "Material": [
-                    {
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "enableLighting": false,
-                        "shininess": 0.0,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.8090239763259888
-                        ]
-                    }
-                ],
-                "MaterialAnimation": [
-                    {
-                        "InterpolationType": 0,
-                        "colorCurve": [],
-                        "duration": 4.5,
-                        "isLoop": true,
-                        "isPlay": true,
-                        "uvRotateCurve": [],
-                        "uvScaleCurve": [],
-                        "uvTranslateCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 4.5,
-                                "value": [
-                                    0.0,
-                                    1.0
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            "Name": "BackFire_Dist",
-            "Systems": [
-                {
-                    "SystemCategory": 5,
-                    "SystemName": "MaterialAnimationWorkSystem"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "GradationComponent": [
-                    {
-                        "centerUv": [
-                            0.0,
-                            0.47999998927116394
-                        ],
-                        "colorChannel": 3,
-                        "direction": [
-                            0.0,
-                            1.0
-                        ],
-                        "gradationType": 0,
-                        "isActive": true,
-                        "pow": 2.7799999713897705,
-                        "scale": 3.1700000762939453
-                    }
-                ],
-                "Material": [
-                    {
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "enableLighting": false,
-                        "shininess": 0.0,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Name": "BackFire_Grad",
-            "Systems": [],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "CylinderRenderer": [
+                "PlaneRenderer": [
                     {
                         "blendMode": 1,
-                        "bottomRadius": [
-                            0.20999999344348907,
-                            0.20999999344348907
-                        ],
-                        "height": 4.400000095367432,
-                        "isCulling": false,
+                        "isCulling": true,
                         "isRenderer": true,
                         "materialIndex": 0,
-                        "textureDirectory": "",
-                        "textureFileName": "",
-                        "topRadius": [
-                            1.100000023841858,
-                            1.100000023841858
-                        ],
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -427,72 +118,28 @@
                         }
                     }
                 ],
-                "Material": [
-                    {
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            0.7058823704719543
-                        ],
-                        "enableLighting": false,
-                        "shininess": 0.0,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            2.3299999237060547
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "MaterialEffectPipeLine": [
-                    {
-                        "baseTexturePath": "./application/resource/Texture/white1x1.png",
-                        "effectEntityIdList": [
-                            {
-                                "effectType": 0,
-                                "entityID": 6
-                            },
-                            {
-                                "effectType": 2,
-                                "entityID": 4
-                            }
-                        ],
-                        "isActive": true,
-                        "materialIndex": 0,
-                        "priority": 5
-                    }
-                ],
                 "Transform": [
                     {
                         "rotate": [
                             0.0,
+                            0.45108944177627563,
                             0.0,
-                            0.0,
-                            1.0
+                            0.8924787640571594
                         ],
                         "scale": [
-                            1.0,
+                            2.0,
                             1.0,
                             1.0
                         ],
                         "translate": [
-                            0.0,
-                            0.0,
-                            0.0
+                            5.0,
+                            -3.0,
+                            15.449999809265137
                         ]
                     }
                 ]
             },
-            "Name": "BackFireSparks",
+            "Name": "Entity",
             "Systems": [
                 {
                     "SystemCategory": 5,
@@ -509,17 +156,17 @@
             "Components": {
                 "DissolveEffectParam": [
                     {
-                        "edgeWidth": 0.020999999716877937,
+                        "edgeWidth": 0.0010000000474974513,
                         "isActive": true,
                         "materialIndex": 0,
                         "outLineColor": [
-                            0.37974685430526733,
-                            0.37974685430526733,
-                            0.37974685430526733,
-                            0.4274509847164154
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
                         ],
-                        "textureFilePath": "./application/resource/Texture/Electric.png",
-                        "threshold": 0.04100000113248825
+                        "textureFilePath": "./application/resource/Texture/waveMask.png",
+                        "threshold": 0.004999999888241291
                     }
                 ],
                 "Material": [
@@ -537,47 +184,20 @@
                             1.0,
                             1.0
                         ],
-                        "uvRotate": -0.33000001311302185,
+                        "uvRotate": 0.0,
                         "uvScale": [
-                            1.0,
-                            0.17000000178813934
+                            0.3499999940395355,
+                            1.0
                         ],
                         "uvTranslate": [
-                            0.7927960157394409,
+                            0.0,
                             0.0
-                        ]
-                    }
-                ],
-                "MaterialAnimation": [
-                    {
-                        "InterpolationType": 0,
-                        "colorCurve": [],
-                        "duration": 2.0,
-                        "isLoop": true,
-                        "isPlay": true,
-                        "uvRotateCurve": [],
-                        "uvScaleCurve": [],
-                        "uvTranslateCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 2.0,
-                                "value": [
-                                    1.0,
-                                    0.0
-                                ]
-                            }
                         ]
                     }
                 ],
                 "MaterialEffectPipeLine": [
                     {
-                        "baseTexturePath": "./application/resource/Texture/waveNoise.png",
+                        "baseTexturePath": "./application/resource/Texture/waveMask.png",
                         "effectEntityIdList": [
                             {
                                 "effectType": 1,
@@ -590,12 +210,8 @@
                     }
                 ]
             },
-            "Name": "BackFireSparks_Diss",
+            "Name": "Entity",
             "Systems": [
-                {
-                    "SystemCategory": 5,
-                    "SystemName": "MaterialAnimationWorkSystem"
-                },
                 {
                     "SystemCategory": 5,
                     "SystemName": "MaterialEffect"
@@ -605,15 +221,154 @@
         },
         {
             "Components": {
-                "EntityReferenceList": [
+                "DistortionEffectParam": [
                     {
-                        "entityFileList": []
+                        "distortionBias": [
+                            0.5,
+                            -0.03999999910593033
+                        ],
+                        "distortionStrength": [
+                            0.20000000298023224,
+                            0.47999998927116394
+                        ],
+                        "isActive": true,
+                        "materialIndex": 0,
+                        "textuerPath": "./application/resource/..\\..\\..\\..\\..\\..\\Downloads\\sbs_-_noise_texture_pack_-_256x256\\256x256\\Voronoi/Voronoi 1 - 256x256.png",
+                        "use3dObjectList": false
+                    }
+                ],
+                "Material": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            0.5699999928474426,
+                            0.3400000035762787
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            16.559999465942383
+                        ]
                     }
                 ]
             },
-            "Name": "BackFireRecipe",
+            "Name": "Entity",
             "Systems": [],
-            "isUnique": true
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "GradationComponent": [
+                    {
+                        "centerUv": [
+                            0.009999999776482582,
+                            0.0
+                        ],
+                        "colorChannel": 3,
+                        "direction": [
+                            1.0,
+                            5.394887466536602e-06
+                        ],
+                        "gradationType": 0,
+                        "isActive": true,
+                        "materialIndex": 0,
+                        "pow": 2.430000066757202,
+                        "scale": 5.480000019073486
+                    }
+                ],
+                "Material": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "Entity",
+            "Systems": [],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "GradationComponent": [
+                    {
+                        "centerUv": [
+                            0.9700000286102295,
+                            0.0
+                        ],
+                        "colorChannel": 3,
+                        "direction": [
+                            -0.9999761581420898,
+                            0.006915024947375059
+                        ],
+                        "gradationType": 0,
+                        "isActive": true,
+                        "materialIndex": 0,
+                        "pow": 4.400000095367432,
+                        "scale": 4.829999923706055
+                    }
+                ],
+                "Material": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "Entity",
+            "Systems": [],
+            "isUnique": false
         }
     ],
     "Systems": [

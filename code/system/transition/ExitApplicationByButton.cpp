@@ -3,7 +3,7 @@
 /// engine
 #include "scene/SceneManager.h"
 /// component
-#include "component/Button.h"
+#include "component/ui/Button.h"
 
 ExitApplicationByButton::ExitApplicationByButton() : ISystem(SystemCategory::StateTransition) {}
 ExitApplicationByButton::~ExitApplicationByButton() {}

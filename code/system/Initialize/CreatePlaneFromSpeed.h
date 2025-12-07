@@ -1,21 +1,21 @@
 #pragma once
 #include "system/ISystem.h"
 
-struct TimerForSpriteComponent;
+struct SpeedFor3dUIComponent;
 
 /// <summary>
 /// Timerの数字をSpriteとして表示するためにSpriteを生成するシステム
 /// </summary>
-class CreateSpriteFromTimer
+class CreatePlaneFromSpeed
     : public ISystem {
 public:
-    CreateSpriteFromTimer();
-    ~CreateSpriteFromTimer() override;
+    CreatePlaneFromSpeed();
+    ~CreatePlaneFromSpeed() override;
     void Initialize();
     // virtual void Update();
     // virtual void Edit();
     void Finalize();
 
     void UpdateEntity(Entity* _entity) override;
-    void CreateSprites(Entity* _entity, TimerForSpriteComponent* _forSpriteComp);
+    void CreatePlanesFromComponent(Entity* _entity, SpeedFor3dUIComponent* _speedFor3dUI);
 };

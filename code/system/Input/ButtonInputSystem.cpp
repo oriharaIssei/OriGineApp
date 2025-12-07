@@ -8,7 +8,7 @@
 #include "input/KeyboardInput.h"
 #include "input/MouseInput.h"
 // component
-#include "component/Button.h"
+#include "component/ui/Button.h"
 
 void ButtonInputSystem::Initialize() {}
 

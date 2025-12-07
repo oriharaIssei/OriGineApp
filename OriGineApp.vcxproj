@@ -146,8 +146,8 @@
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\MyEditor.h" />
     <ClInclude Include="code\MyGame.h" />
-    <ClInclude Include="code\component\Button.h" />
-    <ClInclude Include="code\component\ButtonGroup.h" />
+    <ClInclude Include="code\component\ui\Button.h" />
+    <ClInclude Include="code\component\ui\ButtonGroup.h" />
     <ClInclude Include="code\component\MouseCondition.h" />
     <ClInclude Include="code\component\SceneChanger.h" />
     <ClInclude Include="code\component\TimerComponent.h" />
@@ -218,6 +218,9 @@
     <ClInclude Include="code\system\Movement\Ui3dUpdateSystem.h" />
     <ClInclude Include="code\system\Initialize\Ui3dObjectInitialize.h" />
     <ClInclude Include="code\component\player\PlayerInputDevice.h" />
+    <ClInclude Include="code\component\ui\SpeedFor3dUIComponent.h" />
+    <ClInclude Include="code\system\Initialize\CreatePlaneFromSpeed.h" />
+    <ClInclude Include="code\system\effect\PlayerSpeedFor3dUI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\system\Transition\CameraMotionBobSystem.cpp" />
@@ -227,8 +230,8 @@
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\MyEditor.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
-    <ClCompile Include="code\component\Button.cpp" />
-    <ClCompile Include="code\component\ButtonGroup.cpp" />
+    <ClCompile Include="code\component\ui\Button.cpp" />
+    <ClCompile Include="code\component\ui\ButtonGroup.cpp" />
     <ClCompile Include="code\component\MouseCondition.cpp" />
     <ClCompile Include="code\component\SceneChanger.cpp" />
     <ClCompile Include="code\component\TimerComponent.cpp" />
@@ -300,6 +303,9 @@
     <ClCompile Include="code\system\Movement\Ui3dUpdateSystem.cpp" />
     <ClCompile Include="code\system\Initialize\Ui3dObjectInitialize.cpp" />
     <ClCompile Include="code\component\player\PlayerInputDevice.cpp" />
+    <ClCompile Include="code\component\ui\SpeedFor3dUIComponent.cpp" />
+    <ClCompile Include="code\system\Initialize\CreatePlaneFromSpeed.cpp" />
+    <ClCompile Include="code\system\effect\PlayerSpeedFor3dUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">

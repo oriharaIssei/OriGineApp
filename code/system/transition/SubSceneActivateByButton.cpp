@@ -1,7 +1,7 @@
 #include "SubSceneActivateByButton.h"
 
 // component
-#include "component/Button.h"
+#include "component/ui/Button.h"
 #include "component/SubScene.h"
 
 SubSceneActivateByButton::SubSceneActivateByButton() : ISystem(SystemCategory::StateTransition) {}
