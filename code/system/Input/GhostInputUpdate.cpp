@@ -42,9 +42,6 @@ void GhostInputUpdate::UpdateEntity(Entity* _entity) {
         return;
     }
 
-    float dt = GetMainDeltaTime();
-
-    
     int32_t current = static_cast<int32_t>(player->GetCurrentFrameIndex());
 
     if (!player->Seek(current + 1)) {
@@ -66,7 +63,7 @@ void GhostInputUpdate::UpdateEntity(Entity* _entity) {
     }
 
     playerInputSystem_->InputUpdate(
-        newDelta, 
+        newDelta,
         comp->keyboardInput_.get(),
         comp->gamepadInput_.get(),
         GetComponent<PlayerInput>(GetEntity(comp->ghostEntityId_)),

@@ -228,7 +228,7 @@
         "PlayerEffectControlParam": [
             {
                 "maxWheelSpinSpeed": 0.18700000643730164,
-                "rotateOffsetOnWallRun": 0.30000001192092896,
+                "rotateOffsetOnWallRun": 0.5699999928474426,
                 "trailColorByGearLevel": [
                     [
                         0.1051647737622261,
