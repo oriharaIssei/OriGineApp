@@ -260,6 +260,13 @@
     <ClInclude Include="code\system\Initialize\CreatePlaneFromSpeed.h" />
     <ClInclude Include="code\system\effect\PlayerSpeedFor3dUI.h" />
     <ClInclude Include="code\system\Initialize\SelectPreviewSceneInitialize.h" />
+    <ClInclude Include="code\component\ghost\GhostReplayComponent.h" />
+    <ClInclude Include="code\system\Input\GhostInputUpdate.h" />
+    <ClInclude Include="code\system\Initialize\GhostInitializeSystem.h" />
+    <ClInclude Include="code\system\Input\PlayRecordSystem.h" />
+    <ClInclude Include="code\system\Initialize\PlayRecorderInitialize.h" />
+    <ClInclude Include="code\component\ghost\PlayRecordeComponent.h" />
+    <ClInclude Include="code\system\Initialize\InitializeMouseCondition.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -478,5 +485,12 @@
     <ClCompile Include="code\system\Initialize\CreatePlaneFromSpeed.cpp" />
     <ClCompile Include="code\system\effect\PlayerSpeedFor3dUI.cpp" />
     <ClCompile Include="code\system\Initialize\SelectPreviewSceneInitialize.cpp" />
+    <ClCompile Include="code\component\ghost\GhostReplayComponent.cpp" />
+    <ClCompile Include="code\system\Input\GhostInputUpdate.cpp" />
+    <ClCompile Include="code\system\Initialize\GhostInitializeSystem.cpp" />
+    <ClCompile Include="code\system\Input\PlayRecordSystem.cpp" />
+    <ClCompile Include="code\system\Initialize\PlayRecorderInitialize.cpp" />
+    <ClCompile Include="code\component\ghost\PlayRecordeComponent.cpp" />
+    <ClCompile Include="code\system\Initialize\InitializeMouseCondition.cpp" />
   </ItemGroup>
 </Project>

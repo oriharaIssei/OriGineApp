@@ -11,6 +11,8 @@
 #include "component/Camera/CameraController.h"
 #include "component/camera/CameraMotionBob.h"
 #include "component/Camera/CameraShakeSourceComponent.h"
+#include "component/ghost/GhostReplayComponent.h"
+#include "component/ghost/PlayRecordeComponent.h"
 #include "component/LookAtFromTransforms.h"
 #include "component/MouseCondition.h"
 #include "component/player/PlayerEffectControlParam.h"
@@ -41,6 +43,8 @@
 #include "system/initialize/CreateSpriteFromTimer.h"
 #include "system/initialize/CreateStage.h"
 #include "system/initialize/GetClearTime.h"
+#include "system/Initialize/GhostInitializeSystem.h"
+#include "system/Initialize/PlayRecorderInitialize.h"
 #include "system/Initialize/SelectPreviewSceneInitialize.h"
 #include "system/initialize/SettingGameCameraTarget.h"
 #include "system/initialize/StartTimerInitialize.h"
@@ -48,9 +52,12 @@
 #include "system/initialize/TakeToGoalPosition.h"
 #include "system/initialize/TrailEffectInitialize.h"
 #include "system/Initialize/Ui3dObjectInitialize.h"
+#include "system/Initialize/InitializeMouseCondition.h"
 #include "system/input/ButtonInputSystem.h"
 #include "system/input/CameraInputSystem.h"
+#include "system/Input/GhostInputUpdate.h"
 #include "system/input/PlayerInputSystem.h"
+#include "system/Input/PlayRecordSystem.h"
 #include "system/movement/BillboardTransform.h"
 #include "system/movement/FollowCameraUpdateSystem.h"
 #include "system/Movement/LookAtFromTransformsSystem.h"
@@ -107,6 +114,9 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<StageObstacle>();
 
     componentRegistry->RegisterComponent<SplinePoints>();
+
+    componentRegistry->RegisterComponent<GhostReplayComponent>();
+    componentRegistry->RegisterComponent<PlayRecordeComponent>();
 
     componentRegistry->RegisterComponent<Material>();
     componentRegistry->RegisterComponent<DirectionalLight>();
@@ -177,14 +187,15 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<CreateStage>();
     systemRegistry->RegisterSystem<ResolveEntityReferences>();
     systemRegistry->RegisterSystem<CreateSpriteFromTimer>();
+    systemRegistry->RegisterSystem<Ui3dObjectInitialize>();
     systemRegistry->RegisterSystem<GetClearTime>();
     systemRegistry->RegisterSystem<CameraInitialize>();
-    systemRegistry->RegisterSystem<Ui3dObjectInitialize>();
     systemRegistry->RegisterSystem<RegisterWindowResizeEvent>();
-    systemRegistry->RegisterSystem<TrailEffectInitialize>();
+    systemRegistry->RegisterSystem<InitializeMouseCondition>();
 
     systemRegistry->RegisterSystem<StartTimerInitialize>();
 
+    systemRegistry->RegisterSystem<TrailEffectInitialize>();
     systemRegistry->RegisterSystem<BackFireInitialize>();
 
     systemRegistry->RegisterSystem<SelectPreviewSceneInitialize>();
@@ -193,12 +204,18 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<TakeToGoalPosition>();
     systemRegistry->RegisterSystem<CreatePlaneFromSpeed>();
 
+    systemRegistry->RegisterSystem<GhostInitializeSystem>();
+    systemRegistry->RegisterSystem<PlayRecorderInitialize>();
+
     /// ===================================================================================================
     // Input
     /// ===================================================================================================
     systemRegistry->RegisterSystem<ButtonInputSystem>();
     systemRegistry->RegisterSystem<CameraInputSystem>();
     systemRegistry->RegisterSystem<PlayerInputSystem>();
+
+    systemRegistry->RegisterSystem<PlayRecordSystem>();
+    systemRegistry->RegisterSystem<GhostInputUpdate>();
 
     /// ===================================================================================================
     // StateTransition

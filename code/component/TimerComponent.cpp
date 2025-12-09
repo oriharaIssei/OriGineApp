@@ -109,7 +109,7 @@ void TimerForSpriteComponent::Edit(Scene* /*scene*/, Entity* /*entity*/, [[maybe
     if (askLoadTexture(parentLabel)) {
         std::string directory, fileName;
         std::string textureDefaultDirectory = std::string(kApplicationResourceDirectory) + "/Texture";
-        if (myfs::selectFileDialog(textureDefaultDirectory, directory, fileName, {"png"})) {
+        if (myfs::SelectFileDialog(textureDefaultDirectory, directory, fileName, {"png"})) {
             auto command = std::make_unique<SetterCommand<std::string>>(
                 &this->numbersTexturePath,
                 textureDefaultDirectory + "/" + directory + "/" + fileName,

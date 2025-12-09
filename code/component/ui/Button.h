@@ -6,7 +6,7 @@
 #include <vector>
 
 /// engine
-#include "input/GamePadInput.h"
+#include "input/GamepadInput.h"
 #include "input/KeyboardInput.h"
 
 // component

@@ -2,7 +2,7 @@
 
 /// engine
 // input
-#include "input/GamePadInput.h"
+#include "input/GamepadInput.h"
 #include "input/KeyboardInput.h"
 
 /// ECS
@@ -33,10 +33,10 @@ public:
 /// <summary>
 /// ゲームパッド入力デバイス
 /// </summary>
-class GamePadInputDevice
+class GamepadInputDevice
     : public IPlayerInputDevice {
 public:
-    GamePadInputDevice(GamePadInput* _pad, PlayerInput* _player)
+    GamepadInputDevice(GamepadInput* _pad, PlayerInput* _player)
         : pad_(_pad), player_(_player) {}
 
     Vec2f GetMoveDirection() const override;
@@ -48,7 +48,7 @@ public:
     bool IsActive() const override;
 
 private:
-    GamePadInput* pad_;
+    GamepadInput* pad_;
     PlayerInput* player_;
 };
 

@@ -26,10 +26,11 @@ void PlayerFallDownState::Update(float _deltaTime) {
     auto* transform    = scene_->GetComponent<Transform>(playerEntity);
 
     // 速度更新
-    playerStatus->UpdateAccel(_deltaTime,playerInput, transform, rigidbody, scene_->GetComponent<CameraTransform>(scene_->GetUniqueEntity("GameCamera"))->rotate);
+    Entity* cameraEntity = scene_->GetEntity(playerState->GetCameraEntityID());
+    playerStatus->UpdateAccel(_deltaTime, playerInput, transform, rigidbody, scene_->GetComponent<CameraTransform>(cameraEntity)->rotate);
 
     ///! TODO : ここにカメラの処理を書くべきではない
-    CameraController* cameraController = scene_->GetComponent<CameraController>(scene_->GetUniqueEntity("GameCamera"));
+    CameraController* cameraController = scene_->GetComponent<CameraController>(cameraEntity);
 
     if (cameraController) {
 

@@ -26,6 +26,8 @@
 #include "component/Camera/CameraController.h"
 #include "component/transform/CameraTransform.h"
 
+#include "component/ghost/PlayRecordeComponent.h"
+
 /// math
 #include "math/MyEasing.h"
 
@@ -42,11 +44,16 @@ void TransitionPlayerState::UpdateEntity(Entity* _entity) {
         PlayerProgressStore* progressStore = PlayerProgressStore::GetInstance();
         Entity* timerEntity                = GetUniqueEntity("Timer");
         Entity* stageDataEntity            = GetUniqueEntity("StageData");
+        Entity* recorderEntity             = GetUniqueEntity("Recorder");
         if (timerEntity && stageDataEntity) {
-            StageData* stageData  = GetComponent<StageData>(stageDataEntity);
-            TimerComponent* timer = GetComponent<TimerComponent>(timerEntity);
+            StageData* stageData               = GetComponent<StageData>(stageDataEntity);
+            TimerComponent* timer              = GetComponent<TimerComponent>(timerEntity);
+            PlayRecordeComponent* playRecorder = nullptr;
+            if (recorderEntity) {
+                playRecorder = GetComponent<PlayRecordeComponent>(recorderEntity);
+            }
             if (timer && stageData) {
-                progressStore->StageCleared(stageData->GetStageNumber(), stageData->GetDifficulty(), timer->GetTime());
+                progressStore->StageCleared(playRecorder ? playRecorder->replayRecorder_.get() : nullptr, stageData->GetStageNumber(), stageData->GetDifficulty(), timer->GetTime());
             }
         }
 
@@ -72,6 +79,20 @@ void TransitionPlayerState::UpdateEntity(Entity* _entity) {
         };
         PlayerStatus* playerStatus = GetComponent<PlayerStatus>(_entity);
         Rigidbody* rigidbody       = GetComponent<Rigidbody>(_entity);
+
+        Entity* gameCameraEntity = GetEntity(state->GetCameraEntityID());
+        if (gameCameraEntity) {
+            CameraTransform* cameraTransform = GetComponent<CameraTransform>(gameCameraEntity);
+            if (cameraTransform) {
+                cameraTransform->translate = playerTransform->GetWorldTranslate();
+            }
+            CameraController* cameraController = GetComponent<CameraController>(gameCameraEntity);
+            if (cameraController) {
+                cameraController->SetCurrentTargetOffset(cameraController->GetFirstTargetOffset());
+                cameraController->SetCurrentOffset(cameraController->GetFirstOffset());
+                cameraController->SetDestinationAngleXY(Vec2f(0.f, 0.f));
+            }
+        }
 
         // 初期化
         state->Initialize(_entity);
@@ -104,7 +125,7 @@ void TransitionPlayerState::UpdateEntity(Entity* _entity) {
     /// =====================================================
     // Fov Y
     /// =====================================================
-    Entity* gameCamera = GetUniqueEntity("GameCamera");
+    Entity* gameCamera = GetEntity(state->GetCameraEntityID());
     if (!gameCamera) {
         return;
     }

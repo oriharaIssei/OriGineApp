@@ -31,7 +31,7 @@ void SceneChanger::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity*
     ImGui::Text("Next Scene Name :");
     ImGui::SameLine();
     if (ImGui::BeginCombo("##NextSceneName", nextSceneName_.c_str())) {
-        for (const auto& [directory, sceneName] : myfs::searchFile(kApplicationResourceDirectory + "/scene/", "json")) {
+        for (const auto& [directory, sceneName] : myfs::SearchFile(kApplicationResourceDirectory + "/scene/", "json")) {
             bool isSelected = nextSceneName_ == sceneName;
             if (ImGui::Selectable(sceneName.c_str(), isSelected)) {
 

@@ -64,7 +64,7 @@ void PlayerDashState::Update(float _deltaTime) {
     }
 
     // 速度更新
-    playerStatus->UpdateAccel(_deltaTime, playerInput, transform, rigidbody, scene_->GetComponent<CameraTransform>(scene_->GetUniqueEntity("GameCamera"))->rotate);
+    playerStatus->UpdateAccel(_deltaTime, playerInput, transform, rigidbody, scene_->GetComponent<CameraTransform>(scene_->GetEntity(state->GetCameraEntityID()))->rotate);
 
     // 落下時間を更新
     if (state->IsOnGround()) {
@@ -78,7 +78,7 @@ void PlayerDashState::Update(float _deltaTime) {
     }
 
     ///! TODO : ここにカメラの処理を書くべきではない
-    CameraController* cameraController = scene_->GetComponent<CameraController>(scene_->GetUniqueEntity("GameCamera"));
+    CameraController* cameraController = scene_->GetComponent<CameraController>(state->GetCameraEntityID());
 
     if (cameraController) {
         // カメラのオフセットを徐々に元に戻す

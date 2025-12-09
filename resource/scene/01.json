@@ -6964,6 +6964,55 @@
                 }
             ],
             "isUnique": false
+        },
+        {
+            "Components": {
+                "PlayRecordeComponent": [
+                    null
+                ]
+            },
+            "Name": "Recorder",
+            "Systems": [
+                {
+                    "SystemCategory": 1,
+                    "SystemName": "PlayRecordSystem"
+                },
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "PlayRecorderInitialize"
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "GhostReplayComponent": [
+                    null
+                ],
+                "MouseCondition": [
+                    {
+                        "fixCursorPos": [
+                            500.0,
+                            500.0
+                        ],
+                        "isActive": true,
+                        "isFixCursor": true,
+                        "isShowCursor": true
+                    }
+                ]
+            },
+            "Name": "Replayer",
+            "Systems": [
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "GhostInitializeSystem"
+                },
+                {
+                    "SystemCategory": 1,
+                    "SystemName": "GhostInputUpdate"
+                }
+            ],
+            "isUnique": false
         }
     ],
     "Systems": [
@@ -6978,7 +7027,7 @@
                 "Priority": 100
             },
             "ButtonInputSystem": {
-                "Priority": 0
+                "Priority": 1
             },
             "CameraActionSystem": {
                 "Priority": 0
@@ -6987,7 +7036,7 @@
                 "Priority": 1
             },
             "CameraInputSystem": {
-                "Priority": 0
+                "Priority": 2
             },
             "CameraMotionBobSystem": {
                 "Priority": 1
@@ -7040,6 +7089,12 @@
             "FollowCameraUpdateSystem": {
                 "Priority": 4
             },
+            "GhostInitializeSystem": {
+                "Priority": 6
+            },
+            "GhostInputUpdate": {
+                "Priority": 0
+            },
             "LineRenderSystem": {
                 "Priority": 0
             },
@@ -7067,8 +7122,14 @@
             "PenaltyTimeSpriteUpdate": {
                 "Priority": 0
             },
-            "PlayerInputSystem": {
+            "PlayRecordSystem": {
+                "Priority": 1
+            },
+            "PlayRecorderInitialize": {
                 "Priority": 0
+            },
+            "PlayerInputSystem": {
+                "Priority": 3
             },
             "PlayerMoveSystem": {
                 "Priority": 3
@@ -7089,7 +7150,7 @@
                 "Priority": 0
             },
             "ResolveEntityReferences": {
-                "Priority": 0
+                "Priority": -2
             },
             "SceneTransition": {
                 "Priority": 0

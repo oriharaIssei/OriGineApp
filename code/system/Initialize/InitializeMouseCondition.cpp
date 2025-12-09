@@ -1,4 +1,4 @@
-#include "ApplyMouseConditionSystem.h"
+#include "InitializeMouseCondition.h"
 
 /// engine
 #include "input/MouseInput.h"
@@ -6,13 +6,12 @@
 /// component
 #include "component/MouseCondition.h"
 
-ApplyMouseConditionSystem::ApplyMouseConditionSystem() : ISystem(SystemCategory::StateTransition) {}
-ApplyMouseConditionSystem::~ApplyMouseConditionSystem() = default;
+InitializeMouseCondition::InitializeMouseCondition() : ISystem(SystemCategory::Initialize) {}
 
-void ApplyMouseConditionSystem::Initialize() {}
-void ApplyMouseConditionSystem::Finalize() {}
+void InitializeMouseCondition::Initialize() {}
+void InitializeMouseCondition::Finalize() {}
 
-void ApplyMouseConditionSystem::UpdateEntity(Entity* _entity) {
+void InitializeMouseCondition::UpdateEntity(Entity* _entity) {
     auto* conditions = GetComponents<MouseCondition>(_entity);
     if (conditions == nullptr) {
         return;

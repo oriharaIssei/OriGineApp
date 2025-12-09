@@ -5,7 +5,7 @@
 #define DELTA_TIME
 #include "EngineInclude.h"
 // input
-#include "input/GamePadInput.h"
+#include "input/GamepadInput.h"
 #include "input/KeyboardInput.h"
 
 /// component
@@ -18,21 +18,36 @@ void PlayerInputSystem::Finalize() {}
 
 void PlayerInputSystem::UpdateEntity(Entity* _entity) {
     auto keyInput = GetScene()->GetKeyboardInput();
-    auto padInput = GetScene()->GetGamePadInput();
+    auto padInput = GetScene()->GetGamepadInput();
 
     auto playerInput = GetComponent<PlayerInput>(_entity);
     auto state       = GetComponent<PlayerState>(_entity);
 
-    GamePadInputDevice padDevice(padInput, playerInput);
-    KeyboardInputDevice keyDevice(keyInput, playerInput);
+    if (!playerInput || !state) {
+        return;
+    }
+
+    InputUpdate(
+        GetMainDeltaTime(),
+        keyInput,
+        padInput,
+        playerInput,
+        state);
+}
+
+void PlayerInputSystem::InputUpdate(
+    float _deltaTime, KeyboardInput* _keyInput, GamepadInput* _padInput, PlayerInput* _playerInput, PlayerState* _playerState) {
+
+    GamepadInputDevice padDevice(_padInput, _playerInput);
+    KeyboardInputDevice keyDevice(_keyInput, _playerInput);
 
     IPlayerInputDevice* device = SelectActiveDevice(&padDevice, &keyDevice);
 
     // --- 移動 ---
-    playerInput->SetInputDirection(device->GetMoveDirection());
+    _playerInput->SetInputDirection(device->GetMoveDirection());
 
     // --- ジャンプ ---
-    HandleJump(playerInput, state, device);
+    HandleJump(_deltaTime, _playerInput, _playerState, device);
 }
 
 IPlayerInputDevice* PlayerInputSystem::SelectActiveDevice(IPlayerInputDevice* _padDevice, IPlayerInputDevice* _keyDevice) {
@@ -43,6 +58,7 @@ IPlayerInputDevice* PlayerInputSystem::SelectActiveDevice(IPlayerInputDevice* _p
 }
 
 void PlayerInputSystem::HandleJump(
+    float _deltaTime,
     PlayerInput* input,
     PlayerState* state,
     IPlayerInputDevice* device) {
@@ -62,7 +78,7 @@ void PlayerInputSystem::HandleJump(
         if (device->IsJumpPress()) {
             input->SetJumpInput(true);
             input->SetJumpInputTime(
-                input->GetJumpInputTime() + GetMainDeltaTime());
+                input->GetJumpInputTime() + _deltaTime);
 
             if (input->GetJumpInputTime() >= input->GetMaxJumpTime()) {
                 input->SetJumpInput(false);

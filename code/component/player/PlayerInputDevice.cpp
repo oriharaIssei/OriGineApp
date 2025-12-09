@@ -4,11 +4,11 @@
 // component
 #include "PlayerInput.h"
 
-Vec2f GamePadInputDevice::GetMoveDirection() const {
+Vec2f GamepadInputDevice::GetMoveDirection() const {
     return pad_->GetLStick().normalize();
 }
 
-bool GamePadInputDevice::IsJumpTrigger() const {
+bool GamepadInputDevice::IsJumpTrigger() const {
     for (auto b : player_->GetJumpButton()) {
         if (pad_->IsTrigger(b))
             return true;
@@ -16,7 +16,7 @@ bool GamePadInputDevice::IsJumpTrigger() const {
     return false;
 }
 
-bool GamePadInputDevice::IsJumpPress() const {
+bool GamepadInputDevice::IsJumpPress() const {
     for (auto b : player_->GetJumpButton()) {
         if (pad_->IsPress(b))
             return true;
@@ -24,7 +24,7 @@ bool GamePadInputDevice::IsJumpPress() const {
     return false;
 }
 
-bool GamePadInputDevice::IsActive() const {
+bool GamepadInputDevice::IsActive() const {
     return pad_->IsActive();
 }
 

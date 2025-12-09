@@ -46,14 +46,6 @@ void PenaltySystem::UpdateEntity(Entity* _entity) {
     // マイナスする時間を取得
     float penaltyTime = playerState->SufferPenalty();
 
-    // TimerComponent を取得 & ペナルティー分 時間をマイナス
-    Entity* tierEntity = GetUniqueEntity("Timer");
-    if (!tierEntity) {
-        return;
-    }
-    TimerComponent* timer = GetComponent<TimerComponent>(tierEntity);
-    timer->SetCurrentTime(timer->GetTime() - penaltyTime);
-
     // ギアレベルを下げる
     constexpr int32_t kThresholdPenaltyLevel = 4;
     int32_t newGearLevel                     = playerState->GetGearLevel();
@@ -61,6 +53,18 @@ void PenaltySystem::UpdateEntity(Entity* _entity) {
     playerState->SetGearLevel(newGearLevel);
 
     playerState->GetStateFlagRef().CurrentRef().SetFlag(PlayerStateFlag::GEAR_UP);
+
+    if (!_entity->IsUnique()) {
+        return;
+    }
+
+    // TimerComponent を取得 & ペナルティー分 時間をマイナス
+    Entity* tierEntity = GetUniqueEntity("Timer");
+    if (!tierEntity) {
+        return;
+    }
+    TimerComponent* timer = GetComponent<TimerComponent>(tierEntity);
+    timer->SetCurrentTime(timer->GetTime() - penaltyTime);
 
     /// ペナルティー時間を表示する
     int32_t penaltyTimeUIEntityId = CreateEntity("PenaltyTimeUI");

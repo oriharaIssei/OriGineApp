@@ -23,13 +23,18 @@ protected:
     /// <summary>
     /// スタートタイマー の開始処理
     /// </summary>
-    void TimerStartSeqence();
+    void TimerStartSequence();
     /// <summary>
     /// ゲーム開始(スタートタイマーが終わった時)の処理
     /// </summary>
-    void GameStartSeqence();
+    void GameStartSequence();
 
 protected:
     bool isStarted_                       = false;
     std::vector<std::string> stopSystems_ = {};
+
+public:
+    bool IsStarted() const {
+        return isStarted_;
+    }
 };

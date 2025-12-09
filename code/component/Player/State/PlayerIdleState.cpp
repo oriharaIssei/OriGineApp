@@ -52,7 +52,7 @@ void PlayerIdleState::Update(float _deltaTime) {
     }
 
     ///! TODO : ここにカメラの処理を書くべきではない
-    CameraController* cameraController = scene_->GetComponent<CameraController>(scene_->GetUniqueEntity("GameCamera"));
+    CameraController* cameraController = scene_->GetComponent<CameraController>(scene_->GetEntity(state->GetCameraEntityID()));
     if (cameraController) {
         // カメラのオフセットを徐々に元に戻す
         cameraOffsetLerpTimer_ += _deltaTime;
