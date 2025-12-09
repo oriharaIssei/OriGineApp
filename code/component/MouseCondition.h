@@ -28,7 +28,7 @@ private:
 
 public:
     bool IsActive() const { return isActive_; }
-    bool isShowCursor() const { return isShowCursor_; }
-    bool isFixCursor() const { return isFixCursor_; }
-    Vec2f fixCursorPos() const { return fixCursorPos_; }
+    bool IsShowCursor() const { return isShowCursor_; }
+    bool IsFixCursor() const { return isFixCursor_; }
+    const Vec2f& GetFixCursorPos() const { return fixCursorPos_; }
 };

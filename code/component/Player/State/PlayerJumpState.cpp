@@ -23,12 +23,13 @@ void PlayerJumpState::Initialize() {
 void PlayerJumpState::Update(float _deltaTime) {
     auto* playerEntity = scene_->GetEntity(playerEntityID_);
     auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntity);
+    auto* state        = scene_->GetComponent<PlayerState>(playerEntity);
     auto* playerInput  = scene_->GetComponent<PlayerInput>(playerEntity);
     auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntity);
     auto* transform    = scene_->GetComponent<Transform>(playerEntity);
 
     // 移動処理
-    playerStatus->UpdateAccel(_deltaTime, playerInput, transform, rigidbody, scene_->GetComponent<CameraTransform>(scene_->GetUniqueEntity("GameCamera"))->rotate);
+    playerStatus->UpdateAccel(_deltaTime, playerInput, transform, rigidbody, scene_->GetComponent<CameraTransform>(scene_->GetEntity(state->GetCameraEntityID()))->rotate);
 
     // ジャンプ力の蓄積
     releaseJumpPower_ += playerStatus->GetFallPower() * _deltaTime;

@@ -36,9 +36,9 @@
                                 1.0
                             ],
                             "translate": [
-                                111.9232177734375,
-                                153.3280029296875,
-                                -375.8732604980469
+                                0.0,
+                                0.0,
+                                0.0
                             ]
                         }
                     }
@@ -2222,6 +2222,12 @@
             },
             "CameraInputSystem": {
                 "Priority": 3
+            },
+            "CameraMotionBobSystem": {
+                "Priority": 1
+            },
+            "CameraShake": {
+                "Priority": 1
             },
             "ChangeSceneByButton": {
                 "Priority": 1

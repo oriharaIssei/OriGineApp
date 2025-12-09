@@ -34,23 +34,22 @@ void CreateSpriteFromTimer::UpdateEntity(Entity* _entity) {
 
 void CreateSpriteFromTimer::CreateSprites(Entity* _entity, TimerForSpriteComponent* _forSpriteComp) {
     // スプライトの生成位置を計算
-    Vec2f origin = Engine::GetInstance()->GetWinApp()->GetWindowSize();
-    origin *= _forSpriteComp->GetAnchorOnWindow();
-    origin += _forSpriteComp->GetOffset();
+    Vec2f origin = Engine::GetInstance()->GetWinApp()->GetWindowSize() * _forSpriteComp->anchorOnWindow;
+    origin += _forSpriteComp->offset;
 
-    int digitInteger = _forSpriteComp->GetDigitIntegerForSprite();
-    int digitAll     = _forSpriteComp->GetDigitForSprite();
+    int digitInteger = _forSpriteComp->digitInteger;
+    int digitAll     = digitInteger + _forSpriteComp->digitDecimal;
 
-    Vec2f uvScale = _forSpriteComp->GetNumberTileSize() / _forSpriteComp->GetNumbersTextureSize();
+    Vec2f uvScale = _forSpriteComp->numberTileSize / _forSpriteComp->numbersTextureSize;
 
     Vec2f pos = origin;
 
     // 整数部の合計幅
-    float widthInteger = digitInteger * _forSpriteComp->GetSpriteSizeInteger()[X]
-                         + (digitInteger > 0 ? (digitInteger - 1) * _forSpriteComp->GetSpriteMarginInteger()[X] : 0);
+    float widthInteger = digitInteger * _forSpriteComp->spriteSizeInteger[X]
+                         + (digitInteger > 0 ? (digitInteger - 1) * _forSpriteComp->spriteMarginInteger[X] : 0);
 
     // 区切りスペース
-    float widthBetween = _forSpriteComp->GetMarginBetweenIntegerAndDecimal()[X];
+    float widthBetween = _forSpriteComp->marginBetweenIntegerAndDecimal[X];
 
     // 「整数部の右端」と「小数部の左端」の間（区切りスペースの中心）がoriginになるように調整
     pos[X] -= widthInteger;
@@ -68,32 +67,32 @@ void CreateSpriteFromTimer::CreateSprites(Entity* _entity, TimerForSpriteCompone
 
         sprite->SetIsRender(true);
 
-        sprite->SetTexture(_forSpriteComp->GetNumbersTexturePath(), false);
+        sprite->SetTexture(_forSpriteComp->numbersTexturePath, false);
         sprite->SetAnchorPoint({0.5f, 0.5f});
-        sprite->SetSize(_forSpriteComp->GetSpriteSizeInteger());
-        sprite->SetTextureSize(_forSpriteComp->GetNumbersTextureSize());
+        sprite->SetSize(_forSpriteComp->spriteSizeInteger);
+        sprite->SetTextureSize(_forSpriteComp->numbersTextureSize);
         sprite->SetUVScale(uvScale);
         sprite->SetTranslate(pos);
 
-        pos[X] += _forSpriteComp->GetSpriteSizeInteger()[X];
-        pos += _forSpriteComp->GetSpriteMarginInteger();
+        pos[X] += _forSpriteComp->spriteSizeInteger[X];
+        pos += _forSpriteComp->spriteMarginInteger;
     }
 
-    pos += _forSpriteComp->GetMarginBetweenIntegerAndDecimal(); // 整数部と小数部の間のスペース
+    pos += _forSpriteComp->marginBetweenIntegerAndDecimal; // 整数部と小数部の間のスペース
 
     // 小数部
     for (int i = digitInteger; i < digitAll; ++i) {
         AddComponent<SpriteRenderer>(_entity, SpriteRenderer{}, true);
         auto* sprite = GetComponent<SpriteRenderer>(_entity, i);
 
-        sprite->SetTexture(_forSpriteComp->GetNumbersTexturePath(), false);
+        sprite->SetTexture(_forSpriteComp->numbersTexturePath, false);
         sprite->SetAnchorPoint({0.5f, 0.5f});
-        sprite->SetSize(_forSpriteComp->GetSpriteSizeDecimal());
-        sprite->SetTextureSize(_forSpriteComp->GetNumbersTextureSize());
+        sprite->SetSize(_forSpriteComp->spriteSizeDecimal);
+        sprite->SetTextureSize(_forSpriteComp->numbersTextureSize);
         sprite->SetUVScale(uvScale);
         sprite->SetTranslate(pos);
 
-        pos[X] += _forSpriteComp->GetSpriteSizeDecimal()[X];
-        pos += _forSpriteComp->GetSpriteMarginDecimal();
+        pos[X] += _forSpriteComp->spriteSizeDecimal[X];
+        pos += _forSpriteComp->spriteMarginDecimal;
     }
 }

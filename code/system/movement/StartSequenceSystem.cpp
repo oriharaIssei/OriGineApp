@@ -25,7 +25,7 @@ void StartSequenceSystem::UpdateEntity(Entity* _entity) {
         return;
     }
 
-    TimerStartSeqence();
+    TimerStartSequence();
 
     auto* timerComp = GetComponent<TimerComponent>(_entity);
     if (timerComp == nullptr) {
@@ -43,7 +43,7 @@ void StartSequenceSystem::UpdateEntity(Entity* _entity) {
 
     // タイマーが0以下になったらシステムを開始する
     if (timerComp->GetTime() <= 0.f) {
-        GameStartSeqence();
+        GameStartSequence();
         // ゲームタイマーを開始する
         if (gameTimerEntity) {
             TimerComponent* gameTimerComp = GetComponent<TimerComponent>(gameTimerEntity);
@@ -64,7 +64,7 @@ void StartSequenceSystem::UpdateEntity(Entity* _entity) {
     }
 }
 
-void StartSequenceSystem::TimerStartSeqence() {
+void StartSequenceSystem::TimerStartSequence() {
     // 特定のシステムを停止する
     auto* systemRunner = GetScene()->GetSystemRunnerRef();
     for (const auto& systemName : stopSystems_) {
@@ -72,7 +72,7 @@ void StartSequenceSystem::TimerStartSeqence() {
     }
 }
 
-void StartSequenceSystem::GameStartSeqence() {
+void StartSequenceSystem::GameStartSequence() {
     // 停止していたシステムを再開する
     auto* systemRunner = GetScene()->GetSystemRunnerRef();
     for (const auto& systemName : stopSystems_) {

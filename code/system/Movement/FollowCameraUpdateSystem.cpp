@@ -1,5 +1,8 @@
 #include "FollowCameraUpdateSystem.h"
 
+/// stl
+#include <algorithm>
+
 /// engine
 #define DELTA_TIME
 #define ENGINE_ECS
@@ -12,7 +15,6 @@
 
 /// math
 #include "math/Interpolation.h"
-#include <algorithm>
 #include <numbers>
 
 void FollowCameraUpdateSystem::Initialize() {}
@@ -20,14 +22,31 @@ void FollowCameraUpdateSystem::Initialize() {}
 void FollowCameraUpdateSystem::Finalize() {}
 
 void FollowCameraUpdateSystem::UpdateEntity(Entity* _entity) {
-    CameraController* cameraController = GetComponent<CameraController>(_entity);
-    CameraTransform* cameraTransform   = GetComponent<CameraTransform>(_entity);
-    const float deltaTime              = GetMainDeltaTime();
+    auto* cameraController = GetComponent<CameraController>(_entity);
+    auto* cameraTransform  = GetComponent<CameraTransform>(_entity);
+    auto* transform        = GetComponent<Transform>(_entity);
+
+    const float deltaTime = GetMainDeltaTime();
 
     if (cameraController->GetFollowTarget()) {
         // ======== 回転行列 ======== //
-        Vec2f destinationAngleXY  = cameraController->GetDestinationAngleXY();
-        Matrix4x4 cameraRotateMat = MakeMatrix::RotateX(destinationAngleXY[X]) * MakeMatrix::RotateY(destinationAngleXY[Y]);
+        Vec2f destinationAngleXY = cameraController->GetDestinationAngleXY();
+
+        // 自動注視処理
+        if (cameraController->GetIsAutoLookAtPlayer()) {
+            Vec3f toTarget = Vec3f::Normalize(
+                Vec3f(cameraController->GetFollowTarget()->GetWorldTranslate()) - cameraTransform->translate);
+            float targetAngleY = std::atan2(toTarget[X], toTarget[Z]);
+
+            float currentY = destinationAngleXY[Y];
+            float t        = deltaTime * cameraController->GetInterTargetInterpolation();
+
+            destinationAngleXY[Y] = LerpAngle(currentY, targetAngleY, t);
+
+            cameraController->SetDestinationAngleXY(destinationAngleXY);
+        }
+
+        Matrix4x4 cameraRotateMat = MakeMatrix4x4::RotateX(destinationAngleXY[X]) * MakeMatrix4x4::RotateY(destinationAngleXY[Y]);
 
         // ======== ターゲット追従補間 ======== //
         Vec3f followTargetPosition = Vec3f(cameraController->GetFollowTarget()->GetWorldTranslate());
@@ -54,6 +73,11 @@ void FollowCameraUpdateSystem::UpdateEntity(Entity* _entity) {
             targetQuat,
             deltaTime,
             cameraController->GetRotateSensitivity());
+
+        // transform に同期
+        transform->rotate    = cameraTransform->rotate;
+        transform->translate = cameraTransform->translate;
+        transform->UpdateMatrix();
     }
 
     cameraTransform->UpdateMatrix();

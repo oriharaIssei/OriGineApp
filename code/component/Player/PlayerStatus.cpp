@@ -153,7 +153,7 @@ void PlayerStatus::UpdateAccel(float _deltaTime, PlayerInput* _input, Transform*
     inputDir3D       = inputDir3D.normalize();
 
     // カメラの向きに合わせて入力方向を回転（ローカル→ワールド変換）
-    Vec3f moveDirWorld = inputDir3D * MakeMatrix::RotateY(cameraYaw);
+    Vec3f moveDirWorld = inputDir3D * MakeMatrix4x4::RotateY(cameraYaw);
     moveDirWorld       = moveDirWorld.normalize();
     // ワールド方向に変換した入力方向を保存
     _input->SetWorldInputDirection(moveDirWorld);
@@ -161,7 +161,7 @@ void PlayerStatus::UpdateAccel(float _deltaTime, PlayerInput* _input, Transform*
     // 現在の移動方向と補間
     Vec3f currentDir = _rigidbody->GetVelocity();
     if (currentDir.lengthSq() <= kEpsilon) {
-        currentDir = axisZ * MakeMatrix::RotateQuaternion(_transform->rotate);
+        currentDir = axisZ * MakeMatrix4x4::RotateQuaternion(_transform->rotate);
     }
     currentDir[Y] = 0.0f;
     currentDir    = currentDir.normalize();

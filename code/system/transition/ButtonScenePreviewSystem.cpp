@@ -1,7 +1,7 @@
 #include "ButtonScenePreviewSystem.h"
 
 /// component
-#include "component/ButtonGroup.h"
+#include "component/ui/ButtonGroup.h"
 #include "component/SubScene.h"
 
 ButtonScenePreviewSystem::ButtonScenePreviewSystem() : ISystem(SystemCategory::StateTransition) {}

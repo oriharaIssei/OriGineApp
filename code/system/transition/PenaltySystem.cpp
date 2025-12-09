@@ -46,14 +46,6 @@ void PenaltySystem::UpdateEntity(Entity* _entity) {
     // マイナスする時間を取得
     float penaltyTime = playerState->SufferPenalty();
 
-    // TimerComponent を取得 & ペナルティー分 時間をマイナス
-    Entity* tierEntity = GetUniqueEntity("Timer");
-    if (!tierEntity) {
-        return;
-    }
-    TimerComponent* timer = GetComponent<TimerComponent>(tierEntity);
-    timer->SetCurrentTime(timer->GetTime() - penaltyTime);
-
     // ギアレベルを下げる
     constexpr int32_t kThresholdPenaltyLevel = 4;
     int32_t newGearLevel                     = playerState->GetGearLevel();
@@ -61,6 +53,18 @@ void PenaltySystem::UpdateEntity(Entity* _entity) {
     playerState->SetGearLevel(newGearLevel);
 
     playerState->GetStateFlagRef().CurrentRef().SetFlag(PlayerStateFlag::GEAR_UP);
+
+    if (!_entity->IsUnique()) {
+        return;
+    }
+
+    // TimerComponent を取得 & ペナルティー分 時間をマイナス
+    Entity* tierEntity = GetUniqueEntity("Timer");
+    if (!tierEntity) {
+        return;
+    }
+    TimerComponent* timer = GetComponent<TimerComponent>(tierEntity);
+    timer->SetCurrentTime(timer->GetTime() - penaltyTime);
 
     /// ペナルティー時間を表示する
     int32_t penaltyTimeUIEntityId = CreateEntity("PenaltyTimeUI");
@@ -77,12 +81,8 @@ void PenaltySystem::UpdateEntity(Entity* _entity) {
     timer4SpriteComp.SetSpritesEntityId(penaltyTimeUIEntityId);
 
     // 桁数を設定
-    int digitIntegralCount = (std::max)(CountIntegralDigits<float, int>(penaltyTime), timer4SpriteComp.GetDigitIntegerForSprite());
-    int decimalCount       = (std::max)(CountDecimalDigits<float, int>(penaltyTime), timer4SpriteComp.GetDigitDecimalForSprite());
-
-    timer4SpriteComp.SetDigitForSprite(digitIntegralCount + decimalCount);
-    timer4SpriteComp.SetDigitIntegerForSprite(digitIntegralCount);
-    timer4SpriteComp.SetDigitDecimalForSprite(decimalCount);
+    timer4SpriteComp.digitInteger = (std::max)(CountIntegralDigits<float, int>(penaltyTime), timer4SpriteComp.digitInteger);
+    timer4SpriteComp.digitDecimal = (std::max)(CountDecimalDigits<float, int>(penaltyTime), timer4SpriteComp.digitDecimal);
 
     /// コンポーネントを追加
     AddComponent<TimerComponent>(penaltyTimeUIEntity, penaltyTimer, false);

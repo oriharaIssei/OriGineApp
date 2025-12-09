@@ -129,16 +129,16 @@ void PlayerWallRunState::Update(float _deltaTime) {
     speedRumpUpTimer_ += _deltaTime;
     float rumpUpT           = speedRumpUpTimer_ / speedRumpUpTime_;
     rumpUpT                 = std::clamp(rumpUpT, 0.f, 1.f);
-    float currentSpeedRate_ = std::lerp(1.f, speedRate_, EaseOutCubic(rumpUpT));
+    float currentSpeedRate = std::lerp(1.f, speedRate_, EaseOutCubic(rumpUpT));
     // 速度を更新
     auto* rigidbody = scene_->GetComponent<Rigidbody>(playerEntity);
     Vec3f direction = rigidbody->GetVelocity().normalize();
-    Vec3f newVelo   = direction * (playerSpeed_ * currentSpeedRate_);
+    Vec3f newVelo   = direction * (playerSpeed_ * currentSpeedRate);
     rigidbody->SetVelocity(newVelo);
 
     /// TODO: カメラの処理をここに書くべきではない
     // カメラの傾きを徐々に変える
-    Entity* gameCameraEntity = scene_->GetUniqueEntity("GameCamera");
+    Entity* gameCameraEntity = scene_->GetEntity(state->GetCameraEntityID());
     if (!gameCameraEntity) {
         return;
     }

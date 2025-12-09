@@ -1,0 +1,49 @@
+#include "SelectPreviewSceneInitialize.h"
+
+/// ECS
+// component
+#include "component/SubScene.h"
+
+// system
+#include "system/SystemRunner.h"
+
+#include "system/render/OverlayRenderSystem.h"
+#include "system/render/SpriteRenderSystem.h"
+
+SelectPreviewSceneInitialize::SelectPreviewSceneInitialize() : ISystem(SystemCategory::Initialize) {}
+SelectPreviewSceneInitialize::~SelectPreviewSceneInitialize() {}
+
+void SelectPreviewSceneInitialize::Initialize() {}
+void SelectPreviewSceneInitialize::Finalize() {}
+
+void SelectPreviewSceneInitialize::UpdateEntity(Entity* _entity) {
+    auto* subScenes = GetComponents<SubScene>(_entity);
+
+    if (!subScenes) {
+        return;
+    }
+
+    for (auto& subScene : *subScenes) {
+        if (!subScene.IsActive()) {
+            const std::string& sceneName = subScene.GetSceneName();
+            if (sceneName.empty()) {
+                continue;
+            }
+            subScene.Load(sceneName);
+        }
+
+        auto subSceneRef = subScene.GetSubSceneRef();
+
+        auto* systemRunnerRef = subSceneRef->GetSystemRunnerRef();
+        // カテゴリを 絞る
+        // Effect と Render と PostRender だけ
+        systemRunnerRef->SetCategoryActivity(SystemCategory::Input, false);
+        systemRunnerRef->SetCategoryActivity(SystemCategory::StateTransition, false);
+        systemRunnerRef->SetCategoryActivity(SystemCategory::Movement, false);
+        systemRunnerRef->SetCategoryActivity(SystemCategory::Collision, false);
+
+        // uiの表示を切る
+        systemRunnerRef->DeactivateSystem(nameof<OverlayRenderSystem>());
+        systemRunnerRef->DeactivateSystem(nameof<SpriteRenderSystem>());
+    }
+}

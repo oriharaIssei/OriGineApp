@@ -8,9 +8,12 @@
 #include <EngineInclude.h>
 
 // application component
-#include "component/Button.h"
-#include "component/ButtonGroup.h"
 #include "component/Camera/CameraController.h"
+#include "component/camera/CameraMotionBob.h"
+#include "component/Camera/CameraShakeSourceComponent.h"
+#include "component/ghost/GhostReplayComponent.h"
+#include "component/ghost/PlayRecordeComponent.h"
+#include "component/LookAtFromTransforms.h"
 #include "component/MouseCondition.h"
 #include "component/player/PlayerEffectControlParam.h"
 #include "component/player/PlayerInput.h"
@@ -21,37 +24,53 @@
 #include "component/stage/StageData.h"
 #include "component/stage/StageObstacle.h"
 #include "component/TimerComponent.h"
+#include "component/ui/Button.h"
+#include "component/ui/ButtonGroup.h"
+#include "component/ui/SpeedFor3dUIComponent.h"
 
 // application system
 #include "system/collision/PlayerOnCollision.h"
 #include "system/collision/TutorialColliderOnCollision.h"
+#include "system/effect/CameraShake.h"
 #include "system/effect/CreateMeshFromSpline.h"
 #include "system/effect/EffectOnPlayerGearup.h"
 #include "system/effect/EffectOnPlayerRun.h"
 #include "system/effect/PenaltyTimeSpriteUpdate.h"
+#include "system/effect/PlayerSpeedFor3dUI.h"
 #include "system/effect/TimerForSprite.h"
 #include "system/initialize/BackFireInitialize.h"
+#include "system/Initialize/CreatePlaneFromSpeed.h"
 #include "system/initialize/CreateSpriteFromTimer.h"
 #include "system/initialize/CreateStage.h"
 #include "system/initialize/GetClearTime.h"
+#include "system/Initialize/GhostInitializeSystem.h"
+#include "system/Initialize/PlayRecorderInitialize.h"
+#include "system/Initialize/SelectPreviewSceneInitialize.h"
 #include "system/initialize/SettingGameCameraTarget.h"
 #include "system/initialize/StartTimerInitialize.h"
 #include "system/initialize/TakePlayerToStartPosition.h"
 #include "system/initialize/TakeToGoalPosition.h"
 #include "system/initialize/TrailEffectInitialize.h"
+#include "system/Initialize/Ui3dObjectInitialize.h"
+#include "system/Initialize/InitializeMouseCondition.h"
 #include "system/input/ButtonInputSystem.h"
 #include "system/input/CameraInputSystem.h"
+#include "system/Input/GhostInputUpdate.h"
 #include "system/input/PlayerInputSystem.h"
+#include "system/Input/PlayRecordSystem.h"
 #include "system/movement/BillboardTransform.h"
 #include "system/movement/FollowCameraUpdateSystem.h"
+#include "system/Movement/LookAtFromTransformsSystem.h"
 #include "system/movement/MenuUpdate.h"
 #include "system/movement/PlayerMoveSystem.h"
 #include "system/movement/PlayerPathSplineGenerator.h"
 #include "system/movement/PlayerUpdateOnTitle.h"
 #include "system/movement/StartSequenceSystem.h"
+#include "system/Movement/Ui3dUpdateSystem.h"
 #include "system/transition/ApplyMouseConditionSystem.h"
 #include "system/transition/ButtonGroupSystem.h"
 #include "system/transition/ButtonScenePreviewSystem.h"
+#include "system/Transition/CameraMotionBobSystem.h"
 #include "system/transition/ChangeSceneByButton.h"
 #include "system/transition/ExitApplicationByButton.h"
 #include "system/transition/FallDetectionSystem.h"
@@ -89,10 +108,15 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<CameraTransform>();
     componentRegistry->RegisterComponent<Transform>();
 
+    componentRegistry->RegisterComponent<LookAtFromTransforms>();
+
     componentRegistry->RegisterComponent<StageData>();
     componentRegistry->RegisterComponent<StageObstacle>();
 
     componentRegistry->RegisterComponent<SplinePoints>();
+
+    componentRegistry->RegisterComponent<GhostReplayComponent>();
+    componentRegistry->RegisterComponent<PlayRecordeComponent>();
 
     componentRegistry->RegisterComponent<Material>();
     componentRegistry->RegisterComponent<DirectionalLight>();
@@ -136,7 +160,11 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<TimerComponent>();
     componentRegistry->RegisterComponent<TimerForSpriteComponent>();
 
+    componentRegistry->RegisterComponent<SpeedFor3dUIComponent>();
+
     componentRegistry->RegisterComponent<CameraController>();
+    componentRegistry->RegisterComponent<CameraShakeSourceComponent>();
+    componentRegistry->RegisterComponent<CameraMotionBob>();
 
     componentRegistry->RegisterComponent<PlayerInput>();
     componentRegistry->RegisterComponent<PlayerStatus>();
@@ -159,17 +187,25 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<CreateStage>();
     systemRegistry->RegisterSystem<ResolveEntityReferences>();
     systemRegistry->RegisterSystem<CreateSpriteFromTimer>();
+    systemRegistry->RegisterSystem<Ui3dObjectInitialize>();
     systemRegistry->RegisterSystem<GetClearTime>();
     systemRegistry->RegisterSystem<CameraInitialize>();
     systemRegistry->RegisterSystem<RegisterWindowResizeEvent>();
-    systemRegistry->RegisterSystem<TrailEffectInitialize>();
+    systemRegistry->RegisterSystem<InitializeMouseCondition>();
 
     systemRegistry->RegisterSystem<StartTimerInitialize>();
 
+    systemRegistry->RegisterSystem<TrailEffectInitialize>();
     systemRegistry->RegisterSystem<BackFireInitialize>();
+
+    systemRegistry->RegisterSystem<SelectPreviewSceneInitialize>();
 
     systemRegistry->RegisterSystem<TakePlayerToStartPosition>();
     systemRegistry->RegisterSystem<TakeToGoalPosition>();
+    systemRegistry->RegisterSystem<CreatePlaneFromSpeed>();
+
+    systemRegistry->RegisterSystem<GhostInitializeSystem>();
+    systemRegistry->RegisterSystem<PlayRecorderInitialize>();
 
     /// ===================================================================================================
     // Input
@@ -177,6 +213,9 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<ButtonInputSystem>();
     systemRegistry->RegisterSystem<CameraInputSystem>();
     systemRegistry->RegisterSystem<PlayerInputSystem>();
+
+    systemRegistry->RegisterSystem<PlayRecordSystem>();
+    systemRegistry->RegisterSystem<GhostInputUpdate>();
 
     /// ===================================================================================================
     // StateTransition
@@ -195,6 +234,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<SubSceneDeactivateByButton>();
     systemRegistry->RegisterSystem<ExitApplicationByButton>();
     systemRegistry->RegisterSystem<PenaltySystem>();
+    systemRegistry->RegisterSystem<CameraMotionBobSystem>();
 
     systemRegistry->RegisterSystem<ButtonScenePreviewSystem>();
 
@@ -216,6 +256,9 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<SubSceneUpdate>();
     systemRegistry->RegisterSystem<MenuUpdate>();
 
+    systemRegistry->RegisterSystem<LookAtFromTransformsSystem>();
+    systemRegistry->RegisterSystem<Ui3dUpdateSystem>();
+
     /// =================================================================================================
     // Collision
     /// =================================================================================================
@@ -236,9 +279,13 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<SpriteAnimationSystem>();
     systemRegistry->RegisterSystem<MaterialAnimationWorkSystem>();
     systemRegistry->RegisterSystem<CameraActionSystem>();
+    systemRegistry->RegisterSystem<CameraShake>();
 
     systemRegistry->RegisterSystem<MaterialEffect>();
     systemRegistry->RegisterSystem<CreateMeshFromSpline>();
+
+    systemRegistry->RegisterSystem<PlayerSpeedFor3dUI>();
+    systemRegistry->RegisterSystem<TimerForSprite>();
 
     systemRegistry->RegisterSystem<EffectOnPlayerGearup>();
     systemRegistry->RegisterSystem<EffectOnPlayerRun>();
@@ -253,11 +300,10 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<BackGroundSpriteRenderSystem>();
     systemRegistry->RegisterSystem<ParticleRenderSystem>();
     systemRegistry->RegisterSystem<TexturedMeshRenderSystem>();
+    systemRegistry->RegisterSystem<OverlayRenderSystem>();
     systemRegistry->RegisterSystem<SkinningMeshRenderSystem>();
     systemRegistry->RegisterSystem<LineRenderSystem>();
     systemRegistry->RegisterSystem<GpuParticleRenderSystem>();
-
-    systemRegistry->RegisterSystem<TimerForSprite>();
 
 #ifndef _RELEASE
     systemRegistry->RegisterSystem<SkeletonRenderSystem>();

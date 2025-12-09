@@ -1,23 +1,17 @@
 #include "PlayerOnCollision.h"
 
 /// ECS
-
 // component
 #include "component/collision/CollisionPushBackInfo.h"
 #include "component/physics/Rigidbody.h"
-
-#include "component/stage/StageObstacle.h"
 
 #include "component/player/PlayerStatus.h"
 #include "component/player/state/PlayerState.h"
 
 #include "component/TimerComponent.h"
 
-void PlayerOnCollision::Initialize() {
-}
-
-void PlayerOnCollision::Finalize() {
-}
+void PlayerOnCollision::Initialize() {}
+void PlayerOnCollision::Finalize() {}
 
 static const float kGroundCheckThreshold     = 0.7f; // 地面と判断するための閾値
 static const float kWallCheckThreshold       = 0.43f; // 壁と判断するための閾値
@@ -63,7 +57,7 @@ void PlayerOnCollision::UpdateEntity(Entity* _entity) {
             continue;
         }
 
-        Vec3f collNormal       = info.collVec.normalize();
+        Vec3f collNormal = info.collFaceNormal.normalize();
 
         float absCollNXZ = std::abs(collNormal[X]) + std::abs(collNormal[Z]);
 

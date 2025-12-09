@@ -268,6 +268,10 @@
                 {
                     "SystemCategory": 2,
                     "SystemName": "UpdateButtonColorByState"
+                },
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "SelectPreviewSceneInitialize"
                 }
             ],
             "isUnique": false
@@ -444,6 +448,10 @@
                 {
                     "SystemCategory": 2,
                     "SystemName": "UpdateButtonColorByState"
+                },
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "SelectPreviewSceneInitialize"
                 }
             ],
             "isUnique": false
@@ -554,8 +562,7 @@
                         "isCulling": true,
                         "isRenderer": true,
                         "materialIndex": 0,
-                        "textureDirectory": "./application/resource/Texture",
-                        "textureFileName": "lazer.png",
+                        "textureFilePath": "./application/resource/Texture/lazer.png",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -650,7 +657,7 @@
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.43704861402511597
+                            0.8379520773887634
                         ]
                     }
                 ],
@@ -941,6 +948,9 @@
             },
             "SceneTransition": {
                 "Priority": 5
+            },
+            "SelectPreviewSceneInitialize": {
+                "Priority": 2
             },
             "SpriteRenderSystem": {
                 "Priority": 1

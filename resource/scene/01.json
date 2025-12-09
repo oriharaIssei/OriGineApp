@@ -106,8 +106,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -119,8 +119,8 @@
                             1.0
                         ],
                         "size": [
-                            72.0,
-                            72.0
+                            48.0,
+                            48.000003814697266
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -132,8 +132,8 @@
                             16.0
                         ],
                         "translate": [
-                            109.44000244140625,
-                            46.44000244140625
+                            72.95999908447266,
+                            30.96000099182129
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -165,8 +165,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -178,8 +178,8 @@
                             1.0
                         ],
                         "size": [
-                            72.0,
-                            72.0
+                            48.0,
+                            48.000003814697266
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -191,8 +191,8 @@
                             16.0
                         ],
                         "translate": [
-                            109.44000244140625,
-                            46.44000244140625
+                            72.95999908447266,
+                            30.96000099182129
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -240,12 +240,12 @@
                     "SystemName": "SpriteRenderSystem"
                 },
                 {
-                    "SystemCategory": 7,
-                    "SystemName": "SubSceneRender"
-                },
-                {
                     "SystemCategory": 2,
                     "SystemName": "SubSceneActivateByButton"
+                },
+                {
+                    "SystemCategory": 7,
+                    "SystemName": "SubSceneRender"
                 },
                 {
                     "SystemCategory": 3,
@@ -266,8 +266,7 @@
                         "isRenderer": true,
                         "materialIndex": -1,
                         "radius": 0.4399999976158142,
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -532,8 +531,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -708,8 +706,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -842,8 +839,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -976,8 +972,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -1110,8 +1105,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -1244,8 +1238,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -1378,8 +1371,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -1512,8 +1504,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -1646,8 +1637,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -1780,8 +1770,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -1914,8 +1903,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -2048,8 +2036,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -2182,8 +2169,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -2316,8 +2302,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -2450,8 +2435,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -2584,8 +2568,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -2718,8 +2701,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -2852,8 +2834,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -2986,8 +2967,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -3120,8 +3100,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -3254,8 +3233,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -3388,8 +3366,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -3522,8 +3499,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -3656,8 +3632,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -3790,8 +3765,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -3924,8 +3898,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -4058,8 +4031,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -4192,8 +4164,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -4326,8 +4297,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -4460,8 +4430,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -4594,8 +4563,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -4728,8 +4696,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -4862,8 +4829,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -4996,8 +4962,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -5130,8 +5095,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -5264,8 +5228,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -5398,8 +5361,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -5532,8 +5494,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -5666,8 +5627,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -5800,8 +5760,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -5934,8 +5893,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -6068,8 +6026,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -6202,8 +6159,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -6336,8 +6292,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -6470,8 +6425,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -6604,8 +6558,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -6738,8 +6691,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -6872,8 +6824,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -6960,6 +6911,108 @@
                 }
             ],
             "isUnique": false
+        },
+        {
+            "Components": {
+                "SpeedFor3dUIComponent": [
+                    {
+                        "digitDecimal": 2,
+                        "digitInteger": 3,
+                        "marginBetweenIntegerAndDecimal": [
+                            0.0,
+                            -0.30000001192092896
+                        ],
+                        "numbersTexturePath": "./application/resource/Texture//timerNumbers.png",
+                        "offset": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "planeMarginDecimal": [
+                            0.2800000011920929,
+                            0.0
+                        ],
+                        "planeMarginInteger": [
+                            0.6000000238418579,
+                            0.0
+                        ],
+                        "planeScaleDecimal": [
+                            0.6000000238418579,
+                            0.6000000238418579
+                        ],
+                        "planeScaleInteger": [
+                            1.0,
+                            1.0
+                        ],
+                        "worldPosition": [
+                            7.21999979019165,
+                            -3.75,
+                            14.270000457763672
+                        ]
+                    }
+                ]
+            },
+            "Name": "SpeedUI",
+            "Systems": [
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "CreatePlaneFromSpeed"
+                },
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "PlayerSpeedFor3dUI"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "PlayRecordeComponent": [
+                    null
+                ]
+            },
+            "Name": "Recorder",
+            "Systems": [
+                {
+                    "SystemCategory": 1,
+                    "SystemName": "PlayRecordSystem"
+                },
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "PlayRecorderInitialize"
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "GhostReplayComponent": [
+                    null
+                ],
+                "MouseCondition": [
+                    {
+                        "fixCursorPos": [
+                            500.0,
+                            500.0
+                        ],
+                        "isActive": true,
+                        "isFixCursor": true,
+                        "isShowCursor": true
+                    }
+                ]
+            },
+            "Name": "Replayer",
+            "Systems": [
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "GhostInitializeSystem"
+                },
+                {
+                    "SystemCategory": 1,
+                    "SystemName": "GhostInputUpdate"
+                }
+            ],
+            "isUnique": false
         }
     ],
     "Systems": [
@@ -6974,7 +7027,7 @@
                 "Priority": 100
             },
             "ButtonInputSystem": {
-                "Priority": 0
+                "Priority": 1
             },
             "CameraActionSystem": {
                 "Priority": 0
@@ -6983,6 +7036,12 @@
                 "Priority": 1
             },
             "CameraInputSystem": {
+                "Priority": 2
+            },
+            "CameraMotionBobSystem": {
+                "Priority": 1
+            },
+            "CameraShake": {
                 "Priority": 0
             },
             "ChangeSceneByButton": {
@@ -6999,6 +7058,9 @@
             },
             "CreateMeshFromSpline": {
                 "Priority": 0
+            },
+            "CreatePlaneFromSpeed": {
+                "Priority": 10
             },
             "CreateSpriteFromTimer": {
                 "Priority": 1
@@ -7027,6 +7089,12 @@
             "FollowCameraUpdateSystem": {
                 "Priority": 4
             },
+            "GhostInitializeSystem": {
+                "Priority": 6
+            },
+            "GhostInputUpdate": {
+                "Priority": 0
+            },
             "LineRenderSystem": {
                 "Priority": 0
             },
@@ -7042,6 +7110,9 @@
             "MoveSystemByRigidBody": {
                 "Priority": 5
             },
+            "OverlayRenderSystem": {
+                "Priority": 100
+            },
             "ParticleRenderSystem": {
                 "Priority": 3
             },
@@ -7051,8 +7122,14 @@
             "PenaltyTimeSpriteUpdate": {
                 "Priority": 0
             },
-            "PlayerInputSystem": {
+            "PlayRecordSystem": {
+                "Priority": 1
+            },
+            "PlayRecorderInitialize": {
                 "Priority": 0
+            },
+            "PlayerInputSystem": {
+                "Priority": 3
             },
             "PlayerMoveSystem": {
                 "Priority": 3
@@ -7063,6 +7140,9 @@
             "PlayerPathSplineGenerator": {
                 "Priority": 100
             },
+            "PlayerSpeedFor3dUI": {
+                "Priority": 1
+            },
             "PrimitiveNodeAnimationWorkSystem": {
                 "Priority": 1
             },
@@ -7070,7 +7150,7 @@
                 "Priority": 0
             },
             "ResolveEntityReferences": {
-                "Priority": 0
+                "Priority": -2
             },
             "SceneTransition": {
                 "Priority": 0
@@ -7140,6 +7220,12 @@
             },
             "TransitionPlayerState": {
                 "Priority": 5
+            },
+            "Ui3dObjectInitialize": {
+                "Priority": 11
+            },
+            "Ui3dUpdateSystem": {
+                "Priority": 100
             },
             "UpdateButtonColorByState": {
                 "Priority": 1

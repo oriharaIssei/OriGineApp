@@ -25,12 +25,12 @@ void ApplyMouseConditionSystem::UpdateEntity(Entity* _entity) {
             continue;
         }
 
-        mouseInput->SetShowCursor(condition.isShowCursor());
+        mouseInput->SetShowCursor(condition.IsShowCursor());
 
-        if (condition.isFixCursor()) {
+        if (condition.IsFixCursor()) {
             // マウスの座標を指定し続けることで、実質的にマウスを固定する
             // このシステムを使用して Mouse座標を固定することで Velocityを取得しながら Mouse座標を固定できる
-            mouseInput->SetPosition(condition.fixCursorPos());
+            mouseInput->SetPosition(condition.GetFixCursorPos());
         }
     }
 }

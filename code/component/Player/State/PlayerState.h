@@ -4,7 +4,7 @@
 
 /// util
 #include "util/DiffValue.h"
-#include "util/EnumBitMask.h"
+#include "util/EnumBitmask.h"
 
 /// math
 #include <math/Vector3.h>
@@ -89,6 +89,9 @@ public:
     float SufferPenalty();
 
 private:
+    int32_t cameraEntityID_ = -1; // カメラのエンティティID
+    int32_t dummy           = 0;
+
     // TransitionPlayerState で更新される
     std::shared_ptr<IPlayerMoveState> moveState_ = nullptr;
 
@@ -106,6 +109,13 @@ private:
     float invincibility_ = 0.0f; // ペナルティ無敵時間
 
 public:
+    int32_t GetCameraEntityID() const {
+        return cameraEntityID_;
+    }
+    void SetCameraEntityID(int32_t _entityID) {
+        cameraEntityID_ = _entityID;
+    }
+
     PlayerMoveState GetStateEnum() const {
         return moveStateEnum_.Current().ToEnum();
     }
