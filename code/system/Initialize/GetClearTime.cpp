@@ -6,13 +6,13 @@
 /// component
 #include "component/TimerComponent.h"
 
-GetClearTime::GetClearTime() : ISystem(SystemCategory::Initialize) {}
+GetClearTime::GetClearTime() : ISystem(OriGine::SystemCategory::Initialize) {}
 GetClearTime::~GetClearTime() {}
 
 void GetClearTime::Initialize() {}
 void GetClearTime::Finalize() {}
 
-void GetClearTime::UpdateEntity(Entity* _entity) {
+void GetClearTime::UpdateEntity(OriGine::Entity* _entity) {
     if (_entity == nullptr) {
         return;
     }

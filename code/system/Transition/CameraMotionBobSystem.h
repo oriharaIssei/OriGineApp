@@ -5,7 +5,7 @@
 /// CameraMotionBob でカメラを揺らすシステム
 /// </summary>
 class CameraMotionBobSystem
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     CameraMotionBobSystem();
     ~CameraMotionBobSystem() override = default;
@@ -14,5 +14,5 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 };

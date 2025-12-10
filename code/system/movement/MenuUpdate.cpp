@@ -9,13 +9,15 @@
 #include "system/movement/MoveSystemByRigidBody.h"
 #include "system/movement/PlayerMoveSystem.h"
 
-MenuUpdate::MenuUpdate() : ISystem(SystemCategory::Movement) {}
+using namespace OriGine;
+
+MenuUpdate::MenuUpdate() : ISystem(OriGine::SystemCategory::Movement) {}
 MenuUpdate::~MenuUpdate() {}
 
 void MenuUpdate::Initialize() {}
 void MenuUpdate::Finalize() {}
 
-void MenuUpdate::UpdateEntity(Entity* _entity) {
+void MenuUpdate::UpdateEntity(OriGine::Entity* _entity) {
     auto currentScene = GetScene();
     auto menuScene    = GetComponent<SubScene>(_entity);
     if (!menuScene || !currentScene) {

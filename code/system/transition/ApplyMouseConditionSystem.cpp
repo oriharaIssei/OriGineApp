@@ -1,18 +1,22 @@
 #include "ApplyMouseConditionSystem.h"
 
 /// engine
+#include "scene/Scene.h"
+// input
 #include "input/MouseInput.h"
 
 /// component
 #include "component/MouseCondition.h"
 
-ApplyMouseConditionSystem::ApplyMouseConditionSystem() : ISystem(SystemCategory::StateTransition) {}
+using namespace OriGine;
+
+ApplyMouseConditionSystem::ApplyMouseConditionSystem() : ISystem(OriGine::SystemCategory::StateTransition) {}
 ApplyMouseConditionSystem::~ApplyMouseConditionSystem() = default;
 
 void ApplyMouseConditionSystem::Initialize() {}
 void ApplyMouseConditionSystem::Finalize() {}
 
-void ApplyMouseConditionSystem::UpdateEntity(Entity* _entity) {
+void ApplyMouseConditionSystem::UpdateEntity(OriGine::Entity* _entity) {
     auto* conditions = GetComponents<MouseCondition>(_entity);
     if (conditions == nullptr) {
         return;

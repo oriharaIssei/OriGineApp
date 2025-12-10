@@ -20,7 +20,7 @@ public:
     virtual ~IPlayerInputDevice() = default;
 
     // 移動方向（-1〜1の正規化入力）
-    virtual Vec2f GetMoveDirection() const = 0;
+    virtual OriGine::Vec2f GetMoveDirection() const = 0;
 
     // ジャンプ
     virtual bool IsJumpTrigger() const = 0;
@@ -36,10 +36,10 @@ public:
 class GamepadInputDevice
     : public IPlayerInputDevice {
 public:
-    GamepadInputDevice(GamepadInput* _pad, PlayerInput* _player)
+    GamepadInputDevice(OriGine::GamepadInput* _pad, PlayerInput* _player)
         : pad_(_pad), player_(_player) {}
 
-    Vec2f GetMoveDirection() const override;
+    OriGine::Vec2f GetMoveDirection() const override;
 
     bool IsJumpTrigger() const override;
 
@@ -48,17 +48,17 @@ public:
     bool IsActive() const override;
 
 private:
-    GamepadInput* pad_;
+    OriGine::GamepadInput* pad_;
     PlayerInput* player_;
 };
 
 class KeyboardInputDevice
     : public IPlayerInputDevice {
 public:
-    KeyboardInputDevice(KeyboardInput* _key, PlayerInput* _player)
+    KeyboardInputDevice(OriGine::KeyboardInput* _key, PlayerInput* _player)
         : key_(_key), player_(_player) {}
 
-    Vec2f GetMoveDirection() const override;
+    OriGine::Vec2f GetMoveDirection() const override;
 
     bool IsJumpTrigger() const override;
 
@@ -67,6 +67,6 @@ public:
     bool IsActive() const override;
 
 private:
-    KeyboardInput* key_;
+    OriGine::KeyboardInput* key_;
     PlayerInput* player_;
 };

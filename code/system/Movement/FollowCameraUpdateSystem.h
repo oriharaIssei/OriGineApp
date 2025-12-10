@@ -7,13 +7,13 @@
 /// カメラの追従処理を行うシステム
 /// </summary>
 class FollowCameraUpdateSystem
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
-    FollowCameraUpdateSystem() : ISystem(SystemCategory::Movement) {}
+    FollowCameraUpdateSystem() : ISystem(OriGine::SystemCategory::Movement) {}
     ~FollowCameraUpdateSystem() = default;
     void Initialize() override;
     void Finalize() override;
 
 protected:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 };

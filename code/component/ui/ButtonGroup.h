@@ -11,7 +11,7 @@
 /// 1シーン内で複数のボタンをグループ化し、選択と決定の操作を管理するコンポーネント
 /// </summary>
 class ButtonGroup
-    : public IComponent {
+    : public OriGine::IComponent {
     friend void to_json(nlohmann::json& j, const ButtonGroup& r);
     friend void from_json(const nlohmann::json& j, ButtonGroup& r);
 
@@ -19,8 +19,8 @@ public:
     ButtonGroup()           = default;
     ~ButtonGroup() override = default;
 
-    void Initialize(Entity* _entity) override;
-    void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
+    void Initialize(OriGine::Entity* _entity) override;
+    void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
     void Finalize() override;
 
 private:
@@ -31,14 +31,14 @@ private:
     int32_t currentButtonNumber_ = 0;
 
     // ボタンを選ぶためのキー ボタン
-    std::vector<Key> selectAddKeys_{};
-    std::vector<PadButton> selectAddPadButtons_{};
-    std::vector<Key> selectSubKeys_{};
-    std::vector<PadButton> selectSubPadButtons_{};
+    std::vector<OriGine::Key> selectAddKeys_{};
+    std::vector<OriGine::PadButton> selectAddPadButtons_{};
+    std::vector<OriGine::Key> selectSubKeys_{};
+    std::vector<OriGine::PadButton> selectSubPadButtons_{};
 
     // ボタンを決定するためのキー ボタン
-    std::vector<Key> decideKeys_{};
-    std::vector<PadButton> decidePadButtons_{};
+    std::vector<OriGine::Key> decideKeys_{};
+    std::vector<OriGine::PadButton> decidePadButtons_{};
 
 public:
     int32_t GetCurrentButtonNumber() const { return currentButtonNumber_; }
@@ -64,10 +64,10 @@ public:
         return -1; // 見つからなかった場合のデフォルト値
     }
 
-    const std::vector<Key>& GetSelectAddKeys() const { return selectAddKeys_; }
-    const std::vector<PadButton>& GetSelectAddPadButtons() const { return selectAddPadButtons_; }
-    const std::vector<Key>& GetSelectSubKeys() const { return selectSubKeys_; }
-    const std::vector<PadButton>& GetSelectSubPadButtons() { return selectSubPadButtons_; }
-    const std::vector<Key>& GetDecideKeys() const { return decideKeys_; }
-    const std::vector<PadButton>& GetDecidePadButtons() const { return decidePadButtons_; }
+    const std::vector<OriGine::Key>& GetSelectAddKeys() const { return selectAddKeys_; }
+    const std::vector<OriGine::PadButton>& GetSelectAddPadButtons() const { return selectAddPadButtons_; }
+    const std::vector<OriGine::Key>& GetSelectSubKeys() const { return selectSubKeys_; }
+    const std::vector<OriGine::PadButton>& GetSelectSubPadButtons() { return selectSubPadButtons_; }
+    const std::vector<OriGine::Key>& GetDecideKeys() const { return decideKeys_; }
+    const std::vector<OriGine::PadButton>& GetDecidePadButtons() const { return decidePadButtons_; }
 };

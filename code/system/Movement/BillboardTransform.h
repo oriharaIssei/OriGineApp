@@ -5,14 +5,14 @@
 /// Transformをビルボード化するシステム
 /// </summary>
 class BillboardTransform
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
-    BillboardTransform() : ISystem(SystemCategory::Movement, 0) {};
+    BillboardTransform() : ISystem(OriGine::SystemCategory::Movement, 0) {};
     ~BillboardTransform() override {}
 
-    void Initialize();
-    void Finalize();
+    void Initialize() override;
+    void Finalize() override;
 
 private:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 };

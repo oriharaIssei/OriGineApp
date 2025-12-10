@@ -1,12 +1,11 @@
 #include "GhostReplayComponent.h"
 
-/// ECS
+using namespace OriGine;
 
-void GhostReplayComponent::Initialize(Entity* /*_entity*/) {}
-
+void GhostReplayComponent::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {}
 void GhostReplayComponent::Finalize() {}
 
-void GhostReplayComponent::Edit(Scene* /*_scene*/, Entity* /*_entity*/, const std::string& /*_parentLabel*/) {
+void GhostReplayComponent::Edit(OriGine::Scene* /*_scene*/, OriGine::Entity* /*_OriGine::Entity*/, const std::string& /*_parentLabel*/) {
 #ifdef _DEBUG
 
 #endif // _DEBUG
@@ -21,6 +20,4 @@ float GhostReplayComponent::ApplyInput() {
 }
 
 void to_json(nlohmann::json& /*_j*/, const GhostReplayComponent& /*_c*/) {}
-
-void from_json(const nlohmann::json& /*_j*/, GhostReplayComponent& /*_c*/) {
-}
+void from_json(const nlohmann::json& /*_j*/, GhostReplayComponent& /*_c*/) {}

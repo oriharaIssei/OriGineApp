@@ -5,7 +5,7 @@
 /// BackFireの初期化を行うシステム
 /// </summary>
 class BackFireInitialize
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     BackFireInitialize();
     ~BackFireInitialize() override;
@@ -14,5 +14,5 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 };

@@ -6,7 +6,7 @@
 /// PlayRecorderの初期化
 /// </summary>
 class PlayRecorderInitialize
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     PlayRecorderInitialize();
     ~PlayRecorderInitialize() override;
@@ -15,5 +15,5 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 };

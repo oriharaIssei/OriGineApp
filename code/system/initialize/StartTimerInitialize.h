@@ -12,7 +12,7 @@
 /// ゲーム開始のタイマー初期化システム
 /// </summary>
 class StartTimerInitialize
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     StartTimerInitialize();
     ~StartTimerInitialize();
@@ -21,7 +21,7 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 
 private:
     std::unique_ptr<CreateSpriteFromTimer> createSpriteFromTimerSystem_ = nullptr;

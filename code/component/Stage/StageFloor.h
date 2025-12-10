@@ -2,7 +2,7 @@
 #include "component/IComponent.h"
 
 class StageFloor
-    : public IComponent {
+    : public OriGine::IComponent {
     friend void to_json(nlohmann::json& j, const StageFloor& p);
     friend void from_json(const nlohmann::json& j, StageFloor& p);
 
@@ -10,8 +10,8 @@ public:
     StageFloor();
     ~StageFloor() override;
 
-    void Initialize(Entity* _entity) override;
-    void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
+    void Initialize(OriGine::Entity* _entity) override;
+    void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
     void Finalize() override;
 
 private:

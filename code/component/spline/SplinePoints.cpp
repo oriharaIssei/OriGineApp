@@ -7,13 +7,14 @@
 #include "myGui/MyGui.h"
 #endif // _DEBUG
 
-SplinePoints::SplinePoints() {}
+using namespace OriGine;
 
+SplinePoints::SplinePoints() {}
 SplinePoints::~SplinePoints() {}
 
-void SplinePoints::Initialize(Entity* /*_entity*/) {}
+void SplinePoints::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {}
 
-void SplinePoints::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
+void SplinePoints::Edit(OriGine::Scene* /*_scene*/, OriGine::Entity* /*_OriGine::Entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
     CheckBoxCommand("IsCrossMesh##" + _parentLabel, isCrossMesh_);
 
@@ -62,7 +63,7 @@ void SplinePoints::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[maybe_unused]]
 
 void SplinePoints::Finalize() {}
 
-void SplinePoints::PushPoint(const Vec3f& _point) {
+void SplinePoints::PushPoint(const OriGine::Vec3f& _point) {
     if (points_.size() >= static_cast<size_t>(capacity_)) {
         points_.pop_front();
     }

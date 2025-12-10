@@ -10,7 +10,7 @@ struct GhostReplayComponent;
 /// PlayRecorderの初期化
 /// </summary>
 class GhostInitializeSystem
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     GhostInitializeSystem();
     ~GhostInitializeSystem() override;
@@ -19,6 +19,6 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
     bool InitializeGhostReplayComponent(GhostReplayComponent* _comp);
 };

@@ -4,7 +4,7 @@
 #include "myGui/MyGui.h"
 #endif // _DEBUG
 
-void StageObstacle::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
+void StageObstacle::Edit(OriGine::Scene* /*_scene*/, OriGine::Entity* /*_OriGine::Entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
 
     DragGuiCommand("Penalty Time (sec)##" + _parentLabel, penaltyTime_, 0.1f);

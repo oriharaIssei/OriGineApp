@@ -2,7 +2,7 @@
 #include "system/ISystem.h"
 
 class TrailEffectInitialize
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     TrailEffectInitialize();
     ~TrailEffectInitialize();
@@ -11,5 +11,5 @@ public:
     void Finalize();
 
 private:
-    void UpdateEntity(Entity* _entity);
+    void UpdateEntity(OriGine::Entity* _entity);
 };

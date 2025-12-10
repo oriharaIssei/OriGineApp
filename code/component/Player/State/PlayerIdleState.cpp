@@ -14,6 +14,8 @@
 #include "math/Interpolation.h"
 #include "MyEasing.h"
 
+using namespace OriGine;
+
 void PlayerIdleState::Initialize() {
     auto* playerEntity = scene_->GetEntity(playerEntityID_);
     auto playerStatus  = scene_->GetComponent<PlayerStatus>(playerEntity);
@@ -41,7 +43,7 @@ void PlayerIdleState::Update(float _deltaTime) {
     auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntity);
 
     // 減速
-    rigidbody->SetVelocity(LerpByDeltaTime(rigidbody->GetVelocity(), Vec3f(), _deltaTime, kDecelerationRate));
+    rigidbody->SetVelocity(LerpByDeltaTime(rigidbody->GetVelocity(), OriGine::Vec3f(), _deltaTime, kDecelerationRate));
 
     // 落下時間を更新
     auto* state = scene_->GetComponent<PlayerState>(playerEntity);
@@ -59,14 +61,14 @@ void PlayerIdleState::Update(float _deltaTime) {
         float t = cameraOffsetLerpTimer_ / kCameraOffsetLerpTime_;
         t       = std::clamp(t, 0.f, 1.f);
 
-        const Vec3f& targetOffset  = cameraController->GetFirstOffset();
-        const Vec3f& currentOffset = cameraController->GetCurrentOffset();
-        Vec3f newOffset            = Lerp<3, float>(currentOffset, targetOffset, EaseOutCubic(t));
+        const OriGine::Vec3f& targetOffset  = cameraController->GetFirstOffset();
+        const OriGine::Vec3f& currentOffset = cameraController->GetCurrentOffset();
+        OriGine::Vec3f newOffset            = Lerp<3, float>(currentOffset, targetOffset, EaseOutCubic(t));
         cameraController->SetCurrentOffset(newOffset);
 
-        const Vec3f& firstTargetOffset   = cameraController->GetFirstTargetOffset();
-        const Vec3f& currentTargetOffset = cameraController->GetCurrentTargetOffset();
-        Vec3f newTargetOffset            = Lerp<3, float>(currentTargetOffset, firstTargetOffset, EaseOutCubic(t));
+        const OriGine::Vec3f& firstTargetOffset   = cameraController->GetFirstTargetOffset();
+        const OriGine::Vec3f& currentTargetOffset = cameraController->GetCurrentTargetOffset();
+        OriGine::Vec3f newTargetOffset            = Lerp<3, float>(currentTargetOffset, firstTargetOffset, EaseOutCubic(t));
         cameraController->SetCurrentTargetOffset(newTargetOffset);
     }
 }

@@ -18,18 +18,18 @@
 std::vector<std::string> ParseCommandLine();
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
-    DxDebug::GetInstance()->InitializeDebugger();
+    OriGine::DxDebug::GetInstance()->InitializeDebugger();
 
     std::vector<std::string> cmdLines = ParseCommandLine();
 
-    Logger::Initialize();
+    OriGine::Logger::Initialize();
 
 #ifdef DEBUG
     {
         std::unique_ptr<MyEditor> editorApp = std::make_unique<MyEditor>();
 
         editorApp->Initialize(cmdLines);
-        DxDebug::GetInstance()->CreateInfoQueue();
+        OriGine::DxDebug::GetInstance()->CreateInfoQueue();
 
         editorApp->Run();
 
@@ -48,7 +48,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
     }
 #endif // DEBUG
 
-    Logger::Finalize();
+    OriGine::Logger::Finalize();
 
     return 0;
 }

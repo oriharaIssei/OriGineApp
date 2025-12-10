@@ -6,13 +6,15 @@
 #include "component/camera/CameraShakeSourceComponent.h"
 #include "component/player/State/PlayerState.h"
 
-CameraMotionBobSystem::CameraMotionBobSystem() : ISystem(SystemCategory::StateTransition) {}
+using namespace OriGine;
+
+CameraMotionBobSystem::CameraMotionBobSystem() : ISystem(OriGine::SystemCategory::StateTransition) {}
 
 void CameraMotionBobSystem::Initialize() {}
 void CameraMotionBobSystem::Finalize() {}
 
-void CameraMotionBobSystem::UpdateEntity(Entity* _entity) {
-    Entity* playerEnt = GetUniqueEntity("Player");
+void CameraMotionBobSystem::UpdateEntity(OriGine::Entity* _entity) {
+    OriGine::Entity* playerEnt = GetUniqueEntity("Player");
     auto* playerState = GetComponent<PlayerState>(playerEnt);
     // Player の Stateがなければ 実行しない
     if (!playerState) {
@@ -45,8 +47,8 @@ void CameraMotionBobSystem::UpdateEntity(Entity* _entity) {
 
         // 線形補間
         float levelT    = EaseOutQuad(static_cast<float>(playerGearLevel - motionBob.thresholdGearLevel) / static_cast<float>(kMaxPlayerGearLevel - motionBob.thresholdGearLevel));
-        Vec3f amplitude = Lerp<3, float>(motionBob.minAmplitude, motionBob.maxAmplitude, levelT);
-        Vec3f frequency = Lerp<3, float>(motionBob.minFrequency, motionBob.maxFrequency, levelT);
+        OriGine::Vec3f amplitude = Lerp<3, float>(motionBob.minAmplitude, motionBob.maxAmplitude, levelT);
+        OriGine::Vec3f frequency = Lerp<3, float>(motionBob.minFrequency, motionBob.maxFrequency, levelT);
 
         // 適応
         for (size_t i = 0; i < 3; ++i) {

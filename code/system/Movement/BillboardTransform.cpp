@@ -7,30 +7,29 @@
 // component
 #include "component/transform/Transform.h"
 
-void BillboardTransform::Initialize() {
-}
+using namespace OriGine;
 
-void BillboardTransform::Finalize() {
-}
+void BillboardTransform::Initialize() {}
+void BillboardTransform::Finalize() {}
 
-void BillboardTransform::UpdateEntity(Entity* _entity) {
+void BillboardTransform::UpdateEntity(OriGine::Entity* _entity) {
     int32_t componentIndex = 0;
 
     const CameraTransform& cameraTransform = CameraManager::GetInstance()->GetTransform();
 
-    auto transforms = GetComponents<Transform>(_entity);
+    auto transforms = GetComponents<OriGine::Transform>(_entity);
     for (auto& transform : *transforms) {
         // カメラの視線ベクトル（ワールド空間でのカメラ→ビルボード方向、正規化済み）
-        Vec3f lookAt = Vec3f(transform.translate - cameraTransform.translate).normalize(); // D3DXVECTOR3 LookAt(-cx, -cy, -cz);
+        OriGine::Vec3f lookAt = OriGine::Vec3f(transform.translate - cameraTransform.translate).normalize(); // D3DXVECTOR3 LookAt(-cx, -cy, -cz);
 
         // ビルボードのローカルY軸（上方向）
-        Vec3f nAxis = Vec3f(0.0f, 0.f, 1.0f);
+        OriGine::Vec3f nAxis = OriGine::Vec3f(0.0f, 0.f, 1.0f);
 
         // 回転軸を計算（外積）
-        Vec3f normal = Vec3f::Cross(nAxis, lookAt);
+        OriGine::Vec3f normal = OriGine::Vec3f::Cross(nAxis, lookAt);
 
         // 回転角度を計算（内積）
-        float dot   = Vec3f::Dot(lookAt, nAxis);
+        float dot   = OriGine::Vec3f::Dot(lookAt, nAxis);
         dot         = std::clamp(dot, -1.0f, 1.0f); // acosの範囲外防止
         float angle = std::acos(dot);
 
@@ -39,7 +38,7 @@ void BillboardTransform::UpdateEntity(Entity* _entity) {
             normal = normal.normalize();
         } else {
             // lookAtとnAxisが平行な場合、回転不要
-            normal = Vec3f(0.0f, 1.0f, 0.0f);
+            normal = OriGine::Vec3f(0.0f, 1.0f, 0.0f);
             angle  = 0.0f;
         }
 
@@ -49,7 +48,6 @@ void BillboardTransform::UpdateEntity(Entity* _entity) {
     }
 
     while (true) {
-        
 
         // 次のコンポーネントへ
         ++componentIndex;

@@ -5,7 +5,7 @@
 /// ステージをクリアしたときのタイムを取得するシステム
 /// </summary>
 class GetClearTime
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     GetClearTime();
     ~GetClearTime() override;
@@ -13,5 +13,5 @@ public:
     void Finalize() override;
 
 private:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 };

@@ -6,7 +6,7 @@
 /// ButtonGroupによるボタン操作システム
 /// </summary>
 class ButtonGroupSystem
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     ButtonGroupSystem();
     ~ButtonGroupSystem() override = default;
@@ -15,5 +15,5 @@ public:
     void Finalize() override;
 
 private:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 };

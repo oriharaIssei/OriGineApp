@@ -1,6 +1,6 @@
 #include "CreateStage.h"
 
-void CreateStage::UpdateEntity(Entity* /*_entity*/) {
+void CreateStage::UpdateEntity(OriGine::Entity* /*_OriGine::Entity*/) {
     // ステージのモデルを統一する
 
 }

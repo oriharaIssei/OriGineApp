@@ -4,32 +4,32 @@
 // component
 #include "component/transform/Transform.h"
 
-Ui3dUpdateSystem::Ui3dUpdateSystem() : ISystem(SystemCategory::Movement) {}
+using namespace OriGine;
 
+Ui3dUpdateSystem::Ui3dUpdateSystem() : ISystem(OriGine::SystemCategory::Movement) {}
 Ui3dUpdateSystem::~Ui3dUpdateSystem() {}
 
 void Ui3dUpdateSystem::Initialize() {}
-
 void Ui3dUpdateSystem::Finalize() {}
 
-void Ui3dUpdateSystem::UpdateEntity(Entity* _entity) {
+void Ui3dUpdateSystem::UpdateEntity(OriGine::Entity* _entity) {
     auto playerEnt = GetUniqueEntity("Player");
     if (!playerEnt) {
         return;
     }
-    auto playerTransform = GetComponent<Transform>(playerEnt);
-    auto transform       = GetComponent<Transform>(_entity);
+    auto playerTransform = GetComponent<OriGine::Transform>(playerEnt);
+    auto transform       = GetComponent<OriGine::Transform>(_entity);
     auto camTransform    = transform->parent; // Camera の Transform
     if (!transform || !playerTransform || !camTransform)
         return;
 
     // --- ワールド方向 ---
-    Vec3f worldDir = transform->GetWorldTranslate() - playerTransform->GetWorldTranslate();
-    worldDir       = worldDir.normalize();
+    OriGine::Vec3f worldDir = transform->GetWorldTranslate() - playerTransform->GetWorldTranslate();
+    worldDir                = worldDir.normalize();
 
     // --- カメラのローカル空間へ変換 ---
-    Matrix4x4 invCam = MakeMatrix4x4::RotateQuaternion(camTransform->rotate).inverse();
-    Vec3f localDir   = Vec3f(worldDir * invCam).normalize();
+    Matrix4x4 invCam        = MakeMatrix4x4::RotateQuaternion(camTransform->rotate).inverse();
+    OriGine::Vec3f localDir = OriGine::Vec3f(worldDir * invCam).normalize();
 
     // --- UI のローカル回転を設定 ---
     transform->rotate = Quaternion::LookAt(localDir, axisY);

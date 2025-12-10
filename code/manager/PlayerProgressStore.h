@@ -49,7 +49,7 @@ public:
     /// <param name="_stageNum">ステージ番号</param>
     /// <param name="_difficulty">難易度</param>
     /// <param name="_clearTime">クリアした時間</param>
-    void StageCleared(ReplayRecorder* _recorder, int32_t _stageNum, int32_t _difficulty, float _clearTime);
+    void StageCleared(OriGine::ReplayRecorder* _recorder, int32_t _stageNum, int32_t _difficulty, float _clearTime);
 
     /// <summary>
     /// 進行状況データの読み込み
@@ -63,13 +63,13 @@ public:
     /// <summary>
     /// ベストプレイデータの読み込み
     /// </summary>
-    bool LoadBestPlayData(int32_t _stageNum, ReplayPlayer* _replayer);
+    bool LoadBestPlayData(int32_t _stageNum, OriGine::ReplayPlayer* _replayer);
     /// <summary>
     /// ベストプレイデータの保存
     /// </summary>
     /// <param name="_stageNum"></param>
     /// <param name="_recorder"></param>
-    void SaveBestPlayData(int32_t _stageNum, ReplayRecorder* _recorder);
+    void SaveBestPlayData(int32_t _stageNum, OriGine::ReplayRecorder* _recorder);
 
 private:
     PlayerProgressStore()                                      = default;

@@ -14,13 +14,15 @@
 /// math
 #include "math/Noise.h"
 
-CameraShake::CameraShake() : ISystem(SystemCategory::Effect) {}
+using namespace OriGine;
+
+CameraShake::CameraShake() : ISystem(OriGine::SystemCategory::Effect) {}
 CameraShake::~CameraShake() {}
 
 void CameraShake::Initialize() {}
 void CameraShake::Finalize() {}
 
-void CameraShake::UpdateEntity(Entity* _entity) {
+void CameraShake::UpdateEntity(OriGine::Entity* _entity) {
     auto cameraShakeSources = GetComponents<CameraShakeSourceComponent>(_entity);
 
     // CameraShakeSourceComponentが存在しない場合は Skip
@@ -49,7 +51,7 @@ void CameraShake::UpdateEntity(Entity* _entity) {
         }
 
         // シェイクオフセット計算
-         Vec3f shakeOffset(0.0f, 0.0f, 0.0f);
+        OriGine::Vec3f shakeOffset(0.0f, 0.0f, 0.0f);
         switch (cameraShakeSource.type) {
         case ShakeSourceType::SinCurve:
             for (size_t i = 0; i < 3; ++i) {
@@ -60,7 +62,7 @@ void CameraShake::UpdateEntity(Entity* _entity) {
             for (size_t i = 0; i < 3; ++i) {
                 float time = cameraShakeSource.elapsedTime * cameraShakeSource.axisParameters[i].frequency;
 
-                Vec2f st(
+                OriGine::Vec2f st(
                     time, // 時間で動かす
                     time * 1.37f // 少しずらす。軸ごとに違う揺れになる
                 );

@@ -5,15 +5,16 @@
 #include "component/player/state/PlayerState.h"
 #include "component/Transform/Transform.h"
 
-FallDetectionSystem::FallDetectionSystem() : ISystem(SystemCategory::StateTransition) {}
+using namespace OriGine;
 
+FallDetectionSystem::FallDetectionSystem() : ISystem(OriGine::SystemCategory::StateTransition) {}
 FallDetectionSystem::~FallDetectionSystem() {}
 
 void FallDetectionSystem::Initialize() {}
 
 void FallDetectionSystem::Finalize() {}
 
-void FallDetectionSystem::UpdateEntity(Entity* _entity) {
+void FallDetectionSystem::UpdateEntity(OriGine::Entity* _entity) {
     constexpr float kFallThresholdY = -26.0f;
     Transform* transform            = GetComponent<Transform>(_entity);
 

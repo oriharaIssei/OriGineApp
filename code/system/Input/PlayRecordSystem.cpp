@@ -3,18 +3,21 @@
 /// engine
 #define DELTA_TIME
 #include "EngineInclude.h"
+#include "scene/Scene.h"
 
 /// ECS
 // component
 #include "component/ghost/PlayRecordeComponent.h"
 
-PlayRecordSystem::PlayRecordSystem() : ISystem(SystemCategory::Input) {}
+using namespace OriGine;
+
+PlayRecordSystem::PlayRecordSystem() : ISystem(OriGine::SystemCategory::Input) {}
 PlayRecordSystem::~PlayRecordSystem() {}
 
 void PlayRecordSystem::Initialize() {}
 void PlayRecordSystem::Finalize() {}
 
-void PlayRecordSystem::UpdateEntity(Entity* _entity) {
+void PlayRecordSystem::UpdateEntity(OriGine::Entity* _entity) {
     auto recorder = GetComponent<PlayRecordeComponent>(_entity);
 
     if (!recorder) {

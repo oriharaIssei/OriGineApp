@@ -1,24 +1,26 @@
 #include "TimerComponent.h"
 
 /// engine
-#include "texture/TextureManager.h"
 #define RESOURCE_DIRECTORY
 #include "EngineInclude.h"
+
+#include "texture/TextureManager.h"
 
 #ifdef DEBUG
 #include "myFileSystem/MyFileSystem.h"
 #include "myGui/MyGui.h"
 #endif // DEBUG
 
-TimerComponent::TimerComponent() {}
+using namespace OriGine;
 
+TimerComponent::TimerComponent() {}
 TimerComponent::~TimerComponent() {}
 
-void TimerComponent::Initialize(Entity* /*_entity*/) {
+void TimerComponent::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {
     currentTime_ = maxTime_;
 }
 
-void TimerComponent::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
+void TimerComponent::Edit(OriGine::Scene* /*_scene*/, OriGine::Entity* /*_OriGine::Entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef DEBUG
     CheckBoxCommand("IsStarted For Using System##" + _parentLabel, isStarted_);
     DragGuiCommand("Max Time (s)##" + _parentLabel, maxTime_, 0.1f, 100.f, 1.f);
@@ -67,7 +69,7 @@ void from_json(const nlohmann::json& j, TimerForSpriteComponent& c) {
     j.at("digitDecimalForSprite").get_to(c.digitDecimal);
 }
 
-void TimerForSpriteComponent::Initialize(Entity* /*entity*/) {
+void TimerForSpriteComponent::Initialize(OriGine::Entity* /*OriGine::Entity*/) {
     if (!this->numbersTexturePath.empty()) {
         textureIndex = TextureManager::LoadTexture(this->numbersTexturePath, [this](uint32_t newIdx) {
             this->SettingOnLoadTexture(newIdx);
@@ -75,7 +77,7 @@ void TimerForSpriteComponent::Initialize(Entity* /*entity*/) {
     }
 }
 
-void TimerForSpriteComponent::Edit(Scene* /*scene*/, Entity* /*entity*/, [[maybe_unused]] const std::string& parentLabel) {
+void TimerForSpriteComponent::Edit(OriGine::Scene* /*scene*/, OriGine::Entity* /*OriGine::Entity*/, [[maybe_unused]] const std::string& parentLabel) {
 
 #ifdef DEBUG
     ImGui::Text("Sprite");
@@ -117,7 +119,7 @@ void TimerForSpriteComponent::Edit(Scene* /*scene*/, Entity* /*entity*/, [[maybe
                                            this->SettingOnLoadTexture(newIdx);
                                        }); }, true);
 
-            EditorController::GetInstance()->PushCommand(std::move(command));
+            OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
         }
     }
 

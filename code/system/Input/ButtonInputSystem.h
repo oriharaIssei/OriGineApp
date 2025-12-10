@@ -6,14 +6,14 @@
 /// ボタン入力を処理するシステム
 /// </summary>
 class ButtonInputSystem
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
-    ButtonInputSystem() : ISystem(SystemCategory::Input) {}
+    ButtonInputSystem() : ISystem(OriGine::SystemCategory::Input) {}
     ~ButtonInputSystem() {}
 
     virtual void Initialize();
     virtual void Finalize();
 
 protected:
-    virtual void UpdateEntity(Entity* _entity);
+    virtual void UpdateEntity(OriGine::Entity* _entity);
 };

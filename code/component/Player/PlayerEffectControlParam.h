@@ -15,15 +15,15 @@
 /// Playerのエフェクト制御用パラメータコンポーネント
 /// </summary>
 class PlayerEffectControlParam
-    : public IComponent {
+    : public OriGine::IComponent {
     friend void to_json(nlohmann::json& j, const PlayerEffectControlParam& _p);
     friend void from_json(const nlohmann::json& j, PlayerEffectControlParam& _p);
 
 public:
     PlayerEffectControlParam();
     ~PlayerEffectControlParam() override;
-    void Initialize(Entity* _entity) override;
-    void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
+    void Initialize(OriGine::Entity* _entity) override;
+    void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
     void Finalize() override;
 
     /// <summary>
@@ -36,10 +36,10 @@ public:
     /// </summary>
     /// <param name="_inputV">入力ベクトル</param>
     /// <param name="_direction">進行方向ベクトル</param>
-    float CalculateWheelTiltAngle(const Vec3f& _inputV, const Vec3f& _direction) const;
+    float CalculateWheelTiltAngle(const OriGine::Vec3f& _inputV, const OriGine::Vec3f& _direction) const;
 
 private:
-    std::vector<Vector4f> trailColorByGearLevel_ = std::vector<Vector4f>(kMaxPlayerGearLevel, Vector4f(1.f, 1.f, 1.f, 1.f));
+    std::vector<OriGine::Vec4f> trailColorByGearLevel_ = std::vector<OriGine::Vec4f>(kMaxPlayerGearLevel, OriGine::Vec4f(1.f, 1.f, 1.f, 1.f));
     float rotateOffsetOnWallRun_                 = 0.0f;
     float maxWheelSpinSpeed_                     = 0.001f;
     float wheelTiltAngleRate_                    = 0.0f;
@@ -48,7 +48,7 @@ private:
     float wheelTiltAngleMaxAccel_ = 0.0f;
 
 public:
-    Vector4f GetTrailColorByGearLevel(int32_t _level) const {
+    OriGine::Vec4f GetTrailColorByGearLevel(int32_t _level) const {
         return trailColorByGearLevel_[_level];
     }
     float GetRotateOffsetOnWallRun() const {

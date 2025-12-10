@@ -5,7 +5,7 @@
 /// Playerが走っているときにエフェクトを発生させるシステム
 /// </summary>
 class EffectOnPlayerRun
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     EffectOnPlayerRun();
     ~EffectOnPlayerRun();
@@ -14,7 +14,7 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(Entity* entity) override;
+    void UpdateEntity(OriGine::Entity* entity) override;
 
 private:
     const float maxIntensity_      = 3.8f;

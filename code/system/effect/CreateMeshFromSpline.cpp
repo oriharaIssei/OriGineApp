@@ -8,14 +8,16 @@
 #include <math/MyEasing.h>
 #include <math/Vector3.h>
 
-Vec3f CatmullRomSpline(const Vec3f& _p0, const Vec3f& _p1, const Vec3f& _p2, const Vec3f& _p3, float _t) {
+using namespace OriGine;
+
+Vec3f CatmullRomSpline(const OriGine::Vec3f& _p0, const OriGine::Vec3f& _p1, const OriGine::Vec3f& _p2, const OriGine::Vec3f& _p3, float _t) {
     float t2 = _t * _t;
     float t3 = t2 * _t;
 
     return 0.5f * ((2.0f * _p1) + (-_p0 + _p2) * _t + (2.0f * _p0 - 5.0f * _p1 + 4.0f * _p2 - _p3) * t2 + (-_p0 + 3.0f * _p1 - 3.0f * _p2 + _p3) * t3);
 }
 
-std::deque<Vec3f> CatmullRomSpline(const std::deque<Vec3f>& _points, int _samplePerSegment) {
+std::deque<Vec3f> CatmullRomSpline(const std::deque<OriGine::Vec3f>& _points, int _samplePerSegment) {
     std::deque<Vec3f> result;
 
     /// コントロールポイントが4個以下なら何もできない
@@ -40,7 +42,7 @@ std::deque<Vec3f> CatmullRomSpline(const std::deque<Vec3f>& _points, int _sample
     return result;
 }
 
-CreateMeshFromSpline::CreateMeshFromSpline() : ISystem(SystemCategory::Effect) {}
+CreateMeshFromSpline::CreateMeshFromSpline() : ISystem(OriGine::SystemCategory::Effect) {}
 
 CreateMeshFromSpline::~CreateMeshFromSpline() {}
 
@@ -48,7 +50,7 @@ void CreateMeshFromSpline::Initialize() {}
 
 void CreateMeshFromSpline::Finalize() {}
 
-void CreateMeshFromSpline::UpdateEntity(Entity* _entity) {
+void CreateMeshFromSpline::UpdateEntity(OriGine::Entity* _entity) {
     auto planeRendererComp = GetComponent<PlaneRenderer>(_entity);
     if (planeRendererComp == nullptr) {
         return;
@@ -81,64 +83,64 @@ void CreateMeshFromSpline::CreateCrossPlaneMesh(PlaneRenderer* _planeRendererCom
     // enduv が splineの最長時のメッシュに依存するため,あらかじめ計算しておく
     float allLength = 0.f;
     for (int32_t i = 0; i < segmentCount; i++) {
-        const Vec3f& p0 = _splinePointsComp->points_[i];
-        const Vec3f& p1 = _splinePointsComp->points_[i + 1];
-        allLength += Vec3f(p1 - p0).length();
+        const OriGine::Vec3f& p0 = _splinePointsComp->points_[i];
+        const OriGine::Vec3f& p1 = _splinePointsComp->points_[i + 1];
+        allLength += OriGine::Vec3f(p1 - p0).length();
     }
 
     float totalLength     = 0.0f;
     float prevTotalLength = 0.0f;
     for (int32_t i = 0; i < segmentCount; i++) {
-        const Vec3f& p0 = _splinePointsComp->points_[i];
-        const Vec3f& p1 = _splinePointsComp->points_[i + 1];
+        const OriGine::Vec3f& p0 = _splinePointsComp->points_[i];
+        const OriGine::Vec3f& p1 = _splinePointsComp->points_[i + 1];
 
-        Vec3f dir = p1 - p0;
+        OriGine::Vec3f dir = p1 - p0;
 
         prevTotalLength = totalLength;
         totalLength += dir.length();
 
         dir = dir.normalize();
 
-        Vec3f up    = axisY;
-        Vec3f right = dir.cross(up).normalize();
+        OriGine::Vec3f up    = axisY;
+        OriGine::Vec3f right = dir.cross(up).normalize();
 
         float prevLengthRatio = prevTotalLength / allLength;
         float lengthRatio     = totalLength / allLength;
         int uvEasingType      = static_cast<int>(_splinePointsComp->uvEaseType_);
 
-        Vec2f minUV = Vec2f(_splinePointsComp->startUv_[X], std::lerp(_splinePointsComp->startUv_[Y], _splinePointsComp->endUv_[Y], EasingFunctions[uvEasingType](prevLengthRatio)));
-        Vec2f maxUV = Vec2f(_splinePointsComp->endUv_[X], std::lerp(_splinePointsComp->startUv_[Y], _splinePointsComp->endUv_[Y], EasingFunctions[uvEasingType](lengthRatio)));
+        OriGine::Vec2f minUV = OriGine::Vec2f(_splinePointsComp->startUv_[X], std::lerp(_splinePointsComp->startUv_[Y], _splinePointsComp->endUv_[Y], EasingFunctions[uvEasingType](prevLengthRatio)));
+        OriGine::Vec2f maxUV = OriGine::Vec2f(_splinePointsComp->endUv_[X], std::lerp(_splinePointsComp->startUv_[Y], _splinePointsComp->endUv_[Y], EasingFunctions[uvEasingType](lengthRatio)));
 
         int widthEasingType = static_cast<int>(_splinePointsComp->widthEaseType_);
 
         float minWidthHalf = std::lerp(_splinePointsComp->startWidth_, _splinePointsComp->endWidth_, EasingFunctions[widthEasingType](prevLengthRatio)) * 0.5f;
         float maxWidthHalf = std::lerp(_splinePointsComp->startWidth_, _splinePointsComp->endWidth_, EasingFunctions[widthEasingType](lengthRatio)) * 0.5f;
 
-        Vec2f uv[4];
+        OriGine::Vec2f uv[4];
         uv[0] = minUV;
-        uv[1] = Vec2f(maxUV[0], minUV[1]);
-        uv[2] = Vec2f(minUV[0], maxUV[1]);
+        uv[1] = OriGine::Vec2f(maxUV[0], minUV[1]);
+        uv[2] = OriGine::Vec2f(minUV[0], maxUV[1]);
         uv[3] = maxUV;
 
         // === 縦メッシュ ===
         {
             TextureVertexData vertData;
 
-            Vec3f left0  = p0 - right * minWidthHalf;
-            Vec3f right0 = p0 + right * minWidthHalf;
-            Vec3f left1  = p1 - right * maxWidthHalf;
-            Vec3f right1 = p1 + right * maxWidthHalf;
+            OriGine::Vec3f left0  = p0 - right * minWidthHalf;
+            OriGine::Vec3f right0 = p0 + right * minWidthHalf;
+            OriGine::Vec3f left1  = p1 - right * maxWidthHalf;
+            OriGine::Vec3f right1 = p1 + right * maxWidthHalf;
 
             // 最初のセグメントは4頂点、それ以降は2頂点だけ追加
             if (i == 0) {
-                TextureVertexData v0{Vec4f(left0, 1.0f), uv[0], up};
-                TextureVertexData v1{Vec4f(right0, 1.0f), uv[1], up};
+                TextureVertexData v0{OriGine::Vec4f(left0, 1.0f), uv[0], up};
+                TextureVertexData v1{OriGine::Vec4f(right0, 1.0f), uv[1], up};
                 verticalVertexes.push_back(v0);
                 verticalVertexes.push_back(v1);
             }
 
-            TextureVertexData v2{Vec4f(left1, 1.0f), uv[2], up};
-            TextureVertexData v3{Vec4f(right1, 1.0f), uv[3], up};
+            TextureVertexData v2{OriGine::Vec4f(left1, 1.0f), uv[2], up};
+            TextureVertexData v3{OriGine::Vec4f(right1, 1.0f), uv[3], up};
             verticalVertexes.push_back(v2);
             verticalVertexes.push_back(v3);
 
@@ -155,20 +157,20 @@ void CreateMeshFromSpline::CreateCrossPlaneMesh(PlaneRenderer* _planeRendererCom
         {
             TextureVertexData vertData;
 
-            Vec3f down0 = p0 - up * minWidthHalf;
-            Vec3f up0   = p0 + up * minWidthHalf;
-            Vec3f down1 = p1 - up * maxWidthHalf;
-            Vec3f up1   = p1 + up * maxWidthHalf;
+            OriGine::Vec3f down0 = p0 - up * minWidthHalf;
+            OriGine::Vec3f up0   = p0 + up * minWidthHalf;
+            OriGine::Vec3f down1 = p1 - up * maxWidthHalf;
+            OriGine::Vec3f up1   = p1 + up * maxWidthHalf;
 
             if (i == 0) {
-                TextureVertexData v0{Vec4f(down0, 1.0f), uv[0], right};
-                TextureVertexData v1{Vec4f(up0, 1.0f), uv[1], right};
+                TextureVertexData v0{OriGine::Vec4f(down0, 1.0f), uv[0], right};
+                TextureVertexData v1{OriGine::Vec4f(up0, 1.0f), uv[1], right};
                 horizontalVertexes.push_back(v0);
                 horizontalVertexes.push_back(v1);
             }
 
-            TextureVertexData v2{Vec4f(down1, 1.0f), uv[2], right};
-            TextureVertexData v3{Vec4f(up1, 1.0f), uv[3], right};
+            TextureVertexData v2{OriGine::Vec4f(down1, 1.0f), uv[2], right};
+            TextureVertexData v3{OriGine::Vec4f(up1, 1.0f), uv[3], right};
             horizontalVertexes.push_back(v2);
             horizontalVertexes.push_back(v3);
         }
@@ -193,7 +195,7 @@ void CreateMeshFromSpline::CreateCrossPlaneMesh(PlaneRenderer* _planeRendererCom
     _planeRendererComp->GetMeshGroup()->at(1).TransferData();
 }
 
-void CreateMeshFromSpline::CreateLinePlaneMesh(PlaneRenderer* _planeRendererComp, SplinePoints* _splinePointsComp) {
+void CreateMeshFromSpline::CreateLinePlaneMesh(OriGine::PlaneRenderer* _planeRendererComp, SplinePoints* _splinePointsComp) {
     auto splinePoints = CatmullRomSpline(_splinePointsComp->points_, _splinePointsComp->segmentDivide_);
 
     // メッシュ生成
@@ -207,52 +209,52 @@ void CreateMeshFromSpline::CreateLinePlaneMesh(PlaneRenderer* _planeRendererComp
     float totalLength     = 0.0f;
     float prevTotalLength = 0.0f;
     for (int32_t i = 0; i < segmentCount; i++) {
-        const Vec3f& p0 = _splinePointsComp->points_[i];
-        const Vec3f& p1 = _splinePointsComp->points_[i + 1];
+        const OriGine::Vec3f& p0 = _splinePointsComp->points_[i];
+        const OriGine::Vec3f& p1 = _splinePointsComp->points_[i + 1];
 
-        Vec3f dir = p1 - p0;
+        OriGine::Vec3f dir = p1 - p0;
 
         prevTotalLength = totalLength;
         totalLength += dir.length();
 
         dir = dir.normalize();
 
-        Vec3f up    = axisY;
-        Vec3f right = dir.cross(up).normalize();
+        OriGine::Vec3f up    = axisY;
+        OriGine::Vec3f right = dir.cross(up).normalize();
 
         float prevLengthRatio = prevTotalLength / allLength;
         float lengthRatio     = totalLength / allLength;
-        Vec2f minUV           = Vec2f(_splinePointsComp->startUv_[X], std::lerp(_splinePointsComp->startUv_[Y], _splinePointsComp->endUv_[Y], prevLengthRatio));
-        Vec2f maxUV           = Vec2f(_splinePointsComp->endUv_[X], std::lerp(_splinePointsComp->startUv_[Y], _splinePointsComp->endUv_[Y], lengthRatio));
+        OriGine::Vec2f minUV  = OriGine::Vec2f(_splinePointsComp->startUv_[X], std::lerp(_splinePointsComp->startUv_[Y], _splinePointsComp->endUv_[Y], prevLengthRatio));
+        OriGine::Vec2f maxUV  = OriGine::Vec2f(_splinePointsComp->endUv_[X], std::lerp(_splinePointsComp->startUv_[Y], _splinePointsComp->endUv_[Y], lengthRatio));
 
         float minWidthHalf = std::lerp(_splinePointsComp->startWidth_, _splinePointsComp->endWidth_, prevLengthRatio) * 0.5f;
         float maxWidthHalf = std::lerp(_splinePointsComp->startWidth_, _splinePointsComp->endWidth_, lengthRatio) * 0.5f;
 
-        Vec2f uv[4];
+        OriGine::Vec2f uv[4];
         uv[0] = minUV;
-        uv[1] = Vec2f(maxUV[0], minUV[1]);
-        uv[2] = Vec2f(minUV[0], maxUV[1]);
+        uv[1] = OriGine::Vec2f(maxUV[0], minUV[1]);
+        uv[2] = OriGine::Vec2f(minUV[0], maxUV[1]);
         uv[3] = maxUV;
 
         // === 縦メッシュ ===
         {
             TextureVertexData vertData;
 
-            Vec3f left0  = p0 - right * minWidthHalf;
-            Vec3f right0 = p0 + right * minWidthHalf;
-            Vec3f left1  = p1 - right * maxWidthHalf;
-            Vec3f right1 = p1 + right * maxWidthHalf;
+            OriGine::Vec3f left0  = p0 - right * minWidthHalf;
+            OriGine::Vec3f right0 = p0 + right * minWidthHalf;
+            OriGine::Vec3f left1  = p1 - right * maxWidthHalf;
+            OriGine::Vec3f right1 = p1 + right * maxWidthHalf;
 
             // 最初のセグメントは4頂点、それ以降は2頂点だけ追加
             if (i == 0) {
-                TextureVertexData v0{Vec4f(left0, 1.0f), uv[0], up};
-                TextureVertexData v1{Vec4f(right0, 1.0f), uv[1], up};
+                TextureVertexData v0{OriGine::Vec4f(left0, 1.0f), uv[0], up};
+                TextureVertexData v1{OriGine::Vec4f(right0, 1.0f), uv[1], up};
                 verticalVertexes.push_back(v0);
                 verticalVertexes.push_back(v1);
             }
 
-            TextureVertexData v2{Vec4f(left1, 1.0f), uv[2], up};
-            TextureVertexData v3{Vec4f(right1, 1.0f), uv[3], up};
+            TextureVertexData v2{OriGine::Vec4f(left1, 1.0f), uv[2], up};
+            TextureVertexData v3{OriGine::Vec4f(right1, 1.0f), uv[3], up};
             verticalVertexes.push_back(v2);
             verticalVertexes.push_back(v3);
 

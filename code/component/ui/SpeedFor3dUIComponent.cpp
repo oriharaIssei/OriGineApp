@@ -12,6 +12,8 @@
 #include "myFileSystem/MyFileSystem.h"
 #endif // DEBUG
 
+using namespace OriGine;
+
 void to_json(nlohmann::json& j, const SpeedFor3dUIComponent& c) {
     j = nlohmann::json{
         {"numbersTexturePath", c.numbersTexturePath},
@@ -40,7 +42,7 @@ void from_json(const nlohmann::json& j, SpeedFor3dUIComponent& c) {
     j.at("digitDecimal").get_to(c.digitDecimal);
 }
 
-void SpeedFor3dUIComponent::Initialize(Entity* /*entity*/) {
+void SpeedFor3dUIComponent::Initialize(OriGine::Entity* /*OriGine::Entity*/) {
     if (!this->numbersTexturePath.empty()) {
         textureIndex = TextureManager::LoadTexture(this->numbersTexturePath, [this](uint32_t newIdx) {
             this->SettingOnLoadTexture(newIdx);
@@ -48,7 +50,7 @@ void SpeedFor3dUIComponent::Initialize(Entity* /*entity*/) {
     }
 }
 
-void SpeedFor3dUIComponent::Edit(Scene* /*scene*/, Entity* /*entity*/, [[maybe_unused]] const std::string& parentLabel) {
+void SpeedFor3dUIComponent::Edit(OriGine::Scene* /*scene*/, OriGine::Entity* /*OriGine::Entity*/, [[maybe_unused]] const std::string& parentLabel) {
 
 #ifdef DEBUG
     ImGui::Text("Sprite");
@@ -87,7 +89,7 @@ void SpeedFor3dUIComponent::Edit(Scene* /*scene*/, Entity* /*entity*/, [[maybe_u
                                            this->SettingOnLoadTexture(newIdx);
                                        }); }, true);
 
-            EditorController::GetInstance()->PushCommand(std::move(command));
+            OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
         }
     }
 

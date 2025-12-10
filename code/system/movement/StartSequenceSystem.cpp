@@ -1,13 +1,15 @@
 #include "StartSequenceSystem.h"
 
+/// engine
+#include "scene/Scene.h"
+
 /// component
 #include "component/effect/CameraAction.h"
 #include "component/TimerComponent.h"
 
 /// system
 #include "system/SystemRunner.h"
-
-StartSequenceSystem::StartSequenceSystem() : ISystem(SystemCategory::Movement) {}
+StartSequenceSystem::StartSequenceSystem() : ISystem(OriGine::SystemCategory::Movement) {}
 StartSequenceSystem::~StartSequenceSystem() {}
 
 void StartSequenceSystem::Initialize() {
@@ -19,7 +21,7 @@ void StartSequenceSystem::Initialize() {
 
 void StartSequenceSystem::Finalize() {}
 
-void StartSequenceSystem::UpdateEntity(Entity* _entity) {
+void StartSequenceSystem::UpdateEntity(OriGine::Entity* _entity) {
     // すでに開始している場合は処理しない
     if (isStarted_) {
         return;
@@ -33,9 +35,9 @@ void StartSequenceSystem::UpdateEntity(Entity* _entity) {
     }
 
     // timerを止める
-    Entity* gameTimerEntity = GetUniqueEntity("Timer");
-    if (gameTimerEntity) {
-        TimerComponent* gameTimerComp = GetComponent<TimerComponent>(gameTimerEntity);
+    OriGine::Entity* gametimerEntity = GetUniqueEntity("Timer");
+    if (gametimerEntity) {
+        TimerComponent* gameTimerComp = GetComponent<TimerComponent>(gametimerEntity);
         if (gameTimerComp) {
             gameTimerComp->SetStarted(false);
         }
@@ -45,8 +47,8 @@ void StartSequenceSystem::UpdateEntity(Entity* _entity) {
     if (timerComp->GetTime() <= 0.f) {
         GameStartSequence();
         // ゲームタイマーを開始する
-        if (gameTimerEntity) {
-            TimerComponent* gameTimerComp = GetComponent<TimerComponent>(gameTimerEntity);
+        if (gametimerEntity) {
+            TimerComponent* gameTimerComp = GetComponent<TimerComponent>(gametimerEntity);
             if (gameTimerComp) {
                 gameTimerComp->SetStarted(true);
             }

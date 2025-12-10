@@ -9,13 +9,15 @@
 /// externals
 #include "logger/Logger.h"
 
-TrailEffectInitialize::TrailEffectInitialize() : ISystem(SystemCategory::Initialize) {}
+using namespace OriGine;
+
+TrailEffectInitialize::TrailEffectInitialize() : ISystem(OriGine::SystemCategory::Initialize) {}
 TrailEffectInitialize::~TrailEffectInitialize() {}
 
 void TrailEffectInitialize::Initialize() {}
 void TrailEffectInitialize::Finalize() {}
 
-void TrailEffectInitialize::UpdateEntity(Entity* _entity) {
+void TrailEffectInitialize::UpdateEntity(OriGine::Entity* _entity) {
     MaterialEffectPipeLine* materialEffectPipeLine =
         GetComponent<MaterialEffectPipeLine>(_entity);
 

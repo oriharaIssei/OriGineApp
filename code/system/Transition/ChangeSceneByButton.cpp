@@ -11,7 +11,7 @@
 #include "component/SceneChanger.h"
 
 ChangeSceneByButton::ChangeSceneByButton()
-    : ISystem(SystemCategory::StateTransition) {}
+    : ISystem(OriGine::SystemCategory::StateTransition) {}
 
 ChangeSceneByButton::~ChangeSceneByButton() {}
 
@@ -19,7 +19,7 @@ void ChangeSceneByButton::Initialize() {}
 
 void ChangeSceneByButton::Finalize() {}
 
-void ChangeSceneByButton::UpdateEntity(Entity* _entity) {
+void ChangeSceneByButton::UpdateEntity(OriGine::Entity* _entity) {
     Button* button = GetComponent<Button>(_entity);
 
     if (button->IsReleased()) {

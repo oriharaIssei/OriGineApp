@@ -2,7 +2,7 @@
 #include "system/ISystem.h"
 
 class PenaltyTimeSpriteUpdate
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     PenaltyTimeSpriteUpdate();
     ~PenaltyTimeSpriteUpdate() override;
@@ -10,7 +10,7 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 
 private:
     float animationTime_ = 1.2f;

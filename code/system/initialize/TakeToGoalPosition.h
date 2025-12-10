@@ -5,7 +5,7 @@
 /// GoalPositionの位置に移動させるシステム
 /// </summary>
 class TakeToGoalPosition
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     TakeToGoalPosition();
     ~TakeToGoalPosition() override;
@@ -13,5 +13,5 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 };

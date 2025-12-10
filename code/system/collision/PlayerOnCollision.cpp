@@ -10,6 +10,8 @@
 
 #include "component/TimerComponent.h"
 
+using namespace OriGine;
+
 void PlayerOnCollision::Initialize() {}
 void PlayerOnCollision::Finalize() {}
 
@@ -19,7 +21,7 @@ static const float kParallelPenaltyThreshold = 0.07f; // 障害物と判断す�
 
 constexpr float kPenaltyTime = 1.2f;
 
-void PlayerOnCollision::UpdateEntity(Entity* _entity) {
+void PlayerOnCollision::UpdateEntity(OriGine::Entity* _entity) {
     auto* state        = GetComponent<PlayerState>(_entity);
     auto* pushBackInfo = GetComponent<CollisionPushBackInfo>(_entity);
     auto* rigidbody    = GetComponent<Rigidbody>(_entity);
@@ -30,18 +32,18 @@ void PlayerOnCollision::UpdateEntity(Entity* _entity) {
 
     bool isPenalty            = false;
     float penaltyTime         = 0.f;
-    Vec3f penaltyObjectNormal = Vec3f(0.f, 0.f, 0.f);
+    OriGine::Vec3f penaltyObjectNormal = OriGine::Vec3f(0.f, 0.f, 0.f);
 
     // 毎フレーム、地面・壁との衝突状態をリセット
     state->OffCollisionGround();
     state->OffCollisionWall();
 
     for (auto& [entityId, info] : pushBackInfo->GetCollisionInfoMap()) {
-        Entity* collEnt = GetEntity(entityId);
+        OriGine::Entity* collEnt = GetEntity(entityId);
         // ゴール と 衝突したか
         if (collEnt->GetDataType().find("Goal") != std::string::npos) {
             // 時間を更新しないようにする
-            Entity* timerEntity = GetUniqueEntity("Timer");
+            OriGine::Entity* timerEntity = GetUniqueEntity("Timer");
             if (timerEntity) {
                 auto* timer = GetComponent<TimerComponent>(timerEntity);
                 timer->SetStarted(false);
@@ -57,7 +59,7 @@ void PlayerOnCollision::UpdateEntity(Entity* _entity) {
             continue;
         }
 
-        Vec3f collNormal = info.collFaceNormal.normalize();
+        OriGine::Vec3f collNormal = info.collFaceNormal.normalize();
 
         float absCollNXZ = std::abs(collNormal[X]) + std::abs(collNormal[Z]);
 
@@ -65,7 +67,7 @@ void PlayerOnCollision::UpdateEntity(Entity* _entity) {
             // 上方向に衝突した場合は、地面にいると判断する
             state->OnCollisionGround();
 
-            Vec3f acceleration = rigidbody->GetAcceleration();
+            OriGine::Vec3f acceleration = rigidbody->GetAcceleration();
 
             // Y軸の加速度を0にする
             acceleration[Y] = 0.f;
@@ -101,9 +103,9 @@ void PlayerOnCollision::UpdateEntity(Entity* _entity) {
         if (state->IsPenalty()) {
             // 壁ジャンプの反動を与える
             constexpr float kReflectedSpeed = 48.f;
-            Vec3f currentVelocity           = rigidbody->GetVelocity();
+            OriGine::Vec3f currentVelocity           = rigidbody->GetVelocity();
             currentVelocity                 = Reflect<float>(currentVelocity, penaltyObjectNormal);
-            currentVelocity                 = currentVelocity.normalize() * std::max(kReflectedSpeed, currentVelocity.length() * 0.7f);
+            currentVelocity                          = currentVelocity.normalize() * (std::max)(kReflectedSpeed, currentVelocity.length() * 0.7f);
             rigidbody->SetVelocity(currentVelocity);
         }
     }

@@ -2,7 +2,7 @@
 #include "component/IComponent.h"
 
 class StageObstacle
-    : public IComponent {
+    : public OriGine::IComponent {
     friend void to_json(nlohmann::json& j, const StageObstacle& component);
     friend void from_json(const nlohmann::json& j, StageObstacle& component);
 
@@ -10,8 +10,8 @@ public:
     StageObstacle()           = default;
     ~StageObstacle() override = default;
 
-    void Initialize(Entity* /*_entity*/) override {}
-    void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
+    void Initialize(OriGine::Entity* /*_OriGine::Entity*/) override {}
+    void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
     void Finalize() override {}
 
 private:

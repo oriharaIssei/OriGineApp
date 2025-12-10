@@ -5,9 +5,9 @@
 /// Playerの移動を制御するシステム
 /// </summary>
 class PlayerMoveSystem
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
-    PlayerMoveSystem() : ISystem(SystemCategory::Movement) {}
+    PlayerMoveSystem() : ISystem(OriGine::SystemCategory::Movement) {}
     ~PlayerMoveSystem() {}
 
     void Initialize() override;
@@ -15,5 +15,5 @@ public:
     void Finalize() override;
 
 private:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 };

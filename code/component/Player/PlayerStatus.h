@@ -4,14 +4,16 @@
 /// engine
 #include "scene/Scene.h"
 
-/// component
-class Rigidbody;
-struct Transform;
-class PlayerInput;
-
+/// ECS
+// component
+#include "component/physics/Rigidbody.h"
+#include "component/transform/Transform.h"
 /// math
 #include <math/Quaternion.h>
 #include <math/Vector3.h>
+
+/// 前方宣言
+class PlayerInput;
 
 constexpr float kPlayerHeight = 2.0f;
 
@@ -19,7 +21,7 @@ constexpr float kPlayerHeight = 2.0f;
 /// Playerのステータスを管理するコンポーネント
 /// </summary>
 class PlayerStatus
-    : public IComponent {
+    : public OriGine::IComponent {
     friend void to_json(nlohmann::json& j, const PlayerStatus& _playerStatus);
     friend void from_json(const nlohmann::json& j, PlayerStatus& _playerStatus);
 
@@ -27,9 +29,9 @@ public:
     PlayerStatus();
     ~PlayerStatus();
 
-    void Initialize(Entity* _entity) override;
-    void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
-    void Debug(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
+    void Initialize(OriGine::Entity* _entity) override;
+    void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
+    void Debug(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
     void Finalize() override;
 
     /// <summary>
@@ -43,7 +45,7 @@ public:
     /// </summary>
     float CalculateCoolTimeByGearLevel(int32_t _gearLevel) const;
 
-    void UpdateAccel(float _deltaTime, PlayerInput* _input, Transform* _transform, Rigidbody* _rigidbody, const Quaternion& _cameraRotation);
+    void UpdateAccel(float _deltaTime, PlayerInput* _input, OriGine::Transform* _transform, OriGine::Rigidbody* _rigidbody, const OriGine::Quaternion& _cameraRotation);
 
 private:
     /// ==========================================
@@ -59,10 +61,10 @@ private:
     float speedUpRateCommonRate_ = 1.f; // ギアアップ時の速度上昇率の共通値
 
     // 壁系
-    float wallRunRate_       = 0.0f; // 壁走りの速度倍率
-    float wallRunRampUpTime_ = 0.2f; // 壁走りの速度倍率が最大になるまでの時間
-    Vec3f wallJumpOffset_    = {0.0f, 1.0f, 0.0f};
-    float wallJumpRate_      = 0.0f; // 壁ジャンプ(壁から地面に行くとき)の速度倍率
+    float wallRunRate_             = 0.0f; // 壁走りの速度倍率
+    float wallRunRampUpTime_       = 0.2f; // 壁走りの速度倍率が最大になるまでの時間
+    OriGine::Vec3f wallJumpOffset_ = {0.0f, 1.0f, 0.0f};
+    float wallJumpRate_            = 0.0f; // 壁ジャンプ(壁から地面に行くとき)の速度倍率
 
     // currentMaxSpeed は gearLevel に応じて変化する
     float currentMaxSpeed_ = 0.0f; // 現在の最大速度
@@ -103,10 +105,10 @@ public:
         return wallRunRampUpTime_;
     }
 
-    const Vec3f& GetWallJumpOffset() const {
+    const OriGine::Vec3f& GetWallJumpOffset() const {
         return wallJumpOffset_;
     }
-    void SetWallJumpOffset(const Vec3f& _wallJumpOffset) {
+    void SetWallJumpOffset(const OriGine::Vec3f& _wallJumpOffset) {
         wallJumpOffset_ = _wallJumpOffset;
     }
 

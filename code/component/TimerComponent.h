@@ -9,7 +9,7 @@
 /// Timerコンポーネント
 /// </summary>
 class TimerComponent
-    : public IComponent {
+    : public OriGine::IComponent {
     friend void to_json(nlohmann::json& j, const TimerComponent& c);
     friend void from_json(const nlohmann::json& j, TimerComponent& c);
 
@@ -17,8 +17,8 @@ public:
     TimerComponent();
     ~TimerComponent() override;
 
-    void Initialize(Entity* _entity) override;
-    void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
+    void Initialize(OriGine::Entity* _entity) override;
+    void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
     void Finalize() override;
 
 private:
@@ -30,7 +30,7 @@ private:
     float maxTime_     = 0.f;
     float currentTime_ = 0.f;
 
-    Vec2f spriteSize_;
+    OriGine::Vec2f spriteSize_;
 
 public:
     bool IsStarted() const { return isStarted_; }
@@ -46,7 +46,7 @@ public:
 };
 
 struct TimerForSpriteComponent
-    : public IComponent {
+    : public OriGine::IComponent {
     friend void to_json(nlohmann::json& j, const TimerForSpriteComponent& c);
     friend void from_json(const nlohmann::json& j, TimerForSpriteComponent& c);
 
@@ -54,8 +54,8 @@ public:
     TimerForSpriteComponent()           = default;
     ~TimerForSpriteComponent() override = default;
 
-    void Initialize(Entity* _entity) override;
-    void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
+    void Initialize(OriGine::Entity* _entity) override;
+    void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
     void Finalize() override {}
 
     /// <summary>
@@ -70,24 +70,24 @@ public:
     int32_t digitInteger = 0; // 整数部の桁数
     int32_t digitDecimal = 0; // 小数部の桁数
 
-    uint32_t textureIndex          = 0; // 数字のテクスチャインデックス
-    std::string numbersTexturePath = ""; // 数字のテクスチャ名
-    Vec2f numbersTextureSize       = {0.f, 0.f}; // 数字のテクスチャサイズ
-    Vec2f numberTileSize           = {0.f, 0.f}; // 数字のタイルサイズ
+    uint32_t textureIndex             = 0; // 数字のテクスチャインデックス
+    std::string numbersTexturePath    = ""; // 数字のテクスチャ名
+    OriGine::Vec2f numbersTextureSize = {0.f, 0.f}; // 数字のテクスチャサイズ
+    OriGine::Vec2f numberTileSize     = {0.f, 0.f}; // 数字のタイルサイズ
 
-    Vec2f anchorOnWindow = {0.5f, 0.2f}; // ウィンドウ上のアンカー位置
-    Vec2f offset         = {0.f, 0.f}; // オフセット位置
+    OriGine::Vec2f anchorOnWindow = {0.5f, 0.2f}; // ウィンドウ上のアンカー位置
+    OriGine::Vec2f offset         = {0.f, 0.f}; // オフセット位置
 
     // 整数部・小数部のスプライトサイズ
-    Vec2f spriteSizeInteger = {0.f, 0.f}; // 整数部のスプライトサイズ
-    Vec2f spriteSizeDecimal = {0.f, 0.f}; // 小数部のスプライトサイズ
+    OriGine::Vec2f spriteSizeInteger = {0.f, 0.f}; // 整数部のスプライトサイズ
+    OriGine::Vec2f spriteSizeDecimal = {0.f, 0.f}; // 小数部のスプライトサイズ
 
     // 整数部・小数部のスプライトマージン
-    Vec2f spriteMarginInteger = {0.f, 0.f}; // 整数部のスプライトマージン
-    Vec2f spriteMarginDecimal = {0.f, 0.f}; // 小数部のスプライトマージン
+    OriGine::Vec2f spriteMarginInteger = {0.f, 0.f}; // 整数部のスプライトマージン
+    OriGine::Vec2f spriteMarginDecimal = {0.f, 0.f}; // 小数部のスプライトマージン
 
     // 整数部と小数部の間のスペース
-    Vec2f marginBetweenIntegerAndDecimal = {0.f, 0.f}; // 整数部と小数部の間のスペース
+    OriGine::Vec2f marginBetweenIntegerAndDecimal = {0.f, 0.f}; // 整数部と小数部の間のスペース
 
 public:
     int32_t GetSpritesEntityId() const { return spritesEntityId; }

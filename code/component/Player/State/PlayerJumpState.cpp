@@ -9,6 +9,8 @@
 #include "component/transform/Transform.h"
 #include "PlayerState.h"
 
+using namespace OriGine;
+
 void PlayerJumpState::Initialize() {
     releaseJumpPower_ = 0.f;
 
@@ -26,7 +28,7 @@ void PlayerJumpState::Update(float _deltaTime) {
     auto* state        = scene_->GetComponent<PlayerState>(playerEntity);
     auto* playerInput  = scene_->GetComponent<PlayerInput>(playerEntity);
     auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntity);
-    auto* transform    = scene_->GetComponent<Transform>(playerEntity);
+    auto* transform    = scene_->GetComponent<OriGine::Transform>(playerEntity);
 
     // 移動処理
     playerStatus->UpdateAccel(_deltaTime, playerInput, transform, rigidbody, scene_->GetComponent<CameraTransform>(scene_->GetEntity(state->GetCameraEntityID()))->rotate);

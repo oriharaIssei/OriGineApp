@@ -12,6 +12,8 @@
 #include "myGui/MyGui.h"
 #endif // _DEBUG
 
+using namespace OriGine;
+
 void to_json(nlohmann::json& j, const Button& r) {
     /// ============ color ============ ///
     nlohmann::json normalColorJson  = nlohmann::json::object();
@@ -62,7 +64,7 @@ void from_json(const nlohmann::json& j, Button& r) {
     if (j.contains("shortKeys") && j.at("shortKeys").is_array()) {
         r.shortcutKey_.clear();
         for (const auto& key : j.at("shortKeys")) {
-            r.shortcutKey_.push_back(key.get<Key>());
+            r.shortcutKey_.push_back(key.get<OriGine::Key>());
         }
     }
 
@@ -70,7 +72,7 @@ void from_json(const nlohmann::json& j, Button& r) {
     if (j.contains("shortcutPadButton") && j.at("shortcutPadButton").is_array()) {
         r.shortcutPadButton_.clear();
         for (const auto& button : j.at("shortcutPadButton")) {
-            r.shortcutPadButton_.push_back(button.get<PadButton>());
+            r.shortcutPadButton_.push_back(button.get<OriGine::PadButton>());
         }
     }
 }
@@ -81,9 +83,9 @@ Button::Button() {
 Button::~Button() {
 }
 
-void Button::Initialize(Entity* /*_entity*/) {}
+void Button::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {}
 
-void Button::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
+void Button::Edit(OriGine::Scene* /*_scene*/, OriGine::Entity* /*_OriGine::Entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
     std::string label = "Button Colors" + _parentLabel;
     if (ImGui::TreeNode(label.c_str())) {
@@ -110,9 +112,8 @@ void Button::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[maybe_unused]] const
                 for (auto& key : keyNameMap) {
                     bool isSelected = (shortcutKey_[i] == key.first);
                     if (ImGui::Selectable(key.second.c_str(), isSelected)) {
-                        auto command = std::make_unique<SetterCommand<Key>>(&shortcutKey_[i], key.first);
-                        EditorController::GetInstance()->PushCommand(std::move(command));
-                       
+                        auto command = std::make_unique<SetterCommand<OriGine::Key>>(&shortcutKey_[i], key.first);
+                        OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
                     }
                     if (isSelected) {
                         ImGui::SetItemDefaultFocus();
@@ -125,17 +126,16 @@ void Button::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[maybe_unused]] const
         // add
         label = "Add Key" + _parentLabel;
         if (ImGui::Button(label.c_str())) {
-            auto command = std::make_unique<AddElementCommand<std::vector<Key>>>(&shortcutKey_, Key::ESCAPE);
-            EditorController::GetInstance()->PushCommand(std::move(command));
-           
+            auto command = std::make_unique<AddElementCommand<std::vector<OriGine::Key>>>(&shortcutKey_, OriGine::Key::ESCAPE);
+            OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
         }
         ImGui::SameLine();
         // remove
         label = "Remove Key" + _parentLabel;
         if (ImGui::Button(label.c_str())) {
             if (shortcutKey_.size() > 0) {
-                auto command = std::make_unique<EraseElementCommand<std::vector<Key>>>(&shortcutKey_, shortcutKey_.end() - 1);
-                EditorController::GetInstance()->PushCommand(std::move(command));
+                auto command = std::make_unique<EraseElementCommand<std::vector<OriGine::Key>>>(&shortcutKey_, shortcutKey_.end() - 1);
+                OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
             }
         }
 
@@ -157,9 +157,8 @@ void Button::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[maybe_unused]] const
                 for (auto& button : padButtonNameMap) {
                     bool isSelected = (shortcutPadButton_[i] == button.first);
                     if (ImGui::Selectable(button.second.c_str(), isSelected)) {
-                        auto command = std::make_unique<SetterCommand<PadButton>>(&shortcutPadButton_[i], button.first);
-                        EditorController::GetInstance()->PushCommand(std::move(command));
-                       
+                        auto command = std::make_unique<SetterCommand<OriGine::PadButton>>(&shortcutPadButton_[i], button.first);
+                        OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
                     }
                     if (isSelected) {
                         ImGui::SetItemDefaultFocus();
@@ -172,18 +171,16 @@ void Button::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[maybe_unused]] const
         // add
         label = "Add PadButton" + _parentLabel;
         if (ImGui::Button(label.c_str())) {
-            auto command = std::make_unique<AddElementCommand<std::vector<PadButton>>>(&shortcutPadButton_, PadButton::UP);
-            EditorController::GetInstance()->PushCommand(std::move(command));
-           
+            auto command = std::make_unique<AddElementCommand<std::vector<OriGine::PadButton>>>(&shortcutPadButton_, OriGine::PadButton::UP);
+            OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
         }
         ImGui::SameLine();
         // remove
         label = "Remove PadButton" + _parentLabel;
         if (ImGui::Button(label.c_str())) {
             if (shortcutPadButton_.size() > 0) {
-                auto command = std::make_unique<EraseElementCommand<std::vector<PadButton>>>(&shortcutPadButton_, shortcutPadButton_.end() - 1);
-                EditorController::GetInstance()->PushCommand(std::move(command));
-               
+                auto command = std::make_unique<EraseElementCommand<std::vector<OriGine::PadButton>>>(&shortcutPadButton_, shortcutPadButton_.end() - 1);
+                OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
             }
         }
 

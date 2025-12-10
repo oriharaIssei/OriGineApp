@@ -5,7 +5,7 @@
 /// UI 3Dオブジェクト初期化システム
 /// </summary>
 class Ui3dObjectInitialize
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     Ui3dObjectInitialize();
     ~Ui3dObjectInitialize() override = default;
@@ -24,5 +24,5 @@ protected:
     /// エンティティ更新
     /// </summary>
     /// <param name="_entity">エンティティ</param>
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 };

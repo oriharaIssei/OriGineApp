@@ -9,7 +9,7 @@
 /// シーンを変更するコンポーネント
 /// </summary>
 class SceneChanger
-    : public IComponent {
+    : public OriGine::IComponent {
     friend void to_json(nlohmann::json& j, const SceneChanger& r);
     friend void from_json(const nlohmann::json& j, SceneChanger& r);
 
@@ -17,8 +17,8 @@ public:
     SceneChanger();
     virtual ~SceneChanger();
 
-    virtual void Initialize(Entity* _entity) override;
-    virtual void Edit(Scene* _scene, Entity* _entity,  const std::string& _parentLabel) override;
+    virtual void Initialize(OriGine::Entity* _entity) override;
+    virtual void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity,  const std::string& _parentLabel) override;
 
     virtual void Finalize() override;
 

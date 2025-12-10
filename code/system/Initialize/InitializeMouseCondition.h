@@ -2,7 +2,7 @@
 #include "system/ISystem.h"
 
 class InitializeMouseCondition
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     InitializeMouseCondition();
     ~InitializeMouseCondition() override = default;
@@ -11,5 +11,5 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 };

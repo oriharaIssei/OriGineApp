@@ -1,17 +1,21 @@
 #include "ShowGameUIByInputDevice.h"
 
 /// engine
+#include "scene/Scene.h"
+// input
 #include "input/GamepadInput.h"
 
 /// component
 #include "component/renderer/Sprite.h"
 
-ShowGameUIByInputDevice::ShowGameUIByInputDevice() : ISystem(SystemCategory::StateTransition) {}
+using namespace OriGine;
+
+ShowGameUIByInputDevice::ShowGameUIByInputDevice() : ISystem(OriGine::SystemCategory::StateTransition) {}
 
 void ShowGameUIByInputDevice::Initialize() {}
 void ShowGameUIByInputDevice::Finalize() {}
 
-void ShowGameUIByInputDevice::UpdateEntity(Entity* _entity) {
+void ShowGameUIByInputDevice::UpdateEntity(OriGine::Entity* _entity) {
     bool isGamePad = GetScene()->GetGamepadInput()->IsActive();
 
     // ui Entity は keyUI, padUI の2つの SpriteRenderer を持っている

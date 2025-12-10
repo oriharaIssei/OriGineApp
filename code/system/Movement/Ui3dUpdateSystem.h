@@ -5,7 +5,7 @@
 /// 3D UI更新処理を行うシステム
 /// </summary>
 class Ui3dUpdateSystem
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     Ui3dUpdateSystem();
     ~Ui3dUpdateSystem();
@@ -14,5 +14,5 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 };

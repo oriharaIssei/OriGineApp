@@ -15,6 +15,8 @@
 /// externals
 #include <nlohmann/json.hpp>
 
+using namespace OriGine;
+
 void PlayerProgressStore::Initialize() {
     progressDataMap_.clear();
 }
@@ -68,7 +70,6 @@ void PlayerProgressStore::LoadProgressData() {
     nlohmann::json jsonData;
     ifs >> jsonData;
     ifs.close();
-    int32_t stageCount = jsonData["StageCount"];
     auto& stagesJson   = jsonData["Stages"];
     // ステージごとの進行状況データを読み込む
     for (const auto& stageData : stagesJson) {
@@ -108,7 +109,7 @@ void PlayerProgressStore::SaveProgressData() {
     ofs.close();
 }
 
-bool PlayerProgressStore::LoadBestPlayData(int32_t _stageNum, ReplayPlayer* _replayer) {
+bool PlayerProgressStore::LoadBestPlayData(int32_t _stageNum, OriGine::ReplayPlayer* _replayer) {
     std::string stageFilePath = kApplicationResourceDirectory + "/" + kBestPlayDataFolder_ + "/Stage_" + std::to_string(_stageNum) + '.' + kReplayFileExtension;
     return _replayer->LoadFromFile(stageFilePath);
 }

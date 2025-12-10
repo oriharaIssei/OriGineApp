@@ -7,9 +7,9 @@
 /// ゲームカメラのターゲット設定を行うシステム
 /// </summary>
 class SettingGameCameraTarget
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
-    SettingGameCameraTarget() : ISystem(SystemCategory::Initialize) {}
+    SettingGameCameraTarget() : ISystem(OriGine::SystemCategory::Initialize) {}
     ~SettingGameCameraTarget() = default;
 
     void Initialize() override;

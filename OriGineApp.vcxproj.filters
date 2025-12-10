@@ -153,12 +153,6 @@
     <ClInclude Include="code\system\initialize\GetClearTime.h">
       <Filter>system\initialize</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\initialize\GoalEffectInitialize.h">
-      <Filter>system\initialize</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\initialize\GoalShellEffectInitialize.h">
-      <Filter>system\initialize</Filter>
-    </ClInclude>
     <ClInclude Include="code\system\initialize\SettingGameCameraTarget.h">
       <Filter>system\initialize</Filter>
     </ClInclude>
@@ -376,12 +370,6 @@
       <Filter>system\initialize</Filter>
     </ClCompile>
     <ClCompile Include="code\system\initialize\GetClearTime.cpp">
-      <Filter>system\initialize</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\initialize\GoalEffectInitialize.cpp">
-      <Filter>system\initialize</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\initialize\GoalShellEffectInitialize.cpp">
       <Filter>system\initialize</Filter>
     </ClCompile>
     <ClCompile Include="code\system\initialize\SettingGameCameraTarget.cpp">

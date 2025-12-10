@@ -1,5 +1,8 @@
 #include "StartTimerInitialize.h"
 
+/// engine
+#include "scene/Scene.h"
+
 /// ECS
 // component
 #include "component/animation/SpriteAnimation.h"
@@ -9,7 +12,9 @@
 // system
 #include "system/effect/SpriteAnimationSystem.h"
 
-StartTimerInitialize::StartTimerInitialize() : ISystem(SystemCategory::Initialize) {}
+using namespace OriGine;
+
+StartTimerInitialize::StartTimerInitialize() : ISystem(OriGine::SystemCategory::Initialize) {}
 StartTimerInitialize::~StartTimerInitialize() {}
 
 void StartTimerInitialize::Initialize() {
@@ -19,7 +24,7 @@ void StartTimerInitialize::Initialize() {
 }
 void StartTimerInitialize::Finalize() {}
 
-void StartTimerInitialize::UpdateEntity(Entity* _entity) {
+void StartTimerInitialize::UpdateEntity(OriGine::Entity* _entity) {
     auto timerComp    = GetComponent<TimerComponent>(_entity);
     auto timer4Sprite = GetComponent<TimerForSpriteComponent>(_entity);
     if (!timerComp || !timer4Sprite) {
@@ -29,7 +34,7 @@ void StartTimerInitialize::UpdateEntity(Entity* _entity) {
 
     // sprite の生成
 
-    Entity* spriteEntity = GetEntity(timer4Sprite->GetSpritesEntityId());
+    OriGine::Entity* spriteEntity = GetEntity(timer4Sprite->GetSpritesEntityId());
 
     auto* sprites = GetComponents<SpriteRenderer>(spriteEntity);
     if (sprites) {

@@ -2,7 +2,10 @@
 #include "FrameWork.h"
 #ifdef _DEBUG
 
+namespace OriGine {
 class EditorController;
+}
+
 /// <summary>
 /// 編集用のアプリケーションフレームワーク
 /// </summary>
@@ -17,8 +20,8 @@ public:
     virtual void Run() override;
 
 protected:
-    bool isEndRequest_                  = false;
-    EditorController* editorController_ = nullptr;
+    bool isEndRequest_                           = false;
+    OriGine::EditorController* editorController_ = nullptr;
 
 public:
     bool isEndRequest() const { return isEndRequest_; }

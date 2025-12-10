@@ -1,10 +1,12 @@
 #pragma once
 #include "system/ISystem.h"
 
+namespace OriGine {
 /// engine
 // input
 class KeyboardInput;
 class GamepadInput;
+}
 
 /// ECS
 // component
@@ -16,17 +18,17 @@ class PlayerState;
 /// PlayerのInputを処理するシステム
 /// </summary>
 class PlayerInputSystem
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
-    PlayerInputSystem() : ISystem(SystemCategory::Input) {}
+    PlayerInputSystem() : ISystem(OriGine::SystemCategory::Input) {}
     ~PlayerInputSystem() {}
 
     void Initialize() override;
     // void Update() override;
     void Finalize() override;
 
-    void UpdateEntity(Entity* _entity) override;
-    void InputUpdate(float _deltaTime, KeyboardInput* _keyInput, GamepadInput* _padInput, PlayerInput* _playerInput, PlayerState* _playerState);
+    void UpdateEntity(OriGine::Entity* _entity) override;
+    void InputUpdate(float _deltaTime, OriGine::KeyboardInput* _keyInput, OriGine::GamepadInput* _padInput, PlayerInput* _playerInput, PlayerState* _playerState);
 
 private:
     IPlayerInputDevice* SelectActiveDevice(IPlayerInputDevice* _padDevice, IPlayerInputDevice* _keyDevice);

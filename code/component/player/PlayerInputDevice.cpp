@@ -4,7 +4,7 @@
 // component
 #include "PlayerInput.h"
 
-Vec2f GamepadInputDevice::GetMoveDirection() const {
+OriGine::Vec2f GamepadInputDevice::GetMoveDirection() const {
     return pad_->GetLStick().normalize();
 }
 
@@ -28,7 +28,7 @@ bool GamepadInputDevice::IsActive() const {
     return pad_->IsActive();
 }
 
-Vec2f KeyboardInputDevice::GetMoveDirection() const {
+OriGine::Vec2f KeyboardInputDevice::GetMoveDirection() const {
     float x = 0.0f;
     float y = 0.0f;
 
@@ -45,7 +45,7 @@ Vec2f KeyboardInputDevice::GetMoveDirection() const {
         if (key_->IsPress(k))
             y -= 1.0f;
 
-    return Vec2f(x, y).normalize();
+    return OriGine::Vec2f(x, y).normalize();
 }
 
 bool KeyboardInputDevice::IsJumpTrigger() const {

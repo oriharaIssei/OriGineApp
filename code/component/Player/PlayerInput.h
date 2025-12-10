@@ -17,7 +17,7 @@
 /// プレイヤーの入力を管理するクラス
 /// </summary>
 class PlayerInput
-    : public IComponent {
+    : public OriGine::IComponent {
     friend void to_json(nlohmann::json& j, const PlayerInput& _playerInput);
     friend void from_json(const nlohmann::json& j, PlayerInput& _playerInput);
 
@@ -25,14 +25,14 @@ public:
     PlayerInput() : IComponent() {}
     ~PlayerInput() {}
 
-    void Initialize(Entity* _entity) override;
-    void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
+    void Initialize(OriGine::Entity* _entity) override;
+    void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
     void Finalize() override;
 
 private:
-    Vec2f inputDirection_ = {0.0f, 0.0f};
+    OriGine::Vec2f inputDirection_ = {0.0f, 0.0f};
     // effectに使う
-    Vec3f worldInputDirection_ = {0.0f, 0.0f, 0.0f};
+    OriGine::Vec3f worldInputDirection_ = {0.0f, 0.0f, 0.0f};
 
     bool isJumpInput_     = false; // ジャンプ入力があったかどうか
     bool isWallJumpInput_ = false; // 壁ジャンプ入力があったかどうか
@@ -42,72 +42,72 @@ private:
     /// <summary>
     /// 移動 キー (ゲームパッドは スティックだから必要なし)
     /// </summary>
-    std::vector<Key> moveFrontKeys_ = {
-        Key::W,
-        Key::UP};
-    std::vector<Key> moveBackKeys_ = {
-        Key::S,
-        Key::DOWN};
-    std::vector<Key> moveLeftKeys_ = {
-        Key::A,
-        Key::LEFT};
-    std::vector<Key> moveRightKeys_ = {
-        Key::D,
-        Key::RIGHT};
+    std::vector<OriGine::Key> moveFrontKeys_ = {
+        OriGine::Key::W,
+        OriGine::Key::UP};
+    std::vector<OriGine::Key> moveBackKeys_ = {
+        OriGine::Key::S,
+        OriGine::Key::DOWN};
+    std::vector<OriGine::Key> moveLeftKeys_ = {
+        OriGine::Key::A,
+        OriGine::Key::LEFT};
+    std::vector<OriGine::Key> moveRightKeys_ = {
+        OriGine::Key::D,
+        OriGine::Key::RIGHT};
 
-    std::vector<Key> jumpKeys_ = {
-        Key::SPACE,
-        Key::NUMPAD0};
-    std::vector<PadButton> jumpButton_ = {
-        PadButton::A,
-        PadButton::B};
-    std::vector<Key> slideKeys_ = {
-        Key::L_SHIFT,
-        Key::L_CTRL};
-    std::vector<PadButton> slideButton_ = {
-        PadButton::L_SHOULDER,
-        PadButton::R_SHOULDER};
+    std::vector<OriGine::Key> jumpKeys_ = {
+        OriGine::Key::SPACE,
+        OriGine::Key::NUMPAD0};
+    std::vector<OriGine::PadButton> jumpButton_ = {
+        OriGine::PadButton::A,
+        OriGine::PadButton::B};
+    std::vector<OriGine::Key> slideKeys_ = {
+        OriGine::Key::L_SHIFT,
+        OriGine::Key::L_CTRL};
+    std::vector<OriGine::PadButton> slideButton_ = {
+        OriGine::PadButton::L_SHOULDER,
+        OriGine::PadButton::R_SHOULDER};
 
 public:
-    const std::vector<Key>& GetMoveFrontKeys() const {
+    const std::vector<OriGine::Key>& GetMoveFrontKeys() const {
         return moveFrontKeys_;
     }
-    const std::vector<Key>& GetMoveBackKeys() const {
+    const std::vector<OriGine::Key>& GetMoveBackKeys() const {
         return moveBackKeys_;
     }
-    const std::vector<Key>& GetMoveLeftKeys() const {
+    const std::vector<OriGine::Key>& GetMoveLeftKeys() const {
         return moveLeftKeys_;
     }
-    const std::vector<Key>& GetMoveRightKeys() const {
+    const std::vector<OriGine::Key>& GetMoveRightKeys() const {
         return moveRightKeys_;
     }
 
-    const std::vector<Key>& GetJumpKeys() const {
+    const std::vector<OriGine::Key>& GetJumpKeys() const {
         return jumpKeys_;
     }
 
-    const std::vector<PadButton>& GetJumpButton() const {
+    const std::vector<OriGine::PadButton>& GetJumpButton() const {
         return jumpButton_;
     }
 
-    const std::vector<Key>& GetSlideKeys() const {
+    const std::vector<OriGine::Key>& GetSlideKeys() const {
         return slideKeys_;
     }
-    const std::vector<PadButton>& GetSlideButton() const {
+    const std::vector<OriGine::PadButton>& GetSlideButton() const {
         return slideButton_;
     }
 
-    const Vec2f& GetInputDirection() const {
+    const OriGine::Vec2f& GetInputDirection() const {
         return inputDirection_;
     }
-    void SetInputDirection(const Vec2f& _inputDirection) {
+    void SetInputDirection(const OriGine::Vec2f& _inputDirection) {
         inputDirection_ = _inputDirection;
     }
 
-    const Vec3f& GetWorldInputDirection() const {
+    const OriGine::Vec3f& GetWorldInputDirection() const {
         return worldInputDirection_;
     }
-    void SetWorldInputDirection(const Vec3f& _worldInputDirection) {
+    void SetWorldInputDirection(const OriGine::Vec3f& _worldInputDirection) {
         worldInputDirection_ = _worldInputDirection;
     }
 

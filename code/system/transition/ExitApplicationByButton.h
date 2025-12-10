@@ -5,7 +5,7 @@
 /// Buttonによるアプリケーション終了システム
 /// </summary>
 class ExitApplicationByButton
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     ExitApplicationByButton();
     ~ExitApplicationByButton() override;
@@ -14,5 +14,5 @@ public:
     void Finalize() override {}
 
 private:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 };

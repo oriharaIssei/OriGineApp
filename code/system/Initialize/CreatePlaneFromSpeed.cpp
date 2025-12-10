@@ -2,6 +2,7 @@
 
 /// engine
 #include "Engine.h"
+#include "scene/Scene.h"
 #include "winApp/WinApp.h"
 
 /// ECS
@@ -16,35 +17,37 @@
 #include "system/render/OverlayRenderSystem.h"
 #include "system/SystemRunner.h"
 
+using namespace OriGine;
+
 CreatePlaneFromSpeed::CreatePlaneFromSpeed()
-    : ISystem(SystemCategory::Initialize) {}
+    : ISystem(OriGine::SystemCategory::Initialize) {}
 CreatePlaneFromSpeed::~CreatePlaneFromSpeed() {}
 
 void CreatePlaneFromSpeed::Initialize() {}
 void CreatePlaneFromSpeed::Finalize() {}
 
-void CreatePlaneFromSpeed::UpdateEntity(Entity* _entity) {
+void CreatePlaneFromSpeed::UpdateEntity(OriGine::Entity* _entity) {
     auto speedFor3dUIComponent = GetComponent<SpeedFor3dUIComponent>(_entity);
     if (!speedFor3dUIComponent) {
         return; // タイマーコンポーネントがない場合は何もしない
     }
 
     // Sprite用のEntityを作成
-    int32_t ui3dEntityId = CreateEntity(_entity->GetDataType() + "_Speed3dUI", false);
-    Entity* ui3dEntity   = GetEntity(ui3dEntityId);
+    int32_t ui3dEntityId        = CreateEntity(_entity->GetDataType() + "_Speed3dUI", false);
+    OriGine::Entity* ui3dEntity = GetEntity(ui3dEntityId);
     ui3dEntity->SetShouldSave(false); // セーブしない
     CreatePlanesFromComponent(ui3dEntity, speedFor3dUIComponent);
 }
 
-void CreatePlaneFromSpeed::CreatePlanesFromComponent(Entity* _entity, SpeedFor3dUIComponent* _comp) {
+void CreatePlaneFromSpeed::CreatePlanesFromComponent(OriGine::Entity* _entity, SpeedFor3dUIComponent* _comp) {
     // ==========================================
     // 3D基準座標の生成
     // ==========================================
     int digitAll = _comp->digitInteger + _comp->digitDecimal;
 
-    Vec2f uvScale = _comp->numberTileSize / _comp->numbersTextureSize;
+    OriGine::Vec2f uvScale = _comp->numberTileSize / _comp->numbersTextureSize;
 
-    Vec3f pos = _comp->offset;
+    OriGine::Vec3f pos = _comp->offset;
 
     // 整数部の全幅
     float widthInteger = _comp->digitInteger * _comp->planeScaleInteger[X]
@@ -61,11 +64,11 @@ void CreatePlaneFromSpeed::CreatePlanesFromComponent(Entity* _entity, SpeedFor3d
     GetScene()->GetSystemRunnerRef()->GetSystemRef<Ui3dObjectInitialize>()->AddEntity(_entity);
     GetScene()->GetSystemRunnerRef()->GetSystemRef<PlayerSpeedFor3dUI>()->AddEntity(_entity);
     GetScene()->GetSystemRunnerRef()->GetSystemRef<Ui3dUpdateSystem>()->AddEntity(_entity);
-    
+
     _comp->SetPlaneEntityId(_entity->GetID());
 
-    AddComponent<Transform>(_entity, Transform(), true);
-    auto transform       = GetComponent<Transform>(_entity);
+    AddComponent<OriGine::Transform>(_entity, Transform(), true);
+    auto transform       = GetComponent<OriGine::Transform>(_entity);
     transform->translate = _comp->worldPosition;
     transform->UpdateMatrix();
 
@@ -73,10 +76,10 @@ void CreatePlaneFromSpeed::CreatePlanesFromComponent(Entity* _entity, SpeedFor3d
     // 整数部 Plane 生成
     // ==========================================
     for (int i = 0; i < _comp->digitInteger; ++i) {
-        AddComponent<PlaneRenderer>(_entity, PlaneRenderer{}, true);
+        AddComponent<OriGine::PlaneRenderer>(_entity, OriGine::PlaneRenderer{}, true);
         AddComponent<Material>(_entity, Material{}, true);
 
-        auto* plane    = GetComponent<PlaneRenderer>(_entity, i);
+        auto* plane    = GetComponent<OriGine::PlaneRenderer>(_entity, i);
         auto* material = GetComponent<Material>(_entity, i);
 
         plane->SetIsRender(true);
@@ -89,17 +92,17 @@ void CreatePlaneFromSpeed::CreatePlanesFromComponent(Entity* _entity, SpeedFor3d
         // Plane の Transform に書き込み
         auto& planeTransform     = plane->GetTransform();
         planeTransform.parent    = transform;
-        planeTransform.scale     = Vec3f(_comp->planeScaleInteger, 1.f);
+        planeTransform.scale     = OriGine::Vec3f(_comp->planeScaleInteger, 1.f);
         planeTransform.translate = pos;
 
         planeTransform.UpdateMatrix();
 
         pos[X] += _comp->planeScaleInteger[X];
-        pos += Vec3f(_comp->planeMarginInteger, 0.f);
+        pos += OriGine::Vec3f(_comp->planeMarginInteger, 0.f);
     }
 
     // 整数部 → 小数部の間隔を追加
-    pos += Vec3f(_comp->marginBetweenIntegerAndDecimal[X],
+    pos += OriGine::Vec3f(_comp->marginBetweenIntegerAndDecimal[X],
         _comp->marginBetweenIntegerAndDecimal[Y],
         0.f);
 
@@ -107,10 +110,10 @@ void CreatePlaneFromSpeed::CreatePlanesFromComponent(Entity* _entity, SpeedFor3d
     // 小数部 Plane 生成
     // ==========================================
     for (int i = _comp->digitInteger; i < digitAll; ++i) {
-        AddComponent<PlaneRenderer>(_entity, PlaneRenderer{}, true);
+        AddComponent<OriGine::PlaneRenderer>(_entity, OriGine::PlaneRenderer{}, true);
         AddComponent<Material>(_entity, Material{}, true);
 
-        auto* plane    = GetComponent<PlaneRenderer>(_entity, i);
+        auto* plane    = GetComponent<OriGine::PlaneRenderer>(_entity, i);
         auto* material = GetComponent<Material>(_entity, i);
 
         plane->SetIsRender(true);
@@ -123,12 +126,12 @@ void CreatePlaneFromSpeed::CreatePlanesFromComponent(Entity* _entity, SpeedFor3d
         // Plane の Transform に書き込み
         auto& planeTransform     = plane->GetTransform();
         planeTransform.parent    = transform;
-        planeTransform.scale     = Vec3f(_comp->planeScaleDecimal, 1.f);
+        planeTransform.scale     = OriGine::Vec3f(_comp->planeScaleDecimal, 1.f);
         planeTransform.translate = pos;
 
         planeTransform.UpdateMatrix();
 
         pos[X] += _comp->planeScaleDecimal[X];
-        pos += Vec3f(_comp->planeMarginDecimal[X], _comp->planeMarginDecimal[Y], 0.f);
+        pos += OriGine::Vec3f(_comp->planeMarginDecimal[X], _comp->planeMarginDecimal[Y], 0.f);
     }
 }

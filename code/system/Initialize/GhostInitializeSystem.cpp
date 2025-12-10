@@ -21,19 +21,24 @@
 
 #include "system/effect/CameraShake.h"
 
+/// engine
+#include "scene/SceneManager.h"
+
 /// application
 #include "manager/PlayerProgressStore.h"
 
 /// external
 #include "logger/Logger.h"
 
-GhostInitializeSystem::GhostInitializeSystem() : ISystem(SystemCategory::Initialize) {}
+using namespace OriGine;
+
+GhostInitializeSystem::GhostInitializeSystem() : ISystem(OriGine::SystemCategory::Initialize) {}
 GhostInitializeSystem::~GhostInitializeSystem() {}
 
 void GhostInitializeSystem::Initialize() {}
 void GhostInitializeSystem::Finalize() {}
 
-void GhostInitializeSystem::UpdateEntity(Entity* _entity) {
+void GhostInitializeSystem::UpdateEntity(OriGine::Entity* _entity) {
     auto ghostReplayComp = GetComponent<GhostReplayComponent>(_entity);
 
     if (!ghostReplayComp) {
@@ -66,16 +71,16 @@ bool GhostInitializeSystem::InitializeGhostReplayComponent(GhostReplayComponent*
     }
 
     // replayのデータ読み込み
-    _comp->replayPlayer_ = std::make_shared<ReplayPlayer>();
+    _comp->replayPlayer_ = std::make_shared<OriGine::ReplayPlayer>();
     bool isLoaded        = PlayerProgressStore::GetInstance()->LoadBestPlayData(stageData->GetStageNumber(), _comp->replayPlayer_.get());
     if (!isLoaded) {
         return false;
     }
 
     // inputの初期化
-    _comp->keyboardInput_ = std::make_shared<KeyboardInput>();
-    _comp->mouseInput_    = std::make_shared<MouseInput>();
-    _comp->gamepadInput_  = std::make_shared<GamepadInput>();
+    _comp->keyboardInput_ = std::make_shared<OriGine::KeyboardInput>();
+    _comp->mouseInput_    = std::make_shared<OriGine::MouseInput>();
+    _comp->gamepadInput_  = std::make_shared<OriGine::GamepadInput>();
 
     // 入力初期化
     _comp->ApplyInput();
@@ -87,11 +92,11 @@ bool GhostInitializeSystem::InitializeGhostReplayComponent(GhostReplayComponent*
     auto copyCameraJson        = serializer.EntityToJson(scene->GetUniqueEntity("GameCamera")->GetID());
 
     // 名前は変える
-    copyPlayerJson["Name"]     = "GhostPlayer";
-    copyPlayerJson["isUnique"] = false;
-    copyCameraJson["Name"]     = "GhostGameCamera";
-    Entity* ghostPlayerEnt     = serializer.EntityFromJson(copyPlayerJson);
-    Entity* ghostCameraEnt     = serializer.EntityFromJson(copyCameraJson);
+    copyPlayerJson["Name"]          = "GhostPlayer";
+    copyPlayerJson["isUnique"]      = false;
+    copyCameraJson["Name"]          = "GhostGameCamera";
+    OriGine::Entity* ghostPlayerEnt = serializer.EntityFromJson(copyPlayerJson);
+    OriGine::Entity* ghostCameraEnt = serializer.EntityFromJson(copyCameraJson);
 
     // どちらも保存しないように設定
     ghostPlayerEnt->SetShouldSave(false);
@@ -120,19 +125,22 @@ bool GhostInitializeSystem::InitializeGhostReplayComponent(GhostReplayComponent*
         effectOnPlayerGearupSystem->RemoveEntity(ghostPlayerEnt);
     }
 
-    auto playerTransform  = GetComponent<Transform>(ghostPlayerEnt);
+    auto playerTransform  = GetComponent<OriGine::Transform>(ghostPlayerEnt);
     auto cameraController = GetComponent<CameraController>(ghostCameraEnt);
     cameraController->SetFollowTarget(playerTransform);
 
     auto playerState = GetComponent<PlayerState>(ghostPlayerEnt);
     playerState->SetCameraEntityID(ghostCameraEnt->GetID());
 
-    auto playerMaterial = GetComponent<Material>(ghostPlayerEnt);
-    if (playerMaterial) {
-        // 赤めにする
-        playerMaterial->color_[R] = 0.8f;
-        playerMaterial->color_[G] = 0.3f;
-        playerMaterial->color_[B] = 0.3f;
+    auto playerMaterials = GetComponents<Material>(ghostPlayerEnt);
+    if (playerMaterials) {
+        for (auto& material : *playerMaterials) {
+            // 赤めにする
+            material.color_[0] = 0.8f;
+            material.color_[1] = 0.3f;
+            material.color_[2] = 0.3f;
+            material.color_[3] = 0.6f; // 半透明にする
+        }
     }
 
     auto cameraTransform = GetComponent<CameraTransform>(ghostCameraEnt);

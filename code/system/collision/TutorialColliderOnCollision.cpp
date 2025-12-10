@@ -1,10 +1,14 @@
 #include "TutorialColliderOnCollision.h"
 
+/// ECS
+// component
 #include "component/animation/SpriteAnimation.h"
 #include "component/collision/collider/AABBCollider.h"
 #include "component/renderer/Sprite.h"
 
-TutorialColliderOnCollision::TutorialColliderOnCollision() : ISystem(SystemCategory::Collision) {}
+using namespace OriGine;
+
+TutorialColliderOnCollision::TutorialColliderOnCollision() : ISystem(OriGine::SystemCategory::Collision) {}
 TutorialColliderOnCollision::~TutorialColliderOnCollision() {}
 
 void TutorialColliderOnCollision::Initialize() {
@@ -20,7 +24,7 @@ void TutorialColliderOnCollision::Update() {
     ISystem::Update();
 }
 
-void TutorialColliderOnCollision::UpdateEntity(Entity* _entity) {
+void TutorialColliderOnCollision::UpdateEntity(OriGine::Entity* _entity) {
     if (_entity == nullptr) {
         return;
     }

@@ -7,7 +7,7 @@ struct SpeedFor3dUIComponent;
 /// Timerの数字をSpriteとして表示するためにSpriteを生成するシステム
 /// </summary>
 class CreatePlaneFromSpeed
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     CreatePlaneFromSpeed();
     ~CreatePlaneFromSpeed() override;
@@ -16,6 +16,6 @@ public:
     // virtual void Edit();
     void Finalize();
 
-    void UpdateEntity(Entity* _entity) override;
-    void CreatePlanesFromComponent(Entity* _entity, SpeedFor3dUIComponent* _speedFor3dUI);
+    void UpdateEntity(OriGine::Entity* _entity) override;
+    void CreatePlanesFromComponent(OriGine::Entity* _entity, SpeedFor3dUIComponent* _speedFor3dUI);
 };

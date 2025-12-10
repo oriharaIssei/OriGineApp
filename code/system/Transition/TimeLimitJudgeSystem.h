@@ -5,7 +5,7 @@
 /// 時間制限によるゲームオーバー判定を行うシステム
 /// </summary>
 class TimeLimitJudgeSystem
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     TimeLimitJudgeSystem();
     ~TimeLimitJudgeSystem() override;
@@ -13,5 +13,5 @@ public:
     void Initialize() override;
 
 private:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 };

@@ -11,6 +11,8 @@
 
 #include "Engine.h"
 
+using namespace OriGine;
+
 MyEditor::MyEditor() {}
 MyEditor::~MyEditor() {}
 
@@ -18,9 +20,9 @@ void MyEditor::Initialize(const std::vector<std::string>& _commandLines) {
     ///=================================================================================================
     // Editor のための 初期化
     ///=================================================================================================
-    variables_        = GlobalVariables::GetInstance();
-    engine_           = Engine::GetInstance();
-    editorController_ = EditorController::GetInstance();
+    variables_        = OriGine::GlobalVariables::GetInstance();
+    engine_           = OriGine::Engine::GetInstance();
+    editorController_ = OriGine::EditorController::GetInstance();
 
     variables_->LoadAllFile();
     engine_->Initialize();

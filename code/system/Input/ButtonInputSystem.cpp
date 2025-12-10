@@ -3,6 +3,8 @@
 /// Engine
 #define ENGINE_ECS
 #include "EngineInclude.h"
+
+#include "scene/Scene.h"
 // ingput
 #include "input/GamepadInput.h"
 #include "input/KeyboardInput.h"
@@ -10,14 +12,15 @@
 // component
 #include "component/ui/Button.h"
 
-void ButtonInputSystem::Initialize() {}
+using namespace OriGine;
 
+void ButtonInputSystem::Initialize() {}
 void ButtonInputSystem::Finalize() {}
 
-void ButtonInputSystem::UpdateEntity(Entity* _entity) {
-    KeyboardInput* keyInput = GetScene()->GetKeyboardInput();
-    MouseInput* mouseInput  = GetScene()->GetMouseInput();
-    GamepadInput* padInput  = GetScene()->GetGamepadInput();
+void ButtonInputSystem::UpdateEntity(OriGine::Entity* _entity) {
+    OriGine::KeyboardInput* keyInput = GetScene()->GetKeyboardInput();
+    MouseInput* mouseInput           = GetScene()->GetMouseInput();
+    OriGine::GamepadInput* padInput  = GetScene()->GetGamepadInput();
 
     std::vector<Button>* buttons = GetComponents<Button>(_entity);
 
@@ -56,13 +59,13 @@ void ButtonInputSystem::UpdateEntity(Entity* _entity) {
         /// ====================== check Mouse Input ====================== ///
         SpriteRenderer* buttonSprite = GetComponent<SpriteRenderer>(_entity);
         if (buttonSprite != nullptr) {
-            const Vec2f& mousePos   = mouseInput->GetPosition();
-            const Vec2f& buttonPos  = buttonSprite->GetTranslate();
-            const Vec2f& buttonSize = buttonSprite->GetSpriteBuff()->scale_;
-            const Vec2f& anchor     = buttonSprite->GetAnchorPoint();
+            const OriGine::Vec2f& mousePos   = mouseInput->GetPosition();
+            const OriGine::Vec2f& buttonPos  = buttonSprite->GetTranslate();
+            const OriGine::Vec2f& buttonSize = buttonSprite->GetSpriteBuff()->scale_;
+            const OriGine::Vec2f& anchor     = buttonSprite->GetAnchorPoint();
 
-            Vec2f buttonLeftTop     = buttonPos - buttonSize * anchor;
-            Vec2f buttonRightBottom = buttonPos + buttonSize * (Vec2f(1.0f, 1.0f) - anchor);
+            OriGine::Vec2f buttonLeftTop     = buttonPos - buttonSize * anchor;
+            OriGine::Vec2f buttonRightBottom = buttonPos + buttonSize * (OriGine::Vec2f(1.0f, 1.0f) - anchor);
 
             // マウスがボタンの範囲内にあるかどうかを判定
             bool isMouseOverButton = (mousePos[X] >= buttonLeftTop[X] && mousePos[X] <= buttonRightBottom[X] && mousePos[Y] >= buttonLeftTop[Y] && mousePos[Y] <= buttonRightBottom[Y]);

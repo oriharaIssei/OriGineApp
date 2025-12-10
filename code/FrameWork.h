@@ -4,8 +4,10 @@
 #include <string>
 #include <vector>
 
+namespace OriGine {
 class Engine;
 class GlobalVariables;
+}
 
 /// <summary>
 /// Applicationの土台となる フレームワーク クラス
@@ -27,9 +29,9 @@ public:
     virtual void Run() = 0;
 
 protected:
-    bool isEndRequest_          = false;
-    Engine* engine_             = nullptr;
-    GlobalVariables* variables_ = nullptr;
+    bool isEndRequest_                   = false;
+    OriGine::Engine* engine_             = nullptr;
+    OriGine::GlobalVariables* variables_ = nullptr;
 };
 
 /// <summary>
