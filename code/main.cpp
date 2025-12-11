@@ -40,7 +40,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
         std::unique_ptr<MyGame> gameApp = std::make_unique<MyGame>();
 
         gameApp->Initialize(cmdLines);
-        DxDebug::GetInstance()->CreateInfoQueue();
+        OriGine::DxDebug::GetInstance()->CreateInfoQueue();
 
         gameApp->Run();
 
