@@ -10,13 +10,15 @@
 #include "system/render/OverlayRenderSystem.h"
 #include "system/render/SpriteRenderSystem.h"
 
-SelectPreviewSceneInitialize::SelectPreviewSceneInitialize() : ISystem(SystemCategory::Initialize) {}
+using namespace OriGine;
+
+SelectPreviewSceneInitialize::SelectPreviewSceneInitialize() : ISystem(OriGine::SystemCategory::Initialize) {}
 SelectPreviewSceneInitialize::~SelectPreviewSceneInitialize() {}
 
 void SelectPreviewSceneInitialize::Initialize() {}
 void SelectPreviewSceneInitialize::Finalize() {}
 
-void SelectPreviewSceneInitialize::UpdateEntity(Entity* _entity) {
+void SelectPreviewSceneInitialize::UpdateEntity(OriGine::Entity* _entity) {
     auto* subScenes = GetComponents<SubScene>(_entity);
 
     if (!subScenes) {

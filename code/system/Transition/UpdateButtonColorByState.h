@@ -6,14 +6,14 @@
 /// Buttonの入力状態に応じて色を変更するシステム
 /// </summary>
 class UpdateButtonColorByState
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
-    UpdateButtonColorByState() : ISystem(SystemCategory::StateTransition) {}
+    UpdateButtonColorByState() : ISystem(OriGine::SystemCategory::StateTransition) {}
     ~UpdateButtonColorByState() {}
 
     virtual void Initialize();
     virtual void Finalize();
 
 protected:
-    virtual void UpdateEntity(Entity* _entity);
+    virtual void UpdateEntity(OriGine::Entity* _entity);
 };

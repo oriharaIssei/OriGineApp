@@ -11,7 +11,7 @@
 #include "math/Matrix4x4.h"
 
 class PenaltySystem
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     PenaltySystem();
     ~PenaltySystem();
@@ -19,9 +19,9 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 
 protected:
     std::unique_ptr<CreateSpriteFromTimer> createSpriteFromTimerSystem_ = nullptr;
-    Matrix4x4 viewPortMat_; // ビューポート行列
+    OriGine::Matrix4x4 viewPortMat_; // ビューポート行列
 };

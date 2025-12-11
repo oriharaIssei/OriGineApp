@@ -5,12 +5,14 @@
 /// externals
 #include "myGui/MyGui.h"
 
+using namespace OriGine;
+
 PlayerState::PlayerState()
     : IComponent() {}
 
 PlayerState::~PlayerState() {}
 
-void PlayerState::Initialize(Entity* /*_entity*/) {
+void PlayerState::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {
     // moveStateEnum の 初期化
     // current,prev を IDLE に設定
     moveStateEnum_.Set(PlayerMoveState::IDLE);
@@ -26,7 +28,7 @@ void PlayerState::Initialize(Entity* /*_entity*/) {
     gearUpCoolTime_      = 0.0f;
 }
 
-void PlayerState::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
+void PlayerState::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]] OriGine::Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
     static std::map<PlayerMoveState, const char*> moveStateName = {
         {PlayerMoveState::IDLE, "IDLE"},
         {PlayerMoveState::DASH, "DASH"},
@@ -54,7 +56,7 @@ void PlayerState::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* 
 
 void PlayerState::Finalize() {}
 
-void PlayerState::OnCollisionWall(const Vec3f& _collisionNormal, int32_t _entityIndex) {
+void PlayerState::OnCollisionWall(const OriGine::Vec3f& _collisionNormal, int32_t _entityIndex) {
     stateFlag_.CurrentRef().SetFlag(PlayerStateFlag::ON_WALL);
     wallCollisionNormal_ = _collisionNormal;
     wallEntityIndex_     = _entityIndex;
@@ -81,7 +83,7 @@ void PlayerState::OnCollisionObstacle(float _penaltyTime, float _invincibility) 
     stateFlag_.CurrentRef().SetFlag(PlayerStateFlag::IS_PENALTY);
     penaltyTime_ = _penaltyTime;
 
-    invincibility_           = _invincibility;
+    invincibility_ = _invincibility;
 }
 
 float PlayerState::SufferPenalty() {

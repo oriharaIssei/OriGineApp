@@ -8,15 +8,15 @@
 /// 2つの Transformコンポーネントを参照し、1つ目のTransformの位置から2つ目のTransformの位置を向くように設定するコンポーネント
 /// </summary>
 struct LookAtFromTransforms
-    : public IComponent {
+    : public OriGine::IComponent {
     friend void to_json(nlohmann::json& _j, const LookAtFromTransforms& _c);
     friend void from_json(const nlohmann::json& _j, LookAtFromTransforms& _c);
 
 public:
     LookAtFromTransforms();
     ~LookAtFromTransforms() override;
-    void Initialize(Entity* _entity) override;
-    void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
+    void Initialize(OriGine::Entity* _entity) override;
+    void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
     void Finalize() override;
 
 public:

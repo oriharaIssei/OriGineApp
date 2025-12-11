@@ -7,14 +7,15 @@
 ///math
 #include "math/mathEnv.h"
 
-TimeLimitJudgeSystem::TimeLimitJudgeSystem() : ISystem(SystemCategory::StateTransition) {}
+using namespace OriGine;
 
+TimeLimitJudgeSystem::TimeLimitJudgeSystem() : ISystem(OriGine::SystemCategory::StateTransition) {}
 TimeLimitJudgeSystem::~TimeLimitJudgeSystem() {}
 
 void TimeLimitJudgeSystem::Initialize() {}
 void TimeLimitJudgeSystem::Finalize() {}
 
-void TimeLimitJudgeSystem::UpdateEntity(Entity* _entity) {
+void TimeLimitJudgeSystem::UpdateEntity(OriGine::Entity* _entity) {
     auto timerComp = GetComponent<TimerComponent>(_entity);
     if (!timerComp) {
         return;

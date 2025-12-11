@@ -4,20 +4,20 @@
 // component
 #include "component/transform/Transform.h"
 
-Ui3dObjectInitialize::Ui3dObjectInitialize() : ISystem(SystemCategory::Initialize) {}
+Ui3dObjectInitialize::Ui3dObjectInitialize() : ISystem(OriGine::SystemCategory::Initialize) {}
 
 void Ui3dObjectInitialize::Initialize() {}
 void Ui3dObjectInitialize::Finalize() {}
 
-void Ui3dObjectInitialize::UpdateEntity(Entity* _entity) {
+void Ui3dObjectInitialize::UpdateEntity(OriGine::Entity* _entity) {
     // カメラエンティティ取得
-    Entity* cameraEntity = GetUniqueEntity("GameCamera");
+    OriGine::Entity* cameraEntity = GetUniqueEntity("GameCamera");
     if (!cameraEntity) {
         return;
     }
 
-    auto* cameraTransform = GetComponent<Transform>(cameraEntity);
-    auto* transform       = GetComponent<Transform>(_entity);
+    auto* cameraTransform = GetComponent<OriGine::Transform>(cameraEntity);
+    auto* transform       = GetComponent<OriGine::Transform>(_entity);
     if (!cameraTransform || !transform) {
         return;
     }

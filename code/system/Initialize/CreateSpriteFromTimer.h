@@ -7,7 +7,7 @@ struct TimerForSpriteComponent;
 /// Timerの数字をSpriteとして表示するためにSpriteを生成するシステム
 /// </summary>
 class CreateSpriteFromTimer
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     CreateSpriteFromTimer();
     ~CreateSpriteFromTimer() override;
@@ -16,6 +16,6 @@ public:
     // virtual void Edit();
     void Finalize();
 
-    void UpdateEntity(Entity* _entity) override;
-    void CreateSprites(Entity* _entity, TimerForSpriteComponent* _forSpriteComp);
+    void UpdateEntity(OriGine::Entity* _entity) override;
+    void CreateSprites(OriGine::Entity* _entity, TimerForSpriteComponent* _forSpriteComp);
 };

@@ -6,7 +6,7 @@
 /// TimerComponentのカウントダウンを行うシステム
 /// </summary>
 class TimerCountDown
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     TimerCountDown();
     ~TimerCountDown() override;
@@ -14,5 +14,5 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 };

@@ -18,7 +18,7 @@
 
 #include "system/Movement/StartSequenceSystem.h"
 
-GhostInputUpdate::GhostInputUpdate() : ISystem(SystemCategory::Input) {}
+GhostInputUpdate::GhostInputUpdate() : ISystem(OriGine::SystemCategory::Input) {}
 GhostInputUpdate::~GhostInputUpdate() {}
 
 void GhostInputUpdate::Initialize() {
@@ -30,7 +30,7 @@ void GhostInputUpdate::Initialize() {
 }
 void GhostInputUpdate::Finalize() {}
 
-void GhostInputUpdate::UpdateEntity(Entity* _entity) {
+void GhostInputUpdate::UpdateEntity(OriGine::Entity* _entity) {
 
     auto comp = GetComponent<GhostReplayComponent>(_entity);
     if (!comp || !comp->replayPlayer_) {
@@ -54,7 +54,7 @@ void GhostInputUpdate::UpdateEntity(Entity* _entity) {
         comp->gamepadInput_.get());
 
     // TODO:: 禁忌
-    Engine::GetInstance()->SetDeltaTime(newDelta);
+    OriGine::Engine::GetInstance()->SetDeltaTime(newDelta);
 
     MouseCondition* mouseCondition =
         GetComponent<MouseCondition>(GetEntity(comp->ghostCameraEntityId_));

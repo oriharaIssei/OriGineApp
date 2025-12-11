@@ -5,7 +5,7 @@
 /// SceneManagerによるシーン切り替えをボタン入力で行うシステム
 /// </summary>
 class ChangeSceneByButton
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     ChangeSceneByButton();
     virtual ~ChangeSceneByButton();
@@ -14,5 +14,5 @@ public:
     virtual void Finalize() override;
 
 protected:
-    virtual void UpdateEntity(Entity* _entity) override;
+    virtual void UpdateEntity(OriGine::Entity* _entity) override;
 };

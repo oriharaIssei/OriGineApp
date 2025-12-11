@@ -9,7 +9,7 @@
 // component
 #include "component/TimerComponent.h"
 
-TimerCountDown::TimerCountDown() : ISystem(SystemCategory::StateTransition) {}
+TimerCountDown::TimerCountDown() : ISystem(OriGine::SystemCategory::StateTransition) {}
 
 TimerCountDown::~TimerCountDown() {}
 
@@ -17,7 +17,7 @@ void TimerCountDown::Initialize() {}
 
 void TimerCountDown::Finalize() {}
 
-void TimerCountDown::UpdateEntity(Entity* _entity) {
+void TimerCountDown::UpdateEntity(OriGine::Entity* _entity) {
     auto timerComponent = GetComponent<TimerComponent>(_entity);
     if (timerComponent) {
         if (timerComponent->IsStarted()) {

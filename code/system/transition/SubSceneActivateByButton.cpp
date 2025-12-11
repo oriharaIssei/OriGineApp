@@ -4,14 +4,16 @@
 #include "component/ui/Button.h"
 #include "component/SubScene.h"
 
-SubSceneActivateByButton::SubSceneActivateByButton() : ISystem(SystemCategory::StateTransition) {}
+using namespace OriGine;
+
+SubSceneActivateByButton::SubSceneActivateByButton() : ISystem(OriGine::SystemCategory::StateTransition) {}
 SubSceneActivateByButton::~SubSceneActivateByButton() {}
 
 void SubSceneActivateByButton::Initialize() {}
 
 void SubSceneActivateByButton::Finalize() {}
 
-void SubSceneActivateByButton::UpdateEntity(Entity* _entity) {
+void SubSceneActivateByButton::UpdateEntity(OriGine::Entity* _entity) {
     auto subScene = GetComponent<SubScene>(_entity);
     // 多重初期化防止
     if (subScene->IsActive()) {

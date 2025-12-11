@@ -8,7 +8,7 @@
 /// マウスの状態を指定するコンポーネント
 /// </summary>
 class MouseCondition
-    : public IComponent {
+    : public OriGine::IComponent {
     friend void to_json(nlohmann::json& j, const MouseCondition& c);
     friend void from_json(const nlohmann::json& j, MouseCondition& c);
 
@@ -16,19 +16,19 @@ public:
     MouseCondition();
     ~MouseCondition() override;
 
-    void Initialize(Entity* _entity) override;
-    void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
+    void Initialize(OriGine::Entity* _entity) override;
+    void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
     void Finalize() override;
 
 private:
     bool isActive_      = true;
     bool isShowCursor_  = true;
     bool isFixCursor_   = false;
-    Vec2f fixCursorPos_ = Vec2f(0.0f, 0.0f);
+    OriGine::Vec2f fixCursorPos_ = OriGine::Vec2f(0.0f, 0.0f);
 
 public:
     bool IsActive() const { return isActive_; }
     bool IsShowCursor() const { return isShowCursor_; }
     bool IsFixCursor() const { return isFixCursor_; }
-    const Vec2f& GetFixCursorPos() const { return fixCursorPos_; }
+    const OriGine::Vec2f& GetFixCursorPos() const { return fixCursorPos_; }
 };

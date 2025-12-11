@@ -6,10 +6,10 @@ StageFloor::StageFloor() {
 StageFloor::~StageFloor() {
 }
 
-void StageFloor::Initialize(Entity* /*_entity*/) {
+void StageFloor::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {
 }
 
-void StageFloor::Edit(Scene* /*_scene*/, Entity* /*_entity*/, const std::string& /*_parentLabel*/) {
+void StageFloor::Edit(OriGine::Scene* /*_scene*/, OriGine::Entity* /*_OriGine::Entity*/, const std::string& /*_parentLabel*/) {
 }
 
 void StageFloor::Finalize() {

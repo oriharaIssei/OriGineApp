@@ -2,6 +2,7 @@
 
 /// engine
 #include "Engine.h"
+#include "scene/Scene.h"
 #include "winApp/WinApp.h"
 
 /// ECS
@@ -12,37 +13,39 @@
 #include "system/render/SpriteRenderSystem.h"
 #include "system/SystemRunner.h"
 
+using namespace OriGine;
+
 CreateSpriteFromTimer::CreateSpriteFromTimer()
-    : ISystem(SystemCategory::Initialize) {}
+    : ISystem(OriGine::SystemCategory::Initialize) {}
 CreateSpriteFromTimer::~CreateSpriteFromTimer() {}
 
 void CreateSpriteFromTimer::Initialize() {}
 void CreateSpriteFromTimer::Finalize() {}
 
-void CreateSpriteFromTimer::UpdateEntity(Entity* _entity) {
+void CreateSpriteFromTimer::UpdateEntity(OriGine::Entity* _entity) {
     auto timerForSpriteComponent = GetComponent<TimerForSpriteComponent>(_entity);
     if (!timerForSpriteComponent) {
         return; // タイマーコンポーネントがない場合は何もしない
     }
 
     // Sprite用のEntityを作成
-    int32_t spriteEntityId = CreateEntity("TimerForSprite_Sprites", false);
-    Entity* spriteEntity   = GetEntity(spriteEntityId);
+    int32_t spriteEntityId        = CreateEntity("TimerForSprite_Sprites", false);
+    OriGine::Entity* spriteEntity = GetEntity(spriteEntityId);
     spriteEntity->SetShouldSave(false); // セーブしない
     CreateSprites(spriteEntity, timerForSpriteComponent);
 }
 
-void CreateSpriteFromTimer::CreateSprites(Entity* _entity, TimerForSpriteComponent* _forSpriteComp) {
+void CreateSpriteFromTimer::CreateSprites(OriGine::Entity* _entity, TimerForSpriteComponent* _forSpriteComp) {
     // スプライトの生成位置を計算
-    Vec2f origin = Engine::GetInstance()->GetWinApp()->GetWindowSize() * _forSpriteComp->anchorOnWindow;
+    OriGine::Vec2f origin = OriGine::Engine::GetInstance()->GetWinApp()->GetWindowSize() * _forSpriteComp->anchorOnWindow;
     origin += _forSpriteComp->offset;
 
     int digitInteger = _forSpriteComp->digitInteger;
     int digitAll     = digitInteger + _forSpriteComp->digitDecimal;
 
-    Vec2f uvScale = _forSpriteComp->numberTileSize / _forSpriteComp->numbersTextureSize;
+    OriGine::Vec2f uvScale = _forSpriteComp->numberTileSize / _forSpriteComp->numbersTextureSize;
 
-    Vec2f pos = origin;
+    OriGine::Vec2f pos = origin;
 
     // 整数部の合計幅
     float widthInteger = digitInteger * _forSpriteComp->spriteSizeInteger[X]

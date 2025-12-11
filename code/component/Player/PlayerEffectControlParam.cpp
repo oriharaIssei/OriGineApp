@@ -4,12 +4,14 @@
 #include <myGui/MyGui.h>
 #endif // _DEBUG
 
+using namespace OriGine;
+
 PlayerEffectControlParam::PlayerEffectControlParam() {}
 PlayerEffectControlParam::~PlayerEffectControlParam() {}
 
-void PlayerEffectControlParam::Initialize(Entity* /*_entity*/) {
+void PlayerEffectControlParam::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {
     if (trailColorByGearLevel_.empty()) {
-        trailColorByGearLevel_ = std::vector<Vector4f>(kMaxPlayerGearLevel, Vector4f(1.f, 1.f, 1.f, 1.f));
+        trailColorByGearLevel_ = std::vector<OriGine::Vec4f>(kMaxPlayerGearLevel, OriGine::Vec4f(1.f, 1.f, 1.f, 1.f));
     }
 }
 void PlayerEffectControlParam::Finalize() {}
@@ -18,20 +20,20 @@ float PlayerEffectControlParam::CalculateWheelSpinSpeedBySpeed(float _currentSpe
     return std::lerp(0.0f, maxWheelSpinSpeed_, _currentSpeed / _maxSpeed);
 }
 
-float PlayerEffectControlParam::CalculateWheelTiltAngle(const Vec3f& _inputV, const Vec3f& _direction) const {
+float PlayerEffectControlParam::CalculateWheelTiltAngle(const OriGine::Vec3f& _inputV, const OriGine::Vec3f& _direction) const {
     // 進行方向のXZ平面への射影を正規化
-    Vec3f forwardDir = _direction;
-    forwardDir[Y]    = 0.0f;
-    forwardDir       = Vector3f::Normalize(forwardDir);
+    OriGine::Vec3f forwardDir = _direction;
+    forwardDir[Y]             = 0.0f;
+    forwardDir                = Vector3f::Normalize(forwardDir);
     // 入力ベクトルを3Dベクトルに変換（Zが前、Xが右）
-    Vec3f inputDir3D = {_inputV[X], 0.0f, _inputV[Z]};
-    inputDir3D       = Vector3f::Normalize(inputDir3D);
+    OriGine::Vec3f inputDir3D = {_inputV[X], 0.0f, _inputV[Z]};
+    inputDir3D                = Vector3f::Normalize(inputDir3D);
     // 進行方向と入力方向の角度差を計算
     float dotProduct      = Vector3f::Dot(forwardDir, inputDir3D);
     dotProduct            = std::clamp(dotProduct, -1.0f, 1.0f); // 安全のためクランプ
     float angleDifference = std::acos(dotProduct); // ラジアン
     // 外積を使って回転方向を決定
-    Vec3f crossProduct = forwardDir.cross(inputDir3D);
+    OriGine::Vec3f crossProduct = forwardDir.cross(inputDir3D);
     if (crossProduct[Y] > 0) {
         angleDifference = -angleDifference; // 左回りの場合は負の角度にする
     }
@@ -40,7 +42,7 @@ float PlayerEffectControlParam::CalculateWheelTiltAngle(const Vec3f& _inputV, co
     return result;
 }
 
-void PlayerEffectControlParam::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
+void PlayerEffectControlParam::Edit(OriGine::Scene* /*_scene*/, OriGine::Entity* /*_OriGine::Entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
     // ギアレベルに応じたトレイルカラー
     std::string label = "";
@@ -85,7 +87,7 @@ void from_json(const nlohmann::json& j, PlayerEffectControlParam& _p) {
     j.at("trailColorByGearLevel").get_to(_p.trailColorByGearLevel_);
 
     while (_p.trailColorByGearLevel_.size() <= kMaxPlayerGearLevel) {
-        _p.trailColorByGearLevel_.emplace_back(Vector4f(1.f, 1.f, 1.f, 1.f));
+        _p.trailColorByGearLevel_.emplace_back(OriGine::Vec4f(1.f, 1.f, 1.f, 1.f));
     }
 
     while (_p.trailColorByGearLevel_.size() > kMaxPlayerGearLevel) {

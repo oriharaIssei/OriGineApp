@@ -11,18 +11,20 @@
 #include "math/Sequence.h"
 #include <numbers>
 
-void CameraController::Initialize(Entity* /*_entity*/) {
+using namespace OriGine;
+
+void CameraController::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {
     currentOffset_       = firstOffset_;
     currentTargetOffset_ = firstTargetOffset_;
 }
 
-void CameraController::Edit(Scene* /*_scene*/, Entity* /*_entity*/, [[maybe_unused]] const std::string& _parentLabel) {
+void CameraController::Edit(OriGine::Scene* /*_scene*/, OriGine::Entity* /*_OriGine::Entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
 
     if (DragGuiVectorCommand<3, float>("forward##" + _parentLabel, forward_, 0.01f, -1.f, 1.f, "%.3f", [this](Vector<3, float>* _v) {
-            *_v = Vec3f::Normalize(Vec3f(_v->v[X], _v->v[Y], _v->v[Z]));
+            *_v = OriGine::Vec3f::Normalize(OriGine::Vec3f(_v->v[X], _v->v[Y], _v->v[Z]));
         })) {
-        forward_ = Vec3f::Normalize(forward_); // 正規化
+        forward_ = OriGine::Vec3f::Normalize(forward_); // 正規化
     }
     DragGuiCommand("Fix For Forward Speed##" + _parentLabel, fixForForwardSpeed_, 0.01f, 0.0f);
     DragGuiCommand("angleLimitY##" + _parentLabel, angleLimitY_, 0.01f, 0.00001f, std::numbers::pi_v<float> * 2.f, "%.3f");

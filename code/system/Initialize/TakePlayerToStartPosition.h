@@ -5,7 +5,7 @@
 /// プレイヤーをスタート位置に移動させるシステム
 /// </summary>
 class TakePlayerToStartPosition
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     TakePlayerToStartPosition();
     ~TakePlayerToStartPosition() override;
@@ -15,5 +15,5 @@ public:
     virtual void Finalize();
 
 protected:
-    virtual void UpdateEntity(Entity* _entity) override;
+    virtual void UpdateEntity(OriGine::Entity* _entity) override;
 };

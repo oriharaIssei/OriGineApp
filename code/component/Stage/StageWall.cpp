@@ -6,10 +6,10 @@ StageWall::StageWall() {
 StageWall::~StageWall() {
 }
 
-void StageWall::Initialize(Entity* /*_entity*/) {
+void StageWall::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {
 }
 
-void StageWall::Edit(Scene* /*_scene*/, Entity* /*_entity*/, const std::string& /*_parentLabel*/) {
+void StageWall::Edit(OriGine::Scene* /*_scene*/, OriGine::Entity* /*_OriGine::Entity*/, const std::string& /*_parentLabel*/) {
 }
 
 void StageWall::Finalize() {

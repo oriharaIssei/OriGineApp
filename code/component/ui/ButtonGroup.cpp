@@ -10,9 +10,11 @@
 #include "editor/EditorController.h"
 #include "myGui/MyGui.h"
 
-void ButtonGroup::Initialize(Entity* /*_entity*/) {}
+using namespace OriGine;
 
-void ButtonGroup::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
+void ButtonGroup::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {}
+
+void ButtonGroup::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]] OriGine::Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
     auto componentArray = _scene->GetComponentRepositoryRef()->GetComponentArray<Button>();
     if (!componentArray) {
@@ -47,7 +49,7 @@ void ButtonGroup::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* 
                 continue;
             }
             // ボタンコンポーネントが存在しない場合はスキップ
-            Entity* buttonEntity = _scene->GetEntityRepositoryRef()->GetEntity(id);
+            OriGine::Entity* buttonEntity = _scene->GetEntityRepositoryRef()->GetEntity(id);
             if (!buttonEntity || !componentArray->GetComponents(buttonEntity)) {
                 continue;
             }
@@ -66,7 +68,7 @@ void ButtonGroup::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* 
 
     ImGui::Separator();
 
-    auto editKeyBind = [this](const std::string& _editParentLabel, std::vector<Key>& _keyBinds) {
+    auto editKeyBind = [this](const std::string& _editParentLabel, std::vector<OriGine::Key>& _keyBinds) {
         std::string editorLabel = "";
 
         for (int i = 0; i < _keyBinds.size(); ++i) {
@@ -78,8 +80,8 @@ void ButtonGroup::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* 
                 for (auto& key : keyNameMap) {
                     bool isSelected = (_keyBinds[i] == key.first);
                     if (ImGui::Selectable(key.second.c_str(), isSelected)) {
-                        auto command = std::make_unique<SetterCommand<Key>>(&_keyBinds[i], key.first);
-                        EditorController::GetInstance()->PushCommand(std::move(command));
+                        auto command = std::make_unique<SetterCommand<OriGine::Key>>(&_keyBinds[i], key.first);
+                        OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
                     }
                     if (isSelected) {
                         ImGui::SetItemDefaultFocus();
@@ -92,20 +94,20 @@ void ButtonGroup::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* 
         // add
         editorLabel = "Add Key##" + _editParentLabel;
         if (ImGui::Button(editorLabel.c_str())) {
-            auto command = std::make_unique<AddElementCommand<std::vector<Key>>>(&_keyBinds, Key::ESCAPE);
-            EditorController::GetInstance()->PushCommand(std::move(command));
+            auto command = std::make_unique<AddElementCommand<std::vector<OriGine::Key>>>(&_keyBinds, OriGine::Key::ESCAPE);
+            OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
         }
         ImGui::SameLine();
         // remove
         editorLabel = "Remove Key##" + _editParentLabel;
         if (ImGui::Button(editorLabel.c_str())) {
             if (_keyBinds.size() > 0) {
-                auto command = std::make_unique<EraseElementCommand<std::vector<Key>>>(&_keyBinds, _keyBinds.end() - 1);
-                EditorController::GetInstance()->PushCommand(std::move(command));
+                auto command = std::make_unique<EraseElementCommand<std::vector<OriGine::Key>>>(&_keyBinds, _keyBinds.end() - 1);
+                OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
             }
         }
     };
-    auto editPadButtonBind = [this](const std::string& _editParentLabel, std::vector<PadButton>& _padButtonBinds) {
+    auto editPadButtonBind = [this](const std::string& _editParentLabel, std::vector<OriGine::PadButton>& _padButtonBinds) {
         std::string editorLabel = "";
         for (int i = 0; i < _padButtonBinds.size(); ++i) {
             ImGui::PushID(i);
@@ -116,8 +118,8 @@ void ButtonGroup::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* 
                 for (auto& padButton : padButtonNameMap) {
                     bool isSelected = (_padButtonBinds[i] == padButton.first);
                     if (ImGui::Selectable(padButton.second.c_str(), isSelected)) {
-                        auto command = std::make_unique<SetterCommand<PadButton>>(&_padButtonBinds[i], padButton.first);
-                        EditorController::GetInstance()->PushCommand(std::move(command));
+                        auto command = std::make_unique<SetterCommand<OriGine::PadButton>>(&_padButtonBinds[i], padButton.first);
+                        OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
                     }
                     if (isSelected) {
                         ImGui::SetItemDefaultFocus();
@@ -130,16 +132,16 @@ void ButtonGroup::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* 
         // add
         editorLabel = "Add PadButton##" + _editParentLabel;
         if (ImGui::Button(editorLabel.c_str())) {
-            auto command = std::make_unique<AddElementCommand<std::vector<PadButton>>>(&_padButtonBinds, PadButton::A);
-            EditorController::GetInstance()->PushCommand(std::move(command));
+            auto command = std::make_unique<AddElementCommand<std::vector<OriGine::PadButton>>>(&_padButtonBinds, OriGine::PadButton::A);
+            OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
         }
         ImGui::SameLine();
         // remove
         editorLabel = "Remove PadButton##" + _editParentLabel;
         if (ImGui::Button(editorLabel.c_str())) {
             if (_padButtonBinds.size() > 0) {
-                auto command = std::make_unique<EraseElementCommand<std::vector<PadButton>>>(&_padButtonBinds, _padButtonBinds.end() - 1);
-                EditorController::GetInstance()->PushCommand(std::move(command));
+                auto command = std::make_unique<EraseElementCommand<std::vector<OriGine::PadButton>>>(&_padButtonBinds, _padButtonBinds.end() - 1);
+                OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
             }
         }
     };
@@ -209,37 +211,37 @@ void from_json(const nlohmann::json& j, ButtonGroup& r) {
     if (j.contains("selectAddKeys") && j.at("selectAddKeys").is_array()) {
         r.selectAddKeys_.clear();
         for (const auto& key : j.at("selectAddKeys")) {
-            r.selectAddKeys_.push_back(key.get<Key>());
+            r.selectAddKeys_.push_back(key.get<OriGine::Key>());
         }
     }
     if (j.contains("selectAddPadButtons") && j.at("selectAddPadButtons").is_array()) {
         r.selectAddPadButtons_.clear();
         for (const auto& button : j.at("selectAddPadButtons")) {
-            r.selectAddPadButtons_.push_back(button.get<PadButton>());
+            r.selectAddPadButtons_.push_back(button.get<OriGine::PadButton>());
         }
     }
     if (j.contains("selectSubKeys") && j.at("selectSubKeys").is_array()) {
         r.selectSubKeys_.clear();
         for (const auto& key : j.at("selectSubKeys")) {
-            r.selectSubKeys_.push_back(key.get<Key>());
+            r.selectSubKeys_.push_back(key.get<OriGine::Key>());
         }
     }
     if (j.contains("selectSubPadButtons") && j.at("selectSubPadButtons").is_array()) {
         r.selectSubPadButtons_.clear();
         for (const auto& button : j.at("selectSubPadButtons")) {
-            r.selectSubPadButtons_.push_back(button.get<PadButton>());
+            r.selectSubPadButtons_.push_back(button.get<OriGine::PadButton>());
         }
     }
     if (j.contains("decideKeys") && j.at("decideKeys").is_array()) {
         r.decideKeys_.clear();
         for (const auto& key : j.at("decideKeys")) {
-            r.decideKeys_.push_back(key.get<Key>());
+            r.decideKeys_.push_back(key.get<OriGine::Key>());
         }
     }
     if (j.contains("decidePadButtons") && j.at("decidePadButtons").is_array()) {
         r.decidePadButtons_.clear();
         for (const auto& button : j.at("decidePadButtons")) {
-            r.decidePadButtons_.push_back(button.get<PadButton>());
+            r.decidePadButtons_.push_back(button.get<OriGine::PadButton>());
         }
     }
 }

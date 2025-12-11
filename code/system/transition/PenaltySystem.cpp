@@ -2,6 +2,7 @@
 
 /// engine
 #include "Engine.h"
+#include "scene/Scene.h"
 #include "winApp/WinApp.h"
 
 /// component
@@ -21,7 +22,9 @@
 /// math
 #include "math/mathEnv.h"
 
-PenaltySystem::PenaltySystem() : ISystem(SystemCategory::StateTransition) {}
+using namespace OriGine;
+
+PenaltySystem::PenaltySystem() : ISystem(OriGine::SystemCategory::StateTransition) {}
 PenaltySystem::~PenaltySystem() {}
 
 void PenaltySystem::Initialize() {
@@ -34,7 +37,7 @@ void PenaltySystem::Finalize() {
     createSpriteFromTimerSystem_.reset();
 }
 
-void PenaltySystem::UpdateEntity(Entity* _entity) {
+void PenaltySystem::UpdateEntity(OriGine::Entity* _entity) {
     auto* playerState = GetComponent<PlayerState>(_entity);
 
     // ペナルティ状態でなければ 処理しない
@@ -59,7 +62,7 @@ void PenaltySystem::UpdateEntity(Entity* _entity) {
     }
 
     // TimerComponent を取得 & ペナルティー分 時間をマイナス
-    Entity* tierEntity = GetUniqueEntity("Timer");
+    OriGine::Entity* tierEntity = GetUniqueEntity("Timer");
     if (!tierEntity) {
         return;
     }
@@ -67,15 +70,15 @@ void PenaltySystem::UpdateEntity(Entity* _entity) {
     timer->SetCurrentTime(timer->GetTime() - penaltyTime);
 
     /// ペナルティー時間を表示する
-    int32_t penaltyTimeUIEntityId = CreateEntity("PenaltyTimeUI");
-    Entity* penaltyTimeUIEntity   = GetEntity(penaltyTimeUIEntityId);
+    int32_t penaltyTimeUIEntityId        = CreateEntity("PenaltyTimeUI");
+    OriGine::Entity* penaltyTimeUIEntity = GetEntity(penaltyTimeUIEntityId);
     // Penaltyを表す時間
     TimerComponent penaltyTimer = TimerComponent();
     penaltyTimer.SetMaxTime(penaltyTime);
     penaltyTimer.SetCurrentTime(penaltyTime);
 
     // 情報だけ持つ事前コンポーネントから情報をコピー
-    Entity* forSpriteDataEntity              = GetUniqueEntity("PenaltyTimerForSprite");
+    OriGine::Entity* forSpriteDataEntity     = GetUniqueEntity("PenaltyTimerForSprite");
     TimerForSpriteComponent* forSpriteData   = GetComponent<TimerForSpriteComponent>(forSpriteDataEntity);
     TimerForSpriteComponent timer4SpriteComp = *forSpriteData;
     timer4SpriteComp.SetSpritesEntityId(penaltyTimeUIEntityId);

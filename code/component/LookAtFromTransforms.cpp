@@ -15,10 +15,10 @@
 LookAtFromTransforms::LookAtFromTransforms() {}
 LookAtFromTransforms::~LookAtFromTransforms() {}
 
-void LookAtFromTransforms::Initialize(Entity* /*_entity*/) {}
+void LookAtFromTransforms::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {}
 void LookAtFromTransforms::Finalize() {}
 
-void LookAtFromTransforms::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
+void LookAtFromTransforms::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]] OriGine::Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
 
     ImGui::Text("Rotate Axis :");
@@ -52,11 +52,11 @@ void LookAtFromTransforms::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]]
         auto command = std::make_unique<SetterCommand<EnumBitmask<LookAtFromTransforms::RotateAxis>>>(
             &rotateAxis,
             newRotateAxis);
-        EditorController::GetInstance()->PushCommand(std::move(command));
+        OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
     }
 
     // Transform コンポーネントを持つエンティティ一覧を取得
-    auto transformCompArray = _scene->GetComponentArray<Transform>();
+    auto transformCompArray = _scene->GetComponentArray<OriGine::Transform>();
     auto& transformEntities = transformCompArray->GetEntityIndexBind();
      label       = "FromTransformEntity##" + _parentLabel;
     if (ImGui::BeginCombo(label.c_str(), std::to_string(fromTransformEntity).c_str())) {
@@ -65,7 +65,7 @@ void LookAtFromTransforms::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]]
             bool isSelected  = (fromTransformEntity == entityId);
             if (ImGui::Selectable(std::to_string(entityId).c_str(), isSelected)) {
                 auto command = std::make_unique<SetterCommand<int32_t>>(&fromTransformEntity, entityId);
-                EditorController::GetInstance()->PushCommand(std::move(command));
+                OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
             }
         }
         ImGui::EndCombo();
@@ -78,7 +78,7 @@ void LookAtFromTransforms::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]]
             bool isSelected  = (toTransformEntity == entityId);
             if (ImGui::Selectable(std::to_string(entityId).c_str(), isSelected)) {
                 auto command = std::make_unique<SetterCommand<int32_t>>(&toTransformEntity, entityId);
-                EditorController::GetInstance()->PushCommand(std::move(command));
+                OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
             }
         }
         ImGui::EndCombo();

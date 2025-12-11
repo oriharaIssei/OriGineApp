@@ -15,6 +15,8 @@
 /// math
 #include "MyEasing.h"
 
+using namespace OriGine;
+
 void PlayerDashState::Initialize() {
     auto* playerEntity = scene_->GetEntity(playerEntityID_);
     auto* state        = scene_->GetComponent<PlayerState>(playerEntity);
@@ -39,7 +41,7 @@ void PlayerDashState::Update(float _deltaTime) {
     auto* state        = scene_->GetComponent<PlayerState>(playerEntity);
     auto* playerInput  = scene_->GetComponent<PlayerInput>(playerEntity);
     auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntity);
-    auto* transform    = scene_->GetComponent<Transform>(playerEntity);
+    auto* transform    = scene_->GetComponent<OriGine::Transform>(playerEntity);
 
     /// ---------------------------------------------------------------------
     // gearLevel の更新 (走っている間だけ)
@@ -86,14 +88,14 @@ void PlayerDashState::Update(float _deltaTime) {
         float t = cameraOffsetLerpTimer_ / kCameraOffsetLerpTime_;
         t       = std::clamp(t, 0.f, 1.f);
 
-        const Vec3f& targetOffset  = cameraController->GetOffsetOnDash();
-        const Vec3f& currentOffset = cameraController->GetCurrentOffset();
-        Vec3f newOffset            = Lerp<3, float>(currentOffset, targetOffset, EaseOutCubic(t));
+        const OriGine::Vec3f& targetOffset  = cameraController->GetOffsetOnDash();
+        const OriGine::Vec3f& currentOffset = cameraController->GetCurrentOffset();
+        OriGine::Vec3f newOffset            = Lerp<3, float>(currentOffset, targetOffset, EaseOutCubic(t));
         cameraController->SetCurrentOffset(newOffset);
 
-        const Vec3f& targetTargetOffset  = cameraController->GetTargetOffsetOnDash();
-        const Vec3f& currentTargetOffset = cameraController->GetCurrentTargetOffset();
-        Vec3f newTargetOffset            = Lerp<3, float>(currentTargetOffset, targetTargetOffset, EaseOutCubic(t));
+        const OriGine::Vec3f& targetTargetOffset  = cameraController->GetTargetOffsetOnDash();
+        const OriGine::Vec3f& currentTargetOffset = cameraController->GetCurrentTargetOffset();
+        OriGine::Vec3f newTargetOffset            = Lerp<3, float>(currentTargetOffset, targetTargetOffset, EaseOutCubic(t));
         cameraController->SetCurrentTargetOffset(newTargetOffset);
     }
 }
@@ -103,7 +105,7 @@ void PlayerDashState::Finalize() {
     auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntity);
     auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntity);
 
-    Vec3f velo = rigidbody->GetVelocity();
+    OriGine::Vec3f velo = rigidbody->GetVelocity();
 
     float limitSpeed = playerStatus->GetCurrentMaxSpeed(); // このフレームに追加される速度を引く
     if (velo.lengthSq() >= limitSpeed * limitSpeed) {

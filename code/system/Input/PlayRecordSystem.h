@@ -6,7 +6,7 @@
 /// PlayRecorderの更新
 /// </summary>
 class PlayRecordSystem
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     PlayRecordSystem();
     ~PlayRecordSystem() override;
@@ -15,5 +15,5 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 };

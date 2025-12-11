@@ -4,6 +4,7 @@
 #define ENGINE_ECS
 #define DELTA_TIME
 #include "EngineInclude.h"
+#include "scene/Scene.h"
 // input
 #include "input/GamepadInput.h"
 #include "input/KeyboardInput.h"
@@ -13,10 +14,12 @@
 #include "component/player/PlayerInputDevice.h"
 #include "component/player/state/PlayerState.h"
 
+using namespace OriGine;
+
 void PlayerInputSystem::Initialize() {}
 void PlayerInputSystem::Finalize() {}
 
-void PlayerInputSystem::UpdateEntity(Entity* _entity) {
+void PlayerInputSystem::UpdateEntity(OriGine::Entity* _entity) {
     auto keyInput = GetScene()->GetKeyboardInput();
     auto padInput = GetScene()->GetGamepadInput();
 
@@ -36,7 +39,7 @@ void PlayerInputSystem::UpdateEntity(Entity* _entity) {
 }
 
 void PlayerInputSystem::InputUpdate(
-    float _deltaTime, KeyboardInput* _keyInput, GamepadInput* _padInput, PlayerInput* _playerInput, PlayerState* _playerState) {
+    float _deltaTime, OriGine::KeyboardInput* _keyInput, OriGine::GamepadInput* _padInput, PlayerInput* _playerInput, PlayerState* _playerState) {
 
     GamepadInputDevice padDevice(_padInput, _playerInput);
     KeyboardInputDevice keyDevice(_keyInput, _playerInput);

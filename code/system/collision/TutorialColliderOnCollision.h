@@ -5,7 +5,7 @@
 /// チュートリアル用の衝突反応システム
 /// </summary>
 class TutorialColliderOnCollision
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     TutorialColliderOnCollision();
     ~TutorialColliderOnCollision() override;
@@ -16,8 +16,8 @@ public:
     void Update() override;
 
 protected:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 
 protected:
-    Entity* playerEntity_         = nullptr;
+    OriGine::Entity* playerEntity_         = nullptr;
 };

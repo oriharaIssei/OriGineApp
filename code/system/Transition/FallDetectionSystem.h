@@ -10,7 +10,7 @@ class StageFloor;
 /// 落下判定システム
 /// </summary>
 class FallDetectionSystem
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     FallDetectionSystem();
     ~FallDetectionSystem() override;
@@ -21,5 +21,5 @@ public:
     virtual void Finalize();
 
 protected:
-    virtual void UpdateEntity(Entity* _entity) override;
+    virtual void UpdateEntity(OriGine::Entity* _entity) override;
 };

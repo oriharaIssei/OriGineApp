@@ -16,7 +16,7 @@
 /// Ghostの入力を更新するシステム
 /// </summary>
 class GhostInputUpdate
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     GhostInputUpdate();
     ~GhostInputUpdate() override;
@@ -25,7 +25,7 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(Entity* _entity);
+    void UpdateEntity(OriGine::Entity* _entity);
 
 protected:
     std::unique_ptr<PlayerInputSystem> playerInputSystem_ = nullptr;

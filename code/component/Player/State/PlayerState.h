@@ -44,7 +44,7 @@ constexpr int32_t kMaxPlayerGearLevel     = 10; // 最大のギアレベル
 /// プレイヤーの状態を表す変数群
 /// </summary>
 class PlayerState
-    : public IComponent {
+    : public OriGine::IComponent {
     friend void to_json(nlohmann::json& j, const PlayerState& p);
     friend void from_json(const nlohmann::json& j, PlayerState& p);
 
@@ -52,8 +52,8 @@ public:
     PlayerState();
     ~PlayerState() override;
 
-    void Initialize(Entity* _entity) override;
-    void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
+    void Initialize(OriGine::Entity* _entity) override;
+    void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
     void Finalize() override;
 
     /// <summary>
@@ -61,7 +61,7 @@ public:
     /// </summary>
     /// <param name="_collisionNormal"></param>
     /// <param name="_entityIndex"></param>
-    void OnCollisionWall(const Vec3f& _collisionNormal, int32_t _entityIndex);
+    void OnCollisionWall(const OriGine::Vec3f& _collisionNormal, int32_t _entityIndex);
     /// <summary>
     /// 壁との接触がなくなったときの処理
     /// </summary>
@@ -98,7 +98,7 @@ private:
     DiffValue<EnumBitmask<PlayerMoveState>> moveStateEnum_;
     DiffValue<EnumBitmask<PlayerStateFlag>> stateFlag_ = EnumBitmask<PlayerStateFlag>(0);
 
-    Vec3f wallCollisionNormal_ = {0.f, 0.f, 0.f};
+    OriGine::Vec3f wallCollisionNormal_ = {0.f, 0.f, 0.f};
 
     int32_t wallEntityIndex_ = -1; // 現在 接触している壁 のエンティティID
 
@@ -157,7 +157,7 @@ public:
         return wallEntityIndex_;
     }
 
-    const Vec3f& GetWallCollisionNormal() const {
+    const OriGine::Vec3f& GetWallCollisionNormal() const {
         return wallCollisionNormal_;
     }
 

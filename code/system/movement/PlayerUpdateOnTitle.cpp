@@ -16,7 +16,9 @@
 #include "math/Interpolation.h"
 #include "math/mathEnv.h"
 
-PlayerUpdateOnTitle::PlayerUpdateOnTitle() : ISystem(SystemCategory::Movement) {}
+using namespace OriGine;
+
+PlayerUpdateOnTitle::PlayerUpdateOnTitle() : ISystem(OriGine::SystemCategory::Movement) {}
 PlayerUpdateOnTitle::~PlayerUpdateOnTitle() {}
 
 void PlayerUpdateOnTitle::Initialize() {
@@ -26,7 +28,7 @@ void PlayerUpdateOnTitle::Finalize() {
     // 特に終了処理は不要
 }
 
-void PlayerUpdateOnTitle::UpdateEntity(Entity* _entity) {
+void PlayerUpdateOnTitle::UpdateEntity(OriGine::Entity* _entity) {
     auto* playerInput = GetComponent<PlayerInput>(_entity);
     if (playerInput == nullptr) {
         LOG_ERROR("PlayerInput component is missing.");
@@ -54,7 +56,7 @@ void PlayerUpdateOnTitle::UpdateEntity(Entity* _entity) {
 
     // 更新処理 ほぼ PlayerDashState と同じ
     float deltaTime = GetMainDeltaTime();
-    auto* transform = GetComponent<Transform>(_entity);
+    auto* transform = GetComponent<OriGine::Transform>(_entity);
     auto* rigidbody = GetComponent<Rigidbody>(_entity);
 
     playerStatus->minusGearUpCoolTime(deltaTime);
@@ -79,7 +81,7 @@ void PlayerUpdateOnTitle::UpdateEntity(Entity* _entity) {
     // 速度更新
     playerStatus->UpdateAccel(deltaTime, playerInput, transform, rigidbody, Quaternion::Identity());
     if (playerInput->GetInputDirection().length() >= kEpsilon) {
-        Vec3f newVelo = rigidbody->GetVelocity() + rigidbody->GetAcceleration() * deltaTime;
+        OriGine::Vec3f newVelo = rigidbody->GetVelocity() + rigidbody->GetAcceleration() * deltaTime;
         if (newVelo.lengthSq() >= rigidbody->GetMaxXZSpeed()) {
             newVelo = newVelo.normalize() * rigidbody->GetMaxXZSpeed();
         }
@@ -97,7 +99,7 @@ void PlayerUpdateOnTitle::UpdateEntity(Entity* _entity) {
         playerState->SetGearLevel(kDefaultPlayerGearLevel);
 
         // 速度を減衰させる
-        rigidbody->SetVelocity(LerpByDeltaTime(rigidbody->GetVelocity(), Vec3f(), deltaTime, kDecelerationRate));
+        rigidbody->SetVelocity(LerpByDeltaTime(rigidbody->GetVelocity(), OriGine::Vec3f(), deltaTime, kDecelerationRate));
     }
     transform->UpdateMatrix();
 }

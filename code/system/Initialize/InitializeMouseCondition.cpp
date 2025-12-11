@@ -2,16 +2,19 @@
 
 /// engine
 #include "input/MouseInput.h"
+#include "scene/Scene.h"
 
 /// component
 #include "component/MouseCondition.h"
 
-InitializeMouseCondition::InitializeMouseCondition() : ISystem(SystemCategory::Initialize) {}
+using namespace OriGine;
+
+InitializeMouseCondition::InitializeMouseCondition() : ISystem(OriGine::SystemCategory::Initialize) {}
 
 void InitializeMouseCondition::Initialize() {}
 void InitializeMouseCondition::Finalize() {}
 
-void InitializeMouseCondition::UpdateEntity(Entity* _entity) {
+void InitializeMouseCondition::UpdateEntity(OriGine::Entity* _entity) {
     auto* conditions = GetComponents<MouseCondition>(_entity);
     if (conditions == nullptr) {
         return;

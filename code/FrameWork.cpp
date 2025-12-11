@@ -44,6 +44,7 @@
 #include "system/initialize/CreateStage.h"
 #include "system/initialize/GetClearTime.h"
 #include "system/Initialize/GhostInitializeSystem.h"
+#include "system/Initialize/InitializeMouseCondition.h"
 #include "system/Initialize/PlayRecorderInitialize.h"
 #include "system/Initialize/SelectPreviewSceneInitialize.h"
 #include "system/initialize/SettingGameCameraTarget.h"
@@ -52,7 +53,6 @@
 #include "system/initialize/TakeToGoalPosition.h"
 #include "system/initialize/TrailEffectInitialize.h"
 #include "system/Initialize/Ui3dObjectInitialize.h"
-#include "system/Initialize/InitializeMouseCondition.h"
 #include "system/input/ButtonInputSystem.h"
 #include "system/input/CameraInputSystem.h"
 #include "system/Input/GhostInputUpdate.h"
@@ -84,13 +84,14 @@
 #include "system/transition/TransitionPlayerState.h"
 #include "system/transition/UpdateButtonColorByState.h"
 
-// / =====================================================
+using namespace OriGine;
+
+/// =====================================================
 // Application Include
 /// =====================================================
 // component
 
 FrameWork::FrameWork() {}
-
 FrameWork::~FrameWork() {}
 
 //! TODO : 場所 変更 FrameWork はUserに分かりづらすぎる
@@ -106,7 +107,7 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<SubScene>();
 
     componentRegistry->RegisterComponent<CameraTransform>();
-    componentRegistry->RegisterComponent<Transform>();
+    componentRegistry->RegisterComponent<OriGine::Transform>();
 
     componentRegistry->RegisterComponent<LookAtFromTransforms>();
 
@@ -149,7 +150,7 @@ void RegisterUsingComponents() {
 
     componentRegistry->RegisterComponent<ModelMeshRenderer>();
     componentRegistry->RegisterComponent<LineRenderer>();
-    componentRegistry->RegisterComponent<PlaneRenderer>();
+    componentRegistry->RegisterComponent<OriGine::PlaneRenderer>();
     componentRegistry->RegisterComponent<RingRenderer>();
     componentRegistry->RegisterComponent<BoxRenderer>();
     componentRegistry->RegisterComponent<SphereRenderer>();

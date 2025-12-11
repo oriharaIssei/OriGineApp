@@ -2,6 +2,7 @@
 
 /// engine
 #include "Engine.h"
+#include "scene/Scene.h"
 #include "scene/SceneManager.h"
 
 /// ECS
@@ -12,8 +13,9 @@
 /// math
 #include "math/MyEasing.h"
 
-SceneTransition::SceneTransition() : ISystem(SystemCategory::StateTransition) {}
+using namespace OriGine;
 
+SceneTransition::SceneTransition() : ISystem(OriGine::SystemCategory::StateTransition) {}
 SceneTransition::~SceneTransition() {}
 
 void SceneTransition::Initialize() {
@@ -58,7 +60,7 @@ void SceneTransition::Update() {
         ExitSceneUpdate();
     } else {
         for (auto& entityID : entityIDs_) {
-            Entity* entity = GetEntity(entityID);
+            OriGine::Entity* entity = GetEntity(entityID);
             UpdateEntity(entity);
         }
     }
@@ -69,7 +71,7 @@ void SceneTransition::Update() {
 #endif
 }
 
-void SceneTransition::UpdateEntity(Entity* _entity) {
+void SceneTransition::UpdateEntity(OriGine::Entity* _entity) {
     uint32_t compSize = (uint32_t)GetComponentArray<SceneChanger>()->GetComponentSize(_entity);
     if (compSize <= 0) {
         return;
@@ -95,7 +97,7 @@ void SceneTransition::UpdateEntity(Entity* _entity) {
 
 void SceneTransition::EnterSceneUpdate() {
 
-    Entity* enterSceneEntity = GetEntity(usingEntityId_);
+    OriGine::Entity* enterSceneEntity = GetEntity(usingEntityId_);
     if (enterSceneEntity == nullptr) {
         return;
     }
@@ -151,12 +153,12 @@ void SceneTransition::ExitSceneUpdate() {
         exitScene_             = false;
 
         // シーン変更を実行
-        Entity* sceneChangerEntity = GetEntity(usingEntityId_);
-        SceneChanger* sceneChanger = GetComponent<SceneChanger>(sceneChangerEntity, sceneChangerComponentId_);
+        OriGine::Entity* sceneChangerEntity = GetEntity(usingEntityId_);
+        SceneChanger* sceneChanger          = GetComponent<SceneChanger>(sceneChangerEntity, sceneChangerComponentId_);
         GetScene()->GetSceneManager()->ChangeScene(sceneChanger->GetNextSceneName());
     }
 
-    Entity* enterSceneEntity = GetEntity(usingEntityId_);
+    OriGine::Entity* enterSceneEntity = GetEntity(usingEntityId_);
     if (enterSceneEntity == nullptr) {
         return;
     }

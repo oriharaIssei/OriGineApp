@@ -5,7 +5,7 @@
 /// ボタングループで指定されているボタンのシーンプレビューを行うシステム
 /// </summary>
 class ButtonScenePreviewSystem
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     ButtonScenePreviewSystem();
     ~ButtonScenePreviewSystem();
@@ -14,5 +14,5 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 };

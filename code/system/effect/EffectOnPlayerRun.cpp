@@ -24,13 +24,15 @@
 #include "math/mathEnv.h"
 #include "math/MyEasing.h"
 
-EffectOnPlayerRun::EffectOnPlayerRun() : ISystem(SystemCategory::Effect) {}
+using namespace OriGine;
+
+EffectOnPlayerRun::EffectOnPlayerRun() : ISystem(OriGine::SystemCategory::Effect) {}
 EffectOnPlayerRun::~EffectOnPlayerRun() {}
 
 void EffectOnPlayerRun::Initialize() {}
 void EffectOnPlayerRun::Finalize() {}
 
-void EffectOnPlayerRun::UpdateEntity(Entity* entity) {
+void EffectOnPlayerRun::UpdateEntity(OriGine::Entity* entity) {
     auto state              = GetComponent<PlayerState>(entity);
     auto status             = GetComponent<PlayerStatus>(entity);
     auto effectControlParam = GetComponent<PlayerEffectControlParam>(entity);
@@ -45,23 +47,23 @@ void EffectOnPlayerRun::UpdateEntity(Entity* entity) {
     if (modelMeshRenderer) {
         Transform& meshTransform = modelMeshRenderer->GetTransform(0);
 
-        auto playerInput = GetComponent<PlayerInput>(entity);
-        Vec3f inputDir   = playerInput->GetWorldInputDirection();
+        auto playerInput        = GetComponent<PlayerInput>(entity);
+        OriGine::Vec3f inputDir = playerInput->GetWorldInputDirection();
 
         // 速度によって タイヤの回転速度を変える
         // 入力方向ベクトルが0のときは 回転しないようにする(Sqなのは,0か1しかないので軽くするため)
-        const Vec3f& velo    = rigidbody->GetVelocity();
-        float wheelSpinSpeed = effectControlParam->CalculateWheelSpinSpeedBySpeed(velo.length() * inputDir.lengthSq(), status->CalculateSpeedByGearLevel(kMaxPlayerGearLevel));
+        const OriGine::Vec3f& velo = rigidbody->GetVelocity();
+        float wheelSpinSpeed       = effectControlParam->CalculateWheelSpinSpeedBySpeed(velo.length() * inputDir.lengthSq(), status->CalculateSpeedByGearLevel(kMaxPlayerGearLevel));
         meshTransform.rotate *= Quaternion::RotateAxisAngle(axisX, wheelSpinSpeed);
         meshTransform.UpdateMatrix();
 
         // プレイヤーが曲がる時,タイヤを傾ける (地面にいるときだけ)
-        Transform* hostTransform = GetComponent<Transform>(entity);
+        Transform* hostTransform = GetComponent<OriGine::Transform>(entity);
         if (state->IsOnGround()) {
             if (inputDir.lengthSq() > kEpsilon) {
-                Vec3f currentDir = hostTransform->rotate.RotateVector(axisZ);
-                currentDir[Y]    = 0.f;
-                currentDir       = currentDir.normalize();
+                OriGine::Vec3f currentDir = hostTransform->rotate.RotateVector(axisZ);
+                currentDir[Y]             = 0.f;
+                currentDir                = currentDir.normalize();
 
                 // 現在の傾き
                 float wheelTiltAngle = effectControlParam->CalculateWheelTiltAngle(inputDir, currentDir);
@@ -82,8 +84,8 @@ void EffectOnPlayerRun::UpdateEntity(Entity* entity) {
     }
 
     // trailの色をGearLevelに応じて変化
-    Vector4f trailColor = effectControlParam->GetTrailColorByGearLevel(state->GetGearLevel());
-    Entity* trailEntity = GetUniqueEntity("Trail");
+    OriGine::Vec4f trailColor    = effectControlParam->GetTrailColorByGearLevel(state->GetGearLevel());
+    OriGine::Entity* trailEntity = GetUniqueEntity("Trail");
     if (effectControlParam) {
         if (trailEntity) {
             Material* material = GetComponent<Material>(trailEntity);
@@ -100,8 +102,8 @@ void EffectOnPlayerRun::UpdateEntity(Entity* entity) {
         constexpr float kMaxBackFireScaleXZ = 1.56f;
 
         // BackFire の色をGearLevelに応じて変化
-        Entity* backFireEntity       = GetUniqueEntity("BackFire");
-        Entity* backFireSparksEntity = GetUniqueEntity("BackFireSparks");
+        OriGine::Entity* backFireEntity       = GetUniqueEntity("BackFire");
+        OriGine::Entity* backFireSparksEntity = GetUniqueEntity("BackFireSparks");
 
         if (backFireEntity && backFireSparksEntity) {
             Material* material = GetComponent<Material>(backFireEntity);
@@ -119,7 +121,7 @@ void EffectOnPlayerRun::UpdateEntity(Entity* entity) {
             float xzScale      = std::lerp(kMinBackFireScaleXZ, kMaxBackFireScaleXZ, t);
             float yScale       = std::lerp(kMinBackFireScaleY, kMaxBackFireScaleY, t);
 
-            Vec3f newScale = Vec3f(xzScale, yScale, xzScale);
+            OriGine::Vec3f newScale = OriGine::Vec3f(xzScale, yScale, xzScale);
             for (auto& cylinder : *backFireCylinders) {
                 cylinder.GetTransform().scale = newScale;
                 cylinder.GetTransform().UpdateMatrix();
@@ -131,7 +133,7 @@ void EffectOnPlayerRun::UpdateEntity(Entity* entity) {
         }
     }
     // スピードラインエフェクト
-    Entity* speedlineEntity                            = GetUniqueEntity("Speedline");
+    OriGine::Entity* speedlineEntity                   = GetUniqueEntity("Speedline");
     std::vector<SpeedlineEffectParam>* speedlineParams = nullptr;
     if (speedlineEntity) {
         speedlineParams = GetComponents<SpeedlineEffectParam>(speedlineEntity);

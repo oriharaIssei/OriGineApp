@@ -7,7 +7,7 @@
 /// プレイヤーのジャンプ入力を無効化し、常に地面に接地している状態にする
 /// </summary>
 class PlayerUpdateOnTitle
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     PlayerUpdateOnTitle();
     ~PlayerUpdateOnTitle() override;
@@ -15,5 +15,5 @@ public:
     void Finalize();
 
 private:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 };

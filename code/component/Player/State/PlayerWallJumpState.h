@@ -13,7 +13,7 @@ class StageWall;
 class PlayerWallJumpState
     : public IPlayerMoveState {
 public:
-    PlayerWallJumpState(Scene* _scene, int32_t _playerEntityID) : IPlayerMoveState(_scene, _playerEntityID, PlayerMoveState::WALL_JUMP) {}
+    PlayerWallJumpState(OriGine::Scene* _scene, int32_t _playerEntityID) : IPlayerMoveState(_scene, _playerEntityID, PlayerMoveState::WALL_JUMP) {}
     ~PlayerWallJumpState() override {};
 
     void Initialize() override;
@@ -23,7 +23,7 @@ public:
     PlayerMoveState TransitionState() const override;
 
 protected:
-    Vec3f velo_ = Vec3f(0.0f, 0.0f, 0.0f); // 壁ジャンプの速度
+    OriGine::Vec3f velo_ = OriGine::Vec3f(0.0f, 0.0f, 0.0f); // 壁ジャンプの速度
 
     const float kForceJumpTime_ = 0.14f;
     float forceJumpTimer_       = 0.0f;

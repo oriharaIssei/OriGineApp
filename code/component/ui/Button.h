@@ -20,7 +20,7 @@
 /// Sprite を Button として扱うためのクラス
 /// </summary>
 class Button
-    : public IComponent {
+    : public OriGine::IComponent {
     friend void to_json(nlohmann::json& j, const Button& r);
     friend void from_json(const nlohmann::json& j, Button& r);
 
@@ -28,30 +28,30 @@ public:
     Button();
     ~Button();
 
-    void Initialize(Entity* _entity);
+    void Initialize(OriGine::Entity* _entity) override;
 
-    void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel);
+    void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
 
-    void Finalize();
+    void Finalize() override;
 
 private:
     bool isHovered_  = false;
     bool isPressed_  = false;
     bool IsReleased_ = false;
 
-    std::vector<PadButton> shortcutPadButton_;
-    std::vector<Key> shortcutKey_;
+    std::vector<OriGine::PadButton> shortcutPadButton_;
+    std::vector<OriGine::Key> shortcutKey_;
 
-    Vec4f normalColor_  = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
-    Vec4f hoverColor_   = Vec4f(0.8f, 0.8f, 0.8f, 1.0f);
-    Vec4f pressColor_   = Vec4f(0.6f, 0.6f, 0.6f, 1.0f);
-    Vec4f releaseColor_ = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
+    OriGine::Vec4f normalColor_  = OriGine::Vec4f(0.32f, 0.32f, 0.32f, 1.0f);
+    OriGine::Vec4f hoverColor_   = OriGine::Vec4f(0.8f, 0.8f, 0.8f, 1.0f);
+    OriGine::Vec4f pressColor_   = OriGine::Vec4f(0.6f, 0.6f, 0.6f, 1.0f);
+    OriGine::Vec4f releaseColor_ = OriGine::Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
 
 public: // Getter Setter
-    const std::vector<PadButton>& GetShortcutPadButton() const {
+    const std::vector<OriGine::PadButton>& GetShortcutPadButton() const {
         return shortcutPadButton_;
     }
-    const std::vector<Key>& GetShortcutKey() const {
+    const std::vector<OriGine::Key>& GetShortcutKey() const {
         return shortcutKey_;
     }
 
@@ -76,31 +76,31 @@ public: // Getter Setter
         IsReleased_ = _released;
     }
 
-    const Vec4f& GetNormalColor() const {
+    const OriGine::Vec4f& GetNormalColor() const {
         return normalColor_;
     }
-    void SetNormalColor(const Vec4f& _color) {
+    void SetNormalColor(const OriGine::Vec4f& _color) {
         normalColor_ = _color;
     }
 
-    const Vec4f& GetHoverColor() const {
+    const OriGine::Vec4f& GetHoverColor() const {
         return hoverColor_;
     }
-    void SetHoverColor(const Vec4f& _color) {
+    void SetHoverColor(const OriGine::Vec4f& _color) {
         hoverColor_ = _color;
     }
 
-    const Vec4f& GetPressColor() const {
+    const OriGine::Vec4f& GetPressColor() const {
         return pressColor_;
     }
-    void SetPressColor(const Vec4f& _color) {
+    void SetPressColor(const OriGine::Vec4f& _color) {
         pressColor_ = _color;
     }
 
-    const Vec4f& GetReleaseColor() const {
+    const OriGine::Vec4f& GetReleaseColor() const {
         return releaseColor_;
     }
-    void SetReleaseColor(const Vec4f& _color) {
+    void SetReleaseColor(const OriGine::Vec4f& _color) {
         releaseColor_ = _color;
     }
 };

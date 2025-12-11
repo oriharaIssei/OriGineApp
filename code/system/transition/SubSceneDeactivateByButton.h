@@ -9,7 +9,7 @@
 /// このシステムが動作するシーンがサブシーンであることが前提
 /// </remarks>
 class SubSceneDeactivateByButton
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     SubSceneDeactivateByButton();
     ~SubSceneDeactivateByButton() override;
@@ -18,5 +18,5 @@ public:
     void Finalize() override;
 
 private:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 };

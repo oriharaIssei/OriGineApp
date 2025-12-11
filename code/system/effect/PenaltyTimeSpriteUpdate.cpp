@@ -1,5 +1,8 @@
 #include "PenaltyTimeSpriteUpdate.h"
 
+/// engine
+#include "scene/Scene.h"
+
 /// component
 #include "component/animation/SpriteAnimation.h"
 #include "component/TimerComponent.h"
@@ -7,13 +10,15 @@
 /// math
 #include "math/MyEasing.h"
 
-PenaltyTimeSpriteUpdate::PenaltyTimeSpriteUpdate() : ISystem(SystemCategory::Effect) {}
+using namespace OriGine;
+
+PenaltyTimeSpriteUpdate::PenaltyTimeSpriteUpdate() : ISystem(OriGine::SystemCategory::Effect) {}
 PenaltyTimeSpriteUpdate::~PenaltyTimeSpriteUpdate() {}
 
 void PenaltyTimeSpriteUpdate::Initialize() {}
 void PenaltyTimeSpriteUpdate::Finalize() {}
 
-void PenaltyTimeSpriteUpdate::UpdateEntity(Entity* _entity) {
+void PenaltyTimeSpriteUpdate::UpdateEntity(OriGine::Entity* _entity) {
     auto timerComp = GetComponent<TimerComponent>(_entity);
 
     // TimerComponentが存在しない場合は処理しない

@@ -16,6 +16,8 @@
 /// math
 #include "MyEasing.h"
 
+using namespace OriGine;
+
 void PlayerWallJumpState::Initialize() {
     auto* playerEntity = scene_->GetEntity(playerEntityID_);
     auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntity);
@@ -26,16 +28,16 @@ void PlayerWallJumpState::Initialize() {
     rigidbody->SetUseGravity(false);
 
     // 壁情報
-    const Vec3f& wallNormal        = playerState->GetWallCollisionNormal().normalize();
-    const Vec3f& wallJumpDirection = playerStatus->GetWallJumpOffset();
+    const OriGine::Vec3f& wallNormal        = playerState->GetWallCollisionNormal().normalize();
+    const OriGine::Vec3f& wallJumpDirection = playerStatus->GetWallJumpOffset();
 
     // プレイヤーの進行方向（正面）
-    Vec3f velocityDirection = rigidbody->GetVelocity();
+    OriGine::Vec3f velocityDirection = rigidbody->GetVelocity();
     velocityDirection       = velocityDirection.normalize();
 
     // --- 壁ローカル → ワールド変換 ---
     // wallJumpDirection = (x:外, y:上, z:沿う)
-    Vec3f jumpDirWorld =
+    OriGine::Vec3f jumpDirWorld =
         wallNormal * wallJumpDirection[X] + axisY * wallJumpDirection[Y] + velocityDirection * wallJumpDirection[Z];
 
     jumpDirWorld = jumpDirWorld.normalize();

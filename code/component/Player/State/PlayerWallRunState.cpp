@@ -19,6 +19,8 @@
 /// math
 #include "MyEasing.h"
 
+using namespace OriGine;
+
 void PlayerWallRunState::Initialize() {
     constexpr int32_t thresholdGearLevel = 2;
 
@@ -26,19 +28,19 @@ void PlayerWallRunState::Initialize() {
     auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntity);
     auto* state        = scene_->GetComponent<PlayerState>(playerEntity);
     auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntity);
-    auto* transform    = scene_->GetComponent<Transform>(playerEntity);
+    auto* transform    = scene_->GetComponent<OriGine::Transform>(playerEntity);
 
     prevVelo_ = rigidbody->GetVelocity(); // 壁ジャンプ前の速度を保存
 
     // 進行方向を計算
-    wallNormal_     = state->GetWallCollisionNormal();
-    Vec3f direction = Vec3f::Cross(wallNormal_, axisY);
+    wallNormal_              = state->GetWallCollisionNormal();
+    OriGine::Vec3f direction = OriGine::Vec3f::Cross(wallNormal_, axisY);
     if (direction.lengthSq() == 0.0f) {
-        direction = Vec3f::Cross(wallNormal_, axisX);
+        direction = OriGine::Vec3f::Cross(wallNormal_, axisX);
     }
     direction = direction.normalize();
 
-    if (Vec3f::Dot(direction, prevVelo_) < 0.0f) {
+    if (OriGine::Vec3f::Dot(direction, prevVelo_) < 0.0f) {
         direction = -direction;
     }
 
@@ -62,7 +64,7 @@ void PlayerWallRunState::Initialize() {
     }
 
     // 移動方向を回転
-    Vec3f velo = playerSpeed_ * direction;
+    OriGine::Vec3f velo = playerSpeed_ * direction;
     rigidbody->SetVelocity(velo);
     rigidbody->SetUseGravity(false); // 重力を無効
 
@@ -71,10 +73,10 @@ void PlayerWallRunState::Initialize() {
 
     // プレイヤーの向きを移動方向に合わせる
     PlayerEffectControlParam* effectParam = scene_->GetComponent<PlayerEffectControlParam>(playerEntity);
-    Vec3f forward                         = direction;
+    OriGine::Vec3f forward                = direction;
     Quaternion lookForward                = Quaternion::LookAt(forward, axisY);
     float rotateOffsetOnWallRun           = effectParam->GetRotateOffsetOnWallRun();
-    bool isRightWall                      = Vec3f::Dot(Vec3f::Cross(axisY, wallNormal_), direction) > 0.0f;
+    bool isRightWall                      = OriGine::Vec3f::Dot(OriGine::Vec3f::Cross(axisY, wallNormal_), direction) > 0.0f;
     Quaternion angleOffset                = Quaternion::RotateAxisAngle(forward, isRightWall ? rotateOffsetOnWallRun : -rotateOffsetOnWallRun);
     transform->rotate                     = lookForward * angleOffset;
 
@@ -87,17 +89,17 @@ void PlayerWallRunState::Initialize() {
     speedRumpUpTimer_ = 0.0f;
 
     // カメラのオフセットを計算
-    Entity* cameraEntity               = scene_->GetUniqueEntity("GameCamera");
+    OriGine::Entity* cameraEntity      = scene_->GetUniqueEntity("GameCamera");
     CameraController* cameraController = scene_->GetComponent<CameraController>(cameraEntity);
 
-    Vec3f targetTargetOffset = cameraController->GetTargetOffsetOnWallRun();
+    OriGine::Vec3f targetTargetOffset = cameraController->GetTargetOffsetOnWallRun();
     cameraTargetOffsetOnWallRun_ =
         wallNormal_ * targetTargetOffset[X] // 横方向
         + axisY * targetTargetOffset[Y] // 上方向
         + direction * targetTargetOffset[Z]; // 前方向
     cameraTargetOffsetOnWallRun_ = cameraTargetOffsetOnWallRun_.normalize() * targetTargetOffset.length();
 
-    Vec3f offsetOnWallRun = cameraController->GetOffsetOnWallRun();
+    OriGine::Vec3f offsetOnWallRun = cameraController->GetOffsetOnWallRun();
     cameraOffsetOnWallRun_ =
         wallNormal_ * offsetOnWallRun[X] // 横方向
         + axisY * offsetOnWallRun[Y] // 上方向
@@ -111,7 +113,7 @@ void PlayerWallRunState::Initialize() {
 void PlayerWallRunState::Update(float _deltaTime) {
     auto* playerEntity = scene_->GetEntity(playerEntityID_);
     auto* state        = scene_->GetComponent<PlayerState>(playerEntity);
-    auto* transform    = scene_->GetComponent<Transform>(playerEntity);
+    auto* transform    = scene_->GetComponent<OriGine::Transform>(playerEntity);
 
     // 衝突が途切れないようにめり込ませる
     transform->translate -= wallNormal_ * 0.1f;
@@ -127,18 +129,18 @@ void PlayerWallRunState::Update(float _deltaTime) {
 
     // RumpUp 処理
     speedRumpUpTimer_ += _deltaTime;
-    float rumpUpT           = speedRumpUpTimer_ / speedRumpUpTime_;
-    rumpUpT                 = std::clamp(rumpUpT, 0.f, 1.f);
+    float rumpUpT          = speedRumpUpTimer_ / speedRumpUpTime_;
+    rumpUpT                = std::clamp(rumpUpT, 0.f, 1.f);
     float currentSpeedRate = std::lerp(1.f, speedRate_, EaseOutCubic(rumpUpT));
     // 速度を更新
-    auto* rigidbody = scene_->GetComponent<Rigidbody>(playerEntity);
-    Vec3f direction = rigidbody->GetVelocity().normalize();
-    Vec3f newVelo   = direction * (playerSpeed_ * currentSpeedRate);
+    auto* rigidbody          = scene_->GetComponent<Rigidbody>(playerEntity);
+    OriGine::Vec3f direction = rigidbody->GetVelocity().normalize();
+    OriGine::Vec3f newVelo   = direction * (playerSpeed_ * currentSpeedRate);
     rigidbody->SetVelocity(newVelo);
 
     /// TODO: カメラの処理をここに書くべきではない
     // カメラの傾きを徐々に変える
-    Entity* gameCameraEntity = scene_->GetEntity(state->GetCameraEntityID());
+    OriGine::Entity* gameCameraEntity = scene_->GetEntity(state->GetCameraEntityID());
     if (!gameCameraEntity) {
         return;
     }
@@ -155,12 +157,12 @@ void PlayerWallRunState::Update(float _deltaTime) {
     CameraController* cameraController = scene_->GetComponent<CameraController>(gameCameraEntity);
     if (cameraController) {
         // カメラのオフセットを徐々に元に戻す
-        const Vec3f& currentOffset = cameraController->GetCurrentOffset();
-        Vec3f newOffset            = Lerp<3, float>(currentOffset, cameraOffsetOnWallRun_, EaseOutCubic(t));
+        const OriGine::Vec3f& currentOffset = cameraController->GetCurrentOffset();
+        OriGine::Vec3f newOffset            = Lerp<3, float>(currentOffset, cameraOffsetOnWallRun_, EaseOutCubic(t));
         cameraController->SetCurrentOffset(newOffset);
 
-        const Vec3f& currentTargetOffset = cameraController->GetCurrentTargetOffset();
-        Vec3f newTargetOffset            = Lerp<3, float>(currentTargetOffset, cameraTargetOffsetOnWallRun_, EaseOutCubic(t));
+        const OriGine::Vec3f& currentTargetOffset = cameraController->GetCurrentTargetOffset();
+        OriGine::Vec3f newTargetOffset            = Lerp<3, float>(currentTargetOffset, cameraTargetOffsetOnWallRun_, EaseOutCubic(t));
 
         cameraController->SetCurrentTargetOffset(newTargetOffset);
     }
@@ -169,7 +171,7 @@ void PlayerWallRunState::Update(float _deltaTime) {
 void PlayerWallRunState::Finalize() {
     auto* playerEntity = scene_->GetEntity(playerEntityID_);
     auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntity);
-    auto* transform    = scene_->GetComponent<Transform>(playerEntity);
+    auto* transform    = scene_->GetComponent<OriGine::Transform>(playerEntity);
     rigidbody->SetUseGravity(true); // 重力を有効
 
     transform->translate += wallNormal_ * 0.1f;

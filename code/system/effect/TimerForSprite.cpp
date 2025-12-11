@@ -12,16 +12,16 @@
 /// math
 #include "math/mathEnv.h"
 
-TimerForSprite::TimerForSprite()
-    : ISystem(SystemCategory::Effect) {}
+using namespace OriGine;
 
+TimerForSprite::TimerForSprite()
+    : ISystem(OriGine::SystemCategory::Effect) {}
 TimerForSprite::~TimerForSprite() {}
 
 void TimerForSprite::Initialize() {}
-
 void TimerForSprite::Finalize() {}
 
-void TimerForSprite::UpdateEntity(Entity* _entity) {
+void TimerForSprite::UpdateEntity(OriGine::Entity* _entity) {
     auto timerComponent          = GetComponent<TimerComponent>(_entity);
     auto timerForSpriteComponent = GetComponent<TimerForSpriteComponent>(_entity);
     if (!timerComponent || !timerForSpriteComponent) {
@@ -39,7 +39,7 @@ void TimerForSprite::UpdateEntity(Entity* _entity) {
         timerForSpriteComponent->digitInteger,
         timerForSpriteComponent->digitDecimal);
 
-    Vec2f windowSize = Engine::GetInstance()->GetWinApp()->GetWindowSize();
+    OriGine::Vec2f windowSize = Engine::GetInstance()->GetWinApp()->GetWindowSize();
 
     // 各スプライトに数字を適用
     for (int32_t i = 0; i < timerForSpriteComponent->digitInteger + timerForSpriteComponent->digitDecimal; ++i) {

@@ -5,7 +5,7 @@
 /// CameraShakeSourceComponentで カメラシェイクを制御するシステム
 /// </summary>
 class CameraShake
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     CameraShake();
     ~CameraShake() override;
@@ -14,5 +14,5 @@ public:
     void Finalize();
 
 private:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 };

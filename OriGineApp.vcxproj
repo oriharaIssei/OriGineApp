@@ -26,19 +26,19 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Develop|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -181,8 +181,6 @@
     <ClInclude Include="code\system\initialize\CreateSpriteFromTimer.h" />
     <ClInclude Include="code\system\initialize\CreateStage.h" />
     <ClInclude Include="code\system\initialize\GetClearTime.h" />
-    <ClInclude Include="code\system\initialize\GoalEffectInitialize.h" />
-    <ClInclude Include="code\system\initialize\GoalShellEffectInitialize.h" />
     <ClInclude Include="code\system\initialize\SettingGameCameraTarget.h" />
     <ClInclude Include="code\system\initialize\StartTimerInitialize.h" />
     <ClInclude Include="code\system\initialize\TakePlayerToStartPosition.h" />
@@ -274,8 +272,6 @@
     <ClCompile Include="code\system\initialize\CreateSpriteFromTimer.cpp" />
     <ClCompile Include="code\system\initialize\CreateStage.cpp" />
     <ClCompile Include="code\system\initialize\GetClearTime.cpp" />
-    <ClCompile Include="code\system\initialize\GoalEffectInitialize.cpp" />
-    <ClCompile Include="code\system\initialize\GoalShellEffectInitialize.cpp" />
     <ClCompile Include="code\system\initialize\SettingGameCameraTarget.cpp" />
     <ClCompile Include="code\system\initialize\StartTimerInitialize.cpp" />
     <ClCompile Include="code\system\initialize\TakePlayerToStartPosition.cpp" />

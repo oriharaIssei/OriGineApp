@@ -5,7 +5,7 @@
 /// シーン遷移システム(エフェクトの再生管理など)
 /// </summary>
 class SceneTransition
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     SceneTransition();
     ~SceneTransition() override;
@@ -18,7 +18,7 @@ public:
     virtual void Update() override;
 
 protected:
-    virtual void UpdateEntity(Entity* _entity) override;
+    virtual void UpdateEntity(OriGine::Entity* _entity) override;
 
     void EnterSceneUpdate();
     void ExitSceneUpdate();

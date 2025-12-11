@@ -1,9 +1,11 @@
 #include "MyGame.h"
 
-/// engine include
+/// engine
 #define ENGINE_INCLUDE
 #define RESOURCE_DIRECTORY
 #include <EngineInclude.h>
+// input
+#include "input/InputManager.h"
 // directX12object
 #include "directX12/RenderTexture.h"
 
@@ -26,24 +28,27 @@
 #include "component/renderer/Sprite.h"
 #include "component/SubScene.h"
 
+/// util
+#include "globalVariables/GlobalVariables.h"
+
 #ifdef _DEBUG
 /// editor
 #include "editor/EditorController.h"
 #include "logger/Logger.h"
 #endif // DEBUG
 
-MyGame::MyGame() {}
+using namespace OriGine;
 
+MyGame::MyGame() {}
 MyGame::~MyGame() {}
 
 void MyGame::Initialize(const std::vector<std::string>& _commandLines) {
     ///=================================================================================================
     // Game のための 初期化
     ///=================================================================================================
-    variables_ = GlobalVariables::GetInstance();
-
-    engine_       = Engine::GetInstance();
-    sceneManager_ = std::make_unique<SceneManager>();
+    variables_    = OriGine::GlobalVariables::GetInstance();
+    engine_       = OriGine::Engine::GetInstance();
+    sceneManager_ = std::make_unique<OriGine::SceneManager>();
 
     variables_->LoadAllFile();
     engine_->Initialize();
@@ -122,9 +127,9 @@ void MyGame::Run() {
         sceneManager_->Render();
 
         // windowに描画
-        Engine::GetInstance()->ScreenPreDraw();
+        OriGine::Engine::GetInstance()->ScreenPreDraw();
         sceneManager_->GetCurrentScene()->GetSceneView()->DrawTexture();
-        Engine::GetInstance()->ScreenPostDraw();
+        OriGine::Engine::GetInstance()->ScreenPostDraw();
 
         engine_->EndFrame();
 

@@ -9,7 +9,7 @@
 /// 速度を 3D UI（Plane）で表示するための設定コンポーネント
 /// </summary>
 struct SpeedFor3dUIComponent
-    : public IComponent {
+    : public OriGine::IComponent {
     friend void to_json(nlohmann::json& j, const SpeedFor3dUIComponent& c);
     friend void from_json(const nlohmann::json& j, SpeedFor3dUIComponent& c);
 
@@ -17,8 +17,8 @@ public:
     SpeedFor3dUIComponent()           = default;
     ~SpeedFor3dUIComponent() override = default;
 
-    void Initialize(Entity* _entity) override;
-    void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
+    void Initialize(OriGine::Entity* _entity) override;
+    void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
     void Finalize() override {}
 
     /// <summary>
@@ -39,31 +39,31 @@ public:
     //
     // --- テクスチャ設定 ---
     //
-    uint32_t textureIndex          = 0; // 数字テクスチャのインデックス
-    std::string numbersTexturePath = ""; // 数字テクスチャファイルパス
-    Vec2f numbersTextureSize       = {0.f, 0.f}; // テクスチャ全体サイズ
-    Vec2f numberTileSize           = {0.f, 0.f}; // 各数字のタイルサイズ（0～9）
+    uint32_t textureIndex             = 0; // 数字テクスチャのインデックス
+    std::string numbersTexturePath    = ""; // 数字テクスチャファイルパス
+    OriGine::Vec2f numbersTextureSize = {0.f, 0.f}; // テクスチャ全体サイズ
+    OriGine::Vec2f numberTileSize     = {0.f, 0.f}; // 各数字のタイルサイズ（0～9）
 
     //
     // --- 表示位置・オフセット ---
     //
-    Vec3f worldPosition = {0.f, 0.f, 0.f}; // 3D空間上の表示座標
-    Vec3f offset        = {0.f, 0.f, 0.f}; // Planeの相対移動量
+    OriGine::Vec3f worldPosition = {0.f, 0.f, 0.f}; // 3D空間上の表示座標
+    OriGine::Vec3f offset        = {0.f, 0.f, 0.f}; // Planeの相対移動量
 
     //
     // --- Plane スプライトのサイズ設定 ---
     //
-    Vec2f planeScaleInteger = {0.f, 0.f}; // 整数部のPlaneScale
-    Vec2f planeScaleDecimal = {0.f, 0.f}; // 小数部のPlaneScale
+    OriGine::Vec2f planeScaleInteger = {0.f, 0.f}; // 整数部のPlaneScale
+    OriGine::Vec2f planeScaleDecimal = {0.f, 0.f}; // 小数部のPlaneScale
 
     //
     // --- 桁ごとのマージン（左右の間隔） ---
     //
-    Vec2f planeMarginInteger = {0.f, 0.f}; // 整数部のマージン
-    Vec2f planeMarginDecimal = {0.f, 0.f}; // 小数部のマージン
+    OriGine::Vec2f planeMarginInteger = {0.f, 0.f}; // 整数部のマージン
+    OriGine::Vec2f planeMarginDecimal = {0.f, 0.f}; // 小数部のマージン
 
     // 整数と小数の間のスペース
-    Vec2f marginBetweenIntegerAndDecimal = {0.f, 0.f};
+    OriGine::Vec2f marginBetweenIntegerAndDecimal = {0.f, 0.f};
 
 public:
     int32_t GetPlaneEntityId() const { return planeEntityId; }

@@ -5,7 +5,7 @@
 /// InputDeviceに応じてゲームUIの表示/非表示を切り替えるシステム
 /// </summary>
 class ShowGameUIByInputDevice
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     ShowGameUIByInputDevice();
     ~ShowGameUIByInputDevice() override = default;
@@ -14,5 +14,5 @@ public:
     void Finalize() override;
 
 private:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 };

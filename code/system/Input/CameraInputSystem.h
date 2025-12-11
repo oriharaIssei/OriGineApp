@@ -3,10 +3,12 @@
 /// parent
 #include "system/ISystem.h"
 
+namespace OriGine {
 /// enigne
 // input
 class GamepadInput;
 class MouseInput;
+}
 
 /// ECS
 // component
@@ -16,16 +18,14 @@ class CameraController;
 /// Cameraの入力処理を行うシステム
 /// </summary>
 class CameraInputSystem
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
-    CameraInputSystem() : ISystem(SystemCategory::Input) {}
+    CameraInputSystem() : ISystem(OriGine::SystemCategory::Input) {}
     ~CameraInputSystem() = default;
 
     void Initialize() override;
     void Finalize() override;
 
-    void UpdateEntity(Entity* _entity);
-    void InputUpdate(float _deltaTime, MouseInput* _mouseInput, GamepadInput* _padInput, CameraController* _cameraController);
-
-protected:
+    void UpdateEntity(OriGine::Entity* _entity);
+    void InputUpdate(float _deltaTime, OriGine::MouseInput* _mouseInput, OriGine::GamepadInput* _padInput, CameraController* _cameraController);
 };

@@ -4,13 +4,15 @@
 #include "component/ui/ButtonGroup.h"
 #include "component/SubScene.h"
 
-ButtonScenePreviewSystem::ButtonScenePreviewSystem() : ISystem(SystemCategory::StateTransition) {}
+using namespace OriGine;
+
+ButtonScenePreviewSystem::ButtonScenePreviewSystem() : ISystem(OriGine::SystemCategory::StateTransition) {}
 ButtonScenePreviewSystem::~ButtonScenePreviewSystem() {}
 
 void ButtonScenePreviewSystem::Initialize() {}
 void ButtonScenePreviewSystem::Finalize() {}
 
-void ButtonScenePreviewSystem::UpdateEntity(Entity* _entity) {
+void ButtonScenePreviewSystem::UpdateEntity(OriGine::Entity* _entity) {
     auto buttonGroup = GetComponent<ButtonGroup>(_entity);
 
     // skip
@@ -18,12 +20,12 @@ void ButtonScenePreviewSystem::UpdateEntity(Entity* _entity) {
         return;
     }
 
-    // 選択されているSceneを描画
+    // 選択されているOriGine::Sceneを描画
     int32_t currentButtonNumber = buttonGroup->GetCurrentButtonNumber();
     auto& buttons               = buttonGroup->GetButtonNumbers();
     for (auto [buttonNumber, entityID] : buttons) {
         // buttonのエンティティを取得
-        Entity* buttonEnt = GetEntity(entityID);
+        OriGine::Entity* buttonEnt = GetEntity(entityID);
         if (!buttonEnt) {
             continue;
         }

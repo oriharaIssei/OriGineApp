@@ -9,7 +9,7 @@
 class PlayerJumpState
     : public IPlayerMoveState {
 public:
-    PlayerJumpState(Scene* _scene, int32_t _playerEntityID) : IPlayerMoveState(_scene, _playerEntityID, PlayerMoveState::JUMP) {}
+    PlayerJumpState(OriGine::Scene* _scene, int32_t _playerEntityID) : IPlayerMoveState(_scene, _playerEntityID, PlayerMoveState::JUMP) {}
     ~PlayerJumpState() override {};
     void Initialize() override;
     void Update(float _deltaTime) override;

@@ -9,7 +9,7 @@
 /// ゲームを開始するまでの処理
 /// </summary>
 class StartSequenceSystem
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     StartSequenceSystem();
     ~StartSequenceSystem();
@@ -18,7 +18,7 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 
     /// <summary>
     /// スタートタイマー の開始処理

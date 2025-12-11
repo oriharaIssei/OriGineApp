@@ -5,18 +5,20 @@
 #include "component/player/PlayerStatus.h"
 #include "component/renderer/MeshRenderer.h"
 
-BackFireInitialize::BackFireInitialize() : ISystem(SystemCategory::Initialize) {}
+using namespace OriGine;
+
+BackFireInitialize::BackFireInitialize() : ISystem(OriGine::SystemCategory::Initialize) {}
 BackFireInitialize::~BackFireInitialize() {}
 
 void BackFireInitialize::Initialize() {}
 void BackFireInitialize::Finalize() {}
 
-void BackFireInitialize::UpdateEntity(Entity* _entity) {
-    Entity* dissEntity      = GetUniqueEntity("BackFire_Diss");
-    Entity* distEntity      = GetUniqueEntity("BackFire_Dist");
-    Entity* gradationEntity = GetUniqueEntity("BackFire_Grad");
-    Entity* sparks          = GetUniqueEntity("BackFireSparks");
-    Entity* sparksDiss      = GetUniqueEntity("BackFireSparks_Diss");
+void BackFireInitialize::UpdateEntity(OriGine::Entity* _entity) {
+    OriGine::Entity* dissEntity      = GetUniqueEntity("BackFire_Diss");
+    OriGine::Entity* distEntity      = GetUniqueEntity("BackFire_Dist");
+    OriGine::Entity* gradationEntity = GetUniqueEntity("BackFire_Grad");
+    OriGine::Entity* sparks          = GetUniqueEntity("BackFireSparks");
+    OriGine::Entity* sparksDiss      = GetUniqueEntity("BackFireSparks_Diss");
 
     /// backFireのエフェクトを構築
     MaterialEffectPipeLine* effectPipeline = GetComponent<MaterialEffectPipeLine>(_entity);
@@ -37,9 +39,9 @@ void BackFireInitialize::UpdateEntity(Entity* _entity) {
     sparkPipeline->AddEffectEntity(MaterialEffectType::Gradation, gradationEntity->GetID());
 
     /// Transform
-    Transform* playerTransform = GetComponent<Transform>(GetUniqueEntity("Player"));
-    Transform* backFirTrans    = GetComponent<Transform>(_entity);
-    Transform* sparksTrans     = GetComponent<Transform>(sparks);
+    Transform* playerTransform = GetComponent<OriGine::Transform>(GetUniqueEntity("Player"));
+    Transform* backFirTrans    = GetComponent<OriGine::Transform>(_entity);
+    Transform* sparksTrans     = GetComponent<OriGine::Transform>(sparks);
     backFirTrans->parent       = playerTransform;
     sparksTrans->parent        = backFirTrans;
 }

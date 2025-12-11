@@ -8,27 +8,29 @@
 #include "component/player/State/PlayerState.h"
 #include "component/transform/CameraTransform.h"
 
+using namespace OriGine;
+
 void SettingGameCameraTarget::Initialize() {}
 
 void SettingGameCameraTarget::Update() {
-    constexpr Vec3f kCameraOffset = Vec3f(0.0f, 2.0f, -5.0f);
+    constexpr OriGine::Vec3f kCameraOffset = OriGine::Vec3f(0.0f, 2.0f, -5.0f);
 
-    Entity* playerEntity = GetUniqueEntity("Player");
-    Entity* cameraEntity = GetUniqueEntity("GameCamera");
+    OriGine::Entity* playerEntity = GetUniqueEntity("Player");
+    OriGine::Entity* cameraEntity = GetUniqueEntity("GameCamera");
     // カメラのターゲットをプレイヤーに設定
     if (cameraEntity) {
         CameraController* cameraController = GetComponent<CameraController>(cameraEntity);
         CameraTransform* cameraTransform   = GetComponent<CameraTransform>(cameraEntity);
 
         if (cameraController) {
-            cameraController->SetFollowTarget(GetComponent<Transform>(playerEntity));
+            cameraController->SetFollowTarget(GetComponent<OriGine::Transform>(playerEntity));
         }
 
         if (cameraTransform && playerEntity) {
-            Transform* playerTransform = GetComponent<Transform>(playerEntity);
+            Transform* playerTransform = GetComponent<OriGine::Transform>(playerEntity);
             if (playerTransform) {
                 playerTransform->UpdateMatrix();
-                Vec3f playerPos            = playerTransform->GetWorldTranslate();
+                OriGine::Vec3f playerPos            = playerTransform->GetWorldTranslate();
                 cameraTransform->translate = playerPos + kCameraOffset;
                 cameraTransform->UpdateMatrix();
             }

@@ -16,10 +16,10 @@
 CameraMotionBob::CameraMotionBob() {}
 CameraMotionBob::~CameraMotionBob() {}
 
-void CameraMotionBob::Initialize(Entity* /*_entity*/) {}
+void CameraMotionBob::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {}
 void CameraMotionBob::Finalize() {}
 
-void CameraMotionBob::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
+void CameraMotionBob::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]] OriGine::Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
 
     auto cameraShakeSourceComponents = _scene->GetComponents<CameraShakeSourceComponent>(_entity);

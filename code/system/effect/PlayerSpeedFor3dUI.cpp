@@ -9,13 +9,15 @@
 /// math
 #include "math/mathEnv.h"
 
-PlayerSpeedFor3dUI::PlayerSpeedFor3dUI() : ISystem(SystemCategory::Effect) {}
+using namespace OriGine;
+
+PlayerSpeedFor3dUI::PlayerSpeedFor3dUI() : ISystem(OriGine::SystemCategory::Effect) {}
 PlayerSpeedFor3dUI::~PlayerSpeedFor3dUI() {}
 
 void PlayerSpeedFor3dUI::Initialize() {}
 void PlayerSpeedFor3dUI::Finalize() {}
 
-void PlayerSpeedFor3dUI::UpdateEntity(Entity* _entity) {
+void PlayerSpeedFor3dUI::UpdateEntity(OriGine::Entity* _entity) {
     auto playerEnt = GetUniqueEntity("Player");
     if (!playerEnt) {
         return;
@@ -32,7 +34,7 @@ void PlayerSpeedFor3dUI::UpdateEntity(Entity* _entity) {
     }
 
     // 速度取得
-    float speed = Vec2f(rigidbodyComp->GetVelocity(X),
+    float speed = OriGine::Vec2f(rigidbodyComp->GetVelocity(X),
         rigidbodyComp->GetVelocity(Z))
                       .length();
     // 各桁の数字を抽出
@@ -52,6 +54,6 @@ void PlayerSpeedFor3dUI::UpdateEntity(Entity* _entity) {
             return;
         }
 
-        material->uvTransform_.translate_ = Vec2f(0.1f * digits[i], 0.f);
+        material->uvTransform_.translate_ = OriGine::Vec2f(0.1f * digits[i], 0.f);
     }
 }

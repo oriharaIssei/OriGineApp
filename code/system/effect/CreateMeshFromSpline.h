@@ -1,14 +1,15 @@
 #pragma once
 #include "system/ISystem.h"
 
-class PlaneRenderer;
+#include "component/renderer/primitive/PlaneRenderer.h"
+
 struct SplinePoints;
 
 /// <summary>
 /// スプラインからメッシュを生成するシステム
 /// </summary>
 class CreateMeshFromSpline
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     CreateMeshFromSpline();
     ~CreateMeshFromSpline() override;
@@ -17,8 +18,8 @@ public:
     void Finalize() override;
 
 private:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 
-    void CreateCrossPlaneMesh(PlaneRenderer* _planeRendererComp, SplinePoints* _splinePointsComp);
-    void CreateLinePlaneMesh(PlaneRenderer* _planeRendererComp, SplinePoints* _splinePointsComp);
+    void CreateCrossPlaneMesh(OriGine::PlaneRenderer* _planeRendererComp, SplinePoints* _splinePointsComp);
+    void CreateLinePlaneMesh(OriGine::PlaneRenderer* _planeRendererComp, SplinePoints* _splinePointsComp);
 };

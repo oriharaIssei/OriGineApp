@@ -6,7 +6,7 @@
 /// SelectSceneにある、ステージプレビューのシーンを初期化するシステム
 /// </summary>
 class SelectPreviewSceneInitialize
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     SelectPreviewSceneInitialize();
     ~SelectPreviewSceneInitialize();
@@ -15,5 +15,5 @@ public:
     void Finalize();
 
 protected:
-    void UpdateEntity(Entity* _entity);
+    void UpdateEntity(OriGine::Entity* _entity);
 };

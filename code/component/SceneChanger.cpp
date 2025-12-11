@@ -22,20 +22,20 @@ SceneChanger::SceneChanger() {
 SceneChanger::~SceneChanger() {
 }
 
-void SceneChanger::Initialize(Entity* /* _entity*/) {}
+void SceneChanger::Initialize(OriGine::Entity* /* _OriGine::Entity*/) {}
 
-void SceneChanger::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
+void SceneChanger::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]] OriGine::Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
    
 #ifdef _DEBUG
 
-    ImGui::Text("Next Scene Name :");
+    ImGui::Text("Next OriGine::Scene Name :");
     ImGui::SameLine();
     if (ImGui::BeginCombo("##NextSceneName", nextSceneName_.c_str())) {
         for (const auto& [directory, sceneName] : myfs::SearchFile(kApplicationResourceDirectory + "/scene/", "json")) {
             bool isSelected = nextSceneName_ == sceneName;
             if (ImGui::Selectable(sceneName.c_str(), isSelected)) {
 
-                EditorController::GetInstance()->PushCommand(
+                OriGine::EditorController::GetInstance()->PushCommand(
                     std::make_unique<SetterCommand<std::string>>(&nextSceneName_, sceneName));
             }
             if (isSelected) {

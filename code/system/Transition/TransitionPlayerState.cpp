@@ -29,9 +29,12 @@
 #include "component/ghost/PlayRecordeComponent.h"
 
 /// math
+#include "math/mathEnv.h"
 #include "math/MyEasing.h"
 
-void TransitionPlayerState::UpdateEntity(Entity* _entity) {
+using namespace OriGine;
+
+void TransitionPlayerState::UpdateEntity(OriGine::Entity* _entity) {
     PlayerState* state = GetComponent<PlayerState>(_entity);
 
     /// =====================================================
@@ -42,9 +45,9 @@ void TransitionPlayerState::UpdateEntity(Entity* _entity) {
     if (state->IsGoal()) {
         // clearTime Set
         PlayerProgressStore* progressStore = PlayerProgressStore::GetInstance();
-        Entity* timerEntity                = GetUniqueEntity("Timer");
-        Entity* stageDataEntity            = GetUniqueEntity("StageData");
-        Entity* recorderEntity             = GetUniqueEntity("Recorder");
+        OriGine::Entity* timerEntity       = GetUniqueEntity("Timer");
+        OriGine::Entity* stageDataEntity   = GetUniqueEntity("StageData");
+        OriGine::Entity* recorderEntity    = GetUniqueEntity("Recorder");
         if (timerEntity && stageDataEntity) {
             StageData* stageData               = GetComponent<StageData>(stageDataEntity);
             TimerComponent* timer              = GetComponent<TimerComponent>(timerEntity);
@@ -67,12 +70,12 @@ void TransitionPlayerState::UpdateEntity(Entity* _entity) {
 
     // Restart 判定
     if (state->IsRestart()) {
-        Transform* playerTransform = GetComponent<Transform>(_entity);
+        Transform* playerTransform = GetComponent<OriGine::Transform>(_entity);
         playerTransform->Initialize(_entity);
 
-        Entity* startPosEntity = GetUniqueEntity("StartPosition");
+        OriGine::Entity* startPosEntity = GetUniqueEntity("StartPosition");
         if (startPosEntity) {
-            Transform* startTransform = GetComponent<Transform>(startPosEntity);
+            Transform* startTransform = GetComponent<OriGine::Transform>(startPosEntity);
             if (startTransform && playerTransform) {
                 playerTransform->translate = startTransform->GetWorldTranslate();
             }
@@ -80,7 +83,7 @@ void TransitionPlayerState::UpdateEntity(Entity* _entity) {
         PlayerStatus* playerStatus = GetComponent<PlayerStatus>(_entity);
         Rigidbody* rigidbody       = GetComponent<Rigidbody>(_entity);
 
-        Entity* gameCameraEntity = GetEntity(state->GetCameraEntityID());
+        OriGine::Entity* gameCameraEntity = GetEntity(state->GetCameraEntityID());
         if (gameCameraEntity) {
             CameraTransform* cameraTransform = GetComponent<CameraTransform>(gameCameraEntity);
             if (cameraTransform) {
@@ -90,7 +93,7 @@ void TransitionPlayerState::UpdateEntity(Entity* _entity) {
             if (cameraController) {
                 cameraController->SetCurrentTargetOffset(cameraController->GetFirstTargetOffset());
                 cameraController->SetCurrentOffset(cameraController->GetFirstOffset());
-                cameraController->SetDestinationAngleXY(Vec2f(0.f, 0.f));
+                cameraController->SetDestinationAngleXY(OriGine::Vec2f(0.f, 0.f));
             }
         }
 
@@ -125,7 +128,7 @@ void TransitionPlayerState::UpdateEntity(Entity* _entity) {
     /// =====================================================
     // Fov Y
     /// =====================================================
-    Entity* gameCamera = GetEntity(state->GetCameraEntityID());
+    OriGine::Entity* gameCamera = GetEntity(state->GetCameraEntityID());
     if (!gameCamera) {
         return;
     }

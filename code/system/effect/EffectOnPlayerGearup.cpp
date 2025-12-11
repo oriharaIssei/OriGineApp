@@ -20,7 +20,9 @@
 /// math
 #include <math/MyEasing.h>
 
-EffectOnPlayerGearup::EffectOnPlayerGearup() : ISystem(SystemCategory::Effect) {}
+using namespace OriGine;
+
+EffectOnPlayerGearup::EffectOnPlayerGearup() : ISystem(OriGine::SystemCategory::Effect) {}
 
 EffectOnPlayerGearup::~EffectOnPlayerGearup() {}
 
@@ -28,13 +30,13 @@ void EffectOnPlayerGearup::Initialize() {}
 
 void EffectOnPlayerGearup::Finalize() {}
 
-void EffectOnPlayerGearup::UpdateEntity(Entity* _entity) {
-    Entity* player = GetUniqueEntity("Player");
+void EffectOnPlayerGearup::UpdateEntity(OriGine::Entity* _entity) {
+    OriGine::Entity* player = GetUniqueEntity("Player");
     if (!player) {
         return;
     }
-    PlayerState* state         = GetComponent<PlayerState>(player);
-    Transform* playerTransform = GetComponent<Transform>(player);
+    PlayerState* state                  = GetComponent<PlayerState>(player);
+    OriGine::Transform* playerTransform = GetComponent<OriGine::Transform>(player);
 
     if (!state) {
         return;
@@ -48,8 +50,8 @@ void EffectOnPlayerGearup::UpdateEntity(Entity* _entity) {
     if (state->IsGearUp()) {
         shockWaveState_.playState.SetCurrent(false);
 
-        Transform* transform = GetComponent<Transform>(_entity);
-        transform->translate = playerTransform->translate; // Playerの位置に合わせる
+        OriGine::Transform* transform = GetComponent<OriGine::Transform>(_entity);
+        transform->translate          = playerTransform->translate; // Playerの位置に合わせる
 
         // Emitterの再生
         int32_t emitterSize = GetComponentArray<Emitter>()->GetComponentSize(_entity);
@@ -71,7 +73,7 @@ void EffectOnPlayerGearup::UpdateEntity(Entity* _entity) {
     UpdateShockWaveRing(_entity, playerTransform);
 }
 
-void EffectOnPlayerGearup::UpdateShockWaveRing(Entity* _entity, Transform* _playerTransform) {
+void EffectOnPlayerGearup::UpdateShockWaveRing(OriGine::Entity* _entity, OriGine::Transform* _playerTransform) {
     DistortionEffectParam* distortionEffectParam = GetComponent<DistortionEffectParam>(_entity);
 
     auto& shockWaveRings = distortionEffectParam->GetDistortionObjects();

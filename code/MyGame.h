@@ -7,8 +7,8 @@
 #include <memory>
 
 /// Engine
-class SceneManager;
-class ReplayRecorder;
+#include <debugReplayer/ReplayRecorder.h>
+#include <scene/SceneManager.h>
 
 /// <summary>
 /// ゲーム本体
@@ -25,10 +25,10 @@ public:
     void Run();
 
 private:
-    std::unique_ptr<SceneManager> sceneManager_ = nullptr;
+    std::unique_ptr<OriGine::SceneManager> sceneManager_ = nullptr;
 
 #ifdef _DEVELOP
-    bool isRecording_                         = false;
-    std::unique_ptr<ReplayRecorder> recorder_ = nullptr;
+    bool isRecording_                                  = false;
+    std::unique_ptr<OriGine::ReplayRecorder> recorder_ = nullptr;
 #endif // _DEVELOP
 };

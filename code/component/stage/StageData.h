@@ -5,7 +5,7 @@
 /// ステージに関するデータを管理するコンポーネント
 /// </summary>
 class StageData
-    : public IComponent {
+    : public OriGine::IComponent {
     friend void to_json(nlohmann::json& j, const StageData& component);
     friend void from_json(const nlohmann::json& j, StageData& component);
 
@@ -13,10 +13,10 @@ public:
     StageData()           = default;
     ~StageData() override = default;
 
-    void Initialize(Entity* _entity) override;
+    void Initialize(OriGine::Entity* _entity) override;
     void Finalize() override;
 
-    void Edit(Scene* _scene, Entity* _entity, const std::string& _parentLabel) override;
+    void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
 
 private:
     int32_t stageNumber_ = 1; // ステージ番号

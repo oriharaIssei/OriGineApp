@@ -1,16 +1,21 @@
 #include "PlayRecorderInitialize.h"
 
+/// engine
+#include "scene/Scene.h"
+
 /// ECS
 // component
 #include "component/ghost/PlayRecordeComponent.h"
 
-PlayRecorderInitialize::PlayRecorderInitialize() : ISystem(SystemCategory::Initialize) {}
+using namespace OriGine;
+
+PlayRecorderInitialize::PlayRecorderInitialize() : ISystem(OriGine::SystemCategory::Initialize) {}
 PlayRecorderInitialize::~PlayRecorderInitialize() = default;
 
 void PlayRecorderInitialize::Initialize() {}
 void PlayRecorderInitialize::Finalize() {}
 
-void PlayRecorderInitialize::UpdateEntity(Entity* _entity) {
+void PlayRecorderInitialize::UpdateEntity(OriGine::Entity* _entity) {
     PlayRecordeComponent* playRecorder = GetComponent<PlayRecordeComponent>(_entity);
 
     if (!playRecorder) {

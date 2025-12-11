@@ -6,6 +6,7 @@
 /// engine
 #define DELTA_TIME
 #include "EngineInclude.h"
+#include "scene/Scene.h"
 // input
 #include "input/GamepadInput.h"
 #include "input/MouseInput.h"
@@ -16,10 +17,12 @@
 #include "math/mathEnv.h"
 #include <numbers>
 
+using namespace OriGine;
+
 void CameraInputSystem::Initialize() {}
 void CameraInputSystem::Finalize() {}
 
-void CameraInputSystem::UpdateEntity(Entity* _entity) {
+void CameraInputSystem::UpdateEntity(OriGine::Entity* _entity) {
     GamepadInput* padInput = GetScene()->GetGamepadInput();
     MouseInput* mouseInput = GetScene()->GetMouseInput();
 
@@ -32,18 +35,18 @@ void CameraInputSystem::UpdateEntity(Entity* _entity) {
 
 void CameraInputSystem::InputUpdate(float _deltaTime, MouseInput* _mouseInput, GamepadInput* _padInput, CameraController* _cameraController) {
 
-    Vec2f destinationAngleXY = _cameraController->GetDestinationAngleXY();
+    OriGine::Vec2f destinationAngleXY = _cameraController->GetDestinationAngleXY();
 
     if (_cameraController->GetFollowTarget()) {
-        Vec2f rotateVelocity = {0.f, 0.f};
+        OriGine::Vec2f rotateVelocity = {0.f, 0.f};
         if (_padInput->IsActive()) { /// GamePad
             rotateVelocity = _padInput->GetRStick() * _cameraController->GetRotateSpeedPadStick();
             // input の x,yをそれぞれの角度に変換
-            rotateVelocity = Vec2f(-rotateVelocity[Y], rotateVelocity[X]);
+            rotateVelocity = OriGine::Vec2f(-rotateVelocity[Y], rotateVelocity[X]);
         } else { /// Mouse
             rotateVelocity = _mouseInput->GetVelocity() * _cameraController->GetRotateSpeedMouse();
             // input の x,yをそれぞれの角度に変換
-            rotateVelocity = Vec2f(rotateVelocity[Y], rotateVelocity[X]);
+            rotateVelocity = OriGine::Vec2f(rotateVelocity[Y], rotateVelocity[X]);
         }
         rotateVelocity *= _deltaTime;
 

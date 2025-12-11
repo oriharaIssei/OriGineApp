@@ -6,7 +6,7 @@
 /// ボタン入力でサブシーンを有効化するシステム
 /// </summary>
 class SubSceneActivateByButton
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     SubSceneActivateByButton();
     ~SubSceneActivateByButton() override;
@@ -14,5 +14,5 @@ public:
     void Finalize() override;
 
 private:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 };

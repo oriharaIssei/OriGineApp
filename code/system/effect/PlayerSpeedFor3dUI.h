@@ -5,7 +5,7 @@
 /// Playerの速度を 3dUIに適応するクラス
 /// </summary>
 class PlayerSpeedFor3dUI
-    : public ISystem {
+    : public OriGine::ISystem {
 public:
     PlayerSpeedFor3dUI();
     ~PlayerSpeedFor3dUI() override;
@@ -14,5 +14,5 @@ public:
     void Finalize() override;
 
 private:
-    void UpdateEntity(Entity* _entity) override;
+    void UpdateEntity(OriGine::Entity* _entity) override;
 };

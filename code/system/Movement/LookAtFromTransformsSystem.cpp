@@ -5,33 +5,35 @@
 #include "component/LookAtFromTransforms.h"
 #include "component/transform/Transform.h"
 
-LookAtFromTransformsSystem::LookAtFromTransformsSystem() : ISystem(SystemCategory::Effect) {}
+using namespace OriGine;
+
+LookAtFromTransformsSystem::LookAtFromTransformsSystem() : ISystem(OriGine::SystemCategory::Effect) {}
 LookAtFromTransformsSystem::~LookAtFromTransformsSystem() {}
 
 void LookAtFromTransformsSystem::Initialize() {}
 void LookAtFromTransformsSystem::Finalize() {}
 
-void LookAtFromTransformsSystem::UpdateEntity(Entity* _entity) {
+void LookAtFromTransformsSystem::UpdateEntity(OriGine::Entity* _entity) {
     auto lookAtComps = GetComponents<LookAtFromTransforms>(_entity);
     if (!lookAtComps) {
         return;
     }
 
     // 適応する Transform コンポーネントを取得
-    auto transform = GetComponent<Transform>(_entity);
+    auto transform = GetComponent<OriGine::Transform>(_entity);
 
     for (auto& lookAtComp : *lookAtComps) {
-        auto fromTransformComp = GetComponent<Transform>(GetEntity(lookAtComp.fromTransformEntity));
-        auto toTransformComp   = GetComponent<Transform>(GetEntity(lookAtComp.toTransformEntity));
+        auto fromTransformComp = GetComponent<OriGine::Transform>(GetEntity(lookAtComp.fromTransformEntity));
+        auto toTransformComp   = GetComponent<OriGine::Transform>(GetEntity(lookAtComp.toTransformEntity));
         if (!fromTransformComp || !toTransformComp) {
             continue;
         }
         // 注視点の方向を計算
-        Vec3f direction = toTransformComp->GetWorldTranslate() - fromTransformComp->GetWorldTranslate();
+        OriGine::Vec3f direction = toTransformComp->GetWorldTranslate() - fromTransformComp->GetWorldTranslate();
         direction       = direction.normalize();
 
         Quaternion lookAtRotate = Quaternion::LookAt(direction, axisY);
-        Vec3f eulerAngles       = lookAtRotate.ToEulerAngles();
+        OriGine::Vec3f eulerAngles       = lookAtRotate.ToEulerAngles();
 
         if (!lookAtComp.rotateAxis.HasFlag(LookAtFromTransforms::RotateAxis::X)) {
             eulerAngles[X] = 0.f;
