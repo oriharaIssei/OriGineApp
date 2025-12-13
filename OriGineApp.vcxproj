@@ -139,6 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="code\event\GamefailedEvent.h" />
+    <ClInclude Include="code\event\SceneChangeRequest.h" />
+    <ClInclude Include="code\system\collision\ShadowCastSystem.h" />
+    <ClInclude Include="code\system\Movement\SceneTransitionRequestReceiverSystem.h" />
+    <ClInclude Include="code\system\Movement\SceneTransitionRequestSenderSystem.h" />
     <ClInclude Include="code\system\Transition\CameraMotionBobSystem.h" />
     <ClInclude Include="code\component\camera\CameraMotionBob.h" />
     <ClInclude Include="code\system\effect\CameraShake.h" />
@@ -191,7 +196,7 @@
     <ClInclude Include="code\system\input\PlayerInputSystem.h" />
     <ClInclude Include="code\system\movement\BillboardTransform.h" />
     <ClInclude Include="code\system\movement\FollowCameraUpdateSystem.h" />
-    <ClInclude Include="code\system\movement\MenuUpdate.h" />
+    <ClInclude Include="code\system\movement\PauseMainSceneSystem.h" />
     <ClInclude Include="code\system\movement\PlayerMoveSystem.h" />
     <ClInclude Include="code\system\movement\PlayerPathSplineGenerator.h" />
     <ClInclude Include="code\system\movement\PlayerUpdateOnTitle.h" />
@@ -202,6 +207,7 @@
     <ClInclude Include="code\system\transition\ExitApplicationByButton.h" />
     <ClInclude Include="code\system\transition\FallDetectionSystem.h" />
     <ClInclude Include="code\system\transition\PenaltySystem.h" />
+    <ClInclude Include="code\system\Transition\RestartOnButtonPressSystem.h" />
     <ClInclude Include="code\system\transition\SceneTransition.h" />
     <ClInclude Include="code\system\transition\ShowGameUIByInputDevice.h" />
     <ClInclude Include="code\system\transition\SubSceneActivateByButton.h" />
@@ -227,8 +233,15 @@
     <ClInclude Include="code\system\Initialize\PlayRecorderInitialize.h" />
     <ClInclude Include="code\system\Input\PlayRecordSystem.h" />
     <ClInclude Include="code\system\Initialize\InitializeMouseCondition.h" />
+    <ClInclude Include="code\system\Movement\RestartSystem.h" />
+    <ClInclude Include="code\event\RestartEvent.h" />
+    <ClInclude Include="code\system\Transition\GameFailedSceneLaunchSystem.h" />
+    <ClInclude Include="code\system\Movement\ShadowPlaneSyncPlayerPosition.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\system\collision\ShadowCastSystem.cpp" />
+    <ClCompile Include="code\system\Movement\SceneTransitionRequestReceiverSystem.cpp" />
+    <ClCompile Include="code\system\Movement\SceneTransitionRequestSenderSystem.cpp" />
     <ClCompile Include="code\system\Transition\CameraMotionBobSystem.cpp" />
     <ClCompile Include="code\component\camera\CameraMotionBob.cpp" />
     <ClCompile Include="code\system\effect\CameraShake.cpp" />
@@ -282,7 +295,7 @@
     <ClCompile Include="code\system\input\PlayerInputSystem.cpp" />
     <ClCompile Include="code\system\movement\BillboardTransform.cpp" />
     <ClCompile Include="code\system\movement\FollowCameraUpdateSystem.cpp" />
-    <ClCompile Include="code\system\movement\MenuUpdate.cpp" />
+    <ClCompile Include="code\system\movement\PauseMainSceneSystem.cpp" />
     <ClCompile Include="code\system\movement\PlayerMoveSystem.cpp" />
     <ClCompile Include="code\system\movement\PlayerPathSplineGenerator.cpp" />
     <ClCompile Include="code\system\movement\PlayerUpdateOnTitle.cpp" />
@@ -293,6 +306,7 @@
     <ClCompile Include="code\system\transition\ExitApplicationByButton.cpp" />
     <ClCompile Include="code\system\transition\FallDetectionSystem.cpp" />
     <ClCompile Include="code\system\transition\PenaltySystem.cpp" />
+    <ClCompile Include="code\system\Transition\RestartOnButtonPressSystem.cpp" />
     <ClCompile Include="code\system\transition\SceneTransition.cpp" />
     <ClCompile Include="code\system\transition\ShowGameUIByInputDevice.cpp" />
     <ClCompile Include="code\system\transition\SubSceneActivateByButton.cpp" />
@@ -318,6 +332,9 @@
     <ClCompile Include="code\system\Initialize\PlayRecorderInitialize.cpp" />
     <ClCompile Include="code\system\Input\PlayRecordSystem.cpp" />
     <ClCompile Include="code\system\Initialize\InitializeMouseCondition.cpp" />
+    <ClCompile Include="code\system\Movement\RestartSystem.cpp" />
+    <ClCompile Include="code\system\Transition\GameFailedSceneLaunchSystem.cpp" />
+    <ClCompile Include="code\system\Movement\ShadowPlaneSyncPlayerPosition.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">

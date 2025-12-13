@@ -258,6 +258,10 @@
                     "SystemName": "SceneTransition"
                 },
                 {
+                    "SystemCategory": 0,
+                    "SystemName": "SelectPreviewSceneInitialize"
+                },
+                {
                     "SystemCategory": 6,
                     "SystemName": "SpriteRenderSystem"
                 },
@@ -268,10 +272,6 @@
                 {
                     "SystemCategory": 2,
                     "SystemName": "UpdateButtonColorByState"
-                },
-                {
-                    "SystemCategory": 0,
-                    "SystemName": "SelectPreviewSceneInitialize"
                 }
             ],
             "isUnique": false
@@ -438,6 +438,10 @@
                     "SystemName": "SceneTransition"
                 },
                 {
+                    "SystemCategory": 0,
+                    "SystemName": "SelectPreviewSceneInitialize"
+                },
+                {
                     "SystemCategory": 6,
                     "SystemName": "SpriteRenderSystem"
                 },
@@ -448,10 +452,6 @@
                 {
                     "SystemCategory": 2,
                     "SystemName": "UpdateButtonColorByState"
-                },
-                {
-                    "SystemCategory": 0,
-                    "SystemName": "SelectPreviewSceneInitialize"
                 }
             ],
             "isUnique": false
@@ -657,7 +657,7 @@
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.8379520773887634
+                            0.828702449798584
                         ]
                     }
                 ],
@@ -849,10 +849,10 @@
                             0.0
                         ],
                         "color": [
-                            0.10588235408067703,
-                            0.10588235408067703,
-                            0.10588235408067703,
-                            0.4313725531101227
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.6901960968971252
                         ],
                         "defaultWindowSize": [
                             1920.0,
@@ -909,6 +909,171 @@
                 {
                     "SystemCategory": 6,
                     "SystemName": "SpriteRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "Button": [
+                    {
+                        "hoverColor": [
+                            0.800000011920929,
+                            0.800000011920929,
+                            0.800000011920929,
+                            1.0
+                        ],
+                        "normalColor": [
+                            0.3199999928474426,
+                            0.3199999928474426,
+                            0.3199999928474426,
+                            1.0
+                        ],
+                        "pressColor": [
+                            0.6000000238418579,
+                            0.6000000238418579,
+                            0.6000000238418579,
+                            1.0
+                        ],
+                        "releaseColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "shortKeys": [
+                            1
+                        ],
+                        "shortcutPadButton": [
+                            16
+                        ]
+                    }
+                ],
+                "DissolveEffectParam": [
+                    {
+                        "edgeWidth": 0.004999999888241291,
+                        "isActive": false,
+                        "materialIndex": 0,
+                        "outLineColor": [
+                            0.0,
+                            0.5486300587654114,
+                            0.902953565120697,
+                            1.0
+                        ],
+                        "textureFilePath": "./application/resource/Texture/bioNoise.png",
+                        "threshold": 0.0
+                    }
+                ],
+                "Material": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "SceneChanger": [
+                    {
+                        "nextSceneName": "Title"
+                    }
+                ],
+                "SpriteRenderer": [
+                    {
+                        "anchorPoint": [
+                            0.0,
+                            0.0
+                        ],
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "defaultWindowSize": [
+                            1920.0,
+                            1080.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "isRender": true,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
+                            0.0,
+                            0.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "",
+                        "textureSize": [
+                            0.0,
+                            0.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ],
+                        "windowRatioPos": [
+                            0.0,
+                            0.0
+                        ],
+                        "windowRatioSize": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Name": "ToTile",
+            "Systems": [
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "ChangeSceneByButton"
+                },
+                {
+                    "SystemCategory": 1,
+                    "SystemName": "ButtonInputSystem"
+                },
+                {
+                    "SystemCategory": 7,
+                    "SystemName": "DissolveEffect"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "SceneTransition"
                 }
             ],
             "isUnique": false

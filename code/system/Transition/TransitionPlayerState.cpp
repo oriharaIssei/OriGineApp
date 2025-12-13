@@ -42,7 +42,8 @@ void TransitionPlayerState::UpdateEntity(OriGine::Entity* _entity) {
     /// =====================================================
     // goal 判定
     ///! TODO : 専用のシステムクラスで判定
-    if (state->IsGoal()) {
+    if (state->IsGoal() && _entity->IsUnique()) {
+
         // clearTime Set
         PlayerProgressStore* progressStore = PlayerProgressStore::GetInstance();
         OriGine::Entity* timerEntity       = GetUniqueEntity("Timer");
@@ -85,9 +86,11 @@ void TransitionPlayerState::UpdateEntity(OriGine::Entity* _entity) {
 
         OriGine::Entity* gameCameraEntity = GetEntity(state->GetCameraEntityID());
         if (gameCameraEntity) {
+            constexpr Vec3f kCameraOffset    = Vec3f(0.f, 5.f, -10.f);
             CameraTransform* cameraTransform = GetComponent<CameraTransform>(gameCameraEntity);
             if (cameraTransform) {
-                cameraTransform->translate = playerTransform->GetWorldTranslate();
+                cameraTransform->translate = playerTransform->GetWorldTranslate() + kCameraOffset;
+                cameraTransform->UpdateMatrix();
             }
             CameraController* cameraController = GetComponent<CameraController>(gameCameraEntity);
             if (cameraController) {

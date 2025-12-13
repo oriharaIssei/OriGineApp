@@ -1,5 +1,8 @@
 #include "GhostInitializeSystem.h"
 
+/// engine
+#include "scene/SceneFactory.h"
+
 /// ECS
 // component
 #include "component/camera/CameraController.h"
@@ -18,11 +21,6 @@
 
 #include "system/effect/EffectOnPlayerGearup.h"
 #include "system/effect/EffectOnPlayerRun.h"
-
-#include "system/effect/CameraShake.h"
-
-/// engine
-#include "scene/SceneManager.h"
 
 /// application
 #include "manager/PlayerProgressStore.h"
@@ -87,16 +85,13 @@ bool GhostInitializeSystem::InitializeGhostReplayComponent(GhostReplayComponent*
 
     // parentのPlayerとGameCameraを持ってくる
     // Entityの複製と登録
-    SceneSerializer serializer = SceneSerializer(scene);
-    auto copyPlayerJson        = serializer.EntityToJson(scene->GetUniqueEntity("Player")->GetID());
-    auto copyCameraJson        = serializer.EntityToJson(scene->GetUniqueEntity("GameCamera")->GetID());
+    SceneFactory factory;
+    OriGine::Entity* ghostPlayerEnt = factory.BuildEntityFromTemplate(scene, "Player");
+    OriGine::Entity* ghostCameraEnt = factory.BuildEntityFromTemplate(scene, "GameCamera");
 
-    // 名前は変える
-    copyPlayerJson["Name"]          = "GhostPlayer";
-    copyPlayerJson["isUnique"]      = false;
-    copyCameraJson["Name"]          = "GhostGameCamera";
-    OriGine::Entity* ghostPlayerEnt = serializer.EntityFromJson(copyPlayerJson);
-    OriGine::Entity* ghostCameraEnt = serializer.EntityFromJson(copyCameraJson);
+    if (!ghostPlayerEnt || !ghostCameraEnt) {
+        return false;
+    }
 
     // どちらも保存しないように設定
     ghostPlayerEnt->SetShouldSave(false);

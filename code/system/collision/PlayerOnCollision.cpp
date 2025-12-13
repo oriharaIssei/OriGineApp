@@ -30,8 +30,8 @@ void PlayerOnCollision::UpdateEntity(OriGine::Entity* _entity) {
         return;
     }
 
-    bool isPenalty            = false;
-    float penaltyTime         = 0.f;
+    bool isPenalty                     = false;
+    float penaltyTime                  = 0.f;
     OriGine::Vec3f penaltyObjectNormal = OriGine::Vec3f(0.f, 0.f, 0.f);
 
     // 毎フレーム、地面・壁との衝突状態をリセット
@@ -103,9 +103,9 @@ void PlayerOnCollision::UpdateEntity(OriGine::Entity* _entity) {
         if (state->IsPenalty()) {
             // 壁ジャンプの反動を与える
             constexpr float kReflectedSpeed = 48.f;
-            OriGine::Vec3f currentVelocity           = rigidbody->GetVelocity();
+            OriGine::Vec3f currentVelocity  = rigidbody->GetVelocity();
             currentVelocity                 = Reflect<float>(currentVelocity, penaltyObjectNormal);
-            currentVelocity                          = currentVelocity.normalize() * (std::max)(kReflectedSpeed, currentVelocity.length() * 0.7f);
+            currentVelocity                 = currentVelocity.normalize() * (std::max)(kReflectedSpeed, currentVelocity.length() * 0.7f);
             rigidbody->SetVelocity(currentVelocity);
         }
     }

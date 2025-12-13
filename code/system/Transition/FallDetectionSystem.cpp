@@ -1,5 +1,11 @@
 #include "FallDetectionSystem.h"
 
+/// engine
+#include "messageBus/MessageBus.h"
+
+/// event
+#include "event/GamefailedEvent.h"
+
 /// ECS
 // component
 #include "component/player/state/PlayerState.h"
@@ -15,7 +21,7 @@ void FallDetectionSystem::Initialize() {}
 void FallDetectionSystem::Finalize() {}
 
 void FallDetectionSystem::UpdateEntity(OriGine::Entity* _entity) {
-    constexpr float kFallThresholdY = -26.0f;
+    constexpr float kFallThresholdY = -40.f;
     Transform* transform            = GetComponent<Transform>(_entity);
 
     if (!transform) {
@@ -23,10 +29,6 @@ void FallDetectionSystem::UpdateEntity(OriGine::Entity* _entity) {
     }
 
     if (transform->worldMat[3][Y] < kFallThresholdY) {
-        // リスタートフラグを立てる
-        PlayerState* playerState = GetComponent<PlayerState>(_entity);
-
-        auto& stateFlag = playerState->GetStateFlagRef();
-        stateFlag.SetCurrent(stateFlag.Current() | PlayerStateFlag::IS_RESTART);
+        MessageBus::GetInstance()->Emit<GamefailedEvent>(GamefailedEvent());
     }
 }

@@ -58,9 +58,8 @@
                     0.5199999809265137,
                     0.11999999731779099
                 ],
-                "digitDecimalForSprite": 2,
-                "digitForSprite": 5,
-                "digitIntegerForSprite": 3,
+                "digitDecimal": 2,
+                "digitInteger": 3,
                 "marginBetweenIntegerAndDecimal": [
                     0.0,
                     10.0

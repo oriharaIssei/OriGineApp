@@ -118,7 +118,9 @@
                         "shortKeys": [
                             1
                         ],
-                        "shortcutPadButton": []
+                        "shortcutPadButton": [
+                            16
+                        ]
                     }
                 ],
                 "DissolveEffectParam": [
@@ -164,7 +166,7 @@
                 ],
                 "SceneChanger": [
                     {
-                        "nextSceneName": "Title"
+                        "nextSceneName": "StageSelect"
                     }
                 ]
             },
@@ -437,12 +439,12 @@
                         "scale": [
                             64.0,
                             64.0,
-                            148.67999267578125
+                            97.27999877929688
                         ],
                         "translate": [
                             0.0,
                             0.0,
-                            109.99200439453125
+                            73.22200012207031
                         ]
                     }
                 ]
@@ -716,12 +718,12 @@
                         "scale": [
                             64.0,
                             64.0,
-                            89.0
+                            46.0
                         ],
                         "translate": [
                             0.0,
                             0.0,
-                            358.4407653808594
+                            225.30709838867188
                         ]
                     }
                 ]
@@ -995,12 +997,12 @@
                         "scale": [
                             64.0,
                             64.0,
-                            166.0
+                            120.0
                         ],
                         "translate": [
                             0.0,
                             0.0,
-                            627.8714599609375
+                            407.8507385253906
                         ]
                     }
                 ]
@@ -1071,8 +1073,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -1135,12 +1136,12 @@
                         "scale": [
                             26.0,
                             56.0,
-                            221.0
+                            126.0
                         ],
                         "translate": [
                             0.0,
                             -56.0,
-                            186.78330993652344
+                            110.84202575683594
                         ]
                     }
                 ]
@@ -1202,6 +1203,14 @@
                             [
                                 "./application/resource/entities",
                                 "Goal"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "SpeedUI"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "StartTimer"
                             ]
                         ]
                     }
@@ -1386,7 +1395,7 @@
                         "translate": [
                             0.0,
                             9.7387113571167,
-                            1304.4599609375
+                            988.7352905273438
                         ]
                     }
                 ]
@@ -1440,8 +1449,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -1504,12 +1512,12 @@
                         "scale": [
                             26.0,
                             56.0,
-                            456.0
+                            100.0
                         ],
                         "translate": [
                             0.0,
                             -56.0,
-                            933.204833984375
+                            375.51080322265625
                         ]
                     }
                 ]
@@ -1572,8 +1580,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -1636,12 +1643,12 @@
                         "scale": [
                             4.0,
                             48.0,
-                            128.0
+                            64.0
                         ],
                         "translate": [
                             -31.035383224487305,
                             46.29263687133789,
-                            636.1014404296875
+                            542.1251220703125
                         ]
                     }
                 ]
@@ -1704,8 +1711,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -1768,12 +1774,12 @@
                         "scale": [
                             4.0,
                             48.0,
-                            128.0
+                            64.0
                         ],
                         "translate": [
                             30.100013732910156,
                             46.29263687133789,
-                            636.1010131835938
+                            538.7149047851563
                         ]
                     }
                 ]
@@ -1836,8 +1842,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -1909,8 +1914,8 @@
                         ],
                         "translate": [
                             -0.5240054130554199,
-                            -26.0,
-                            920.9832153320313
+                            -28.5,
+                            813.5718383789063
                         ]
                     }
                 ]
@@ -1973,8 +1978,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -2046,8 +2050,8 @@
                         ],
                         "translate": [
                             -0.5240054130554199,
-                            -26.0,
-                            981.8313598632813
+                            -28.5,
+                            884.6812744140625
                         ]
                     }
                 ]
@@ -2110,8 +2114,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -2163,11 +2166,6 @@
                         ]
                     }
                 ],
-                "StageObstacle": [
-                    {
-                        "penaltyTime": 1.5
-                    }
-                ],
                 "Transform": [
                     {
                         "rotate": [
@@ -2177,19 +2175,19 @@
                             1.0
                         ],
                         "scale": [
-                            44.0,
-                            32.0,
-                            3.0
+                            26.0,
+                            56.0,
+                            200.0
                         ],
                         "translate": [
-                            -0.5240054130554199,
-                            -26.0,
-                            1067.0928955078125
+                            0.0,
+                            -56.0,
+                            846.7882690429688
                         ]
                     }
                 ]
             },
-            "Name": "PenaltyFloor",
+            "Name": "Floor",
             "Systems": [
                 {
                     "SystemCategory": 4,
@@ -2224,13 +2222,13 @@
                 "Priority": 3
             },
             "CameraMotionBobSystem": {
-                "Priority": 1
+                "Priority": 2
             },
             "CameraShake": {
                 "Priority": 1
             },
             "ChangeSceneByButton": {
-                "Priority": 1
+                "Priority": 2
             },
             "ColliderRenderingSystem": {
                 "Priority": 0
@@ -2244,11 +2242,14 @@
             "CreateMeshFromSpline": {
                 "Priority": 0
             },
+            "CreatePlaneFromSpeed": {
+                "Priority": 2
+            },
             "CreateSpriteFromTimer": {
-                "Priority": 1
+                "Priority": 2
             },
             "CreateStage": {
-                "Priority": 1
+                "Priority": 2
             },
             "DissolveEffect": {
                 "Priority": 10
@@ -2269,10 +2270,13 @@
                 "Priority": 6
             },
             "FollowCameraUpdateSystem": {
-                "Priority": 1
+                "Priority": 2
             },
             "LineRenderSystem": {
                 "Priority": 0
+            },
+            "LookAtFromTransformsSystem": {
+                "Priority": 3
             },
             "MaterialAnimationWorkSystem": {
                 "Priority": 0
@@ -2281,9 +2285,12 @@
                 "Priority": 10
             },
             "MenuUpdate": {
-                "Priority": 0
+                "Priority": 1
             },
             "MoveSystemByRigidBody": {
+                "Priority": 10
+            },
+            "OverlayRenderSystem": {
                 "Priority": 10
             },
             "ParticleRenderSystem": {
@@ -2299,7 +2306,7 @@
                 "Priority": 1
             },
             "PlayerMoveSystem": {
-                "Priority": 3
+                "Priority": 4
             },
             "PlayerOnCollision": {
                 "Priority": 10
@@ -2307,8 +2314,11 @@
             "PlayerPathSplineGenerator": {
                 "Priority": 100
             },
-            "PlayerUpdateOnTitle": {
+            "PlayerSpeedFor3dUI": {
                 "Priority": 0
+            },
+            "PlayerUpdateOnTitle": {
+                "Priority": 1
             },
             "PrimitiveNodeAnimationWorkSystem": {
                 "Priority": 1
@@ -2347,7 +2357,13 @@
                 "Priority": 1
             },
             "SpriteRenderSystem": {
-                "Priority": 5
+                "Priority": 11
+            },
+            "StartSequenceSystem": {
+                "Priority": 0
+            },
+            "StartTimerInitialize": {
+                "Priority": 3
             },
             "SubSceneActivateByButton": {
                 "Priority": 0
@@ -2356,7 +2372,7 @@
                 "Priority": 100
             },
             "SubSceneUpdate": {
-                "Priority": 0
+                "Priority": 1
             },
             "TakePlayerToStartPosition": {
                 "Priority": 3
@@ -2366,6 +2382,12 @@
             },
             "TexturedMeshRenderSystem": {
                 "Priority": 0
+            },
+            "TimeLimitJudgeSystem": {
+                "Priority": 0
+            },
+            "TimerCountDown": {
+                "Priority": 10
             },
             "TimerForSprite": {
                 "Priority": 0
@@ -2379,8 +2401,14 @@
             "TutorialColliderOnCollision": {
                 "Priority": 4
             },
+            "Ui3dObjectInitialize": {
+                "Priority": 3
+            },
+            "Ui3dUpdateSystem": {
+                "Priority": 50
+            },
             "UpdateButtonColorByState": {
-                "Priority": 1
+                "Priority": 2
             },
             "VelocityRenderingSystem": {
                 "Priority": 0

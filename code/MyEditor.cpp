@@ -2,6 +2,12 @@
 
 #ifdef _DEBUG
 
+/// engine
+#define RESOURCE_DIRECTORY
+#include <EngineInclude.h>
+// scene
+#include "scene/SceneJsonRegistry.h"
+
 /// editor
 #include "editor/debugReplayer/DebugReplayWindow.h"
 #include "editor/EditorController.h"
@@ -29,6 +35,8 @@ void MyEditor::Initialize(const std::vector<std::string>& _commandLines) {
 
     RegisterUsingComponents();
     RegisterUsingSystems();
+
+    SceneJsonRegistry::GetInstance()->LoadAllScene(kApplicationResourceDirectory + "/" + kSceneJsonFolder);
 
     /// コマンドライン引数の処理
     // -s シーン名 : 指定したシーンを開く
@@ -70,6 +78,7 @@ void MyEditor::Initialize(const std::vector<std::string>& _commandLines) {
         editorWindowMenu->AddMenuItem(std::make_shared<WindowItem<SettingWindow>>());
         editorController_->AddMainMenu<EditorWindowMenu>(std::move(editorWindowMenu));
     }
+
     editorController_->Initialize();
 }
 

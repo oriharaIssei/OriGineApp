@@ -4,19 +4,28 @@
 #include "scene/Scene.h"
 
 /// component
-#include "component/effect/CameraAction.h"
 #include "component/TimerComponent.h"
 
 /// system
 #include "system/SystemRunner.h"
+
+#include "system/Input/GhostInputUpdate.h"
+#include "system/Input/PlayerInputSystem.h"
+#include "system/Movement/PlayerMoveSystem.h"
+#include "system/Transition/PenaltySystem.h"
+
+/// util
+#include "nameof.h"
+
 StartSequenceSystem::StartSequenceSystem() : ISystem(OriGine::SystemCategory::Movement) {}
 StartSequenceSystem::~StartSequenceSystem() {}
 
 void StartSequenceSystem::Initialize() {
     stopSystems_ = {
-        "PlayerInputSystem",
-        "PlayerMoveSystem",
-        "PenaltySystem"};
+        nameof<GhostInputUpdate>(),
+        nameof<PlayerMoveSystem>(),
+        nameof<PlayerInputSystem>(),
+        nameof<PenaltySystem>()};
 }
 
 void StartSequenceSystem::Finalize() {}

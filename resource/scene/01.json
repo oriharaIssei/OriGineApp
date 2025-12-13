@@ -106,8 +106,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -119,8 +119,8 @@
                             1.0
                         ],
                         "size": [
-                            48.0,
-                            48.000003814697266
+                            72.0,
+                            72.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -132,8 +132,8 @@
                             16.0
                         ],
                         "translate": [
-                            72.95999908447266,
-                            30.96000099182129
+                            109.44000244140625,
+                            46.44000244140625
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -165,8 +165,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -178,8 +178,8 @@
                             1.0
                         ],
                         "size": [
-                            48.0,
-                            48.000003814697266
+                            72.0,
+                            72.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -191,8 +191,8 @@
                             16.0
                         ],
                         "translate": [
-                            72.95999908447266,
-                            30.96000099182129
+                            109.44000244140625,
+                            46.44000244140625
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -228,10 +228,6 @@
                     "SystemName": "ButtonInputSystem"
                 },
                 {
-                    "SystemCategory": 3,
-                    "SystemName": "MenuUpdate"
-                },
-                {
                     "SystemCategory": 2,
                     "SystemName": "ShowGameUIByInputDevice"
                 },
@@ -250,6 +246,10 @@
                 {
                     "SystemCategory": 3,
                     "SystemName": "SubSceneUpdate"
+                },
+                {
+                    "SystemCategory": 3,
+                    "SystemName": "PauseMainSceneSystem"
                 }
             ],
             "isUnique": true
@@ -365,6 +365,10 @@
                             [
                                 "./application/resource/entities",
                                 "StartTimer"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "ShadowPlane"
                             ]
                         ]
                     }
@@ -7013,225 +7017,494 @@
                 }
             ],
             "isUnique": false
+        },
+        {
+            "Components": {
+                "SubScene": [
+                    {
+                        "isActive": false,
+                        "renderingPriority": 1,
+                        "sceneName": "GameFailed"
+                    }
+                ]
+            },
+            "Name": "GameFailedScene",
+            "Systems": [
+                {
+                    "SystemCategory": 7,
+                    "SystemName": "SubSceneRender"
+                },
+                {
+                    "SystemCategory": 3,
+                    "SystemName": "SubSceneUpdate"
+                },
+                {
+                    "SystemCategory": 3,
+                    "SystemName": "PauseMainSceneSystem"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "GameFailedSceneLaunchSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "DissolveEffectParam": [
+                    {
+                        "edgeWidth": 0.004000000189989805,
+                        "isActive": true,
+                        "materialIndex": 0,
+                        "outLineColor": [
+                            0.13550177216529846,
+                            0.6617130637168884,
+                            0.746835470199585,
+                            1.0
+                        ],
+                        "textureFilePath": "./application/resource/Texture/waveNoise.png",
+                        "threshold": 0.0
+                    }
+                ],
+                "Material": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "SceneChanger": [
+                    {
+                        "nextSceneName": ""
+                    }
+                ]
+            },
+            "Name": "SceneTransitionReceiver",
+            "Systems": [
+                {
+                    "SystemCategory": 7,
+                    "SystemName": "DissolveEffect"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "SceneTransition"
+                },
+                {
+                    "SystemCategory": 3,
+                    "SystemName": "SceneTransitionRequestReceiverSystem"
+                }
+            ],
+            "isUnique": false
         }
     ],
     "Systems": [
         {
-            "ApplyMouseConditionSystem": {
-                "Priority": 0
-            },
-            "BackFireInitialize": {
-                "Priority": 1
-            },
-            "BillboardTransform": {
-                "Priority": 100
-            },
-            "ButtonInputSystem": {
-                "Priority": 1
-            },
-            "CameraActionSystem": {
-                "Priority": 0
-            },
-            "CameraInitialize": {
-                "Priority": 1
-            },
-            "CameraInputSystem": {
-                "Priority": 2
-            },
-            "CameraMotionBobSystem": {
-                "Priority": 1
-            },
-            "CameraShake": {
-                "Priority": 0
-            },
-            "ChangeSceneByButton": {
-                "Priority": 1
-            },
-            "ColliderRenderingSystem": {
-                "Priority": 100
-            },
-            "CollisionCheckSystem": {
-                "Priority": 0
-            },
-            "CollisionPushBackSystem": {
-                "Priority": 5
-            },
-            "CreateMeshFromSpline": {
-                "Priority": 0
-            },
-            "CreatePlaneFromSpeed": {
-                "Priority": 10
-            },
-            "CreateSpriteFromTimer": {
-                "Priority": 1
-            },
-            "CreateStage": {
-                "Priority": 1
-            },
-            "DissolveEffect": {
-                "Priority": 10
-            },
-            "DistortionEffect": {
-                "Priority": 1
-            },
-            "EffectOnPlayerGearup": {
-                "Priority": 0
-            },
-            "EffectOnPlayerRun": {
-                "Priority": 0
-            },
-            "EmitterWorkSystem": {
-                "Priority": 1
-            },
-            "FallDetectionSystem": {
-                "Priority": 6
-            },
-            "FollowCameraUpdateSystem": {
-                "Priority": 4
-            },
-            "GhostInitializeSystem": {
-                "Priority": 6
-            },
-            "GhostInputUpdate": {
-                "Priority": 0
-            },
             "LineRenderSystem": {
                 "Priority": 0
-            },
-            "MaterialAnimationWorkSystem": {
+            }
+        },
+        {
+            "ApplyMouseConditionSystem": {
                 "Priority": 0
-            },
-            "MaterialEffect": {
-                "Priority": 10
-            },
-            "MenuUpdate": {
-                "Priority": 0
-            },
-            "MoveSystemByRigidBody": {
-                "Priority": 5
-            },
-            "OverlayRenderSystem": {
+            }
+        },
+        {
+            "ColliderRenderingSystem": {
                 "Priority": 100
-            },
-            "ParticleRenderSystem": {
-                "Priority": 3
-            },
-            "PenaltySystem": {
-                "Priority": 0
-            },
-            "PenaltyTimeSpriteUpdate": {
-                "Priority": 0
-            },
-            "PlayRecordSystem": {
+            }
+        },
+        {
+            "CameraInitialize": {
                 "Priority": 1
-            },
-            "PlayRecorderInitialize": {
-                "Priority": 0
-            },
-            "PlayerInputSystem": {
-                "Priority": 3
-            },
-            "PlayerMoveSystem": {
-                "Priority": 3
-            },
-            "PlayerOnCollision": {
-                "Priority": 10
-            },
-            "PlayerPathSplineGenerator": {
+            }
+        },
+        {
+            "BackFireInitialize": {
+                "Priority": 1
+            }
+        },
+        {
+            "BillboardTransform": {
                 "Priority": 100
-            },
-            "PlayerSpeedFor3dUI": {
+            }
+        },
+        {
+            "ChangeSceneByButton": {
                 "Priority": 1
-            },
-            "PrimitiveNodeAnimationWorkSystem": {
+            }
+        },
+        {
+            "CameraMotionBobSystem": {
                 "Priority": 1
-            },
-            "RegisterWindowResizeEvent": {
-                "Priority": 0
-            },
-            "ResolveEntityReferences": {
-                "Priority": -2
-            },
-            "SceneTransition": {
-                "Priority": 0
-            },
-            "SettingGameCameraTarget": {
-                "Priority": 5
-            },
-            "ShowGameUIByInputDevice": {
-                "Priority": 0
-            },
-            "SkeletonRenderSystem": {
-                "Priority": 0
-            },
-            "SkinningAnimationSystem": {
+            }
+        },
+        {
+            "ButtonInputSystem": {
                 "Priority": 1
-            },
-            "SkinningMeshRenderSystem": {
+            }
+        },
+        {
+            "CameraActionSystem": {
                 "Priority": 0
-            },
-            "SkyboxRender": {
-                "Priority": -1
-            },
-            "SpeedlineEffect": {
-                "Priority": 0
-            },
-            "SpriteAnimationSystem": {
-                "Priority": 1
-            },
-            "SpriteRenderSystem": {
-                "Priority": 5
-            },
-            "StartSequenceSystem": {
-                "Priority": 1
-            },
-            "StartTimerInitialize": {
-                "Priority": 3
-            },
-            "SubSceneActivateByButton": {
-                "Priority": 0
-            },
-            "SubSceneRender": {
-                "Priority": 100
-            },
-            "SubSceneUpdate": {
-                "Priority": 0
-            },
+            }
+        },
+        {
             "TakePlayerToStartPosition": {
                 "Priority": 3
-            },
-            "TakeToGoalPosition": {
-                "Priority": 1
-            },
-            "TexturedMeshRenderSystem": {
-                "Priority": 0
-            },
+            }
+        },
+        {
+            "PlayerInputSystem": {
+                "Priority": 3
+            }
+        },
+        {
+            "SceneTransitionRequestSenderSystem": {
+                "Priority": -1
+            }
+        },
+        {
+            "CollisionPushBackSystem": {
+                "Priority": 5
+            }
+        },
+        {
             "TimeLimitJudgeSystem": {
                 "Priority": 10
-            },
-            "TimerCountDown": {
-                "Priority": 7
-            },
-            "TimerForSprite": {
+            }
+        },
+        {
+            "CameraInputSystem": {
+                "Priority": 2
+            }
+        },
+        {
+            "CreatePlaneFromSpeed": {
+                "Priority": 10
+            }
+        },
+        {
+            "CameraShake": {
+                "Priority": 0
+            }
+        },
+        {
+            "CollisionCheckSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "CreateMeshFromSpline": {
+                "Priority": 0
+            }
+        },
+        {
+            "SkinningAnimationSystem": {
                 "Priority": 1
-            },
+            }
+        },
+        {
+            "CreateSpriteFromTimer": {
+                "Priority": 1
+            }
+        },
+        {
+            "CreateStage": {
+                "Priority": 1
+            }
+        },
+        {
+            "PlayerSpeedFor3dUI": {
+                "Priority": 1
+            }
+        },
+        {
+            "DissolveEffect": {
+                "Priority": 100
+            }
+        },
+        {
+            "PenaltySystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "DistortionEffect": {
+                "Priority": 1
+            }
+        },
+        {
+            "GhostInitializeSystem": {
+                "Priority": 6
+            }
+        },
+        {
+            "EffectOnPlayerGearup": {
+                "Priority": 0
+            }
+        },
+        {
+            "EffectOnPlayerRun": {
+                "Priority": 0
+            }
+        },
+        {
+            "EmitterWorkSystem": {
+                "Priority": 1
+            }
+        },
+        {
+            "FallDetectionSystem": {
+                "Priority": 6
+            }
+        },
+        {
+            "SkinningMeshRenderSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "FollowCameraUpdateSystem": {
+                "Priority": 4
+            }
+        },
+        {
+            "GhostInputUpdate": {
+                "Priority": 0
+            }
+        },
+        {
+            "StartTimerInitialize": {
+                "Priority": 3
+            }
+        },
+        {
+            "ParticleRenderSystem": {
+                "Priority": 3
+            }
+        },
+        {
+            "MaterialAnimationWorkSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "MaterialEffect": {
+                "Priority": 10
+            }
+        },
+        {
+            "MoveSystemByRigidBody": {
+                "Priority": 5
+            }
+        },
+        {
+            "ResolveEntityReferences": {
+                "Priority": -2
+            }
+        },
+        {
+            "OverlayRenderSystem": {
+                "Priority": 100
+            }
+        },
+        {
+            "PenaltyTimeSpriteUpdate": {
+                "Priority": 0
+            }
+        },
+        {
+            "PlayRecordSystem": {
+                "Priority": 1
+            }
+        },
+        {
+            "PlayRecorderInitialize": {
+                "Priority": 0
+            }
+        },
+        {
+            "SkeletonRenderSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "PlayerPathSplineGenerator": {
+                "Priority": 100
+            }
+        },
+        {
+            "TexturedMeshRenderSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "PlayerMoveSystem": {
+                "Priority": 3
+            }
+        },
+        {
+            "PlayerOnCollision": {
+                "Priority": 10
+            }
+        },
+        {
+            "PrimitiveNodeAnimationWorkSystem": {
+                "Priority": 1
+            }
+        },
+        {
             "TrailEffectInitialize": {
                 "Priority": 100
-            },
+            }
+        },
+        {
+            "RegisterWindowResizeEvent": {
+                "Priority": 0
+            }
+        },
+        {
             "TransitionPlayerState": {
                 "Priority": 5
-            },
-            "Ui3dObjectInitialize": {
-                "Priority": 11
-            },
-            "Ui3dUpdateSystem": {
-                "Priority": 100
-            },
-            "UpdateButtonColorByState": {
+            }
+        },
+        {
+            "SceneTransition": {
+                "Priority": 0
+            }
+        },
+        {
+            "SpriteAnimationSystem": {
                 "Priority": 1
-            },
+            }
+        },
+        {
             "VelocityRenderingSystem": {
                 "Priority": 0
+            }
+        },
+        {
+            "SettingGameCameraTarget": {
+                "Priority": 5
+            }
+        },
+        {
+            "ShowGameUIByInputDevice": {
+                "Priority": 0
+            }
+        },
+        {
+            "SkyboxRender": {
+                "Priority": -1
+            }
+        },
+        {
+            "SpeedlineEffect": {
+                "Priority": 0
+            }
+        },
+        {
+            "RestartSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "SpriteRenderSystem": {
+                "Priority": 5
+            }
+        },
+        {
+            "TakeToGoalPosition": {
+                "Priority": 1
+            }
+        },
+        {
+            "SubSceneActivateByButton": {
+                "Priority": 0
+            }
+        },
+        {
+            "StartSequenceSystem": {
+                "Priority": 1
+            }
+        },
+        {
+            "SubSceneRender": {
+                "Priority": 10
+            }
+        },
+        {
+            "SubSceneUpdate": {
+                "Priority": 0
+            }
+        },
+        {
+            "TimerCountDown": {
+                "Priority": 7
+            }
+        },
+        {
+            "TimerForSprite": {
+                "Priority": 1
+            }
+        },
+        {
+            "Ui3dObjectInitialize": {
+                "Priority": 11
+            }
+        },
+        {
+            "Ui3dUpdateSystem": {
+                "Priority": 100
+            }
+        },
+        {
+            "UpdateButtonColorByState": {
+                "Priority": 1
+            }
+        },
+        {
+            "PauseMainSceneSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "GameFailedSceneLaunchSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "SceneTransitionRequestReceiverSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "ShadowPlaneSyncPlayerPosition": {
+                "Priority": 100
+            }
+        },
+        {
+            "ShadowCastSystem": {
+                "Priority": 11
             }
         }
     ]

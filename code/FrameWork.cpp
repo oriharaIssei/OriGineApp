@@ -30,6 +30,7 @@
 
 // application system
 #include "system/collision/PlayerOnCollision.h"
+#include "system/collision/ShadowCastSystem.h"
 #include "system/collision/TutorialColliderOnCollision.h"
 #include "system/effect/CameraShake.h"
 #include "system/effect/CreateMeshFromSpline.h"
@@ -61,10 +62,14 @@
 #include "system/movement/BillboardTransform.h"
 #include "system/movement/FollowCameraUpdateSystem.h"
 #include "system/Movement/LookAtFromTransformsSystem.h"
-#include "system/movement/MenuUpdate.h"
+#include "system/movement/PauseMainSceneSystem.h"
 #include "system/movement/PlayerMoveSystem.h"
 #include "system/movement/PlayerPathSplineGenerator.h"
 #include "system/movement/PlayerUpdateOnTitle.h"
+#include "system/movement/RestartSystem.h"
+#include "system/movement/SceneTransitionRequestReceiverSystem.h"
+#include "system/movement/SceneTransitionRequestSenderSystem.h"
+#include "system/Movement/ShadowPlaneSyncPlayerPosition.h"
 #include "system/movement/StartSequenceSystem.h"
 #include "system/Movement/Ui3dUpdateSystem.h"
 #include "system/transition/ApplyMouseConditionSystem.h"
@@ -74,7 +79,9 @@
 #include "system/transition/ChangeSceneByButton.h"
 #include "system/transition/ExitApplicationByButton.h"
 #include "system/transition/FallDetectionSystem.h"
+#include "system/transition/GameFailedSceneLaunchSystem.h"
 #include "system/transition/PenaltySystem.h"
+#include "system/transition/RestartOnButtonPressSystem.h"
 #include "system/transition/SceneTransition.h"
 #include "system/transition/ShowGameUIByInputDevice.h"
 #include "system/transition/SubSceneActivateByButton.h"
@@ -237,6 +244,10 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<PenaltySystem>();
     systemRegistry->RegisterSystem<CameraMotionBobSystem>();
 
+    systemRegistry->RegisterSystem<GameFailedSceneLaunchSystem>();
+
+    systemRegistry->RegisterSystem<RestartOnButtonPressSystem>();
+
     systemRegistry->RegisterSystem<ButtonScenePreviewSystem>();
 
     /// =================================================================================================
@@ -248,14 +259,19 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<FollowCameraUpdateSystem>();
     systemRegistry->RegisterSystem<PlayerMoveSystem>();
 
+    systemRegistry->RegisterSystem<PlayerPathSplineGenerator>();
     systemRegistry->RegisterSystem<PlayerUpdateOnTitle>();
 
-    systemRegistry->RegisterSystem<PlayerPathSplineGenerator>();
+    systemRegistry->RegisterSystem<ShadowPlaneSyncPlayerPosition>();
 
     systemRegistry->RegisterSystem<StartSequenceSystem>();
 
+    systemRegistry->RegisterSystem<SceneTransitionRequestSenderSystem>();
+    systemRegistry->RegisterSystem<SceneTransitionRequestReceiverSystem>();
+
     systemRegistry->RegisterSystem<SubSceneUpdate>();
-    systemRegistry->RegisterSystem<MenuUpdate>();
+    systemRegistry->RegisterSystem<RestartSystem>();
+    systemRegistry->RegisterSystem<PauseMainSceneSystem>();
 
     systemRegistry->RegisterSystem<LookAtFromTransformsSystem>();
     systemRegistry->RegisterSystem<Ui3dUpdateSystem>();
@@ -268,6 +284,8 @@ void RegisterUsingSystems() {
 
     systemRegistry->RegisterSystem<PlayerOnCollision>();
     systemRegistry->RegisterSystem<TutorialColliderOnCollision>();
+
+    systemRegistry->RegisterSystem<ShadowCastSystem>();
 
     /// =================================================================================================
     // Effect

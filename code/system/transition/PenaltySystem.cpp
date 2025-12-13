@@ -57,7 +57,8 @@ void PenaltySystem::UpdateEntity(OriGine::Entity* _entity) {
 
     playerState->GetStateFlagRef().CurrentRef().SetFlag(PlayerStateFlag::GEAR_UP);
 
-    if (!_entity->IsUnique()) {
+    // Playerが操作しているエンティティでなければ 処理しない
+    if (_entity->IsUnique()) {
         return;
     }
 
