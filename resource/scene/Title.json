@@ -602,8 +602,26 @@
         },
         {
             "Components": {
-                "CollisionPushBackInfo": [],
-                "DissolveEffectParam": [],
+                "CollisionPushBackInfo": [
+                    {
+                        "pushBackType": 0
+                    }
+                ],
+                "DissolveEffectParam": [
+                    {
+                        "edgeWidth": 0.0010000000474974513,
+                        "isActive": false,
+                        "materialIndex": 0,
+                        "outLineColor": [
+                            0.01568627543747425,
+                            0.7647058963775635,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "./application/resource/Texture/bioNoise.png",
+                        "threshold": 0.0
+                    }
+                ],
                 "Emitter": [],
                 "Material": [
                     {
@@ -812,66 +830,66 @@
                 "PlayerEffectControlParam": [
                     {
                         "maxWheelSpinSpeed": 0.18700000643730164,
-                        "rotateOffsetOnWallRun": 0.30000001192092896,
+                        "rotateOffsetOnWallRun": 0.5699999928474426,
                         "trailColorByGearLevel": [
                             [
-                                0.4529188871383667,
-                                0.7435898780822754,
-                                0.894514799118042,
+                                0.1051647737622261,
+                                0.5330854654312134,
+                                0.7552742958068848,
                                 1.0
                             ],
                             [
-                                0.22912994027137756,
+                                0.08431697636842728,
+                                0.44282761216163635,
+                                0.6244726181030273,
+                                1.0
+                            ],
+                            [
+                                0.05615197494626045,
+                                0.25187987089157104,
+                                0.700421929359436,
+                                1.0
+                            ],
+                            [
+                                0.8185653686523438,
+                                0.7320002317428589,
+                                0.058715660125017166,
+                                1.0
+                            ],
+                            [
+                                0.8438818454742432,
+                                0.3855002522468567,
+                                0.03916749358177185,
+                                1.0
+                            ],
+                            [
                                 0.8227847814559937,
-                                0.7701823711395264,
+                                0.13539497554302216,
+                                0.13539497554302216,
                                 1.0
                             ],
                             [
-                                0.12031546980142593,
-                                0.36320656538009644,
-                                0.9198312163352966,
+                                0.6244726181030273,
+                                0.06914126127958298,
+                                0.03952357918024063,
                                 1.0
                             ],
                             [
-                                0.7679324746131897,
-                                0.19908905029296875,
-                                0.09720662981271744,
+                                0.6666666269302368,
+                                0.0,
+                                0.0,
                                 1.0
                             ],
                             [
-                                0.7341772317886353,
-                                0.05576029792428017,
-                                0.05576029792428017,
+                                0.6540084481239319,
+                                0.08554540574550629,
+                                0.258243203163147,
                                 1.0
                             ],
                             [
-                                0.8691983222961426,
-                                0.10635758936405182,
-                                0.6857303977012634,
-                                1.0
-                            ],
-                            [
-                                0.5732734799385071,
-                                0.06022895127534866,
-                                0.8396624326705933,
-                                1.0
-                            ],
-                            [
-                                1.0,
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            [
-                                1.0,
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            [
-                                1.0,
-                                1.0,
-                                1.0,
+                                0.2764798402786255,
+                                0.031191591173410416,
+                                0.30801689624786377,
                                 1.0
                             ]
                         ],
@@ -889,22 +907,28 @@
                 ],
                 "PlayerStatus": [
                     {
-                        "baseSpeed": 7.599999904632568,
+                        "baseSpeed": 27.0,
                         "coolTimeAddRateBase": 1.409999966621399,
                         "coolTimeAddRateCommonRate": 0.032999999821186066,
                         "directionInterpolateRate": 37.880001068115234,
-                        "fallPower": 116.5,
+                        "fallingGravityRate": 1.0,
                         "gearUpCoolTime": 0.46000000834465027,
-                        "jumpPower": 0.15000000596046448,
-                        "speedUpRateBase": 9.800000190734863,
-                        "speedUpRateCommonRate": -1.100000023841858,
+                        "jumpChargeRateEaseType": 8,
+                        "jumpHoldVelocityEaseType": 2,
+                        "maxJumpChargeRate": 0.23999999463558197,
+                        "maxJumpHoldVelocity": 0.2800000011920929,
+                        "minJumpChargeRate": 0.15000000596046448,
+                        "minJumpHoldVelocity": 0.12999999523162842,
+                        "risingGravityRate": 1.25,
+                        "speedUpRateBase": 10.130000114440918,
+                        "speedUpRateCommonRate": -0.4000000059604645,
                         "wallJumpOffset": [
                             0.75,
                             0.20999999344348907,
                             1.0399999618530273
                         ],
                         "wallRunRate": 1.7999999523162842,
-                        "wallRunRumpUpTime": 0.20000000298023224
+                        "wallRunRumpUpTime": 0.5400000214576721
                     }
                 ],
                 "Rigidbody": [
@@ -925,9 +949,40 @@
                         ]
                     }
                 ],
-                "SceneChanger": [],
+                "SceneChanger": [
+                    {
+                        "nextSceneName": "Result"
+                    }
+                ],
                 "SkinningAnimationComponent": [],
-                "SphereCollider": [],
+                "SphereCollider": [
+                    {
+                        "center": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "radius": 1.0700000524520874,
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
                 "Transform": [
                     {
                         "rotate": [
@@ -942,9 +997,9 @@
                             1.0
                         ],
                         "translate": [
-                            -1.6299999952316284,
-                            -0.6600000262260437,
-                            3.0
+                            -1.8700000047683716,
+                            -0.8399999737739563,
+                            3.7200000286102295
                         ]
                     }
                 ]
@@ -993,8 +1048,8 @@
                             1.0
                         ],
                         "uvTranslate": [
-                            -0.1598002314567566,
-                            -0.1598002314567566
+                            -0.3702772855758667,
+                            -0.3702772855758667
                         ]
                     }
                 ],
@@ -1045,8 +1100,7 @@
                         "isCulling": true,
                         "isRenderer": true,
                         "materialIndex": 0,
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -1212,7 +1266,7 @@
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.5412588715553284
+                            0.023619726300239563
                         ]
                     }
                 ],
@@ -1301,6 +1355,15 @@
                         "activeTime": 2.299999952316284,
                         "blendMode": 1,
                         "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -1583,6 +1646,14 @@
                             {
                                 "time": 0.0,
                                 "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
                                     0.10000000149011612,
                                     0.10000000149011612,
                                     0.10000000149011612
@@ -1681,6 +1752,14 @@
                         "updateSettings": 4386,
                         "uvInterpolationType": 0,
                         "velocityCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -1864,8 +1943,7 @@
                         "isCulling": true,
                         "isRenderer": true,
                         "materialIndex": 0,
-                        "textureDirectory": "./application/resource/Texture",
-                        "textureFileName": "lazer.png",
+                        "textureFilePath": "./application/resource/Texture/lazer.png",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -1939,8 +2017,7 @@
                             1.0,
                             1.0
                         ],
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -2063,8 +2140,8 @@
                             1.0
                         ],
                         "uvTranslate": [
-                            -0.1598002314567566,
-                            -0.1598002314567566
+                            -0.656075656414032,
+                            -0.656075656414032
                         ]
                     }
                 ],
@@ -2115,8 +2192,7 @@
                         "isCulling": true,
                         "isRenderer": true,
                         "materialIndex": 0,
-                        "textureDirectory": "",
-                        "textureFileName": "",
+                        "textureFilePath": "",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -2180,73 +2256,119 @@
         {
             "ApplyMouseConditionSystem": {
                 "Priority": 0
-            },
-            "ButtonGroupSystem": {
-                "Priority": 0
-            },
-            "ButtonInputSystem": {
-                "Priority": 0
-            },
-            "CameraInitialize": {
-                "Priority": 1
-            },
-            "ChangeSceneByButton": {
-                "Priority": 10
-            },
-            "CreateStage": {
-                "Priority": 0
-            },
-            "DissolveEffect": {
-                "Priority": 10
-            },
-            "EffectOnPlayerRun": {
-                "Priority": 0
-            },
+            }
+        },
+        {
             "EmitterWorkSystem": {
                 "Priority": 1
-            },
+            }
+        },
+        {
+            "ButtonGroupSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "ChangeSceneByButton": {
+                "Priority": 10
+            }
+        },
+        {
+            "ButtonInputSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "CameraInitialize": {
+                "Priority": 1
+            }
+        },
+        {
+            "EffectOnPlayerRun": {
+                "Priority": 0
+            }
+        },
+        {
+            "CreateStage": {
+                "Priority": 0
+            }
+        },
+        {
+            "DissolveEffect": {
+                "Priority": 10
+            }
+        },
+        {
             "ExitApplicationByButton": {
                 "Priority": 10
-            },
-            "MaterialAnimationWorkSystem": {
-                "Priority": 0
-            },
-            "MaterialEffect": {
-                "Priority": 1
-            },
+            }
+        },
+        {
             "ParticleRenderSystem": {
                 "Priority": 3
-            },
+            }
+        },
+        {
+            "MaterialAnimationWorkSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "MaterialEffect": {
+                "Priority": 1
+            }
+        },
+        {
             "PlayerInputSystem": {
                 "Priority": 0
-            },
+            }
+        },
+        {
             "PlayerUpdateOnTitle": {
                 "Priority": 0
-            },
+            }
+        },
+        {
             "PrimitiveNodeAnimationWorkSystem": {
                 "Priority": 1
-            },
+            }
+        },
+        {
             "RegisterWindowResizeEvent": {
                 "Priority": 0
-            },
+            }
+        },
+        {
             "SceneTransition": {
                 "Priority": 10
-            },
+            }
+        },
+        {
             "SkinningAnimationSystem": {
                 "Priority": 0
-            },
+            }
+        },
+        {
             "SkyboxRender": {
                 "Priority": 0
-            },
+            }
+        },
+        {
             "SpriteRenderSystem": {
                 "Priority": 5
-            },
+            }
+        },
+        {
             "SubSceneRender": {
                 "Priority": 0
-            },
+            }
+        },
+        {
             "TexturedMeshRenderSystem": {
                 "Priority": 1
-            },
+            }
+        },
+        {
             "UpdateButtonColorByState": {
                 "Priority": 2
             }

@@ -128,7 +128,7 @@ void EffectOnPlayerGearup::UpdateShockWaveRing(OriGine::Entity* _entity, OriGine
             float outerRadius                         = std::lerp(minOuterRadius_, maxOuterRadius_, easeT);
             ringRenderer->GetPrimitive().innerRadius_ = innerRadius;
             ringRenderer->GetPrimitive().outerRadius_ = outerRadius;
-            TextureMesh* mesh                         = &ringRenderer->GetMeshGroup()->back();
+            auto* mesh                         = &ringRenderer->GetMeshGroup()->back();
             ringRenderer->CreateMesh(mesh);
         }
     } else if (!shockWaveState_.playState.IsRelease()) {

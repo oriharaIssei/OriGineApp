@@ -9,6 +9,7 @@
 #include "component/physics/Rigidbody.h"
 #include "component/transform/Transform.h"
 /// math
+#include <math/MyEasing.h>
 #include <math/Quaternion.h>
 #include <math/Vector3.h>
 
@@ -69,8 +70,15 @@ private:
     // currentMaxSpeed は gearLevel に応じて変化する
     float currentMaxSpeed_ = 0.0f; // 現在の最大速度
 
-    float jumpPower_ = 0.0f; // ジャンプのパワー
-    float fallPower_ = 0.0f; // 落下のパワー
+    OriGine::EaseType jumpHoldVelocityEaseType_ = OriGine::EaseType::Liner;
+    OriGine::EaseType jumpChargeRateEaseType_   = OriGine::EaseType::Liner;
+    float minJumpHoldVelocity_                  = 0.0f; // ジャンプのパワー
+    float maxJumpHoldVelocity_                  = 0.0f; // ジャンプのパワー
+    float minJumpChargeRate_                    = 0.0f; // 落下のパワー
+    float maxJumpChargeRate_                    = 0.0f; // 落下のパワー
+
+    float risingGravityRate_  = 1.0f; // 上昇時の重力倍率
+    float fallingGravityRate_ = 1.0f; // 下降時の重力倍率
 
     float directionInterpolateRate_ = 0.1f;
 
@@ -84,8 +92,25 @@ public:
     float GetBaseSpeed() const {
         return baseSpeed_;
     }
-    float GetJumpPower() const { return jumpPower_; }
-    float GetFallPower() const { return fallPower_; }
+
+    OriGine::EaseType GetJumpHoldVelocityEaseType() const { return jumpHoldVelocityEaseType_; }
+    OriGine::EaseType GetJumpChargeRateEaseType() const {
+        return jumpChargeRateEaseType_;
+    }
+
+    float GetMinJumpHoldVelocity() const {
+        return minJumpHoldVelocity_;
+    }
+    float GetMaxJumpHoldVelocity() const { return minJumpHoldVelocity_; }
+    float GetMinJumpChargeRate() const { return minJumpChargeRate_; }
+    float GetMaxJumpChargeRate() const { return maxJumpChargeRate_; }
+
+    float GetRisingGravityRate() const {
+        return risingGravityRate_;
+    }
+    float GetFallingGravityRate() const {
+        return fallingGravityRate_;
+    }
 
     float GetCurrentMaxSpeed() const {
         return currentMaxSpeed_;

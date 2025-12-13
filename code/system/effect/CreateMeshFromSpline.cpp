@@ -75,8 +75,8 @@ void CreateMeshFromSpline::CreateCrossPlaneMesh(PlaneRenderer* _planeRendererCom
 
     // メッシュ生成
     // 十字型にするため,縦方向と横方向の2つのメッシュを作成
-    std::vector<TextureVertexData> verticalVertexes;
-    std::vector<TextureVertexData> horizontalVertexes;
+    std::vector<TextureColorVertexData> verticalVertexes;
+    std::vector<TextureColorVertexData> horizontalVertexes;
     std::vector<uint32_t> indices;
 
     int32_t segmentCount = static_cast<int32_t>(_splinePointsComp->points_.size() - 1);
@@ -124,7 +124,7 @@ void CreateMeshFromSpline::CreateCrossPlaneMesh(PlaneRenderer* _planeRendererCom
 
         // === 縦メッシュ ===
         {
-            TextureVertexData vertData;
+            TextureColorVertexData vertData;
 
             OriGine::Vec3f left0  = p0 - right * minWidthHalf;
             OriGine::Vec3f right0 = p0 + right * minWidthHalf;
@@ -133,14 +133,14 @@ void CreateMeshFromSpline::CreateCrossPlaneMesh(PlaneRenderer* _planeRendererCom
 
             // 最初のセグメントは4頂点、それ以降は2頂点だけ追加
             if (i == 0) {
-                TextureVertexData v0{OriGine::Vec4f(left0, 1.0f), uv[0], up};
-                TextureVertexData v1{OriGine::Vec4f(right0, 1.0f), uv[1], up};
+                TextureColorVertexData v0{OriGine::Vec4f(left0, 1.0f), uv[0], up};
+                TextureColorVertexData v1{OriGine::Vec4f(right0, 1.0f), uv[1], up};
                 verticalVertexes.push_back(v0);
                 verticalVertexes.push_back(v1);
             }
 
-            TextureVertexData v2{OriGine::Vec4f(left1, 1.0f), uv[2], up};
-            TextureVertexData v3{OriGine::Vec4f(right1, 1.0f), uv[3], up};
+            TextureColorVertexData v2{OriGine::Vec4f(left1, 1.0f), uv[2], up};
+            TextureColorVertexData v3{OriGine::Vec4f(right1, 1.0f), uv[3], up};
             verticalVertexes.push_back(v2);
             verticalVertexes.push_back(v3);
 
@@ -155,7 +155,7 @@ void CreateMeshFromSpline::CreateCrossPlaneMesh(PlaneRenderer* _planeRendererCom
 
         // === 横メッシュ ===
         {
-            TextureVertexData vertData;
+            TextureColorVertexData vertData;
 
             OriGine::Vec3f down0 = p0 - up * minWidthHalf;
             OriGine::Vec3f up0   = p0 + up * minWidthHalf;
@@ -163,26 +163,26 @@ void CreateMeshFromSpline::CreateCrossPlaneMesh(PlaneRenderer* _planeRendererCom
             OriGine::Vec3f up1   = p1 + up * maxWidthHalf;
 
             if (i == 0) {
-                TextureVertexData v0{OriGine::Vec4f(down0, 1.0f), uv[0], right};
-                TextureVertexData v1{OriGine::Vec4f(up0, 1.0f), uv[1], right};
+                TextureColorVertexData v0{OriGine::Vec4f(down0, 1.0f), uv[0], right};
+                TextureColorVertexData v1{OriGine::Vec4f(up0, 1.0f), uv[1], right};
                 horizontalVertexes.push_back(v0);
                 horizontalVertexes.push_back(v1);
             }
 
-            TextureVertexData v2{OriGine::Vec4f(down1, 1.0f), uv[2], right};
-            TextureVertexData v3{OriGine::Vec4f(up1, 1.0f), uv[3], right};
+            TextureColorVertexData v2{OriGine::Vec4f(down1, 1.0f), uv[2], right};
+            TextureColorVertexData v3{OriGine::Vec4f(up1, 1.0f), uv[3], right};
             horizontalVertexes.push_back(v2);
             horizontalVertexes.push_back(v3);
         }
     }
 
-    std::vector<TextureMesh> meshGroup;
-    TextureMesh verticalMesh;
+    std::vector<TextureColorMesh> meshGroup;
+    TextureColorMesh verticalMesh;
     verticalMesh.Initialize(static_cast<UINT>(verticalVertexes.size()), static_cast<UINT>(indices.size()));
     verticalMesh.SetVertexData(verticalVertexes);
     verticalMesh.SetIndexData(indices);
     meshGroup.push_back(verticalMesh);
-    TextureMesh horizontalMesh;
+    TextureColorMesh horizontalMesh;
     horizontalMesh.Initialize(static_cast<UINT>(horizontalVertexes.size()), static_cast<UINT>(indices.size()));
     horizontalMesh.SetVertexData(horizontalVertexes);
     horizontalMesh.SetIndexData(indices);
@@ -200,7 +200,7 @@ void CreateMeshFromSpline::CreateLinePlaneMesh(OriGine::PlaneRenderer* _planeRen
 
     // メッシュ生成
     // 十字型にするため,縦方向と横方向の2つのメッシュを作成
-    std::vector<TextureVertexData> verticalVertexes;
+    std::vector<TextureColorVertexData> verticalVertexes;
     std::vector<uint32_t> indices;
 
     int32_t segmentCount = static_cast<int32_t>(_splinePointsComp->points_.size() - 1);
@@ -238,7 +238,7 @@ void CreateMeshFromSpline::CreateLinePlaneMesh(OriGine::PlaneRenderer* _planeRen
 
         // === 縦メッシュ ===
         {
-            TextureVertexData vertData;
+            TextureColorVertexData vertData;
 
             OriGine::Vec3f left0  = p0 - right * minWidthHalf;
             OriGine::Vec3f right0 = p0 + right * minWidthHalf;
@@ -247,14 +247,14 @@ void CreateMeshFromSpline::CreateLinePlaneMesh(OriGine::PlaneRenderer* _planeRen
 
             // 最初のセグメントは4頂点、それ以降は2頂点だけ追加
             if (i == 0) {
-                TextureVertexData v0{OriGine::Vec4f(left0, 1.0f), uv[0], up};
-                TextureVertexData v1{OriGine::Vec4f(right0, 1.0f), uv[1], up};
+                TextureColorVertexData v0{OriGine::Vec4f(left0, 1.0f), uv[0], up};
+                TextureColorVertexData v1{OriGine::Vec4f(right0, 1.0f), uv[1], up};
                 verticalVertexes.push_back(v0);
                 verticalVertexes.push_back(v1);
             }
 
-            TextureVertexData v2{OriGine::Vec4f(left1, 1.0f), uv[2], up};
-            TextureVertexData v3{OriGine::Vec4f(right1, 1.0f), uv[3], up};
+            TextureColorVertexData v2{OriGine::Vec4f(left1, 1.0f), uv[2], up};
+            TextureColorVertexData v3{OriGine::Vec4f(right1, 1.0f), uv[3], up};
             verticalVertexes.push_back(v2);
             verticalVertexes.push_back(v3);
 
@@ -268,8 +268,8 @@ void CreateMeshFromSpline::CreateLinePlaneMesh(OriGine::PlaneRenderer* _planeRen
         }
     }
 
-    std::vector<TextureMesh> meshGroup;
-    TextureMesh verticalMesh;
+    std::vector<TextureColorMesh> meshGroup;
+    TextureColorMesh verticalMesh;
     verticalMesh.Initialize(static_cast<UINT>(verticalVertexes.size()), static_cast<UINT>(indices.size()));
     verticalMesh.SetVertexData(verticalVertexes);
     verticalMesh.SetIndexData(indices);
