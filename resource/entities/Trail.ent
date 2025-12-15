@@ -3,9 +3,9 @@
         "Material": [
             {
                 "color": [
-                    0.47679322957992554,
-                    0.09053032100200653,
-                    0.09053032100200653,
+                    0.08431697636842728,
+                    0.44282761216163635,
+                    0.6244726181030273,
                     1.0
                 ],
                 "enableLighting": false,
@@ -30,7 +30,7 @@
             {
                 "InterpolationType": 0,
                 "colorCurve": [],
-                "duration": 4.800000190734863,
+                "duration": 2.5999999046325684,
                 "isLoop": true,
                 "isPlay": false,
                 "uvRotateCurve": [],
@@ -44,7 +44,7 @@
                         ]
                     },
                     {
-                        "time": 4.800000190734863,
+                        "time": 2.5999999046325684,
                         "value": [
                             0.0,
                             1.0
@@ -59,6 +59,10 @@
                 "effectEntityIdList": [
                     {
                         "effectType": 0,
+                        "entityID": 76
+                    },
+                    {
+                        "effectType": 2,
                         "entityID": 78
                     }
                 ],
@@ -70,11 +74,10 @@
         "PlaneRenderer": [
             {
                 "blendMode": 1,
-                "isCulling": true,
-                "isRenderer": false,
+                "isCulling": false,
+                "isRenderer": true,
                 "materialIndex": 0,
-                "textureDirectory": "./application/resource/Texture",
-                "textureFileName": "gradation.png",
+                "textureFilePath": "./application/resource/Texture/gradation.png",
                 "transform": {
                     "rotate": [
                         0.0,
@@ -97,23 +100,25 @@
         ],
         "SplinePoints": [
             {
-                "capacity": 32,
+                "capacity": 24,
                 "endUv": [
                     0.6000000238418579,
                     1.0
                 ],
-                "endWidth": 0.44999998807907104,
+                "endWidth": 0.38999998569488525,
                 "fadeoutTime": 0.029999999329447746,
                 "isCrossMesh": true,
+                "isUvLoopEnable": false,
                 "segmentDivide": 16,
-                "segmentLength": 0.5899999737739563,
+                "segmentLength": 0.6899999976158142,
                 "startUv": [
                     0.30000001192092896,
                     0.0
                 ],
-                "startWidth": 0.44999998807907104,
+                "startWidth": 1.8601000308990479,
                 "uvEaseType": 4,
-                "widthEaseType": 2
+                "uvLoopLength": 1.0,
+                "widthEaseType": 10
             }
         ],
         "Transform": [
@@ -131,7 +136,7 @@
                 ],
                 "translate": [
                     0.0,
-                    -0.3700000047683716,
+                    -0.44999998807907104,
                     -0.12999999523162842
                 ]
             }
@@ -152,12 +157,12 @@
             "SystemName": "MaterialEffect"
         },
         {
-            "SystemCategory": 6,
-            "SystemName": "TexturedMeshRenderSystem"
-        },
-        {
             "SystemCategory": 3,
             "SystemName": "PlayerPathSplineGenerator"
+        },
+        {
+            "SystemCategory": 6,
+            "SystemName": "TexturedMeshRenderSystem"
         },
         {
             "SystemCategory": 0,

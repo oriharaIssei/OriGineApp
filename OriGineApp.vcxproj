@@ -139,11 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="code\component\spline\TireSplinePoints.h" />
     <ClInclude Include="code\event\GamefailedEvent.h" />
     <ClInclude Include="code\event\SceneChangeRequest.h" />
     <ClInclude Include="code\system\collision\ShadowCastSystem.h" />
     <ClInclude Include="code\system\Movement\SceneTransitionRequestReceiverSystem.h" />
     <ClInclude Include="code\system\Movement\SceneTransitionRequestSenderSystem.h" />
+    <ClInclude Include="code\system\Movement\TireTrailGenerateSystem.h" />
     <ClInclude Include="code\system\Transition\CameraMotionBobSystem.h" />
     <ClInclude Include="code\component\camera\CameraMotionBob.h" />
     <ClInclude Include="code\system\effect\CameraShake.h" />
@@ -237,11 +239,14 @@
     <ClInclude Include="code\event\RestartEvent.h" />
     <ClInclude Include="code\system\Transition\GameFailedSceneLaunchSystem.h" />
     <ClInclude Include="code\system\Movement\ShadowPlaneSyncPlayerPosition.h" />
+    <ClInclude Include="code\system\effect\CreateMeshFromTireSpline.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\component\spline\TireSplinePoints.cpp" />
     <ClCompile Include="code\system\collision\ShadowCastSystem.cpp" />
     <ClCompile Include="code\system\Movement\SceneTransitionRequestReceiverSystem.cpp" />
     <ClCompile Include="code\system\Movement\SceneTransitionRequestSenderSystem.cpp" />
+    <ClCompile Include="code\system\Movement\TireTrailGenerateSystem.cpp" />
     <ClCompile Include="code\system\Transition\CameraMotionBobSystem.cpp" />
     <ClCompile Include="code\component\camera\CameraMotionBob.cpp" />
     <ClCompile Include="code\system\effect\CameraShake.cpp" />
@@ -335,6 +340,7 @@
     <ClCompile Include="code\system\Movement\RestartSystem.cpp" />
     <ClCompile Include="code\system\Transition\GameFailedSceneLaunchSystem.cpp" />
     <ClCompile Include="code\system\Movement\ShadowPlaneSyncPlayerPosition.cpp" />
+    <ClCompile Include="code\system\effect\CreateMeshFromTireSpline.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">

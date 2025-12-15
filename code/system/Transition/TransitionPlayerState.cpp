@@ -4,6 +4,8 @@
 #define DELTA_TIME
 #define ENGINE_ECS
 #include "EngineInclude.h"
+
+#include "scene/SceneFactory.h"
 #include "scene/SceneManager.h"
 
 /// application
@@ -13,15 +15,16 @@
 #include "component/SceneChanger.h"
 #include "component/TimerComponent.h"
 
+#include "component/spline/TireSplinePoints.h"
+
 #include "component/material/Material.h"
 
 #include "component/stage/StageData.h"
 
+#include "component/player/PlayerEffectControlParam.h"
 #include "component/player/PlayerStatus.h"
 #include "component/player/state/PlayerMoveStateFactory.h"
 #include "component/player/state/PlayerState.h"
-
-#include "component/physics/Rigidbody.h"
 
 #include "component/Camera/CameraController.h"
 #include "component/transform/CameraTransform.h"
@@ -43,7 +46,6 @@ void TransitionPlayerState::UpdateEntity(OriGine::Entity* _entity) {
     // goal 判定
     ///! TODO : 専用のシステムクラスで判定
     if (state->IsGoal() && _entity->IsUnique()) {
-
         // clearTime Set
         PlayerProgressStore* progressStore = PlayerProgressStore::GetInstance();
         OriGine::Entity* timerEntity       = GetUniqueEntity("Timer");
@@ -69,43 +71,6 @@ void TransitionPlayerState::UpdateEntity(OriGine::Entity* _entity) {
         }
     }
 
-    // Restart 判定
-    if (state->IsRestart()) {
-        Transform* playerTransform = GetComponent<OriGine::Transform>(_entity);
-        playerTransform->Initialize(_entity);
-
-        OriGine::Entity* startPosEntity = GetUniqueEntity("StartPosition");
-        if (startPosEntity) {
-            Transform* startTransform = GetComponent<OriGine::Transform>(startPosEntity);
-            if (startTransform && playerTransform) {
-                playerTransform->translate = startTransform->GetWorldTranslate();
-            }
-        };
-        PlayerStatus* playerStatus = GetComponent<PlayerStatus>(_entity);
-        Rigidbody* rigidbody       = GetComponent<Rigidbody>(_entity);
-
-        OriGine::Entity* gameCameraEntity = GetEntity(state->GetCameraEntityID());
-        if (gameCameraEntity) {
-            constexpr Vec3f kCameraOffset    = Vec3f(0.f, 5.f, -10.f);
-            CameraTransform* cameraTransform = GetComponent<CameraTransform>(gameCameraEntity);
-            if (cameraTransform) {
-                cameraTransform->translate = playerTransform->GetWorldTranslate() + kCameraOffset;
-                cameraTransform->UpdateMatrix();
-            }
-            CameraController* cameraController = GetComponent<CameraController>(gameCameraEntity);
-            if (cameraController) {
-                cameraController->SetCurrentTargetOffset(cameraController->GetFirstTargetOffset());
-                cameraController->SetCurrentOffset(cameraController->GetFirstOffset());
-                cameraController->SetDestinationAngleXY(OriGine::Vec2f(0.f, 0.f));
-            }
-        }
-
-        // 初期化
-        state->Initialize(_entity);
-        playerStatus->Initialize(_entity);
-        rigidbody->Initialize(_entity);
-    }
-
     /// =====================================================
     // PlayerMoveState の初期化 (必要なら)
     /// =====================================================
@@ -126,6 +91,23 @@ void TransitionPlayerState::UpdateEntity(OriGine::Entity* _entity) {
 
         state->SetPlayerMoveState(CreatePlayerMoveStateByEnum(moveStateFlag.Current().ToEnum(), this->GetScene(), _entity->GetID()));
         state->GetPlayerMoveState()->Initialize();
+    }
+
+    PlayerEffectControlParam* effectParam = GetComponent<PlayerEffectControlParam>(_entity);
+    if (effectParam && effectParam->GetTireTrailSplineEntityId() < 0) {
+        if (moveStateFlag.Current().ToEnum() == PlayerMoveState::DASH) {
+            // タイヤトレイルを作る
+            constexpr char kPlayerTireTrailEntityName[] = "PlayerTireTrail";
+            SceneFactory sceneFactory;
+            Entity* tierTrail = sceneFactory.BuildEntityFromTemplate(this->GetScene(), kPlayerTireTrailEntityName);
+            if (tierTrail) {
+                auto tireSplinePoints = GetComponent<TireSplinePoints>(tierTrail);
+                if (tireSplinePoints) {
+                    tireSplinePoints->commonSettings.playerEntityId = _entity->GetID();
+                    effectParam->SetTireTrailSplineEntityId(tierTrail->GetID());
+                }
+            }
+        }
     }
 
     /// =====================================================

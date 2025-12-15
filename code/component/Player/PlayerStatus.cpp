@@ -131,7 +131,7 @@ void PlayerStatus::Debug(OriGine::Scene* /*_scene*/, OriGine::Entity* /*_OriGine
     ImGui::Text("CurrentMax Speed       : %.2f", currentMaxSpeed_);
 
     if (ImGui::TreeNode("JumpHoldVelocity")) {
-        ImGui::Text("EaseType : %s", EasingNames[jumpHoldVelocityEaseType_]);
+        ImGui::Text("EaseType : %s", EasingNames[jumpHoldVelocityEaseType_].c_str());
 
         ImGui::Text("Min : %.3", minJumpHoldVelocity_);
         ImGui::Text("Max : %.3", maxJumpHoldVelocity_);
@@ -139,7 +139,7 @@ void PlayerStatus::Debug(OriGine::Scene* /*_scene*/, OriGine::Entity* /*_OriGine
         ImGui::TreePop();
     }
     if (ImGui::TreeNode("JumpChargeRate")) {
-        ImGui::Text("EaseType : %s", EasingNames[jumpHoldVelocityEaseType_]);
+        ImGui::Text("EaseType : %s", EasingNames[jumpHoldVelocityEaseType_].c_str());
 
         ImGui::Text("Min : %.3", minJumpChargeRate_);
         ImGui::Text("Max : %.3", maxJumpChargeRate_);

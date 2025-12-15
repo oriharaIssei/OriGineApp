@@ -24,7 +24,7 @@ void PlayerJumpState::Initialize() {
 
     rigidbody->SetUseGravity(false);
 
-    float t      = playerState->GetGearLevel() / kMaxPlayerGearLevel;
+    float t      = static_cast<float>(playerState->GetGearLevel()) / static_cast<float>(kMaxPlayerGearLevel);
     float easedT = EasingFunctions[static_cast<int32_t>(playerStatus->GetJumpHoldVelocityEaseType())](t);
 
     rigidbody->SetVelocity(Y, std::lerp(playerStatus->GetMinJumpHoldVelocity(), playerStatus->GetMaxJumpHoldVelocity(), t)); // ジャンプパワーをY軸に設定

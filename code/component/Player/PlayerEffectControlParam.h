@@ -40,12 +40,14 @@ public:
 
 private:
     std::vector<OriGine::Vec4f> trailColorByGearLevel_ = std::vector<OriGine::Vec4f>(kMaxPlayerGearLevel, OriGine::Vec4f(1.f, 1.f, 1.f, 1.f));
-    float rotateOffsetOnWallRun_                 = 0.0f;
-    float maxWheelSpinSpeed_                     = 0.001f;
-    float wheelTiltAngleRate_                    = 0.0f;
-    float preWheelTiltAngle_                     = 0.0f;
+    float rotateOffsetOnWallRun_                       = 0.0f;
+    float maxWheelSpinSpeed_                           = 0.001f;
+    float wheelTiltAngleRate_                          = 0.0f;
+    float preWheelTiltAngle_                           = 0.0f;
     // 最大傾き角度の加速度
     float wheelTiltAngleMaxAccel_ = 0.0f;
+
+    int32_t tireTrailSplineEntityId_ = -1;
 
 public:
     OriGine::Vec4f GetTrailColorByGearLevel(int32_t _level) const {
@@ -69,5 +71,12 @@ public:
     }
     void SetPreWheelTiltAngle(float _angle) {
         preWheelTiltAngle_ = _angle;
+    }
+
+    int32_t GetTireTrailSplineEntityId() const {
+        return tireTrailSplineEntityId_;
+    }
+    void SetTireTrailSplineEntityId(int32_t _id) {
+        tireTrailSplineEntityId_ = _id;
     }
 };

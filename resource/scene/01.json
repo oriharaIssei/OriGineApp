@@ -369,6 +369,10 @@
                             [
                                 "./application/resource/entities",
                                 "ShadowPlane"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "PlayerTireTrail"
                             ]
                         ]
                     }
@@ -7123,22 +7127,22 @@
             }
         },
         {
-            "ApplyMouseConditionSystem": {
-                "Priority": 0
-            }
-        },
-        {
             "ColliderRenderingSystem": {
                 "Priority": 100
             }
         },
         {
-            "CameraInitialize": {
-                "Priority": 1
+            "ApplyMouseConditionSystem": {
+                "Priority": 0
             }
         },
         {
             "BackFireInitialize": {
+                "Priority": 1
+            }
+        },
+        {
+            "CameraInitialize": {
                 "Priority": 1
             }
         },
@@ -7163,21 +7167,6 @@
             }
         },
         {
-            "CameraActionSystem": {
-                "Priority": 0
-            }
-        },
-        {
-            "TakePlayerToStartPosition": {
-                "Priority": 3
-            }
-        },
-        {
-            "PlayerInputSystem": {
-                "Priority": 3
-            }
-        },
-        {
             "SceneTransitionRequestSenderSystem": {
                 "Priority": -1
             }
@@ -7188,8 +7177,18 @@
             }
         },
         {
-            "TimeLimitJudgeSystem": {
-                "Priority": 10
+            "PlayerInputSystem": {
+                "Priority": 3
+            }
+        },
+        {
+            "CameraActionSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "TakePlayerToStartPosition": {
+                "Priority": 3
             }
         },
         {
@@ -7198,13 +7197,18 @@
             }
         },
         {
-            "CreatePlaneFromSpeed": {
+            "TimeLimitJudgeSystem": {
                 "Priority": 10
             }
         },
         {
             "CameraShake": {
                 "Priority": 0
+            }
+        },
+        {
+            "CreatePlaneFromSpeed": {
+                "Priority": 10
             }
         },
         {
@@ -7233,18 +7237,13 @@
             }
         },
         {
-            "PlayerSpeedFor3dUI": {
-                "Priority": 1
-            }
-        },
-        {
             "DissolveEffect": {
                 "Priority": 100
             }
         },
         {
-            "PenaltySystem": {
-                "Priority": 0
+            "PlayerSpeedFor3dUI": {
+                "Priority": 1
             }
         },
         {
@@ -7255,6 +7254,11 @@
         {
             "GhostInitializeSystem": {
                 "Priority": 6
+            }
+        },
+        {
+            "PenaltySystem": {
+                "Priority": 0
             }
         },
         {
@@ -7293,8 +7297,8 @@
             }
         },
         {
-            "StartTimerInitialize": {
-                "Priority": 3
+            "MaterialAnimationWorkSystem": {
+                "Priority": 0
             }
         },
         {
@@ -7303,8 +7307,8 @@
             }
         },
         {
-            "MaterialAnimationWorkSystem": {
-                "Priority": 0
+            "StartTimerInitialize": {
+                "Priority": 3
             }
         },
         {
@@ -7318,13 +7322,13 @@
             }
         },
         {
-            "ResolveEntityReferences": {
-                "Priority": -2
+            "OverlayRenderSystem": {
+                "Priority": 100
             }
         },
         {
-            "OverlayRenderSystem": {
-                "Priority": 100
+            "ResolveEntityReferences": {
+                "Priority": -2
             }
         },
         {
@@ -7338,6 +7342,11 @@
             }
         },
         {
+            "PlayerPathSplineGenerator": {
+                "Priority": 100
+            }
+        },
+        {
             "PlayRecorderInitialize": {
                 "Priority": 0
             }
@@ -7348,18 +7357,13 @@
             }
         },
         {
-            "PlayerPathSplineGenerator": {
-                "Priority": 100
+            "PlayerMoveSystem": {
+                "Priority": 3
             }
         },
         {
             "TexturedMeshRenderSystem": {
                 "Priority": 0
-            }
-        },
-        {
-            "PlayerMoveSystem": {
-                "Priority": 3
             }
         },
         {
@@ -7393,11 +7397,6 @@
             }
         },
         {
-            "SpriteAnimationSystem": {
-                "Priority": 1
-            }
-        },
-        {
             "VelocityRenderingSystem": {
                 "Priority": 0
             }
@@ -7405,6 +7404,11 @@
         {
             "SettingGameCameraTarget": {
                 "Priority": 5
+            }
+        },
+        {
+            "SpriteAnimationSystem": {
+                "Priority": 1
             }
         },
         {
@@ -7433,23 +7437,28 @@
             }
         },
         {
-            "TakeToGoalPosition": {
-                "Priority": 1
-            }
-        },
-        {
             "SubSceneActivateByButton": {
                 "Priority": 0
             }
         },
         {
-            "StartSequenceSystem": {
+            "TakeToGoalPosition": {
                 "Priority": 1
+            }
+        },
+        {
+            "TireTrailGenerateSystem": {
+                "Priority": 100
             }
         },
         {
             "SubSceneRender": {
                 "Priority": 10
+            }
+        },
+        {
+            "StartSequenceSystem": {
+                "Priority": 1
             }
         },
         {
@@ -7505,6 +7514,11 @@
         {
             "ShadowCastSystem": {
                 "Priority": 11
+            }
+        },
+        {
+            "CreateMeshFromTireSpline": {
+                "Priority": 0
             }
         }
     ]

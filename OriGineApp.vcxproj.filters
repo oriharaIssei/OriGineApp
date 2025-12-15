@@ -271,6 +271,9 @@
     <ClInclude Include="code\system\Movement\SceneTransitionRequestSenderSystem.h" />
     <ClInclude Include="code\system\Movement\ShadowPlaneSyncPlayerPosition.h" />
     <ClInclude Include="code\system\collision\ShadowCastSystem.h" />
+    <ClInclude Include="code\system\Movement\TireTrailGenerateSystem.h" />
+    <ClInclude Include="code\component\spline\TireSplinePoints.h" />
+    <ClInclude Include="code\system\effect\CreateMeshFromTireSpline.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -497,5 +500,8 @@
     <ClCompile Include="code\system\Movement\SceneTransitionRequestSenderSystem.cpp" />
     <ClCompile Include="code\system\Movement\ShadowPlaneSyncPlayerPosition.cpp" />
     <ClCompile Include="code\system\collision\ShadowCastSystem.cpp" />
+    <ClCompile Include="code\system\Movement\TireTrailGenerateSystem.cpp" />
+    <ClCompile Include="code\component\spline\TireSplinePoints.cpp" />
+    <ClCompile Include="code\system\effect\CreateMeshFromTireSpline.cpp" />
   </ItemGroup>
 </Project>
