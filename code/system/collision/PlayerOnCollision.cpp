@@ -16,7 +16,7 @@ void PlayerOnCollision::Initialize() {}
 void PlayerOnCollision::Finalize() {}
 
 static const float kGroundCheckThreshold     = 0.7f; // 地面と判断するための閾値
-static const float kWallCheckThreshold       = 0.43f; // 壁と判断するための閾値
+static const float kWallCheckThreshold       = 0.29f; // 壁と判断するための閾値
 static const float kParallelPenaltyThreshold = 0.07f; // 障害物と判断するための閾値
 
 constexpr float kPenaltyTime = 1.2f;

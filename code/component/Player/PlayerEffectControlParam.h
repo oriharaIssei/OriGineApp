@@ -50,7 +50,7 @@ private:
     int32_t tireTrailSplineEntityId_ = -1;
 
 public:
-    OriGine::Vec4f GetTrailColorByGearLevel(int32_t _level) const {
+    const OriGine::Vec4f& GetTrailColorByGearLevel(int32_t _level) const {
         return trailColorByGearLevel_[_level];
     }
     float GetRotateOffsetOnWallRun() const {

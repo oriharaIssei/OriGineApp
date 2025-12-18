@@ -46,6 +46,26 @@
                     [
                         "./application/resource/entities",
                         "StartTimer"
+                    ],
+                    [
+                        "./application/resource/entities",
+                        "ShadowPlane"
+                    ],
+                    [
+                        "./application/resource/entities",
+                        "PlayerTireTrail"
+                    ],
+                    [
+                        "./application/resource/entities",
+                        "GameFailedScene"
+                    ],
+                    [
+                        "./application/resource/entities",
+                        "Menu"
+                    ],
+                    [
+                        "./application/resource/entities",
+                        "ChargeEffect"
                     ]
                 ]
             }

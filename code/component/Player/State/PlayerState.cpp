@@ -29,15 +29,7 @@ void PlayerState::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {
 }
 
 void PlayerState::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]] OriGine::Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
-    static std::map<PlayerMoveState, const char*> moveStateName = {
-        {PlayerMoveState::IDLE, "IDLE"},
-        {PlayerMoveState::DASH, "DASH"},
-        {PlayerMoveState::JUMP, "JUMP"},
-        {PlayerMoveState::WALL_RUN, "WALL_RUN"},
-        {PlayerMoveState::WALL_JUMP, "WALL_JUMP"}
-        // {PlayerMoveState::SLIDE, "SLIDE"}
-    };
-
+  
     ImGui::Text("MoveState     : %s", moveStateName[moveStateEnum_.Current().ToEnum()]);
     ImGui::Text("Gear Level    : %d", gearLevel_);
     ImGui::Spacing();

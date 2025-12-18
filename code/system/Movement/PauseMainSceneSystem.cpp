@@ -8,6 +8,7 @@
 #include "system/movement/FollowCameraUpdateSystem.h"
 #include "system/movement/MoveSystemByRigidBody.h"
 #include "system/movement/PlayerMoveSystem.h"
+#include "system/Movement/ShadowPlaneSyncPlayerPosition.h"
 #include "system/Transition/ApplyMouseConditionSystem.h"
 #include "system/Transition/ButtonGroupSystem.h"
 #include "system/Transition/TimerCountDown.h"
@@ -29,6 +30,7 @@ void PauseMainSceneSystem::Initialize() {
         nameof<ApplyMouseConditionSystem>(),
         nameof<ButtonGroupSystem>(),
         nameof<TimerCountDown>(),
+        nameof<ShadowPlaneSyncPlayerPosition>(),
         nameof<TransitionPlayerState>()};
 }
 void PauseMainSceneSystem::Finalize() {}

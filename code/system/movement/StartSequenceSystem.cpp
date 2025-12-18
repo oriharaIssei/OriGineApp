@@ -26,6 +26,7 @@ void StartSequenceSystem::Initialize() {
         nameof<PlayerMoveSystem>(),
         nameof<PlayerInputSystem>(),
         nameof<PenaltySystem>()};
+    TimerStartSequence();
 }
 
 void StartSequenceSystem::Finalize() {}

@@ -14,14 +14,22 @@ using namespace OriGine;
 
 SceneTransitionRequestReceiverSystem::SceneTransitionRequestReceiverSystem()
     : ISystem(SystemCategory::Movement) {}
-SceneTransitionRequestReceiverSystem::~SceneTransitionRequestReceiverSystem() {}
+
+SceneTransitionRequestReceiverSystem::~SceneTransitionRequestReceiverSystem() = default;
 
 void SceneTransitionRequestReceiverSystem::Initialize() {
-    MessageBus::GetInstance()->Subscribe<SceneChangeRequest>(
-        [this](const SceneChangeRequest& _event) {
-            isSceneChangeRequested_ = true;
-            targetSceneName_        = _event.targetSceneName;
-        });
+    // リスタートイベントを購読
+    auto shared                                                  = shared_from_this();
+    std::weak_ptr<SceneTransitionRequestReceiverSystem> weakSelf = shared;
+
+    sceneChangeRequestEventId_ =
+        MessageBus::GetInstance()->Subscribe<SceneChangeRequest>(
+            [weakSelf](const SceneChangeRequest& _req) {
+                if (auto self = weakSelf.lock()) {
+                    self->isSceneChangeRequested_ = true;
+                    self->targetSceneName_        = _req.targetSceneName;
+                }
+            });
 }
 void SceneTransitionRequestReceiverSystem::Finalize() {
     MessageBus::GetInstance()->Unsubscribe<SceneChangeRequest>(sceneChangeRequestEventId_);

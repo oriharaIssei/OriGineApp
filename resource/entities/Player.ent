@@ -313,10 +313,10 @@
                 "gearUpCoolTime": 0.46000000834465027,
                 "jumpChargeRateEaseType": 11,
                 "jumpHoldVelocityEaseType": 4,
-                "maxJumpChargeRate": 34.0,
+                "maxJumpChargeRate": 53.16999816894531,
                 "maxJumpHoldVelocity": 3.5899999141693115,
-                "minJumpChargeRate": 14.729999542236328,
-                "minJumpHoldVelocity": 0.6399999856948853,
+                "minJumpChargeRate": 21.579999923706055,
+                "minJumpHoldVelocity": 1.2300000190734863,
                 "risingGravityRate": 1.0,
                 "speedUpRateBase": 10.130000114440918,
                 "speedUpRateCommonRate": -0.4000000059604645,
@@ -325,8 +325,8 @@
                     0.20999999344348907,
                     1.0399999618530273
                 ],
-                "wallRunRate": 1.7999999523162842,
-                "wallRunRumpUpTime": 0.5400000214576721
+                "wallRunRate": 1.1100000143051147,
+                "wallRunRumpUpTime": 0.8100000023841858
             }
         ],
         "Rigidbody": [

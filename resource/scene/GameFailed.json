@@ -25,8 +25,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -38,21 +38,21 @@
                             1.0
                         ],
                         "size": [
-                            505.6000061035156,
-                            87.84000396728516
+                            758.4000244140625,
+                            131.75999450683594
                         ],
                         "textureLeftTop": [
                             0.0,
                             0.0
                         ],
-                        "texturePath": "",
+                        "texturePath": "./application/resource/Texture/Failed.png",
                         "textureSize": [
-                            0.0,
-                            0.0
+                            512.0,
+                            128.0
                         ],
                         "translate": [
-                            640.0,
-                            120.23999786376953
+                            960.0,
+                            180.36000061035156
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -111,12 +111,8 @@
                             1.0,
                             1.0
                         ],
-                        "shortKeys": [
-                            1
-                        ],
-                        "shortcutPadButton": [
-                            16
-                        ]
+                        "shortKeys": [],
+                        "shortcutPadButton": []
                     }
                 ],
                 "SpriteRenderer": [
@@ -132,8 +128,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -145,21 +141,21 @@
                             1.0
                         ],
                         "size": [
-                            328.447998046875,
-                            58.0
+                            492.6719970703125,
+                            87.0
                         ],
                         "textureLeftTop": [
                             0.0,
                             0.0
                         ],
-                        "texturePath": "",
+                        "texturePath": "./application/resource/Texture/Restart.png",
                         "textureSize": [
-                            0.0,
-                            0.0
+                            512.0,
+                            128.0
                         ],
                         "translate": [
-                            348.2879943847656,
-                            360.0
+                            522.4320068359375,
+                            540.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -230,8 +226,12 @@
                             1.0,
                             1.0
                         ],
-                        "shortKeys": [],
-                        "shortcutPadButton": []
+                        "shortKeys": [
+                            1
+                        ],
+                        "shortcutPadButton": [
+                            16
+                        ]
                     }
                 ],
                 "SceneChanger": [
@@ -252,8 +252,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -265,21 +265,21 @@
                             1.0
                         ],
                         "size": [
-                            347.64801025390625,
-                            58.0
+                            594.0,
+                            105.0
                         ],
                         "textureLeftTop": [
                             0.0,
                             0.0
                         ],
-                        "texturePath": "",
+                        "texturePath": "./application/resource/Texture/BackSelectButtonUI.png",
                         "textureSize": [
-                            0.0,
-                            0.0
+                            512.0,
+                            64.0
                         ],
                         "translate": [
-                            960.0,
-                            360.0
+                            1440.0,
+                            540.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -295,8 +295,8 @@
                             0.5
                         ],
                         "windowRatioSize": [
-                            0.27160000801086426,
-                            0.08055555820465088
+                            0.30937498807907104,
+                            0.0972222238779068
                         ]
                     }
                 ]
@@ -384,6 +384,29 @@
                 }
             ],
             "isUnique": false
+        },
+        {
+            "Components": {
+                "MouseCondition": [
+                    {
+                        "fixCursorPos": [
+                            0.0,
+                            0.0
+                        ],
+                        "isActive": true,
+                        "isFixCursor": false,
+                        "isShowCursor": true
+                    }
+                ]
+            },
+            "Name": "Entity",
+            "Systems": [
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "ApplyMouseConditionSystem"
+                }
+            ],
+            "isUnique": false
         }
     ],
     "Systems": [
@@ -424,6 +447,11 @@
         },
         {
             "UpdateButtonColorByState": {
+                "Priority": 0
+            }
+        },
+        {
+            "ApplyMouseConditionSystem": {
                 "Priority": 0
             }
         }

@@ -3,13 +3,15 @@
 #include "system/ISystem.h"
 
 /// stl
+#include <memory>
 #include <string>
 
 /// <summary>
 /// シーン遷移リクエスト受信システム
 /// </summary>
 class SceneTransitionRequestReceiverSystem
-    : public OriGine::ISystem {
+    : public OriGine::ISystem,
+      public std::enable_shared_from_this<SceneTransitionRequestReceiverSystem> {
 public:
     SceneTransitionRequestReceiverSystem();
     ~SceneTransitionRequestReceiverSystem();

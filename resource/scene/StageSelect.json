@@ -187,8 +187,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -200,8 +200,8 @@
                             1.0
                         ],
                         "size": [
-                            768.0,
-                            768.0
+                            512.0,
+                            512.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -213,8 +213,8 @@
                             512.0
                         ],
                         "translate": [
-                            438.0,
-                            540.0
+                            292.0,
+                            360.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -367,8 +367,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -380,8 +380,8 @@
                             1.0
                         ],
                         "size": [
-                            768.0,
-                            768.0
+                            512.0,
+                            512.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -393,8 +393,8 @@
                             512.0
                         ],
                         "translate": [
-                            1482.0,
-                            540.0
+                            988.0,
+                            360.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -855,8 +855,8 @@
                             0.6901960968971252
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -868,8 +868,8 @@
                             1.0
                         ],
                         "size": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -1008,8 +1008,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -1060,12 +1060,12 @@
             "Name": "ToTile",
             "Systems": [
                 {
-                    "SystemCategory": 2,
-                    "SystemName": "ChangeSceneByButton"
-                },
-                {
                     "SystemCategory": 1,
                     "SystemName": "ButtonInputSystem"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "ChangeSceneByButton"
                 },
                 {
                     "SystemCategory": 7,
@@ -1083,49 +1083,79 @@
         {
             "ApplyMouseConditionSystem": {
                 "Priority": 0
-            },
-            "ButtonGroupSystem": {
-                "Priority": 2
-            },
-            "ButtonInputSystem": {
-                "Priority": 0
-            },
-            "ButtonScenePreviewSystem": {
-                "Priority": 10
-            },
-            "CameraInitialize": {
-                "Priority": 1
-            },
-            "ChangeSceneByButton": {
-                "Priority": 3
-            },
-            "DissolveEffect": {
-                "Priority": 10
-            },
+            }
+        },
+        {
             "MaterialAnimationWorkSystem": {
                 "Priority": 0
-            },
+            }
+        },
+        {
+            "ButtonGroupSystem": {
+                "Priority": 2
+            }
+        },
+        {
+            "ButtonInputSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "ChangeSceneByButton": {
+                "Priority": 3
+            }
+        },
+        {
+            "ButtonScenePreviewSystem": {
+                "Priority": 10
+            }
+        },
+        {
+            "CameraInitialize": {
+                "Priority": 1
+            }
+        },
+        {
+            "DissolveEffect": {
+                "Priority": 10
+            }
+        },
+        {
             "MaterialEffect": {
                 "Priority": 5
-            },
+            }
+        },
+        {
             "RegisterWindowResizeEvent": {
                 "Priority": 0
-            },
+            }
+        },
+        {
             "SceneTransition": {
                 "Priority": 5
-            },
+            }
+        },
+        {
             "SelectPreviewSceneInitialize": {
                 "Priority": 2
-            },
+            }
+        },
+        {
             "SpriteRenderSystem": {
                 "Priority": 1
-            },
+            }
+        },
+        {
             "SubSceneRender": {
                 "Priority": 0
-            },
+            }
+        },
+        {
             "TexturedMeshRenderSystem": {
                 "Priority": 0
-            },
+            }
+        },
+        {
             "UpdateButtonColorByState": {
                 "Priority": 0
             }

@@ -10,10 +10,6 @@
 #include "event/RestartEvent.h"
 #include "event/SceneChangeRequest.h"
 
-/// ECS
-// component
-#include "component/SceneChanger.h"
-
 // system
 #include "system/SystemRunner.h"
 
@@ -26,11 +22,19 @@ RestartSystem::RestartSystem() : ISystem(SystemCategory::Movement) {}
 RestartSystem::~RestartSystem() {}
 
 void RestartSystem::Initialize() {
-    // RestartEventを購読
-    restartEventId_ = MessageBus::GetInstance()->Subscribe<RestartEvent>([this](const RestartEvent& /*_event*/) {
-        isRestarting_ = true;
-    });
+    // リスタートイベントを購読
+    auto shared = shared_from_this();
+    std::weak_ptr<RestartSystem> weakSelf = shared;
+
+    restartEventId_ =
+        MessageBus::GetInstance()->Subscribe<RestartEvent>(
+            [weakSelf](const RestartEvent&) {
+                if (auto self = weakSelf.lock()) {
+                    self->isRestarting_ = true;
+                }
+            });
 }
+
 void RestartSystem::Finalize() {
     MessageBus::GetInstance()->Unsubscribe<RestartEvent>(restartEventId_);
 }
@@ -41,7 +45,7 @@ void RestartSystem::Update() {
     }
     // リスタート処理
     auto* currentScene = GetScene();
-     // メッセージを飛ばす
+    // メッセージを飛ばす
     MessageBus::GetInstance()->Emit<SceneChangeRequest>(SceneChangeRequest{currentScene->GetName()});
 
     // effectを流す

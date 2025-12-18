@@ -2,14 +2,14 @@
 #include "system/ISystem.h"
 
 /// stl
-#include <string>
-#include <vector>
+#include <memory>
 
 /// <summary>
 ///  リスタートメッセージを受け取ってリスタート処理を行うシステム
 /// </summary>
 class RestartSystem
-    : public OriGine::ISystem {
+    : public OriGine::ISystem,
+      public std::enable_shared_from_this<RestartSystem> {
 public:
     RestartSystem();
     ~RestartSystem() override;

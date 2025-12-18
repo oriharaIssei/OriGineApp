@@ -19,6 +19,7 @@
 #include "component/player/PlayerInput.h"
 #include "component/player/PlayerStatus.h"
 #include "component/player/state/PlayerState.h"
+#include "component/PlayerStateOverrideCondition.h"
 #include "component/SceneChanger.h"
 #include "component/spline/SplinePoints.h"
 #include "component/spline/TireSplinePoints.h"
@@ -84,6 +85,7 @@
 #include "system/transition/FallDetectionSystem.h"
 #include "system/transition/GameFailedSceneLaunchSystem.h"
 #include "system/transition/PenaltySystem.h"
+#include "system/Transition/PlayerStateOverrideSystem.h"
 #include "system/transition/RestartOnButtonPressSystem.h"
 #include "system/transition/SceneTransition.h"
 #include "system/transition/ShowGameUIByInputDevice.h"
@@ -138,6 +140,7 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<CameraAction>();
     componentRegistry->RegisterComponent<ModelNodeAnimation>();
     componentRegistry->RegisterComponent<PrimitiveNodeAnimation>();
+    componentRegistry->RegisterComponent<TransformAnimation>();
     componentRegistry->RegisterComponent<SkinningAnimationComponent>();
     componentRegistry->RegisterComponent<SpriteAnimation>();
     componentRegistry->RegisterComponent<MaterialAnimation>();
@@ -186,6 +189,8 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<Button>();
     componentRegistry->RegisterComponent<ButtonGroup>();
     componentRegistry->RegisterComponent<SceneChanger>();
+
+    componentRegistry->RegisterComponent<PlayerStateOverrideCondition>();
 }
 
 void RegisterUsingSystems() {
@@ -232,6 +237,7 @@ void RegisterUsingSystems() {
     /// ===================================================================================================
     // StateTransition
     /// ===================================================================================================
+    systemRegistry->RegisterSystem<EffectAutoDestroySystem>();
     systemRegistry->RegisterSystem<ChangeSceneByButton>();
     systemRegistry->RegisterSystem<FallDetectionSystem>();
     systemRegistry->RegisterSystem<SceneTransition>();
@@ -253,6 +259,8 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<RestartOnButtonPressSystem>();
 
     systemRegistry->RegisterSystem<ButtonScenePreviewSystem>();
+
+    systemRegistry->RegisterSystem<PlayerStateOverrideSystem>();
 
     /// =================================================================================================
     // Movement
@@ -303,6 +311,8 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<SpriteAnimationSystem>();
     systemRegistry->RegisterSystem<MaterialAnimationWorkSystem>();
     systemRegistry->RegisterSystem<CameraActionSystem>();
+    systemRegistry->RegisterSystem<TransformAnimationWorkSystem>();
+
     systemRegistry->RegisterSystem<CameraShake>();
 
     systemRegistry->RegisterSystem<MaterialEffect>();

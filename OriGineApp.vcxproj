@@ -240,6 +240,8 @@
     <ClInclude Include="code\system\Transition\GameFailedSceneLaunchSystem.h" />
     <ClInclude Include="code\system\Movement\ShadowPlaneSyncPlayerPosition.h" />
     <ClInclude Include="code\system\effect\CreateMeshFromTireSpline.h" />
+    <ClInclude Include="code\component\PlayerStateOverrideCondition.h" />
+    <ClInclude Include="code\system\Transition\PlayerStateOverrideSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\component\spline\TireSplinePoints.cpp" />
@@ -341,6 +343,8 @@
     <ClCompile Include="code\system\Transition\GameFailedSceneLaunchSystem.cpp" />
     <ClCompile Include="code\system\Movement\ShadowPlaneSyncPlayerPosition.cpp" />
     <ClCompile Include="code\system\effect\CreateMeshFromTireSpline.cpp" />
+    <ClCompile Include="code\component\PlayerStateOverrideCondition.cpp" />
+    <ClCompile Include="code\system\Transition\PlayerStateOverrideSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">

@@ -43,6 +43,7 @@ void SelectPreviewSceneInitialize::UpdateEntity(OriGine::Entity* _entity) {
         systemRunnerRef->SetCategoryActivity(SystemCategory::StateTransition, false);
         systemRunnerRef->SetCategoryActivity(SystemCategory::Movement, false);
         systemRunnerRef->SetCategoryActivity(SystemCategory::Collision, false);
+        systemRunnerRef->SetCategoryActivity(SystemCategory::PostRender, false);
 
         // uiの表示を切る
         systemRunnerRef->DeactivateSystem(nameof<OverlayRenderSystem>());

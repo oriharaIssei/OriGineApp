@@ -274,6 +274,8 @@
     <ClInclude Include="code\system\Movement\TireTrailGenerateSystem.h" />
     <ClInclude Include="code\component\spline\TireSplinePoints.h" />
     <ClInclude Include="code\system\effect\CreateMeshFromTireSpline.h" />
+    <ClInclude Include="code\component\PlayerStateOverrideCondition.h" />
+    <ClInclude Include="code\system\Transition\PlayerStateOverrideSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -503,5 +505,7 @@
     <ClCompile Include="code\system\Movement\TireTrailGenerateSystem.cpp" />
     <ClCompile Include="code\component\spline\TireSplinePoints.cpp" />
     <ClCompile Include="code\system\effect\CreateMeshFromTireSpline.cpp" />
+    <ClCompile Include="code\component\PlayerStateOverrideCondition.cpp" />
+    <ClCompile Include="code\system\Transition\PlayerStateOverrideSystem.cpp" />
   </ItemGroup>
 </Project>

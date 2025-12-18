@@ -24,6 +24,15 @@ enum class PlayerMoveState {
 
     Count = 6
 };
+static std::map<PlayerMoveState, const char*> moveStateName = {
+    {PlayerMoveState::IDLE, "IDLE"},
+    {PlayerMoveState::DASH, "DASH"},
+    {PlayerMoveState::FALL_DOWN, "FALL_DOWN"},
+    {PlayerMoveState::JUMP, "JUMP"},
+    {PlayerMoveState::WALL_RUN, "WALL_RUN"},
+    {PlayerMoveState::WALL_JUMP, "WALL_JUMP"}
+    // {PlayerMoveState::SLIDE, "SLIDE"}
+};
 
 enum class PlayerStateFlag {
     NONE       = 0,

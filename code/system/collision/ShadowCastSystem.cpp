@@ -33,6 +33,15 @@ void ShadowCastSystem::UpdateEntity(OriGine::Entity* entity) {
             LOG_ERROR("Collided entity not found. ID: {}", id);
             continue;
         }
+        auto* otherPushBackInfo = GetComponent<CollisionPushBackInfo>(otherEntity);
+        if (!otherPushBackInfo) {
+            LOG_ERROR("Collided entity does not have CollisionPushBackInfo component. ID: {}", id);
+            continue;
+        }
+        if (otherPushBackInfo->GetPushBackType() != CollisionPushBackType::PushBack) {
+            continue;
+        }
+
         AABBCollider* otherCollider = GetComponent<AABBCollider>(otherEntity);
         if (!otherCollider) {
             LOG_ERROR("Collided entity does not have AABBCollider component. ID: {}", id);
