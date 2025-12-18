@@ -82,24 +82,13 @@ void PlayerWallRunState::Initialize() {
     PlayerEffectControlParam* effectParam =
         scene_->GetComponent<PlayerEffectControlParam>(playerEntity);
 
+    float rotateZOffsetOnWallRun = effectParam->GetRotateOffsetOnWallRun();
+
+    // プレイヤーの向きを移動方向に合わせる
     Quaternion lookForward = Quaternion::LookAt(direction, axisY);
-
-    float rotateOffsetOnWallRun = effectParam->GetRotateOffsetOnWallRun();
-
-    // 進行方向基準の右ベクトル（左手系想定）
-    OriGine::Vec3f right =
-        OriGine::Vec3f::Cross(direction, axisY).normalize();
-
-    bool isRightWall =
-        OriGine::Vec3f::Dot(right, wallNormal_) > 0.0f;
-
-    Quaternion angleOffset =
-        Quaternion::RotateAxisAngle(
-            direction,
-            isRightWall ? rotateOffsetOnWallRun : -rotateOffsetOnWallRun);
-
-    transform->rotate = lookForward * angleOffset;
-    transform->UpdateMatrix();
+    bool isRightWall       = Vec3f::Dot(Vec3f::Cross(axisY, wallNormal_), direction) > 0.0f;
+    Quaternion angleOffset = Quaternion::RotateAxisAngle(axisZ, isRightWall ? rotateZOffsetOnWallRun : -rotateZOffsetOnWallRun);
+    transform->rotate      = lookForward * angleOffset;
 
     // ===== スピード制御 =====
     speedRate_        = playerStatus->GetWallRunRate();
