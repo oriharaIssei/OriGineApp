@@ -23,12 +23,12 @@ using namespace OriGine;
 PlayerStatus::PlayerStatus() {}
 PlayerStatus::~PlayerStatus() {}
 
-void PlayerStatus::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {
+void PlayerStatus::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {
     gearUpCoolTime_  = baseGearupCoolTime_;
     currentMaxSpeed_ = baseSpeed_;
 }
 
-void PlayerStatus::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]] OriGine::Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
+void PlayerStatus::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]] EntityHandle _owner, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
 
     std::string label = "Speed##" + _parentLabel;

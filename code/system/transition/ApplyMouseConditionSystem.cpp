@@ -16,7 +16,7 @@ ApplyMouseConditionSystem::~ApplyMouseConditionSystem() = default;
 void ApplyMouseConditionSystem::Initialize() {}
 void ApplyMouseConditionSystem::Finalize() {}
 
-void ApplyMouseConditionSystem::UpdateEntity(OriGine::Entity* _entity) {
+void ApplyMouseConditionSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     auto* conditions = GetComponents<MouseCondition>(_entity);
     if (conditions == nullptr) {
         return;

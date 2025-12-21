@@ -22,7 +22,7 @@ using namespace OriGine;
 void CameraInputSystem::Initialize() {}
 void CameraInputSystem::Finalize() {}
 
-void CameraInputSystem::UpdateEntity(OriGine::Entity* _entity) {
+void CameraInputSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     GamepadInput* padInput = GetScene()->GetGamepadInput();
     MouseInput* mouseInput = GetScene()->GetMouseInput();
 

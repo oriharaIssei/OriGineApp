@@ -13,7 +13,7 @@ BackFireInitialize::~BackFireInitialize() {}
 void BackFireInitialize::Initialize() {}
 void BackFireInitialize::Finalize() {}
 
-void BackFireInitialize::UpdateEntity(OriGine::Entity* _entity) {
+void BackFireInitialize::UpdateEntity(OriGine::EntityHandle _handle) {
     OriGine::Entity* dissEntity      = GetUniqueEntity("BackFire_Diss");
     OriGine::Entity* distEntity      = GetUniqueEntity("BackFire_Dist");
     OriGine::Entity* gradationEntity = GetUniqueEntity("BackFire_Grad");

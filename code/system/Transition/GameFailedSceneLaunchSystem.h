@@ -15,7 +15,7 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(OriGine::Entity* _entity) override;
+    void UpdateEntity(OriGine::EntityHandle _handle) override;
 
 protected:
     size_t gameFailedEventId_ = 0;

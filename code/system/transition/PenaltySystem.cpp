@@ -37,7 +37,7 @@ void PenaltySystem::Finalize() {
     createSpriteFromTimerSystem_.reset();
 }
 
-void PenaltySystem::UpdateEntity(OriGine::Entity* _entity) {
+void PenaltySystem::UpdateEntity(OriGine::EntityHandle _handle) {
     auto* playerState = GetComponent<PlayerState>(_entity);
 
     // ペナルティ状態でなければ 処理しない

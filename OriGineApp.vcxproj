@@ -26,19 +26,19 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v145</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Develop|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v145</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v145</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -59,6 +59,7 @@
     <IntDir>..\..\generated\obj\Debug\OriGineApp\</IntDir>
     <TargetName>OriGineApp</TargetName>
     <TargetExt>.exe</TargetExt>
+    <EnableClangTidyCodeAnalysis>true</EnableClangTidyCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Develop|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -66,6 +67,7 @@
     <IntDir>..\..\generated\obj\Develop\OriGineApp\</IntDir>
     <TargetName>OriGineApp</TargetName>
     <TargetExt>.exe</TargetExt>
+    <EnableClangTidyCodeAnalysis>true</EnableClangTidyCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -73,6 +75,7 @@
     <IntDir>..\..\generated\obj\Release\OriGineApp\</IntDir>
     <TargetName>OriGineApp</TargetName>
     <TargetExt>.exe</TargetExt>
+    <EnableClangTidyCodeAnalysis>true</EnableClangTidyCodeAnalysis>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -139,28 +142,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="code\component\spline\TireSplinePoints.h" />
-    <ClInclude Include="code\event\GamefailedEvent.h" />
-    <ClInclude Include="code\event\SceneChangeRequest.h" />
-    <ClInclude Include="code\system\collision\ShadowCastSystem.h" />
-    <ClInclude Include="code\system\Movement\SceneTransitionRequestReceiverSystem.h" />
-    <ClInclude Include="code\system\Movement\SceneTransitionRequestSenderSystem.h" />
-    <ClInclude Include="code\system\Movement\TireTrailGenerateSystem.h" />
-    <ClInclude Include="code\system\Transition\CameraMotionBobSystem.h" />
-    <ClInclude Include="code\component\camera\CameraMotionBob.h" />
-    <ClInclude Include="code\system\effect\CameraShake.h" />
-    <ClInclude Include="code\system\transition\ButtonScenePreviewSystem.h" />
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\MyEditor.h" />
     <ClInclude Include="code\MyGame.h" />
-    <ClInclude Include="code\component\ui\Button.h" />
-    <ClInclude Include="code\component\ui\ButtonGroup.h" />
+    <ClInclude Include="code\component\LookAtFromTransforms.h" />
     <ClInclude Include="code\component\MouseCondition.h" />
+    <ClInclude Include="code\component\PlayerStateOverrideCondition.h" />
     <ClInclude Include="code\component\SceneChanger.h" />
     <ClInclude Include="code\component\TimerComponent.h" />
     <ClInclude Include="code\component\camera\CameraController.h" />
+    <ClInclude Include="code\component\camera\CameraMotionBob.h" />
+    <ClInclude Include="code\component\camera\CameraShakeSourceComponent.h" />
+    <ClInclude Include="code\component\ghost\GhostReplayComponent.h" />
+    <ClInclude Include="code\component\ghost\PlayRecordeComponent.h" />
     <ClInclude Include="code\component\player\PlayerEffectControlParam.h" />
     <ClInclude Include="code\component\player\PlayerInput.h" />
+    <ClInclude Include="code\component\player\PlayerInputDevice.h" />
     <ClInclude Include="code\component\player\PlayerStatus.h" />
     <ClInclude Include="code\component\player\State\IPlayerMoveState.h" />
     <ClInclude Include="code\component\player\State\PlayerDashState.h" />
@@ -172,98 +169,101 @@
     <ClInclude Include="code\component\player\State\PlayerWallJumpState.h" />
     <ClInclude Include="code\component\player\State\PlayerWallRunState.h" />
     <ClInclude Include="code\component\spline\SplinePoints.h" />
+    <ClInclude Include="code\component\spline\TireSplinePoints.h" />
     <ClInclude Include="code\component\stage\StageData.h" />
     <ClInclude Include="code\component\stage\StageFloor.h" />
     <ClInclude Include="code\component\stage\StageObstacle.h" />
     <ClInclude Include="code\component\stage\StageWall.h" />
+    <ClInclude Include="code\component\ui\Button.h" />
+    <ClInclude Include="code\component\ui\ButtonGroup.h" />
+    <ClInclude Include="code\component\ui\SpeedFor3dUIComponent.h" />
+    <ClInclude Include="code\event\GamefailedEvent.h" />
+    <ClInclude Include="code\event\RestartEvent.h" />
+    <ClInclude Include="code\event\SceneChangeRequest.h" />
     <ClInclude Include="code\manager\PlayerProgressStore.h" />
+    <ClInclude Include="code\system\Initialize\BackFireInitialize.h" />
+    <ClInclude Include="code\system\Initialize\CreatePlaneFromSpeed.h" />
+    <ClInclude Include="code\system\Initialize\CreateSpriteFromTimer.h" />
+    <ClInclude Include="code\system\Initialize\CreateStage.h" />
+    <ClInclude Include="code\system\Initialize\GetClearTime.h" />
+    <ClInclude Include="code\system\Initialize\GhostInitializeSystem.h" />
+    <ClInclude Include="code\system\Initialize\InitializeMouseCondition.h" />
+    <ClInclude Include="code\system\Initialize\PlayRecorderInitialize.h" />
+    <ClInclude Include="code\system\Initialize\SelectPreviewSceneInitialize.h" />
+    <ClInclude Include="code\system\Initialize\SettingGameCameraTarget.h" />
+    <ClInclude Include="code\system\Initialize\StartTimerInitialize.h" />
+    <ClInclude Include="code\system\Initialize\TakePlayerToStartPosition.h" />
+    <ClInclude Include="code\system\Initialize\TakeToGoalPosition.h" />
+    <ClInclude Include="code\system\Initialize\TrailEffectInitialize.h" />
+    <ClInclude Include="code\system\Initialize\Ui3dObjectInitialize.h" />
+    <ClInclude Include="code\system\Input\ButtonInputSystem.h" />
+    <ClInclude Include="code\system\Input\CameraInputSystem.h" />
+    <ClInclude Include="code\system\Input\GhostInputUpdate.h" />
+    <ClInclude Include="code\system\Input\PlayRecordSystem.h" />
+    <ClInclude Include="code\system\Input\PlayerInputSystem.h" />
+    <ClInclude Include="code\system\Movement\BillboardTransform.h" />
+    <ClInclude Include="code\system\Movement\FollowCameraUpdateSystem.h" />
+    <ClInclude Include="code\system\Movement\LookAtFromTransformsSystem.h" />
+    <ClInclude Include="code\system\Movement\PauseMainSceneSystem.h" />
+    <ClInclude Include="code\system\Movement\PlayerMoveSystem.h" />
+    <ClInclude Include="code\system\Movement\PlayerPathSplineGenerator.h" />
+    <ClInclude Include="code\system\Movement\PlayerUpdateOnTitle.h" />
+    <ClInclude Include="code\system\Movement\RestartSystem.h" />
+    <ClInclude Include="code\system\Movement\SceneTransitionRequestReceiverSystem.h" />
+    <ClInclude Include="code\system\Movement\SceneTransitionRequestSenderSystem.h" />
+    <ClInclude Include="code\system\Movement\ShadowPlaneSyncPlayerPosition.h" />
+    <ClInclude Include="code\system\Movement\StartSequenceSystem.h" />
+    <ClInclude Include="code\system\Movement\TireTrailGenerateSystem.h" />
+    <ClInclude Include="code\system\Movement\Ui3dUpdateSystem.h" />
+    <ClInclude Include="code\system\Transition\ApplyMouseConditionSystem.h" />
+    <ClInclude Include="code\system\Transition\ButtonGroupSystem.h" />
+    <ClInclude Include="code\system\Transition\ButtonScenePreviewSystem.h" />
+    <ClInclude Include="code\system\Transition\CameraMotionBobSystem.h" />
+    <ClInclude Include="code\system\Transition\ChangeSceneByButton.h" />
+    <ClInclude Include="code\system\Transition\ExitApplicationByButton.h" />
+    <ClInclude Include="code\system\Transition\FallDetectionSystem.h" />
+    <ClInclude Include="code\system\Transition\GameFailedSceneLaunchSystem.h" />
+    <ClInclude Include="code\system\Transition\PenaltySystem.h" />
+    <ClInclude Include="code\system\Transition\PlayerStateOverrideSystem.h" />
+    <ClInclude Include="code\system\Transition\RestartOnButtonPressSystem.h" />
+    <ClInclude Include="code\system\Transition\SceneTransition.h" />
+    <ClInclude Include="code\system\Transition\ShowGameUIByInputDevice.h" />
+    <ClInclude Include="code\system\Transition\SubSceneActivateByButton.h" />
+    <ClInclude Include="code\system\Transition\SubSceneDeactivateByButton.h" />
+    <ClInclude Include="code\system\Transition\TimeLimitJudgeSystem.h" />
+    <ClInclude Include="code\system\Transition\TimerCountDown.h" />
+    <ClInclude Include="code\system\Transition\TransitionPlayerState.h" />
+    <ClInclude Include="code\system\Transition\UpdateButtonColorByState.h" />
     <ClInclude Include="code\system\collision\PlayerOnCollision.h" />
+    <ClInclude Include="code\system\collision\ShadowCastSystem.h" />
     <ClInclude Include="code\system\collision\TutorialColliderOnCollision.h" />
+    <ClInclude Include="code\system\effect\CameraShake.h" />
     <ClInclude Include="code\system\effect\CreateMeshFromSpline.h" />
+    <ClInclude Include="code\system\effect\CreateMeshFromTireSpline.h" />
     <ClInclude Include="code\system\effect\EffectOnPlayerGearup.h" />
     <ClInclude Include="code\system\effect\EffectOnPlayerRun.h" />
     <ClInclude Include="code\system\effect\PenaltyTimeSpriteUpdate.h" />
-    <ClInclude Include="code\system\effect\TimerForSprite.h" />
-    <ClInclude Include="code\system\initialize\BackFireInitialize.h" />
-    <ClInclude Include="code\system\initialize\CreateSpriteFromTimer.h" />
-    <ClInclude Include="code\system\initialize\CreateStage.h" />
-    <ClInclude Include="code\system\initialize\GetClearTime.h" />
-    <ClInclude Include="code\system\initialize\SettingGameCameraTarget.h" />
-    <ClInclude Include="code\system\initialize\StartTimerInitialize.h" />
-    <ClInclude Include="code\system\initialize\TakePlayerToStartPosition.h" />
-    <ClInclude Include="code\system\initialize\TakeToGoalPosition.h" />
-    <ClInclude Include="code\system\initialize\TrailEffectInitialize.h" />
-    <ClInclude Include="code\system\input\ButtonInputSystem.h" />
-    <ClInclude Include="code\system\input\CameraInputSystem.h" />
-    <ClInclude Include="code\system\input\PlayerInputSystem.h" />
-    <ClInclude Include="code\system\movement\BillboardTransform.h" />
-    <ClInclude Include="code\system\movement\FollowCameraUpdateSystem.h" />
-    <ClInclude Include="code\system\movement\PauseMainSceneSystem.h" />
-    <ClInclude Include="code\system\movement\PlayerMoveSystem.h" />
-    <ClInclude Include="code\system\movement\PlayerPathSplineGenerator.h" />
-    <ClInclude Include="code\system\movement\PlayerUpdateOnTitle.h" />
-    <ClInclude Include="code\system\movement\StartSequenceSystem.h" />
-    <ClInclude Include="code\system\transition\ApplyMouseConditionSystem.h" />
-    <ClInclude Include="code\system\transition\ButtonGroupSystem.h" />
-    <ClInclude Include="code\system\transition\ChangeSceneByButton.h" />
-    <ClInclude Include="code\system\transition\ExitApplicationByButton.h" />
-    <ClInclude Include="code\system\transition\FallDetectionSystem.h" />
-    <ClInclude Include="code\system\transition\PenaltySystem.h" />
-    <ClInclude Include="code\system\Transition\RestartOnButtonPressSystem.h" />
-    <ClInclude Include="code\system\transition\SceneTransition.h" />
-    <ClInclude Include="code\system\transition\ShowGameUIByInputDevice.h" />
-    <ClInclude Include="code\system\transition\SubSceneActivateByButton.h" />
-    <ClInclude Include="code\system\transition\SubSceneDeactivateByButton.h" />
-    <ClInclude Include="code\system\transition\TimeLimitJudgeSystem.h" />
-    <ClInclude Include="code\system\transition\TimerCountDown.h" />
-    <ClInclude Include="code\system\transition\TransitionPlayerState.h" />
-    <ClInclude Include="code\system\transition\UpdateButtonColorByState.h" />
-    <ClInclude Include="code\component\camera\CameraShakeSourceComponent.h" />
-    <ClInclude Include="code\component\LookAtFromTransforms.h" />
-    <ClInclude Include="code\system\Movement\LookAtFromTransformsSystem.h" />
-    <ClInclude Include="code\system\Movement\Ui3dUpdateSystem.h" />
-    <ClInclude Include="code\system\Initialize\Ui3dObjectInitialize.h" />
-    <ClInclude Include="code\component\player\PlayerInputDevice.h" />
-    <ClInclude Include="code\component\ui\SpeedFor3dUIComponent.h" />
-    <ClInclude Include="code\system\Initialize\CreatePlaneFromSpeed.h" />
     <ClInclude Include="code\system\effect\PlayerSpeedFor3dUI.h" />
-    <ClInclude Include="code\system\Initialize\SelectPreviewSceneInitialize.h" />
-    <ClInclude Include="code\system\Initialize\GhostInitializeSystem.h" />
-    <ClInclude Include="code\component\ghost\GhostReplayComponent.h" />
-    <ClInclude Include="code\system\Input\GhostInputUpdate.h" />
-    <ClInclude Include="code\component\ghost\PlayRecordeComponent.h" />
-    <ClInclude Include="code\system\Initialize\PlayRecorderInitialize.h" />
-    <ClInclude Include="code\system\Input\PlayRecordSystem.h" />
-    <ClInclude Include="code\system\Initialize\InitializeMouseCondition.h" />
-    <ClInclude Include="code\system\Movement\RestartSystem.h" />
-    <ClInclude Include="code\event\RestartEvent.h" />
-    <ClInclude Include="code\system\Transition\GameFailedSceneLaunchSystem.h" />
-    <ClInclude Include="code\system\Movement\ShadowPlaneSyncPlayerPosition.h" />
-    <ClInclude Include="code\system\effect\CreateMeshFromTireSpline.h" />
-    <ClInclude Include="code\component\PlayerStateOverrideCondition.h" />
-    <ClInclude Include="code\system\Transition\PlayerStateOverrideSystem.h" />
+    <ClInclude Include="code\system\effect\TimerForSprite.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="code\component\spline\TireSplinePoints.cpp" />
-    <ClCompile Include="code\system\collision\ShadowCastSystem.cpp" />
-    <ClCompile Include="code\system\Movement\SceneTransitionRequestReceiverSystem.cpp" />
-    <ClCompile Include="code\system\Movement\SceneTransitionRequestSenderSystem.cpp" />
-    <ClCompile Include="code\system\Movement\TireTrailGenerateSystem.cpp" />
-    <ClCompile Include="code\system\Transition\CameraMotionBobSystem.cpp" />
-    <ClCompile Include="code\component\camera\CameraMotionBob.cpp" />
-    <ClCompile Include="code\system\effect\CameraShake.cpp" />
-    <ClCompile Include="code\system\transition\ButtonScenePreviewSystem.cpp" />
+    <ClCompile Include="..\engine\code\ECS\component\ComponentHandle.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\MyEditor.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
-    <ClCompile Include="code\component\ui\Button.cpp" />
-    <ClCompile Include="code\component\ui\ButtonGroup.cpp" />
+    <ClCompile Include="code\component\LookAtFromTransforms.cpp" />
     <ClCompile Include="code\component\MouseCondition.cpp" />
+    <ClCompile Include="code\component\PlayerStateOverrideCondition.cpp" />
     <ClCompile Include="code\component\SceneChanger.cpp" />
     <ClCompile Include="code\component\TimerComponent.cpp" />
     <ClCompile Include="code\component\camera\CameraController.cpp" />
+    <ClCompile Include="code\component\camera\CameraMotionBob.cpp" />
+    <ClCompile Include="code\component\camera\CameraShakeSourceComponent.cpp" />
+    <ClCompile Include="code\component\ghost\GhostReplayComponent.cpp" />
+    <ClCompile Include="code\component\ghost\PlayRecordeComponent.cpp" />
     <ClCompile Include="code\component\player\PlayerEffectControlParam.cpp" />
     <ClCompile Include="code\component\player\PlayerInput.cpp" />
+    <ClCompile Include="code\component\player\PlayerInputDevice.cpp" />
     <ClCompile Include="code\component\player\PlayerStatus.cpp" />
     <ClCompile Include="code\component\player\State\IPlayerMoveState.cpp" />
     <ClCompile Include="code\component\player\State\PlayerDashState.cpp" />
@@ -275,76 +275,80 @@
     <ClCompile Include="code\component\player\State\PlayerWallJumpState.cpp" />
     <ClCompile Include="code\component\player\State\PlayerWallRunState.cpp" />
     <ClCompile Include="code\component\spline\SplinePoints.cpp" />
+    <ClCompile Include="code\component\spline\TireSplinePoints.cpp" />
     <ClCompile Include="code\component\stage\StageData.cpp" />
     <ClCompile Include="code\component\stage\StageFloor.cpp" />
     <ClCompile Include="code\component\stage\StageObstacle.cpp" />
     <ClCompile Include="code\component\stage\StageWall.cpp" />
+    <ClCompile Include="code\component\ui\Button.cpp" />
+    <ClCompile Include="code\component\ui\ButtonGroup.cpp" />
+    <ClCompile Include="code\component\ui\SpeedFor3dUIComponent.cpp" />
     <ClCompile Include="code\main.cpp" />
     <ClCompile Include="code\manager\PlayerProgressStore.cpp" />
+    <ClCompile Include="code\system\Initialize\BackFireInitialize.cpp" />
+    <ClCompile Include="code\system\Initialize\CreatePlaneFromSpeed.cpp" />
+    <ClCompile Include="code\system\Initialize\CreateSpriteFromTimer.cpp" />
+    <ClCompile Include="code\system\Initialize\CreateStage.cpp" />
+    <ClCompile Include="code\system\Initialize\GetClearTime.cpp" />
+    <ClCompile Include="code\system\Initialize\GhostInitializeSystem.cpp" />
+    <ClCompile Include="code\system\Initialize\InitializeMouseCondition.cpp" />
+    <ClCompile Include="code\system\Initialize\PlayRecorderInitialize.cpp" />
+    <ClCompile Include="code\system\Initialize\SelectPreviewSceneInitialize.cpp" />
+    <ClCompile Include="code\system\Initialize\SettingGameCameraTarget.cpp" />
+    <ClCompile Include="code\system\Initialize\StartTimerInitialize.cpp" />
+    <ClCompile Include="code\system\Initialize\TakePlayerToStartPosition.cpp" />
+    <ClCompile Include="code\system\Initialize\TakeToGoalPosition.cpp" />
+    <ClCompile Include="code\system\Initialize\TrailEffectInitialize.cpp" />
+    <ClCompile Include="code\system\Initialize\Ui3dObjectInitialize.cpp" />
+    <ClCompile Include="code\system\Input\ButtonInputSystem.cpp" />
+    <ClCompile Include="code\system\Input\CameraInputSystem.cpp" />
+    <ClCompile Include="code\system\Input\GhostInputUpdate.cpp" />
+    <ClCompile Include="code\system\Input\PlayRecordSystem.cpp" />
+    <ClCompile Include="code\system\Input\PlayerInputSystem.cpp" />
+    <ClCompile Include="code\system\Movement\BillboardTransform.cpp" />
+    <ClCompile Include="code\system\Movement\FollowCameraUpdateSystem.cpp" />
+    <ClCompile Include="code\system\Movement\LookAtFromTransformsSystem.cpp" />
+    <ClCompile Include="code\system\Movement\PauseMainSceneSystem.cpp" />
+    <ClCompile Include="code\system\Movement\PlayerMoveSystem.cpp" />
+    <ClCompile Include="code\system\Movement\PlayerPathSplineGenerator.cpp" />
+    <ClCompile Include="code\system\Movement\PlayerUpdateOnTitle.cpp" />
+    <ClCompile Include="code\system\Movement\RestartSystem.cpp" />
+    <ClCompile Include="code\system\Movement\SceneTransitionRequestReceiverSystem.cpp" />
+    <ClCompile Include="code\system\Movement\SceneTransitionRequestSenderSystem.cpp" />
+    <ClCompile Include="code\system\Movement\ShadowPlaneSyncPlayerPosition.cpp" />
+    <ClCompile Include="code\system\Movement\StartSequenceSystem.cpp" />
+    <ClCompile Include="code\system\Movement\TireTrailGenerateSystem.cpp" />
+    <ClCompile Include="code\system\Movement\Ui3dUpdateSystem.cpp" />
+    <ClCompile Include="code\system\Transition\ApplyMouseConditionSystem.cpp" />
+    <ClCompile Include="code\system\Transition\ButtonGroupSystem.cpp" />
+    <ClCompile Include="code\system\Transition\ButtonScenePreviewSystem.cpp" />
+    <ClCompile Include="code\system\Transition\CameraMotionBobSystem.cpp" />
+    <ClCompile Include="code\system\Transition\ChangeSceneByButton.cpp" />
+    <ClCompile Include="code\system\Transition\ExitApplicationByButton.cpp" />
+    <ClCompile Include="code\system\Transition\FallDetectionSystem.cpp" />
+    <ClCompile Include="code\system\Transition\GameFailedSceneLaunchSystem.cpp" />
+    <ClCompile Include="code\system\Transition\PenaltySystem.cpp" />
+    <ClCompile Include="code\system\Transition\PlayerStateOverrideSystem.cpp" />
+    <ClCompile Include="code\system\Transition\RestartOnButtonPressSystem.cpp" />
+    <ClCompile Include="code\system\Transition\SceneTransition.cpp" />
+    <ClCompile Include="code\system\Transition\ShowGameUIByInputDevice.cpp" />
+    <ClCompile Include="code\system\Transition\SubSceneActivateByButton.cpp" />
+    <ClCompile Include="code\system\Transition\SubSceneDeactivateByButton.cpp" />
+    <ClCompile Include="code\system\Transition\TimeLimitJudgeSystem.cpp" />
+    <ClCompile Include="code\system\Transition\TimerCountDown.cpp" />
+    <ClCompile Include="code\system\Transition\TransitionPlayerState.cpp" />
+    <ClCompile Include="code\system\Transition\UpdateButtonColorByState.cpp" />
     <ClCompile Include="code\system\collision\PlayerOnCollision.cpp" />
+    <ClCompile Include="code\system\collision\ShadowCastSystem.cpp" />
     <ClCompile Include="code\system\collision\TutorialColliderOnCollision.cpp" />
+    <ClCompile Include="code\system\effect\CameraShake.cpp" />
     <ClCompile Include="code\system\effect\CreateMeshFromSpline.cpp" />
+    <ClCompile Include="code\system\effect\CreateMeshFromTireSpline.cpp" />
     <ClCompile Include="code\system\effect\EffectOnPlayerGearup.cpp" />
     <ClCompile Include="code\system\effect\EffectOnPlayerRun.cpp" />
     <ClCompile Include="code\system\effect\PenaltyTimeSpriteUpdate.cpp" />
-    <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
-    <ClCompile Include="code\system\initialize\BackFireInitialize.cpp" />
-    <ClCompile Include="code\system\initialize\CreateSpriteFromTimer.cpp" />
-    <ClCompile Include="code\system\initialize\CreateStage.cpp" />
-    <ClCompile Include="code\system\initialize\GetClearTime.cpp" />
-    <ClCompile Include="code\system\initialize\SettingGameCameraTarget.cpp" />
-    <ClCompile Include="code\system\initialize\StartTimerInitialize.cpp" />
-    <ClCompile Include="code\system\initialize\TakePlayerToStartPosition.cpp" />
-    <ClCompile Include="code\system\initialize\TakeToGoalPosition.cpp" />
-    <ClCompile Include="code\system\initialize\TrailEffectInitialize.cpp" />
-    <ClCompile Include="code\system\input\ButtonInputSystem.cpp" />
-    <ClCompile Include="code\system\input\CameraInputSystem.cpp" />
-    <ClCompile Include="code\system\input\PlayerInputSystem.cpp" />
-    <ClCompile Include="code\system\movement\BillboardTransform.cpp" />
-    <ClCompile Include="code\system\movement\FollowCameraUpdateSystem.cpp" />
-    <ClCompile Include="code\system\movement\PauseMainSceneSystem.cpp" />
-    <ClCompile Include="code\system\movement\PlayerMoveSystem.cpp" />
-    <ClCompile Include="code\system\movement\PlayerPathSplineGenerator.cpp" />
-    <ClCompile Include="code\system\movement\PlayerUpdateOnTitle.cpp" />
-    <ClCompile Include="code\system\movement\StartSequenceSystem.cpp" />
-    <ClCompile Include="code\system\transition\ApplyMouseConditionSystem.cpp" />
-    <ClCompile Include="code\system\transition\ButtonGroupSystem.cpp" />
-    <ClCompile Include="code\system\transition\ChangeSceneByButton.cpp" />
-    <ClCompile Include="code\system\transition\ExitApplicationByButton.cpp" />
-    <ClCompile Include="code\system\transition\FallDetectionSystem.cpp" />
-    <ClCompile Include="code\system\transition\PenaltySystem.cpp" />
-    <ClCompile Include="code\system\Transition\RestartOnButtonPressSystem.cpp" />
-    <ClCompile Include="code\system\transition\SceneTransition.cpp" />
-    <ClCompile Include="code\system\transition\ShowGameUIByInputDevice.cpp" />
-    <ClCompile Include="code\system\transition\SubSceneActivateByButton.cpp" />
-    <ClCompile Include="code\system\transition\SubSceneDeactivateByButton.cpp" />
-    <ClCompile Include="code\system\transition\TimeLimitJudgeSystem.cpp" />
-    <ClCompile Include="code\system\transition\TimerCountDown.cpp" />
-    <ClCompile Include="code\system\transition\TransitionPlayerState.cpp" />
-    <ClCompile Include="code\system\transition\UpdateButtonColorByState.cpp" />
-    <ClCompile Include="code\component\camera\CameraShakeSourceComponent.cpp" />
-    <ClCompile Include="code\component\LookAtFromTransforms.cpp" />
-    <ClCompile Include="code\system\Movement\LookAtFromTransformsSystem.cpp" />
-    <ClCompile Include="code\system\Movement\Ui3dUpdateSystem.cpp" />
-    <ClCompile Include="code\system\Initialize\Ui3dObjectInitialize.cpp" />
-    <ClCompile Include="code\component\player\PlayerInputDevice.cpp" />
-    <ClCompile Include="code\component\ui\SpeedFor3dUIComponent.cpp" />
-    <ClCompile Include="code\system\Initialize\CreatePlaneFromSpeed.cpp" />
     <ClCompile Include="code\system\effect\PlayerSpeedFor3dUI.cpp" />
-    <ClCompile Include="code\system\Initialize\SelectPreviewSceneInitialize.cpp" />
-    <ClCompile Include="code\system\Initialize\GhostInitializeSystem.cpp" />
-    <ClCompile Include="code\component\ghost\GhostReplayComponent.cpp" />
-    <ClCompile Include="code\system\Input\GhostInputUpdate.cpp" />
-    <ClCompile Include="code\component\ghost\PlayRecordeComponent.cpp" />
-    <ClCompile Include="code\system\Initialize\PlayRecorderInitialize.cpp" />
-    <ClCompile Include="code\system\Input\PlayRecordSystem.cpp" />
-    <ClCompile Include="code\system\Initialize\InitializeMouseCondition.cpp" />
-    <ClCompile Include="code\system\Movement\RestartSystem.cpp" />
-    <ClCompile Include="code\system\Transition\GameFailedSceneLaunchSystem.cpp" />
-    <ClCompile Include="code\system\Movement\ShadowPlaneSyncPlayerPosition.cpp" />
-    <ClCompile Include="code\system\effect\CreateMeshFromTireSpline.cpp" />
-    <ClCompile Include="code\component\PlayerStateOverrideCondition.cpp" />
-    <ClCompile Include="code\system\Transition\PlayerStateOverrideSystem.cpp" />
+    <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">

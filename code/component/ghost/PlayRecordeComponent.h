@@ -16,10 +16,10 @@ public:
     PlayRecordeComponent();
     ~PlayRecordeComponent() override;
 
-    void Initialize(OriGine::Entity* _entity) override;
+    void Initialize(OriGine::Scene* _scene, OriGine::EntityHandle _owner) override;
     void Finalize() override;
 
-    void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
+    void Edit(OriGine::Scene* _scene, OriGine::EntityHandle _owner, const std::string& _parentLabel) override;
 
 public:
     std::shared_ptr<OriGine::ReplayRecorder> replayRecorder_ = nullptr;

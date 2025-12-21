@@ -15,8 +15,8 @@ struct LookAtFromTransforms
 public:
     LookAtFromTransforms();
     ~LookAtFromTransforms() override;
-    void Initialize(OriGine::Entity* _entity) override;
-    void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
+    void Initialize(OriGine::Scene* _scene, OriGine::EntityHandle _owner) override;
+    void Edit(OriGine::Scene* _scene, OriGine::EntityHandle _owner, const std::string& _parentLabel) override;
     void Finalize() override;
 
 public:
@@ -29,6 +29,6 @@ public:
 public:
     EnumBitmask<LookAtFromTransforms::RotateAxis> rotateAxis = 0; // 回転を許可する軸のビットマスク
 
-    int32_t fromTransformEntity = -1; // 視点のTransformコンポーネントを持つエンティティ
-    int32_t toTransformEntity   = -1; // 注視点のTransformコンポーネントを持つエンティティ
+    ComponentHandle fromTransformComp = {}; // 視点のTransformコンポーネント
+    ComponentHandle toTransformComp   = {}; // 注視点のTransformコンポーネント
 };

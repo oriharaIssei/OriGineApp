@@ -26,7 +26,7 @@ CreatePlaneFromSpeed::~CreatePlaneFromSpeed() {}
 void CreatePlaneFromSpeed::Initialize() {}
 void CreatePlaneFromSpeed::Finalize() {}
 
-void CreatePlaneFromSpeed::UpdateEntity(OriGine::Entity* _entity) {
+void CreatePlaneFromSpeed::UpdateEntity(OriGine::EntityHandle _handle) {
     auto speedFor3dUIComponent = GetComponent<SpeedFor3dUIComponent>(_entity);
     if (!speedFor3dUIComponent) {
         return; // タイマーコンポーネントがない場合は何もしない
@@ -39,7 +39,7 @@ void CreatePlaneFromSpeed::UpdateEntity(OriGine::Entity* _entity) {
     CreatePlanesFromComponent(ui3dEntity, speedFor3dUIComponent);
 }
 
-void CreatePlaneFromSpeed::CreatePlanesFromComponent(OriGine::Entity* _entity, SpeedFor3dUIComponent* _comp) {
+void CreatePlaneFromSpeed::CreatePlanesFromComponent(OriGine::EntityHandle _handle, SpeedFor3dUIComponent* _comp) {
     // ==========================================
     // 3D基準座標の生成
     // ==========================================

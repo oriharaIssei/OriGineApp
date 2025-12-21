@@ -17,7 +17,7 @@ void TimerCountDown::Initialize() {}
 
 void TimerCountDown::Finalize() {}
 
-void TimerCountDown::UpdateEntity(OriGine::Entity* _entity) {
+void TimerCountDown::UpdateEntity(OriGine::EntityHandle _handle) {
     auto timerComponent = GetComponent<TimerComponent>(_entity);
     if (timerComponent) {
         if (timerComponent->IsStarted()) {

@@ -19,7 +19,7 @@ using namespace OriGine;
 void PlayerInputSystem::Initialize() {}
 void PlayerInputSystem::Finalize() {}
 
-void PlayerInputSystem::UpdateEntity(OriGine::Entity* _entity) {
+void PlayerInputSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     auto keyInput = GetScene()->GetKeyboardInput();
     auto padInput = GetScene()->GetGamepadInput();
 

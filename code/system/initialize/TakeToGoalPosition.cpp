@@ -10,7 +10,7 @@ TakeToGoalPosition::~TakeToGoalPosition() {}
 void TakeToGoalPosition::Initialize() {}
 void TakeToGoalPosition::Finalize() {}
 
-void TakeToGoalPosition::UpdateEntity(OriGine::Entity* _entity) {
+void TakeToGoalPosition::UpdateEntity(OriGine::EntityHandle _handle) {
     OriGine::Transform* transform = GetComponent<OriGine::Transform>(_entity);
 
     OriGine::Entity* goalPositionEntity = GetUniqueEntity("GoalPosition");

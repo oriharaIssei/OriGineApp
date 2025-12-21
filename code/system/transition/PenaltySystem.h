@@ -19,7 +19,7 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(OriGine::Entity* _entity) override;
+    void UpdateEntity(OriGine::EntityHandle _handle) override;
 
 protected:
     std::unique_ptr<CreateSpriteFromTimer> createSpriteFromTimerSystem_ = nullptr;

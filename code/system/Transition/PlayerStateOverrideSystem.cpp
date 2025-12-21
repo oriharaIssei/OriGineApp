@@ -20,7 +20,7 @@ PlayerStateOverrideSystem::~PlayerStateOverrideSystem() {}
 void PlayerStateOverrideSystem::Initialize() {}
 void PlayerStateOverrideSystem::Finalize() {}
 
-void PlayerStateOverrideSystem::UpdateEntity(OriGine::Entity* _entity) {
+void PlayerStateOverrideSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     auto pushBackInfo      = GetComponent<CollisionPushBackInfo>(_entity);
     auto overrideCondition = GetComponent<PlayerStateOverrideCondition>(_entity);
 

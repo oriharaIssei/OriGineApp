@@ -16,7 +16,7 @@ using namespace OriGine;
 TimerComponent::TimerComponent() {}
 TimerComponent::~TimerComponent() {}
 
-void TimerComponent::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {
+void TimerComponent::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {
     currentTime_ = maxTime_;
 }
 

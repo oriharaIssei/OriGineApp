@@ -12,7 +12,7 @@ using namespace OriGine;
 TireSplinePoints::TireSplinePoints() {}
 TireSplinePoints::~TireSplinePoints() {}
 
-void TireSplinePoints::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {}
+void TireSplinePoints::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {}
 
 void TireSplinePoints::Edit(OriGine::Scene* /*_scene*/, OriGine::Entity* /*_OriGine::Entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG

@@ -11,5 +11,5 @@ public:
     void Finalize();
 
 private:
-    void UpdateEntity(OriGine::Entity* _entity);
+    void UpdateEntity(OriGine::EntityHandle _handle);
 };

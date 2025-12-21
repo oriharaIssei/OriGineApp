@@ -7,12 +7,14 @@
 #include "myGui/MyGui.h"
 #endif // _DEBUG
 
+using namespace OriGine;
+
 MouseCondition::MouseCondition() {}
 MouseCondition::~MouseCondition() {}
 
-void MouseCondition::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {}
+void MouseCondition::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {}
 
-void MouseCondition::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]] OriGine::Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
+void MouseCondition::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]] EntityHandle _owner, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
     std::string label = "IsActive##" + _parentLabel;
     CheckBoxCommand(label, isActive_);

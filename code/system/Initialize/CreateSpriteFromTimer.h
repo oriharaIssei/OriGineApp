@@ -16,6 +16,6 @@ public:
     // virtual void Edit();
     void Finalize();
 
-    void UpdateEntity(OriGine::Entity* _entity) override;
-    void CreateSprites(OriGine::Entity* _entity, TimerForSpriteComponent* _forSpriteComp);
+    void UpdateEntity(OriGine::EntityHandle _handle) override;
+    void CreateSprites(OriGine::EntityHandle _handle, TimerForSpriteComponent* _forSpriteComp);
 };

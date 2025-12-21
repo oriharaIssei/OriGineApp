@@ -13,7 +13,7 @@ LookAtFromTransformsSystem::~LookAtFromTransformsSystem() {}
 void LookAtFromTransformsSystem::Initialize() {}
 void LookAtFromTransformsSystem::Finalize() {}
 
-void LookAtFromTransformsSystem::UpdateEntity(OriGine::Entity* _entity) {
+void LookAtFromTransformsSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     auto lookAtComps = GetComponents<LookAtFromTransforms>(_entity);
     if (!lookAtComps) {
         return;

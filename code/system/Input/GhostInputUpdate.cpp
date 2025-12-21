@@ -30,7 +30,7 @@ void GhostInputUpdate::Initialize() {
 }
 void GhostInputUpdate::Finalize() {}
 
-void GhostInputUpdate::UpdateEntity(OriGine::Entity* _entity) {
+void GhostInputUpdate::UpdateEntity(OriGine::EntityHandle _handle) {
 
     auto comp = GetComponent<GhostReplayComponent>(_entity);
     if (!comp || !comp->replayPlayer_) {

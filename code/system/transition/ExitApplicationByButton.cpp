@@ -9,7 +9,7 @@
 ExitApplicationByButton::ExitApplicationByButton() : ISystem(OriGine::SystemCategory::StateTransition) {}
 ExitApplicationByButton::~ExitApplicationByButton() {}
 
-void ExitApplicationByButton::UpdateEntity(OriGine::Entity* _entity) {
+void ExitApplicationByButton::UpdateEntity(OriGine::EntityHandle _handle) {
     auto buttons = GetComponents<Button>(_entity);
     if (buttons == nullptr) {
         return;

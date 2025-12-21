@@ -18,7 +18,7 @@ public:
     virtual void Update() override;
 
 protected:
-    virtual void UpdateEntity(OriGine::Entity* _entity) override;
+    virtual void UpdateEntity(OriGine::EntityHandle _handle) override;
 
     void EnterSceneUpdate();
     void ExitSceneUpdate();

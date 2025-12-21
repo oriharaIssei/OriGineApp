@@ -16,8 +16,8 @@ public:
     MouseCondition();
     ~MouseCondition() override;
 
-    void Initialize(OriGine::Entity* _entity) override;
-    void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
+    void Initialize(OriGine::Scene* _scene, OriGine::EntityHandle _owner) override;
+    void Edit(OriGine::Scene* _scene, OriGine::EntityHandle _owner, const std::string& _parentLabel) override;
     void Finalize() override;
 
 private:

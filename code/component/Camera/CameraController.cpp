@@ -13,12 +13,12 @@
 
 using namespace OriGine;
 
-void CameraController::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {
+void CameraController::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {
     currentOffset_       = firstOffset_;
     currentTargetOffset_ = firstTargetOffset_;
 }
 
-void CameraController::Edit(OriGine::Scene* /*_scene*/, OriGine::Entity* /*_OriGine::Entity*/, [[maybe_unused]] const std::string& _parentLabel) {
+void CameraController::Edit(Scene* /*_scene*/, EntityHandle /*_OriGine::Entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
 
     if (DragGuiVectorCommand<3, float>("forward##" + _parentLabel, forward_, 0.01f, -1.f, 1.f, "%.3f", [this](Vector<3, float>* _v) {

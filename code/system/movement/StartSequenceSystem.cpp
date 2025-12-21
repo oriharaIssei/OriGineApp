@@ -31,7 +31,7 @@ void StartSequenceSystem::Initialize() {
 
 void StartSequenceSystem::Finalize() {}
 
-void StartSequenceSystem::UpdateEntity(OriGine::Entity* _entity) {
+void StartSequenceSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     // すでに開始している場合は処理しない
     if (isStarted_) {
         return;

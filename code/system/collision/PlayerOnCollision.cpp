@@ -21,7 +21,7 @@ static const float kParallelPenaltyThreshold = 0.07f; // 障害物と判断す�
 
 constexpr float kPenaltyTime = 1.2f;
 
-void PlayerOnCollision::UpdateEntity(OriGine::Entity* _entity) {
+void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
     auto* state        = GetComponent<PlayerState>(_entity);
     auto* pushBackInfo = GetComponent<CollisionPushBackInfo>(_entity);
     auto* rigidbody    = GetComponent<Rigidbody>(_entity);

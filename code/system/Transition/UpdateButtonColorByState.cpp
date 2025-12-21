@@ -19,7 +19,7 @@ void UpdateButtonColorByState::Initialize() {}
 void UpdateButtonColorByState::Finalize() {}
 
 static const float interpolate = 0.1f;
-void UpdateButtonColorByState::UpdateEntity(OriGine::Entity* _entity) {
+void UpdateButtonColorByState::UpdateEntity(OriGine::EntityHandle _handle) {
     Button* button = GetComponent<Button>(_entity);
     if (button == nullptr) {
         return;

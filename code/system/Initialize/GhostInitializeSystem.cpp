@@ -36,7 +36,7 @@ GhostInitializeSystem::~GhostInitializeSystem() {}
 void GhostInitializeSystem::Initialize() {}
 void GhostInitializeSystem::Finalize() {}
 
-void GhostInitializeSystem::UpdateEntity(OriGine::Entity* _entity) {
+void GhostInitializeSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     auto ghostReplayComp = GetComponent<GhostReplayComponent>(_entity);
 
     if (!ghostReplayComp) {

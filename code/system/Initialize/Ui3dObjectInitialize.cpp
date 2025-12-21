@@ -9,7 +9,7 @@ Ui3dObjectInitialize::Ui3dObjectInitialize() : ISystem(OriGine::SystemCategory::
 void Ui3dObjectInitialize::Initialize() {}
 void Ui3dObjectInitialize::Finalize() {}
 
-void Ui3dObjectInitialize::UpdateEntity(OriGine::Entity* _entity) {
+void Ui3dObjectInitialize::UpdateEntity(OriGine::EntityHandle _handle) {
     // カメラエンティティ取得
     OriGine::Entity* cameraEntity = GetUniqueEntity("GameCamera");
     if (!cameraEntity) {

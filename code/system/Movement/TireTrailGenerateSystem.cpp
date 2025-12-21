@@ -25,7 +25,7 @@ TireTrailGenerateSystem::~TireTrailGenerateSystem() {}
 void TireTrailGenerateSystem::Initialize() {}
 void TireTrailGenerateSystem::Finalize() {}
 
-void TireTrailGenerateSystem::UpdateEntity(OriGine::Entity* _entity) {
+void TireTrailGenerateSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     auto* spline = GetComponent<TireSplinePoints>(_entity);
     if (!spline) {
         return;

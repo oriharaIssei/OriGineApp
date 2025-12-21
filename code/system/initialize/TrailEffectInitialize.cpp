@@ -17,7 +17,7 @@ TrailEffectInitialize::~TrailEffectInitialize() {}
 void TrailEffectInitialize::Initialize() {}
 void TrailEffectInitialize::Finalize() {}
 
-void TrailEffectInitialize::UpdateEntity(OriGine::Entity* _entity) {
+void TrailEffectInitialize::UpdateEntity(OriGine::EntityHandle _handle) {
     MaterialEffectPipeLine* materialEffectPipeLine =
         GetComponent<MaterialEffectPipeLine>(_entity);
 

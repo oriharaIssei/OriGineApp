@@ -105,7 +105,7 @@ CreateMeshFromSpline::~CreateMeshFromSpline() {}
 void CreateMeshFromSpline::Initialize() {}
 void CreateMeshFromSpline::Finalize() {}
 
-void CreateMeshFromSpline::UpdateEntity(OriGine::Entity* _entity) {
+void CreateMeshFromSpline::UpdateEntity(OriGine::EntityHandle _handle) {
     auto planeRendererComp = GetComponent<PlaneRenderer>(_entity);
     if (planeRendererComp == nullptr) {
         return;

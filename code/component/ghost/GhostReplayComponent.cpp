@@ -2,7 +2,7 @@
 
 using namespace OriGine;
 
-void GhostReplayComponent::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {}
+void GhostReplayComponent::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {}
 void GhostReplayComponent::Finalize() {}
 
 void GhostReplayComponent::Edit(OriGine::Scene* /*_scene*/, OriGine::Entity* /*_OriGine::Entity*/, const std::string& /*_parentLabel*/) {

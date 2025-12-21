@@ -4,7 +4,7 @@
 #include "myGui/MyGui.h"
 #endif // DEBUG
 
-void StageData::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {}
+void StageData::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {}
 
 void StageData::Finalize() {}
 

@@ -20,7 +20,7 @@ public:
 
 private:
     void Update();
-    void UpdateEntity(OriGine::Entity* _entity) override;
+    void UpdateEntity(OriGine::EntityHandle _handle) override;
 
 private:
     bool isPausing_ = false;

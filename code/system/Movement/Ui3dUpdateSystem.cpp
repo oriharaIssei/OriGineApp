@@ -12,7 +12,7 @@ Ui3dUpdateSystem::~Ui3dUpdateSystem() {}
 void Ui3dUpdateSystem::Initialize() {}
 void Ui3dUpdateSystem::Finalize() {}
 
-void Ui3dUpdateSystem::UpdateEntity(OriGine::Entity* _entity) {
+void Ui3dUpdateSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     auto playerEnt = GetUniqueEntity("Player");
     if (!playerEnt) {
         return;

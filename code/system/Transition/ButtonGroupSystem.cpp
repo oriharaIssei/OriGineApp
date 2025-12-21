@@ -16,7 +16,7 @@ void ButtonGroupSystem::Initialize() {}
 
 void ButtonGroupSystem::Finalize() {}
 
-void ButtonGroupSystem::UpdateEntity(OriGine::Entity* _entity) {
+void ButtonGroupSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     OriGine::KeyboardInput* keyInput    = GetScene()->GetKeyboardInput();
     OriGine::GamepadInput* gamePadInput = GetScene()->GetGamepadInput();
 

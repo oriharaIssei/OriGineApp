@@ -24,7 +24,7 @@ void TutorialColliderOnCollision::Update() {
     ISystem::Update();
 }
 
-void TutorialColliderOnCollision::UpdateEntity(OriGine::Entity* _entity) {
+void TutorialColliderOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
     if (_entity == nullptr) {
         return;
     }

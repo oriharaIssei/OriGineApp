@@ -11,7 +11,7 @@ public:
     ~StageObstacle() override = default;
 
     void Initialize(OriGine::Entity* /*_OriGine::Entity*/) override {}
-    void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
+    void Edit(OriGine::Scene* _scene, OriGine::EntityHandle _owner, const std::string& _parentLabel) override;
     void Finalize() override {}
 
 private:

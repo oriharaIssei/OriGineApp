@@ -22,7 +22,7 @@ CreateSpriteFromTimer::~CreateSpriteFromTimer() {}
 void CreateSpriteFromTimer::Initialize() {}
 void CreateSpriteFromTimer::Finalize() {}
 
-void CreateSpriteFromTimer::UpdateEntity(OriGine::Entity* _entity) {
+void CreateSpriteFromTimer::UpdateEntity(OriGine::EntityHandle _handle) {
     auto timerForSpriteComponent = GetComponent<TimerForSpriteComponent>(_entity);
     if (!timerForSpriteComponent) {
         return; // タイマーコンポーネントがない場合は何もしない
@@ -35,7 +35,7 @@ void CreateSpriteFromTimer::UpdateEntity(OriGine::Entity* _entity) {
     CreateSprites(spriteEntity, timerForSpriteComponent);
 }
 
-void CreateSpriteFromTimer::CreateSprites(OriGine::Entity* _entity, TimerForSpriteComponent* _forSpriteComp) {
+void CreateSpriteFromTimer::CreateSprites(OriGine::EntityHandle _handle, TimerForSpriteComponent* _forSpriteComp) {
     // スプライトの生成位置を計算
     OriGine::Vec2f origin = OriGine::Engine::GetInstance()->GetWinApp()->GetWindowSize() * _forSpriteComp->anchorOnWindow;
     origin += _forSpriteComp->offset;

@@ -21,7 +21,7 @@ TimerForSprite::~TimerForSprite() {}
 void TimerForSprite::Initialize() {}
 void TimerForSprite::Finalize() {}
 
-void TimerForSprite::UpdateEntity(OriGine::Entity* _entity) {
+void TimerForSprite::UpdateEntity(OriGine::EntityHandle _handle) {
     auto timerComponent          = GetComponent<TimerComponent>(_entity);
     auto timerForSpriteComponent = GetComponent<TimerForSpriteComponent>(_entity);
     if (!timerComponent || !timerForSpriteComponent) {

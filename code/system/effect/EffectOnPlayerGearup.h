@@ -24,9 +24,9 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(OriGine::Entity* _entity) override;
+    void UpdateEntity(OriGine::EntityHandle _handle) override;
 
-    void UpdateShockWaveRing(OriGine::Entity* _entity, OriGine::Transform* _playerTransform);
+    void UpdateShockWaveRing(OriGine::EntityHandle _handle, OriGine::Transform* _playerTransform);
 
 protected:
     const OriGine::Vec3f emitterOffset_ = {0.0f, 0.0f, 8.f};

@@ -13,7 +13,7 @@ void SubSceneActivateByButton::Initialize() {}
 
 void SubSceneActivateByButton::Finalize() {}
 
-void SubSceneActivateByButton::UpdateEntity(OriGine::Entity* _entity) {
+void SubSceneActivateByButton::UpdateEntity(OriGine::EntityHandle _handle) {
     auto subScene = GetComponent<SubScene>(_entity);
     // 多重初期化防止
     if (subScene->IsActive()) {

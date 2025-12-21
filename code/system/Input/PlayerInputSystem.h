@@ -27,7 +27,7 @@ public:
     // void Update() override;
     void Finalize() override;
 
-    void UpdateEntity(OriGine::Entity* _entity) override;
+    void UpdateEntity(OriGine::EntityHandle _handle) override;
     void InputUpdate(float _deltaTime, OriGine::KeyboardInput* _keyInput, OriGine::GamepadInput* _padInput, PlayerInput* _playerInput, PlayerState* _playerState);
 
 private:

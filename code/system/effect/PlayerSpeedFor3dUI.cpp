@@ -17,7 +17,7 @@ PlayerSpeedFor3dUI::~PlayerSpeedFor3dUI() {}
 void PlayerSpeedFor3dUI::Initialize() {}
 void PlayerSpeedFor3dUI::Finalize() {}
 
-void PlayerSpeedFor3dUI::UpdateEntity(OriGine::Entity* _entity) {
+void PlayerSpeedFor3dUI::UpdateEntity(OriGine::EntityHandle _handle) {
     auto playerEnt = GetUniqueEntity("Player");
     if (!playerEnt) {
         return;

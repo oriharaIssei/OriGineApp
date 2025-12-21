@@ -33,7 +33,7 @@ void EffectOnPlayerGearup::Initialize() {}
 
 void EffectOnPlayerGearup::Finalize() {}
 
-void EffectOnPlayerGearup::UpdateEntity(OriGine::Entity* _entity) {
+void EffectOnPlayerGearup::UpdateEntity(OriGine::EntityHandle _handle) {
     OriGine::Entity* player = GetUniqueEntity("Player");
     if (!player) {
         return;
@@ -132,7 +132,7 @@ void EffectOnPlayerGearup::UpdateEntity(OriGine::Entity* _entity) {
     UpdateShockWaveRing(_entity, playerTransform);
 }
 
-void EffectOnPlayerGearup::UpdateShockWaveRing(OriGine::Entity* _entity, OriGine::Transform* _playerTransform) {
+void EffectOnPlayerGearup::UpdateShockWaveRing(OriGine::EntityHandle _handle, OriGine::Transform* _playerTransform) {
     DistortionEffectParam* distortionEffectParam = GetComponent<DistortionEffectParam>(_entity);
 
     auto& shockWaveRings = distortionEffectParam->GetDistortionObjects();

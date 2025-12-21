@@ -21,7 +21,7 @@ PlayerPathSplineGenerator::~PlayerPathSplineGenerator() {}
 void PlayerPathSplineGenerator::Initialize() {}
 void PlayerPathSplineGenerator::Finalize() {}
 
-void PlayerPathSplineGenerator::UpdateEntity(OriGine::Entity* _entity) {
+void PlayerPathSplineGenerator::UpdateEntity(OriGine::EntityHandle _handle) {
     constexpr float kThresholdSplitOrMerger = 0.3f;
 
     auto splinePoints = GetComponent<SplinePoints>(_entity);

@@ -17,7 +17,7 @@ PlayRecordSystem::~PlayRecordSystem() {}
 void PlayRecordSystem::Initialize() {}
 void PlayRecordSystem::Finalize() {}
 
-void PlayRecordSystem::UpdateEntity(OriGine::Entity* _entity) {
+void PlayRecordSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     auto recorder = GetComponent<PlayRecordeComponent>(_entity);
 
     if (!recorder) {

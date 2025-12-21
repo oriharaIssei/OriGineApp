@@ -9,7 +9,7 @@ using namespace OriGine;
 PlayerEffectControlParam::PlayerEffectControlParam() {}
 PlayerEffectControlParam::~PlayerEffectControlParam() {}
 
-void PlayerEffectControlParam::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {
+void PlayerEffectControlParam::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {
     if (trailColorByGearLevel_.empty()) {
         trailColorByGearLevel_ = std::vector<OriGine::Vec4f>(kMaxPlayerGearLevel, OriGine::Vec4f(1.f, 1.f, 1.f, 1.f));
     }

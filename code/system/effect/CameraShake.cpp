@@ -22,7 +22,7 @@ CameraShake::~CameraShake() {}
 void CameraShake::Initialize() {}
 void CameraShake::Finalize() {}
 
-void CameraShake::UpdateEntity(OriGine::Entity* _entity) {
+void CameraShake::UpdateEntity(OriGine::EntityHandle _handle) {
     auto cameraShakeSources = GetComponents<CameraShakeSourceComponent>(_entity);
 
     // CameraShakeSourceComponentが存在しない場合は Skip

@@ -25,7 +25,7 @@ void GameFailedSceneLaunchSystem::Finalize() {
     MessageBus::GetInstance()->Unsubscribe<GamefailedEvent>(gameFailedEventId_);
 }
 
-void GameFailedSceneLaunchSystem::UpdateEntity(OriGine::Entity* _entity) {
+void GameFailedSceneLaunchSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     if (!isLaunched_) {
         return;
     }

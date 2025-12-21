@@ -20,7 +20,7 @@ void FallDetectionSystem::Initialize() {}
 
 void FallDetectionSystem::Finalize() {}
 
-void FallDetectionSystem::UpdateEntity(OriGine::Entity* _entity) {
+void FallDetectionSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     constexpr float kFallThresholdY = -40.f;
     Transform* transform            = GetComponent<Transform>(_entity);
 

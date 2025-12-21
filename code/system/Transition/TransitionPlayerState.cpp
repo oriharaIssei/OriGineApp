@@ -37,7 +37,7 @@
 
 using namespace OriGine;
 
-void TransitionPlayerState::UpdateEntity(OriGine::Entity* _entity) {
+void TransitionPlayerState::UpdateEntity(OriGine::EntityHandle _handle) {
     PlayerState* state = GetComponent<PlayerState>(_entity);
 
     /// =====================================================

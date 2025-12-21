@@ -11,7 +11,7 @@ void TakePlayerToStartPosition::Initialize() {}
 
 void TakePlayerToStartPosition::Finalize() {}
 
-void TakePlayerToStartPosition::UpdateEntity(OriGine::Entity* _entity) {
+void TakePlayerToStartPosition::UpdateEntity(OriGine::EntityHandle _handle) {
     OriGine::Transform* transform = GetComponent<OriGine::Transform>(_entity);
     if (!transform) {
         return;

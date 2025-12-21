@@ -12,7 +12,7 @@ ButtonScenePreviewSystem::~ButtonScenePreviewSystem() {}
 void ButtonScenePreviewSystem::Initialize() {}
 void ButtonScenePreviewSystem::Finalize() {}
 
-void ButtonScenePreviewSystem::UpdateEntity(OriGine::Entity* _entity) {
+void ButtonScenePreviewSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     auto buttonGroup = GetComponent<ButtonGroup>(_entity);
 
     // skip

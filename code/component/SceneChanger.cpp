@@ -24,7 +24,7 @@ SceneChanger::~SceneChanger() {
 
 void SceneChanger::Initialize(OriGine::Entity* /* _OriGine::Entity*/) {}
 
-void SceneChanger::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]] OriGine::Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
+void SceneChanger::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]] EntityHandle _owner, [[maybe_unused]] const std::string& _parentLabel) {
    
 #ifdef _DEBUG
 

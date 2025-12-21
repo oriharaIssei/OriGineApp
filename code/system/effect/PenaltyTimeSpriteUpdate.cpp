@@ -18,7 +18,7 @@ PenaltyTimeSpriteUpdate::~PenaltyTimeSpriteUpdate() {}
 void PenaltyTimeSpriteUpdate::Initialize() {}
 void PenaltyTimeSpriteUpdate::Finalize() {}
 
-void PenaltyTimeSpriteUpdate::UpdateEntity(OriGine::Entity* _entity) {
+void PenaltyTimeSpriteUpdate::UpdateEntity(OriGine::EntityHandle _handle) {
     auto timerComp = GetComponent<TimerComponent>(_entity);
 
     // TimerComponentが存在しない場合は処理しない

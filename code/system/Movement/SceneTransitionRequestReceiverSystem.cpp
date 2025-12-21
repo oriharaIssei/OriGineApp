@@ -35,7 +35,7 @@ void SceneTransitionRequestReceiverSystem::Finalize() {
     MessageBus::GetInstance()->Unsubscribe<SceneChangeRequest>(sceneChangeRequestEventId_);
 }
 
-void SceneTransitionRequestReceiverSystem::UpdateEntity(OriGine::Entity* _entity) {
+void SceneTransitionRequestReceiverSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     if (!isSceneChangeRequested_) {
         return;
     }

@@ -23,7 +23,7 @@ void FollowCameraUpdateSystem::Initialize() {}
 
 void FollowCameraUpdateSystem::Finalize() {}
 
-void FollowCameraUpdateSystem::UpdateEntity(OriGine::Entity* _entity) {
+void FollowCameraUpdateSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     auto* cameraController = GetComponent<CameraController>(_entity);
     auto* cameraTransform  = GetComponent<CameraTransform>(_entity);
     auto* transform        = GetComponent<OriGine::Transform>(_entity);

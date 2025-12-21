@@ -3,7 +3,7 @@
 PlayRecordeComponent::PlayRecordeComponent() {}
 PlayRecordeComponent::~PlayRecordeComponent() {}
 
-void PlayRecordeComponent::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {}
+void PlayRecordeComponent::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {}
 void PlayRecordeComponent::Finalize() {}
 
 void PlayRecordeComponent::Edit(OriGine::Scene* /*_scene*/, OriGine::Entity* /*_OriGine::Entity*/, const std::string& /*_parentLabel*/) {}

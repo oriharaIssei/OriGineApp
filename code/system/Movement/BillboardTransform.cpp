@@ -12,7 +12,7 @@ using namespace OriGine;
 void BillboardTransform::Initialize() {}
 void BillboardTransform::Finalize() {}
 
-void BillboardTransform::UpdateEntity(OriGine::Entity* _entity) {
+void BillboardTransform::UpdateEntity(OriGine::EntityHandle _handle) {
     int32_t componentIndex = 0;
 
     const CameraTransform& cameraTransform = CameraManager::GetInstance()->GetTransform();

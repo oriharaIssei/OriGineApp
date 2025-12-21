@@ -18,7 +18,7 @@ SelectPreviewSceneInitialize::~SelectPreviewSceneInitialize() {}
 void SelectPreviewSceneInitialize::Initialize() {}
 void SelectPreviewSceneInitialize::Finalize() {}
 
-void SelectPreviewSceneInitialize::UpdateEntity(OriGine::Entity* _entity) {
+void SelectPreviewSceneInitialize::UpdateEntity(OriGine::EntityHandle _handle) {
     auto* subScenes = GetComponents<SubScene>(_entity);
 
     if (!subScenes) {

@@ -71,7 +71,7 @@ void SceneTransition::Update() {
 #endif
 }
 
-void SceneTransition::UpdateEntity(OriGine::Entity* _entity) {
+void SceneTransition::UpdateEntity(OriGine::EntityHandle _handle) {
     uint32_t compSize = (uint32_t)GetComponentArray<SceneChanger>()->GetComponentSize(_entity);
     if (compSize <= 0) {
         return;
