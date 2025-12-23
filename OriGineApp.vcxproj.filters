@@ -183,7 +183,7 @@
     <ClInclude Include="code\system\movement\FollowCameraUpdateSystem.h">
       <Filter>system\movement</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\movement\MenuUpdate.h">
+    <ClInclude Include="code\system\movement\PauseMainSceneSystem.h">
       <Filter>system\movement</Filter>
     </ClInclude>
     <ClInclude Include="code\system\movement\PlayerMoveSystem.h">
@@ -261,6 +261,21 @@
     <ClInclude Include="code\system\Initialize\PlayRecorderInitialize.h" />
     <ClInclude Include="code\component\ghost\PlayRecordeComponent.h" />
     <ClInclude Include="code\system\Initialize\InitializeMouseCondition.h" />
+    <ClInclude Include="code\system\Movement\RestartSystem.h" />
+    <ClInclude Include="code\event\RestartEvent.h" />
+    <ClInclude Include="code\event\GamefailedEvent.h" />
+    <ClInclude Include="code\system\Transition\RestartOnButtonPressSystem.h" />
+    <ClInclude Include="code\system\Transition\GameFailedSceneLaunchSystem.h" />
+    <ClInclude Include="code\event\SceneChangeRequest.h" />
+    <ClInclude Include="code\system\Movement\SceneTransitionRequestReceiverSystem.h" />
+    <ClInclude Include="code\system\Movement\SceneTransitionRequestSenderSystem.h" />
+    <ClInclude Include="code\system\Movement\ShadowPlaneSyncPlayerPosition.h" />
+    <ClInclude Include="code\system\collision\ShadowCastSystem.h" />
+    <ClInclude Include="code\system\Movement\TireTrailGenerateSystem.h" />
+    <ClInclude Include="code\component\spline\TireSplinePoints.h" />
+    <ClInclude Include="code\system\effect\CreateMeshFromTireSpline.h" />
+    <ClInclude Include="code\component\PlayerStateOverrideCondition.h" />
+    <ClInclude Include="code\system\Transition\PlayerStateOverrideSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -402,7 +417,7 @@
     <ClCompile Include="code\system\movement\FollowCameraUpdateSystem.cpp">
       <Filter>system\movement</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\movement\MenuUpdate.cpp">
+    <ClCompile Include="code\system\movement\PauseMainSceneSystem.cpp">
       <Filter>system\movement</Filter>
     </ClCompile>
     <ClCompile Include="code\system\movement\PlayerMoveSystem.cpp">
@@ -480,5 +495,17 @@
     <ClCompile Include="code\system\Initialize\PlayRecorderInitialize.cpp" />
     <ClCompile Include="code\component\ghost\PlayRecordeComponent.cpp" />
     <ClCompile Include="code\system\Initialize\InitializeMouseCondition.cpp" />
+    <ClCompile Include="code\system\Movement\RestartSystem.cpp" />
+    <ClCompile Include="code\system\Transition\RestartOnButtonPressSystem.cpp" />
+    <ClCompile Include="code\system\Transition\GameFailedSceneLaunchSystem.cpp" />
+    <ClCompile Include="code\system\Movement\SceneTransitionRequestReceiverSystem.cpp" />
+    <ClCompile Include="code\system\Movement\SceneTransitionRequestSenderSystem.cpp" />
+    <ClCompile Include="code\system\Movement\ShadowPlaneSyncPlayerPosition.cpp" />
+    <ClCompile Include="code\system\collision\ShadowCastSystem.cpp" />
+    <ClCompile Include="code\system\Movement\TireTrailGenerateSystem.cpp" />
+    <ClCompile Include="code\component\spline\TireSplinePoints.cpp" />
+    <ClCompile Include="code\system\effect\CreateMeshFromTireSpline.cpp" />
+    <ClCompile Include="code\component\PlayerStateOverrideCondition.cpp" />
+    <ClCompile Include="code\system\Transition\PlayerStateOverrideSystem.cpp" />
   </ItemGroup>
 </Project>

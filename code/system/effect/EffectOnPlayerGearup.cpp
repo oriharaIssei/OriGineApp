@@ -5,7 +5,10 @@
 #define DELTA_TIME
 #include "EngineInclude.h"
 
+#include "scene/SceneFactory.h"
+
 // component
+#include "component/animation/MaterialAnimation.h"
 #include "component/material/Material.h"
 
 #include "component/renderer/primitive/RingRenderer.h"
@@ -42,6 +45,8 @@ void EffectOnPlayerGearup::UpdateEntity(OriGine::Entity* _entity) {
         return;
     }
 
+    SceneFactory factory;
+
     /// ==============================
     // Effect PlayState Transition
     /// ==============================
@@ -68,8 +73,62 @@ void EffectOnPlayerGearup::UpdateEntity(OriGine::Entity* _entity) {
             shockWaveState_.playState.SetCurrent(true);
             shockWaveState_.currentTime = 0.f;
         }
-    }
 
+        // trailの色をGearLevelに応じて変化
+        auto* effectControlParam = GetComponent<PlayerEffectControlParam>(player);
+
+        if (effectControlParam) {
+            OriGine::Vec4f trailColor = effectControlParam->GetTrailColorByGearLevel(state->GetGearLevel());
+
+            constexpr int32_t trailAnimationOnGearUpIndex = 1;
+            OriGine::Entity* trailEntity                  = GetUniqueEntity("Trail");
+            MaterialAnimation* trailMaterialAnimation     = GetComponent<MaterialAnimation>(trailEntity, trailAnimationOnGearUpIndex);
+
+            // GearUp時にアニメーションを再生
+            if (trailMaterialAnimation) {
+                for (auto& colorKey : trailMaterialAnimation->GetColorCurve()) {
+                    // alpha値は変えない
+                    // rgbは trailColor に合わせる
+                    colorKey = Keyframe(colorKey.time, Vec4f(trailColor[X], trailColor[Y], trailColor[Z], colorKey.value[W]));
+                }
+                // アニメーションを最初から再生
+                trailMaterialAnimation->PlayStart();
+            }
+
+            // BackFire の色をGearLevelに応じて変化
+            OriGine::Entity* backFireEntity              = GetUniqueEntity("BackFire");
+            MaterialAnimation* backFireMaterialAnimation = GetComponent<MaterialAnimation>(backFireEntity);
+
+            if (backFireMaterialAnimation) {
+                for (auto& colorKey : backFireMaterialAnimation->GetColorCurve()) {
+                    // alpha値は変えない
+                    // rgbは trailColor に合わせる
+                    colorKey = Keyframe(colorKey.time, Vec4f(trailColor[X], trailColor[Y], trailColor[Z], colorKey.value[W]));
+                }
+                // アニメーションを最初から再生
+                backFireMaterialAnimation->PlayStart();
+            }
+
+            // chargeEffectを生成
+            Entity* chargeEffectEntity = factory.BuildEntityFromTemplate(GetScene(), "ChargeEffect");
+            if (chargeEffectEntity) {
+                Transform* chargeEffectTransform = GetComponent<Transform>(chargeEffectEntity);
+                chargeEffectTransform->translate = Vec3f(0.f, 0.f, 0.f);
+                chargeEffectTransform->parent    = playerTransform;
+
+                auto chargeMaterialEffect = GetComponent<MaterialAnimation>(chargeEffectEntity);
+                if (chargeMaterialEffect) {
+                    for (auto& colorKey : chargeMaterialEffect->GetColorCurve()) {
+                        // alpha値は変えない
+                        // rgbは trailColor に合わせる
+                        colorKey = Keyframe(colorKey.time, Vec4f(trailColor[X], trailColor[Y], trailColor[Z], colorKey.value[W]));
+                    }
+                    // アニメーションを最初から再生
+                    chargeMaterialEffect->PlayStart();
+                }
+            }
+        }
+    }
     UpdateShockWaveRing(_entity, playerTransform);
 }
 
@@ -94,7 +153,7 @@ void EffectOnPlayerGearup::UpdateShockWaveRing(OriGine::Entity* _entity, OriGine
 
                 RingRenderer* ringRenderer = dynamic_cast<RingRenderer*>(object.get());
 
-                ringRenderer->GetTransform().translate    = _playerTransform->translate + shockWaveOffset_; // 初期位置を設定
+                ringRenderer->GetTransform().translate    = _playerTransform->translate + (shockWaveOffset_ * MakeMatrix4x4::RotateY(_playerTransform->rotate.ToYaw())); // 初期位置を設定
                 ringRenderer->GetTransform().rotate       = _playerTransform->rotate;
                 ringRenderer->GetPrimitive().innerRadius_ = minInnerRadius_;
                 ringRenderer->GetPrimitive().outerRadius_ = minOuterRadius_;
@@ -128,7 +187,7 @@ void EffectOnPlayerGearup::UpdateShockWaveRing(OriGine::Entity* _entity, OriGine
             float outerRadius                         = std::lerp(minOuterRadius_, maxOuterRadius_, easeT);
             ringRenderer->GetPrimitive().innerRadius_ = innerRadius;
             ringRenderer->GetPrimitive().outerRadius_ = outerRadius;
-            TextureMesh* mesh                         = &ringRenderer->GetMeshGroup()->back();
+            auto* mesh                                = &ringRenderer->GetMeshGroup()->back();
             ringRenderer->CreateMesh(mesh);
         }
     } else if (!shockWaveState_.playState.IsRelease()) {
@@ -144,7 +203,8 @@ void EffectOnPlayerGearup::UpdateShockWaveRing(OriGine::Entity* _entity, OriGine
             RingRenderer* ringRenderer = dynamic_cast<RingRenderer*>(object.get());
 
             // 初期位置
-            ringRenderer->GetTransform().translate[Y] = -10000.f;
+            constexpr float kHidePositionY            = -10000.f;
+            ringRenderer->GetTransform().translate[Y] = kHidePositionY;
             ringRenderer->GetTransform().UpdateMatrix();
         }
     }

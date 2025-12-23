@@ -1,0 +1,31 @@
+{
+    "Components": {
+        "SubScene": [
+            {
+                "isActive": false,
+                "renderingPriority": 1,
+                "sceneName": "GameFailed"
+            }
+        ]
+    },
+    "Name": "GameFailedScene",
+    "Systems": [
+        {
+            "SystemCategory": 7,
+            "SystemName": "SubSceneRender"
+        },
+        {
+            "SystemCategory": 3,
+            "SystemName": "SubSceneUpdate"
+        },
+        {
+            "SystemCategory": 3,
+            "SystemName": "PauseMainSceneSystem"
+        },
+        {
+            "SystemCategory": 2,
+            "SystemName": "GameFailedSceneLaunchSystem"
+        }
+    ],
+    "isUnique": false
+}

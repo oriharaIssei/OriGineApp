@@ -65,8 +65,8 @@ void from_json(const nlohmann::json& j, TimerForSpriteComponent& c) {
     j.at("marginBetweenIntegerAndDecimal").get_to(c.marginBetweenIntegerAndDecimal);
 
     j.at("anchorOnWindow").get_to(c.anchorOnWindow);
-    j.at("digitIntegerForSprite").get_to(c.digitInteger);
-    j.at("digitDecimalForSprite").get_to(c.digitDecimal);
+    j.at("digitInteger").get_to(c.digitInteger);
+    j.at("digitDecimal").get_to(c.digitDecimal);
 }
 
 void TimerForSpriteComponent::Initialize(OriGine::Entity* /*OriGine::Entity*/) {

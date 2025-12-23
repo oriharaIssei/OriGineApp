@@ -11,6 +11,7 @@
 
 // scene
 #include "scene/Scene.h"
+#include "scene/SceneJsonRegistry.h"
 #include "scene/SceneManager.h"
 
 // global variable
@@ -77,6 +78,8 @@ void MyGame::Initialize(const std::vector<std::string>& _commandLines) {
     RegisterUsingSystems();
 
     InputManager* inputManager = InputManager::GetInstance();
+
+    SceneJsonRegistry::GetInstance()->LoadAllScene(kApplicationResourceDirectory + "/" + kSceneJsonFolder);
 
     sceneManager_->Initialize(inputManager->GetKeyboard(), inputManager->GetMouse(), inputManager->GetGamePad());
 

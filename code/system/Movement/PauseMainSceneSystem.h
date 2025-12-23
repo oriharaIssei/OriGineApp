@@ -2,18 +2,28 @@
 
 #include "system/ISystem.h"
 
+/// stl
+#include <string>
+#include <vector>
+
 /// <summary>
 /// メニューはSubSceneとして実装されている想定. MenuがActiveの間 GameのUpdateを止める.
 /// </summary>
-class MenuUpdate
+class PauseMainSceneSystem
     : public OriGine::ISystem {
 public:
-    MenuUpdate();
-    ~MenuUpdate() override;
+    PauseMainSceneSystem();
+    ~PauseMainSceneSystem() override;
 
     void Initialize() override;
-    void Finalize()override;
+    void Finalize() override;
 
 private:
+    void Update();
     void UpdateEntity(OriGine::Entity* _entity) override;
+
+private:
+    bool isPausing_ = false;
+
+    std::vector<std::string> deactivateSystemNames_ = {};
 };

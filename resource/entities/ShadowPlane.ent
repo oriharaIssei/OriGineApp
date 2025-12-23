@@ -1,0 +1,134 @@
+{
+    "Components": {
+        "AABBCollider": [
+            {
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "halfSize": [
+                    0.46000000834465027,
+                    1000.0,
+                    0.46000000834465027
+                ],
+                "transform": {
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "translate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                }
+            }
+        ],
+        "CollisionPushBackInfo": [
+            {
+                "pushBackType": 0
+            }
+        ],
+        "Material": [
+            {
+                "color": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.6196078658103943
+                ],
+                "enableLighting": false,
+                "shininess": 0.0,
+                "specularColor": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "uvRotate": 0.0,
+                "uvScale": [
+                    1.0,
+                    1.0
+                ],
+                "uvTranslate": [
+                    0.0,
+                    0.0
+                ]
+            }
+        ],
+        "PlaneRenderer": [
+            {
+                "blendMode": 1,
+                "isCulling": true,
+                "isRenderer": true,
+                "materialIndex": 0,
+                "textureFilePath": "./application/resource/Texture/nonBluer_circle.png",
+                "transform": {
+                    "rotate": [
+                        0.706572949886322,
+                        0.0,
+                        0.0,
+                        0.7076402902603149
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "translate": [
+                        0.0,
+                        0.10000000149011612,
+                        0.0
+                    ]
+                }
+            }
+        ],
+        "Transform": [
+            {
+                "rotate": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "scale": [
+                    1.6399999856948853,
+                    1.0,
+                    1.6399999856948853
+                ],
+                "translate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        ]
+    },
+    "Name": "ShadowPlane",
+    "Systems": [
+        {
+            "SystemCategory": 4,
+            "SystemName": "CollisionCheckSystem"
+        },
+        {
+            "SystemCategory": 6,
+            "SystemName": "TexturedMeshRenderSystem"
+        },
+        {
+            "SystemCategory": 3,
+            "SystemName": "ShadowPlaneSyncPlayerPosition"
+        },
+        {
+            "SystemCategory": 4,
+            "SystemName": "ShadowCastSystem"
+        }
+    ],
+    "isUnique": true
+}

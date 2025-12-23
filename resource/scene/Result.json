@@ -331,9 +331,8 @@
                             0.593999981880188,
                             0.46000000834465027
                         ],
-                        "digitDecimalForSprite": 2,
-                        "digitForSprite": 5,
-                        "digitIntegerForSprite": 3,
+                        "digitDecimal": 2,
+                        "digitInteger": 3,
                         "marginBetweenIntegerAndDecimal": [
                             0.0,
                             13.800000190734863
@@ -424,10 +423,10 @@
                 "PlaneRenderer": [
                     {
                         "blendMode": 1,
+                        "isCulling": true,
                         "isRenderer": true,
                         "materialIndex": 0,
-                        "textureDirectory": "./application/resource/Texture",
-                        "textureFileName": "lazer.png",
+                        "textureFilePath": "./application/resource/Texture/lazer.png",
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -594,7 +593,7 @@
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.7001306414604187
+                            0.18967342376708984
                         ]
                     }
                 ],
@@ -675,7 +674,7 @@
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.4946514964103699
+                            0.6038535833358765
                         ]
                     }
                 ],

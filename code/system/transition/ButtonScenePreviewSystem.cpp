@@ -1,8 +1,8 @@
 #include "ButtonScenePreviewSystem.h"
 
 /// component
-#include "component/ui/ButtonGroup.h"
 #include "component/SubScene.h"
+#include "component/ui/ButtonGroup.h"
 
 using namespace OriGine;
 
@@ -37,10 +37,6 @@ void ButtonScenePreviewSystem::UpdateEntity(OriGine::Entity* _entity) {
             continue;
         }
 
-        if (currentButtonNumber == buttonNumber) {
-            subScene->SetActive(true);
-        } else {
-            subScene->SetActive(false);
-        }
+        subScene->SetActive(currentButtonNumber == buttonNumber);
     }
 }

@@ -16,7 +16,7 @@ void PlayerOnCollision::Initialize() {}
 void PlayerOnCollision::Finalize() {}
 
 static const float kGroundCheckThreshold     = 0.7f; // 地面と判断するための閾値
-static const float kWallCheckThreshold       = 0.43f; // 壁と判断するための閾値
+static const float kWallCheckThreshold       = 0.29f; // 壁と判断するための閾値
 static const float kParallelPenaltyThreshold = 0.07f; // 障害物と判断するための閾値
 
 constexpr float kPenaltyTime = 1.2f;
@@ -30,8 +30,8 @@ void PlayerOnCollision::UpdateEntity(OriGine::Entity* _entity) {
         return;
     }
 
-    bool isPenalty            = false;
-    float penaltyTime         = 0.f;
+    bool isPenalty                     = false;
+    float penaltyTime                  = 0.f;
     OriGine::Vec3f penaltyObjectNormal = OriGine::Vec3f(0.f, 0.f, 0.f);
 
     // 毎フレーム、地面・壁との衝突状態をリセット
@@ -103,9 +103,9 @@ void PlayerOnCollision::UpdateEntity(OriGine::Entity* _entity) {
         if (state->IsPenalty()) {
             // 壁ジャンプの反動を与える
             constexpr float kReflectedSpeed = 48.f;
-            OriGine::Vec3f currentVelocity           = rigidbody->GetVelocity();
+            OriGine::Vec3f currentVelocity  = rigidbody->GetVelocity();
             currentVelocity                 = Reflect<float>(currentVelocity, penaltyObjectNormal);
-            currentVelocity                          = currentVelocity.normalize() * (std::max)(kReflectedSpeed, currentVelocity.length() * 0.7f);
+            currentVelocity                 = currentVelocity.normalize() * (std::max)(kReflectedSpeed, currentVelocity.length() * 0.7f);
             rigidbody->SetVelocity(currentVelocity);
         }
     }

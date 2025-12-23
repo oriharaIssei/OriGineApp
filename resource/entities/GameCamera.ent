@@ -116,7 +116,7 @@
                 "translate": [
                     0.0,
                     4.0,
-                    -5.0
+                    -20.0
                 ]
             }
         ],
@@ -144,16 +144,16 @@
     "Name": "GameCamera",
     "Systems": [
         {
+            "SystemCategory": 5,
+            "SystemName": "CameraShake"
+        },
+        {
             "SystemCategory": 2,
             "SystemName": "CameraMotionBobSystem"
         },
         {
             "SystemCategory": 1,
             "SystemName": "CameraInputSystem"
-        },
-        {
-            "SystemCategory": 5,
-            "SystemName": "CameraShake"
         },
         {
             "SystemCategory": 3,

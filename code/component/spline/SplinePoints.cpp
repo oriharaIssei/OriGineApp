@@ -13,96 +13,110 @@ SplinePoints::SplinePoints() {}
 SplinePoints::~SplinePoints() {}
 
 void SplinePoints::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {}
+void SplinePoints::Finalize() {}
 
 void SplinePoints::Edit(OriGine::Scene* /*_scene*/, OriGine::Entity* /*_OriGine::Entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
-    CheckBoxCommand("IsCrossMesh##" + _parentLabel, isCrossMesh_);
+    CheckBoxCommand("Is cross mesh##" + _parentLabel, commonSettings.isCrossMesh);
 
     ImGui::Spacing();
 
-    InputGuiCommand("Capacity##" + _parentLabel, capacity_);
-    if (capacity_ < 4) {
-        capacity_ = 4;
+    CheckBoxCommand("Is uv loop enable ##" + _parentLabel, commonSettings.isUvLoopEnable);
+    if (commonSettings.isUvLoopEnable) {
+        DragGuiCommand("Uv loop length ##" + _parentLabel, commonSettings.uvLoopLength, 0.01f);
+        if (commonSettings.uvLoopLength < 0.01f) {
+            commonSettings.uvLoopLength = 0.01f;
+        }
     }
 
     ImGui::Spacing();
 
-    InputGuiCommand("SegmentDivide##" + _parentLabel, segmentDivide_);
-    if (segmentDivide_ < 1) {
-        segmentDivide_ = 1;
-    }
-    DragGuiCommand("SegmentLength##" + _parentLabel, segmentLength_, 0.01f, 0.01f);
-    if (segmentLength_ < 0.0f) {
-        segmentLength_ = 0.0f;
+    InputGuiCommand("Capacity##" + _parentLabel, capacity);
+    if (capacity < 4) {
+        capacity = 4;
     }
 
     ImGui::Spacing();
 
-    EasingComboGui("WidthEaseType##" + _parentLabel, widthEaseType_);
-
-    DragGuiCommand("StartWidth##" + _parentLabel, startWidth_, 0.01f);
-    if (startWidth_ < 0.0f) {
-        startWidth_ = 0.0f;
+    InputGuiCommand("SegmentDivide##" + _parentLabel, segmentDivide);
+    if (segmentDivide < 1) {
+        segmentDivide = 1;
     }
-    DragGuiCommand("EndWidth##" + _parentLabel, endWidth_, 0.01f);
-    if (endWidth_ < 0.0f) {
-        endWidth_ = 0.0f;
+    DragGuiCommand("SegmentLength##" + _parentLabel, commonSettings.segmentLength, 0.01f, 0.01f);
+    if (commonSettings.segmentLength < 0.0f) {
+        commonSettings.segmentLength = 0.0f;
     }
 
     ImGui::Spacing();
 
-    EasingComboGui("UV EaseType##" + _parentLabel, uvEaseType_);
-    DragGuiVectorCommand("StartUv##" + _parentLabel, startUv_);
-    DragGuiVectorCommand("EndUv##" + _parentLabel, endUv_);
+    EasingComboGui("WidthEaseType##" + _parentLabel, commonSettings.widthEaseType);
+
+    DragGuiCommand("StartWidth##" + _parentLabel, commonSettings.startWidth, 0.01f);
+    if (commonSettings.startWidth < 0.0f) {
+        commonSettings.startWidth = 0.0f;
+    }
+    DragGuiCommand("EndWidth##" + _parentLabel, commonSettings.endWidth, 0.01f);
+    if (commonSettings.endWidth < 0.0f) {
+        commonSettings.endWidth = 0.0f;
+    }
 
     ImGui::Spacing();
 
-    DragGuiCommand("FadeOutTime##" + _parentLabel, fadeoutTime_, 0.01f);
+    EasingComboGui("UV EaseType##" + _parentLabel, commonSettings.uvEaseType);
+    DragGuiVectorCommand("StartUv##" + _parentLabel, commonSettings.startUv);
+    DragGuiVectorCommand("EndUv##" + _parentLabel, commonSettings.endUv);
+
+    ImGui::Spacing();
+
+    DragGuiCommand("FadeOutTime##" + _parentLabel, commonSettings.fadeoutTime, 0.01f);
 #endif // _DEBUG
 }
 
-void SplinePoints::Finalize() {}
-
-void SplinePoints::PushPoint(const OriGine::Vec3f& _point) {
-    if (points_.size() >= static_cast<size_t>(capacity_)) {
-        points_.pop_front();
+void SplinePoints::PushPoint(const OriGine::Vec3f& _pos) {
+    if (points.size() >= static_cast<size_t>(capacity)) {
+        points.pop_front();
     }
-    points_.push_back(_point);
+    points.push_back(_pos);
 }
 
 void to_json(nlohmann::json& j, const SplinePoints& c) {
-    j["capacity"]      = c.capacity_;
-    j["segmentDivide"] = c.segmentDivide_;
-    j["startUv"]       = c.startUv_;
-    j["endUv"]         = c.endUv_;
-    j["segmentLength"] = c.segmentLength_;
-    j["startWidth"]    = c.startWidth_;
-    j["endWidth"]      = c.endWidth_;
-    j["fadeoutTime"]   = c.fadeoutTime_;
-    j["isCrossMesh"]   = c.isCrossMesh_;
-    j["widthEaseType"] = static_cast<int>(c.widthEaseType_);
-    j["uvEaseType"]    = static_cast<int>(c.uvEaseType_);
+    j["capacity"]       = c.capacity;
+    j["segmentDivide"]  = c.segmentDivide;
+    j["startUv"]        = c.commonSettings.startUv;
+    j["endUv"]          = c.commonSettings.endUv;
+    j["segmentLength"]  = c.commonSettings.segmentLength;
+    j["startWidth"]     = c.commonSettings.startWidth;
+    j["endWidth"]       = c.commonSettings.endWidth;
+    j["fadeoutTime"]    = c.commonSettings.fadeoutTime;
+    j["isCrossMesh"]    = c.commonSettings.isCrossMesh;
+    j["isUvLoopEnable"] = c.commonSettings.isUvLoopEnable;
+    j["uvLoopLength"]   = c.commonSettings.uvLoopLength;
+    j["widthEaseType"]  = static_cast<int>(c.commonSettings.widthEaseType);
+    j["uvEaseType"]     = static_cast<int>(c.commonSettings.uvEaseType);
 }
 
 void from_json(const nlohmann::json& j, SplinePoints& c) {
-    j.at("capacity").get_to(c.capacity_);
-    j.at("segmentDivide").get_to(c.segmentDivide_);
-    j.at("startUv").get_to(c.startUv_);
-    j.at("endUv").get_to(c.endUv_);
-    j.at("segmentLength").get_to(c.segmentLength_);
-    j.at("startWidth").get_to(c.startWidth_);
-    j.at("endWidth").get_to(c.endWidth_);
-    j.at("fadeoutTime").get_to(c.fadeoutTime_);
+    j.at("capacity").get_to(c.capacity);
+    j.at("segmentDivide").get_to(c.segmentDivide);
+    j.at("startUv").get_to(c.commonSettings.startUv);
+    j.at("endUv").get_to(c.commonSettings.endUv);
+    j.at("segmentLength").get_to(c.commonSettings.segmentLength);
+    j.at("startWidth").get_to(c.commonSettings.startWidth);
+    j.at("endWidth").get_to(c.commonSettings.endWidth);
+    j.at("fadeoutTime").get_to(c.commonSettings.fadeoutTime);
 
-    j.at("isCrossMesh").get_to(c.isCrossMesh_);
+    j.at("isCrossMesh").get_to(c.commonSettings.isCrossMesh);
     {
         int temp = 0;
         j.at("widthEaseType").get_to(temp);
-        c.widthEaseType_ = static_cast<EaseType>(temp);
+        c.commonSettings.widthEaseType = static_cast<EaseType>(temp);
     }
     {
         int temp = 0;
         j.at("uvEaseType").get_to(temp);
-        c.uvEaseType_ = static_cast<EaseType>(temp);
+        c.commonSettings.uvEaseType = static_cast<EaseType>(temp);
     }
+
+    j.at("isUvLoopEnable").get_to(c.commonSettings.isUvLoopEnable);
+    j.at("uvLoopLength").get_to(c.commonSettings.uvLoopLength);
 }

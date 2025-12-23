@@ -31,11 +31,14 @@ void PlayerStatus::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {
 void PlayerStatus::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]] OriGine::Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
 
-    if (ImGui::TreeNode("Speed")) {
-        DragGuiCommand("baseSpeed", baseSpeed_);
-        DragGuiCommand("speedUpRateBase", speedUpRateBase_);
-        DragGuiCommand("speedUpRateCommonRate", speedUpRateCommonRate_);
-        if (ImGui::BeginTable("SpeedByGearLevel", 2, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg)) {
+    std::string label = "Speed##" + _parentLabel;
+    if (ImGui::TreeNode(label.c_str())) {
+        DragGuiCommand("baseSpeed##" + _parentLabel, baseSpeed_);
+        DragGuiCommand("speedUpRateBase##" + _parentLabel, speedUpRateBase_);
+        DragGuiCommand("speedUpRateCommonRate##" + _parentLabel, speedUpRateCommonRate_);
+
+        label = "SpeedByGearLevel##" + _parentLabel;
+        if (ImGui::BeginTable(label.c_str(), 2, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg)) {
             ImGui::TableSetupColumn("Gear Level");
             ImGui::TableSetupColumn("Speed");
             ImGui::TableHeadersRow();
@@ -53,10 +56,13 @@ void PlayerStatus::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]
 
     ImGui::Spacing();
 
-    if (ImGui::TreeNode("CoolTime")) {
-        DragGuiCommand("gearUpCoolTime", baseGearupCoolTime_);
-        DragGuiCommand("coolTimeAddRateBase", coolTimeAddRateBase_);
-        DragGuiCommand("coolTimeAddRateCommonRate", coolTimeAddRateCommonRate_);
+    label = "CoolTime##" + _parentLabel;
+    if (ImGui::TreeNode(label.c_str())) {
+        DragGuiCommand("gearUpCoolTime##" + _parentLabel, baseGearupCoolTime_);
+        DragGuiCommand("coolTimeAddRateBase##" + _parentLabel, coolTimeAddRateBase_);
+        DragGuiCommand("coolTimeAddRateCommonRate##" + _parentLabel, coolTimeAddRateCommonRate_);
+
+        label = "CoolTimeByGearLevel##" + _parentLabel;
         if (ImGui::BeginTable("CoolTimeByGearLevel", 2, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg)) {
             ImGui::TableSetupColumn("Gear Level");
             ImGui::TableSetupColumn("CoolTime");
@@ -73,22 +79,44 @@ void PlayerStatus::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]
         ImGui::TreePop();
     }
 
-    DragGuiCommand("invincibilityTime", invincibilityTime_);
+    DragGuiCommand("invincibilityTime##" + _parentLabel, invincibilityTime_, 0.01f);
 
     ImGui::Spacing();
 
-    DragGuiCommand("directionInterpolateRate", directionInterpolateRate_);
+    DragGuiCommand("directionInterpolateRate##" + _parentLabel, directionInterpolateRate_, 0.01f);
 
     ImGui::Spacing();
 
-    DragGuiCommand("jumpPower", jumpPower_);
-    DragGuiCommand("fallPower", fallPower_);
+    if (ImGui::TreeNode("JumpHoldVelocity")) {
+        EasingComboGui("EaseType##JumpHoldVelocity" + _parentLabel, jumpHoldVelocityEaseType_);
+
+        DragGuiCommand("Min##JumpHoldVelocity##" + _parentLabel, minJumpHoldVelocity_, 0.01f);
+        DragGuiCommand("Max##JumpHoldVelocity##" + _parentLabel, maxJumpHoldVelocity_, 0.01f);
+
+        ImGui::TreePop();
+    }
 
     ImGui::Spacing();
 
-    DragGuiCommand("wallRunRate", wallRunRate_);
-    DragGuiCommand("wallRunRampUpTime", wallRunRampUpTime_, 0.01f);
-    DragGuiVectorCommand<3, float>("WallJumpOffset", wallJumpOffset_, 0.01f);
+    if (ImGui::TreeNode("JumpChargeRate")) {
+        EasingComboGui("EaseType##JumpChargeRate##" + _parentLabel, jumpChargeRateEaseType_);
+
+        DragGuiCommand("Min##JumpChargeRate##" + _parentLabel, minJumpChargeRate_, 0.01f);
+        DragGuiCommand("Max##JumpChargeRate##" + _parentLabel, maxJumpChargeRate_, 0.01f);
+
+        ImGui::TreePop();
+    }
+
+    ImGui::Spacing();
+
+    DragGuiCommand("RisingGravityRate##" + _parentLabel, risingGravityRate_, 0.01f);
+    DragGuiCommand("FallingGravityRate##" + _parentLabel, fallingGravityRate_, 0.01f);
+
+    ImGui::Spacing();
+
+    DragGuiCommand("WallRunRate##" + _parentLabel, wallRunRate_, 0.01f);
+    DragGuiCommand("WallRunRampUpTime##" + _parentLabel, wallRunRampUpTime_, 0.01f);
+    DragGuiVectorCommand<3, float>("WallJumpOffset##" + _parentLabel, wallJumpOffset_, 0.01f);
 
 #endif // _DEBUG
 }
@@ -101,8 +129,26 @@ void PlayerStatus::Debug(OriGine::Scene* /*_scene*/, OriGine::Entity* /*_OriGine
     ImGui::Spacing();
     ImGui::Text("Base Speed          : %.2f", baseSpeed_);
     ImGui::Text("CurrentMax Speed       : %.2f", currentMaxSpeed_);
-    ImGui::Text("Jump Power          : %.2f", jumpPower_);
-    ImGui::Text("Fall Power          : %.2f", fallPower_);
+
+    if (ImGui::TreeNode("JumpHoldVelocity")) {
+        ImGui::Text("EaseType : %s", EasingNames[jumpHoldVelocityEaseType_].c_str());
+
+        ImGui::Text("Min : %.3", minJumpHoldVelocity_);
+        ImGui::Text("Max : %.3", maxJumpHoldVelocity_);
+
+        ImGui::TreePop();
+    }
+    if (ImGui::TreeNode("JumpChargeRate")) {
+        ImGui::Text("EaseType : %s", EasingNames[jumpHoldVelocityEaseType_].c_str());
+
+        ImGui::Text("Min : %.3", minJumpChargeRate_);
+        ImGui::Text("Max : %.3", maxJumpChargeRate_);
+
+        ImGui::TreePop();
+    }
+
+    ImGui::Text("Rising Gravity Rate  : %.2f", risingGravityRate_);
+    ImGui::Text("Falling Gravity Rate : %.2f", fallingGravityRate_);
 
     ImGui::Spacing();
     ImGui::Text("Speed Up Rate Base        : %.2f", speedUpRateBase_);
@@ -152,11 +198,11 @@ void PlayerStatus::UpdateAccel(float _deltaTime, PlayerInput* _input, Transform*
 
     // 入力方向を3Dベクトルに変換（Zが前、Xが右）
     OriGine::Vec3f inputDir3D = {inputDirection[X], 0.0f, inputDirection[Y]};
-    inputDir3D       = inputDir3D.normalize();
+    inputDir3D                = inputDir3D.normalize();
 
     // カメラの向きに合わせて入力方向を回転（ローカル→ワールド変換）
     OriGine::Vec3f moveDirWorld = inputDir3D * MakeMatrix4x4::RotateY(cameraYaw);
-    moveDirWorld       = moveDirWorld.normalize();
+    moveDirWorld                = moveDirWorld.normalize();
     // ワールド方向に変換した入力方向を保存
     _input->SetWorldInputDirection(moveDirWorld);
 
@@ -181,12 +227,21 @@ void PlayerStatus::UpdateAccel(float _deltaTime, PlayerInput* _input, Transform*
 }
 
 void to_json(nlohmann::json& j, const PlayerStatus& _playerStatus) {
-    j["baseSpeed"]                = _playerStatus.baseSpeed_;
-    j["wallRunRate"]              = _playerStatus.wallRunRate_;
-    j["wallRunRumpUpTime"]        = _playerStatus.wallRunRampUpTime_;
-    j["wallJumpOffset"]           = _playerStatus.wallJumpOffset_;
-    j["jumpPower"]                = _playerStatus.jumpPower_;
-    j["fallPower"]                = _playerStatus.fallPower_;
+    j["baseSpeed"]         = _playerStatus.baseSpeed_;
+    j["wallRunRate"]       = _playerStatus.wallRunRate_;
+    j["wallRunRumpUpTime"] = _playerStatus.wallRunRampUpTime_;
+    j["wallJumpOffset"]    = _playerStatus.wallJumpOffset_;
+
+    j["jumpHoldVelocityEaseType"] = static_cast<int>(_playerStatus.jumpHoldVelocityEaseType_);
+    j["minJumpHoldVelocity"]      = _playerStatus.minJumpHoldVelocity_;
+    j["maxJumpHoldVelocity"]      = _playerStatus.maxJumpHoldVelocity_;
+    j["jumpChargeRateEaseType"]   = static_cast<int>(_playerStatus.jumpChargeRateEaseType_);
+    j["minJumpChargeRate"]        = _playerStatus.minJumpChargeRate_;
+    j["maxJumpChargeRate"]        = _playerStatus.maxJumpChargeRate_;
+
+    j["risingGravityRate"]  = _playerStatus.risingGravityRate_;
+    j["fallingGravityRate"] = _playerStatus.fallingGravityRate_;
+
     j["gearUpCoolTime"]           = _playerStatus.baseGearupCoolTime_;
     j["directionInterpolateRate"] = _playerStatus.directionInterpolateRate_;
 
@@ -197,8 +252,21 @@ void to_json(nlohmann::json& j, const PlayerStatus& _playerStatus) {
 }
 void from_json(const nlohmann::json& j, PlayerStatus& _playerStatus) {
     j.at("baseSpeed").get_to(_playerStatus.baseSpeed_);
-    j.at("jumpPower").get_to(_playerStatus.jumpPower_);
-    j.at("fallPower").get_to(_playerStatus.fallPower_);
+
+    int easetype = 0;
+    j.at("jumpHoldVelocityEaseType").get_to(easetype);
+    _playerStatus.jumpHoldVelocityEaseType_ = static_cast<EaseType>(easetype);
+    j.at("minJumpHoldVelocity").get_to(_playerStatus.minJumpHoldVelocity_);
+    j.at("maxJumpHoldVelocity").get_to(_playerStatus.maxJumpHoldVelocity_);
+
+    j.at("jumpChargeRateEaseType").get_to(easetype);
+    _playerStatus.jumpChargeRateEaseType_ = static_cast<EaseType>(easetype);
+    j.at("minJumpChargeRate").get_to(_playerStatus.minJumpChargeRate_);
+    j.at("maxJumpChargeRate").get_to(_playerStatus.maxJumpChargeRate_);
+
+    j.at("risingGravityRate").get_to(_playerStatus.risingGravityRate_);
+    j.at("fallingGravityRate").get_to(_playerStatus.fallingGravityRate_);
+
     j.at("wallRunRate").get_to(_playerStatus.wallRunRate_);
     j.at("wallRunRumpUpTime").get_to(_playerStatus.wallRunRampUpTime_);
     j.at("wallJumpOffset").get_to(_playerStatus.wallJumpOffset_);

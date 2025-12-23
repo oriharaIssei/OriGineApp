@@ -19,8 +19,10 @@
 #include "component/player/PlayerInput.h"
 #include "component/player/PlayerStatus.h"
 #include "component/player/state/PlayerState.h"
+#include "component/PlayerStateOverrideCondition.h"
 #include "component/SceneChanger.h"
 #include "component/spline/SplinePoints.h"
+#include "component/spline/TireSplinePoints.h"
 #include "component/stage/StageData.h"
 #include "component/stage/StageObstacle.h"
 #include "component/TimerComponent.h"
@@ -30,9 +32,11 @@
 
 // application system
 #include "system/collision/PlayerOnCollision.h"
+#include "system/collision/ShadowCastSystem.h"
 #include "system/collision/TutorialColliderOnCollision.h"
 #include "system/effect/CameraShake.h"
 #include "system/effect/CreateMeshFromSpline.h"
+#include "system/effect/CreateMeshFromTireSpline.h"
 #include "system/effect/EffectOnPlayerGearup.h"
 #include "system/effect/EffectOnPlayerRun.h"
 #include "system/effect/PenaltyTimeSpriteUpdate.h"
@@ -61,11 +65,16 @@
 #include "system/movement/BillboardTransform.h"
 #include "system/movement/FollowCameraUpdateSystem.h"
 #include "system/Movement/LookAtFromTransformsSystem.h"
-#include "system/movement/MenuUpdate.h"
+#include "system/movement/PauseMainSceneSystem.h"
 #include "system/movement/PlayerMoveSystem.h"
 #include "system/movement/PlayerPathSplineGenerator.h"
 #include "system/movement/PlayerUpdateOnTitle.h"
+#include "system/movement/RestartSystem.h"
+#include "system/movement/SceneTransitionRequestReceiverSystem.h"
+#include "system/movement/SceneTransitionRequestSenderSystem.h"
+#include "system/Movement/ShadowPlaneSyncPlayerPosition.h"
 #include "system/movement/StartSequenceSystem.h"
+#include "system/Movement/TireTrailGenerateSystem.h"
 #include "system/Movement/Ui3dUpdateSystem.h"
 #include "system/transition/ApplyMouseConditionSystem.h"
 #include "system/transition/ButtonGroupSystem.h"
@@ -74,7 +83,10 @@
 #include "system/transition/ChangeSceneByButton.h"
 #include "system/transition/ExitApplicationByButton.h"
 #include "system/transition/FallDetectionSystem.h"
+#include "system/transition/GameFailedSceneLaunchSystem.h"
 #include "system/transition/PenaltySystem.h"
+#include "system/Transition/PlayerStateOverrideSystem.h"
+#include "system/transition/RestartOnButtonPressSystem.h"
 #include "system/transition/SceneTransition.h"
 #include "system/transition/ShowGameUIByInputDevice.h"
 #include "system/transition/SubSceneActivateByButton.h"
@@ -115,6 +127,7 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<StageObstacle>();
 
     componentRegistry->RegisterComponent<SplinePoints>();
+    componentRegistry->RegisterComponent<TireSplinePoints>();
 
     componentRegistry->RegisterComponent<GhostReplayComponent>();
     componentRegistry->RegisterComponent<PlayRecordeComponent>();
@@ -127,6 +140,7 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<CameraAction>();
     componentRegistry->RegisterComponent<ModelNodeAnimation>();
     componentRegistry->RegisterComponent<PrimitiveNodeAnimation>();
+    componentRegistry->RegisterComponent<TransformAnimation>();
     componentRegistry->RegisterComponent<SkinningAnimationComponent>();
     componentRegistry->RegisterComponent<SpriteAnimation>();
     componentRegistry->RegisterComponent<MaterialAnimation>();
@@ -175,6 +189,8 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<Button>();
     componentRegistry->RegisterComponent<ButtonGroup>();
     componentRegistry->RegisterComponent<SceneChanger>();
+
+    componentRegistry->RegisterComponent<PlayerStateOverrideCondition>();
 }
 
 void RegisterUsingSystems() {
@@ -221,6 +237,7 @@ void RegisterUsingSystems() {
     /// ===================================================================================================
     // StateTransition
     /// ===================================================================================================
+    systemRegistry->RegisterSystem<EffectAutoDestroySystem>();
     systemRegistry->RegisterSystem<ChangeSceneByButton>();
     systemRegistry->RegisterSystem<FallDetectionSystem>();
     systemRegistry->RegisterSystem<SceneTransition>();
@@ -237,7 +254,13 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<PenaltySystem>();
     systemRegistry->RegisterSystem<CameraMotionBobSystem>();
 
+    systemRegistry->RegisterSystem<GameFailedSceneLaunchSystem>();
+
+    systemRegistry->RegisterSystem<RestartOnButtonPressSystem>();
+
     systemRegistry->RegisterSystem<ButtonScenePreviewSystem>();
+
+    systemRegistry->RegisterSystem<PlayerStateOverrideSystem>();
 
     /// =================================================================================================
     // Movement
@@ -248,14 +271,20 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<FollowCameraUpdateSystem>();
     systemRegistry->RegisterSystem<PlayerMoveSystem>();
 
+    systemRegistry->RegisterSystem<PlayerPathSplineGenerator>();
+    systemRegistry->RegisterSystem<TireTrailGenerateSystem>();
     systemRegistry->RegisterSystem<PlayerUpdateOnTitle>();
 
-    systemRegistry->RegisterSystem<PlayerPathSplineGenerator>();
+    systemRegistry->RegisterSystem<ShadowPlaneSyncPlayerPosition>();
 
     systemRegistry->RegisterSystem<StartSequenceSystem>();
 
+    systemRegistry->RegisterSystem<SceneTransitionRequestSenderSystem>();
+    systemRegistry->RegisterSystem<SceneTransitionRequestReceiverSystem>();
+
     systemRegistry->RegisterSystem<SubSceneUpdate>();
-    systemRegistry->RegisterSystem<MenuUpdate>();
+    systemRegistry->RegisterSystem<RestartSystem>();
+    systemRegistry->RegisterSystem<PauseMainSceneSystem>();
 
     systemRegistry->RegisterSystem<LookAtFromTransformsSystem>();
     systemRegistry->RegisterSystem<Ui3dUpdateSystem>();
@@ -269,6 +298,8 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<PlayerOnCollision>();
     systemRegistry->RegisterSystem<TutorialColliderOnCollision>();
 
+    systemRegistry->RegisterSystem<ShadowCastSystem>();
+
     /// =================================================================================================
     // Effect
     /// =================================================================================================
@@ -280,10 +311,13 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<SpriteAnimationSystem>();
     systemRegistry->RegisterSystem<MaterialAnimationWorkSystem>();
     systemRegistry->RegisterSystem<CameraActionSystem>();
+    systemRegistry->RegisterSystem<TransformAnimationWorkSystem>();
+
     systemRegistry->RegisterSystem<CameraShake>();
 
     systemRegistry->RegisterSystem<MaterialEffect>();
     systemRegistry->RegisterSystem<CreateMeshFromSpline>();
+    systemRegistry->RegisterSystem<CreateMeshFromTireSpline>();
 
     systemRegistry->RegisterSystem<PlayerSpeedFor3dUI>();
     systemRegistry->RegisterSystem<TimerForSprite>();

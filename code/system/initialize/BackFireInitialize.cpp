@@ -22,6 +22,7 @@ void BackFireInitialize::UpdateEntity(OriGine::Entity* _entity) {
 
     /// backFireのエフェクトを構築
     MaterialEffectPipeLine* effectPipeline = GetComponent<MaterialEffectPipeLine>(_entity);
+    effectPipeline->ClearEffectEntity();
 
     MaterialEffectPipeLine* dissPipeline = GetComponent<MaterialEffectPipeLine>(dissEntity);
     dissPipeline->AddEffectEntity(MaterialEffectType::Distortion, distEntity->GetID());

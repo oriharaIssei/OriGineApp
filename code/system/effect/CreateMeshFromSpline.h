@@ -1,9 +1,10 @@
 #pragma once
 #include "system/ISystem.h"
 
+/// ECS
+// component
 #include "component/renderer/primitive/PlaneRenderer.h"
-
-struct SplinePoints;
+#include "component/spline/SplinePoints.h"
 
 /// <summary>
 /// スプラインからメッシュを生成するシステム

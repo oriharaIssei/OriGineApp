@@ -1,0 +1,391 @@
+{
+    "CategoryActivity": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+    ],
+    "Entities": [
+        {
+            "Components": {
+                "SkyboxRenderer": [
+                    {
+                        "filePath": "application/resource/Texture/output_skybox.dds",
+                        "materialBuff": {
+                            "color": [
+                                0.649789035320282,
+                                0.4264598488807678,
+                                0.3783581852912903,
+                                1.0
+                            ]
+                        },
+                        "transformBuff": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ]
+            },
+            "Name": "Skybox",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "SkyboxRender"
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "Material": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "MaterialEffectPipeLine": [
+                    {
+                        "baseTexturePath": "./application/resource/..\\..\\engine\\resource\\Texture/uvChecker.png",
+                        "effectEntityIdList": [
+                            {
+                                "effectType": 0,
+                                "entityID": 2
+                            }
+                        ],
+                        "isActive": true,
+                        "materialIndex": 0,
+                        "priority": 5
+                    }
+                ],
+                "PlaneRenderer": [
+                    {
+                        "blendMode": 1,
+                        "isCulling": false,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "textureFilePath": "./application/resource/..\\..\\engine\\resource\\Texture/uvChecker.png",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                -2.309999942779541,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "SphereRenderer": [
+                    {
+                        "blendMode": 1,
+                        "divisionLatitude": 8,
+                        "divisionLongitude": 16,
+                        "isCulling": false,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "radius": 1.0,
+                        "textureFilePath": "./application/resource/..\\..\\engine\\resource\\Texture/uvChecker.png",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                2.309999942779541,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Transform": [
+                    {
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            -2.9802322387695313e-08,
+                            -0.503124475479126,
+                            8.979999542236328
+                        ]
+                    }
+                ]
+            },
+            "Name": "Entity",
+            "Systems": [
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "MaterialEffect"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "DissolveEffectParam": [
+                    {
+                        "edgeWidth": 0.006000000052154064,
+                        "isActive": true,
+                        "materialIndex": 0,
+                        "outLineColor": [
+                            0.0,
+                            0.5634781122207642,
+                            0.8902953863143921,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "threshold": 0.014000000432133675
+                    }
+                ],
+                "Material": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.07999999821186066,
+                            -0.49000000953674316
+                        ]
+                    }
+                ],
+                "MaterialAnimation": [
+                    {
+                        "InterpolationType": 0,
+                        "colorCurve": [],
+                        "duration": 3.799999952316284,
+                        "isLoop": true,
+                        "isPlay": false,
+                        "uvRotateCurve": [],
+                        "uvScaleCurve": [],
+                        "uvTranslateCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 3.799999952316284,
+                                "value": [
+                                    1.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "MaterialEffectPipeLine": [
+                    {
+                        "baseTexturePath": "./application/resource/Texture/gradationLine.png",
+                        "effectEntityIdList": [
+                            {
+                                "effectType": 1,
+                                "entityID": 3
+                            }
+                        ],
+                        "isActive": true,
+                        "materialIndex": 0,
+                        "priority": 0
+                    }
+                ]
+            },
+            "Name": "Diss",
+            "Systems": [
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "MaterialEffect"
+                },
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "MaterialAnimationWorkSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "DistortionEffectParam": [
+                    {
+                        "distortionBias": [
+                            0.3499999940395355,
+                            0.5
+                        ],
+                        "distortionStrength": [
+                            4.150000095367432,
+                            6.989999771118164
+                        ],
+                        "isActive": true,
+                        "materialIndex": 0,
+                        "textuerPath": "./application/resource/Texture/waveNoise.png",
+                        "use3dObjectList": false
+                    }
+                ],
+                "Material": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.10790706425905228,
+                            0.10790706425905228
+                        ]
+                    }
+                ],
+                "MaterialAnimation": [
+                    {
+                        "InterpolationType": 0,
+                        "colorCurve": [],
+                        "duration": 6.800000190734863,
+                        "isLoop": true,
+                        "isPlay": true,
+                        "uvRotateCurve": [],
+                        "uvScaleCurve": [],
+                        "uvTranslateCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 6.800000190734863,
+                                "value": [
+                                    1.0,
+                                    1.0
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "Name": "Dist",
+            "Systems": [
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "MaterialAnimationWorkSystem"
+                }
+            ],
+            "isUnique": false
+        }
+    ],
+    "Systems": [
+        {
+            "SkyboxRender": {
+                "Priority": -2
+            }
+        },
+        {
+            "MaterialEffect": {
+                "Priority": 0
+            }
+        },
+        {
+            "MaterialAnimationWorkSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "TexturedMeshRenderSystem": {
+                "Priority": 0
+            }
+        }
+    ]
+}

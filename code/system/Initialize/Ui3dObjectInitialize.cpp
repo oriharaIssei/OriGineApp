@@ -24,4 +24,5 @@ void Ui3dObjectInitialize::UpdateEntity(OriGine::Entity* _entity) {
 
     // parentを結ぶ
     transform->parent = cameraTransform;
+    transform->UpdateMatrix();
 }

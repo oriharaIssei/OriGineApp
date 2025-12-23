@@ -157,47 +157,8 @@
                         "shortcutPadButton": []
                     }
                 ],
-                "DissolveEffectParam": [
-                    {
-                        "edgeWidth": 0.10000000149011612,
-                        "isActive": false,
-                        "materialIndex": 0,
-                        "outLineColor": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "textureFilePath": "./application/resource/Texture/bioNoise.png",
-                        "threshold": 0.5
-                    }
-                ],
-                "Material": [
-                    {
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "enableLighting": false,
-                        "shininess": 0.0,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
+                "DissolveEffectParam": [],
+                "Material": [],
                 "SceneChanger": [
                     {
                         "nextSceneName": "StageSelect"
@@ -268,6 +229,10 @@
             "Name": "BackToStageSelect",
             "Systems": [
                 {
+                    "SystemCategory": 3,
+                    "SystemName": "SceneTransitionRequestSenderSystem"
+                },
+                {
                     "SystemCategory": 2,
                     "SystemName": "ChangeSceneByButton"
                 },
@@ -278,10 +243,6 @@
                 {
                     "SystemCategory": 7,
                     "SystemName": "DissolveEffect"
-                },
-                {
-                    "SystemCategory": 2,
-                    "SystemName": "SceneTransition"
                 },
                 {
                     "SystemCategory": 6,
@@ -588,37 +549,64 @@
         {
             "ApplyMouseConditionSystem": {
                 "Priority": 0
-            },
+            }
+        },
+        {
+            "SceneTransitionRequestSenderSystem": {
+                "Priority": 0
+            }
+        },
+        {
             "BackGroundSpriteRenderSystem": {
                 "Priority": 0
-            },
+            }
+        },
+        {
             "ButtonGroupSystem": {
                 "Priority": -1
-            },
-            "ButtonInputSystem": {
-                "Priority": 0
-            },
+            }
+        },
+        {
             "ChangeSceneByButton": {
                 "Priority": 0
-            },
+            }
+        },
+        {
+            "ButtonInputSystem": {
+                "Priority": 0
+            }
+        },
+        {
             "DissolveEffect": {
                 "Priority": 0
-            },
-            "RegisterWindowResizeEvent": {
-                "Priority": 0
-            },
+            }
+        },
+        {
             "SceneTransition": {
                 "Priority": 0
-            },
+            }
+        },
+        {
+            "RegisterWindowResizeEvent": {
+                "Priority": 0
+            }
+        },
+        {
             "ShowGameUIByInputDevice": {
                 "Priority": 0
-            },
+            }
+        },
+        {
             "SpriteRenderSystem": {
                 "Priority": 1
-            },
+            }
+        },
+        {
             "SubSceneDeactivateByButton": {
                 "Priority": 2
-            },
+            }
+        },
+        {
             "UpdateButtonColorByState": {
                 "Priority": 2
             }

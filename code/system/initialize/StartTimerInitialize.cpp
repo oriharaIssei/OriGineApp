@@ -35,6 +35,9 @@ void StartTimerInitialize::UpdateEntity(OriGine::Entity* _entity) {
     // sprite の生成
 
     OriGine::Entity* spriteEntity = GetEntity(timer4Sprite->GetSpritesEntityId());
+    if (!spriteEntity) {
+        return;
+    }
 
     auto* sprites = GetComponents<SpriteRenderer>(spriteEntity);
     if (sprites) {

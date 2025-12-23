@@ -1,10 +1,17 @@
 #include "TimeLimitJudgeSystem.h"
 
+/// engine
+#include "messageBus/MessageBus.h"
+
+/// event
+#include "event/GamefailedEvent.h"
+
+/// ECS
 // component
 #include "component/SceneChanger.h"
 #include "component/TimerComponent.h"
 
-///math
+/// math
 #include "math/mathEnv.h"
 
 using namespace OriGine;
@@ -21,11 +28,7 @@ void TimeLimitJudgeSystem::UpdateEntity(OriGine::Entity* _entity) {
         return;
     }
     if (timerComp->GetTime() <= -kEpsilon) {
-        SceneChanger* sceneChanger = GetComponent<SceneChanger>(_entity);
-        if (!sceneChanger) {
-            return;
-        }
-        sceneChanger->ChangeScene();
+        MessageBus::GetInstance()->Emit<GamefailedEvent>(GamefailedEvent());
         return;
     }
 }

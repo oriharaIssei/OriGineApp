@@ -11,8 +11,7 @@
                 "isCulling": false,
                 "isRenderer": true,
                 "materialIndex": 0,
-                "textureDirectory": "",
-                "textureFileName": "",
+                "textureFilePath": "",
                 "topRadius": [
                     0.30000001192092896,
                     0.30000001192092896
@@ -46,8 +45,7 @@
                 "isCulling": false,
                 "isRenderer": true,
                 "materialIndex": 0,
-                "textureDirectory": "",
-                "textureFileName": "",
+                "textureFilePath": "",
                 "topRadius": [
                     0.3799999952316284,
                     0.3799999952316284
@@ -81,8 +79,7 @@
                 "isCulling": false,
                 "isRenderer": true,
                 "materialIndex": 0,
-                "textureDirectory": "",
-                "textureFileName": "",
+                "textureFilePath": "",
                 "topRadius": [
                     0.47999998927116394,
                     0.47999998927116394
@@ -116,8 +113,7 @@
                 "isCulling": false,
                 "isRenderer": true,
                 "materialIndex": 0,
-                "textureDirectory": "",
-                "textureFileName": "",
+                "textureFilePath": "",
                 "topRadius": [
                     0.30000001192092896,
                     0.30000001192092896
@@ -151,8 +147,7 @@
                 "isCulling": false,
                 "isRenderer": true,
                 "materialIndex": 0,
-                "textureDirectory": "",
-                "textureFileName": "",
+                "textureFilePath": "",
                 "topRadius": [
                     0.3799999952316284,
                     0.3799999952316284
@@ -186,8 +181,7 @@
                 "isCulling": false,
                 "isRenderer": true,
                 "materialIndex": 0,
-                "textureDirectory": "",
-                "textureFileName": "",
+                "textureFilePath": "",
                 "topRadius": [
                     0.47999998927116394,
                     0.47999998927116394
@@ -238,49 +232,66 @@
                 ]
             }
         ],
+        "MaterialAnimation": [
+            {
+                "InterpolationType": 0,
+                "colorCurve": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            0.6000000238418579
+                        ]
+                    },
+                    {
+                        "time": 0.17240260541439056,
+                        "value": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            0.18039216101169586
+                        ]
+                    },
+                    {
+                        "time": 0.21769481897354126,
+                        "value": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            0.5529412031173706
+                        ]
+                    },
+                    {
+                        "time": 0.30000001192092896,
+                        "value": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ]
+                    }
+                ],
+                "duration": 0.30000001192092896,
+                "isLoop": false,
+                "isPlay": false,
+                "uvRotateCurve": [],
+                "uvScaleCurve": [],
+                "uvTranslateCurve": []
+            }
+        ],
         "MaterialEffectPipeLine": [
             {
                 "baseTexturePath": "./application/resource/Texture/white1x1.png",
                 "effectEntityIdList": [
                     {
                         "effectType": 0,
-                        "entityID": 26
+                        "entityID": 80
                     },
                     {
                         "effectType": 2,
-                        "entityID": 28
-                    },
-                    {
-                        "effectType": 0,
-                        "entityID": 26
-                    },
-                    {
-                        "effectType": 2,
-                        "entityID": 28
-                    },
-                    {
-                        "effectType": 0,
-                        "entityID": 26
-                    },
-                    {
-                        "effectType": 2,
-                        "entityID": 28
-                    },
-                    {
-                        "effectType": 0,
-                        "entityID": 45
-                    },
-                    {
-                        "effectType": 2,
-                        "entityID": 47
-                    },
-                    {
-                        "effectType": 0,
                         "entityID": 82
-                    },
-                    {
-                        "effectType": 2,
-                        "entityID": 84
                     }
                 ],
                 "isActive": true,
@@ -314,6 +325,10 @@
         {
             "SystemCategory": 0,
             "SystemName": "BackFireInitialize"
+        },
+        {
+            "SystemCategory": 5,
+            "SystemName": "MaterialAnimationWorkSystem"
         },
         {
             "SystemCategory": 5,

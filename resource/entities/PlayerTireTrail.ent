@@ -1,0 +1,123 @@
+{
+    "Components": {
+        "Material": [
+            {
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "enableLighting": false,
+                "shininess": 0.0,
+                "specularColor": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "uvRotate": 0.0,
+                "uvScale": [
+                    1.0,
+                    1.0
+                ],
+                "uvTranslate": [
+                    0.0,
+                    0.0
+                ]
+            }
+        ],
+        "PlaneRenderer": [
+            {
+                "blendMode": 1,
+                "isCulling": false,
+                "isRenderer": false,
+                "materialIndex": 0,
+                "textureFilePath": "./application/resource/Texture/TireTracks.png",
+                "transform": {
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "translate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                }
+            }
+        ],
+        "TireSplinePoints": [
+            {
+                "capacity": 86,
+                "endUv": [
+                    1.0,
+                    0.0
+                ],
+                "endWidth": 0.550000011920929,
+                "fadeoutTime": 0.28999999165534973,
+                "groundedFactor": 0.4169999957084656,
+                "isCrossMesh": false,
+                "isUvLoopEnable": true,
+                "maxBankFactor": 0.7369999885559082,
+                "maxSpeedFactor": 0.6650000214576721,
+                "minBankFactor": 0.4339999854564667,
+                "minSpeedFactor": 0.15700000524520874,
+                "segmentDivide": 16,
+                "segmentLength": 0.4000000059604645,
+                "startMoveFactor": 0.3869999945163727,
+                "startUv": [
+                    0.0,
+                    1.0
+                ],
+                "startWidth": 0.550000011920929,
+                "thresholdBankAngle": 0.03700000047683716,
+                "uvEaseType": 0,
+                "uvLoopLength": 8.699999809265137,
+                "widthEaseType": 3
+            }
+        ],
+        "Transform": [
+            {
+                "rotate": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "translate": [
+                    0.0,
+                    -0.9200000166893005,
+                    0.0
+                ]
+            }
+        ]
+    },
+    "Name": "PlayerTireTrail",
+    "Systems": [
+        {
+            "SystemCategory": 6,
+            "SystemName": "TexturedMeshRenderSystem"
+        },
+        {
+            "SystemCategory": 3,
+            "SystemName": "TireTrailGenerateSystem"
+        },
+        {
+            "SystemCategory": 5,
+            "SystemName": "CreateMeshFromTireSpline"
+        }
+    ],
+    "isUnique": true
+}

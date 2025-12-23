@@ -1,13 +1,15 @@
 #include "PlayerJumpState.h"
 
 /// component
-#include "component/animation/SkinningAnimationComponent.h"
 #include "component/physics/Rigidbody.h"
 #include "component/player/PlayerInput.h"
 #include "component/player/PlayerStatus.h"
+#include "component/player/State/PlayerState.h"
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
-#include "PlayerState.h"
+
+///  math
+#include "math/MyEasing.h"
 
 using namespace OriGine;
 
@@ -16,10 +18,19 @@ void PlayerJumpState::Initialize() {
 
     auto* playerEntity = scene_->GetEntity(playerEntityID_);
     auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntity);
-    auto playerStatus  = scene_->GetComponent<PlayerStatus>(playerEntity);
+    auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntity);
+
+    auto* playerState = scene_->GetComponent<PlayerState>(playerEntity);
 
     rigidbody->SetUseGravity(false);
-    rigidbody->SetVelocity(Y, playerStatus->GetJumpPower()); // ジャンプパワーをY軸に設定
+
+    float t      = static_cast<float>(playerState->GetGearLevel()) / static_cast<float>(kMaxPlayerGearLevel);
+    float easedT = EasingFunctions[static_cast<int32_t>(playerStatus->GetJumpHoldVelocityEaseType())](t);
+
+    rigidbody->SetVelocity(Y, std::lerp(playerStatus->GetMinJumpHoldVelocity(), playerStatus->GetMaxJumpHoldVelocity(), t)); // ジャンプパワーをY軸に設定
+
+    easedT       = EasingFunctions[static_cast<int32_t>(playerStatus->GetJumpChargeRateEaseType())](t);
+    chargePower_ = std::lerp(playerStatus->GetMinJumpChargeRate(), playerStatus->GetMaxJumpChargeRate(), easedT);
 }
 
 void PlayerJumpState::Update(float _deltaTime) {
@@ -34,7 +45,7 @@ void PlayerJumpState::Update(float _deltaTime) {
     playerStatus->UpdateAccel(_deltaTime, playerInput, transform, rigidbody, scene_->GetComponent<CameraTransform>(scene_->GetEntity(state->GetCameraEntityID()))->rotate);
 
     // ジャンプ力の蓄積
-    releaseJumpPower_ += playerStatus->GetFallPower() * _deltaTime;
+    releaseJumpPower_ += chargePower_ * _deltaTime;
 }
 
 void PlayerJumpState::Finalize() {
@@ -43,7 +54,7 @@ void PlayerJumpState::Finalize() {
 
     rigidbody->SetUseGravity(true);
     // 蓄えたジャンプ力を適用
-    rigidbody->SetVelocity(Y, releaseJumpPower_);
+    rigidbody->SetVelocity(Y, rigidbody->GetVelocity()[Y] + releaseJumpPower_);
 }
 
 PlayerMoveState PlayerJumpState::TransitionState() const {

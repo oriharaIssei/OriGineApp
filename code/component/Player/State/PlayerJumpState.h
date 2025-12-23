@@ -17,5 +17,6 @@ public:
     PlayerMoveState TransitionState() const override;
 
 private:
+    float chargePower_      = 0.0f; // ジャンプ力の蓄積量
     float releaseJumpPower_ = 0.0f; // ジャンプボタンを離した時のジャンプパワー
 };
