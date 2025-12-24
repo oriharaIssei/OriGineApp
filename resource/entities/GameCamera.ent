@@ -2,6 +2,7 @@
     "Components": {
         "CameraController": [
             {
+                "Handle": "bcc6aef7-8b4a-44dd-a721-4639d89f68ff",
                 "angleLimitY": 1.5707963705062866,
                 "baseFovY": 0.7850000262260437,
                 "firstOffset": [
@@ -53,6 +54,7 @@
         ],
         "CameraMotionBob": [
             {
+                "Handle": "69e464b3-40ef-4f77-97c4-ecb454526ca7",
                 "cameraShakeSourceComponentId": 0,
                 "maxAmplitude": [
                     0.30000001192092896,
@@ -79,6 +81,7 @@
         ],
         "CameraShakeSourceComponent": [
             {
+                "Handle": "386b47fe-452d-4443-a7e7-ea7d46ba74e0",
                 "X_Parameter_Amplitude": 0.36000001430511475,
                 "X_Parameter_Frequency": 14.039999961853027,
                 "Y_Parameter_Amplitude": 0.4300000071525574,
@@ -102,6 +105,7 @@
         ],
         "CameraTransform": [
             {
+                "Handle": "531cb81d-82fd-40ed-8670-a9646f2eafce",
                 "aspectRatio": 1.7777777910232544,
                 "farZ": 1000.0,
                 "fovAngleY": 0.7850000262260437,
@@ -121,6 +125,7 @@
         ],
         "Transform": [
             {
+                "Handle": "cec2bdbb-a110-4f90-9374-015af32ba4c7",
                 "rotate": [
                     0.0,
                     0.0,

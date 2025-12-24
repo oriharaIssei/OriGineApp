@@ -25,8 +25,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1392.0,
+                            753.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -38,8 +38,8 @@
                             1.0
                         ],
                         "size": [
-                            768.0,
-                            192.0
+                            556.7999877929688,
+                            133.86666870117188
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -51,8 +51,8 @@
                             128.0
                         ],
                         "translate": [
-                            960.0,
-                            241.11000061035156
+                            696.0,
+                            168.1072540283203
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -73,6 +73,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "e5f35253-719e-407d-8761-2a2df8f2ed12"
             },
             "Name": "ClearText",
             "Systems": [
@@ -186,8 +189,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1392.0,
+                            753.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -199,8 +202,8 @@
                             0.699999988079071
                         ],
                         "size": [
-                            813.0,
-                            384.0
+                            589.4249877929688,
+                            267.73333740234375
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -212,8 +215,8 @@
                             256.0
                         ],
                         "translate": [
-                            960.0,
-                            798.9299926757813
+                            696.0,
+                            557.03173828125
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -234,6 +237,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "da02d158-af33-4b4f-aee1-ca6be3d46ca7"
             },
             "Name": "BackToStageSelectButton",
             "Systems": [
@@ -308,6 +314,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "97789e21-0ca1-4cd3-a440-908726674a94"
+            },
             "Name": "EnterScene",
             "Systems": [
                 {
@@ -361,6 +370,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "f9405247-5a66-4c19-a5ab-bbc1c94dd801"
+            },
             "Name": "ClearTime",
             "Systems": [
                 {
@@ -412,7 +424,9 @@
                         "effectEntityIdList": [
                             {
                                 "effectType": 0,
-                                "entityID": 5
+                                "handle": {
+                                    "uuid": "1787dd53-cbe6-4782-937c-05a7188a4cc8"
+                                }
                             }
                         ],
                         "isActive": true,
@@ -467,6 +481,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "a68ccfd9-07bb-49ba-89a1-be0d09d5665a"
             },
             "Name": "GB_Effect",
             "Systems": [
@@ -524,18 +541,21 @@
                         ]
                     }
                 ],
-                "MaterialAnimation": [],
                 "MaterialEffectPipeLine": [
                     {
                         "baseTexturePath": "./application/resource/Texture/gradationLine.png",
                         "effectEntityIdList": [
                             {
                                 "effectType": 1,
-                                "entityID": 6
+                                "handle": {
+                                    "uuid": "105b79aa-828b-4f38-89ae-d03601adfd71"
+                                }
                             },
                             {
                                 "effectType": 1,
-                                "entityID": 7
+                                "handle": {
+                                    "uuid": "590ad5e6-0a63-44e7-b688-d21003e3a153"
+                                }
                             }
                         ],
                         "isActive": true,
@@ -543,6 +563,9 @@
                         "priority": 0
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "1787dd53-cbe6-4782-937c-05a7188a4cc8"
             },
             "Name": "Dissolve",
             "Systems": [
@@ -625,6 +648,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "105b79aa-828b-4f38-89ae-d03601adfd71"
+            },
             "Name": "Distortion",
             "Systems": [
                 {
@@ -706,6 +732,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "590ad5e6-0a63-44e7-b688-d21003e3a153"
+            },
             "Name": "Entity",
             "Systems": [
                 {
@@ -737,6 +766,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "72950ea6-24b9-4538-b50b-b5638c5ec72e"
+            },
             "Name": "CameraInit",
             "Systems": [
                 {
@@ -760,6 +792,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "1d566741-648c-4e7c-83d3-2e3e0a62c1de"
+            },
             "Name": "MouseCondition",
             "Systems": [
                 {
@@ -774,49 +809,79 @@
         {
             "ApplyMouseConditionSystem": {
                 "Priority": 0
-            },
-            "ButtonInputSystem": {
-                "Priority": 0
-            },
-            "CameraInitialize": {
-                "Priority": 1
-            },
+            }
+        },
+        {
             "ChangeSceneByButton": {
                 "Priority": 1
-            },
+            }
+        },
+        {
+            "ButtonInputSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "CameraInitialize": {
+                "Priority": 1
+            }
+        },
+        {
             "CreateSpriteFromTimer": {
                 "Priority": 2
-            },
+            }
+        },
+        {
             "DissolveEffect": {
                 "Priority": 0
-            },
-            "EmitterWorkSystem": {
-                "Priority": 1
-            },
+            }
+        },
+        {
             "GetClearTime": {
                 "Priority": 0
-            },
+            }
+        },
+        {
+            "EmitterWorkSystem": {
+                "Priority": 1
+            }
+        },
+        {
             "MaterialAnimationWorkSystem": {
                 "Priority": 0
-            },
+            }
+        },
+        {
             "MaterialEffect": {
                 "Priority": 5
-            },
+            }
+        },
+        {
             "RegisterWindowResizeEvent": {
                 "Priority": 0
-            },
+            }
+        },
+        {
             "SceneTransition": {
                 "Priority": 0
-            },
+            }
+        },
+        {
             "SpriteRenderSystem": {
                 "Priority": 5
-            },
+            }
+        },
+        {
             "TexturedMeshRenderSystem": {
                 "Priority": 0
-            },
+            }
+        },
+        {
             "TimerForSprite": {
                 "Priority": 0
-            },
+            }
+        },
+        {
             "UpdateButtonColorByState": {
                 "Priority": 0
             }

@@ -2,6 +2,7 @@
     "Components": {
         "AABBCollider": [
             {
+                "Handle": "241c3c9b-01c8-4b3a-9abd-85b9d3a151df",
                 "center": [
                     0.0,
                     16.0,
@@ -34,6 +35,7 @@
         ],
         "CollisionPushBackInfo": [
             {
+                "Handle": "77be14ce-f9e3-4b1e-a6ee-9ce99d624293",
                 "pushBackType": 0
             }
         ],
@@ -43,9 +45,19 @@
                     "radius": 17.290000915527344,
                     "spawnType": 1
                 },
+                "Handle": "cb6df734-927f-4375-9968-c687fee24d63",
                 "activeTime": 2.299999952316284,
                 "blendMode": 1,
                 "colorCurve": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
                     {
                         "time": 0.0,
                         "value": [
@@ -277,6 +289,14 @@
                     {
                         "time": 0.0,
                         "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
                             0.10000000149011612,
                             0.10000000149011612,
                             0.10000000149011612
@@ -420,6 +440,14 @@
                         "value": [
                             0.0,
                             0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
                             -10.600000381469727
                         ]
                     },
@@ -476,6 +504,7 @@
         ],
         "Material": [
             {
+                "Handle": "cb853a0a-83af-4a97-a826-7e23d82d9450",
                 "color": [
                     1.0,
                     1.0,
@@ -502,6 +531,7 @@
         ],
         "MaterialAnimation": [
             {
+                "Handle": "de609d21-c24b-4da3-8a04-276a649bad17",
                 "InterpolationType": 0,
                 "colorCurve": [],
                 "duration": 2.0,
@@ -529,6 +559,7 @@
         ],
         "PlaneRenderer": [
             {
+                "Handle": "112c3a35-8cd2-4a4e-bdaa-b6fa159482fd",
                 "blendMode": 1,
                 "isCulling": true,
                 "isRenderer": true,
@@ -556,6 +587,7 @@
         ],
         "Transform": [
             {
+                "Handle": "20a587a6-581c-49e5-b30d-214f42f3fef5",
                 "rotate": [
                     -0.0,
                     0.0,

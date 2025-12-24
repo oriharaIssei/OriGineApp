@@ -2,11 +2,13 @@
     "Components": {
         "CollisionPushBackInfo": [
             {
+                "Handle": "08c7991a-86ca-4950-86e1-f23ba303de4b",
                 "pushBackType": 0
             }
         ],
         "DissolveEffectParam": [
             {
+                "Handle": "33e475a6-a286-44e8-9f4c-d1114c671c15",
                 "edgeWidth": 0.0010000000474974513,
                 "isActive": false,
                 "materialIndex": 0,
@@ -22,6 +24,7 @@
         ],
         "Material": [
             {
+                "Handle": "1fbfa405-96a4-4206-a463-c3133d97c0f3",
                 "color": [
                     0.3586497902870178,
                     0.3586497902870178,
@@ -46,6 +49,7 @@
                 ]
             },
             {
+                "Handle": "dbf453e8-b47b-46ee-9c36-4575ac6d5139",
                 "color": [
                     0.6666666269302368,
                     0.6666666269302368,
@@ -72,18 +76,33 @@
         ],
         "ModelMeshRenderer": [
             {
+                "Handle": "d7b453a5-d405-4c14-a885-935484291edc",
                 "blendMode": 1,
                 "directory": "./application/resource/Models\\player",
                 "fileName": "Player.obj",
                 "isRender": true,
                 "materialIndexDatas": [
-                    "2eebdb02-bc1e-4f35-820e-58d12b3a5341",
-                    "1f8c747b-af2e-45fa-acc1-5f54a9101965",
-                    "1f8c747b-af2e-45fa-acc1-5f54a9101965",
-                    "1f8c747b-af2e-45fa-acc1-5f54a9101965",
-                    "1f8c747b-af2e-45fa-acc1-5f54a9101965",
-                    "1f8c747b-af2e-45fa-acc1-5f54a9101965",
-                    "1f8c747b-af2e-45fa-acc1-5f54a9101965"
+                    {
+                        "Handle": "1fbfa405-96a4-4206-a463-c3133d97c0f3"
+                    },
+                    {
+                        "Handle": "dbf453e8-b47b-46ee-9c36-4575ac6d5139"
+                    },
+                    {
+                        "Handle": "dbf453e8-b47b-46ee-9c36-4575ac6d5139"
+                    },
+                    {
+                        "Handle": "dbf453e8-b47b-46ee-9c36-4575ac6d5139"
+                    },
+                    {
+                        "Handle": "dbf453e8-b47b-46ee-9c36-4575ac6d5139"
+                    },
+                    {
+                        "Handle": "dbf453e8-b47b-46ee-9c36-4575ac6d5139"
+                    },
+                    {
+                        "Handle": "dbf453e8-b47b-46ee-9c36-4575ac6d5139"
+                    }
                 ],
                 "textureFilePath": [
                     "",
@@ -226,6 +245,7 @@
         ],
         "PlayerEffectControlParam": [
             {
+                "Handle": "eba370f8-fa85-4975-83cf-21231ea46835",
                 "maxWheelSpinSpeed": 0.18700000643730164,
                 "rotateOffsetOnWallRun": 0.5699999928474426,
                 "trailColorByGearLevel": [
@@ -296,14 +316,18 @@
         ],
         "PlayerInput": [
             {
+                "Handle": "a14788e9-c13b-4e02-a9d1-1e81778534c0",
                 "MaxJumpInputTime": 0.1899999976158142
             }
         ],
         "PlayerState": [
-            null
+            {
+                "Handle": "73df4981-c798-492d-b904-949af8ef9225"
+            }
         ],
         "PlayerStatus": [
             {
+                "Handle": "9019fc49-7907-42b3-a079-2e17c8536a2b",
                 "baseSpeed": 27.0,
                 "coolTimeAddRateBase": 1.409999966621399,
                 "coolTimeAddRateCommonRate": 0.032999999821186066,
@@ -330,6 +354,7 @@
         ],
         "Rigidbody": [
             {
+                "Handle": "99e7403c-a9e2-4627-a632-034dcbffc104",
                 "acceleration": [
                     0.0,
                     0.0,
@@ -348,11 +373,13 @@
         ],
         "SceneChanger": [
             {
+                "Handle": "9363c418-7679-44d5-977f-3114446ab178",
                 "nextSceneName": "Result"
             }
         ],
         "SphereCollider": [
             {
+                "Handle": "73fa22d4-e033-499e-8f32-1162d7612b84",
                 "center": [
                     0.0,
                     0.0,
@@ -381,6 +408,7 @@
         ],
         "Transform": [
             {
+                "Handle": "4c36da63-90da-4e36-86db-99a9c8ba2518",
                 "rotate": [
                     0.0,
                     0.0,
@@ -406,16 +434,16 @@
     "Name": "Player",
     "Systems": [
         {
-            "SystemCategory": 0,
-            "SystemName": "TakePlayerToStartPosition"
+            "SystemCategory": 4,
+            "SystemName": "CollisionPushBackSystem"
         },
         {
             "SystemCategory": 1,
             "SystemName": "PlayerInputSystem"
         },
         {
-            "SystemCategory": 4,
-            "SystemName": "CollisionPushBackSystem"
+            "SystemCategory": 0,
+            "SystemName": "TakePlayerToStartPosition"
         },
         {
             "SystemCategory": 4,
@@ -442,12 +470,12 @@
             "SystemName": "MoveSystemByRigidBody"
         },
         {
-            "SystemCategory": 6,
-            "SystemName": "TexturedMeshRenderSystem"
-        },
-        {
             "SystemCategory": 3,
             "SystemName": "PlayerMoveSystem"
+        },
+        {
+            "SystemCategory": 6,
+            "SystemName": "TexturedMeshRenderSystem"
         },
         {
             "SystemCategory": 4,

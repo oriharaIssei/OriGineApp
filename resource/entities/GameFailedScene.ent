@@ -2,6 +2,7 @@
     "Components": {
         "SubScene": [
             {
+                "Handle": "84a16cd5-1e9f-4ddf-b213-1c65cb6bf92d",
                 "isActive": false,
                 "renderingPriority": 1,
                 "sceneName": "GameFailed"

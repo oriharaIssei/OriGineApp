@@ -2,6 +2,7 @@
     "Components": {
         "DissolveEffectParam": [
             {
+                "Handle": "94e7f661-4b43-4bee-a9e2-056d7e870b6d",
                 "edgeWidth": 0.00800000037997961,
                 "isActive": false,
                 "materialIndex": 0,
@@ -17,6 +18,7 @@
         ],
         "Material": [
             {
+                "Handle": "f644d6e7-59b8-4e18-b11f-3e354aaa873b",
                 "color": [
                     1.0,
                     1.0,
@@ -43,17 +45,20 @@
         ],
         "SceneChanger": [
             {
+                "Handle": "d93bb961-f360-4a2f-8a03-7ba306a976d2",
                 "nextSceneName": "Result"
             }
         ],
         "TimerComponent": [
             {
+                "Handle": "756661b8-9d7c-4eb1-8f86-f044066b06b7",
                 "isStarted": true,
                 "maxTime": 320.0
             }
         ],
         "TimerForSpriteComponent": [
             {
+                "Handle": "f80b1a19-9e47-4a28-bbf9-35cd15f7db52",
                 "anchorOnWindow": [
                     0.5199999809265137,
                     0.11999999731779099

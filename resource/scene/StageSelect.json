@@ -204,8 +204,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1392.0,
+                            753.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -217,8 +217,8 @@
                             1.0
                         ],
                         "size": [
-                            768.0,
-                            768.0
+                            556.7999877929688,
+                            535.4666748046875
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -230,8 +230,8 @@
                             512.0
                         ],
                         "translate": [
-                            438.0,
-                            540.0
+                            317.5500183105469,
+                            376.5
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -387,8 +387,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1392.0,
+                            753.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -400,8 +400,8 @@
                             1.0
                         ],
                         "size": [
-                            768.0,
-                            768.0
+                            556.7999877929688,
+                            535.4666748046875
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -413,8 +413,8 @@
                             512.0
                         ],
                         "translate": [
-                            1482.0,
-                            540.0
+                            1074.4500732421875,
+                            376.5
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -938,8 +938,8 @@
                             0.6901960968971252
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1392.0,
+                            753.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -951,8 +951,8 @@
                             1.0
                         ],
                         "size": [
-                            1920.0,
-                            1080.0
+                            1392.0,
+                            753.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -1094,8 +1094,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1392.0,
+                            753.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -1149,12 +1149,12 @@
             "Name": "ToTile",
             "Systems": [
                 {
-                    "SystemCategory": 2,
-                    "SystemName": "ChangeSceneByButton"
-                },
-                {
                     "SystemCategory": 1,
                     "SystemName": "ButtonInputSystem"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "ChangeSceneByButton"
                 },
                 {
                     "SystemCategory": 7,
@@ -1170,12 +1170,12 @@
     ],
     "Systems": [
         {
-            "MaterialAnimationWorkSystem": {
+            "ApplyMouseConditionSystem": {
                 "Priority": 0
             }
         },
         {
-            "ApplyMouseConditionSystem": {
+            "MaterialAnimationWorkSystem": {
                 "Priority": 0
             }
         },
@@ -1190,13 +1190,13 @@
             }
         },
         {
-            "ChangeSceneByButton": {
-                "Priority": 3
+            "ButtonInputSystem": {
+                "Priority": 0
             }
         },
         {
-            "ButtonInputSystem": {
-                "Priority": 0
+            "ChangeSceneByButton": {
+                "Priority": 3
             }
         },
         {

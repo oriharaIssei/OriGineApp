@@ -2,6 +2,7 @@
     "Components": {
         "SkyboxRenderer": [
             {
+                "Handle": "1b05a4c0-1fbd-4b3d-a785-f94d61439623",
                 "filePath": "application/resource/Texture/output_skybox.dds",
                 "materialBuff": {
                     "color": [
@@ -24,9 +25,9 @@
                         1.0
                     ],
                     "translate": [
-                        19.15047836303711,
-                        4.658637523651123,
-                        1.890188455581665
+                        0.0,
+                        0.0,
+                        0.0
                     ]
                 }
             }

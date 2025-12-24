@@ -51,8 +51,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1392.0,
+                            753.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -64,8 +64,8 @@
                             1.5499999523162842
                         ],
                         "size": [
-                            341.3333435058594,
-                            52.000003814697266
+                            371.20001220703125,
+                            54.38333511352539
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -77,8 +77,8 @@
                             78.0
                         ],
                         "translate": [
-                            318.59197998046875,
-                            144.1439971923828
+                            346.4687805175781,
+                            150.7506103515625
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -99,6 +99,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "aef8af32-4810-4058-80a4-71e13027a8c4"
             },
             "Name": "TitleBar",
             "Systems": [
@@ -153,6 +156,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "a27620b4-66c2-4a93-a243-ab2288c25188"
+            },
             "Name": "EnterScene",
             "Systems": [
                 {
@@ -184,6 +190,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "4970f6b6-fd06-4353-a943-e0db9909a97f"
+            },
             "Name": "InitCamera",
             "Systems": [
                 {
@@ -206,6 +215,9 @@
                         "isShowCursor": true
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "85f30499-3dda-4695-8c6e-2995409faa15"
             },
             "Name": "MouseCondition",
             "Systems": [
@@ -307,8 +319,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1392.0,
+                            753.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -320,8 +332,8 @@
                             1.0
                         ],
                         "size": [
-                            320.0,
-                            38.66666793823242
+                            348.0,
+                            40.43888854980469
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -333,8 +345,8 @@
                             64.0
                         ],
                         "translate": [
-                            835.8399658203125,
-                            472.4639892578125
+                            908.9760131835938,
+                            494.11859130859375
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -356,15 +368,18 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "7fdc1663-4997-4e5d-88d2-ae4f2e0f9f56"
+            },
             "Name": "startButton",
             "Systems": [
                 {
-                    "SystemCategory": 2,
-                    "SystemName": "ChangeSceneByButton"
-                },
-                {
                     "SystemCategory": 1,
                     "SystemName": "ButtonInputSystem"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "ChangeSceneByButton"
                 },
                 {
                     "SystemCategory": 7,
@@ -430,8 +445,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1392.0,
+                            753.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -443,8 +458,8 @@
                             1.0
                         ],
                         "size": [
-                            320.0,
-                            38.66666793823242
+                            348.0,
+                            40.43888854980469
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -456,8 +471,8 @@
                             64.0
                         ],
                         "translate": [
-                            835.8399658203125,
-                            556.7039794921875
+                            908.9760131835938,
+                            582.2196044921875
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -478,6 +493,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "7c15bcfb-1d29-4784-8a34-d6ff4ec7c6b9"
             },
             "Name": "exitButton",
             "Systems": [
@@ -504,16 +522,7 @@
             "Components": {
                 "ButtonGroup": [
                     {
-                        "buttonNumbers": [
-                            {
-                                "buttonNumber": 4,
-                                "entityID": 0
-                            },
-                            {
-                                "buttonNumber": 5,
-                                "entityID": 1
-                            }
-                        ],
+                        "buttonNumbers": [],
                         "decideKeys": [
                             28,
                             57
@@ -547,6 +556,9 @@
                         "startButtonNumber": 0
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "f43d6a7c-3db5-4f8b-855f-4e41074d366a"
             },
             "Name": "buttonGroup",
             "Systems": [
@@ -591,6 +603,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "d52ef3f4-369c-4d61-a2e9-ca59f84b56c3"
+            },
             "Name": "Skybox",
             "Systems": [
                 {
@@ -622,7 +637,6 @@
                         "threshold": 0.0
                     }
                 ],
-                "Emitter": [],
                 "Material": [
                     {
                         "color": [
@@ -680,13 +694,13 @@
                         "fileName": "Player.obj",
                         "isRender": true,
                         "materialIndexDatas": [
-                            0,
-                            1,
-                            1,
-                            1,
-                            1,
-                            1,
-                            1
+                            "00000000-0000-0000-0000-000000000000",
+                            "00000000-0000-0000-0000-000000000000",
+                            "00000000-0000-0000-0000-000000000000",
+                            "00000000-0000-0000-0000-000000000000",
+                            "00000000-0000-0000-0000-000000000000",
+                            "00000000-0000-0000-0000-000000000000",
+                            "00000000-0000-0000-0000-000000000000"
                         ],
                         "textureFilePath": [
                             "",
@@ -954,7 +968,6 @@
                         "nextSceneName": "Result"
                     }
                 ],
-                "SkinningAnimationComponent": [],
                 "SphereCollider": [
                     {
                         "center": [
@@ -1003,6 +1016,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "252ac000-2914-45b3-974b-0ba098b8b39e"
             },
             "Name": "Player",
             "Systems": [
@@ -1086,7 +1102,9 @@
                         "effectEntityIdList": [
                             {
                                 "effectType": 0,
-                                "entityID": 10
+                                "handle": {
+                                    "uuid": "ea1d5972-ba9c-4e89-b455-68a745ada323"
+                                }
                             }
                         ],
                         "isActive": true,
@@ -1141,6 +1159,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "081de3ae-6533-493a-8a6b-b63fe1756041"
             },
             "Name": "bg",
             "Systems": [
@@ -1208,7 +1229,9 @@
                         "effectEntityIdList": [
                             {
                                 "effectType": 1,
-                                "entityID": 11
+                                "handle": {
+                                    "uuid": "260361ed-9616-4cdf-9394-00332fdc09b9"
+                                }
                             }
                         ],
                         "isActive": true,
@@ -1216,6 +1239,9 @@
                         "priority": 0
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "ea1d5972-ba9c-4e89-b455-68a745ada323"
             },
             "Name": "diss",
             "Systems": [
@@ -1298,6 +1324,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "260361ed-9616-4cdf-9394-00332fdc09b9"
+            },
             "Name": "dist",
             "Systems": [
                 {
@@ -1355,6 +1384,15 @@
                         "activeTime": 2.299999952316284,
                         "blendMode": 1,
                         "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -1654,6 +1692,14 @@
                             {
                                 "time": 0.0,
                                 "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
                                     0.10000000149011612,
                                     0.10000000149011612,
                                     0.10000000149011612
@@ -1752,6 +1798,14 @@
                         "updateSettings": 4386,
                         "uvInterpolationType": 0,
                         "velocityCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -1936,7 +1990,6 @@
                         ]
                     }
                 ],
-                "MaterialEffectPipeLine": [],
                 "PlaneRenderer": [
                     {
                         "blendMode": 1,
@@ -1964,8 +2017,6 @@
                         }
                     }
                 ],
-                "RingRenderer": [],
-                "SphereCollider": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -1986,6 +2037,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "0a52325c-b8b1-4fde-9231-06cd4936c2a1"
             },
             "Name": "Goal",
             "Systems": [
@@ -2085,6 +2139,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "cc01a23e-033b-465a-b713-9b179d730dba"
+            },
             "Name": "Entity",
             "Systems": [
                 {
@@ -2112,6 +2169,9 @@
                         "isActive": true
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "639f36da-2773-4427-9f7b-e0d2ac8c49f5"
             },
             "Name": "Entity",
             "Systems": [],
@@ -2178,7 +2238,9 @@
                         "effectEntityIdList": [
                             {
                                 "effectType": 0,
-                                "entityID": 10
+                                "handle": {
+                                    "uuid": "ea1d5972-ba9c-4e89-b455-68a745ada323"
+                                }
                             }
                         ],
                         "isActive": true,
@@ -2234,6 +2296,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "a595d3b5-02cc-4d8d-b45d-c8d56e39e9f7"
+            },
             "Name": "bg",
             "Systems": [
                 {
@@ -2269,13 +2334,13 @@
             }
         },
         {
-            "ChangeSceneByButton": {
-                "Priority": 10
+            "ButtonInputSystem": {
+                "Priority": 0
             }
         },
         {
-            "ButtonInputSystem": {
-                "Priority": 0
+            "ChangeSceneByButton": {
+                "Priority": 10
             }
         },
         {
@@ -2285,11 +2350,6 @@
         },
         {
             "EffectOnPlayerRun": {
-                "Priority": 0
-            }
-        },
-        {
-            "CreateStage": {
                 "Priority": 0
             }
         },
@@ -2304,13 +2364,13 @@
             }
         },
         {
-            "ParticleRenderSystem": {
-                "Priority": 3
+            "MaterialAnimationWorkSystem": {
+                "Priority": 0
             }
         },
         {
-            "MaterialAnimationWorkSystem": {
-                "Priority": 0
+            "ParticleRenderSystem": {
+                "Priority": 3
             }
         },
         {

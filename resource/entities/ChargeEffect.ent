@@ -2,6 +2,7 @@
     "Components": {
         "Material": [
             {
+                "Handle": "ae401f84-0283-4390-957f-12efe2ac3bf6",
                 "color": [
                     1.0,
                     1.0,
@@ -28,6 +29,7 @@
         ],
         "MaterialAnimation": [
             {
+                "Handle": "77bc0b68-525c-4551-9bef-088db58e2591",
                 "InterpolationType": 0,
                 "colorCurve": [
                     {
@@ -131,6 +133,7 @@
         ],
         "RingRenderer": [
             {
+                "Handle": "aefbba7a-d712-48c5-8ccb-7bb6fce6201a",
                 "InnerRadius": 0.18000000715255737,
                 "OuterRadius": 1.0,
                 "blendMode": 1,
@@ -159,6 +162,7 @@
                 }
             },
             {
+                "Handle": "51a91bc6-b4f6-420b-b2ef-56004fd21cbd",
                 "InnerRadius": 0.44999998807907104,
                 "OuterRadius": 1.0,
                 "blendMode": 1,
@@ -187,6 +191,7 @@
                 }
             },
             {
+                "Handle": "a6bfe53a-8771-495a-b719-4ee93ebf671f",
                 "InnerRadius": 0.18000000715255737,
                 "OuterRadius": 1.0,
                 "blendMode": 1,
@@ -217,6 +222,7 @@
         ],
         "Transform": [
             {
+                "Handle": "e6a3f965-47ec-4b92-bfc5-6ff6968657bc",
                 "rotate": [
                     -2.997331938203729e-09,
                     0.3175359070301056,
@@ -237,6 +243,7 @@
         ],
         "TransformAnimation": [
             {
+                "Handle": "ac97e080-5d89-49ad-846a-60b31fe19960",
                 "InterpolationType": 0,
                 "duration": 0.5699999928474426,
                 "isLoop": false,

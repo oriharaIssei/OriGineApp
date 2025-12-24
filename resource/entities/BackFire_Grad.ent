@@ -2,6 +2,7 @@
     "Components": {
         "GradationComponent": [
             {
+                "Handle": "d36970f9-6906-4956-ba2e-1abd2f8e5975",
                 "centerUv": [
                     0.0,
                     0.05000000074505806
@@ -20,6 +21,7 @@
         ],
         "Material": [
             {
+                "Handle": "c62a1f8d-f0f4-446e-a826-c05b3ab738f5",
                 "color": [
                     1.0,
                     1.0,

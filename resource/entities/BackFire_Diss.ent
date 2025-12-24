@@ -2,6 +2,7 @@
     "Components": {
         "DissolveEffectParam": [
             {
+                "Handle": "5963deaa-d808-4965-b105-672ed9be3ffe",
                 "edgeWidth": 0.006000000052154064,
                 "isActive": true,
                 "materialIndex": 0,
@@ -17,6 +18,7 @@
         ],
         "Material": [
             {
+                "Handle": "4b3c6d88-f596-4660-9107-b8251da82722",
                 "color": [
                     1.0,
                     1.0,
@@ -43,6 +45,7 @@
         ],
         "MaterialEffectPipeLine": [
             {
+                "Handle": "0a3cb768-ea58-41ba-9e3b-e48f6e55fdba",
                 "baseTexturePath": "./application/resource/Texture/waveMask.png",
                 "effectEntityIdList": [
                     {
@@ -55,6 +58,12 @@
                         "effectType": 1,
                         "handle": {
                             "uuid": "00000000-0000-0000-0000-000000000000"
+                        }
+                    },
+                    {
+                        "effectType": 1,
+                        "handle": {
+                            "uuid": "ce60e708-89e6-4eb2-b0a3-94e5def385f4"
                         }
                     },
                     {
