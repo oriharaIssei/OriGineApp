@@ -61,12 +61,6 @@ private:
     std::vector<OriGine::PadButton> jumpButton_ = {
         OriGine::PadButton::A,
         OriGine::PadButton::B};
-    std::vector<OriGine::Key> slideKeys_ = {
-        OriGine::Key::L_SHIFT,
-        OriGine::Key::L_CTRL};
-    std::vector<OriGine::PadButton> slideButton_ = {
-        OriGine::PadButton::L_SHOULDER,
-        OriGine::PadButton::R_SHOULDER};
 
 public:
     const std::vector<OriGine::Key>& GetMoveFrontKeys() const {
@@ -88,13 +82,6 @@ public:
 
     const std::vector<OriGine::PadButton>& GetJumpButton() const {
         return jumpButton_;
-    }
-
-    const std::vector<OriGine::Key>& GetSlideKeys() const {
-        return slideKeys_;
-    }
-    const std::vector<OriGine::PadButton>& GetSlideButton() const {
-        return slideButton_;
     }
 
     const OriGine::Vec2f& GetInputDirection() const {
@@ -135,4 +122,3 @@ public:
         jumpInputTime_ = _jumpInputTime;
     }
 };
-

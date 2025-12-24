@@ -25,11 +25,10 @@ using namespace OriGine;
 void PlayerWallRunState::Initialize() {
     constexpr int32_t thresholdGearLevel = 3;
 
-    auto* playerEntity = scene_->GetEntity(playerEntityID_);
-    auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntity);
-    auto* state        = scene_->GetComponent<PlayerState>(playerEntity);
-    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntity);
-    auto* transform    = scene_->GetComponent<OriGine::Transform>(playerEntity);
+    auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
+    auto* state        = scene_->GetComponent<PlayerState>(playerEntityHandle_);
+    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
+    auto* transform    = scene_->GetComponent<OriGine::Transform>(playerEntityHandle_);
 
     // 壁ジャンプ前の速度
     prevVelo_ = rigidbody->GetVelocity();
@@ -80,7 +79,7 @@ void PlayerWallRunState::Initialize() {
 
     // ===== 向きとロール =====
     PlayerEffectControlParam* effectParam =
-        scene_->GetComponent<PlayerEffectControlParam>(playerEntity);
+        scene_->GetComponent<PlayerEffectControlParam>(playerEntityHandle_);
 
     float rotateZOffsetOnWallRun = effectParam->GetRotateOffsetOnWallRun();
 
@@ -97,10 +96,10 @@ void PlayerWallRunState::Initialize() {
 
     // ===== カメラ =====
     OriGine::Entity* cameraEntity =
-        scene_->GetEntity(state->GetCameraEntityID());
+        scene_->GetEntity(state->GetCameraEntityHandle());
 
     CameraController* cameraController =
-        scene_->GetComponent<CameraController>(cameraEntity);
+        scene_->GetComponent<CameraController>(state->GetCameraEntityHandle());
 
     cameraController->SetDestinationAngleXY(Vec2f(0.f, 0.f));
 
@@ -121,9 +120,8 @@ void PlayerWallRunState::Initialize() {
 }
 
 void PlayerWallRunState::Update(float _deltaTime) {
-    auto* playerEntity = scene_->GetEntity(playerEntityID_);
-    auto* state        = scene_->GetComponent<PlayerState>(playerEntity);
-    auto* transform    = scene_->GetComponent<OriGine::Transform>(playerEntity);
+    auto* state     = scene_->GetComponent<PlayerState>(playerEntityHandle_);
+    auto* transform = scene_->GetComponent<OriGine::Transform>(playerEntityHandle_);
 
     // 衝突が途切れないようにめり込ませる
     transform->translate -= wallNormal_ * 0.1f;
@@ -142,8 +140,10 @@ void PlayerWallRunState::Update(float _deltaTime) {
     float rumpUpT          = speedRumpUpTimer_ / speedRumpUpTime_;
     rumpUpT                = std::clamp(rumpUpT, 0.f, 1.f);
     float currentSpeedRate = std::lerp(1.f, speedRate_, EaseOutCubic(rumpUpT));
+
     // 速度を更新
-    auto* rigidbody          = scene_->GetComponent<Rigidbody>(playerEntity);
+    auto* rigidbody = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
+
     OriGine::Vec3f direction = rigidbody->GetVelocity().normalize();
     OriGine::Vec3f newVelo   = direction * (playerSpeed_ * currentSpeedRate);
     rigidbody->SetVelocity(newVelo);
@@ -151,11 +151,6 @@ void PlayerWallRunState::Update(float _deltaTime) {
 
     /// TODO: カメラの処理をここに書くべきではない
     // カメラの傾きを徐々に変える
-    OriGine::Entity* gameCameraEntity = scene_->GetEntity(state->GetCameraEntityID());
-    if (!gameCameraEntity) {
-        return;
-    }
-
     cameraAngleLerpTimer_ += _deltaTime;
     float t = cameraAngleLerpTimer_ / kCameraAngleLerpTime_;
     t       = std::clamp(t, 0.f, 1.f);
@@ -165,7 +160,7 @@ void PlayerWallRunState::Update(float _deltaTime) {
         return;
     }
 
-    CameraController* cameraController = scene_->GetComponent<CameraController>(gameCameraEntity);
+    CameraController* cameraController = scene_->GetComponent<CameraController>(state->GetCameraEntityHandle());
     if (cameraController) {
         const OriGine::Vec3f& currentOffset = cameraController->GetCurrentOffset();
         OriGine::Vec3f newOffset            = Lerp<3, float>(currentOffset, cameraOffsetOnWallRun_, EaseOutCubic(t));
@@ -178,10 +173,9 @@ void PlayerWallRunState::Update(float _deltaTime) {
 }
 
 void PlayerWallRunState::Finalize() {
-    auto* playerEntity = scene_->GetEntity(playerEntityID_);
-    auto* state        = scene_->GetComponent<PlayerState>(playerEntity);
-    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntity);
-    auto* transform    = scene_->GetComponent<OriGine::Transform>(playerEntity);
+    auto* state     = scene_->GetComponent<PlayerState>(playerEntityHandle_);
+    auto* rigidbody = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
+    auto* transform = scene_->GetComponent<OriGine::Transform>(playerEntityHandle_);
     rigidbody->SetUseGravity(true); // 重力を有効
 
     transform->translate += wallNormal_ * 0.1f;
@@ -190,11 +184,7 @@ void PlayerWallRunState::Finalize() {
 
     /// TODO: カメラの処理をここに書くべきではない
     // カメラの傾きを徐々に変える
-    OriGine::Entity* gameCameraEntity = scene_->GetEntity(state->GetCameraEntityID());
-    if (!gameCameraEntity) {
-        return;
-    }
-    CameraController* cameraController = scene_->GetComponent<CameraController>(gameCameraEntity);
+    CameraController* cameraController = scene_->GetComponent<CameraController>(state->GetCameraEntityHandle());
     if (cameraController) {
         cameraController->SetCurrentOffset(cameraController->GetOffsetOnDash());
         cameraController->SetCurrentTargetOffset(cameraController->GetTargetOffsetOnDash());
@@ -202,13 +192,11 @@ void PlayerWallRunState::Finalize() {
 }
 
 PlayerMoveState PlayerWallRunState::TransitionState() const {
-    auto* playerEntity = scene_->GetEntity(playerEntityID_);
-
     if (separationLeftTime_ <= 0.0f) {
         return PlayerMoveState::FALL_DOWN;
     }
 
-    auto playerInput = scene_->GetComponent<PlayerInput>(playerEntity);
+    auto playerInput = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
     if (playerInput->IsWallJumpInput()) {
         return PlayerMoveState::WALL_JUMP;
     }

@@ -47,7 +47,7 @@ private:
     // 最大傾き角度の加速度
     float wheelTiltAngleMaxAccel_ = 0.0f;
 
-    int32_t tireTrailSplineEntityId_ = -1;
+    OriGine::EntityHandle tireTrailSplineEntityHandle_ = OriGine::EntityHandle();
 
 public:
     const OriGine::Vec4f& GetTrailColorByGearLevel(int32_t _level) const {
@@ -73,10 +73,10 @@ public:
         preWheelTiltAngle_ = _angle;
     }
 
-    int32_t GetTireTrailSplineEntityId() const {
-        return tireTrailSplineEntityId_;
+    OriGine::EntityHandle GetTireTrailSplineEntityHandle() const {
+        return tireTrailSplineEntityHandle_;
     }
-    void SetTireTrailSplineEntityId(int32_t _id) {
-        tireTrailSplineEntityId_ = _id;
+    void SetTireTrailSplineEntityId(OriGine::EntityHandle _handle) {
+        tireTrailSplineEntityHandle_ = _handle;
     }
 };

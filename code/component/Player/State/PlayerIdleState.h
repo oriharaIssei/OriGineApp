@@ -9,7 +9,7 @@
 class PlayerIdleState
     : public IPlayerMoveState {
 public:
-    PlayerIdleState(OriGine::Scene* _scene, int32_t _playerEntityID) : IPlayerMoveState(_scene, _playerEntityID, PlayerMoveState::IDLE) {}
+    PlayerIdleState(OriGine::Scene* _scene, OriGine::EntityHandle _playerEntityHandle) : IPlayerMoveState(_scene, _playerEntityHandle, PlayerMoveState::IDLE) {}
     ~PlayerIdleState() override {};
 
     void Initialize() override;

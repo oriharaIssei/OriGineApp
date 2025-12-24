@@ -27,16 +27,17 @@ void CreatePlaneFromSpeed::Initialize() {}
 void CreatePlaneFromSpeed::Finalize() {}
 
 void CreatePlaneFromSpeed::UpdateEntity(OriGine::EntityHandle _handle) {
-    auto speedFor3dUIComponent = GetComponent<SpeedFor3dUIComponent>(_entity);
+    auto speedFor3dUIComponent = GetComponent<SpeedFor3dUIComponent>(_handle);
     if (!speedFor3dUIComponent) {
         return; // タイマーコンポーネントがない場合は何もしない
     }
+    Entity* entity = GetEntity(_handle);
 
     // Sprite用のEntityを作成
-    int32_t ui3dEntityId        = CreateEntity(_entity->GetDataType() + "_Speed3dUI", false);
+    EntityHandle ui3dEntityId   = CreateEntity(entity->GetDataType() + "_Speed3dUI", false);
     OriGine::Entity* ui3dEntity = GetEntity(ui3dEntityId);
     ui3dEntity->SetShouldSave(false); // セーブしない
-    CreatePlanesFromComponent(ui3dEntity, speedFor3dUIComponent);
+    CreatePlanesFromComponent(ui3dEntityId, speedFor3dUIComponent);
 }
 
 void CreatePlaneFromSpeed::CreatePlanesFromComponent(OriGine::EntityHandle _handle, SpeedFor3dUIComponent* _comp) {
@@ -60,15 +61,15 @@ void CreatePlaneFromSpeed::CreatePlanesFromComponent(OriGine::EntityHandle _hand
     // ==========================================
     // Plane 用の Entity を System に登録
     // ==========================================
-    GetScene()->GetSystemRunnerRef()->GetSystemRef<OverlayRenderSystem>()->AddEntity(_entity);
-    GetScene()->GetSystemRunnerRef()->GetSystemRef<Ui3dObjectInitialize>()->AddEntity(_entity);
-    GetScene()->GetSystemRunnerRef()->GetSystemRef<PlayerSpeedFor3dUI>()->AddEntity(_entity);
-    GetScene()->GetSystemRunnerRef()->GetSystemRef<Ui3dUpdateSystem>()->AddEntity(_entity);
+    GetScene()->GetSystemRunnerRef()->GetSystemRef<OverlayRenderSystem>()->AddEntity(_handle);
+    GetScene()->GetSystemRunnerRef()->GetSystemRef<Ui3dObjectInitialize>()->AddEntity(_handle);
+    GetScene()->GetSystemRunnerRef()->GetSystemRef<PlayerSpeedFor3dUI>()->AddEntity(_handle);
+    GetScene()->GetSystemRunnerRef()->GetSystemRef<Ui3dUpdateSystem>()->AddEntity(_handle);
 
-    _comp->SetPlaneEntityId(_entity->GetID());
+    _comp->SetPlaneEntityHandle(_handle);
 
-    AddComponent<OriGine::Transform>(_entity, Transform(), true);
-    auto transform       = GetComponent<OriGine::Transform>(_entity);
+    AddComponent<OriGine::Transform>(_handle);
+    auto transform       = GetComponent<OriGine::Transform>(_handle);
     transform->translate = _comp->worldPosition;
     transform->UpdateMatrix();
 
@@ -76,11 +77,11 @@ void CreatePlaneFromSpeed::CreatePlanesFromComponent(OriGine::EntityHandle _hand
     // 整数部 Plane 生成
     // ==========================================
     for (int i = 0; i < _comp->digitInteger; ++i) {
-        AddComponent<OriGine::PlaneRenderer>(_entity, OriGine::PlaneRenderer{}, true);
-        AddComponent<Material>(_entity, Material{}, true);
+        AddComponent<OriGine::PlaneRenderer>(_handle);
+        AddComponent<Material>(_handle);
 
-        auto* plane    = GetComponent<OriGine::PlaneRenderer>(_entity, i);
-        auto* material = GetComponent<Material>(_entity, i);
+        auto* plane    = GetComponent<OriGine::PlaneRenderer>(_handle, i);
+        auto* material = GetComponent<Material>(_handle, i);
 
         plane->SetIsRender(true);
         plane->SetMaterialIndex(i);
@@ -110,11 +111,11 @@ void CreatePlaneFromSpeed::CreatePlanesFromComponent(OriGine::EntityHandle _hand
     // 小数部 Plane 生成
     // ==========================================
     for (int i = _comp->digitInteger; i < digitAll; ++i) {
-        AddComponent<OriGine::PlaneRenderer>(_entity, OriGine::PlaneRenderer{}, true);
-        AddComponent<Material>(_entity, Material{}, true);
+        AddComponent<OriGine::PlaneRenderer>(_handle);
+        AddComponent<Material>(_handle);
 
-        auto* plane    = GetComponent<OriGine::PlaneRenderer>(_entity, i);
-        auto* material = GetComponent<Material>(_entity, i);
+        auto* plane    = GetComponent<OriGine::PlaneRenderer>(_handle, i);
+        auto* material = GetComponent<Material>(_handle, i);
 
         plane->SetIsRender(true);
         plane->SetMaterialIndex(i);

@@ -3,9 +3,9 @@
 /// engine
 #define ENGINE_SCENE
 #define RESOURCE_DIRECTORY
-#include "EngineInclude.h"
 #include "editor/EditorController.h"
 #include "editor/IEditor.h"
+#include "EngineInclude.h"
 
 /// lib
 #include "myFileSystem/MyFileSystem.h"
@@ -16,19 +16,18 @@
 #include "imgui/imgui.h"
 #endif // _DEBUG
 
-SceneChanger::SceneChanger() {
-}
+SceneChanger::SceneChanger() {}
+SceneChanger::~SceneChanger() {}
 
-SceneChanger::~SceneChanger() {
-}
+using namespace OriGine;
 
-void SceneChanger::Initialize(OriGine::Entity* /* _OriGine::Entity*/) {}
+void SceneChanger::Initialize(Scene* /*_scene*/, EntityHandle /* _handle */) {}
 
-void SceneChanger::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]] EntityHandle _owner, [[maybe_unused]] const std::string& _parentLabel) {
-   
+void SceneChanger::Edit(Scene* /*_scene*/, EntityHandle /*_owner*/, [[maybe_unused]] const std::string& _parentLabel) {
+
 #ifdef _DEBUG
 
-    ImGui::Text("Next OriGine::Scene Name :");
+    ImGui::Text("Next Scene Name :");
     ImGui::SameLine();
     if (ImGui::BeginCombo("##NextSceneName", nextSceneName_.c_str())) {
         for (const auto& [directory, sceneName] : myfs::SearchFile(kApplicationResourceDirectory + "/scene/", "json")) {

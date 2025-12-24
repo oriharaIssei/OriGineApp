@@ -29,6 +29,6 @@ public:
 public:
     EnumBitmask<LookAtFromTransforms::RotateAxis> rotateAxis = 0; // 回転を許可する軸のビットマスク
 
-    ComponentHandle fromTransformComp = {}; // 視点のTransformコンポーネント
-    ComponentHandle toTransformComp   = {}; // 注視点のTransformコンポーネント
+    OriGine::ComponentHandle fromTransformComp = {}; // 視点のTransformコンポーネント
+    OriGine::ComponentHandle toTransformComp   = {}; // 注視点のTransformコンポーネント
 };

@@ -20,12 +20,12 @@ void UpdateButtonColorByState::Finalize() {}
 
 static const float interpolate = 0.1f;
 void UpdateButtonColorByState::UpdateEntity(OriGine::EntityHandle _handle) {
-    Button* button = GetComponent<Button>(_entity);
+    Button* button = GetComponent<Button>(_handle);
     if (button == nullptr) {
         return;
     }
 
-    SpriteRenderer* sprite = GetComponent<SpriteRenderer>(_entity);
+    SpriteRenderer* sprite = GetComponent<SpriteRenderer>(_handle);
     if (sprite == nullptr) {
         return;
     }

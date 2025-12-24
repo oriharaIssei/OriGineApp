@@ -42,7 +42,7 @@ float PlayerEffectControlParam::CalculateWheelTiltAngle(const OriGine::Vec3f& _i
     return result;
 }
 
-void PlayerEffectControlParam::Edit(OriGine::Scene* /*_scene*/, OriGine::Entity* /*_OriGine::Entity*/, [[maybe_unused]] const std::string& _parentLabel) {
+void PlayerEffectControlParam::Edit(OriGine::Scene* /*_scene*/, OriGine::EntityHandle /*_handle*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
     // ギアレベルに応じたトレイルカラー
     std::string label = "";

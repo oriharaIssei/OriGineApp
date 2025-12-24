@@ -19,10 +19,9 @@
 using namespace OriGine;
 
 void PlayerWallJumpState::Initialize() {
-    auto* playerEntity = scene_->GetEntity(playerEntityID_);
-    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntity);
-    auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntity);
-    auto* playerState  = scene_->GetComponent<PlayerState>(playerEntity);
+    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
+    auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
+    auto* playerState  = scene_->GetComponent<PlayerState>(playerEntityHandle_);
 
     rigidbody->SetAcceleration({0.0f, 0.0f, 0.0f});
     rigidbody->SetUseGravity(false);
@@ -33,7 +32,7 @@ void PlayerWallJumpState::Initialize() {
 
     // プレイヤーの進行方向（正面）
     OriGine::Vec3f velocityDirection = rigidbody->GetVelocity();
-    velocityDirection       = velocityDirection.normalize();
+    velocityDirection                = velocityDirection.normalize();
 
     // --- 壁ローカル → ワールド変換 ---
     // wallJumpDirection = (x:外, y:上, z:沿う)
@@ -56,8 +55,7 @@ void PlayerWallJumpState::Update(float _deltaTime) {
 }
 
 void PlayerWallJumpState::Finalize() {
-    auto* playerEntity = scene_->GetEntity(playerEntityID_);
-    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntity);
+    auto* rigidbody = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
 
     rigidbody->SetUseGravity(true); // 重力を有効
 
@@ -65,9 +63,7 @@ void PlayerWallJumpState::Finalize() {
 }
 
 PlayerMoveState PlayerWallJumpState::TransitionState() const {
-    auto* playerEntity = scene_->GetEntity(playerEntityID_);
-
-    auto* playerState = scene_->GetComponent<PlayerState>(playerEntity);
+    auto* playerState = scene_->GetComponent<PlayerState>(playerEntityHandle_);
 
     if (playerState->IsOnGround()) {
         return PlayerMoveState::DASH;

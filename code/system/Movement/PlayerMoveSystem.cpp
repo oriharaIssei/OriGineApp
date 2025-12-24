@@ -10,14 +10,11 @@
 #include "component/player/state/IPlayerMoveState.h"
 #include "component/player/state/PlayerState.h"
 
-void PlayerMoveSystem::Initialize() {
-}
-
-void PlayerMoveSystem::Finalize() {
-}
+void PlayerMoveSystem::Initialize() {}
+void PlayerMoveSystem::Finalize() {}
 
 void PlayerMoveSystem::UpdateEntity(OriGine::EntityHandle _handle) {
-    PlayerState* state = GetComponent<PlayerState>(_entity);
+    PlayerState* state = GetComponent<PlayerState>(_handle);
 
     const float deltaTime = GetMainDeltaTime();
     auto moveState        = state->GetPlayerMoveState();

@@ -23,8 +23,8 @@ void PlayerInputSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     auto keyInput = GetScene()->GetKeyboardInput();
     auto padInput = GetScene()->GetGamepadInput();
 
-    auto playerInput = GetComponent<PlayerInput>(_entity);
-    auto state       = GetComponent<PlayerState>(_entity);
+    auto playerInput = GetComponent<PlayerInput>(_handle);
+    auto state       = GetComponent<PlayerState>(_handle);
 
     if (!playerInput || !state) {
         return;

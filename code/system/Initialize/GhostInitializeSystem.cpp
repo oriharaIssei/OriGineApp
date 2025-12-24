@@ -30,14 +30,14 @@
 
 using namespace OriGine;
 
-GhostInitializeSystem::GhostInitializeSystem() : ISystem(OriGine::SystemCategory::Initialize) {}
+GhostInitializeSystem::GhostInitializeSystem() : ISystem(SystemCategory::Initialize) {}
 GhostInitializeSystem::~GhostInitializeSystem() {}
 
 void GhostInitializeSystem::Initialize() {}
 void GhostInitializeSystem::Finalize() {}
 
-void GhostInitializeSystem::UpdateEntity(OriGine::EntityHandle _handle) {
-    auto ghostReplayComp = GetComponent<GhostReplayComponent>(_entity);
+void GhostInitializeSystem::UpdateEntity(EntityHandle _handle) {
+    auto ghostReplayComp = GetComponent<GhostReplayComponent>(_handle);
 
     if (!ghostReplayComp) {
         return;
@@ -45,7 +45,7 @@ void GhostInitializeSystem::UpdateEntity(OriGine::EntityHandle _handle) {
 
     if (!InitializeGhostReplayComponent(ghostReplayComp)) {
         LOG_ERROR("Failed to initialize GhostReplayComponent.");
-        GetScene()->AddDeleteEntity(_entity->GetID()); // 初期化に失敗したらエンティティを削除
+        GetScene()->AddDeleteEntity(_handle); // 初期化に失敗したらエンティティを削除
     }
 }
 
@@ -60,25 +60,22 @@ bool GhostInitializeSystem::InitializeGhostReplayComponent(GhostReplayComponent*
 
     // stagedataがない時、replayファイルがない時はスキップ。
     auto stageDataEntity = scene->GetUniqueEntity("StageData");
-    if (!stageDataEntity) {
-        return false;
-    }
-    auto stageData = scene->GetComponent<StageData>(stageDataEntity);
+    auto stageData       = scene->GetComponent<StageData>(stageDataEntity);
     if (!stageData) {
         return false;
     }
 
     // replayのデータ読み込み
-    _comp->replayPlayer_ = std::make_shared<OriGine::ReplayPlayer>();
+    _comp->replayPlayer_ = std::make_shared<ReplayPlayer>();
     bool isLoaded        = PlayerProgressStore::GetInstance()->LoadBestPlayData(stageData->GetStageNumber(), _comp->replayPlayer_.get());
     if (!isLoaded) {
         return false;
     }
 
     // inputの初期化
-    _comp->keyboardInput_ = std::make_shared<OriGine::KeyboardInput>();
-    _comp->mouseInput_    = std::make_shared<OriGine::MouseInput>();
-    _comp->gamepadInput_  = std::make_shared<OriGine::GamepadInput>();
+    _comp->keyboardInput_ = std::make_shared<KeyboardInput>();
+    _comp->mouseInput_    = std::make_shared<MouseInput>();
+    _comp->gamepadInput_  = std::make_shared<GamepadInput>();
 
     // 入力初期化
     _comp->ApplyInput();
@@ -86,8 +83,8 @@ bool GhostInitializeSystem::InitializeGhostReplayComponent(GhostReplayComponent*
     // parentのPlayerとGameCameraを持ってくる
     // Entityの複製と登録
     SceneFactory factory;
-    OriGine::Entity* ghostPlayerEnt = factory.BuildEntityFromTemplate(scene, "Player");
-    OriGine::Entity* ghostCameraEnt = factory.BuildEntityFromTemplate(scene, "GameCamera");
+    Entity* ghostPlayerEnt = factory.BuildEntityFromTemplate(scene, "Player");
+    Entity* ghostCameraEnt = factory.BuildEntityFromTemplate(scene, "GameCamera");
 
     if (!ghostPlayerEnt || !ghostCameraEnt) {
         return false;
@@ -97,48 +94,49 @@ bool GhostInitializeSystem::InitializeGhostReplayComponent(GhostReplayComponent*
     ghostPlayerEnt->SetShouldSave(false);
     ghostCameraEnt->SetShouldSave(false);
 
-    _comp->ghostEntityId_       = ghostPlayerEnt->GetID();
-    _comp->ghostCameraEntityId_ = ghostCameraEnt->GetID();
+    EntityHandle ghostPlayerHandle = ghostPlayerEnt->GetHandle();
+    EntityHandle ghostCameraHandle = ghostCameraEnt->GetHandle();
+
+    _comp->ghostEntityId_       = ghostPlayerEnt->GetHandle();
+    _comp->ghostCameraEntityId_ = ghostCameraEnt->GetHandle();
 
     auto systemRunner = scene->GetSystemRunnerRef();
     // player Input system から ghostを除外しておく
     auto playerInputSystem = systemRunner->GetSystemRef<PlayerInputSystem>();
     if (playerInputSystem) {
-        playerInputSystem->RemoveEntity(ghostPlayerEnt);
+        playerInputSystem->RemoveEntity(ghostPlayerHandle);
     }
     // camera Input system から ghostを除外しておく
     auto cameraInputSystem = systemRunner->GetSystemRef<CameraInputSystem>();
     if (cameraInputSystem) {
-        cameraInputSystem->RemoveEntity(ghostCameraEnt);
+        cameraInputSystem->RemoveEntity(ghostCameraEnt->GetHandle());
     }
     auto effectOnPlayerRunSystem = systemRunner->GetSystemRef<EffectOnPlayerRun>();
     if (effectOnPlayerRunSystem) {
-        effectOnPlayerRunSystem->RemoveEntity(ghostPlayerEnt);
+        effectOnPlayerRunSystem->RemoveEntity(ghostPlayerHandle);
     }
     auto effectOnPlayerGearupSystem = systemRunner->GetSystemRef<EffectOnPlayerGearup>();
     if (effectOnPlayerGearupSystem) {
-        effectOnPlayerGearupSystem->RemoveEntity(ghostPlayerEnt);
+        effectOnPlayerGearupSystem->RemoveEntity(ghostPlayerHandle);
     }
 
-    auto playerTransform  = GetComponent<OriGine::Transform>(ghostPlayerEnt);
-    auto cameraController = GetComponent<CameraController>(ghostCameraEnt);
+    auto playerTransform  = GetComponent<Transform>(ghostPlayerHandle);
+    auto cameraController = GetComponent<CameraController>(ghostCameraHandle);
     cameraController->SetFollowTarget(playerTransform);
 
-    auto playerState = GetComponent<PlayerState>(ghostPlayerEnt);
-    playerState->SetCameraEntityID(ghostCameraEnt->GetID());
+    auto playerState = GetComponent<PlayerState>(ghostPlayerHandle);
+    playerState->SetCameraEntityHandle(ghostCameraHandle);
 
-    auto playerMaterials = GetComponents<Material>(ghostPlayerEnt);
-    if (playerMaterials) {
-        for (auto& material : *playerMaterials) {
-            // 赤めにする
-            material.color_[0] = 0.8f;
-            material.color_[1] = 0.3f;
-            material.color_[2] = 0.3f;
-            material.color_[3] = 0.6f; // 半透明にする
-        }
+    auto& playerMaterials = GetComponents<Material>(ghostPlayerHandle);
+    for (auto& material : playerMaterials) {
+        // 赤めにする
+        material.color_[0] = 0.8f;
+        material.color_[1] = 0.3f;
+        material.color_[2] = 0.3f;
+        material.color_[3] = 0.6f; // 半透明にする
     }
 
-    auto cameraTransform = GetComponent<CameraTransform>(ghostCameraEnt);
+    auto cameraTransform = GetComponent<CameraTransform>(ghostCameraHandle);
     if (cameraTransform) {
         cameraTransform->canUseMainCamera = false; // メインカメラとして使えないように
     }

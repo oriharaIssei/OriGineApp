@@ -135,15 +135,6 @@
     <ClInclude Include="code\component\stage\StageData.h">
       <Filter>component\stage</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\stage\StageFloor.h">
-      <Filter>component\stage</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\stage\StageObstacle.h">
-      <Filter>component\stage</Filter>
-    </ClInclude>
-    <ClInclude Include="code\component\stage\StageWall.h">
-      <Filter>component\stage</Filter>
-    </ClInclude>
     <ClInclude Include="code\component\ui\Button.h">
       <Filter>component\ui</Filter>
     </ClInclude>
@@ -172,9 +163,6 @@
       <Filter>system\Initialize</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Initialize\CreateSpriteFromTimer.h">
-      <Filter>system\Initialize</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Initialize\CreateStage.h">
       <Filter>system\Initialize</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Initialize\GetClearTime.h">
@@ -440,15 +428,6 @@
     <ClCompile Include="code\component\stage\StageData.cpp">
       <Filter>component\stage</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\stage\StageFloor.cpp">
-      <Filter>component\stage</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\stage\StageObstacle.cpp">
-      <Filter>component\stage</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\stage\StageWall.cpp">
-      <Filter>component\stage</Filter>
-    </ClCompile>
     <ClCompile Include="code\component\ui\Button.cpp">
       <Filter>component\ui</Filter>
     </ClCompile>
@@ -469,9 +448,6 @@
       <Filter>system\Initialize</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Initialize\CreateSpriteFromTimer.cpp">
-      <Filter>system\Initialize</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Initialize\CreateStage.cpp">
       <Filter>system\Initialize</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Initialize\GetClearTime.cpp">
@@ -654,6 +630,5 @@
     <ClCompile Include="code\system\effect\TimerForSprite.cpp">
       <Filter>system\effect</Filter>
     </ClCompile>
-    <ClCompile Include="..\engine\code\ECS\component\ComponentHandle.cpp" />
   </ItemGroup>
 </Project>

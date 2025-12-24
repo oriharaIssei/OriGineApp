@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+#define UUID_SYSTEM_GENERATOR
+
 /// engine
 // directX12
 #include "engine/code/directX12/DxDebug.h"
@@ -12,8 +14,9 @@
 #include "application/code/MyEditor.h"
 #include "application/code/MyGame.h"
 
-/// log
+/// externals
 #include "logger/Logger.h"
+#include "uuid/uuid.h"
 
 std::vector<std::string> ParseCommandLine();
 

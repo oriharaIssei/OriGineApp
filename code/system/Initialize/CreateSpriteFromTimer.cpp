@@ -23,16 +23,16 @@ void CreateSpriteFromTimer::Initialize() {}
 void CreateSpriteFromTimer::Finalize() {}
 
 void CreateSpriteFromTimer::UpdateEntity(OriGine::EntityHandle _handle) {
-    auto timerForSpriteComponent = GetComponent<TimerForSpriteComponent>(_entity);
+    auto timerForSpriteComponent = GetComponent<TimerForSpriteComponent>(_handle);
     if (!timerForSpriteComponent) {
         return; // タイマーコンポーネントがない場合は何もしない
     }
 
     // Sprite用のEntityを作成
-    int32_t spriteEntityId        = CreateEntity("TimerForSprite_Sprites", false);
+    EntityHandle spriteEntityId        = CreateEntity("TimerForSprite_Sprites", false);
     OriGine::Entity* spriteEntity = GetEntity(spriteEntityId);
     spriteEntity->SetShouldSave(false); // セーブしない
-    CreateSprites(spriteEntity, timerForSpriteComponent);
+    CreateSprites(spriteEntityId, timerForSpriteComponent);
 }
 
 void CreateSpriteFromTimer::CreateSprites(OriGine::EntityHandle _handle, TimerForSpriteComponent* _forSpriteComp) {
@@ -59,14 +59,14 @@ void CreateSpriteFromTimer::CreateSprites(OriGine::EntityHandle _handle, TimerFo
     pos[X] += widthBetween * 0.5f;
 
     // Sprite用のEntityを作成
-    GetScene()->GetSystemRunnerRef()->GetSystemRef<SpriteRenderSystem>()->AddEntity(_entity);
+    GetScene()->GetSystemRunnerRef()->GetSystemRef<SpriteRenderSystem>()->AddEntity(_handle);
 
-    _forSpriteComp->SetSpritesEntityId(_entity->GetID());
+    _forSpriteComp->SetSpritesEntityHandle(_handle);
 
     // 整数部
     for (int i = 0; i < digitInteger; ++i) {
-        AddComponent<SpriteRenderer>(_entity, SpriteRenderer{}, true);
-        auto* sprite = GetComponent<SpriteRenderer>(_entity, i);
+        AddComponent<SpriteRenderer>(_handle);
+        auto* sprite = GetComponent<SpriteRenderer>(_handle, i);
 
         sprite->SetIsRender(true);
 
@@ -85,8 +85,8 @@ void CreateSpriteFromTimer::CreateSprites(OriGine::EntityHandle _handle, TimerFo
 
     // 小数部
     for (int i = digitInteger; i < digitAll; ++i) {
-        AddComponent<SpriteRenderer>(_entity, SpriteRenderer{}, true);
-        auto* sprite = GetComponent<SpriteRenderer>(_entity, i);
+        AddComponent<SpriteRenderer>(_handle);
+        auto* sprite = GetComponent<SpriteRenderer>(_handle, i);
 
         sprite->SetTexture(_forSpriteComp->numbersTexturePath, false);
         sprite->SetAnchorPoint({0.5f, 0.5f});

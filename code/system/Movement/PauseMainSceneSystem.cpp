@@ -36,7 +36,7 @@ void PauseMainSceneSystem::Initialize() {
 void PauseMainSceneSystem::Finalize() {}
 
 void PauseMainSceneSystem::Update() {
-    if (entityIDs_.empty()) {
+    if (entities_.empty()) {
         return;
     }
 
@@ -55,9 +55,8 @@ void PauseMainSceneSystem::Update() {
         systemRunner->ActivateSystem(systemName);
     }
 
-    for (auto& entityID : entityIDs_) {
-        Entity* entity = GetScene()->GetEntityRepositoryRef()->GetEntity(entityID);
-        UpdateEntity(entity);
+    for (auto& entityHandle : entities_) {
+        UpdateEntity(entityHandle);
     }
 
     if (isPausing_) {
@@ -73,7 +72,7 @@ void PauseMainSceneSystem::Update() {
 }
 
 void PauseMainSceneSystem::UpdateEntity(OriGine::EntityHandle _handle) {
-    auto subScene = GetComponent<SubScene>(_entity);
+    auto subScene = GetComponent<SubScene>(_handle);
     if (!subScene) {
         return;
     }

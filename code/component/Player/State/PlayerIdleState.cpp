@@ -17,11 +17,10 @@
 using namespace OriGine;
 
 void PlayerIdleState::Initialize() {
-    auto* playerEntity = scene_->GetEntity(playerEntityID_);
-    auto playerStatus  = scene_->GetComponent<PlayerStatus>(playerEntity);
-    auto* state        = scene_->GetComponent<PlayerState>(playerEntity);
-    auto rigidbody     = scene_->GetComponent<Rigidbody>(playerEntity);
-    auto playerInput   = scene_->GetComponent<PlayerInput>(playerEntity);
+    auto playerStatus  = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
+    auto* state        = scene_->GetComponent<PlayerState>(playerEntityHandle_);
+    auto rigidbody     = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
+    auto playerInput   = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
 
     /// 初期化処理
     // 入力方向をリセット
@@ -39,14 +38,13 @@ void PlayerIdleState::Initialize() {
 void PlayerIdleState::Update(float _deltaTime) {
     constexpr float kDecelerationRate = 1.8f;
 
-    auto* playerEntity = scene_->GetEntity(playerEntityID_);
-    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntity);
+    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
 
     // 減速
     rigidbody->SetVelocity(LerpByDeltaTime(rigidbody->GetVelocity(), OriGine::Vec3f(), _deltaTime, kDecelerationRate));
 
     // 落下時間を更新
-    auto* state = scene_->GetComponent<PlayerState>(playerEntity);
+    auto* state = scene_->GetComponent<PlayerState>(playerEntityHandle_);
     if (state->IsOnGround()) {
         fallDownTimer_ = kFallDownThresholdTime_;
     } else {
@@ -54,7 +52,7 @@ void PlayerIdleState::Update(float _deltaTime) {
     }
 
     ///! TODO : ここにカメラの処理を書くべきではない
-    CameraController* cameraController = scene_->GetComponent<CameraController>(scene_->GetEntity(state->GetCameraEntityID()));
+    CameraController* cameraController = scene_->GetComponent<CameraController>(state->GetCameraEntityHandle());
     if (cameraController) {
         // カメラのオフセットを徐々に元に戻す
         cameraOffsetLerpTimer_ += _deltaTime;
@@ -74,9 +72,8 @@ void PlayerIdleState::Update(float _deltaTime) {
 }
 
 void PlayerIdleState::Finalize() {
-    auto* playerEntity = scene_->GetEntity(playerEntityID_);
-    auto playerStatus  = scene_->GetComponent<PlayerStatus>(playerEntity);
-    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntity);
+    auto playerStatus  = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
+    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
 
     playerStatus->SetCurrentMaxSpeed(playerStatus->GetBaseSpeed());
     rigidbody->SetMaxXZSpeed(playerStatus->GetBaseSpeed());
@@ -85,9 +82,8 @@ void PlayerIdleState::Finalize() {
 }
 
 PlayerMoveState PlayerIdleState::TransitionState() const {
-    auto* playerEntity = scene_->GetEntity(playerEntityID_);
-    auto state         = scene_->GetComponent<PlayerState>(playerEntity);
-    auto playerInput   = scene_->GetComponent<PlayerInput>(playerEntity);
+    auto state         = scene_->GetComponent<PlayerState>(playerEntityHandle_);
+    auto playerInput   = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
 
     if (state->IsOnGround()) {
         if (playerInput->IsJumpInput()) {

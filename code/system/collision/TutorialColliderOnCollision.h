@@ -19,5 +19,5 @@ protected:
     void UpdateEntity(OriGine::EntityHandle _handle) override;
 
 protected:
-    OriGine::Entity* playerEntity_         = nullptr;
+    OriGine::EntityHandle playerEntityHandle_ = OriGine::EntityHandle();
 };

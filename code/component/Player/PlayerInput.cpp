@@ -5,10 +5,12 @@
 #include <myGui/MyGui.h>
 #endif // _DEBUG
 
-void PlayerInput::Initialize(OriGine::Entity* /* _OriGine::Entity*/) {
+using namespace OriGine;
+
+void PlayerInput::Initialize(Scene* /*_scene*/, EntityHandle /* _handle */) {
 }
 
-void PlayerInput::Edit(OriGine::Scene* /*_scene*/, OriGine::Entity* /*_OriGine::Entity*/, [[maybe_unused]] const std::string& _parentLabel) {
+void PlayerInput::Edit(Scene* /*_scene*/, EntityHandle /* _handle */, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
     DragGuiCommand("MaxJumpInputTime" + _parentLabel, maxJumpTime_, 0.01f, 0.01f);
 #endif // _DEBUG

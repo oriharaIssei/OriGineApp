@@ -20,8 +20,8 @@ struct SplineCommonSettings {
     OriGine::EaseType widthEaseType = OriGine::EaseType::EaseInOutSine;
     OriGine::EaseType uvEaseType    = OriGine::EaseType::EaseInOutSine;
 
-    int32_t playerEntityId = -1;
-    int32_t segmentDivide  = 16;
+    OriGine::EntityHandle playerEntityHandle = OriGine::EntityHandle();
+    int32_t segmentDivide                    = 16;
 
     OriGine::Vec2f startUv = {0.0f, 0.0f};
     OriGine::Vec2f endUv   = {1.0f, 1.0f};

@@ -16,11 +16,10 @@ using namespace OriGine;
 void PlayerJumpState::Initialize() {
     releaseJumpPower_ = 0.f;
 
-    auto* playerEntity = scene_->GetEntity(playerEntityID_);
-    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntity);
-    auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntity);
+    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
+    auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
 
-    auto* playerState = scene_->GetComponent<PlayerState>(playerEntity);
+    auto* playerState = scene_->GetComponent<PlayerState>(playerEntityHandle_);
 
     rigidbody->SetUseGravity(false);
 
@@ -34,23 +33,24 @@ void PlayerJumpState::Initialize() {
 }
 
 void PlayerJumpState::Update(float _deltaTime) {
-    auto* playerEntity = scene_->GetEntity(playerEntityID_);
-    auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntity);
-    auto* state        = scene_->GetComponent<PlayerState>(playerEntity);
-    auto* playerInput  = scene_->GetComponent<PlayerInput>(playerEntity);
-    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntity);
-    auto* transform    = scene_->GetComponent<OriGine::Transform>(playerEntity);
+    auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
+    auto* state        = scene_->GetComponent<PlayerState>(playerEntityHandle_);
+    auto* playerInput  = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
+    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
+    auto* transform    = scene_->GetComponent<OriGine::Transform>(playerEntityHandle_);
+
+
+    CameraTransform* cameraTransform = scene_->GetComponent<CameraTransform>(state->GetCameraEntityHandle());
 
     // 移動処理
-    playerStatus->UpdateAccel(_deltaTime, playerInput, transform, rigidbody, scene_->GetComponent<CameraTransform>(scene_->GetEntity(state->GetCameraEntityID()))->rotate);
+    playerStatus->UpdateAccel(_deltaTime, playerInput, transform, rigidbody, cameraTransform->rotate);
 
     // ジャンプ力の蓄積
     releaseJumpPower_ += chargePower_ * _deltaTime;
 }
 
 void PlayerJumpState::Finalize() {
-    auto* playerEntity = scene_->GetEntity(playerEntityID_);
-    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntity);
+    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
 
     rigidbody->SetUseGravity(true);
     // 蓄えたジャンプ力を適用
@@ -58,9 +58,8 @@ void PlayerJumpState::Finalize() {
 }
 
 PlayerMoveState PlayerJumpState::TransitionState() const {
-    auto* playerEntity = scene_->GetEntity(playerEntityID_);
-    auto state         = scene_->GetComponent<PlayerState>(playerEntity);
-    auto playerInput   = scene_->GetComponent<PlayerInput>(playerEntity);
+    auto state         = scene_->GetComponent<PlayerState>(playerEntityHandle_);
+    auto playerInput   = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
 
     if (state->IsCollisionWithWall()) {
         return PlayerMoveState::WALL_RUN;

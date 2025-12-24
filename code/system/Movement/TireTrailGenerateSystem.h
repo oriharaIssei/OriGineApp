@@ -69,6 +69,6 @@ protected:
     /// <param name="spline"></param>
     /// <param name="entity"></param>
     void UpdateFadeOut(
-        TireSplinePoints& spline,
-        OriGine::Entity* entity);
+        TireSplinePoints& _spline,
+        OriGine::EntityHandle _entity);
 };

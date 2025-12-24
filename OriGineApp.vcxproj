@@ -171,9 +171,6 @@
     <ClInclude Include="code\component\spline\SplinePoints.h" />
     <ClInclude Include="code\component\spline\TireSplinePoints.h" />
     <ClInclude Include="code\component\stage\StageData.h" />
-    <ClInclude Include="code\component\stage\StageFloor.h" />
-    <ClInclude Include="code\component\stage\StageObstacle.h" />
-    <ClInclude Include="code\component\stage\StageWall.h" />
     <ClInclude Include="code\component\ui\Button.h" />
     <ClInclude Include="code\component\ui\ButtonGroup.h" />
     <ClInclude Include="code\component\ui\SpeedFor3dUIComponent.h" />
@@ -184,7 +181,6 @@
     <ClInclude Include="code\system\Initialize\BackFireInitialize.h" />
     <ClInclude Include="code\system\Initialize\CreatePlaneFromSpeed.h" />
     <ClInclude Include="code\system\Initialize\CreateSpriteFromTimer.h" />
-    <ClInclude Include="code\system\Initialize\CreateStage.h" />
     <ClInclude Include="code\system\Initialize\GetClearTime.h" />
     <ClInclude Include="code\system\Initialize\GhostInitializeSystem.h" />
     <ClInclude Include="code\system\Initialize\InitializeMouseCondition.h" />
@@ -247,7 +243,6 @@
     <ClInclude Include="code\system\effect\TimerForSprite.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\engine\code\ECS\component\ComponentHandle.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\MyEditor.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
@@ -277,9 +272,6 @@
     <ClCompile Include="code\component\spline\SplinePoints.cpp" />
     <ClCompile Include="code\component\spline\TireSplinePoints.cpp" />
     <ClCompile Include="code\component\stage\StageData.cpp" />
-    <ClCompile Include="code\component\stage\StageFloor.cpp" />
-    <ClCompile Include="code\component\stage\StageObstacle.cpp" />
-    <ClCompile Include="code\component\stage\StageWall.cpp" />
     <ClCompile Include="code\component\ui\Button.cpp" />
     <ClCompile Include="code\component\ui\ButtonGroup.cpp" />
     <ClCompile Include="code\component\ui\SpeedFor3dUIComponent.cpp" />
@@ -288,7 +280,6 @@
     <ClCompile Include="code\system\Initialize\BackFireInitialize.cpp" />
     <ClCompile Include="code\system\Initialize\CreatePlaneFromSpeed.cpp" />
     <ClCompile Include="code\system\Initialize\CreateSpriteFromTimer.cpp" />
-    <ClCompile Include="code\system\Initialize\CreateStage.cpp" />
     <ClCompile Include="code\system\Initialize\GetClearTime.cpp" />
     <ClCompile Include="code\system\Initialize\GhostInitializeSystem.cpp" />
     <ClCompile Include="code\system\Initialize\InitializeMouseCondition.cpp" />

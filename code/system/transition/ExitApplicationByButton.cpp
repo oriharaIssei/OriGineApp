@@ -10,11 +10,12 @@ ExitApplicationByButton::ExitApplicationByButton() : ISystem(OriGine::SystemCate
 ExitApplicationByButton::~ExitApplicationByButton() {}
 
 void ExitApplicationByButton::UpdateEntity(OriGine::EntityHandle _handle) {
-    auto buttons = GetComponents<Button>(_entity);
-    if (buttons == nullptr) {
+    auto& buttons = GetComponents<Button>(_handle);
+    if (buttons.empty()) {
         return;
     }
-    for (const auto& button : *buttons) {
+
+    for (const auto& button : buttons) {
         if (button.IsReleased()) {
             GetScene()->GetSceneManager()->SetExitGame(true);
             return;

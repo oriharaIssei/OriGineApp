@@ -1,12 +1,14 @@
 #include "PlayRecordeComponent.h"
 
+using namespace OriGine;
+
 PlayRecordeComponent::PlayRecordeComponent() {}
 PlayRecordeComponent::~PlayRecordeComponent() {}
 
 void PlayRecordeComponent::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {}
 void PlayRecordeComponent::Finalize() {}
 
-void PlayRecordeComponent::Edit(OriGine::Scene* /*_scene*/, OriGine::Entity* /*_OriGine::Entity*/, const std::string& /*_parentLabel*/) {}
+void PlayRecordeComponent::Edit(Scene* /*_scene*/, EntityHandle /*_handle*/, const std::string& /*_parentLabel*/) {}
 
 void to_json(nlohmann::json& /*_j*/, const PlayRecordeComponent& /*_c*/) {
 }

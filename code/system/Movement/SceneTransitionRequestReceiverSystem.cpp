@@ -42,7 +42,7 @@ void SceneTransitionRequestReceiverSystem::UpdateEntity(OriGine::EntityHandle _h
     // フラグをリセット
     isSceneChangeRequested_ = false;
 
-    auto* sceneChangerComp = GetComponent<SceneChanger>(_entity);
+    SceneChanger* sceneChangerComp = GetComponent<SceneChanger>(_handle);
 
     if (!sceneChangerComp) {
         return;

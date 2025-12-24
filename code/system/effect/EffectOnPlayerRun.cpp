@@ -34,22 +34,22 @@ EffectOnPlayerRun::~EffectOnPlayerRun() {}
 void EffectOnPlayerRun::Initialize() {}
 void EffectOnPlayerRun::Finalize() {}
 
-void EffectOnPlayerRun::UpdateEntity(OriGine::Entity* entity) {
-    auto state              = GetComponent<PlayerState>(entity);
-    auto status             = GetComponent<PlayerStatus>(entity);
-    auto effectControlParam = GetComponent<PlayerEffectControlParam>(entity);
-    auto rigidbody          = GetComponent<Rigidbody>(entity);
+void EffectOnPlayerRun::UpdateEntity(EntityHandle _entity) {
+    auto state              = GetComponent<PlayerState>(_entity);
+    auto status             = GetComponent<PlayerStatus>(_entity);
+    auto effectControlParam = GetComponent<PlayerEffectControlParam>(_entity);
+    auto rigidbody          = GetComponent<Rigidbody>(_entity);
 
-    if (!state || !effectControlParam || !rigidbody) {
+    if (!state || !status || !effectControlParam || !rigidbody) {
         return;
     }
 
     // タイヤの回転
-    ModelMeshRenderer* modelMeshRenderer = GetComponent<ModelMeshRenderer>(entity);
+    ModelMeshRenderer* modelMeshRenderer = GetComponent<ModelMeshRenderer>(_entity);
     if (modelMeshRenderer) {
         Transform& meshTransform = modelMeshRenderer->GetTransform(0);
 
-        auto playerInput        = GetComponent<PlayerInput>(entity);
+        auto playerInput        = GetComponent<PlayerInput>(_entity);
         OriGine::Vec3f inputDir = playerInput->GetWorldInputDirection();
 
         // 速度によって タイヤの回転速度を変える
@@ -60,7 +60,7 @@ void EffectOnPlayerRun::UpdateEntity(OriGine::Entity* entity) {
         meshTransform.UpdateMatrix();
 
         // プレイヤーが曲がる時,タイヤを傾ける (地面にいるときだけ)
-        Transform* hostTransform = GetComponent<OriGine::Transform>(entity);
+        Transform* hostTransform = GetComponent<OriGine::Transform>(_entity);
         if (state->IsOnGround()) {
             if (inputDir.lengthSq() > kEpsilon) {
                 OriGine::Vec3f currentDir = hostTransform->rotate.RotateVector(axisZ);
@@ -96,70 +96,56 @@ void EffectOnPlayerRun::UpdateEntity(OriGine::Entity* entity) {
         constexpr int32_t trailAnimationOnGearUpIndex = 1;
         const OriGine::Vec4f& trailColor              = effectControlParam->GetTrailColorByGearLevel(state->GetGearLevel());
 
-        OriGine::Entity* trailEntity = GetUniqueEntity("Trail");
-        if (trailEntity) {
-            auto* trailMaterialAnimation = GetComponent<MaterialAnimation>(trailEntity, trailAnimationOnGearUpIndex);
+        OriGine::EntityHandle trailEntity = GetUniqueEntity("Trail");
+        auto* trailMaterialAnimation      = GetComponent<MaterialAnimation>(trailEntity, trailAnimationOnGearUpIndex);
 
-            // 色をGearLevelに応じて変化
-            // アニメーションが再生されていなければ 色を設定
-            if (trailMaterialAnimation && !trailMaterialAnimation->GetAnimationIsPlay()) {
-                auto* material = GetComponent<Material>(trailEntity);
-                if (material) {
-                    material->color_ = trailColor;
-                }
+        // 色をGearLevelに応じて変化
+        // アニメーションが再生されていなければ 色を設定
+        if (trailMaterialAnimation && !trailMaterialAnimation->GetAnimationIsPlay()) {
+            auto* material = GetComponent<Material>(trailEntity);
+            if (material) {
+                material->color_ = trailColor;
             }
         }
 
-        OriGine::Entity* backFireEntity = GetUniqueEntity("BackFire");
-        if (backFireEntity) {
-            MaterialAnimation* backFireMaterialAnimation = GetComponent<MaterialAnimation>(backFireEntity);
-            // animationが再生されていなければ 色を設定
-            if (backFireMaterialAnimation && !backFireMaterialAnimation->GetAnimationIsPlay()) {
-                auto* material = GetComponent<Material>(backFireEntity);
-                if (material) {
-                    material->color_ = trailColor;
-                }
+        OriGine::EntityHandle backFireEntity         = GetUniqueEntity("BackFire");
+        MaterialAnimation* backFireMaterialAnimation = GetComponent<MaterialAnimation>(backFireEntity);
+        // animationが再生されていなければ 色を設定
+        if (backFireMaterialAnimation && !backFireMaterialAnimation->GetAnimationIsPlay()) {
+            auto* material = GetComponent<Material>(backFireEntity);
+            if (material) {
+                material->color_ = trailColor;
             }
+        }
 
-            OriGine::Entity* backFireSparksEntity = GetUniqueEntity("BackFireSparks");
+        OriGine::EntityHandle backFireSparksEntity = GetUniqueEntity("BackFireSparks");
+        auto& backFireCylinders                    = GetComponents<CylinderRenderer>(backFireEntity);
+        auto& backFireSparksCylinders              = GetComponents<CylinderRenderer>(backFireSparksEntity);
 
-            if (backFireSparksEntity) {
-                auto* backFireCylinders       = GetComponents<CylinderRenderer>(backFireEntity);
-                auto* backFireSparksCylinders = GetComponents<CylinderRenderer>(backFireSparksEntity);
+        float currentSpeed = rigidbody->GetVelocity().length();
+        float t            = currentSpeed / status->CalculateSpeedByGearLevel(kMaxPlayerGearLevel);
+        t                  = EaseInCubic(t);
+        float xzScale      = std::lerp(kMinBackFireScaleXZ, kMaxBackFireScaleXZ, t);
+        float yScale       = std::lerp(kMinBackFireScaleY, kMaxBackFireScaleY, t);
 
-                float currentSpeed = rigidbody->GetVelocity().length();
-                float t            = currentSpeed / status->CalculateSpeedByGearLevel(kMaxPlayerGearLevel);
-                t                  = EaseInCubic(t);
-                float xzScale      = std::lerp(kMinBackFireScaleXZ, kMaxBackFireScaleXZ, t);
-                float yScale       = std::lerp(kMinBackFireScaleY, kMaxBackFireScaleY, t);
-
-                OriGine::Vec3f newScale = OriGine::Vec3f(xzScale, yScale, xzScale);
-                for (auto& cylinder : *backFireCylinders) {
-                    cylinder.GetTransform().scale = newScale;
-                    cylinder.GetTransform().UpdateMatrix();
-                }
-                for (auto& cylinder : *backFireSparksCylinders) {
-                    cylinder.GetTransform().scale = newScale;
-                    cylinder.GetTransform().UpdateMatrix();
-                }
-            }
+        OriGine::Vec3f newScale = OriGine::Vec3f(xzScale, yScale, xzScale);
+        for (auto& cylinder : backFireCylinders) {
+            cylinder.GetTransform().scale = newScale;
+            cylinder.GetTransform().UpdateMatrix();
+        }
+        for (auto& cylinder : backFireSparksCylinders) {
+            cylinder.GetTransform().scale = newScale;
+            cylinder.GetTransform().UpdateMatrix();
         }
     }
 
     // スピードラインエフェクト
-    OriGine::Entity* speedlineEntity                   = GetUniqueEntity("Speedline");
-    std::vector<SpeedlineEffectParam>* speedlineParams = nullptr;
-    if (speedlineEntity) {
-        speedlineParams = GetComponents<SpeedlineEffectParam>(speedlineEntity);
-    }
-
-    if (!speedlineParams) {
-        return;
-    }
+    OriGine::EntityHandle speedlineEntity = GetUniqueEntity("Speedline");
+    auto& speedlineParams                 = GetComponents<SpeedlineEffectParam>(speedlineEntity);
 
     // プレイヤーが止まっているか, ギアレベルが低い場合は エフェクトを停止
     if (state->GetStateEnum() == PlayerMoveState::IDLE || state->GetGearLevel() < 2) {
-        for (auto& speedlineParam : *speedlineParams) {
+        for (auto& speedlineParam : speedlineParams) {
             speedlineParam.Stop();
         }
 
@@ -170,7 +156,8 @@ void EffectOnPlayerRun::UpdateEntity(OriGine::Entity* entity) {
     float intensityT = static_cast<float>(state->GetGearLevel()) / static_cast<float>(kMaxPlayerGearLevel);
     intensityT       = EaseOutCubic(intensityT);
     float intensity  = std::lerp(0.f, maxIntensity_, intensityT);
-    for (auto& speedlineParam : *speedlineParams) {
+
+    for (auto& speedlineParam : speedlineParams) {
         speedlineParam.Play();
         auto& paramData = speedlineParam.GetParamData();
         paramData.time -= GetMainDeltaTime();

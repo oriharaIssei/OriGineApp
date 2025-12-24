@@ -24,7 +24,6 @@
 #include "component/spline/SplinePoints.h"
 #include "component/spline/TireSplinePoints.h"
 #include "component/stage/StageData.h"
-#include "component/stage/StageObstacle.h"
 #include "component/TimerComponent.h"
 #include "component/ui/Button.h"
 #include "component/ui/ButtonGroup.h"
@@ -119,12 +118,11 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<SubScene>();
 
     componentRegistry->RegisterComponent<CameraTransform>();
-    componentRegistry->RegisterComponent<OriGine::Transform>();
+    componentRegistry->RegisterComponent<Transform>();
 
     componentRegistry->RegisterComponent<LookAtFromTransforms>();
 
     componentRegistry->RegisterComponent<StageData>();
-    componentRegistry->RegisterComponent<StageObstacle>();
 
     componentRegistry->RegisterComponent<SplinePoints>();
     componentRegistry->RegisterComponent<TireSplinePoints>();
@@ -164,7 +162,7 @@ void RegisterUsingComponents() {
 
     componentRegistry->RegisterComponent<ModelMeshRenderer>();
     componentRegistry->RegisterComponent<LineRenderer>();
-    componentRegistry->RegisterComponent<OriGine::PlaneRenderer>();
+    componentRegistry->RegisterComponent<PlaneRenderer>();
     componentRegistry->RegisterComponent<RingRenderer>();
     componentRegistry->RegisterComponent<BoxRenderer>();
     componentRegistry->RegisterComponent<SphereRenderer>();

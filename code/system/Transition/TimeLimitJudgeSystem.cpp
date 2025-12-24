@@ -16,14 +16,14 @@
 
 using namespace OriGine;
 
-TimeLimitJudgeSystem::TimeLimitJudgeSystem() : ISystem(OriGine::SystemCategory::StateTransition) {}
+TimeLimitJudgeSystem::TimeLimitJudgeSystem() : ISystem(SystemCategory::StateTransition) {}
 TimeLimitJudgeSystem::~TimeLimitJudgeSystem() {}
 
 void TimeLimitJudgeSystem::Initialize() {}
 void TimeLimitJudgeSystem::Finalize() {}
 
-void TimeLimitJudgeSystem::UpdateEntity(OriGine::EntityHandle _handle) {
-    auto timerComp = GetComponent<TimerComponent>(_entity);
+void TimeLimitJudgeSystem::UpdateEntity(EntityHandle _handle) {
+    auto timerComp = GetComponent<TimerComponent>(_handle);
     if (!timerComp) {
         return;
     }

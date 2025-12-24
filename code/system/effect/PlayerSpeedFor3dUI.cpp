@@ -11,30 +11,28 @@
 
 using namespace OriGine;
 
-PlayerSpeedFor3dUI::PlayerSpeedFor3dUI() : ISystem(OriGine::SystemCategory::Effect) {}
+PlayerSpeedFor3dUI::PlayerSpeedFor3dUI() : ISystem(SystemCategory::Effect) {}
 PlayerSpeedFor3dUI::~PlayerSpeedFor3dUI() {}
 
 void PlayerSpeedFor3dUI::Initialize() {}
 void PlayerSpeedFor3dUI::Finalize() {}
 
-void PlayerSpeedFor3dUI::UpdateEntity(OriGine::EntityHandle _handle) {
+void PlayerSpeedFor3dUI::UpdateEntity(EntityHandle _handle) {
     auto playerEnt = GetUniqueEntity("Player");
-    if (!playerEnt) {
-        return;
-    }
-    // component取得
-    auto rigidbodyComp = GetComponent<Rigidbody>(playerEnt);
-    auto speedUIComp   = GetComponent<SpeedFor3dUIComponent>(_entity);
-    if (!speedUIComp || !rigidbodyComp) {
-        return;
-    }
-    auto ui3dEntity = GetEntity(speedUIComp->GetPlaneEntityId());
-    if (!ui3dEntity) {
+    if (playerEnt.IsValid()) {
         return;
     }
 
+    // component取得
+    auto rigidbodyComp = GetComponent<Rigidbody>(playerEnt);
+    auto speedUIComp   = GetComponent<SpeedFor3dUIComponent>(_handle);
+    if (!speedUIComp || !rigidbodyComp) {
+        return;
+    }
+    auto ui3dEntityHandle = speedUIComp->GetPlaneEntityHandle();
+
     // 速度取得
-    float speed = OriGine::Vec2f(rigidbodyComp->GetVelocity(X),
+    float speed = Vec2f(rigidbodyComp->GetVelocity(X),
         rigidbodyComp->GetVelocity(Z))
                       .length();
     // 各桁の数字を抽出
@@ -45,7 +43,7 @@ void PlayerSpeedFor3dUI::UpdateEntity(OriGine::EntityHandle _handle) {
 
     // uv を設定
     for (int32_t i = 0; i < speedUIComp->digitInteger + speedUIComp->digitDecimal; ++i) {
-        auto material = GetComponent<Material>(ui3dEntity, i);
+        auto material = GetComponent<Material>(ui3dEntityHandle, i);
         if (!material) {
             continue; // スプライトがない場合は何もしない
         }
@@ -54,6 +52,6 @@ void PlayerSpeedFor3dUI::UpdateEntity(OriGine::EntityHandle _handle) {
             return;
         }
 
-        material->uvTransform_.translate_ = OriGine::Vec2f(0.1f * digits[i], 0.f);
+        material->uvTransform_.translate_ = Vec2f(0.1f * digits[i], 0.f);
     }
 }

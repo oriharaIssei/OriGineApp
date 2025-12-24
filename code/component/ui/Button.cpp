@@ -85,7 +85,7 @@ Button::~Button() {
 
 void Button::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {}
 
-void Button::Edit(OriGine::Scene* /*_scene*/, OriGine::Entity* /*_OriGine::Entity*/, [[maybe_unused]] const std::string& _parentLabel) {
+void Button::Edit(OriGine::Scene* /*_scene*/, OriGine::EntityHandle /*_OriGine::Entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
     std::string label = "Button Colors" + _parentLabel;
     if (ImGui::TreeNode(label.c_str())) {

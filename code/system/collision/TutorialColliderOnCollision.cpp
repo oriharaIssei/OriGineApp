@@ -12,20 +12,20 @@ TutorialColliderOnCollision::TutorialColliderOnCollision() : ISystem(OriGine::Sy
 TutorialColliderOnCollision::~TutorialColliderOnCollision() {}
 
 void TutorialColliderOnCollision::Initialize() {
-    playerEntity_ = nullptr;
+    playerEntityHandle_ = OriGine::EntityHandle();
 }
 
 void TutorialColliderOnCollision::Finalize() {
-    playerEntity_ = nullptr;
+    playerEntityHandle_ = OriGine::EntityHandle();
 }
 
 void TutorialColliderOnCollision::Update() {
-    playerEntity_ = GetUniqueEntity("Player");
+    playerEntityHandle_ = GetUniqueEntity("Player");
     ISystem::Update();
 }
 
 void TutorialColliderOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
-    if (_entity == nullptr) {
+    if (!_handle.IsValid()) {
         return;
     }
 
@@ -33,25 +33,25 @@ void TutorialColliderOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
     bool playerIsColliding = false;
 
     // 衝突したコライダーを探す
-    auto aabbColliders = GetComponents<AABBCollider>(_entity);
-    for (auto& aabbCollider : *aabbColliders) {
-        for (const auto& [id, state] : aabbCollider.GetCollisionStateMap()) {
-            if (id != playerEntity_->GetID()) {
+    auto& aabbColliders = GetComponents<AABBCollider>(_handle);
+    for (auto& aabbCollider : aabbColliders) {
+        for (const auto& [handle, state] : aabbCollider.GetCollisionStateMap()) {
+            if (handle != playerEntityHandle_) {
                 continue;
             }
             playerIsColliding = true;
 
             // 衝突開始時,終了時にそれぞれのSpriteアニメーションを再生
-            auto sprite = GetComponent<SpriteRenderer>(_entity);
+            auto sprite = GetComponent<SpriteRenderer>(_handle);
             if (sprite != nullptr) {
                 // 衝突開始時にSpriteのアニメーションを再生
                 if (state == CollisionState::Enter) {
-                    auto spriteAnimation = GetComponent<SpriteAnimation>(_entity);
+                    auto spriteAnimation = GetComponent<SpriteAnimation>(_handle);
                     if (spriteAnimation != nullptr) {
                         spriteAnimation->PlayColorAnimation();
                     }
                 } else if (state == CollisionState::Exit) { // 衝突終了時にSpriteのアニメーションを再生
-                    auto spriteAnimation = GetComponent<SpriteAnimation>(_entity, 1);
+                    auto spriteAnimation = GetComponent<SpriteAnimation>(_handle, 1);
                     if (spriteAnimation != nullptr) {
                         spriteAnimation->PlayColorAnimation();
                     }

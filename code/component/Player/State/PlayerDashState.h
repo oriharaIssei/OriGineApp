@@ -9,7 +9,7 @@
 class PlayerDashState
     : public IPlayerMoveState {
 public:
-    PlayerDashState(OriGine::Scene* _scene, int32_t _playerEntityID) : IPlayerMoveState(_scene, _playerEntityID, PlayerMoveState::DASH) {}
+    PlayerDashState(OriGine::Scene* _scene, OriGine::EntityHandle _playerEntityHandle) : IPlayerMoveState(_scene, _playerEntityHandle, PlayerMoveState::DASH) {}
     ~PlayerDashState() override {};
 
     void Initialize() override;

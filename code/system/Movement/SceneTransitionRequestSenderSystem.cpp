@@ -19,14 +19,14 @@ SceneTransitionRequestSenderSystem::~SceneTransitionRequestSenderSystem() {}
 void SceneTransitionRequestSenderSystem::Initialize() {}
 void SceneTransitionRequestSenderSystem::Finalize() {}
 
-void SceneTransitionRequestSenderSystem::UpdateEntity(OriGine::EntityHandle _handle) {
-    auto* sceneChangerComps = GetComponents<SceneChanger>(_entity);
+void SceneTransitionRequestSenderSystem::UpdateEntity(EntityHandle _handle) {
+    auto& sceneChangerComps = GetComponents<SceneChanger>(_handle);
 
-    if (!sceneChangerComps) {
+    if (sceneChangerComps.empty()) {
         return;
     }
 
-    for (auto& changer : *sceneChangerComps) {
+    for (auto& changer : sceneChangerComps) {
         // シーン変更リクエストイベントを飛ばす
         if (changer.isChanged()) {
             MessageBus::GetInstance()->Emit<SceneChangeRequest>(SceneChangeRequest(changer.GetNextSceneName()));

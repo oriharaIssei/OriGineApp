@@ -20,12 +20,12 @@ PlayerStateOverrideSystem::~PlayerStateOverrideSystem() {}
 void PlayerStateOverrideSystem::Initialize() {}
 void PlayerStateOverrideSystem::Finalize() {}
 
-void PlayerStateOverrideSystem::UpdateEntity(OriGine::EntityHandle _handle) {
-    auto pushBackInfo      = GetComponent<CollisionPushBackInfo>(_entity);
-    auto overrideCondition = GetComponent<PlayerStateOverrideCondition>(_entity);
+void PlayerStateOverrideSystem::UpdateEntity(EntityHandle _handle) {
+    auto pushBackInfo      = GetComponent<CollisionPushBackInfo>(_handle);
+    auto overrideCondition = GetComponent<PlayerStateOverrideCondition>(_handle);
 
-    auto keyUi     = GetComponent<SpriteRenderer>(_entity, 0);
-    auto gamepadUi = GetComponent<SpriteRenderer>(_entity, 1);
+    auto keyUi     = GetComponent<SpriteRenderer>(_handle, 0);
+    auto gamepadUi = GetComponent<SpriteRenderer>(_handle, 1);
     if (!keyUi || !gamepadUi) {
         return;
     }
@@ -38,12 +38,7 @@ void PlayerStateOverrideSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     }
 
     for (auto& [id, info] : pushBackInfo->GetCollisionInfoMap()) {
-        Entity* otherEnt = GetEntity(id);
-        if (!otherEnt) {
-            continue;
-        }
-
-        auto playerState = GetComponent<PlayerState>(otherEnt);
+        auto playerState = GetComponent<PlayerState>(id);
         if (!playerState) {
             continue;
         }

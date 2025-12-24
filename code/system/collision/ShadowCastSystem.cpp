@@ -13,10 +13,9 @@ ShadowCastSystem::ShadowCastSystem() : ISystem(SystemCategory::Collision) {}
 void ShadowCastSystem::Initialize() {}
 void ShadowCastSystem::Finalize() {}
 
-void ShadowCastSystem::UpdateEntity(OriGine::Entity* entity) {
-    auto* transform = GetComponent<Transform>(entity);
-
-    auto* collsionPushBackInfo = GetComponent<CollisionPushBackInfo>(entity);
+void ShadowCastSystem::UpdateEntity(EntityHandle _entity) {
+    auto* transform            = GetComponent<Transform>(_entity);
+    auto* collsionPushBackInfo = GetComponent<CollisionPushBackInfo>(_entity);
 
     if (collsionPushBackInfo == nullptr) {
         LOG_ERROR("CollisionPushBackInfo component not found.");
@@ -26,25 +25,25 @@ void ShadowCastSystem::UpdateEntity(OriGine::Entity* entity) {
     float shadowHeight  = -FLT_MAX;
     float defaultHeight = transform->translate[Y];
 
-    for (auto& [id, info] : collsionPushBackInfo->GetCollisionInfoMap()) {
-        Entity* otherEntity = GetEntity(id);
+    for (auto& [handle, info] : collsionPushBackInfo->GetCollisionInfoMap()) {
+        Entity* otherEntity = GetEntity(handle);
 
         if (!otherEntity) {
-            LOG_ERROR("Collided entity not found. ID: {}", id);
+            LOG_ERROR("Collided entity not found. \n Handle: {}", uuids::to_string(handle.uuid));
             continue;
         }
-        auto* otherPushBackInfo = GetComponent<CollisionPushBackInfo>(otherEntity);
+        auto* otherPushBackInfo = GetComponent<CollisionPushBackInfo>(handle);
         if (!otherPushBackInfo) {
-            LOG_ERROR("Collided entity does not have CollisionPushBackInfo component. ID: {}", id);
+            LOG_ERROR("Collided entity does not have CollisionPushBackInfo component. \n Handle: {}", uuids::to_string(handle.uuid));
             continue;
         }
         if (otherPushBackInfo->GetPushBackType() != CollisionPushBackType::PushBack) {
             continue;
         }
 
-        AABBCollider* otherCollider = GetComponent<AABBCollider>(otherEntity);
+        AABBCollider* otherCollider = GetComponent<AABBCollider>(handle);
         if (!otherCollider) {
-            LOG_ERROR("Collided entity does not have AABBCollider component. ID: {}", id);
+            LOG_ERROR("Collided entity does not have AABBCollider component. \n Handle: {}", uuids::to_string(handle.uuid));
             continue;
         }
 

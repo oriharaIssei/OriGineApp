@@ -34,8 +34,8 @@ public:
 public:
     std::shared_ptr<OriGine::ReplayPlayer> replayPlayer_ = nullptr;
     // 親シーンでのエンティティID
-    int32_t ghostEntityId_       = -1;
-    int32_t ghostCameraEntityId_ = -1;
+    OriGine::EntityHandle ghostEntityId_       = OriGine::EntityHandle();
+    OriGine::EntityHandle ghostCameraEntityId_ = OriGine::EntityHandle();
 
     float frameElapsedTime_ = 0.0f;
 
