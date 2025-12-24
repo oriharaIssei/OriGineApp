@@ -141,7 +141,6 @@ void SceneTransition::ExitSceneUpdate() {
         exitScene_             = false;
 
         // シーン変更を実行
-        OriGine::Entity* sceneChangerEntity = GetEntity(usingEntityHandle_);
         SceneChanger* sceneChanger          = GetComponent<SceneChanger>(sceneChangerComponentHandle_);
         GetScene()->GetSceneManager()->ChangeScene(sceneChanger->GetNextSceneName());
     }

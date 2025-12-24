@@ -44,7 +44,6 @@
 #include "system/initialize/BackFireInitialize.h"
 #include "system/Initialize/CreatePlaneFromSpeed.h"
 #include "system/initialize/CreateSpriteFromTimer.h"
-#include "system/initialize/CreateStage.h"
 #include "system/initialize/GetClearTime.h"
 #include "system/Initialize/GhostInitializeSystem.h"
 #include "system/Initialize/InitializeMouseCondition.h"
@@ -199,7 +198,6 @@ void RegisterUsingSystems() {
     /// ====================================================================================================
     systemRegistry->RegisterSystem<SettingGameCameraTarget>();
     systemRegistry->RegisterSystem<GpuParticleInitialize>();
-    systemRegistry->RegisterSystem<CreateStage>();
     systemRegistry->RegisterSystem<ResolveEntityReferences>();
     systemRegistry->RegisterSystem<CreateSpriteFromTimer>();
     systemRegistry->RegisterSystem<Ui3dObjectInitialize>();

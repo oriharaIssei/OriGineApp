@@ -12,23 +12,18 @@
     "Entities": [
         {
             "Components": {
-                "AABBCollider": [],
-                "ModelMeshRenderer": [],
                 "StageData": [
                     {
                         "difficulty": 1,
                         "stageNumber": 1
                     }
-                ],
-                "Transform": []
+                ]
+            },
+            "Handle": {
+                "uuid": "9e39c6ac-3211-47f0-ba47-92aca1c10d69"
             },
             "Name": "StageData",
-            "Systems": [
-                {
-                    "SystemCategory": 0,
-                    "SystemName": "CreateStage"
-                }
-            ],
+            "Systems": [],
             "isUnique": true
         },
         {
@@ -50,13 +45,15 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "532ce878-7bae-47fe-b94c-51092446b6f6"
+            },
             "Name": "directionalLight",
             "Systems": [],
             "isUnique": false
         },
         {
             "Components": {
-                "BoxRenderer": [],
                 "SphereRenderer": [
                     {
                         "blendMode": 1,
@@ -107,6 +104,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "699e87eb-d75a-4956-9843-2db85bdb7def"
             },
             "Name": "WallJumpTargetPos",
             "Systems": [
@@ -190,6 +190,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "ec05d26a-2b04-45b2-a1f7-65f7a32c63bb"
+            },
             "Name": "EntityRef",
             "Systems": [
                 {
@@ -212,6 +215,9 @@
                         "isShowCursor": false
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "c5eaa240-0552-485e-a16e-a585bc5126d3"
             },
             "Name": "mouseCondition",
             "Systems": [
@@ -242,6 +248,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "c54058bc-54c1-4b9f-8bbd-191dda6eea19"
             },
             "Name": "trailEffectRecipe",
             "Systems": [
@@ -275,6 +284,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "9dcd5e3b-8ca7-474c-9b8b-ebe0a53030a7"
+            },
             "Name": "StartPosition",
             "Systems": [],
             "isUnique": true
@@ -301,6 +313,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "875c7c15-f932-4bbc-a4fb-b6165532eacb"
             },
             "Name": "GoalPosition",
             "Systems": [],
@@ -403,8 +418,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -425,6 +438,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "fd66abc2-9a6a-45ae-9823-a9e3500b14f7"
             },
             "Name": "Floor",
             "Systems": [
@@ -471,6 +487,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "e9e9102b-fff2-4a23-9aa4-140c799e7db0"
             },
             "Name": "BackFireRecipe",
             "Systems": [
@@ -578,8 +597,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -601,6 +618,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "033a0948-00e6-4546-886c-88d46d555365"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -711,8 +731,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -734,6 +752,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "cf1d8cec-d27d-4a88-9ac6-d3706c9b4235"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -844,8 +865,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -867,6 +886,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "9320b1a9-8100-4a38-975c-9dfa8880bc4c"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -977,8 +999,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -1000,6 +1020,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "e57be07a-bbd4-4121-b00b-517b22f6f6cd"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -1110,8 +1133,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -1133,6 +1154,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "6281af07-54b3-4e01-8cb6-f3e13cefc6c8"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -1243,8 +1267,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -1266,6 +1288,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "f3c974f6-dddb-4727-8c34-1c836dabb0a8"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -1376,8 +1401,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -1399,6 +1422,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "779e33c4-04f2-41cf-95b6-a6defb19f08b"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -1509,8 +1535,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -1532,6 +1556,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "1ac9803b-4de6-4d2a-a5c0-794ee572f92d"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -1642,8 +1669,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -1665,6 +1690,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "5381f633-44ab-4c2e-a2c9-0837394d0788"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -1775,8 +1803,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -1798,6 +1824,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "e6518e1e-0990-4dea-ba47-603665443211"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -1908,8 +1937,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -1931,6 +1958,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "0b0fdff0-738d-4965-97bf-3ac1df5d7600"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -2041,8 +2071,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -2064,6 +2092,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "ccb1ccbd-7681-419b-ae77-a06d9c743d11"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -2174,8 +2205,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -2197,6 +2226,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "68788e05-8b84-4197-b458-bfb1489d2395"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -2307,8 +2339,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -2330,6 +2360,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "ac427913-7927-4ea1-9037-665f1ea207bc"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -2440,8 +2473,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -2463,6 +2494,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "d004f882-e8b6-449a-bf72-837ee72a70dc"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -2573,8 +2607,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -2596,6 +2628,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "7aeb8a15-04cf-473e-8683-3b6003b9f2d2"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -2706,8 +2741,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -2729,6 +2762,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "0ee2d14e-e262-42e0-9a7c-4ce415b3a9da"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -2839,8 +2875,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -2862,6 +2896,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "38426df8-c2c8-4b57-a095-90d4b4c16359"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -2972,8 +3009,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -2995,6 +3030,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "1ed88acd-943f-4dfb-96fb-10787a64abe2"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -3105,8 +3143,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -3128,6 +3164,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "375d7ba6-ce07-44ba-8366-f65a2b657784"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -3238,8 +3277,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -3261,6 +3298,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "63b316b0-f399-4871-9da0-a80585fe8195"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -3371,8 +3411,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -3394,6 +3432,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "b4fe7348-0d14-43b3-ac9d-1d5b195a463c"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -3504,8 +3545,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -3527,6 +3566,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "2f089dec-95b1-40f5-ac50-027730d0f878"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -3637,8 +3679,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -3660,6 +3700,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "92386560-4467-4cbe-94b2-bd96e32362df"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -3770,8 +3813,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -3793,6 +3834,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "2bfb8b9c-9f5b-4d6b-b982-63470dedb016"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -3903,8 +3947,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -3926,6 +3968,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "34cab235-ef6b-46c5-9ca0-e45407b14926"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -4036,8 +4081,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -4059,6 +4102,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "01d5638c-2239-4c95-9041-697889668a38"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -4169,8 +4215,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -4192,6 +4236,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "47791755-7684-44a2-82a2-d5ab308e81b4"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -4302,8 +4349,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -4325,6 +4370,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "dad3342d-dfeb-4a33-925a-737373e1dbad"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -4435,8 +4483,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -4458,6 +4504,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "c99fcd89-8b05-46a4-963c-e43a9f018a75"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -4568,8 +4617,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -4591,6 +4638,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "ee48b148-a605-489f-a7e4-0c13dd405030"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -4701,8 +4751,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -4724,6 +4772,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "b8b48697-b5c3-4b67-a2dd-897e6d69a2aa"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -4834,8 +4885,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -4857,6 +4906,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "e150d62b-928b-41fd-b7ef-166ee676d96a"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -4967,8 +5019,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -4990,6 +5040,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "2bc78648-82ed-40b2-a076-277e813bea1c"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -5100,8 +5153,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -5123,6 +5174,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "d7eb2115-4bbe-4946-bcab-82d7fc6bbe83"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -5233,8 +5287,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -5256,6 +5308,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "12ed42bf-2d15-4766-8353-16e122a3f09f"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -5366,8 +5421,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -5389,6 +5442,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "75fe8d85-9396-4c98-8693-016f5433f05f"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -5499,8 +5555,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -5522,6 +5576,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "7486dbae-4f8d-45e0-8cc6-7453784e8895"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -5632,8 +5689,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -5655,6 +5710,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "df39e780-f895-4692-8fa2-520dd22d943c"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -5765,8 +5823,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -5788,6 +5844,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "cd20f3c4-3bea-4404-8d4d-85e3180ecf22"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -5898,8 +5957,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -5921,6 +5978,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "005e8fe4-19d3-49ed-9250-1287565c69b2"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -6031,8 +6091,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -6054,6 +6112,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "90fc4d8d-52a5-4ae1-9802-d44de6932b36"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -6164,8 +6225,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -6187,6 +6246,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "6ce3af00-eb2f-4c57-8be9-c3d9a1032851"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -6297,8 +6359,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -6320,6 +6380,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "da522922-54e1-4b80-b4f6-13b2d538aa58"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -6430,8 +6493,6 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
                         "rotate": [
@@ -6453,138 +6514,8 @@
                     }
                 ]
             },
-            "Name": "Floor",
-            "Systems": [
-                {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
-                },
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "TexturedMeshRenderSystem"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "AABBCollider": [
-                    {
-                        "center": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "halfSize": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "BoxRenderer": [
-                    {
-                        "blendMode": 1,
-                        "isCulling": true,
-                        "isRenderer": true,
-                        "materialIndex": 0,
-                        "size": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "textureFilePath": "",
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "CollisionPushBackInfo": [
-                    {
-                        "pushBackType": 1
-                    }
-                ],
-                "Material": [
-                    {
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "enableLighting": true,
-                        "shininess": 20.68000030517578,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "OBBCollider": [],
-                "StageObstacle": [],
-                "Transform": [
-                    {
-                        "rotate": [
-                            -0.0,
-                            0.0,
-                            -0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            24.0,
-                            12.0,
-                            36.0
-                        ],
-                        "translate": [
-                            157.92543029785156,
-                            12.062763214111328,
-                            1036.6026611328125
-                        ]
-                    }
-                ]
+            "Handle": {
+                "uuid": "2b3dabc0-c669-4054-85c2-3b82e5e70fc8"
             },
             "Name": "Floor",
             "Systems": [
@@ -6696,8 +6627,140 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
+                "Transform": [
+                    {
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            24.0,
+                            12.0,
+                            36.0
+                        ],
+                        "translate": [
+                            157.92543029785156,
+                            12.062763214111328,
+                            1036.6026611328125
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "1de16e45-7393-4784-9dad-06993c860971"
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "center": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "halfSize": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "BoxRenderer": [
+                    {
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "pushBackType": 1
+                    }
+                ],
+                "Material": [
+                    {
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 20.68000030517578,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
                 "Transform": [
                     {
                         "rotate": [
@@ -6718,6 +6781,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "564f37fa-8b7f-469d-b764-bc5bf98c6742"
             },
             "Name": "Floor",
             "Systems": [
@@ -6772,6 +6838,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "175c0d4f-a5e7-446f-9792-aece5b5a1ecb"
+            },
             "Name": "SpeedUI",
             "Systems": [
                 {
@@ -6790,6 +6859,9 @@
                 "PlayRecordeComponent": [
                     null
                 ]
+            },
+            "Handle": {
+                "uuid": "484a5ce7-928b-44d4-bb06-38c1f89fe3ed"
             },
             "Name": "Recorder",
             "Systems": [
@@ -6820,6 +6892,9 @@
                         "isShowCursor": true
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "2d45f88a-83e3-4ae7-8be0-27aed590dd6e"
             },
             "Name": "Replayer",
             "Systems": [
@@ -6883,6 +6958,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "910993ae-ca46-4c9a-b119-dadb55506977"
+            },
             "Name": "SceneTransitionReceiver",
             "Systems": [
                 {
@@ -6908,22 +6986,22 @@
             }
         },
         {
-            "ColliderRenderingSystem": {
-                "Priority": 100
-            }
-        },
-        {
             "ApplyMouseConditionSystem": {
                 "Priority": 0
             }
         },
         {
-            "BackFireInitialize": {
-                "Priority": 1
+            "ColliderRenderingSystem": {
+                "Priority": 100
             }
         },
         {
             "CameraInitialize": {
+                "Priority": 1
+            }
+        },
+        {
+            "BackFireInitialize": {
                 "Priority": 1
             }
         },
@@ -6948,21 +7026,6 @@
             }
         },
         {
-            "SceneTransitionRequestSenderSystem": {
-                "Priority": -1
-            }
-        },
-        {
-            "CollisionPushBackSystem": {
-                "Priority": 5
-            }
-        },
-        {
-            "PlayerInputSystem": {
-                "Priority": 3
-            }
-        },
-        {
             "CameraActionSystem": {
                 "Priority": 0
             }
@@ -6973,8 +7036,18 @@
             }
         },
         {
-            "CameraInputSystem": {
-                "Priority": 2
+            "PlayerInputSystem": {
+                "Priority": 3
+            }
+        },
+        {
+            "SceneTransitionRequestSenderSystem": {
+                "Priority": -1
+            }
+        },
+        {
+            "CollisionPushBackSystem": {
+                "Priority": 5
             }
         },
         {
@@ -6983,13 +7056,18 @@
             }
         },
         {
-            "CameraShake": {
-                "Priority": 0
+            "CameraInputSystem": {
+                "Priority": 2
             }
         },
         {
             "CreatePlaneFromSpeed": {
                 "Priority": 10
+            }
+        },
+        {
+            "CameraShake": {
+                "Priority": 0
             }
         },
         {
@@ -7013,7 +7091,7 @@
             }
         },
         {
-            "CreateStage": {
+            "PlayerSpeedFor3dUI": {
                 "Priority": 1
             }
         },
@@ -7023,8 +7101,8 @@
             }
         },
         {
-            "PlayerSpeedFor3dUI": {
-                "Priority": 1
+            "PenaltySystem": {
+                "Priority": 0
             }
         },
         {
@@ -7035,11 +7113,6 @@
         {
             "GhostInitializeSystem": {
                 "Priority": 6
-            }
-        },
-        {
-            "PenaltySystem": {
-                "Priority": 0
             }
         },
         {
@@ -7078,8 +7151,8 @@
             }
         },
         {
-            "MaterialAnimationWorkSystem": {
-                "Priority": 0
+            "StartTimerInitialize": {
+                "Priority": 3
             }
         },
         {
@@ -7088,8 +7161,8 @@
             }
         },
         {
-            "StartTimerInitialize": {
-                "Priority": 3
+            "MaterialAnimationWorkSystem": {
+                "Priority": 0
             }
         },
         {
@@ -7103,13 +7176,13 @@
             }
         },
         {
-            "OverlayRenderSystem": {
-                "Priority": 100
+            "ResolveEntityReferences": {
+                "Priority": -2
             }
         },
         {
-            "ResolveEntityReferences": {
-                "Priority": -2
+            "OverlayRenderSystem": {
+                "Priority": 100
             }
         },
         {
@@ -7123,11 +7196,6 @@
             }
         },
         {
-            "PlayerPathSplineGenerator": {
-                "Priority": 100
-            }
-        },
-        {
             "PlayRecorderInitialize": {
                 "Priority": 0
             }
@@ -7138,13 +7206,18 @@
             }
         },
         {
-            "PlayerMoveSystem": {
-                "Priority": 3
+            "PlayerPathSplineGenerator": {
+                "Priority": 100
             }
         },
         {
             "TexturedMeshRenderSystem": {
                 "Priority": 0
+            }
+        },
+        {
+            "PlayerMoveSystem": {
+                "Priority": 3
             }
         },
         {
@@ -7178,6 +7251,11 @@
             }
         },
         {
+            "SpriteAnimationSystem": {
+                "Priority": 1
+            }
+        },
+        {
             "VelocityRenderingSystem": {
                 "Priority": 0
             }
@@ -7185,11 +7263,6 @@
         {
             "SettingGameCameraTarget": {
                 "Priority": 5
-            }
-        },
-        {
-            "SpriteAnimationSystem": {
-                "Priority": 1
             }
         },
         {
@@ -7228,8 +7301,8 @@
             }
         },
         {
-            "TireTrailGenerateSystem": {
-                "Priority": 100
+            "StartSequenceSystem": {
+                "Priority": 1
             }
         },
         {
@@ -7238,8 +7311,8 @@
             }
         },
         {
-            "StartSequenceSystem": {
-                "Priority": 1
+            "TireTrailGenerateSystem": {
+                "Priority": 100
             }
         },
         {

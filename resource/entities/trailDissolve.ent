@@ -47,7 +47,9 @@
                 "effectEntityIdList": [
                     {
                         "effectType": 1,
-                        "entityID": 16
+                        "handle": {
+                            "uuid": "f9609fd3-0d97-455f-9367-24e613394d13"
+                        }
                     }
                 ],
                 "isActive": true,
@@ -55,6 +57,9 @@
                 "priority": 0
             }
         ]
+    },
+    "Handle": {
+        "uuid": "417e3581-06fb-4e80-8ef9-32aad987a1a7"
     },
     "Name": "trailDissolve",
     "Systems": [

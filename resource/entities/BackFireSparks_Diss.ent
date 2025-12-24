@@ -74,7 +74,9 @@
                 "effectEntityIdList": [
                     {
                         "effectType": 1,
-                        "entityID": 27
+                        "handle": {
+                            "uuid": "d6b00b02-5812-4d6a-936b-68c6cce952ad"
+                        }
                     }
                 ],
                 "isActive": true,
@@ -82,6 +84,9 @@
                 "priority": 0
             }
         ]
+    },
+    "Handle": {
+        "uuid": "18f872e5-06af-45b2-98f3-f1f8de67bb81"
     },
     "Name": "BackFireSparks_Diss",
     "Systems": [

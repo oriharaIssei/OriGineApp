@@ -24,8 +24,8 @@ void CameraMotionBob::Finalize() {}
 void CameraMotionBob::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]] EntityHandle _owner, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
 
-    auto cameraShakeSourceComponents = _scene->GetComponents<CameraShakeSourceComponent>(_owner);
-    int32_t entityMaterialSize       = cameraShakeSourceComponents != nullptr ? static_cast<int32_t>(cameraShakeSourceComponents->size()) : -1;
+    auto& cameraShakeSourceComponents = _scene->GetComponents<CameraShakeSourceComponent>(_owner);
+    int32_t entityMaterialSize        = static_cast<int32_t>(cameraShakeSourceComponents.size());
     // カメラTransformコンポーネントインデックス
     InputGuiCommand<int32_t>("Camera Shake Source Component Index##" + _parentLabel, cameraShakeSourceComponentId, "%d", [this, entityMaterialSize](int32_t* _newT) {
         this->cameraShakeSourceComponentId = std::clamp(*_newT, -1, entityMaterialSize - 1);

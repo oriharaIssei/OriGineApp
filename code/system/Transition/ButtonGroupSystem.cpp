@@ -20,13 +20,13 @@ void ButtonGroupSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     OriGine::KeyboardInput* keyInput    = GetScene()->GetKeyboardInput();
     OriGine::GamepadInput* gamePadInput = GetScene()->GetGamepadInput();
 
-    auto* buttonGroup = GetComponent<ButtonGroup>(_entity);
+    auto* buttonGroup = GetComponent<ButtonGroup>(_handle);
     if (buttonGroup == nullptr) {
         return;
     }
 
     int32_t currentButtonNumber = buttonGroup->GetCurrentButtonNumber();
-    Button* currentButton       = GetComponent<Button>(GetEntity(buttonGroup->GetEntityId(currentButtonNumber)));
+    Button* currentButton       = GetComponent<Button>(buttonGroup->GetEntityId(currentButtonNumber));
     if (!currentButton) {
         return;
     }
@@ -34,7 +34,7 @@ void ButtonGroupSystem::UpdateEntity(OriGine::EntityHandle _handle) {
 
     // 外部システムの入力に従う (ボタンのショートカットやマウスでの選択など)
     for (const auto& [index, entityID] : buttonGroup->GetButtonNumbers()) {
-        auto* button = GetComponent<Button>(GetEntity(entityID));
+        auto* button = GetComponent<Button>(entityID);
         if (button == nullptr || button == currentButton) {
             continue;
         }
@@ -139,12 +139,12 @@ void ButtonGroupSystem::UpdateEntity(OriGine::EntityHandle _handle) {
         currentButtonNumber += delta;
         currentButtonNumber = std::clamp(currentButtonNumber, 0, (int32_t)buttonGroup->GetButtonNumbers().size() - 1);
 
-        currentButton = GetComponent<Button>(GetEntity(buttonGroup->GetEntityId(currentButtonNumber)));
+        currentButton = GetComponent<Button>(buttonGroup->GetEntityId(currentButtonNumber));
 
         // 次のボタンが存在しなければ戻す
         if (!currentButton) {
             currentButtonNumber -= delta;
-            currentButton = GetComponent<Button>(GetEntity(buttonGroup->GetEntityId(currentButtonNumber)));
+            currentButton = GetComponent<Button>(buttonGroup->GetEntityId(currentButtonNumber));
         }
         currentButton->SetHovered(true);
 

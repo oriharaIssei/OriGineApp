@@ -88,6 +88,9 @@
             }
         ]
     },
+    "Handle": {
+        "uuid": "4382f5c6-20af-46cb-8ddd-3f9bb9ff8375"
+    },
     "Name": "Timer",
     "Systems": [
         {

@@ -20,7 +20,7 @@ void ShadowPlaneSyncPlayerPosition::UpdateEntity(EntityHandle _entity) {
     }
 
     // 影面プレーンのTransformコンポーネントを取得
-    auto* shadowPlaneTransform = GetComponent<Transform>(playerEntity);
+    auto* shadowPlaneTransform = GetComponent<Transform>(_entity);
     if (shadowPlaneTransform == nullptr) {
         LOG_ERROR("ShadowPlane TransformComponent not found.");
         return;

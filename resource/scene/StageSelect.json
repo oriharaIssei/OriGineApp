@@ -52,6 +52,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "83cf6f13-daa7-4580-8ee2-e8cebb3eef87"
+            },
             "Name": "GameCamera",
             "Systems": [
                 {
@@ -65,16 +68,7 @@
             "Components": {
                 "ButtonGroup": [
                     {
-                        "buttonNumbers": [
-                            {
-                                "buttonNumber": 2,
-                                "entityID": 0
-                            },
-                            {
-                                "buttonNumber": 3,
-                                "entityID": 1
-                            }
-                        ],
+                        "buttonNumbers": [],
                         "decideKeys": [
                             28,
                             57
@@ -102,6 +96,9 @@
                         "startButtonNumber": 0
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "aa6aef77-1063-4f67-a294-51161e3df4c1"
             },
             "Name": "ButtonGroup",
             "Systems": [
@@ -207,8 +204,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -220,8 +217,8 @@
                             1.0
                         ],
                         "size": [
-                            512.0,
-                            512.0
+                            768.0,
+                            768.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -233,8 +230,8 @@
                             512.0
                         ],
                         "translate": [
-                            292.0,
-                            360.0
+                            438.0,
+                            540.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -262,6 +259,9 @@
                         "sceneName": "Tutorial"
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "59e6d6a1-772d-4f8c-8965-76b2bf83676b"
             },
             "Name": "toTutorialButton",
             "Systems": [
@@ -387,8 +387,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -400,8 +400,8 @@
                             1.0
                         ],
                         "size": [
-                            512.0,
-                            512.0
+                            768.0,
+                            768.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -413,8 +413,8 @@
                             512.0
                         ],
                         "translate": [
-                            988.0,
-                            360.0
+                            1482.0,
+                            540.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -442,6 +442,9 @@
                         "sceneName": "01"
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "fca26f2b-f3eb-4af4-b63e-109b91586745"
             },
             "Name": "to01Stage",
             "Systems": [
@@ -493,7 +496,6 @@
                         "threshold": 0.0
                     }
                 ],
-                "DistortionEffectParam": [],
                 "Material": [
                     {
                         "color": [
@@ -520,6 +522,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "98c9f73f-ba5f-49c2-b2e9-1c0311e4a83c"
             },
             "Name": "EnterScene",
             "Systems": [
@@ -564,11 +569,15 @@
                         "effectEntityIdList": [
                             {
                                 "effectType": 0,
-                                "entityID": 7
+                                "handle": {
+                                    "uuid": "05ffab79-1bec-433f-be25-be47682e25d7"
+                                }
                             },
                             {
                                 "effectType": 2,
-                                "entityID": 9
+                                "handle": {
+                                    "uuid": "bf2347a8-7fa9-4a3a-959a-67456c3a3ecc"
+                                }
                             }
                         ],
                         "isActive": true,
@@ -576,7 +585,6 @@
                         "priority": 5
                     }
                 ],
-                "PlaneRenderer": [],
                 "RingRenderer": [
                     {
                         "InnerRadius": 0.25999999046325684,
@@ -627,6 +635,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "076a3aad-2112-4867-a6e5-9423a6a86bb6"
             },
             "Name": "BG_Effect",
             "Systems": [
@@ -685,7 +696,7 @@
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.7342705130577087
+                            0.4899239242076874
                         ]
                     }
                 ],
@@ -716,6 +727,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "03d4f0ae-421b-462e-867d-105814a73603"
             },
             "Name": "Distortion",
             "Systems": [
@@ -764,8 +778,8 @@
                             -1.0
                         ],
                         "uvTranslate": [
-                            0.010093146935105324,
-                            0.010093146935105324
+                            0.003852176247164607,
+                            0.003852176247164607
                         ]
                     }
                 ],
@@ -802,7 +816,9 @@
                         "effectEntityIdList": [
                             {
                                 "effectType": 1,
-                                "entityID": 6
+                                "handle": {
+                                    "uuid": "03d4f0ae-421b-462e-867d-105814a73603"
+                                }
                             }
                         ],
                         "isActive": true,
@@ -810,6 +826,9 @@
                         "priority": 0
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "05ffab79-1bec-433f-be25-be47682e25d7"
             },
             "Name": "Dissolve",
             "Systems": [
@@ -837,6 +856,9 @@
                         "isShowCursor": true
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "7a5516d6-0863-4081-94c9-d6cb74db70a0"
             },
             "Name": "mouseCondition",
             "Systems": [
@@ -894,6 +916,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "bf2347a8-7fa9-4a3a-959a-67456c3a3ecc"
+            },
             "Name": "Gradation",
             "Systems": [],
             "isUnique": false
@@ -913,8 +938,8 @@
                             0.6901960968971252
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -926,8 +951,8 @@
                             1.0
                         ],
                         "size": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -961,6 +986,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "a28e6317-f6cf-4507-bb32-c4529210e770"
             },
             "Name": "Entity",
             "Systems": [
@@ -1066,8 +1094,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -1114,6 +1142,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "02a23164-09cf-413a-936e-67795ca2538a"
             },
             "Name": "ToTile",
             "Systems": [

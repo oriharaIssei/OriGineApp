@@ -103,6 +103,15 @@
                     {
                         "time": 0.0,
                         "value": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
                             0.6203201413154602,
                             0.9367088675498962,
                             0.13042780756950378,
@@ -209,6 +218,14 @@
                     1.0
                 ],
                 "scaleCurve": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
                     {
                         "time": 0.0,
                         "value": [
@@ -395,6 +412,14 @@
                         "value": [
                             0.0,
                             0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
                             -10.600000381469727
                         ]
                     },
@@ -502,15 +527,13 @@
                 ]
             }
         ],
-        "MaterialEffectPipeLine": [],
         "PlaneRenderer": [
             {
                 "blendMode": 1,
                 "isCulling": true,
                 "isRenderer": true,
                 "materialIndex": 0,
-                "textureDirectory": "./application/resource/Texture",
-                "textureFileName": "lazer.png",
+                "textureFilePath": "./application/resource/Texture/lazer.png",
                 "transform": {
                     "rotate": [
                         0.0,
@@ -531,8 +554,6 @@
                 }
             }
         ],
-        "RingRenderer": [],
-        "SphereCollider": [],
         "Transform": [
             {
                 "rotate": [
@@ -548,11 +569,14 @@
                 ],
                 "translate": [
                     0.0,
-                    9.7387113571167,
-                    1304.4599609375
+                    0.0,
+                    2200.0
                 ]
             }
         ]
+    },
+    "Handle": {
+        "uuid": "0defcba7-47f8-4544-89a0-b589035812c3"
     },
     "Name": "Goal",
     "Systems": [

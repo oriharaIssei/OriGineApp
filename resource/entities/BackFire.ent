@@ -209,9 +209,9 @@
         "Material": [
             {
                 "color": [
-                    1.0,
-                    1.0,
-                    1.0,
+                    0.08431697636842728,
+                    0.44282761216163635,
+                    0.6244726181030273,
                     1.0
                 ],
                 "enableLighting": false,
@@ -287,11 +287,15 @@
                 "effectEntityIdList": [
                     {
                         "effectType": 0,
-                        "entityID": 80
+                        "handle": {
+                            "uuid": "ce60e708-89e6-4eb2-b0a3-94e5def385f4"
+                        }
                     },
                     {
                         "effectType": 2,
-                        "entityID": 82
+                        "handle": {
+                            "uuid": "3f8575ac-ee57-41c5-a7c0-9cf5a55e648f"
+                        }
                     }
                 ],
                 "isActive": true,
@@ -319,6 +323,9 @@
                 ]
             }
         ]
+    },
+    "Handle": {
+        "uuid": "53ba3e5e-5351-48aa-a7de-d04fe975ba6e"
     },
     "Name": "BackFire",
     "Systems": [

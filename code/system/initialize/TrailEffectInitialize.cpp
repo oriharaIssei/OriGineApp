@@ -50,7 +50,7 @@ void TrailEffectInitialize::UpdateEntity(OriGine::EntityHandle _handle) {
         GetComponent<DistortionEffectParam>(distortion1EntityHandle);
     if (distortion1EffectParam) {
         dissolveMaterialEffectPipeline->AddEffectEntity(
-            MaterialEffectType::Distortion, distortion1EffectParam->GetHandle());
+            MaterialEffectType::Distortion, distortion1EntityHandle);
     }
 
     // trailに dissolveEffectを 設定
@@ -62,7 +62,7 @@ void TrailEffectInitialize::UpdateEntity(OriGine::EntityHandle _handle) {
             return;
         }
         materialEffectPipeLine->AddEffectEntity(
-            MaterialEffectType::Dissolve, dissolveEffectParam->GetHandle());
+            MaterialEffectType::Dissolve, dissolveEntity);
 
         auto gradationEntity = GetUniqueEntity("trailGradationEntity");
         if (!gradationEntity.IsValid()) {
@@ -74,7 +74,7 @@ void TrailEffectInitialize::UpdateEntity(OriGine::EntityHandle _handle) {
         // trailに Gradationを設定
         if (gradationTextureComponent) {
             materialEffectPipeLine->AddEffectEntity(
-                MaterialEffectType::Gradation, gradationTextureComponent->GetHandle());
+                MaterialEffectType::Gradation, gradationEntity);
         }
     }
     materialEffectPipeLine->SetPriority(10);

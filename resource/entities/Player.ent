@@ -20,7 +20,6 @@
                 "threshold": 0.0
             }
         ],
-        "Emitter": [],
         "Material": [
             {
                 "color": [
@@ -78,13 +77,13 @@
                 "fileName": "Player.obj",
                 "isRender": true,
                 "materialIndexDatas": [
-                    0,
-                    1,
-                    1,
-                    1,
-                    1,
-                    1,
-                    1
+                    "2eebdb02-bc1e-4f35-820e-58d12b3a5341",
+                    "1f8c747b-af2e-45fa-acc1-5f54a9101965",
+                    "1f8c747b-af2e-45fa-acc1-5f54a9101965",
+                    "1f8c747b-af2e-45fa-acc1-5f54a9101965",
+                    "1f8c747b-af2e-45fa-acc1-5f54a9101965",
+                    "1f8c747b-af2e-45fa-acc1-5f54a9101965",
+                    "1f8c747b-af2e-45fa-acc1-5f54a9101965"
                 ],
                 "textureFilePath": [
                     "",
@@ -352,7 +351,6 @@
                 "nextSceneName": "Result"
             }
         ],
-        "SkinningAnimationComponent": [],
         "SphereCollider": [
             {
                 "center": [
@@ -401,6 +399,9 @@
                 ]
             }
         ]
+    },
+    "Handle": {
+        "uuid": "dd1e9e4a-c1c4-43e2-836b-7a83a04712bf"
     },
     "Name": "Player",
     "Systems": [

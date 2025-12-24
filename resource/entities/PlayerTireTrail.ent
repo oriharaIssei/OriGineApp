@@ -104,6 +104,9 @@
             }
         ]
     },
+    "Handle": {
+        "uuid": "8226629c-2b0f-412e-8186-1cbb1dcdb446"
+    },
     "Name": "PlayerTireTrail",
     "Systems": [
         {

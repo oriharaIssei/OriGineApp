@@ -26,7 +26,7 @@ void CameraInputSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     GamepadInput* padInput = GetScene()->GetGamepadInput();
     MouseInput* mouseInput = GetScene()->GetMouseInput();
 
-    CameraController* cameraController = GetComponent<CameraController>(_entity);
+    CameraController* cameraController = GetComponent<CameraController>(_handle);
 
     if (cameraController) {
         InputUpdate(GetMainDeltaTime(), mouseInput, padInput, cameraController);

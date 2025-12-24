@@ -70,6 +70,9 @@
             }
         ]
     },
+    "Handle": {
+        "uuid": "f9609fd3-0d97-455f-9367-24e613394d13"
+    },
     "Name": "trailDistortion1Entity",
     "Systems": [
         {

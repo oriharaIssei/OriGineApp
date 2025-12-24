@@ -23,15 +23,15 @@ void CameraShake::Initialize() {}
 void CameraShake::Finalize() {}
 
 void CameraShake::UpdateEntity(OriGine::EntityHandle _handle) {
-    auto cameraShakeSources = GetComponents<CameraShakeSourceComponent>(_entity);
+    auto& cameraShakeSources = GetComponents<CameraShakeSourceComponent>(_handle);
 
     // CameraShakeSourceComponentが存在しない場合は Skip
-    if (!cameraShakeSources) {
+    if (cameraShakeSources.empty()) {
         return;
     }
-    for (auto& cameraShakeSource : *cameraShakeSources) {
+    for (auto& cameraShakeSource : cameraShakeSources) {
         // シェイクの適用先カメラTransformを取得
-        auto cameraTransform = GetComponent<CameraTransform>(_entity, cameraShakeSource.cameraTransformIndex);
+        auto cameraTransform = GetComponent<CameraTransform>(_handle, cameraShakeSource.cameraTransformIndex);
         if (!cameraTransform) {
             continue;
         }

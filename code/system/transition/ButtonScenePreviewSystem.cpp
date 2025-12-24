@@ -13,7 +13,7 @@ void ButtonScenePreviewSystem::Initialize() {}
 void ButtonScenePreviewSystem::Finalize() {}
 
 void ButtonScenePreviewSystem::UpdateEntity(OriGine::EntityHandle _handle) {
-    auto buttonGroup = GetComponent<ButtonGroup>(_entity);
+    auto buttonGroup = GetComponent<ButtonGroup>(_handle);
 
     // skip
     if (!buttonGroup) {
@@ -30,7 +30,7 @@ void ButtonScenePreviewSystem::UpdateEntity(OriGine::EntityHandle _handle) {
             continue;
         }
         // ボタンが持つシーンを取得
-        auto subScene = GetComponent<SubScene>(buttonEnt);
+        auto subScene = GetComponent<SubScene>(_handle);
 
         // なければスキップ
         if (!subScene) {

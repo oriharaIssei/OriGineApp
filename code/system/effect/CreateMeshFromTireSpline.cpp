@@ -117,8 +117,8 @@ void CreateMeshFromTireSpline::Initialize() {}
 void CreateMeshFromTireSpline::Finalize() {}
 
 void CreateMeshFromTireSpline::UpdateEntity(OriGine::EntityHandle _handle) {
-    auto splineComp        = GetComponent<TireSplinePoints>(_entity);
-    auto planeRendererComp = GetComponent<PlaneRenderer>(_entity);
+    auto splineComp        = GetComponent<TireSplinePoints>(_handle);
+    auto planeRendererComp = GetComponent<PlaneRenderer>(_handle);
     if (!splineComp || !planeRendererComp) {
         return;
     }

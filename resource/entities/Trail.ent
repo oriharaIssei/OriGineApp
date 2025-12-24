@@ -3,9 +3,9 @@
         "Material": [
             {
                 "color": [
-                    1.0,
-                    1.0,
-                    1.0,
+                    0.08431697636842728,
+                    0.44282761216163635,
+                    0.6244726181030273,
                     1.0
                 ],
                 "enableLighting": false,
@@ -106,11 +106,15 @@
                 "effectEntityIdList": [
                     {
                         "effectType": 0,
-                        "entityID": 77
+                        "handle": {
+                            "uuid": "417e3581-06fb-4e80-8ef9-32aad987a1a7"
+                        }
                     },
                     {
                         "effectType": 2,
-                        "entityID": 79
+                        "handle": {
+                            "uuid": "4c74b4d3-a643-4e2d-90bc-3659cb9bc1a4"
+                        }
                     }
                 ],
                 "isActive": true,
@@ -188,6 +192,9 @@
                 ]
             }
         ]
+    },
+    "Handle": {
+        "uuid": "d521e390-d5b8-4e8c-bc8f-27b06303c56f"
     },
     "Name": "Trail",
     "Systems": [

@@ -8,6 +8,9 @@
             }
         ]
     },
+    "Handle": {
+        "uuid": "dbf7560d-330e-4e39-b724-d84f1376543e"
+    },
     "Name": "GameFailedScene",
     "Systems": [
         {

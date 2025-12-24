@@ -13,12 +13,10 @@ void BillboardTransform::Initialize() {}
 void BillboardTransform::Finalize() {}
 
 void BillboardTransform::UpdateEntity(OriGine::EntityHandle _handle) {
-    int32_t componentIndex = 0;
-
     const CameraTransform& cameraTransform = CameraManager::GetInstance()->GetTransform();
 
-    auto transforms = GetComponents<OriGine::Transform>(_entity);
-    for (auto& transform : *transforms) {
+    auto& transforms = GetComponents<OriGine::Transform>(_handle);
+    for (auto& transform : transforms) {
         // カメラの視線ベクトル（ワールド空間でのカメラ→ビルボード方向、正規化済み）
         OriGine::Vec3f lookAt = OriGine::Vec3f(transform.translate - cameraTransform.translate).normalize(); // D3DXVECTOR3 LookAt(-cx, -cy, -cz);
 
@@ -45,11 +43,5 @@ void BillboardTransform::UpdateEntity(OriGine::EntityHandle _handle) {
         // クォータニオン作成
         transform.rotate = Quaternion::RotateAxisAngle(normal, angle);
         transform.UpdateMatrix();
-    }
-
-    while (true) {
-
-        // 次のコンポーネントへ
-        ++componentIndex;
     }
 }

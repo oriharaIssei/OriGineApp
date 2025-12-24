@@ -111,6 +111,9 @@
             }
         ]
     },
+    "Handle": {
+        "uuid": "2b271753-3b66-4fd8-8336-f4b7be72cdca"
+    },
     "Name": "ShadowPlane",
     "Systems": [
         {

@@ -111,6 +111,7 @@
                 "duration": 0.699999988079071,
                 "rotateCurve": [],
                 "scaleCurve": [],
+                "spriteComponentIndex": -1,
                 "transformAnimationState": {
                     "isLoop": false,
                     "isPlay": true
@@ -198,6 +199,9 @@
                 ]
             }
         ]
+    },
+    "Handle": {
+        "uuid": "7968743e-afeb-44da-b6e3-1e2e0c7f697d"
     },
     "Name": "PenaltyTimerForSprite",
     "Systems": [],

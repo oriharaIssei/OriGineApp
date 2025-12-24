@@ -129,7 +129,6 @@
                 ]
             }
         ],
-        "PrimitiveNodeAnimation": [],
         "RingRenderer": [
             {
                 "InnerRadius": 0.18000000715255737,
@@ -334,6 +333,9 @@
             }
         ]
     },
+    "Handle": {
+        "uuid": "bf0325f2-6d48-432d-af10-9f3094ad9374"
+    },
     "Name": "ChargeEffect",
     "Systems": [
         {
@@ -345,12 +347,12 @@
             "SystemName": "OverlayRenderSystem"
         },
         {
-            "SystemCategory": 2,
-            "SystemName": "EffectAutoDestroySystem"
-        },
-        {
             "SystemCategory": 5,
             "SystemName": "TransformAnimationWorkSystem"
+        },
+        {
+            "SystemCategory": 2,
+            "SystemName": "EffectAutoDestroySystem"
         }
     ],
     "isUnique": false

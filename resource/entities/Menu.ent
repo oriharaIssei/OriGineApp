@@ -34,9 +34,6 @@
                 ]
             }
         ],
-        "DissolveEffectParam": [],
-        "Material": [],
-        "SceneChanger": [],
         "SpriteRenderer": [
             {
                 "anchorPoint": [
@@ -164,6 +161,9 @@
                 "sceneName": "menu"
             }
         ]
+    },
+    "Handle": {
+        "uuid": "cb93bc5c-d429-4e5c-ae1a-f68d9c43369f"
     },
     "Name": "Menu",
     "Systems": [

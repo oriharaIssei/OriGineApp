@@ -11,8 +11,7 @@
                 "isCulling": false,
                 "isRenderer": true,
                 "materialIndex": 0,
-                "textureDirectory": "",
-                "textureFileName": "",
+                "textureFilePath": "",
                 "topRadius": [
                     0.30000001192092896,
                     0.30000001192092896
@@ -46,8 +45,7 @@
                 "isCulling": false,
                 "isRenderer": true,
                 "materialIndex": 0,
-                "textureDirectory": "",
-                "textureFileName": "",
+                "textureFilePath": "",
                 "topRadius": [
                     0.3799999952316284,
                     0.3799999952316284
@@ -81,8 +79,7 @@
                 "isCulling": false,
                 "isRenderer": true,
                 "materialIndex": 0,
-                "textureDirectory": "",
-                "textureFileName": "",
+                "textureFilePath": "",
                 "topRadius": [
                     0.5,
                     0.5
@@ -116,8 +113,7 @@
                 "isCulling": false,
                 "isRenderer": true,
                 "materialIndex": 0,
-                "textureDirectory": "",
-                "textureFileName": "",
+                "textureFilePath": "",
                 "topRadius": [
                     0.30000001192092896,
                     0.30000001192092896
@@ -151,8 +147,7 @@
                 "isCulling": false,
                 "isRenderer": true,
                 "materialIndex": 0,
-                "textureDirectory": "",
-                "textureFileName": "",
+                "textureFilePath": "",
                 "topRadius": [
                     0.3799999952316284,
                     0.3799999952316284
@@ -186,8 +181,7 @@
                 "isCulling": false,
                 "isRenderer": true,
                 "materialIndex": 0,
-                "textureDirectory": "",
-                "textureFileName": "",
+                "textureFilePath": "",
                 "topRadius": [
                     0.5,
                     0.5
@@ -244,19 +238,15 @@
                 "effectEntityIdList": [
                     {
                         "effectType": 0,
-                        "entityID": 30
+                        "handle": {
+                            "uuid": "18f872e5-06af-45b2-98f3-f1f8de67bb81"
+                        }
                     },
                     {
                         "effectType": 2,
-                        "entityID": 28
-                    },
-                    {
-                        "effectType": 0,
-                        "entityID": 30
-                    },
-                    {
-                        "effectType": 2,
-                        "entityID": 28
+                        "handle": {
+                            "uuid": "3f8575ac-ee57-41c5-a7c0-9cf5a55e648f"
+                        }
                     }
                 ],
                 "isActive": true,
@@ -284,6 +274,9 @@
                 ]
             }
         ]
+    },
+    "Handle": {
+        "uuid": "1428388f-5bd5-4f3f-86f1-d8b59f4b8ff0"
     },
     "Name": "BackFireSparks",
     "Systems": [

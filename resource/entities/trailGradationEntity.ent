@@ -45,6 +45,9 @@
             }
         ]
     },
+    "Handle": {
+        "uuid": "4c74b4d3-a643-4e2d-90bc-3659cb9bc1a4"
+    },
     "Name": "trailGradationEntity",
     "Systems": [],
     "isUnique": true

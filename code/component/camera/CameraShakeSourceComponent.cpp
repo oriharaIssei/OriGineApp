@@ -71,8 +71,8 @@ void CameraShakeSourceComponent::Edit([[maybe_unused]] OriGine::Scene* _scene, [
         }
     }
 
-    auto cameraTransforms      = _scene->GetComponents<CameraTransform>(_entity);
-    int32_t entityMaterialSize = cameraTransforms != nullptr ? static_cast<int32_t>(cameraTransforms->size()) : -1;
+    auto& cameraTransforms     = _scene->GetComponents<CameraTransform>(_owner);
+    int32_t entityMaterialSize = static_cast<int32_t>(cameraTransforms.size());
     // カメラTransformコンポーネントインデックス
     InputGuiCommand<int32_t>("Camera Transform Index##" + _parentLabel, cameraTransformIndex, "%d", [this, entityMaterialSize](int32_t* _newT) {
         this->cameraTransformIndex = std::clamp(*_newT, -1, entityMaterialSize - 1);

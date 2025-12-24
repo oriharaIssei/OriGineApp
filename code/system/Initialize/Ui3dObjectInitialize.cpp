@@ -19,7 +19,7 @@ void Ui3dObjectInitialize::UpdateEntity(EntityHandle _handle) {
     }
 
     auto* cameraTransform = GetComponent<OriGine::Transform>(cameraHandle);
-    auto* transform       = GetComponent<OriGine::Transform>(cameraHandle);
+    auto* transform       = GetComponent<OriGine::Transform>(_handle);
     if (!cameraTransform || !transform) {
         return;
     }

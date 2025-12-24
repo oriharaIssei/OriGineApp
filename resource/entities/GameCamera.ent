@@ -1,6 +1,5 @@
 {
     "Components": {
-        "CameraAction": [],
         "CameraController": [
             {
                 "angleLimitY": 1.5707963705062866,
@@ -116,7 +115,7 @@
                 "translate": [
                     0.0,
                     4.0,
-                    -20.0
+                    -5.0
                 ]
             }
         ],
@@ -141,12 +140,11 @@
             }
         ]
     },
+    "Handle": {
+        "uuid": "47d0f2fa-dbce-4f61-8e51-af3e08b9310a"
+    },
     "Name": "GameCamera",
     "Systems": [
-        {
-            "SystemCategory": 5,
-            "SystemName": "CameraShake"
-        },
         {
             "SystemCategory": 2,
             "SystemName": "CameraMotionBobSystem"
@@ -154,6 +152,10 @@
         {
             "SystemCategory": 1,
             "SystemName": "CameraInputSystem"
+        },
+        {
+            "SystemCategory": 5,
+            "SystemName": "CameraShake"
         },
         {
             "SystemCategory": 3,

@@ -16,8 +16,7 @@
                             "isCulling": true,
                             "isRenderer": true,
                             "materialIndex": 0,
-                            "textureDirectory": "./application/resource/Texture",
-                            "textureFileName": "waveNoise.png",
+                            "textureFilePath": "./application/resource/Texture/waveNoise.png",
                             "transform": {
                                 "rotate": [
                                     0.0,
@@ -32,7 +31,7 @@
                                 ],
                                 "translate": [
                                     0.0,
-                                    -1000.0,
+                                    -10000.0,
                                     0.0
                                 ]
                             }
@@ -95,6 +94,9 @@
                 ]
             }
         ]
+    },
+    "Handle": {
+        "uuid": "61e5895d-f89e-4d21-9949-4972b4094911"
     },
     "Name": "PlayerShockWave",
     "Systems": [

@@ -18,7 +18,7 @@ void Ui3dUpdateSystem::UpdateEntity(OriGine::EntityHandle _handle) {
         return;
     }
     auto playerTransform = GetComponent<OriGine::Transform>(playerHandle);
-    auto transform       = GetComponent<OriGine::Transform>(playerHandle);
+    auto transform       = GetComponent<OriGine::Transform>(_handle);
     auto camTransform    = transform->parent; // Camera の Transform
     if (!transform || !playerTransform || !camTransform) {
         return;

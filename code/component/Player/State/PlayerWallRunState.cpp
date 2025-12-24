@@ -95,9 +95,7 @@ void PlayerWallRunState::Initialize() {
     speedRumpUpTimer_ = 0.0f;
 
     // ===== カメラ =====
-    OriGine::Entity* cameraEntity =
-        scene_->GetEntity(state->GetCameraEntityHandle());
-
+    
     CameraController* cameraController =
         scene_->GetComponent<CameraController>(state->GetCameraEntityHandle());
 
