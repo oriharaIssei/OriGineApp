@@ -14,6 +14,7 @@
             "Components": {
                 "SkyboxRenderer": [
                     {
+                        "Handle": "46943538-d7bf-45ea-a3ed-49e0ac736c86",
                         "filePath": "application/resource/Texture/output_skybox.dds",
                         "materialBuff": {
                             "color": [
@@ -36,13 +37,16 @@
                                 1.0
                             ],
                             "translate": [
-                                255.61697387695313,
-                                88.36239624023438,
-                                821.9896850585938
+                                16.326574325561523,
+                                10.844953536987305,
+                                -5.522499084472656
                             ]
                         }
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "8002c590-b6b0-47d2-b63d-fbac7f398eb9"
             },
             "Name": "Skybox",
             "Systems": [
@@ -55,19 +59,18 @@
         },
         {
             "Components": null,
+            "Handle": {
+                "uuid": "a8f5cf03-eab2-416e-bce8-89bcd6a9d1d4"
+            },
             "Name": "Stage",
-            "Systems": [
-                {
-                    "SystemCategory": 0,
-                    "SystemName": "CreateStage"
-                }
-            ],
+            "Systems": [],
             "isUnique": true
         },
         {
             "Components": {
                 "DirectionalLight": [
                     {
+                        "Handle": "be11297c-7ae3-4576-853a-105c8203c1ed",
                         "color": [
                             1.0,
                             1.0,
@@ -83,6 +86,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "1d35826d-ae0b-49a7-a4a9-044d1a3baf34"
+            },
             "Name": "directionalLight",
             "Systems": [],
             "isUnique": false
@@ -91,6 +97,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "5d1b7716-14b2-4b04-bb33-4781e333e06e",
                         "center": [
                             0.0,
                             0.0,
@@ -123,11 +130,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "6df64a05-f194-40b9-9eda-1f5b0d838ae1",
                         "pushBackType": 0
                     }
                 ],
                 "SpriteAnimation": [
                     {
+                        "Handle": "fb1d0666-82ec-4834-ac9c-8ebb6f861dd4",
                         "colorAnimationState": {
                             "isLoop": false,
                             "isPlay": false
@@ -200,6 +209,7 @@
                         "uvTranslateCurve": []
                     },
                     {
+                        "Handle": "227bac8b-5d65-40c8-b955-5c4347716a1e",
                         "colorAnimationState": {
                             "isLoop": false,
                             "isPlay": false
@@ -265,6 +275,7 @@
                 ],
                 "SpriteRenderer": [
                     {
+                        "Handle": "3bb2fc4e-60f0-42fe-8ab7-972b2b3aca98",
                         "anchorPoint": [
                             0.5,
                             0.5
@@ -326,6 +337,7 @@
                 ],
                 "Transform": [
                     {
+                        "Handle": "07fcafa3-8e39-4780-8e06-a55f3f93936e",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -344,6 +356,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "37294849-3d0b-414e-807a-1a521ab0bcaf"
             },
             "Name": "tutorialCollider",
             "Systems": [
@@ -370,6 +385,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "739b04b9-db80-4c31-b517-aaff15038d0b",
                         "center": [
                             0.0,
                             0.0,
@@ -402,11 +418,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "15223241-0ac7-4758-8c3a-ee95678f5a4a",
                         "pushBackType": 0
                     }
                 ],
                 "SpriteAnimation": [
                     {
+                        "Handle": "f97906a5-623e-49da-8138-559ee08a51e8",
                         "colorAnimationState": {
                             "isLoop": false,
                             "isPlay": false
@@ -479,6 +497,7 @@
                         "uvTranslateCurve": []
                     },
                     {
+                        "Handle": "5adfc56a-54f4-41da-84e8-bdab1849490d",
                         "colorAnimationState": {
                             "isLoop": false,
                             "isPlay": false
@@ -544,6 +563,7 @@
                 ],
                 "SpriteRenderer": [
                     {
+                        "Handle": "fa1075da-e672-4cc3-bbc4-45fd6d75726a",
                         "anchorPoint": [
                             0.5,
                             0.5
@@ -605,6 +625,7 @@
                 ],
                 "Transform": [
                     {
+                        "Handle": "0c1d2834-32f6-44d2-b98f-07349d9f87b3",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -623,6 +644,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "49062eda-e6ab-4534-93d7-58f63e49aed7"
             },
             "Name": "tutorialCollider",
             "Systems": [
@@ -649,6 +673,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "b1d4f83a-ea88-45c5-ae35-0906110cbcca",
                         "center": [
                             0.0,
                             0.0,
@@ -681,11 +706,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "62270c7b-5db5-45d8-aea3-55bbe7f87068",
                         "pushBackType": 0
                     }
                 ],
                 "SpriteAnimation": [
                     {
+                        "Handle": "59a58370-6f16-4b57-afdd-ec4db77401a2",
                         "colorAnimationState": {
                             "isLoop": false,
                             "isPlay": false
@@ -758,6 +785,7 @@
                         "uvTranslateCurve": []
                     },
                     {
+                        "Handle": "e195ac8e-b279-44ab-856d-35120a88b651",
                         "colorAnimationState": {
                             "isLoop": false,
                             "isPlay": false
@@ -823,6 +851,7 @@
                 ],
                 "SpriteRenderer": [
                     {
+                        "Handle": "faa46877-a900-49f9-8eb6-f083bea01bec",
                         "anchorPoint": [
                             0.5,
                             0.5
@@ -884,6 +913,7 @@
                 ],
                 "Transform": [
                     {
+                        "Handle": "e518bf49-505e-4a1a-bf9d-0688ae7be758",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -902,6 +932,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "2671538c-9aec-4481-b51e-53f37810f2cb"
             },
             "Name": "tutorialCollider",
             "Systems": [
@@ -928,6 +961,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "29459c1d-e0c6-45e3-b244-352f2eeb8593",
                         "center": [
                             0.0,
                             0.0,
@@ -960,6 +994,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "32022e0b-b08f-4242-add8-6345006b6622",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -992,11 +1027,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "125fb6ea-580c-43fb-8dc9-563b27c2ca20",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "0f02b123-49f3-4289-9c26-c5f4034da115",
                         "color": [
                             1.0,
                             1.0,
@@ -1023,6 +1060,7 @@
                 ],
                 "Transform": [
                     {
+                        "Handle": "a0cddede-b009-4eab-a431-e6deb47eca50",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -1042,6 +1080,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "c85f2243-30a0-467c-9f1f-b6423b9c0ef5"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -1059,6 +1100,7 @@
             "Components": {
                 "EntityReferenceList": [
                     {
+                        "Handle": "3b9b088e-a132-4e96-b0be-a146012a6709",
                         "entityFileList": [
                             [
                                 "./application/resource/entities",
@@ -1128,6 +1170,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "20c5a206-434a-4acf-958c-d232067241a7"
+            },
             "Name": "EntityRef",
             "Systems": [
                 {
@@ -1141,6 +1186,7 @@
             "Components": {
                 "EntityReferenceList": [
                     {
+                        "Handle": "83f21493-f37f-4400-95c9-21eee9643dda",
                         "entityFileList": [
                             [
                                 "./application/resource/entities",
@@ -1157,6 +1203,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "cf5f3c8b-aa3c-4267-a78f-8fedd9d9e7b2"
             },
             "Name": "trailEffectRecipe",
             "Systems": [
@@ -1171,6 +1220,7 @@
             "Components": {
                 "EntityReferenceList": [
                     {
+                        "Handle": "210240dc-b388-47d7-8aff-c89b262a6e98",
                         "entityFileList": [
                             [
                                 "./application/resource/entities",
@@ -1188,6 +1238,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "c2120acf-edb7-4c2f-9071-01e15046bd9a"
+            },
             "Name": "trailEffectRecipe",
             "Systems": [
                 {
@@ -1201,6 +1254,7 @@
             "Components": {
                 "MouseCondition": [
                     {
+                        "Handle": "b7668964-2792-4486-948b-fe97f7ccd9a1",
                         "fixCursorPos": [
                             500.0,
                             500.0
@@ -1210,6 +1264,9 @@
                         "isShowCursor": false
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "14db9b5e-7782-406e-b6aa-f5f9d7d432c7"
             },
             "Name": "MouseCondition",
             "Systems": [
@@ -1224,6 +1281,7 @@
             "Components": {
                 "EntityReferenceList": [
                     {
+                        "Handle": "2259408f-0db5-4708-be79-5c0c62515925",
                         "entityFileList": [
                             [
                                 "./application/resource/entities",
@@ -1253,6 +1311,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "3c0d6af2-3394-4f00-859a-e6f13c8e030d"
+            },
             "Name": "BackFireRecipe",
             "Systems": [
                 {
@@ -1266,6 +1327,7 @@
             "Components": {
                 "Transform": [
                     {
+                        "Handle": "85d93a9f-178c-4979-a561-65b0386e2bb3",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -1285,6 +1347,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "466321df-8325-42e1-822b-b59835cff3e2"
+            },
             "Name": "StartPosition",
             "Systems": [],
             "isUnique": true
@@ -1293,6 +1358,7 @@
             "Components": {
                 "Transform": [
                     {
+                        "Handle": "c9d3d150-6171-4c35-9c48-f597bec2f4d9",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -1312,6 +1378,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "ff7779cb-5efc-4bfe-ab96-125cbfbebc24"
+            },
             "Name": "GoalPosition",
             "Systems": [],
             "isUnique": true
@@ -1320,6 +1389,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "6e93b6af-1a42-4ccc-9d9f-eafe22fe3e70",
                         "center": [
                             0.0,
                             0.0,
@@ -1352,6 +1422,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "44362cd7-c3d6-44b8-8d8c-bf457e664006",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -1384,11 +1455,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "c7352709-8af2-4023-8bb9-223df557fa60",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "e81780a0-0967-4dcc-91e8-8f332eafb555",
                         "color": [
                             1.0,
                             1.0,
@@ -1415,6 +1488,7 @@
                 ],
                 "Transform": [
                     {
+                        "Handle": "ccd23dcb-710a-4a2c-b939-ff9187505f83",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -1434,6 +1508,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "4ad8b205-05d0-4753-9c73-a079f1641a35"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -1451,6 +1528,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "02465add-b307-4a36-a064-86ab6141fb86",
                         "center": [
                             0.0,
                             0.0,
@@ -1483,6 +1561,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "4f636a19-b9f1-4b66-8aeb-530234d46463",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -1515,11 +1594,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "2d31e71b-e7d9-4129-84ce-dee2a6a8c6f5",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "b00ba633-2938-40c7-9f68-e54e01cf8870",
                         "color": [
                             1.0,
                             1.0,
@@ -1546,6 +1627,7 @@
                 ],
                 "Transform": [
                     {
+                        "Handle": "3fd37844-6180-44b7-a5bb-2d8029b5303c",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -1565,6 +1647,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "fe74f860-58b2-482f-9f0b-d9e100f1c9a3"
+            },
             "Name": "wall",
             "Systems": [
                 {
@@ -1582,6 +1667,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "54212d49-b4b4-44cc-8675-2644bd4545f9",
                         "center": [
                             0.0,
                             0.0,
@@ -1614,6 +1700,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "335f8766-86c4-4a03-ae4e-5a01b2178b24",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -1646,11 +1733,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "82605c92-f721-46a9-9ee0-8265e877272e",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "5b087225-3bab-4738-bd2b-13f0ba020c4f",
                         "color": [
                             1.0,
                             1.0,
@@ -1677,6 +1766,7 @@
                 ],
                 "Transform": [
                     {
+                        "Handle": "ba6fe895-ae13-4df0-8489-a0edb07f535f",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -1696,6 +1786,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "f5d36851-6e9f-4f4f-9254-a583dafcb9bd"
+            },
             "Name": "wall",
             "Systems": [
                 {
@@ -1713,6 +1806,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "d8b8ac89-3aaa-417b-83a5-2c45fd0e0420",
                         "center": [
                             0.0,
                             0.0,
@@ -1745,6 +1839,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "1723ea67-efb3-4cfa-801c-a93d7a36048a",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -1777,11 +1872,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "97beb6d1-6cfb-4e91-8030-968122b62c44",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "d51b65b5-34c3-4569-afc9-89484d570c18",
                         "color": [
                             1.0,
                             1.0,
@@ -1806,13 +1903,9 @@
                         ]
                     }
                 ],
-                "StageObstacle": [
-                    {
-                        "penaltyTime": 1.5
-                    }
-                ],
                 "Transform": [
                     {
+                        "Handle": "5e7caedb-9675-4404-96f7-391acce3fb3d",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -1832,6 +1925,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "699b10af-c14f-4e2c-8411-924e18b70163"
+            },
             "Name": "PenaltyFloor",
             "Systems": [
                 {
@@ -1849,6 +1945,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "74256a24-bdb8-46bd-8b78-9dc92cb79b7a",
                         "center": [
                             0.0,
                             0.0,
@@ -1881,6 +1978,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "6e7b7c0f-22f1-4093-b8a2-68548b48a5b9",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -1913,11 +2011,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "c9444e40-fc46-4dba-8ddd-5f7f8b794030",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "b776f01b-594e-418f-ac73-72089d2808a3",
                         "color": [
                             1.0,
                             1.0,
@@ -1944,6 +2044,7 @@
                 ],
                 "Transform": [
                     {
+                        "Handle": "7594241f-04ef-4526-8100-e82604a269d4",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -1963,6 +2064,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "37332442-9e7b-4769-9899-d3d5465ab59b"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -1980,6 +2084,7 @@
             "Components": {
                 "DissolveEffectParam": [
                     {
+                        "Handle": "5a72a0ee-066f-4bef-ac29-61c7082d4b4d",
                         "edgeWidth": 0.02199999988079071,
                         "isActive": false,
                         "materialIndex": 0,
@@ -1995,6 +2100,7 @@
                 ],
                 "Material": [
                     {
+                        "Handle": "eabe973e-66c5-4a33-8f8b-43963b296750",
                         "color": [
                             1.0,
                             1.0,
@@ -2021,9 +2127,13 @@
                 ],
                 "SceneChanger": [
                     {
+                        "Handle": "271cfdf5-aba1-40bc-8662-012d09aa9376",
                         "nextSceneName": ""
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "f2ce25d8-8e20-4cc3-9518-03aad451d3b0"
             },
             "Name": "SceneTransitionReceiver",
             "Systems": [
@@ -2050,6 +2160,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "7268294a-e515-4c4d-a2a8-8551be63fcdc",
                         "center": [
                             0.0,
                             0.0,
@@ -2082,16 +2193,19 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "89f89b28-d58e-4141-9ddd-2b1516d90259",
                         "pushBackType": 0
                     }
                 ],
                 "PlayerStateOverrideCondition": [
                     {
+                        "Handle": "215e8d94-4651-45ca-8aab-eea980e3ad1e",
                         "overrideConditions": 44
                     }
                 ],
                 "SpriteRenderer": [
                     {
+                        "Handle": "c881716a-bd86-4ce9-a25d-89cc95e9913e",
                         "anchorPoint": [
                             0.5,
                             0.5
@@ -2151,6 +2265,7 @@
                         ]
                     },
                     {
+                        "Handle": "e6e5725b-b278-4015-86b7-1b50063bb1f5",
                         "anchorPoint": [
                             0.5,
                             0.5
@@ -2212,6 +2327,7 @@
                 ],
                 "Transform": [
                     {
+                        "Handle": "b9039229-2dde-4446-9f10-1f8ad12f3565",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -2231,207 +2347,8 @@
                     }
                 ]
             },
-            "Name": "JumpEvent",
-            "Systems": [
-                {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
-                },
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "SpriteRenderSystem"
-                },
-                {
-                    "SystemCategory": 2,
-                    "SystemName": "PlayerStateOverrideSystem"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "AABBCollider": [
-                    {
-                        "center": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "halfSize": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "CollisionPushBackInfo": [
-                    {
-                        "pushBackType": 0
-                    }
-                ],
-                "PlayerStateOverrideCondition": [
-                    {
-                        "overrideConditions": 44
-                    }
-                ],
-                "SpriteRenderer": [
-                    {
-                        "anchorPoint": [
-                            0.5,
-                            0.5
-                        ],
-                        "color": [
-                            0.0,
-                            0.0,
-                            0.0,
-                            1.0
-                        ],
-                        "defaultWindowSize": [
-                            1920.0,
-                            1080.0
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "isRender": false,
-                        "renderingPriority": 1,
-                        "rotate": 0.0,
-                        "scale": [
-                            1.0,
-                            1.0
-                        ],
-                        "size": [
-                            512.0,
-                            128.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "./application/resource/Texture/PushSpace.png",
-                        "textureSize": [
-                            512.0,
-                            128.0
-                        ],
-                        "translate": [
-                            960.0,
-                            756.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ],
-                        "windowRatioPos": [
-                            0.5,
-                            0.699999988079071
-                        ],
-                        "windowRatioSize": [
-                            0.0,
-                            0.0
-                        ]
-                    },
-                    {
-                        "anchorPoint": [
-                            0.5,
-                            0.5
-                        ],
-                        "color": [
-                            0.0,
-                            0.0,
-                            0.0,
-                            1.0
-                        ],
-                        "defaultWindowSize": [
-                            1920.0,
-                            1080.0
-                        ],
-                        "isFlipX": false,
-                        "isFlipY": false,
-                        "isRender": false,
-                        "renderingPriority": 1,
-                        "rotate": 0.0,
-                        "scale": [
-                            1.0,
-                            1.0
-                        ],
-                        "size": [
-                            256.0,
-                            128.0
-                        ],
-                        "textureLeftTop": [
-                            0.0,
-                            0.0
-                        ],
-                        "texturePath": "./application/resource/Texture/PushA.png",
-                        "textureSize": [
-                            512.0,
-                            256.0
-                        ],
-                        "translate": [
-                            960.0,
-                            756.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ],
-                        "windowRatioPos": [
-                            0.5,
-                            0.699999988079071
-                        ],
-                        "windowRatioSize": [
-                            0.13333334028720856,
-                            0.11851851642131805
-                        ]
-                    }
-                ],
-                "Transform": [
-                    {
-                        "rotate": [
-                            -0.0,
-                            0.0,
-                            -0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            30.0,
-                            30.0,
-                            11.779999732971191
-                        ],
-                        "translate": [
-                            0.0,
-                            0.0,
-                            461.6421813964844
-                        ]
-                    }
-                ]
+            "Handle": {
+                "uuid": "da80118a-3884-4ad6-9c2d-5c3c09bf2b5c"
             },
             "Name": "JumpEvent",
             "Systems": [
@@ -2454,6 +2371,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "d87d5bbf-9dc1-4205-9868-81af3812f023",
                         "center": [
                             0.0,
                             0.0,
@@ -2486,16 +2404,19 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "f3be160b-f461-468b-84a2-b5c3373c32c6",
                         "pushBackType": 0
                     }
                 ],
                 "PlayerStateOverrideCondition": [
                     {
-                        "overrideConditions": 36
+                        "Handle": "f369554f-8a7e-4b4f-b0db-5643b30623dd",
+                        "overrideConditions": 44
                     }
                 ],
                 "SpriteRenderer": [
                     {
+                        "Handle": "070b4ad8-0078-4f29-ad85-e2aaa0fbca16",
                         "anchorPoint": [
                             0.5,
                             0.5
@@ -2555,6 +2476,7 @@
                         ]
                     },
                     {
+                        "Handle": "e29756b8-f74b-45b3-ae73-96fc96b58c86",
                         "anchorPoint": [
                             0.5,
                             0.5
@@ -2616,6 +2538,218 @@
                 ],
                 "Transform": [
                     {
+                        "Handle": "849942a9-e154-433f-a793-e89302ad439b",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            30.0,
+                            30.0,
+                            11.779999732971191
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0,
+                            461.6421813964844
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "a4c7f14b-7e11-47a8-8b55-c504ba9d2f3a"
+            },
+            "Name": "JumpEvent",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "SpriteRenderSystem"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "PlayerStateOverrideSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "Handle": "813e8342-a2ec-4ea0-8289-5b6e14ec7aa9",
+                        "center": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "halfSize": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "Handle": "8f2442c4-00fb-47d0-ba69-63337e99079e",
+                        "pushBackType": 0
+                    }
+                ],
+                "PlayerStateOverrideCondition": [
+                    {
+                        "Handle": "2f985820-cbb6-43d0-8034-f4fecbb60153",
+                        "overrideConditions": 36
+                    }
+                ],
+                "SpriteRenderer": [
+                    {
+                        "Handle": "ef2dbcd8-0edc-4757-9b8c-8cf11eee19a5",
+                        "anchorPoint": [
+                            0.5,
+                            0.5
+                        ],
+                        "color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "defaultWindowSize": [
+                            1920.0,
+                            1080.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "isRender": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
+                            512.0,
+                            128.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "./application/resource/Texture/PushSpace.png",
+                        "textureSize": [
+                            512.0,
+                            128.0
+                        ],
+                        "translate": [
+                            960.0,
+                            756.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ],
+                        "windowRatioPos": [
+                            0.5,
+                            0.699999988079071
+                        ],
+                        "windowRatioSize": [
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "Handle": "3642c461-69a5-4b37-9939-0262265c4d85",
+                        "anchorPoint": [
+                            0.5,
+                            0.5
+                        ],
+                        "color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "defaultWindowSize": [
+                            1920.0,
+                            1080.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "isRender": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
+                            256.0,
+                            128.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "./application/resource/Texture/PushA.png",
+                        "textureSize": [
+                            512.0,
+                            256.0
+                        ],
+                        "translate": [
+                            960.0,
+                            756.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ],
+                        "windowRatioPos": [
+                            0.5,
+                            0.699999988079071
+                        ],
+                        "windowRatioSize": [
+                            0.13333334028720856,
+                            0.11851851642131805
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "98a4d964-7f6c-40f1-9763-85a340c7432b",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -2634,6 +2768,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "50f6550f-e91c-4602-af79-39f71a83251b"
             },
             "Name": "JumpEvent",
             "Systems": [
@@ -2656,6 +2793,7 @@
             "Components": {
                 "SpeedFor3dUIComponent": [
                     {
+                        "Handle": "fb31fddd-4780-42c6-a6f5-70b55ca86d34",
                         "digitDecimal": 2,
                         "digitInteger": 3,
                         "marginBetweenIntegerAndDecimal": [
@@ -2692,6 +2830,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "29846b88-8afe-45ed-bbd6-2db8423e3058"
+            },
             "Name": "SpeedUI",
             "Systems": [
                 {
@@ -2713,18 +2854,13 @@
             }
         },
         {
-            "ColliderRenderingSystem": {
-                "Priority": 0
-            }
-        },
-        {
             "ApplyMouseConditionSystem": {
                 "Priority": 0
             }
         },
         {
-            "BackFireInitialize": {
-                "Priority": 1
+            "ColliderRenderingSystem": {
+                "Priority": 0
             }
         },
         {
@@ -2733,8 +2869,8 @@
             }
         },
         {
-            "BillboardTransform": {
-                "Priority": 100
+            "BackFireInitialize": {
+                "Priority": 1
             }
         },
         {
@@ -2748,12 +2884,17 @@
             }
         },
         {
-            "CameraMotionBobSystem": {
-                "Priority": 2
+            "BillboardTransform": {
+                "Priority": 100
             }
         },
         {
             "ChangeSceneByButton": {
+                "Priority": 2
+            }
+        },
+        {
+            "CameraMotionBobSystem": {
                 "Priority": 2
             }
         },
@@ -2763,13 +2904,13 @@
             }
         },
         {
-            "CameraInputSystem": {
-                "Priority": 3
+            "TimeLimitJudgeSystem": {
+                "Priority": 11
             }
         },
         {
-            "TimeLimitJudgeSystem": {
-                "Priority": 11
+            "CameraInputSystem": {
+                "Priority": 3
             }
         },
         {
@@ -2778,8 +2919,8 @@
             }
         },
         {
-            "CollisionPushBackSystem": {
-                "Priority": 5
+            "TakePlayerToStartPosition": {
+                "Priority": 3
             }
         },
         {
@@ -2788,8 +2929,8 @@
             }
         },
         {
-            "TakePlayerToStartPosition": {
-                "Priority": 3
+            "CollisionPushBackSystem": {
+                "Priority": 5
             }
         },
         {
@@ -2808,8 +2949,8 @@
             }
         },
         {
-            "CreateStage": {
-                "Priority": 2
+            "PlayerSpeedFor3dUI": {
+                "Priority": 0
             }
         },
         {
@@ -2818,18 +2959,13 @@
             }
         },
         {
-            "PlayerSpeedFor3dUI": {
+            "PenaltySystem": {
                 "Priority": 0
             }
         },
         {
             "DistortionEffect": {
                 "Priority": 1
-            }
-        },
-        {
-            "PenaltySystem": {
-                "Priority": 0
             }
         },
         {
@@ -2863,8 +2999,13 @@
             }
         },
         {
-            "LookAtFromTransformsSystem": {
-                "Priority": 3
+            "SubSceneActivateByButton": {
+                "Priority": 0
+            }
+        },
+        {
+            "TakeToGoalPosition": {
+                "Priority": 1
             }
         },
         {
@@ -2883,18 +3024,13 @@
             }
         },
         {
-            "SubSceneActivateByButton": {
-                "Priority": 0
+            "LookAtFromTransformsSystem": {
+                "Priority": 3
             }
         },
         {
-            "TakeToGoalPosition": {
-                "Priority": 1
-            }
-        },
-        {
-            "MaterialAnimationWorkSystem": {
-                "Priority": 0
+            "StartTimerInitialize": {
+                "Priority": 3
             }
         },
         {
@@ -2903,8 +3039,8 @@
             }
         },
         {
-            "StartTimerInitialize": {
-                "Priority": 3
+            "MaterialAnimationWorkSystem": {
+                "Priority": 0
             }
         },
         {
@@ -2918,17 +3054,22 @@
             }
         },
         {
-            "OverlayRenderSystem": {
-                "Priority": 10
-            }
-        },
-        {
             "ResolveEntityReferences": {
                 "Priority": 0
             }
         },
         {
+            "OverlayRenderSystem": {
+                "Priority": 10
+            }
+        },
+        {
             "PenaltyTimeSpriteUpdate": {
+                "Priority": 0
+            }
+        },
+        {
+            "TexturedMeshRenderSystem": {
                 "Priority": 0
             }
         },
@@ -2938,23 +3079,18 @@
             }
         },
         {
-            "TexturedMeshRenderSystem": {
-                "Priority": 0
-            }
-        },
-        {
             "PlayerOnCollision": {
                 "Priority": 10
             }
         },
         {
-            "PlayerPathSplineGenerator": {
-                "Priority": 100
+            "SkeletonRenderSystem": {
+                "Priority": 0
             }
         },
         {
-            "SkeletonRenderSystem": {
-                "Priority": 0
+            "PlayerPathSplineGenerator": {
+                "Priority": 100
             }
         },
         {
@@ -2973,11 +3109,6 @@
             }
         },
         {
-            "TrailEffectInitialize": {
-                "Priority": 100
-            }
-        },
-        {
             "SceneTransition": {
                 "Priority": 0
             }
@@ -2988,6 +3119,11 @@
             }
         },
         {
+            "SpriteAnimationSystem": {
+                "Priority": 1
+            }
+        },
+        {
             "VelocityRenderingSystem": {
                 "Priority": 0
             }
@@ -2995,11 +3131,6 @@
         {
             "SettingGameCameraTarget": {
                 "Priority": 5
-            }
-        },
-        {
-            "SpriteAnimationSystem": {
-                "Priority": 1
             }
         },
         {

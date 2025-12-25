@@ -51,25 +51,7 @@
                     {
                         "effectType": 1,
                         "handle": {
-                            "uuid": "00000000-0000-0000-0000-000000000000"
-                        }
-                    },
-                    {
-                        "effectType": 1,
-                        "handle": {
-                            "uuid": "00000000-0000-0000-0000-000000000000"
-                        }
-                    },
-                    {
-                        "effectType": 1,
-                        "handle": {
-                            "uuid": "ce60e708-89e6-4eb2-b0a3-94e5def385f4"
-                        }
-                    },
-                    {
-                        "effectType": 1,
-                        "handle": {
-                            "uuid": "ce60e708-89e6-4eb2-b0a3-94e5def385f4"
+                            "uuid": "d6b00b02-5812-4d6a-936b-68c6cce952ad"
                         }
                     }
                 ],

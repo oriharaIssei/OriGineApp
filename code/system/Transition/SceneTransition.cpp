@@ -49,7 +49,7 @@ void SceneTransition::Update() {
     // シーンに入るエフェクトの更新
     if (enterScene_) {
         EntityHandle enterSceneEntityHandle = GetUniqueEntity("EnterScene");
-        if (enterSceneEntityHandle.IsValid()) {
+        if (!enterSceneEntityHandle.IsValid()) {
             enterScene_ = false;
             return;
         }
@@ -141,7 +141,7 @@ void SceneTransition::ExitSceneUpdate() {
         exitScene_             = false;
 
         // シーン変更を実行
-        SceneChanger* sceneChanger          = GetComponent<SceneChanger>(sceneChangerComponentHandle_);
+        SceneChanger* sceneChanger = GetComponent<SceneChanger>(sceneChangerComponentHandle_);
         GetScene()->GetSceneManager()->ChangeScene(sceneChanger->GetNextSceneName());
     }
 

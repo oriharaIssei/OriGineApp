@@ -14,6 +14,7 @@
             "Components": {
                 "Button": [
                     {
+                        "Handle": "52bba0e0-1b33-4714-a051-c92937a81492",
                         "hoverColor": [
                             1.0,
                             1.0,
@@ -44,6 +45,7 @@
                 ],
                 "SpriteRenderer": [
                     {
+                        "Handle": "5e73dd67-13f9-4bb5-a4e6-1d26e2d689e2",
                         "anchorPoint": [
                             0.5,
                             0.5
@@ -55,8 +57,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1392.0,
-                            753.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -68,8 +70,8 @@
                             1.5299999713897705
                         ],
                         "size": [
-                            185.60000610351563,
-                            22.311111450195313
+                            170.6666717529297,
+                            21.333332061767578
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -81,8 +83,8 @@
                             64.0
                         ],
                         "translate": [
-                            1155.3599853515625,
-                            572.2799682617188
+                            1062.4000244140625,
+                            547.2000122070313
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -132,6 +134,7 @@
             "Components": {
                 "Button": [
                     {
+                        "Handle": "eaea9a17-0b6a-4ba9-9cae-501c4fe36532",
                         "hoverColor": [
                             0.800000011920929,
                             0.800000011920929,
@@ -162,11 +165,13 @@
                 ],
                 "SceneChanger": [
                     {
+                        "Handle": "19bce330-7b24-420a-bdd3-9e0cedfb713c",
                         "nextSceneName": "StageSelect"
                     }
                 ],
                 "SpriteRenderer": [
                     {
+                        "Handle": "5a238f17-3f83-45e8-8155-86e3a65c1081",
                         "anchorPoint": [
                             0.5,
                             0.5
@@ -178,8 +183,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1392.0,
-                            753.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -191,8 +196,8 @@
                             1.5299999713897705
                         ],
                         "size": [
-                            185.60000610351563,
-                            22.311111450195313
+                            170.6666717529297,
+                            21.333332061767578
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -204,8 +209,8 @@
                             64.0
                         ],
                         "translate": [
-                            1155.3599853515625,
-                            617.4600219726563
+                            1062.4000244140625,
+                            590.4000244140625
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -237,12 +242,12 @@
                     "SystemName": "SceneTransitionRequestSenderSystem"
                 },
                 {
-                    "SystemCategory": 1,
-                    "SystemName": "ButtonInputSystem"
-                },
-                {
                     "SystemCategory": 2,
                     "SystemName": "ChangeSceneByButton"
+                },
+                {
+                    "SystemCategory": 1,
+                    "SystemName": "ButtonInputSystem"
                 },
                 {
                     "SystemCategory": 7,
@@ -263,6 +268,7 @@
             "Components": {
                 "SpriteRenderer": [
                     {
+                        "Handle": "cf1dc712-3e5f-4e23-9fc8-70f9a8b52fa4",
                         "anchorPoint": [
                             0.5,
                             0.5
@@ -274,8 +280,8 @@
                             0.12941177189350128
                         ],
                         "defaultWindowSize": [
-                            1392.0,
-                            753.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -287,8 +293,8 @@
                             1.0
                         ],
                         "size": [
-                            1392.0,
-                            753.0
+                            1280.0,
+                            720.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -300,8 +306,8 @@
                             1.0
                         ],
                         "translate": [
-                            696.0,
-                            376.5
+                            640.0,
+                            360.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -339,6 +345,7 @@
             "Components": {
                 "MouseCondition": [
                     {
+                        "Handle": "5158e61b-4b09-46b8-b65e-e9abf2607404",
                         "fixCursorPos": [
                             0.0,
                             0.0
@@ -365,7 +372,21 @@
             "Components": {
                 "ButtonGroup": [
                     {
-                        "buttonNumbers": [],
+                        "Handle": "8b943c0d-dc63-46fe-a6b7-b77788ae50f4",
+                        "buttonNumbers": [
+                            {
+                                "buttonNumber": 0,
+                                "entityHandle": {
+                                    "uuid": "b77544cd-66e6-471b-bd7d-8a7ca3957016"
+                                }
+                            },
+                            {
+                                "buttonNumber": 1,
+                                "entityHandle": {
+                                    "uuid": "2585560b-2406-48c6-8cdf-900fddc28370"
+                                }
+                            }
+                        ],
                         "decideKeys": [
                             28,
                             57
@@ -416,6 +437,7 @@
             "Components": {
                 "SpriteRenderer": [
                     {
+                        "Handle": "a66d39f6-8781-460a-8fa1-2b581bff8a48",
                         "anchorPoint": [
                             0.5,
                             0.5
@@ -427,8 +449,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1392.0,
-                            753.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -440,8 +462,8 @@
                             1.3600000143051147
                         ],
                         "size": [
-                            371.20001220703125,
-                            264.9444580078125
+                            341.3333435058594,
+                            253.3333282470703
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -453,8 +475,8 @@
                             190.0
                         ],
                         "translate": [
-                            696.0,
-                            376.5
+                            640.0,
+                            360.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -475,6 +497,7 @@
                         ]
                     },
                     {
+                        "Handle": "08f9dd98-fc23-4e94-88ce-4f7fea8ce2ce",
                         "anchorPoint": [
                             0.5,
                             0.5
@@ -486,8 +509,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1392.0,
-                            753.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -499,8 +522,8 @@
                             1.3600000143051147
                         ],
                         "size": [
-                            371.20001220703125,
-                            264.9444580078125
+                            341.3333435058594,
+                            253.3333282470703
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -512,8 +535,8 @@
                             190.0
                         ],
                         "translate": [
-                            696.0,
-                            376.5
+                            640.0,
+                            360.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -574,12 +597,12 @@
             }
         },
         {
-            "ButtonInputSystem": {
+            "ChangeSceneByButton": {
                 "Priority": 0
             }
         },
         {
-            "ChangeSceneByButton": {
+            "ButtonInputSystem": {
                 "Priority": 0
             }
         },

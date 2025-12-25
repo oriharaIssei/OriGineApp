@@ -81,12 +81,6 @@
                         "handle": {
                             "uuid": "d6b00b02-5812-4d6a-936b-68c6cce952ad"
                         }
-                    },
-                    {
-                        "effectType": 1,
-                        "handle": {
-                            "uuid": "d6b00b02-5812-4d6a-936b-68c6cce952ad"
-                        }
                     }
                 ],
                 "isActive": true,

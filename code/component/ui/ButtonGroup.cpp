@@ -46,13 +46,13 @@ void ButtonGroup::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]]
         for (const auto& slot : allButtons) {
             // ボタンコンポーネントが存在しない場合はスキップ
             OriGine::Entity* buttonEntity = _scene->GetEntityRepositoryRef()->GetEntity(slot.owner);
-            if (!buttonEntity || componentArray->HasEntity(slot.owner)) {
+            if (!buttonEntity || !componentArray->HasEntity(slot.owner)) {
                 continue;
             }
 
             buttonNumbers_[buttonIndex] = slot.owner;
 
-            ImGui::Text("EntityID [%s] :", uuids::to_string(slot.owner.uuid).c_str());
+            ImGui::Text("EntityName [%s] :", buttonEntity->GetUniqueID().c_str());
             ImGui::SameLine();
             ImGui::Text("Button No. %d ", buttonIndex);
             ++buttonIndex;
@@ -167,8 +167,7 @@ void ButtonGroup::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]]
 #endif // _DEBUG
 }
 
-void ButtonGroup::Finalize() {
-}
+void ButtonGroup::Finalize() {}
 
 void to_json(nlohmann::json& j, const ButtonGroup& r) {
     j["startButtonNumber"] = r.startButtonNumber_;
@@ -194,16 +193,16 @@ void from_json(const nlohmann::json& j, ButtonGroup& r) {
     if (j.contains("startButtonNumber")) {
         r.startButtonNumber_ = j.at("startButtonNumber").get<int32_t>();
     }
-    /* if (j.contains("buttonNumbers") && j.at("buttonNumbers").is_array()) {
-         r.buttonNumbers_.clear();
-         for (const auto& buttonNumberJson : j.at("buttonNumbers")) {
-             if (buttonNumberJson.contains("entityID") && buttonNumberJson.contains("buttonNumber")) {
-                 EntityHandle entityID      = buttonNumberJson.at("entityHandle").get<EntityHandle>();
-                 int32_t buttonNumber       = buttonNumberJson.at("buttonNumber").get<int32_t>();
-                 r.buttonNumbers_[buttonNumber] = entityID;
-             }
-         }
-     }*/
+    if (j.contains("buttonNumbers") && j.at("buttonNumbers").is_array()) {
+        r.buttonNumbers_.clear();
+        for (const auto& buttonNumberJson : j.at("buttonNumbers")) {
+            if (buttonNumberJson.contains("entityHandle") && buttonNumberJson.contains("buttonNumber")) {
+                EntityHandle entityID          = buttonNumberJson.at("entityHandle").get<EntityHandle>();
+                int32_t buttonNumber           = buttonNumberJson.at("buttonNumber").get<int32_t>();
+                r.buttonNumbers_[buttonNumber] = entityID;
+            }
+        }
+    }
     if (j.contains("selectAddKeys") && j.at("selectAddKeys").is_array()) {
         r.selectAddKeys_.clear();
         for (const auto& key : j.at("selectAddKeys")) {

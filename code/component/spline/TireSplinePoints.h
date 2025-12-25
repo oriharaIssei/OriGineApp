@@ -49,7 +49,8 @@ public:
     float thresholdBankAngle = 0.f; // この角度を超えたらバンクとして、効果を適用する
     float minBankFactor      = 1.0f;
     float maxBankFactor      = 1.0f;
-    float groundedFactor     = 1.0f;
+    float groundedFactor     = 1.0f; // 着地時の効果倍率
+    float gearupFactor       = 1.0f; // ギアアップ時の効果倍率
 
     std::deque<ControlPoint> points;
 

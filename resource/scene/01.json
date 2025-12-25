@@ -7255,11 +7255,6 @@
             }
         },
         {
-            "BackFireInitialize": {
-                "Priority": 1
-            }
-        },
-        {
             "CameraInitialize": {
                 "Priority": 1
             }
@@ -7490,11 +7485,6 @@
             }
         },
         {
-            "TrailEffectInitialize": {
-                "Priority": 100
-            }
-        },
-        {
             "RegisterWindowResizeEvent": {
                 "Priority": 0
             }
@@ -7550,12 +7540,17 @@
             }
         },
         {
+            "TakeToGoalPosition": {
+                "Priority": 1
+            }
+        },
+        {
             "SubSceneActivateByButton": {
                 "Priority": 0
             }
         },
         {
-            "TakeToGoalPosition": {
+            "StartSequenceSystem": {
                 "Priority": 1
             }
         },
@@ -7567,11 +7562,6 @@
         {
             "SubSceneRender": {
                 "Priority": 10
-            }
-        },
-        {
-            "StartSequenceSystem": {
-                "Priority": 1
             }
         },
         {
@@ -7642,6 +7632,11 @@
         {
             "EffectAutoDestroySystem": {
                 "Priority": 0
+            }
+        },
+        {
+            "BackFireInitialize": {
+                "Priority": 1
             }
         }
     ]

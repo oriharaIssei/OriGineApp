@@ -53,7 +53,6 @@
 #include "system/initialize/StartTimerInitialize.h"
 #include "system/initialize/TakePlayerToStartPosition.h"
 #include "system/initialize/TakeToGoalPosition.h"
-#include "system/initialize/TrailEffectInitialize.h"
 #include "system/Initialize/Ui3dObjectInitialize.h"
 #include "system/input/ButtonInputSystem.h"
 #include "system/input/CameraInputSystem.h"
@@ -208,7 +207,6 @@ void RegisterUsingSystems() {
 
     systemRegistry->RegisterSystem<StartTimerInitialize>();
 
-    systemRegistry->RegisterSystem<TrailEffectInitialize>();
     systemRegistry->RegisterSystem<BackFireInitialize>();
 
     systemRegistry->RegisterSystem<SelectPreviewSceneInitialize>();

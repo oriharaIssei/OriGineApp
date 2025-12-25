@@ -255,18 +255,6 @@
                         "handle": {
                             "uuid": "3f8575ac-ee57-41c5-a7c0-9cf5a55e648f"
                         }
-                    },
-                    {
-                        "effectType": 0,
-                        "handle": {
-                            "uuid": "18f872e5-06af-45b2-98f3-f1f8de67bb81"
-                        }
-                    },
-                    {
-                        "effectType": 2,
-                        "handle": {
-                            "uuid": "3f8575ac-ee57-41c5-a7c0-9cf5a55e648f"
-                        }
                     }
                 ],
                 "isActive": true,

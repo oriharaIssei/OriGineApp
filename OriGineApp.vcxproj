@@ -190,7 +190,6 @@
     <ClInclude Include="code\system\Initialize\StartTimerInitialize.h" />
     <ClInclude Include="code\system\Initialize\TakePlayerToStartPosition.h" />
     <ClInclude Include="code\system\Initialize\TakeToGoalPosition.h" />
-    <ClInclude Include="code\system\Initialize\TrailEffectInitialize.h" />
     <ClInclude Include="code\system\Initialize\Ui3dObjectInitialize.h" />
     <ClInclude Include="code\system\Input\ButtonInputSystem.h" />
     <ClInclude Include="code\system\Input\CameraInputSystem.h" />
@@ -289,7 +288,6 @@
     <ClCompile Include="code\system\Initialize\StartTimerInitialize.cpp" />
     <ClCompile Include="code\system\Initialize\TakePlayerToStartPosition.cpp" />
     <ClCompile Include="code\system\Initialize\TakeToGoalPosition.cpp" />
-    <ClCompile Include="code\system\Initialize\TrailEffectInitialize.cpp" />
     <ClCompile Include="code\system\Initialize\Ui3dObjectInitialize.cpp" />
     <ClCompile Include="code\system\Input\ButtonInputSystem.cpp" />
     <ClCompile Include="code\system\Input\CameraInputSystem.cpp" />

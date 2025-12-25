@@ -57,7 +57,7 @@ void ButtonGroupSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     }
 
     bool isPressed  = currentButton->isPressed();
-    bool IsReleased = currentButton->IsReleased();
+    bool isReleased = currentButton->IsReleased();
 
     // 決定ボタンの判定
     // pad が有効な場合は pad 優先
@@ -70,13 +70,13 @@ void ButtonGroupSystem::UpdateEntity(OriGine::EntityHandle _handle) {
                 }
             } else {
                 if (gamePadInput->IsRelease(button)) {
-                    IsReleased = true;
+                    isReleased = true;
                     break;
                 }
             }
         }
     }
-    if (!IsReleased) {
+    if (!isReleased) {
         for (const auto& key : buttonGroup->GetDecideKeys()) {
             if (isPressed) {
                 if (keyInput->IsPress(key)) {
@@ -85,7 +85,7 @@ void ButtonGroupSystem::UpdateEntity(OriGine::EntityHandle _handle) {
                 }
             } else {
                 if (keyInput->IsTrigger(key)) {
-                    IsReleased = true;
+                    isReleased = true;
                     break;
                 }
             }
@@ -93,9 +93,9 @@ void ButtonGroupSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     }
 
     currentButton->SetPressed(isPressed);
-    currentButton->SetReleased(IsReleased);
+    currentButton->SetReleased(isReleased);
 
-    if (IsReleased) {
+    if (isReleased) {
         return;
     }
 

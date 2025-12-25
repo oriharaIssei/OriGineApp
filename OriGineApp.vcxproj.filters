@@ -156,9 +156,6 @@
     <ClInclude Include="code\manager\PlayerProgressStore.h">
       <Filter>manager</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Initialize\BackFireInitialize.h">
-      <Filter>system\Initialize</Filter>
-    </ClInclude>
     <ClInclude Include="code\system\Initialize\CreatePlaneFromSpeed.h">
       <Filter>system\Initialize</Filter>
     </ClInclude>
@@ -190,9 +187,6 @@
       <Filter>system\Initialize</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Initialize\TakeToGoalPosition.h">
-      <Filter>system\Initialize</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Initialize\TrailEffectInitialize.h">
       <Filter>system\Initialize</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Initialize\Ui3dObjectInitialize.h">
@@ -345,6 +339,7 @@
     <ClInclude Include="code\system\effect\TimerForSprite.h">
       <Filter>system\effect</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Initialize\BackFireInitialize.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -441,9 +436,6 @@
     <ClCompile Include="code\manager\PlayerProgressStore.cpp">
       <Filter>manager</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Initialize\BackFireInitialize.cpp">
-      <Filter>system\Initialize</Filter>
-    </ClCompile>
     <ClCompile Include="code\system\Initialize\CreatePlaneFromSpeed.cpp">
       <Filter>system\Initialize</Filter>
     </ClCompile>
@@ -475,9 +467,6 @@
       <Filter>system\Initialize</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Initialize\TakeToGoalPosition.cpp">
-      <Filter>system\Initialize</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Initialize\TrailEffectInitialize.cpp">
       <Filter>system\Initialize</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Initialize\Ui3dObjectInitialize.cpp">
@@ -630,5 +619,6 @@
     <ClCompile Include="code\system\effect\TimerForSprite.cpp">
       <Filter>system\effect</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\Initialize\BackFireInitialize.cpp" />
   </ItemGroup>
 </Project>
