@@ -12,9 +12,9 @@
 
 using namespace OriGine;
 
-void ButtonGroup::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {}
+void ButtonGroup::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {}
 
-void ButtonGroup::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]] OriGine::Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
+void ButtonGroup::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]] EntityHandle _owner, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
     auto componentArray = _scene->GetComponentRepositoryRef()->GetComponentArray<Button>();
     if (!componentArray) {
@@ -22,7 +22,7 @@ void ButtonGroup::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]]
         return;
     }
 
-    auto& allButtons = componentArray->GetAllComponents();
+    auto& allButtons = componentArray->GetSlots();
     if (allButtons.empty()) {
         if (!buttonNumbers_.empty()) {
             buttonNumbers_.clear();
@@ -42,21 +42,17 @@ void ButtonGroup::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]]
     std::string label = "ButtonNumbers##" + _parentLabel;
     if (ImGui::TreeNode(label.c_str())) {
         buttonNumbers_.clear();
-        int32_t buttonIndex            = 0;
-        const auto& buttonBindEntityId = componentArray->GetEntityIndexBind();
-        for (const auto& [id, index] : buttonBindEntityId) {
-            if (id < 0) {
-                continue;
-            }
+        int32_t buttonIndex = 0;
+        for (const auto& slot : allButtons) {
             // ボタンコンポーネントが存在しない場合はスキップ
-            OriGine::Entity* buttonEntity = _scene->GetEntityRepositoryRef()->GetEntity(id);
-            if (!buttonEntity || !componentArray->GetComponents(buttonEntity)) {
+            OriGine::Entity* buttonEntity = _scene->GetEntityRepositoryRef()->GetEntity(slot.owner);
+            if (!buttonEntity || !componentArray->HasEntity(slot.owner)) {
                 continue;
             }
 
-            buttonNumbers_[buttonIndex] = id;
+            buttonNumbers_[buttonIndex] = slot.owner;
 
-            ImGui::Text("EntityID [%d] :", id);
+            ImGui::Text("EntityName [%s] :", buttonEntity->GetUniqueID().c_str());
             ImGui::SameLine();
             ImGui::Text("Button No. %d ", buttonIndex);
             ++buttonIndex;
@@ -171,8 +167,7 @@ void ButtonGroup::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]]
 #endif // _DEBUG
 }
 
-void ButtonGroup::Finalize() {
-}
+void ButtonGroup::Finalize() {}
 
 void to_json(nlohmann::json& j, const ButtonGroup& r) {
     j["startButtonNumber"] = r.startButtonNumber_;
@@ -180,8 +175,8 @@ void to_json(nlohmann::json& j, const ButtonGroup& r) {
     nlohmann::json buttonNumbersJson = nlohmann::json::array();
     for (auto& buttonNumber : r.buttonNumbers_) {
         nlohmann::json buttonNumberJson;
-        buttonNumberJson["entityID"]     = buttonNumber.first;
-        buttonNumberJson["buttonNumber"] = buttonNumber.second;
+        buttonNumberJson["buttonNumber"] = buttonNumber.first;
+        buttonNumberJson["entityHandle"] = buttonNumber.second;
         buttonNumbersJson.push_back(buttonNumberJson);
     }
     j["buttonNumbers"] = buttonNumbersJson;
@@ -201,10 +196,10 @@ void from_json(const nlohmann::json& j, ButtonGroup& r) {
     if (j.contains("buttonNumbers") && j.at("buttonNumbers").is_array()) {
         r.buttonNumbers_.clear();
         for (const auto& buttonNumberJson : j.at("buttonNumbers")) {
-            if (buttonNumberJson.contains("entityID") && buttonNumberJson.contains("buttonNumber")) {
-                int32_t entityID           = buttonNumberJson.at("entityID").get<int32_t>();
-                int32_t buttonNumber       = buttonNumberJson.at("buttonNumber").get<int32_t>();
-                r.buttonNumbers_[entityID] = buttonNumber;
+            if (buttonNumberJson.contains("entityHandle") && buttonNumberJson.contains("buttonNumber")) {
+                EntityHandle entityID          = buttonNumberJson.at("entityHandle").get<EntityHandle>();
+                int32_t buttonNumber           = buttonNumberJson.at("buttonNumber").get<int32_t>();
+                r.buttonNumbers_[buttonNumber] = entityID;
             }
         }
     }

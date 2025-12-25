@@ -4,19 +4,21 @@
 // component
 #include "component/transform/Transform.h"
 
-TakeToGoalPosition::TakeToGoalPosition() : ISystem(OriGine::SystemCategory::Initialize) {}
+using namespace OriGine;
+
+TakeToGoalPosition::TakeToGoalPosition() : ISystem(SystemCategory::Initialize) {}
 TakeToGoalPosition::~TakeToGoalPosition() {}
 
 void TakeToGoalPosition::Initialize() {}
 void TakeToGoalPosition::Finalize() {}
 
-void TakeToGoalPosition::UpdateEntity(OriGine::Entity* _entity) {
-    OriGine::Transform* transform = GetComponent<OriGine::Transform>(_entity);
+void TakeToGoalPosition::UpdateEntity(EntityHandle _handle) {
+    Transform* transform = GetComponent<Transform>(_handle);
 
-    OriGine::Entity* goalPositionEntity = GetUniqueEntity("GoalPosition");
-    if (goalPositionEntity) {
-        OriGine::Transform* goalPos = GetComponent<OriGine::Transform>(goalPositionEntity);
+    EntityHandle goalPositionEntityHandle = GetUniqueEntity("GoalPosition");
+    Transform* goalPos                    = GetComponent<OriGine::Transform>(goalPositionEntityHandle);
 
+    if (goalPos) {
         transform->translate = goalPos->GetWorldTranslate();
         transform->UpdateMatrix();
     }

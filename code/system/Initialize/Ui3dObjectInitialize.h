@@ -24,5 +24,5 @@ protected:
     /// エンティティ更新
     /// </summary>
     /// <param name="_entity">エンティティ</param>
-    void UpdateEntity(OriGine::Entity* _entity) override;
+    void UpdateEntity(OriGine::EntityHandle _handle) override;
 };

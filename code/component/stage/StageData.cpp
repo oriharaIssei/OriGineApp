@@ -4,11 +4,13 @@
 #include "myGui/MyGui.h"
 #endif // DEBUG
 
-void StageData::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {}
+using namespace OriGine;
+
+void StageData::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {}
 
 void StageData::Finalize() {}
 
-void StageData::Edit(OriGine::Scene* /*_scene*/, OriGine::Entity* /*_OriGine::Entity*/, [[maybe_unused]] const std::string& _parentLabel) {
+void StageData::Edit(Scene* /*_scene*/, EntityHandle /*_OriGine::Entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef DEBUG
     InputGuiCommand("StageNumber##" + _parentLabel, stageNumber_, "%d");
     InputGuiCommand("Difficulty##" + _parentLabel, difficulty_, "%d");

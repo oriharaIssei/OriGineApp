@@ -28,18 +28,18 @@ void PlayerUpdateOnTitle::Finalize() {
     // 特に終了処理は不要
 }
 
-void PlayerUpdateOnTitle::UpdateEntity(OriGine::Entity* _entity) {
-    auto* playerInput = GetComponent<PlayerInput>(_entity);
+void PlayerUpdateOnTitle::UpdateEntity(OriGine::EntityHandle _handle) {
+    auto* playerInput = GetComponent<PlayerInput>(_handle);
     if (playerInput == nullptr) {
         LOG_ERROR("PlayerInput component is missing.");
         return;
     }
-    auto* playerState = GetComponent<PlayerState>(_entity);
+    auto* playerState = GetComponent<PlayerState>(_handle);
     if (playerState == nullptr) {
         LOG_ERROR("PlayerState component is missing.");
         return;
     }
-    auto* playerStatus = GetComponent<PlayerStatus>(_entity);
+    auto* playerStatus = GetComponent<PlayerStatus>(_handle);
     if (playerStatus == nullptr) {
         LOG_ERROR("PlayerStatus component is missing.");
         return;
@@ -56,8 +56,8 @@ void PlayerUpdateOnTitle::UpdateEntity(OriGine::Entity* _entity) {
 
     // 更新処理 ほぼ PlayerDashState と同じ
     float deltaTime = GetMainDeltaTime();
-    auto* transform = GetComponent<OriGine::Transform>(_entity);
-    auto* rigidbody = GetComponent<Rigidbody>(_entity);
+    auto* transform = GetComponent<OriGine::Transform>(_handle);
+    auto* rigidbody = GetComponent<Rigidbody>(_handle);
 
     playerStatus->minusGearUpCoolTime(deltaTime);
 

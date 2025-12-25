@@ -2,6 +2,7 @@
     "Components": {
         "Material": [
             {
+                "Handle": "31ee950a-fa70-42f5-9871-ac4bd5ceb67f",
                 "color": [
                     1.0,
                     1.0,
@@ -28,6 +29,7 @@
         ],
         "PlaneRenderer": [
             {
+                "Handle": "10b0db35-94fc-4292-b374-9febdf01ce94",
                 "blendMode": 1,
                 "isCulling": false,
                 "isRenderer": false,
@@ -55,6 +57,7 @@
         ],
         "TireSplinePoints": [
             {
+                "Handle": "144c1143-8d09-4db2-9cf9-68fee9b79091",
                 "capacity": 86,
                 "endUv": [
                     1.0,
@@ -85,6 +88,7 @@
         ],
         "Transform": [
             {
+                "Handle": "d1093222-a95e-42d5-9b3d-d01ef0c9c933",
                 "rotate": [
                     0.0,
                     0.0,
@@ -103,6 +107,9 @@
                 ]
             }
         ]
+    },
+    "Handle": {
+        "uuid": "8226629c-2b0f-412e-8186-1cbb1dcdb446"
     },
     "Name": "PlayerTireTrail",
     "Systems": [

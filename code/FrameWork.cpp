@@ -24,7 +24,6 @@
 #include "component/spline/SplinePoints.h"
 #include "component/spline/TireSplinePoints.h"
 #include "component/stage/StageData.h"
-#include "component/stage/StageObstacle.h"
 #include "component/TimerComponent.h"
 #include "component/ui/Button.h"
 #include "component/ui/ButtonGroup.h"
@@ -45,7 +44,6 @@
 #include "system/initialize/BackFireInitialize.h"
 #include "system/Initialize/CreatePlaneFromSpeed.h"
 #include "system/initialize/CreateSpriteFromTimer.h"
-#include "system/initialize/CreateStage.h"
 #include "system/initialize/GetClearTime.h"
 #include "system/Initialize/GhostInitializeSystem.h"
 #include "system/Initialize/InitializeMouseCondition.h"
@@ -55,7 +53,6 @@
 #include "system/initialize/StartTimerInitialize.h"
 #include "system/initialize/TakePlayerToStartPosition.h"
 #include "system/initialize/TakeToGoalPosition.h"
-#include "system/initialize/TrailEffectInitialize.h"
 #include "system/Initialize/Ui3dObjectInitialize.h"
 #include "system/input/ButtonInputSystem.h"
 #include "system/input/CameraInputSystem.h"
@@ -119,12 +116,11 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<SubScene>();
 
     componentRegistry->RegisterComponent<CameraTransform>();
-    componentRegistry->RegisterComponent<OriGine::Transform>();
+    componentRegistry->RegisterComponent<Transform>();
 
     componentRegistry->RegisterComponent<LookAtFromTransforms>();
 
     componentRegistry->RegisterComponent<StageData>();
-    componentRegistry->RegisterComponent<StageObstacle>();
 
     componentRegistry->RegisterComponent<SplinePoints>();
     componentRegistry->RegisterComponent<TireSplinePoints>();
@@ -141,6 +137,7 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<ModelNodeAnimation>();
     componentRegistry->RegisterComponent<PrimitiveNodeAnimation>();
     componentRegistry->RegisterComponent<TransformAnimation>();
+    componentRegistry->RegisterComponent<DissolveAnimation>();
     componentRegistry->RegisterComponent<SkinningAnimationComponent>();
     componentRegistry->RegisterComponent<SpriteAnimation>();
     componentRegistry->RegisterComponent<MaterialAnimation>();
@@ -164,7 +161,7 @@ void RegisterUsingComponents() {
 
     componentRegistry->RegisterComponent<ModelMeshRenderer>();
     componentRegistry->RegisterComponent<LineRenderer>();
-    componentRegistry->RegisterComponent<OriGine::PlaneRenderer>();
+    componentRegistry->RegisterComponent<PlaneRenderer>();
     componentRegistry->RegisterComponent<RingRenderer>();
     componentRegistry->RegisterComponent<BoxRenderer>();
     componentRegistry->RegisterComponent<SphereRenderer>();
@@ -201,7 +198,6 @@ void RegisterUsingSystems() {
     /// ====================================================================================================
     systemRegistry->RegisterSystem<SettingGameCameraTarget>();
     systemRegistry->RegisterSystem<GpuParticleInitialize>();
-    systemRegistry->RegisterSystem<CreateStage>();
     systemRegistry->RegisterSystem<ResolveEntityReferences>();
     systemRegistry->RegisterSystem<CreateSpriteFromTimer>();
     systemRegistry->RegisterSystem<Ui3dObjectInitialize>();
@@ -212,7 +208,6 @@ void RegisterUsingSystems() {
 
     systemRegistry->RegisterSystem<StartTimerInitialize>();
 
-    systemRegistry->RegisterSystem<TrailEffectInitialize>();
     systemRegistry->RegisterSystem<BackFireInitialize>();
 
     systemRegistry->RegisterSystem<SelectPreviewSceneInitialize>();
@@ -312,6 +307,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<MaterialAnimationWorkSystem>();
     systemRegistry->RegisterSystem<CameraActionSystem>();
     systemRegistry->RegisterSystem<TransformAnimationWorkSystem>();
+    systemRegistry->RegisterSystem<DissolveAnimationSystem>();
 
     systemRegistry->RegisterSystem<CameraShake>();
 

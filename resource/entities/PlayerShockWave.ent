@@ -2,6 +2,7 @@
     "Components": {
         "DistortionEffectParam": [
             {
+                "Handle": "a0a783bf-d4b8-4ea6-8ad6-861fbab3cb69",
                 "distortionBias": [
                     0.0,
                     0.0
@@ -16,8 +17,7 @@
                             "isCulling": true,
                             "isRenderer": true,
                             "materialIndex": 0,
-                            "textureDirectory": "./application/resource/Texture",
-                            "textureFileName": "waveNoise.png",
+                            "textureFilePath": "./application/resource/Texture/waveNoise.png",
                             "transform": {
                                 "rotate": [
                                     0.0,
@@ -32,7 +32,7 @@
                                 ],
                                 "translate": [
                                     0.0,
-                                    -1000.0,
+                                    -10000.0,
                                     0.0
                                 ]
                             }
@@ -51,6 +51,7 @@
         ],
         "Material": [
             {
+                "Handle": "8173b945-d815-4b31-abaf-401808febfda",
                 "color": [
                     1.0,
                     1.0,
@@ -77,6 +78,7 @@
         ],
         "Transform": [
             {
+                "Handle": "9976daa7-2170-4601-aeb4-fd923b427514",
                 "rotate": [
                     -0.0,
                     0.0,
@@ -95,6 +97,9 @@
                 ]
             }
         ]
+    },
+    "Handle": {
+        "uuid": "61e5895d-f89e-4d21-9949-4972b4094911"
     },
     "Name": "PlayerShockWave",
     "Systems": [

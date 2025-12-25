@@ -15,32 +15,29 @@
 
 using namespace OriGine;
 
-PlayerPathSplineGenerator::PlayerPathSplineGenerator() : ISystem(OriGine::SystemCategory::Movement) {}
+PlayerPathSplineGenerator::PlayerPathSplineGenerator() : ISystem(SystemCategory::Movement) {}
 PlayerPathSplineGenerator::~PlayerPathSplineGenerator() {}
 
 void PlayerPathSplineGenerator::Initialize() {}
 void PlayerPathSplineGenerator::Finalize() {}
 
-void PlayerPathSplineGenerator::UpdateEntity(OriGine::Entity* _entity) {
+void PlayerPathSplineGenerator::UpdateEntity(EntityHandle _handle) {
     constexpr float kThresholdSplitOrMerger = 0.3f;
 
-    auto splinePoints = GetComponent<SplinePoints>(_entity);
+    auto* splinePoints = GetComponent<SplinePoints>(_handle);
     if (splinePoints == nullptr) {
         return;
     }
 
-    auto playerEntity = GetUniqueEntity("Player");
-    if (playerEntity == nullptr) {
-        return;
-    }
-    auto playerTransform = GetComponent<OriGine::Transform>(playerEntity);
+    auto playerEntityHandle = GetUniqueEntity("Player");
+    auto playerTransform    = GetComponent<Transform>(playerEntityHandle);
     if (playerTransform == nullptr) {
         return;
     }
 
     // 速度が 0以上ならポイント追加処理
     constexpr float kFadeOutThresholdSpeed = 8.f;
-    Rigidbody* rigidBody                   = GetComponent<Rigidbody>(playerEntity);
+    Rigidbody* rigidBody                   = GetComponent<Rigidbody>(playerEntityHandle);
     if (rigidBody->GetVelocity().lengthSq() > kFadeOutThresholdSpeed * kFadeOutThresholdSpeed) {
 
         // segmentLength の安全チェック
@@ -48,7 +45,7 @@ void PlayerPathSplineGenerator::UpdateEntity(OriGine::Entity* _entity) {
             return; // 無効な設定
         }
 
-        OriGine::Vec3f newPoint = playerTransform->GetWorldTranslate();
+        Vec3f newPoint = playerTransform->GetWorldTranslate();
 
         // 最低4点確保
         if (splinePoints->points.size() < 4) {
@@ -59,17 +56,17 @@ void PlayerPathSplineGenerator::UpdateEntity(OriGine::Entity* _entity) {
         }
 
         // --- 新しいポイントの追加処理 ---
-        const float segLen              = splinePoints->commonSettings.segmentLength;
-        const OriGine::Vec3f& lastPoint = splinePoints->points.back();
-        OriGine::Vec3f distance         = newPoint - lastPoint;
-        float distLen                   = distance.length();
+        const float segLen     = splinePoints->commonSettings.segmentLength;
+        const Vec3f& lastPoint = splinePoints->points.back();
+        Vec3f distance         = newPoint - lastPoint;
+        float distLen          = distance.length();
 
         if (distLen - segLen >= kThresholdSplitOrMerger) {
-            OriGine::Vec3f direction = distance;
+            Vec3f direction = distance;
             if (distLen > kEpsilon) {
                 direction /= distLen;
             } else {
-                direction = OriGine::Vec3f(0.0f, 0.0f, 0.0f);
+                direction = Vec3f(0.0f, 0.0f, 0.0f);
             }
 
             // 分割して追加
@@ -78,19 +75,19 @@ void PlayerPathSplineGenerator::UpdateEntity(OriGine::Entity* _entity) {
             int32_t segmentsToAdd            = static_cast<int32_t>(distLen / segLen);
             segmentsToAdd                    = (std::min)(segmentsToAdd, kSkipThreshold);
             for (int32_t i = 1; i <= segmentsToAdd; ++i) {
-                OriGine::Vec3f dividedPoint = lastPoint + direction * (segLen * static_cast<float>(i));
+                Vec3f dividedPoint = lastPoint + direction * (segLen * static_cast<float>(i));
                 splinePoints->PushPoint(dividedPoint);
             }
         }
 
         // --- 新しい配列で再構築 ---
-        std::deque<OriGine::Vec3f> newPoints;
+        std::deque<Vec3f> newPoints;
 
         for (int32_t i = 0; i < static_cast<int32_t>(splinePoints->points.size()) - 1; ++i) {
-            OriGine::Vec3f current = splinePoints->points[i];
-            OriGine::Vec3f next    = splinePoints->points[i + 1];
-            OriGine::Vec3f delta   = next - current;
-            float len              = delta.length();
+            Vec3f current = splinePoints->points[i];
+            Vec3f next    = splinePoints->points[i + 1];
+            Vec3f delta   = next - current;
+            float len     = delta.length();
 
             // 現在の点は常に残す
             newPoints.push_back(current);
@@ -99,7 +96,7 @@ void PlayerPathSplineGenerator::UpdateEntity(OriGine::Entity* _entity) {
                 // 長すぎる → 分割
                 int divs = (std::max)(1, static_cast<int>(len / segLen));
 
-                OriGine::Vec3f dir = OriGine::Vec3f(0.0f, 0.0f, 0.0f);
+                Vec3f dir = Vec3f(0.0f, 0.0f, 0.0f);
                 if (len > kEpsilon) {
                     dir = delta / len;
                 }
@@ -109,8 +106,8 @@ void PlayerPathSplineGenerator::UpdateEntity(OriGine::Entity* _entity) {
                 }
             } else if (len - segLen < segLen * kThresholdSplitOrMerger && (i + 1) < static_cast<int>(splinePoints->points.size() - 1)) {
                 // 短すぎる → 統合
-                OriGine::Vec3f merged = (current + next) * 0.5f;
-                newPoints.back()      = merged;
+                Vec3f merged     = (current + next) * 0.5f;
+                newPoints.back() = merged;
                 ++i; // 次をスキップ（統合済み）
             }
         }

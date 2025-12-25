@@ -9,6 +9,7 @@
 #include "system/movement/MoveSystemByRigidBody.h"
 #include "system/movement/PlayerMoveSystem.h"
 #include "system/Movement/ShadowPlaneSyncPlayerPosition.h"
+#include "system/render/SpriteRenderSystem.h"
 #include "system/Transition/ApplyMouseConditionSystem.h"
 #include "system/Transition/ButtonGroupSystem.h"
 #include "system/Transition/TimerCountDown.h"
@@ -31,12 +32,13 @@ void PauseMainSceneSystem::Initialize() {
         nameof<ButtonGroupSystem>(),
         nameof<TimerCountDown>(),
         nameof<ShadowPlaneSyncPlayerPosition>(),
-        nameof<TransitionPlayerState>()};
+        nameof<TransitionPlayerState>(),
+        nameof<SpriteRenderSystem>()};
 }
 void PauseMainSceneSystem::Finalize() {}
 
 void PauseMainSceneSystem::Update() {
-    if (entityIDs_.empty()) {
+    if (entities_.empty()) {
         return;
     }
 
@@ -55,9 +57,8 @@ void PauseMainSceneSystem::Update() {
         systemRunner->ActivateSystem(systemName);
     }
 
-    for (auto& entityID : entityIDs_) {
-        Entity* entity = GetScene()->GetEntityRepositoryRef()->GetEntity(entityID);
-        UpdateEntity(entity);
+    for (auto& entityHandle : entities_) {
+        UpdateEntity(entityHandle);
     }
 
     if (isPausing_) {
@@ -72,8 +73,8 @@ void PauseMainSceneSystem::Update() {
     }
 }
 
-void PauseMainSceneSystem::UpdateEntity(OriGine::Entity* _entity) {
-    auto subScene = GetComponent<SubScene>(_entity);
+void PauseMainSceneSystem::UpdateEntity(OriGine::EntityHandle _handle) {
+    auto subScene = GetComponent<SubScene>(_handle);
     if (!subScene) {
         return;
     }

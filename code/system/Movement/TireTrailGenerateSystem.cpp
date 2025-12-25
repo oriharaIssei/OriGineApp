@@ -25,15 +25,15 @@ TireTrailGenerateSystem::~TireTrailGenerateSystem() {}
 void TireTrailGenerateSystem::Initialize() {}
 void TireTrailGenerateSystem::Finalize() {}
 
-void TireTrailGenerateSystem::UpdateEntity(OriGine::Entity* _entity) {
-    auto* spline = GetComponent<TireSplinePoints>(_entity);
+void TireTrailGenerateSystem::UpdateEntity(OriGine::EntityHandle _handle) {
+    TireSplinePoints* spline = GetComponent<TireSplinePoints>(_handle);
     if (!spline) {
         return;
     }
 
     GenerateContext ctx{};
     if (!BuildGenerateContext(*spline, ctx)) {
-        UpdateFadeOut(*spline, _entity);
+        UpdateFadeOut(*spline, _handle);
         return;
     }
 
@@ -52,28 +52,28 @@ void TireTrailGenerateSystem::UpdateEntity(OriGine::Entity* _entity) {
 bool TireTrailGenerateSystem::BuildGenerateContext(
     TireSplinePoints& spline,
     GenerateContext& out) {
-    auto* player = GetEntity(spline.commonSettings.playerEntityId);
+    auto* player = GetEntity(spline.commonSettings.playerEntityHandle);
     if (!player) {
-        spline.commonSettings.playerEntityId = -1;
+        spline.commonSettings.playerEntityHandle = EntityHandle();
         return false;
     }
 
-    auto* transform   = GetComponent<OriGine::Transform>(player);
-    auto* state       = GetComponent<PlayerState>(player);
-    auto* effectParam = GetComponent<PlayerEffectControlParam>(player);
-    auto* rigidBody   = GetComponent<OriGine::Rigidbody>(player);
+    auto* transform   = GetComponent<OriGine::Transform>(spline.commonSettings.playerEntityHandle);
+    auto* state       = GetComponent<PlayerState>(spline.commonSettings.playerEntityHandle);
+    auto* effectParam = GetComponent<PlayerEffectControlParam>(spline.commonSettings.playerEntityHandle);
+    auto* rigidBody   = GetComponent<OriGine::Rigidbody>(spline.commonSettings.playerEntityHandle);
 
     if (!transform || !state || !rigidBody || !effectParam) {
-        spline.commonSettings.playerEntityId = -1;
+        spline.commonSettings.playerEntityHandle = EntityHandle();
         if (effectParam) {
-            effectParam->SetTireTrailSplineEntityId(-1);
+            effectParam->SetTireTrailSplineEntityId(EntityHandle());
         }
         return false;
     }
 
     if (!state->IsOnGround() || rigidBody->GetVelocity().lengthSq() < kEpsilon) {
-        spline.commonSettings.playerEntityId = -1;
-        effectParam->SetTireTrailSplineEntityId(-1);
+        spline.commonSettings.playerEntityHandle = EntityHandle();
+        effectParam->SetTireTrailSplineEntityId(EntityHandle());
         return false;
     }
 
@@ -193,18 +193,18 @@ void TireTrailGenerateSystem::ResamplePoints(TireSplinePoints& spline) {
 }
 
 void TireTrailGenerateSystem::UpdateFadeOut(
-    TireSplinePoints& spline,
-    Entity* entity) {
+    TireSplinePoints& _spline,
+    EntityHandle _handle) {
     constexpr int32_t kMinPoints = 4;
 
-    if (spline.points.size() < kMinPoints) {
-        GetScene()->AddDeleteEntity(entity->GetID());
+    if (_spline.points.size() < kMinPoints) {
+        GetScene()->AddDeleteEntity(_handle);
         return;
     }
 
-    spline.commonSettings.fadeoutTimer += GetMainDeltaTime();
-    if (spline.commonSettings.fadeoutTimer >= spline.commonSettings.fadeoutTime) {
-        spline.commonSettings.fadeoutTimer = 0.f;
-        spline.points.pop_front();
+    _spline.commonSettings.fadeoutTimer += GetMainDeltaTime();
+    if (_spline.commonSettings.fadeoutTimer >= _spline.commonSettings.fadeoutTime) {
+        _spline.commonSettings.fadeoutTimer = 0.f;
+        _spline.points.pop_front();
     }
 }

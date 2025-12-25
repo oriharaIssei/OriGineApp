@@ -1,6 +1,10 @@
 #pragma once
 #include "system/ISystem.h"
 
+/// ECS
+// component
+#include "component/ComponentHandle.h"
+
 /// <summary>
 /// シーン遷移システム(エフェクトの再生管理など)
 /// </summary>
@@ -18,7 +22,7 @@ public:
     virtual void Update() override;
 
 protected:
-    virtual void UpdateEntity(OriGine::Entity* _entity) override;
+    virtual void UpdateEntity(OriGine::EntityHandle _handle) override;
 
     void EnterSceneUpdate();
     void ExitSceneUpdate();
@@ -30,6 +34,6 @@ protected:
     const float maxTransitionTime_ = 0.8f; // 最大遷移時間
     float currentTransitionTime_   = 0.0f; // 現在の遷移時間
 
-    int32_t usingEntityId_           = -1;
-    int32_t sceneChangerComponentId_ = -1;
+    OriGine::EntityHandle usingEntityHandle_              = OriGine::EntityHandle();
+    OriGine::ComponentHandle sceneChangerComponentHandle_ = OriGine::ComponentHandle();
 };

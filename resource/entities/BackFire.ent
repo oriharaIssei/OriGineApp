@@ -2,6 +2,7 @@
     "Components": {
         "CylinderRenderer": [
             {
+                "Handle": "63bf9dfa-a6b5-49db-98c3-aabf3ae75bc1",
                 "blendMode": 1,
                 "bottomRadius": [
                     0.07999999821186066,
@@ -36,6 +37,7 @@
                 }
             },
             {
+                "Handle": "c338fb89-c91c-494e-aa19-fe1b23f1e0ff",
                 "blendMode": 1,
                 "bottomRadius": [
                     0.09000000357627869,
@@ -70,6 +72,7 @@
                 }
             },
             {
+                "Handle": "4b74abc8-8c16-4327-a8b1-360d677d5388",
                 "blendMode": 1,
                 "bottomRadius": [
                     0.10999999940395355,
@@ -104,6 +107,7 @@
                 }
             },
             {
+                "Handle": "fb42b715-7cae-4e90-824f-943616314c82",
                 "blendMode": 1,
                 "bottomRadius": [
                     0.07999999821186066,
@@ -138,6 +142,7 @@
                 }
             },
             {
+                "Handle": "bf163e19-915e-4cc9-b346-9d1ec9fd3ce1",
                 "blendMode": 1,
                 "bottomRadius": [
                     0.09000000357627869,
@@ -172,6 +177,7 @@
                 }
             },
             {
+                "Handle": "7bb2197f-011c-41d1-b8d5-eb1e3a084f21",
                 "blendMode": 1,
                 "bottomRadius": [
                     0.14000000059604645,
@@ -208,10 +214,11 @@
         ],
         "Material": [
             {
+                "Handle": "eca17d3e-3f9f-4215-a44a-b420915c05c8",
                 "color": [
-                    1.0,
-                    1.0,
-                    1.0,
+                    0.08431697636842728,
+                    0.44282761216163635,
+                    0.6244726181030273,
                     1.0
                 ],
                 "enableLighting": false,
@@ -234,6 +241,7 @@
         ],
         "MaterialAnimation": [
             {
+                "Handle": "bb0825ef-b486-4c7d-9262-e2571e846be8",
                 "InterpolationType": 0,
                 "colorCurve": [
                     {
@@ -283,15 +291,20 @@
         ],
         "MaterialEffectPipeLine": [
             {
+                "Handle": "ea2ee49d-80ab-4bf5-b0d4-88c71953ba59",
                 "baseTexturePath": "./application/resource/Texture/white1x1.png",
                 "effectEntityIdList": [
                     {
                         "effectType": 0,
-                        "entityID": 80
+                        "handle": {
+                            "uuid": "ce60e708-89e6-4eb2-b0a3-94e5def385f4"
+                        }
                     },
                     {
                         "effectType": 2,
-                        "entityID": 82
+                        "handle": {
+                            "uuid": "3f8575ac-ee57-41c5-a7c0-9cf5a55e648f"
+                        }
                     }
                 ],
                 "isActive": true,
@@ -301,6 +314,7 @@
         ],
         "Transform": [
             {
+                "Handle": "ff19f9cc-1f2b-414c-a41e-0106d707a66c",
                 "rotate": [
                     -0.19664624333381653,
                     0.0,
@@ -319,6 +333,9 @@
                 ]
             }
         ]
+    },
+    "Handle": {
+        "uuid": "53ba3e5e-5351-48aa-a7de-d04fe975ba6e"
     },
     "Name": "BackFire",
     "Systems": [

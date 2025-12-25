@@ -25,18 +25,19 @@ void GameFailedSceneLaunchSystem::Finalize() {
     MessageBus::GetInstance()->Unsubscribe<GamefailedEvent>(gameFailedEventId_);
 }
 
-void GameFailedSceneLaunchSystem::UpdateEntity(OriGine::Entity* _entity) {
+void GameFailedSceneLaunchSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     if (!isLaunched_) {
         return;
     }
     isLaunched_ = false; // 一度だけ処理するためにフラグをリセット
 
     // ゲーム失敗メッセージを受け取ったら ゲーム失敗シーンを起動する
-    auto* subSceneComps = GetComponents<SubScene>(_entity);
-    if (subSceneComps == nullptr) {
+    auto& subSceneComps = GetComponents<SubScene>(_handle);
+    if (subSceneComps.empty()) {
         return;
     }
-    for (auto& subScene : *subSceneComps) {
+
+    for (auto& subScene : subSceneComps) {
         if (!subScene.IsActive()) {
             subScene.Activate();
         }

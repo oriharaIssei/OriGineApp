@@ -2,6 +2,7 @@
     "Components": {
         "SpriteAnimation": [
             {
+                "Handle": "3f247a13-616f-434c-93d0-0582c1b9faa3",
                 "colorAnimationState": {
                     "isLoop": true,
                     "isPlay": false
@@ -103,12 +104,14 @@
         ],
         "TimerComponent": [
             {
+                "Handle": "5f2b442e-eee9-40ca-9b13-7d43c52e4c8a",
                 "isStarted": true,
                 "maxTime": 3.0
             }
         ],
         "TimerForSpriteComponent": [
             {
+                "Handle": "2bbff1e9-4d6d-451f-b08b-48f4e247ee40",
                 "anchorOnWindow": [
                     0.6700000166893005,
                     0.5
@@ -142,6 +145,9 @@
                 ]
             }
         ]
+    },
+    "Handle": {
+        "uuid": "7e7887e4-24d1-43fc-b6e0-0e3134176cd3"
     },
     "Name": "StartTimer",
     "Systems": [

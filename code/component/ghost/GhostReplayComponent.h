@@ -25,17 +25,17 @@ public:
     GhostReplayComponent()  = default;
     ~GhostReplayComponent() = default;
 
-    void Initialize(OriGine::Entity* _entity) override;
+    void Initialize(OriGine::Scene* _scene, OriGine::EntityHandle _owner) override;
     void Finalize() override;
-    void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
+    void Edit(OriGine::Scene* _scene, OriGine::EntityHandle _owner, const std::string& _parentLabel) override;
 
     float ApplyInput();
 
 public:
     std::shared_ptr<OriGine::ReplayPlayer> replayPlayer_ = nullptr;
     // 親シーンでのエンティティID
-    int32_t ghostEntityId_       = -1;
-    int32_t ghostCameraEntityId_ = -1;
+    OriGine::EntityHandle ghostEntityId_       = OriGine::EntityHandle();
+    OriGine::EntityHandle ghostCameraEntityId_ = OriGine::EntityHandle();
 
     float frameElapsedTime_ = 0.0f;
 

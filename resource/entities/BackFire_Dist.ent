@@ -2,6 +2,7 @@
     "Components": {
         "DistortionEffectParam": [
             {
+                "Handle": "c6b0a4c2-e476-4b6d-a9db-981d11d9400d",
                 "distortionBias": [
                     0.27000001072883606,
                     0.0
@@ -18,6 +19,7 @@
         ],
         "Material": [
             {
+                "Handle": "ca20daaf-febc-40a6-b9ac-49be2b5e6bf0",
                 "color": [
                     1.0,
                     1.0,
@@ -37,13 +39,14 @@
                     1.0
                 ],
                 "uvTranslate": [
-                    0.6211649179458618,
-                    0.6211649179458618
+                    0.7025466561317444,
+                    0.7025466561317444
                 ]
             }
         ],
         "MaterialAnimation": [
             {
+                "Handle": "bdccba11-8be9-4d18-9b5e-a4de94edb7d8",
                 "InterpolationType": 0,
                 "colorCurve": [],
                 "duration": 4.5,
@@ -69,6 +72,9 @@
                 ]
             }
         ]
+    },
+    "Handle": {
+        "uuid": "d6b00b02-5812-4d6a-936b-68c6cce952ad"
     },
     "Name": "BackFire_Dist",
     "Systems": [

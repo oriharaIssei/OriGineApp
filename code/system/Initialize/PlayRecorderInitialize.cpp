@@ -15,8 +15,8 @@ PlayRecorderInitialize::~PlayRecorderInitialize() = default;
 void PlayRecorderInitialize::Initialize() {}
 void PlayRecorderInitialize::Finalize() {}
 
-void PlayRecorderInitialize::UpdateEntity(OriGine::Entity* _entity) {
-    PlayRecordeComponent* playRecorder = GetComponent<PlayRecordeComponent>(_entity);
+void PlayRecorderInitialize::UpdateEntity(OriGine::EntityHandle _handle) {
+    PlayRecordeComponent* playRecorder = GetComponent<PlayRecordeComponent>(_handle);
 
     if (!playRecorder) {
         return;

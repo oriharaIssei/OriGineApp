@@ -14,6 +14,7 @@
             "Components": {
                 "Button": [
                     {
+                        "Handle": "52bba0e0-1b33-4714-a051-c92937a81492",
                         "hoverColor": [
                             1.0,
                             1.0,
@@ -44,6 +45,7 @@
                 ],
                 "SpriteRenderer": [
                     {
+                        "Handle": "5e73dd67-13f9-4bb5-a4e6-1d26e2d689e2",
                         "anchorPoint": [
                             0.5,
                             0.5
@@ -104,6 +106,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "b77544cd-66e6-471b-bd7d-8a7ca3957016"
+            },
             "Name": "Resume",
             "Systems": [
                 {
@@ -129,6 +134,7 @@
             "Components": {
                 "Button": [
                     {
+                        "Handle": "eaea9a17-0b6a-4ba9-9cae-501c4fe36532",
                         "hoverColor": [
                             0.800000011920929,
                             0.800000011920929,
@@ -157,15 +163,15 @@
                         "shortcutPadButton": []
                     }
                 ],
-                "DissolveEffectParam": [],
-                "Material": [],
                 "SceneChanger": [
                     {
+                        "Handle": "19bce330-7b24-420a-bdd3-9e0cedfb713c",
                         "nextSceneName": "StageSelect"
                     }
                 ],
                 "SpriteRenderer": [
                     {
+                        "Handle": "5a238f17-3f83-45e8-8155-86e3a65c1081",
                         "anchorPoint": [
                             0.5,
                             0.5
@@ -226,6 +232,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "2585560b-2406-48c6-8cdf-900fddc28370"
+            },
             "Name": "BackToStageSelect",
             "Systems": [
                 {
@@ -257,17 +266,72 @@
         },
         {
             "Components": {
+                "SpriteAnimation": [
+                    {
+                        "Handle": "03a9a12f-f8d7-498d-852a-057a948a7bc2",
+                        "colorAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
+                        },
+                        "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    1.0,
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ]
+                            }
+                        ],
+                        "colorInterpolationType": 0,
+                        "duration": 6.199999809265137,
+                        "rotateCurve": [],
+                        "scaleCurve": [],
+                        "spriteComponentIndex": 0,
+                        "transformAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
+                        },
+                        "transformInterpolationType": 0,
+                        "translateCurve": [],
+                        "uvAnimationState": {
+                            "isLoop": true,
+                            "isPlay": true
+                        },
+                        "uvInterpolationType": 0,
+                        "uvRotateCurve": [],
+                        "uvScaleCurve": [],
+                        "uvTranslateCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 6.199999809265137,
+                                "value": [
+                                    1.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    }
+                ],
                 "SpriteRenderer": [
                     {
+                        "Handle": "cf1dc712-3e5f-4e23-9fc8-70f9a8b52fa4",
                         "anchorPoint": [
                             0.5,
                             0.5
                         ],
                         "color": [
-                            0.12941177189350128,
-                            0.12941177189350128,
-                            0.12941177189350128,
-                            0.12941177189350128
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.25882354378700256
                         ],
                         "defaultWindowSize": [
                             1920.0,
@@ -290,10 +354,10 @@
                             0.0,
                             0.0
                         ],
-                        "texturePath": "./application/resource/Texture/white1x1.png",
+                        "texturePath": "./application/resource/Texture/bioNoise.png",
                         "textureSize": [
-                            1.0,
-                            1.0
+                            512.0,
+                            512.0
                         ],
                         "translate": [
                             960.0,
@@ -305,7 +369,7 @@
                             1.0
                         ],
                         "uvTranslate": [
-                            0.0,
+                            0.7563585638999939,
                             0.0
                         ],
                         "windowRatioPos": [
@@ -319,11 +383,18 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "e955be45-6aa9-4e0f-bf96-c0de60832862"
+            },
             "Name": "BG",
             "Systems": [
                 {
                     "SystemCategory": 6,
                     "SystemName": "BackGroundSpriteRenderSystem"
+                },
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "SpriteAnimationSystem"
                 }
             ],
             "isUnique": false
@@ -332,6 +403,7 @@
             "Components": {
                 "MouseCondition": [
                     {
+                        "Handle": "5158e61b-4b09-46b8-b65e-e9abf2607404",
                         "fixCursorPos": [
                             0.0,
                             0.0
@@ -341,6 +413,9 @@
                         "isShowCursor": true
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "f2e1acba-0961-44d1-9a5b-3c519841e8bb"
             },
             "Name": "mouseCondition",
             "Systems": [
@@ -355,14 +430,19 @@
             "Components": {
                 "ButtonGroup": [
                     {
+                        "Handle": "8b943c0d-dc63-46fe-a6b7-b77788ae50f4",
                         "buttonNumbers": [
                             {
                                 "buttonNumber": 0,
-                                "entityID": 0
+                                "entityHandle": {
+                                    "uuid": "b77544cd-66e6-471b-bd7d-8a7ca3957016"
+                                }
                             },
                             {
                                 "buttonNumber": 1,
-                                "entityID": 1
+                                "entityHandle": {
+                                    "uuid": "2585560b-2406-48c6-8cdf-900fddc28370"
+                                }
                             }
                         ],
                         "decideKeys": [
@@ -399,6 +479,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "5dd12a4a-7dea-4185-8610-cad5b8c62e27"
+            },
             "Name": "ButtonGroup",
             "Systems": [
                 {
@@ -412,6 +495,7 @@
             "Components": {
                 "SpriteRenderer": [
                     {
+                        "Handle": "a66d39f6-8781-460a-8fa1-2b581bff8a48",
                         "anchorPoint": [
                             0.5,
                             0.5
@@ -471,6 +555,7 @@
                         ]
                     },
                     {
+                        "Handle": "08f9dd98-fc23-4e94-88ce-4f7fea8ce2ce",
                         "anchorPoint": [
                             0.5,
                             0.5
@@ -531,6 +616,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "53cc281c-3fb2-479f-a046-9943632577d8"
+            },
             "Name": "OperationMap",
             "Systems": [
                 {
@@ -578,7 +666,7 @@
         },
         {
             "DissolveEffect": {
-                "Priority": 0
+                "Priority": 10
             }
         },
         {
@@ -609,6 +697,21 @@
         {
             "UpdateButtonColorByState": {
                 "Priority": 2
+            }
+        },
+        {
+            "GrayscaleEffect": {
+                "Priority": 1
+            }
+        },
+        {
+            "GradationEffect": {
+                "Priority": 0
+            }
+        },
+        {
+            "SpriteAnimationSystem": {
+                "Priority": 0
             }
         }
     ]

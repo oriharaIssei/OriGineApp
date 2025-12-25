@@ -12,27 +12,27 @@
 
 using namespace OriGine;
 
-PenaltyTimeSpriteUpdate::PenaltyTimeSpriteUpdate() : ISystem(OriGine::SystemCategory::Effect) {}
+PenaltyTimeSpriteUpdate::PenaltyTimeSpriteUpdate() : ISystem(SystemCategory::Effect) {}
 PenaltyTimeSpriteUpdate::~PenaltyTimeSpriteUpdate() {}
 
 void PenaltyTimeSpriteUpdate::Initialize() {}
 void PenaltyTimeSpriteUpdate::Finalize() {}
 
-void PenaltyTimeSpriteUpdate::UpdateEntity(OriGine::Entity* _entity) {
-    auto timerComp = GetComponent<TimerComponent>(_entity);
+void PenaltyTimeSpriteUpdate::UpdateEntity(EntityHandle _handle) {
+    auto timerComp = GetComponent<TimerComponent>(_handle);
 
     // TimerComponentが存在しない場合は処理しない
     if (!timerComp) {
         return;
     }
     // SpriteAnimationが存在しない場合は処理しない
-    auto spriteAnimaiton = GetComponent<SpriteAnimation>(_entity);
+    auto spriteAnimaiton = GetComponent<SpriteAnimation>(_handle);
     if (!spriteAnimaiton) {
         return;
     }
 
     // アニメーション終了したらエンティティを削除
     if (spriteAnimaiton->IsEnded()) {
-        GetScene()->AddDeleteEntity(_entity->GetID());
+        GetScene()->AddDeleteEntity(_handle);
     };
 }

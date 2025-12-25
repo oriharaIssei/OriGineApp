@@ -14,6 +14,7 @@
             "Components": {
                 "CameraTransform": [
                     {
+                        "Handle": "35dd3ce2-f6c0-4248-904f-02b95ff3ebda",
                         "aspectRatio": 1.7777777910232544,
                         "farZ": 1000.0,
                         "fovAngleY": 0.7853981852531433,
@@ -33,6 +34,7 @@
                 ],
                 "Transform": [
                     {
+                        "Handle": "bb2cd252-eb16-447a-963b-a78c71e09bba",
                         "rotate": [
                             0.08892493695020676,
                             0.0,
@@ -52,6 +54,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "83cf6f13-daa7-4580-8ee2-e8cebb3eef87"
+            },
             "Name": "GameCamera",
             "Systems": [
                 {
@@ -65,14 +70,25 @@
             "Components": {
                 "ButtonGroup": [
                     {
+                        "Handle": "ccd105ff-bba5-4d1b-a051-f16adbf9bbdd",
                         "buttonNumbers": [
                             {
-                                "buttonNumber": 2,
-                                "entityID": 0
+                                "buttonNumber": 0,
+                                "entityHandle": {
+                                    "uuid": "59e6d6a1-772d-4f8c-8965-76b2bf83676b"
+                                }
                             },
                             {
-                                "buttonNumber": 3,
-                                "entityID": 1
+                                "buttonNumber": 1,
+                                "entityHandle": {
+                                    "uuid": "fca26f2b-f3eb-4af4-b63e-109b91586745"
+                                }
+                            },
+                            {
+                                "buttonNumber": 2,
+                                "entityHandle": {
+                                    "uuid": "02a23164-09cf-413a-936e-67795ca2538a"
+                                }
                             }
                         ],
                         "decideKeys": [
@@ -103,6 +119,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "aa6aef77-1063-4f67-a294-51161e3df4c1"
+            },
             "Name": "ButtonGroup",
             "Systems": [
                 {
@@ -120,6 +139,7 @@
             "Components": {
                 "Button": [
                     {
+                        "Handle": "9dafecaa-5d2d-45ba-b2e4-6b08fe9925c4",
                         "hoverColor": [
                             0.894514799118042,
                             0.894514799118042,
@@ -150,6 +170,7 @@
                 ],
                 "DissolveEffectParam": [
                     {
+                        "Handle": "7064aa67-44b2-4962-9b84-f44fd881cd06",
                         "edgeWidth": 0.0020000000949949026,
                         "isActive": false,
                         "materialIndex": 0,
@@ -165,6 +186,7 @@
                 ],
                 "Material": [
                     {
+                        "Handle": "12a74dea-4f1c-42e3-8ea2-c74daf449771",
                         "color": [
                             1.0,
                             1.0,
@@ -191,11 +213,13 @@
                 ],
                 "SceneChanger": [
                     {
+                        "Handle": "ab18f243-4dee-47ef-aec3-57eafa6eb99f",
                         "nextSceneName": "Tutorial"
                     }
                 ],
                 "SpriteRenderer": [
                     {
+                        "Handle": "9806f001-6591-4d73-9ccb-d049ef2f18c3",
                         "anchorPoint": [
                             0.5,
                             0.5
@@ -257,11 +281,15 @@
                 ],
                 "SubScene": [
                     {
+                        "Handle": "0eba0c97-936d-4cf6-852d-dec1f04a5b69",
                         "isActive": true,
                         "renderingPriority": -1,
                         "sceneName": "Tutorial"
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "59e6d6a1-772d-4f8c-8965-76b2bf83676b"
             },
             "Name": "toTutorialButton",
             "Systems": [
@@ -300,6 +328,7 @@
             "Components": {
                 "Button": [
                     {
+                        "Handle": "e64edf1b-2f06-464a-9a38-d939ac94ff6b",
                         "hoverColor": [
                             0.8941176533699036,
                             0.8941176533699036,
@@ -330,6 +359,7 @@
                 ],
                 "DissolveEffectParam": [
                     {
+                        "Handle": "c623a9c2-4a75-4d2a-8a3f-5514bfb3e36f",
                         "edgeWidth": 0.012000000104308128,
                         "isActive": false,
                         "materialIndex": 0,
@@ -345,6 +375,7 @@
                 ],
                 "Material": [
                     {
+                        "Handle": "55c44371-311f-486c-ba82-e3314dd1c4d7",
                         "color": [
                             1.0,
                             1.0,
@@ -371,11 +402,13 @@
                 ],
                 "SceneChanger": [
                     {
+                        "Handle": "3dd9616e-2560-4d26-90e6-faf5e21d25f8",
                         "nextSceneName": "01"
                     }
                 ],
                 "SpriteRenderer": [
                     {
+                        "Handle": "f8ca409b-42d5-465d-b67c-b18d0d33ee22",
                         "anchorPoint": [
                             0.5,
                             0.5
@@ -437,11 +470,15 @@
                 ],
                 "SubScene": [
                     {
+                        "Handle": "186d738f-5055-4722-a111-826f6fcd4a13",
                         "isActive": true,
                         "renderingPriority": -1,
                         "sceneName": "01"
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "fca26f2b-f3eb-4af4-b63e-109b91586745"
             },
             "Name": "to01Stage",
             "Systems": [
@@ -480,6 +517,7 @@
             "Components": {
                 "DissolveEffectParam": [
                     {
+                        "Handle": "c108cb53-da1d-4af2-ba85-c1f1fff731db",
                         "edgeWidth": 0.00800000037997961,
                         "isActive": false,
                         "materialIndex": 0,
@@ -493,9 +531,9 @@
                         "threshold": 0.0
                     }
                 ],
-                "DistortionEffectParam": [],
                 "Material": [
                     {
+                        "Handle": "1dd6c327-2db5-4b45-8f95-94e70f5768dd",
                         "color": [
                             1.0,
                             1.0,
@@ -521,6 +559,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "98c9f73f-ba5f-49c2-b2e9-1c0311e4a83c"
+            },
             "Name": "EnterScene",
             "Systems": [
                 {
@@ -534,6 +575,7 @@
             "Components": {
                 "Material": [
                     {
+                        "Handle": "d9dd97bf-6405-49a8-a57a-e1174a8ab584",
                         "color": [
                             0.04571918025612831,
                             0.08931277692317963,
@@ -560,15 +602,20 @@
                 ],
                 "MaterialEffectPipeLine": [
                     {
+                        "Handle": "0e783038-56ea-455c-8db6-2bccade8ce2c",
                         "baseTexturePath": "./application/resource/Texture/lazer.png",
                         "effectEntityIdList": [
                             {
                                 "effectType": 0,
-                                "entityID": 7
+                                "handle": {
+                                    "uuid": "05ffab79-1bec-433f-be25-be47682e25d7"
+                                }
                             },
                             {
                                 "effectType": 2,
-                                "entityID": 9
+                                "handle": {
+                                    "uuid": "bf2347a8-7fa9-4a3a-959a-67456c3a3ecc"
+                                }
                             }
                         ],
                         "isActive": true,
@@ -576,9 +623,9 @@
                         "priority": 5
                     }
                 ],
-                "PlaneRenderer": [],
                 "RingRenderer": [
                     {
+                        "Handle": "0d55dbfa-1203-4151-abb4-e21d7474b650",
                         "InnerRadius": 0.25999999046325684,
                         "OuterRadius": 1.559999942779541,
                         "blendMode": 1,
@@ -609,6 +656,7 @@
                 ],
                 "Transform": [
                     {
+                        "Handle": "830b9196-8abc-4dbe-b39c-d654d1c0fa20",
                         "rotate": [
                             0.0,
                             0.0,
@@ -627,6 +675,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "076a3aad-2112-4867-a6e5-9423a6a86bb6"
             },
             "Name": "BG_Effect",
             "Systems": [
@@ -649,6 +700,7 @@
             "Components": {
                 "DistortionEffectParam": [
                     {
+                        "Handle": "16d7fc07-6088-468c-9582-03ade2dd5fb2",
                         "distortionBias": [
                             0.25,
                             0.0
@@ -665,6 +717,7 @@
                 ],
                 "Material": [
                     {
+                        "Handle": "a588bd9f-be05-4d9f-8840-d6e4580289c3",
                         "color": [
                             1.0,
                             1.0,
@@ -685,12 +738,13 @@
                         ],
                         "uvTranslate": [
                             0.0,
-                            0.7342705130577087
+                            0.4899239242076874
                         ]
                     }
                 ],
                 "MaterialAnimation": [
                     {
+                        "Handle": "10f29d11-c92e-4353-9871-60c098a79d1b",
                         "InterpolationType": 0,
                         "colorCurve": [],
                         "duration": 4.800000190734863,
@@ -717,6 +771,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "03d4f0ae-421b-462e-867d-105814a73603"
+            },
             "Name": "Distortion",
             "Systems": [
                 {
@@ -730,6 +787,7 @@
             "Components": {
                 "DissolveEffectParam": [
                     {
+                        "Handle": "4037ab8c-ae87-407f-8615-0d35262e2059",
                         "edgeWidth": 0.09200000017881393,
                         "isActive": true,
                         "materialIndex": 0,
@@ -745,6 +803,7 @@
                 ],
                 "Material": [
                     {
+                        "Handle": "1408afa5-32df-46bc-8eb3-0c8b036e3d69",
                         "color": [
                             1.0,
                             1.0,
@@ -764,13 +823,14 @@
                             -1.0
                         ],
                         "uvTranslate": [
-                            0.010093146935105324,
-                            0.010093146935105324
+                            0.003852176247164607,
+                            0.003852176247164607
                         ]
                     }
                 ],
                 "MaterialAnimation": [
                     {
+                        "Handle": "60ae9896-ad6c-4449-b261-0de8a5b4a6d8",
                         "InterpolationType": 0,
                         "colorCurve": [],
                         "duration": 3.4000000953674316,
@@ -798,11 +858,14 @@
                 ],
                 "MaterialEffectPipeLine": [
                     {
+                        "Handle": "78f78592-2949-41cf-b951-ac4efe5733e2",
                         "baseTexturePath": "./application/resource/Texture/Turbulence_11_-_256x256.png",
                         "effectEntityIdList": [
                             {
                                 "effectType": 1,
-                                "entityID": 6
+                                "handle": {
+                                    "uuid": "03d4f0ae-421b-462e-867d-105814a73603"
+                                }
                             }
                         ],
                         "isActive": true,
@@ -810,6 +873,9 @@
                         "priority": 0
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "05ffab79-1bec-433f-be25-be47682e25d7"
             },
             "Name": "Dissolve",
             "Systems": [
@@ -828,6 +894,7 @@
             "Components": {
                 "MouseCondition": [
                     {
+                        "Handle": "23acba34-836b-4df2-bd21-d994fd9e9b50",
                         "fixCursorPos": [
                             0.0,
                             0.0
@@ -837,6 +904,9 @@
                         "isShowCursor": true
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "7a5516d6-0863-4081-94c9-d6cb74db70a0"
             },
             "Name": "mouseCondition",
             "Systems": [
@@ -851,6 +921,7 @@
             "Components": {
                 "GradationComponent": [
                     {
+                        "Handle": "7104b6c5-ca7a-426d-9a65-4d25a59ea72c",
                         "centerUv": [
                             0.0,
                             1.0
@@ -869,6 +940,7 @@
                 ],
                 "Material": [
                     {
+                        "Handle": "f2b5d2c8-e359-4852-8a92-31fb5f10ba71",
                         "color": [
                             1.0,
                             1.0,
@@ -894,6 +966,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "bf2347a8-7fa9-4a3a-959a-67456c3a3ecc"
+            },
             "Name": "Gradation",
             "Systems": [],
             "isUnique": false
@@ -902,6 +977,7 @@
             "Components": {
                 "SpriteRenderer": [
                     {
+                        "Handle": "56ee458f-3622-425e-826e-08be2e299ecc",
                         "anchorPoint": [
                             0.0,
                             0.0
@@ -962,6 +1038,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "a28e6317-f6cf-4507-bb32-c4529210e770"
+            },
             "Name": "Entity",
             "Systems": [
                 {
@@ -975,6 +1054,7 @@
             "Components": {
                 "Button": [
                     {
+                        "Handle": "a405e49a-dfff-470d-85b3-315ffc03d4cd",
                         "hoverColor": [
                             0.800000011920929,
                             0.800000011920929,
@@ -1009,6 +1089,7 @@
                 ],
                 "DissolveEffectParam": [
                     {
+                        "Handle": "b582b3a5-f329-4e7b-bbcf-05b781a9dfd8",
                         "edgeWidth": 0.004999999888241291,
                         "isActive": false,
                         "materialIndex": 0,
@@ -1024,6 +1105,7 @@
                 ],
                 "Material": [
                     {
+                        "Handle": "42a95492-85dc-4712-85a0-124949f3722c",
                         "color": [
                             1.0,
                             1.0,
@@ -1050,11 +1132,13 @@
                 ],
                 "SceneChanger": [
                     {
+                        "Handle": "1aa0a2c8-cb0d-4204-a1ca-a3f913dae53d",
                         "nextSceneName": "Title"
                     }
                 ],
                 "SpriteRenderer": [
                     {
+                        "Handle": "803d0954-c8c7-4c23-93d6-88ef51db15f6",
                         "anchorPoint": [
                             0.0,
                             0.0
@@ -1114,6 +1198,9 @@
                         ]
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "02a23164-09cf-413a-936e-67795ca2538a"
             },
             "Name": "ToTile",
             "Systems": [

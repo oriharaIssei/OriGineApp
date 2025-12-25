@@ -15,7 +15,7 @@
 
 using namespace OriGine;
 
-SceneTransition::SceneTransition() : ISystem(OriGine::SystemCategory::StateTransition) {}
+SceneTransition::SceneTransition() : ISystem(SystemCategory::StateTransition) {}
 SceneTransition::~SceneTransition() {}
 
 void SceneTransition::Initialize() {
@@ -26,10 +26,10 @@ void SceneTransition::Initialize() {
 }
 
 void SceneTransition::Finalize() {
-    enterScene_              = false;
-    exitScene_               = false;
-    usingEntityId_           = -1;
-    sceneChangerComponentId_ = -1;
+    enterScene_                  = false;
+    exitScene_                   = false;
+    usingEntityHandle_           = EntityHandle();
+    sceneChangerComponentHandle_ = ComponentHandle();
 
     currentTransitionTime_ = 0.f;
 }
@@ -40,7 +40,7 @@ void SceneTransition::Update() {
     deltaTimer_.Initialize();
 #endif
 
-    if (entityIDs_.empty()) {
+    if (entities_.empty()) {
         return;
     }
 
@@ -48,20 +48,19 @@ void SceneTransition::Update() {
 
     // シーンに入るエフェクトの更新
     if (enterScene_) {
-        auto* enterSceneEntity = GetUniqueEntity("EnterScene");
-        if (!enterSceneEntity) {
+        EntityHandle enterSceneEntityHandle = GetUniqueEntity("EnterScene");
+        if (!enterSceneEntityHandle.IsValid()) {
             enterScene_ = false;
             return;
         }
-        usingEntityId_ = enterSceneEntity->GetID();
+        usingEntityHandle_ = enterSceneEntityHandle;
 
         EnterSceneUpdate();
     } else if (exitScene_) { // シーンから出るエフェクトの更新
         ExitSceneUpdate();
     } else {
-        for (auto& entityID : entityIDs_) {
-            OriGine::Entity* entity = GetEntity(entityID);
-            UpdateEntity(entity);
+        for (auto& entityHandle : entities_) {
+            UpdateEntity(entityHandle);
         }
     }
 
@@ -71,25 +70,22 @@ void SceneTransition::Update() {
 #endif
 }
 
-void SceneTransition::UpdateEntity(OriGine::Entity* _entity) {
-    uint32_t compSize = (uint32_t)GetComponentArray<SceneChanger>()->GetComponentSize(_entity);
-    if (compSize <= 0) {
+void SceneTransition::UpdateEntity(EntityHandle _handle) {
+    auto& sceneChangers = GetComponents<SceneChanger>(_handle);
+    if (sceneChangers.empty()) {
         return;
     }
 
     // シーン遷移の検知
-    for (uint32_t i = 0; i < compSize; ++i) {
-        SceneChanger* sceneChanger = GetComponent<SceneChanger>(_entity, i);
-        if (sceneChanger == nullptr) {
-            continue;
-        }
-        if (sceneChanger->isChanged()) {
 
-            currentTransitionTime_   = 0.f;
-            exitScene_               = true;
-            enterScene_              = false;
-            usingEntityId_           = _entity->GetID();
-            sceneChangerComponentId_ = i;
+    for (auto& sceneChanger : sceneChangers) {
+        if (sceneChanger.isChanged()) {
+
+            currentTransitionTime_       = 0.f;
+            exitScene_                   = true;
+            enterScene_                  = false;
+            usingEntityHandle_           = _handle;
+            sceneChangerComponentHandle_ = sceneChanger.GetHandle();
             return;
         }
     }
@@ -97,8 +93,12 @@ void SceneTransition::UpdateEntity(OriGine::Entity* _entity) {
 
 void SceneTransition::EnterSceneUpdate() {
 
-    OriGine::Entity* enterSceneEntity = GetEntity(usingEntityId_);
+    OriGine::Entity* enterSceneEntity = GetEntity(usingEntityHandle_);
     if (enterSceneEntity == nullptr) {
+        return;
+    }
+    auto& dissolveEffectComps = GetComponents<DissolveEffectParam>(usingEntityHandle_);
+    if (dissolveEffectComps.empty()) {
         return;
     }
 
@@ -112,70 +112,57 @@ void SceneTransition::EnterSceneUpdate() {
         enterScene_            = false;
         exitScene_             = false;
 
-        uint32_t compSize = (uint32_t)GetComponentArray<DissolveEffectParam>()->GetComponentSize(enterSceneEntity);
-        if (compSize <= 0) {
-            return;
-        }
-
-        for (uint32_t i = 0; i < compSize; ++i) {
-            DissolveEffectParam* dissolveEffectParam = GetComponent<DissolveEffectParam>(enterSceneEntity, i);
-            if (dissolveEffectParam == nullptr) {
-                return;
-            }
-            dissolveEffectParam->Stop();
+        for (auto& dissolveEffectParam : dissolveEffectComps) {
+            dissolveEffectParam.Stop();
         }
 
         return;
     }
 
-    uint32_t compSize = (uint32_t)GetComponentArray<DissolveEffectParam>()->GetComponentSize(enterSceneEntity);
-    if (compSize <= 0) {
-        return;
-    }
-
-    for (uint32_t i = 0; i < compSize; ++i) {
-        DissolveEffectParam* dissolveEffectParam = GetComponent<DissolveEffectParam>(enterSceneEntity, i);
-        if (dissolveEffectParam == nullptr) {
-            return;
+    ///====================================================================
+    /// 再生中はエフェクトの更新
+    ///====================================================================
+    for (auto& dissolveEffectParam : dissolveEffectComps) {
+        if (!dissolveEffectParam.IsActive()) {
+            dissolveEffectParam.Play();
         }
-        if (!dissolveEffectParam->IsActive()) {
-            dissolveEffectParam->Play();
-        }
-        dissolveEffectParam->SetThreshold(EaseInQuad(currentTransitionTime_ / maxTransitionTime_));
+        dissolveEffectParam.SetThreshold(EaseInQuad(currentTransitionTime_ / maxTransitionTime_));
     }
 }
 
 void SceneTransition::ExitSceneUpdate() {
     currentTransitionTime_ += Engine::GetInstance()->GetDeltaTime();
+    /// ====================================================================
+    /// 最大遷移時間を超えた場合、シーン変更を実行
+    /// ====================================================================
     if (currentTransitionTime_ >= maxTransitionTime_) {
         currentTransitionTime_ = maxTransitionTime_;
         enterScene_            = false;
         exitScene_             = false;
 
         // シーン変更を実行
-        OriGine::Entity* sceneChangerEntity = GetEntity(usingEntityId_);
-        SceneChanger* sceneChanger          = GetComponent<SceneChanger>(sceneChangerEntity, sceneChangerComponentId_);
+        SceneChanger* sceneChanger = GetComponent<SceneChanger>(sceneChangerComponentHandle_);
         GetScene()->GetSceneManager()->ChangeScene(sceneChanger->GetNextSceneName());
     }
 
-    OriGine::Entity* enterSceneEntity = GetEntity(usingEntityId_);
+    /// ====================================================================
+    /// 再生中はエフェクトの更新
+    /// ===================================================================
+    OriGine::Entity* enterSceneEntity = GetEntity(usingEntityHandle_);
     if (enterSceneEntity == nullptr) {
         return;
     }
 
-    uint32_t compSize = (uint32_t)GetComponentArray<DissolveEffectParam>()->GetComponentSize(enterSceneEntity);
-    if (compSize <= 0) {
+    auto& dissolveEffectComps = GetComponents<DissolveEffectParam>(usingEntityHandle_);
+    if (dissolveEffectComps.empty()) {
         return;
     }
 
-    for (uint32_t i = 0; i < compSize; ++i) {
-        DissolveEffectParam* dissolveEffectParam = GetComponent<DissolveEffectParam>(enterSceneEntity, i);
-        if (dissolveEffectParam == nullptr) {
-            return;
+    for (auto& dissolveEffectParam : dissolveEffectComps) {
+
+        if (!dissolveEffectParam.IsActive()) {
+            dissolveEffectParam.Play();
         }
-        if (!dissolveEffectParam->IsActive()) {
-            dissolveEffectParam->Play();
-        }
-        dissolveEffectParam->SetThreshold(EaseInQuad(currentTransitionTime_ / maxTransitionTime_));
+        dissolveEffectParam.SetThreshold(EaseInQuad(currentTransitionTime_ / maxTransitionTime_));
     }
 }

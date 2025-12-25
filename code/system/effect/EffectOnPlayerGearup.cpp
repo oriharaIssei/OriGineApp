@@ -33,15 +33,13 @@ void EffectOnPlayerGearup::Initialize() {}
 
 void EffectOnPlayerGearup::Finalize() {}
 
-void EffectOnPlayerGearup::UpdateEntity(OriGine::Entity* _entity) {
-    OriGine::Entity* player = GetUniqueEntity("Player");
-    if (!player) {
-        return;
-    }
+void EffectOnPlayerGearup::UpdateEntity(OriGine::EntityHandle _handle) {
+    OriGine::EntityHandle player = GetUniqueEntity("Player");
+
     PlayerState* state                  = GetComponent<PlayerState>(player);
     OriGine::Transform* playerTransform = GetComponent<OriGine::Transform>(player);
 
-    if (!state) {
+    if (!state || !playerTransform) {
         return;
     }
 
@@ -55,17 +53,14 @@ void EffectOnPlayerGearup::UpdateEntity(OriGine::Entity* _entity) {
     if (state->IsGearUp()) {
         shockWaveState_.playState.SetCurrent(false);
 
-        OriGine::Transform* transform = GetComponent<OriGine::Transform>(_entity);
+        OriGine::Transform* transform = GetComponent<OriGine::Transform>(_handle);
         transform->translate          = playerTransform->translate; // Playerの位置に合わせる
 
         // Emitterの再生
-        int32_t emitterSize = GetComponentArray<Emitter>()->GetComponentSize(_entity);
-        for (int32_t i = 0; i < emitterSize; ++i) {
-            Emitter* emitter = GetComponent<Emitter>(_entity, i);
-            if (emitter) {
-                emitter->SetOriginPos(emitterOffset_);
-                emitter->PlayStart();
-            }
+        auto& emitters = GetComponents<Emitter>(_handle);
+        for (auto& emitter : emitters) {
+            emitter.SetOriginPos(emitterOffset_);
+            emitter.PlayStart();
         }
 
         // GearLevelに応じて衝撃波を発生
@@ -81,7 +76,7 @@ void EffectOnPlayerGearup::UpdateEntity(OriGine::Entity* _entity) {
             OriGine::Vec4f trailColor = effectControlParam->GetTrailColorByGearLevel(state->GetGearLevel());
 
             constexpr int32_t trailAnimationOnGearUpIndex = 1;
-            OriGine::Entity* trailEntity                  = GetUniqueEntity("Trail");
+            OriGine::EntityHandle trailEntity             = GetUniqueEntity("Trail");
             MaterialAnimation* trailMaterialAnimation     = GetComponent<MaterialAnimation>(trailEntity, trailAnimationOnGearUpIndex);
 
             // GearUp時にアニメーションを再生
@@ -96,7 +91,7 @@ void EffectOnPlayerGearup::UpdateEntity(OriGine::Entity* _entity) {
             }
 
             // BackFire の色をGearLevelに応じて変化
-            OriGine::Entity* backFireEntity              = GetUniqueEntity("BackFire");
+            OriGine::EntityHandle backFireEntity         = GetUniqueEntity("BackFire");
             MaterialAnimation* backFireMaterialAnimation = GetComponent<MaterialAnimation>(backFireEntity);
 
             if (backFireMaterialAnimation) {
@@ -112,11 +107,12 @@ void EffectOnPlayerGearup::UpdateEntity(OriGine::Entity* _entity) {
             // chargeEffectを生成
             Entity* chargeEffectEntity = factory.BuildEntityFromTemplate(GetScene(), "ChargeEffect");
             if (chargeEffectEntity) {
-                Transform* chargeEffectTransform = GetComponent<Transform>(chargeEffectEntity);
+                EntityHandle chargeEffectHandle  = chargeEffectEntity->GetHandle();
+                Transform* chargeEffectTransform = GetComponent<Transform>(chargeEffectHandle);
                 chargeEffectTransform->translate = Vec3f(0.f, 0.f, 0.f);
                 chargeEffectTransform->parent    = playerTransform;
 
-                auto chargeMaterialEffect = GetComponent<MaterialAnimation>(chargeEffectEntity);
+                auto chargeMaterialEffect = GetComponent<MaterialAnimation>(chargeEffectHandle);
                 if (chargeMaterialEffect) {
                     for (auto& colorKey : chargeMaterialEffect->GetColorCurve()) {
                         // alpha値は変えない
@@ -129,11 +125,11 @@ void EffectOnPlayerGearup::UpdateEntity(OriGine::Entity* _entity) {
             }
         }
     }
-    UpdateShockWaveRing(_entity, playerTransform);
+    UpdateShockWaveRing(_handle, playerTransform);
 }
 
-void EffectOnPlayerGearup::UpdateShockWaveRing(OriGine::Entity* _entity, OriGine::Transform* _playerTransform) {
-    DistortionEffectParam* distortionEffectParam = GetComponent<DistortionEffectParam>(_entity);
+void EffectOnPlayerGearup::UpdateShockWaveRing(OriGine::EntityHandle _handle, OriGine::Transform* _playerTransform) {
+    DistortionEffectParam* distortionEffectParam = GetComponent<DistortionEffectParam>(_handle);
 
     auto& shockWaveRings = distortionEffectParam->GetDistortionObjects();
     // 更新時 以外

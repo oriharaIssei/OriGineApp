@@ -13,25 +13,25 @@ CameraMotionBobSystem::CameraMotionBobSystem() : ISystem(OriGine::SystemCategory
 void CameraMotionBobSystem::Initialize() {}
 void CameraMotionBobSystem::Finalize() {}
 
-void CameraMotionBobSystem::UpdateEntity(OriGine::Entity* _entity) {
-    OriGine::Entity* playerEnt = GetUniqueEntity("Player");
-    auto* playerState = GetComponent<PlayerState>(playerEnt);
+void CameraMotionBobSystem::UpdateEntity(OriGine::EntityHandle _handle) {
+    OriGine::EntityHandle playerEnt = GetUniqueEntity("Player");
+    auto* playerState               = GetComponent<PlayerState>(playerEnt);
     // Player の Stateがなければ 実行しない
     if (!playerState) {
         return;
     }
 
     // CameraMotionBobComponentを取得
-    auto* motionBobComps = GetComponents<CameraMotionBob>(_entity);
-    if (!motionBobComps) {
+    auto& motionBobComps = GetComponents<CameraMotionBob>(_handle);
+    if (motionBobComps.empty()) {
         return;
     }
 
     // カメラの揺れをするかどうか
-    for (auto& motionBob : *motionBobComps) {
+    for (auto& motionBob : motionBobComps) {
         // shakesource を取得
         int32_t shakeSourceCompIndex = motionBob.cameraShakeSourceComponentId;
-        auto* shakeSourceComp        = GetComponent<CameraShakeSourceComponent>(_entity, shakeSourceCompIndex);
+        auto* shakeSourceComp        = GetComponent<CameraShakeSourceComponent>(_handle, shakeSourceCompIndex);
         if (!shakeSourceComp) {
             continue;
         }
@@ -46,7 +46,7 @@ void CameraMotionBobSystem::UpdateEntity(OriGine::Entity* _entity) {
         }
 
         // 線形補間
-        float levelT    = EaseOutQuad(static_cast<float>(playerGearLevel - motionBob.thresholdGearLevel) / static_cast<float>(kMaxPlayerGearLevel - motionBob.thresholdGearLevel));
+        float levelT             = EaseOutQuad(static_cast<float>(playerGearLevel - motionBob.thresholdGearLevel) / static_cast<float>(kMaxPlayerGearLevel - motionBob.thresholdGearLevel));
         OriGine::Vec3f amplitude = Lerp<3, float>(motionBob.minAmplitude, motionBob.maxAmplitude, levelT);
         OriGine::Vec3f frequency = Lerp<3, float>(motionBob.minFrequency, motionBob.maxFrequency, levelT);
 

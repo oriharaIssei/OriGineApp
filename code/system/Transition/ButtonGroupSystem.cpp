@@ -16,17 +16,17 @@ void ButtonGroupSystem::Initialize() {}
 
 void ButtonGroupSystem::Finalize() {}
 
-void ButtonGroupSystem::UpdateEntity(OriGine::Entity* _entity) {
+void ButtonGroupSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     OriGine::KeyboardInput* keyInput    = GetScene()->GetKeyboardInput();
     OriGine::GamepadInput* gamePadInput = GetScene()->GetGamepadInput();
 
-    auto* buttonGroup = GetComponent<ButtonGroup>(_entity);
+    auto* buttonGroup = GetComponent<ButtonGroup>(_handle);
     if (buttonGroup == nullptr) {
         return;
     }
 
     int32_t currentButtonNumber = buttonGroup->GetCurrentButtonNumber();
-    Button* currentButton       = GetComponent<Button>(GetEntity(buttonGroup->GetEntityId(currentButtonNumber)));
+    Button* currentButton       = GetComponent<Button>(buttonGroup->GetEntityId(currentButtonNumber));
     if (!currentButton) {
         return;
     }
@@ -34,7 +34,7 @@ void ButtonGroupSystem::UpdateEntity(OriGine::Entity* _entity) {
 
     // 外部システムの入力に従う (ボタンのショートカットやマウスでの選択など)
     for (const auto& [index, entityID] : buttonGroup->GetButtonNumbers()) {
-        auto* button = GetComponent<Button>(GetEntity(entityID));
+        auto* button = GetComponent<Button>(entityID);
         if (button == nullptr || button == currentButton) {
             continue;
         }
@@ -57,7 +57,7 @@ void ButtonGroupSystem::UpdateEntity(OriGine::Entity* _entity) {
     }
 
     bool isPressed  = currentButton->isPressed();
-    bool IsReleased = currentButton->IsReleased();
+    bool isReleased = currentButton->IsReleased();
 
     // 決定ボタンの判定
     // pad が有効な場合は pad 優先
@@ -70,13 +70,13 @@ void ButtonGroupSystem::UpdateEntity(OriGine::Entity* _entity) {
                 }
             } else {
                 if (gamePadInput->IsRelease(button)) {
-                    IsReleased = true;
+                    isReleased = true;
                     break;
                 }
             }
         }
     }
-    if (!IsReleased) {
+    if (!isReleased) {
         for (const auto& key : buttonGroup->GetDecideKeys()) {
             if (isPressed) {
                 if (keyInput->IsPress(key)) {
@@ -85,7 +85,7 @@ void ButtonGroupSystem::UpdateEntity(OriGine::Entity* _entity) {
                 }
             } else {
                 if (keyInput->IsTrigger(key)) {
-                    IsReleased = true;
+                    isReleased = true;
                     break;
                 }
             }
@@ -93,9 +93,9 @@ void ButtonGroupSystem::UpdateEntity(OriGine::Entity* _entity) {
     }
 
     currentButton->SetPressed(isPressed);
-    currentButton->SetReleased(IsReleased);
+    currentButton->SetReleased(isReleased);
 
-    if (IsReleased) {
+    if (isReleased) {
         return;
     }
 
@@ -139,12 +139,12 @@ void ButtonGroupSystem::UpdateEntity(OriGine::Entity* _entity) {
         currentButtonNumber += delta;
         currentButtonNumber = std::clamp(currentButtonNumber, 0, (int32_t)buttonGroup->GetButtonNumbers().size() - 1);
 
-        currentButton = GetComponent<Button>(GetEntity(buttonGroup->GetEntityId(currentButtonNumber)));
+        currentButton = GetComponent<Button>(buttonGroup->GetEntityId(currentButtonNumber));
 
         // 次のボタンが存在しなければ戻す
         if (!currentButton) {
             currentButtonNumber -= delta;
-            currentButton = GetComponent<Button>(GetEntity(buttonGroup->GetEntityId(currentButtonNumber)));
+            currentButton = GetComponent<Button>(buttonGroup->GetEntityId(currentButtonNumber));
         }
         currentButton->SetHovered(true);
 

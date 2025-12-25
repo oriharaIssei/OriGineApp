@@ -10,8 +10,9 @@ OriGine::Vec2f GamepadInputDevice::GetMoveDirection() const {
 
 bool GamepadInputDevice::IsJumpTrigger() const {
     for (auto b : player_->GetJumpButton()) {
-        if (pad_->IsTrigger(b))
+        if (pad_->IsTrigger(b)) {
             return true;
+        }
     }
     return false;
 }

@@ -12,29 +12,26 @@
     "Entities": [
         {
             "Components": {
-                "AABBCollider": [],
-                "ModelMeshRenderer": [],
                 "StageData": [
                     {
+                        "Handle": "5c8ccbbb-c76e-49ec-abf6-eb10a8fc511a",
                         "difficulty": 1,
                         "stageNumber": 1
                     }
-                ],
-                "Transform": []
+                ]
+            },
+            "Handle": {
+                "uuid": "9e39c6ac-3211-47f0-ba47-92aca1c10d69"
             },
             "Name": "StageData",
-            "Systems": [
-                {
-                    "SystemCategory": 0,
-                    "SystemName": "CreateStage"
-                }
-            ],
+            "Systems": [],
             "isUnique": true
         },
         {
             "Components": {
                 "DirectionalLight": [
                     {
+                        "Handle": "74a5c36f-644a-484c-817a-80cf033c67c0",
                         "color": [
                             1.0,
                             1.0,
@@ -50,15 +47,18 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "532ce878-7bae-47fe-b94c-51092446b6f6"
+            },
             "Name": "directionalLight",
             "Systems": [],
             "isUnique": false
         },
         {
             "Components": {
-                "BoxRenderer": [],
                 "SphereRenderer": [
                     {
+                        "Handle": "49bc9797-fe8e-4703-8c08-8e446ee593db",
                         "blendMode": 1,
                         "divisionLatitude": 8,
                         "divisionLongitude": 16,
@@ -89,6 +89,7 @@
                 ],
                 "Transform": [
                     {
+                        "Handle": "6440a223-dc07-4762-a6f1-95b50eeacb03",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -108,6 +109,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "699e87eb-d75a-4956-9843-2db85bdb7def"
+            },
             "Name": "WallJumpTargetPos",
             "Systems": [
                 {
@@ -121,6 +125,7 @@
             "Components": {
                 "EntityReferenceList": [
                     {
+                        "Handle": "53a0a0aa-a745-43d8-b692-7886a1ae959d",
                         "entityFileList": [
                             [
                                 "./application/resource/entities",
@@ -190,6 +195,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "ec05d26a-2b04-45b2-a1f7-65f7a32c63bb"
+            },
             "Name": "EntityRef",
             "Systems": [
                 {
@@ -203,6 +211,7 @@
             "Components": {
                 "MouseCondition": [
                     {
+                        "Handle": "12b98fed-b81b-4069-ae26-5f65aa73a64b",
                         "fixCursorPos": [
                             500.0,
                             500.0
@@ -212,6 +221,9 @@
                         "isShowCursor": false
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "c5eaa240-0552-485e-a16e-a585bc5126d3"
             },
             "Name": "mouseCondition",
             "Systems": [
@@ -226,6 +238,7 @@
             "Components": {
                 "EntityReferenceList": [
                     {
+                        "Handle": "53bf71d3-6550-426e-b4e6-5ec9bbe54623",
                         "entityFileList": [
                             [
                                 "./application/resource/entities",
@@ -243,6 +256,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "c54058bc-54c1-4b9f-8bbd-191dda6eea19"
+            },
             "Name": "trailEffectRecipe",
             "Systems": [
                 {
@@ -256,6 +272,7 @@
             "Components": {
                 "Transform": [
                     {
+                        "Handle": "0e8cc989-9242-447b-bb6d-415626cfdb18",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -275,6 +292,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "9dcd5e3b-8ca7-474c-9b8b-ebe0a53030a7"
+            },
             "Name": "StartPosition",
             "Systems": [],
             "isUnique": true
@@ -283,6 +303,7 @@
             "Components": {
                 "Transform": [
                     {
+                        "Handle": "2d3596bb-6b4b-4792-9fcd-0f94dc08a877",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -302,6 +323,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "875c7c15-f932-4bbc-a4fb-b6165532eacb"
+            },
             "Name": "GoalPosition",
             "Systems": [],
             "isUnique": true
@@ -310,6 +334,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "73c0aac9-1ab6-443d-b0ee-ccf4747e7c62",
                         "center": [
                             0.0,
                             0.0,
@@ -342,6 +367,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "096d8c9c-a034-4486-b942-60f16e3bda50",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -374,11 +400,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "e849ebdd-1f06-4f55-b085-22833d0f9652",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "d903775e-ed05-48fb-a926-288d4172d4a5",
                         "color": [
                             1.0,
                             1.0,
@@ -403,10 +431,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "c04cc9c3-20ce-48a4-afaa-d4fb53660180",
                         "rotate": [
                             0.0,
                             0.0,
@@ -426,6 +453,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "fd66abc2-9a6a-45ae-9823-a9e3500b14f7"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -443,6 +473,7 @@
             "Components": {
                 "EntityReferenceList": [
                     {
+                        "Handle": "6a69a18a-47f2-499b-8791-2334d18486b8",
                         "entityFileList": [
                             [
                                 "./application/resource/entities",
@@ -472,6 +503,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "e9e9102b-fff2-4a23-9aa4-140c799e7db0"
+            },
             "Name": "BackFireRecipe",
             "Systems": [
                 {
@@ -485,6 +519,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "3d50ca33-1998-4820-a201-d184848beb25",
                         "center": [
                             0.0,
                             0.0,
@@ -517,6 +552,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "25d10f27-fe23-49b2-afe1-666124f61d7a",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -549,11 +585,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "40066d6b-e913-4029-ac7e-b3d3aee0381c",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "fb212b58-6a92-4868-ab60-bb31236d850c",
                         "color": [
                             1.0,
                             1.0,
@@ -578,10 +616,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "829557e1-5d67-41a0-a9d4-c3aa29b0699d",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -601,6 +638,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "033a0948-00e6-4546-886c-88d46d555365"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -618,6 +658,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "d209e9a1-9dbe-4077-8f9b-2ef589442fbc",
                         "center": [
                             0.0,
                             0.0,
@@ -650,6 +691,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "330c7c30-ce8d-44bf-9e03-036c81d70bc5",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -682,11 +724,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "aa4f303a-62f6-4924-834c-26e9b1c2e0de",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "5ecb2cb9-28d6-486c-9efb-955ac80f8708",
                         "color": [
                             1.0,
                             1.0,
@@ -711,10 +755,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "4d9bcd8b-0ebe-4947-8580-ae8ebefc336c",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -734,6 +777,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "cf1d8cec-d27d-4a88-9ac6-d3706c9b4235"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -751,6 +797,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "b21bc3fa-3966-4fdb-81d1-c5bf71f320fe",
                         "center": [
                             0.0,
                             0.0,
@@ -783,6 +830,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "0e3e7823-1a07-484d-8ca0-40a2be71b248",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -815,11 +863,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "7a0476f7-67ff-40e0-94a2-8bf59453ddd5",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "685f3b7c-87ba-4027-a8c9-533c38c1bfe1",
                         "color": [
                             1.0,
                             1.0,
@@ -844,10 +894,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "05ef2304-e12c-4762-a7ad-a096c492b5d8",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -867,6 +916,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "9320b1a9-8100-4a38-975c-9dfa8880bc4c"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -884,6 +936,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "6b903e02-4f7b-4878-a836-5658692ac473",
                         "center": [
                             0.0,
                             0.0,
@@ -916,6 +969,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "cfe2192c-28ce-46ae-843a-5f2e7bfbc224",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -948,11 +1002,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "0fb0030c-ef22-4447-a076-d6db6d6adcd6",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "eb2ddee2-ab0a-4bc2-a2f9-a40c57206bc6",
                         "color": [
                             1.0,
                             1.0,
@@ -977,10 +1033,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "22833c38-00ea-4732-9091-482d082db546",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -1000,6 +1055,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "e57be07a-bbd4-4121-b00b-517b22f6f6cd"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -1017,6 +1075,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "99915739-7f16-41c2-8535-8c1de78e6fcc",
                         "center": [
                             0.0,
                             0.0,
@@ -1049,6 +1108,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "e2c7355e-58b3-4b68-923d-742685430b98",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -1081,11 +1141,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "4e1db721-d8c8-41e8-a406-8714965dd846",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "249d0b60-c178-4069-9b52-8d99697cc974",
                         "color": [
                             1.0,
                             1.0,
@@ -1110,10 +1172,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "0819b5c5-f5da-422b-a7fe-5393414fed4d",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -1133,6 +1194,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "6281af07-54b3-4e01-8cb6-f3e13cefc6c8"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -1150,6 +1214,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "9b37c4dd-1d03-43a7-8e06-59be0a61161b",
                         "center": [
                             0.0,
                             0.0,
@@ -1182,6 +1247,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "fadde2b4-7ce6-428f-a59b-bf4eec28e3b6",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -1214,11 +1280,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "74493426-26e1-47cc-aa4c-84c56a44f694",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "960caede-136c-45ac-95f1-66beb7c43397",
                         "color": [
                             1.0,
                             1.0,
@@ -1243,10 +1311,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "e128559f-ed39-4345-803b-dcb7bc7b0709",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -1266,6 +1333,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "f3c974f6-dddb-4727-8c34-1c836dabb0a8"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -1283,6 +1353,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "aae30766-6112-44c8-a8e8-16740b92532c",
                         "center": [
                             0.0,
                             0.0,
@@ -1315,6 +1386,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "b1cabd15-5080-4a38-abfa-26c3071d8d2e",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -1347,11 +1419,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "45dce403-5e2b-48a8-9e04-eb6a8b79bbe9",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "ed18fb52-e6d0-44c3-b02d-1f3c18889c29",
                         "color": [
                             1.0,
                             1.0,
@@ -1376,10 +1450,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "6eb8ef6d-187b-4bd7-b3ab-77c846c729f8",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -1399,6 +1472,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "779e33c4-04f2-41cf-95b6-a6defb19f08b"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -1416,6 +1492,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "0f4c0b68-c291-4a16-a228-a0ca1d56b92b",
                         "center": [
                             0.0,
                             0.0,
@@ -1448,6 +1525,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "db6b515b-e960-49bd-8afc-81875899d7f7",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -1480,11 +1558,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "553c0c18-ca27-4c44-b0ba-ad853bd2cb50",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "7cdc47ef-3384-4f38-b6ac-566499e64e1b",
                         "color": [
                             1.0,
                             1.0,
@@ -1509,10 +1589,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "dbfd390e-8371-4e81-9120-86c5417474c8",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -1532,6 +1611,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "1ac9803b-4de6-4d2a-a5c0-794ee572f92d"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -1549,6 +1631,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "65e4faff-8b7e-481c-ad90-9b36ac98bf94",
                         "center": [
                             0.0,
                             0.0,
@@ -1581,6 +1664,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "85a48d2a-d254-4e0e-8975-fdf9059718f6",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -1613,11 +1697,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "4ee943f6-12bd-47d6-b416-363d24c4a2d1",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "567d4a4f-6c90-4cf7-8451-31d9c0810ea3",
                         "color": [
                             1.0,
                             1.0,
@@ -1642,10 +1728,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "75ad395d-b882-4b9f-9cfb-27d1df5447a4",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -1665,6 +1750,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "5381f633-44ab-4c2e-a2c9-0837394d0788"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -1682,6 +1770,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "14d17762-7a75-4a80-b998-0299f1098596",
                         "center": [
                             0.0,
                             0.0,
@@ -1714,6 +1803,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "6964be0c-dda8-4356-9b8b-663e0c12c542",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -1746,11 +1836,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "2f05d1ae-162e-4437-adb4-0f0bd33731d8",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "b42e9f7e-d1b6-4f8b-bf30-6f8d35628149",
                         "color": [
                             1.0,
                             1.0,
@@ -1775,10 +1867,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "a8a7494d-ddca-48c9-bef5-f7656901bfb0",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -1798,6 +1889,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "e6518e1e-0990-4dea-ba47-603665443211"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -1815,6 +1909,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "1595b236-c1de-4185-b689-858164519ef5",
                         "center": [
                             0.0,
                             0.0,
@@ -1847,6 +1942,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "483117b4-2d76-4be4-8bb7-e58d57dd4697",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -1879,11 +1975,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "cb010538-492b-4696-a3e0-2239a86c3c9b",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "7f049328-0c59-4cf2-84a9-c25b04cdd65f",
                         "color": [
                             1.0,
                             1.0,
@@ -1908,10 +2006,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "efad6f74-7c1d-40d1-814f-4989df3a7c46",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -1931,6 +2028,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "0b0fdff0-738d-4965-97bf-3ac1df5d7600"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -1948,6 +2048,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "be6782f6-3003-4303-a8b2-4df98117d197",
                         "center": [
                             0.0,
                             0.0,
@@ -1980,6 +2081,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "de96eba2-2bcf-47c5-bd40-1fbe8faa2d52",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -2012,11 +2114,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "c821d0c4-0c43-47b0-ab83-cc9db2b3a587",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "942c1c51-6b27-4f60-aff7-01b3c2520f3e",
                         "color": [
                             1.0,
                             1.0,
@@ -2041,10 +2145,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "d19e3463-58c5-44cb-8e6c-974f82ba9996",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -2064,6 +2167,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "ccb1ccbd-7681-419b-ae77-a06d9c743d11"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -2081,6 +2187,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "e5ca6dd1-4e08-4650-82f4-630540fb57fc",
                         "center": [
                             0.0,
                             0.0,
@@ -2113,6 +2220,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "97811ecd-bf60-495a-8f5d-3a956abea8ce",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -2145,11 +2253,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "389f5996-cbac-48da-b8f5-827f89a05a4f",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "f9327ed4-9f19-4da1-896d-c6253af40aec",
                         "color": [
                             1.0,
                             1.0,
@@ -2174,10 +2284,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "8354dd37-36fd-41fd-a8c9-af1a91dded20",
                         "rotate": [
                             0.0,
                             0.0,
@@ -2197,6 +2306,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "68788e05-8b84-4197-b458-bfb1489d2395"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -2214,6 +2326,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "734741c8-6a05-4d21-9eda-5b241603d11a",
                         "center": [
                             0.0,
                             0.0,
@@ -2246,6 +2359,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "b74df152-1093-4efc-93e0-af491309584b",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -2278,11 +2392,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "3cde4d45-0932-40aa-89fc-492624b7d857",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "f17d04e1-32aa-4d40-9eea-4f467f6e2024",
                         "color": [
                             1.0,
                             1.0,
@@ -2307,10 +2423,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "17d569ad-6c76-450b-b351-2cef3685462c",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -2330,6 +2445,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "ac427913-7927-4ea1-9037-665f1ea207bc"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -2347,6 +2465,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "21fa59f4-531a-4f1d-be24-dbe47de573d9",
                         "center": [
                             0.0,
                             0.0,
@@ -2379,6 +2498,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "9ccfc73f-0016-4d27-9c70-af3d26539ed4",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -2411,11 +2531,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "1b5217c0-58d1-4887-83f9-58ab02be8c2a",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "4d84a53b-b9fc-4f03-95c9-580afc47757d",
                         "color": [
                             1.0,
                             1.0,
@@ -2440,10 +2562,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "3ed15902-bffa-42c9-879f-da714c34adf3",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -2463,6 +2584,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "d004f882-e8b6-449a-bf72-837ee72a70dc"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -2480,6 +2604,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "4498e681-0f51-4f6d-851e-884047a40a18",
                         "center": [
                             0.0,
                             0.0,
@@ -2512,6 +2637,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "ea0cf3ea-aede-4b80-ad2d-cea15d352e16",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -2544,11 +2670,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "fe221a16-30c7-4258-862a-89dc97d799e4",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "173dd855-fba5-4271-8e7c-200d07a1a649",
                         "color": [
                             1.0,
                             1.0,
@@ -2573,10 +2701,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "df64862a-dec2-4e6a-919a-b684d7c6c822",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -2596,6 +2723,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "7aeb8a15-04cf-473e-8683-3b6003b9f2d2"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -2613,6 +2743,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "fbf53166-34d8-4066-8333-09225fd6d5fe",
                         "center": [
                             0.0,
                             0.0,
@@ -2645,6 +2776,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "87b825e9-d459-4e04-aa80-a34a47e354b0",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -2677,11 +2809,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "5fb67992-5bdc-4240-9fed-bf7a15e40b5a",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "71f9f41f-e670-4683-8423-6039b55cadd7",
                         "color": [
                             1.0,
                             1.0,
@@ -2706,10 +2840,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "5da2d225-b3cc-4947-b2b6-1a11c406b6ba",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -2729,6 +2862,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "0ee2d14e-e262-42e0-9a7c-4ce415b3a9da"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -2746,6 +2882,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "011e43b8-b78a-4295-a51c-d49ae6ad3148",
                         "center": [
                             0.0,
                             0.0,
@@ -2778,6 +2915,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "04db05ce-9a05-4a33-a0ec-7a2079bb352e",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -2810,11 +2948,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "35fa590d-228d-470e-8091-70ed3903296a",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "b9391196-c339-4db0-9b88-1c9594d170af",
                         "color": [
                             1.0,
                             1.0,
@@ -2839,10 +2979,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "71a88e60-7a63-4ff7-8f4d-becc0ab18a8b",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -2862,6 +3001,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "38426df8-c2c8-4b57-a095-90d4b4c16359"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -2879,6 +3021,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "8f0d2589-3d62-44df-b32b-3ec658a6fac8",
                         "center": [
                             0.0,
                             0.0,
@@ -2911,6 +3054,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "3ff512ed-6205-4bb1-b226-67a27a077e51",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -2943,11 +3087,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "756e926f-9751-4388-8b87-f72532a6df18",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "c42e1888-57e7-484b-934c-03dcd36d4725",
                         "color": [
                             1.0,
                             1.0,
@@ -2972,10 +3118,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "f4ba81b4-41ee-4733-a3a2-c615baf0d9ab",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -2995,6 +3140,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "1ed88acd-943f-4dfb-96fb-10787a64abe2"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -3012,6 +3160,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "b4c98b98-69cf-4f16-87e0-a190209f6da7",
                         "center": [
                             0.0,
                             0.0,
@@ -3044,6 +3193,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "cbfacdb5-bd29-4dde-852a-7724525f3c04",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -3076,11 +3226,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "ea57b361-a3f4-4ded-a4f1-4fb2d285dd7d",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "e8afa399-b294-4be5-8fd4-3d59e1b0e969",
                         "color": [
                             1.0,
                             1.0,
@@ -3105,10 +3257,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "1728a177-c51d-4f04-b2a3-957588431c5d",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -3128,6 +3279,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "375d7ba6-ce07-44ba-8366-f65a2b657784"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -3145,6 +3299,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "56ba67e2-42e9-46db-be71-3851a2f2f455",
                         "center": [
                             0.0,
                             0.0,
@@ -3177,6 +3332,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "681a5ca7-e47c-4e48-b9fa-94b560ecab19",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -3209,11 +3365,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "ad2bc5c4-f4dc-451f-b46d-44f56394666e",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "e2d92736-bddf-415f-b84a-91afb69ccced",
                         "color": [
                             1.0,
                             1.0,
@@ -3238,10 +3396,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "1eb5656f-73c0-4d74-ab1f-8ced59a1f85c",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -3261,6 +3418,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "63b316b0-f399-4871-9da0-a80585fe8195"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -3278,6 +3438,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "d206daae-e2f9-4b7d-9f6d-4336a3896afa",
                         "center": [
                             0.0,
                             0.0,
@@ -3310,6 +3471,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "2518e8a9-b8ee-432b-bd72-37cdf739680d",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -3342,11 +3504,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "dbb48fd2-8d78-42d8-8698-5d71983e026d",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "8653df48-c264-4a40-afbc-b2afa08dda42",
                         "color": [
                             1.0,
                             1.0,
@@ -3371,10 +3535,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "648257fc-bf4c-4993-9683-b184a109ed00",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -3394,6 +3557,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "b4fe7348-0d14-43b3-ac9d-1d5b195a463c"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -3411,6 +3577,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "b6d1ab7c-3595-494a-8406-2b8c8cf26160",
                         "center": [
                             0.0,
                             0.0,
@@ -3443,6 +3610,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "3140baac-beaf-4f25-b4d2-a360bea22562",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -3475,11 +3643,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "59be7183-54ef-4aaf-ba9d-cbea06b57fcb",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "48708ad7-749a-431a-bca4-2b0594204ad4",
                         "color": [
                             1.0,
                             1.0,
@@ -3504,10 +3674,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "883d4cf2-efd6-4c20-b760-c55df471091d",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -3527,6 +3696,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "2f089dec-95b1-40f5-ac50-027730d0f878"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -3544,6 +3716,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "5d51b788-132a-41b2-9332-38b0ef5ec723",
                         "center": [
                             0.0,
                             0.0,
@@ -3576,6 +3749,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "380d9400-0bce-41ee-9d69-5853dc873010",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -3608,11 +3782,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "7b1ddeac-5ccb-42da-8c89-cc019f1f677b",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "8f49be85-df39-4bb1-8469-0f61693070ca",
                         "color": [
                             1.0,
                             1.0,
@@ -3637,10 +3813,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "dfba9e98-6905-4ae7-93d2-484c6c5a60c4",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -3660,6 +3835,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "92386560-4467-4cbe-94b2-bd96e32362df"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -3677,6 +3855,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "61672cdb-2929-4e9c-acfe-1a7172053372",
                         "center": [
                             0.0,
                             0.0,
@@ -3709,6 +3888,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "d197615a-eb13-43d3-b0df-d5ba872886dc",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -3741,11 +3921,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "4e71a638-613a-4f0c-8b60-9d1865d2acbc",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "c212f617-392c-46ab-9214-f790144dcc97",
                         "color": [
                             1.0,
                             1.0,
@@ -3770,10 +3952,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "c28023b1-cfa9-4b1e-9b53-959ca32cfcf6",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -3793,6 +3974,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "2bfb8b9c-9f5b-4d6b-b982-63470dedb016"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -3810,6 +3994,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "91f9531c-ce23-415c-831e-ad99a495d4ce",
                         "center": [
                             0.0,
                             0.0,
@@ -3842,6 +4027,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "a5c7ce1e-b9f8-4401-b0e5-de43c4157d0a",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -3874,11 +4060,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "46faa4ea-0b65-4260-a3ae-ac5379356958",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "723d8fea-99c6-49fc-bf54-b7df3ab4ca06",
                         "color": [
                             1.0,
                             1.0,
@@ -3903,10 +4091,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "7c3183ef-3d6c-45b1-8e0f-073c9fa6c2d8",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -3926,6 +4113,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "34cab235-ef6b-46c5-9ca0-e45407b14926"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -3943,6 +4133,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "bfccad0c-0791-451b-9926-a258bd3c5ca1",
                         "center": [
                             0.0,
                             0.0,
@@ -3975,6 +4166,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "2da62bea-7d7e-4957-a5ef-e021f0445838",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -4007,11 +4199,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "fc96b3fb-720a-4509-8d49-27b93f77572c",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "0aa4da1b-3a11-487f-ba34-65223a95c73f",
                         "color": [
                             1.0,
                             1.0,
@@ -4036,10 +4230,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "13e01463-8086-402d-9594-4270025038cc",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -4059,6 +4252,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "01d5638c-2239-4c95-9041-697889668a38"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -4076,6 +4272,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "4f20b4ab-2064-4136-a759-4febfd4b9b7d",
                         "center": [
                             0.0,
                             0.0,
@@ -4108,6 +4305,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "bf5501e1-06bd-4fc8-b9b5-d10b482c875b",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -4140,11 +4338,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "47d154f9-3ff5-4ea8-b5eb-b5966292379d",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "6fe55d70-8501-4195-96bf-ee6170ba4457",
                         "color": [
                             1.0,
                             1.0,
@@ -4169,10 +4369,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "b8490300-43c5-481b-8a3f-bf976f3d1cd1",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -4192,6 +4391,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "47791755-7684-44a2-82a2-d5ab308e81b4"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -4209,6 +4411,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "d2da46fd-4c9b-4792-8caa-c31d877fe6b1",
                         "center": [
                             0.0,
                             0.0,
@@ -4241,6 +4444,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "73c2c7f7-cc4b-4393-9ff6-a1b9b105ae7a",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -4273,11 +4477,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "92e020dd-2566-4602-9432-cc3f44515d70",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "98e73e30-3057-418f-90ca-a39a2fcb2bdc",
                         "color": [
                             1.0,
                             1.0,
@@ -4302,10 +4508,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "2b79fb15-29b0-47c7-b104-d403afb998a5",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -4325,6 +4530,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "dad3342d-dfeb-4a33-925a-737373e1dbad"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -4342,6 +4550,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "acd85df5-244d-4793-8059-a959bb806263",
                         "center": [
                             0.0,
                             0.0,
@@ -4374,6 +4583,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "6a0d7fac-9144-4031-811e-0661f49ad6c4",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -4406,11 +4616,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "62289214-31ad-4643-b9b4-ab3ab12ad1bb",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "55c5fdbb-5360-42bf-868d-adf80f1aeb49",
                         "color": [
                             1.0,
                             1.0,
@@ -4435,10 +4647,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "58a5aa66-e79a-4880-8dc6-4e87bab6f6c9",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -4458,6 +4669,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "c99fcd89-8b05-46a4-963c-e43a9f018a75"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -4475,6 +4689,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "87c1bc71-719c-4a6d-99a4-9efa4a6a0a15",
                         "center": [
                             0.0,
                             0.0,
@@ -4507,6 +4722,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "fb6ebaef-71be-4cf8-aca4-32f7d5a40f17",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -4539,11 +4755,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "8713fd17-b40b-4b92-91e1-98fb2997e83b",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "308238e0-8b4f-4bda-b712-c1b05fff0109",
                         "color": [
                             1.0,
                             1.0,
@@ -4568,10 +4786,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "2ff56907-2682-4187-84cf-065d85519135",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -4591,6 +4808,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "ee48b148-a605-489f-a7e4-0c13dd405030"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -4608,6 +4828,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "b8974404-d0d3-482f-aeeb-34a1f507b736",
                         "center": [
                             0.0,
                             0.0,
@@ -4640,6 +4861,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "1544f2c4-9cfa-4713-bfb8-3c40f6492b7b",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -4672,11 +4894,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "3d07f138-f49a-4bad-8ac8-371a539c8495",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "76d22395-27a9-487b-9925-28053bea7cdc",
                         "color": [
                             1.0,
                             1.0,
@@ -4701,10 +4925,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "c8b6fef3-c1c9-4a7a-88fe-e94e526f4be0",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -4724,6 +4947,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "b8b48697-b5c3-4b67-a2dd-897e6d69a2aa"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -4741,6 +4967,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "bfcc1c19-295d-41c8-bf17-0c1fbb53a116",
                         "center": [
                             0.0,
                             0.0,
@@ -4773,6 +5000,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "dc318650-04ae-4db6-a558-0dec25c77ad8",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -4805,11 +5033,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "37573e54-edcd-4510-9562-37dae46ba1c2",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "69824273-ca50-4ceb-a723-380d9350a349",
                         "color": [
                             1.0,
                             1.0,
@@ -4834,10 +5064,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "69a47a62-d206-4961-ba05-7cac1b12f1de",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -4857,6 +5086,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "e150d62b-928b-41fd-b7ef-166ee676d96a"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -4874,6 +5106,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "2c3c67f9-b551-43ae-a2ef-90e2e39b6987",
                         "center": [
                             0.0,
                             0.0,
@@ -4906,6 +5139,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "59d836a3-b9b8-4a33-b294-74c93ceb232b",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -4938,11 +5172,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "f9885061-2b89-4b61-846e-4310f630ea3b",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "d6b7c23d-899c-4e05-86dc-24635b1eb5e5",
                         "color": [
                             1.0,
                             1.0,
@@ -4967,10 +5203,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "a711e5a4-afaf-40cf-a32d-478da2813849",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -4990,6 +5225,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "2bc78648-82ed-40b2-a076-277e813bea1c"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -5007,6 +5245,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "662558ee-530d-4fe0-b4d4-182eb5815592",
                         "center": [
                             0.0,
                             0.0,
@@ -5039,6 +5278,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "8bbe0cba-a49f-4483-8f42-d72c12033e06",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -5071,11 +5311,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "cce54026-c40a-4476-a833-4eb2ed44fb93",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "6eb5d367-4c47-46fd-9f32-affec1abab5d",
                         "color": [
                             1.0,
                             1.0,
@@ -5100,10 +5342,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "c09ea61c-c5d2-4c18-b20f-6c0b10699bb8",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -5123,6 +5364,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "d7eb2115-4bbe-4946-bcab-82d7fc6bbe83"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -5140,6 +5384,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "d40413cc-36e8-46c4-8b72-96cb19d23995",
                         "center": [
                             0.0,
                             0.0,
@@ -5172,6 +5417,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "e06dad3e-c33c-4063-9632-57bda440c056",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -5204,11 +5450,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "ff9c115b-313a-461a-8cde-c7d02c83f5d5",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "87fa7a77-8a01-47c1-880f-f8fa66ce4ae8",
                         "color": [
                             1.0,
                             1.0,
@@ -5233,10 +5481,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "cf3c5ef6-013c-4066-8210-84a782973fb7",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -5256,6 +5503,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "12ed42bf-2d15-4766-8353-16e122a3f09f"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -5273,6 +5523,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "eb61ffbd-762d-4724-a3c6-643013b0b191",
                         "center": [
                             0.0,
                             0.0,
@@ -5305,6 +5556,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "c6fac227-5f66-409d-9845-8edb5e93ea94",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -5337,11 +5589,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "920d10ee-272a-4f4f-9fb0-b75152dce081",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "d12c1a63-9550-4978-805b-c32728bb642c",
                         "color": [
                             1.0,
                             1.0,
@@ -5366,10 +5620,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "b8591f6b-a7c4-4403-b54c-8bd801c82a15",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -5389,6 +5642,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "75fe8d85-9396-4c98-8693-016f5433f05f"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -5406,6 +5662,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "847cee54-0840-4415-a7a7-619b11fe6285",
                         "center": [
                             0.0,
                             0.0,
@@ -5438,6 +5695,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "4f758fd4-7ed4-4a08-89fd-834434573c2b",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -5470,11 +5728,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "55e70398-9eaf-4cdd-9c45-b49b203b41c6",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "7ee76b00-0a71-4643-99aa-3460d3f28ff5",
                         "color": [
                             1.0,
                             1.0,
@@ -5499,10 +5759,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "f797b049-ae19-421e-80c6-734c12139014",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -5522,6 +5781,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "7486dbae-4f8d-45e0-8cc6-7453784e8895"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -5539,6 +5801,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "e06979b2-3b6b-4a9d-b9e0-7709daa80f3c",
                         "center": [
                             0.0,
                             0.0,
@@ -5571,6 +5834,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "4bfd1daa-fa4b-4f6d-bd1e-056a1e25c896",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -5603,11 +5867,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "49844a1f-7218-4a22-9f77-6eb66885d7d5",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "69b258fd-7c16-4162-bff4-4a347182f10a",
                         "color": [
                             1.0,
                             1.0,
@@ -5632,10 +5898,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "e1e8e08e-70d8-46d1-be0a-f7280b1b66a0",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -5655,6 +5920,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "df39e780-f895-4692-8fa2-520dd22d943c"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -5672,6 +5940,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "af4323ea-1ddb-41e0-b97d-fcc7fd722049",
                         "center": [
                             0.0,
                             0.0,
@@ -5704,6 +5973,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "4b9983ad-2262-4fce-a554-1659e6c8fc9a",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -5736,11 +6006,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "47fa6879-df67-42cb-b9f9-3fab25052395",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "d85e9894-2076-4bee-8d62-c6413f13b91f",
                         "color": [
                             1.0,
                             1.0,
@@ -5765,10 +6037,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "ed9a05fc-d03a-4b04-986a-284ffd1edc12",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -5788,6 +6059,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "cd20f3c4-3bea-4404-8d4d-85e3180ecf22"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -5805,6 +6079,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "55f23022-376c-4748-96d6-74c385cd5255",
                         "center": [
                             0.0,
                             0.0,
@@ -5837,6 +6112,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "31c0b6fd-22ab-4ce7-b8c3-4312ec96d344",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -5869,11 +6145,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "8a27cbf7-9b0f-42cb-98ef-b2b8a69979b1",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "aed05d30-6f11-47c0-846a-ab53e13a9efa",
                         "color": [
                             1.0,
                             1.0,
@@ -5898,10 +6176,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "4f9807ed-e881-42f9-8671-83b5540a0d1c",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -5921,6 +6198,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "005e8fe4-19d3-49ed-9250-1287565c69b2"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -5938,6 +6218,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "a9337506-af63-4cda-a718-e009dd0dea91",
                         "center": [
                             0.0,
                             0.0,
@@ -5970,6 +6251,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "adc4cc56-8b92-4cc7-b8a9-fbed855b2ce4",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -6002,11 +6284,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "38818744-4970-4873-bde8-fd3ec2a0ca0a",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "3ba5b568-47f9-49bd-93ad-da42cfb66a4d",
                         "color": [
                             1.0,
                             1.0,
@@ -6031,10 +6315,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "c3aeafae-f8e5-46e1-8ceb-9d0ea06892df",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -6054,6 +6337,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "90fc4d8d-52a5-4ae1-9802-d44de6932b36"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -6071,6 +6357,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "58e4d262-2a10-44a7-b28e-35d8ab0c6016",
                         "center": [
                             0.0,
                             0.0,
@@ -6103,6 +6390,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "d269b0ef-83f4-494c-82f2-64283d509a02",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -6135,11 +6423,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "7a39350b-e90f-4d1d-960a-152d3e4ba72d",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "17ff041b-efec-4e8a-9e6c-1a4ec2ea8ef8",
                         "color": [
                             1.0,
                             1.0,
@@ -6164,10 +6454,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "4fb2c144-8555-443f-906a-093695b99422",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -6187,6 +6476,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "6ce3af00-eb2f-4c57-8be9-c3d9a1032851"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -6204,6 +6496,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "0c8c8631-0ed5-419b-9ebd-84ce8792987c",
                         "center": [
                             0.0,
                             0.0,
@@ -6236,6 +6529,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "bd257171-b8b1-4bdf-9994-cd517f669852",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -6268,11 +6562,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "f6f6e42e-7ae3-4c2a-8a72-e74ab82f6eaf",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "c019d8f9-98cb-4d33-9cdf-2208b70cf0d3",
                         "color": [
                             1.0,
                             1.0,
@@ -6297,10 +6593,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "6e383b65-d86e-4090-baab-8d382d7ebb44",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -6320,6 +6615,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "da522922-54e1-4b80-b4f6-13b2d538aa58"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -6337,6 +6635,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "e16e2aa4-2b45-4a5c-8bfb-95ef00471ae6",
                         "center": [
                             0.0,
                             0.0,
@@ -6369,6 +6668,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "cc160ffb-9578-46e9-8cf2-e9f54b38ca8c",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -6401,11 +6701,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "821f4359-06fb-44b0-a0c5-ee8f31ae6c56",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "b4b4d527-6fc9-4353-bbb5-9bc4a409610a",
                         "color": [
                             1.0,
                             1.0,
@@ -6430,10 +6732,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "bd6ae30a-0d2a-4824-b69d-20e3f987c291",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -6453,6 +6754,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "2b3dabc0-c669-4054-85c2-3b82e5e70fc8"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -6470,6 +6774,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "5ece47e3-d624-4331-90aa-f2dbec99a4bc",
                         "center": [
                             0.0,
                             0.0,
@@ -6502,6 +6807,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "89954e58-fcf1-4887-b422-21c142d9127b",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -6534,11 +6840,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "48c9779c-e92e-408c-a864-051db104da80",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "7513d3b6-e743-4e1b-9153-700c6e1b816d",
                         "color": [
                             1.0,
                             1.0,
@@ -6563,10 +6871,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "4b1fd3db-f43a-4800-9deb-7bbd3309f795",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -6586,6 +6893,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "1de16e45-7393-4784-9dad-06993c860971"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -6603,6 +6913,7 @@
             "Components": {
                 "AABBCollider": [
                     {
+                        "Handle": "88c6bf69-93e1-4992-91c6-818aa1027dfd",
                         "center": [
                             0.0,
                             0.0,
@@ -6635,6 +6946,7 @@
                 ],
                 "BoxRenderer": [
                     {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -6667,11 +6979,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
+                        "Handle": "2efe1ba0-82f4-4bd9-a433-44f37c092c92",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
                         "color": [
                             1.0,
                             1.0,
@@ -6696,10 +7010,9 @@
                         ]
                     }
                 ],
-                "OBBCollider": [],
-                "StageObstacle": [],
                 "Transform": [
                     {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -6719,6 +7032,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "564f37fa-8b7f-469d-b764-bc5bf98c6742"
+            },
             "Name": "Floor",
             "Systems": [
                 {
@@ -6736,6 +7052,7 @@
             "Components": {
                 "SpeedFor3dUIComponent": [
                     {
+                        "Handle": "0c428eae-25fd-4365-a95d-9a8aa9ce2910",
                         "digitDecimal": 2,
                         "digitInteger": 3,
                         "marginBetweenIntegerAndDecimal": [
@@ -6772,6 +7089,9 @@
                     }
                 ]
             },
+            "Handle": {
+                "uuid": "175c0d4f-a5e7-446f-9792-aece5b5a1ecb"
+            },
             "Name": "SpeedUI",
             "Systems": [
                 {
@@ -6788,8 +7108,13 @@
         {
             "Components": {
                 "PlayRecordeComponent": [
-                    null
+                    {
+                        "Handle": "9b15c8e3-850f-4db9-93c3-8881d241a3ab"
+                    }
                 ]
+            },
+            "Handle": {
+                "uuid": "484a5ce7-928b-44d4-bb06-38c1f89fe3ed"
             },
             "Name": "Recorder",
             "Systems": [
@@ -6807,10 +7132,13 @@
         {
             "Components": {
                 "GhostReplayComponent": [
-                    null
+                    {
+                        "Handle": "0dcd4912-aec8-42f9-afbe-e56747f8611c"
+                    }
                 ],
                 "MouseCondition": [
                     {
+                        "Handle": "64e0458f-5af3-4597-a147-3a37069d7e80",
                         "fixCursorPos": [
                             500.0,
                             500.0
@@ -6820,6 +7148,9 @@
                         "isShowCursor": true
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "2d45f88a-83e3-4ae7-8be0-27aed590dd6e"
             },
             "Name": "Replayer",
             "Systems": [
@@ -6838,6 +7169,7 @@
             "Components": {
                 "DissolveEffectParam": [
                     {
+                        "Handle": "8afc1267-3e36-4f91-b3c1-fe25ffd1d635",
                         "edgeWidth": 0.004000000189989805,
                         "isActive": true,
                         "materialIndex": 0,
@@ -6853,6 +7185,7 @@
                 ],
                 "Material": [
                     {
+                        "Handle": "c7c45362-f21c-432b-ac91-a536ddd5aaab",
                         "color": [
                             1.0,
                             1.0,
@@ -6879,9 +7212,13 @@
                 ],
                 "SceneChanger": [
                     {
+                        "Handle": "a31bfd02-0673-4701-a45b-68c5ae7968c1",
                         "nextSceneName": ""
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "910993ae-ca46-4c9a-b119-dadb55506977"
             },
             "Name": "SceneTransitionReceiver",
             "Systems": [
@@ -6915,11 +7252,6 @@
         {
             "ApplyMouseConditionSystem": {
                 "Priority": 0
-            }
-        },
-        {
-            "BackFireInitialize": {
-                "Priority": 1
             }
         },
         {
@@ -7009,11 +7341,6 @@
         },
         {
             "CreateSpriteFromTimer": {
-                "Priority": 1
-            }
-        },
-        {
-            "CreateStage": {
                 "Priority": 1
             }
         },
@@ -7158,11 +7485,6 @@
             }
         },
         {
-            "TrailEffectInitialize": {
-                "Priority": 100
-            }
-        },
-        {
             "RegisterWindowResizeEvent": {
                 "Priority": 0
             }
@@ -7218,12 +7540,17 @@
             }
         },
         {
+            "TakeToGoalPosition": {
+                "Priority": 1
+            }
+        },
+        {
             "SubSceneActivateByButton": {
                 "Priority": 0
             }
         },
         {
-            "TakeToGoalPosition": {
+            "StartSequenceSystem": {
                 "Priority": 1
             }
         },
@@ -7235,11 +7562,6 @@
         {
             "SubSceneRender": {
                 "Priority": 10
-            }
-        },
-        {
-            "StartSequenceSystem": {
-                "Priority": 1
             }
         },
         {
@@ -7310,6 +7632,11 @@
         {
             "EffectAutoDestroySystem": {
                 "Priority": 0
+            }
+        },
+        {
+            "BackFireInitialize": {
+                "Priority": 1
             }
         }
     ]

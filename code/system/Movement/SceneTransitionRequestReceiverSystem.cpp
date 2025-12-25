@@ -35,14 +35,14 @@ void SceneTransitionRequestReceiverSystem::Finalize() {
     MessageBus::GetInstance()->Unsubscribe<SceneChangeRequest>(sceneChangeRequestEventId_);
 }
 
-void SceneTransitionRequestReceiverSystem::UpdateEntity(OriGine::Entity* _entity) {
+void SceneTransitionRequestReceiverSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     if (!isSceneChangeRequested_) {
         return;
     }
     // フラグをリセット
     isSceneChangeRequested_ = false;
 
-    auto* sceneChangerComp = GetComponent<SceneChanger>(_entity);
+    SceneChanger* sceneChangerComp = GetComponent<SceneChanger>(_handle);
 
     if (!sceneChangerComp) {
         return;

@@ -20,7 +20,7 @@ using namespace OriGine;
 CameraShakeSourceComponent::CameraShakeSourceComponent() : IComponent() {}
 CameraShakeSourceComponent::~CameraShakeSourceComponent() {}
 
-void CameraShakeSourceComponent::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {
+void CameraShakeSourceComponent::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {
     if (isActive) {
         StartShake();
     }
@@ -40,7 +40,7 @@ void CameraShakeSourceComponent::StopShake() {
     isActive = false;
 }
 
-void CameraShakeSourceComponent::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]] OriGine::Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
+void CameraShakeSourceComponent::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]] EntityHandle _owner, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
 
     std::string label = "";
@@ -71,8 +71,8 @@ void CameraShakeSourceComponent::Edit([[maybe_unused]] OriGine::Scene* _scene, [
         }
     }
 
-    auto cameraTransforms      = _scene->GetComponents<CameraTransform>(_entity);
-    int32_t entityMaterialSize = cameraTransforms != nullptr ? static_cast<int32_t>(cameraTransforms->size()) : -1;
+    auto& cameraTransforms     = _scene->GetComponents<CameraTransform>(_owner);
+    int32_t entityMaterialSize = static_cast<int32_t>(cameraTransforms.size());
     // カメラTransformコンポーネントインデックス
     InputGuiCommand<int32_t>("Camera Transform Index##" + _parentLabel, cameraTransformIndex, "%d", [this, entityMaterialSize](int32_t* _newT) {
         this->cameraTransformIndex = std::clamp(*_newT, -1, entityMaterialSize - 1);

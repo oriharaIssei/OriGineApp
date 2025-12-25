@@ -12,11 +12,8 @@ GetClearTime::~GetClearTime() {}
 void GetClearTime::Initialize() {}
 void GetClearTime::Finalize() {}
 
-void GetClearTime::UpdateEntity(OriGine::Entity* _entity) {
-    if (_entity == nullptr) {
-        return;
-    }
-    auto timerComp = GetComponent<TimerComponent>(_entity);
+void GetClearTime::UpdateEntity(OriGine::EntityHandle _handle) {
+    auto timerComp = GetComponent<TimerComponent>(_handle);
     if (timerComp == nullptr) {
         return;
     }

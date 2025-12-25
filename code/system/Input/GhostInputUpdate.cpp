@@ -30,9 +30,9 @@ void GhostInputUpdate::Initialize() {
 }
 void GhostInputUpdate::Finalize() {}
 
-void GhostInputUpdate::UpdateEntity(OriGine::Entity* _entity) {
+void GhostInputUpdate::UpdateEntity(OriGine::EntityHandle _handle) {
 
-    auto comp = GetComponent<GhostReplayComponent>(_entity);
+    auto comp = GetComponent<GhostReplayComponent>(_handle);
     if (!comp || !comp->replayPlayer_) {
         return;
     }
@@ -57,7 +57,7 @@ void GhostInputUpdate::UpdateEntity(OriGine::Entity* _entity) {
     OriGine::Engine::GetInstance()->SetDeltaTime(newDelta);
 
     MouseCondition* mouseCondition =
-        GetComponent<MouseCondition>(GetEntity(comp->ghostCameraEntityId_));
+        GetComponent<MouseCondition>(comp->ghostCameraEntityId_);
     if (mouseCondition) {
         comp->mouseInput_->SetPosition(mouseCondition->GetFixCursorPos());
     }
@@ -66,12 +66,12 @@ void GhostInputUpdate::UpdateEntity(OriGine::Entity* _entity) {
         newDelta,
         comp->keyboardInput_.get(),
         comp->gamepadInput_.get(),
-        GetComponent<PlayerInput>(GetEntity(comp->ghostEntityId_)),
-        GetComponent<PlayerState>(GetEntity(comp->ghostEntityId_)));
+        GetComponent<PlayerInput>(comp->ghostEntityId_),
+        GetComponent<PlayerState>(comp->ghostEntityId_));
 
     cameraInputSystem_->InputUpdate(
         newDelta,
         comp->mouseInput_.get(),
         comp->gamepadInput_.get(),
-        GetComponent<CameraController>(GetEntity(comp->ghostCameraEntityId_)));
+        GetComponent<CameraController>(comp->ghostCameraEntityId_));
 }

@@ -6,19 +6,24 @@
 #include "scene/Scene.h"
 
 /// ECS
+// entity
+#include "entity/Entity.h"
+// component
 #include "component/transform/Transform.h"
 
 /// debug
 #include "myGui/MyGui.h"
 #endif // _DEBUG
 
+using namespace OriGine;
+
 LookAtFromTransforms::LookAtFromTransforms() {}
 LookAtFromTransforms::~LookAtFromTransforms() {}
 
-void LookAtFromTransforms::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {}
+void LookAtFromTransforms::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {}
 void LookAtFromTransforms::Finalize() {}
 
-void LookAtFromTransforms::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]] OriGine::Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
+void LookAtFromTransforms::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityHandle _owner, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
 
     ImGui::Text("Rotate Axis :");
@@ -56,29 +61,77 @@ void LookAtFromTransforms::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe
     }
 
     // Transform コンポーネントを持つエンティティ一覧を取得
-    auto transformCompArray = _scene->GetComponentArray<OriGine::Transform>();
-    auto& transformEntities = transformCompArray->GetEntityIndexBind();
-     label       = "FromTransformEntity##" + _parentLabel;
-    if (ImGui::BeginCombo(label.c_str(), std::to_string(fromTransformEntity).c_str())) {
-        for (auto& entityIndex : transformEntities) {
-            int32_t entityId = entityIndex.first;
-            bool isSelected  = (fromTransformEntity == entityId);
-            if (ImGui::Selectable(std::to_string(entityId).c_str(), isSelected)) {
-                auto command = std::make_unique<SetterCommand<int32_t>>(&fromTransformEntity, entityId);
-                OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
+    auto transformCompArray    = _scene->GetComponentArray<OriGine::Transform>();
+    auto& componentLocationMap = transformCompArray->GetComponentLocationMap();
+    auto& slots                = transformCompArray->GetSlots();
+    Entity* fromEntity         = nullptr;
+    if (fromTransformComp.IsValid()) {
+        const auto& currentLocationItr = componentLocationMap.find(fromTransformComp.uuid);
+        if (currentLocationItr != componentLocationMap.end()) {
+            const auto& currentLocation = currentLocationItr->second;
+            fromEntity                  = _scene->GetEntity(slots[currentLocation.entitySlot].owner);
+        }
+    }
+
+    std::string entityLabel = fromEntity != nullptr ? fromEntity->GetUniqueID() : "NULL";
+    label                   = "FromTransformEntity##" + _parentLabel;
+    if (ImGui::BeginCombo(label.c_str(), entityLabel.c_str())) {
+        for (auto& [compHandle, locationData] : componentLocationMap) {
+            auto& compSlot = slots[locationData.entitySlot];
+
+            if (!compSlot.alive) {
+                continue;
+            }
+
+            Entity* entity = _scene->GetEntity(compSlot.owner);
+            if (!entity) {
+                continue;
+            }
+
+            int32_t compIndex = 0;
+            for (auto& comp : compSlot.components) {
+                entityLabel     = std::format("{}_[{}]", entity->GetUniqueID(), compIndex++);
+                bool isSelected = (fromTransformComp == comp.GetHandle());
+                if (ImGui::Selectable(entityLabel.c_str(), isSelected)) {
+                    auto command = std::make_unique<SetterCommand<ComponentHandle>>(&fromTransformComp, comp.GetHandle());
+                    OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
+                }
             }
         }
         ImGui::EndCombo();
     }
 
-    label = "ToTransformEntity##" + _parentLabel;
-    if (ImGui::BeginCombo(label.c_str(), std::to_string(toTransformEntity).c_str())) {
-        for (auto& entityIndex : transformEntities) {
-            int32_t entityId = entityIndex.first;
-            bool isSelected  = (toTransformEntity == entityId);
-            if (ImGui::Selectable(std::to_string(entityId).c_str(), isSelected)) {
-                auto command = std::make_unique<SetterCommand<int32_t>>(&toTransformEntity, entityId);
-                OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
+    Entity* toEntity = nullptr;
+    if (toTransformComp.IsValid()) {
+        const auto& currentLocationItr = componentLocationMap.find(toTransformComp.uuid);
+        if (currentLocationItr != componentLocationMap.end()) {
+            const auto& currentLocation = currentLocationItr->second;
+            toEntity                    = _scene->GetEntity(slots[currentLocation.entitySlot].owner);
+        }
+    }
+    entityLabel = toEntity != nullptr ? toEntity->GetUniqueID() : "NULL";
+    label       = "ToTransformEntity##" + _parentLabel;
+    if (ImGui::BeginCombo(label.c_str(), entityLabel.c_str())) {
+        for (auto& [compHandle, locationData] : componentLocationMap) {
+            auto& compSlot = slots[locationData.entitySlot];
+
+            if (!compSlot.alive) {
+                continue;
+            }
+
+            Entity* entity = _scene->GetEntity(compSlot.owner);
+            if (!entity) {
+                continue;
+            }
+
+            int32_t compIndex = 0;
+            for (auto& comp : compSlot.components) {
+                entityLabel     = std::format("{}_[{}]", entity->GetUniqueID(), compIndex++);
+                bool isSelected = (toTransformComp == comp.GetHandle());
+                if (ImGui::Selectable(entityLabel.c_str(), isSelected)) {
+                    auto command = std::make_unique<SetterCommand<ComponentHandle>>(&toTransformComp, comp.GetHandle());
+                    OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
+                }
             }
         }
         ImGui::EndCombo();
@@ -90,13 +143,13 @@ void LookAtFromTransforms::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe
 void to_json(nlohmann::json& _j, const LookAtFromTransforms& _c) {
     _j = nlohmann::json{
         {"rotateAxis", _c.rotateAxis.ToUnderlying()},
-        {"fromTransformEntity", _c.fromTransformEntity},
-        {"toTransformEntity", _c.toTransformEntity},
+        {"fromTransformComp", _c.fromTransformComp},
+        {"toTransformComp", _c.toTransformComp},
     };
 }
 
 void from_json(const nlohmann::json& _j, LookAtFromTransforms& _c) {
-    _c.rotateAxis          = EnumBitmask<LookAtFromTransforms::RotateAxis>(_j.at("rotateAxis").get<int32_t>());
-    _c.fromTransformEntity = _j.at("fromTransformEntity").get<int32_t>();
-    _c.toTransformEntity   = _j.at("toTransformEntity").get<int32_t>();
+    _c.rotateAxis        = EnumBitmask<LookAtFromTransforms::RotateAxis>(_j.at("rotateAxis").get<int32_t>());
+    _c.fromTransformComp = _j.at("fromTransformComp").get<ComponentHandle>();
+    _c.toTransformComp   = _j.at("toTransformComp").get<ComponentHandle>();
 }

@@ -61,16 +61,16 @@ public:
     PlayerState();
     ~PlayerState() override;
 
-    void Initialize(OriGine::Entity* _entity) override;
-    void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
+    void Initialize(OriGine::Scene* _scene, OriGine::EntityHandle _owner) override;
+    void Edit(OriGine::Scene* _scene, OriGine::EntityHandle _owner, const std::string& _parentLabel) override;
     void Finalize() override;
 
     /// <summary>
     /// 壁と接触したときの処理
     /// </summary>
     /// <param name="_collisionNormal"></param>
-    /// <param name="_entityIndex"></param>
-    void OnCollisionWall(const OriGine::Vec3f& _collisionNormal, int32_t _entityIndex);
+    /// <param name="_entityHandle"></param>
+    void OnCollisionWall(const OriGine::Vec3f& _collisionNormal, OriGine::EntityHandle _entityHandle);
     /// <summary>
     /// 壁との接触がなくなったときの処理
     /// </summary>
@@ -98,8 +98,7 @@ public:
     float SufferPenalty();
 
 private:
-    int32_t cameraEntityID_ = -1; // カメラのエンティティID
-    int32_t dummy           = 0;
+    OriGine::EntityHandle followCameraEntityHandle_ = OriGine::EntityHandle(); // カメラのエンティティID
 
     // TransitionPlayerState で更新される
     std::shared_ptr<IPlayerMoveState> moveState_ = nullptr;
@@ -109,7 +108,7 @@ private:
 
     OriGine::Vec3f wallCollisionNormal_ = {0.f, 0.f, 0.f};
 
-    int32_t wallEntityIndex_ = -1; // 現在 接触している壁 のエンティティID
+    OriGine::EntityHandle wallEntityHandle_ = OriGine::EntityHandle(); // 現在 接触している壁 のエンティティID
 
     int32_t gearLevel_    = 0;
     float gearUpCoolTime_ = 0.0f;
@@ -118,11 +117,11 @@ private:
     float invincibility_ = 0.0f; // ペナルティ無敵時間
 
 public:
-    int32_t GetCameraEntityID() const {
-        return cameraEntityID_;
+    OriGine::EntityHandle GetCameraEntityHandle() const {
+        return followCameraEntityHandle_;
     }
-    void SetCameraEntityID(int32_t _entityID) {
-        cameraEntityID_ = _entityID;
+    void SetCameraEntityHandle(OriGine::EntityHandle _handle) {
+        followCameraEntityHandle_ = _handle;
     }
 
     PlayerMoveState GetStateEnum() const {
@@ -162,8 +161,8 @@ public:
     bool IsCollisionWithWall() const {
         return stateFlag_.Current().HasFlag(PlayerStateFlag::ON_WALL);
     }
-    int32_t GetWallEntityIndex() const {
-        return wallEntityIndex_;
+    OriGine::EntityHandle GetWallEntityIndex() const {
+        return wallEntityHandle_;
     }
 
     const OriGine::Vec3f& GetWallCollisionNormal() const {

@@ -2,6 +2,8 @@
 
 #include "component/transform/Transform.h"
 
+using namespace OriGine;
+
 TakePlayerToStartPosition::TakePlayerToStartPosition()
     : ISystem(OriGine::SystemCategory::Initialize) {}
 
@@ -11,16 +13,16 @@ void TakePlayerToStartPosition::Initialize() {}
 
 void TakePlayerToStartPosition::Finalize() {}
 
-void TakePlayerToStartPosition::UpdateEntity(OriGine::Entity* _entity) {
-    OriGine::Transform* transform = GetComponent<OriGine::Transform>(_entity);
+void TakePlayerToStartPosition::UpdateEntity(EntityHandle _handle) {
+    Transform* transform = GetComponent<Transform>(_handle);
     if (!transform) {
         return;
     }
-    OriGine::Entity* startPositionEntity = GetUniqueEntity("StartPosition");
-    if (!startPositionEntity) {
+    EntityHandle startPositionEntity  = GetUniqueEntity("StartPosition");
+    Transform* startPositionTransform = GetComponent<Transform>(startPositionEntity);
+    if (!startPositionTransform) {
         return;
     }
-    OriGine::Transform* startPositionTransform = GetComponent<OriGine::Transform>(startPositionEntity);
 
     // 初期位置に移動
     transform->translate = startPositionTransform->translate;

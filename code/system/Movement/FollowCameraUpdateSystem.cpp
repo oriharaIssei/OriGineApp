@@ -23,21 +23,21 @@ void FollowCameraUpdateSystem::Initialize() {}
 
 void FollowCameraUpdateSystem::Finalize() {}
 
-void FollowCameraUpdateSystem::UpdateEntity(OriGine::Entity* _entity) {
-    auto* cameraController = GetComponent<CameraController>(_entity);
-    auto* cameraTransform  = GetComponent<CameraTransform>(_entity);
-    auto* transform        = GetComponent<OriGine::Transform>(_entity);
+void FollowCameraUpdateSystem::UpdateEntity(EntityHandle _handle) {
+    auto* cameraController = GetComponent<CameraController>(_handle);
+    auto* cameraTransform  = GetComponent<CameraTransform>(_handle);
+    auto* transform        = GetComponent<Transform>(_handle);
 
     const float deltaTime = GetMainDeltaTime();
 
     if (cameraController->GetFollowTarget()) {
         // ======== 回転行列 ======== //
-        OriGine::Vec2f destinationAngleXY = cameraController->GetDestinationAngleXY();
+        Vec2f destinationAngleXY = cameraController->GetDestinationAngleXY();
 
         // 自動注視処理
         if (cameraController->GetIsAutoLookAtPlayer()) {
-            OriGine::Vec3f toTarget = OriGine::Vec3f::Normalize(
-                OriGine::Vec3f(cameraController->GetFollowTarget()->GetWorldTranslate()) - cameraTransform->translate);
+            Vec3f toTarget = Vec3f::Normalize(
+                Vec3f(cameraController->GetFollowTarget()->GetWorldTranslate()) - cameraTransform->translate);
             float targetAngleY = std::atan2(toTarget[X], toTarget[Z]);
 
             float currentY = destinationAngleXY[Y];
@@ -51,8 +51,8 @@ void FollowCameraUpdateSystem::UpdateEntity(OriGine::Entity* _entity) {
         Matrix4x4 cameraRotateMat = MakeMatrix4x4::RotateX(destinationAngleXY[X]) * MakeMatrix4x4::RotateY(destinationAngleXY[Y]);
 
         // ======== ターゲット追従補間 ======== //
-        OriGine::Vec3f followTargetPosition = OriGine::Vec3f(cameraController->GetFollowTarget()->GetWorldTranslate());
-        OriGine::Vec3f interTarget          = cameraController->GetInterTarget();
+        Vec3f followTargetPosition = Vec3f(cameraController->GetFollowTarget()->GetWorldTranslate());
+        Vec3f interTarget          = cameraController->GetInterTarget();
         interTarget                         = LerpByDeltaTime(
             interTarget,
             followTargetPosition,
@@ -61,14 +61,14 @@ void FollowCameraUpdateSystem::UpdateEntity(OriGine::Entity* _entity) {
         cameraController->SetInterTarget(interTarget);
 
         // ======== 注視点 (targetOffset) ======== //
-        OriGine::Vec3f targetPosition = interTarget + (cameraController->GetCurrentTargetOffset() * cameraRotateMat);
+        Vec3f targetPosition = interTarget + (cameraController->GetCurrentTargetOffset() * cameraRotateMat);
 
         // ======== カメラ位置 (offset) ======== //
-        OriGine::Vec3f cameraPos   = interTarget + (cameraController->GetCurrentOffset() * cameraRotateMat);
+        Vec3f cameraPos   = interTarget + (cameraController->GetCurrentOffset() * cameraRotateMat);
         cameraTransform->translate = cameraPos;
 
         // ======== カメラ回転 ======== //
-        OriGine::Vec3f lookDir  = OriGine::Vec3f::Normalize(targetPosition - cameraTransform->translate);
+        Vec3f lookDir  = Vec3f::Normalize(targetPosition - cameraTransform->translate);
         Quaternion targetQuat   = Quaternion::LookAt(lookDir, axisY);
         cameraTransform->rotate = SlerpByDeltaTime(
             cameraTransform->rotate,

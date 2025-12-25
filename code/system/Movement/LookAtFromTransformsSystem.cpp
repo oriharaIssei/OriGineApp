@@ -13,27 +13,28 @@ LookAtFromTransformsSystem::~LookAtFromTransformsSystem() {}
 void LookAtFromTransformsSystem::Initialize() {}
 void LookAtFromTransformsSystem::Finalize() {}
 
-void LookAtFromTransformsSystem::UpdateEntity(OriGine::Entity* _entity) {
-    auto lookAtComps = GetComponents<LookAtFromTransforms>(_entity);
-    if (!lookAtComps) {
+void LookAtFromTransformsSystem::UpdateEntity(OriGine::EntityHandle _handle) {
+    auto& lookAtComps = GetComponents<LookAtFromTransforms>(_handle);
+    if (lookAtComps.empty()) {
         return;
     }
 
     // 適応する Transform コンポーネントを取得
-    auto transform = GetComponent<OriGine::Transform>(_entity);
+    auto transform = GetComponent<OriGine::Transform>(_handle);
 
-    for (auto& lookAtComp : *lookAtComps) {
-        auto fromTransformComp = GetComponent<OriGine::Transform>(GetEntity(lookAtComp.fromTransformEntity));
-        auto toTransformComp   = GetComponent<OriGine::Transform>(GetEntity(lookAtComp.toTransformEntity));
+    for (auto& lookAtComp : lookAtComps) {
+        auto fromTransformComp = GetComponent<OriGine::Transform>(lookAtComp.fromTransformComp);
+        auto toTransformComp   = GetComponent<OriGine::Transform>(lookAtComp.toTransformComp);
         if (!fromTransformComp || !toTransformComp) {
             continue;
         }
+
         // 注視点の方向を計算
         OriGine::Vec3f direction = toTransformComp->GetWorldTranslate() - fromTransformComp->GetWorldTranslate();
-        direction       = direction.normalize();
+        direction                = direction.normalize();
 
-        Quaternion lookAtRotate = Quaternion::LookAt(direction, axisY);
-        OriGine::Vec3f eulerAngles       = lookAtRotate.ToEulerAngles();
+        Quaternion lookAtRotate    = Quaternion::LookAt(direction, axisY);
+        OriGine::Vec3f eulerAngles = lookAtRotate.ToEulerAngles();
 
         if (!lookAtComp.rotateAxis.HasFlag(LookAtFromTransforms::RotateAxis::X)) {
             eulerAngles[X] = 0.f;

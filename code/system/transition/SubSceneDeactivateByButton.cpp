@@ -12,13 +12,13 @@ SubSceneDeactivateByButton::~SubSceneDeactivateByButton() {}
 void SubSceneDeactivateByButton::Initialize() {}
 void SubSceneDeactivateByButton::Finalize() {}
 
-void SubSceneDeactivateByButton::UpdateEntity(OriGine::Entity* _entity) {
-    auto* buttons = GetComponents<Button>(_entity);
-    if (!buttons) {
+void SubSceneDeactivateByButton::UpdateEntity(OriGine::EntityHandle _handle) {
+    auto& buttons = GetComponents<Button>(_handle);
+    if (buttons.empty()) {
         return;
     }
 
-    for (auto& button : *buttons) {
+    for (auto& button : buttons) {
         if (button.IsReleased()) {
             GetScene()->SetActive(false);
             return;

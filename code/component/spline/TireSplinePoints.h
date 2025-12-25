@@ -23,8 +23,8 @@ public:
     TireSplinePoints();
     ~TireSplinePoints() override;
 
-    void Initialize(OriGine::Entity* _entity) override;
-    void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
+    void Initialize(OriGine::Scene* _scene, OriGine::EntityHandle _owner) override;
+    void Edit(OriGine::Scene* _scene, OriGine::EntityHandle _owner, const std::string& _parentLabel) override;
     void Finalize() override;
 
 public:
@@ -49,7 +49,8 @@ public:
     float thresholdBankAngle = 0.f; // この角度を超えたらバンクとして、効果を適用する
     float minBankFactor      = 1.0f;
     float maxBankFactor      = 1.0f;
-    float groundedFactor     = 1.0f;
+    float groundedFactor     = 1.0f; // 着地時の効果倍率
+    float gearupFactor       = 1.0f; // ギアアップ時の効果倍率
 
     std::deque<ControlPoint> points;
 

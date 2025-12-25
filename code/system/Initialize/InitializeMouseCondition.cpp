@@ -14,15 +14,15 @@ InitializeMouseCondition::InitializeMouseCondition() : ISystem(OriGine::SystemCa
 void InitializeMouseCondition::Initialize() {}
 void InitializeMouseCondition::Finalize() {}
 
-void InitializeMouseCondition::UpdateEntity(OriGine::Entity* _entity) {
-    auto* conditions = GetComponents<MouseCondition>(_entity);
-    if (conditions == nullptr) {
+void InitializeMouseCondition::UpdateEntity(OriGine::EntityHandle _handle) {
+    auto& conditions = GetComponents<MouseCondition>(_handle);
+    if (conditions.empty()) {
         return;
     }
 
     MouseInput* mouseInput = GetScene()->GetMouseInput();
 
-    for (auto& condition : *conditions) {
+    for (auto& condition : conditions) {
         if (!condition.IsActive()) {
             continue;
         }

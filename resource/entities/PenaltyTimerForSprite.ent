@@ -2,6 +2,7 @@
     "Components": {
         "SpriteAnimation": [
             {
+                "Handle": "9ccb74ab-6812-4b17-afc5-adc631b19707",
                 "colorAnimationState": {
                     "isLoop": false,
                     "isPlay": true
@@ -111,6 +112,7 @@
                 "duration": 0.699999988079071,
                 "rotateCurve": [],
                 "scaleCurve": [],
+                "spriteComponentIndex": -1,
                 "transformAnimationState": {
                     "isLoop": false,
                     "isPlay": true
@@ -165,6 +167,7 @@
         ],
         "TimerForSpriteComponent": [
             {
+                "Handle": "c77054c8-53e4-4547-97c9-c14cccb06b2a",
                 "anchorOnWindow": [
                     0.5799999833106995,
                     0.17000000178813934
@@ -198,6 +201,9 @@
                 ]
             }
         ]
+    },
+    "Handle": {
+        "uuid": "7968743e-afeb-44da-b6e3-1e2e0c7f697d"
     },
     "Name": "PenaltyTimerForSprite",
     "Systems": [],

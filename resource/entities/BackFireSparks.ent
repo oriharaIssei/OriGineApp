@@ -2,6 +2,7 @@
     "Components": {
         "CylinderRenderer": [
             {
+                "Handle": "06fb55d9-f032-442c-a594-436a8880ef3b",
                 "blendMode": 1,
                 "bottomRadius": [
                     0.07999999821186066,
@@ -11,8 +12,7 @@
                 "isCulling": false,
                 "isRenderer": true,
                 "materialIndex": 0,
-                "textureDirectory": "",
-                "textureFileName": "",
+                "textureFilePath": "",
                 "topRadius": [
                     0.30000001192092896,
                     0.30000001192092896
@@ -37,6 +37,7 @@
                 }
             },
             {
+                "Handle": "cee2a14c-23b0-4c58-a226-eb24a31c1534",
                 "blendMode": 1,
                 "bottomRadius": [
                     0.09000000357627869,
@@ -46,8 +47,7 @@
                 "isCulling": false,
                 "isRenderer": true,
                 "materialIndex": 0,
-                "textureDirectory": "",
-                "textureFileName": "",
+                "textureFilePath": "",
                 "topRadius": [
                     0.3799999952316284,
                     0.3799999952316284
@@ -72,6 +72,7 @@
                 }
             },
             {
+                "Handle": "68deb0eb-86b4-4a5e-a864-29c19288ec43",
                 "blendMode": 1,
                 "bottomRadius": [
                     0.10999999940395355,
@@ -81,8 +82,7 @@
                 "isCulling": false,
                 "isRenderer": true,
                 "materialIndex": 0,
-                "textureDirectory": "",
-                "textureFileName": "",
+                "textureFilePath": "",
                 "topRadius": [
                     0.5,
                     0.5
@@ -107,6 +107,7 @@
                 }
             },
             {
+                "Handle": "9ea33356-b3a5-4a68-bc03-f53f8dd6bc6a",
                 "blendMode": 1,
                 "bottomRadius": [
                     0.07999999821186066,
@@ -116,8 +117,7 @@
                 "isCulling": false,
                 "isRenderer": true,
                 "materialIndex": 0,
-                "textureDirectory": "",
-                "textureFileName": "",
+                "textureFilePath": "",
                 "topRadius": [
                     0.30000001192092896,
                     0.30000001192092896
@@ -142,6 +142,7 @@
                 }
             },
             {
+                "Handle": "974985c2-f04b-4fe3-b399-7fade3a367f5",
                 "blendMode": 1,
                 "bottomRadius": [
                     0.09000000357627869,
@@ -151,8 +152,7 @@
                 "isCulling": false,
                 "isRenderer": true,
                 "materialIndex": 0,
-                "textureDirectory": "",
-                "textureFileName": "",
+                "textureFilePath": "",
                 "topRadius": [
                     0.3799999952316284,
                     0.3799999952316284
@@ -177,6 +177,7 @@
                 }
             },
             {
+                "Handle": "11528192-8ab4-4233-bb2c-de5f2d43c81f",
                 "blendMode": 1,
                 "bottomRadius": [
                     0.10999999940395355,
@@ -186,8 +187,7 @@
                 "isCulling": false,
                 "isRenderer": true,
                 "materialIndex": 0,
-                "textureDirectory": "",
-                "textureFileName": "",
+                "textureFilePath": "",
                 "topRadius": [
                     0.5,
                     0.5
@@ -214,6 +214,7 @@
         ],
         "Material": [
             {
+                "Handle": "f5f0e31f-b663-4ddb-96a4-6e62740d8c1f",
                 "color": [
                     1.0,
                     1.0,
@@ -240,23 +241,20 @@
         ],
         "MaterialEffectPipeLine": [
             {
+                "Handle": "1f41b198-efd1-4833-8f35-718d1475d469",
                 "baseTexturePath": "./application/resource/Texture/white1x1.png",
                 "effectEntityIdList": [
                     {
                         "effectType": 0,
-                        "entityID": 30
+                        "handle": {
+                            "uuid": "18f872e5-06af-45b2-98f3-f1f8de67bb81"
+                        }
                     },
                     {
                         "effectType": 2,
-                        "entityID": 28
-                    },
-                    {
-                        "effectType": 0,
-                        "entityID": 30
-                    },
-                    {
-                        "effectType": 2,
-                        "entityID": 28
+                        "handle": {
+                            "uuid": "3f8575ac-ee57-41c5-a7c0-9cf5a55e648f"
+                        }
                     }
                 ],
                 "isActive": true,
@@ -266,6 +264,7 @@
         ],
         "Transform": [
             {
+                "Handle": "9193c8d6-866d-4510-8604-1984505a0f3d",
                 "rotate": [
                     0.0,
                     0.0,
@@ -284,6 +283,9 @@
                 ]
             }
         ]
+    },
+    "Handle": {
+        "uuid": "1428388f-5bd5-4f3f-86f1-d8b59f4b8ff0"
     },
     "Name": "BackFireSparks",
     "Systems": [

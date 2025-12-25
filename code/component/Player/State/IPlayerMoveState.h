@@ -22,7 +22,7 @@
 /// </summary>
 class IPlayerMoveState {
 public:
-    IPlayerMoveState(OriGine::Scene* _scene, int32_t _playerEntityID, PlayerMoveState _state);
+    IPlayerMoveState(OriGine::Scene* _scene, OriGine::EntityHandle _playerEntityHandle, PlayerMoveState _state);
     virtual ~IPlayerMoveState();
 
     virtual void Initialize()             = 0;
@@ -37,7 +37,7 @@ public:
 
 protected:
     OriGine::Scene* scene_           = nullptr; // シーンへのポインタ
-    int32_t playerEntityID_ = -1; // プレイヤーのエンティティID
+    OriGine::EntityHandle playerEntityHandle_ = OriGine::EntityHandle(); // プレイヤーのエンティティID
 private:
     // このクラスが表す移動状態
     PlayerMoveState state_ = PlayerMoveState::IDLE;

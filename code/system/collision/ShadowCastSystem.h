@@ -11,5 +11,5 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(OriGine::Entity* entity) override;
+    void UpdateEntity(OriGine::EntityHandle _entity) override;
 };

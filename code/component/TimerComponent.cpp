@@ -16,11 +16,11 @@ using namespace OriGine;
 TimerComponent::TimerComponent() {}
 TimerComponent::~TimerComponent() {}
 
-void TimerComponent::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {
+void TimerComponent::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {
     currentTime_ = maxTime_;
 }
 
-void TimerComponent::Edit(OriGine::Scene* /*_scene*/, OriGine::Entity* /*_OriGine::Entity*/, [[maybe_unused]] const std::string& _parentLabel) {
+void TimerComponent::Edit(Scene* /*_scene*/, EntityHandle /* _handle */, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef DEBUG
     CheckBoxCommand("IsStarted For Using System##" + _parentLabel, isStarted_);
     DragGuiCommand("Max Time (s)##" + _parentLabel, maxTime_, 0.1f, 100.f, 1.f);
@@ -69,7 +69,7 @@ void from_json(const nlohmann::json& j, TimerForSpriteComponent& c) {
     j.at("digitDecimal").get_to(c.digitDecimal);
 }
 
-void TimerForSpriteComponent::Initialize(OriGine::Entity* /*OriGine::Entity*/) {
+void TimerForSpriteComponent::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {
     if (!this->numbersTexturePath.empty()) {
         textureIndex = TextureManager::LoadTexture(this->numbersTexturePath, [this](uint32_t newIdx) {
             this->SettingOnLoadTexture(newIdx);
@@ -77,7 +77,7 @@ void TimerForSpriteComponent::Initialize(OriGine::Entity* /*OriGine::Entity*/) {
     }
 }
 
-void TimerForSpriteComponent::Edit(OriGine::Scene* /*scene*/, OriGine::Entity* /*OriGine::Entity*/, [[maybe_unused]] const std::string& parentLabel) {
+void TimerForSpriteComponent::Edit(Scene* /*_scene*/, EntityHandle /*_owner*/, [[maybe_unused]] const std::string& parentLabel) {
 
 #ifdef DEBUG
     ImGui::Text("Sprite");

@@ -17,8 +17,8 @@ public:
     SpeedFor3dUIComponent()           = default;
     ~SpeedFor3dUIComponent() override = default;
 
-    void Initialize(OriGine::Entity* _entity) override;
-    void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
+    void Initialize(OriGine::Scene* _scene, OriGine::EntityHandle _owner) override;
+    void Edit(OriGine::Scene* _scene, OriGine::EntityHandle _owner, const std::string& _parentLabel) override;
     void Finalize() override {}
 
     /// <summary>
@@ -27,7 +27,7 @@ public:
     void SettingOnLoadTexture(uint32_t _texIdx);
 
 private:
-    int32_t planeEntityId = -1; // 速度表示PlaneのエンティティID
+    OriGine::EntityHandle planeEntityHandle = OriGine::EntityHandle(); // 速度表示PlaneのエンティティID
 
 public:
     //
@@ -66,6 +66,6 @@ public:
     OriGine::Vec2f marginBetweenIntegerAndDecimal = {0.f, 0.f};
 
 public:
-    int32_t GetPlaneEntityId() const { return planeEntityId; }
-    void SetPlaneEntityId(int32_t id) { planeEntityId = id; }
+    OriGine::EntityHandle GetPlaneEntityHandle() const { return planeEntityHandle; }
+    void SetPlaneEntityHandle(OriGine::EntityHandle id) { planeEntityHandle = id; }
 };

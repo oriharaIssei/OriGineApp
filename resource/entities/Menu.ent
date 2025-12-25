@@ -2,6 +2,7 @@
     "Components": {
         "Button": [
             {
+                "Handle": "9f9546c7-9ee4-49a6-b458-b0fbfa224eb4",
                 "hoverColor": [
                     0.800000011920929,
                     0.800000011920929,
@@ -34,11 +35,9 @@
                 ]
             }
         ],
-        "DissolveEffectParam": [],
-        "Material": [],
-        "SceneChanger": [],
         "SpriteRenderer": [
             {
+                "Handle": "04c193ed-ab6b-484a-9aba-ef5d7fec53e6",
                 "anchorPoint": [
                     0.0,
                     0.0
@@ -50,8 +49,8 @@
                     1.0
                 ],
                 "defaultWindowSize": [
-                    1920.0,
-                    1080.0
+                    1280.0,
+                    720.0
                 ],
                 "isFlipX": false,
                 "isFlipY": false,
@@ -63,8 +62,8 @@
                     1.0
                 ],
                 "size": [
-                    72.0,
-                    72.0
+                    48.0,
+                    48.000003814697266
                 ],
                 "textureLeftTop": [
                     0.0,
@@ -76,8 +75,8 @@
                     16.0
                 ],
                 "translate": [
-                    109.44000244140625,
-                    46.44000244140625
+                    72.95999908447266,
+                    30.96000099182129
                 ],
                 "uvRotate": 0.0,
                 "uvScale": [
@@ -98,6 +97,7 @@
                 ]
             },
             {
+                "Handle": "800aa8b5-c07e-46a5-90e9-9db0f80d0b4b",
                 "anchorPoint": [
                     0.0,
                     0.0
@@ -109,8 +109,8 @@
                     1.0
                 ],
                 "defaultWindowSize": [
-                    1920.0,
-                    1080.0
+                    1280.0,
+                    720.0
                 ],
                 "isFlipX": false,
                 "isFlipY": false,
@@ -122,8 +122,8 @@
                     1.0
                 ],
                 "size": [
-                    72.0,
-                    72.0
+                    48.0,
+                    48.000003814697266
                 ],
                 "textureLeftTop": [
                     0.0,
@@ -135,8 +135,8 @@
                     16.0
                 ],
                 "translate": [
-                    109.44000244140625,
-                    46.44000244140625
+                    72.95999908447266,
+                    30.96000099182129
                 ],
                 "uvRotate": 0.0,
                 "uvScale": [
@@ -159,11 +159,15 @@
         ],
         "SubScene": [
             {
+                "Handle": "3363d445-9e06-4b50-b406-91d772ed9d12",
                 "isActive": false,
                 "renderingPriority": 1,
                 "sceneName": "menu"
             }
         ]
+    },
+    "Handle": {
+        "uuid": "cb93bc5c-d429-4e5c-ae1a-f68d9c43369f"
     },
     "Name": "Menu",
     "Systems": [

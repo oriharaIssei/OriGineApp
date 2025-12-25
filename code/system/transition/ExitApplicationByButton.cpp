@@ -9,12 +9,13 @@
 ExitApplicationByButton::ExitApplicationByButton() : ISystem(OriGine::SystemCategory::StateTransition) {}
 ExitApplicationByButton::~ExitApplicationByButton() {}
 
-void ExitApplicationByButton::UpdateEntity(OriGine::Entity* _entity) {
-    auto buttons = GetComponents<Button>(_entity);
-    if (buttons == nullptr) {
+void ExitApplicationByButton::UpdateEntity(OriGine::EntityHandle _handle) {
+    auto& buttons = GetComponents<Button>(_handle);
+    if (buttons.empty()) {
         return;
     }
-    for (const auto& button : *buttons) {
+
+    for (const auto& button : buttons) {
         if (button.IsReleased()) {
             GetScene()->GetSceneManager()->SetExitGame(true);
             return;

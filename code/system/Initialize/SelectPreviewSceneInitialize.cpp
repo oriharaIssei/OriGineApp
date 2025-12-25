@@ -12,20 +12,20 @@
 
 using namespace OriGine;
 
-SelectPreviewSceneInitialize::SelectPreviewSceneInitialize() : ISystem(OriGine::SystemCategory::Initialize) {}
+SelectPreviewSceneInitialize::SelectPreviewSceneInitialize() : ISystem(SystemCategory::Initialize) {}
 SelectPreviewSceneInitialize::~SelectPreviewSceneInitialize() {}
 
 void SelectPreviewSceneInitialize::Initialize() {}
 void SelectPreviewSceneInitialize::Finalize() {}
 
-void SelectPreviewSceneInitialize::UpdateEntity(OriGine::Entity* _entity) {
-    auto* subScenes = GetComponents<SubScene>(_entity);
+void SelectPreviewSceneInitialize::UpdateEntity(EntityHandle _handle) {
+    auto& subScenes = GetComponents<SubScene>(_handle);
 
-    if (!subScenes) {
+    if (subScenes.empty()) {
         return;
     }
 
-    for (auto& subScene : *subScenes) {
+    for (auto& subScene : subScenes) {
         if (!subScene.IsActive()) {
             const std::string& sceneName = subScene.GetSceneName();
             if (sceneName.empty()) {

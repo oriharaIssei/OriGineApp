@@ -31,7 +31,7 @@ void StartSequenceSystem::Initialize() {
 
 void StartSequenceSystem::Finalize() {}
 
-void StartSequenceSystem::UpdateEntity(OriGine::Entity* _entity) {
+void StartSequenceSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     // すでに開始している場合は処理しない
     if (isStarted_) {
         return;
@@ -39,39 +39,33 @@ void StartSequenceSystem::UpdateEntity(OriGine::Entity* _entity) {
 
     TimerStartSequence();
 
-    auto* timerComp = GetComponent<TimerComponent>(_entity);
+    auto* timerComp = GetComponent<TimerComponent>(_handle);
     if (timerComp == nullptr) {
         return;
     }
 
-    // timerを止める
-    OriGine::Entity* gametimerEntity = GetUniqueEntity("Timer");
-    if (gametimerEntity) {
-        TimerComponent* gameTimerComp = GetComponent<TimerComponent>(gametimerEntity);
-        if (gameTimerComp) {
-            gameTimerComp->SetStarted(false);
-        }
+    OriGine::EntityHandle gametimerEntityHandle = GetUniqueEntity("Timer");
+    TimerComponent* gameTimerComp               = GetComponent<TimerComponent>(gametimerEntityHandle);
+    if (!gameTimerComp) {
+        return;
     }
+    // timerを止める
+    gameTimerComp->SetStarted(false);
 
     // タイマーが0以下になったらシステムを開始する
     if (timerComp->GetTime() <= 0.f) {
         GameStartSequence();
         // ゲームタイマーを開始する
-        if (gametimerEntity) {
-            TimerComponent* gameTimerComp = GetComponent<TimerComponent>(gametimerEntity);
-            if (gameTimerComp) {
-                gameTimerComp->SetStarted(true);
-            }
-        }
+        gameTimerComp->SetStarted(true);
 
         isStarted_ = true;
 
         // 自分自身を削除する
-        GetScene()->AddDeleteEntity(_entity->GetID());
+        GetScene()->AddDeleteEntity(_handle);
         // sprite用エンティティも削除する
-        TimerForSpriteComponent* timer4SpriteComp = GetComponent<TimerForSpriteComponent>(_entity);
+        TimerForSpriteComponent* timer4SpriteComp = GetComponent<TimerForSpriteComponent>(_handle);
         if (timer4SpriteComp) {
-            GetScene()->AddDeleteEntity(timer4SpriteComp->GetSpritesEntityId());
+            GetScene()->AddDeleteEntity(timer4SpriteComp->GetSpritesEntityHandle());
         }
     }
 }

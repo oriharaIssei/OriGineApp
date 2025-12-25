@@ -19,14 +19,14 @@ public:
     ButtonGroup()           = default;
     ~ButtonGroup() override = default;
 
-    void Initialize(OriGine::Entity* _entity) override;
-    void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
+    void Initialize(OriGine::Scene* _scene, OriGine::EntityHandle _owner) override;
+    void Edit(OriGine::Scene* _scene, OriGine::EntityHandle _owner, const std::string& _parentLabel) override;
     void Finalize() override;
 
 private:
     // ボタンのエンティティIDとボタン番号のマップ
     // キー: ボタン番号, 値: エンティティID
-    std::unordered_map<int32_t, int32_t> buttonNumbers_;
+    std::unordered_map<int32_t, OriGine::EntityHandle> buttonNumbers_;
     int32_t startButtonNumber_   = 0;
     int32_t currentButtonNumber_ = 0;
 
@@ -46,9 +46,9 @@ public:
     int32_t GetStartButtonNumber() const { return startButtonNumber_; }
     void SetStartButtonNumber(int32_t _buttonNumber) { startButtonNumber_ = _buttonNumber; }
 
-    std::unordered_map<int32_t, int32_t>& GetButtonNumbers() { return buttonNumbers_; }
+    std::unordered_map<int32_t, OriGine::EntityHandle>& GetButtonNumbers() { return buttonNumbers_; }
 
-    int32_t GetButtonNumber(int32_t _entityId) const {
+    int32_t GetButtonNumber(OriGine::EntityHandle _entityId) const {
         for (const auto& pair : buttonNumbers_) {
             if (pair.second == _entityId) {
                 return pair.first;
@@ -56,12 +56,12 @@ public:
         }
         return -1; // 見つからなかった場合のデフォルト値
     }
-    int32_t GetEntityId(int32_t _buttonNumber) const {
+    OriGine::EntityHandle GetEntityId(int32_t _buttonNumber) const {
         auto it = buttonNumbers_.find(_buttonNumber);
         if (it != buttonNumbers_.end()) {
             return it->second;
         }
-        return -1; // 見つからなかった場合のデフォルト値
+        return OriGine::EntityHandle(); // 見つからなかった場合のデフォルト値
     }
 
     const std::vector<OriGine::Key>& GetSelectAddKeys() const { return selectAddKeys_; }

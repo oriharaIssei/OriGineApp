@@ -21,10 +21,10 @@ static const float kParallelPenaltyThreshold = 0.07f; // 障害物と判断す�
 
 constexpr float kPenaltyTime = 1.2f;
 
-void PlayerOnCollision::UpdateEntity(OriGine::Entity* _entity) {
-    auto* state        = GetComponent<PlayerState>(_entity);
-    auto* pushBackInfo = GetComponent<CollisionPushBackInfo>(_entity);
-    auto* rigidbody    = GetComponent<Rigidbody>(_entity);
+void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
+    auto* state        = GetComponent<PlayerState>(_handle);
+    auto* pushBackInfo = GetComponent<CollisionPushBackInfo>(_handle);
+    auto* rigidbody    = GetComponent<Rigidbody>(_handle);
 
     if (state == nullptr) {
         return;
@@ -43,9 +43,9 @@ void PlayerOnCollision::UpdateEntity(OriGine::Entity* _entity) {
         // ゴール と 衝突したか
         if (collEnt->GetDataType().find("Goal") != std::string::npos) {
             // 時間を更新しないようにする
-            OriGine::Entity* timerEntity = GetUniqueEntity("Timer");
-            if (timerEntity) {
-                auto* timer = GetComponent<TimerComponent>(timerEntity);
+            OriGine::EntityHandle timerEntityHandle = GetUniqueEntity("Timer");
+            auto* timer                             = GetComponent<TimerComponent>(timerEntityHandle);
+            if (timer) {
                 timer->SetStarted(false);
             }
 
@@ -97,7 +97,7 @@ void PlayerOnCollision::UpdateEntity(OriGine::Entity* _entity) {
 
     // ペナルティ状態を更新
     if (isPenalty) {
-        PlayerStatus* status = GetComponent<PlayerStatus>(_entity);
+        PlayerStatus* status = GetComponent<PlayerStatus>(_handle);
         state->OnCollisionObstacle(penaltyTime, status->GetInvincibilityTime());
 
         if (state->IsPenalty()) {

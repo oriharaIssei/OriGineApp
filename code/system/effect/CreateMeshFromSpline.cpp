@@ -105,18 +105,18 @@ CreateMeshFromSpline::~CreateMeshFromSpline() {}
 void CreateMeshFromSpline::Initialize() {}
 void CreateMeshFromSpline::Finalize() {}
 
-void CreateMeshFromSpline::UpdateEntity(OriGine::Entity* _entity) {
-    auto planeRendererComp = GetComponent<PlaneRenderer>(_entity);
+void CreateMeshFromSpline::UpdateEntity(OriGine::EntityHandle _handle) {
+    auto planeRendererComp = GetComponent<PlaneRenderer>(_handle);
     if (planeRendererComp == nullptr) {
         return;
     }
 
-    auto splinePointsComps = GetComponents<SplinePoints>(_entity);
-    if (!splinePointsComps) {
+    auto& splinePointsComps = GetComponents<SplinePoints>(_handle);
+    if (splinePointsComps.empty()) {
         return;
     }
 
-    for (auto& splinePointsComp : *splinePointsComps) {
+    for (auto& splinePointsComp : splinePointsComps) {
         if (splinePointsComp.commonSettings.isCrossMesh) {
             CreateCrossPlaneMesh(planeRendererComp, &splinePointsComp);
         } else {

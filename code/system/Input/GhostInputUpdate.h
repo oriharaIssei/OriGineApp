@@ -25,7 +25,7 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(OriGine::Entity* _entity);
+    void UpdateEntity(OriGine::EntityHandle _handle);
 
 protected:
     std::unique_ptr<PlayerInputSystem> playerInputSystem_ = nullptr;

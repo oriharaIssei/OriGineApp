@@ -13,17 +13,19 @@
 #include "myGui/MyGui.h"
 #endif // _DEBUG
 
+using namespace OriGine;
+
 CameraMotionBob::CameraMotionBob() {}
 CameraMotionBob::~CameraMotionBob() {}
 
-void CameraMotionBob::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {}
+void CameraMotionBob::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {}
 void CameraMotionBob::Finalize() {}
 
-void CameraMotionBob::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]] OriGine::Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
+void CameraMotionBob::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]] EntityHandle _owner, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
 
-    auto cameraShakeSourceComponents = _scene->GetComponents<CameraShakeSourceComponent>(_entity);
-    int32_t entityMaterialSize       = cameraShakeSourceComponents != nullptr ? static_cast<int32_t>(cameraShakeSourceComponents->size()) : -1;
+    auto& cameraShakeSourceComponents = _scene->GetComponents<CameraShakeSourceComponent>(_owner);
+    int32_t entityMaterialSize        = static_cast<int32_t>(cameraShakeSourceComponents.size());
     // カメラTransformコンポーネントインデックス
     InputGuiCommand<int32_t>("Camera Shake Source Component Index##" + _parentLabel, cameraShakeSourceComponentId, "%d", [this, entityMaterialSize](int32_t* _newT) {
         this->cameraShakeSourceComponentId = std::clamp(*_newT, -1, entityMaterialSize - 1);

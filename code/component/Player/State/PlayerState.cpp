@@ -12,7 +12,7 @@ PlayerState::PlayerState()
 
 PlayerState::~PlayerState() {}
 
-void PlayerState::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {
+void PlayerState::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {
     // moveStateEnum の 初期化
     // current,prev を IDLE に設定
     moveStateEnum_.Set(PlayerMoveState::IDLE);
@@ -28,8 +28,8 @@ void PlayerState::Initialize(OriGine::Entity* /*_OriGine::Entity*/) {
     gearUpCoolTime_      = 0.0f;
 }
 
-void PlayerState::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]] OriGine::Entity* _entity, [[maybe_unused]] const std::string& _parentLabel) {
-  
+void PlayerState::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityHandle _owner, [[maybe_unused]] const std::string& _parentLabel) {
+
     ImGui::Text("MoveState     : %s", moveStateName[moveStateEnum_.Current().ToEnum()]);
     ImGui::Text("Gear Level    : %d", gearLevel_);
     ImGui::Spacing();
@@ -48,16 +48,15 @@ void PlayerState::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]]
 
 void PlayerState::Finalize() {}
 
-void PlayerState::OnCollisionWall(const OriGine::Vec3f& _collisionNormal, int32_t _entityIndex) {
+void PlayerState::OnCollisionWall(const Vec3f& _collisionNormal, EntityHandle _wallEntityHandle) {
     stateFlag_.CurrentRef().SetFlag(PlayerStateFlag::ON_WALL);
     wallCollisionNormal_ = _collisionNormal;
-    wallEntityIndex_     = _entityIndex;
+    wallEntityHandle_    = _wallEntityHandle;
 }
 
 void PlayerState::OffCollisionWall() {
     stateFlag_.CurrentRef().ClearFlag(PlayerStateFlag::ON_WALL);
     wallCollisionNormal_ = {0.f, 0.f, 0.f};
-    // wallEntityIndex_     = -1; // 保持しておく
 }
 
 void PlayerState::OnCollisionGround() {

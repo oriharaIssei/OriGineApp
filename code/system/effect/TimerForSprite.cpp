@@ -21,14 +21,14 @@ TimerForSprite::~TimerForSprite() {}
 void TimerForSprite::Initialize() {}
 void TimerForSprite::Finalize() {}
 
-void TimerForSprite::UpdateEntity(OriGine::Entity* _entity) {
-    auto timerComponent          = GetComponent<TimerComponent>(_entity);
-    auto timerForSpriteComponent = GetComponent<TimerForSpriteComponent>(_entity);
+void TimerForSprite::UpdateEntity(OriGine::EntityHandle _handle) {
+    auto timerComponent          = GetComponent<TimerComponent>(_handle);
+    auto timerForSpriteComponent = GetComponent<TimerForSpriteComponent>(_handle);
     if (!timerComponent || !timerForSpriteComponent) {
         return; // タイマーコンポーネントがない場合は何もしない
     }
 
-    auto timerSpritesEntity = GetEntity(timerForSpriteComponent->GetSpritesEntityId());
+    auto timerSpritesEntity = GetEntity(timerForSpriteComponent->GetSpritesEntityHandle());
     if (!timerSpritesEntity) {
         return; // スプライトエンティティがない場合は何もしない
     }
@@ -43,12 +43,13 @@ void TimerForSprite::UpdateEntity(OriGine::Entity* _entity) {
 
     // 各スプライトに数字を適用
     for (int32_t i = 0; i < timerForSpriteComponent->digitInteger + timerForSpriteComponent->digitDecimal; ++i) {
-        auto sprite = GetComponent<SpriteRenderer>(timerSpritesEntity, i);
-        if (!sprite) {
-            continue; // スプライトがない場合は何もしない
-        }
         if (int32_t(digits.size()) <= i) {
             return;
+        }
+
+        auto sprite = GetComponent<SpriteRenderer>(timerSpritesEntity->GetHandle(), i);
+        if (!sprite) {
+            continue; // スプライトがない場合は何もしない
         }
         float spriteLeftTopY     = sprite->GetTextureLeftTop()[Y];
         float spriteTextureSizeX = sprite->GetTextureSize()[X];

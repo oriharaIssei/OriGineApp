@@ -17,8 +17,8 @@ public:
     TimerComponent();
     ~TimerComponent() override;
 
-    void Initialize(OriGine::Entity* _entity) override;
-    void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
+    void Initialize(OriGine::Scene* _scene, OriGine::EntityHandle _owner) override;
+    void Edit(OriGine::Scene* _scene, OriGine::EntityHandle _owner, const std::string& _parentLabel) override;
     void Finalize() override;
 
 private:
@@ -54,8 +54,8 @@ public:
     TimerForSpriteComponent()           = default;
     ~TimerForSpriteComponent() override = default;
 
-    void Initialize(OriGine::Entity* _entity) override;
-    void Edit(OriGine::Scene* _scene, OriGine::Entity* _entity, const std::string& _parentLabel) override;
+    void Initialize(OriGine::Scene* _scene, OriGine::EntityHandle _owner) override;
+    void Edit(OriGine::Scene* _scene, OriGine::EntityHandle _owner, const std::string& _parentLabel) override;
     void Finalize() override {}
 
     /// <summary>
@@ -65,7 +65,7 @@ public:
     void SettingOnLoadTexture(uint32_t _texIdx);
 
 private:
-    int32_t spritesEntityId = -1; // スプライトを持つエンティティID
+    OriGine::EntityHandle spriteEntityHandle_ = OriGine::EntityHandle(); // スプライトを持つエンティティID
 public:
     int32_t digitInteger = 0; // 整数部の桁数
     int32_t digitDecimal = 0; // 小数部の桁数
@@ -90,6 +90,6 @@ public:
     OriGine::Vec2f marginBetweenIntegerAndDecimal = {0.f, 0.f}; // 整数部と小数部の間のスペース
 
 public:
-    int32_t GetSpritesEntityId() const { return spritesEntityId; }
-    void SetSpritesEntityId(int32_t id) { spritesEntityId = id; }
+    OriGine::EntityHandle GetSpritesEntityHandle() const { return spriteEntityHandle_; }
+    void SetSpritesEntityHandle(OriGine::EntityHandle _handle) { spriteEntityHandle_ = _handle; }
 };

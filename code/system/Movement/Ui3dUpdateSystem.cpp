@@ -12,16 +12,17 @@ Ui3dUpdateSystem::~Ui3dUpdateSystem() {}
 void Ui3dUpdateSystem::Initialize() {}
 void Ui3dUpdateSystem::Finalize() {}
 
-void Ui3dUpdateSystem::UpdateEntity(OriGine::Entity* _entity) {
-    auto playerEnt = GetUniqueEntity("Player");
-    if (!playerEnt) {
+void Ui3dUpdateSystem::UpdateEntity(OriGine::EntityHandle _handle) {
+    auto playerHandle = GetUniqueEntity("Player");
+    if (!playerHandle.IsValid()) {
         return;
     }
-    auto playerTransform = GetComponent<OriGine::Transform>(playerEnt);
-    auto transform       = GetComponent<OriGine::Transform>(_entity);
+    auto playerTransform = GetComponent<OriGine::Transform>(playerHandle);
+    auto transform       = GetComponent<OriGine::Transform>(_handle);
     auto camTransform    = transform->parent; // Camera の Transform
-    if (!transform || !playerTransform || !camTransform)
+    if (!transform || !playerTransform || !camTransform) {
         return;
+    }
 
     // --- ワールド方向 ---
     OriGine::Vec3f worldDir = transform->GetWorldTranslate() - playerTransform->GetWorldTranslate();

@@ -17,18 +17,18 @@ using namespace OriGine;
 void ButtonInputSystem::Initialize() {}
 void ButtonInputSystem::Finalize() {}
 
-void ButtonInputSystem::UpdateEntity(OriGine::Entity* _entity) {
+void ButtonInputSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     OriGine::KeyboardInput* keyInput = GetScene()->GetKeyboardInput();
     MouseInput* mouseInput           = GetScene()->GetMouseInput();
     OriGine::GamepadInput* padInput  = GetScene()->GetGamepadInput();
 
-    std::vector<Button>* buttons = GetComponents<Button>(_entity);
+    std::vector<Button>& buttons = GetComponents<Button>(_handle);
 
-    if (buttons == nullptr) {
+    if (buttons.empty()) {
         return;
     }
 
-    for (auto& button : *buttons) {
+    for (auto& button : buttons) {
 
         // リセット
         button.SetHovered(false);
@@ -57,7 +57,7 @@ void ButtonInputSystem::UpdateEntity(OriGine::Entity* _entity) {
         }
 
         /// ====================== check Mouse Input ====================== ///
-        SpriteRenderer* buttonSprite = GetComponent<SpriteRenderer>(_entity);
+        SpriteRenderer* buttonSprite = GetComponent<SpriteRenderer>(_handle);
         if (buttonSprite != nullptr) {
             const OriGine::Vec2f& mousePos   = mouseInput->GetPosition();
             const OriGine::Vec2f& buttonPos  = buttonSprite->GetTranslate();

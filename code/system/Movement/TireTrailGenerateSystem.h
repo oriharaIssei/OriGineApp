@@ -32,7 +32,7 @@ public:
     void Finalize() override;
 
 protected:
-    void UpdateEntity(OriGine::Entity* _entity) override;
+    void UpdateEntity(OriGine::EntityHandle _handle) override;
     /// <summary>
     /// 生成コンテキストを構築する
     /// </summary>
@@ -69,6 +69,6 @@ protected:
     /// <param name="spline"></param>
     /// <param name="entity"></param>
     void UpdateFadeOut(
-        TireSplinePoints& spline,
-        OriGine::Entity* entity);
+        TireSplinePoints& _spline,
+        OriGine::EntityHandle _entity);
 };
