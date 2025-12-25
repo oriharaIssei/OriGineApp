@@ -399,7 +399,7 @@
             "Handle": {
                 "uuid": "0222431d-f046-4510-a0fd-e7868c9f1c8d"
             },
-            "Name": "Entity",
+            "Name": "ButtonGroup",
             "Systems": [
                 {
                     "SystemCategory": 2,
@@ -426,11 +426,285 @@
             "Handle": {
                 "uuid": "8c6c694f-1754-477e-9343-062ed2194c4e"
             },
-            "Name": "Entity",
+            "Name": "MouseCondition",
             "Systems": [
                 {
                     "SystemCategory": 2,
                     "SystemName": "ApplyMouseConditionSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "Material": [
+                    {
+                        "Handle": "4b9e25e5-b1b1-4deb-8b12-5bbd0da186ca",
+                        "color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "MaterialEffectPipeLine": [
+                    {
+                        "Handle": "ae391772-62d1-45d7-99e0-2f3a41817324",
+                        "baseTexturePath": "",
+                        "effectEntityIdList": [
+                            {
+                                "effectType": 0,
+                                "handle": {
+                                    "uuid": "57ac3287-5935-48d7-9b85-6772be566209"
+                                }
+                            }
+                        ],
+                        "isActive": true,
+                        "materialIndex": 0,
+                        "priority": 0
+                    }
+                ],
+                "PlaneRenderer": [
+                    {
+                        "Handle": "a4609965-3638-493e-b2e4-f9650735641d",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "bf96aa97-c114-4e51-9f29-ff7f032c1aaa",
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0,
+                            0.8100000023841858
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "fe7bacdc-77f1-4171-bf48-804b45ba9835"
+            },
+            "Name": "BG",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                },
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "MaterialEffect"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "DissolveEffectParam": [
+                    {
+                        "Handle": "a40930b0-a585-40cc-9e1d-ca4d7139812a",
+                        "edgeWidth": 0.0,
+                        "isActive": true,
+                        "materialIndex": 0,
+                        "outLineColor": [
+                            0.0462888665497303,
+                            0.3087880313396454,
+                            0.8438818454742432,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "threshold": 0.006000000052154064
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "aed84240-1021-41d6-8caa-78412e210b20",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "MaterialEffectPipeLine": [
+                    {
+                        "Handle": "9cac8138-591c-45fa-8cc2-ac5bd340445d",
+                        "baseTexturePath": "./application/resource/Texture/circle.png",
+                        "effectEntityIdList": [
+                            {
+                                "effectType": 1,
+                                "handle": {
+                                    "uuid": "0bb6b5bd-c10d-49ab-8d20-965ee84b2191"
+                                }
+                            }
+                        ],
+                        "isActive": true,
+                        "materialIndex": 0,
+                        "priority": 0
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "57ac3287-5935-48d7-9b85-6772be566209"
+            },
+            "Name": "Diss",
+            "Systems": [
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "MaterialEffect"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "DistortionEffectParam": [
+                    {
+                        "Handle": "aa33c1c6-4f2e-4d8a-875c-765a7cb8717f",
+                        "distortionBias": [
+                            0.0,
+                            0.0
+                        ],
+                        "distortionStrength": [
+                            0.14000000059604645,
+                            0.550000011920929
+                        ],
+                        "isActive": true,
+                        "materialIndex": 0,
+                        "textuerPath": "./application/resource/Texture/waveNoise.png",
+                        "use3dObjectList": false
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "ae987bb4-7174-4372-8ce0-b85d0bbd2b89",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.7623553276062012,
+                            0.0
+                        ]
+                    }
+                ],
+                "MaterialAnimation": [
+                    {
+                        "Handle": "21566661-9181-492f-9919-eec83412c1e3",
+                        "InterpolationType": 0,
+                        "colorCurve": [],
+                        "duration": 8.100000381469727,
+                        "isLoop": true,
+                        "isPlay": true,
+                        "uvRotateCurve": [],
+                        "uvScaleCurve": [],
+                        "uvTranslateCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 8.100000381469727,
+                                "value": [
+                                    1.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "0bb6b5bd-c10d-49ab-8d20-965ee84b2191"
+            },
+            "Name": "Dist",
+            "Systems": [
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "MaterialAnimationWorkSystem"
                 }
             ],
             "isUnique": false
@@ -480,6 +754,21 @@
         {
             "ApplyMouseConditionSystem": {
                 "Priority": 1
+            }
+        },
+        {
+            "TexturedMeshRenderSystem": {
+                "Priority": 1
+            }
+        },
+        {
+            "MaterialAnimationWorkSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "MaterialEffect": {
+                "Priority": 0
             }
         }
     ]
