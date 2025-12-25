@@ -57,8 +57,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -70,8 +70,8 @@
                             1.5299999713897705
                         ],
                         "size": [
-                            170.6666717529297,
-                            21.333332061767578
+                            256.0,
+                            32.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -83,8 +83,8 @@
                             64.0
                         ],
                         "translate": [
-                            1062.4000244140625,
-                            547.2000122070313
+                            1593.5999755859375,
+                            820.7999877929688
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -183,8 +183,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -196,8 +196,8 @@
                             1.5299999713897705
                         ],
                         "size": [
-                            170.6666717529297,
-                            21.333332061767578
+                            256.0,
+                            32.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -209,8 +209,8 @@
                             64.0
                         ],
                         "translate": [
-                            1062.4000244140625,
-                            590.4000244140625
+                            1593.5999755859375,
+                            885.5999755859375
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -266,6 +266,60 @@
         },
         {
             "Components": {
+                "SpriteAnimation": [
+                    {
+                        "Handle": "03a9a12f-f8d7-498d-852a-057a948a7bc2",
+                        "colorAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
+                        },
+                        "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    1.0,
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ]
+                            }
+                        ],
+                        "colorInterpolationType": 0,
+                        "duration": 6.199999809265137,
+                        "rotateCurve": [],
+                        "scaleCurve": [],
+                        "spriteComponentIndex": 0,
+                        "transformAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
+                        },
+                        "transformInterpolationType": 0,
+                        "translateCurve": [],
+                        "uvAnimationState": {
+                            "isLoop": true,
+                            "isPlay": true
+                        },
+                        "uvInterpolationType": 0,
+                        "uvRotateCurve": [],
+                        "uvScaleCurve": [],
+                        "uvTranslateCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 6.199999809265137,
+                                "value": [
+                                    1.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    }
+                ],
                 "SpriteRenderer": [
                     {
                         "Handle": "cf1dc712-3e5f-4e23-9fc8-70f9a8b52fa4",
@@ -274,14 +328,14 @@
                             0.5
                         ],
                         "color": [
-                            0.12941177189350128,
-                            0.12941177189350128,
-                            0.12941177189350128,
-                            0.12941177189350128
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.25882354378700256
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -293,21 +347,21 @@
                             1.0
                         ],
                         "size": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "textureLeftTop": [
                             0.0,
                             0.0
                         ],
-                        "texturePath": "./application/resource/Texture/white1x1.png",
+                        "texturePath": "./application/resource/Texture/bioNoise.png",
                         "textureSize": [
-                            1.0,
-                            1.0
+                            512.0,
+                            512.0
                         ],
                         "translate": [
-                            640.0,
-                            360.0
+                            960.0,
+                            540.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -315,7 +369,7 @@
                             1.0
                         ],
                         "uvTranslate": [
-                            0.0,
+                            0.7563585638999939,
                             0.0
                         ],
                         "windowRatioPos": [
@@ -337,6 +391,10 @@
                 {
                     "SystemCategory": 6,
                     "SystemName": "BackGroundSpriteRenderSystem"
+                },
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "SpriteAnimationSystem"
                 }
             ],
             "isUnique": false
@@ -449,8 +507,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -462,8 +520,8 @@
                             1.3600000143051147
                         ],
                         "size": [
-                            341.3333435058594,
-                            253.3333282470703
+                            512.0,
+                            380.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -475,8 +533,8 @@
                             190.0
                         ],
                         "translate": [
-                            640.0,
-                            360.0
+                            960.0,
+                            540.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -509,8 +567,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -522,8 +580,8 @@
                             1.3600000143051147
                         ],
                         "size": [
-                            341.3333435058594,
-                            253.3333282470703
+                            512.0,
+                            380.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -535,8 +593,8 @@
                             190.0
                         ],
                         "translate": [
-                            640.0,
-                            360.0
+                            960.0,
+                            540.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -608,7 +666,7 @@
         },
         {
             "DissolveEffect": {
-                "Priority": 0
+                "Priority": 10
             }
         },
         {
@@ -639,6 +697,21 @@
         {
             "UpdateButtonColorByState": {
                 "Priority": 2
+            }
+        },
+        {
+            "GrayscaleEffect": {
+                "Priority": 1
+            }
+        },
+        {
+            "GradationEffect": {
+                "Priority": 0
+            }
+        },
+        {
+            "SpriteAnimationSystem": {
+                "Priority": 0
             }
         }
     ]

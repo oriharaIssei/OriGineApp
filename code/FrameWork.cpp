@@ -137,6 +137,7 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<ModelNodeAnimation>();
     componentRegistry->RegisterComponent<PrimitiveNodeAnimation>();
     componentRegistry->RegisterComponent<TransformAnimation>();
+    componentRegistry->RegisterComponent<DissolveAnimation>();
     componentRegistry->RegisterComponent<SkinningAnimationComponent>();
     componentRegistry->RegisterComponent<SpriteAnimation>();
     componentRegistry->RegisterComponent<MaterialAnimation>();
@@ -306,6 +307,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<MaterialAnimationWorkSystem>();
     systemRegistry->RegisterSystem<CameraActionSystem>();
     systemRegistry->RegisterSystem<TransformAnimationWorkSystem>();
+    systemRegistry->RegisterSystem<DissolveAnimationSystem>();
 
     systemRegistry->RegisterSystem<CameraShake>();
 
