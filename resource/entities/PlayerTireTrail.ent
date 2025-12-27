@@ -58,24 +58,24 @@
         "TireSplinePoints": [
             {
                 "Handle": "144c1143-8d09-4db2-9cf9-68fee9b79091",
-                "capacity": 86,
+                "capacity": 256,
                 "endUv": [
                     1.0,
                     0.0
                 ],
                 "endWidth": 0.550000011920929,
-                "fadeoutTime": 0.28999999165534973,
-                "gearupFactor": 0.3529999852180481,
-                "groundedFactor": 0.4169999957084656,
+                "fadeoutTime": 3.0,
+                "gearupFactor": 0.40700000524520874,
+                "groundedFactor": 0.6399999856948853,
                 "isCrossMesh": false,
                 "isUvLoopEnable": true,
-                "maxBankFactor": 0.7179999947547913,
-                "maxSpeedFactor": 0.37299999594688416,
-                "minBankFactor": 0.3580000102519989,
-                "minSpeedFactor": 0.11400000005960464,
+                "maxBankFactor": 0.7860000133514404,
+                "maxSpeedFactor": 0.5389999747276306,
+                "minBankFactor": 0.515999972820282,
+                "minSpeedFactor": 0.0989999994635582,
                 "segmentDivide": 16,
-                "segmentLength": 0.4000000059604645,
-                "startMoveFactor": 0.3709999918937683,
+                "segmentLength": 0.49000000953674316,
+                "startMoveFactor": 0.5640000104904175,
                 "startUv": [
                     0.0,
                     1.0

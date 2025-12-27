@@ -63,15 +63,19 @@ bool TireTrailGenerateSystem::BuildGenerateContext(
     auto* effectParam = GetComponent<PlayerEffectControlParam>(spline.commonSettings.playerEntityHandle);
     auto* rigidBody   = GetComponent<OriGine::Rigidbody>(spline.commonSettings.playerEntityHandle);
 
+    // コンポーネントが揃っていない場合は処理しない
     if (!transform || !state || !rigidBody || !effectParam) {
         spline.commonSettings.playerEntityHandle = EntityHandle();
         if (effectParam) {
+            // エフェクトパラメータが存在する場合は、スプラインの紐付けを解除する
             effectParam->SetTireTrailSplineEntityId(EntityHandle());
         }
         return false;
     }
 
     if (!state->IsOnGround() || rigidBody->GetVelocity().lengthSq() < kEpsilon) {
+        // 地上にいない、または停止中は処理しない
+        // スプラインの紐付けも解除する
         spline.commonSettings.playerEntityHandle = EntityHandle();
         effectParam->SetTireTrailSplineEntityId(EntityHandle());
         return false;
