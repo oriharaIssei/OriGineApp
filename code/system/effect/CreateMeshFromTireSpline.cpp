@@ -177,7 +177,6 @@ void CreateMeshFromTireSpline::CreateLinePlaneMesh(
     mesh.SetVertexData(vertices);
     mesh.SetIndexData(indices);
 
-    renderer->SetIsCulling(false);
     renderer->SetMeshGroup({mesh});
     renderer->GetMeshGroup()->at(0).TransferData();
 }
@@ -222,7 +221,6 @@ void CreateMeshFromTireSpline::CreateCrossPlaneMesh(
     hMesh.SetVertexData(horizontal);
     hMesh.SetIndexData(indices);
 
-    renderer->SetIsCulling(false);
     renderer->SetMeshGroup({vMesh, hMesh});
     renderer->GetMeshGroup()->at(0).TransferData();
     renderer->GetMeshGroup()->at(1).TransferData();

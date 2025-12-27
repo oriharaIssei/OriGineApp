@@ -13,7 +13,7 @@ void BillboardTransform::Initialize() {}
 void BillboardTransform::Finalize() {}
 
 void BillboardTransform::UpdateEntity(OriGine::EntityHandle _handle) {
-    const CameraTransform& cameraTransform = CameraManager::GetInstance()->GetTransform();
+    CameraTransform cameraTransform = CameraManager::GetInstance()->GetTransform(GetScene());
 
     auto& transforms = GetComponents<OriGine::Transform>(_handle);
     for (auto& transform : transforms) {

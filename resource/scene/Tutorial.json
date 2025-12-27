@@ -37,9 +37,9 @@
                                 1.0
                             ],
                             "translate": [
-                                16.326574325561523,
-                                10.844953536987305,
-                                -5.522499084472656
+                                -0.6881605982780457,
+                                1.3228001594543457,
+                                -8.004366874694824
                             ]
                         }
                     }
@@ -192,7 +192,7 @@
                         "duration": 0.699999988079071,
                         "rotateCurve": [],
                         "scaleCurve": [],
-                        "spriteComponentIndex": 0,
+                        "spriteComponentHandle": "00000000-0000-0000-0000-000000000000",
                         "transformAnimationState": {
                             "isLoop": false,
                             "isPlay": false
@@ -256,7 +256,7 @@
                         "duration": 0.699999988079071,
                         "rotateCurve": [],
                         "scaleCurve": [],
-                        "spriteComponentIndex": 0,
+                        "spriteComponentHandle": "00000000-0000-0000-0000-000000000000",
                         "transformAnimationState": {
                             "isLoop": false,
                             "isPlay": false
@@ -480,7 +480,7 @@
                         "duration": 0.699999988079071,
                         "rotateCurve": [],
                         "scaleCurve": [],
-                        "spriteComponentIndex": 0,
+                        "spriteComponentHandle": "00000000-0000-0000-0000-000000000000",
                         "transformAnimationState": {
                             "isLoop": false,
                             "isPlay": false
@@ -544,7 +544,7 @@
                         "duration": 0.699999988079071,
                         "rotateCurve": [],
                         "scaleCurve": [],
-                        "spriteComponentIndex": 0,
+                        "spriteComponentHandle": "00000000-0000-0000-0000-000000000000",
                         "transformAnimationState": {
                             "isLoop": false,
                             "isPlay": false
@@ -768,7 +768,7 @@
                         "duration": 0.699999988079071,
                         "rotateCurve": [],
                         "scaleCurve": [],
-                        "spriteComponentIndex": 0,
+                        "spriteComponentHandle": "00000000-0000-0000-0000-000000000000",
                         "transformAnimationState": {
                             "isLoop": false,
                             "isPlay": false
@@ -832,7 +832,7 @@
                         "duration": 0.699999988079071,
                         "rotateCurve": [],
                         "scaleCurve": [],
-                        "spriteComponentIndex": 0,
+                        "spriteComponentHandle": "00000000-0000-0000-0000-000000000000",
                         "transformAnimationState": {
                             "isLoop": false,
                             "isPlay": false
@@ -2842,6 +2842,97 @@
                 {
                     "SystemCategory": 5,
                     "SystemName": "PlayerSpeedFor3dUI"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "Material": [
+                    {
+                        "Handle": "55472da8-d158-4aa4-a74c-5cee43a10276",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            0.3490196168422699
+                        ],
+                        "enableLighting": false,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "PlaneRenderer": [
+                    {
+                        "Handle": "9fdd105d-b830-4f8b-addc-ea0bc6853d7d",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "5505a9b3-bf41-483c-8d62-92f27de76fc1",
+                        "rotate": [
+                            -0.0,
+                            -0.08407622575759888,
+                            -0.0,
+                            0.9964593648910522
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            -1.2279382944107056,
+                            0.973000168800354,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "72ffb497-2a82-4bd0-a853-e80a47902248"
+            },
+            "Name": "Entity",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
                 }
             ],
             "isUnique": false

@@ -6,27 +6,31 @@
 #include "input/GamepadInput.h"
 #include "input/KeyboardInput.h"
 
-/// component
+/// ECS
+// component
+#include "component/renderer/Sprite.h"
 #include "component/ui/Button.h"
 #include "component/ui/ButtonGroup.h"
 
-ButtonGroupSystem::ButtonGroupSystem() : ISystem(OriGine::SystemCategory::StateTransition) {}
+using namespace OriGine;
+
+ButtonGroupSystem::ButtonGroupSystem() : ISystem(SystemCategory::StateTransition) {}
 
 void ButtonGroupSystem::Initialize() {}
-
 void ButtonGroupSystem::Finalize() {}
 
-void ButtonGroupSystem::UpdateEntity(OriGine::EntityHandle _handle) {
-    OriGine::KeyboardInput* keyInput    = GetScene()->GetKeyboardInput();
-    OriGine::GamepadInput* gamePadInput = GetScene()->GetGamepadInput();
+void ButtonGroupSystem::UpdateEntity(EntityHandle _handle) {
+    KeyboardInput* keyInput    = GetScene()->GetKeyboardInput();
+    GamepadInput* gamePadInput = GetScene()->GetGamepadInput();
 
     auto* buttonGroup = GetComponent<ButtonGroup>(_handle);
     if (buttonGroup == nullptr) {
         return;
     }
 
-    int32_t currentButtonNumber = buttonGroup->GetCurrentButtonNumber();
-    Button* currentButton       = GetComponent<Button>(buttonGroup->GetEntityId(currentButtonNumber));
+    int32_t currentButtonNumber      = buttonGroup->GetCurrentButtonNumber();
+    EntityHandle currentButtonEntity = buttonGroup->GetEntityId(currentButtonNumber);
+    Button* currentButton            = GetComponent<Button>(currentButtonEntity);
     if (!currentButton) {
         return;
     }
@@ -149,5 +153,16 @@ void ButtonGroupSystem::UpdateEntity(OriGine::EntityHandle _handle) {
         currentButton->SetHovered(true);
 
         buttonGroup->SetCurrentButtonNumber(currentButtonNumber);
+
+        /// ボタン位置に合わせて SpriteRenderer の位置を更新
+        SpriteRenderer* buttonRenderer = GetComponent<SpriteRenderer>(currentButtonEntity);
+        if (!buttonRenderer) {
+            return;
+        }
+
+        auto& sprites = GetComponents<SpriteRenderer>(_handle);
+        for (auto& sprite : sprites) {
+            sprite.SetTranslate(buttonRenderer->GetTranslate()); // 強制更新
+        }
     }
 }

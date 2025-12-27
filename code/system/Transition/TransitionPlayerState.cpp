@@ -93,7 +93,7 @@ void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
     }
 
     PlayerEffectControlParam* effectParam = GetComponent<PlayerEffectControlParam>(_handle);
-    if (effectParam && effectParam->GetTireTrailSplineEntityHandle().IsValid()) {
+    if (effectParam && !effectParam->GetTireTrailSplineEntityHandle().IsValid()) {
         if (moveStateFlag.Current().ToEnum() == PlayerMoveState::DASH) {
             // タイヤトレイルを作る
             constexpr char kPlayerTireTrailEntityName[] = "PlayerTireTrail";

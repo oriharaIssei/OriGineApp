@@ -319,20 +319,20 @@
             "Name": "toSelect",
             "Systems": [
                 {
-                    "SystemCategory": 3,
-                    "SystemName": "SceneTransitionRequestSenderSystem"
-                },
-                {
                     "SystemCategory": 6,
                     "SystemName": "SpriteRenderSystem"
                 },
                 {
-                    "SystemCategory": 1,
-                    "SystemName": "ButtonInputSystem"
+                    "SystemCategory": 3,
+                    "SystemName": "SceneTransitionRequestSenderSystem"
                 },
                 {
                     "SystemCategory": 2,
                     "SystemName": "ChangeSceneByButton"
+                },
+                {
+                    "SystemCategory": 1,
+                    "SystemName": "ButtonInputSystem"
                 },
                 {
                     "SystemCategory": 2,
@@ -401,6 +401,10 @@
             },
             "Name": "ButtonGroup",
             "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "SpriteRenderSystem"
+                },
                 {
                     "SystemCategory": 2,
                     "SystemName": "ButtonGroupSystem"
@@ -598,6 +602,11 @@
     ],
     "Systems": [
         {
+            "SpriteRenderSystem": {
+                "Priority": 10
+            }
+        },
+        {
             "BackGroundSpriteRenderSystem": {
                 "Priority": 0
             }
@@ -605,16 +614,6 @@
         {
             "SceneTransitionRequestSenderSystem": {
                 "Priority": 0
-            }
-        },
-        {
-            "SpriteRenderSystem": {
-                "Priority": 10
-            }
-        },
-        {
-            "RestartOnButtonPressSystem": {
-                "Priority": 1
             }
         },
         {
@@ -628,8 +627,8 @@
             }
         },
         {
-            "ButtonInputSystem": {
-                "Priority": 0
+            "RestartOnButtonPressSystem": {
+                "Priority": 1
             }
         },
         {
@@ -638,18 +637,23 @@
             }
         },
         {
-            "SceneTransition": {
-                "Priority": 1
+            "ButtonInputSystem": {
+                "Priority": 0
             }
         },
         {
-            "UpdateButtonColorByState": {
+            "SceneTransition": {
                 "Priority": 1
             }
         },
         {
             "DistortionEffect": {
                 "Priority": 0
+            }
+        },
+        {
+            "UpdateButtonColorByState": {
+                "Priority": 1
             }
         },
         {

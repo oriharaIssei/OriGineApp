@@ -246,8 +246,12 @@
         "PlayerEffectControlParam": [
             {
                 "Handle": "eba370f8-fa85-4975-83cf-21231ea46835",
+                "maxStreachScale": 2.430000066757202,
+                "maxVelocityForStreach": 14.399999618530273,
                 "maxWheelSpinSpeed": 0.18700000643730164,
+                "minStreachScale": 0.4399999976158142,
                 "rotateOffsetOnWallRun": 0.5699999928474426,
+                "streachEaseType": 1,
                 "trailColorByGearLevel": [
                     [
                         0.1051647737622261,
@@ -336,10 +340,10 @@
                 "gearUpCoolTime": 0.46000000834465027,
                 "jumpChargeRateEaseType": 11,
                 "jumpHoldVelocityEaseType": 4,
-                "maxJumpChargeRate": 53.16999816894531,
-                "maxJumpHoldVelocity": 3.5899999141693115,
-                "minJumpChargeRate": 21.579999923706055,
-                "minJumpHoldVelocity": 1.2300000190734863,
+                "maxJumpChargeRate": 61.2599983215332,
+                "maxJumpHoldVelocity": 6.929999828338623,
+                "minJumpChargeRate": 29.690000534057617,
+                "minJumpHoldVelocity": 3.4200000762939453,
                 "risingGravityRate": 1.0,
                 "speedUpRateBase": 10.130000114440918,
                 "speedUpRateCommonRate": -0.4000000059604645,
@@ -360,7 +364,7 @@
                     0.0,
                     0.0
                 ],
-                "mass": 0.07999999821186066,
+                "mass": 0.11999999731779099,
                 "maxFallSpeed": 100.0,
                 "maxXZSpeed": 100.0,
                 "useGravity": true,
@@ -423,7 +427,7 @@
                 "translate": [
                     0.0,
                     2.0,
-                    0.0
+                    6.0
                 ]
             }
         ]
@@ -435,6 +439,10 @@
     "Systems": [
         {
             "SystemCategory": 4,
+            "SystemName": "CollisionCheckSystem"
+        },
+        {
+            "SystemCategory": 4,
             "SystemName": "CollisionPushBackSystem"
         },
         {
@@ -444,10 +452,6 @@
         {
             "SystemCategory": 0,
             "SystemName": "TakePlayerToStartPosition"
-        },
-        {
-            "SystemCategory": 4,
-            "SystemName": "CollisionCheckSystem"
         },
         {
             "SystemCategory": 7,
@@ -483,11 +487,11 @@
         },
         {
             "SystemCategory": 2,
-            "SystemName": "TransitionPlayerState"
+            "SystemName": "SceneTransition"
         },
         {
             "SystemCategory": 2,
-            "SystemName": "SceneTransition"
+            "SystemName": "TransitionPlayerState"
         }
     ],
     "isUnique": true

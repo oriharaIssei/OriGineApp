@@ -14,7 +14,7 @@ TireSplinePoints::~TireSplinePoints() {}
 
 void TireSplinePoints::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {}
 
-void TireSplinePoints::Edit(Scene* /*_scene*/,EntityHandle /*_handle*/, [[maybe_unused]] const std::string& _parentLabel) {
+void TireSplinePoints::Edit(Scene* /*_scene*/, EntityHandle /*_handle*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
     CheckBoxCommand("IsCrossMesh##" + _parentLabel, commonSettings.isCrossMesh);
 
@@ -80,6 +80,7 @@ void TireSplinePoints::Edit(Scene* /*_scene*/,EntityHandle /*_handle*/, [[maybe_
     SlideGuiCommand("MaxBankFactor##" + _parentLabel, maxBankFactor, 0.f, 1.f);
 
     SlideGuiCommand("GroundedFactor##" + _parentLabel, groundedFactor, 0.f, 1.f);
+    SlideGuiCommand("GearupFactor##" + _parentLabel, gearupFactor, 0.f, 1.f);
 
 #endif // _DEBUG
 }
@@ -114,6 +115,7 @@ void to_json(nlohmann::json& j, const TireSplinePoints& c) {
     j["thresholdBankAngle"] = c.thresholdBankAngle;
     j["minBankFactor"]      = c.minBankFactor;
     j["maxBankFactor"]      = c.maxBankFactor;
+    j["gearupFactor"]       = c.gearupFactor;
     j["groundedFactor"]     = c.groundedFactor;
 }
 
@@ -151,5 +153,6 @@ void from_json(const nlohmann::json& j, TireSplinePoints& c) {
     j.at("minBankFactor").get_to(c.minBankFactor);
     j.at("maxBankFactor").get_to(c.maxBankFactor);
 
+    j.at("gearupFactor").get_to(c.gearupFactor);
     j.at("groundedFactor").get_to(c.groundedFactor);
 }

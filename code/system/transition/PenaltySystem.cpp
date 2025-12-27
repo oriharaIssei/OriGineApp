@@ -108,19 +108,16 @@ void PenaltySystem::UpdateEntity(OriGine::EntityHandle _handle) {
 
     SpriteAnimation animation = *GetComponent<SpriteAnimation>(forSpriteDataEntityHandle);
     animation.PlayStart();
-    int32_t spriteIndex = 0;
     for (auto& sprite : sprites) {
         // それぞれの位置からアニメーションするように
         for (auto& translate : animation.GetTranslateCurve()) {
             translate.value += sprite.GetTranslate();
         }
 
-        animation.SetSpriteComponentIndex(spriteIndex);
+        animation.SetSpriteComponentHandle(sprite.GetHandle());
         AddComponent<SpriteAnimation>(penaltyTimeUIEntityHandle);
         auto animationComp = GetComponent<SpriteAnimation>(penaltyTimeUIEntityHandle);
         *animationComp     = animation;
-
-        ++spriteIndex;
     }
 
     { /// system に登録
