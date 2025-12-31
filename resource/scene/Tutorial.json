@@ -37,9 +37,9 @@
                                 1.0
                             ],
                             "translate": [
-                                0.0,
-                                0.0,
-                                0.0
+                                218.4719696044922,
+                                199.20721435546875,
+                                -232.16842651367188
                             ]
                         }
                     }
@@ -70,7 +70,8 @@
             "Components": {
                 "DirectionalLight": [
                     {
-                        "Handle": "be11297c-7ae3-4576-853a-105c8203c1ed",
+                        "Handle": "4fb902ce-3ce3-42ae-9cc7-e4e66194af8b",
+                        "angularRadius": 0.007699999958276749,
                         "color": [
                             1.0,
                             1.0,
@@ -78,10 +79,10 @@
                         ],
                         "direction": [
                             0.0,
-                            -0.7042388916015625,
-                            0.7099630832672119
+                            -0.5250809192657471,
+                            0.8510523438453674
                         ],
-                        "intensity": 0.6700000166893005,
+                        "intensity": 6.849999904632568,
                         "isActive": true
                     }
                 ]
@@ -287,8 +288,8 @@
                             0.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -300,8 +301,8 @@
                             0.800000011920929
                         ],
                         "size": [
-                            513.0,
-                            558.0
+                            769.5,
+                            837.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -313,8 +314,8 @@
                             558.0
                         ],
                         "translate": [
-                            250.0,
-                            360.0
+                            375.0,
+                            540.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -575,8 +576,8 @@
                             0.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -588,8 +589,8 @@
                             0.800000011920929
                         ],
                         "size": [
-                            513.0,
-                            417.0
+                            769.5,
+                            625.5
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -601,8 +602,8 @@
                             417.0
                         ],
                         "translate": [
-                            250.0,
-                            360.0
+                            375.0,
+                            540.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -863,8 +864,8 @@
                             0.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -876,8 +877,8 @@
                             0.800000011920929
                         ],
                         "size": [
-                            512.0,
-                            254.0
+                            768.0,
+                            381.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -889,8 +890,8 @@
                             254.0
                         ],
                         "translate": [
-                            250.0,
-                            360.0
+                            375.0,
+                            540.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -2217,8 +2218,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -2230,8 +2231,8 @@
                             1.0
                         ],
                         "size": [
-                            341.3333435058594,
-                            85.33332824707031
+                            512.0,
+                            128.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -2243,8 +2244,8 @@
                             128.0
                         ],
                         "translate": [
-                            640.0,
-                            504.0
+                            960.0,
+                            756.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -2277,8 +2278,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -2290,8 +2291,8 @@
                             1.0
                         ],
                         "size": [
-                            170.6666717529297,
-                            85.33332824707031
+                            256.0,
+                            128.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -2303,8 +2304,8 @@
                             256.0
                         ],
                         "translate": [
-                            640.0,
-                            504.0
+                            960.0,
+                            756.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -2428,8 +2429,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -2454,8 +2455,8 @@
                             128.0
                         ],
                         "translate": [
-                            640.0,
-                            504.0
+                            960.0,
+                            756.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -2488,8 +2489,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -2501,8 +2502,8 @@
                             1.0
                         ],
                         "size": [
-                            170.6666717529297,
-                            85.33332824707031
+                            256.0,
+                            128.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -2514,8 +2515,8 @@
                             256.0
                         ],
                         "translate": [
-                            640.0,
-                            504.0
+                            960.0,
+                            756.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -2639,8 +2640,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -2665,8 +2666,8 @@
                             128.0
                         ],
                         "translate": [
-                            640.0,
-                            504.0
+                            960.0,
+                            756.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -2699,8 +2700,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -2712,8 +2713,8 @@
                             1.0
                         ],
                         "size": [
-                            170.6666717529297,
-                            85.33332824707031
+                            256.0,
+                            128.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -2725,8 +2726,8 @@
                             256.0
                         ],
                         "translate": [
-                            640.0,
-                            504.0
+                            960.0,
+                            756.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -2845,97 +2846,6 @@
                 }
             ],
             "isUnique": false
-        },
-        {
-            "Components": {
-                "Material": [
-                    {
-                        "Handle": "55472da8-d158-4aa4-a74c-5cee43a10276",
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            0.3490196168422699
-                        ],
-                        "enableLighting": false,
-                        "shininess": 0.0,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "PlaneRenderer": [
-                    {
-                        "Handle": "9fdd105d-b830-4f8b-addc-ea0bc6853d7d",
-                        "blendMode": 1,
-                        "isCulling": true,
-                        "isRenderer": true,
-                        "materialIndex": 0,
-                        "textureFilePath": "",
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "Transform": [
-                    {
-                        "Handle": "5505a9b3-bf41-483c-8d62-92f27de76fc1",
-                        "rotate": [
-                            -0.0,
-                            -0.08407622575759888,
-                            -0.0,
-                            0.9964593648910522
-                        ],
-                        "scale": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "translate": [
-                            -1.2279382944107056,
-                            0.973000168800354,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Handle": {
-                "uuid": "72ffb497-2a82-4bd0-a853-e80a47902248"
-            },
-            "Name": "Entity",
-            "Systems": [
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "TexturedMeshRenderSystem"
-                }
-            ],
-            "isUnique": false
         }
     ],
     "Systems": [
@@ -2945,18 +2855,13 @@
             }
         },
         {
-            "ColliderRenderingSystem": {
-                "Priority": 0
-            }
-        },
-        {
             "ApplyMouseConditionSystem": {
                 "Priority": 0
             }
         },
         {
-            "BackFireInitialize": {
-                "Priority": 1
+            "ColliderRenderingSystem": {
+                "Priority": 0
             }
         },
         {
@@ -2965,8 +2870,8 @@
             }
         },
         {
-            "BillboardTransform": {
-                "Priority": 100
+            "BackFireInitialize": {
+                "Priority": 1
             }
         },
         {
@@ -2980,12 +2885,17 @@
             }
         },
         {
-            "CameraMotionBobSystem": {
-                "Priority": 2
+            "BillboardTransform": {
+                "Priority": 100
             }
         },
         {
             "ChangeSceneByButton": {
+                "Priority": 2
+            }
+        },
+        {
+            "CameraMotionBobSystem": {
                 "Priority": 2
             }
         },
@@ -2995,13 +2905,13 @@
             }
         },
         {
-            "CameraInputSystem": {
-                "Priority": 3
+            "TimeLimitJudgeSystem": {
+                "Priority": 11
             }
         },
         {
-            "TimeLimitJudgeSystem": {
-                "Priority": 11
+            "CameraInputSystem": {
+                "Priority": 3
             }
         },
         {
@@ -3010,8 +2920,8 @@
             }
         },
         {
-            "CollisionPushBackSystem": {
-                "Priority": 5
+            "TakePlayerToStartPosition": {
+                "Priority": 3
             }
         },
         {
@@ -3020,8 +2930,8 @@
             }
         },
         {
-            "TakePlayerToStartPosition": {
-                "Priority": 3
+            "CollisionPushBackSystem": {
+                "Priority": 5
             }
         },
         {
@@ -3040,23 +2950,23 @@
             }
         },
         {
+            "PlayerSpeedFor3dUI": {
+                "Priority": 0
+            }
+        },
+        {
             "DissolveEffect": {
                 "Priority": 100
             }
         },
         {
-            "PlayerSpeedFor3dUI": {
+            "PenaltySystem": {
                 "Priority": 0
             }
         },
         {
             "DistortionEffect": {
                 "Priority": 1
-            }
-        },
-        {
-            "PenaltySystem": {
-                "Priority": 0
             }
         },
         {
@@ -3090,8 +3000,13 @@
             }
         },
         {
-            "LookAtFromTransformsSystem": {
-                "Priority": 3
+            "SubSceneActivateByButton": {
+                "Priority": 0
+            }
+        },
+        {
+            "TakeToGoalPosition": {
+                "Priority": 1
             }
         },
         {
@@ -3110,18 +3025,13 @@
             }
         },
         {
-            "SubSceneActivateByButton": {
-                "Priority": 0
+            "LookAtFromTransformsSystem": {
+                "Priority": 3
             }
         },
         {
-            "TakeToGoalPosition": {
-                "Priority": 1
-            }
-        },
-        {
-            "MaterialAnimationWorkSystem": {
-                "Priority": 0
+            "StartTimerInitialize": {
+                "Priority": 3
             }
         },
         {
@@ -3130,8 +3040,8 @@
             }
         },
         {
-            "StartTimerInitialize": {
-                "Priority": 3
+            "MaterialAnimationWorkSystem": {
+                "Priority": 0
             }
         },
         {
@@ -3145,17 +3055,22 @@
             }
         },
         {
-            "OverlayRenderSystem": {
-                "Priority": 10
-            }
-        },
-        {
             "ResolveEntityReferences": {
                 "Priority": 0
             }
         },
         {
+            "OverlayRenderSystem": {
+                "Priority": 10
+            }
+        },
+        {
             "PenaltyTimeSpriteUpdate": {
+                "Priority": 0
+            }
+        },
+        {
+            "TexturedMeshRenderSystem": {
                 "Priority": 0
             }
         },
@@ -3165,23 +3080,18 @@
             }
         },
         {
-            "TexturedMeshRenderSystem": {
-                "Priority": 0
-            }
-        },
-        {
             "PlayerOnCollision": {
                 "Priority": 10
             }
         },
         {
-            "PlayerPathSplineGenerator": {
-                "Priority": 100
+            "SkeletonRenderSystem": {
+                "Priority": 0
             }
         },
         {
-            "SkeletonRenderSystem": {
-                "Priority": 0
+            "PlayerPathSplineGenerator": {
+                "Priority": 100
             }
         },
         {
@@ -3210,6 +3120,11 @@
             }
         },
         {
+            "SpriteAnimationSystem": {
+                "Priority": 1
+            }
+        },
+        {
             "VelocityRenderingSystem": {
                 "Priority": 0
             }
@@ -3217,11 +3132,6 @@
         {
             "SettingGameCameraTarget": {
                 "Priority": 5
-            }
-        },
-        {
-            "SpriteAnimationSystem": {
-                "Priority": 1
             }
         },
         {
@@ -3305,11 +3215,6 @@
             }
         },
         {
-            "ShadowPlaneSyncPlayerPosition": {
-                "Priority": 11
-            }
-        },
-        {
             "CreateMeshFromTireSpline": {
                 "Priority": 0
             }
@@ -3317,11 +3222,6 @@
         {
             "TransformAnimationWorkSystem": {
                 "Priority": 0
-            }
-        },
-        {
-            "ShadowCastSystem": {
-                "Priority": 10
             }
         },
         {

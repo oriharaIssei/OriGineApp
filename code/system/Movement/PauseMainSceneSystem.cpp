@@ -8,7 +8,6 @@
 #include "system/movement/FollowCameraUpdateSystem.h"
 #include "system/movement/MoveSystemByRigidBody.h"
 #include "system/movement/PlayerMoveSystem.h"
-#include "system/Movement/ShadowPlaneSyncPlayerPosition.h"
 #include "system/render/SpriteRenderSystem.h"
 #include "system/Transition/ApplyMouseConditionSystem.h"
 #include "system/Transition/ButtonGroupSystem.h"
@@ -31,7 +30,6 @@ void PauseMainSceneSystem::Initialize() {
         nameof<ApplyMouseConditionSystem>(),
         nameof<ButtonGroupSystem>(),
         nameof<TimerCountDown>(),
-        nameof<ShadowPlaneSyncPlayerPosition>(),
         nameof<TransitionPlayerState>(),
         nameof<SpriteRenderSystem>()};
 }

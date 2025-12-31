@@ -237,9 +237,6 @@
     <ClInclude Include="code\system\Movement\SceneTransitionRequestSenderSystem.h">
       <Filter>system\Movement</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Movement\ShadowPlaneSyncPlayerPosition.h">
-      <Filter>system\Movement</Filter>
-    </ClInclude>
     <ClInclude Include="code\system\Movement\StartSequenceSystem.h">
       <Filter>system\Movement</Filter>
     </ClInclude>
@@ -307,9 +304,6 @@
       <Filter>system\Transition</Filter>
     </ClInclude>
     <ClInclude Include="code\system\collision\PlayerOnCollision.h">
-      <Filter>system\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\collision\ShadowCastSystem.h">
       <Filter>system\collision</Filter>
     </ClInclude>
     <ClInclude Include="code\system\collision\TutorialColliderOnCollision.h">
@@ -517,9 +511,6 @@
     <ClCompile Include="code\system\Movement\SceneTransitionRequestSenderSystem.cpp">
       <Filter>system\Movement</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Movement\ShadowPlaneSyncPlayerPosition.cpp">
-      <Filter>system\Movement</Filter>
-    </ClCompile>
     <ClCompile Include="code\system\Movement\StartSequenceSystem.cpp">
       <Filter>system\Movement</Filter>
     </ClCompile>
@@ -587,9 +578,6 @@
       <Filter>system\Transition</Filter>
     </ClCompile>
     <ClCompile Include="code\system\collision\PlayerOnCollision.cpp">
-      <Filter>system\collision</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\collision\ShadowCastSystem.cpp">
       <Filter>system\collision</Filter>
     </ClCompile>
     <ClCompile Include="code\system\collision\TutorialColliderOnCollision.cpp">

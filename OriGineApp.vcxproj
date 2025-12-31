@@ -206,7 +206,6 @@
     <ClInclude Include="code\system\Movement\RestartSystem.h" />
     <ClInclude Include="code\system\Movement\SceneTransitionRequestReceiverSystem.h" />
     <ClInclude Include="code\system\Movement\SceneTransitionRequestSenderSystem.h" />
-    <ClInclude Include="code\system\Movement\ShadowPlaneSyncPlayerPosition.h" />
     <ClInclude Include="code\system\Movement\StartSequenceSystem.h" />
     <ClInclude Include="code\system\Movement\TireTrailGenerateSystem.h" />
     <ClInclude Include="code\system\Movement\Ui3dUpdateSystem.h" />
@@ -230,7 +229,6 @@
     <ClInclude Include="code\system\Transition\TransitionPlayerState.h" />
     <ClInclude Include="code\system\Transition\UpdateButtonColorByState.h" />
     <ClInclude Include="code\system\collision\PlayerOnCollision.h" />
-    <ClInclude Include="code\system\collision\ShadowCastSystem.h" />
     <ClInclude Include="code\system\collision\TutorialColliderOnCollision.h" />
     <ClInclude Include="code\system\effect\CameraShake.h" />
     <ClInclude Include="code\system\effect\CreateMeshFromSpline.h" />
@@ -304,7 +302,6 @@
     <ClCompile Include="code\system\Movement\RestartSystem.cpp" />
     <ClCompile Include="code\system\Movement\SceneTransitionRequestReceiverSystem.cpp" />
     <ClCompile Include="code\system\Movement\SceneTransitionRequestSenderSystem.cpp" />
-    <ClCompile Include="code\system\Movement\ShadowPlaneSyncPlayerPosition.cpp" />
     <ClCompile Include="code\system\Movement\StartSequenceSystem.cpp" />
     <ClCompile Include="code\system\Movement\TireTrailGenerateSystem.cpp" />
     <ClCompile Include="code\system\Movement\Ui3dUpdateSystem.cpp" />
@@ -328,7 +325,6 @@
     <ClCompile Include="code\system\Transition\TransitionPlayerState.cpp" />
     <ClCompile Include="code\system\Transition\UpdateButtonColorByState.cpp" />
     <ClCompile Include="code\system\collision\PlayerOnCollision.cpp" />
-    <ClCompile Include="code\system\collision\ShadowCastSystem.cpp" />
     <ClCompile Include="code\system\collision\TutorialColliderOnCollision.cpp" />
     <ClCompile Include="code\system\effect\CameraShake.cpp" />
     <ClCompile Include="code\system\effect\CreateMeshFromSpline.cpp" />

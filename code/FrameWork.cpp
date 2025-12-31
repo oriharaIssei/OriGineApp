@@ -31,7 +31,6 @@
 
 // application system
 #include "system/collision/PlayerOnCollision.h"
-#include "system/collision/ShadowCastSystem.h"
 #include "system/collision/TutorialColliderOnCollision.h"
 #include "system/effect/CameraShake.h"
 #include "system/effect/CreateMeshFromSpline.h"
@@ -69,7 +68,6 @@
 #include "system/movement/RestartSystem.h"
 #include "system/movement/SceneTransitionRequestReceiverSystem.h"
 #include "system/movement/SceneTransitionRequestSenderSystem.h"
-#include "system/Movement/ShadowPlaneSyncPlayerPosition.h"
 #include "system/movement/StartSequenceSystem.h"
 #include "system/Movement/TireTrailGenerateSystem.h"
 #include "system/Movement/Ui3dUpdateSystem.h"
@@ -270,8 +268,6 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<TireTrailGenerateSystem>();
     systemRegistry->RegisterSystem<PlayerUpdateOnTitle>();
 
-    systemRegistry->RegisterSystem<ShadowPlaneSyncPlayerPosition>();
-
     systemRegistry->RegisterSystem<StartSequenceSystem>();
 
     systemRegistry->RegisterSystem<SceneTransitionRequestSenderSystem>();
@@ -292,8 +288,6 @@ void RegisterUsingSystems() {
 
     systemRegistry->RegisterSystem<PlayerOnCollision>();
     systemRegistry->RegisterSystem<TutorialColliderOnCollision>();
-
-    systemRegistry->RegisterSystem<ShadowCastSystem>();
 
     /// =================================================================================================
     // Effect
