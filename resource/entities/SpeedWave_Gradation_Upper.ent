@@ -2,10 +2,10 @@
     "Components": {
         "GradationComponent": [
             {
-                "Handle": "d36970f9-6906-4956-ba2e-1abd2f8e5975",
+                "Handle": "e606fbd7-a28c-4894-ba32-6dd05e0e3f24",
                 "centerUv": [
-                    0.0,
-                    0.05000000074505806
+                    0.5,
+                    0.0
                 ],
                 "colorChannel": 3,
                 "direction": [
@@ -15,13 +15,13 @@
                 "gradationType": 0,
                 "isActive": true,
                 "materialIndex": 0,
-                "pow": 0.7200000286102295,
-                "scale": 0.3199999928474426
+                "pow": 1.9800000190734863,
+                "scale": 15.0
             }
         ],
         "Material": [
             {
-                "Handle": "c62a1f8d-f0f4-446e-a826-c05b3ab738f5",
+                "Handle": "4a807f81-20a3-45c3-bcef-204d9a6ef7f2",
                 "color": [
                     1.0,
                     1.0,
@@ -48,9 +48,9 @@
         ]
     },
     "Handle": {
-        "uuid": "3f8575ac-ee57-41c5-a7c0-9cf5a55e648f"
+        "uuid": "f00eafbc-fdab-48e8-aa09-42fa3a78fec4"
     },
-    "Name": "BackFire_Grad",
+    "Name": "SpeedWave_Gradation_Upper",
     "Systems": [],
-    "isUnique": true
+    "isUnique": false
 }

@@ -1,6 +1,6 @@
 {
     "LightCounts": {
-        "directionalLightSize": 1,
+        "directionalLightSize": 3,
         "pointLightSize": 10,
         "spotLightSize": 10
     }

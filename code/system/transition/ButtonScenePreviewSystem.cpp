@@ -23,14 +23,14 @@ void ButtonScenePreviewSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     // 選択されているOriGine::Sceneを描画
     int32_t currentButtonNumber = buttonGroup->GetCurrentButtonNumber();
     auto& buttons               = buttonGroup->GetButtonNumbers();
-    for (auto [buttonNumber, entityID] : buttons) {
+    for (auto& [buttonNumber, entityID] : buttons) {
         // buttonのエンティティを取得
         OriGine::Entity* buttonEnt = GetEntity(entityID);
         if (!buttonEnt) {
             continue;
         }
         // ボタンが持つシーンを取得
-        auto subScene = GetComponent<SubScene>(_handle);
+        auto subScene = GetComponent<SubScene>(entityID);
 
         // なければスキップ
         if (!subScene) {

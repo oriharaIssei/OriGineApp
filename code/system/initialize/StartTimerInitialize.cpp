@@ -44,7 +44,6 @@ void StartTimerInitialize::UpdateEntity(OriGine::EntityHandle _handle) {
     }
 
     auto* originalAnimation = GetComponent<SpriteAnimation>(_handle);
-    int32_t spriteCompIndex = 0;
     for (auto& sprite : sprites) {
         // 生成
         ComponentHandle spriteAnimationHandle = AddComponent<SpriteAnimation>(spriteEntity->GetHandle());
@@ -55,11 +54,9 @@ void StartTimerInitialize::UpdateEntity(OriGine::EntityHandle _handle) {
         // 再生開始
         spriteAnimation->PlayColorAnimation();
         spriteAnimation->PlayTransformAnimation();
-        spriteAnimation->SetSpriteComponentIndex(spriteCompIndex);
+        spriteAnimation->SetSpriteComponentHandle(sprite.GetHandle());
 
         sprite.SetIsRender(true);
-
-        ++spriteCompIndex;
     }
     GetScene()->GetSystem(nameof<SpriteAnimationSystem>())->AddEntity(spriteEntity->GetHandle());
 }

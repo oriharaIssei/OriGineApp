@@ -1,25 +1,24 @@
 {
     "Components": {
-        "DistortionEffectParam": [
+        "DissolveEffectParam": [
             {
-                "Handle": "c6b0a4c2-e476-4b6d-a9db-981d11d9400d",
-                "distortionBias": [
-                    0.27000001072883606,
-                    -0.09000000357627869
-                ],
-                "distortionStrength": [
-                    6.929999828338623,
-                    4.46999979019165
-                ],
+                "Handle": "34b1d521-d1c8-43e8-afd4-da4cd4a432e7",
+                "edgeWidth": 0.009999999776482582,
                 "isActive": true,
                 "materialIndex": 0,
-                "textuerPath": "./application/resource/Texture/waveNoise.png",
-                "use3dObjectList": false
+                "outLineColor": [
+                    1.0,
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "textureFilePath": "./application/resource/Texture/waveNoise.png",
+                "threshold": 0.02500000037252903
             }
         ],
         "Material": [
             {
-                "Handle": "ca20daaf-febc-40a6-b9ac-49be2b5e6bf0",
+                "Handle": "c8c301dd-c694-478d-8b92-f8d64c3b3903",
                 "color": [
                     1.0,
                     1.0,
@@ -39,17 +38,17 @@
                     1.0
                 ],
                 "uvTranslate": [
-                    0.7025466561317444,
-                    0.703000009059906
+                    0.0,
+                    0.0549197681248188
                 ]
             }
         ],
         "MaterialAnimation": [
             {
-                "Handle": "bdccba11-8be9-4d18-9b5e-a4de94edb7d8",
+                "Handle": "854eb709-020a-4047-b60e-12bfa969eb32",
                 "InterpolationType": 0,
                 "colorCurve": [],
-                "duration": 4.5,
+                "duration": 1.2999999523162842,
                 "isLoop": true,
                 "isPlay": true,
                 "uvRotateCurve": [],
@@ -63,9 +62,9 @@
                         ]
                     },
                     {
-                        "time": 4.5,
+                        "time": 1.2999999523162842,
                         "value": [
-                            1.0,
+                            0.0,
                             1.0
                         ]
                     }
@@ -74,14 +73,14 @@
         ]
     },
     "Handle": {
-        "uuid": "d6b00b02-5812-4d6a-936b-68c6cce952ad"
+        "uuid": "9d759d4c-5486-46af-9f5c-8203a373a55b"
     },
-    "Name": "BackFire_Dist",
+    "Name": "SpeedWave_Diss",
     "Systems": [
         {
             "SystemCategory": 5,
             "SystemName": "MaterialAnimationWorkSystem"
         }
     ],
-    "isUnique": true
+    "isUnique": false
 }

@@ -17,5 +17,7 @@ protected:
     void UpdateEntity(OriGine::EntityHandle _entity) override;
 
 private:
-    const float maxIntensity_      = 3.8f;
+    const float kMaxIntensity_         = 3.8f;
+    const float kThresholdSpeedForSpeedWave_ = 52.f; // スピードウェーブエフェクトを発生させる速度閾値
+
 };

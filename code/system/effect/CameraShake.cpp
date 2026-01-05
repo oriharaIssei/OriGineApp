@@ -80,6 +80,6 @@ void CameraShake::UpdateEntity(OriGine::EntityHandle _handle) {
         // シェイクオフセット適用
         cameraTransform->translate += shakeOffset;
         cameraTransform->UpdateMatrix();
-        CameraManager::GetInstance()->SetTransform(*cameraTransform);
+        CameraManager::GetInstance()->SetTransform(GetScene(), *cameraTransform);
     }
 }

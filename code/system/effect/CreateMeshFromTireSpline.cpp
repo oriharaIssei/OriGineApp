@@ -106,8 +106,8 @@ static void AppendPlaneSegment(
     vertices.push_back({Vec4f(p1R, 1.f), seg.uv[3], normal, color1});
 
     const uint32_t base = static_cast<uint32_t>(vertices.size() - 4);
-    indices.insert(indices.end(), {base + 0, base + 2, base + 1,
-                                      base + 1, base + 2, base + 3});
+    indices.insert(indices.end(), {base + 0, base + 1, base + 2,
+                                      base + 1, base + 3, base + 2});
 }
 
 CreateMeshFromTireSpline::CreateMeshFromTireSpline() : ISystem(SystemCategory::Effect) {}
@@ -177,7 +177,6 @@ void CreateMeshFromTireSpline::CreateLinePlaneMesh(
     mesh.SetVertexData(vertices);
     mesh.SetIndexData(indices);
 
-    renderer->SetIsCulling(false);
     renderer->SetMeshGroup({mesh});
     renderer->GetMeshGroup()->at(0).TransferData();
 }
@@ -222,7 +221,6 @@ void CreateMeshFromTireSpline::CreateCrossPlaneMesh(
     hMesh.SetVertexData(horizontal);
     hMesh.SetIndexData(indices);
 
-    renderer->SetIsCulling(false);
     renderer->SetMeshGroup({vMesh, hMesh});
     renderer->GetMeshGroup()->at(0).TransferData();
     renderer->GetMeshGroup()->at(1).TransferData();

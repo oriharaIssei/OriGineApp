@@ -51,8 +51,8 @@ void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
         EntityHandle timerEntityHandle     = GetUniqueEntity("Timer");
         EntityHandle stageDataEntityHandle = GetUniqueEntity("StageData");
         if (timerEntityHandle.IsValid() && stageDataEntityHandle.IsValid()) {
-            StageData* stageData  = GetComponent<StageData>(timerEntityHandle);
-            TimerComponent* timer = GetComponent<TimerComponent>(stageDataEntityHandle);
+            StageData* stageData  = GetComponent<StageData>(stageDataEntityHandle);
+            TimerComponent* timer = GetComponent<TimerComponent>(timerEntityHandle);
 
             EntityHandle recorderEntityHandle  = GetUniqueEntity("Recorder");
             PlayRecordeComponent* playRecorder = GetComponent<PlayRecordeComponent>(recorderEntityHandle);
@@ -93,7 +93,7 @@ void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
     }
 
     PlayerEffectControlParam* effectParam = GetComponent<PlayerEffectControlParam>(_handle);
-    if (effectParam && effectParam->GetTireTrailSplineEntityHandle().IsValid()) {
+    if (effectParam && !effectParam->GetTireTrailSplineEntityHandle().IsValid()) {
         if (moveStateFlag.Current().ToEnum() == PlayerMoveState::DASH) {
             // タイヤトレイルを作る
             constexpr char kPlayerTireTrailEntityName[] = "PlayerTireTrail";

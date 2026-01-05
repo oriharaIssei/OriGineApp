@@ -34,7 +34,7 @@ void SettingGameCameraTarget::Update() {
         cameraTransform->UpdateMatrix();
     }
 
-    CameraManager::GetInstance()->SetTransform(*cameraTransform);
+    CameraManager::GetInstance()->SetTransform(GetScene(), *cameraTransform);
 
     auto playerState = GetComponent<PlayerState>(playerEntityHandle);
     if (playerState) {

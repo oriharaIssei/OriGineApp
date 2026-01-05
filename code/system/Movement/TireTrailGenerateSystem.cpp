@@ -63,15 +63,19 @@ bool TireTrailGenerateSystem::BuildGenerateContext(
     auto* effectParam = GetComponent<PlayerEffectControlParam>(spline.commonSettings.playerEntityHandle);
     auto* rigidBody   = GetComponent<OriGine::Rigidbody>(spline.commonSettings.playerEntityHandle);
 
+    // コンポーネントが揃っていない場合は処理しない
     if (!transform || !state || !rigidBody || !effectParam) {
         spline.commonSettings.playerEntityHandle = EntityHandle();
         if (effectParam) {
+            // エフェクトパラメータが存在する場合は、スプラインの紐付けを解除する
             effectParam->SetTireTrailSplineEntityId(EntityHandle());
         }
         return false;
     }
 
     if (!state->IsOnGround() || rigidBody->GetVelocity().lengthSq() < kEpsilon) {
+        // 地上にいない、または停止中は処理しない
+        // スプラインの紐付けも解除する
         spline.commonSettings.playerEntityHandle = EntityHandle();
         effectParam->SetTireTrailSplineEntityId(EntityHandle());
         return false;
@@ -86,15 +90,19 @@ bool TireTrailGenerateSystem::BuildGenerateContext(
 
     gearT = EasingFunctions[static_cast<int>(spline.speedIntensityEaseType)](gearT);
 
-    out.alpha +=
-        std::lerp(spline.minSpeedFactor, spline.maxSpeedFactor, gearT);
+    float speedFactor =
+        1.f + std::lerp(spline.minSpeedFactor, spline.maxSpeedFactor, gearT);
 
     float bank = std::abs(transform->rotate[Z]);
     if (bank >= spline.thresholdBankAngle) {
         constexpr float kMaxBankAngle = 0.74f;
         float bankT                   = (bank - spline.thresholdBankAngle) / kMaxBankAngle;
         out.alpha +=
-            std::lerp(spline.minBankFactor, spline.maxBankFactor, bankT);
+            std::lerp(spline.minBankFactor, spline.maxBankFactor, bankT) * speedFactor;
+    }
+
+    if (state->IsGearUp()) {
+        out.alpha += spline.gearupFactor * speedFactor;
     }
 
     out.alpha = (std::min)(out.alpha, 1.f);

@@ -19,7 +19,7 @@ void PlayerSpeedFor3dUI::Finalize() {}
 
 void PlayerSpeedFor3dUI::UpdateEntity(EntityHandle _handle) {
     auto playerEnt = GetUniqueEntity("Player");
-    if (playerEnt.IsValid()) {
+    if (!playerEnt.IsValid()) {
         return;
     }
 
@@ -45,7 +45,7 @@ void PlayerSpeedFor3dUI::UpdateEntity(EntityHandle _handle) {
     for (int32_t i = 0; i < speedUIComp->digitInteger + speedUIComp->digitDecimal; ++i) {
         auto material = GetComponent<Material>(ui3dEntityHandle, i);
         if (!material) {
-            continue; // スプライトがない場合は何もしない
+            continue; // Materialがない場合は何もしない
         }
 
         if (int32_t(digits.size()) <= i) {

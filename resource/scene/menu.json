@@ -242,12 +242,12 @@
                     "SystemName": "SceneTransitionRequestSenderSystem"
                 },
                 {
-                    "SystemCategory": 2,
-                    "SystemName": "ChangeSceneByButton"
-                },
-                {
                     "SystemCategory": 1,
                     "SystemName": "ButtonInputSystem"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "ChangeSceneByButton"
                 },
                 {
                     "SystemCategory": 7,
@@ -288,7 +288,7 @@
                         "duration": 6.199999809265137,
                         "rotateCurve": [],
                         "scaleCurve": [],
-                        "spriteComponentIndex": 0,
+                        "spriteComponentHandle": "00000000-0000-0000-0000-000000000000",
                         "transformAnimationState": {
                             "isLoop": false,
                             "isPlay": false
@@ -331,7 +331,7 @@
                             0.0,
                             0.0,
                             0.0,
-                            0.25882354378700256
+                            0.48235294222831726
                         ],
                         "defaultWindowSize": [
                             1920.0,
@@ -354,10 +354,10 @@
                             0.0,
                             0.0
                         ],
-                        "texturePath": "./application/resource/Texture/bioNoise.png",
+                        "texturePath": "./application/resource/Texture/black1x1.png",
                         "textureSize": [
-                            512.0,
-                            512.0
+                            1.0,
+                            1.0
                         ],
                         "translate": [
                             960.0,
@@ -655,12 +655,12 @@
             }
         },
         {
-            "ChangeSceneByButton": {
+            "ButtonInputSystem": {
                 "Priority": 0
             }
         },
         {
-            "ButtonInputSystem": {
+            "ChangeSceneByButton": {
                 "Priority": 0
             }
         },
