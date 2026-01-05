@@ -1,0 +1,38 @@
+{
+    "Components": {
+        "EntityReferenceList": [
+            {
+                "Handle": "ec4272a7-913f-4fd0-9e5a-811b4151ec5f",
+                "entityFileList": [
+                    [
+                        "./application/resource/entities",
+                        "SpeedWave"
+                    ],
+                    [
+                        "./application/resource/entities",
+                        "SpeedWave_Diss"
+                    ],
+                    [
+                        "./application/resource/entities",
+                        "SpeedWave_Gradation_Bottom"
+                    ],
+                    [
+                        "./application/resource/entities",
+                        "SpeedWave_Gradation_Upper"
+                    ]
+                ]
+            }
+        ]
+    },
+    "Handle": {
+        "uuid": "ba532d93-2c0f-4aeb-a741-42918f15e20d"
+    },
+    "Name": "SpeedWaveRecipe",
+    "Systems": [
+        {
+            "SystemCategory": 0,
+            "SystemName": "ResolveEntityReferences"
+        }
+    ],
+    "isUnique": false
+}

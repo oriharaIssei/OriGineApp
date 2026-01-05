@@ -334,6 +334,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<SkeletonRenderSystem>();
     systemRegistry->RegisterSystem<ColliderRenderingSystem>();
     systemRegistry->RegisterSystem<VelocityRenderingSystem>();
+    systemRegistry->RegisterSystem<LightDebugRenderingSystem>();
 #endif // _RELEASE
 
     /// =================================================================================================

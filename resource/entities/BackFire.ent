@@ -9,9 +9,12 @@
                     0.07999999821186066
                 ],
                 "height": 1.0,
+                "heightDivisions": 8,
                 "isCulling": false,
                 "isRenderer": true,
                 "materialIndex": 0,
+                "radialDivisions": 36,
+                "radiusEaseType": 0,
                 "textureFilePath": "",
                 "topRadius": [
                     0.30000001192092896,
@@ -25,9 +28,9 @@
                         0.972023069858551
                     ],
                     "scale": [
-                        0.7400000095367432,
-                        0.36000001430511475,
-                        0.7400000095367432
+                        0.6600000262260437,
+                        0.25999999046325684,
+                        0.6600000262260437
                     ],
                     "translate": [
                         0.7099999785423279,
@@ -44,9 +47,12 @@
                     0.09000000357627869
                 ],
                 "height": 1.340000033378601,
+                "heightDivisions": 8,
                 "isCulling": false,
                 "isRenderer": true,
                 "materialIndex": 0,
+                "radialDivisions": 36,
+                "radiusEaseType": 0,
                 "textureFilePath": "",
                 "topRadius": [
                     0.3799999952316284,
@@ -60,9 +66,9 @@
                         0.9794072508811951
                     ],
                     "scale": [
-                        0.7400000095367432,
-                        0.36000001430511475,
-                        0.7400000095367432
+                        0.6600000262260437,
+                        0.25999999046325684,
+                        0.6600000262260437
                     ],
                     "translate": [
                         0.7799999713897705,
@@ -79,9 +85,12 @@
                     0.10999999940395355
                 ],
                 "height": 1.8799999952316284,
+                "heightDivisions": 8,
                 "isCulling": false,
                 "isRenderer": true,
                 "materialIndex": 0,
+                "radialDivisions": 36,
+                "radiusEaseType": 0,
                 "textureFilePath": "",
                 "topRadius": [
                     0.47999998927116394,
@@ -95,9 +104,9 @@
                         0.9597914218902588
                     ],
                     "scale": [
-                        0.7400000095367432,
-                        0.36000001430511475,
-                        0.7400000095367432
+                        0.6600000262260437,
+                        0.25999999046325684,
+                        0.6600000262260437
                     ],
                     "translate": [
                         0.8799999952316284,
@@ -114,9 +123,12 @@
                     0.07999999821186066
                 ],
                 "height": 1.0,
+                "heightDivisions": 8,
                 "isCulling": false,
                 "isRenderer": true,
                 "materialIndex": 0,
+                "radialDivisions": 36,
+                "radiusEaseType": 0,
                 "textureFilePath": "",
                 "topRadius": [
                     0.30000001192092896,
@@ -130,9 +142,9 @@
                         0.9855509996414185
                     ],
                     "scale": [
-                        0.7400000095367432,
-                        0.36000001430511475,
-                        0.7400000095367432
+                        0.6600000262260437,
+                        0.25999999046325684,
+                        0.6600000262260437
                     ],
                     "translate": [
                         -0.699999988079071,
@@ -149,9 +161,12 @@
                     0.09000000357627869
                 ],
                 "height": 1.340000033378601,
+                "heightDivisions": 8,
                 "isCulling": false,
                 "isRenderer": true,
                 "materialIndex": 0,
+                "radialDivisions": 36,
+                "radiusEaseType": 0,
                 "textureFilePath": "",
                 "topRadius": [
                     0.3799999952316284,
@@ -165,9 +180,9 @@
                         0.9763566851615906
                     ],
                     "scale": [
-                        0.7400000095367432,
-                        0.36000001430511475,
-                        0.7400000095367432
+                        0.6600000262260437,
+                        0.25999999046325684,
+                        0.6600000262260437
                     ],
                     "translate": [
                         -0.7599999904632568,
@@ -184,9 +199,12 @@
                     0.14000000059604645
                 ],
                 "height": 1.8799999952316284,
+                "heightDivisions": 8,
                 "isCulling": false,
                 "isRenderer": true,
                 "materialIndex": 0,
+                "radialDivisions": 36,
+                "radiusEaseType": 0,
                 "textureFilePath": "",
                 "topRadius": [
                     0.47999998927116394,
@@ -200,9 +218,9 @@
                         0.9535209536552429
                     ],
                     "scale": [
-                        0.7400000095367432,
-                        0.36000001430511475,
-                        0.7400000095367432
+                        0.6600000262260437,
+                        0.25999999046325684,
+                        0.6600000262260437
                     ],
                     "translate": [
                         -0.8799999952316284,
@@ -340,10 +358,6 @@
     "Name": "BackFire",
     "Systems": [
         {
-            "SystemCategory": 0,
-            "SystemName": "BackFireInitialize"
-        },
-        {
             "SystemCategory": 5,
             "SystemName": "MaterialAnimationWorkSystem"
         },
@@ -354,6 +368,10 @@
         {
             "SystemCategory": 6,
             "SystemName": "TexturedMeshRenderSystem"
+        },
+        {
+            "SystemCategory": 0,
+            "SystemName": "BackFireInitialize"
         }
     ],
     "isUnique": true

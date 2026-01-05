@@ -4,9 +4,9 @@
             {
                 "Handle": "31ee950a-fa70-42f5-9871-ac4bd5ceb67f",
                 "color": [
-                    1.0,
-                    1.0,
-                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
                     1.0
                 ],
                 "enableLighting": false,
@@ -65,13 +65,13 @@
                 ],
                 "endWidth": 0.550000011920929,
                 "fadeoutTime": 3.0,
-                "gearupFactor": 0.40700000524520874,
+                "gearupFactor": 0.45899999141693115,
                 "groundedFactor": 0.6399999856948853,
                 "isCrossMesh": false,
                 "isUvLoopEnable": true,
-                "maxBankFactor": 0.7860000133514404,
+                "maxBankFactor": 0.6959999799728394,
                 "maxSpeedFactor": 0.5389999747276306,
-                "minBankFactor": 0.515999972820282,
+                "minBankFactor": 0.43299999833106995,
                 "minSpeedFactor": 0.0989999994635582,
                 "segmentDivide": 16,
                 "segmentLength": 0.49000000953674316,
@@ -103,7 +103,7 @@
                 ],
                 "translate": [
                     0.0,
-                    -0.9200000166893005,
+                    -0.949999988079071,
                     0.0
                 ]
             }
@@ -115,12 +115,12 @@
     "Name": "PlayerTireTrail",
     "Systems": [
         {
-            "SystemCategory": 3,
-            "SystemName": "TireTrailGenerateSystem"
-        },
-        {
             "SystemCategory": 6,
             "SystemName": "TexturedMeshRenderSystem"
+        },
+        {
+            "SystemCategory": 3,
+            "SystemName": "TireTrailGenerateSystem"
         },
         {
             "SystemCategory": 5,

@@ -9,7 +9,6 @@
 #include "component/renderer/MeshRenderer.h"
 #include "component/renderer/primitive/CylinderRenderer.h"
 
-#include "component/effect/particle/emitter/Emitter.h"
 #include "component/effect/post/SpeedlineEffectParam.h"
 #include "component/player/PlayerEffectControlParam.h"
 
@@ -23,6 +22,7 @@
 #include "component/player/state/PlayerState.h"
 
 /// math
+#include "math/Interpolation.h"
 #include "math/mathEnv.h"
 #include "math/MyEasing.h"
 
@@ -43,6 +43,9 @@ void EffectOnPlayerRun::UpdateEntity(EntityHandle _entity) {
     if (!state || !status || !effectControlParam || !rigidbody) {
         return;
     }
+    float dletaTime      = GetMainDeltaTime();
+    float currentSpeed   = rigidbody->GetVelocity().length();
+    float playerMaxSpeed = status->CalculateSpeedByGearLevel(kMaxPlayerGearLevel);
 
     // タイヤの回転
     ModelMeshRenderer* modelMeshRenderer = GetComponent<ModelMeshRenderer>(_entity);
@@ -55,7 +58,7 @@ void EffectOnPlayerRun::UpdateEntity(EntityHandle _entity) {
         // 速度によって タイヤの回転速度を変える
         // 入力方向ベクトルが0のときは 回転しないようにする(Sqなのは,0か1しかないので軽くするため)
         const OriGine::Vec3f& velo = rigidbody->GetVelocity();
-        float wheelSpinSpeed       = effectControlParam->CalculateWheelSpinSpeedBySpeed(velo.length() * inputDir.lengthSq(), status->CalculateSpeedByGearLevel(kMaxPlayerGearLevel));
+        float wheelSpinSpeed       = effectControlParam->CalculateWheelSpinSpeedBySpeed(velo.length() * inputDir.lengthSq(), playerMaxSpeed);
         meshTransform.rotate *= Quaternion::RotateAxisAngle(axisX, wheelSpinSpeed);
         meshTransform.UpdateMatrix();
 
@@ -73,7 +76,7 @@ void EffectOnPlayerRun::UpdateEntity(EntityHandle _entity) {
                 // 段々と傾く(1秒に傾く角度が制限されている)
                 float preWheelTiltAngle = effectControlParam->GetPreWheelTiltAngle();
                 float angleDiff         = wheelTiltAngle - preWheelTiltAngle;
-                float maxAngleChange    = effectControlParam->GetWheelTiltAngleMaxAccel() * GetMainDeltaTime();
+                float maxAngleChange    = effectControlParam->GetWheelTiltAngleMaxAccel() * dletaTime;
                 wheelTiltAngle          = preWheelTiltAngle + std::clamp(angleDiff, -maxAngleChange, maxAngleChange);
 
                 // 傾きを適用
@@ -88,10 +91,10 @@ void EffectOnPlayerRun::UpdateEntity(EntityHandle _entity) {
     // trailの色をGearLevelに応じて変化
     if (effectControlParam) {
         // BackFire を 速度によって 強さを変える
-        constexpr float kMinBackFireScaleY  = 0.36f;
-        constexpr float kMaxBackFireScaleY  = 1.89f;
-        constexpr float kMinBackFireScaleXZ = 0.74f;
-        constexpr float kMaxBackFireScaleXZ = 1.56f;
+        constexpr float kMinBackFireScaleY  = 0.26f;
+        constexpr float kMaxBackFireScaleY  = 1.59f;
+        constexpr float kMinBackFireScaleXZ = 0.66f;
+        constexpr float kMaxBackFireScaleXZ = 1.26f;
 
         constexpr int32_t trailAnimationOnGearUpIndex = 1;
         const OriGine::Vec4f& trailColor              = effectControlParam->GetTrailColorByGearLevel(state->GetGearLevel());
@@ -122,11 +125,10 @@ void EffectOnPlayerRun::UpdateEntity(EntityHandle _entity) {
         auto& backFireCylinders                    = GetComponents<CylinderRenderer>(backFireEntity);
         auto& backFireSparksCylinders              = GetComponents<CylinderRenderer>(backFireSparksEntity);
 
-        float currentSpeed = rigidbody->GetVelocity().length();
-        float t            = currentSpeed / status->CalculateSpeedByGearLevel(kMaxPlayerGearLevel);
-        t                  = EaseInCubic(t);
-        float xzScale      = std::lerp(kMinBackFireScaleXZ, kMaxBackFireScaleXZ, t);
-        float yScale       = std::lerp(kMinBackFireScaleY, kMaxBackFireScaleY, t);
+        float t       = currentSpeed / playerMaxSpeed;
+        t             = EaseInCubic(t);
+        float xzScale = std::lerp(kMinBackFireScaleXZ, kMaxBackFireScaleXZ, t);
+        float yScale  = std::lerp(kMinBackFireScaleY, kMaxBackFireScaleY, t);
 
         OriGine::Vec3f newScale = OriGine::Vec3f(xzScale, yScale, xzScale);
         for (auto& cylinder : backFireCylinders) {
@@ -148,19 +150,42 @@ void EffectOnPlayerRun::UpdateEntity(EntityHandle _entity) {
         for (auto& speedlineParam : speedlineParams) {
             speedlineParam.Stop();
         }
+    } else {
+        // 速度によって エフェクトの強さを変える
+        float intensityT = static_cast<float>(state->GetGearLevel()) / static_cast<float>(kMaxPlayerGearLevel);
+        intensityT       = EaseOutCubic(intensityT);
+        float intensity  = std::lerp(0.f, kMaxIntensity_, intensityT);
 
-        return;
+        for (auto& speedlineParam : speedlineParams) {
+            speedlineParam.Play();
+            auto& paramData = speedlineParam.GetParamData();
+            paramData.time -= dletaTime;
+            paramData.intensity = std::lerp(paramData.intensity, intensity, 0.1f);
+        }
     }
 
-    // 速度によって エフェクトの強さを変える
-    float intensityT = static_cast<float>(state->GetGearLevel()) / static_cast<float>(kMaxPlayerGearLevel);
-    intensityT       = EaseOutCubic(intensityT);
-    float intensity  = std::lerp(0.f, maxIntensity_, intensityT);
+    // スピードウェーブエフェクトを発生させる
+    EntityHandle speedWaveEntityHandle = GetUniqueEntity("SpeedWave");
+    if (speedWaveEntityHandle.IsValid()) {
+        Transform* speedWaveTransform = GetComponent<Transform>(speedWaveEntityHandle);
+        speedWaveTransform->parent    = GetComponent<Transform>(_entity);
 
-    for (auto& speedlineParam : speedlineParams) {
-        speedlineParam.Play();
-        auto& paramData = speedlineParam.GetParamData();
-        paramData.time -= GetMainDeltaTime();
-        paramData.intensity = std::lerp(paramData.intensity, intensity, 0.1f);
+        Material* speedWaveMaterial = GetComponent<Material>(speedWaveEntityHandle);
+        float newAlpha              = 0.f;
+        if (speedWaveMaterial != nullptr) {
+            if (currentSpeed <= kThresholdSpeedForSpeedWave_) {
+                newAlpha = 0.f;
+            } else {
+                newAlpha = 1.f;
+            }
+        }
+        // alphaを徐々に変化させる
+        static constexpr float kAlphaLerpSpeed = 38.f;
+        speedWaveMaterial->color_[A]           = LerpByDeltaTime(speedWaveMaterial->color_[A], newAlpha, dletaTime, kAlphaLerpSpeed);
+    }
+
+    auto& speedWaveCylinders = GetComponents<CylinderRenderer>(speedWaveEntityHandle);
+    for (auto& speedWaveCylinder : speedWaveCylinders) {
+        speedWaveCylinder.SetIsCulling(true);
     }
 }

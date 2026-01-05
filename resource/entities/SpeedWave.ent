@@ -1,0 +1,174 @@
+{
+    "Components": {
+        "CylinderRenderer": [
+            {
+                "Handle": "63a5f705-ed2d-422f-b434-d257b84b2bf4",
+                "blendMode": 1,
+                "bottomRadius": [
+                    1.6399999856948853,
+                    1.6399999856948853
+                ],
+                "height": 3.1500000953674316,
+                "heightDivisions": 8,
+                "isCulling": true,
+                "isRenderer": true,
+                "materialIndex": 0,
+                "radialDivisions": 32,
+                "radiusEaseType": 10,
+                "textureFilePath": "./application/resource/Texture/bioNoise.png",
+                "topRadius": [
+                    0.05000000074505806,
+                    0.05000000074505806
+                ],
+                "transform": {
+                    "rotate": [
+                        0.706572949886322,
+                        0.0,
+                        0.0,
+                        0.7076402902603149
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "translate": [
+                        0.0,
+                        0.0,
+                        -0.5699999928474426
+                    ]
+                }
+            },
+            {
+                "Handle": "aa9638f2-d63d-40f5-9e57-4c554f8afe29",
+                "blendMode": 1,
+                "bottomRadius": [
+                    1.6399999856948853,
+                    1.6399999856948853
+                ],
+                "height": 3.1500000953674316,
+                "heightDivisions": 8,
+                "isCulling": true,
+                "isRenderer": true,
+                "materialIndex": 0,
+                "radialDivisions": 32,
+                "radiusEaseType": 10,
+                "textureFilePath": "",
+                "topRadius": [
+                    0.05000000074505806,
+                    0.05000000074505806
+                ],
+                "transform": {
+                    "rotate": [
+                        0.7066552042961121,
+                        0.0,
+                        0.0,
+                        0.7075580954551697
+                    ],
+                    "scale": [
+                        -1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "translate": [
+                        0.0,
+                        0.0,
+                        -0.5699999928474426
+                    ]
+                }
+            }
+        ],
+        "Material": [
+            {
+                "Handle": "d22a42df-778a-448b-baa4-d14014fe4f6b",
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.0
+                ],
+                "enableLighting": false,
+                "shininess": 0.0,
+                "specularColor": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "uvRotate": 0.0,
+                "uvScale": [
+                    3.0,
+                    0.23000000417232513
+                ],
+                "uvTranslate": [
+                    0.0,
+                    0.0
+                ]
+            }
+        ],
+        "MaterialEffectPipeLine": [
+            {
+                "Handle": "a29ff7e0-2b5b-4347-980c-1c7845148098",
+                "baseTexturePath": "./application/resource/Texture/white1x1.png",
+                "effectEntityIdList": [
+                    {
+                        "effectType": 0,
+                        "handle": {
+                            "uuid": "9d759d4c-5486-46af-9f5c-8203a373a55b"
+                        }
+                    },
+                    {
+                        "effectType": 2,
+                        "handle": {
+                            "uuid": "56260f8d-30a0-4eaa-8321-b7d093186c50"
+                        }
+                    },
+                    {
+                        "effectType": 2,
+                        "handle": {
+                            "uuid": "f00eafbc-fdab-48e8-aa09-42fa3a78fec4"
+                        }
+                    }
+                ],
+                "isActive": true,
+                "materialIndex": 0,
+                "priority": 0
+            }
+        ],
+        "Transform": [
+            {
+                "Handle": "e7666c01-deed-4e06-ba13-7bb12dbbc780",
+                "rotate": [
+                    -0.0,
+                    0.0,
+                    -0.0,
+                    1.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "translate": [
+                    0.0,
+                    0.3360976576805115,
+                    -0.8299999833106995
+                ]
+            }
+        ]
+    },
+    "Handle": {
+        "uuid": "6228be31-3e7e-4cd7-bed3-7e110d433936"
+    },
+    "Name": "SpeedWave",
+    "Systems": [
+        {
+            "SystemCategory": 5,
+            "SystemName": "MaterialEffect"
+        },
+        {
+            "SystemCategory": 6,
+            "SystemName": "TexturedMeshRenderSystem"
+        }
+    ],
+    "isUnique": true
+}

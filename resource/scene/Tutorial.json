@@ -37,9 +37,9 @@
                                 1.0
                             ],
                             "translate": [
-                                218.4719696044922,
-                                199.20721435546875,
-                                -232.16842651367188
+                                0.0,
+                                0.0,
+                                0.0
                             ]
                         }
                     }
@@ -71,7 +71,7 @@
                 "DirectionalLight": [
                     {
                         "Handle": "4fb902ce-3ce3-42ae-9cc7-e4e66194af8b",
-                        "angularRadius": 0.007699999958276749,
+                        "angularRadius": 0.014600000344216824,
                         "color": [
                             1.0,
                             1.0,
@@ -79,10 +79,10 @@
                         ],
                         "direction": [
                             0.0,
-                            -0.5250809192657471,
-                            0.8510523438453674
+                            -0.3856206238269806,
+                            0.9226574301719666
                         ],
-                        "intensity": 6.849999904632568,
+                        "intensity": 0.75,
                         "isActive": true
                     }
                 ]
@@ -193,7 +193,7 @@
                         "duration": 0.699999988079071,
                         "rotateCurve": [],
                         "scaleCurve": [],
-                        "spriteComponentHandle": "00000000-0000-0000-0000-000000000000",
+                        "spriteComponentHandle": "3bb2fc4e-60f0-42fe-8ab7-972b2b3aca98",
                         "transformAnimationState": {
                             "isLoop": false,
                             "isPlay": false
@@ -257,7 +257,7 @@
                         "duration": 0.699999988079071,
                         "rotateCurve": [],
                         "scaleCurve": [],
-                        "spriteComponentHandle": "00000000-0000-0000-0000-000000000000",
+                        "spriteComponentHandle": "3bb2fc4e-60f0-42fe-8ab7-972b2b3aca98",
                         "transformAnimationState": {
                             "isLoop": false,
                             "isPlay": false
@@ -288,8 +288,8 @@
                             0.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -301,8 +301,8 @@
                             0.800000011920929
                         ],
                         "size": [
-                            769.5,
-                            837.0
+                            513.0,
+                            558.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -314,8 +314,8 @@
                             558.0
                         ],
                         "translate": [
-                            375.0,
-                            540.0
+                            250.0,
+                            360.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -481,7 +481,7 @@
                         "duration": 0.699999988079071,
                         "rotateCurve": [],
                         "scaleCurve": [],
-                        "spriteComponentHandle": "00000000-0000-0000-0000-000000000000",
+                        "spriteComponentHandle": "fa1075da-e672-4cc3-bbc4-45fd6d75726a",
                         "transformAnimationState": {
                             "isLoop": false,
                             "isPlay": false
@@ -545,7 +545,7 @@
                         "duration": 0.699999988079071,
                         "rotateCurve": [],
                         "scaleCurve": [],
-                        "spriteComponentHandle": "00000000-0000-0000-0000-000000000000",
+                        "spriteComponentHandle": "fa1075da-e672-4cc3-bbc4-45fd6d75726a",
                         "transformAnimationState": {
                             "isLoop": false,
                             "isPlay": false
@@ -576,8 +576,8 @@
                             0.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -589,8 +589,8 @@
                             0.800000011920929
                         ],
                         "size": [
-                            769.5,
-                            625.5
+                            513.0,
+                            417.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -602,8 +602,8 @@
                             417.0
                         ],
                         "translate": [
-                            375.0,
-                            540.0
+                            250.0,
+                            360.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -769,7 +769,7 @@
                         "duration": 0.699999988079071,
                         "rotateCurve": [],
                         "scaleCurve": [],
-                        "spriteComponentHandle": "00000000-0000-0000-0000-000000000000",
+                        "spriteComponentHandle": "faa46877-a900-49f9-8eb6-f083bea01bec",
                         "transformAnimationState": {
                             "isLoop": false,
                             "isPlay": false
@@ -833,7 +833,7 @@
                         "duration": 0.699999988079071,
                         "rotateCurve": [],
                         "scaleCurve": [],
-                        "spriteComponentHandle": "00000000-0000-0000-0000-000000000000",
+                        "spriteComponentHandle": "faa46877-a900-49f9-8eb6-f083bea01bec",
                         "transformAnimationState": {
                             "isLoop": false,
                             "isPlay": false
@@ -864,8 +864,8 @@
                             0.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -877,8 +877,8 @@
                             0.800000011920929
                         ],
                         "size": [
-                            768.0,
-                            381.0
+                            512.0,
+                            254.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -890,8 +890,8 @@
                             254.0
                         ],
                         "translate": [
-                            375.0,
-                            540.0
+                            250.0,
+                            360.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -1042,7 +1042,7 @@
                             1.0
                         ],
                         "enableLighting": true,
-                        "shininess": 12.0,
+                        "shininess": 60.0,
                         "specularColor": [
                             1.0,
                             1.0,
@@ -1470,7 +1470,7 @@
                             1.0
                         ],
                         "enableLighting": true,
-                        "shininess": 12.0,
+                        "shininess": 60.0,
                         "specularColor": [
                             1.0,
                             1.0,
@@ -1609,7 +1609,7 @@
                             1.0
                         ],
                         "enableLighting": true,
-                        "shininess": 12.0,
+                        "shininess": 60.0,
                         "specularColor": [
                             1.0,
                             1.0,
@@ -1748,7 +1748,7 @@
                             1.0
                         ],
                         "enableLighting": true,
-                        "shininess": 12.0,
+                        "shininess": 60.0,
                         "specularColor": [
                             1.0,
                             1.0,
@@ -1887,7 +1887,7 @@
                             1.0
                         ],
                         "enableLighting": true,
-                        "shininess": 12.0,
+                        "shininess": 60.0,
                         "specularColor": [
                             1.0,
                             1.0,
@@ -2026,7 +2026,7 @@
                             1.0
                         ],
                         "enableLighting": true,
-                        "shininess": 12.0,
+                        "shininess": 60.0,
                         "specularColor": [
                             1.0,
                             1.0,
@@ -2204,6 +2204,162 @@
                         "overrideConditions": 44
                     }
                 ],
+                "SpriteAnimation": [
+                    {
+                        "Handle": "046d3974-d7fe-4de5-be0e-eb4498604dc6",
+                        "colorAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
+                        },
+                        "colorCurve": [],
+                        "colorInterpolationType": 0,
+                        "duration": 0.4000000059604645,
+                        "rotateCurve": [],
+                        "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    1.0,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "time": 0.05354969576001167,
+                                "value": [
+                                    0.7322515249252319,
+                                    0.7322515249252319
+                                ]
+                            },
+                            {
+                                "time": 0.10547667741775513,
+                                "value": [
+                                    0.6524753570556641,
+                                    0.6524753570556641
+                                ]
+                            },
+                            {
+                                "time": 0.20000000298023224,
+                                "value": [
+                                    0.5,
+                                    0.5
+                                ]
+                            },
+                            {
+                                "time": 0.2888438403606415,
+                                "value": [
+                                    0.6622575521469116,
+                                    0.6622575521469116
+                                ]
+                            },
+                            {
+                                "time": 0.3440162241458893,
+                                "value": [
+                                    0.8109999895095825,
+                                    0.8113590478897095
+                                ]
+                            },
+                            {
+                                "time": 0.4000000059604645,
+                                "value": [
+                                    1.0,
+                                    1.0
+                                ]
+                            }
+                        ],
+                        "spriteComponentHandle": "c881716a-bd86-4ce9-a25d-89cc95e9913e",
+                        "transformAnimationState": {
+                            "isLoop": true,
+                            "isPlay": true
+                        },
+                        "transformInterpolationType": 0,
+                        "translateCurve": [],
+                        "uvAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
+                        },
+                        "uvInterpolationType": 0,
+                        "uvRotateCurve": [],
+                        "uvScaleCurve": [],
+                        "uvTranslateCurve": []
+                    },
+                    {
+                        "Handle": "debe4850-47f7-4a8b-a754-cfe7d81197c0",
+                        "colorAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
+                        },
+                        "colorCurve": [],
+                        "colorInterpolationType": 0,
+                        "duration": 0.4000000059604645,
+                        "rotateCurve": [],
+                        "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    1.0,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "time": 0.05400000140070915,
+                                "value": [
+                                    0.7319999933242798,
+                                    0.7319999933242798
+                                ]
+                            },
+                            {
+                                "time": 0.10499999672174454,
+                                "value": [
+                                    0.6520000100135803,
+                                    0.6520000100135803
+                                ]
+                            },
+                            {
+                                "time": 0.20000000298023224,
+                                "value": [
+                                    0.5,
+                                    0.5
+                                ]
+                            },
+                            {
+                                "time": 0.289000004529953,
+                                "value": [
+                                    0.6620000004768372,
+                                    0.6620000004768372
+                                ]
+                            },
+                            {
+                                "time": 0.3440162241458893,
+                                "value": [
+                                    0.8109999895095825,
+                                    0.8109999895095825
+                                ]
+                            },
+                            {
+                                "time": 0.4000000059604645,
+                                "value": [
+                                    1.0,
+                                    1.0
+                                ]
+                            }
+                        ],
+                        "spriteComponentHandle": "e6e5725b-b278-4015-86b7-1b50063bb1f5",
+                        "transformAnimationState": {
+                            "isLoop": true,
+                            "isPlay": true
+                        },
+                        "transformInterpolationType": 0,
+                        "translateCurve": [],
+                        "uvAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
+                        },
+                        "uvInterpolationType": 0,
+                        "uvRotateCurve": [],
+                        "uvScaleCurve": [],
+                        "uvTranslateCurve": []
+                    }
+                ],
                 "SpriteRenderer": [
                     {
                         "Handle": "c881716a-bd86-4ce9-a25d-89cc95e9913e",
@@ -2218,8 +2374,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -2227,12 +2383,12 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            1.0,
-                            1.0
+                            0.648234486579895,
+                            0.648234486579895
                         ],
                         "size": [
-                            512.0,
-                            128.0
+                            341.3333435058594,
+                            85.33332824707031
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -2244,8 +2400,8 @@
                             128.0
                         ],
                         "translate": [
-                            960.0,
-                            756.0
+                            640.0,
+                            504.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -2278,8 +2434,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -2287,12 +2443,12 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            1.0,
-                            1.0
+                            0.6470308899879456,
+                            0.6470308899879456
                         ],
                         "size": [
-                            256.0,
-                            128.0
+                            170.6666717529297,
+                            85.33332824707031
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -2304,8 +2460,8 @@
                             256.0
                         ],
                         "translate": [
-                            960.0,
-                            756.0
+                            640.0,
+                            504.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -2356,6 +2512,10 @@
                 {
                     "SystemCategory": 4,
                     "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "SpriteAnimationSystem"
                 },
                 {
                     "SystemCategory": 6,
@@ -2415,6 +2575,189 @@
                         "overrideConditions": 44
                     }
                 ],
+                "SpriteAnimation": [
+                    {
+                        "Handle": "046d3974-d7fe-4de5-be0e-eb4498604dc6",
+                        "colorAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
+                        },
+                        "colorCurve": [],
+                        "colorInterpolationType": 0,
+                        "duration": 0.4000000059604645,
+                        "rotateCurve": [],
+                        "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    1.0,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "time": 0.05354969576001167,
+                                "value": [
+                                    0.7322515249252319,
+                                    0.7322515249252319
+                                ]
+                            },
+                            {
+                                "time": 0.10547667741775513,
+                                "value": [
+                                    0.6524753570556641,
+                                    0.6524753570556641
+                                ]
+                            },
+                            {
+                                "time": 0.20000000298023224,
+                                "value": [
+                                    0.5,
+                                    0.5
+                                ]
+                            },
+                            {
+                                "time": 0.2888438403606415,
+                                "value": [
+                                    0.6622575521469116,
+                                    0.6622575521469116
+                                ]
+                            },
+                            {
+                                "time": 0.3440162241458893,
+                                "value": [
+                                    0.8109999895095825,
+                                    0.8113590478897095
+                                ]
+                            },
+                            {
+                                "time": 0.4000000059604645,
+                                "value": [
+                                    1.0,
+                                    1.0
+                                ]
+                            }
+                        ],
+                        "spriteComponentHandle": "070b4ad8-0078-4f29-ad85-e2aaa0fbca16",
+                        "transformAnimationState": {
+                            "isLoop": true,
+                            "isPlay": true
+                        },
+                        "transformInterpolationType": 0,
+                        "translateCurve": [],
+                        "uvAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
+                        },
+                        "uvInterpolationType": 0,
+                        "uvRotateCurve": [],
+                        "uvScaleCurve": [],
+                        "uvTranslateCurve": []
+                    },
+                    {
+                        "Handle": "debe4850-47f7-4a8b-a754-cfe7d81197c0",
+                        "colorAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
+                        },
+                        "colorCurve": [],
+                        "colorInterpolationType": 0,
+                        "duration": 0.4000000059604645,
+                        "rotateCurve": [],
+                        "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    1.0,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "time": 0.05400000140070915,
+                                "value": [
+                                    0.7319999933242798,
+                                    0.7319999933242798
+                                ]
+                            },
+                            {
+                                "time": 0.10499999672174454,
+                                "value": [
+                                    0.6520000100135803,
+                                    0.6520000100135803
+                                ]
+                            },
+                            {
+                                "time": 0.20000000298023224,
+                                "value": [
+                                    0.5,
+                                    0.5
+                                ]
+                            },
+                            {
+                                "time": 0.289000004529953,
+                                "value": [
+                                    0.6620000004768372,
+                                    0.6620000004768372
+                                ]
+                            },
+                            {
+                                "time": 0.3440162241458893,
+                                "value": [
+                                    0.8109999895095825,
+                                    0.8109999895095825
+                                ]
+                            },
+                            {
+                                "time": 0.4000000059604645,
+                                "value": [
+                                    1.0,
+                                    1.0
+                                ]
+                            }
+                        ],
+                        "spriteComponentHandle": "e29756b8-f74b-45b3-ae73-96fc96b58c86",
+                        "transformAnimationState": {
+                            "isLoop": true,
+                            "isPlay": true
+                        },
+                        "transformInterpolationType": 0,
+                        "translateCurve": [],
+                        "uvAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
+                        },
+                        "uvInterpolationType": 0,
+                        "uvRotateCurve": [],
+                        "uvScaleCurve": [],
+                        "uvTranslateCurve": []
+                    },
+                    {
+                        "Handle": "59ffd5dc-7152-4b60-9431-cada0423055c",
+                        "colorAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
+                        },
+                        "colorCurve": [],
+                        "colorInterpolationType": 0,
+                        "duration": 0.0,
+                        "rotateCurve": [],
+                        "scaleCurve": [],
+                        "spriteComponentHandle": "00000000-0000-0000-0000-000000000000",
+                        "transformAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
+                        },
+                        "transformInterpolationType": 0,
+                        "translateCurve": [],
+                        "uvAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
+                        },
+                        "uvInterpolationType": 0,
+                        "uvRotateCurve": [],
+                        "uvScaleCurve": [],
+                        "uvTranslateCurve": []
+                    }
+                ],
                 "SpriteRenderer": [
                     {
                         "Handle": "070b4ad8-0078-4f29-ad85-e2aaa0fbca16",
@@ -2429,8 +2772,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -2438,8 +2781,8 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            1.0,
-                            1.0
+                            0.648234486579895,
+                            0.648234486579895
                         ],
                         "size": [
                             512.0,
@@ -2455,8 +2798,8 @@
                             128.0
                         ],
                         "translate": [
-                            960.0,
-                            756.0
+                            640.0,
+                            504.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -2489,8 +2832,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -2498,12 +2841,12 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            1.0,
-                            1.0
+                            0.6470308899879456,
+                            0.6470308899879456
                         ],
                         "size": [
-                            256.0,
-                            128.0
+                            170.6666717529297,
+                            85.33332824707031
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -2515,8 +2858,8 @@
                             256.0
                         ],
                         "translate": [
-                            960.0,
-                            756.0
+                            640.0,
+                            504.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -2567,6 +2910,10 @@
                 {
                     "SystemCategory": 4,
                     "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "SpriteAnimationSystem"
                 },
                 {
                     "SystemCategory": 6,
@@ -2626,6 +2973,162 @@
                         "overrideConditions": 36
                     }
                 ],
+                "SpriteAnimation": [
+                    {
+                        "Handle": "046d3974-d7fe-4de5-be0e-eb4498604dc6",
+                        "colorAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
+                        },
+                        "colorCurve": [],
+                        "colorInterpolationType": 0,
+                        "duration": 0.4000000059604645,
+                        "rotateCurve": [],
+                        "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    1.0,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "time": 0.05354969576001167,
+                                "value": [
+                                    0.7322515249252319,
+                                    0.7322515249252319
+                                ]
+                            },
+                            {
+                                "time": 0.10547667741775513,
+                                "value": [
+                                    0.6524753570556641,
+                                    0.6524753570556641
+                                ]
+                            },
+                            {
+                                "time": 0.20000000298023224,
+                                "value": [
+                                    0.5,
+                                    0.5
+                                ]
+                            },
+                            {
+                                "time": 0.2888438403606415,
+                                "value": [
+                                    0.6622575521469116,
+                                    0.6622575521469116
+                                ]
+                            },
+                            {
+                                "time": 0.3440162241458893,
+                                "value": [
+                                    0.8109999895095825,
+                                    0.8113590478897095
+                                ]
+                            },
+                            {
+                                "time": 0.4000000059604645,
+                                "value": [
+                                    1.0,
+                                    1.0
+                                ]
+                            }
+                        ],
+                        "spriteComponentHandle": "ef2dbcd8-0edc-4757-9b8c-8cf11eee19a5",
+                        "transformAnimationState": {
+                            "isLoop": true,
+                            "isPlay": true
+                        },
+                        "transformInterpolationType": 0,
+                        "translateCurve": [],
+                        "uvAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
+                        },
+                        "uvInterpolationType": 0,
+                        "uvRotateCurve": [],
+                        "uvScaleCurve": [],
+                        "uvTranslateCurve": []
+                    },
+                    {
+                        "Handle": "debe4850-47f7-4a8b-a754-cfe7d81197c0",
+                        "colorAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
+                        },
+                        "colorCurve": [],
+                        "colorInterpolationType": 0,
+                        "duration": 0.4000000059604645,
+                        "rotateCurve": [],
+                        "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    1.0,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "time": 0.05400000140070915,
+                                "value": [
+                                    0.7319999933242798,
+                                    0.7319999933242798
+                                ]
+                            },
+                            {
+                                "time": 0.10499999672174454,
+                                "value": [
+                                    0.6520000100135803,
+                                    0.6520000100135803
+                                ]
+                            },
+                            {
+                                "time": 0.20000000298023224,
+                                "value": [
+                                    0.5,
+                                    0.5
+                                ]
+                            },
+                            {
+                                "time": 0.289000004529953,
+                                "value": [
+                                    0.6620000004768372,
+                                    0.6620000004768372
+                                ]
+                            },
+                            {
+                                "time": 0.3440162241458893,
+                                "value": [
+                                    0.8109999895095825,
+                                    0.8109999895095825
+                                ]
+                            },
+                            {
+                                "time": 0.4000000059604645,
+                                "value": [
+                                    1.0,
+                                    1.0
+                                ]
+                            }
+                        ],
+                        "spriteComponentHandle": "3642c461-69a5-4b37-9939-0262265c4d85",
+                        "transformAnimationState": {
+                            "isLoop": true,
+                            "isPlay": true
+                        },
+                        "transformInterpolationType": 0,
+                        "translateCurve": [],
+                        "uvAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
+                        },
+                        "uvInterpolationType": 0,
+                        "uvRotateCurve": [],
+                        "uvScaleCurve": [],
+                        "uvTranslateCurve": []
+                    }
+                ],
                 "SpriteRenderer": [
                     {
                         "Handle": "ef2dbcd8-0edc-4757-9b8c-8cf11eee19a5",
@@ -2640,8 +3143,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -2649,8 +3152,8 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            1.0,
-                            1.0
+                            0.648234486579895,
+                            0.648234486579895
                         ],
                         "size": [
                             512.0,
@@ -2666,8 +3169,8 @@
                             128.0
                         ],
                         "translate": [
-                            960.0,
-                            756.0
+                            640.0,
+                            504.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -2700,8 +3203,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -2709,12 +3212,12 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            1.0,
-                            1.0
+                            0.6470308899879456,
+                            0.6470308899879456
                         ],
                         "size": [
-                            256.0,
-                            128.0
+                            170.6666717529297,
+                            85.33332824707031
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -2726,8 +3229,8 @@
                             256.0
                         ],
                         "translate": [
-                            960.0,
-                            756.0
+                            640.0,
+                            504.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -2778,6 +3281,10 @@
                 {
                     "SystemCategory": 4,
                     "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "SpriteAnimationSystem"
                 },
                 {
                     "SystemCategory": 6,
@@ -2843,6 +3350,44 @@
                 {
                     "SystemCategory": 5,
                     "SystemName": "PlayerSpeedFor3dUI"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "EntityReferenceList": [
+                    {
+                        "Handle": "ec4272a7-913f-4fd0-9e5a-811b4151ec5f",
+                        "entityFileList": [
+                            [
+                                "./application/resource/entities",
+                                "SpeedWave"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "SpeedWave_Diss"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "SpeedWave_Gradation_Bottom"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "SpeedWave_Gradation_Upper"
+                            ]
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "ba532d93-2c0f-4aeb-a741-42918f15e20d"
+            },
+            "Name": "SpeedWaveRecipe",
+            "Systems": [
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "ResolveEntityReferences"
                 }
             ],
             "isUnique": false
