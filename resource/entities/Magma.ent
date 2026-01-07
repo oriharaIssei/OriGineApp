@@ -1,0 +1,136 @@
+{
+    "Components": {
+        "DirectionalLight": [
+            {
+                "Handle": "42208c82-70fe-49cb-abaf-f547e423404e",
+                "angularRadius": 0.011800000444054604,
+                "color": [
+                    0.6413502097129822,
+                    0.010824484750628471,
+                    0.010824484750628471
+                ],
+                "direction": [
+                    0.0,
+                    1.0,
+                    0.0
+                ],
+                "intensity": 0.8899999856948853,
+                "isActive": true
+            }
+        ],
+        "Material": [
+            {
+                "Handle": "b5aba305-a739-4114-ab35-1dc254337707",
+                "color": [
+                    0.4092826843261719,
+                    0.04490019753575325,
+                    0.04490019753575325,
+                    1.0
+                ],
+                "enableLighting": false,
+                "shininess": 12.329999923706055,
+                "specularColor": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "uvRotate": 0.0,
+                "uvScale": [
+                    8.0,
+                    12.0
+                ],
+                "uvTranslate": [
+                    0.0,
+                    0.0
+                ]
+            }
+        ],
+        "MaterialEffectPipeLine": [
+            {
+                "Handle": "11ddb139-15b7-4c16-aad2-572bce5266ee",
+                "baseTexturePath": "./application/resource/Texture/Swirl_6_-_256x256.png",
+                "effectEntityIdList": [
+                    {
+                        "effectType": 1,
+                        "handle": {
+                            "uuid": "9e254a66-30a7-40e2-a5ea-0a774b7d3957"
+                        }
+                    },
+                    {
+                        "effectType": 1,
+                        "handle": {
+                            "uuid": "061048fb-012c-4a49-8332-b0d28a26c648"
+                        }
+                    }
+                ],
+                "isActive": true,
+                "materialIndex": 0,
+                "priority": 0
+            }
+        ],
+        "PlaneRenderer": [
+            {
+                "Handle": "17f57aec-b522-4225-a10a-a65e974a596a",
+                "blendMode": 1,
+                "isCulling": true,
+                "isRenderer": true,
+                "materialIndex": 0,
+                "textureFilePath": "./application/resource/Texture/Swirl_6_-_256x256.png",
+                "transform": {
+                    "rotate": [
+                        0.7065687775611877,
+                        0.0,
+                        0.0,
+                        0.7076444029808044
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "translate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                }
+            }
+        ],
+        "Transform": [
+            {
+                "Handle": "0d25b574-aecf-4d1f-9047-c6f93045c1d9",
+                "rotate": [
+                    -0.0,
+                    0.0,
+                    -0.0,
+                    1.0
+                ],
+                "scale": [
+                    1000.0,
+                    1.0,
+                    1000.0
+                ],
+                "translate": [
+                    0.2946128845214844,
+                    -50.0,
+                    500.0
+                ]
+            }
+        ]
+    },
+    "Handle": {
+        "uuid": "b70cdac2-4c1c-47c8-8fc6-402d59767bbf"
+    },
+    "Name": "Magma",
+    "Systems": [
+        {
+            "SystemCategory": 5,
+            "SystemName": "MaterialEffect"
+        },
+        {
+            "SystemCategory": 6,
+            "SystemName": "TexturedMeshRenderSystem"
+        }
+    ],
+    "isUnique": false
+}
