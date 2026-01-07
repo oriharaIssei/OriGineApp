@@ -1,0 +1,96 @@
+{
+    "Components": {
+        "BoxRenderer": [
+            {
+                "Handle": "32022e0b-b08f-4242-add8-6345006b6622",
+                "blendMode": 1,
+                "isCulling": true,
+                "isRenderer": true,
+                "materialIndex": 0,
+                "size": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "textureFilePath": "",
+                "transform": {
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "translate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                }
+            }
+        ],
+        "Material": [
+            {
+                "Handle": "0f02b123-49f3-4289-9c26-c5f4034da115",
+                "color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "enableLighting": true,
+                "shininess": 60.0,
+                "specularColor": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "uvRotate": 0.0,
+                "uvScale": [
+                    1.0,
+                    1.0
+                ],
+                "uvTranslate": [
+                    0.0,
+                    0.0
+                ]
+            }
+        ],
+        "Transform": [
+            {
+                "Handle": "a0cddede-b009-4eab-a431-e6deb47eca50",
+                "rotate": [
+                    -0.0,
+                    0.0,
+                    -0.0,
+                    1.0
+                ],
+                "scale": [
+                    26.0,
+                    56.0,
+                    126.0
+                ],
+                "translate": [
+                    0.0,
+                    -56.0,
+                    110.84202575683594
+                ]
+            }
+        ]
+    },
+    "Handle": {
+        "uuid": "c85f2243-30a0-467c-9f1f-b6423b9c0ef5"
+    },
+    "Name": "Floor",
+    "Systems": [
+        {
+            "SystemCategory": 6,
+            "SystemName": "TexturedMeshRenderSystem"
+        }
+    ],
+    "isUnique": false
+}

@@ -334,6 +334,8 @@
       <Filter>system\effect</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Initialize\BackFireInitialize.h" />
+    <ClInclude Include="code\component\PointPlacementParams.h" />
+    <ClInclude Include="code\system\Initialize\PlacementEntityByProcedural.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -608,5 +610,7 @@
       <Filter>system\effect</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Initialize\BackFireInitialize.cpp" />
+    <ClCompile Include="code\component\PointPlacementParams.cpp" />
+    <ClCompile Include="code\system\Initialize\PlacementEntityByProcedural.cpp" />
   </ItemGroup>
 </Project>

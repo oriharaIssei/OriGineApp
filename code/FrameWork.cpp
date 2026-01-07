@@ -20,6 +20,7 @@
 #include "component/player/PlayerStatus.h"
 #include "component/player/state/PlayerState.h"
 #include "component/PlayerStateOverrideCondition.h"
+#include "component/PointPlacementParams.h"
 #include "component/SceneChanger.h"
 #include "component/spline/SplinePoints.h"
 #include "component/spline/TireSplinePoints.h"
@@ -46,6 +47,7 @@
 #include "system/initialize/GetClearTime.h"
 #include "system/Initialize/GhostInitializeSystem.h"
 #include "system/Initialize/InitializeMouseCondition.h"
+#include "system/Initialize/PlacementEntityByProcedural.h"
 #include "system/Initialize/PlayRecorderInitialize.h"
 #include "system/Initialize/SelectPreviewSceneInitialize.h"
 #include "system/initialize/SettingGameCameraTarget.h"
@@ -186,6 +188,8 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<SceneChanger>();
 
     componentRegistry->RegisterComponent<PlayerStateOverrideCondition>();
+
+    componentRegistry->RegisterComponent<PointPlacementParams>();
 }
 
 void RegisterUsingSystems() {
@@ -216,6 +220,8 @@ void RegisterUsingSystems() {
 
     systemRegistry->RegisterSystem<GhostInitializeSystem>();
     systemRegistry->RegisterSystem<PlayRecorderInitialize>();
+
+    systemRegistry->RegisterSystem<PlacementEntityByProcedural>();
 
     /// ===================================================================================================
     // Input

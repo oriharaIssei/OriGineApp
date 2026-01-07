@@ -89,6 +89,7 @@
       <AdditionalOptions>/utf-8 /bigobj /MP %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -109,6 +110,7 @@
       <AdditionalOptions>/utf-8 /bigobj /MP %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -132,6 +134,7 @@
       <AdditionalOptions>/utf-8 /bigobj /MP %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -238,6 +241,8 @@
     <ClInclude Include="code\system\effect\PenaltyTimeSpriteUpdate.h" />
     <ClInclude Include="code\system\effect\PlayerSpeedFor3dUI.h" />
     <ClInclude Include="code\system\effect\TimerForSprite.h" />
+    <ClInclude Include="code\component\PointPlacementParams.h" />
+    <ClInclude Include="code\system\Initialize\PlacementEntityByProcedural.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -334,6 +339,8 @@
     <ClCompile Include="code\system\effect\PenaltyTimeSpriteUpdate.cpp" />
     <ClCompile Include="code\system\effect\PlayerSpeedFor3dUI.cpp" />
     <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
+    <ClCompile Include="code\component\PointPlacementParams.cpp" />
+    <ClCompile Include="code\system\Initialize\PlacementEntityByProcedural.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">
