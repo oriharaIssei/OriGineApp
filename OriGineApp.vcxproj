@@ -145,6 +145,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="code\component\AddForceComponent.h" />
+    <ClInclude Include="code\component\VelocityOverrideComponent.h" />
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\MyEditor.h" />
     <ClInclude Include="code\MyGame.h" />
@@ -181,6 +183,7 @@
     <ClInclude Include="code\event\RestartEvent.h" />
     <ClInclude Include="code\event\SceneChangeRequest.h" />
     <ClInclude Include="code\manager\PlayerProgressStore.h" />
+    <ClInclude Include="code\system\collision\AddForceTriggerSystem.h" />
     <ClInclude Include="code\system\Initialize\BackFireInitialize.h" />
     <ClInclude Include="code\system\Initialize\CreatePlaneFromSpeed.h" />
     <ClInclude Include="code\system\Initialize\CreateSpriteFromTimer.h" />
@@ -243,8 +246,11 @@
     <ClInclude Include="code\system\effect\TimerForSprite.h" />
     <ClInclude Include="code\component\PointPlacementParams.h" />
     <ClInclude Include="code\system\Initialize\PlacementEntityByProcedural.h" />
+    <ClInclude Include="code\component\player\State\PlayerWheelieRunState.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\component\AddForceComponent.cpp" />
+    <ClCompile Include="code\component\VelocityOverrideComponent.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\MyEditor.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
@@ -279,6 +285,9 @@
     <ClCompile Include="code\component\ui\SpeedFor3dUIComponent.cpp" />
     <ClCompile Include="code\main.cpp" />
     <ClCompile Include="code\manager\PlayerProgressStore.cpp" />
+    <ClCompile Include="code\system\collision\AddForceTriggerSystem.cpp" />
+    <ClCompile Include="code\system\collision\VelocityOverrideTriggerSystem.cpp" />
+    <ClCompile Include="code\system\collision\VelocityOverrideTriggerSystem.h" />
     <ClCompile Include="code\system\Initialize\BackFireInitialize.cpp" />
     <ClCompile Include="code\system\Initialize\CreatePlaneFromSpeed.cpp" />
     <ClCompile Include="code\system\Initialize\CreateSpriteFromTimer.cpp" />
@@ -341,6 +350,7 @@
     <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
     <ClCompile Include="code\component\PointPlacementParams.cpp" />
     <ClCompile Include="code\system\Initialize\PlacementEntityByProcedural.cpp" />
+    <ClCompile Include="code\component\player\State\PlayerWheelieRunState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">
