@@ -4,8 +4,7 @@
 #include <algorithm>
 
 /// engine
-#define DELTA_TIME
-#include "EngineInclude.h"
+#include "Engine.h"
 #include "scene/Scene.h"
 // input
 #include "input/GamepadInput.h"
@@ -28,38 +27,37 @@ void CameraInputSystem::UpdateEntity(OriGine::EntityHandle _handle) {
 
     CameraController* cameraController = GetComponent<CameraController>(_handle);
 
+    float deltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Camera");
+
     if (cameraController) {
-        InputUpdate(GetMainDeltaTime(), mouseInput, padInput, cameraController);
+        InputUpdate(deltaTime, mouseInput, padInput, cameraController);
     }
 }
 
 void CameraInputSystem::InputUpdate(float _deltaTime, MouseInput* _mouseInput, GamepadInput* _padInput, CameraController* _cameraController) {
 
-    OriGine::Vec2f destinationAngleXY = _cameraController->GetDestinationAngleXY();
+    OriGine::Vec2f destinationAngleXY = _cameraController->destinationAngleXY;
 
-    if (_cameraController->GetFollowTarget()) {
+    if (_cameraController->followTarget) {
         OriGine::Vec2f rotateVelocity = {0.f, 0.f};
         if (_padInput->IsActive()) { /// GamePad
-            rotateVelocity = _padInput->GetRStick() * _cameraController->GetRotateSpeedPadStick();
+            rotateVelocity = _padInput->GetRStick() * _cameraController->rotateSpeedPadStick;
             // input の x,yをそれぞれの角度に変換
             rotateVelocity = OriGine::Vec2f(-rotateVelocity[Y], rotateVelocity[X]);
         } else { /// Mouse
-            rotateVelocity = _mouseInput->GetVelocity() * _cameraController->GetRotateSpeedMouse();
+            rotateVelocity = _mouseInput->GetVelocity() * _cameraController->rotateSpeedMouse;
             // input の x,yをそれぞれの角度に変換
             rotateVelocity = OriGine::Vec2f(rotateVelocity[Y], rotateVelocity[X]);
         }
         rotateVelocity *= _deltaTime;
 
         // 自動注視は入力があったら解除
-        bool isInputCamera = rotateVelocity.lengthSq() <= kEpsilon;
-        _cameraController->SetIsAutoLookAtPlayer(isInputCamera);
+        _cameraController->isAutoLookAtPlayer = rotateVelocity.lengthSq() <= kEpsilon;
 
-        destinationAngleXY += rotateVelocity;
-        destinationAngleXY[Y] = std::fmod(destinationAngleXY[Y], kTao); // Y軸は360度回転可能
+        _cameraController->destinationAngleXY += rotateVelocity;
+        _cameraController->destinationAngleXY[Y] = std::fmod(_cameraController->destinationAngleXY[Y], kTau); // Y軸は360度回転可能
 
         // 角度制限を適用
-        destinationAngleXY[X] = std::clamp(destinationAngleXY[X], _cameraController->GetMinRotateX(), _cameraController->GetMaxRotateX());
-
-        _cameraController->SetDestinationAngleXY(destinationAngleXY);
+        _cameraController->destinationAngleXY[X] = std::clamp(_cameraController->destinationAngleXY[X], _cameraController->minRotateX, _cameraController->maxRotateX);
     }
 }

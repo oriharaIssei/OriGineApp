@@ -1,6 +1,8 @@
 #include "PointPlacementParams.h"
 
 /// Engine
+#include "texture/TextureManager.h"
+
 // dreictX12
 #include "directX12/DxDevice.h"
 
@@ -8,8 +10,6 @@
 /// Engine
 #define RESOURCE_DIRECTORY
 #include "EngineInclude.h"
-#include "texture/TextureManager.h"
-
 /// util
 #include "myFileSystem/MyFileSystem.h"
 #include "myGui/MyGui.h"

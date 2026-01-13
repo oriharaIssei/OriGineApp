@@ -17,10 +17,10 @@
 using namespace OriGine;
 
 void PlayerIdleState::Initialize() {
-    auto playerStatus  = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
-    auto* state        = scene_->GetComponent<PlayerState>(playerEntityHandle_);
-    auto rigidbody     = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
-    auto playerInput   = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
+    auto playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
+    auto* state       = scene_->GetComponent<PlayerState>(playerEntityHandle_);
+    auto rigidbody    = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
+    auto playerInput  = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
 
     /// 初期化処理
     // 入力方向をリセット
@@ -38,7 +38,7 @@ void PlayerIdleState::Initialize() {
 void PlayerIdleState::Update(float _deltaTime) {
     constexpr float kDecelerationRate = 1.8f;
 
-    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
+    auto* rigidbody = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
 
     // 減速
     rigidbody->SetVelocity(LerpByDeltaTime(rigidbody->GetVelocity(), OriGine::Vec3f(), _deltaTime, kDecelerationRate));
@@ -59,21 +59,14 @@ void PlayerIdleState::Update(float _deltaTime) {
         float t = cameraOffsetLerpTimer_ / kCameraOffsetLerpTime_;
         t       = std::clamp(t, 0.f, 1.f);
 
-        const OriGine::Vec3f& targetOffset  = cameraController->GetFirstOffset();
-        const OriGine::Vec3f& currentOffset = cameraController->GetCurrentOffset();
-        OriGine::Vec3f newOffset            = Lerp<3, float>(currentOffset, targetOffset, EaseOutCubic(t));
-        cameraController->SetCurrentOffset(newOffset);
-
-        const OriGine::Vec3f& firstTargetOffset   = cameraController->GetFirstTargetOffset();
-        const OriGine::Vec3f& currentTargetOffset = cameraController->GetCurrentTargetOffset();
-        OriGine::Vec3f newTargetOffset            = Lerp<3, float>(currentTargetOffset, firstTargetOffset, EaseOutCubic(t));
-        cameraController->SetCurrentTargetOffset(newTargetOffset);
+        cameraController->currentOffset = Lerp<3, float>(cameraController->currentOffset, cameraController->firstOffset, EaseOutCubic(t));
+        cameraController->currentTargetOffset = Lerp<3, float>(cameraController->currentTargetOffset, cameraController->firstTargetOffset, EaseOutCubic(t));
     }
 }
 
 void PlayerIdleState::Finalize() {
-    auto playerStatus  = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
-    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
+    auto playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
+    auto* rigidbody   = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
 
     playerStatus->SetCurrentMaxSpeed(playerStatus->GetBaseSpeed());
     rigidbody->SetMaxXZSpeed(playerStatus->GetBaseSpeed());
@@ -82,8 +75,8 @@ void PlayerIdleState::Finalize() {
 }
 
 PlayerMoveState PlayerIdleState::TransitionState() const {
-    auto state         = scene_->GetComponent<PlayerState>(playerEntityHandle_);
-    auto playerInput   = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
+    auto state       = scene_->GetComponent<PlayerState>(playerEntityHandle_);
+    auto playerInput = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
 
     if (state->IsOnGround()) {
         if (playerInput->IsJumpInput()) {

@@ -15,14 +15,15 @@ class IPlayerMoveState;
 /// プレイヤーの 移動状態 を表す列挙体
 /// </summary>
 enum class PlayerMoveState {
-    IDLE      = 1 << 0, // 待機 (動いていない)
-    DASH      = 1 << 1, // ダッシュ(基本移動)
-    FALL_DOWN = 1 << 2, // 落下中 (ジャンプ ではない.)
-    JUMP      = 1 << 3, // ジャンプ
-    WALL_RUN  = 1 << 4, // 壁走り
-    WALL_JUMP = 1 << 5, // 壁ジャンプ
+    IDLE        = 1 << 0, // 待機 (動いていない)
+    DASH        = 1 << 1, // ダッシュ(基本移動)
+    FALL_DOWN   = 1 << 2, // 落下中 (ジャンプ ではない.)
+    JUMP        = 1 << 3, // ジャンプ
+    WALL_RUN    = 1 << 4, // 壁走り
+    WALL_JUMP   = 1 << 5, // 壁ジャンプ
+    WHEELIE_RUN = 1 << 6, // ウィリー走行
 
-    Count = 6
+    Count = 7
 };
 static std::map<PlayerMoveState, const char*> moveStateName = {
     {PlayerMoveState::IDLE, "IDLE"},
@@ -30,9 +31,8 @@ static std::map<PlayerMoveState, const char*> moveStateName = {
     {PlayerMoveState::FALL_DOWN, "FALL_DOWN"},
     {PlayerMoveState::JUMP, "JUMP"},
     {PlayerMoveState::WALL_RUN, "WALL_RUN"},
-    {PlayerMoveState::WALL_JUMP, "WALL_JUMP"}
-    // {PlayerMoveState::SLIDE, "SLIDE"}
-};
+    {PlayerMoveState::WALL_JUMP, "WALL_JUMP"},
+    {PlayerMoveState::WHEELIE_RUN, "WHEELIE_RUN"}};
 
 enum class PlayerStateFlag {
     NONE       = 0,
@@ -47,7 +47,7 @@ enum class PlayerStateFlag {
 };
 
 constexpr int32_t kDefaultPlayerGearLevel = 1; // デフォルトのギアレベル
-constexpr int32_t kMaxPlayerGearLevel     = 10; // 最大のギアレベル
+constexpr int32_t kMaxPlayerGearLevel     = 6; // 最大のギアレベル
 
 /// <summary>
 /// プレイヤーの状態を表す変数群
@@ -70,7 +70,7 @@ public:
     /// </summary>
     /// <param name="_collisionNormal"></param>
     /// <param name="_entityHandle"></param>
-    void OnCollisionWall(const OriGine::Vec3f& _collisionNormal, OriGine::EntityHandle _entityHandle);
+    void OnCollisionWall(const OriGine::Vec3f& _collisionNormal, OriGine::EntityHandle _entityHandle, bool _isWheelie = false);
     /// <summary>
     /// 壁との接触がなくなったときの処理
     /// </summary>
@@ -116,6 +116,7 @@ private:
     float penaltyTime_   = 0.0f; // ペナルティ時間 /sec (制限時間から マイナスする時間)
     float invincibility_ = 0.0f; // ペナルティ無敵時間
 
+    bool isWheelie_ = false; // ウィリー状態かどうか
 public:
     OriGine::EntityHandle GetCameraEntityHandle() const {
         return followCameraEntityHandle_;
@@ -127,6 +128,10 @@ public:
     PlayerMoveState GetStateEnum() const {
         return moveStateEnum_.Current().ToEnum();
     }
+    PlayerMoveState GetPreStateEnum() const {
+        return moveStateEnum_.Prev().ToEnum();
+    }
+
     DiffValue<EnumBitmask<PlayerMoveState>>& GetStateEnumRef() {
         return moveStateEnum_;
     }
@@ -195,6 +200,10 @@ public:
         if (invincibility_ < 0.0f) {
             invincibility_ = 0.0f;
         }
+    }
+
+    bool IsWheelie() const {
+        return isWheelie_;
     }
 
     bool IsRestart() const {

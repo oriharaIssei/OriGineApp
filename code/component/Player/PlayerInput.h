@@ -29,6 +29,10 @@ public:
     void Edit(OriGine::Scene* _scene, OriGine::EntityHandle _owner, const std::string& _parentLabel) override;
     void Finalize() override;
 
+    bool IsInputDisabled() const {
+        return inputDisableTimer_ < inputDisableDuration_;
+    }
+
 private:
     OriGine::Vec2f inputDirection_ = {0.0f, 0.0f};
     // effectに使う
@@ -38,6 +42,9 @@ private:
     bool isWallJumpInput_ = false; // 壁ジャンプ入力があったかどうか
     float jumpInputTime_  = 0.0f; // ジャンプ入力の時間 (これによってジャンプ力が変わる)
     float maxJumpTime_    = 0.1f; // ジャンプ入力の最大時間 (秒単位)
+
+    float inputDisableDuration_ = 0.0f; // 入力無効時間 (秒単位)
+    float inputDisableTimer_    = 0.0f; // 入力無効タイマー (秒単位)
 
     /// <summary>
     /// 移動 キー (ゲームパッドは スティックだから必要なし)
@@ -120,5 +127,25 @@ public:
     }
     void SetJumpInputTime(float _jumpInputTime) {
         jumpInputTime_ = _jumpInputTime;
+    }
+
+    float GetInputDisableDuration() const {
+        return inputDisableDuration_;
+    }
+    float GetInputDisableTimer() const {
+        return inputDisableTimer_;
+    }
+    void SetInputDisableDuration(float _inputDisableDuration) {
+        inputDisableDuration_ = _inputDisableDuration;
+    }
+    void SetInputDisableTimer(float _inputDisableTimer) {
+        inputDisableTimer_ = _inputDisableTimer;
+    }
+    /// <summary>
+    /// 入力無効タイマーを減算
+    /// </summary>
+    /// <param name="_deltaTime"></param>
+    void SubInputDisableTimer(float _deltaTime) {
+        inputDisableTimer_ -= _deltaTime;
     }
 };

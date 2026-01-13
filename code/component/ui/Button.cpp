@@ -77,11 +77,8 @@ void from_json(const nlohmann::json& j, Button& r) {
     }
 }
 
-Button::Button() {
-}
-
-Button::~Button() {
-}
+Button::Button() {}
+Button::~Button() {}
 
 void Button::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {}
 
@@ -89,16 +86,16 @@ void Button::Edit(OriGine::Scene* /*_scene*/, OriGine::EntityHandle /*_OriGine::
 #ifdef _DEBUG
     std::string label = "Button Colors" + _parentLabel;
     if (ImGui::TreeNode(label.c_str())) {
-        ColorEditGuiCommand("Normal Color" + _parentLabel, normalColor_);
-        ColorEditGuiCommand("Hover Color" + _parentLabel, hoverColor_);
-        ColorEditGuiCommand("Press Color" + _parentLabel, pressColor_);
-        ColorEditGuiCommand("Release Color" + _parentLabel, releaseColor_);
+        ColorEditGuiCommand("Normal Color##" + _parentLabel, normalColor_);
+        ColorEditGuiCommand("Hover Color##" + _parentLabel, hoverColor_);
+        ColorEditGuiCommand("Press Color##" + _parentLabel, pressColor_);
+        ColorEditGuiCommand("Release Color##" + _parentLabel, releaseColor_);
 
         ImGui::TreePop();
     }
 
     // key
-    label = "Shortcut Key" + _parentLabel;
+    label = "Shortcut Key##" + _parentLabel;
     if (ImGui::TreeNode(label.c_str())) {
         // key
         ImGui::Text("Key");
@@ -124,14 +121,14 @@ void Button::Edit(OriGine::Scene* /*_scene*/, OriGine::EntityHandle /*_OriGine::
             ImGui::PopID();
         }
         // add
-        label = "Add Key" + _parentLabel;
+        label = "Add Key##" + _parentLabel;
         if (ImGui::Button(label.c_str())) {
             auto command = std::make_unique<AddElementCommand<std::vector<OriGine::Key>>>(&shortcutKey_, OriGine::Key::ESCAPE);
             OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
         }
         ImGui::SameLine();
         // remove
-        label = "Remove Key" + _parentLabel;
+        label = "Remove Key##" + _parentLabel;
         if (ImGui::Button(label.c_str())) {
             if (shortcutKey_.size() > 0) {
                 auto command = std::make_unique<EraseElementCommand<std::vector<OriGine::Key>>>(&shortcutKey_, shortcutKey_.end() - 1);
@@ -143,7 +140,7 @@ void Button::Edit(OriGine::Scene* /*_scene*/, OriGine::EntityHandle /*_OriGine::
     }
 
     // pad button
-    label = "Shortcut PadButton" + _parentLabel;
+    label = "Shortcut PadButton##" + _parentLabel;
     if (ImGui::TreeNode(label.c_str())) {
         // pad button
         ImGui::Text("PadButton");
@@ -169,14 +166,14 @@ void Button::Edit(OriGine::Scene* /*_scene*/, OriGine::EntityHandle /*_OriGine::
             ImGui::PopID();
         }
         // add
-        label = "Add PadButton" + _parentLabel;
+        label = "Add PadButton##" + _parentLabel;
         if (ImGui::Button(label.c_str())) {
             auto command = std::make_unique<AddElementCommand<std::vector<OriGine::PadButton>>>(&shortcutPadButton_, OriGine::PadButton::UP);
             OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
         }
         ImGui::SameLine();
         // remove
-        label = "Remove PadButton" + _parentLabel;
+        label = "Remove PadButton##" + _parentLabel;
         if (ImGui::Button(label.c_str())) {
             if (shortcutPadButton_.size() > 0) {
                 auto command = std::make_unique<EraseElementCommand<std::vector<OriGine::PadButton>>>(&shortcutPadButton_, shortcutPadButton_.end() - 1);

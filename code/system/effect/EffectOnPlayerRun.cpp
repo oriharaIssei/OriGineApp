@@ -43,9 +43,10 @@ void EffectOnPlayerRun::UpdateEntity(EntityHandle _entity) {
     if (!state || !status || !effectControlParam || !rigidbody) {
         return;
     }
-    float dletaTime      = GetMainDeltaTime();
-    float currentSpeed   = rigidbody->GetVelocity().length();
-    float playerMaxSpeed = status->CalculateSpeedByGearLevel(kMaxPlayerGearLevel);
+    float deltaTime              = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Player");
+    const Vec3f& currentVelocity = rigidbody->GetVelocity();
+    float currentXZSpeed         = Vec2f(currentVelocity[X], currentVelocity[Z]).length();
+    float playerMaxSpeed         = status->CalculateSpeedByGearLevel(kMaxPlayerGearLevel);
 
     // タイヤの回転
     ModelMeshRenderer* modelMeshRenderer = GetComponent<ModelMeshRenderer>(_entity);
@@ -57,8 +58,7 @@ void EffectOnPlayerRun::UpdateEntity(EntityHandle _entity) {
 
         // 速度によって タイヤの回転速度を変える
         // 入力方向ベクトルが0のときは 回転しないようにする(Sqなのは,0か1しかないので軽くするため)
-        const OriGine::Vec3f& velo = rigidbody->GetVelocity();
-        float wheelSpinSpeed       = effectControlParam->CalculateWheelSpinSpeedBySpeed(velo.length() * inputDir.lengthSq(), playerMaxSpeed);
+        float wheelSpinSpeed = effectControlParam->CalculateWheelSpinSpeedBySpeed(currentVelocity.length() * inputDir.lengthSq(), playerMaxSpeed);
         meshTransform.rotate *= Quaternion::RotateAxisAngle(axisX, wheelSpinSpeed);
         meshTransform.UpdateMatrix();
 
@@ -76,7 +76,7 @@ void EffectOnPlayerRun::UpdateEntity(EntityHandle _entity) {
                 // 段々と傾く(1秒に傾く角度が制限されている)
                 float preWheelTiltAngle = effectControlParam->GetPreWheelTiltAngle();
                 float angleDiff         = wheelTiltAngle - preWheelTiltAngle;
-                float maxAngleChange    = effectControlParam->GetWheelTiltAngleMaxAccel() * dletaTime;
+                float maxAngleChange    = effectControlParam->GetWheelTiltAngleMaxAccel() * deltaTime;
                 wheelTiltAngle          = preWheelTiltAngle + std::clamp(angleDiff, -maxAngleChange, maxAngleChange);
 
                 // 傾きを適用
@@ -125,7 +125,7 @@ void EffectOnPlayerRun::UpdateEntity(EntityHandle _entity) {
         auto& backFireCylinders                    = GetComponents<CylinderRenderer>(backFireEntity);
         auto& backFireSparksCylinders              = GetComponents<CylinderRenderer>(backFireSparksEntity);
 
-        float t       = currentSpeed / playerMaxSpeed;
+        float t       = currentXZSpeed / playerMaxSpeed;
         t             = EaseInCubic(t);
         float xzScale = std::lerp(kMinBackFireScaleXZ, kMaxBackFireScaleXZ, t);
         float yScale  = std::lerp(kMinBackFireScaleY, kMaxBackFireScaleY, t);
@@ -159,7 +159,7 @@ void EffectOnPlayerRun::UpdateEntity(EntityHandle _entity) {
         for (auto& speedlineParam : speedlineParams) {
             speedlineParam.Play();
             auto& paramData = speedlineParam.GetParamData();
-            paramData.time -= dletaTime;
+            paramData.time -= deltaTime;
             paramData.intensity = std::lerp(paramData.intensity, intensity, 0.1f);
         }
     }
@@ -173,7 +173,7 @@ void EffectOnPlayerRun::UpdateEntity(EntityHandle _entity) {
         Material* speedWaveMaterial = GetComponent<Material>(speedWaveEntityHandle);
         float newAlpha              = 0.f;
         if (speedWaveMaterial != nullptr) {
-            if (currentSpeed <= kThresholdSpeedForSpeedWave_) {
+            if (currentXZSpeed <= kThresholdSpeedForSpeedWave_) {
                 newAlpha = 0.f;
             } else {
                 newAlpha = 1.f;
@@ -181,7 +181,7 @@ void EffectOnPlayerRun::UpdateEntity(EntityHandle _entity) {
         }
         // alphaを徐々に変化させる
         static constexpr float kAlphaLerpSpeed = 38.f;
-        speedWaveMaterial->color_[A]           = LerpByDeltaTime(speedWaveMaterial->color_[A], newAlpha, dletaTime, kAlphaLerpSpeed);
+        speedWaveMaterial->color_[A]           = LerpByDeltaTime(speedWaveMaterial->color_[A], newAlpha, deltaTime, kAlphaLerpSpeed);
     }
 
     auto& speedWaveCylinders = GetComponents<CylinderRenderer>(speedWaveEntityHandle);

@@ -246,12 +246,8 @@
         "PlayerEffectControlParam": [
             {
                 "Handle": "eba370f8-fa85-4975-83cf-21231ea46835",
-                "maxStreachScale": 2.430000066757202,
-                "maxVelocityForStreach": 14.399999618530273,
                 "maxWheelSpinSpeed": 0.18700000643730164,
-                "minStreachScale": 0.4399999976158142,
                 "rotateOffsetOnWallRun": 0.5699999928474426,
-                "streachEaseType": 1,
                 "trailColorByGearLevel": [
                     [
                         0.1051647737622261,
@@ -260,57 +256,33 @@
                         1.0
                     ],
                     [
-                        0.08431697636842728,
-                        0.44282761216163635,
                         0.6244726181030273,
+                        0.6039603352546692,
+                        0.08431697636842728,
                         1.0
                     ],
                     [
-                        0.05615197494626045,
-                        0.25187987089157104,
                         0.700421929359436,
+                        0.31712207198143005,
+                        0.05615197494626045,
                         1.0
                     ],
                     [
                         0.8185653686523438,
-                        0.7320002317428589,
+                        0.15489915013313293,
                         0.058715660125017166,
                         1.0
                     ],
                     [
+                        0.07991262525320053,
+                        0.03916754573583603,
                         0.8438818454742432,
-                        0.3855002522468567,
-                        0.03916749358177185,
                         1.0
                     ],
                     [
-                        0.8227847814559937,
-                        0.13539497554302216,
-                        0.13539497554302216,
-                        1.0
-                    ],
-                    [
-                        0.6244726181030273,
-                        0.06914126127958298,
-                        0.03952357918024063,
-                        1.0
-                    ],
-                    [
-                        0.6666666269302368,
-                        0.0,
-                        0.0,
-                        1.0
-                    ],
-                    [
-                        0.6540084481239319,
-                        0.08554540574550629,
-                        0.258243203163147,
-                        1.0
-                    ],
-                    [
-                        0.2764798402786255,
-                        0.031191591173410416,
-                        0.30801689624786377,
+                        0.09513881802558899,
+                        0.05118482932448387,
+                        0.48523205518722534,
                         1.0
                     ]
                 ],
@@ -332,12 +304,12 @@
         "PlayerStatus": [
             {
                 "Handle": "9019fc49-7907-42b3-a079-2e17c8536a2b",
-                "baseSpeed": 27.0,
-                "coolTimeAddRateBase": 1.409999966621399,
-                "coolTimeAddRateCommonRate": 0.032999999821186066,
+                "baseSpeed": 19.899999618530273,
+                "coolTimeAddRateBase": 1.8899999856948853,
+                "coolTimeAddRateCommonRate": -0.07999999821186066,
                 "directionInterpolateRate": 37.880001068115234,
                 "fallingGravityRate": 1.0,
-                "gearUpCoolTime": 0.46000000834465027,
+                "gearUpCoolTime": 0.47999998927116394,
                 "jumpChargeRateEaseType": 11,
                 "jumpHoldVelocityEaseType": 4,
                 "maxJumpChargeRate": 61.2599983215332,
@@ -345,15 +317,20 @@
                 "minJumpChargeRate": 29.690000534057617,
                 "minJumpHoldVelocity": 3.4200000762939453,
                 "risingGravityRate": 1.0,
-                "speedUpRateBase": 10.130000114440918,
-                "speedUpRateCommonRate": -0.4000000059604645,
+                "speedUpRateBase": 4.53000020980835,
+                "speedUpRateCommonRate": 0.10000000149011612,
                 "wallJumpOffset": [
-                    0.75,
-                    0.20999999344348907,
-                    1.0399999618530273
+                    0.6299999952316284,
+                    0.2800000011920929,
+                    0.8999999761581421
                 ],
                 "wallRunRate": 1.1100000143051147,
-                "wallRunRumpUpTime": 0.8100000023841858
+                "wallRunRumpUpTime": 0.8100000023841858,
+                "wheelieJumpOffset": [
+                    0.0,
+                    0.75,
+                    0.25999999046325684
+                ]
             }
         ],
         "Rigidbody": [
@@ -364,7 +341,9 @@
                     0.0,
                     0.0
                 ],
-                "mass": 0.11999999731779099,
+                "isUsingLocalDeltaTime": true,
+                "localDeltaTimeName": "Player",
+                "mass": 0.09000000357627869,
                 "maxFallSpeed": 100.0,
                 "maxXZSpeed": 100.0,
                 "useGravity": true,
@@ -427,7 +406,7 @@
                 "translate": [
                     0.0,
                     2.0,
-                    6.0
+                    0.0
                 ]
             }
         ]
@@ -439,10 +418,6 @@
     "Systems": [
         {
             "SystemCategory": 4,
-            "SystemName": "CollisionCheckSystem"
-        },
-        {
-            "SystemCategory": 4,
             "SystemName": "CollisionPushBackSystem"
         },
         {
@@ -452,6 +427,10 @@
         {
             "SystemCategory": 0,
             "SystemName": "TakePlayerToStartPosition"
+        },
+        {
+            "SystemCategory": 4,
+            "SystemName": "CollisionCheckSystem"
         },
         {
             "SystemCategory": 7,
@@ -487,11 +466,11 @@
         },
         {
             "SystemCategory": 2,
-            "SystemName": "SceneTransition"
+            "SystemName": "TransitionPlayerState"
         },
         {
             "SystemCategory": 2,
-            "SystemName": "TransitionPlayerState"
+            "SystemName": "SceneTransition"
         }
     ],
     "isUnique": true

@@ -12,7 +12,7 @@ class MouseInput;
 
 /// ECS
 // component
-class CameraController;
+struct CameraController;
 
 /// <summary>
 /// Cameraの入力処理を行うシステム

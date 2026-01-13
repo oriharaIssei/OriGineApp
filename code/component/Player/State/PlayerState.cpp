@@ -48,15 +48,17 @@ void PlayerState::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityHa
 
 void PlayerState::Finalize() {}
 
-void PlayerState::OnCollisionWall(const Vec3f& _collisionNormal, EntityHandle _wallEntityHandle) {
+void PlayerState::OnCollisionWall(const Vec3f& _collisionNormal, EntityHandle _wallEntityHandle, bool _isWheelie) {
     stateFlag_.CurrentRef().SetFlag(PlayerStateFlag::ON_WALL);
     wallCollisionNormal_ = _collisionNormal;
     wallEntityHandle_    = _wallEntityHandle;
+    isWheelie_           = _isWheelie;
 }
 
 void PlayerState::OffCollisionWall() {
     stateFlag_.CurrentRef().ClearFlag(PlayerStateFlag::ON_WALL);
     wallCollisionNormal_ = {0.f, 0.f, 0.f};
+    isWheelie_           = false;
 }
 
 void PlayerState::OnCollisionGround() {

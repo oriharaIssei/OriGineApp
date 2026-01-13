@@ -30,8 +30,10 @@ void PlayerInputSystem::UpdateEntity(OriGine::EntityHandle _handle) {
         return;
     }
 
+    const float deltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Camera");
+
     InputUpdate(
-        GetMainDeltaTime(),
+        deltaTime,
         keyInput,
         padInput,
         playerInput,
@@ -98,7 +100,8 @@ void PlayerInputSystem::HandleJump(
             input->SetJumpInput(true);
 
             // wallJump 判定
-            input->SetWallJumpInput(state->GetStateEnum() == PlayerMoveState::WALL_RUN);
+            bool hitWall = (state->GetStateEnum() == PlayerMoveState::WALL_RUN || state->GetStateEnum() == PlayerMoveState::WHEELIE_RUN);
+            input->SetWallJumpInput(hitWall);
         }
     }
 }

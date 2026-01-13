@@ -70,8 +70,8 @@ private:
     // currentMaxSpeed は gearLevel に応じて変化する
     float currentMaxSpeed_ = 0.0f; // 現在の最大速度
 
-    OriGine::EaseType jumpHoldVelocityEaseType_ = OriGine::EaseType::Liner;
-    OriGine::EaseType jumpChargeRateEaseType_   = OriGine::EaseType::Liner;
+    OriGine::EaseType jumpHoldVelocityEaseType_ = OriGine::EaseType::Linear;
+    OriGine::EaseType jumpChargeRateEaseType_   = OriGine::EaseType::Linear;
     float minJumpHoldVelocity_                  = 0.0f; // ジャンプのパワー
     float maxJumpHoldVelocity_                  = 0.0f; // ジャンプのパワー
     float minJumpChargeRate_                    = 0.0f; // 落下のパワー
@@ -83,6 +83,8 @@ private:
     float directionInterpolateRate_ = 0.1f;
 
     float invincibilityTime_ = 1.0f; // 障害物に当たったときの無敵時間 /sec
+
+    OriGine::Vec3f wheelieJumpOffset_ = {0.0f, 1.0f, 0.0f};
 
 public:
     float GetDirectionInterpolateRate() const {
@@ -165,5 +167,9 @@ public:
 
     float GetInvincibilityTime() const {
         return invincibilityTime_;
+    }
+
+    const OriGine::Vec3f& GetWheelieJumpOffset() const {
+        return wheelieJumpOffset_;
     }
 };

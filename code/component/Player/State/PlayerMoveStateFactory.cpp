@@ -6,6 +6,7 @@
 #include "PlayerJumpState.h"
 #include "PlayerWallJumpState.h"
 #include "PlayerWallRunState.h"
+#include "PlayerWheelieRunState.h"
 
 std::shared_ptr<IPlayerMoveState> CreatePlayerMoveStateByEnum(PlayerMoveState _state, OriGine::Scene* _scene, OriGine::EntityHandle _playerEntityHandle) {
     switch (_state) {
@@ -26,6 +27,9 @@ std::shared_ptr<IPlayerMoveState> CreatePlayerMoveStateByEnum(PlayerMoveState _s
         break;
     case PlayerMoveState::WALL_JUMP:
         return std::make_shared<PlayerWallJumpState>(_scene, _playerEntityHandle);
+        break;
+    case PlayerMoveState::WHEELIE_RUN:
+        return std::make_shared<PlayerWheelieRunState>(_scene, _playerEntityHandle);
         break;
     default:
         return nullptr;

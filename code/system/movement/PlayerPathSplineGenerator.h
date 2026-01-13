@@ -1,6 +1,9 @@
 #pragma once
 #include "system/ISystem.h"
 
+/// <summary>
+/// プレイヤーの移動経路スプラインを生成するシステム
+/// </summary>
 class PlayerPathSplineGenerator
     : public OriGine::ISystem {
 public:

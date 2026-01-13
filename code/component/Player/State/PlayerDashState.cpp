@@ -18,8 +18,8 @@
 using namespace OriGine;
 
 void PlayerDashState::Initialize() {
-    auto* state        = scene_->GetComponent<PlayerState>(playerEntityHandle_);
-    auto* status       = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
+    auto* state  = scene_->GetComponent<PlayerState>(playerEntityHandle_);
+    auto* status = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
 
     // gearLevel に応じてアニメーション速度と移動速度を設定
     auto* skinningAnim = scene_->GetComponent<SkinningAnimationComponent>(playerEntityHandle_);
@@ -87,15 +87,8 @@ void PlayerDashState::Update(float _deltaTime) {
         float t = cameraOffsetLerpTimer_ / kCameraOffsetLerpTime_;
         t       = std::clamp(t, 0.f, 1.f);
 
-        const OriGine::Vec3f& targetOffset  = cameraController->GetOffsetOnDash();
-        const OriGine::Vec3f& currentOffset = cameraController->GetCurrentOffset();
-        OriGine::Vec3f newOffset            = Lerp<3, float>(currentOffset, targetOffset, EaseOutCubic(t));
-        cameraController->SetCurrentOffset(newOffset);
-
-        const OriGine::Vec3f& targetTargetOffset  = cameraController->GetTargetOffsetOnDash();
-        const OriGine::Vec3f& currentTargetOffset = cameraController->GetCurrentTargetOffset();
-        OriGine::Vec3f newTargetOffset            = Lerp<3, float>(currentTargetOffset, targetTargetOffset, EaseOutCubic(t));
-        cameraController->SetCurrentTargetOffset(newTargetOffset);
+        cameraController->currentOffset       = Lerp<3, float>(cameraController->currentOffset, cameraController->offsetOnDash, EaseOutCubic(t));
+        cameraController->currentTargetOffset = Lerp<3, float>(cameraController->currentTargetOffset, cameraController->targetOffsetOnDash, EaseOutCubic(t));
     }
 }
 
@@ -118,8 +111,8 @@ void PlayerDashState::Finalize() {
 }
 
 PlayerMoveState PlayerDashState::TransitionState() const {
-    auto state         = scene_->GetComponent<PlayerState>(playerEntityHandle_);
-    auto playerInput   = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
+    auto state       = scene_->GetComponent<PlayerState>(playerEntityHandle_);
+    auto playerInput = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
 
     // 入力がない場合はアイドル状態に遷移
     if (playerInput->GetInputDirection().lengthSq() <= 0.f) {

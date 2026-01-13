@@ -33,9 +33,9 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityH
 
     std::string label = "Speed##" + _parentLabel;
     if (ImGui::TreeNode(label.c_str())) {
-        DragGuiCommand("baseSpeed##" + _parentLabel, baseSpeed_);
-        DragGuiCommand("speedUpRateBase##" + _parentLabel, speedUpRateBase_);
-        DragGuiCommand("speedUpRateCommonRate##" + _parentLabel, speedUpRateCommonRate_);
+        DragGuiCommand("baseSpeed##" + _parentLabel, baseSpeed_, 0.01f);
+        DragGuiCommand("speedUpRateBase##" + _parentLabel, speedUpRateBase_, 0.01f);
+        DragGuiCommand("speedUpRateCommonRate##" + _parentLabel, speedUpRateCommonRate_, 0.01f);
 
         label = "SpeedByGearLevel##" + _parentLabel;
         if (ImGui::BeginTable(label.c_str(), 2, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg)) {
@@ -58,9 +58,9 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityH
 
     label = "CoolTime##" + _parentLabel;
     if (ImGui::TreeNode(label.c_str())) {
-        DragGuiCommand("gearUpCoolTime##" + _parentLabel, baseGearupCoolTime_);
-        DragGuiCommand("coolTimeAddRateBase##" + _parentLabel, coolTimeAddRateBase_);
-        DragGuiCommand("coolTimeAddRateCommonRate##" + _parentLabel, coolTimeAddRateCommonRate_);
+        DragGuiCommand("gearUpCoolTime##" + _parentLabel, baseGearupCoolTime_, 0.01f);
+        DragGuiCommand("coolTimeAddRateBase##" + _parentLabel, coolTimeAddRateBase_, 0.01f);
+        DragGuiCommand("coolTimeAddRateCommonRate##" + _parentLabel, coolTimeAddRateCommonRate_, 0.01f);
 
         label = "CoolTimeByGearLevel##" + _parentLabel;
         if (ImGui::BeginTable("CoolTimeByGearLevel", 2, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg)) {
@@ -78,6 +78,8 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityH
         }
         ImGui::TreePop();
     }
+
+    ImGui::Spacing();
 
     DragGuiCommand("invincibilityTime##" + _parentLabel, invincibilityTime_, 0.01f);
 
@@ -117,6 +119,8 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityH
     DragGuiCommand("WallRunRate##" + _parentLabel, wallRunRate_, 0.01f);
     DragGuiCommand("WallRunRampUpTime##" + _parentLabel, wallRunRampUpTime_, 0.01f);
     DragGuiVectorCommand<3, float>("WallJumpOffset##" + _parentLabel, wallJumpOffset_, 0.01f);
+
+    DragGuiVectorCommand<3, float>("WheelieJumpOffset##" + _parentLabel, wheelieJumpOffset_, 0.01f);
 
 #endif // _DEBUG
 }
@@ -159,9 +163,8 @@ void PlayerStatus::Debug(Scene* /*_scene*/, EntityHandle /*_handle*/, const std:
     ImGui::Spacing();
     ImGui::Text("Wall Run Rate             : %.2f", wallRunRate_);
     ImGui::Text("Wall Run Ramp Up Time     : %.2f", wallRunRampUpTime_);
-    ImGui::Text("Wall Jump Offset       : (%.2f, %.2f, %.2f)", wallJumpOffset_[X], wallJumpOffset_[Y], wallJumpOffset_[Z]);
+    ImGui::Text("Wall Jump Offset          : (%.2f, %.2f, %.2f)", wallJumpOffset_[X], wallJumpOffset_[Y], wallJumpOffset_[Z]);
     ImGui::Text("Direction Interpolate Rate: %.2f", directionInterpolateRate_);
-
 #endif
 }
 
@@ -198,23 +201,24 @@ void PlayerStatus::UpdateAccel(float _deltaTime, PlayerInput* _input, Transform*
 
     // 入力方向を3Dベクトルに変換（Zが前、Xが右）
     Vec3f inputDir3D = {inputDirection[X], 0.0f, inputDirection[Y]};
-    inputDir3D                = inputDir3D.normalize();
+    inputDir3D       = inputDir3D.normalize();
 
     // カメラの向きに合わせて入力方向を回転（ローカル→ワールド変換）
     Vec3f moveDirWorld = inputDir3D * MakeMatrix4x4::RotateY(cameraYaw);
-    moveDirWorld                = moveDirWorld.normalize();
+    moveDirWorld       = moveDirWorld.normalize();
     // ワールド方向に変換した入力方向を保存
     _input->SetWorldInputDirection(moveDirWorld);
 
     // 現在の移動方向と補間
-    Vec3f currentDir = _rigidbody->GetVelocity();
-    if (currentDir.lengthSq() <= kEpsilon) {
-        currentDir = axisZ * MakeMatrix4x4::RotateQuaternion(_transform->rotate);
+    Vec3f currentXZDir = _rigidbody->GetVelocity();
+    currentXZDir[Y]    = 0.0f;
+    if (currentXZDir.lengthSq() <= kEpsilon) {
+        currentXZDir = axisZ * MakeMatrix4x4::RotateQuaternion(_transform->rotate);
     }
-    currentDir[Y] = 0.0f;
-    currentDir    = currentDir.normalize();
 
-    moveDirWorld = LerpByDeltaTime(currentDir, moveDirWorld, _deltaTime, directionInterpolateRate_);
+    currentXZDir = currentXZDir.normalize();
+
+    moveDirWorld = LerpByDeltaTime(currentXZDir, moveDirWorld, _deltaTime, directionInterpolateRate_);
     moveDirWorld = moveDirWorld.normalize();
 
     // プレイヤーの回転をカメラ方向に合わせる(更新分だけ回転)
@@ -249,6 +253,8 @@ void to_json(nlohmann::json& j, const PlayerStatus& _playerStatus) {
     j["speedUpRateCommonRate"]     = _playerStatus.speedUpRateCommonRate_;
     j["coolTimeAddRateBase"]       = _playerStatus.coolTimeAddRateBase_;
     j["coolTimeAddRateCommonRate"] = _playerStatus.coolTimeAddRateCommonRate_;
+
+    j["wheelieJumpOffset"] = _playerStatus.wheelieJumpOffset_;
 }
 void from_json(const nlohmann::json& j, PlayerStatus& _playerStatus) {
     j.at("baseSpeed").get_to(_playerStatus.baseSpeed_);
@@ -277,4 +283,8 @@ void from_json(const nlohmann::json& j, PlayerStatus& _playerStatus) {
     j.at("speedUpRateCommonRate").get_to(_playerStatus.speedUpRateCommonRate_);
     j.at("coolTimeAddRateBase").get_to(_playerStatus.coolTimeAddRateBase_);
     j.at("coolTimeAddRateCommonRate").get_to(_playerStatus.coolTimeAddRateCommonRate_);
+
+    if (j.contains("wheelieJumpOffset")) {
+        j.at("wheelieJumpOffset").get_to(_playerStatus.wheelieJumpOffset_);
+    }
 }

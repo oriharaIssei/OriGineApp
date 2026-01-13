@@ -39,7 +39,6 @@ void PlayerJumpState::Update(float _deltaTime) {
     auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
     auto* transform    = scene_->GetComponent<OriGine::Transform>(playerEntityHandle_);
 
-
     CameraTransform* cameraTransform = scene_->GetComponent<CameraTransform>(state->GetCameraEntityHandle());
 
     // 移動処理
@@ -50,7 +49,7 @@ void PlayerJumpState::Update(float _deltaTime) {
 }
 
 void PlayerJumpState::Finalize() {
-    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
+    auto* rigidbody = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
 
     rigidbody->SetUseGravity(true);
     // 蓄えたジャンプ力を適用
@@ -58,10 +57,13 @@ void PlayerJumpState::Finalize() {
 }
 
 PlayerMoveState PlayerJumpState::TransitionState() const {
-    auto state         = scene_->GetComponent<PlayerState>(playerEntityHandle_);
-    auto playerInput   = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
+    auto state       = scene_->GetComponent<PlayerState>(playerEntityHandle_);
+    auto playerInput = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
 
     if (state->IsCollisionWithWall()) {
+        if (state->IsWheelie()) {
+            return PlayerMoveState::WHEELIE_RUN;
+        }
         return PlayerMoveState::WALL_RUN;
     }
 

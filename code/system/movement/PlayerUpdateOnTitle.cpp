@@ -1,8 +1,7 @@
 #include "PlayerUpdateOnTitle.h"
 
 /// engine
-#define DELTA_TIME
-#include "EngineInclude.h"
+#include "Engine.h"
 
 // component
 #include "component/physics/Rigidbody.h"
@@ -55,7 +54,7 @@ void PlayerUpdateOnTitle::UpdateEntity(OriGine::EntityHandle _handle) {
     playerState->OnCollisionGround();
 
     // 更新処理 ほぼ PlayerDashState と同じ
-    float deltaTime = GetMainDeltaTime();
+    float deltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Player");
     auto* transform = GetComponent<OriGine::Transform>(_handle);
     auto* rigidbody = GetComponent<Rigidbody>(_handle);
 

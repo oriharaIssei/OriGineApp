@@ -52,6 +52,9 @@ private:
     PlayerInput* player_;
 };
 
+/// <summary>
+/// キーボード入力デバイス
+/// </summary>
 class KeyboardInputDevice
     : public IPlayerInputDevice {
 public:

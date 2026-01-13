@@ -95,23 +95,26 @@ void PlayerWallRunState::Initialize() {
     speedRumpUpTimer_ = 0.0f;
 
     // ===== カメラ =====
-    
     CameraController* cameraController =
         scene_->GetComponent<CameraController>(state->GetCameraEntityHandle());
 
-    cameraController->SetDestinationAngleXY(Vec2f(0.f, 0.f));
+    cameraController->destinationAngleXY = Vec2f(0.f, 0.f);
 
     // 左壁想定のオフセットを取得
     cameraTargetOffsetOnWallRun_ =
-        cameraController->GetTargetOffsetOnWallRun();
+        cameraController->targetOffsetOnWallRun;
 
     cameraOffsetOnWallRun_ =
-        cameraController->GetOffsetOnWallRun();
+        cameraController->offsetOnWallRun;
 
+    // 左壁想定の回転角度を取得
+    cameraRotateZOnWallRun_ = cameraController->rotateZOnWallRun;
     // ===== 右壁なら左右反転 =====
-    if (isRightWall) {
+    if (!isRightWall) {
         cameraTargetOffsetOnWallRun_[X] *= -1.0f;
         cameraOffsetOnWallRun_[X] *= -1.0f;
+
+        cameraRotateZOnWallRun_ *= -1.f;
     }
 
     cameraAngleLerpTimer_ = 0.0f;
@@ -140,8 +143,7 @@ void PlayerWallRunState::Update(float _deltaTime) {
     float currentSpeedRate = std::lerp(1.f, speedRate_, EaseOutCubic(rumpUpT));
 
     // 速度を更新
-    auto* rigidbody = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
-
+    auto* rigidbody          = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
     OriGine::Vec3f direction = rigidbody->GetVelocity().normalize();
     OriGine::Vec3f newVelo   = direction * (playerSpeed_ * currentSpeedRate);
     rigidbody->SetVelocity(newVelo);
@@ -160,32 +162,30 @@ void PlayerWallRunState::Update(float _deltaTime) {
 
     CameraController* cameraController = scene_->GetComponent<CameraController>(state->GetCameraEntityHandle());
     if (cameraController) {
-        const OriGine::Vec3f& currentOffset = cameraController->GetCurrentOffset();
-        OriGine::Vec3f newOffset            = Lerp<3, float>(currentOffset, cameraOffsetOnWallRun_, EaseOutCubic(t));
-        cameraController->SetCurrentOffset(newOffset);
+        cameraController->currentOffset       = Lerp<3, float>(cameraController->currentOffset, cameraOffsetOnWallRun_, EaseOutCubic(t));
+        cameraController->currentTargetOffset = Lerp<3, float>(cameraController->currentTargetOffset, cameraTargetOffsetOnWallRun_, EaseOutCubic(t));
 
-        const OriGine::Vec3f& currentTargetOffset = cameraController->GetCurrentTargetOffset();
-        OriGine::Vec3f newTargetOffset            = Lerp<3, float>(currentTargetOffset, cameraTargetOffsetOnWallRun_, EaseOutCubic(t));
-        cameraController->SetCurrentTargetOffset(newTargetOffset);
+        cameraController->currentRotateZ = std::lerp(0.f, cameraRotateZOnWallRun_, EaseOutCubic(t));
     }
 }
 
 void PlayerWallRunState::Finalize() {
-    auto* state     = scene_->GetComponent<PlayerState>(playerEntityHandle_);
-    auto* rigidbody = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
-    auto* transform = scene_->GetComponent<OriGine::Transform>(playerEntityHandle_);
-    rigidbody->SetUseGravity(true); // 重力を有効
+    auto* state        = scene_->GetComponent<PlayerState>(playerEntityHandle_);
+    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
+    auto* transform    = scene_->GetComponent<OriGine::Transform>(playerEntityHandle_);
+
+    rigidbody->SetAcceleration(Y, 0.0f);
+    rigidbody->SetUseGravity(true);
 
     transform->translate += wallNormal_ * 0.1f;
 
-    transform->rotate = Quaternion::Identity();
-
     /// TODO: カメラの処理をここに書くべきではない
-    // カメラの傾きを徐々に変える
     CameraController* cameraController = scene_->GetComponent<CameraController>(state->GetCameraEntityHandle());
     if (cameraController) {
-        cameraController->SetCurrentOffset(cameraController->GetOffsetOnDash());
-        cameraController->SetCurrentTargetOffset(cameraController->GetTargetOffsetOnDash());
+        // onDashに差し替える
+        cameraController->currentOffset       = cameraController->offsetOnWallRun;
+        cameraController->currentTargetOffset = cameraController->targetOffsetOnDash;
+        cameraController->currentRotateZ      = 0.f;
     }
 }
 

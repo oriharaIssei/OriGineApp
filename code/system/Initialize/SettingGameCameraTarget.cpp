@@ -24,14 +24,16 @@ void SettingGameCameraTarget::Update() {
     if (!cameraController || !cameraTransform) {
         return;
     }
-    Transform* playerTransform = GetComponent<OriGine::Transform>(playerEntityHandle);
-    cameraController->SetFollowTarget(playerTransform);
+    Transform* playerTransform     = GetComponent<OriGine::Transform>(playerEntityHandle);
+    cameraController->followTarget = playerTransform;
 
     if (playerTransform) {
         playerTransform->UpdateMatrix();
         OriGine::Vec3f playerPos   = playerTransform->GetWorldTranslate();
         cameraTransform->translate = playerPos + kCameraOffset;
         cameraTransform->UpdateMatrix();
+    } else {
+        LOG_ERROR("Player Transform is not found.");
     }
 
     CameraManager::GetInstance()->SetTransform(GetScene(), *cameraTransform);

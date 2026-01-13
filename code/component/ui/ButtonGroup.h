@@ -24,9 +24,8 @@ public:
     void Finalize() override;
 
 private:
-    // ボタンのエンティティIDとボタン番号のマップ
-    // キー: ボタン番号, 値: エンティティID
-    std::unordered_map<int32_t, OriGine::EntityHandle> buttonNumbers_;
+    // ボタンのエンティティID
+    std::vector<OriGine::EntityHandle> buttonEntityHandles_;
     int32_t startButtonNumber_   = 0;
     int32_t currentButtonNumber_ = 0;
 
@@ -46,20 +45,21 @@ public:
     int32_t GetStartButtonNumber() const { return startButtonNumber_; }
     void SetStartButtonNumber(int32_t _buttonNumber) { startButtonNumber_ = _buttonNumber; }
 
-    std::unordered_map<int32_t, OriGine::EntityHandle>& GetButtonNumbers() { return buttonNumbers_; }
+    std::vector<OriGine::EntityHandle>& GetButtonEntityHandles() { return buttonEntityHandles_; }
 
     int32_t GetButtonNumber(OriGine::EntityHandle _entityId) const {
-        for (const auto& pair : buttonNumbers_) {
-            if (pair.second == _entityId) {
-                return pair.first;
+        int32_t index = 0;
+        for (const auto& handle : buttonEntityHandles_) {
+            if (handle == _entityId) {
+                return index;
             }
+            ++index;
         }
         return -1; // 見つからなかった場合のデフォルト値
     }
-    OriGine::EntityHandle GetEntityId(int32_t _buttonNumber) const {
-        auto it = buttonNumbers_.find(_buttonNumber);
-        if (it != buttonNumbers_.end()) {
-            return it->second;
+    OriGine::EntityHandle GetEntityHandle(int32_t _buttonNumber) const {
+        if (_buttonNumber >= 0 && _buttonNumber < buttonEntityHandles_.size()) {
+            return buttonEntityHandles_[_buttonNumber];
         }
         return OriGine::EntityHandle(); // 見つからなかった場合のデフォルト値
     }

@@ -18,7 +18,28 @@ PlayerStateOverrideSystem::PlayerStateOverrideSystem() : ISystem(SystemCategory:
 PlayerStateOverrideSystem::~PlayerStateOverrideSystem() {}
 
 void PlayerStateOverrideSystem::Initialize() {}
-void PlayerStateOverrideSystem::Finalize() {}
+void PlayerStateOverrideSystem::Finalize() {
+    Engine* engine = Engine::GetInstance();
+    engine->GetDeltaTimer()->SetTimeScale("Player", 1.f);
+    engine->GetDeltaTimer()->SetTimeScale("Effect", 1.f);
+}
+
+void PlayerStateOverrideSystem::Update() {
+    isTimeScaled_ = false;
+
+    ISystem::Update();
+
+    if (isTimeScaled_) {
+        constexpr float kTimeRate = 0.1f;
+        Engine* engine            = Engine::GetInstance();
+        engine->GetDeltaTimer()->SetTimeScale("Player", kTimeRate);
+        engine->GetDeltaTimer()->SetTimeScale("Effect", kTimeRate);
+    } else {
+        Engine* engine = Engine::GetInstance();
+        engine->GetDeltaTimer()->SetTimeScale("Player", 1.f);
+        engine->GetDeltaTimer()->SetTimeScale("Effect", 1.f);
+    }
+}
 
 void PlayerStateOverrideSystem::UpdateEntity(EntityHandle _handle) {
     auto pushBackInfo      = GetComponent<CollisionPushBackInfo>(_handle);
@@ -45,9 +66,7 @@ void PlayerStateOverrideSystem::UpdateEntity(EntityHandle _handle) {
 
         // 状態が一致しなければ、時間を止める
         if (!overrideCondition->overrideConditions.HasFlag(playerState->GetStateEnum())) {
-            constexpr float kTimeRate = 0.1f;
-            Engine* engine            = Engine::GetInstance();
-            engine->SetDeltaTime(engine->GetDeltaTime() * kTimeRate);
+            isTimeScaled_ = true;
 
             // 対応した spriteを表示
             if (GetScene()->GetGamepadInput()->IsActive()) {

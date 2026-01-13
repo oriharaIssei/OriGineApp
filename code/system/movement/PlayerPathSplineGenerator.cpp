@@ -1,8 +1,7 @@
 #include "PlayerPathSplineGenerator.h"
 
 /// engine
-#define DELTA_TIME
-#include "EngineInclude.h"
+#include "Engine.h"
 
 // component
 #include "component/physics/Rigidbody.h"
@@ -128,7 +127,8 @@ void PlayerPathSplineGenerator::UpdateEntity(EntityHandle _handle) {
         // 古いポイントの削除処理
         if (!splinePoints->points.empty()) {
             // fadeoutTimer 処理
-            splinePoints->commonSettings.fadeoutTimer += GetMainDeltaTime();
+            float deltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("World");
+            splinePoints->commonSettings.fadeoutTimer += deltaTime;
             if (splinePoints->commonSettings.fadeoutTimer >= splinePoints->commonSettings.fadeoutTime) {
                 splinePoints->commonSettings.fadeoutTimer = 0.0f;
                 splinePoints->points.pop_front();

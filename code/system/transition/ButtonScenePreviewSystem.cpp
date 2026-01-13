@@ -22,21 +22,25 @@ void ButtonScenePreviewSystem::UpdateEntity(OriGine::EntityHandle _handle) {
 
     // 選択されているOriGine::Sceneを描画
     int32_t currentButtonNumber = buttonGroup->GetCurrentButtonNumber();
-    auto& buttons               = buttonGroup->GetButtonNumbers();
-    for (auto& [buttonNumber, entityID] : buttons) {
+    auto& buttonEntityHandles   = buttonGroup->GetButtonEntityHandles();
+    int32_t index               = 0;
+    for (auto& entityHandle : buttonEntityHandles) {
         // buttonのエンティティを取得
-        OriGine::Entity* buttonEnt = GetEntity(entityID);
+        OriGine::Entity* buttonEnt = GetEntity(entityHandle);
         if (!buttonEnt) {
+            ++index;
             continue;
         }
         // ボタンが持つシーンを取得
-        auto subScene = GetComponent<SubScene>(entityID);
+        auto subScene = GetComponent<SubScene>(entityHandle);
 
         // なければスキップ
         if (!subScene) {
+            ++index;
             continue;
         }
 
-        subScene->SetActive(currentButtonNumber == buttonNumber);
+        subScene->SetActive(currentButtonNumber == index);
+        ++index;
     }
 }

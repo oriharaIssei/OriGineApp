@@ -37,9 +37,9 @@
                                 1.0
                             ],
                             "translate": [
-                                671.5352172851563,
-                                283.201171875,
-                                -1340.8193359375
+                                17.190767288208008,
+                                39.84636688232422,
+                                -73.66297912597656
                             ]
                         }
                     }
@@ -2383,8 +2383,8 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            0.5537699460983276,
-                            0.5537699460983276
+                            0.9200639724731445,
+                            0.9202158451080322
                         ],
                         "size": [
                             512.0,
@@ -2443,8 +2443,8 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            0.5533333420753479,
-                            0.5533333420753479
+                            0.9200639724731445,
+                            0.9200639724731445
                         ],
                         "size": [
                             256.0,
@@ -2781,8 +2781,8 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            0.5537699460983276,
-                            0.5537699460983276
+                            0.9200639724731445,
+                            0.9202158451080322
                         ],
                         "size": [
                             512.0,
@@ -2841,8 +2841,8 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            0.5533333420753479,
-                            0.5533333420753479
+                            0.9200639724731445,
+                            0.9200639724731445
                         ],
                         "size": [
                             256.0,
@@ -3152,8 +3152,8 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            0.5537699460983276,
-                            0.5537699460983276
+                            0.9200639724731445,
+                            0.9202158451080322
                         ],
                         "size": [
                             512.0,
@@ -3212,8 +3212,8 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            0.5533333420753479,
-                            0.5533333420753479
+                            0.9200639724731445,
+                            0.9200639724731445
                         ],
                         "size": [
                             256.0,
@@ -3420,74 +3420,8 @@
             "Name": "MagmaRecipe",
             "Systems": [
                 {
-                    "SystemCategory": 2,
-                    "SystemName": "ApplyMouseConditionSystem"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "PointPlacementParams": [
-                    {
-                        "Handle": "80a24972-f6dd-4274-8365-3552a88e97f9",
-                        "collisionRadius": 0.20000000298023224,
-                        "defaultScale": [
-                            218.0,
-                            456.0,
-                            218.0
-                        ],
-                        "densityThreshold": 0.12399999797344208,
-                        "maskThreshold": 0.164000004529953,
-                        "originalEntityDirectory": "./application/resource/entities",
-                        "originalEntityFileName": "Floor",
-                        "placementResolution": 30,
-                        "pointDensityTexturePath": "./application/resource/Texture/bioNoise.png",
-                        "pointMaskTexturePath": "./application/resource/Texture/Turbulence_11_-_256x256.png",
-                        "pointVolumeTexturePath": "./application/resource/Texture/waveNoise.png",
-                        "sampleCount": 6,
-                        "seed": 6,
-                        "volumeThreshold": 0.03799999877810478,
-                        "worldMaxXZ": [
-                            1000.0,
-                            1000.0
-                        ],
-                        "worldMinXZ": [
-                            -1000.0,
-                            -1000.0
-                        ]
-                    }
-                ],
-                "Transform": [
-                    {
-                        "Handle": "a42fc6ae-fe53-43f9-bac7-5daa237304e9",
-                        "rotate": [
-                            0.0,
-                            0.0,
-                            0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "translate": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ]
-            },
-            "Handle": {
-                "uuid": "b06d6c87-8b4d-450d-81f4-83b092d7eb40"
-            },
-            "Name": "ProceduralObjectsMaker",
-            "Systems": [
-                {
                     "SystemCategory": 0,
-                    "SystemName": "PlacementEntityByProcedural"
+                    "SystemName": "ResolveEntityReferences"
                 }
             ],
             "isUnique": false

@@ -131,7 +131,9 @@ void EffectOnPlayerGearup::UpdateEntity(OriGine::EntityHandle _handle) {
 void EffectOnPlayerGearup::UpdateShockWaveRing(OriGine::EntityHandle _handle, OriGine::Transform* _playerTransform) {
     DistortionEffectParam* distortionEffectParam = GetComponent<DistortionEffectParam>(_handle);
 
-    auto& shockWaveRings = distortionEffectParam->GetDistortionObjects();
+    auto& shockWaveRings  = distortionEffectParam->GetDistortionObjects();
+    const float deltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Player");
+
     // 更新時 以外
     if (shockWaveState_.playState.Current()) { /// shockWave Play
 
@@ -159,7 +161,7 @@ void EffectOnPlayerGearup::UpdateShockWaveRing(OriGine::EntityHandle _handle, Or
             shockWaveState_.currentTime = 0.f; // 時間をリセット
         }
 
-        shockWaveState_.currentTime += GetMainDeltaTime();
+        shockWaveState_.currentTime += deltaTime;
         float t = shockWaveState_.currentTime / shockWaveState_.maxTime;
 
         if (t >= 1.f) {

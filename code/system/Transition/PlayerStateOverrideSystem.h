@@ -13,5 +13,9 @@ public:
     void Finalize() override;
 
 protected:
+    void Update() override;
     void UpdateEntity(OriGine::EntityHandle _handle) override;
+
+private:
+    bool isTimeScaled_ = false;
 };
