@@ -23,8 +23,8 @@ constexpr float kPlayerHeight = 2.0f;
 /// </summary>
 class PlayerStatus
     : public OriGine::IComponent {
-    friend void to_json(nlohmann::json& j, const PlayerStatus& _playerStatus);
-    friend void from_json(const nlohmann::json& j, PlayerStatus& _playerStatus);
+    friend void to_json(nlohmann::json& _j, const PlayerStatus& _playerStatus);
+    friend void from_json(const nlohmann::json& _j, PlayerStatus& _playerStatus);
 
 public:
     PlayerStatus();
@@ -46,7 +46,21 @@ public:
     /// </summary>
     float CalculateCoolTimeByGearLevel(int32_t _gearLevel) const;
 
-    void UpdateAccel(float _deltaTime, PlayerInput* _input, OriGine::Transform* _transform, OriGine::Rigidbody* _rigidbody, const OriGine::Quaternion& _cameraRotation);
+    /// <summary>
+    /// 加速度の更新
+    /// </summary>
+    /// <param name="_deltaTime"></param>
+    /// <param name="_newDirection"></param>
+    /// <param name="_rigidbody"></param>
+    void UpdateAccel(float _deltaTime, const OriGine::Vec3f& _newDirection, OriGine::Rigidbody* _rigidbody);
+
+    /// <summary>
+    /// 現在の移動方向を滑らかにする
+    /// </summary>
+    /// <param name="_rigidbody"></param>
+    /// <param name="_transform"></param>
+    /// <returns></returns>
+    OriGine::Vec3f ComputeSmoothedDirection(const OriGine::Vec3f& _targetDir, const OriGine::Rigidbody* _rigidbody, const OriGine::Transform* _transform, float _deltaTime) const;
 
 private:
     /// ==========================================
@@ -72,10 +86,10 @@ private:
 
     OriGine::EaseType jumpHoldVelocityEaseType_ = OriGine::EaseType::Linear;
     OriGine::EaseType jumpChargeRateEaseType_   = OriGine::EaseType::Linear;
-    float minJumpHoldVelocity_                  = 0.0f; // ジャンプのパワー
-    float maxJumpHoldVelocity_                  = 0.0f; // ジャンプのパワー
-    float minJumpChargeRate_                    = 0.0f; // 落下のパワー
-    float maxJumpChargeRate_                    = 0.0f; // 落下のパワー
+    float minJumpHoldVelocity_                  = 0.0f; // 最低ジャンプのパワー
+    float maxJumpHoldVelocity_                  = 0.0f; // 最大ジャンプのパワー
+    float minJumpChargeRate_                    = 0.0f; // 最低落下のパワー
+    float maxJumpChargeRate_                    = 0.0f; // 最大落下のパワー
 
     float risingGravityRate_  = 1.0f; // 上昇時の重力倍率
     float fallingGravityRate_ = 1.0f; // 下降時の重力倍率
@@ -85,6 +99,15 @@ private:
     float invincibilityTime_ = 1.0f; // 障害物に当たったときの無敵時間 /sec
 
     OriGine::Vec3f wheelieJumpOffset_ = {0.0f, 1.0f, 0.0f};
+
+    float upwardForceOnWallRun_ = 1.0f; // 壁走り中の上向きの力
+
+    float defaultMass_   = 1.0f; // 通常時の質量
+    float massOnWallRun_ = 0.3f; // 壁走り中の質量
+
+    float wallRunInterval_        = 0.2f; // 壁走り&ウィリーが可能になるまでのインターバル時間
+    float currentWallRunInterval_ = 0.0f; // 現在の壁走りインターバル時間
+    float currentWheelieInterval_ = 0.0f; // 現在のウィリーインターバル時間
 
 public:
     float GetDirectionInterpolateRate() const {
@@ -171,5 +194,59 @@ public:
 
     const OriGine::Vec3f& GetWheelieJumpOffset() const {
         return wheelieJumpOffset_;
+    }
+
+    float GetUpwardForceOnWallRun() const {
+        return upwardForceOnWallRun_;
+    }
+
+    float GetDefaultMass() const {
+        return defaultMass_;
+    }
+    float GetMassOnWallRun() const {
+        return massOnWallRun_;
+    }
+
+    /// <summary>
+    /// 壁走りが可能かどうか
+    /// </summary>
+    /// <returns></returns>
+    bool CanWallRun() const {
+        return currentWallRunInterval_ <= 0.0f;
+    }
+    /// <summary>
+    /// ウィリーが可能かどうか
+    /// </summary>
+    bool CanWheelie() const {
+        return currentWheelieInterval_ <= 0.0f;
+    }
+
+    /// <summary>
+    /// 壁走りインターバル時間の更新
+    /// </summary>
+    /// <param name="_deltaTime"></param>
+    void UpdateWallRunInterval(float _deltaTime) {
+        currentWallRunInterval_ -= _deltaTime;
+        currentWallRunInterval_ = (std::max)(currentWallRunInterval_, 0.f);
+    }
+    /// <summary>
+    /// 壁走りインターバル時間のリセット
+    /// </summary>
+    void ResetWallRunInterval() {
+        currentWallRunInterval_ = wallRunInterval_;
+    }
+    /// <summary>
+    /// ウィリーインターバル時間の更新
+    /// </summary>
+    /// <param name="_deltaTime"></param>
+    void UpdateWheelieInterval(float _deltaTime) {
+        currentWheelieInterval_ -= _deltaTime;
+        currentWheelieInterval_ = (std::max)(currentWheelieInterval_, 0.f);
+    }
+    /// <summary>
+    /// ウィリーインターバル時間のリセット
+    /// </summary>
+    void ResetWheelieInterval() {
+        currentWheelieInterval_ = wallRunInterval_;
     }
 };

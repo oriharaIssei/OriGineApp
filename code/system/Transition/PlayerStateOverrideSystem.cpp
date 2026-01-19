@@ -33,10 +33,12 @@ void PlayerStateOverrideSystem::Update() {
         constexpr float kTimeRate = 0.1f;
         Engine* engine            = Engine::GetInstance();
         engine->GetDeltaTimer()->SetTimeScale("Player", kTimeRate);
+        engine->GetDeltaTimer()->SetTimeScale("Camera", kTimeRate);
         engine->GetDeltaTimer()->SetTimeScale("Effect", kTimeRate);
     } else {
         Engine* engine = Engine::GetInstance();
         engine->GetDeltaTimer()->SetTimeScale("Player", 1.f);
+        engine->GetDeltaTimer()->SetTimeScale("Camera", 1.f);
         engine->GetDeltaTimer()->SetTimeScale("Effect", 1.f);
     }
 }

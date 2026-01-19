@@ -35,6 +35,7 @@ void PlayerDashState::Initialize() {
 }
 
 void PlayerDashState::Update(float _deltaTime) {
+
     auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
     auto* state        = scene_->GetComponent<PlayerState>(playerEntityHandle_);
     auto* playerInput  = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
@@ -65,7 +66,10 @@ void PlayerDashState::Update(float _deltaTime) {
 
     // 速度更新
     CameraTransform* cameraTransform = scene_->GetComponent<CameraTransform>(state->GetCameraEntityHandle());
-    playerStatus->UpdateAccel(_deltaTime, playerInput, transform, rigidbody, cameraTransform->rotate);
+    Vec3f worldInputDir              = playerInput->CalculateWorldInputDirection(cameraTransform->rotate);
+    Vec3f forwardDirection           = playerStatus->ComputeSmoothedDirection(worldInputDir, rigidbody, transform, _deltaTime);
+    transform->rotate                = Quaternion::LookAt(forwardDirection, axisY);
+    playerStatus->UpdateAccel(_deltaTime, forwardDirection, rigidbody);
 
     // 落下時間を更新
     if (state->IsOnGround()) {

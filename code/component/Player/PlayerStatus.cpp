@@ -26,6 +26,9 @@ PlayerStatus::~PlayerStatus() {}
 void PlayerStatus::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {
     gearUpCoolTime_  = baseGearupCoolTime_;
     currentMaxSpeed_ = baseSpeed_;
+
+    currentWallRunInterval_ = 0.f;
+    currentWheelieInterval_ = 0.f;
 }
 
 void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityHandle _owner, [[maybe_unused]] const std::string& _parentLabel) {
@@ -82,6 +85,7 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityH
     ImGui::Spacing();
 
     DragGuiCommand("invincibilityTime##" + _parentLabel, invincibilityTime_, 0.01f);
+    DragGuiCommand("wallRunInterval##" + _parentLabel, wallRunInterval_, 0.01f);
 
     ImGui::Spacing();
 
@@ -121,6 +125,12 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityH
     DragGuiVectorCommand<3, float>("WallJumpOffset##" + _parentLabel, wallJumpOffset_, 0.01f);
 
     DragGuiVectorCommand<3, float>("WheelieJumpOffset##" + _parentLabel, wheelieJumpOffset_, 0.01f);
+    DragGuiCommand("upwardForceOnWallRun##" + _parentLabel, upwardForceOnWallRun_, 0.01f);
+
+    ImGui::Spacing();
+
+    DragGuiCommand("Default Mass##" + _parentLabel, defaultMass_, 0.01f);
+    DragGuiCommand("Mass On Wall Run##" + _parentLabel, massOnWallRun_, 0.01f);
 
 #endif // _DEBUG
 }
@@ -184,107 +194,109 @@ float PlayerStatus::CalculateCoolTimeByGearLevel(int32_t _gearLevel) const {
         _gearLevel);
 }
 
-void PlayerStatus::UpdateAccel(float _deltaTime, PlayerInput* _input, Transform* _transform, Rigidbody* _rigidbody, const Quaternion& _cameraRotation) {
+void PlayerStatus::UpdateAccel(float /*_deltaTime*/, const Vec3f& _newDirection, Rigidbody* _rigidbody) {
     constexpr float kPlayerAccelRate = 8.0f;
 
-    // 入力方向を取得
-    Vec2f inputDirection = _input->GetInputDirection();
-
-    if (inputDirection.lengthSq() <= 0.0f) {
-        _input->SetWorldInputDirection(Vec3f());
-        return;
-    }
-
-    // カメラのヨー（Y軸回転角）を取得
-    // --- 安定したカメラYaw抽出 ---
-    float cameraYaw = _cameraRotation.ToYaw();
-
-    // 入力方向を3Dベクトルに変換（Zが前、Xが右）
-    Vec3f inputDir3D = {inputDirection[X], 0.0f, inputDirection[Y]};
-    inputDir3D       = inputDir3D.normalize();
-
-    // カメラの向きに合わせて入力方向を回転（ローカル→ワールド変換）
-    Vec3f moveDirWorld = inputDir3D * MakeMatrix4x4::RotateY(cameraYaw);
-    moveDirWorld       = moveDirWorld.normalize();
-    // ワールド方向に変換した入力方向を保存
-    _input->SetWorldInputDirection(moveDirWorld);
-
-    // 現在の移動方向と補間
-    Vec3f currentXZDir = _rigidbody->GetVelocity();
-    currentXZDir[Y]    = 0.0f;
-    if (currentXZDir.lengthSq() <= kEpsilon) {
-        currentXZDir = axisZ * MakeMatrix4x4::RotateQuaternion(_transform->rotate);
-    }
-
-    currentXZDir = currentXZDir.normalize();
-
-    moveDirWorld = LerpByDeltaTime(currentXZDir, moveDirWorld, _deltaTime, directionInterpolateRate_);
-    moveDirWorld = moveDirWorld.normalize();
-
-    // プレイヤーの回転をカメラ方向に合わせる(更新分だけ回転)
-    _transform->rotate = Quaternion::LookAt(moveDirWorld, axisY);
-
     // 移動加速度を設定
-    Vec3f accel = moveDirWorld * (currentMaxSpeed_ * kPlayerAccelRate);
+    Vec3f accel = _newDirection * (currentMaxSpeed_ * kPlayerAccelRate);
     _rigidbody->SetAcceleration(X, accel[X]);
     _rigidbody->SetAcceleration(Z, accel[Z]);
 }
 
-void to_json(nlohmann::json& j, const PlayerStatus& _playerStatus) {
-    j["baseSpeed"]         = _playerStatus.baseSpeed_;
-    j["wallRunRate"]       = _playerStatus.wallRunRate_;
-    j["wallRunRumpUpTime"] = _playerStatus.wallRunRampUpTime_;
-    j["wallJumpOffset"]    = _playerStatus.wallJumpOffset_;
+Vec3f PlayerStatus::ComputeSmoothedDirection(const Vec3f& _targetDir, const Rigidbody* _rigidbody, const Transform* _transform, float _deltaTime) const {
+    // 現在のXZ平面の速度を取得
+    Vec3f currentDir = _rigidbody->GetVelocity();
+    currentDir[Y]    = 0.0f;
 
-    j["jumpHoldVelocityEaseType"] = static_cast<int>(_playerStatus.jumpHoldVelocityEaseType_);
-    j["minJumpHoldVelocity"]      = _playerStatus.minJumpHoldVelocity_;
-    j["maxJumpHoldVelocity"]      = _playerStatus.maxJumpHoldVelocity_;
-    j["jumpChargeRateEaseType"]   = static_cast<int>(_playerStatus.jumpChargeRateEaseType_);
-    j["minJumpChargeRate"]        = _playerStatus.minJumpChargeRate_;
-    j["maxJumpChargeRate"]        = _playerStatus.maxJumpChargeRate_;
+    // 停止している場合は、現在の体の向きを基準にする
+    if (currentDir.lengthSq() <= kEpsilon) {
+        currentDir = axisZ * MakeMatrix4x4::RotateQuaternion(_transform->rotate);
+    }
+    currentDir = currentDir.normalize();
 
-    j["risingGravityRate"]  = _playerStatus.risingGravityRate_;
-    j["fallingGravityRate"] = _playerStatus.fallingGravityRate_;
-
-    j["gearUpCoolTime"]           = _playerStatus.baseGearupCoolTime_;
-    j["directionInterpolateRate"] = _playerStatus.directionInterpolateRate_;
-
-    j["speedUpRateBase"]           = _playerStatus.speedUpRateBase_;
-    j["speedUpRateCommonRate"]     = _playerStatus.speedUpRateCommonRate_;
-    j["coolTimeAddRateBase"]       = _playerStatus.coolTimeAddRateBase_;
-    j["coolTimeAddRateCommonRate"] = _playerStatus.coolTimeAddRateCommonRate_;
-
-    j["wheelieJumpOffset"] = _playerStatus.wheelieJumpOffset_;
+    // 補間計算
+    Vec3f resultDir = LerpByDeltaTime(currentDir, _targetDir, _deltaTime, directionInterpolateRate_);
+    return resultDir.normalize();
 }
-void from_json(const nlohmann::json& j, PlayerStatus& _playerStatus) {
-    j.at("baseSpeed").get_to(_playerStatus.baseSpeed_);
+
+void to_json(nlohmann::json& _j, const PlayerStatus& _playerStatus) {
+    _j["baseSpeed"] = _playerStatus.baseSpeed_;
+
+    _j["wallRunRate"]       = _playerStatus.wallRunRate_;
+    _j["wallRunRumpUpTime"] = _playerStatus.wallRunRampUpTime_;
+    _j["wallJumpOffset"]    = _playerStatus.wallJumpOffset_;
+
+    _j["jumpHoldVelocityEaseType"] = static_cast<int>(_playerStatus.jumpHoldVelocityEaseType_);
+    _j["minJumpHoldVelocity"]      = _playerStatus.minJumpHoldVelocity_;
+    _j["maxJumpHoldVelocity"]      = _playerStatus.maxJumpHoldVelocity_;
+    _j["jumpChargeRateEaseType"]   = static_cast<int>(_playerStatus.jumpChargeRateEaseType_);
+    _j["minJumpChargeRate"]        = _playerStatus.minJumpChargeRate_;
+    _j["maxJumpChargeRate"]        = _playerStatus.maxJumpChargeRate_;
+
+    _j["risingGravityRate"]  = _playerStatus.risingGravityRate_;
+    _j["fallingGravityRate"] = _playerStatus.fallingGravityRate_;
+
+    _j["gearUpCoolTime"]           = _playerStatus.baseGearupCoolTime_;
+    _j["directionInterpolateRate"] = _playerStatus.directionInterpolateRate_;
+
+    _j["speedUpRateBase"]           = _playerStatus.speedUpRateBase_;
+    _j["speedUpRateCommonRate"]     = _playerStatus.speedUpRateCommonRate_;
+    _j["coolTimeAddRateBase"]       = _playerStatus.coolTimeAddRateBase_;
+    _j["coolTimeAddRateCommonRate"] = _playerStatus.coolTimeAddRateCommonRate_;
+
+    _j["wheelieJumpOffset"] = _playerStatus.wheelieJumpOffset_;
+
+    _j["upwardForceOnWallRun"] = _playerStatus.upwardForceOnWallRun_;
+
+    _j["defaultMass"]   = _playerStatus.defaultMass_;
+    _j["massOnWallRun"] = _playerStatus.massOnWallRun_;
+
+    _j["wallRunInterval"] = _playerStatus.wallRunInterval_;
+}
+void from_json(const nlohmann::json& _j, PlayerStatus& _playerStatus) {
+    _j.at("baseSpeed").get_to(_playerStatus.baseSpeed_);
 
     int easetype = 0;
-    j.at("jumpHoldVelocityEaseType").get_to(easetype);
+    _j.at("jumpHoldVelocityEaseType").get_to(easetype);
     _playerStatus.jumpHoldVelocityEaseType_ = static_cast<EaseType>(easetype);
-    j.at("minJumpHoldVelocity").get_to(_playerStatus.minJumpHoldVelocity_);
-    j.at("maxJumpHoldVelocity").get_to(_playerStatus.maxJumpHoldVelocity_);
+    _j.at("minJumpHoldVelocity").get_to(_playerStatus.minJumpHoldVelocity_);
+    _j.at("maxJumpHoldVelocity").get_to(_playerStatus.maxJumpHoldVelocity_);
 
-    j.at("jumpChargeRateEaseType").get_to(easetype);
+    _j.at("jumpChargeRateEaseType").get_to(easetype);
     _playerStatus.jumpChargeRateEaseType_ = static_cast<EaseType>(easetype);
-    j.at("minJumpChargeRate").get_to(_playerStatus.minJumpChargeRate_);
-    j.at("maxJumpChargeRate").get_to(_playerStatus.maxJumpChargeRate_);
+    _j.at("minJumpChargeRate").get_to(_playerStatus.minJumpChargeRate_);
+    _j.at("maxJumpChargeRate").get_to(_playerStatus.maxJumpChargeRate_);
 
-    j.at("risingGravityRate").get_to(_playerStatus.risingGravityRate_);
-    j.at("fallingGravityRate").get_to(_playerStatus.fallingGravityRate_);
+    _j.at("risingGravityRate").get_to(_playerStatus.risingGravityRate_);
+    _j.at("fallingGravityRate").get_to(_playerStatus.fallingGravityRate_);
 
-    j.at("wallRunRate").get_to(_playerStatus.wallRunRate_);
-    j.at("wallRunRumpUpTime").get_to(_playerStatus.wallRunRampUpTime_);
-    j.at("wallJumpOffset").get_to(_playerStatus.wallJumpOffset_);
-    j.at("gearUpCoolTime").get_to(_playerStatus.baseGearupCoolTime_);
-    j.at("directionInterpolateRate").get_to(_playerStatus.directionInterpolateRate_);
+    _j.at("wallRunRate").get_to(_playerStatus.wallRunRate_);
+    _j.at("wallRunRumpUpTime").get_to(_playerStatus.wallRunRampUpTime_);
+    _j.at("wallJumpOffset").get_to(_playerStatus.wallJumpOffset_);
+    _j.at("gearUpCoolTime").get_to(_playerStatus.baseGearupCoolTime_);
+    _j.at("directionInterpolateRate").get_to(_playerStatus.directionInterpolateRate_);
 
-    j.at("speedUpRateBase").get_to(_playerStatus.speedUpRateBase_);
-    j.at("speedUpRateCommonRate").get_to(_playerStatus.speedUpRateCommonRate_);
-    j.at("coolTimeAddRateBase").get_to(_playerStatus.coolTimeAddRateBase_);
-    j.at("coolTimeAddRateCommonRate").get_to(_playerStatus.coolTimeAddRateCommonRate_);
+    _j.at("speedUpRateBase").get_to(_playerStatus.speedUpRateBase_);
+    _j.at("speedUpRateCommonRate").get_to(_playerStatus.speedUpRateCommonRate_);
+    _j.at("coolTimeAddRateBase").get_to(_playerStatus.coolTimeAddRateBase_);
+    _j.at("coolTimeAddRateCommonRate").get_to(_playerStatus.coolTimeAddRateCommonRate_);
 
-    if (j.contains("wheelieJumpOffset")) {
-        j.at("wheelieJumpOffset").get_to(_playerStatus.wheelieJumpOffset_);
+    if (_j.contains("wheelieJumpOffset")) {
+        _j.at("wheelieJumpOffset").get_to(_playerStatus.wheelieJumpOffset_);
+    }
+
+    if (_j.contains("upwardForceOnWallRun")) {
+        _j.at("upwardForceOnWallRun").get_to(_playerStatus.upwardForceOnWallRun_);
+    }
+
+    if (_j.contains("defaultMass")) {
+        _j.at("defaultMass").get_to(_playerStatus.defaultMass_);
+    }
+    if (_j.contains("massOnWallRun")) {
+        _j.at("massOnWallRun").get_to(_playerStatus.massOnWallRun_);
+    }
+
+    if (_j.contains("wallRunInterval")) {
+        _j.at("wallRunInterval").get_to(_playerStatus.wallRunInterval_);
     }
 }

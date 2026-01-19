@@ -38,7 +38,8 @@
 using namespace OriGine;
 
 void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
-    PlayerState* state = GetComponent<PlayerState>(_handle);
+    PlayerState* state   = GetComponent<PlayerState>(_handle);
+    PlayerStatus* status = GetComponent<PlayerStatus>(_handle);
 
     const float deltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Camera");
 
@@ -120,6 +121,9 @@ void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
 
     state->GetStateFlagRef().Set(newFlag);
 
+    status->UpdateWallRunInterval(deltaTime);
+    status->UpdateWheelieInterval(deltaTime);
+
     ///! Penalty専用のエフェクトシステムを作る
     // ペナルティ時間 更新
     state->SubtractPenaltyTime(deltaTime);
@@ -128,11 +132,9 @@ void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
         constexpr float kAmplitude = 13.f;
         state->SubtractInvincibilityTime(deltaTime);
 
-        PlayerStatus* playerStatus = GetComponent<PlayerStatus>(_handle);
-
         // animation 更新
         Material* material = GetComponent<Material>(_handle);
-        float t            = currentInvisibleTime / playerStatus->GetInvincibilityTime();
+        float t            = currentInvisibleTime / status->GetInvincibilityTime();
         // 0~1 の間で 点滅させる
         material->color_[A] = std::clamp(EaseInSine((sinf(t * kAmplitude) * 0.5f) + 0.5f), 0.f, 1.f);
     } else {

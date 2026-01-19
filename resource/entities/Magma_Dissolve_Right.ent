@@ -8,12 +8,12 @@
                     0.6499999761581421
                 ],
                 "distortionStrength": [
-                    4.570000171661377,
-                    2.390000104904175
+                    0.09000000357627869,
+                    -0.17000000178813934
                 ],
                 "isActive": true,
                 "materialIndex": 0,
-                "textuerPath": "./application/resource/Texture/waveNoise.png",
+                "texturePath": "./application/resource/Texture/Voronoi 3 - 256x256.png",
                 "use3dObjectList": false
             }
         ],
@@ -39,7 +39,7 @@
                     0.7300000190734863
                 ],
                 "uvTranslate": [
-                    -0.6520044803619385,
+                    -0.09205339848995209,
                     0.0
                 ]
             }

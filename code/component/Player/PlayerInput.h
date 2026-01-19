@@ -10,6 +10,7 @@
 #include "input/InputManager.h"
 
 /// math
+#include "math/Quaternion.h"
 #include "math/Vector2.h"
 #include "math/Vector3.h"
 
@@ -32,6 +33,8 @@ public:
     bool IsInputDisabled() const {
         return inputDisableTimer_ < inputDisableDuration_;
     }
+
+    OriGine::Vec3f CalculateWorldInputDirection(const OriGine::Quaternion& _cameraRotation) const;
 
 private:
     OriGine::Vec2f inputDirection_ = {0.0f, 0.0f};

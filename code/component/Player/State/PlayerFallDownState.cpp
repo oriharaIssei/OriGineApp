@@ -27,7 +27,10 @@ void PlayerFallDownState::Update(float _deltaTime) {
 
     // 速度更新
     CameraTransform* cameraTransform = scene_->GetComponent<CameraTransform>(playerState->GetCameraEntityHandle());
-    playerStatus->UpdateAccel(_deltaTime, playerInput, transform, rigidbody, cameraTransform->rotate);
+    Vec3f worldInputDir              = playerInput->CalculateWorldInputDirection(cameraTransform->rotate);
+    Vec3f forwardDirection           = playerStatus->ComputeSmoothedDirection(worldInputDir, rigidbody, transform, _deltaTime);
+    transform->rotate                = Quaternion::LookAt(forwardDirection, axisY);
+    playerStatus->UpdateAccel(_deltaTime, forwardDirection, rigidbody);
 
     ///! TODO : ここにカメラの処理を書くべきではない
     CameraController* cameraController = scene_->GetComponent<CameraController>(playerState->GetCameraEntityHandle());

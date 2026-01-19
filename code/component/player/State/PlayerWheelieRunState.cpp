@@ -56,8 +56,12 @@ void PlayerWheelieRunState::Initialize() {
     separationLeftTime_ = separationGraceTime_;
 }
 void PlayerWheelieRunState::Finalize() {
-    auto* transform = scene_->GetComponent<OriGine::Transform>(playerEntityHandle_);
+    auto* transform    = scene_->GetComponent<OriGine::Transform>(playerEntityHandle_);
+    auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
+
     transform->translate += wallNormal_ * 0.1f;
+
+    playerStatus->ResetWheelieInterval();
 }
 
 void PlayerWheelieRunState::Update(float _deltaTime) {

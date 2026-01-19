@@ -78,7 +78,11 @@ void PlayerUpdateOnTitle::UpdateEntity(OriGine::EntityHandle _handle) {
     }
 
     // 速度更新
-    playerStatus->UpdateAccel(deltaTime, playerInput, transform, rigidbody, Quaternion::Identity());
+    Vec3f worldInputDir    = playerInput->CalculateWorldInputDirection(Quaternion::Identity());
+    Vec3f forwardDirection = playerStatus->ComputeSmoothedDirection(worldInputDir, rigidbody, transform, deltaTime);
+    transform->rotate      = Quaternion::LookAt(forwardDirection, axisY);
+    playerStatus->UpdateAccel(deltaTime, forwardDirection, rigidbody);
+
     if (playerInput->GetInputDirection().length() >= kEpsilon) {
         OriGine::Vec3f newVelo = rigidbody->GetVelocity() + rigidbody->GetAcceleration() * deltaTime;
         if (newVelo.lengthSq() >= rigidbody->GetMaxXZSpeed()) {

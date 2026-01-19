@@ -3,6 +3,7 @@
 /// component
 #include "component/animation/SkinningAnimationComponent.h"
 #include "component/physics/Rigidbody.h"
+#include "component/renderer/MeshRenderer.h"
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
 
@@ -22,8 +23,13 @@
 
 using namespace OriGine;
 
+namespace {
+constexpr float kOffsetRate = 0.1f;
+}
+
 void PlayerWallRunState::Initialize() {
     constexpr int32_t thresholdGearLevel = 3;
+    constexpr float kMeshOffsetRate      = 0.26f;
 
     auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
     auto* state        = scene_->GetComponent<PlayerState>(playerEntityHandle_);
@@ -72,7 +78,9 @@ void PlayerWallRunState::Initialize() {
 
     // ===== 移動 =====
     rigidbody->SetVelocity(playerSpeed_ * direction);
-    rigidbody->SetUseGravity(false);
+    rigidbody->SetVelocity(Y, playerStatus->GetUpwardForceOnWallRun());
+
+    rigidbody->SetMass(playerStatus->GetMassOnWallRun());
 
     // 壁との分離猶予
     separationLeftTime_ = separationGraceTime_;
@@ -118,6 +126,13 @@ void PlayerWallRunState::Initialize() {
     }
 
     cameraAngleLerpTimer_ = 0.0f;
+
+    auto* modelRenderer = scene_->GetComponent<ModelMeshRenderer>(playerEntityHandle_);
+    if (modelRenderer) {
+        for (auto& mesh : modelRenderer->GetAllTransformBuffRef()) {
+            mesh.openData_.translate -= wallNormal_ * kMeshOffsetRate;
+        }
+    }
 }
 
 void PlayerWallRunState::Update(float _deltaTime) {
@@ -125,7 +140,7 @@ void PlayerWallRunState::Update(float _deltaTime) {
     auto* transform = scene_->GetComponent<OriGine::Transform>(playerEntityHandle_);
 
     // 衝突が途切れないようにめり込ませる
-    transform->translate -= wallNormal_ * 0.1f;
+    transform->translate -= wallNormal_ * kOffsetRate;
     transform->UpdateMatrix();
 
     // 壁との衝突判定の残り時間を更新
@@ -171,13 +186,14 @@ void PlayerWallRunState::Update(float _deltaTime) {
 
 void PlayerWallRunState::Finalize() {
     auto* state        = scene_->GetComponent<PlayerState>(playerEntityHandle_);
+    auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
     auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
     auto* transform    = scene_->GetComponent<OriGine::Transform>(playerEntityHandle_);
 
-    rigidbody->SetAcceleration(Y, 0.0f);
-    rigidbody->SetUseGravity(true);
+    rigidbody->SetMass(playerStatus->GetDefaultMass());
+    playerStatus->ResetWallRunInterval();
 
-    transform->translate += wallNormal_ * 0.1f;
+    transform->translate += wallNormal_ * kOffsetRate;
 
     /// TODO: カメラの処理をここに書くべきではない
     CameraController* cameraController = scene_->GetComponent<CameraController>(state->GetCameraEntityHandle());
@@ -186,6 +202,13 @@ void PlayerWallRunState::Finalize() {
         cameraController->currentOffset       = cameraController->offsetOnWallRun;
         cameraController->currentTargetOffset = cameraController->targetOffsetOnDash;
         cameraController->currentRotateZ      = 0.f;
+    }
+
+    auto* modelRenderer = scene_->GetComponent<ModelMeshRenderer>(playerEntityHandle_);
+    if (modelRenderer) {
+        for (auto& mesh : modelRenderer->GetAllTransformBuffRef()) {
+            mesh.openData_.translate = Vec3f();
+        }
     }
 }
 
@@ -197,6 +220,12 @@ PlayerMoveState PlayerWallRunState::TransitionState() const {
     auto playerInput = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
     if (playerInput->IsWallJumpInput()) {
         return PlayerMoveState::WALL_JUMP;
+    }
+
+    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
+    auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
+    if (rigidbody->GetVelocity()[Y] < -playerStatus->GetUpwardForceOnWallRun() * 0.3f) {
+        return PlayerMoveState::FALL_DOWN;
     }
 
     return PlayerMoveState::WALL_RUN;

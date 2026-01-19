@@ -2,6 +2,9 @@
 
 #include "component/IComponent.h"
 
+/// stl
+#include <memory>
+
 /// util
 #include "util/DiffValue.h"
 #include "util/EnumBitmask.h"
@@ -32,18 +35,20 @@ static std::map<PlayerMoveState, const char*> moveStateName = {
     {PlayerMoveState::JUMP, "JUMP"},
     {PlayerMoveState::WALL_RUN, "WALL_RUN"},
     {PlayerMoveState::WALL_JUMP, "WALL_JUMP"},
-    {PlayerMoveState::WHEELIE_RUN, "WHEELIE_RUN"}};
+    {PlayerMoveState::WHEELIE_RUN, "WHEELIE_RUN"},
+};
 
 enum class PlayerStateFlag {
     NONE       = 0,
     ON_GROUND  = 1 << 0, // 地面に接地している
     ON_WALL    = 1 << 1, // 壁に接触している
-    GEAR_UP    = 1 << 2, // ギアアップしている
-    IS_GOAL    = 1 << 3, // ゴールした
-    IS_PENALTY = 1 << 4, // ペナルティを受けている
-    IS_RESTART = 1 << 5, // リスタート中
+    WHEELIE    = 1 << 2, // ウィリーしている
+    GEAR_UP    = 1 << 3, // ギアアップしている
+    IS_GOAL    = 1 << 4, // ゴールした
+    IS_PENALTY = 1 << 5, // ペナルティを受けている
+    IS_RESTART = 1 << 6, // リスタート中
 
-    Count = 6
+    Count = 7
 };
 
 constexpr int32_t kDefaultPlayerGearLevel = 1; // デフォルトのギアレベル
@@ -84,7 +89,6 @@ public:
     /// 地面との接触がなくなったときの処理
     /// </summary>
     void OffCollisionGround();
-
     /// <summary>
     /// 障害物と接触したときの処理
     /// </summary>
@@ -116,7 +120,6 @@ private:
     float penaltyTime_   = 0.0f; // ペナルティ時間 /sec (制限時間から マイナスする時間)
     float invincibility_ = 0.0f; // ペナルティ無敵時間
 
-    bool isWheelie_ = false; // ウィリー状態かどうか
 public:
     OriGine::EntityHandle GetCameraEntityHandle() const {
         return followCameraEntityHandle_;
@@ -174,9 +177,6 @@ public:
         return wallCollisionNormal_;
     }
 
-    bool IsPenalty() const {
-        return stateFlag_.Current().HasFlag(PlayerStateFlag::IS_PENALTY);
-    }
     float GetPenaltyTime() const {
         return penaltyTime_;
     }
@@ -202,8 +202,12 @@ public:
         }
     }
 
+    bool IsPenalty() const {
+        return stateFlag_.Current().HasFlag(PlayerStateFlag::IS_PENALTY);
+    }
+
     bool IsWheelie() const {
-        return isWheelie_;
+        return stateFlag_.Current().HasFlag(PlayerStateFlag::WHEELIE);
     }
 
     bool IsRestart() const {

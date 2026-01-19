@@ -11,6 +11,9 @@
 
 #include "component/TimerComponent.h"
 
+/// math
+#include "math/mathEnv.h"
+
 using namespace OriGine;
 
 void PlayerOnCollision::Initialize() {}
@@ -21,6 +24,7 @@ static const float kWallCheckThreshold   = 0.42f; // 壁と判断するための
 
 void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
     auto* state          = GetComponent<PlayerState>(_handle);
+    auto* status         = GetComponent<PlayerStatus>(_handle);
     auto* pushBackInfo   = GetComponent<CollisionPushBackInfo>(_handle);
     auto* rigidbody      = GetComponent<Rigidbody>(_handle);
     auto* sphereCollider = GetComponent<SphereCollider>(_handle);
@@ -65,6 +69,9 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
             // 上方向に衝突した場合は、地面にいると判断する
             state->OnCollisionGround();
 
+            status->ResetWallRunInterval();
+            status->ResetWheelieInterval();
+
             OriGine::Vec3f acceleration = rigidbody->GetAcceleration();
 
             // Y軸の加速度を0にする
@@ -95,9 +102,15 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
                 // 壁に沿って移動している場合は壁衝突とみなす
                 // 正面衝突の場合はペナルティを与える
                 if (parallelFactor > kWallCheckThreshold) {
-                    state->OnCollisionWall(collNormal, entityId);
+                    if (status->CanWallRun()) {
+                        state->OnCollisionWall(collNormal, entityId);
+                    }
                 } else { // 基準値以下なら
-                    state->OnCollisionWall(collNormal, entityId, true);
+                    if (rigidbody->GetVelocity()[Y] > kEpsilon) {
+                        if (status->CanWheelie()) {
+                            state->OnCollisionWall(collNormal, entityId, true);
+                        }
+                    }
                 }
             } else {
                 state->OnCollisionWall(collNormal, wallEntityHandle, isPreWheelie);

@@ -36,8 +36,8 @@
                 ],
                 "uvRotate": 0.0,
                 "uvScale": [
-                    524.489990234375,
-                    523.2000122070313
+                    1.0,
+                    1.0
                 ],
                 "uvTranslate": [
                     0.0,
@@ -48,7 +48,7 @@
         "MaterialEffectPipeLine": [
             {
                 "Handle": "11ddb139-15b7-4c16-aad2-572bce5266ee",
-                "baseTexturePath": "./application/resource/Texture/Swirl_6_-_256x256.png",
+                "baseTexturePath": "./application/resource/Texture/Voronoi 3 - 256x256.png",
                 "effectEntityIdList": [
                     {
                         "effectType": 1,
