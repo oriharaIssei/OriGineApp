@@ -19,15 +19,13 @@ TimerComponent::~TimerComponent() {}
 void TimerComponent::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {
     currentTime_ = maxTime_;
 }
+void TimerComponent::Finalize() {}
 
 void TimerComponent::Edit(Scene* /*_scene*/, EntityHandle /* _handle */, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef DEBUG
     CheckBoxCommand("IsStarted For Using System##" + _parentLabel, isStarted_);
     DragGuiCommand("Max Time (s)##" + _parentLabel, maxTime_, 0.1f, 100.f, 1.f);
 #endif // DEBUG
-}
-
-void TimerComponent::Finalize() {
 }
 
 void to_json(nlohmann::json& j, const TimerComponent& c) {

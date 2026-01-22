@@ -233,6 +233,10 @@ public:
     /// 壁走りインターバル時間のリセット
     /// </summary>
     void ResetWallRunInterval() {
+        currentWallRunInterval_ = 0.f;
+    }
+
+    void SetupWallRunInterval() {
         currentWallRunInterval_ = wallRunInterval_;
     }
     /// <summary>
@@ -247,6 +251,9 @@ public:
     /// ウィリーインターバル時間のリセット
     /// </summary>
     void ResetWheelieInterval() {
+        currentWheelieInterval_ = 0.f;
+    }
+    void SetupWheelieInterval() {
         currentWheelieInterval_ = wallRunInterval_;
     }
 };

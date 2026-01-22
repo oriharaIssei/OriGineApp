@@ -22,6 +22,7 @@ void PlayerStateOverrideSystem::Finalize() {
     Engine* engine = Engine::GetInstance();
     engine->GetDeltaTimer()->SetTimeScale("Player", 1.f);
     engine->GetDeltaTimer()->SetTimeScale("Effect", 1.f);
+    engine->GetDeltaTimer()->SetTimeScale("Camera", 1.f);
 }
 
 void PlayerStateOverrideSystem::Update() {

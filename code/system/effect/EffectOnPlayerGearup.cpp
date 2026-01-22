@@ -125,6 +125,7 @@ void EffectOnPlayerGearup::UpdateEntity(OriGine::EntityHandle _handle) {
             }
         }
     }
+
     UpdateShockWaveRing(_handle, playerTransform);
 }
 

@@ -152,7 +152,7 @@ void EffectOnPlayerRun::UpdateEntity(EntityHandle _entity) {
         }
     } else {
         // 速度によって エフェクトの強さを変える
-        float intensityT = static_cast<float>(state->GetGearLevel()) / static_cast<float>(kMaxPlayerGearLevel);
+        float intensityT = currentVelocity.length() / playerMaxSpeed;
         intensityT       = EaseOutCubic(intensityT);
         float intensity  = std::lerp(0.f, kMaxIntensity_, intensityT);
 

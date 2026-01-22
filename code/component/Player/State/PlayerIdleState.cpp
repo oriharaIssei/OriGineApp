@@ -54,8 +54,9 @@ void PlayerIdleState::Update(float _deltaTime) {
     ///! TODO : ここにカメラの処理を書くべきではない
     CameraController* cameraController = scene_->GetComponent<CameraController>(state->GetCameraEntityHandle());
     if (cameraController) {
+        float cameraDeltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Camera");
         // カメラのオフセットを徐々に元に戻す
-        cameraOffsetLerpTimer_ += _deltaTime;
+        cameraOffsetLerpTimer_ += cameraDeltaTime;
         float t = cameraOffsetLerpTimer_ / kCameraOffsetLerpTime_;
         t       = std::clamp(t, 0.f, 1.f);
 

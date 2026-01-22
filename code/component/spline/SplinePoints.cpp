@@ -93,6 +93,8 @@ void to_json(nlohmann::json& j, const SplinePoints& c) {
     j["uvLoopLength"]   = c.commonSettings.uvLoopLength;
     j["widthEaseType"]  = static_cast<int>(c.commonSettings.widthEaseType);
     j["uvEaseType"]     = static_cast<int>(c.commonSettings.uvEaseType);
+
+    j["upVector"] = c.commonSettings.upVector;
 }
 
 void from_json(const nlohmann::json& j, SplinePoints& c) {
@@ -119,4 +121,8 @@ void from_json(const nlohmann::json& j, SplinePoints& c) {
 
     j.at("isUvLoopEnable").get_to(c.commonSettings.isUvLoopEnable);
     j.at("uvLoopLength").get_to(c.commonSettings.uvLoopLength);
+
+    if (j.contains("upVector")) {
+        j.at("upVector").get_to(c.commonSettings.upVector);
+    }
 }

@@ -113,7 +113,11 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
                     }
                 }
             } else {
-                state->OnCollisionWall(collNormal, wallEntityHandle, isPreWheelie);
+                bool canContinue = false;
+                canContinue      = isPreWheelie ? status->CanWheelie() : status->CanWallRun();
+                if (canContinue) {
+                    state->OnCollisionWall(collNormal, wallEntityHandle, isPreWheelie);
+                }
             }
         }
     }

@@ -1,6 +1,7 @@
 #include "CreateMeshFromSpline.h"
 
 /// math
+#include "math/mathEnv.h"
 #include <math/MyEasing.h>
 #include <math/Spline.h>
 #include <math/Vector3.h>
@@ -39,9 +40,19 @@ static SplineSegment BuildSplineSegment(
     seg.p0 = p0;
     seg.p1 = p1;
 
-    seg.dir   = Vec3f(p1 - p0).normalize();
-    seg.up    = axisY;
-    seg.right = seg.dir.cross(seg.up).normalize();
+    Vec3f rawDir = p1 - p0;
+
+    // 壁面に射影（wallNormal = up）
+    Vec3f tangent =
+        rawDir - settings.upVector * rawDir.dot(settings.upVector);
+
+    if (tangent.lengthSq() < kEpsilon) {
+        tangent = rawDir; // 直前の接線を使う
+    }
+    tangent   = tangent.normalize();
+    seg.up    = settings.upVector; // 面の法線
+    seg.dir   = tangent; // 壁に沿った進行方向
+    seg.right = settings.upVector.cross(tangent).normalize();
 
     float prevRatio, ratio;
     if (settings.isUvLoopEnable) {
@@ -54,7 +65,7 @@ static SplineSegment BuildSplineSegment(
 
     seg.prevLengthRatio = prevRatio;
     seg.lengthRatio     = ratio;
-    
+
     const int uvEase   = static_cast<int>(settings.uvEaseType);
     const float uvPrev = EasingFunctions[uvEase](prevRatio);
     const float uvNow  = EasingFunctions[uvEase](ratio);
@@ -63,7 +74,6 @@ static SplineSegment BuildSplineSegment(
     seg.uv[3] = {settings.endUv[X], std::lerp(settings.startUv[Y], settings.endUv[Y], uvNow)};
     seg.uv[1] = {seg.uv[3][X], seg.uv[0][Y]};
     seg.uv[2] = {seg.uv[0][X], seg.uv[3][Y]};
-
 
     int widthEase    = static_cast<int>(settings.widthEaseType);
     seg.minWidthHalf = std::lerp(settings.startWidth, settings.endWidth, EasingFunctions[widthEase](prevRatio)) * 0.5f;
@@ -96,7 +106,6 @@ static void AppendPlaneSegment(
     indices.insert(indices.end(), {base + 0, base + 2, base + 1,
                                       base + 1, base + 2, base + 3});
 }
-
 }
 
 CreateMeshFromSpline::CreateMeshFromSpline() : ISystem(OriGine::SystemCategory::Effect) {}
@@ -132,7 +141,11 @@ void CreateMeshFromSpline::CreateLinePlaneMesh(
     std::vector<uint32_t> indices;
 
     const int32_t segmentCount = static_cast<int32_t>(spline->points.size() - 1);
-    const float allLength      = spline->commonSettings.segmentLength * spline->capacity;
+    float allLength            = 0.f;
+
+    for (int32_t i = 0; i < segmentCount; ++i) {
+        allLength += Vec3f(spline->points[i + 1] - spline->points[i]).length();
+    }
 
     float totalLength = 0.f;
     float prevTotal   = 0.f;

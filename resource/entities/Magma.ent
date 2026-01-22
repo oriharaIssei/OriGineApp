@@ -5,9 +5,9 @@
                 "Handle": "42208c82-70fe-49cb-abaf-f547e423404e",
                 "angularRadius": 0.011800000444054604,
                 "color": [
-                    0.7426160573959351,
-                    0.10026883333921432,
-                    0.10026883333921432
+                    0.852320671081543,
+                    0.18341077864170074,
+                    0.18341077864170074
                 ],
                 "direction": [
                     0.0,
@@ -22,9 +22,9 @@
             {
                 "Handle": "b5aba305-a739-4114-ab35-1dc254337707",
                 "color": [
-                    0.4092826843261719,
-                    0.04490019753575325,
-                    0.04490019753575325,
+                    0.3544303774833679,
+                    0.09571114927530289,
+                    0.09571114927530289,
                     1.0
                 ],
                 "enableLighting": false,
@@ -36,8 +36,8 @@
                 ],
                 "uvRotate": 0.0,
                 "uvScale": [
-                    1.0,
-                    1.0
+                    3.0,
+                    2.0
                 ],
                 "uvTranslate": [
                     0.0,
@@ -48,7 +48,7 @@
         "MaterialEffectPipeLine": [
             {
                 "Handle": "11ddb139-15b7-4c16-aad2-572bce5266ee",
-                "baseTexturePath": "./application/resource/Texture/Voronoi 3 - 256x256.png",
+                "baseTexturePath": "./application/resource/Texture/Swirl_6_-_256x256.png",
                 "effectEntityIdList": [
                     {
                         "effectType": 1,

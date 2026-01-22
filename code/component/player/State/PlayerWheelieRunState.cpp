@@ -61,7 +61,7 @@ void PlayerWheelieRunState::Finalize() {
 
     transform->translate += wallNormal_ * 0.1f;
 
-    playerStatus->ResetWheelieInterval();
+    playerStatus->SetupWheelieInterval();
 }
 
 void PlayerWheelieRunState::Update(float _deltaTime) {

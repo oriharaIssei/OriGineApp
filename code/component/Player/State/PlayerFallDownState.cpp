@@ -39,7 +39,9 @@ void PlayerFallDownState::Update(float _deltaTime) {
         return;
     }
     // カメラのオフセットを徐々に元に戻す
-    cameraOffsetLerpTimer_ += _deltaTime;
+
+    float cameraDeltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Camera");
+    cameraOffsetLerpTimer_ += cameraDeltaTime;
     float t = cameraOffsetLerpTimer_ / kCameraOffsetLerpTime_;
     t       = std::clamp(t, 0.f, 1.f);
 

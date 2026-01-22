@@ -26,6 +26,8 @@ struct SplineCommonSettings {
     OriGine::Vec2f startUv = {0.0f, 0.0f};
     OriGine::Vec2f endUv   = {1.0f, 1.0f};
 
+    OriGine::Vec3f upVector = {0.0f, 1.0f, 0.0f};
+
     float segmentLength = 0.5f;
     float startWidth    = 0.2f;
     float endWidth      = 0.2f;

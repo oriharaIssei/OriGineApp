@@ -1,7 +1,9 @@
 #include "PlayerDashState.h"
 
+/// engine
+#include "Engine.h"
+
 /// component
-#include "component/animation/SkinningAnimationComponent.h"
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
 
@@ -18,14 +20,7 @@
 using namespace OriGine;
 
 void PlayerDashState::Initialize() {
-    auto* state  = scene_->GetComponent<PlayerState>(playerEntityHandle_);
     auto* status = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
-
-    // gearLevel に応じてアニメーション速度と移動速度を設定
-    auto* skinningAnim = scene_->GetComponent<SkinningAnimationComponent>(playerEntityHandle_);
-    if (skinningAnim) {
-        skinningAnim->SetPlaybackSpeed(1, 1.f + float(state->GetGearLevel()));
-    }
 
     // 移動速度の設定
     auto* rigidbody = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
@@ -86,8 +81,9 @@ void PlayerDashState::Update(float _deltaTime) {
     CameraController* cameraController = scene_->GetComponent<CameraController>(state->GetCameraEntityHandle());
 
     if (cameraController) {
+        float cameraDeltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Camera");
         // カメラのオフセットを徐々に元に戻す
-        cameraOffsetLerpTimer_ += _deltaTime;
+        cameraOffsetLerpTimer_ += cameraDeltaTime;
         float t = cameraOffsetLerpTimer_ / kCameraOffsetLerpTime_;
         t       = std::clamp(t, 0.f, 1.f);
 
@@ -107,10 +103,6 @@ void PlayerDashState::Finalize() {
         // 速度が速すぎる場合は制限
         velo = velo.normalize() * limitSpeed;
         rigidbody->SetVelocity(velo);
-    }
-    auto* skinningAnim = scene_->GetComponent<SkinningAnimationComponent>(playerEntityHandle_);
-    if (skinningAnim) {
-        skinningAnim->SetPlaybackSpeed(1, 1.f);
     }
 }
 

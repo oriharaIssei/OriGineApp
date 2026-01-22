@@ -266,9 +266,9 @@
                             1.0
                         ],
                         "translate": [
-                            -130.0,
-                            92.0,
-                            1123.1668701171875
+                            -61.0,
+                            93.0,
+                            1104.47021484375
                         ]
                     }
                 ]
@@ -767,14 +767,14 @@
                             1.0
                         ],
                         "scale": [
-                            64.0,
+                            24.0,
                             36.0,
-                            124.0
+                            64.0
                         ],
                         "translate": [
-                            -130.0,
-                            -36.0,
-                            814.4766235351563
+                            -169.95565795898438,
+                            -6.174800872802734,
+                            893.6952514648438
                         ]
                     }
                 ]
@@ -1601,20 +1601,20 @@
                             1.0
                         ],
                         "scale": [
-                            64.0,
-                            128.0,
+                            6.032845973968506,
+                            36.0,
                             64.0
                         ],
                         "translate": [
-                            -39.957420349121094,
-                            72.18289184570313,
-                            499.6368103027344
+                            72.49110412597656,
+                            50.462913513183594,
+                            487.1617431640625
                         ]
                     }
                 ]
             },
             "Handle": {
-                "uuid": "35dc7518-b0ca-48c5-8524-493101845dc4"
+                "uuid": "4b4e87d9-bb2f-4e5c-bb6f-8451b460bd0a"
             },
             "Name": "Floor",
             "Systems": [
@@ -1741,13 +1741,13 @@
                         ],
                         "scale": [
                             24.0,
-                            36.0,
+                            29.867698669433594,
                             64.0
                         ],
                         "translate": [
-                            74.39754486083984,
-                            -16.0,
-                            511.8150329589844
+                            38.87499237060547,
+                            52.48377227783203,
+                            609.3304443359375
                         ]
                     }
                 ]
@@ -1879,20 +1879,20 @@
                             1.0
                         ],
                         "scale": [
-                            86.0,
+                            68.0,
                             64.0,
-                            36.0
+                            128.0
                         ],
                         "translate": [
-                            -18.096294403076172,
-                            -54.180580139160156,
-                            628.3875122070313
+                            -61.0,
+                            -19.18498420715332,
+                            1058.805419921875
                         ]
                     }
                 ]
             },
             "Handle": {
-                "uuid": "545b0806-8a75-4957-9464-03c689678c2c"
+                "uuid": "117dfc7f-b516-4c0f-9151-c05d360208f4"
             },
             "Name": "Floor",
             "Systems": [
@@ -2018,20 +2018,20 @@
                             1.0
                         ],
                         "scale": [
-                            64.0,
-                            128.0,
+                            24.0,
+                            36.0,
                             64.0
                         ],
                         "translate": [
-                            90.26827239990234,
-                            64.0,
-                            765.916748046875
+                            -169.917236328125,
+                            -36.0,
+                            757.6190795898438
                         ]
                     }
                 ]
             },
             "Handle": {
-                "uuid": "1faf6993-fb31-4e2c-9cb3-5bce5f2e6d93"
+                "uuid": "665d467a-449f-41f5-a335-bb96a6d69135"
             },
             "Name": "Floor",
             "Systems": [
@@ -2296,14 +2296,14 @@
                             1.0
                         ],
                         "scale": [
-                            64.0,
-                            24.0,
-                            128.0
+                            68.0,
+                            86.0,
+                            90.06058502197266
                         ],
                         "translate": [
-                            -130.0,
-                            24.20024871826172,
-                            1075.6142578125
+                            -60.45378875732422,
+                            22.2810001373291,
+                            769.8095092773438
                         ]
                     }
                 ]
@@ -2854,151 +2854,12 @@
                         "scale": [
                             24.0,
                             36.0,
-                            8.0
-                        ],
-                        "translate": [
-                            -169.97113037109375,
-                            -0.5127353668212891,
-                            552.2732543945313
-                        ]
-                    }
-                ]
-            },
-            "Handle": {
-                "uuid": "0bdb9670-9184-40c6-a897-f95f034c8f17"
-            },
-            "Name": "Floor",
-            "Systems": [
-                {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
-                },
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "TexturedMeshRenderSystem"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "AABBCollider": [
-                    {
-                        "Handle": "88c6bf69-93e1-4992-91c6-818aa1027dfd",
-                        "center": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "halfSize": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "BoxRenderer": [
-                    {
-                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
-                        "blendMode": 1,
-                        "isCulling": true,
-                        "isRenderer": true,
-                        "materialIndex": 0,
-                        "size": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "textureFilePath": "",
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "CollisionPushBackInfo": [
-                    {
-                        "Handle": "2efe1ba0-82f4-4bd9-a433-44f37c092c92",
-                        "pushBackType": 1
-                    }
-                ],
-                "Material": [
-                    {
-                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "enableLighting": true,
-                        "shininess": 60.0,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "Transform": [
-                    {
-                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
-                        "rotate": [
-                            -0.0,
-                            0.0,
-                            -0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            24.0,
-                            36.0,
                             54.0
                         ],
                         "translate": [
                             -169.97113037109375,
                             -0.5127353668212891,
-                            629.0055541992188
+                            604.0296630859375
                         ]
                     }
                 ]
@@ -6113,17 +5974,89 @@
         },
         {
             "Components": {
-                "Material": [
+                "AABBCollider": [
                     {
-                        "Handle": "0bd2410e-9e9d-4173-bdbb-6515978224ca",
-                        "color": [
-                            0.5394611954689026,
-                            0.7273573279380798,
-                            0.8143459558486938,
+                        "Handle": "88c6bf69-93e1-4992-91c6-818aa1027dfd",
+                        "center": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "halfSize": [
+                            1.0,
+                            1.0,
                             1.0
                         ],
-                        "enableLighting": false,
-                        "shininess": 1.590000033378601,
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "Handle": "2efe1ba0-82f4-4bd9-a433-44f37c092c92",
+                        "pushBackType": 1
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
                         "specularColor": [
                             1.0,
                             1.0,
@@ -6140,317 +6073,40 @@
                         ]
                     }
                 ],
-                "ModelMeshRenderer": [
-                    {
-                        "Handle": "8e7a0d8a-9722-44bf-a80d-451842013ed4",
-                        "blendMode": 2,
-                        "directory": "./application/resource/Models",
-                        "fileName": "Arrow.obj",
-                        "isRender": true,
-                        "materialIndexDatas": [
-                            {
-                                "Handle": "0bd2410e-9e9d-4173-bdbb-6515978224ca"
-                            }
-                        ],
-                        "textureFilePath": [
-                            ""
-                        ],
-                        "transformBufferDatas": [
-                            {
-                                "rotate": [
-                                    0.0,
-                                    -1.0,
-                                    0.0,
-                                    1.0372678360681675e-07
-                                ],
-                                "scale": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "translate": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ]
-                    }
-                ],
-                "PointLight": [
-                    {
-                        "Handle": "24a1a049-9097-4a7c-8eeb-5b5e1ea3e82b",
-                        "angularRadius": 0.4699999988079071,
-                        "color": [
-                            0.18143457174301147,
-                            0.9689152836799622,
-                            1.0
-                        ],
-                        "decay": 1.149999976158142,
-                        "intensity": 0.8600000143051147,
-                        "isActive": true,
-                        "pos": [
-                            2.86899995803833,
-                            -0.009999999776482582,
-                            72.5250015258789
-                        ],
-                        "radius": 9.850000381469727
-                    }
-                ],
                 "Transform": [
                     {
-                        "Handle": "f8b988b4-90d4-4739-b00d-c06183d732c5",
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
                         "rotate": [
                             -0.0,
                             0.0,
-                            0.7065644860267639,
-                            0.7076486945152283
-                        ],
-                        "scale": [
-                            0.700009286403656,
-                            1.0,
+                            -0.0,
                             1.0
                         ],
+                        "scale": [
+                            24.0,
+                            36.0,
+                            64.0
+                        ],
                         "translate": [
-                            2.86899995803833,
-                            0.0,
-                            72.0
-                        ]
-                    }
-                ],
-                "TransformAnimation": [
-                    {
-                        "Handle": "6908325a-95e2-41d5-833f-c607ce893f92",
-                        "InterpolationType": 0,
-                        "duration": 1.2000000476837158,
-                        "isLoop": true,
-                        "isPlay": true,
-                        "rotateCurve": [],
-                        "scaleCurve": [],
-                        "targetTransformIndex": 0,
-                        "translateCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    2.86899995803833,
-                                    0.0,
-                                    72.41100311279297
-                                ]
-                            },
-                            {
-                                "time": 0.10389610379934311,
-                                "value": [
-                                    2.86899995803833,
-                                    0.13548387587070465,
-                                    72.41100311279297
-                                ]
-                            },
-                            {
-                                "time": 0.4025973975658417,
-                                "value": [
-                                    2.86899995803833,
-                                    0.20000000298023224,
-                                    72.41100311279297
-                                ]
-                            },
-                            {
-                                "time": 0.701298713684082,
-                                "value": [
-                                    2.86899995803833,
-                                    0.20000000298023224,
-                                    72.41100311279297
-                                ]
-                            },
-                            {
-                                "time": 0.9675324559211731,
-                                "value": [
-                                    2.86899995803833,
-                                    0.0,
-                                    72.41100311279297
-                                ]
-                            }
+                            34.52495574951172,
+                            -6.174800872802734,
+                            893.6952514648438
                         ]
                     }
                 ]
             },
             "Handle": {
-                "uuid": "c350ec7f-829c-4e16-be2d-39a76b0d3399"
+                "uuid": "d7ebe14a-f690-46c9-b29a-cde363137e17"
             },
-            "Name": "Arrow",
+            "Name": "Floor",
             "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
                 {
                     "SystemCategory": 6,
                     "SystemName": "TexturedMeshRenderSystem"
-                },
-                {
-                    "SystemCategory": 5,
-                    "SystemName": "TransformAnimationWorkSystem"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "Material": [
-                    {
-                        "Handle": "0bd2410e-9e9d-4173-bdbb-6515978224ca",
-                        "color": [
-                            0.334989070892334,
-                            0.529979944229126,
-                            0.6202532052993774,
-                            1.0
-                        ],
-                        "enableLighting": false,
-                        "shininess": 1.590000033378601,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "ModelMeshRenderer": [
-                    {
-                        "Handle": "8e7a0d8a-9722-44bf-a80d-451842013ed4",
-                        "blendMode": 2,
-                        "directory": "./application/resource/Models",
-                        "fileName": "Arrow.obj",
-                        "isRender": true,
-                        "materialIndexDatas": [
-                            {
-                                "Handle": "0bd2410e-9e9d-4173-bdbb-6515978224ca"
-                            }
-                        ],
-                        "textureFilePath": [
-                            ""
-                        ],
-                        "transformBufferDatas": [
-                            {
-                                "rotate": [
-                                    0.0,
-                                    -1.0,
-                                    0.0,
-                                    1.0372678360681675e-07
-                                ],
-                                "scale": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                ],
-                                "translate": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ]
-                    }
-                ],
-                "Transform": [
-                    {
-                        "Handle": "f8b988b4-90d4-4739-b00d-c06183d732c5",
-                        "rotate": [
-                            -0.0,
-                            0.0,
-                            0.7065644860267639,
-                            0.7076486945152283
-                        ],
-                        "scale": [
-                            0.7000142931938171,
-                            1.0,
-                            1.0
-                        ],
-                        "translate": [
-                            2.86899995803833,
-                            0.17830631136894226,
-                            80.0
-                        ]
-                    }
-                ],
-                "TransformAnimation": [
-                    {
-                        "Handle": "238d906f-1808-433b-b663-dfa59b49d0e0",
-                        "InterpolationType": 0,
-                        "duration": 1.2000000476837158,
-                        "isLoop": true,
-                        "isPlay": true,
-                        "rotateCurve": [],
-                        "scaleCurve": [],
-                        "targetTransformIndex": 0,
-                        "translateCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    2.86899995803833,
-                                    0.0,
-                                    79.41100311279297
-                                ]
-                            },
-                            {
-                                "time": 0.1753246784210205,
-                                "value": [
-                                    2.86899995803833,
-                                    0.0,
-                                    79.41100311279297
-                                ]
-                            },
-                            {
-                                "time": 0.33506494760513306,
-                                "value": [
-                                    2.86899995803833,
-                                    0.1720000058412552,
-                                    79.41100311279297
-                                ]
-                            },
-                            {
-                                "time": 0.6233766674995422,
-                                "value": [
-                                    2.86899995803833,
-                                    0.20000000298023224,
-                                    79.41100311279297
-                                ]
-                            },
-                            {
-                                "time": 0.9428571462631226,
-                                "value": [
-                                    2.86899995803833,
-                                    0.03951351344585419,
-                                    79.41100311279297
-                                ]
-                            },
-                            {
-                                "time": 1.2000000476837158,
-                                "value": [
-                                    2.86899995803833,
-                                    0.0,
-                                    79.41100311279297
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            "Handle": {
-                "uuid": "6c4d9675-fb9e-42ef-8b16-f5e3e3c755e7"
-            },
-            "Name": "Arrow",
-            "Systems": [
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "TexturedMeshRenderSystem"
-                },
-                {
-                    "SystemCategory": 5,
-                    "SystemName": "TransformAnimationWorkSystem"
                 }
             ],
             "isUnique": false
@@ -6556,7 +6212,7 @@
                             2.0
                         ],
                         "translate": [
-                            191.42250061035156,
+                            192.0,
                             30.0,
                             320.0
                         ]
@@ -6582,7 +6238,7 @@
                                 ]
                             },
                             {
-                                "time": 0.10389610379934311,
+                                "time": 0.17000000178813934,
                                 "value": [
                                     191.8000030517578,
                                     30.0,
@@ -6590,7 +6246,7 @@
                                 ]
                             },
                             {
-                                "time": 0.4025973975658417,
+                                "time": 0.4000000059604645,
                                 "value": [
                                     190.0,
                                     30.0,
@@ -6598,7 +6254,7 @@
                                 ]
                             },
                             {
-                                "time": 0.701298713684082,
+                                "time": 0.699999988079071,
                                 "value": [
                                     190.0,
                                     30.0,
@@ -6606,7 +6262,7 @@
                                 ]
                             },
                             {
-                                "time": 0.9675324559211731,
+                                "time": 1.0,
                                 "value": [
                                     192.0,
                                     30.0,
@@ -6618,7 +6274,7 @@
                 ]
             },
             "Handle": {
-                "uuid": "5a9987c1-997b-4816-9b56-2af3131ae5b0"
+                "uuid": "7e97d316-1120-4f6a-baa2-d3ad0862a7b7"
             },
             "Name": "Arrow",
             "Systems": [
@@ -6639,9 +6295,9 @@
                     {
                         "Handle": "0bd2410e-9e9d-4173-bdbb-6515978224ca",
                         "color": [
-                            0.334989070892334,
-                            0.529979944229126,
-                            0.6202532052993774,
+                            0.5394611954689026,
+                            0.7273573279380798,
+                            0.8143459558486938,
                             1.0
                         ],
                         "enableLighting": false,
@@ -6709,12 +6365,12 @@
                             1.0
                         ],
                         "scale": [
-                            0.7000142931938171,
+                            0.699999988079071,
                             2.0,
                             2.0
                         ],
                         "translate": [
-                            191.72720336914063,
+                            191.55555725097656,
                             30.0,
                             304.0
                         ]
@@ -6722,7 +6378,7 @@
                 ],
                 "TransformAnimation": [
                     {
-                        "Handle": "238d906f-1808-433b-b663-dfa59b49d0e0",
+                        "Handle": "6908325a-95e2-41d5-833f-c607ce893f92",
                         "InterpolationType": 0,
                         "duration": 1.2000000476837158,
                         "isLoop": true,
@@ -6740,7 +6396,7 @@
                                 ]
                             },
                             {
-                                "time": 0.1753246784210205,
+                                "time": 0.20000000298023224,
                                 "value": [
                                     192.0,
                                     30.0,
@@ -6748,15 +6404,15 @@
                                 ]
                             },
                             {
-                                "time": 0.33506494760513306,
+                                "time": 0.3700000047683716,
                                 "value": [
-                                    190.3000030517578,
+                                    191.8000030517578,
                                     30.0,
                                     304.0
                                 ]
                             },
                             {
-                                "time": 0.6233766674995422,
+                                "time": 0.699999988079071,
                                 "value": [
                                     190.0,
                                     30.0,
@@ -6764,9 +6420,9 @@
                                 ]
                             },
                             {
-                                "time": 0.9428571462631226,
+                                "time": 0.8999999761581421,
                                 "value": [
-                                    191.6999969482422,
+                                    190.0,
                                     30.0,
                                     304.0
                                 ]
@@ -6784,7 +6440,351 @@
                 ]
             },
             "Handle": {
-                "uuid": "255adece-0363-4ec4-89fa-b25abb4a2d1b"
+                "uuid": "5a9987c1-997b-4816-9b56-2af3131ae5b0"
+            },
+            "Name": "Arrow",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                },
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "TransformAnimationWorkSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "Material": [
+                    {
+                        "Handle": "0bd2410e-9e9d-4173-bdbb-6515978224ca",
+                        "color": [
+                            0.5394611954689026,
+                            0.7273573279380798,
+                            0.8143459558486938,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 1.590000033378601,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "ModelMeshRenderer": [
+                    {
+                        "Handle": "8e7a0d8a-9722-44bf-a80d-451842013ed4",
+                        "blendMode": 2,
+                        "directory": "./application/resource/Models",
+                        "fileName": "Arrow.obj",
+                        "isRender": true,
+                        "materialIndexDatas": [
+                            {
+                                "Handle": "0bd2410e-9e9d-4173-bdbb-6515978224ca"
+                            }
+                        ],
+                        "textureFilePath": [
+                            ""
+                        ],
+                        "transformBufferDatas": [
+                            {
+                                "rotate": [
+                                    0.7065556049346924,
+                                    0.0,
+                                    0.0,
+                                    0.7076575756072998
+                                ],
+                                "scale": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "translate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "PointLight": [
+                    {
+                        "Handle": "24a1a049-9097-4a7c-8eeb-5b5e1ea3e82b",
+                        "angularRadius": 0.0,
+                        "color": [
+                            0.18143457174301147,
+                            0.9689152836799622,
+                            1.0
+                        ],
+                        "decay": 1.309999942779541,
+                        "intensity": 0.28999999165534973,
+                        "isActive": true,
+                        "pos": [
+                            40.0,
+                            59.02000045776367,
+                            539.8400268554688
+                        ],
+                        "radius": 37.65999984741211
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "f8b988b4-90d4-4739-b00d-c06183d732c5",
+                        "rotate": [
+                            -0.0,
+                            0.7065728902816772,
+                            -0.0,
+                            0.7076403498649597
+                        ],
+                        "scale": [
+                            0.699999988079071,
+                            2.0,
+                            2.0
+                        ],
+                        "translate": [
+                            40.0,
+                            71.0,
+                            544.565185546875
+                        ]
+                    }
+                ],
+                "TransformAnimation": [
+                    {
+                        "Handle": "6908325a-95e2-41d5-833f-c607ce893f92",
+                        "InterpolationType": 0,
+                        "duration": 1.2000000476837158,
+                        "isLoop": true,
+                        "isPlay": true,
+                        "rotateCurve": [],
+                        "scaleCurve": [],
+                        "targetTransformIndex": 0,
+                        "translateCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    40.0,
+                                    71.0,
+                                    545.0
+                                ]
+                            },
+                            {
+                                "time": 0.17000000178813934,
+                                "value": [
+                                    40.0,
+                                    71.0,
+                                    544.7999877929688
+                                ]
+                            },
+                            {
+                                "time": 0.4000000059604645,
+                                "value": [
+                                    40.0,
+                                    71.0,
+                                    543.0
+                                ]
+                            },
+                            {
+                                "time": 0.699999988079071,
+                                "value": [
+                                    40.0,
+                                    71.0,
+                                    543.0
+                                ]
+                            },
+                            {
+                                "time": 1.0,
+                                "value": [
+                                    40.0,
+                                    71.0,
+                                    545.0
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "36530213-c595-4931-b07d-d9485018cc79"
+            },
+            "Name": "Arrow",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                },
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "TransformAnimationWorkSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "Material": [
+                    {
+                        "Handle": "0bd2410e-9e9d-4173-bdbb-6515978224ca",
+                        "color": [
+                            0.5394611954689026,
+                            0.7273573279380798,
+                            0.8143459558486938,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 1.590000033378601,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "ModelMeshRenderer": [
+                    {
+                        "Handle": "8e7a0d8a-9722-44bf-a80d-451842013ed4",
+                        "blendMode": 2,
+                        "directory": "./application/resource/Models",
+                        "fileName": "Arrow.obj",
+                        "isRender": true,
+                        "materialIndexDatas": [
+                            {
+                                "Handle": "0bd2410e-9e9d-4173-bdbb-6515978224ca"
+                            }
+                        ],
+                        "textureFilePath": [
+                            ""
+                        ],
+                        "transformBufferDatas": [
+                            {
+                                "rotate": [
+                                    0.7072792053222656,
+                                    0.0,
+                                    0.0,
+                                    0.7069342732429504
+                                ],
+                                "scale": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "translate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "f8b988b4-90d4-4739-b00d-c06183d732c5",
+                        "rotate": [
+                            0.0,
+                            0.7066552042961121,
+                            -0.0,
+                            0.7075580954551697
+                        ],
+                        "scale": [
+                            0.699999988079071,
+                            2.0,
+                            2.0
+                        ],
+                        "translate": [
+                            40.0,
+                            58.0,
+                            545.0
+                        ]
+                    }
+                ],
+                "TransformAnimation": [
+                    {
+                        "Handle": "6908325a-95e2-41d5-833f-c607ce893f92",
+                        "InterpolationType": 0,
+                        "duration": 1.2000000476837158,
+                        "isLoop": true,
+                        "isPlay": true,
+                        "rotateCurve": [],
+                        "scaleCurve": [],
+                        "targetTransformIndex": 0,
+                        "translateCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    40.0,
+                                    58.0,
+                                    545.0
+                                ]
+                            },
+                            {
+                                "time": 0.20000000298023224,
+                                "value": [
+                                    40.0,
+                                    58.0,
+                                    545.0
+                                ]
+                            },
+                            {
+                                "time": 0.3700000047683716,
+                                "value": [
+                                    40.0,
+                                    58.0,
+                                    544.7999877929688
+                                ]
+                            },
+                            {
+                                "time": 0.699999988079071,
+                                "value": [
+                                    40.0,
+                                    58.0,
+                                    543.0
+                                ]
+                            },
+                            {
+                                "time": 0.8999999761581421,
+                                "value": [
+                                    40.0,
+                                    58.0,
+                                    543.0
+                                ]
+                            },
+                            {
+                                "time": 1.2000000476837158,
+                                "value": [
+                                    40.0,
+                                    58.0,
+                                    545.0
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "8816b588-cef7-44bd-9356-0c3f6f9c0003"
             },
             "Name": "Arrow",
             "Systems": [
@@ -6807,13 +6807,13 @@
             }
         },
         {
-            "ApplyMouseConditionSystem": {
-                "Priority": 0
+            "ColliderRenderingSystem": {
+                "Priority": 100
             }
         },
         {
-            "ColliderRenderingSystem": {
-                "Priority": 100
+            "ApplyMouseConditionSystem": {
+                "Priority": 0
             }
         },
         {
@@ -6827,11 +6827,6 @@
             }
         },
         {
-            "ButtonInputSystem": {
-                "Priority": 1
-            }
-        },
-        {
             "ChangeSceneByButton": {
                 "Priority": 1
             }
@@ -6842,18 +6837,8 @@
             }
         },
         {
-            "CameraActionSystem": {
-                "Priority": 0
-            }
-        },
-        {
-            "TakePlayerToStartPosition": {
-                "Priority": 3
-            }
-        },
-        {
-            "PlayerInputSystem": {
-                "Priority": 3
+            "ButtonInputSystem": {
+                "Priority": 1
             }
         },
         {
@@ -6867,8 +6852,18 @@
             }
         },
         {
-            "TimeLimitJudgeSystem": {
-                "Priority": 10
+            "PlayerInputSystem": {
+                "Priority": 3
+            }
+        },
+        {
+            "CameraActionSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "TakePlayerToStartPosition": {
+                "Priority": 3
             }
         },
         {
@@ -6877,13 +6872,18 @@
             }
         },
         {
-            "CreatePlaneFromSpeed": {
+            "TimeLimitJudgeSystem": {
                 "Priority": 10
             }
         },
         {
             "CameraShake": {
                 "Priority": 0
+            }
+        },
+        {
+            "CreatePlaneFromSpeed": {
+                "Priority": 10
             }
         },
         {
@@ -6907,18 +6907,13 @@
             }
         },
         {
-            "PlayerSpeedFor3dUI": {
-                "Priority": 1
-            }
-        },
-        {
             "DissolveEffect": {
                 "Priority": 100
             }
         },
         {
-            "PenaltySystem": {
-                "Priority": 0
+            "PlayerSpeedFor3dUI": {
+                "Priority": 1
             }
         },
         {
@@ -6929,6 +6924,11 @@
         {
             "GhostInitializeSystem": {
                 "Priority": 6
+            }
+        },
+        {
+            "PenaltySystem": {
+                "Priority": 0
             }
         },
         {
@@ -6967,8 +6967,8 @@
             }
         },
         {
-            "StartTimerInitialize": {
-                "Priority": 3
+            "MaterialAnimationWorkSystem": {
+                "Priority": 0
             }
         },
         {
@@ -6977,8 +6977,8 @@
             }
         },
         {
-            "MaterialAnimationWorkSystem": {
-                "Priority": 0
+            "StartTimerInitialize": {
+                "Priority": 3
             }
         },
         {
@@ -6992,13 +6992,13 @@
             }
         },
         {
-            "ResolveEntityReferences": {
-                "Priority": -2
+            "OverlayRenderSystem": {
+                "Priority": 100
             }
         },
         {
-            "OverlayRenderSystem": {
-                "Priority": 100
+            "ResolveEntityReferences": {
+                "Priority": -2
             }
         },
         {
@@ -7012,6 +7012,11 @@
             }
         },
         {
+            "PlayerPathSplineGenerator": {
+                "Priority": 100
+            }
+        },
+        {
             "PlayRecorderInitialize": {
                 "Priority": 0
             }
@@ -7022,18 +7027,13 @@
             }
         },
         {
-            "PlayerPathSplineGenerator": {
-                "Priority": 100
+            "PlayerMoveSystem": {
+                "Priority": 3
             }
         },
         {
             "TexturedMeshRenderSystem": {
                 "Priority": 0
-            }
-        },
-        {
-            "PlayerMoveSystem": {
-                "Priority": 3
             }
         },
         {
@@ -7062,11 +7062,6 @@
             }
         },
         {
-            "SpriteAnimationSystem": {
-                "Priority": 1
-            }
-        },
-        {
             "VelocityRenderingSystem": {
                 "Priority": 0
             }
@@ -7074,6 +7069,11 @@
         {
             "SettingGameCameraTarget": {
                 "Priority": 5
+            }
+        },
+        {
+            "SpriteAnimationSystem": {
+                "Priority": 1
             }
         },
         {
@@ -7102,6 +7102,16 @@
             }
         },
         {
+            "TakeToGoalPosition": {
+                "Priority": 1
+            }
+        },
+        {
+            "SubSceneActivateByButton": {
+                "Priority": 0
+            }
+        },
+        {
             "TireTrailGenerateSystem": {
                 "Priority": 100
             }
@@ -7113,16 +7123,6 @@
         },
         {
             "StartSequenceSystem": {
-                "Priority": 1
-            }
-        },
-        {
-            "SubSceneActivateByButton": {
-                "Priority": 0
-            }
-        },
-        {
-            "TakeToGoalPosition": {
                 "Priority": 1
             }
         },

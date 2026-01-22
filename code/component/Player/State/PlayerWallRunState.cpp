@@ -1,9 +1,13 @@
 #include "PlayerWallRunState.h"
 
-/// component
-#include "component/animation/SkinningAnimationComponent.h"
+/// engine
+#include "scene/SceneFactory.h"
+
+/// ECS
+// component
 #include "component/physics/Rigidbody.h"
 #include "component/renderer/MeshRenderer.h"
+#include "component/spline/SplinePoints.h"
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
 
@@ -17,6 +21,9 @@
 /// log
 #include "logger/Logger.h"
 
+/// util
+#include "util/globalVariables/SerializedField.h"
+
 /// math
 #include "math/mathEnv.h"
 #include "MyEasing.h"
@@ -28,8 +35,9 @@ constexpr float kOffsetRate = 0.1f;
 }
 
 void PlayerWallRunState::Initialize() {
-    constexpr int32_t thresholdGearLevel = 3;
-    constexpr float kMeshOffsetRate      = 0.26f;
+    constexpr int32_t thresholdGearLevel              = 3;
+    constexpr float kMeshOffsetRate                   = 0.26f;
+    constexpr float kThresholdFailedWallJumpSpeedRate = 0.3f;
 
     auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
     auto* state        = scene_->GetComponent<PlayerState>(playerEntityHandle_);
@@ -39,13 +47,14 @@ void PlayerWallRunState::Initialize() {
     // 壁ジャンプ前の速度
     prevVelo_ = rigidbody->GetVelocity();
 
+    thresholdFailedWallJumpSpeed_ = -playerStatus->GetUpwardForceOnWallRun() * kThresholdFailedWallJumpSpeedRate;
+
     // 壁法線
     wallNormal_ = state->GetWallCollisionNormal().normalize();
 
     // ===== 進行方向を「速度を壁面に投影して」求める =====
-    OriGine::Vec3f direction =
-        prevVelo_ - wallNormal_ * OriGine::Vec3f::Dot(prevVelo_, wallNormal_);
-    direction[Y] = 0.0f;
+    OriGine::Vec3f direction = prevVelo_ - wallNormal_ * OriGine::Vec3f::Dot(prevVelo_, wallNormal_);
+    direction[Y]             = 0.0f;
 
     if (direction.lengthSq() > kEpsilon) {
         direction = direction.normalize();
@@ -133,6 +142,8 @@ void PlayerWallRunState::Initialize() {
             mesh.openData_.translate -= wallNormal_ * kMeshOffsetRate;
         }
     }
+    /* Vec3f pathOrigin = transform->GetWorldTranslate() - wallNormal_ * kOffsetRate;
+     CreateWallRunPathEntity(pathOrigin, rigidbody, direction);*/
 }
 
 void PlayerWallRunState::Update(float _deltaTime) {
@@ -166,8 +177,9 @@ void PlayerWallRunState::Update(float _deltaTime) {
 
     /// TODO: カメラの処理をここに書くべきではない
     // カメラの傾きを徐々に変える
+    float cameraDeltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Camera");
     cameraAngleLerpTimer_ += _deltaTime;
-    float t = cameraAngleLerpTimer_ / kCameraAngleLerpTime_;
+    float t = cameraAngleLerpTimer_ / cameraDeltaTime;
     t       = std::clamp(t, 0.f, 1.f);
 
     // 一度だけ実行
@@ -191,7 +203,7 @@ void PlayerWallRunState::Finalize() {
     auto* transform    = scene_->GetComponent<OriGine::Transform>(playerEntityHandle_);
 
     rigidbody->SetMass(playerStatus->GetDefaultMass());
-    playerStatus->ResetWallRunInterval();
+    playerStatus->SetupWallRunInterval();
 
     transform->translate += wallNormal_ * kOffsetRate;
 
@@ -210,6 +222,8 @@ void PlayerWallRunState::Finalize() {
             mesh.openData_.translate = Vec3f();
         }
     }
+
+    // scene_->AddDeleteEntity(pathEntityHandle_);
 }
 
 PlayerMoveState PlayerWallRunState::TransitionState() const {
@@ -222,11 +236,67 @@ PlayerMoveState PlayerWallRunState::TransitionState() const {
         return PlayerMoveState::WALL_JUMP;
     }
 
-    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
-    auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
-    if (rigidbody->GetVelocity()[Y] < -playerStatus->GetUpwardForceOnWallRun() * 0.3f) {
+    auto* rigidbody = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
+    if (rigidbody->GetVelocity()[Y] < thresholdFailedWallJumpSpeed_) {
         return PlayerMoveState::FALL_DOWN;
     }
 
     return PlayerMoveState::WALL_RUN;
+}
+
+void PlayerWallRunState::CreateWallRunPathEntity(const Vec3f& _origine, Rigidbody* _rigidbody, const OriGine::Vec3f& _direction) {
+    SceneFactory factory;
+    Entity* pathEntity = factory.BuildEntityFromTemplate(scene_, "WallRunPath");
+    if (!pathEntity) {
+        LOG_ERROR("Failed to create WallRunPath entity.");
+        return;
+    }
+
+    auto* transform      = scene_->GetComponent<OriGine::Transform>(pathEntity->GetHandle());
+    transform->translate = _origine;
+    auto* splinePoints   = scene_->GetComponent<SplinePoints>(pathEntity->GetHandle());
+    if (!splinePoints) {
+        LOG_ERROR("WallRunPath entity does not have SplinePoints component.");
+        return;
+    }
+
+    pathEntityHandle_ = pathEntity->GetHandle();
+
+    SerializedField<float> gravity = SerializedField<float>("Settings", "Physics", "Gravity");
+    float deltaTime                = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Player");
+    splinePoints->points           = SplinePointsSetup(_rigidbody, _direction, *gravity.GetValue(), deltaTime);
+}
+
+std::deque<Vec3f> PlayerWallRunState::SplinePointsSetup(Rigidbody* _rigidbody, const OriGine::Vec3f& _direction, float _gravity, float _deltaTime) {
+    std::deque<Vec3f> splinePoints;
+
+    float forwardSpeed = playerSpeed_;
+    float upwardSpeed  = _rigidbody->GetVelocity()[Y];
+    float accelY       = _rigidbody->GetAcceleration()[Y];
+    float downSpeed    = (std::min)(_gravity * _rigidbody->GetMass(), _rigidbody->maxFallSpeed());
+
+    Vec3f pos = Vec3f();
+    splinePoints.push_back(pos);
+    while (true) {
+
+        speedRumpUpTimer_ += _deltaTime;
+        float rumpUpT          = speedRumpUpTimer_ / speedRumpUpTime_;
+        rumpUpT                = std::clamp(rumpUpT, 0.f, 1.f);
+        float currentSpeedRate = std::lerp(1.f, speedRate_, EaseOutCubic(rumpUpT));
+        // 壁ジャンプ失敗と判定する速度閾値を下回ったら抜ける
+        if (upwardSpeed < thresholdFailedWallJumpSpeed_) {
+            break;
+        }
+
+        // 位置計算
+        pos += _direction * (forwardSpeed * currentSpeedRate) * _deltaTime;
+
+        accelY -= downSpeed;
+        upwardSpeed += accelY * _deltaTime;
+        pos[Y] += upwardSpeed * _deltaTime;
+
+        splinePoints.push_back(pos);
+    }
+
+    return splinePoints;
 }

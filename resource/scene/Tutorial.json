@@ -37,9 +37,9 @@
                                 1.0
                             ],
                             "translate": [
-                                17.190767288208008,
-                                39.84636688232422,
-                                -73.66297912597656
+                                -159.18460083007813,
+                                57.73551559448242,
+                                593.518798828125
                             ]
                         }
                     }
@@ -1373,8 +1373,8 @@
                         ],
                         "translate": [
                             0.0,
-                            9.7387113571167,
-                            988.7352905273438
+                            66.06553649902344,
+                            981.1402587890625
                         ]
                     }
                 ]
@@ -1638,12 +1638,12 @@
                         "scale": [
                             4.0,
                             48.0,
-                            64.0
+                            50.0
                         ],
                         "translate": [
                             -31.035383224487305,
                             46.29263687133789,
-                            542.1251220703125
+                            535.8452758789063
                         ]
                     }
                 ]
@@ -1777,12 +1777,12 @@
                         "scale": [
                             4.0,
                             48.0,
-                            64.0
+                            50.0
                         ],
                         "translate": [
                             30.100013732910156,
                             46.29263687133789,
-                            538.7149047851563
+                            535.844970703125
                         ]
                     }
                 ]
@@ -1915,13 +1915,13 @@
                         ],
                         "scale": [
                             44.0,
-                            32.0,
-                            3.0
+                            24.0,
+                            60.0
                         ],
                         "translate": [
                             -0.5240054130554199,
-                            -28.5,
-                            855.2028198242188
+                            18.772838592529297,
+                            922.781005859375
                         ]
                     }
                 ]
@@ -1929,7 +1929,7 @@
             "Handle": {
                 "uuid": "699b10af-c14f-4e2c-8411-924e18b70163"
             },
-            "Name": "PenaltyFloor",
+            "Name": "Floor",
             "Systems": [
                 {
                     "SystemCategory": 4,
@@ -2055,12 +2055,12 @@
                         "scale": [
                             26.0,
                             56.0,
-                            200.0
+                            133.8038787841797
                         ],
                         "translate": [
                             0.0,
                             -56.0,
-                            846.7882690429688
+                            728.8019409179688
                         ]
                     }
                 ]
@@ -2383,8 +2383,8 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            0.9200639724731445,
-                            0.9202158451080322
+                            1.0,
+                            1.0
                         ],
                         "size": [
                             512.0,
@@ -2443,8 +2443,8 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            0.9200639724731445,
-                            0.9200639724731445
+                            1.0,
+                            1.0
                         ],
                         "size": [
                             256.0,
@@ -2494,12 +2494,12 @@
                         "scale": [
                             30.0,
                             30.0,
-                            15.0
+                            5.0
                         ],
                         "translate": [
                             0.0,
                             0.0,
-                            229.59588623046875
+                            231.85574340820313
                         ]
                     }
                 ]
@@ -2781,8 +2781,8 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            0.9200639724731445,
-                            0.9202158451080322
+                            1.0,
+                            1.0
                         ],
                         "size": [
                             512.0,
@@ -2841,8 +2841,8 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            0.9200639724731445,
-                            0.9200639724731445
+                            1.0,
+                            1.0
                         ],
                         "size": [
                             256.0,
@@ -2892,12 +2892,12 @@
                         "scale": [
                             30.0,
                             30.0,
-                            11.779999732971191
+                            5.0
                         ],
                         "translate": [
                             0.0,
                             0.0,
-                            461.6421813964844
+                            470.58148193359375
                         ]
                     }
                 ]
@@ -3152,8 +3152,8 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            0.9200639724731445,
-                            0.9202158451080322
+                            0.5327793955802917,
+                            0.5327793955802917
                         ],
                         "size": [
                             512.0,
@@ -3212,8 +3212,8 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            0.9200639724731445,
-                            0.9200639724731445
+                            0.5326699614524841,
+                            0.5326699614524841
                         ],
                         "size": [
                             256.0,
@@ -3263,12 +3263,12 @@
                         "scale": [
                             30.0,
                             60.0,
-                            11.779999732971191
+                            11.507360458374023
                         ],
                         "translate": [
                             0.0,
                             39.78822708129883,
-                            598.4325561523438
+                            575.2305297851563
                         ]
                     }
                 ]
@@ -3422,6 +3422,377 @@
                 {
                     "SystemCategory": 0,
                     "SystemName": "ResolveEntityReferences"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "Handle": "813e8342-a2ec-4ea0-8289-5b6e14ec7aa9",
+                        "center": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "halfSize": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "Handle": "8f2442c4-00fb-47d0-ba69-63337e99079e",
+                        "pushBackType": 0
+                    }
+                ],
+                "PlayerStateOverrideCondition": [
+                    {
+                        "Handle": "2f985820-cbb6-43d0-8034-f4fecbb60153",
+                        "overrideConditions": 76
+                    }
+                ],
+                "SpriteAnimation": [
+                    {
+                        "Handle": "046d3974-d7fe-4de5-be0e-eb4498604dc6",
+                        "colorAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
+                        },
+                        "colorCurve": [],
+                        "colorInterpolationType": 0,
+                        "duration": 0.4000000059604645,
+                        "rotateCurve": [],
+                        "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    1.0,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "time": 0.05354969576001167,
+                                "value": [
+                                    0.7322515249252319,
+                                    0.7322515249252319
+                                ]
+                            },
+                            {
+                                "time": 0.10547667741775513,
+                                "value": [
+                                    0.6524753570556641,
+                                    0.6524753570556641
+                                ]
+                            },
+                            {
+                                "time": 0.20000000298023224,
+                                "value": [
+                                    0.5,
+                                    0.5
+                                ]
+                            },
+                            {
+                                "time": 0.2888438403606415,
+                                "value": [
+                                    0.6622575521469116,
+                                    0.6622575521469116
+                                ]
+                            },
+                            {
+                                "time": 0.3440162241458893,
+                                "value": [
+                                    0.8109999895095825,
+                                    0.8113590478897095
+                                ]
+                            },
+                            {
+                                "time": 0.4000000059604645,
+                                "value": [
+                                    1.0,
+                                    1.0
+                                ]
+                            }
+                        ],
+                        "spriteComponentHandle": "ef2dbcd8-0edc-4757-9b8c-8cf11eee19a5",
+                        "transformAnimationState": {
+                            "isLoop": true,
+                            "isPlay": true
+                        },
+                        "transformInterpolationType": 0,
+                        "translateCurve": [],
+                        "uvAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
+                        },
+                        "uvInterpolationType": 0,
+                        "uvRotateCurve": [],
+                        "uvScaleCurve": [],
+                        "uvTranslateCurve": []
+                    },
+                    {
+                        "Handle": "debe4850-47f7-4a8b-a754-cfe7d81197c0",
+                        "colorAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
+                        },
+                        "colorCurve": [],
+                        "colorInterpolationType": 0,
+                        "duration": 0.4000000059604645,
+                        "rotateCurve": [],
+                        "scaleCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    1.0,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "time": 0.05400000140070915,
+                                "value": [
+                                    0.7319999933242798,
+                                    0.7319999933242798
+                                ]
+                            },
+                            {
+                                "time": 0.10499999672174454,
+                                "value": [
+                                    0.6520000100135803,
+                                    0.6520000100135803
+                                ]
+                            },
+                            {
+                                "time": 0.20000000298023224,
+                                "value": [
+                                    0.5,
+                                    0.5
+                                ]
+                            },
+                            {
+                                "time": 0.289000004529953,
+                                "value": [
+                                    0.6620000004768372,
+                                    0.6620000004768372
+                                ]
+                            },
+                            {
+                                "time": 0.3440162241458893,
+                                "value": [
+                                    0.8109999895095825,
+                                    0.8109999895095825
+                                ]
+                            },
+                            {
+                                "time": 0.4000000059604645,
+                                "value": [
+                                    1.0,
+                                    1.0
+                                ]
+                            }
+                        ],
+                        "spriteComponentHandle": "3642c461-69a5-4b37-9939-0262265c4d85",
+                        "transformAnimationState": {
+                            "isLoop": true,
+                            "isPlay": true
+                        },
+                        "transformInterpolationType": 0,
+                        "translateCurve": [],
+                        "uvAnimationState": {
+                            "isLoop": false,
+                            "isPlay": false
+                        },
+                        "uvInterpolationType": 0,
+                        "uvRotateCurve": [],
+                        "uvScaleCurve": [],
+                        "uvTranslateCurve": []
+                    }
+                ],
+                "SpriteRenderer": [
+                    {
+                        "Handle": "ef2dbcd8-0edc-4757-9b8c-8cf11eee19a5",
+                        "anchorPoint": [
+                            0.5,
+                            0.5
+                        ],
+                        "color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "defaultWindowSize": [
+                            1920.0,
+                            1080.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "isRender": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
+                            512.0,
+                            128.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "./application/resource/Texture/PushSpace.png",
+                        "textureSize": [
+                            512.0,
+                            128.0
+                        ],
+                        "translate": [
+                            960.0,
+                            756.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ],
+                        "windowRatioPos": [
+                            0.5,
+                            0.699999988079071
+                        ],
+                        "windowRatioSize": [
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "Handle": "3642c461-69a5-4b37-9939-0262265c4d85",
+                        "anchorPoint": [
+                            0.5,
+                            0.5
+                        ],
+                        "color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "defaultWindowSize": [
+                            1920.0,
+                            1080.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "isRender": false,
+                        "renderingPriority": 1,
+                        "rotate": 0.0,
+                        "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
+                            256.0,
+                            128.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "./application/resource/Texture/PushA.png",
+                        "textureSize": [
+                            512.0,
+                            256.0
+                        ],
+                        "translate": [
+                            960.0,
+                            756.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ],
+                        "windowRatioPos": [
+                            0.5,
+                            0.699999988079071
+                        ],
+                        "windowRatioSize": [
+                            0.13333334028720856,
+                            0.11851851642131805
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "98a4d964-7f6c-40f1-9763-85a340c7432b",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            30.0,
+                            60.0,
+                            7.0
+                        ],
+                        "translate": [
+                            0.0,
+                            39.78822708129883,
+                            854.7882690429688
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "79b5b56e-0dea-4dac-a388-4eb2fbe064a2"
+            },
+            "Name": "JumpEvent",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "SpriteAnimationSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "SpriteRenderSystem"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "PlayerStateOverrideSystem"
                 }
             ],
             "isUnique": false
