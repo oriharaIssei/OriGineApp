@@ -7,6 +7,7 @@
 
 /// <summary>
 /// ゲームを開始するまでの処理
+/// 順序は　ステージ紹介シーケンス -> スタートタイマー -> ゲーム開始
 /// </summary>
 class StartSequenceSystem
     : public OriGine::ISystem {
@@ -21,6 +22,10 @@ protected:
     void UpdateEntity(OriGine::EntityHandle _handle) override;
 
     /// <summary>
+    /// ステージ紹介シーケンス の開始処理
+    /// </summary>
+    void StageIntroductionSequence();
+    /// <summary>
     /// スタートタイマー の開始処理
     /// </summary>
     void TimerStartSequence();
@@ -30,8 +35,10 @@ protected:
     void GameStartSequence();
 
 protected:
-    bool isStarted_                       = false;
-    std::vector<std::string> stopSystems_ = {};
+    bool isIntroductionSequenceEnd_                   = false;
+    bool isStarted_                                   = false;
+    std::vector<std::string> stopSystems_             = {};
+    std::vector<std::string> stopSystemsInStartTimer_ = {};
 
 public:
     bool IsStarted() const {
