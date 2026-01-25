@@ -8,12 +8,12 @@
                     0.0
                 ],
                 "distortionStrength": [
-                    0.17000000178813934,
-                    0.3799999952316284
+                    0.10999999940395355,
+                    -0.18000000715255737
                 ],
                 "isActive": true,
                 "materialIndex": 0,
-                "texturePath": "./application/resource/Texture/Voronoi 8 - 512x512.png",
+                "texturePath": "./application/resource/Texture/Perlin 7 - 256x256.png",
                 "use3dObjectList": false
             }
         ],
@@ -39,7 +39,7 @@
                     1.4500000476837158
                 ],
                 "uvTranslate": [
-                    0.8373643755912781,
+                    0.4788074195384979,
                     0.0
                 ]
             }

@@ -4,16 +4,16 @@
             {
                 "Handle": "62033f25-9367-4f71-8911-91769555b3fd",
                 "distortionBias": [
-                    0.33000001311302185,
-                    0.6499999761581421
+                    0.0,
+                    0.0
                 ],
                 "distortionStrength": [
-                    0.09000000357627869,
-                    -0.17000000178813934
+                    -0.1599999964237213,
+                    0.33000001311302185
                 ],
                 "isActive": true,
                 "materialIndex": 0,
-                "texturePath": "./application/resource/Texture/Voronoi 3 - 256x256.png",
+                "texturePath": "./application/resource/Texture/Perlin 7 - 256x256.png",
                 "use3dObjectList": false
             }
         ],
@@ -35,11 +35,11 @@
                 ],
                 "uvRotate": 0.0,
                 "uvScale": [
-                    0.8199999928474426,
-                    0.7300000190734863
+                    1.0,
+                    1.0
                 ],
                 "uvTranslate": [
-                    -0.09205339848995209,
+                    -0.44211432337760925,
                     0.0
                 ]
             }
