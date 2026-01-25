@@ -115,8 +115,6 @@ void PlayerWallRunState::Initialize() {
     CameraController* cameraController =
         scene_->GetComponent<CameraController>(state->GetCameraEntityHandle());
 
-    cameraController->destinationAngleXY = Vec2f(0.f, 0.f);
-
     // 左壁想定のオフセットを取得
     cameraTargetOffsetOnWallRun_ =
         cameraController->targetOffsetOnWallRun;
@@ -142,8 +140,8 @@ void PlayerWallRunState::Initialize() {
             mesh.openData_.translate -= wallNormal_ * kMeshOffsetRate;
         }
     }
-    /* Vec3f pathOrigin = transform->GetWorldTranslate() - wallNormal_ * kOffsetRate;
-     CreateWallRunPathEntity(pathOrigin, rigidbody, direction);*/
+     Vec3f pathOrigin = transform->GetWorldTranslate() - wallNormal_ * kOffsetRate;
+     CreateWallRunPathEntity(pathOrigin, rigidbody, direction);
 }
 
 void PlayerWallRunState::Update(float _deltaTime) {
@@ -223,7 +221,7 @@ void PlayerWallRunState::Finalize() {
         }
     }
 
-    // scene_->AddDeleteEntity(pathEntityHandle_);
+    scene_->AddDeleteEntity(pathEntityHandle_);
 }
 
 PlayerMoveState PlayerWallRunState::TransitionState() const {

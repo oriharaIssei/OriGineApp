@@ -47,7 +47,7 @@ void ButtonInputSystem::UpdateEntity(OriGine::EntityHandle _handle) {
         }
 
         /// ====================== check Pad Input ====================== ///
-        for (auto padButton : button.GetShortcutPadButton()) {
+        for (auto padButton : button.GetShortcutGamepadButton()) {
             if (padInput->IsPress(padButton)) {
                 button.SetPressed(true);
             }

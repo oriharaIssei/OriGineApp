@@ -184,18 +184,18 @@ void ButtonGroup::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]]
             }
         }
     };
-    auto editPadButtonBind = [this](const std::string& _editParentLabel, std::vector<OriGine::PadButton>& _padButtonBinds) {
+    auto editGamepadButtonBind = [this](const std::string& _editParentLabel, std::vector<OriGine::GamepadButton>& _padButtonBinds) {
         std::string editorLabel = "";
         for (int i = 0; i < _padButtonBinds.size(); ++i) {
             ImGui::PushID(i);
-            ImGui::Text("PadButton%d :: ", i);
+            ImGui::Text("GamepadButton%d :: ", i);
             ImGui::SameLine();
-            editorLabel = "##PadButton" + std::to_string(i) + _editParentLabel;
+            editorLabel = "##GamepadButton" + std::to_string(i) + _editParentLabel;
             if (ImGui::BeginCombo(editorLabel.c_str(), padButtonNameMap.find(_padButtonBinds[i])->second.c_str())) {
                 for (auto& padButton : padButtonNameMap) {
                     bool isSelected = (_padButtonBinds[i] == padButton.first);
                     if (ImGui::Selectable(padButton.second.c_str(), isSelected)) {
-                        auto command = std::make_unique<SetterCommand<OriGine::PadButton>>(&_padButtonBinds[i], padButton.first);
+                        auto command = std::make_unique<SetterCommand<OriGine::GamepadButton>>(&_padButtonBinds[i], padButton.first);
                         OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
                     }
                     if (isSelected) {
@@ -207,17 +207,17 @@ void ButtonGroup::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]]
             ImGui::PopID();
         }
         // add
-        editorLabel = "Add PadButton##" + _editParentLabel;
+        editorLabel = "Add GamepadButton##" + _editParentLabel;
         if (ImGui::Button(editorLabel.c_str())) {
-            auto command = std::make_unique<AddElementCommand<std::vector<OriGine::PadButton>>>(&_padButtonBinds, OriGine::PadButton::A);
+            auto command = std::make_unique<AddElementCommand<std::vector<OriGine::GamepadButton>>>(&_padButtonBinds, OriGine::GamepadButton::A);
             OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
         }
         ImGui::SameLine();
         // remove
-        editorLabel = "Remove PadButton##" + _editParentLabel;
+        editorLabel = "Remove GamepadButton##" + _editParentLabel;
         if (ImGui::Button(editorLabel.c_str())) {
             if (_padButtonBinds.size() > 0) {
-                auto command = std::make_unique<EraseElementCommand<std::vector<OriGine::PadButton>>>(&_padButtonBinds, _padButtonBinds.end() - 1);
+                auto command = std::make_unique<EraseElementCommand<std::vector<OriGine::GamepadButton>>>(&_padButtonBinds, _padButtonBinds.end() - 1);
                 OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
             }
         }
@@ -227,21 +227,21 @@ void ButtonGroup::Edit([[maybe_unused]] OriGine::Scene* _scene, [[maybe_unused]]
     if (ImGui::TreeNode(label.c_str())) {
         editKeyBind("SelectAddKeyBind##" + _parentLabel, selectAddKeys_);
         ImGui::Separator();
-        editPadButtonBind("SelectAddPadButtonBind##" + _parentLabel, selectAddPadButtons_);
+        editGamepadButtonBind("SelectAddGamepadButtonBind##" + _parentLabel, selectAddGamepadButtons_);
         ImGui::TreePop();
     }
     label = "SelectSubKeyBind##" + _parentLabel;
     if (ImGui::TreeNode(label.c_str())) {
         editKeyBind("SelectSubKeyBind##" + _parentLabel, selectSubKeys_);
         ImGui::Separator();
-        editPadButtonBind("SelectSubPadButtonBind##" + _parentLabel, selectSubPadButtons_);
+        editGamepadButtonBind("SelectSubGamepadButtonBind##" + _parentLabel, selectSubGamepadButtons_);
         ImGui::TreePop();
     }
     label = "DecideKeyBind##" + _parentLabel;
     if (ImGui::TreeNode(label.c_str())) {
         editKeyBind("DecideKeyBind##" + _parentLabel, decideKeys_);
         ImGui::Separator();
-        editPadButtonBind("DecidePadButtonBind##" + _parentLabel, decidePadButtons_);
+        editGamepadButtonBind("DecideGamepadButtonBind##" + _parentLabel, decideGamepadButtons_);
         ImGui::TreePop();
     }
 
@@ -262,11 +262,11 @@ void to_json(nlohmann::json& j, const ButtonGroup& r) {
     j["buttonNumbers"] = buttonNumbersJson;
 
     j["selectAddKeys"]       = r.selectAddKeys_;
-    j["selectAddPadButtons"] = r.selectAddPadButtons_;
+    j["selectAddGamepadButtons"] = r.selectAddGamepadButtons_;
     j["selectSubKeys"]       = r.selectSubKeys_;
-    j["selectSubPadButtons"] = r.selectSubPadButtons_;
+    j["selectSubGamepadButtons"] = r.selectSubGamepadButtons_;
     j["decideKeys"]          = r.decideKeys_;
-    j["decidePadButtons"]    = r.decidePadButtons_;
+    j["decideGamepadButtons"]    = r.decideGamepadButtons_;
 }
 
 void from_json(const nlohmann::json& j, ButtonGroup& r) {
@@ -288,10 +288,10 @@ void from_json(const nlohmann::json& j, ButtonGroup& r) {
             r.selectAddKeys_.push_back(key.get<OriGine::Key>());
         }
     }
-    if (j.contains("selectAddPadButtons") && j.at("selectAddPadButtons").is_array()) {
-        r.selectAddPadButtons_.clear();
-        for (const auto& button : j.at("selectAddPadButtons")) {
-            r.selectAddPadButtons_.push_back(button.get<OriGine::PadButton>());
+    if (j.contains("selectAddGamepadButtons") && j.at("selectAddGamepadButtons").is_array()) {
+        r.selectAddGamepadButtons_.clear();
+        for (const auto& button : j.at("selectAddGamepadButtons")) {
+            r.selectAddGamepadButtons_.push_back(button.get<OriGine::GamepadButton>());
         }
     }
     if (j.contains("selectSubKeys") && j.at("selectSubKeys").is_array()) {
@@ -300,10 +300,10 @@ void from_json(const nlohmann::json& j, ButtonGroup& r) {
             r.selectSubKeys_.push_back(key.get<OriGine::Key>());
         }
     }
-    if (j.contains("selectSubPadButtons") && j.at("selectSubPadButtons").is_array()) {
-        r.selectSubPadButtons_.clear();
-        for (const auto& button : j.at("selectSubPadButtons")) {
-            r.selectSubPadButtons_.push_back(button.get<OriGine::PadButton>());
+    if (j.contains("selectSubGamepadButtons") && j.at("selectSubGamepadButtons").is_array()) {
+        r.selectSubGamepadButtons_.clear();
+        for (const auto& button : j.at("selectSubGamepadButtons")) {
+            r.selectSubGamepadButtons_.push_back(button.get<OriGine::GamepadButton>());
         }
     }
     if (j.contains("decideKeys") && j.at("decideKeys").is_array()) {
@@ -312,10 +312,10 @@ void from_json(const nlohmann::json& j, ButtonGroup& r) {
             r.decideKeys_.push_back(key.get<OriGine::Key>());
         }
     }
-    if (j.contains("decidePadButtons") && j.at("decidePadButtons").is_array()) {
-        r.decidePadButtons_.clear();
-        for (const auto& button : j.at("decidePadButtons")) {
-            r.decidePadButtons_.push_back(button.get<OriGine::PadButton>());
+    if (j.contains("decideGamepadButtons") && j.at("decideGamepadButtons").is_array()) {
+        r.decideGamepadButtons_.clear();
+        for (const auto& button : j.at("decideGamepadButtons")) {
+            r.decideGamepadButtons_.push_back(button.get<OriGine::GamepadButton>());
         }
     }
 }

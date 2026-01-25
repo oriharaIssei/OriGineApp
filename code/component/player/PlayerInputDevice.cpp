@@ -5,7 +5,7 @@
 #include "PlayerInput.h"
 
 OriGine::Vec2f GamepadInputDevice::GetMoveDirection() const {
-    return pad_->GetLStick().normalize();
+    return pad_->GetLeftStick().normalize();
 }
 
 bool GamepadInputDevice::IsJumpTrigger() const {

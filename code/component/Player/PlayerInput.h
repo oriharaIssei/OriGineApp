@@ -7,7 +7,8 @@
 
 /// engine
 // lib
-#include "input/InputManager.h"
+#include "input/GamepadInput.h"
+#include "input/KeyboardInput.h"
 
 /// math
 #include "math/Quaternion.h"
@@ -68,9 +69,9 @@ private:
     std::vector<OriGine::Key> jumpKeys_ = {
         OriGine::Key::SPACE,
         OriGine::Key::NUMPAD0};
-    std::vector<OriGine::PadButton> jumpButton_ = {
-        OriGine::PadButton::A,
-        OriGine::PadButton::B};
+    std::vector<OriGine::GamepadButton> jumpButton_ = {
+        OriGine::GamepadButton::A,
+        OriGine::GamepadButton::B};
 
 public:
     const std::vector<OriGine::Key>& GetMoveFrontKeys() const {
@@ -90,7 +91,7 @@ public:
         return jumpKeys_;
     }
 
-    const std::vector<OriGine::PadButton>& GetJumpButton() const {
+    const std::vector<OriGine::GamepadButton>& GetJumpButton() const {
         return jumpButton_;
     }
 

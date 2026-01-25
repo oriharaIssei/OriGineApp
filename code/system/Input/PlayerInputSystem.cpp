@@ -30,7 +30,7 @@ void PlayerInputSystem::UpdateEntity(OriGine::EntityHandle _handle) {
         return;
     }
 
-    const float deltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Camera");
+    const float deltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Player");
 
     InputUpdate(
         deltaTime,

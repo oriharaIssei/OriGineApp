@@ -41,7 +41,7 @@ void CameraInputSystem::InputUpdate(float _deltaTime, MouseInput* _mouseInput, G
     if (_cameraController->followTarget) {
         OriGine::Vec2f rotateVelocity = {0.f, 0.f};
         if (_padInput->IsActive()) { /// GamePad
-            rotateVelocity = _padInput->GetRStick() * _cameraController->rotateSpeedPadStick;
+            rotateVelocity = _padInput->GetRightStick() * _cameraController->rotateSpeedPadStick;
             // input の x,yをそれぞれの角度に変換
             rotateVelocity = OriGine::Vec2f(-rotateVelocity[Y], rotateVelocity[X]);
         } else { /// Mouse

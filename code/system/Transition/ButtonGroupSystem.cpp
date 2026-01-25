@@ -69,7 +69,7 @@ void ButtonGroupSystem::UpdateEntity(EntityHandle _handle) {
     // 決定ボタンの判定
     // pad が有効な場合は pad 優先
     if (gamePadInput->IsActive()) {
-        for (const auto& button : buttonGroup->GetDecidePadButtons()) {
+        for (const auto& button : buttonGroup->GetDecideGamepadButtons()) {
             if (isPressed) {
                 if (gamePadInput->IsPress(button)) {
                     isPressed = true;
@@ -110,13 +110,13 @@ void ButtonGroupSystem::UpdateEntity(EntityHandle _handle) {
     int32_t delta = 0;
 
     if (gamePadInput->IsActive()) {
-        for (const auto& button : buttonGroup->GetSelectAddPadButtons()) {
+        for (const auto& button : buttonGroup->GetSelectAddGamepadButtons()) {
             if (gamePadInput->IsTrigger(button)) {
                 ++delta;
                 break;
             }
         }
-        for (const auto& button : buttonGroup->GetSelectSubPadButtons()) {
+        for (const auto& button : buttonGroup->GetSelectSubGamepadButtons()) {
             if (gamePadInput->IsTrigger(button)) {
                 --delta;
                 break;

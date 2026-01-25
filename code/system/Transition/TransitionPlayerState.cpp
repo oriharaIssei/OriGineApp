@@ -41,7 +41,7 @@ void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
     PlayerState* state   = GetComponent<PlayerState>(_handle);
     PlayerStatus* status = GetComponent<PlayerStatus>(_handle);
 
-    const float deltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Camera");
+    const float deltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Player");
 
     /// =====================================================
     // StateUpdate
@@ -65,7 +65,7 @@ void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
             }
         }
 
-        // sceneChange !
+        // sceneChange
         SceneChanger* sceneChanger = GetComponent<SceneChanger>(_handle);
         if (sceneChanger) {
             sceneChanger->ChangeScene();

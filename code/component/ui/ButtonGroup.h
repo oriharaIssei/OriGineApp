@@ -31,13 +31,13 @@ private:
 
     // ボタンを選ぶためのキー ボタン
     std::vector<OriGine::Key> selectAddKeys_{};
-    std::vector<OriGine::PadButton> selectAddPadButtons_{};
+    std::vector<OriGine::GamepadButton> selectAddGamepadButtons_{};
     std::vector<OriGine::Key> selectSubKeys_{};
-    std::vector<OriGine::PadButton> selectSubPadButtons_{};
+    std::vector<OriGine::GamepadButton> selectSubGamepadButtons_{};
 
     // ボタンを決定するためのキー ボタン
     std::vector<OriGine::Key> decideKeys_{};
-    std::vector<OriGine::PadButton> decidePadButtons_{};
+    std::vector<OriGine::GamepadButton> decideGamepadButtons_{};
 
 public:
     int32_t GetCurrentButtonNumber() const { return currentButtonNumber_; }
@@ -65,9 +65,9 @@ public:
     }
 
     const std::vector<OriGine::Key>& GetSelectAddKeys() const { return selectAddKeys_; }
-    const std::vector<OriGine::PadButton>& GetSelectAddPadButtons() const { return selectAddPadButtons_; }
+    const std::vector<OriGine::GamepadButton>& GetSelectAddGamepadButtons() const { return selectAddGamepadButtons_; }
     const std::vector<OriGine::Key>& GetSelectSubKeys() const { return selectSubKeys_; }
-    const std::vector<OriGine::PadButton>& GetSelectSubPadButtons() { return selectSubPadButtons_; }
+    const std::vector<OriGine::GamepadButton>& GetSelectSubGamepadButtons() { return selectSubGamepadButtons_; }
     const std::vector<OriGine::Key>& GetDecideKeys() const { return decideKeys_; }
-    const std::vector<OriGine::PadButton>& GetDecidePadButtons() const { return decidePadButtons_; }
+    const std::vector<OriGine::GamepadButton>& GetDecideGamepadButtons() const { return decideGamepadButtons_; }
 };
