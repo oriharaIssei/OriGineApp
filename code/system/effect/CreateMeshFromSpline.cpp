@@ -1,6 +1,7 @@
 #include "CreateMeshFromSpline.h"
 
 /// math
+#include "math/mathEnv.h"
 #include <math/MyEasing.h>
 #include <math/Spline.h>
 #include <math/Vector3.h>
@@ -39,9 +40,12 @@ static SplineSegment BuildSplineSegment(
     seg.p0 = p0;
     seg.p1 = p1;
 
-    seg.dir   = Vec3f(p1 - p0).normalize();
-    seg.up    = axisY;
-    seg.right = seg.dir.cross(seg.up).normalize();
+    Vec3f rawDir = p1 - p0;
+
+    seg.dir   = rawDir.normalize(); // 進行方向
+    seg.up    = settings.upVector; 
+    seg.right = seg.up.cross(seg.dir).normalize();
+    seg.up    = seg.dir.cross(seg.right).normalize();
 
     float prevRatio, ratio;
     if (settings.isUvLoopEnable) {
@@ -54,7 +58,7 @@ static SplineSegment BuildSplineSegment(
 
     seg.prevLengthRatio = prevRatio;
     seg.lengthRatio     = ratio;
-    
+
     const int uvEase   = static_cast<int>(settings.uvEaseType);
     const float uvPrev = EasingFunctions[uvEase](prevRatio);
     const float uvNow  = EasingFunctions[uvEase](ratio);
@@ -63,7 +67,6 @@ static SplineSegment BuildSplineSegment(
     seg.uv[3] = {settings.endUv[X], std::lerp(settings.startUv[Y], settings.endUv[Y], uvNow)};
     seg.uv[1] = {seg.uv[3][X], seg.uv[0][Y]};
     seg.uv[2] = {seg.uv[0][X], seg.uv[3][Y]};
-
 
     int widthEase    = static_cast<int>(settings.widthEaseType);
     seg.minWidthHalf = std::lerp(settings.startWidth, settings.endWidth, EasingFunctions[widthEase](prevRatio)) * 0.5f;
@@ -96,7 +99,6 @@ static void AppendPlaneSegment(
     indices.insert(indices.end(), {base + 0, base + 2, base + 1,
                                       base + 1, base + 2, base + 3});
 }
-
 }
 
 CreateMeshFromSpline::CreateMeshFromSpline() : ISystem(OriGine::SystemCategory::Effect) {}
@@ -132,7 +134,11 @@ void CreateMeshFromSpline::CreateLinePlaneMesh(
     std::vector<uint32_t> indices;
 
     const int32_t segmentCount = static_cast<int32_t>(spline->points.size() - 1);
-    const float allLength      = spline->commonSettings.segmentLength * spline->capacity;
+    float allLength            = 0.f;
+
+    for (int32_t i = 0; i < segmentCount; ++i) {
+        allLength += Vec3f(spline->points[i + 1] - spline->points[i]).length();
+    }
 
     float totalLength = 0.f;
     float prevTotal   = 0.f;
@@ -160,7 +166,6 @@ void CreateMeshFromSpline::CreateLinePlaneMesh(
     mesh.SetVertexData(vertices);
     mesh.SetIndexData(indices);
 
-    renderer->SetIsCulling(false);
     renderer->SetMeshGroup({mesh});
     renderer->GetMeshGroup()->at(0).TransferData();
 }
@@ -205,7 +210,6 @@ void CreateMeshFromSpline::CreateCrossPlaneMesh(
     hMesh.SetVertexData(horizontal);
     hMesh.SetIndexData(indices);
 
-    renderer->SetIsCulling(false);
     renderer->SetMeshGroup({vMesh, hMesh});
     renderer->GetMeshGroup()->at(0).TransferData();
     renderer->GetMeshGroup()->at(1).TransferData();

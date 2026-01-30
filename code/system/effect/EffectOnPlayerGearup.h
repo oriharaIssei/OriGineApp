@@ -31,6 +31,9 @@ protected:
 protected:
     const OriGine::Vec3f emitterOffset_ = {0.0f, 0.0f, 8.f};
 
+    /// <summary>
+    /// エフェクトの再生状態を管理する構造体
+    /// </summary>
     struct AnimationState {
         AnimationState(bool _playState, float _currentTime, float _maxTime)
             : playState(_playState), currentTime(_currentTime), maxTime(_maxTime) {}
@@ -45,7 +48,7 @@ protected:
 
     const OriGine::Vec3f shockWaveOffset_ = {0.f, 0.f, 33.f}; // 衝撃波のオフセット位置
     const float minInnerRadius_           = 4.2f; // 衝撃波の中半径
-    const float maxInnerRadius_           = 14.3f; // 衝撃波の中半径
+    const float maxInnerRadius_           = 12.3f; // 衝撃波の中半径
     const float minOuterRadius_           = 5.1f; // 衝撃波の外半径
     const float maxOuterRadius_           = 16.0f; // 衝撃波の外半径
 };

@@ -1,8 +1,7 @@
 #include "TireTrailGenerateSystem.h"
 
 /// engine
-#define DELTA_TIME
-#include "EngineInclude.h"
+#include "Engine.h"
 
 #include "scene/Scene.h"
 
@@ -204,13 +203,14 @@ void TireTrailGenerateSystem::UpdateFadeOut(
     TireSplinePoints& _spline,
     EntityHandle _handle) {
     constexpr int32_t kMinPoints = 4;
+    float deltaTime              = Engine::GetInstance()->GetDeltaTime();
 
     if (_spline.points.size() < kMinPoints) {
         GetScene()->AddDeleteEntity(_handle);
         return;
     }
 
-    _spline.commonSettings.fadeoutTimer += GetMainDeltaTime();
+    _spline.commonSettings.fadeoutTimer += deltaTime;
     if (_spline.commonSettings.fadeoutTimer >= _spline.commonSettings.fadeoutTime) {
         _spline.commonSettings.fadeoutTimer = 0.f;
         _spline.points.pop_front();

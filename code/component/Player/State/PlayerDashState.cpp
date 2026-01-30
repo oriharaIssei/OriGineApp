@@ -1,7 +1,9 @@
 #include "PlayerDashState.h"
 
+/// engine
+#include "Engine.h"
+
 /// component
-#include "component/animation/SkinningAnimationComponent.h"
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
 
@@ -18,14 +20,7 @@
 using namespace OriGine;
 
 void PlayerDashState::Initialize() {
-    auto* state        = scene_->GetComponent<PlayerState>(playerEntityHandle_);
-    auto* status       = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
-
-    // gearLevel に応じてアニメーション速度と移動速度を設定
-    auto* skinningAnim = scene_->GetComponent<SkinningAnimationComponent>(playerEntityHandle_);
-    if (skinningAnim) {
-        skinningAnim->SetPlaybackSpeed(1, 1.f + float(state->GetGearLevel()));
-    }
+    auto* status = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
 
     // 移動速度の設定
     auto* rigidbody = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
@@ -35,6 +30,7 @@ void PlayerDashState::Initialize() {
 }
 
 void PlayerDashState::Update(float _deltaTime) {
+
     auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
     auto* state        = scene_->GetComponent<PlayerState>(playerEntityHandle_);
     auto* playerInput  = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
@@ -65,7 +61,10 @@ void PlayerDashState::Update(float _deltaTime) {
 
     // 速度更新
     CameraTransform* cameraTransform = scene_->GetComponent<CameraTransform>(state->GetCameraEntityHandle());
-    playerStatus->UpdateAccel(_deltaTime, playerInput, transform, rigidbody, cameraTransform->rotate);
+    Vec3f worldInputDir              = playerInput->CalculateWorldInputDirection(cameraTransform->rotate);
+    Vec3f forwardDirection           = playerStatus->ComputeSmoothedDirection(worldInputDir, rigidbody, transform, _deltaTime);
+    transform->rotate                = Quaternion::LookAt(forwardDirection, axisY);
+    playerStatus->UpdateAccel(_deltaTime, forwardDirection, rigidbody);
 
     // 落下時間を更新
     if (state->IsOnGround()) {
@@ -82,20 +81,14 @@ void PlayerDashState::Update(float _deltaTime) {
     CameraController* cameraController = scene_->GetComponent<CameraController>(state->GetCameraEntityHandle());
 
     if (cameraController) {
+        float cameraDeltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Camera");
         // カメラのオフセットを徐々に元に戻す
-        cameraOffsetLerpTimer_ += _deltaTime;
+        cameraOffsetLerpTimer_ += cameraDeltaTime;
         float t = cameraOffsetLerpTimer_ / kCameraOffsetLerpTime_;
         t       = std::clamp(t, 0.f, 1.f);
 
-        const OriGine::Vec3f& targetOffset  = cameraController->GetOffsetOnDash();
-        const OriGine::Vec3f& currentOffset = cameraController->GetCurrentOffset();
-        OriGine::Vec3f newOffset            = Lerp<3, float>(currentOffset, targetOffset, EaseOutCubic(t));
-        cameraController->SetCurrentOffset(newOffset);
-
-        const OriGine::Vec3f& targetTargetOffset  = cameraController->GetTargetOffsetOnDash();
-        const OriGine::Vec3f& currentTargetOffset = cameraController->GetCurrentTargetOffset();
-        OriGine::Vec3f newTargetOffset            = Lerp<3, float>(currentTargetOffset, targetTargetOffset, EaseOutCubic(t));
-        cameraController->SetCurrentTargetOffset(newTargetOffset);
+        cameraController->currentOffset       = Lerp<3, float>(cameraController->currentOffset, cameraController->offsetOnDash, EaseOutCubic(t));
+        cameraController->currentTargetOffset = Lerp<3, float>(cameraController->currentTargetOffset, cameraController->targetOffsetOnDash, EaseOutCubic(t));
     }
 }
 
@@ -111,15 +104,11 @@ void PlayerDashState::Finalize() {
         velo = velo.normalize() * limitSpeed;
         rigidbody->SetVelocity(velo);
     }
-    auto* skinningAnim = scene_->GetComponent<SkinningAnimationComponent>(playerEntityHandle_);
-    if (skinningAnim) {
-        skinningAnim->SetPlaybackSpeed(1, 1.f);
-    }
 }
 
 PlayerMoveState PlayerDashState::TransitionState() const {
-    auto state         = scene_->GetComponent<PlayerState>(playerEntityHandle_);
-    auto playerInput   = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
+    auto state       = scene_->GetComponent<PlayerState>(playerEntityHandle_);
+    auto playerInput = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
 
     // 入力がない場合はアイドル状態に遷移
     if (playerInput->GetInputDirection().lengthSq() <= 0.f) {

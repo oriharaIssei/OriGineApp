@@ -1,7 +1,6 @@
 #include "PlayerFallDownState.h"
 
 /// component
-#include "component/animation/SkinningAnimationComponent.h"
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
 
@@ -28,7 +27,10 @@ void PlayerFallDownState::Update(float _deltaTime) {
 
     // 速度更新
     CameraTransform* cameraTransform = scene_->GetComponent<CameraTransform>(playerState->GetCameraEntityHandle());
-    playerStatus->UpdateAccel(_deltaTime, playerInput, transform, rigidbody, cameraTransform->rotate);
+    Vec3f worldInputDir              = playerInput->CalculateWorldInputDirection(cameraTransform->rotate);
+    Vec3f forwardDirection           = playerStatus->ComputeSmoothedDirection(worldInputDir, rigidbody, transform, _deltaTime);
+    transform->rotate                = Quaternion::LookAt(forwardDirection, axisY);
+    playerStatus->UpdateAccel(_deltaTime, forwardDirection, rigidbody);
 
     ///! TODO : ここにカメラの処理を書くべきではない
     CameraController* cameraController = scene_->GetComponent<CameraController>(playerState->GetCameraEntityHandle());
@@ -37,30 +39,24 @@ void PlayerFallDownState::Update(float _deltaTime) {
         return;
     }
     // カメラのオフセットを徐々に元に戻す
-    cameraOffsetLerpTimer_ += _deltaTime;
+
+    float cameraDeltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Camera");
+    cameraOffsetLerpTimer_ += cameraDeltaTime;
     float t = cameraOffsetLerpTimer_ / kCameraOffsetLerpTime_;
     t       = std::clamp(t, 0.f, 1.f);
 
-    OriGine::Vec3f targetOffset, currentOffset;
-    OriGine::Vec3f targetTargetOffset, currentTargetOffset;
+    OriGine::Vec3f targetOffset;
+    OriGine::Vec3f targetTargetOffset;
     if (playerState->GetGearLevel() >= kThresholdGearLevelOfCameraOffset_) {
-        targetOffset  = cameraController->GetOffsetOnDash();
-        currentOffset = cameraController->GetCurrentOffset();
-
-        targetTargetOffset  = cameraController->GetTargetOffsetOnDash();
-        currentTargetOffset = cameraController->GetCurrentTargetOffset();
+        targetOffset       = cameraController->offsetOnDash;
+        targetTargetOffset = cameraController->targetOffsetOnDash;
     } else {
-        targetOffset  = cameraController->GetFirstOffset();
-        currentOffset = cameraController->GetCurrentOffset();
-
-        targetTargetOffset  = cameraController->GetFirstTargetOffset();
-        currentTargetOffset = cameraController->GetCurrentTargetOffset();
+        targetOffset       = cameraController->firstOffset;
+        targetTargetOffset = cameraController->firstTargetOffset;
     }
 
-    OriGine::Vec3f newTargetOffset = Lerp<3, float>(currentTargetOffset, targetTargetOffset, EaseOutCubic(t));
-    OriGine::Vec3f newOffset       = Lerp<3, float>(currentOffset, targetOffset, EaseOutCubic(t));
-    cameraController->SetCurrentOffset(newOffset);
-    cameraController->SetCurrentTargetOffset(newTargetOffset);
+    cameraController->currentOffset       = Lerp<3, float>(cameraController->currentOffset, targetOffset, EaseOutCubic(t));
+    cameraController->currentTargetOffset = Lerp<3, float>(cameraController->currentTargetOffset, targetTargetOffset, EaseOutCubic(t));
 }
 
 void PlayerFallDownState::Finalize() {
@@ -76,21 +72,20 @@ void PlayerFallDownState::Finalize() {
         velo = velo.normalize() * limitSpeed;
         rigidbody->SetVelocity(velo);
     }
-
-    auto* skinningAnim = scene_->GetComponent<SkinningAnimationComponent>(playerEntityHandle_);
-    if (skinningAnim) {
-        skinningAnim->Play(4); // 差し替え
-    }
 }
 
 PlayerMoveState PlayerFallDownState::TransitionState() const {
-    auto state         = scene_->GetComponent<PlayerState>(playerEntityHandle_);
-    auto playerInput   = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
+    auto state       = scene_->GetComponent<PlayerState>(playerEntityHandle_);
+    auto playerInput = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
 
     // 壁走り判定
     if (state->IsCollisionWithWall()) {
+        if (state->IsWheelie()) {
+            return PlayerMoveState::WHEELIE_RUN;
+        }
         return PlayerMoveState::WALL_RUN;
     }
+
     // 着地判定
     if (state->IsOnGround()) {
         if (playerInput->GetInputDirection().lengthSq() > 0.f) {

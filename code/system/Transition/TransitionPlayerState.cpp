@@ -38,7 +38,10 @@
 using namespace OriGine;
 
 void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
-    PlayerState* state = GetComponent<PlayerState>(_handle);
+    PlayerState* state   = GetComponent<PlayerState>(_handle);
+    PlayerStatus* status = GetComponent<PlayerStatus>(_handle);
+
+    const float deltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Player");
 
     /// =====================================================
     // StateUpdate
@@ -62,7 +65,7 @@ void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
             }
         }
 
-        // sceneChange !
+        // sceneChange
         SceneChanger* sceneChanger = GetComponent<SceneChanger>(_handle);
         if (sceneChanger) {
             sceneChanger->ChangeScene();
@@ -109,6 +112,36 @@ void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
         }
     }
 
+    // state Update
+    EnumBitmask<PlayerStateFlag> newFlag = state->GetStateFlagRef().Current();
+    newFlag.ClearFlag(PlayerStateFlag::GEAR_UP);
+    newFlag.ClearFlag(PlayerStateFlag::IS_GOAL);
+    newFlag.ClearFlag(PlayerStateFlag::IS_PENALTY);
+    newFlag.ClearFlag(PlayerStateFlag::IS_RESTART);
+
+    state->GetStateFlagRef().Set(newFlag);
+
+    status->UpdateWallRunInterval(deltaTime);
+    status->UpdateWheelieInterval(deltaTime);
+
+    ///! Penalty専用のエフェクトシステムを作る
+    // ペナルティ時間 更新
+    state->SubtractPenaltyTime(deltaTime);
+    float currentInvisibleTime = state->GetInvincibilityTime();
+    if (currentInvisibleTime > 0.f) {
+        constexpr float kAmplitude = 13.f;
+        state->SubtractInvincibilityTime(deltaTime);
+
+        // animation 更新
+        Material* material = GetComponent<Material>(_handle);
+        float t            = currentInvisibleTime / status->GetInvincibilityTime();
+        // 0~1 の間で 点滅させる
+        material->color_[A] = std::clamp(EaseInSine((sinf(t * kAmplitude) * 0.5f) + 0.5f), 0.f, 1.f);
+    } else {
+        Material* material  = GetComponent<Material>(_handle);
+        material->color_[A] = 1.f;
+    }
+
     /// =====================================================
     // Fov Y
     /// =====================================================
@@ -121,36 +154,7 @@ void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
         // fov 更新
         CameraTransform* cameraTransform = GetComponent<CameraTransform>(gameCamera->GetHandle());
         if (cameraTransform) {
-            cameraTransform->fovAngleY = std::lerp(cameraTransform->fovAngleY, cameraController->CalculateFovYByPlayerGearLevel(state->GetGearLevel()), cameraController->GetFovYInterpolate());
+            cameraTransform->fovAngleY = std::lerp(cameraTransform->fovAngleY, cameraController->CalculateFovYByPlayerGearLevel(state->GetGearLevel()), cameraController->fovYInterpolate);
         };
-    }
-
-    // state Update
-    EnumBitmask<PlayerStateFlag> newFlag = state->GetStateFlagRef().Current();
-    newFlag.ClearFlag(PlayerStateFlag::GEAR_UP);
-    newFlag.ClearFlag(PlayerStateFlag::IS_GOAL);
-    newFlag.ClearFlag(PlayerStateFlag::IS_PENALTY);
-    newFlag.ClearFlag(PlayerStateFlag::IS_RESTART);
-
-    state->GetStateFlagRef().Set(newFlag);
-
-    ///! Penalty専用のエフェクトシステムを作る
-    // ペナルティ時間 更新
-    state->SubtractPenaltyTime(GetMainDeltaTime());
-    float currentInvisibleTime = state->GetInvincibilityTime();
-    if (currentInvisibleTime > 0.f) {
-        constexpr float kAmplitude = 13.f;
-        state->SubtractInvincibilityTime(GetMainDeltaTime());
-
-        PlayerStatus* playerStatus = GetComponent<PlayerStatus>(_handle);
-
-        // animation 更新
-        Material* material = GetComponent<Material>(_handle);
-        float t            = currentInvisibleTime / playerStatus->GetInvincibilityTime();
-        // 0~1 の間で 点滅させる
-        material->color_[A] = std::clamp(EaseInSine((sinf(t * kAmplitude) * 0.5f) + 0.5f), 0.f, 1.f);
-    } else {
-        Material* material  = GetComponent<Material>(_handle);
-        material->color_[A] = 1.f;
     }
 }

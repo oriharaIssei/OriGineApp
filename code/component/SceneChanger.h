@@ -10,16 +10,31 @@
 /// </summary>
 class SceneChanger
     : public OriGine::IComponent {
+    /// <summary>
+    /// JSON 変換用
+    /// </summary>
     friend void to_json(nlohmann::json& j, const SceneChanger& r);
+    /// <summary>
+    /// JSON 復元用
+    /// </summary>
     friend void from_json(const nlohmann::json& j, SceneChanger& r);
 
 public:
     SceneChanger();
     virtual ~SceneChanger();
 
+    /// <summary>
+    /// 初期化処理
+    /// </summary>
     virtual void Initialize(OriGine::Scene* _scene, OriGine::EntityHandle _owner) override;
-    virtual void Edit(OriGine::Scene* _scene, OriGine::EntityHandle _handle,  const std::string& _parentLabel) override;
+    /// <summary>
+    /// エディタ用編集UI
+    /// </summary>
+    virtual void Edit(OriGine::Scene* _scene, OriGine::EntityHandle _handle, const std::string& _parentLabel) override;
 
+    /// <summary>
+    /// 終了処理
+    /// </summary>
     virtual void Finalize() override;
 
     /// <summary>
@@ -28,6 +43,7 @@ public:
     void ChangeScene() {
         isSceneChanged_ = true;
     }
+
 private:
     bool isSceneChanged_ = false;
     std::string nextSceneName_;

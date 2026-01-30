@@ -5,6 +5,10 @@
 /// externals
 #include "myGui/MyGui.h"
 
+#ifdef _DEBUG
+#include "myGui/MyGui.h"
+#endif // _DEBUG
+
 using namespace OriGine;
 
 PlayerState::PlayerState()
@@ -15,7 +19,6 @@ PlayerState::~PlayerState() {}
 void PlayerState::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {
     // moveStateEnum の 初期化
     // current,prev を IDLE に設定
-    moveStateEnum_.Set(PlayerMoveState::IDLE);
     moveStateEnum_.Set(PlayerMoveState::IDLE);
     moveState_ = nullptr;
 
@@ -29,7 +32,6 @@ void PlayerState::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {
 }
 
 void PlayerState::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityHandle _owner, [[maybe_unused]] const std::string& _parentLabel) {
-
     ImGui::Text("MoveState     : %s", moveStateName[moveStateEnum_.Current().ToEnum()]);
     ImGui::Text("Gear Level    : %d", gearLevel_);
     ImGui::Spacing();
@@ -48,14 +50,19 @@ void PlayerState::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityHa
 
 void PlayerState::Finalize() {}
 
-void PlayerState::OnCollisionWall(const Vec3f& _collisionNormal, EntityHandle _wallEntityHandle) {
+void PlayerState::OnCollisionWall(const Vec3f& _collisionNormal, EntityHandle _wallEntityHandle, bool _isWheelie) {
     stateFlag_.CurrentRef().SetFlag(PlayerStateFlag::ON_WALL);
+    if (_isWheelie) {
+        stateFlag_.CurrentRef().SetFlag(PlayerStateFlag::WHEELIE);
+    }
     wallCollisionNormal_ = _collisionNormal;
     wallEntityHandle_    = _wallEntityHandle;
 }
 
 void PlayerState::OffCollisionWall() {
     stateFlag_.CurrentRef().ClearFlag(PlayerStateFlag::ON_WALL);
+    stateFlag_.CurrentRef().ClearFlag(PlayerStateFlag::WHEELIE);
+
     wallCollisionNormal_ = {0.f, 0.f, 0.f};
 }
 
@@ -89,9 +96,5 @@ void PlayerState::SetPlayerMoveState(std::shared_ptr<IPlayerMoveState> _playerMo
     moveState_ = _playerMoveState;
 }
 
-void to_json(nlohmann::json& /*j*/, const PlayerState& /*p*/) {
-    // 保存するものはない
-}
-void from_json(const nlohmann::json& /*j*/, PlayerState& /*p*/) {
-    // 読み込むものはない
-}
+void to_json(nlohmann::json& /*_j*/, const PlayerState& /*_p*/) {}
+void from_json(const nlohmann::json& /*_j*/, PlayerState& /*_p*/) {}

@@ -2,6 +2,9 @@
 
 #include "component/IComponent.h"
 
+/// stl
+#include <memory>
+
 /// util
 #include "util/DiffValue.h"
 #include "util/EnumBitmask.h"
@@ -15,14 +18,15 @@ class IPlayerMoveState;
 /// プレイヤーの 移動状態 を表す列挙体
 /// </summary>
 enum class PlayerMoveState {
-    IDLE      = 1 << 0, // 待機 (動いていない)
-    DASH      = 1 << 1, // ダッシュ(基本移動)
-    FALL_DOWN = 1 << 2, // 落下中 (ジャンプ ではない.)
-    JUMP      = 1 << 3, // ジャンプ
-    WALL_RUN  = 1 << 4, // 壁走り
-    WALL_JUMP = 1 << 5, // 壁ジャンプ
+    IDLE        = 1 << 0, // 待機 (動いていない)
+    DASH        = 1 << 1, // ダッシュ(基本移動)
+    FALL_DOWN   = 1 << 2, // 落下中 (ジャンプ ではない.)
+    JUMP        = 1 << 3, // ジャンプ
+    WALL_RUN    = 1 << 4, // 壁走り
+    WALL_JUMP   = 1 << 5, // 壁ジャンプ
+    WHEELIE_RUN = 1 << 6, // ウィリー走行
 
-    Count = 6
+    Count = 7
 };
 static std::map<PlayerMoveState, const char*> moveStateName = {
     {PlayerMoveState::IDLE, "IDLE"},
@@ -30,47 +34,64 @@ static std::map<PlayerMoveState, const char*> moveStateName = {
     {PlayerMoveState::FALL_DOWN, "FALL_DOWN"},
     {PlayerMoveState::JUMP, "JUMP"},
     {PlayerMoveState::WALL_RUN, "WALL_RUN"},
-    {PlayerMoveState::WALL_JUMP, "WALL_JUMP"}
-    // {PlayerMoveState::SLIDE, "SLIDE"}
+    {PlayerMoveState::WALL_JUMP, "WALL_JUMP"},
+    {PlayerMoveState::WHEELIE_RUN, "WHEELIE_RUN"},
 };
 
 enum class PlayerStateFlag {
     NONE       = 0,
     ON_GROUND  = 1 << 0, // 地面に接地している
     ON_WALL    = 1 << 1, // 壁に接触している
-    GEAR_UP    = 1 << 2, // ギアアップしている
-    IS_GOAL    = 1 << 3, // ゴールした
-    IS_PENALTY = 1 << 4, // ペナルティを受けている
-    IS_RESTART = 1 << 5, // リスタート中
+    WHEELIE    = 1 << 2, // ウィリーしている
+    GEAR_UP    = 1 << 3, // ギアアップしている
+    IS_GOAL    = 1 << 4, // ゴールした
+    IS_PENALTY = 1 << 5, // ペナルティを受けている
+    IS_RESTART = 1 << 6, // リスタート中
 
-    Count = 6
+    Count = 7
 };
 
 constexpr int32_t kDefaultPlayerGearLevel = 1; // デフォルトのギアレベル
-constexpr int32_t kMaxPlayerGearLevel     = 10; // 最大のギアレベル
+constexpr int32_t kMaxPlayerGearLevel     = 6; // 最大のギアレベル
 
 /// <summary>
 /// プレイヤーの状態を表す変数群
 /// </summary>
 class PlayerState
     : public OriGine::IComponent {
+    /// <summary>
+    /// JSON 変換用
+    /// </summary>
     friend void to_json(nlohmann::json& j, const PlayerState& p);
+    /// <summary>
+    /// JSON 復元用
+    /// </summary>
     friend void from_json(const nlohmann::json& j, PlayerState& p);
 
 public:
     PlayerState();
     ~PlayerState() override;
 
+    /// <summary>
+    /// 初期化処理
+    /// </summary>
     void Initialize(OriGine::Scene* _scene, OriGine::EntityHandle _owner) override;
+    /// <summary>
+    /// エディタ用編集UI
+    /// </summary>
     void Edit(OriGine::Scene* _scene, OriGine::EntityHandle _owner, const std::string& _parentLabel) override;
+    /// <summary>
+    /// 終了処理
+    /// </summary>
     void Finalize() override;
 
     /// <summary>
     /// 壁と接触したときの処理
     /// </summary>
-    /// <param name="_collisionNormal"></param>
-    /// <param name="_entityHandle"></param>
-    void OnCollisionWall(const OriGine::Vec3f& _collisionNormal, OriGine::EntityHandle _entityHandle);
+    /// <param name="_collisionNormal">衝突法線</param>
+    /// <param name="_entityHandle">衝突相手のエンティティハンドル</param>
+    /// <param name="_isWheelie">ウィリー中かどうか</param>
+    void OnCollisionWall(const OriGine::Vec3f& _collisionNormal, OriGine::EntityHandle _entityHandle, bool _isWheelie = false);
     /// <summary>
     /// 壁との接触がなくなったときの処理
     /// </summary>
@@ -84,7 +105,6 @@ public:
     /// 地面との接触がなくなったときの処理
     /// </summary>
     void OffCollisionGround();
-
     /// <summary>
     /// 障害物と接触したときの処理
     /// </summary>
@@ -127,6 +147,10 @@ public:
     PlayerMoveState GetStateEnum() const {
         return moveStateEnum_.Current().ToEnum();
     }
+    PlayerMoveState GetPreStateEnum() const {
+        return moveStateEnum_.Prev().ToEnum();
+    }
+
     DiffValue<EnumBitmask<PlayerMoveState>>& GetStateEnumRef() {
         return moveStateEnum_;
     }
@@ -169,9 +193,6 @@ public:
         return wallCollisionNormal_;
     }
 
-    bool IsPenalty() const {
-        return stateFlag_.Current().HasFlag(PlayerStateFlag::IS_PENALTY);
-    }
     float GetPenaltyTime() const {
         return penaltyTime_;
     }
@@ -195,6 +216,14 @@ public:
         if (invincibility_ < 0.0f) {
             invincibility_ = 0.0f;
         }
+    }
+
+    bool IsPenalty() const {
+        return stateFlag_.Current().HasFlag(PlayerStateFlag::IS_PENALTY);
+    }
+
+    bool IsWheelie() const {
+        return stateFlag_.Current().HasFlag(PlayerStateFlag::WHEELIE);
     }
 
     bool IsRestart() const {

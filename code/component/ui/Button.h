@@ -39,7 +39,7 @@ private:
     bool isPressed_  = false;
     bool IsReleased_ = false;
 
-    std::vector<OriGine::PadButton> shortcutPadButton_;
+    std::vector<OriGine::GamepadButton> shortcutGamepadButton_;
     std::vector<OriGine::Key> shortcutKey_;
 
     OriGine::Vec4f normalColor_  = OriGine::Vec4f(0.32f, 0.32f, 0.32f, 1.0f);
@@ -48,8 +48,8 @@ private:
     OriGine::Vec4f releaseColor_ = OriGine::Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
 
 public: // Getter Setter
-    const std::vector<OriGine::PadButton>& GetShortcutPadButton() const {
-        return shortcutPadButton_;
+    const std::vector<OriGine::GamepadButton>& GetShortcutGamepadButton() const {
+        return shortcutGamepadButton_;
     }
     const std::vector<OriGine::Key>& GetShortcutKey() const {
         return shortcutKey_;

@@ -30,21 +30,23 @@ void PlayerInputSystem::UpdateEntity(OriGine::EntityHandle _handle) {
         return;
     }
 
+    const float deltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Player");
+
     InputUpdate(
-        GetMainDeltaTime(),
+        deltaTime,
         keyInput,
         padInput,
         playerInput,
         state);
 }
 
-void PlayerInputSystem::InputUpdate(
-    float _deltaTime, OriGine::KeyboardInput* _keyInput, OriGine::GamepadInput* _padInput, PlayerInput* _playerInput, PlayerState* _playerState) {
+void PlayerInputSystem::InputUpdate(float _deltaTime, OriGine::KeyboardInput* _keyInput, OriGine::GamepadInput* _padInput, PlayerInput* _playerInput, PlayerState* _playerState) {
 
     GamepadInputDevice padDevice(_padInput, _playerInput);
     KeyboardInputDevice keyDevice(_keyInput, _playerInput);
 
-    IPlayerInputDevice* device = SelectActiveDevice(&padDevice, &keyDevice);
+    bool isUsingGamepad        = padDevice.IsActive();
+    IPlayerInputDevice* device = SelectActiveDevice(isUsingGamepad, &padDevice, &keyDevice);
 
     // --- 移動 ---
     _playerInput->SetInputDirection(device->GetMoveDirection());
@@ -53,9 +55,13 @@ void PlayerInputSystem::InputUpdate(
     HandleJump(_deltaTime, _playerInput, _playerState, device);
 }
 
-IPlayerInputDevice* PlayerInputSystem::SelectActiveDevice(IPlayerInputDevice* _padDevice, IPlayerInputDevice* _keyDevice) {
+IPlayerInputDevice* PlayerInputSystem::SelectActiveDevice(bool _preUsingGamepad, IPlayerInputDevice* _padDevice, IPlayerInputDevice* _keyDevice) {
     if (_padDevice->IsActive()) {
-        return _padDevice;
+        if (_preUsingGamepad) {
+            return _keyDevice->IsAnyInput() ? _keyDevice : _padDevice;
+        } else {
+            return _padDevice->IsAnyInput() ? _padDevice : _keyDevice;
+        }
     }
     return _keyDevice;
 }
@@ -98,7 +104,8 @@ void PlayerInputSystem::HandleJump(
             input->SetJumpInput(true);
 
             // wallJump 判定
-            input->SetWallJumpInput(state->GetStateEnum() == PlayerMoveState::WALL_RUN);
+            bool hitWall = (state->GetStateEnum() == PlayerMoveState::WALL_RUN || state->GetStateEnum() == PlayerMoveState::WHEELIE_RUN);
+            input->SetWallJumpInput(hitWall);
         }
     }
 }

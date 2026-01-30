@@ -29,7 +29,8 @@ void ButtonGroupSystem::UpdateEntity(EntityHandle _handle) {
     }
 
     int32_t currentButtonNumber      = buttonGroup->GetCurrentButtonNumber();
-    EntityHandle currentButtonEntity = buttonGroup->GetEntityId(currentButtonNumber);
+    EntityHandle currentButtonEntity = buttonGroup->GetEntityHandle(currentButtonNumber);
+    const auto& buttonEntityHandles  = buttonGroup->GetButtonEntityHandles();
     Button* currentButton            = GetComponent<Button>(currentButtonEntity);
     if (!currentButton) {
         return;
@@ -37,8 +38,9 @@ void ButtonGroupSystem::UpdateEntity(EntityHandle _handle) {
     currentButton->SetHovered(true);
 
     // 外部システムの入力に従う (ボタンのショートカットやマウスでの選択など)
-    for (const auto& [index, entityID] : buttonGroup->GetButtonNumbers()) {
-        auto* button = GetComponent<Button>(entityID);
+    int32_t index = 0;
+    for (const auto& entityHandle : buttonEntityHandles) {
+        auto* button = GetComponent<Button>(entityHandle);
         if (button == nullptr || button == currentButton) {
             continue;
         }
@@ -58,6 +60,7 @@ void ButtonGroupSystem::UpdateEntity(EntityHandle _handle) {
             // 直接移動させたら return
             return;
         }
+        ++index;
     }
 
     bool isPressed  = currentButton->isPressed();
@@ -66,7 +69,7 @@ void ButtonGroupSystem::UpdateEntity(EntityHandle _handle) {
     // 決定ボタンの判定
     // pad が有効な場合は pad 優先
     if (gamePadInput->IsActive()) {
-        for (const auto& button : buttonGroup->GetDecidePadButtons()) {
+        for (const auto& button : buttonGroup->GetDecideGamepadButtons()) {
             if (isPressed) {
                 if (gamePadInput->IsPress(button)) {
                     isPressed = true;
@@ -107,13 +110,13 @@ void ButtonGroupSystem::UpdateEntity(EntityHandle _handle) {
     int32_t delta = 0;
 
     if (gamePadInput->IsActive()) {
-        for (const auto& button : buttonGroup->GetSelectAddPadButtons()) {
+        for (const auto& button : buttonGroup->GetSelectAddGamepadButtons()) {
             if (gamePadInput->IsTrigger(button)) {
                 ++delta;
                 break;
             }
         }
-        for (const auto& button : buttonGroup->GetSelectSubPadButtons()) {
+        for (const auto& button : buttonGroup->GetSelectSubGamepadButtons()) {
             if (gamePadInput->IsTrigger(button)) {
                 --delta;
                 break;
@@ -141,14 +144,14 @@ void ButtonGroupSystem::UpdateEntity(EntityHandle _handle) {
 
         // 次のボタンを取得
         currentButtonNumber += delta;
-        currentButtonNumber = std::clamp(currentButtonNumber, 0, (int32_t)buttonGroup->GetButtonNumbers().size() - 1);
+        currentButtonNumber = std::clamp(currentButtonNumber, 0, (int32_t)buttonEntityHandles.size() - 1);
 
-        currentButton = GetComponent<Button>(buttonGroup->GetEntityId(currentButtonNumber));
+        currentButton = GetComponent<Button>(buttonGroup->GetEntityHandle(currentButtonNumber));
 
         // 次のボタンが存在しなければ戻す
         if (!currentButton) {
             currentButtonNumber -= delta;
-            currentButton = GetComponent<Button>(buttonGroup->GetEntityId(currentButtonNumber));
+            currentButton = GetComponent<Button>(buttonGroup->GetEntityHandle(currentButtonNumber));
         }
         currentButton->SetHovered(true);
 

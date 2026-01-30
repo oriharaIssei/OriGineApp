@@ -120,15 +120,9 @@
                             28,
                             57
                         ],
-                        "shortcutPadButton": [
+                        "shortcutGamepadButton": [
                             4096,
-                            8192,
-                            16384,
-                            32768,
-                            64,
-                            128,
-                            256,
-                            512
+                            8192
                         ]
                     }
                 ],
@@ -250,12 +244,12 @@
             "Name": "BackToStageSelectButton",
             "Systems": [
                 {
-                    "SystemCategory": 1,
-                    "SystemName": "ButtonInputSystem"
-                },
-                {
                     "SystemCategory": 2,
                     "SystemName": "ChangeSceneByButton"
+                },
+                {
+                    "SystemCategory": 1,
+                    "SystemName": "ButtonInputSystem"
                 },
                 {
                     "SystemCategory": 7,
@@ -649,7 +643,7 @@
                         ],
                         "isActive": true,
                         "materialIndex": 0,
-                        "textuerPath": "./application/resource/Texture/bioNoise.png",
+                        "texturePath": "./application/resource/Texture/bioNoise.png",
                         "use3dObjectList": false
                     }
                 ],
@@ -903,13 +897,13 @@
             }
         },
         {
-            "ButtonInputSystem": {
-                "Priority": 0
+            "ChangeSceneByButton": {
+                "Priority": 1
             }
         },
         {
-            "ChangeSceneByButton": {
-                "Priority": 1
+            "ButtonInputSystem": {
+                "Priority": 0
             }
         },
         {
@@ -928,13 +922,13 @@
             }
         },
         {
-            "EmitterWorkSystem": {
-                "Priority": 1
+            "GetClearTime": {
+                "Priority": 0
             }
         },
         {
-            "GetClearTime": {
-                "Priority": 0
+            "EmitterWorkSystem": {
+                "Priority": 1
             }
         },
         {

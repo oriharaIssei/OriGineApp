@@ -27,7 +27,7 @@ void InitializeMouseCondition::UpdateEntity(OriGine::EntityHandle _handle) {
             continue;
         }
 
-        mouseInput->SetShowCursor(condition.IsShowCursor());
+        mouseInput->ShowCursor(condition.IsShowCursor());
 
         if (condition.IsFixCursor()) {
             // マウスの座標を指定し続けることで、実質的にマウスを固定する

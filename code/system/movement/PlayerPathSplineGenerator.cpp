@@ -1,8 +1,7 @@
 #include "PlayerPathSplineGenerator.h"
 
 /// engine
-#define DELTA_TIME
-#include "EngineInclude.h"
+#include "Engine.h"
 
 // component
 #include "component/physics/Rigidbody.h"
@@ -21,118 +20,153 @@ PlayerPathSplineGenerator::~PlayerPathSplineGenerator() {}
 void PlayerPathSplineGenerator::Initialize() {}
 void PlayerPathSplineGenerator::Finalize() {}
 
-void PlayerPathSplineGenerator::UpdateEntity(EntityHandle _handle) {
+bool PlayerPathSplineGenerator::TryGetContext(EntityHandle _handle, Context& _outContext) {
+    _outContext.splinePoints = GetComponent<SplinePoints>(_handle);
+    if (!_outContext.splinePoints) {
+        return false;
+    }
+
+    auto playerEntityHandle     = GetUniqueEntity("Player");
+    _outContext.playerTransform = GetComponent<Transform>(playerEntityHandle);
+    if (!_outContext.playerTransform) {
+        return false;
+    }
+
+    _outContext.playerRigidBody = GetComponent<Rigidbody>(playerEntityHandle);
+    if (!_outContext.playerRigidBody) {
+        return false;
+    }
+
+    return true;
+}
+
+void PlayerPathSplineGenerator::ProcessMovement(Context& _ctx) {
+    SplinePoints* splinePoints = _ctx.splinePoints;
+
+    // 設定値の安全チェック
+    if (splinePoints->commonSettings.segmentLength <= kEpsilon) {
+        return;
+    }
+
+    // 1. 新しい位置へ点を追加
+    Vec3f playerPos = _ctx.playerTransform->GetWorldTranslate();
+    AppendNewPoints(splinePoints, playerPos);
+
+    // 2. パス全体の再構築（分割・統合処理）
+    RefineSplinePoints(splinePoints);
+
+    // 3. 容量制限
+    while (splinePoints->points.size() > splinePoints->capacity) {
+        splinePoints->points.pop_front();
+    }
+
+    // 4. フェードアウトタイマーのリセット
+    splinePoints->commonSettings.fadeoutTimer = splinePoints->commonSettings.fadeoutTime;
+}
+
+void PlayerPathSplineGenerator::AppendNewPoints(SplinePoints* _splinePoints, const Vec3f& _targetPos) {
+    // 最低4点確保
+    if (_splinePoints->points.size() < 4) {
+        int32_t diff = 4 - static_cast<int32_t>(_splinePoints->points.size());
+        for (int32_t i = 0; i < diff; ++i) {
+            _splinePoints->PushPoint(_targetPos);
+        }
+    }
+
+    const float segLen     = _splinePoints->commonSettings.segmentLength;
+    const Vec3f& lastPoint = _splinePoints->points.back();
+    Vec3f distanceVec      = _targetPos - lastPoint;
+    float distLen          = distanceVec.length();
+
     constexpr float kThresholdSplitOrMerger = 0.3f;
 
-    auto* splinePoints = GetComponent<SplinePoints>(_handle);
-    if (splinePoints == nullptr) {
+    // 距離が離れていたら補間して点を追加
+    if (distLen - segLen >= kThresholdSplitOrMerger) {
+        Vec3f direction = (distLen > kEpsilon) ? distanceVec.normalize() : Vec3f(0.0f, 0.0f, 0.0f);
+
+        // あまりにも離れている場合は制限をかける
+        constexpr int32_t kSkipThreshold = 18;
+        int32_t segmentsToAdd            = static_cast<int32_t>(distLen / segLen);
+        segmentsToAdd                    = (std::min)(segmentsToAdd, kSkipThreshold);
+
+        for (int32_t i = 1; i <= segmentsToAdd; ++i) {
+            Vec3f dividedPoint = lastPoint + direction * (segLen * static_cast<float>(i));
+            _splinePoints->PushPoint(dividedPoint);
+        }
+    }
+}
+
+void PlayerPathSplineGenerator::RefineSplinePoints(SplinePoints* _splinePoints) {
+    if (_splinePoints->points.empty()) {
         return;
     }
 
-    auto playerEntityHandle = GetUniqueEntity("Player");
-    auto playerTransform    = GetComponent<Transform>(playerEntityHandle);
-    if (playerTransform == nullptr) {
+    std::deque<Vec3f> newPoints;
+    const float segLen                      = _splinePoints->commonSettings.segmentLength;
+    constexpr float kThresholdSplitOrMerger = 0.3f;
+
+    // 既存のポイントを走査して再構築
+    for (int32_t i = 0; i < static_cast<int32_t>(_splinePoints->points.size()) - 1; ++i) {
+        Vec3f current = _splinePoints->points[i];
+        Vec3f next    = _splinePoints->points[i + 1];
+        Vec3f delta   = next - current;
+        float len     = delta.length();
+
+        // 現在の点は常に残す
+        newPoints.push_back(current);
+
+        if (len - segLen > segLen * kThresholdSplitOrMerger) {
+            // 長すぎる → 分割して補間点を追加
+            int divs  = (std::max)(1, static_cast<int>(len / segLen));
+            Vec3f dir = (len > kEpsilon) ? delta.normalize() : Vec3f(0.0f, 0.0f, 0.0f);
+
+            for (int j = 1; j < divs; ++j) {
+                newPoints.push_back(current + dir * (segLen * static_cast<float>(j)));
+            }
+        } else if (len - segLen < segLen * kThresholdSplitOrMerger && (i + 1) < static_cast<int>(_splinePoints->points.size() - 1)) {
+            // 短すぎる → 統合（次の点を飛ばして平均位置にするなど）
+            // 元コードのロジック: 現在点と次点の平均で現在点を更新し、次点をスキップ
+            Vec3f merged     = (current + next) * 0.5f;
+            newPoints.back() = merged;
+            ++i; // 次の点をスキップ
+        }
+    }
+
+    // 最後の点を追加
+    newPoints.push_back(_splinePoints->points.back());
+
+    // リストを差し替え
+    _splinePoints->points = std::move(newPoints);
+}
+
+void PlayerPathSplineGenerator::ProcessIdle(Context& _ctx) {
+    SplinePoints* splinePoints = _ctx.splinePoints;
+
+    if (!splinePoints->points.empty()) {
+        float deltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("World");
+        splinePoints->commonSettings.fadeoutTimer += deltaTime;
+
+        if (splinePoints->commonSettings.fadeoutTimer >= splinePoints->commonSettings.fadeoutTime) {
+            splinePoints->commonSettings.fadeoutTimer = 0.0f;
+            splinePoints->points.pop_front();
+        }
+    }
+}
+
+void PlayerPathSplineGenerator::UpdateEntity(EntityHandle _handle) {
+    Context ctx;
+    if (!TryGetContext(_handle, ctx)) {
         return;
     }
 
-    // 速度が 0以上ならポイント追加処理
+    // 速度判定定数
     constexpr float kFadeOutThresholdSpeed = 8.f;
-    Rigidbody* rigidBody                   = GetComponent<Rigidbody>(playerEntityHandle);
-    if (rigidBody->GetVelocity().lengthSq() > kFadeOutThresholdSpeed * kFadeOutThresholdSpeed) {
+    float speedSq                          = ctx.playerRigidBody->GetVelocity().lengthSq();
 
-        // segmentLength の安全チェック
-        if (splinePoints->commonSettings.segmentLength <= kEpsilon) {
-            return; // 無効な設定
-        }
-
-        Vec3f newPoint = playerTransform->GetWorldTranslate();
-
-        // 最低4点確保
-        if (splinePoints->points.size() < 4) {
-            int32_t diff = 4 - static_cast<int32_t>(splinePoints->points.size());
-            for (int32_t i = 0; i < diff; ++i) {
-                splinePoints->PushPoint(newPoint);
-            }
-        }
-
-        // --- 新しいポイントの追加処理 ---
-        const float segLen     = splinePoints->commonSettings.segmentLength;
-        const Vec3f& lastPoint = splinePoints->points.back();
-        Vec3f distance         = newPoint - lastPoint;
-        float distLen          = distance.length();
-
-        if (distLen - segLen >= kThresholdSplitOrMerger) {
-            Vec3f direction = distance;
-            if (distLen > kEpsilon) {
-                direction /= distLen;
-            } else {
-                direction = Vec3f(0.0f, 0.0f, 0.0f);
-            }
-
-            // 分割して追加
-            // あまりにも離れている場合は飛ばす
-            constexpr int32_t kSkipThreshold = 18;
-            int32_t segmentsToAdd            = static_cast<int32_t>(distLen / segLen);
-            segmentsToAdd                    = (std::min)(segmentsToAdd, kSkipThreshold);
-            for (int32_t i = 1; i <= segmentsToAdd; ++i) {
-                Vec3f dividedPoint = lastPoint + direction * (segLen * static_cast<float>(i));
-                splinePoints->PushPoint(dividedPoint);
-            }
-        }
-
-        // --- 新しい配列で再構築 ---
-        std::deque<Vec3f> newPoints;
-
-        for (int32_t i = 0; i < static_cast<int32_t>(splinePoints->points.size()) - 1; ++i) {
-            Vec3f current = splinePoints->points[i];
-            Vec3f next    = splinePoints->points[i + 1];
-            Vec3f delta   = next - current;
-            float len     = delta.length();
-
-            // 現在の点は常に残す
-            newPoints.push_back(current);
-
-            if (len - segLen > segLen * kThresholdSplitOrMerger) {
-                // 長すぎる → 分割
-                int divs = (std::max)(1, static_cast<int>(len / segLen));
-
-                Vec3f dir = Vec3f(0.0f, 0.0f, 0.0f);
-                if (len > kEpsilon) {
-                    dir = delta / len;
-                }
-
-                for (int j = 1; j < divs; ++j) {
-                    newPoints.push_back(current + dir * (segLen * static_cast<float>(j)));
-                }
-            } else if (len - segLen < segLen * kThresholdSplitOrMerger && (i + 1) < static_cast<int>(splinePoints->points.size() - 1)) {
-                // 短すぎる → 統合
-                Vec3f merged     = (current + next) * 0.5f;
-                newPoints.back() = merged;
-                ++i; // 次をスキップ（統合済み）
-            }
-        }
-        // 最後の点を追加
-        newPoints.push_back(splinePoints->points.back());
-
-        // 容量制限
-        while (newPoints.size() > splinePoints->capacity) {
-            newPoints.pop_front();
-        }
-
-        // 差し替え
-        splinePoints->points = std::move(newPoints);
-
-        // fadeoutTimer リセット(次回の削除がすぐに始まるように)
-        splinePoints->commonSettings.fadeoutTimer = splinePoints->commonSettings.fadeoutTime;
+    // 移動中か停止中かで分岐
+    if (speedSq > kFadeOutThresholdSpeed * kFadeOutThresholdSpeed) {
+        ProcessMovement(ctx);
     } else {
-        // 古いポイントの削除処理
-        if (!splinePoints->points.empty()) {
-            // fadeoutTimer 処理
-            splinePoints->commonSettings.fadeoutTimer += GetMainDeltaTime();
-            if (splinePoints->commonSettings.fadeoutTimer >= splinePoints->commonSettings.fadeoutTime) {
-                splinePoints->commonSettings.fadeoutTimer = 0.0f;
-                splinePoints->points.pop_front();
-            }
-        }
+        ProcessIdle(ctx);
     }
 }

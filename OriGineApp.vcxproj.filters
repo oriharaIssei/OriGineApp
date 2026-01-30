@@ -334,6 +334,12 @@
       <Filter>system\effect</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Initialize\BackFireInitialize.h" />
+    <ClInclude Include="code\component\PointPlacementParams.h" />
+    <ClInclude Include="code\system\Initialize\PlacementEntityByProcedural.h" />
+    <ClInclude Include="code\component\AddForceComponent.h" />
+    <ClInclude Include="code\system\collision\AddForceTriggerSystem.h" />
+    <ClInclude Include="code\component\VelocityOverrideComponent.h" />
+    <ClInclude Include="code\component\player\State\PlayerWheelieRunState.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -608,5 +614,13 @@
       <Filter>system\effect</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Initialize\BackFireInitialize.cpp" />
+    <ClCompile Include="code\component\PointPlacementParams.cpp" />
+    <ClCompile Include="code\system\Initialize\PlacementEntityByProcedural.cpp" />
+    <ClCompile Include="code\component\AddForceComponent.cpp" />
+    <ClCompile Include="code\system\collision\AddForceTriggerSystem.cpp" />
+    <ClCompile Include="code\component\VelocityOverrideComponent.cpp" />
+    <ClCompile Include="code\system\collision\VelocityOverrideTriggerSystem.h" />
+    <ClCompile Include="code\system\collision\VelocityOverrideTriggerSystem.cpp" />
+    <ClCompile Include="code\component\player\State\PlayerWheelieRunState.cpp" />
   </ItemGroup>
 </Project>

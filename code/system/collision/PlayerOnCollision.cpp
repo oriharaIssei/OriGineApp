@@ -2,6 +2,7 @@
 
 /// ECS
 // component
+#include "component/collision/collider/SphereCollider.h"
 #include "component/collision/CollisionPushBackInfo.h"
 #include "component/physics/Rigidbody.h"
 
@@ -10,31 +11,32 @@
 
 #include "component/TimerComponent.h"
 
+/// math
+#include "math/mathEnv.h"
+
 using namespace OriGine;
 
 void PlayerOnCollision::Initialize() {}
 void PlayerOnCollision::Finalize() {}
 
-static const float kGroundCheckThreshold     = 0.7f; // 地面と判断するための閾値
-static const float kWallCheckThreshold       = 0.29f; // 壁と判断するための閾値
-static const float kParallelPenaltyThreshold = 0.07f; // 障害物と判断するための閾値
-
-constexpr float kPenaltyTime = 1.2f;
+static const float kGroundCheckThreshold = 0.7f; // 地面と判断するための閾値
+static const float kWallCheckThreshold   = 0.42f; // 壁と判断するための閾値
 
 void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
-    auto* state        = GetComponent<PlayerState>(_handle);
-    auto* pushBackInfo = GetComponent<CollisionPushBackInfo>(_handle);
-    auto* rigidbody    = GetComponent<Rigidbody>(_handle);
+    auto* state          = GetComponent<PlayerState>(_handle);
+    auto* status         = GetComponent<PlayerStatus>(_handle);
+    auto* pushBackInfo   = GetComponent<CollisionPushBackInfo>(_handle);
+    auto* rigidbody      = GetComponent<Rigidbody>(_handle);
+    auto* sphereCollider = GetComponent<SphereCollider>(_handle);
 
-    if (state == nullptr) {
+    if (state == nullptr || pushBackInfo == nullptr || rigidbody == nullptr || sphereCollider == nullptr) {
         return;
     }
-
-    bool isPenalty                     = false;
-    float penaltyTime                  = 0.f;
-    OriGine::Vec3f penaltyObjectNormal = OriGine::Vec3f(0.f, 0.f, 0.f);
+    const auto& collisionStateMap = sphereCollider->GetCollisionStateMap();
 
     // 毎フレーム、地面・壁との衝突状態をリセット
+    bool isPreWheelie             = state->IsWheelie(); // 前フレームのウィリー状態を保持
+    EntityHandle wallEntityHandle = state->GetWallEntityIndex();
     state->OffCollisionGround();
     state->OffCollisionWall();
 
@@ -67,6 +69,9 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
             // 上方向に衝突した場合は、地面にいると判断する
             state->OnCollisionGround();
 
+            status->ResetWallRunInterval();
+            status->ResetWheelieInterval();
+
             OriGine::Vec3f acceleration = rigidbody->GetAcceleration();
 
             // Y軸の加速度を0にする
@@ -81,32 +86,40 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
             // どれくらい平行に動いているか (1.0 = 完全に平行, 0.0 = 完全に垂直)
             float parallelFactor = 1.f - std::fabs(dotVN);
 
-            // 壁に沿って移動している場合は壁衝突とみなす
-            // 正面衝突の場合はペナルティを与える
-            if (parallelFactor > kWallCheckThreshold) {
-                state->OnCollisionWall(collNormal, entityId);
-            } else if (parallelFactor < kParallelPenaltyThreshold) { // 基準値以下なら ペナルティ
-                if (!isPenalty) {
-                    isPenalty           = true;
-                    penaltyTime         = kPenaltyTime;
-                    penaltyObjectNormal = collNormal;
+            bool isFirstCollision = true;
+
+            if (entityId == wallEntityHandle) {
+                auto collisionStateItr = collisionStateMap.find(entityId);
+                if (collisionStateItr != collisionStateMap.end()) {
+                    CollisionState collState = collisionStateItr->second;
+                    if (collState == CollisionState::Stay) {
+                        isFirstCollision = false;
+                    }
                 }
             }
-        }
-    }
 
-    // ペナルティ状態を更新
-    if (isPenalty) {
-        PlayerStatus* status = GetComponent<PlayerStatus>(_handle);
-        state->OnCollisionObstacle(penaltyTime, status->GetInvincibilityTime());
-
-        if (state->IsPenalty()) {
-            // 壁ジャンプの反動を与える
-            constexpr float kReflectedSpeed = 48.f;
-            OriGine::Vec3f currentVelocity  = rigidbody->GetVelocity();
-            currentVelocity                 = Reflect<float>(currentVelocity, penaltyObjectNormal);
-            currentVelocity                 = currentVelocity.normalize() * (std::max)(kReflectedSpeed, currentVelocity.length() * 0.7f);
-            rigidbody->SetVelocity(currentVelocity);
+            if (isFirstCollision) {
+                // 壁に沿って移動している場合は壁衝突とみなす
+                // 正面衝突の場合はペナルティを与える
+                if (parallelFactor > kWallCheckThreshold) {
+                    if (status->CanWallRun()) {
+                        state->OnCollisionWall(collNormal, entityId);
+                    }
+                } else { // 基準値以下なら
+                    constexpr float kWheelieThresholdFallSpeed = -1.3f; // ウィリーになるための落下速度閾値
+                    if (rigidbody->GetVelocity()[Y] > kWheelieThresholdFallSpeed) {
+                        if (status->CanWheelie()) {
+                            state->OnCollisionWall(collNormal, entityId, true);
+                        }
+                    }
+                }
+            } else {
+                bool canContinue = false;
+                canContinue      = isPreWheelie ? status->CanWheelie() : status->CanWallRun();
+                if (canContinue) {
+                    state->OnCollisionWall(collNormal, wallEntityHandle, isPreWheelie);
+                }
+            }
         }
     }
 }

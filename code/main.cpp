@@ -4,8 +4,6 @@
 #include <string>
 #include <vector>
 
-#define UUID_SYSTEM_GENERATOR
-
 /// engine
 // directX12
 #include "engine/code/directX12/DxDebug.h"
@@ -13,44 +11,49 @@
 /// FrameWorks
 #include "application/code/MyEditor.h"
 #include "application/code/MyGame.h"
+#include "FrameWork.h"
 
 /// externals
 #include "logger/Logger.h"
-#include "uuid/uuid.h"
 
+/// <summary>
+/// コマンドラインを字句ごとに分解する
+/// </summary>
+/// <returns></returns>
 std::vector<std::string> ParseCommandLine();
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
+#ifdef _DEBUG
     OriGine::DxDebug::GetInstance()->InitializeDebugger();
+#endif // DEBUG
 
     std::vector<std::string> cmdLines = ParseCommandLine();
 
     OriGine::Logger::Initialize();
 
+    std::unique_ptr<FrameWork> application = nullptr;
+
+    // debug時は editor
+    // develop ,release では Game を起動する
 #ifdef DEBUG
     {
-        std::unique_ptr<MyEditor> editorApp = std::make_unique<MyEditor>();
-
-        editorApp->Initialize(cmdLines);
-        OriGine::DxDebug::GetInstance()->CreateInfoQueue();
-
-        editorApp->Run();
-
-        editorApp->Finalize();
+        application = std::make_unique<MyEditor>();
     }
 #else
     {
-        std::unique_ptr<MyGame> gameApp = std::make_unique<MyGame>();
-
-        gameApp->Initialize(cmdLines);
-        OriGine::DxDebug::GetInstance()->CreateInfoQueue();
-
-        gameApp->Run();
-
-        gameApp->Finalize();
+        application = std::make_unique<MyGame>();
     }
 #endif // DEBUG
 
+    application->Initialize(cmdLines);
+
+#ifdef _DEBUG
+    OriGine::DxDebug::GetInstance()->CreateInfoQueue();
+#endif // DEBUG
+
+    application->Run();
+
+    application->Finalize();
     OriGine::Logger::Finalize();
 
     return 0;

@@ -1,9 +1,7 @@
 #include "PlayerMoveSystem.h"
 
 /// engine
-#define ENGINE_COMPONENTS
-#define DELTA_TIME
-#include "EngineInclude.h"
+#include "Engine.h"
 
 // component
 #include "component/player/PlayerInput.h"
@@ -16,7 +14,7 @@ void PlayerMoveSystem::Finalize() {}
 void PlayerMoveSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     PlayerState* state = GetComponent<PlayerState>(_handle);
 
-    const float deltaTime = GetMainDeltaTime();
+    const float deltaTime = OriGine::Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Player");
     auto moveState        = state->GetPlayerMoveState();
     if (moveState) {
         moveState->Update(deltaTime);

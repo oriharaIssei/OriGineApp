@@ -80,6 +80,7 @@ void MyGame::Initialize(const std::vector<std::string>& _commandLines) {
     InputManager* inputManager = InputManager::GetInstance();
 
     SceneJsonRegistry::GetInstance()->LoadAllScene(kApplicationResourceDirectory + "/" + kSceneJsonFolder);
+    SceneJsonRegistry::GetInstance()->LoadAllEntityTemplates(kApplicationResourceDirectory + "/" + kEntityTemplateFolder);
 
     sceneManager_->Initialize(inputManager->GetKeyboard(), inputManager->GetMouse(), inputManager->GetGamePad());
 

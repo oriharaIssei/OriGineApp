@@ -120,9 +120,9 @@ bool GhostInitializeSystem::InitializeGhostReplayComponent(GhostReplayComponent*
         effectOnPlayerGearupSystem->RemoveEntity(ghostPlayerHandle);
     }
 
-    auto playerTransform  = GetComponent<Transform>(ghostPlayerHandle);
-    auto cameraController = GetComponent<CameraController>(ghostCameraHandle);
-    cameraController->SetFollowTarget(playerTransform);
+    auto playerTransform           = GetComponent<Transform>(ghostPlayerHandle);
+    auto cameraController          = GetComponent<CameraController>(ghostCameraHandle);
+    cameraController->followTarget = playerTransform;
 
     auto playerState = GetComponent<PlayerState>(ghostPlayerHandle);
     playerState->SetCameraEntityHandle(ghostCameraHandle);

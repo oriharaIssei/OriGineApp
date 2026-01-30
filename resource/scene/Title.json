@@ -264,7 +264,7 @@
                             1.0
                         ],
                         "shortKeys": [],
-                        "shortcutPadButton": []
+                        "shortcutGamepadButton": []
                     }
                 ],
                 "DissolveEffectParam": [
@@ -441,7 +441,7 @@
                             1.0
                         ],
                         "shortKeys": [],
-                        "shortcutPadButton": []
+                        "shortcutGamepadButton": []
                     }
                 ],
                 "SpriteRenderer": [
@@ -538,25 +538,31 @@
                         "Handle": "78ace28e-8221-4460-9085-09fc7f0cd5ec",
                         "buttonNumbers": [
                             {
-                                "buttonNumber": 0,
                                 "entityHandle": {
                                     "uuid": "7fdc1663-4997-4e5d-88d2-ae4f2e0f9f56"
                                 }
                             },
                             {
-                                "buttonNumber": 1,
                                 "entityHandle": {
                                     "uuid": "7c15bcfb-1d29-4784-8a34-d6ff4ec7c6b9"
                                 }
                             }
                         ],
+                        "decideGamepadButtons": [
+                            4096,
+                            8192
+                        ],
                         "decideKeys": [
                             28,
                             57
                         ],
-                        "decidePadButtons": [
-                            4096,
-                            8192
+                        "selectAddGamepadButtons": [
+                            2,
+                            8,
+                            524288,
+                            2097152,
+                            131072,
+                            512
                         ],
                         "selectAddKeys": [
                             208,
@@ -564,21 +570,19 @@
                             31,
                             32
                         ],
-                        "selectAddPadButtons": [
-                            2,
-                            8,
-                            512
+                        "selectSubGamepadButtons": [
+                            1,
+                            4,
+                            65536,
+                            262144,
+                            1048576,
+                            256
                         ],
                         "selectSubKeys": [
                             200,
                             203,
                             17,
                             30
-                        ],
-                        "selectSubPadButtons": [
-                            1,
-                            4,
-                            256
                         ],
                         "startButtonNumber": 0
                     }
@@ -933,30 +937,6 @@
                                 0.13539497554302216,
                                 0.13539497554302216,
                                 1.0
-                            ],
-                            [
-                                0.6244726181030273,
-                                0.06914126127958298,
-                                0.03952357918024063,
-                                1.0
-                            ],
-                            [
-                                0.6666666269302368,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            [
-                                0.6540084481239319,
-                                0.08554540574550629,
-                                0.258243203163147,
-                                1.0
-                            ],
-                            [
-                                0.2764798402786255,
-                                0.031191591173410416,
-                                0.30801689624786377,
-                                1.0
                             ]
                         ],
                         "wheelTiltAngleMaxAccel": 1.440000057220459,
@@ -980,11 +960,13 @@
                         "baseSpeed": 27.0,
                         "coolTimeAddRateBase": 1.409999966621399,
                         "coolTimeAddRateCommonRate": 0.032999999821186066,
+                        "defaultMass": 1.0,
                         "directionInterpolateRate": 37.880001068115234,
                         "fallingGravityRate": 1.0,
                         "gearUpCoolTime": 0.46000000834465027,
                         "jumpChargeRateEaseType": 8,
                         "jumpHoldVelocityEaseType": 2,
+                        "massOnWallRun": 0.30000001192092896,
                         "maxJumpChargeRate": 0.23999999463558197,
                         "maxJumpHoldVelocity": 0.2800000011920929,
                         "minJumpChargeRate": 0.15000000596046448,
@@ -992,13 +974,20 @@
                         "risingGravityRate": 1.25,
                         "speedUpRateBase": 10.130000114440918,
                         "speedUpRateCommonRate": -0.4000000059604645,
+                        "upwardForceOnWallRun": 1.0,
                         "wallJumpOffset": [
                             0.75,
                             0.20999999344348907,
                             1.0399999618530273
                         ],
+                        "wallRunInterval": 0.20000000298023224,
                         "wallRunRate": 1.7999999523162842,
-                        "wallRunRumpUpTime": 0.5400000214576721
+                        "wallRunRumpUpTime": 0.5400000214576721,
+                        "wheelieJumpOffset": [
+                            0.0,
+                            1.0,
+                            0.0
+                        ]
                     }
                 ],
                 "Rigidbody": [
@@ -1009,6 +998,8 @@
                             0.0,
                             0.0
                         ],
+                        "isUsingLocalDeltaTime": false,
+                        "localDeltaTimeName": "",
                         "mass": 0.07999999821186066,
                         "maxFallSpeed": 30.0,
                         "maxXZSpeed": 100.0,
@@ -1335,7 +1326,7 @@
                         ],
                         "isActive": true,
                         "materialIndex": 0,
-                        "textuerPath": "./application/resource/Texture/waveNoise.png",
+                        "texturePath": "./application/resource/Texture/waveNoise.png",
                         "use3dObjectList": false
                     }
                 ],
@@ -1458,6 +1449,42 @@
                         "activeTime": 2.299999952316284,
                         "blendMode": 1,
                         "colorCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -1825,6 +1852,38 @@
                             {
                                 "time": 0.0,
                                 "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
                                     0.10000000149011612,
                                     0.10000000149011612,
                                     0.10000000149011612
@@ -1923,6 +1982,38 @@
                         "updateSettings": 4386,
                         "uvInterpolationType": 0,
                         "velocityCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
                             {
                                 "time": 0.0,
                                 "value": [
@@ -2484,18 +2575,18 @@
                 "DirectionalLight": [
                     {
                         "Handle": "0f630a93-fb6a-4167-a107-e7d80a53456d",
-                        "angularRadius": 0.004100000020116568,
+                        "angularRadius": 0.006099999882280827,
                         "color": [
                             1.0,
                             1.0,
                             1.0
                         ],
                         "direction": [
-                            0.0,
-                            -0.25363889336586,
-                            0.9672989845275879
+                            0.48384788632392883,
+                            -0.4503258466720581,
+                            0.7503984570503235
                         ],
-                        "intensity": 0.75,
+                        "intensity": 0.33000001311302185,
                         "isActive": true
                     }
                 ]
@@ -2503,8 +2594,42 @@
             "Handle": {
                 "uuid": "020acca9-4c4d-4abd-a728-c19b026c03cd"
             },
-            "Name": "Entity",
+            "Name": "Light",
             "Systems": [],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "EntityReferenceList": [
+                    {
+                        "Handle": "cab45c3b-5eb1-42ce-99fd-2c1f26b3c001",
+                        "entityFileList": [
+                            [
+                                "./application/resource/entities",
+                                "Magma"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "Magma_Dissolve_Left"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "Magma_Dissolve_Right"
+                            ]
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "5dfc630a-148d-4740-aa50-e511e50bd9be"
+            },
+            "Name": "MagmaRecipe",
+            "Systems": [
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "ResolveEntityReferences"
+                }
+            ],
             "isUnique": false
         }
     ],
@@ -2622,6 +2747,11 @@
         {
             "UpdateButtonColorByState": {
                 "Priority": 2
+            }
+        },
+        {
+            "ResolveEntityReferences": {
+                "Priority": -1
             }
         }
     ]

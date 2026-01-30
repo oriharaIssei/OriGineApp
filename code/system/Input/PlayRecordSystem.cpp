@@ -1,8 +1,7 @@
 #include "PlayRecordSystem.h"
 
 /// engine
-#define DELTA_TIME
-#include "EngineInclude.h"
+#include "Engine.h"
 #include "scene/Scene.h"
 
 /// ECS
@@ -24,12 +23,15 @@ void PlayRecordSystem::UpdateEntity(OriGine::EntityHandle _handle) {
         return;
     }
 
+    // 各入力を取得 ＆ 記録
     const auto keyInput     = GetScene()->GetKeyboardInput();
     const auto mouseInput   = GetScene()->GetMouseInput();
     const auto gamepadInput = GetScene()->GetGamepadInput();
 
+    float deltaTime = Engine::GetInstance()->GetDeltaTime();
+
     recorder->replayRecorder_->RecordFrame(
-        GetMainDeltaTime(),
+        deltaTime,
         keyInput,
         mouseInput,
         gamepadInput);

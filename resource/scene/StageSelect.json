@@ -73,47 +73,51 @@
                         "Handle": "ccd105ff-bba5-4d1b-a051-f16adbf9bbdd",
                         "buttonNumbers": [
                             {
-                                "buttonNumber": 0,
                                 "entityHandle": {
                                     "uuid": "59e6d6a1-772d-4f8c-8965-76b2bf83676b"
                                 }
                             },
                             {
-                                "buttonNumber": 1,
                                 "entityHandle": {
                                     "uuid": "fca26f2b-f3eb-4af4-b63e-109b91586745"
                                 }
-                            },
-                            {
-                                "buttonNumber": 2,
-                                "entityHandle": {
-                                    "uuid": "02a23164-09cf-413a-936e-67795ca2538a"
-                                }
                             }
+                        ],
+                        "decideGamepadButtons": [
+                            4096,
+                            8192
                         ],
                         "decideKeys": [
                             28,
                             57
                         ],
-                        "decidePadButtons": [
-                            4096,
-                            8192
+                        "selectAddGamepadButtons": [
+                            2,
+                            8,
+                            512,
+                            131072,
+                            524288,
+                            2097152
                         ],
                         "selectAddKeys": [
                             31,
-                            32
+                            32,
+                            208,
+                            205
                         ],
-                        "selectAddPadButtons": [
-                            8,
-                            512
+                        "selectSubGamepadButtons": [
+                            1,
+                            4,
+                            256,
+                            65536,
+                            262144,
+                            16777216
                         ],
                         "selectSubKeys": [
                             17,
-                            30
-                        ],
-                        "selectSubPadButtons": [
-                            256,
-                            4
+                            30,
+                            200,
+                            203
                         ],
                         "startButtonNumber": 0
                     }
@@ -165,7 +169,7 @@
                             1.0
                         ],
                         "shortKeys": [],
-                        "shortcutPadButton": []
+                        "shortcutGamepadButton": []
                     }
                 ],
                 "DissolveEffectParam": [
@@ -358,7 +362,7 @@
                             1.0
                         ],
                         "shortKeys": [],
-                        "shortcutPadButton": []
+                        "shortcutGamepadButton": []
                     }
                 ],
                 "DissolveEffectParam": [
@@ -719,7 +723,7 @@
                         ],
                         "isActive": true,
                         "materialIndex": 0,
-                        "textuerPath": "./application/resource/Texture/waveNoise.png",
+                        "texturePath": "./application/resource/Texture/waveNoise.png",
                         "use3dObjectList": false
                     }
                 ],
@@ -1090,9 +1094,7 @@
                         "shortKeys": [
                             1
                         ],
-                        "shortcutPadButton": [
-                            16
-                        ]
+                        "shortcutGamepadButton": []
                     }
                 ],
                 "DissolveEffectParam": [

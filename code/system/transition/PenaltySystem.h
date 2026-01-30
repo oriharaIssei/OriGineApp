@@ -10,6 +10,9 @@
 /// math
 #include "math/Matrix4x4.h"
 
+/// <summary>
+/// ペナルティを適応するシステム
+/// </summary>
 class PenaltySystem
     : public OriGine::ISystem {
 public:

@@ -1,10 +1,9 @@
 #include "CameraShake.h"
 
 /// engine
-#include "camera/CameraManager.h"
+#include "Engine.h"
 
-#define DELTA_TIME
-#include "EngineInclude.h"
+#include "camera/CameraManager.h"
 
 /// ECS
 // component
@@ -25,6 +24,8 @@ void CameraShake::Finalize() {}
 void CameraShake::UpdateEntity(OriGine::EntityHandle _handle) {
     auto& cameraShakeSources = GetComponents<CameraShakeSourceComponent>(_handle);
 
+    const float deltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Effect");
+
     // CameraShakeSourceComponentが存在しない場合は Skip
     if (cameraShakeSources.empty()) {
         return;
@@ -41,7 +42,7 @@ void CameraShake::UpdateEntity(OriGine::EntityHandle _handle) {
         }
 
         // シェイクの継続時間処理
-        cameraShakeSource.elapsedTime += GetMainDeltaTime();
+        cameraShakeSource.elapsedTime += deltaTime;
         if (!cameraShakeSource.isLoop) {
             if (cameraShakeSource.duration <= cameraShakeSource.elapsedTime) {
                 // シェイク終了
