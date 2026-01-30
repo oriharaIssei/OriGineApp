@@ -33,6 +33,9 @@ public:
     void StopShake();
 
 public:
+    /// <summary>
+    /// シェイクのパラメータを設定する構造体
+    /// </summary>
     struct ShakeParameters {
         float amplitude; // シェイクの強さ
         float frequency; // シェイクの速さ

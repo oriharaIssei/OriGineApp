@@ -30,6 +30,9 @@ struct PointPlacementParamsData {
     OriGine::Vec2f worldMinXZ = OriGine::Vec2f(0.f, 0.f);
     OriGine::Vec2f worldMaxXZ = OriGine::Vec2f(0.f, 0.f);
 
+    /// <summary>
+    /// 定数バッファ用の構造体
+    /// </summary>
     struct ConstantBuffer {
         uint32_t seed = 0;
 
@@ -78,10 +81,16 @@ public:
     virtual void Edit(OriGine::Scene* _scene, OriGine::EntityHandle _owner, const std::string& _parentLabel) override;
 
 private:
+    /// <summary>
+    /// 点群の各点を表す構造体
+    /// </summary>
     struct Point {
         OriGine::Vec3f pos = OriGine::Vec3f(0.f, 0.f, 0.f);
         float volume       = 0.f;
 
+        /// <summary>
+        /// 定数バッファ用の構造体
+        /// </summary>
         struct ConstantBuffer {
             OriGine::Vec3f pos = OriGine::Vec3f(0.f, 0.f, 0.f);
             float volume       = 0.f;

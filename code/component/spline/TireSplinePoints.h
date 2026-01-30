@@ -28,6 +28,9 @@ public:
     void Finalize() override;
 
 public:
+    /// <summary>
+    /// タイアスプラインの制御点
+    /// </summary>
     struct ControlPoint {
         OriGine::Vec3f position = OriGine::Vec3f(0.0f, 0.0f, 0.0f);
         float alpha             = 1.0f;

@@ -29,13 +29,11 @@ void PlayerWheelieRunState::Initialize() {
 
     // climbDirectionの長さがほぼ0なら、床か天井にいる（＝登れない）
     if (climbDirection.lengthSq() > kEpsilon) {
-        // 【ここがポイント】
         // 正面方向(_forward) = climbDirection (壁に沿って空を目指す方向)
         // 上方向(up)       = wallNormal     (壁から垂直に出る方向＝バイクの頭上)
         targetRotation = Quaternion::LookAt(climbDirection, wallNormal_);
     } else {
-        // 床や天井にいる場合（法線が(0,1,0)に近い）は、
-        // 「登る」概念がないので、現在の進行方向を維持する等の処理
+        // 床や天井にいる場合（法線が(0,1,0)に近い）
         Vec3f currentForward = rigidbody->GetVelocity().normalize();
         // 現在の進行方向を壁（床）に沿わせる
         float fDot           = currentForward.dot(wallNormal_);
@@ -44,7 +42,8 @@ void PlayerWheelieRunState::Initialize() {
         targetRotation = Quaternion::LookAt(surfaceForward, wallNormal_);
     }
 
-    transform->rotate = targetRotation;
+    playerBeforeRotate_ = transform->rotate;
+    playerRotateTarget_ = targetRotation;
 
     // velocityの方向を進行方向に合わせる
     const Vec3f& currentVelo = rigidbody->GetVelocity();
@@ -70,6 +69,12 @@ void PlayerWheelieRunState::Update(float _deltaTime) {
 
     // 衝突が途切れないようにめり込ませる
     transform->translate -= wallNormal_ * 0.1f;
+
+    // 回転アニメーション
+    rotateTimer_ += _deltaTime;
+    float rotateT     = (std::min)(rotateTimer_ / kRotateTime_, 1.f);
+    transform->rotate = Slerp(playerBeforeRotate_, playerRotateTarget_, EaseOutQuart(rotateT));
+    transform->UpdateMatrix();
 
     // 壁との衝突判定の残り時間を更新
     // これが0以下になると 壁から離れた と判定される

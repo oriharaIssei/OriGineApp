@@ -23,7 +23,9 @@
 std::vector<std::string> ParseCommandLine();
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
+#ifdef _DEBUG
     OriGine::DxDebug::GetInstance()->InitializeDebugger();
+#endif // DEBUG
 
     std::vector<std::string> cmdLines = ParseCommandLine();
 
@@ -44,7 +46,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 #endif // DEBUG
 
     application->Initialize(cmdLines);
+
+#ifdef _DEBUG
     OriGine::DxDebug::GetInstance()->CreateInfoQueue();
+#endif // DEBUG
 
     application->Run();
 

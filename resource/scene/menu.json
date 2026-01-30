@@ -40,7 +40,7 @@
                             1.0
                         ],
                         "shortKeys": [],
-                        "shortcutPadButton": []
+                        "shortcutGamepadButton": []
                     }
                 ],
                 "SpriteRenderer": [
@@ -160,7 +160,7 @@
                             1.0
                         ],
                         "shortKeys": [],
-                        "shortcutPadButton": []
+                        "shortcutGamepadButton": []
                     }
                 ],
                 "SceneChanger": [
@@ -433,25 +433,31 @@
                         "Handle": "8b943c0d-dc63-46fe-a6b7-b77788ae50f4",
                         "buttonNumbers": [
                             {
-                                "buttonNumber": 0,
                                 "entityHandle": {
                                     "uuid": "b77544cd-66e6-471b-bd7d-8a7ca3957016"
                                 }
                             },
                             {
-                                "buttonNumber": 1,
                                 "entityHandle": {
                                     "uuid": "2585560b-2406-48c6-8cdf-900fddc28370"
                                 }
                             }
                         ],
+                        "decideGamepadButtons": [
+                            4096,
+                            8192
+                        ],
                         "decideKeys": [
                             28,
                             57
                         ],
-                        "decidePadButtons": [
-                            4096,
-                            8192
+                        "selectAddGamepadButtons": [
+                            2,
+                            8,
+                            512,
+                            524288,
+                            2097152,
+                            131072
                         ],
                         "selectAddKeys": [
                             31,
@@ -459,21 +465,19 @@
                             205,
                             208
                         ],
-                        "selectAddPadButtons": [
-                            2,
-                            8,
-                            512
+                        "selectSubGamepadButtons": [
+                            1,
+                            4,
+                            256,
+                            262144,
+                            1048576,
+                            65536
                         ],
                         "selectSubKeys": [
                             17,
                             30,
                             200,
                             203
-                        ],
-                        "selectSubPadButtons": [
-                            1,
-                            4,
-                            256
                         ],
                         "startButtonNumber": 0
                     }

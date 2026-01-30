@@ -23,27 +23,47 @@ constexpr float kPlayerHeight = 2.0f;
 /// </summary>
 class PlayerStatus
     : public OriGine::IComponent {
+    /// <summary>
+    /// JSON 変換用
+    /// </summary>
     friend void to_json(nlohmann::json& _j, const PlayerStatus& _playerStatus);
+    /// <summary>
+    /// JSON 復元用
+    /// </summary>
     friend void from_json(const nlohmann::json& _j, PlayerStatus& _playerStatus);
 
 public:
     PlayerStatus();
     ~PlayerStatus();
 
+    /// <summary>
+    /// 初期化処理
+    /// </summary>
     void Initialize(OriGine::Scene* _scene, OriGine::EntityHandle _owner) override;
+    /// <summary>
+    /// エディタ用編集UI
+    /// </summary>
     void Edit(OriGine::Scene* _scene, OriGine::EntityHandle _owner, const std::string& _parentLabel) override;
+    /// <summary>
+    /// デバッグ用表示
+    /// </summary>
     void Debug(OriGine::Scene* _scene, OriGine::EntityHandle _handle, const std::string& _parentLabel) override;
+    /// <summary>
+    /// 終了処理
+    /// </summary>
     void Finalize() override;
 
     /// <summary>
     /// ギアレベルに応じた速度を計算する
     /// </summary>
-    /// <param name="_gearLevel"></param>
-    /// <returns></returns>
+    /// <param name="_gearLevel">ギアレベル</param>
+    /// <returns>速度</returns>
     float CalculateSpeedByGearLevel(int32_t _gearLevel) const;
     /// <summary>
     /// ギアレベルに応じたクールタイムを計算する
     /// </summary>
+    /// <param name="_gearLevel">ギアレベル</param>
+    /// <returns>クールタイム</returns>
     float CalculateCoolTimeByGearLevel(int32_t _gearLevel) const;
 
     /// <summary>
@@ -76,10 +96,12 @@ private:
     float speedUpRateCommonRate_ = 1.f; // ギアアップ時の速度上昇率の共通値
 
     // 壁系
-    float wallRunRate_             = 0.0f; // 壁走りの速度倍率
-    float wallRunRampUpTime_       = 0.2f; // 壁走りの速度倍率が最大になるまでの時間
-    OriGine::Vec3f wallJumpOffset_ = {0.0f, 1.0f, 0.0f};
-    float wallJumpRate_            = 0.0f; // 壁ジャンプ(壁から地面に行くとき)の速度倍率
+    float wallRunRate_                = 0.0f; // 壁走りの速度倍率
+    float wallRunRampUpTime_          = 0.2f; // 壁走りの速度倍率が最大になるまでの時間
+    OriGine::Vec3f wallJumpOffset_    = {0.0f, 1.0f, 0.0f};
+    float wallJumpRate_               = 0.0f; // 壁ジャンプ(壁から地面に行くとき)の速度倍率
+    float gravityApplyDelayOnWallRun_ = 0.2f; // 壁走り開始時に重力を適用し始めるまでの遅延時間
+    float wallRunDetachSpeed_         = 5.0f; // 壁走りから離脱する時の速度
 
     // currentMaxSpeed は gearLevel に応じて変化する
     float currentMaxSpeed_ = 0.0f; // 現在の最大速度
@@ -100,8 +122,6 @@ private:
 
     OriGine::Vec3f wheelieJumpOffset_ = {0.0f, 1.0f, 0.0f};
 
-    float upwardForceOnWallRun_ = 1.0f; // 壁走り中の上向きの力
-
     float defaultMass_   = 1.0f; // 通常時の質量
     float massOnWallRun_ = 0.3f; // 壁走り中の質量
 
@@ -110,102 +130,52 @@ private:
     float currentWheelieInterval_ = 0.0f; // 現在のウィリーインターバル時間
 
 public:
-    float GetDirectionInterpolateRate() const {
-        return directionInterpolateRate_;
-    }
+    float GetDirectionInterpolateRate() const { return directionInterpolateRate_; }
 
-    float GetBaseSpeed() const {
-        return baseSpeed_;
-    }
+    float GetBaseSpeed() const { return baseSpeed_; }
 
     OriGine::EaseType GetJumpHoldVelocityEaseType() const { return jumpHoldVelocityEaseType_; }
-    OriGine::EaseType GetJumpChargeRateEaseType() const {
-        return jumpChargeRateEaseType_;
-    }
+    OriGine::EaseType GetJumpChargeRateEaseType() const { return jumpChargeRateEaseType_; }
 
-    float GetMinJumpHoldVelocity() const {
-        return minJumpHoldVelocity_;
-    }
+    float GetMinJumpHoldVelocity() const { return minJumpHoldVelocity_; }
     float GetMaxJumpHoldVelocity() const { return minJumpHoldVelocity_; }
     float GetMinJumpChargeRate() const { return minJumpChargeRate_; }
     float GetMaxJumpChargeRate() const { return maxJumpChargeRate_; }
 
-    float GetRisingGravityRate() const {
-        return risingGravityRate_;
-    }
-    float GetFallingGravityRate() const {
-        return fallingGravityRate_;
-    }
+    float GetRisingGravityRate() const { return risingGravityRate_; }
+    float GetFallingGravityRate() const { return fallingGravityRate_; }
 
-    float GetCurrentMaxSpeed() const {
-        return currentMaxSpeed_;
-    }
-    void SetCurrentMaxSpeed(float _currentMaxSpeed) {
-        currentMaxSpeed_ = _currentMaxSpeed;
-    }
+    float GetCurrentMaxSpeed() const { return currentMaxSpeed_; }
+    void SetCurrentMaxSpeed(float _currentMaxSpeed) { currentMaxSpeed_ = _currentMaxSpeed; }
 
-    float GetWallRunRate() const {
-        return wallRunRate_;
-    }
-    void SetWallRunRate(float _wallRunRate) {
-        wallRunRate_ = _wallRunRate;
-    }
+    float GetWallRunRate() const { return wallRunRate_; }
+    void SetWallRunRate(float _wallRunRate) { wallRunRate_ = _wallRunRate; }
 
-    float GetWallRunRampUpTime() const {
-        return wallRunRampUpTime_;
-    }
+    float GetWallRunRampUpTime() const { return wallRunRampUpTime_; }
 
-    const OriGine::Vec3f& GetWallJumpOffset() const {
-        return wallJumpOffset_;
-    }
-    void SetWallJumpOffset(const OriGine::Vec3f& _wallJumpOffset) {
-        wallJumpOffset_ = _wallJumpOffset;
-    }
+    const OriGine::Vec3f& GetWallJumpOffset() const { return wallJumpOffset_; }
+    void SetWallJumpOffset(const OriGine::Vec3f& _wallJumpOffset) { wallJumpOffset_ = _wallJumpOffset; }
 
-    float GetBaseGearupCoolTime() const {
-        return baseGearupCoolTime_;
-    }
-    float GetGearUpCoolTime() const {
-        return gearUpCoolTime_;
-    }
-    void SetGearUpCoolTime(float _gearUpCoolTime) {
-        gearUpCoolTime_ = _gearUpCoolTime;
-    }
-    void minusGearUpCoolTime(float _deltaTime) {
-        gearUpCoolTime_ -= _deltaTime;
-    }
+    float GetBaseGearupCoolTime() const { return baseGearupCoolTime_; }
+    float GetGearUpCoolTime() const { return gearUpCoolTime_; }
+    void SetGearUpCoolTime(float _gearUpCoolTime) { gearUpCoolTime_ = _gearUpCoolTime; }
+    void minusGearUpCoolTime(float _deltaTime) { gearUpCoolTime_ -= _deltaTime; }
 
-    float GetCoolTimeUpRateBase() const {
-        return coolTimeAddRateBase_;
-    }
-    float GetCoolTimeUpRateCommonRate() const {
-        return coolTimeAddRateCommonRate_;
-    }
-    float GetSpeedUpRateBase() const {
-        return speedUpRateBase_;
-    }
-    float GetSpeedUpRateCommonRate() const {
-        return speedUpRateCommonRate_;
-    }
+    float GetCoolTimeUpRateBase() const { return coolTimeAddRateBase_; }
+    float GetCoolTimeUpRateCommonRate() const { return coolTimeAddRateCommonRate_; }
+    float GetSpeedUpRateBase() const { return speedUpRateBase_; }
+    float GetSpeedUpRateCommonRate() const { return speedUpRateCommonRate_; }
 
-    float GetInvincibilityTime() const {
-        return invincibilityTime_;
-    }
+    float GetInvincibilityTime() const { return invincibilityTime_; }
 
-    const OriGine::Vec3f& GetWheelieJumpOffset() const {
-        return wheelieJumpOffset_;
-    }
+    const OriGine::Vec3f& GetWheelieJumpOffset() const { return wheelieJumpOffset_; }
 
-    float GetUpwardForceOnWallRun() const {
-        return upwardForceOnWallRun_;
-    }
+    float GetDefaultMass() const { return defaultMass_; }
+    float GetMassOnWallRun() const { return massOnWallRun_; }
 
-    float GetDefaultMass() const {
-        return defaultMass_;
-    }
-    float GetMassOnWallRun() const {
-        return massOnWallRun_;
-    }
+    float GetGravityApplyDelayOnWallRun() const { return gravityApplyDelayOnWallRun_; }
+
+    float GetWallRunDetachSpeed() const { return wallRunDetachSpeed_; }
 
     /// <summary>
     /// 壁走りが可能かどうか

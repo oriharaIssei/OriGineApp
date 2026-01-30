@@ -35,10 +35,8 @@ void FollowCameraUpdateSystem::UpdateEntity(EntityHandle _handle) {
             Vec3f toTarget     = Vec3f::Normalize(cameraController->followTarget->GetWorldTranslate() - cameraTransform->translate);
             float targetAngleY = std::atan2(toTarget[X], toTarget[Z]);
 
-            float currentY = cameraController->destinationAngleXY[Y];
-            float t        = deltaTime * cameraController->interTargetInterpolation;
-
-            cameraController->destinationAngleXY[Y] = LerpAngle(currentY, targetAngleY, t);
+            float currentY                          = cameraController->destinationAngleXY[Y];
+            cameraController->destinationAngleXY[Y] = LerpAngleByDeltaTime(currentY, targetAngleY, deltaTime, cameraController->interTargetInterpolation);
         }
 
         Matrix4x4 cameraRotateMat = MakeMatrix4x4::RotateX(cameraController->destinationAngleXY[X]) * MakeMatrix4x4::RotateY(cameraController->destinationAngleXY[Y]);
@@ -60,14 +58,15 @@ void FollowCameraUpdateSystem::UpdateEntity(EntityHandle _handle) {
         cameraTransform->translate = cameraPos;
 
         // ======== カメラ回転 ======== //
-        Vec3f lookDir           = Vec3f::Normalize(targetPosition - cameraTransform->translate);
-        Quaternion targetQuat   = Quaternion::LookAt(lookDir, axisY);
-        cameraTransform->rotate = SlerpByDeltaTime(
-                                      cameraTransform->rotate,
-                                      targetQuat,
-                                      deltaTime,
-                                      cameraController->rotateSensitivity)
-                                  * Quaternion::RotateAxisAngle(axisZ, cameraController->currentRotateZ);
+        Vec3f lookDir                = Vec3f::Normalize(targetPosition - cameraTransform->translate);
+        Quaternion targetQuat        = Quaternion::LookAt(lookDir, axisY);
+        cameraController->baseRotate = SlerpByDeltaTime(
+            cameraController->baseRotate,
+            targetQuat,
+            deltaTime,
+            cameraController->rotateSensitivity)
+                                           .normalize();
+        cameraTransform->rotate = cameraController->baseRotate * Quaternion::RotateAxisAngle(axisZ, cameraController->currentRotateZ);
 
         // transform に同期
         transform->rotate    = cameraTransform->rotate;

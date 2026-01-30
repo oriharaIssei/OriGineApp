@@ -30,7 +30,7 @@
                 "shortKeys": [
                     1
                 ],
-                "shortcutPadButton": [
+                "shortcutGamepadButton": [
                     16
                 ]
             }
@@ -49,8 +49,8 @@
                     1.0
                 ],
                 "defaultWindowSize": [
-                    1280.0,
-                    720.0
+                    1920.0,
+                    1080.0
                 ],
                 "isFlipX": false,
                 "isFlipY": false,
@@ -62,8 +62,8 @@
                     1.0
                 ],
                 "size": [
-                    48.0,
-                    48.000003814697266
+                    72.0,
+                    72.0
                 ],
                 "textureLeftTop": [
                     0.0,
@@ -75,8 +75,8 @@
                     16.0
                 ],
                 "translate": [
-                    72.95999908447266,
-                    30.96000099182129
+                    109.44000244140625,
+                    46.44000244140625
                 ],
                 "uvRotate": 0.0,
                 "uvScale": [
@@ -109,8 +109,8 @@
                     1.0
                 ],
                 "defaultWindowSize": [
-                    1280.0,
-                    720.0
+                    1920.0,
+                    1080.0
                 ],
                 "isFlipX": false,
                 "isFlipY": false,
@@ -122,8 +122,8 @@
                     1.0
                 ],
                 "size": [
-                    48.0,
-                    48.000003814697266
+                    72.0,
+                    72.0
                 ],
                 "textureLeftTop": [
                     0.0,
@@ -135,8 +135,8 @@
                     16.0
                 ],
                 "translate": [
-                    72.95999908447266,
-                    30.96000099182129
+                    109.44000244140625,
+                    46.44000244140625
                 ],
                 "uvRotate": 0.0,
                 "uvScale": [
@@ -184,12 +184,12 @@
             "SystemName": "SpriteRenderSystem"
         },
         {
-            "SystemCategory": 2,
-            "SystemName": "SubSceneActivateByButton"
-        },
-        {
             "SystemCategory": 7,
             "SystemName": "SubSceneRender"
+        },
+        {
+            "SystemCategory": 2,
+            "SystemName": "SubSceneActivateByButton"
         },
         {
             "SystemCategory": 3,

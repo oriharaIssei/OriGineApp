@@ -23,7 +23,9 @@ public:
     void Finalize() override;
 
 public:
-    // コンポーネント取得用構造体
+    /// <summary>
+    /// システムで使用するコンポーネントをまとめたコンテキスト構造体
+    /// </summary>
     struct Context {
         SplinePoints* splinePoints;
         OriGine::Transform* playerTransform;

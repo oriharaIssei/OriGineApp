@@ -42,17 +42,10 @@ static SplineSegment BuildSplineSegment(
 
     Vec3f rawDir = p1 - p0;
 
-    // 壁面に射影（wallNormal = up）
-    Vec3f tangent =
-        rawDir - settings.upVector * rawDir.dot(settings.upVector);
-
-    if (tangent.lengthSq() < kEpsilon) {
-        tangent = rawDir; // 直前の接線を使う
-    }
-    tangent   = tangent.normalize();
-    seg.up    = settings.upVector; // 面の法線
-    seg.dir   = tangent; // 壁に沿った進行方向
-    seg.right = settings.upVector.cross(tangent).normalize();
+    seg.dir   = rawDir.normalize(); // 進行方向
+    seg.up    = settings.upVector; 
+    seg.right = seg.up.cross(seg.dir).normalize();
+    seg.up    = seg.dir.cross(seg.right).normalize();
 
     float prevRatio, ratio;
     if (settings.isUvLoopEnable) {
@@ -173,7 +166,6 @@ void CreateMeshFromSpline::CreateLinePlaneMesh(
     mesh.SetVertexData(vertices);
     mesh.SetIndexData(indices);
 
-    renderer->SetIsCulling(false);
     renderer->SetMeshGroup({mesh});
     renderer->GetMeshGroup()->at(0).TransferData();
 }
@@ -218,7 +210,6 @@ void CreateMeshFromSpline::CreateCrossPlaneMesh(
     hMesh.SetVertexData(horizontal);
     hMesh.SetIndexData(indices);
 
-    renderer->SetIsCulling(false);
     renderer->SetMeshGroup({vMesh, hMesh});
     renderer->GetMeshGroup()->at(0).TransferData();
     renderer->GetMeshGroup()->at(1).TransferData();

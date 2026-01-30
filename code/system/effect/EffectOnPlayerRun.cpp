@@ -73,7 +73,7 @@ void EffectOnPlayerRun::UpdateEntity(EntityHandle _entity) {
                 // 現在の傾き
                 float wheelTiltAngle = effectControlParam->CalculateWheelTiltAngle(inputDir, currentDir);
 
-                // 段々と傾く(1秒に傾く角度が制限されている)
+                // 段々と傾く(傾く角度が制限されている)
                 float preWheelTiltAngle = effectControlParam->GetPreWheelTiltAngle();
                 float angleDiff         = wheelTiltAngle - preWheelTiltAngle;
                 float maxAngleChange    = effectControlParam->GetWheelTiltAngleMaxAccel() * deltaTime;
@@ -152,7 +152,7 @@ void EffectOnPlayerRun::UpdateEntity(EntityHandle _entity) {
         }
     } else {
         // 速度によって エフェクトの強さを変える
-        float intensityT = currentVelocity.length() / playerMaxSpeed;
+        float intensityT = currentXZSpeed / playerMaxSpeed;
         intensityT       = EaseOutCubic(intensityT);
         float intensity  = std::lerp(0.f, kMaxIntensity_, intensityT);
 

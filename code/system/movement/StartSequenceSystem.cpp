@@ -6,8 +6,8 @@
 /// component
 #include "component/effect/CameraAction.h"
 #include "component/renderer/Sprite.h"
-#include "component/TimerComponent.h"
 #include "component/transform/CameraTransform.h"
+#include "component/ui/Button.h"
 
 /// system
 #include "system/SystemRunner.h"
@@ -40,102 +40,24 @@ void StartSequenceSystem::Initialize() {
         nameof<PlayerInputSystem>(),
         nameof<PenaltySystem>()};
 
+    isInitializeState_ = false;
+    // ステージ紹介シーケンスを開始する
     StageIntroductionSequence();
 }
 
 void StartSequenceSystem::Finalize() {}
 
 void StartSequenceSystem::UpdateEntity(OriGine::EntityHandle _handle) {
-    // すでに開始している場合は処理しない
-    if (isStarted_) {
+    if (!isInitializeState_) {
+        ChangeState(stateType_, _handle);
+        isInitializeState_ = true;
+    }
+    if (isStarted_ || !currentState_) {
         return;
     }
 
-    // ゲームタイマーを止める
-    OriGine::EntityHandle gametimerEntityHandle = GetUniqueEntity("Timer");
-    TimerComponent* gameTimerComp               = GetComponent<TimerComponent>(gametimerEntityHandle);
-    if (gameTimerComp) {
-        // timerを止める
-        gameTimerComp->SetStarted(false);
-    }
-
-    // スタートタイマーの取得
-    auto* timerComp = GetComponent<TimerComponent>(_handle);
-    if (timerComp == nullptr) {
-        return;
-    }
-
-    if (!isIntroductionSequenceEnd_) {
-        EntityHandle gameCamera               = GetUniqueEntity("GameCamera");
-        auto* gameCameraTransform             = GetComponent<CameraTransform>(gameCamera);
-        gameCameraTransform->canUseMainCamera = false;
-
-        EntityHandle introductionCameraHandle = GetUniqueEntity("StageIntroCamera");
-        auto* cameraActionComp                = GetComponent<CameraAction>(introductionCameraHandle);
-
-        timerComp->SetStarted(false);
-
-        TimerForSpriteComponent* timer4SpriteComp = GetComponent<TimerForSpriteComponent>(_handle);
-        if (timer4SpriteComp) {
-            // スプライト用エンティティを非表示にする
-            Entity* spriteEntity = GetEntity(timer4SpriteComp->GetSpritesEntityHandle());
-            if (spriteEntity) {
-                // スプライト用エンティティを非表示にする
-                Entity* spriteEntity = GetEntity(timer4SpriteComp->GetSpritesEntityHandle());
-                if (spriteEntity) {
-                    auto& spriteComps = GetComponents<SpriteRenderer>(spriteEntity->GetHandle());
-                    for (auto& sprite : spriteComps) {
-                        sprite.SetIsRender(false);
-                    }
-                }
-            }
-        }
-
-        if (cameraActionComp) {
-            cameraActionComp->SetIsLoop(false);
-            if (cameraActionComp->IsEnd()) {
-                if (timer4SpriteComp) {
-                    // スプライト用エンティティを非表示にする
-                    Entity* spriteEntity = GetEntity(timer4SpriteComp->GetSpritesEntityHandle());
-                    if (spriteEntity) {
-                        auto& spriteComps = GetComponents<SpriteRenderer>(spriteEntity->GetHandle());
-                        for (auto& sprite : spriteComps) {
-                            sprite.SetIsRender(true);
-                        }
-                    }
-                }
-
-                // ゲームカメラを無効化
-                gameCameraTransform->canUseMainCamera = true;
-                auto* introductionCameraTransform     = GetComponent<CameraTransform>(introductionCameraHandle);
-                if (introductionCameraTransform) {
-                    introductionCameraTransform->canUseMainCamera = false;
-                }
-
-                // スタートタイマー中に動かすシステムを開始する
-                TimerStartSequence();
-                // スタートタイマーを開始する
-                timerComp->SetStarted(true);
-            }
-        }
-    } else {
-        // タイマーが0以下になったらシステムを開始する
-        if (timerComp->GetTime() <= 0.f) {
-            GameStartSequence();
-            // ゲームタイマーを開始する
-            gameTimerComp->SetStarted(true);
-
-            isStarted_ = true;
-
-            // 自分自身を削除する
-            GetScene()->AddDeleteEntity(_handle);
-            // sprite用エンティティも削除する
-            TimerForSpriteComponent* timer4SpriteComp = GetComponent<TimerForSpriteComponent>(_handle);
-            if (timer4SpriteComp) {
-                GetScene()->AddDeleteEntity(timer4SpriteComp->GetSpritesEntityHandle());
-            }
-        }
-    }
+    StopGameTimer();
+    currentState_->Update(*this, _handle);
 }
 
 void StartSequenceSystem::StageIntroductionSequence() {
@@ -152,8 +74,6 @@ void StartSequenceSystem::StageIntroductionSequence() {
 }
 
 void StartSequenceSystem::TimerStartSequence() {
-    isIntroductionSequenceEnd_ = true;
-
     // 特定のシステムを停止する
     auto* systemRunner = GetScene()->GetSystemRunnerRef();
 
@@ -169,4 +89,166 @@ void StartSequenceSystem::GameStartSequence() {
     for (const auto& systemName : stopSystems_) {
         systemRunner->RegisterSystem(systemName);
     }
+}
+
+void StartSequenceSystem::ChangeState(StartSequenceStateType _type, OriGine::EntityHandle _handle) {
+    stateType_ = _type;
+
+    switch (_type) {
+    case StartSequenceStateType::Introduction:
+        currentState_ = std::make_unique<IntroductionState>();
+        break;
+    case StartSequenceStateType::StartTimer:
+        currentState_ = std::make_unique<StartTimerState>();
+        break;
+    case StartSequenceStateType::GameStart:
+        currentState_ = std::make_unique<GameStartState>();
+        break;
+    }
+
+    currentState_->Enter(*this, _handle);
+}
+
+void StartSequenceSystem::StopGameTimer() {
+    EntityHandle timerEntity = GetUniqueEntity("Timer");
+    if (auto* timer = GetComponent<TimerComponent>(timerEntity)) {
+        timer->SetStarted(false);
+    }
+}
+
+void StartSequenceSystem::UpdateIntroductionSequence(OriGine::EntityHandle _handle, TimerComponent& _timerComp) {
+    DisableGameCamera();
+    _timerComp.SetStarted(false);
+
+    SetStartSpriteVisible(_handle, false);
+
+    if (IsIntroductionCameraEnd()) {
+        SetStartSpriteVisible(_handle, true);
+        EnableGameCamera();
+
+        TimerStartSequence();
+        _timerComp.SetStarted(true);
+    }
+}
+
+void StartSequenceSystem::DisableGameCamera() {
+    EntityHandle gameCamera = GetUniqueEntity("GameCamera");
+    if (auto* cam = GetComponent<CameraTransform>(gameCamera)) {
+        cam->canUseMainCamera = false;
+    }
+}
+
+void StartSequenceSystem::EnableGameCamera() {
+    EntityHandle gameCamera = GetUniqueEntity("GameCamera");
+    if (auto* cam = GetComponent<CameraTransform>(gameCamera)) {
+        cam->canUseMainCamera = true;
+    }
+
+    EntityHandle introCamera = GetUniqueEntity("StageIntroCamera");
+    if (auto* cam = GetComponent<CameraTransform>(introCamera)) {
+        cam->canUseMainCamera = false;
+    }
+}
+
+bool StartSequenceSystem::IsIntroductionCameraEnd() {
+    EntityHandle introCamera = GetUniqueEntity("StageIntroCamera");
+    if (auto* action = GetComponent<CameraAction>(introCamera)) {
+        action->SetIsLoop(false);
+        return action->IsEnd();
+    }
+    return false;
+}
+
+void StartSequenceSystem::SetStartSpriteVisible(OriGine::EntityHandle _handle, bool _visible) {
+    auto* timer4Sprite = GetComponent<TimerForSpriteComponent>(_handle);
+    if (!timer4Sprite) {
+        return;
+    }
+
+    Entity* spriteEntity = GetEntity(timer4Sprite->GetSpritesEntityHandle());
+    if (!spriteEntity) {
+        return;
+    }
+
+    auto& sprites = GetComponents<SpriteRenderer>(spriteEntity->GetHandle());
+    for (auto& sprite : sprites) {
+        sprite.SetIsRender(_visible);
+    }
+}
+
+void StartSequenceSystem::UpdateStartTimerSequence(OriGine::EntityHandle _handle, TimerComponent& _timerComp) {
+    if (_timerComp.GetTime() > 0.f) {
+        return;
+    }
+
+    GameStartSequence();
+
+    if (auto* gameTimer = GetComponent<TimerComponent>(GetUniqueEntity("Timer"))) {
+        gameTimer->SetStarted(true);
+    }
+
+    isStarted_ = true;
+
+    CleanupEntities(_handle);
+}
+
+void StartSequenceSystem::CleanupEntities(OriGine::EntityHandle _handle) {
+    GetScene()->AddDeleteEntity(_handle);
+
+    if (auto* timer4Sprite = GetComponent<TimerForSpriteComponent>(_handle)) {
+        GetScene()->AddDeleteEntity(timer4Sprite->GetSpritesEntityHandle());
+    }
+}
+
+void StartSequenceSystem::IntroductionState::Enter(StartSequenceSystem& _system, OriGine::EntityHandle _handle) {
+    _system.DisableGameCamera();
+    _system.SetStartSpriteVisible(_handle, false);
+}
+
+void StartSequenceSystem::IntroductionState::Update(StartSequenceSystem& _system, OriGine::EntityHandle _handle) {
+    auto* timer = _system.GetComponent<TimerComponent>(_handle);
+    if (!timer) {
+        return;
+    }
+
+    timer->SetStarted(false);
+
+    bool isEnd = _system.IsIntroductionCameraEnd();
+    if (!isEnd) {
+        const auto& skipButtons = _system.GetComponents<Button>(_handle);
+        for (auto& skipButton : skipButtons) {
+            isEnd |= skipButton.IsReleased();
+        }
+    }
+
+    if (!isEnd) {
+        return;
+    }
+
+    _system.SetStartSpriteVisible(_handle, true);
+    _system.EnableGameCamera();
+    _system.TimerStartSequence();
+
+    timer->SetStarted(true);
+    _system.ChangeState(StartSequenceStateType::StartTimer, _handle);
+}
+
+void StartSequenceSystem::StartTimerState::Update(StartSequenceSystem& system, OriGine::EntityHandle _handle) {
+    auto* timer = system.GetComponent<TimerComponent>(_handle);
+    if (!timer || timer->GetTime() > 0.f) {
+        return;
+    }
+
+    system.GameStartSequence();
+    system.ChangeState(StartSequenceStateType::GameStart, _handle);
+}
+
+void StartSequenceSystem::GameStartState::Enter(StartSequenceSystem& _system, OriGine::EntityHandle _handle) {
+    if (auto* gameTimer = _system.GetComponent<TimerComponent>(
+            _system.GetUniqueEntity("Timer"))) {
+        gameTimer->SetStarted(true);
+    }
+
+    _system.CleanupEntities(_handle);
+    _system.isStarted_ = true;
 }

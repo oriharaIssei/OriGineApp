@@ -125,7 +125,8 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityH
     DragGuiVectorCommand<3, float>("WallJumpOffset##" + _parentLabel, wallJumpOffset_, 0.01f);
 
     DragGuiVectorCommand<3, float>("WheelieJumpOffset##" + _parentLabel, wheelieJumpOffset_, 0.01f);
-    DragGuiCommand("upwardForceOnWallRun##" + _parentLabel, upwardForceOnWallRun_, 0.01f);
+    DragGuiCommand("GravityApplyDelay On WallRun##" + _parentLabel, gravityApplyDelayOnWallRun_, 0.01f);
+    DragGuiCommand("WallRunDetachSpeed##" + _parentLabel, wallRunDetachSpeed_, 0.01f);
 
     ImGui::Spacing();
 
@@ -246,7 +247,8 @@ void to_json(nlohmann::json& _j, const PlayerStatus& _playerStatus) {
 
     _j["wheelieJumpOffset"] = _playerStatus.wheelieJumpOffset_;
 
-    _j["upwardForceOnWallRun"] = _playerStatus.upwardForceOnWallRun_;
+    _j["gravityApplyDelayOnWallRun"] = _playerStatus.gravityApplyDelayOnWallRun_;
+    _j["wallRunDetachSpeed"]         = _playerStatus.wallRunDetachSpeed_;
 
     _j["defaultMass"]   = _playerStatus.defaultMass_;
     _j["massOnWallRun"] = _playerStatus.massOnWallRun_;
@@ -285,8 +287,11 @@ void from_json(const nlohmann::json& _j, PlayerStatus& _playerStatus) {
         _j.at("wheelieJumpOffset").get_to(_playerStatus.wheelieJumpOffset_);
     }
 
-    if (_j.contains("upwardForceOnWallRun")) {
-        _j.at("upwardForceOnWallRun").get_to(_playerStatus.upwardForceOnWallRun_);
+    if (_j.contains("gravityApplyDelayOnWallRun")) {
+        _j.at("gravityApplyDelayOnWallRun").get_to(_playerStatus.gravityApplyDelayOnWallRun_);
+    }
+    if (_j.contains("wallRunDetachSpeed")) {
+        _j.at("wallRunDetachSpeed").get_to(_playerStatus.wallRunDetachSpeed_);
     }
 
     if (_j.contains("defaultMass")) {

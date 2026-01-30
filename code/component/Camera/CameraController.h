@@ -16,16 +16,31 @@
 /// </summary>
 struct CameraController
     : public OriGine::IComponent {
+    /// <summary>
+    /// JSON 変換用
+    /// </summary>
     friend void to_json(nlohmann::json& j, const CameraController& _cameraController);
+    /// <summary>
+    /// JSON 復元用
+    /// </summary>
     friend void from_json(const nlohmann::json& j, CameraController& _cameraController);
 
 public:
     CameraController() {}
     ~CameraController() override {}
 
+    /// <summary>
+    /// 初期化処理
+    /// </summary>
     void Initialize(OriGine::Scene* _scene, OriGine::EntityHandle _owner) override;
+    /// <summary>
+    /// 終了処理
+    /// </summary>
     void Finalize() override;
 
+    /// <summary>
+    /// エディタ用編集UI
+    /// </summary>
     void Edit(OriGine::Scene* _scene, OriGine::EntityHandle _owner, const std::string& _parentLabel) override;
 
     /// <summary>
@@ -37,6 +52,9 @@ public:
 
 public:
     OriGine::Transform* followTarget = nullptr;
+
+    // 演出用の回転と分けるための基準回転
+    OriGine::Quaternion baseRotate = OriGine::Quaternion::Identity();
 
     OriGine::Vec3f forward  = {0.f, 0.f, 1.f}; // カメラの前方向
     float angleLimitY       = 0.0f;

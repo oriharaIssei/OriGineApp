@@ -24,9 +24,10 @@ void PlayerInput::Finalize() {
     // 何もしない
 }
 
-Vec3f PlayerInput::CalculateWorldInputDirection(const Quaternion& _cameraRotation) const {
+Vec3f PlayerInput::CalculateWorldInputDirection(const Quaternion& _cameraRotation) {
     if (inputDirection_.lengthSq() <= kEpsilon) {
-        return Vec3f(0, 0, 0);
+        worldInputDirection_ = Vec3f(0.f, 0.f, 0.f);
+        return worldInputDirection_;
     }
 
     // カメラのYaw軸回転のみ抽出
@@ -37,8 +38,8 @@ Vec3f PlayerInput::CalculateWorldInputDirection(const Quaternion& _cameraRotatio
     inputDir3D       = inputDir3D.normalize();
 
     // カメラのY軸回転を適用
-    Vec3f worldDir = inputDir3D * MakeMatrix4x4::RotateY(cameraYaw);
-    return worldDir.normalize();
+    worldInputDirection_ = inputDir3D * MakeMatrix4x4::RotateY(cameraYaw);
+    return worldInputDirection_;
 }
 
 void to_json(nlohmann::json& j, const PlayerInput& _input) {

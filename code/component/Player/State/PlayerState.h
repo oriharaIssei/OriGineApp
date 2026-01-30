@@ -59,22 +59,38 @@ constexpr int32_t kMaxPlayerGearLevel     = 6; // 最大のギアレベル
 /// </summary>
 class PlayerState
     : public OriGine::IComponent {
+    /// <summary>
+    /// JSON 変換用
+    /// </summary>
     friend void to_json(nlohmann::json& j, const PlayerState& p);
+    /// <summary>
+    /// JSON 復元用
+    /// </summary>
     friend void from_json(const nlohmann::json& j, PlayerState& p);
 
 public:
     PlayerState();
     ~PlayerState() override;
 
+    /// <summary>
+    /// 初期化処理
+    /// </summary>
     void Initialize(OriGine::Scene* _scene, OriGine::EntityHandle _owner) override;
+    /// <summary>
+    /// エディタ用編集UI
+    /// </summary>
     void Edit(OriGine::Scene* _scene, OriGine::EntityHandle _owner, const std::string& _parentLabel) override;
+    /// <summary>
+    /// 終了処理
+    /// </summary>
     void Finalize() override;
 
     /// <summary>
     /// 壁と接触したときの処理
     /// </summary>
-    /// <param name="_collisionNormal"></param>
-    /// <param name="_entityHandle"></param>
+    /// <param name="_collisionNormal">衝突法線</param>
+    /// <param name="_entityHandle">衝突相手のエンティティハンドル</param>
+    /// <param name="_isWheelie">ウィリー中かどうか</param>
     void OnCollisionWall(const OriGine::Vec3f& _collisionNormal, OriGine::EntityHandle _entityHandle, bool _isWheelie = false);
     /// <summary>
     /// 壁との接触がなくなったときの処理

@@ -35,9 +35,8 @@ constexpr float kOffsetRate = 0.1f;
 }
 
 void PlayerWallRunState::Initialize() {
-    constexpr int32_t thresholdGearLevel              = 3;
-    constexpr float kMeshOffsetRate                   = 0.26f;
-    constexpr float kThresholdFailedWallJumpSpeedRate = 0.3f;
+    constexpr int32_t thresholdGearLevel = 3;
+    constexpr float kMeshOffsetRate      = 0.26f;
 
     auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
     auto* state        = scene_->GetComponent<PlayerState>(playerEntityHandle_);
@@ -46,8 +45,6 @@ void PlayerWallRunState::Initialize() {
 
     // 壁ジャンプ前の速度
     prevVelo_ = rigidbody->GetVelocity();
-
-    thresholdFailedWallJumpSpeed_ = -playerStatus->GetUpwardForceOnWallRun() * kThresholdFailedWallJumpSpeedRate;
 
     // 壁法線
     wallNormal_ = state->GetWallCollisionNormal().normalize();
@@ -87,40 +84,51 @@ void PlayerWallRunState::Initialize() {
 
     // ===== 移動 =====
     rigidbody->SetVelocity(playerSpeed_ * direction);
-    rigidbody->SetVelocity(Y, playerStatus->GetUpwardForceOnWallRun());
 
     rigidbody->SetMass(playerStatus->GetMassOnWallRun());
 
     // 壁との分離猶予
     separationLeftTime_ = separationGraceTime_;
+    // 壁走り離脱速度
+    wallRunDetachSpeed_ = playerStatus->GetWallRunDetachSpeed();
 
     // ===== 向きとロール =====
-    PlayerEffectControlParam* effectParam =
-        scene_->GetComponent<PlayerEffectControlParam>(playerEntityHandle_);
+    PlayerEffectControlParam* effectParam = scene_->GetComponent<PlayerEffectControlParam>(playerEntityHandle_);
+    bool isRightWall                      = Vec3f::Dot(Vec3f::Cross(axisY, wallNormal_), direction) > 0.0f;
 
     float rotateZOffsetOnWallRun = effectParam->GetRotateOffsetOnWallRun();
-
     // プレイヤーの向きを移動方向に合わせる
     Quaternion lookForward = Quaternion::LookAt(direction, axisY);
-    bool isRightWall       = Vec3f::Dot(Vec3f::Cross(axisY, wallNormal_), direction) > 0.0f;
+    transform->rotate      = lookForward;
+    // 回転アニメーションのゴール地点を設定
     Quaternion angleOffset = Quaternion::RotateAxisAngle(axisZ, isRightWall ? rotateZOffsetOnWallRun : -rotateZOffsetOnWallRun);
-    transform->rotate      = lookForward * angleOffset;
+    playerBeforeRotate_    = lookForward;
+    playerRotateTarget_    = lookForward * angleOffset;
 
     // ===== スピード制御 =====
     speedRate_        = playerStatus->GetWallRunRate();
     speedRumpUpTime_  = playerStatus->GetWallRunRampUpTime();
     speedRumpUpTimer_ = 0.0f;
 
+    // ===== 重力制御 =====
+    gravityApplyDelay_ = playerStatus->GetGravityApplyDelayOnWallRun();
+    rigidbody->SetUseGravity(false);
+
+    // ===== メッシュのオフセット =====
+    auto* modelRenderer = scene_->GetComponent<ModelMeshRenderer>(playerEntityHandle_);
+    if (modelRenderer) {
+        for (auto& mesh : modelRenderer->GetAllTransformBuffRef()) {
+            mesh.openData_.translate -= isRightWall ? -wallNormal_ * kMeshOffsetRate : wallNormal_ * kMeshOffsetRate;
+        }
+    }
+
     // ===== カメラ =====
-    CameraController* cameraController =
-        scene_->GetComponent<CameraController>(state->GetCameraEntityHandle());
+    CameraController* cameraController = scene_->GetComponent<CameraController>(state->GetCameraEntityHandle());
 
     // 左壁想定のオフセットを取得
-    cameraTargetOffsetOnWallRun_ =
-        cameraController->targetOffsetOnWallRun;
+    cameraTargetOffsetOnWallRun_ = cameraController->targetOffsetOnWallRun;
 
-    cameraOffsetOnWallRun_ =
-        cameraController->offsetOnWallRun;
+    cameraOffsetOnWallRun_ = cameraController->offsetOnWallRun;
 
     // 左壁想定の回転角度を取得
     cameraRotateZOnWallRun_ = cameraController->rotateZOnWallRun;
@@ -133,15 +141,6 @@ void PlayerWallRunState::Initialize() {
     }
 
     cameraAngleLerpTimer_ = 0.0f;
-
-    auto* modelRenderer = scene_->GetComponent<ModelMeshRenderer>(playerEntityHandle_);
-    if (modelRenderer) {
-        for (auto& mesh : modelRenderer->GetAllTransformBuffRef()) {
-            mesh.openData_.translate -= wallNormal_ * kMeshOffsetRate;
-        }
-    }
-     Vec3f pathOrigin = transform->GetWorldTranslate() - wallNormal_ * kOffsetRate;
-     CreateWallRunPathEntity(pathOrigin, rigidbody, direction);
 }
 
 void PlayerWallRunState::Update(float _deltaTime) {
@@ -150,6 +149,12 @@ void PlayerWallRunState::Update(float _deltaTime) {
 
     // 衝突が途切れないようにめり込ませる
     transform->translate -= wallNormal_ * kOffsetRate;
+
+    // 回転アニメーション
+    rotateTimer_ += _deltaTime;
+    float rotateT     = (std::min)(rotateTimer_ / kRotateTime_, 1.f);
+    transform->rotate = Slerp(playerBeforeRotate_, playerRotateTarget_, EaseOutQuad(rotateT));
+
     transform->UpdateMatrix();
 
     // 壁との衝突判定の残り時間を更新
@@ -173,19 +178,32 @@ void PlayerWallRunState::Update(float _deltaTime) {
     rigidbody->SetVelocity(newVelo);
     rigidbody->SetMaxXZSpeed(newVelo.length());
 
+    gravityApplyDelay_ -= _deltaTime;
+    if (gravityApplyDelay_ <= 0.0f) {
+        rigidbody->SetUseGravity(true);
+        gravityApplyDelay_ = 0.f;
+    }
+
     /// TODO: カメラの処理をここに書くべきではない
     // カメラの傾きを徐々に変える
     float cameraDeltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Camera");
-    cameraAngleLerpTimer_ += _deltaTime;
-    float t = cameraAngleLerpTimer_ / cameraDeltaTime;
+    cameraAngleLerpTimer_ += cameraDeltaTime;
+    float t = cameraAngleLerpTimer_ / kCameraAngleLerpTime_;
     t       = std::clamp(t, 0.f, 1.f);
 
     // 一度だけ実行
+    CameraController* cameraController = scene_->GetComponent<CameraController>(state->GetCameraEntityHandle());
+    if (!cameraController) {
+        return;
+    }
     if (t >= 1) {
+        cameraController->currentOffset       = cameraOffsetOnWallRun_;
+        cameraController->currentTargetOffset = cameraTargetOffsetOnWallRun_;
+
+        cameraController->currentRotateZ = cameraRotateZOnWallRun_;
         return;
     }
 
-    CameraController* cameraController = scene_->GetComponent<CameraController>(state->GetCameraEntityHandle());
     if (cameraController) {
         cameraController->currentOffset       = Lerp<3, float>(cameraController->currentOffset, cameraOffsetOnWallRun_, EaseOutCubic(t));
         cameraController->currentTargetOffset = Lerp<3, float>(cameraController->currentTargetOffset, cameraTargetOffsetOnWallRun_, EaseOutCubic(t));
@@ -201,6 +219,7 @@ void PlayerWallRunState::Finalize() {
     auto* transform    = scene_->GetComponent<OriGine::Transform>(playerEntityHandle_);
 
     rigidbody->SetMass(playerStatus->GetDefaultMass());
+    rigidbody->SetUseGravity(true);
     playerStatus->SetupWallRunInterval();
 
     transform->translate += wallNormal_ * kOffsetRate;
@@ -235,7 +254,7 @@ PlayerMoveState PlayerWallRunState::TransitionState() const {
     }
 
     auto* rigidbody = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
-    if (rigidbody->GetVelocity()[Y] < thresholdFailedWallJumpSpeed_) {
+    if (rigidbody->GetVelocity()[Y] < wallRunDetachSpeed_) {
         return PlayerMoveState::FALL_DOWN;
     }
 

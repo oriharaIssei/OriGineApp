@@ -10,6 +10,9 @@
 #include "debugReplayer/ReplayPlayer.h"
 #include "debugReplayer/ReplayRecorder.h"
 
+/// <summary>
+/// プレイヤーの進行状況データ
+/// </summary>
 struct PlayerProgressData {
     int32_t stageNumber = -1; // ステージ番号
     int32_t difficulty  = -1; // 難易度

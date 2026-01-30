@@ -83,29 +83,41 @@
                                 }
                             }
                         ],
+                        "decideGamepadButtons": [
+                            4096,
+                            8192
+                        ],
                         "decideKeys": [
                             28,
                             57
                         ],
-                        "decidePadButtons": [
-                            4096,
-                            8192
+                        "selectAddGamepadButtons": [
+                            2,
+                            8,
+                            512,
+                            131072,
+                            524288,
+                            2097152
                         ],
                         "selectAddKeys": [
                             31,
-                            32
+                            32,
+                            208,
+                            205
                         ],
-                        "selectAddPadButtons": [
-                            8,
-                            512
+                        "selectSubGamepadButtons": [
+                            1,
+                            4,
+                            256,
+                            65536,
+                            262144,
+                            16777216
                         ],
                         "selectSubKeys": [
                             17,
-                            30
-                        ],
-                        "selectSubPadButtons": [
-                            256,
-                            4
+                            30,
+                            200,
+                            203
                         ],
                         "startButtonNumber": 0
                     }
@@ -157,7 +169,7 @@
                             1.0
                         ],
                         "shortKeys": [],
-                        "shortcutPadButton": []
+                        "shortcutGamepadButton": []
                     }
                 ],
                 "DissolveEffectParam": [
@@ -223,8 +235,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -236,8 +248,8 @@
                             1.0
                         ],
                         "size": [
-                            512.0,
-                            512.0
+                            768.0,
+                            768.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -249,8 +261,8 @@
                             512.0
                         ],
                         "translate": [
-                            292.0,
-                            360.0
+                            438.0,
+                            540.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -350,7 +362,7 @@
                             1.0
                         ],
                         "shortKeys": [],
-                        "shortcutPadButton": []
+                        "shortcutGamepadButton": []
                     }
                 ],
                 "DissolveEffectParam": [
@@ -416,8 +428,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -429,8 +441,8 @@
                             1.0
                         ],
                         "size": [
-                            512.0,
-                            512.0
+                            768.0,
+                            768.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -442,8 +454,8 @@
                             512.0
                         ],
                         "translate": [
-                            988.0,
-                            360.0
+                            1482.0,
+                            540.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -711,7 +723,7 @@
                         ],
                         "isActive": true,
                         "materialIndex": 0,
-                        "textuerPath": "./application/resource/Texture/waveNoise.png",
+                        "texturePath": "./application/resource/Texture/waveNoise.png",
                         "use3dObjectList": false
                     }
                 ],
@@ -989,8 +1001,8 @@
                             0.6901960968971252
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -1002,8 +1014,8 @@
                             1.0
                         ],
                         "size": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -1082,9 +1094,7 @@
                         "shortKeys": [
                             1
                         ],
-                        "shortcutPadButton": [
-                            16
-                        ]
+                        "shortcutGamepadButton": []
                     }
                 ],
                 "DissolveEffectParam": [
@@ -1150,8 +1160,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1280.0,
-                            720.0
+                            1920.0,
+                            1080.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -1205,12 +1215,12 @@
             "Name": "ToTile",
             "Systems": [
                 {
-                    "SystemCategory": 1,
-                    "SystemName": "ButtonInputSystem"
-                },
-                {
                     "SystemCategory": 2,
                     "SystemName": "ChangeSceneByButton"
+                },
+                {
+                    "SystemCategory": 1,
+                    "SystemName": "ButtonInputSystem"
                 },
                 {
                     "SystemCategory": 7,
@@ -1226,12 +1236,12 @@
     ],
     "Systems": [
         {
-            "ApplyMouseConditionSystem": {
+            "MaterialAnimationWorkSystem": {
                 "Priority": 0
             }
         },
         {
-            "MaterialAnimationWorkSystem": {
+            "ApplyMouseConditionSystem": {
                 "Priority": 0
             }
         },
@@ -1246,13 +1256,13 @@
             }
         },
         {
-            "ButtonInputSystem": {
-                "Priority": 0
+            "ChangeSceneByButton": {
+                "Priority": 3
             }
         },
         {
-            "ChangeSceneByButton": {
-                "Priority": 3
+            "ButtonInputSystem": {
+                "Priority": 0
             }
         },
         {

@@ -106,7 +106,8 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
                         state->OnCollisionWall(collNormal, entityId);
                     }
                 } else { // 基準値以下なら
-                    if (rigidbody->GetVelocity()[Y] > kEpsilon) {
+                    constexpr float kWheelieThresholdFallSpeed = -1.3f; // ウィリーになるための落下速度閾値
+                    if (rigidbody->GetVelocity()[Y] > kWheelieThresholdFallSpeed) {
                         if (status->CanWheelie()) {
                             state->OnCollisionWall(collNormal, entityId, true);
                         }

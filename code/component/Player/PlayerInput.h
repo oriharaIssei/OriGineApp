@@ -20,28 +20,52 @@
 /// </summary>
 class PlayerInput
     : public OriGine::IComponent {
+    /// <summary>
+    /// JSON 変換用
+    /// </summary>
     friend void to_json(nlohmann::json& j, const PlayerInput& _playerInput);
+    /// <summary>
+    /// JSON 復元用
+    /// </summary>
     friend void from_json(const nlohmann::json& j, PlayerInput& _playerInput);
 
 public:
     PlayerInput() : IComponent() {}
     ~PlayerInput() {}
 
+    /// <summary>
+    /// 初期化処理
+    /// </summary>
     void Initialize(OriGine::Scene* _scene, OriGine::EntityHandle _owner) override;
+    /// <summary>
+    /// エディタ用編集UI
+    /// </summary>
     void Edit(OriGine::Scene* _scene, OriGine::EntityHandle _owner, const std::string& _parentLabel) override;
+    /// <summary>
+    /// 終了処理
+    /// </summary>
     void Finalize() override;
 
+    /// <summary>
+    /// 入力が無効化されているかどうか
+    /// </summary>
     bool IsInputDisabled() const {
         return inputDisableTimer_ < inputDisableDuration_;
     }
 
-    OriGine::Vec3f CalculateWorldInputDirection(const OriGine::Quaternion& _cameraRotation) const;
+    /// <summary>
+    /// ワールド座標系での入力方向を計算する
+    /// </summary>
+    /// <param name="_cameraRotation">カメラの回転</param>
+    /// <returns>ワールド座標系での入力方向</returns>
+    OriGine::Vec3f CalculateWorldInputDirection(const OriGine::Quaternion& _cameraRotation);
 
 private:
     OriGine::Vec2f inputDirection_ = {0.0f, 0.0f};
     // effectに使う
     OriGine::Vec3f worldInputDirection_ = {0.0f, 0.0f, 0.0f};
 
+    bool isInputGamepad_  = false; // ゲームパッド入力かどうか (false = キーボード入力)
     bool isJumpInput_     = false; // ジャンプ入力があったかどうか
     bool isWallJumpInput_ = false; // 壁ジャンプ入力があったかどうか
     float jumpInputTime_  = 0.0f; // ジャンプ入力の時間 (これによってジャンプ力が変わる)
@@ -107,6 +131,13 @@ public:
     }
     void SetWorldInputDirection(const OriGine::Vec3f& _worldInputDirection) {
         worldInputDirection_ = _worldInputDirection;
+    }
+
+    bool IsInputGamepad() const {
+        return isInputGamepad_;
+    }
+    void SetInputGamepad(bool _isInputGamepad) {
+        isInputGamepad_ = _isInputGamepad;
     }
 
     bool IsJumpInput() const {

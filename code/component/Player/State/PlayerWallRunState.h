@@ -60,7 +60,15 @@ protected:
     float playerSpeed_      = 0.f; // playerの速度
     float speedRate_        = 1.f; // 壁走り速度倍率
     float speedRumpUpTime_  = 0.f; // 壁走り速度上昇時間
-    float speedRumpUpTimer_ = 0.0f;
+    float speedRumpUpTimer_ = 0.0f; // 壁走り速度上昇タイマー
+
+    OriGine::Quaternion playerBeforeRotate_ = OriGine::Quaternion();
+    OriGine::Quaternion playerRotateTarget_ = OriGine::Quaternion();
+    const float kRotateTime_                 = 0.26f;
+    float rotateTimer_                      = 0.f;
+
+    float wallRunDetachSpeed_ = 5.f; // 壁走り離脱速度
+    float gravityApplyDelay_  = 0.2f; // 重力適用遅延時間
 
     OriGine::Vec3f wallNormal_ = OriGine::Vec3f(0.0f, 0.0f, 0.0f); // 壁の法線
 
