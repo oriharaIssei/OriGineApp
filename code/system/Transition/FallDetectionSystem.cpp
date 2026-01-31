@@ -11,6 +11,9 @@
 #include "component/player/state/PlayerState.h"
 #include "component/Transform/Transform.h"
 
+/// config
+#include "component/player/PlayerConfig.h"
+
 using namespace OriGine;
 
 FallDetectionSystem::FallDetectionSystem() : ISystem(OriGine::SystemCategory::StateTransition) {}
@@ -21,14 +24,13 @@ void FallDetectionSystem::Initialize() {}
 void FallDetectionSystem::Finalize() {}
 
 void FallDetectionSystem::UpdateEntity(OriGine::EntityHandle _handle) {
-    constexpr float kFallThresholdY = -50.f;
-    Transform* transform            = GetComponent<Transform>(_handle);
+    Transform* transform = GetComponent<Transform>(_handle);
 
     if (!transform) {
         return;
     }
 
-    if (transform->worldMat[3][Y] < kFallThresholdY) {
+    if (transform->worldMat[3][Y] < AppConfig::Player::kFallThresholdY) {
         MessageBus::GetInstance()->Emit<GamefailedEvent>(GamefailedEvent());
     }
 }

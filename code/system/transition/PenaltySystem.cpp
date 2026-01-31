@@ -22,6 +22,9 @@
 /// math
 #include "math/mathEnv.h"
 
+/// config
+#include "component/player/PlayerConfig.h"
+
 using namespace OriGine;
 
 PenaltySystem::PenaltySystem() : ISystem(OriGine::SystemCategory::StateTransition) {}
@@ -50,9 +53,8 @@ void PenaltySystem::UpdateEntity(OriGine::EntityHandle _handle) {
     float penaltyTime = playerState->SufferPenalty();
 
     // ギアレベルを下げる
-    constexpr int32_t kThresholdPenaltyLevel = 4;
-    int32_t newGearLevel                     = playerState->GetGearLevel();
-    newGearLevel                             = (std::max)((std::min)(newGearLevel, kThresholdPenaltyLevel), newGearLevel / 2);
+    int32_t newGearLevel = playerState->GetGearLevel();
+    newGearLevel         = (std::max)((std::min)(newGearLevel, AppConfig::Player::kPenaltyThresholdGearLevel), newGearLevel / AppConfig::Player::kPenaltyGearLevelDivisor);
     playerState->SetGearLevel(newGearLevel);
 
     playerState->GetStateFlagRef().CurrentRef().SetFlag(PlayerStateFlag::GEAR_UP);

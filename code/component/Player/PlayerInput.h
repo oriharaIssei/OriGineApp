@@ -68,6 +68,7 @@ private:
     bool isInputGamepad_  = false; // ゲームパッド入力かどうか (false = キーボード入力)
     bool isJumpInput_     = false; // ジャンプ入力があったかどうか
     bool isWallJumpInput_ = false; // 壁ジャンプ入力があったかどうか
+    bool isRailJumpInput_ = false; // レールジャンプ入力があったかどうか
     float jumpInputTime_  = 0.0f; // ジャンプ入力の時間 (これによってジャンプ力が変わる)
     float maxJumpTime_    = 0.1f; // ジャンプ入力の最大時間 (秒単位)
 
@@ -152,6 +153,13 @@ public:
     }
     void SetWallJumpInput(bool _isWallJumpInput) {
         isWallJumpInput_ = _isWallJumpInput;
+    }
+
+    bool IsRailJumpInput() const {
+        return isRailJumpInput_;
+    }
+    void SetRailJumpInput(bool _isRailJumpInput) {
+        isRailJumpInput_ = _isRailJumpInput;
     }
 
     const float GetMaxJumpTime() const {

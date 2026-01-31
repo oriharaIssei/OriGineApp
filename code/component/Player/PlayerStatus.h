@@ -13,10 +13,12 @@
 #include <math/Quaternion.h>
 #include <math/Vector3.h>
 
+#include "PlayerConfig.h"
+
 /// 前方宣言
 class PlayerInput;
 
-constexpr float kPlayerHeight = 2.0f;
+constexpr float kPlayerHeight = AppConfig::Player::kDefaultHeight;
 
 /// <summary>
 /// Playerのステータスを管理するコンポーネント
@@ -85,7 +87,7 @@ public:
 private:
     /// ==========================================
     // 能力値
-    float baseGearupCoolTime_        = 1.0f; // ギアアップの基本クールタイム (秒単位)
+    float baseGearupCoolTime_        = AppConfig::Player::kDefaultBaseGearupCoolTime; // ギアアップの基本クールタイム (秒単位)
     float gearUpCoolTime_            = 0.0f; // ギアレベルが上がるまでの時間
     float coolTimeAddRateBase_       = 1.0f;
     float coolTimeAddRateCommonRate_ = 1.f;
@@ -97,11 +99,16 @@ private:
 
     // 壁系
     float wallRunRate_                = 0.0f; // 壁走りの速度倍率
-    float wallRunRampUpTime_          = 0.2f; // 壁走りの速度倍率が最大になるまでの時間
+    float wallRunRampUpTime_          = AppConfig::Player::kDefaultWallRunRampUpTime; // 壁走りの速度倍率が最大になるまでの時間
     OriGine::Vec3f wallJumpOffset_    = {0.0f, 1.0f, 0.0f};
     float wallJumpRate_               = 0.0f; // 壁ジャンプ(壁から地面に行くとき)の速度倍率
-    float gravityApplyDelayOnWallRun_ = 0.2f; // 壁走り開始時に重力を適用し始めるまでの遅延時間
-    float wallRunDetachSpeed_         = 5.0f; // 壁走りから離脱する時の速度
+    float gravityApplyDelayOnWallRun_ = AppConfig::Player::kDefaultGravityApplyDelayOnWallRun; // 壁走り開始時に重力を適用し始めるまでの遅延時間
+    float wallRunDetachSpeed_         = AppConfig::Player::kDefaultWallRunDetachSpeed; // 壁走りから離脱する時の速度
+
+    // rail
+    float railSpeedRate_  = 1.0f; // レール上の速度倍率
+    float railRampUpTime_ = 0.f; // レール上の速度倍率が最大になるまでの時間
+    OriGine::Vec3f railJumpOffset_ = {0.f, 1.f, 0.f};
 
     // currentMaxSpeed は gearLevel に応じて変化する
     float currentMaxSpeed_ = 0.0f; // 現在の最大速度
@@ -118,14 +125,14 @@ private:
 
     float directionInterpolateRate_ = 0.1f;
 
-    float invincibilityTime_ = 1.0f; // 障害物に当たったときの無敵時間 /sec
+    float invincibilityTime_ = AppConfig::Player::kDefaultInvincibilityTime; // 障害物に当たったときの無敵時間 /sec
 
     OriGine::Vec3f wheelieJumpOffset_ = {0.0f, 1.0f, 0.0f};
 
-    float defaultMass_   = 1.0f; // 通常時の質量
-    float massOnWallRun_ = 0.3f; // 壁走り中の質量
+    float defaultMass_   = AppConfig::Player::kDefaultMass; // 通常時の質量
+    float massOnWallRun_ = AppConfig::Player::kDefaultMassOnWallRun; // 壁走り中の質量
 
-    float wallRunInterval_        = 0.2f; // 壁走り&ウィリーが可能になるまでのインターバル時間
+    float wallRunInterval_        = AppConfig::Player::kDefaultWallRunInterval; // 壁走り&ウィリーが可能になるまでのインターバル時間
     float currentWallRunInterval_ = 0.0f; // 現在の壁走りインターバル時間
     float currentWheelieInterval_ = 0.0f; // 現在のウィリーインターバル時間
 
@@ -226,4 +233,8 @@ public:
     void SetupWheelieInterval() {
         currentWheelieInterval_ = wallRunInterval_;
     }
+
+    float GetRailSpeedRate() const { return railSpeedRate_; }
+    float GetRailRampUpTime() const { return railRampUpTime_; }
+    const OriGine::Vec3f& GetRailJumpOffset() const { return railJumpOffset_; }
 };

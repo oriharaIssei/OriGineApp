@@ -1,0 +1,5261 @@
+{
+    "CategoryActivity": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+    ],
+    "Entities": [
+        {
+            "Components": {
+                "StageData": [
+                    {
+                        "Handle": "5c8ccbbb-c76e-49ec-abf6-eb10a8fc511a",
+                        "difficulty": 1,
+                        "stageNumber": 1
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "9e39c6ac-3211-47f0-ba47-92aca1c10d69"
+            },
+            "Name": "StageData",
+            "Systems": [],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "DirectionalLight": [
+                    {
+                        "Handle": "74a5c36f-644a-484c-817a-80cf033c67c0",
+                        "angularRadius": 0.022099999710917473,
+                        "color": [
+                            0.8185653686523438,
+                            0.8185653686523438,
+                            0.8185653686523438
+                        ],
+                        "direction": [
+                            0.0,
+                            -1.0,
+                            0.0
+                        ],
+                        "intensity": 0.11999999731779099,
+                        "isActive": true
+                    },
+                    {
+                        "Handle": "dfa0caa1-8c8f-4ae0-9875-8d111b50bf33",
+                        "angularRadius": 0.00930000003427267,
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "direction": [
+                            0.0,
+                            -1.0,
+                            0.0
+                        ],
+                        "intensity": 0.10999999940395355,
+                        "isActive": true
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "532ce878-7bae-47fe-b94c-51092446b6f6"
+            },
+            "Name": "Light",
+            "Systems": [],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "EntityReferenceList": [
+                    {
+                        "Handle": "53a0a0aa-a745-43d8-b692-7886a1ae959d",
+                        "entityFileList": [
+                            [
+                                "./application/resource/entities",
+                                "Player"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "GameCamera"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "EnterScene"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "PlayerShockWave"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "Speedline"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "Timer"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "Trail"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "Skybox"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "Goal"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "PenaltyTimerForSprite"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "StartTimer"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "ShadowPlane"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "PlayerTireTrail"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "GameFailedScene"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "Menu"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "ChargeEffect"
+                            ]
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "ec05d26a-2b04-45b2-a1f7-65f7a32c63bb"
+            },
+            "Name": "EntityRef",
+            "Systems": [
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "ResolveEntityReferences"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "MouseCondition": [
+                    {
+                        "Handle": "12b98fed-b81b-4069-ae26-5f65aa73a64b",
+                        "fixCursorPos": [
+                            500.0,
+                            500.0
+                        ],
+                        "isActive": true,
+                        "isFixCursor": true,
+                        "isShowCursor": false
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "c5eaa240-0552-485e-a16e-a585bc5126d3"
+            },
+            "Name": "mouseCondition",
+            "Systems": [
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "ApplyMouseConditionSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "EntityReferenceList": [
+                    {
+                        "Handle": "53bf71d3-6550-426e-b4e6-5ec9bbe54623",
+                        "entityFileList": [
+                            [
+                                "./application/resource/entities",
+                                "trailDissolve"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "trailDistortion1Entity"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "trailGradationEntity"
+                            ]
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "c54058bc-54c1-4b9f-8bbd-191dda6eea19"
+            },
+            "Name": "trailEffectRecipe",
+            "Systems": [
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "ResolveEntityReferences"
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "Transform": [
+                    {
+                        "Handle": "0e8cc989-9242-447b-bb6d-415626cfdb18",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            0.0,
+                            2.0,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "9dcd5e3b-8ca7-474c-9b8b-ebe0a53030a7"
+            },
+            "Name": "StartPosition",
+            "Systems": [],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "Transform": [
+                    {
+                        "Handle": "2d3596bb-6b4b-4792-9fcd-0f94dc08a877",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            0.0,
+                            147.75267028808594,
+                            2024.9261474609375
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "875c7c15-f932-4bbc-a4fb-b6165532eacb"
+            },
+            "Name": "GoalPosition",
+            "Systems": [],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "Handle": "88c6bf69-93e1-4992-91c6-818aa1027dfd",
+                        "center": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "halfSize": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "Handle": "2efe1ba0-82f4-4bd9-a433-44f37c092c92",
+                        "pushBackType": 1
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            24.0,
+                            12.0,
+                            64.0
+                        ],
+                        "translate": [
+                            0.0,
+                            -12.0,
+                            34.16688537597656
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "564f37fa-8b7f-469d-b764-bc5bf98c6742"
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "EntityReferenceList": [
+                    {
+                        "Handle": "6a69a18a-47f2-499b-8791-2334d18486b8",
+                        "entityFileList": [
+                            [
+                                "./application/resource/entities",
+                                "BackFire"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "BackFire_Diss"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "BackFire_Dist"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "BackFire_Grad"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "BackFireSparks"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "BackFireSparks_Diss"
+                            ]
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "e9e9102b-fff2-4a23-9aa4-140c799e7db0"
+            },
+            "Name": "BackFireRecipe",
+            "Systems": [
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "ResolveEntityReferences"
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "SpeedFor3dUIComponent": [
+                    {
+                        "Handle": "0c428eae-25fd-4365-a95d-9a8aa9ce2910",
+                        "digitDecimal": 2,
+                        "digitInteger": 3,
+                        "marginBetweenIntegerAndDecimal": [
+                            0.0,
+                            -0.30000001192092896
+                        ],
+                        "numbersTexturePath": "./application/resource/Texture//timerNumbers.png",
+                        "offset": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "planeMarginDecimal": [
+                            0.2800000011920929,
+                            0.0
+                        ],
+                        "planeMarginInteger": [
+                            0.6000000238418579,
+                            0.0
+                        ],
+                        "planeScaleDecimal": [
+                            0.6000000238418579,
+                            0.6000000238418579
+                        ],
+                        "planeScaleInteger": [
+                            1.0,
+                            1.0
+                        ],
+                        "worldPosition": [
+                            7.21999979019165,
+                            -3.75,
+                            14.270000457763672
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "175c0d4f-a5e7-446f-9792-aece5b5a1ecb"
+            },
+            "Name": "SpeedUI",
+            "Systems": [
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "CreatePlaneFromSpeed"
+                },
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "PlayerSpeedFor3dUI"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "PlayRecordeComponent": [
+                    {
+                        "Handle": "9b15c8e3-850f-4db9-93c3-8881d241a3ab"
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "484a5ce7-928b-44d4-bb06-38c1f89fe3ed"
+            },
+            "Name": "Recorder",
+            "Systems": [
+                {
+                    "SystemCategory": 1,
+                    "SystemName": "PlayRecordSystem"
+                },
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "PlayRecorderInitialize"
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "DissolveEffectParam": [
+                    {
+                        "Handle": "8afc1267-3e36-4f91-b3c1-fe25ffd1d635",
+                        "edgeWidth": 0.004000000189989805,
+                        "isActive": true,
+                        "materialIndex": 0,
+                        "outLineColor": [
+                            0.13550177216529846,
+                            0.6617130637168884,
+                            0.746835470199585,
+                            1.0
+                        ],
+                        "textureFilePath": "./application/resource/Texture/waveNoise.png",
+                        "threshold": 0.0
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "c7c45362-f21c-432b-ac91-a536ddd5aaab",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "SceneChanger": [
+                    {
+                        "Handle": "a31bfd02-0673-4701-a45b-68c5ae7968c1",
+                        "nextSceneName": ""
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "910993ae-ca46-4c9a-b119-dadb55506977"
+            },
+            "Name": "SceneTransitionReceiver",
+            "Systems": [
+                {
+                    "SystemCategory": 7,
+                    "SystemName": "DissolveEffect"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "SceneTransition"
+                },
+                {
+                    "SystemCategory": 3,
+                    "SystemName": "SceneTransitionRequestReceiverSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "EntityReferenceList": [
+                    {
+                        "Handle": "ec4272a7-913f-4fd0-9e5a-811b4151ec5f",
+                        "entityFileList": [
+                            [
+                                "./application/resource/entities",
+                                "SpeedWave"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "SpeedWave_Diss"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "SpeedWave_Gradation_Bottom"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "SpeedWave_Gradation_Upper"
+                            ]
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "ba532d93-2c0f-4aeb-a741-42918f15e20d"
+            },
+            "Name": "SpeedWaveRecipe",
+            "Systems": [
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "ResolveEntityReferences"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "Handle": "88c6bf69-93e1-4992-91c6-818aa1027dfd",
+                        "center": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "halfSize": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "Handle": "2efe1ba0-82f4-4bd9-a433-44f37c092c92",
+                        "pushBackType": 1
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            6.0,
+                            21.28488540649414,
+                            36.0
+                        ],
+                        "translate": [
+                            -20.0,
+                            13.880485534667969,
+                            137.60128784179688
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "b33ae983-0582-47f1-abbe-7d705db2ef5c"
+            },
+            "Name": "Wall",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "Handle": "88c6bf69-93e1-4992-91c6-818aa1027dfd",
+                        "center": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "halfSize": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "Handle": "2efe1ba0-82f4-4bd9-a433-44f37c092c92",
+                        "pushBackType": 1
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            6.0,
+                            36.0,
+                            64.0
+                        ],
+                        "translate": [
+                            -20.0,
+                            32.91075134277344,
+                            415.65777587890625
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "4b4e87d9-bb2f-4e5c-bb6f-8451b460bd0a"
+            },
+            "Name": "Wall",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "Handle": "88c6bf69-93e1-4992-91c6-818aa1027dfd",
+                        "center": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "halfSize": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "Handle": "2efe1ba0-82f4-4bd9-a433-44f37c092c92",
+                        "pushBackType": 1
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            24.0,
+                            64.0,
+                            128.0
+                        ],
+                        "translate": [
+                            0.0,
+                            -27.42011260986328,
+                            627.1961059570313
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "249fc487-624d-4d5d-beb4-e68d709a5f5b"
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "Handle": "88c6bf69-93e1-4992-91c6-818aa1027dfd",
+                        "center": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "halfSize": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "Handle": "2efe1ba0-82f4-4bd9-a433-44f37c092c92",
+                        "pushBackType": 1
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            12.0,
+                            64.0,
+                            64.0
+                        ],
+                        "translate": [
+                            0.0,
+                            -53.82667541503906,
+                            239.2991180419922
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "5b9c8e5e-631a-4da3-959e-e0825e448913"
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "EntityReferenceList": [
+                    {
+                        "Handle": "cab45c3b-5eb1-42ce-99fd-2c1f26b3c001",
+                        "entityFileList": [
+                            [
+                                "./application/resource/entities",
+                                "Magma"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "Magma_Dissolve_Left"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "Magma_Dissolve_Right"
+                            ]
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "5dfc630a-148d-4740-aa50-e511e50bd9be"
+            },
+            "Name": "MagmaRecipe",
+            "Systems": [
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "ResolveEntityReferences"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            36.0,
+                            128.0,
+                            36.0
+                        ],
+                        "translate": [
+                            -188.57545471191406,
+                            14.787908554077148,
+                            62.373329162597656
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "02e24800-84e4-493a-95b7-25075e470542"
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            36.0,
+                            128.0,
+                            36.0
+                        ],
+                        "translate": [
+                            -199.44200134277344,
+                            -12.578668594360352,
+                            11.609055519104004
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "392725c7-be75-4e85-b502-787bd823b38a"
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            64.0,
+                            128.0,
+                            64.0
+                        ],
+                        "translate": [
+                            -116.25312805175781,
+                            57.76594543457031,
+                            -267.872802734375
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "115a5cf4-3fd6-491b-a416-f1c088b20136"
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            24.0,
+                            32.0,
+                            24.0
+                        ],
+                        "translate": [
+                            -48.021934509277344,
+                            -39.137359619140625,
+                            -199.02896118164063
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "3ab7547b-4d88-4470-b471-1f094130a311"
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            24.0,
+                            64.0,
+                            24.0
+                        ],
+                        "translate": [
+                            -9.386194229125977,
+                            -12.142753601074219,
+                            -242.14959716796875
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "bd26b02a-c804-4df1-8a55-35504baaa6b7"
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            24.0,
+                            64.0,
+                            24.0
+                        ],
+                        "translate": [
+                            91.2179946899414,
+                            -47.19578170776367,
+                            -209.35011291503906
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "3f79e9fb-ac4e-496e-b3d1-cb9279b5e2ce"
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            24.0,
+                            64.0,
+                            24.0
+                        ],
+                        "translate": [
+                            63.86530303955078,
+                            -23.581754684448242,
+                            -187.57754516601563
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "5b102373-93dd-4e1b-8cac-8702a53952e6"
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            48.0,
+                            64.0,
+                            48.0
+                        ],
+                        "translate": [
+                            183.76751708984375,
+                            5.780092239379883,
+                            -72.06533813476563
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "b7c7916d-a625-4d9d-98e4-de722d70f085"
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            8.0,
+                            64.0,
+                            8.0
+                        ],
+                        "translate": [
+                            137.89466857910156,
+                            -23.581754684448242,
+                            -18.604496002197266
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "2134f148-a6ba-4086-8e77-7e95e0f1d565"
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            24.0,
+                            86.0,
+                            24.0
+                        ],
+                        "translate": [
+                            212.27647399902344,
+                            29.216516494750977,
+                            5.853949069976807
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "073547ae-1ed3-48ba-9546-49cdc72ac6b4"
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            8.0,
+                            32.0,
+                            8.0
+                        ],
+                        "translate": [
+                            167.0015869140625,
+                            -24.49393081665039,
+                            154.01210021972656
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "9b098cd6-caf6-4a3c-969f-07c801a15e45"
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            16.0,
+                            64.0,
+                            16.0
+                        ],
+                        "translate": [
+                            184.26809692382813,
+                            -13.8234224319458,
+                            169.54055786132813
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "c873a92f-4317-4ae7-9af7-8ed9eabf8e6d"
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            46.0,
+                            128.0,
+                            46.0
+                        ],
+                        "translate": [
+                            238.3903045654297,
+                            71.45266723632813,
+                            308.3590393066406
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "8e6442eb-b2b3-4151-8919-9fc73b66e551"
+            },
+            "Name": "Building",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            46.0,
+                            32.0,
+                            46.0
+                        ],
+                        "translate": [
+                            278.9001770019531,
+                            -12.822513580322266,
+                            265.6109619140625
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "d7c8272d-04ff-4ee0-ac8d-a6abed07fd9a"
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            16.0,
+                            64.0,
+                            16.0
+                        ],
+                        "translate": [
+                            278.9001770019531,
+                            22.768308639526367,
+                            208.5191192626953
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "f7c29e55-3ba4-4cd9-afa2-959932297615"
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            16.0,
+                            64.0,
+                            16.0
+                        ],
+                        "translate": [
+                            203.37347412109375,
+                            5.0864410400390625,
+                            365.12567138671875
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "46bb2660-375f-4472-b106-05d990a48769"
+            },
+            "Name": "Building",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "Handle": "88c6bf69-93e1-4992-91c6-818aa1027dfd",
+                        "center": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "halfSize": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "Handle": "2efe1ba0-82f4-4bd9-a433-44f37c092c92",
+                        "pushBackType": 1
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            6.0,
+                            48.0,
+                            64.0
+                        ],
+                        "translate": [
+                            24.0,
+                            90.9654312133789,
+                            1677.6595458984375
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "ececf259-17e6-4fe8-af28-1568bcc90a12"
+            },
+            "Name": "Wall",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "Handle": "88c6bf69-93e1-4992-91c6-818aa1027dfd",
+                        "center": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "halfSize": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "Handle": "2efe1ba0-82f4-4bd9-a433-44f37c092c92",
+                        "pushBackType": 1
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            24.0,
+                            86.0,
+                            128.0
+                        ],
+                        "translate": [
+                            -0.6933400630950928,
+                            -18.086734771728516,
+                            1035.155029296875
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "a9c97e1e-ab3e-44f3-8378-5d56f0fa0b71"
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "Handle": "88c6bf69-93e1-4992-91c6-818aa1027dfd",
+                        "center": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "halfSize": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "Handle": "2efe1ba0-82f4-4bd9-a433-44f37c092c92",
+                        "pushBackType": 1
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            6.0,
+                            39.75884246826172,
+                            64.0
+                        ],
+                        "translate": [
+                            -24.0,
+                            101.01014709472656,
+                            1243.943359375
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "ba215318-eaaa-4403-8348-f9a5bdf56d67"
+            },
+            "Name": "Wall",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "Handle": "88c6bf69-93e1-4992-91c6-818aa1027dfd",
+                        "center": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "halfSize": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "Handle": "2efe1ba0-82f4-4bd9-a433-44f37c092c92",
+                        "pushBackType": 1
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            6.0,
+                            48.0,
+                            86.0
+                        ],
+                        "translate": [
+                            -24.0,
+                            95.4747085571289,
+                            1784.3603515625
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "dd097aa2-83f9-4cd0-8225-a3144b1ade89"
+            },
+            "Name": "Wall",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            64.0,
+                            128.0,
+                            64.0
+                        ],
+                        "translate": [
+                            -555.0704345703125,
+                            75.1009292602539,
+                            483.83880615234375
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "0b297eef-3aef-4f33-ba5d-96d998b1c75b"
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "Material": [
+                    {
+                        "Handle": "0bd2410e-9e9d-4173-bdbb-6515978224ca",
+                        "color": [
+                            0.5394611954689026,
+                            0.7273573279380798,
+                            0.8143459558486938,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 1.590000033378601,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "ModelMeshRenderer": [
+                    {
+                        "Handle": "8e7a0d8a-9722-44bf-a80d-451842013ed4",
+                        "blendMode": 2,
+                        "directory": "./application/resource/Models",
+                        "fileName": "Arrow.obj",
+                        "isRender": true,
+                        "materialIndexDatas": [
+                            {
+                                "Handle": "0bd2410e-9e9d-4173-bdbb-6515978224ca"
+                            }
+                        ],
+                        "textureFilePath": [
+                            ""
+                        ],
+                        "transformBufferDatas": [
+                            {
+                                "rotate": [
+                                    0.0,
+                                    -1.0,
+                                    0.0,
+                                    1.0372678360681675e-07
+                                ],
+                                "scale": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "translate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "PointLight": [
+                    {
+                        "Handle": "24a1a049-9097-4a7c-8eeb-5b5e1ea3e82b",
+                        "angularRadius": 0.0,
+                        "color": [
+                            0.18143457174301147,
+                            0.9689152836799622,
+                            1.0
+                        ],
+                        "decay": 1.309999942779541,
+                        "intensity": 0.28999999165534973,
+                        "isActive": true,
+                        "pos": [
+                            175.6219940185547,
+                            30.700000762939453,
+                            306.7699890136719
+                        ],
+                        "radius": 37.65999984741211
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "f8b988b4-90d4-4739-b00d-c06183d732c5",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            0.699999988079071,
+                            2.0,
+                            2.0
+                        ],
+                        "translate": [
+                            192.0,
+                            30.0,
+                            320.0
+                        ]
+                    }
+                ],
+                "TransformAnimation": [
+                    {
+                        "Handle": "6908325a-95e2-41d5-833f-c607ce893f92",
+                        "InterpolationType": 0,
+                        "duration": 1.2000000476837158,
+                        "isLoop": true,
+                        "isPlay": true,
+                        "rotateCurve": [],
+                        "scaleCurve": [],
+                        "targetTransformIndex": 0,
+                        "translateCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    192.0,
+                                    30.0,
+                                    320.0
+                                ]
+                            },
+                            {
+                                "time": 0.17000000178813934,
+                                "value": [
+                                    191.8000030517578,
+                                    30.0,
+                                    320.0
+                                ]
+                            },
+                            {
+                                "time": 0.4000000059604645,
+                                "value": [
+                                    190.0,
+                                    30.0,
+                                    320.0
+                                ]
+                            },
+                            {
+                                "time": 0.699999988079071,
+                                "value": [
+                                    190.0,
+                                    30.0,
+                                    320.0
+                                ]
+                            },
+                            {
+                                "time": 1.0,
+                                "value": [
+                                    192.0,
+                                    30.0,
+                                    320.0
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "7e97d316-1120-4f6a-baa2-d3ad0862a7b7"
+            },
+            "Name": "Arrow",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                },
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "TransformAnimationWorkSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "Material": [
+                    {
+                        "Handle": "0bd2410e-9e9d-4173-bdbb-6515978224ca",
+                        "color": [
+                            0.5394611954689026,
+                            0.7273573279380798,
+                            0.8143459558486938,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 1.590000033378601,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "ModelMeshRenderer": [
+                    {
+                        "Handle": "8e7a0d8a-9722-44bf-a80d-451842013ed4",
+                        "blendMode": 2,
+                        "directory": "./application/resource/Models",
+                        "fileName": "Arrow.obj",
+                        "isRender": true,
+                        "materialIndexDatas": [
+                            {
+                                "Handle": "0bd2410e-9e9d-4173-bdbb-6515978224ca"
+                            }
+                        ],
+                        "textureFilePath": [
+                            ""
+                        ],
+                        "transformBufferDatas": [
+                            {
+                                "rotate": [
+                                    0.0,
+                                    -1.0,
+                                    0.0,
+                                    1.0372678360681675e-07
+                                ],
+                                "scale": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "translate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "f8b988b4-90d4-4739-b00d-c06183d732c5",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            0.699999988079071,
+                            2.0,
+                            2.0
+                        ],
+                        "translate": [
+                            191.55555725097656,
+                            30.0,
+                            304.0
+                        ]
+                    }
+                ],
+                "TransformAnimation": [
+                    {
+                        "Handle": "6908325a-95e2-41d5-833f-c607ce893f92",
+                        "InterpolationType": 0,
+                        "duration": 1.2000000476837158,
+                        "isLoop": true,
+                        "isPlay": true,
+                        "rotateCurve": [],
+                        "scaleCurve": [],
+                        "targetTransformIndex": 0,
+                        "translateCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    192.0,
+                                    30.0,
+                                    304.0
+                                ]
+                            },
+                            {
+                                "time": 0.20000000298023224,
+                                "value": [
+                                    192.0,
+                                    30.0,
+                                    304.0
+                                ]
+                            },
+                            {
+                                "time": 0.3700000047683716,
+                                "value": [
+                                    191.8000030517578,
+                                    30.0,
+                                    304.0
+                                ]
+                            },
+                            {
+                                "time": 0.699999988079071,
+                                "value": [
+                                    190.0,
+                                    30.0,
+                                    304.0
+                                ]
+                            },
+                            {
+                                "time": 0.8999999761581421,
+                                "value": [
+                                    190.0,
+                                    30.0,
+                                    304.0
+                                ]
+                            },
+                            {
+                                "time": 1.2000000476837158,
+                                "value": [
+                                    192.0,
+                                    30.0,
+                                    304.0
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "5a9987c1-997b-4816-9b56-2af3131ae5b0"
+            },
+            "Name": "Arrow",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                },
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "TransformAnimationWorkSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "Handle": "88c6bf69-93e1-4992-91c6-818aa1027dfd",
+                        "center": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "halfSize": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "Handle": "2efe1ba0-82f4-4bd9-a433-44f37c092c92",
+                        "pushBackType": 1
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            64.0,
+                            64.0,
+                            128.0
+                        ],
+                        "translate": [
+                            5.560613632202148,
+                            43.03282165527344,
+                            2004.1031494140625
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "f6cbbfb7-1eb0-4d19-ab55-a9c0029438fd"
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "CameraAction": [
+                    {
+                        "Handle": "9ea4f00f-0874-42a3-b6b3-528840e276c9",
+                        "aspectRatioCurve": [],
+                        "duration": 3.0,
+                        "farZCurve": [],
+                        "fovCurve": [],
+                        "isLoop": true,
+                        "isPlay": true,
+                        "nearZCurve": [],
+                        "positionCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    45.0,
+                                    -70.0
+                                ]
+                            },
+                            {
+                                "time": 0.6865671277046204,
+                                "value": [
+                                    0.0,
+                                    72.79846954345703,
+                                    -101.76968383789063
+                                ]
+                            },
+                            {
+                                "time": 0.86069655418396,
+                                "value": [
+                                    0.0,
+                                    77.7152099609375,
+                                    -107.38880920410156
+                                ]
+                            },
+                            {
+                                "time": 0.9900000095367432,
+                                "value": [
+                                    0.0,
+                                    80.0,
+                                    -110.0
+                                ]
+                            },
+                            {
+                                "time": 1.0,
+                                "value": [
+                                    -265.0,
+                                    220.0,
+                                    640.0
+                                ]
+                            },
+                            {
+                                "time": 1.1689571142196655,
+                                "value": [
+                                    -271.24237060546875,
+                                    236.5423126220703,
+                                    640.0
+                                ]
+                            },
+                            {
+                                "time": 1.3241713047027588,
+                                "value": [
+                                    -277.3634033203125,
+                                    252.7630615234375,
+                                    640.0
+                                ]
+                            },
+                            {
+                                "time": 1.7122068405151367,
+                                "value": [
+                                    -299.80718994140625,
+                                    312.23907470703125,
+                                    640.0
+                                ]
+                            },
+                            {
+                                "time": 1.8189167976379395,
+                                "value": [
+                                    -302.18780517578125,
+                                    318.54766845703125,
+                                    640.0
+                                ]
+                            },
+                            {
+                                "time": 1.925626516342163,
+                                "value": [
+                                    -304.71490478515625,
+                                    325.2445068359375,
+                                    640.0
+                                ]
+                            },
+                            {
+                                "time": 1.9900000095367432,
+                                "value": [
+                                    -305.0,
+                                    326.0,
+                                    640.0
+                                ]
+                            },
+                            {
+                                "time": 2.0,
+                                "value": [
+                                    0.0,
+                                    155.0,
+                                    1507.0
+                                ]
+                            },
+                            {
+                                "time": 2.199004888534546,
+                                "value": [
+                                    0.0,
+                                    146.29354858398438,
+                                    1319.5623779296875
+                                ]
+                            },
+                            {
+                                "time": 2.388059616088867,
+                                "value": [
+                                    0.0,
+                                    138.24876403808594,
+                                    1146.3697509765625
+                                ]
+                            },
+                            {
+                                "time": 2.7113986015319824,
+                                "value": [
+                                    0.0,
+                                    97.13650512695313,
+                                    543.0905151367188
+                                ]
+                            },
+                            {
+                                "time": 2.8132576942443848,
+                                "value": [
+                                    0.0,
+                                    91.54205322265625,
+                                    460.99774169921875
+                                ]
+                            },
+                            {
+                                "time": 2.912692070007324,
+                                "value": [
+                                    0.0,
+                                    87.03907775878906,
+                                    394.9213562011719
+                                ]
+                            },
+                            {
+                                "time": 3.0,
+                                "value": [
+                                    0.0,
+                                    85.0,
+                                    365.0
+                                ]
+                            }
+                        ],
+                        "rotationCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.1309642791748047,
+                                    0.0,
+                                    0.0,
+                                    0.991387128829956
+                                ]
+                            },
+                            {
+                                "time": 0.6616915464401245,
+                                "value": [
+                                    0.20952215790748596,
+                                    0.0,
+                                    0.0,
+                                    0.9778038859367371
+                                ]
+                            },
+                            {
+                                "time": 0.8109452724456787,
+                                "value": [
+                                    0.21327844262123108,
+                                    0.0,
+                                    0.0,
+                                    0.9769915342330933
+                                ]
+                            },
+                            {
+                                "time": 0.9900000095367432,
+                                "value": [
+                                    0.21759289503097534,
+                                    0.0,
+                                    0.0,
+                                    0.9760396480560303
+                                ]
+                            },
+                            {
+                                "time": 1.0,
+                                "value": [
+                                    0.0,
+                                    0.9235551953315735,
+                                    -0.1627427041530609,
+                                    0.34721839427948
+                                ]
+                            },
+                            {
+                                "time": 1.1689571142196655,
+                                "value": [
+                                    0.01506289653480053,
+                                    0.865075945854187,
+                                    -0.1765909045934677,
+                                    0.4692893326282501
+                                ]
+                            },
+                            {
+                                "time": 1.2295877933502197,
+                                "value": [
+                                    0.024256790056824684,
+                                    0.8207046389579773,
+                                    -0.1835142970085144,
+                                    0.540535032749176
+                                ]
+                            },
+                            {
+                                "time": 1.6903799772262573,
+                                "value": [
+                                    0.07527545839548111,
+                                    0.42600709199905396,
+                                    -0.19577066600322723,
+                                    0.8800712823867798
+                                ]
+                            },
+                            {
+                                "time": 1.772837519645691,
+                                "value": [
+                                    0.0830012857913971,
+                                    0.33363163471221924,
+                                    -0.19188109040260315,
+                                    0.91922926902771
+                                ]
+                            },
+                            {
+                                "time": 1.845771074295044,
+                                "value": [
+                                    0.09170370548963547,
+                                    0.20977213978767395,
+                                    -0.18400955200195313,
+                                    0.9558904767036438
+                                ]
+                            },
+                            {
+                                "time": 1.9950249195098877,
+                                "value": [
+                                    0.09474608302116394,
+                                    0.15936394035816193,
+                                    -0.18000535666942596,
+                                    0.9660354256629944
+                                ]
+                            },
+                            {
+                                "time": 2.0,
+                                "value": [
+                                    0.09474608302116394,
+                                    0.15936394035816193,
+                                    -0.18000535666942596,
+                                    0.9660354256629944
+                                ]
+                            },
+                            {
+                                "time": 2.0,
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "CameraTransform": [
+                    {
+                        "Handle": "39f19748-8b3d-4c5f-8121-736c6f48af54",
+                        "aspectRatio": 1.7777777910232544,
+                        "farZ": 2000.0,
+                        "fovAngleY": 0.7853981852531433,
+                        "nearZ": 0.10000000149011612,
+                        "rotate": [
+                            0.09206953644752502,
+                            0.20394772291183472,
+                            -0.1835698038339615,
+                            0.9571993947029114
+                        ],
+                        "translate": [
+                            -303.2340087890625,
+                            321.32012939453125,
+                            640.0
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "2c5e0b6c-864d-4762-b39c-2ba1cc7d1094"
+            },
+            "Name": "StageIntroCamera",
+            "Systems": [
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "CameraActionSystem"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "EffectAutoDestroySystem"
+                }
+            ],
+            "isUnique": true
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "Handle": "88c6bf69-93e1-4992-91c6-818aa1027dfd",
+                        "center": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "halfSize": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "Handle": "2efe1ba0-82f4-4bd9-a433-44f37c092c92",
+                        "pushBackType": 1
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            36.0,
+                            64.0,
+                            128.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0,
+                            1485.1947021484375
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "cc51dbd7-0f3c-459b-af99-558337ea72d3"
+            },
+            "Name": "Floor",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "Handle": "88c6bf69-93e1-4992-91c6-818aa1027dfd",
+                        "center": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "halfSize": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "Handle": "2efe1ba0-82f4-4bd9-a433-44f37c092c92",
+                        "pushBackType": 1
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            6.0,
+                            32.0,
+                            64.0
+                        ],
+                        "translate": [
+                            -24.0,
+                            65.55217742919922,
+                            836.596435546875
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "d785bba0-ec77-43ab-a8d0-75612e8decaf"
+            },
+            "Name": "Wall",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "AABBCollider": [
+                    {
+                        "Handle": "88c6bf69-93e1-4992-91c6-818aa1027dfd",
+                        "center": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "halfSize": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "BoxRenderer": [
+                    {
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "Handle": "2efe1ba0-82f4-4bd9-a433-44f37c092c92",
+                        "pushBackType": 1
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "shininess": 60.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            6.0,
+                            36.0,
+                            36.0
+                        ],
+                        "translate": [
+                            20.0,
+                            26.0,
+                            342.3177490234375
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "b278658d-90c4-4f9e-97aa-73dc1935a828"
+            },
+            "Name": "Wall",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "CylinderRenderer": [
+                    {
+                        "Handle": "bbdaa337-be4d-4c61-92f6-da2b1f657fdf",
+                        "blendMode": 1,
+                        "bottomRadius": [
+                            1.0,
+                            1.0
+                        ],
+                        "height": 1.0,
+                        "heightDivisions": 8,
+                        "isCulling": false,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "radialDivisions": 36,
+                        "radiusEaseType": 0,
+                        "textureFilePath": "",
+                        "topRadius": [
+                            1.0,
+                            1.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "e14bef4c-858c-476a-a619-c86df78ec7a2",
+                        "color": [
+                            0.15221917629241943,
+                            0.7934667468070984,
+                            0.8016877770423889,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "RailPoints": [
+                    {
+                        "Handle": "c80b3b81-71fa-48fb-ae86-93d0478820c5",
+                        "points": [
+                            [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            [
+                                0.0,
+                                0.0,
+                                3.0
+                            ],
+                            [
+                                0.0,
+                                0.0,
+                                6.0
+                            ],
+                            [
+                                0.0,
+                                0.0,
+                                9.0
+                            ]
+                        ],
+                        "radius": 0.2199999988079071,
+                        "segmentDivide": 8,
+                        "texturePath": ""
+                    }
+                ],
+                "SphereRenderer": [
+                    {
+                        "Handle": "75b90964-a553-4e56-9297-9743393d1f61",
+                        "blendMode": 1,
+                        "divisionLatitude": 8,
+                        "divisionLongitude": 16,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "radius": 1.0,
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    },
+                    {
+                        "Handle": "16e9b0e3-33d4-48a6-b9e6-ac53ed653683",
+                        "blendMode": 1,
+                        "divisionLatitude": 8,
+                        "divisionLongitude": 16,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "radius": 1.0,
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                9.0
+                            ]
+                        }
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "31d035dc-f357-4714-9c21-c21a266c8537",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            -17.684099197387695,
+                            1.179197072982788,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "8566bb37-8754-4a69-b078-3cc13390a0cd"
+            },
+            "Name": "Rail",
+            "Systems": [
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                },
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "CreateRailMesh"
+                }
+            ],
+            "isUnique": false
+        }
+    ],
+    "Systems": [
+        {
+            "LineRenderSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "ApplyMouseConditionSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "ColliderRenderingSystem": {
+                "Priority": 100
+            }
+        },
+        {
+            "CameraInitialize": {
+                "Priority": 1
+            }
+        },
+        {
+            "BillboardTransform": {
+                "Priority": 100
+            }
+        },
+        {
+            "ButtonInputSystem": {
+                "Priority": 1
+            }
+        },
+        {
+            "ChangeSceneByButton": {
+                "Priority": 1
+            }
+        },
+        {
+            "CameraMotionBobSystem": {
+                "Priority": 1
+            }
+        },
+        {
+            "CameraActionSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "TakePlayerToStartPosition": {
+                "Priority": 3
+            }
+        },
+        {
+            "PlayerInputSystem": {
+                "Priority": 3
+            }
+        },
+        {
+            "SceneTransitionRequestSenderSystem": {
+                "Priority": -1
+            }
+        },
+        {
+            "CollisionPushBackSystem": {
+                "Priority": 5
+            }
+        },
+        {
+            "TimeLimitJudgeSystem": {
+                "Priority": 10
+            }
+        },
+        {
+            "CameraInputSystem": {
+                "Priority": 2
+            }
+        },
+        {
+            "CreatePlaneFromSpeed": {
+                "Priority": 10
+            }
+        },
+        {
+            "CameraShake": {
+                "Priority": 0
+            }
+        },
+        {
+            "CollisionCheckSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "CreateMeshFromSpline": {
+                "Priority": 0
+            }
+        },
+        {
+            "SkinningAnimationSystem": {
+                "Priority": 1
+            }
+        },
+        {
+            "CreateSpriteFromTimer": {
+                "Priority": 1
+            }
+        },
+        {
+            "PlayerSpeedFor3dUI": {
+                "Priority": 1
+            }
+        },
+        {
+            "DissolveEffect": {
+                "Priority": 100
+            }
+        },
+        {
+            "PenaltySystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "DistortionEffect": {
+                "Priority": 1
+            }
+        },
+        {
+            "GhostInitializeSystem": {
+                "Priority": 6
+            }
+        },
+        {
+            "EffectOnPlayerGearup": {
+                "Priority": 0
+            }
+        },
+        {
+            "EffectOnPlayerRun": {
+                "Priority": 0
+            }
+        },
+        {
+            "EmitterWorkSystem": {
+                "Priority": 1
+            }
+        },
+        {
+            "FallDetectionSystem": {
+                "Priority": 6
+            }
+        },
+        {
+            "SkinningMeshRenderSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "FollowCameraUpdateSystem": {
+                "Priority": 4
+            }
+        },
+        {
+            "GhostInputUpdate": {
+                "Priority": 0
+            }
+        },
+        {
+            "StartTimerInitialize": {
+                "Priority": 3
+            }
+        },
+        {
+            "ParticleRenderSystem": {
+                "Priority": 3
+            }
+        },
+        {
+            "MaterialAnimationWorkSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "MaterialEffect": {
+                "Priority": 10
+            }
+        },
+        {
+            "MoveSystemByRigidBody": {
+                "Priority": 5
+            }
+        },
+        {
+            "ResolveEntityReferences": {
+                "Priority": -2
+            }
+        },
+        {
+            "OverlayRenderSystem": {
+                "Priority": 100
+            }
+        },
+        {
+            "PenaltyTimeSpriteUpdate": {
+                "Priority": 0
+            }
+        },
+        {
+            "PlayRecordSystem": {
+                "Priority": 1
+            }
+        },
+        {
+            "PlayRecorderInitialize": {
+                "Priority": 0
+            }
+        },
+        {
+            "SkeletonRenderSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "PlayerPathSplineGenerator": {
+                "Priority": 100
+            }
+        },
+        {
+            "TexturedMeshRenderSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "PlayerMoveSystem": {
+                "Priority": 3
+            }
+        },
+        {
+            "PlayerOnCollision": {
+                "Priority": 10
+            }
+        },
+        {
+            "PrimitiveNodeAnimationWorkSystem": {
+                "Priority": 1
+            }
+        },
+        {
+            "RegisterWindowResizeEvent": {
+                "Priority": 0
+            }
+        },
+        {
+            "TransitionPlayerState": {
+                "Priority": 5
+            }
+        },
+        {
+            "SceneTransition": {
+                "Priority": 0
+            }
+        },
+        {
+            "SpriteAnimationSystem": {
+                "Priority": 1
+            }
+        },
+        {
+            "VelocityRenderingSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "SettingGameCameraTarget": {
+                "Priority": 5
+            }
+        },
+        {
+            "ShowGameUIByInputDevice": {
+                "Priority": 0
+            }
+        },
+        {
+            "SkyboxRender": {
+                "Priority": -1
+            }
+        },
+        {
+            "SpeedlineEffect": {
+                "Priority": 0
+            }
+        },
+        {
+            "RestartSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "SpriteRenderSystem": {
+                "Priority": 5
+            }
+        },
+        {
+            "SubSceneRender": {
+                "Priority": 10
+            }
+        },
+        {
+            "StartSequenceSystem": {
+                "Priority": 1
+            }
+        },
+        {
+            "TireTrailGenerateSystem": {
+                "Priority": 100
+            }
+        },
+        {
+            "TakeToGoalPosition": {
+                "Priority": 1
+            }
+        },
+        {
+            "SubSceneActivateByButton": {
+                "Priority": 0
+            }
+        },
+        {
+            "SubSceneUpdate": {
+                "Priority": 0
+            }
+        },
+        {
+            "TimerCountDown": {
+                "Priority": 7
+            }
+        },
+        {
+            "CreateRailMesh": {
+                "Priority": 0
+            }
+        },
+        {
+            "TimerForSprite": {
+                "Priority": 1
+            }
+        },
+        {
+            "Ui3dObjectInitialize": {
+                "Priority": 11
+            }
+        },
+        {
+            "Ui3dUpdateSystem": {
+                "Priority": 100
+            }
+        },
+        {
+            "UpdateButtonColorByState": {
+                "Priority": 1
+            }
+        },
+        {
+            "PauseMainSceneSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "GameFailedSceneLaunchSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "SceneTransitionRequestReceiverSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "CreateMeshFromTireSpline": {
+                "Priority": 0
+            }
+        },
+        {
+            "TransformAnimationWorkSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "EffectAutoDestroySystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "BackFireInitialize": {
+                "Priority": 1
+            }
+        },
+        {
+            "LightDebugRenderingSystem": {
+                "Priority": 0
+            }
+        }
+    ]
+}

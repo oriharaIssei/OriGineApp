@@ -13,6 +13,8 @@
 /// math
 #include "math/Noise.h"
 
+#include "EffectConfig.h"
+
 using namespace OriGine;
 
 CameraShake::CameraShake() : ISystem(OriGine::SystemCategory::Effect) {}
@@ -65,11 +67,11 @@ void CameraShake::UpdateEntity(OriGine::EntityHandle _handle) {
 
                 OriGine::Vec2f st(
                     time, // 時間で動かす
-                    time * 1.37f // 少しずらす。軸ごとに違う揺れになる
+                    time * EffectConfig::CameraShake::kNoiseCoefficient // 少しずらす。軸ごとに違う揺れになる
                 );
 
                 // ノイズを -1 ～ +1 に補正
-                float f = FbmNoise::Fbm(st) - 0.5f;
+                float f = FbmNoise::Fbm(st) - EffectConfig::CameraShake::kNoiseOffset;
 
                 shakeOffset[i] = f * cameraShakeSource.axisParameters[i].amplitude;
             }

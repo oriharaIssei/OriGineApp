@@ -10,6 +10,8 @@
 #include "component/player/PlayerStatus.h"
 #include "component/player/state/PlayerState.h"
 
+#include "component/player/PlayerConfig.h"
+
 /// math
 #include "math/Interpolation.h"
 #include "MyEasing.h"
@@ -36,7 +38,7 @@ void PlayerIdleState::Initialize() {
 }
 
 void PlayerIdleState::Update(float _deltaTime) {
-    constexpr float kDecelerationRate = 1.8f;
+    const float kDecelerationRate = AppConfig::Player::kDefaultDecelerationRate;
 
     auto* rigidbody = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
 
@@ -60,7 +62,7 @@ void PlayerIdleState::Update(float _deltaTime) {
         float t = cameraOffsetLerpTimer_ / kCameraOffsetLerpTime_;
         t       = std::clamp(t, 0.f, 1.f);
 
-        cameraController->currentOffset = Lerp<3, float>(cameraController->currentOffset, cameraController->firstOffset, EaseOutCubic(t));
+        cameraController->currentOffset       = Lerp<3, float>(cameraController->currentOffset, cameraController->firstOffset, EaseOutCubic(t));
         cameraController->currentTargetOffset = Lerp<3, float>(cameraController->currentTargetOffset, cameraController->firstTargetOffset, EaseOutCubic(t));
     }
 }

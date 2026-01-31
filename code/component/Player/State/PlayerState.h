@@ -25,6 +25,7 @@ enum class PlayerMoveState {
     WALL_RUN    = 1 << 4, // 壁走り
     WALL_JUMP   = 1 << 5, // 壁ジャンプ
     WHEELIE_RUN = 1 << 6, // ウィリー走行
+    ON_RAIL     = 1 << 7, // レール上移動
 
     Count = 7
 };
@@ -119,6 +120,7 @@ public:
 
 private:
     OriGine::EntityHandle followCameraEntityHandle_ = OriGine::EntityHandle(); // カメラのエンティティID
+    OriGine::EntityHandle railEntityHandle          = OriGine::EntityHandle(); // カメラのエンティティID
 
     // TransitionPlayerState で更新される
     std::shared_ptr<IPlayerMoveState> moveState_ = nullptr;
@@ -139,6 +141,9 @@ private:
 public:
     OriGine::EntityHandle GetCameraEntityHandle() const {
         return followCameraEntityHandle_;
+    }
+    OriGine::EntityHandle GetRailEntityHandle() const {
+        return railEntityHandle;
     }
     void SetCameraEntityHandle(OriGine::EntityHandle _handle) {
         followCameraEntityHandle_ = _handle;

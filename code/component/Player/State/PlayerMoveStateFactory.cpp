@@ -4,6 +4,7 @@
 #include "PlayerFallDownState.h"
 #include "PlayerIdleState.h"
 #include "PlayerJumpState.h"
+#include "PlayerOnRailState.h"
 #include "PlayerWallJumpState.h"
 #include "PlayerWallRunState.h"
 #include "PlayerWheelieRunState.h"
@@ -30,6 +31,9 @@ std::shared_ptr<IPlayerMoveState> CreatePlayerMoveStateByEnum(PlayerMoveState _s
         break;
     case PlayerMoveState::WHEELIE_RUN:
         return std::make_shared<PlayerWheelieRunState>(_scene, _playerEntityHandle);
+        break;
+    case PlayerMoveState::ON_RAIL:
+        return std::make_shared<PlayerOnRailState>(_scene, _playerEntityHandle);
         break;
     default:
         return nullptr;

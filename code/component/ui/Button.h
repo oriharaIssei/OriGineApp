@@ -16,6 +16,9 @@
 #include <stdint.h>
 #include <Vector4.h>
 
+/// config
+#include "component/ui/UIConfig.h"
+
 /// <summary>
 /// Sprite を Button として扱うためのクラス
 /// </summary>
@@ -42,10 +45,10 @@ private:
     std::vector<OriGine::GamepadButton> shortcutGamepadButton_;
     std::vector<OriGine::Key> shortcutKey_;
 
-    OriGine::Vec4f normalColor_  = OriGine::Vec4f(0.32f, 0.32f, 0.32f, 1.0f);
-    OriGine::Vec4f hoverColor_   = OriGine::Vec4f(0.8f, 0.8f, 0.8f, 1.0f);
-    OriGine::Vec4f pressColor_   = OriGine::Vec4f(0.6f, 0.6f, 0.6f, 1.0f);
-    OriGine::Vec4f releaseColor_ = OriGine::Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
+    OriGine::Vec4f normalColor_  = AppConfig::UI::kButtonNormalColor;
+    OriGine::Vec4f hoverColor_   = AppConfig::UI::kButtonHoverColor;
+    OriGine::Vec4f pressColor_   = AppConfig::UI::kButtonPressColor;
+    OriGine::Vec4f releaseColor_ = AppConfig::UI::kButtonReleaseColor;
 
 public: // Getter Setter
     const std::vector<OriGine::GamepadButton>& GetShortcutGamepadButton() const {

@@ -1,5 +1,7 @@
 #include "EffectOnPlayerRun.h"
 
+#include "EffectConfig.h"
+
 /// Engine
 #define DELTA_TIME
 #include "EngineInclude.h"
@@ -91,10 +93,10 @@ void EffectOnPlayerRun::UpdateEntity(EntityHandle _entity) {
     // trailの色をGearLevelに応じて変化
     if (effectControlParam) {
         // BackFire を 速度によって 強さを変える
-        constexpr float kMinBackFireScaleY  = 0.26f;
-        constexpr float kMaxBackFireScaleY  = 1.59f;
-        constexpr float kMinBackFireScaleXZ = 0.66f;
-        constexpr float kMaxBackFireScaleXZ = 1.26f;
+        constexpr float kMinBackFireScaleY  = EffectConfig::BackFire::kMinScaleY;
+        constexpr float kMaxBackFireScaleY  = EffectConfig::BackFire::kMaxScaleY;
+        constexpr float kMinBackFireScaleXZ = EffectConfig::BackFire::kMinScaleXZ;
+        constexpr float kMaxBackFireScaleXZ = EffectConfig::BackFire::kMaxScaleXZ;
 
         constexpr int32_t trailAnimationOnGearUpIndex = 1;
         const OriGine::Vec4f& trailColor              = effectControlParam->GetTrailColorByGearLevel(state->GetGearLevel());

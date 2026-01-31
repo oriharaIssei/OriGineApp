@@ -13,6 +13,7 @@
 #include "component/Camera/CameraShakeSourceComponent.h"
 #include "component/ghost/GhostReplayComponent.h"
 #include "component/ghost/PlayRecordeComponent.h"
+#include "component/gimmick/RailPoints.h"
 #include "component/LookAtFromTransforms.h"
 #include "component/MouseCondition.h"
 #include "component/player/PlayerEffectControlParam.h"
@@ -49,6 +50,7 @@
 #include "system/Initialize/InitializeMouseCondition.h"
 #include "system/Initialize/PlacementEntityByProcedural.h"
 #include "system/Initialize/PlayRecorderInitialize.h"
+#include "system/Initialize/RailInitializeSystem.h"
 #include "system/Initialize/SelectPreviewSceneInitialize.h"
 #include "system/initialize/SettingGameCameraTarget.h"
 #include "system/initialize/StartTimerInitialize.h"
@@ -61,6 +63,7 @@
 #include "system/input/PlayerInputSystem.h"
 #include "system/Input/PlayRecordSystem.h"
 #include "system/movement/BillboardTransform.h"
+#include "system/Movement/CreateRailMesh.h"
 #include "system/movement/FollowCameraUpdateSystem.h"
 #include "system/Movement/LookAtFromTransformsSystem.h"
 #include "system/movement/PauseMainSceneSystem.h"
@@ -103,8 +106,6 @@ using namespace OriGine;
 FrameWork::FrameWork() {}
 FrameWork::~FrameWork() {}
 
-//! TODO : 場所 変更 FrameWork はUserに分かりづらすぎる
-
 void RegisterUsingComponents() {
     ComponentRegistry* componentRegistry = ComponentRegistry::GetInstance();
 
@@ -124,6 +125,7 @@ void RegisterUsingComponents() {
 
     componentRegistry->RegisterComponent<SplinePoints>();
     componentRegistry->RegisterComponent<TireSplinePoints>();
+    componentRegistry->RegisterComponent<RailPoints>();
 
     componentRegistry->RegisterComponent<GhostReplayComponent>();
     componentRegistry->RegisterComponent<PlayRecordeComponent>();
@@ -145,6 +147,10 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<AABBCollider>();
     componentRegistry->RegisterComponent<OBBCollider>();
     componentRegistry->RegisterComponent<SphereCollider>();
+    componentRegistry->RegisterComponent<SegmentCollider>();
+    componentRegistry->RegisterComponent<CapsuleCollider>();
+    componentRegistry->RegisterComponent<RayCollider>();
+
     componentRegistry->RegisterComponent<CollisionPushBackInfo>();
     componentRegistry->RegisterComponent<Rigidbody>();
 
@@ -188,8 +194,6 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<SceneChanger>();
 
     componentRegistry->RegisterComponent<PlayerStateOverrideCondition>();
-
-    componentRegistry->RegisterComponent<PointPlacementParams>();
 }
 
 void RegisterUsingSystems() {
@@ -221,7 +225,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<GhostInitializeSystem>();
     systemRegistry->RegisterSystem<PlayRecorderInitialize>();
 
-    systemRegistry->RegisterSystem<PlacementEntityByProcedural>();
+    systemRegistry->RegisterSystem<RailInitializeSystem>();
 
     /// ===================================================================================================
     // Input
@@ -314,6 +318,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<MaterialEffect>();
     systemRegistry->RegisterSystem<CreateMeshFromSpline>();
     systemRegistry->RegisterSystem<CreateMeshFromTireSpline>();
+    systemRegistry->RegisterSystem<CreateRailMesh>();
 
     systemRegistry->RegisterSystem<PlayerSpeedFor3dUI>();
     systemRegistry->RegisterSystem<TimerForSprite>();

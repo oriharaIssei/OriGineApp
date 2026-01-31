@@ -982,7 +982,7 @@
                         ],
                         "wallRunInterval": 0.20000000298023224,
                         "wallRunRate": 1.7999999523162842,
-                        "wallRunRumpUpTime": 0.5400000214576721,
+                        "wallRunRampUpTime": 0.5400000214576721,
                         "wheelieJumpOffset": [
                             0.0,
                             1.0,

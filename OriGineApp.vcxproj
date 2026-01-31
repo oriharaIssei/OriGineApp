@@ -26,19 +26,19 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Develop|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -55,24 +55,24 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\..\generated\output\Debug\</OutDir>
-    <IntDir>..\..\generated\obj\Debug\OriGineApp\</IntDir>
+    <OutDir>$(ProjectDir)..\..\generated\output\Debug\</OutDir>
+    <IntDir>$(ProjectDir)..\..\generated\obj\Debug\OriGineApp\</IntDir>
     <TargetName>OriGineApp</TargetName>
     <TargetExt>.exe</TargetExt>
     <EnableClangTidyCodeAnalysis>true</EnableClangTidyCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Develop|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\..\generated\output\Develop\</OutDir>
-    <IntDir>..\..\generated\obj\Develop\OriGineApp\</IntDir>
+    <OutDir>$(ProjectDir)..\..\generated\output\Develop\</OutDir>
+    <IntDir>$(ProjectDir)..\..\generated\obj\Develop\OriGineApp\</IntDir>
     <TargetName>OriGineApp</TargetName>
     <TargetExt>.exe</TargetExt>
     <EnableClangTidyCodeAnalysis>true</EnableClangTidyCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\..\generated\output\Release\</OutDir>
-    <IntDir>..\..\generated\obj\Release\OriGineApp\</IntDir>
+    <OutDir>$(ProjectDir)..\..\generated\output\Release\</OutDir>
+    <IntDir>$(ProjectDir)..\..\generated\obj\Release\OriGineApp\</IntDir>
     <TargetName>OriGineApp</TargetName>
     <TargetExt>.exe</TargetExt>
     <EnableClangTidyCodeAnalysis>true</EnableClangTidyCodeAnalysis>
@@ -89,7 +89,6 @@
       <AdditionalOptions>/utf-8 /bigobj /MP %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -97,6 +96,8 @@
       <AdditionalDependencies>assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\externals\assimp\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <ProjectReference>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Develop|x64'">
     <ClCompile>
@@ -110,7 +111,6 @@
       <AdditionalOptions>/utf-8 /bigobj /MP %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -118,6 +118,8 @@
       <AdditionalDependencies>assimp-vc143-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\externals\assimp\lib\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <ProjectReference>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -134,7 +136,6 @@
       <AdditionalOptions>/utf-8 /bigobj /MP %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -143,23 +144,29 @@
       <AdditionalDependencies>assimp-vc143-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\externals\assimp\lib\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <ProjectReference>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="code\component\AddForceComponent.h" />
-    <ClInclude Include="code\component\VelocityOverrideComponent.h" />
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\MyEditor.h" />
     <ClInclude Include="code\MyGame.h" />
+    <ClInclude Include="code\component\AddForceComponent.h" />
     <ClInclude Include="code\component\LookAtFromTransforms.h" />
     <ClInclude Include="code\component\MouseCondition.h" />
     <ClInclude Include="code\component\PlayerStateOverrideCondition.h" />
+    <ClInclude Include="code\component\PointPlacementParams.h" />
     <ClInclude Include="code\component\SceneChanger.h" />
     <ClInclude Include="code\component\TimerComponent.h" />
+    <ClInclude Include="code\component\VelocityOverrideComponent.h" />
+    <ClInclude Include="code\component\camera\CameraConfig.h" />
     <ClInclude Include="code\component\camera\CameraController.h" />
     <ClInclude Include="code\component\camera\CameraMotionBob.h" />
     <ClInclude Include="code\component\camera\CameraShakeSourceComponent.h" />
     <ClInclude Include="code\component\ghost\GhostReplayComponent.h" />
     <ClInclude Include="code\component\ghost\PlayRecordeComponent.h" />
+    <ClInclude Include="code\component\gimmick\RailPoints.h" />
+    <ClInclude Include="code\component\player\PlayerConfig.h" />
     <ClInclude Include="code\component\player\PlayerEffectControlParam.h" />
     <ClInclude Include="code\component\player\PlayerInput.h" />
     <ClInclude Include="code\component\player\PlayerInputDevice.h" />
@@ -170,26 +177,29 @@
     <ClInclude Include="code\component\player\State\PlayerIdleState.h" />
     <ClInclude Include="code\component\player\State\PlayerJumpState.h" />
     <ClInclude Include="code\component\player\State\PlayerMoveStateFactory.h" />
+    <ClInclude Include="code\component\player\State\PlayerOnRailState.h" />
     <ClInclude Include="code\component\player\State\PlayerState.h" />
     <ClInclude Include="code\component\player\State\PlayerWallJumpState.h" />
     <ClInclude Include="code\component\player\State\PlayerWallRunState.h" />
+    <ClInclude Include="code\component\player\State\PlayerWheelieRunState.h" />
     <ClInclude Include="code\component\spline\SplinePoints.h" />
     <ClInclude Include="code\component\spline\TireSplinePoints.h" />
     <ClInclude Include="code\component\stage\StageData.h" />
     <ClInclude Include="code\component\ui\Button.h" />
     <ClInclude Include="code\component\ui\ButtonGroup.h" />
     <ClInclude Include="code\component\ui\SpeedFor3dUIComponent.h" />
+    <ClInclude Include="code\component\ui\UIConfig.h" />
     <ClInclude Include="code\event\GamefailedEvent.h" />
     <ClInclude Include="code\event\RestartEvent.h" />
     <ClInclude Include="code\event\SceneChangeRequest.h" />
     <ClInclude Include="code\manager\PlayerProgressStore.h" />
-    <ClInclude Include="code\system\collision\AddForceTriggerSystem.h" />
     <ClInclude Include="code\system\Initialize\BackFireInitialize.h" />
     <ClInclude Include="code\system\Initialize\CreatePlaneFromSpeed.h" />
     <ClInclude Include="code\system\Initialize\CreateSpriteFromTimer.h" />
     <ClInclude Include="code\system\Initialize\GetClearTime.h" />
     <ClInclude Include="code\system\Initialize\GhostInitializeSystem.h" />
     <ClInclude Include="code\system\Initialize\InitializeMouseCondition.h" />
+    <ClInclude Include="code\system\Initialize\PlacementEntityByProcedural.h" />
     <ClInclude Include="code\system\Initialize\PlayRecorderInitialize.h" />
     <ClInclude Include="code\system\Initialize\SelectPreviewSceneInitialize.h" />
     <ClInclude Include="code\system\Initialize\SettingGameCameraTarget.h" />
@@ -203,6 +213,7 @@
     <ClInclude Include="code\system\Input\PlayRecordSystem.h" />
     <ClInclude Include="code\system\Input\PlayerInputSystem.h" />
     <ClInclude Include="code\system\Movement\BillboardTransform.h" />
+    <ClInclude Include="code\system\Movement\CreateRailMesh.h" />
     <ClInclude Include="code\system\Movement\FollowCameraUpdateSystem.h" />
     <ClInclude Include="code\system\Movement\LookAtFromTransformsSystem.h" />
     <ClInclude Include="code\system\Movement\PauseMainSceneSystem.h" />
@@ -234,36 +245,39 @@
     <ClInclude Include="code\system\Transition\TimerCountDown.h" />
     <ClInclude Include="code\system\Transition\TransitionPlayerState.h" />
     <ClInclude Include="code\system\Transition\UpdateButtonColorByState.h" />
+    <ClInclude Include="code\system\collision\AddForceTriggerSystem.h" />
     <ClInclude Include="code\system\collision\PlayerOnCollision.h" />
     <ClInclude Include="code\system\collision\TutorialColliderOnCollision.h" />
+    <ClInclude Include="code\system\collision\VelocityOverrideTriggerSystem.h" />
     <ClInclude Include="code\system\effect\CameraShake.h" />
     <ClInclude Include="code\system\effect\CreateMeshFromSpline.h" />
     <ClInclude Include="code\system\effect\CreateMeshFromTireSpline.h" />
+    <ClInclude Include="code\system\effect\EffectConfig.h" />
     <ClInclude Include="code\system\effect\EffectOnPlayerGearup.h" />
     <ClInclude Include="code\system\effect\EffectOnPlayerRun.h" />
     <ClInclude Include="code\system\effect\PenaltyTimeSpriteUpdate.h" />
     <ClInclude Include="code\system\effect\PlayerSpeedFor3dUI.h" />
     <ClInclude Include="code\system\effect\TimerForSprite.h" />
-    <ClInclude Include="code\component\PointPlacementParams.h" />
-    <ClInclude Include="code\system\Initialize\PlacementEntityByProcedural.h" />
-    <ClInclude Include="code\component\player\State\PlayerWheelieRunState.h" />
+    <ClInclude Include="code\system\Initialize\RailInitializeSystem.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="code\component\AddForceComponent.cpp" />
-    <ClCompile Include="code\component\VelocityOverrideComponent.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\MyEditor.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
+    <ClCompile Include="code\component\AddForceComponent.cpp" />
     <ClCompile Include="code\component\LookAtFromTransforms.cpp" />
     <ClCompile Include="code\component\MouseCondition.cpp" />
     <ClCompile Include="code\component\PlayerStateOverrideCondition.cpp" />
+    <ClCompile Include="code\component\PointPlacementParams.cpp" />
     <ClCompile Include="code\component\SceneChanger.cpp" />
     <ClCompile Include="code\component\TimerComponent.cpp" />
+    <ClCompile Include="code\component\VelocityOverrideComponent.cpp" />
     <ClCompile Include="code\component\camera\CameraController.cpp" />
     <ClCompile Include="code\component\camera\CameraMotionBob.cpp" />
     <ClCompile Include="code\component\camera\CameraShakeSourceComponent.cpp" />
     <ClCompile Include="code\component\ghost\GhostReplayComponent.cpp" />
     <ClCompile Include="code\component\ghost\PlayRecordeComponent.cpp" />
+    <ClCompile Include="code\component\gimmick\RailPoints.cpp" />
     <ClCompile Include="code\component\player\PlayerEffectControlParam.cpp" />
     <ClCompile Include="code\component\player\PlayerInput.cpp" />
     <ClCompile Include="code\component\player\PlayerInputDevice.cpp" />
@@ -274,9 +288,11 @@
     <ClCompile Include="code\component\player\State\PlayerIdleState.cpp" />
     <ClCompile Include="code\component\player\State\PlayerJumpState.cpp" />
     <ClCompile Include="code\component\player\State\PlayerMoveStateFactory.cpp" />
+    <ClCompile Include="code\component\player\State\PlayerOnRailState.cpp" />
     <ClCompile Include="code\component\player\State\PlayerState.cpp" />
     <ClCompile Include="code\component\player\State\PlayerWallJumpState.cpp" />
     <ClCompile Include="code\component\player\State\PlayerWallRunState.cpp" />
+    <ClCompile Include="code\component\player\State\PlayerWheelieRunState.cpp" />
     <ClCompile Include="code\component\spline\SplinePoints.cpp" />
     <ClCompile Include="code\component\spline\TireSplinePoints.cpp" />
     <ClCompile Include="code\component\stage\StageData.cpp" />
@@ -285,15 +301,13 @@
     <ClCompile Include="code\component\ui\SpeedFor3dUIComponent.cpp" />
     <ClCompile Include="code\main.cpp" />
     <ClCompile Include="code\manager\PlayerProgressStore.cpp" />
-    <ClCompile Include="code\system\collision\AddForceTriggerSystem.cpp" />
-    <ClCompile Include="code\system\collision\VelocityOverrideTriggerSystem.cpp" />
-    <ClCompile Include="code\system\collision\VelocityOverrideTriggerSystem.h" />
     <ClCompile Include="code\system\Initialize\BackFireInitialize.cpp" />
     <ClCompile Include="code\system\Initialize\CreatePlaneFromSpeed.cpp" />
     <ClCompile Include="code\system\Initialize\CreateSpriteFromTimer.cpp" />
     <ClCompile Include="code\system\Initialize\GetClearTime.cpp" />
     <ClCompile Include="code\system\Initialize\GhostInitializeSystem.cpp" />
     <ClCompile Include="code\system\Initialize\InitializeMouseCondition.cpp" />
+    <ClCompile Include="code\system\Initialize\PlacementEntityByProcedural.cpp" />
     <ClCompile Include="code\system\Initialize\PlayRecorderInitialize.cpp" />
     <ClCompile Include="code\system\Initialize\SelectPreviewSceneInitialize.cpp" />
     <ClCompile Include="code\system\Initialize\SettingGameCameraTarget.cpp" />
@@ -307,6 +321,7 @@
     <ClCompile Include="code\system\Input\PlayRecordSystem.cpp" />
     <ClCompile Include="code\system\Input\PlayerInputSystem.cpp" />
     <ClCompile Include="code\system\Movement\BillboardTransform.cpp" />
+    <ClCompile Include="code\system\Movement\CreateRailMesh.cpp" />
     <ClCompile Include="code\system\Movement\FollowCameraUpdateSystem.cpp" />
     <ClCompile Include="code\system\Movement\LookAtFromTransformsSystem.cpp" />
     <ClCompile Include="code\system\Movement\PauseMainSceneSystem.cpp" />
@@ -338,8 +353,10 @@
     <ClCompile Include="code\system\Transition\TimerCountDown.cpp" />
     <ClCompile Include="code\system\Transition\TransitionPlayerState.cpp" />
     <ClCompile Include="code\system\Transition\UpdateButtonColorByState.cpp" />
+    <ClCompile Include="code\system\collision\AddForceTriggerSystem.cpp" />
     <ClCompile Include="code\system\collision\PlayerOnCollision.cpp" />
     <ClCompile Include="code\system\collision\TutorialColliderOnCollision.cpp" />
+    <ClCompile Include="code\system\collision\VelocityOverrideTriggerSystem.cpp" />
     <ClCompile Include="code\system\effect\CameraShake.cpp" />
     <ClCompile Include="code\system\effect\CreateMeshFromSpline.cpp" />
     <ClCompile Include="code\system\effect\CreateMeshFromTireSpline.cpp" />
@@ -348,9 +365,7 @@
     <ClCompile Include="code\system\effect\PenaltyTimeSpriteUpdate.cpp" />
     <ClCompile Include="code\system\effect\PlayerSpeedFor3dUI.cpp" />
     <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
-    <ClCompile Include="code\component\PointPlacementParams.cpp" />
-    <ClCompile Include="code\system\Initialize\PlacementEntityByProcedural.cpp" />
-    <ClCompile Include="code\component\player\State\PlayerWheelieRunState.cpp" />
+    <ClCompile Include="code\system\Initialize\RailInitializeSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">
