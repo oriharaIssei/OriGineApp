@@ -9,6 +9,8 @@
 #include "component/player/PlayerStatus.h"
 #include "component/player/state/PlayerState.h"
 
+#include "component/gimmick/RailPoints.h"
+
 #include "component/TimerComponent.h"
 
 /// math
@@ -39,6 +41,7 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
     EntityHandle wallEntityHandle = state->GetWallEntityIndex();
     state->OffCollisionGround();
     state->OffCollisionWall();
+    state->OffCollisionRail();
 
     for (auto& [entityId, info] : pushBackInfo->GetCollisionInfoMap()) {
         OriGine::Entity* collEnt = GetEntity(entityId);
@@ -56,6 +59,14 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
             continue;
         }
 
+        // レールポイント と 衝突したか
+        {
+            RailPoints* railPoints = GetComponent<RailPoints>(entityId);
+            if (railPoints) {
+                state->OnCollisionRail(entityId);
+                continue;
+            }
+        }
         // 壁、床と 衝突したか
         if (info.pushBackType != CollisionPushBackType::PushBack) {
             continue;

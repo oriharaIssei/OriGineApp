@@ -32,7 +32,7 @@ std::shared_ptr<IPlayerMoveState> CreatePlayerMoveStateByEnum(PlayerMoveState _s
     case PlayerMoveState::WHEELIE_RUN:
         return std::make_shared<PlayerWheelieRunState>(_scene, _playerEntityHandle);
         break;
-    case PlayerMoveState::ON_RAIL:
+    case PlayerMoveState::RUN_ON_RAIL:
         return std::make_shared<PlayerOnRailState>(_scene, _playerEntityHandle);
         break;
     default:

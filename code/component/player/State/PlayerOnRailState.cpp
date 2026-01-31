@@ -5,11 +5,11 @@
 
 /// ECS
 // component
+#include "component/gimmick/RailPoints.h"
 #include "component/physics/Rigidbody.h"
 #include "component/player/PlayerInput.h"
 #include "component/player/PlayerStatus.h"
 #include "component/player/State/PlayerState.h"
-#include "component/gimmick/RailPoints.h"
 #include "component/transform/Transform.h"
 
 /// math
@@ -20,7 +20,7 @@
 using namespace OriGine;
 
 PlayerOnRailState::PlayerOnRailState(OriGine::Scene* _scene, OriGine::EntityHandle _playerEntityHandle)
-    : IPlayerMoveState(_scene, _playerEntityHandle, PlayerMoveState::ON_RAIL) {}
+    : IPlayerMoveState(_scene, _playerEntityHandle, PlayerMoveState::RUN_ON_RAIL) {}
 PlayerOnRailState::~PlayerOnRailState() {}
 
 void PlayerOnRailState::Initialize() {
@@ -51,7 +51,9 @@ void PlayerOnRailState::Update(float _deltaTime) {
     auto* playerState  = scene_->GetComponent<PlayerState>(playerEntityHandle_);
     auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
     auto* transform    = scene_->GetComponent<Transform>(playerEntityHandle_);
-    auto* railPoints   = scene_->GetComponent<RailPoints>(playerState->GetRailEntityHandle());
+
+    auto* railPoints    = scene_->GetComponent<RailPoints>(playerState->GetRailEntityHandle());
+    auto* railTransform = scene_->GetComponent<Transform>(playerState->GetRailEntityHandle());
 
     // railがなければ
     if (!railPoints) {
@@ -83,8 +85,8 @@ void PlayerOnRailState::Update(float _deltaTime) {
     nextRailPointIndex_                             = movedSegmentPoint.second;
 
     // transform の更新
-    transform->translate 
-    transform->rotate = Quaternion::LookAt(front, axisY);
+    transform->translate = CalcPointOnSplineByDistance(railPoints->points, traveledDistance_) * railTransform->worldMat;
+    transform->rotate    = Quaternion::LookAt(front, axisY);
 }
 
 void PlayerOnRailState::Finalize() {

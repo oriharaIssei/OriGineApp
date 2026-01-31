@@ -106,6 +106,8 @@ void PlayerInputSystem::HandleJump(
             // wallJump 判定
             bool hitWall = (state->GetStateEnum() == PlayerMoveState::WALL_RUN || state->GetStateEnum() == PlayerMoveState::WHEELIE_RUN);
             input->SetWallJumpInput(hitWall);
+            bool railJump = (state->GetStateEnum() == PlayerMoveState::RUN_ON_RAIL);
+            input->SetRailJumpInput(railJump);
         }
     }
 }
