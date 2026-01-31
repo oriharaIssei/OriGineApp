@@ -114,6 +114,11 @@ PlayerMoveState PlayerDashState::TransitionState() const {
     if (playerInput->GetInputDirection().lengthSq() <= 0.f) {
         return PlayerMoveState::IDLE;
     }
+
+    // Rail上にいる場合
+    if (state->IsOnRail()) {
+        return PlayerMoveState::RUN_ON_RAIL;
+    }
     // 地面にいる場合
     if (state->IsOnGround()) {
         if (playerInput->IsJumpInput()) {

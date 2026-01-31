@@ -4660,6 +4660,104 @@
         },
         {
             "Components": {
+                "CapsuleCollider": [
+                    {
+                        "Handle": "9b23d0f0-d0a2-4b81-8b14-1bca21781a62",
+                        "end": [
+                            0.0,
+                            0.0,
+                            3.0
+                        ],
+                        "radius": 0.2199999988079071,
+                        "start": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    },
+                    {
+                        "Handle": "ef91f836-51c0-4664-ab37-a9143ee32bf6",
+                        "end": [
+                            0.0,
+                            0.0,
+                            6.0
+                        ],
+                        "radius": 0.2199999988079071,
+                        "start": [
+                            0.0,
+                            0.0,
+                            3.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    },
+                    {
+                        "Handle": "3e9e2ad4-0720-4322-8c60-8051fcf239f2",
+                        "end": [
+                            0.0,
+                            0.0,
+                            9.0
+                        ],
+                        "radius": 0.2199999988079071,
+                        "start": [
+                            0.0,
+                            0.0,
+                            6.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
                 "CylinderRenderer": [
                     {
                         "Handle": "bbdaa337-be4d-4c61-92f6-da2b1f657fdf",
@@ -4845,12 +4943,20 @@
             "Name": "Rail",
             "Systems": [
                 {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
                     "SystemCategory": 6,
                     "SystemName": "TexturedMeshRenderSystem"
                 },
                 {
                     "SystemCategory": 5,
                     "SystemName": "CreateRailMesh"
+                },
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "RailInitializeSystem"
                 }
             ],
             "isUnique": false
@@ -4863,13 +4969,13 @@
             }
         },
         {
-            "ApplyMouseConditionSystem": {
-                "Priority": 0
+            "ColliderRenderingSystem": {
+                "Priority": 100
             }
         },
         {
-            "ColliderRenderingSystem": {
-                "Priority": 100
+            "ApplyMouseConditionSystem": {
+                "Priority": 0
             }
         },
         {
@@ -4883,11 +4989,6 @@
             }
         },
         {
-            "ButtonInputSystem": {
-                "Priority": 1
-            }
-        },
-        {
             "ChangeSceneByButton": {
                 "Priority": 1
             }
@@ -4898,18 +4999,8 @@
             }
         },
         {
-            "CameraActionSystem": {
-                "Priority": 0
-            }
-        },
-        {
-            "TakePlayerToStartPosition": {
-                "Priority": 3
-            }
-        },
-        {
-            "PlayerInputSystem": {
-                "Priority": 3
+            "ButtonInputSystem": {
+                "Priority": 1
             }
         },
         {
@@ -4923,8 +5014,18 @@
             }
         },
         {
-            "TimeLimitJudgeSystem": {
-                "Priority": 10
+            "PlayerInputSystem": {
+                "Priority": 3
+            }
+        },
+        {
+            "CameraActionSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "TakePlayerToStartPosition": {
+                "Priority": 3
             }
         },
         {
@@ -4933,13 +5034,18 @@
             }
         },
         {
-            "CreatePlaneFromSpeed": {
+            "TimeLimitJudgeSystem": {
                 "Priority": 10
             }
         },
         {
             "CameraShake": {
                 "Priority": 0
+            }
+        },
+        {
+            "CreatePlaneFromSpeed": {
+                "Priority": 10
             }
         },
         {
@@ -4963,18 +5069,13 @@
             }
         },
         {
-            "PlayerSpeedFor3dUI": {
-                "Priority": 1
-            }
-        },
-        {
             "DissolveEffect": {
                 "Priority": 100
             }
         },
         {
-            "PenaltySystem": {
-                "Priority": 0
+            "PlayerSpeedFor3dUI": {
+                "Priority": 1
             }
         },
         {
@@ -4985,6 +5086,11 @@
         {
             "GhostInitializeSystem": {
                 "Priority": 6
+            }
+        },
+        {
+            "PenaltySystem": {
+                "Priority": 0
             }
         },
         {
@@ -5023,8 +5129,8 @@
             }
         },
         {
-            "StartTimerInitialize": {
-                "Priority": 3
+            "MaterialAnimationWorkSystem": {
+                "Priority": 0
             }
         },
         {
@@ -5033,8 +5139,8 @@
             }
         },
         {
-            "MaterialAnimationWorkSystem": {
-                "Priority": 0
+            "StartTimerInitialize": {
+                "Priority": 3
             }
         },
         {
@@ -5048,13 +5154,13 @@
             }
         },
         {
-            "ResolveEntityReferences": {
-                "Priority": -2
+            "OverlayRenderSystem": {
+                "Priority": 100
             }
         },
         {
-            "OverlayRenderSystem": {
-                "Priority": 100
+            "ResolveEntityReferences": {
+                "Priority": -2
             }
         },
         {
@@ -5068,6 +5174,11 @@
             }
         },
         {
+            "PlayerPathSplineGenerator": {
+                "Priority": 100
+            }
+        },
+        {
             "PlayRecorderInitialize": {
                 "Priority": 0
             }
@@ -5078,18 +5189,13 @@
             }
         },
         {
-            "PlayerPathSplineGenerator": {
-                "Priority": 100
+            "PlayerMoveSystem": {
+                "Priority": 3
             }
         },
         {
             "TexturedMeshRenderSystem": {
                 "Priority": 0
-            }
-        },
-        {
-            "PlayerMoveSystem": {
-                "Priority": 3
             }
         },
         {
@@ -5118,11 +5224,6 @@
             }
         },
         {
-            "SpriteAnimationSystem": {
-                "Priority": 1
-            }
-        },
-        {
             "VelocityRenderingSystem": {
                 "Priority": 0
             }
@@ -5130,6 +5231,11 @@
         {
             "SettingGameCameraTarget": {
                 "Priority": 5
+            }
+        },
+        {
+            "SpriteAnimationSystem": {
+                "Priority": 1
             }
         },
         {
@@ -5158,13 +5264,13 @@
             }
         },
         {
-            "SubSceneRender": {
-                "Priority": 10
+            "TakeToGoalPosition": {
+                "Priority": 1
             }
         },
         {
-            "StartSequenceSystem": {
-                "Priority": 1
+            "SubSceneActivateByButton": {
+                "Priority": 0
             }
         },
         {
@@ -5173,13 +5279,13 @@
             }
         },
         {
-            "TakeToGoalPosition": {
-                "Priority": 1
+            "SubSceneRender": {
+                "Priority": 10
             }
         },
         {
-            "SubSceneActivateByButton": {
-                "Priority": 0
+            "StartSequenceSystem": {
+                "Priority": 1
             }
         },
         {
@@ -5193,13 +5299,13 @@
             }
         },
         {
-            "CreateRailMesh": {
-                "Priority": 0
+            "TimerForSprite": {
+                "Priority": 1
             }
         },
         {
-            "TimerForSprite": {
-                "Priority": 1
+            "CreateRailMesh": {
+                "Priority": 0
             }
         },
         {
@@ -5254,6 +5360,11 @@
         },
         {
             "LightDebugRenderingSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "RailInitializeSystem": {
                 "Priority": 0
             }
         }

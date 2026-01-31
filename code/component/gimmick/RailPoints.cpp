@@ -46,7 +46,7 @@ void RailPoints::Initialize(OriGine::Scene* /*_scene*/, OriGine::EntityHandle /*
 }
 void RailPoints::Finalize() {}
 
-void RailPoints::Edit(OriGine::Scene* /*_scene*/, OriGine::EntityHandle /*_owner*/, const std::string& _parentLabel) {
+void RailPoints::Edit(OriGine::Scene* /*_scene*/, OriGine::EntityHandle /*_owner*/,[[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
 
     DragGuiCommand<float>("Radius##" + _parentLabel, radius, 0.01f);

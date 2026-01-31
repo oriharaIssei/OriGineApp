@@ -66,6 +66,15 @@ void PlayerState::OffCollisionWall() {
     wallCollisionNormal_ = {0.f, 0.f, 0.f};
 }
 
+void PlayerState::OnCollisionRail(OriGine::EntityHandle _entityHandle) {
+    stateFlag_.CurrentRef().SetFlag(PlayerStateFlag::ON_RAIL);
+    railEntityHandle_ = _entityHandle;
+}
+
+void PlayerState::OffCollisionRail() {
+    stateFlag_.CurrentRef().ClearFlag(PlayerStateFlag::ON_RAIL);
+}
+
 void PlayerState::OnCollisionGround() {
     stateFlag_.CurrentRef().SetFlag(PlayerStateFlag::ON_GROUND);
 }
