@@ -74,6 +74,7 @@ void PlayerInputSystem::HandleJump(
 
     // wallJumpは 常にTrigger
     input->SetWallJumpInput(false);
+    input->SetRailJumpInput(false);
 
     if (input->IsJumpInput()) {
         // JUMP 状態以外は押しっぱなし無効

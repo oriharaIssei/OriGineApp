@@ -133,6 +133,7 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityH
     DragGuiCommand("RailSpeedRate##" + _parentLabel, railSpeedRate_, 0.01f);
     DragGuiCommand("RailRampUpTime##" + _parentLabel, railRampUpTime_, 0.01f);
     DragGuiVectorCommand<3, float>("RailJumpOffset##" + _parentLabel, railJumpOffset_, 0.01f);
+    DragGuiCommand("RailInterval##" + _parentLabel, railInterval_, 0.01f);
 
     ImGui::Spacing();
     DragGuiCommand("Default Mass##" + _parentLabel, defaultMass_, 0.01f);
@@ -263,6 +264,7 @@ void to_json(nlohmann::json& _j, const PlayerStatus& _playerStatus) {
     _j["railSpeedRate"]  = _playerStatus.railSpeedRate_;
     _j["railRampUpTime"] = _playerStatus.railRampUpTime_;
     _j["railJumpOffset"] = _playerStatus.railJumpOffset_;
+    _j["railInterval"]   = _playerStatus.railInterval_;
 }
 void from_json(const nlohmann::json& _j, PlayerStatus& _playerStatus) {
     _j.at("baseSpeed").get_to(_playerStatus.baseSpeed_);
@@ -322,5 +324,8 @@ void from_json(const nlohmann::json& _j, PlayerStatus& _playerStatus) {
 
     if (_j.contains("wallRunInterval")) {
         _j.at("wallRunInterval").get_to(_playerStatus.wallRunInterval_);
+    }
+    if (_j.contains("railInterval")) {
+        _j.at("railInterval").get_to(_playerStatus.railInterval_);
     }
 }

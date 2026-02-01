@@ -62,7 +62,7 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
         // レールポイント と 衝突したか
         {
             RailPoints* railPoints = GetComponent<RailPoints>(entityId);
-            if (railPoints) {
+            if (railPoints && status->CanRideRail()) {
                 state->OnCollisionRail(entityId);
                 continue;
             }

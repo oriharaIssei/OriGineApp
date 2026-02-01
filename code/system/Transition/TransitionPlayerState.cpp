@@ -123,6 +123,7 @@ void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
 
     status->UpdateWallRunInterval(deltaTime);
     status->UpdateWheelieInterval(deltaTime);
+    status->UpdateRailInterval(deltaTime);
 
     ///! Penalty専用のエフェクトシステムを作る
     // ペナルティ時間 更新

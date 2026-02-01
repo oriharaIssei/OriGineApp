@@ -4664,9 +4664,9 @@
                     {
                         "Handle": "9b23d0f0-d0a2-4b81-8b14-1bca21781a62",
                         "end": [
-                            0.0,
-                            0.0,
-                            3.0
+                            -12.0,
+                            7.0,
+                            61.0
                         ],
                         "radius": 0.2199999988079071,
                         "start": [
@@ -4696,15 +4696,15 @@
                     {
                         "Handle": "ef91f836-51c0-4664-ab37-a9143ee32bf6",
                         "end": [
-                            0.0,
-                            0.0,
-                            6.0
+                            -22.0,
+                            8.0,
+                            120.0
                         ],
                         "radius": 0.2199999988079071,
                         "start": [
-                            0.0,
-                            0.0,
-                            3.0
+                            -12.0,
+                            7.0,
+                            61.0
                         ],
                         "transform": {
                             "rotate": [
@@ -4728,15 +4728,15 @@
                     {
                         "Handle": "3e9e2ad4-0720-4322-8c60-8051fcf239f2",
                         "end": [
-                            0.0,
-                            0.0,
-                            9.0
+                            -22.0,
+                            10.0,
+                            180.0
                         ],
                         "radius": 0.2199999988079071,
                         "start": [
-                            0.0,
-                            0.0,
-                            6.0
+                            -22.0,
+                            8.0,
+                            120.0
                         ],
                         "transform": {
                             "rotate": [
@@ -4756,6 +4756,44 @@
                                 0.0
                             ]
                         }
+                    },
+                    {
+                        "Handle": "54d4da82-2007-4bf7-8077-9feb79b4ed16",
+                        "end": [
+                            0.0,
+                            15.699999809265137,
+                            240.0
+                        ],
+                        "radius": 0.2199999988079071,
+                        "start": [
+                            -22.0,
+                            10.0,
+                            180.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "Handle": "d3ed0f1a-e93d-4de3-8e40-8b6a02f84953",
+                        "pushBackType": 0
                     }
                 ],
                 "CylinderRenderer": [
@@ -4835,19 +4873,24 @@
                                 0.0
                             ],
                             [
-                                0.0,
-                                0.0,
-                                3.0
+                                -12.0,
+                                7.0,
+                                61.0
+                            ],
+                            [
+                                -22.0,
+                                8.0,
+                                120.0
+                            ],
+                            [
+                                -22.0,
+                                10.0,
+                                180.0
                             ],
                             [
                                 0.0,
-                                0.0,
-                                6.0
-                            ],
-                            [
-                                0.0,
-                                0.0,
-                                9.0
+                                15.699999809265137,
+                                240.0
                             ]
                         ],
                         "radius": 0.2199999988079071,
@@ -4909,8 +4952,8 @@
                             ],
                             "translate": [
                                 0.0,
-                                0.0,
-                                9.0
+                                15.699999809265137,
+                                240.0
                             ]
                         }
                     }
@@ -4939,6 +4982,352 @@
             },
             "Handle": {
                 "uuid": "8566bb37-8754-4a69-b078-3cc13390a0cd"
+            },
+            "Name": "Rail",
+            "Systems": [
+                {
+                    "SystemCategory": 4,
+                    "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                },
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "CreateRailMesh"
+                },
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "RailInitializeSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "CapsuleCollider": [
+                    {
+                        "Handle": "9b23d0f0-d0a2-4b81-8b14-1bca21781a62",
+                        "end": [
+                            -12.0,
+                            7.0,
+                            61.0
+                        ],
+                        "radius": 0.2199999988079071,
+                        "start": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    },
+                    {
+                        "Handle": "ef91f836-51c0-4664-ab37-a9143ee32bf6",
+                        "end": [
+                            -22.0,
+                            8.0,
+                            120.0
+                        ],
+                        "radius": 0.2199999988079071,
+                        "start": [
+                            -12.0,
+                            7.0,
+                            61.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    },
+                    {
+                        "Handle": "3e9e2ad4-0720-4322-8c60-8051fcf239f2",
+                        "end": [
+                            -22.0,
+                            10.0,
+                            180.0
+                        ],
+                        "radius": 0.2199999988079071,
+                        "start": [
+                            -22.0,
+                            8.0,
+                            120.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    },
+                    {
+                        "Handle": "54d4da82-2007-4bf7-8077-9feb79b4ed16",
+                        "end": [
+                            0.0,
+                            15.699999809265137,
+                            240.0
+                        ],
+                        "radius": 0.2199999988079071,
+                        "start": [
+                            -22.0,
+                            10.0,
+                            180.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "CollisionPushBackInfo": [
+                    {
+                        "Handle": "d3ed0f1a-e93d-4de3-8e40-8b6a02f84953",
+                        "pushBackType": 0
+                    }
+                ],
+                "CylinderRenderer": [
+                    {
+                        "Handle": "bbdaa337-be4d-4c61-92f6-da2b1f657fdf",
+                        "blendMode": 1,
+                        "bottomRadius": [
+                            1.0,
+                            1.0
+                        ],
+                        "height": 1.0,
+                        "heightDivisions": 8,
+                        "isCulling": false,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "radialDivisions": 36,
+                        "radiusEaseType": 0,
+                        "textureFilePath": "",
+                        "topRadius": [
+                            1.0,
+                            1.0
+                        ],
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "e14bef4c-858c-476a-a619-c86df78ec7a2",
+                        "color": [
+                            0.15221917629241943,
+                            0.7934667468070984,
+                            0.8016877770423889,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "RailPoints": [
+                    {
+                        "Handle": "c80b3b81-71fa-48fb-ae86-93d0478820c5",
+                        "points": [
+                            [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            [
+                                -12.0,
+                                7.0,
+                                61.0
+                            ],
+                            [
+                                -22.0,
+                                8.0,
+                                120.0
+                            ],
+                            [
+                                -22.0,
+                                10.0,
+                                180.0
+                            ],
+                            [
+                                0.0,
+                                15.699999809265137,
+                                240.0
+                            ]
+                        ],
+                        "radius": 0.2199999988079071,
+                        "segmentDivide": 8,
+                        "texturePath": ""
+                    }
+                ],
+                "SphereRenderer": [
+                    {
+                        "Handle": "75b90964-a553-4e56-9297-9743393d1f61",
+                        "blendMode": 1,
+                        "divisionLatitude": 8,
+                        "divisionLongitude": 16,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "radius": 1.0,
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    },
+                    {
+                        "Handle": "16e9b0e3-33d4-48a6-b9e6-ac53ed653683",
+                        "blendMode": 1,
+                        "divisionLatitude": 8,
+                        "divisionLongitude": 16,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 0,
+                        "radius": 1.0,
+                        "textureFilePath": "",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "scale": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "translate": [
+                                0.0,
+                                15.699999809265137,
+                                240.0
+                            ]
+                        }
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "31d035dc-f357-4714-9c21-c21a266c8537",
+                        "rotate": [
+                            -0.0,
+                            0.0,
+                            -0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            -17.684099197387695,
+                            1.179197072982788,
+                            0.0
+                        ]
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "96ec82a5-eb80-4d79-85e2-d21f7ff07ca8"
             },
             "Name": "Rail",
             "Systems": [
@@ -5264,13 +5653,18 @@
             }
         },
         {
+            "SubSceneActivateByButton": {
+                "Priority": 0
+            }
+        },
+        {
             "TakeToGoalPosition": {
                 "Priority": 1
             }
         },
         {
-            "SubSceneActivateByButton": {
-                "Priority": 0
+            "StartSequenceSystem": {
+                "Priority": 1
             }
         },
         {
@@ -5281,11 +5675,6 @@
         {
             "SubSceneRender": {
                 "Priority": 10
-            }
-        },
-        {
-            "StartSequenceSystem": {
-                "Priority": 1
             }
         },
         {

@@ -106,8 +106,8 @@ private:
     float wallRunDetachSpeed_         = AppConfig::Player::kDefaultWallRunDetachSpeed; // 壁走りから離脱する時の速度
 
     // rail
-    float railSpeedRate_  = 1.0f; // レール上の速度倍率
-    float railRampUpTime_ = 0.f; // レール上の速度倍率が最大になるまでの時間
+    float railSpeedRate_           = 1.0f; // レール上の速度倍率
+    float railRampUpTime_          = 0.f; // レール上の速度倍率が最大になるまでの時間
     OriGine::Vec3f railJumpOffset_ = {0.f, 1.f, 0.f};
 
     // currentMaxSpeed は gearLevel に応じて変化する
@@ -135,6 +135,8 @@ private:
     float wallRunInterval_        = AppConfig::Player::kDefaultWallRunInterval; // 壁走り&ウィリーが可能になるまでのインターバル時間
     float currentWallRunInterval_ = 0.0f; // 現在の壁走りインターバル時間
     float currentWheelieInterval_ = 0.0f; // 現在のウィリーインターバル時間
+    float railInterval_           = 0.f; // 再びレールに乗れるまでのインターバル(定数)
+    float currentRailInterval_    = 0.f;
 
 public:
     float GetDirectionInterpolateRate() const { return directionInterpolateRate_; }
@@ -199,6 +201,14 @@ public:
     }
 
     /// <summary>
+    /// レールに乗れるかどうか
+    /// </summary>
+    /// <returns></returns>
+    bool CanRideRail() const {
+        return currentRailInterval_ <= 0.f;
+    }
+
+    /// <summary>
     /// 壁走りインターバル時間の更新
     /// </summary>
     /// <param name="_deltaTime"></param>
@@ -232,6 +242,17 @@ public:
     }
     void SetupWheelieInterval() {
         currentWheelieInterval_ = wallRunInterval_;
+    }
+
+    void UpdateRailInterval(float _deltaTime) {
+        currentRailInterval_ -= _deltaTime;
+        currentRailInterval_ = (std::max)(currentRailInterval_, 0.f);
+    }
+    void SetupRailInterval() {
+        currentRailInterval_ = railInterval_;
+    }
+    void ResetRailInterval() {
+        currentRailInterval_ = 0.f;
     }
 
     float GetRailSpeedRate() const { return railSpeedRate_; }

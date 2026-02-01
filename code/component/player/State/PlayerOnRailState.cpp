@@ -26,9 +26,11 @@ PlayerOnRailState::~PlayerOnRailState() {}
 void PlayerOnRailState::Initialize() {
     auto* playerState  = scene_->GetComponent<PlayerState>(playerEntityHandle_);
     auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
-    auto* railPoints   = scene_->GetComponent<RailPoints>(playerState->GetRailEntityHandle());
     auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
     auto* transform    = scene_->GetComponent<Transform>(playerEntityHandle_);
+
+    auto* railPoints    = scene_->GetComponent<RailPoints>(playerState->GetRailEntityHandle());
+    auto* railTransform = scene_->GetComponent<Transform>(playerState->GetRailEntityHandle());
 
     // 移動は全て こちらで行うため、更新されないように速度情報を抜く
     rigidbody->SetUseGravity(false);
@@ -40,11 +42,25 @@ void PlayerOnRailState::Initialize() {
     rigidbody->SetMaxFallSpeed(baseSpeed_ * playerStatus->GetRailSpeedRate());
 
     // 事前に必要な情報を計算する
-    std::pair<uint32_t, uint32_t> firstSegmentPoint = CalcPointSegmentIndex(railPoints->points, transform->GetWorldTranslate());
+    Vec3f playerPosOnRail                           = transform->translate * railTransform->worldMat.inverse();
+    std::pair<uint32_t, uint32_t> firstSegmentPoint = CalcPointSegmentIndex(railPoints->points, playerPosOnRail);
     currentRailPointIndex_                          = firstSegmentPoint.first;
     nextRailPointIndex_                             = firstSegmentPoint.second;
 
     railTotalLength_ = CalcSplineLength(railPoints->points);
+
+    // 正確な距離を計算：最も近いセグメントまでの累積距離 + セグメント内の射影距離
+    float accumulatedLength = 0.0f;
+    for (uint32_t i = 0; i < currentRailPointIndex_; ++i) {
+        accumulatedLength += Vec3f(railPoints->points[i + 1] - railPoints->points[i]).length();
+    }
+    // 現在のセグメント内での射影位置を計算
+    const Vec3f& p1    = railPoints->points[currentRailPointIndex_];
+    const Vec3f& p2    = railPoints->points[nextRailPointIndex_];
+    Vec3f lineDir      = p2 - p1;
+    float lineLengthSq = lineDir.lengthSq();
+    float t            = (lineLengthSq > 0.0f) ? std::clamp(Vec3f(playerPosOnRail - p1).dot(lineDir) / lineLengthSq, 0.0f, 1.0f) : 0.0f;
+    traveledDistance_  = accumulatedLength + lineDir.length() * t;
 }
 
 void PlayerOnRailState::Update(float _deltaTime) {
@@ -94,6 +110,8 @@ void PlayerOnRailState::Finalize() {
     auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
     auto* transform    = scene_->GetComponent<Transform>(playerEntityHandle_);
     auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
+
+    playerStatus->SetupRailInterval();
 
     rigidbody->SetUseGravity(true);
     rigidbody->SetMaxFallSpeed(defaultMaxFallDownSpeed_);
