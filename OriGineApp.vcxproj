@@ -259,6 +259,7 @@
     <ClInclude Include="code\system\effect\PlayerSpeedFor3dUI.h" />
     <ClInclude Include="code\system\effect\TimerForSprite.h" />
     <ClInclude Include="code\system\Initialize\RailInitializeSystem.h" />
+    <ClInclude Include="code\component\gimmick\Obstacle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -366,6 +367,7 @@
     <ClCompile Include="code\system\effect\PlayerSpeedFor3dUI.cpp" />
     <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
     <ClCompile Include="code\system\Initialize\RailInitializeSystem.cpp" />
+    <ClCompile Include="code\component\gimmick\Obstacle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">

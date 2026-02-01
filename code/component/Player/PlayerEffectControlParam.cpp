@@ -71,6 +71,10 @@ void PlayerEffectControlParam::Edit(OriGine::Scene* /*_scene*/, OriGine::EntityH
     // ホイール傾き角度の最大加速度
     DragGuiCommand("wheelTiltAngleMaxAccel##" + _parentLabel, wheelTiltAngleMaxAccel_, 0.01f);
 
+    // 無敵時点滅エフェクト
+    DragGuiCommand("invincibleBlinkBaseAmplitude##" + _parentLabel, invincibleBlinkBaseAmplitude_, 0.1f);
+    DragGuiCommand("invincibleBlinkMaxAmplitude##" + _parentLabel, invincibleBlinkMaxAmplitude_, 0.1f);
+
 #endif // _DEBUG
 }
 
@@ -80,7 +84,9 @@ void to_json(nlohmann::json& j, const PlayerEffectControlParam& _p) {
         {"rotateOffsetOnWallRun", _p.rotateOffsetOnWallRun_},
         {"maxWheelSpinSpeed", _p.maxWheelSpinSpeed_},
         {"wheelTiltAngleRate", _p.wheelTiltAngleRate_},
-        {"wheelTiltAngleMaxAccel", _p.wheelTiltAngleMaxAccel_}};
+        {"wheelTiltAngleMaxAccel", _p.wheelTiltAngleMaxAccel_},
+        {"invincibleBlinkBaseAmplitude", _p.invincibleBlinkBaseAmplitude_},
+        {"invincibleBlinkMaxAmplitude", _p.invincibleBlinkMaxAmplitude_}};
 }
 
 void from_json(const nlohmann::json& j, PlayerEffectControlParam& _p) {
@@ -98,4 +104,11 @@ void from_json(const nlohmann::json& j, PlayerEffectControlParam& _p) {
     j.at("maxWheelSpinSpeed").get_to(_p.maxWheelSpinSpeed_);
     j.at("wheelTiltAngleRate").get_to(_p.wheelTiltAngleRate_);
     j.at("wheelTiltAngleMaxAccel").get_to(_p.wheelTiltAngleMaxAccel_);
+
+    if (j.contains("invincibleBlinkBaseAmplitude")) {
+        j.at("invincibleBlinkBaseAmplitude").get_to(_p.invincibleBlinkBaseAmplitude_);
+    }
+    if (j.contains("invincibleBlinkMaxAmplitude")) {
+        j.at("invincibleBlinkMaxAmplitude").get_to(_p.invincibleBlinkMaxAmplitude_);
+    }
 }

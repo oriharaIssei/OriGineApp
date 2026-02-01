@@ -47,6 +47,11 @@ private:
     // 最大傾き角度の加速度
     float wheelTiltAngleMaxAccel_ = 0.0f;
 
+    // 無敵時点滅エフェクトの基本振幅（開始時の点滅速度）
+    float invincibleBlinkBaseAmplitude_ = 8.0f;
+    // 無敵時点滅エフェクトの最大振幅（終了間際の点滅速度）
+    float invincibleBlinkMaxAmplitude_ = 40.0f;
+
     OriGine::EntityHandle tireTrailSplineEntityHandle_ = OriGine::EntityHandle();
 
 public:
@@ -64,6 +69,13 @@ public:
     }
     float GetWheelTiltAngleMaxAccel() const {
         return wheelTiltAngleMaxAccel_;
+    }
+
+    float GetInvincibleBlinkBaseAmplitude() const {
+        return invincibleBlinkBaseAmplitude_;
+    }
+    float GetInvincibleBlinkMaxAmplitude() const {
+        return invincibleBlinkMaxAmplitude_;
     }
 
     float GetPreWheelTiltAngle() const {

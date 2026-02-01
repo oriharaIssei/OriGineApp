@@ -13,6 +13,7 @@
 #include "component/Camera/CameraShakeSourceComponent.h"
 #include "component/ghost/GhostReplayComponent.h"
 #include "component/ghost/PlayRecordeComponent.h"
+#include "component/gimmick/Obstacle.h"
 #include "component/gimmick/RailPoints.h"
 #include "component/LookAtFromTransforms.h"
 #include "component/MouseCondition.h"
@@ -125,8 +126,10 @@ void RegisterUsingComponents() {
 
     componentRegistry->RegisterComponent<SplinePoints>();
     componentRegistry->RegisterComponent<TireSplinePoints>();
-    componentRegistry->RegisterComponent<RailPoints>();
 
+    componentRegistry->RegisterComponent<RailPoints>();
+    componentRegistry->RegisterComponent<Obstacle>();
+    
     componentRegistry->RegisterComponent<GhostReplayComponent>();
     componentRegistry->RegisterComponent<PlayRecordeComponent>();
 

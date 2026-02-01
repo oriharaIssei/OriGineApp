@@ -382,6 +382,7 @@
       <Filter>system\effect</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Initialize\RailInitializeSystem.h" />
+    <ClInclude Include="code\component\gimmick\Obstacle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -689,5 +690,6 @@
       <Filter>system\effect</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Initialize\RailInitializeSystem.cpp" />
+    <ClCompile Include="code\component\gimmick\Obstacle.cpp" />
   </ItemGroup>
 </Project>

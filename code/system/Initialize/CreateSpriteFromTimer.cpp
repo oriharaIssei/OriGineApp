@@ -29,7 +29,7 @@ void CreateSpriteFromTimer::UpdateEntity(OriGine::EntityHandle _handle) {
     }
 
     // Sprite用のEntityを作成
-    EntityHandle spriteEntityId        = CreateEntity("TimerForSprite_Sprites", false);
+    EntityHandle spriteEntityId   = CreateEntity("TimerForSprite_Sprites", false);
     OriGine::Entity* spriteEntity = GetEntity(spriteEntityId);
     spriteEntity->SetShouldSave(false); // セーブしない
     CreateSprites(spriteEntityId, timerForSpriteComponent);
@@ -65,37 +65,40 @@ void CreateSpriteFromTimer::CreateSprites(OriGine::EntityHandle _handle, TimerFo
 
     // 整数部
     for (int i = 0; i < digitInteger; ++i) {
-        AddComponent<SpriteRenderer>(_handle);
-        auto* sprite = GetComponent<SpriteRenderer>(_handle, i);
+        auto* sprite = GetComponent<SpriteRenderer>(AddComponent<SpriteRenderer>(_handle));
+        if (sprite) {
+            sprite->SetIsRender(true);
 
-        sprite->SetIsRender(true);
+            sprite->SetTexture(_forSpriteComp->numbersTexturePath, false);
+            sprite->SetAnchorPoint({0.5f, 0.5f});
+            sprite->SetSize(_forSpriteComp->spriteSizeInteger);
+            sprite->SetTextureSize(_forSpriteComp->numbersTextureSize);
+            sprite->SetUVScale(uvScale);
+            sprite->SetTranslate(pos);
 
-        sprite->SetTexture(_forSpriteComp->numbersTexturePath, false);
-        sprite->SetAnchorPoint({0.5f, 0.5f});
-        sprite->SetSize(_forSpriteComp->spriteSizeInteger);
-        sprite->SetTextureSize(_forSpriteComp->numbersTextureSize);
-        sprite->SetUVScale(uvScale);
-        sprite->SetTranslate(pos);
-
-        pos[X] += _forSpriteComp->spriteSizeInteger[X];
-        pos += _forSpriteComp->spriteMarginInteger;
+            pos[X] += _forSpriteComp->spriteSizeInteger[X];
+            pos += _forSpriteComp->spriteMarginInteger;
+        }
     }
 
-    pos += _forSpriteComp->marginBetweenIntegerAndDecimal; // 整数部と小数部の間のスペース
+    // 整数部と小数部の間のスペース
+    pos += _forSpriteComp->marginBetweenIntegerAndDecimal;
 
     // 小数部
     for (int i = digitInteger; i < digitAll; ++i) {
-        AddComponent<SpriteRenderer>(_handle);
-        auto* sprite = GetComponent<SpriteRenderer>(_handle, i);
+        auto* sprite = GetComponent<SpriteRenderer>(AddComponent<SpriteRenderer>(_handle));
+        if (sprite) {
+            sprite->SetIsRender(true);
 
-        sprite->SetTexture(_forSpriteComp->numbersTexturePath, false);
-        sprite->SetAnchorPoint({0.5f, 0.5f});
-        sprite->SetSize(_forSpriteComp->spriteSizeDecimal);
-        sprite->SetTextureSize(_forSpriteComp->numbersTextureSize);
-        sprite->SetUVScale(uvScale);
-        sprite->SetTranslate(pos);
+            sprite->SetTexture(_forSpriteComp->numbersTexturePath, false);
+            sprite->SetAnchorPoint({0.5f, 0.5f});
+            sprite->SetSize(_forSpriteComp->spriteSizeDecimal);
+            sprite->SetTextureSize(_forSpriteComp->numbersTextureSize);
+            sprite->SetUVScale(uvScale);
+            sprite->SetTranslate(pos);
 
-        pos[X] += _forSpriteComp->spriteSizeDecimal[X];
-        pos += _forSpriteComp->spriteMarginDecimal;
+            pos[X] += _forSpriteComp->spriteSizeDecimal[X];
+            pos += _forSpriteComp->spriteMarginDecimal;
+        }
     }
 }
