@@ -116,7 +116,7 @@ public:
     /// </summary>
     /// <param name="_penaltyTime">ペナルティー時間</param>
     /// <param name="_invincibility"></param>
-    void OnCollisionObstacle(float _penaltyTime, float _invincibility);
+    void OnCollisionObstacle(float _penaltyTime, float _invincibilityTime);
     /// <summary>
     /// ペナルティを受ける
     /// </summary>

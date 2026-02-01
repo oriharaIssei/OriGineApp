@@ -26,13 +26,13 @@
             {
                 "Handle": "1fbfa405-96a4-4206-a463-c3133d97c0f3",
                 "color": [
-                    0.3586497902870178,
-                    0.3586497902870178,
-                    0.3586497902870178,
+                    0.09282702207565308,
+                    0.09282702207565308,
+                    0.09282702207565308,
                     1.0
                 ],
                 "enableLighting": true,
-                "shininess": 68.0,
+                "shininess": 100.0,
                 "specularColor": [
                     1.0,
                     1.0,
@@ -246,6 +246,8 @@
         "PlayerEffectControlParam": [
             {
                 "Handle": "eba370f8-fa85-4975-83cf-21231ea46835",
+                "invincibleBlinkBaseAmplitude": 8.0,
+                "invincibleBlinkMaxAmplitude": 40.0,
                 "maxWheelSpinSpeed": 0.18700000643730164,
                 "rotateOffsetOnWallRun": 0.5699999928474426,
                 "trailColorByGearLevel": [
@@ -425,7 +427,7 @@
         ]
     },
     "Handle": {
-        "uuid": "6665a3a1-5839-42ce-9e29-5f987e644bf4"
+        "uuid": "798ccd3a-79db-403d-9534-2acf2e5aaba7"
     },
     "Name": "Player",
     "Systems": [
