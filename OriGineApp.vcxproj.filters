@@ -102,6 +102,9 @@
     <ClInclude Include="code\component\ghost\PlayRecordeComponent.h">
       <Filter>component\ghost</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\gimmick\Obstacle.h">
+      <Filter>component\gimmick</Filter>
+    </ClInclude>
     <ClInclude Include="code\component\gimmick\RailPoints.h">
       <Filter>component\gimmick</Filter>
     </ClInclude>
@@ -208,6 +211,9 @@
       <Filter>system\Initialize</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Initialize\PlayRecorderInitialize.h">
+      <Filter>system\Initialize</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Initialize\RailInitializeSystem.h">
       <Filter>system\Initialize</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Initialize\SelectPreviewSceneInitialize.h">
@@ -381,8 +387,6 @@
     <ClInclude Include="code\system\effect\TimerForSprite.h">
       <Filter>system\effect</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Initialize\RailInitializeSystem.h" />
-    <ClInclude Include="code\component\gimmick\Obstacle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -426,6 +430,9 @@
     </ClCompile>
     <ClCompile Include="code\component\ghost\PlayRecordeComponent.cpp">
       <Filter>component\ghost</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\gimmick\Obstacle.cpp">
+      <Filter>component\gimmick</Filter>
     </ClCompile>
     <ClCompile Include="code\component\gimmick\RailPoints.cpp">
       <Filter>component\gimmick</Filter>
@@ -519,6 +526,9 @@
       <Filter>system\Initialize</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Initialize\PlayRecorderInitialize.cpp">
+      <Filter>system\Initialize</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Initialize\RailInitializeSystem.cpp">
       <Filter>system\Initialize</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Initialize\SelectPreviewSceneInitialize.cpp">
@@ -689,7 +699,5 @@
     <ClCompile Include="code\system\effect\TimerForSprite.cpp">
       <Filter>system\effect</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Initialize\RailInitializeSystem.cpp" />
-    <ClCompile Include="code\component\gimmick\Obstacle.cpp" />
   </ItemGroup>
 </Project>

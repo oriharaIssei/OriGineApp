@@ -385,12 +385,12 @@
             "Name": "startButton",
             "Systems": [
                 {
-                    "SystemCategory": 2,
-                    "SystemName": "ChangeSceneByButton"
-                },
-                {
                     "SystemCategory": 1,
                     "SystemName": "ButtonInputSystem"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "ChangeSceneByButton"
                 },
                 {
                     "SystemCategory": 7,
@@ -899,6 +899,8 @@
                 "PlayerEffectControlParam": [
                     {
                         "Handle": "ef29d4ac-b3b3-49e0-b44c-e60575c46066",
+                        "invincibleBlinkBaseAmplitude": 8.0,
+                        "invincibleBlinkMaxAmplitude": 40.0,
                         "maxWheelSpinSpeed": 0.18700000643730164,
                         "rotateOffsetOnWallRun": 0.5699999928474426,
                         "trailColorByGearLevel": [
@@ -964,6 +966,7 @@
                         "directionInterpolateRate": 37.880001068115234,
                         "fallingGravityRate": 1.0,
                         "gearUpCoolTime": 0.46000000834465027,
+                        "gravityApplyDelayOnWallRun": 0.20000000298023224,
                         "jumpChargeRateEaseType": 8,
                         "jumpHoldVelocityEaseType": 2,
                         "massOnWallRun": 0.30000001192092896,
@@ -971,18 +974,26 @@
                         "maxJumpHoldVelocity": 0.2800000011920929,
                         "minJumpChargeRate": 0.15000000596046448,
                         "minJumpHoldVelocity": 0.12999999523162842,
+                        "railInterval": 0.0,
+                        "railJumpOffset": [
+                            0.0,
+                            1.0,
+                            0.0
+                        ],
+                        "railRampUpTime": 0.0,
+                        "railSpeedRate": 1.0,
                         "risingGravityRate": 1.25,
                         "speedUpRateBase": 10.130000114440918,
                         "speedUpRateCommonRate": -0.4000000059604645,
-                        "upwardForceOnWallRun": 1.0,
                         "wallJumpOffset": [
                             0.75,
                             0.20999999344348907,
                             1.0399999618530273
                         ],
+                        "wallRunDetachSpeed": 5.0,
                         "wallRunInterval": 0.20000000298023224,
-                        "wallRunRate": 1.7999999523162842,
                         "wallRunRampUpTime": 0.5400000214576721,
+                        "wallRunRate": 1.7999999523162842,
                         "wheelieJumpOffset": [
                             0.0,
                             1.0,
@@ -1439,744 +1450,6 @@
                         "pushBackType": 0
                     }
                 ],
-                "Emitter": [
-                    {
-                        "EmitterShape": {
-                            "radius": 17.290000915527344,
-                            "spawnType": 1
-                        },
-                        "Handle": "dd2861b3-c5da-4600-9c08-bf243f556a73",
-                        "activeTime": 2.299999952316284,
-                        "blendMode": 1,
-                        "colorCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.6203201413154602,
-                                    0.9367088675498962,
-                                    0.13042780756950378,
-                                    1.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    1.0,
-                                    1.0,
-                                    1.0,
-                                    0.0470588244497776
-                                ]
-                            },
-                            {
-                                "time": 0.21245135366916656,
-                                "value": [
-                                    0.8902953863143921,
-                                    0.8210611939430237,
-                                    0.10893908143043518,
-                                    0.5215686559677124
-                                ]
-                            },
-                            {
-                                "time": 0.571088433265686,
-                                "value": [
-                                    0.7257384061813354,
-                                    0.35769450664520264,
-                                    0.07961685210466385,
-                                    1.0
-                                ]
-                            },
-                            {
-                                "time": 1.149999976158142,
-                                "value": [
-                                    0.8396624326705933,
-                                    0.7224783301353455,
-                                    0.12754367291927338,
-                                    1.0
-                                ]
-                            },
-                            {
-                                "time": 1.5176870822906494,
-                                "value": [
-                                    0.5940300822257996,
-                                    0.8860759735107422,
-                                    0.18693585693836212,
-                                    1.0
-                                ]
-                            },
-                            {
-                                "time": 1.9088435173034668,
-                                "value": [
-                                    0.5852437615394592,
-                                    0.7848101258277893,
-                                    0.09934304654598236,
-                                    0.4156862795352936
-                                ]
-                            },
-                            {
-                                "time": 2.299999952316284,
-                                "value": [
-                                    0.11462701857089996,
-                                    0.6751054525375366,
-                                    0.014242743141949177,
-                                    0.003921568859368563
-                                ]
-                            }
-                        ],
-                        "colorInterpolationType": 0,
-                        "isActive": true,
-                        "isLoop": true,
-                        "originPos": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "particleColor": [
-                            0.6203201413154602,
-                            0.9367088675498962,
-                            0.13042780756950378,
-                            1.0
-                        ],
-                        "particleIsBillBoard": true,
-                        "particleLifeTime": 1.899999976158142,
-                        "particleUvRotate": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "particleUvScale": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "particleUvTranslate": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "randMass": [
-                            1.0,
-                            1.0
-                        ],
-                        "scaleCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.10000000149011612,
-                                    0.10000000149011612,
-                                    0.10000000149011612
-                                ]
-                            },
-                            {
-                                "time": 0.3050583600997925,
-                                "value": [
-                                    0.5,
-                                    0.5,
-                                    1.0
-                                ]
-                            },
-                            {
-                                "time": 0.9914396405220032,
-                                "value": [
-                                    0.800000011920929,
-                                    0.800000011920929,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 2.299999952316284,
-                                "value": [
-                                    0.10000000149011612,
-                                    0.10000000149011612,
-                                    0.10000000149011612
-                                ]
-                            }
-                        ],
-                        "shapeType": 0,
-                        "spawnCoolTime": 0.029999999329447746,
-                        "spawnParticleVal": 7,
-                        "startParticleRotateMax": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "startParticleRotateMin": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "startParticleScaleMax": [
-                            0.5,
-                            0.5,
-                            0.5
-                        ],
-                        "startParticleScaleMin": [
-                            0.10000000149011612,
-                            0.10000000149011612,
-                            0.10000000149011612
-                        ],
-                        "startParticleVelocityMax": [
-                            0.0,
-                            0.0,
-                            -1.399999976158142
-                        ],
-                        "startParticleVelocityMin": [
-                            0.0,
-                            0.0,
-                            -10.600000381469727
-                        ],
-                        "textureFileName": "application/resource\\Texture/circle.png",
-                        "transformInterpolationType": 0,
-                        "updateParticleRotateMax": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "updateParticleRotateMin": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "updateParticleScaleMax": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "updateParticleScaleMin": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "updateParticleVelocityMax": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "updateParticleVelocityMin": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "updateSettings": 4386,
-                        "uvInterpolationType": 0,
-                        "velocityCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    -10.600000381469727
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0,
-                                    -10.600000381469727
-                                ]
-                            },
-                            {
-                                "time": 0.2758064270019531,
-                                "value": [
-                                    0.5,
-                                    0.0,
-                                    6.599999904632568
-                                ]
-                            },
-                            {
-                                "time": 0.7048386931419373,
-                                "value": [
-                                    -0.30000001192092896,
-                                    0.0,
-                                    -2.803999900817871
-                                ]
-                            },
-                            {
-                                "time": 1.1032257080078125,
-                                "value": [
-                                    -0.4997977614402771,
-                                    0.0,
-                                    -5.004000186920166
-                                ]
-                            },
-                            {
-                                "time": 1.899999976158142,
-                                "value": [
-                                    -1.100000023841858,
-                                    0.0,
-                                    0.0
-                                ]
-                            }
-                        ]
-                    }
-                ],
                 "Material": [
                     {
                         "Handle": "80b68f7b-2057-4628-a6a7-52337e5932ea",
@@ -2287,14 +1560,6 @@
             },
             "Name": "Goal",
             "Systems": [
-                {
-                    "SystemCategory": 5,
-                    "SystemName": "EmitterWorkSystem"
-                },
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "ParticleRenderSystem"
-                },
                 {
                     "SystemCategory": 6,
                     "SystemName": "TexturedMeshRenderSystem"
@@ -2650,13 +1915,13 @@
             }
         },
         {
-            "ChangeSceneByButton": {
-                "Priority": 10
+            "ButtonInputSystem": {
+                "Priority": 0
             }
         },
         {
-            "ButtonInputSystem": {
-                "Priority": 0
+            "ChangeSceneByButton": {
+                "Priority": 10
             }
         },
         {
@@ -2680,13 +1945,13 @@
             }
         },
         {
-            "ParticleRenderSystem": {
-                "Priority": 3
+            "MaterialAnimationWorkSystem": {
+                "Priority": 0
             }
         },
         {
-            "MaterialAnimationWorkSystem": {
-                "Priority": 0
+            "ParticleRenderSystem": {
+                "Priority": 3
             }
         },
         {

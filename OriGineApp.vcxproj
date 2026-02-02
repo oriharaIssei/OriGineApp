@@ -165,6 +165,7 @@
     <ClInclude Include="code\component\camera\CameraShakeSourceComponent.h" />
     <ClInclude Include="code\component\ghost\GhostReplayComponent.h" />
     <ClInclude Include="code\component\ghost\PlayRecordeComponent.h" />
+    <ClInclude Include="code\component\gimmick\Obstacle.h" />
     <ClInclude Include="code\component\gimmick\RailPoints.h" />
     <ClInclude Include="code\component\player\PlayerConfig.h" />
     <ClInclude Include="code\component\player\PlayerEffectControlParam.h" />
@@ -201,6 +202,7 @@
     <ClInclude Include="code\system\Initialize\InitializeMouseCondition.h" />
     <ClInclude Include="code\system\Initialize\PlacementEntityByProcedural.h" />
     <ClInclude Include="code\system\Initialize\PlayRecorderInitialize.h" />
+    <ClInclude Include="code\system\Initialize\RailInitializeSystem.h" />
     <ClInclude Include="code\system\Initialize\SelectPreviewSceneInitialize.h" />
     <ClInclude Include="code\system\Initialize\SettingGameCameraTarget.h" />
     <ClInclude Include="code\system\Initialize\StartTimerInitialize.h" />
@@ -258,8 +260,6 @@
     <ClInclude Include="code\system\effect\PenaltyTimeSpriteUpdate.h" />
     <ClInclude Include="code\system\effect\PlayerSpeedFor3dUI.h" />
     <ClInclude Include="code\system\effect\TimerForSprite.h" />
-    <ClInclude Include="code\system\Initialize\RailInitializeSystem.h" />
-    <ClInclude Include="code\component\gimmick\Obstacle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -278,6 +278,7 @@
     <ClCompile Include="code\component\camera\CameraShakeSourceComponent.cpp" />
     <ClCompile Include="code\component\ghost\GhostReplayComponent.cpp" />
     <ClCompile Include="code\component\ghost\PlayRecordeComponent.cpp" />
+    <ClCompile Include="code\component\gimmick\Obstacle.cpp" />
     <ClCompile Include="code\component\gimmick\RailPoints.cpp" />
     <ClCompile Include="code\component\player\PlayerEffectControlParam.cpp" />
     <ClCompile Include="code\component\player\PlayerInput.cpp" />
@@ -310,6 +311,7 @@
     <ClCompile Include="code\system\Initialize\InitializeMouseCondition.cpp" />
     <ClCompile Include="code\system\Initialize\PlacementEntityByProcedural.cpp" />
     <ClCompile Include="code\system\Initialize\PlayRecorderInitialize.cpp" />
+    <ClCompile Include="code\system\Initialize\RailInitializeSystem.cpp" />
     <ClCompile Include="code\system\Initialize\SelectPreviewSceneInitialize.cpp" />
     <ClCompile Include="code\system\Initialize\SettingGameCameraTarget.cpp" />
     <ClCompile Include="code\system\Initialize\StartTimerInitialize.cpp" />
@@ -366,8 +368,6 @@
     <ClCompile Include="code\system\effect\PenaltyTimeSpriteUpdate.cpp" />
     <ClCompile Include="code\system\effect\PlayerSpeedFor3dUI.cpp" />
     <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
-    <ClCompile Include="code\system\Initialize\RailInitializeSystem.cpp" />
-    <ClCompile Include="code\component\gimmick\Obstacle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">
