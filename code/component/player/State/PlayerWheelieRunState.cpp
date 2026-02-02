@@ -9,11 +9,12 @@
 /// math
 #include "math/mathEnv.h"
 
+/// config
+#include "component/player/PlayerConfig.h"
+
 using namespace OriGine;
 
 void PlayerWheelieRunState::Initialize() {
-    constexpr float kUpwardSpeedCorrectionValue = 0.4f;
-
     auto* playerState = scene_->GetComponent<PlayerState>(playerEntityHandle_);
     auto* rigidbody   = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
     auto* transform   = scene_->GetComponent<OriGine::Transform>(playerEntityHandle_);
@@ -48,7 +49,7 @@ void PlayerWheelieRunState::Initialize() {
     // velocityの方向を進行方向に合わせる
     const Vec3f& currentVelo = rigidbody->GetVelocity();
     float newSpeed           = Vec2f(currentVelo[X], currentVelo[Z]).length();
-    newSpeed += currentVelo[Y] * kUpwardSpeedCorrectionValue;
+    newSpeed += currentVelo[Y] * AppConfig::Player::kWheelieUpwardSpeedCorrectionValue;
     rigidbody->SetVelocity(newSpeed * climbDirection);
 
     // 壁との分離猶予
@@ -58,7 +59,7 @@ void PlayerWheelieRunState::Finalize() {
     auto* transform    = scene_->GetComponent<OriGine::Transform>(playerEntityHandle_);
     auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
 
-    transform->translate += wallNormal_ * 0.1f;
+    transform->translate += wallNormal_ * AppConfig::Player::kWheelieWallOffset;
 
     playerStatus->SetupWheelieInterval();
 }
@@ -68,7 +69,7 @@ void PlayerWheelieRunState::Update(float _deltaTime) {
     auto* playerState = scene_->GetComponent<PlayerState>(playerEntityHandle_);
 
     // 衝突が途切れないようにめり込ませる
-    transform->translate -= wallNormal_ * 0.1f;
+    transform->translate -= wallNormal_ * AppConfig::Player::kWheelieWallOffset;
 
     // 回転アニメーション
     rotateTimer_ += _deltaTime;
@@ -92,7 +93,7 @@ PlayerMoveState PlayerWheelieRunState::TransitionState() const {
         return PlayerMoveState::FALL_DOWN;
     }
 
-    if (rigidbody->GetVelocity()[Y] <= 0.f) {
+    if (rigidbody->GetVelocity()[Y] <= AppConfig::Player::kWheelieFallThresholdVelocity) {
         return PlayerMoveState::FALL_DOWN;
     }
 

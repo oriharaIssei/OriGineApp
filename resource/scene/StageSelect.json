@@ -81,6 +81,11 @@
                                 "entityHandle": {
                                     "uuid": "fca26f2b-f3eb-4af4-b63e-109b91586745"
                                 }
+                            },
+                            {
+                                "entityHandle": {
+                                    "uuid": "115ef8a1-9abf-483f-bad7-37f5bc73429e"
+                                }
                             }
                         ],
                         "decideGamepadButtons": [
@@ -111,7 +116,7 @@
                             256,
                             65536,
                             262144,
-                            16777216
+                            1048576
                         ],
                         "selectSubKeys": [
                             17,
@@ -249,7 +254,7 @@
                         ],
                         "size": [
                             768.0,
-                            768.0
+                            288.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -258,7 +263,7 @@
                         "texturePath": "./application/resource/Texture/stageSelectButtonTutorial.png",
                         "textureSize": [
                             512.0,
-                            512.0
+                            192.0
                         ],
                         "translate": [
                             438.0,
@@ -279,14 +284,14 @@
                         ],
                         "windowRatioSize": [
                             0.4000000059604645,
-                            0.7111111283302307
+                            0.2666666805744171
                         ]
                     }
                 ],
                 "SubScene": [
                     {
                         "Handle": "0eba0c97-936d-4cf6-852d-dec1f04a5b69",
-                        "isActive": true,
+                        "isActive": false,
                         "renderingPriority": -1,
                         "sceneName": "Tutorial"
                     }
@@ -410,13 +415,13 @@
                 ],
                 "SceneChanger": [
                     {
-                        "Handle": "3dd9616e-2560-4d26-90e6-faf5e21d25f8",
+                        "Handle": "3dd9616e-2560-4d26-90e6-fff5e21d25f8",
                         "nextSceneName": "01"
                     }
                 ],
                 "SpriteRenderer": [
                     {
-                        "Handle": "f8ca409b-42d5-465d-b67c-b18d0d33ee22",
+                        "Handle": "eef09628-df02-449c-ae60-bb06ba045292",
                         "anchorPoint": [
                             0.5,
                             0.5
@@ -434,52 +439,52 @@
                         "isFlipX": false,
                         "isFlipY": false,
                         "isRender": true,
-                        "renderingPriority": 10,
+                        "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
                             1.0,
                             1.0
                         ],
                         "size": [
-                            768.0,
-                            768.0
+                            128.0,
+                            128.0
                         ],
                         "textureLeftTop": [
                             0.0,
                             0.0
                         ],
-                        "texturePath": "./application/resource/Texture/stageSelectButtonFirstStage.png",
+                        "texturePath": "./application/resource/Texture/NumbersUI.png",
                         "textureSize": [
-                            512.0,
-                            512.0
+                            1280.0,
+                            128.0
                         ],
                         "translate": [
-                            1482.0,
+                            960.0,
                             540.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
-                            1.0,
+                            0.10000000149011612,
                             1.0
                         ],
                         "uvTranslate": [
-                            0.0,
+                            0.10000000149011612,
                             0.0
                         ],
                         "windowRatioPos": [
-                            0.7718750238418579,
+                            0.5,
                             0.5
                         ],
                         "windowRatioSize": [
-                            0.4000000059604645,
-                            0.7111111283302307
+                            0.06666667014360428,
+                            0.11851851642131805
                         ]
                     }
                 ],
                 "SubScene": [
                     {
                         "Handle": "186d738f-5055-4722-a111-826f6fcd4a13",
-                        "isActive": true,
+                        "isActive": false,
                         "renderingPriority": -1,
                         "sceneName": "01"
                     }
@@ -1229,6 +1234,199 @@
                 {
                     "SystemCategory": 2,
                     "SystemName": "SceneTransition"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "Button": [
+                    {
+                        "Handle": "e64edf1b-2f06-464a-9a38-d939ac94ff6b",
+                        "hoverColor": [
+                            0.8941176533699036,
+                            0.8941176533699036,
+                            0.8941176533699036,
+                            1.0
+                        ],
+                        "normalColor": [
+                            0.4117647111415863,
+                            0.4117647111415863,
+                            0.4117647111415863,
+                            1.0
+                        ],
+                        "pressColor": [
+                            0.6000000238418579,
+                            0.6000000238418579,
+                            0.6000000238418579,
+                            1.0
+                        ],
+                        "releaseColor": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "shortKeys": [],
+                        "shortcutGamepadButton": []
+                    }
+                ],
+                "DissolveEffectParam": [
+                    {
+                        "Handle": "c623a9c2-4a75-4d2a-8a3f-5514bfb3e36f",
+                        "edgeWidth": 0.012000000104308128,
+                        "isActive": false,
+                        "materialIndex": 0,
+                        "outLineColor": [
+                            0.07450980693101883,
+                            0.6000000238418579,
+                            0.7960784435272217,
+                            1.0
+                        ],
+                        "textureFilePath": "./application/resource/Texture/bioNoise.png",
+                        "threshold": 0.9070000052452087
+                    }
+                ],
+                "Material": [
+                    {
+                        "Handle": "55c44371-311f-486c-ba82-e3314dd1c4d7",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "SceneChanger": [
+                    {
+                        "Handle": "3dd9616e-2560-4d26-90e6-faf5e21d25f8",
+                        "nextSceneName": "02"
+                    }
+                ],
+                "SpriteRenderer": [
+                    {
+                        "Handle": "f8ca409b-42d5-465d-b67c-b18d0d33ee22",
+                        "anchorPoint": [
+                            0.5,
+                            0.5
+                        ],
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "defaultWindowSize": [
+                            1920.0,
+                            1080.0
+                        ],
+                        "isFlipX": false,
+                        "isFlipY": false,
+                        "isRender": true,
+                        "renderingPriority": 10,
+                        "rotate": 0.0,
+                        "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "size": [
+                            128.0,
+                            128.0
+                        ],
+                        "textureLeftTop": [
+                            0.0,
+                            0.0
+                        ],
+                        "texturePath": "./application/resource/Texture/NumbersUI.png",
+                        "textureSize": [
+                            1280.0,
+                            128.0
+                        ],
+                        "translate": [
+                            1470.719970703125,
+                            540.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            0.10000000149011612,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.20000000298023224,
+                            0.0
+                        ],
+                        "windowRatioPos": [
+                            0.765999972820282,
+                            0.5
+                        ],
+                        "windowRatioSize": [
+                            0.06666667014360428,
+                            0.11851851642131805
+                        ]
+                    }
+                ],
+                "SubScene": [
+                    {
+                        "Handle": "186d738f-5055-4722-a111-826f6fcd4a13",
+                        "isActive": false,
+                        "renderingPriority": -1,
+                        "sceneName": "02"
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "115ef8a1-9abf-483f-bad7-37f5bc73429e"
+            },
+            "Name": "to01Stage",
+            "Systems": [
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "ChangeSceneByButton"
+                },
+                {
+                    "SystemCategory": 7,
+                    "SystemName": "DissolveEffect"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "SceneTransition"
+                },
+                {
+                    "SystemCategory": 0,
+                    "SystemName": "SelectPreviewSceneInitialize"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "SpriteRenderSystem"
+                },
+                {
+                    "SystemCategory": 7,
+                    "SystemName": "SubSceneRender"
+                },
+                {
+                    "SystemCategory": 2,
+                    "SystemName": "UpdateButtonColorByState"
+                },
+                {
+                    "SystemCategory": 3,
+                    "SystemName": "SubSceneUpdate"
                 }
             ],
             "isUnique": false

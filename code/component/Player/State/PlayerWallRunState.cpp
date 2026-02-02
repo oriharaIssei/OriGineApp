@@ -28,15 +28,17 @@
 #include "math/mathEnv.h"
 #include "MyEasing.h"
 
+#include "component/player/PlayerConfig.h"
+
 using namespace OriGine;
 
 namespace {
-constexpr float kOffsetRate = 0.1f;
+constexpr float kOffsetRate = AppConfig::Player::kWallRunOffsetRate;
 }
 
 void PlayerWallRunState::Initialize() {
-    constexpr int32_t thresholdGearLevel = 3;
-    constexpr float kMeshOffsetRate      = 0.26f;
+    constexpr int32_t thresholdGearLevel = AppConfig::Player::kWallRunThresholdGearLevel;
+    constexpr float kMeshOffsetRate      = AppConfig::Player::kWallRunMeshOffsetRate;
 
     auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
     auto* state        = scene_->GetComponent<PlayerState>(playerEntityHandle_);
@@ -290,7 +292,7 @@ std::deque<Vec3f> PlayerWallRunState::SplinePointsSetup(Rigidbody* _rigidbody, c
     float forwardSpeed = playerSpeed_;
     float upwardSpeed  = _rigidbody->GetVelocity()[Y];
     float accelY       = _rigidbody->GetAcceleration()[Y];
-    float downSpeed    = (std::min)(_gravity * _rigidbody->GetMass(), _rigidbody->maxFallSpeed());
+    float downSpeed    = (std::min)(_gravity * _rigidbody->GetMass(), _rigidbody->MaxFallSpeed());
 
     Vec3f pos = Vec3f();
     splinePoints.push_back(pos);

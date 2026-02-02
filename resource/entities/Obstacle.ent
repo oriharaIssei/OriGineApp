@@ -2,7 +2,7 @@
     "Components": {
         "AABBCollider": [
             {
-                "Handle": "88c6bf69-93e1-4992-91c6-818aa1027dfd",
+                "Handle": "7b0d7880-8ecc-404a-85a7-342db9ab448d",
                 "center": [
                     0.0,
                     0.0,
@@ -35,7 +35,7 @@
         ],
         "BoxRenderer": [
             {
-                "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
+                "Handle": "f16f47df-12f3-4b03-98fd-520601e10560",
                 "blendMode": 1,
                 "isCulling": true,
                 "isRenderer": true,
@@ -45,7 +45,7 @@
                     1.0,
                     1.0
                 ],
-                "textureFilePath": "",
+                "textureFilePath": "./application/resource/Texture/Obstacle.png",
                 "transform": {
                     "rotate": [
                         0.0,
@@ -66,23 +66,17 @@
                 }
             }
         ],
-        "CollisionPushBackInfo": [
-            {
-                "Handle": "2efe1ba0-82f4-4bd9-a433-44f37c092c92",
-                "pushBackType": 1
-            }
-        ],
         "Material": [
             {
-                "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
+                "Handle": "796f186f-2eb8-4424-b43d-db82cd1743fd",
                 "color": [
                     1.0,
                     1.0,
                     1.0,
                     1.0
                 ],
-                "enableLighting": true,
-                "shininess": 60.0,
+                "enableLighting": false,
+                "shininess": 0.0,
                 "specularColor": [
                     1.0,
                     1.0,
@@ -99,9 +93,16 @@
                 ]
             }
         ],
+        "Obstacle": [
+            {
+                "Handle": "5eaf1c16-ce4e-4b6b-955a-bada486ceb73",
+                "invincibilityTimeOnCollision": 1.0,
+                "penaltyTime": 1.5
+            }
+        ],
         "Transform": [
             {
-                "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
+                "Handle": "5e78a81c-cf1d-42b0-8fb8-233c490b6d37",
                 "rotate": [
                     -0.0,
                     0.0,
@@ -109,22 +110,22 @@
                     1.0
                 ],
                 "scale": [
-                    64.0,
-                    64.0,
-                    128.0
+                    2.990410327911377,
+                    2.199272394180298,
+                    1.0
                 ],
                 "translate": [
-                    5.560613632202148,
-                    43.03282165527344,
-                    2004.1031494140625
+                    -0.33762454986572266,
+                    2.407261610031128,
+                    18.597822189331055
                 ]
             }
         ]
     },
     "Handle": {
-        "uuid": "f6cbbfb7-1eb0-4d19-ab55-a9c0029438fd"
+        "uuid": "3cf6d9ec-59f7-455e-ad53-11f136529015"
     },
-    "Name": "Floor",
+    "Name": "Obstacle",
     "Systems": [
         {
             "SystemCategory": 4,

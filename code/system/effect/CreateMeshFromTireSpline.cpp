@@ -1,5 +1,7 @@
 #include "CreateMeshFromTireSpline.h"
 
+#include "EffectConfig.h"
+
 /// math
 #include <Vector2.h>
 #include <Vector3.h>
@@ -72,12 +74,12 @@ static TireSplineSegment BuildTireSplineSegment(
     seg.minWidthHalf =
         std::lerp(commonSettings.startWidth, commonSettings.endWidth,
             EasingFunctions[widthEase](prevRatio))
-        * 0.5f;
+        * EffectConfig::Spline::kHalfMultiplier;
 
     seg.maxWidthHalf =
         std::lerp(commonSettings.startWidth, commonSettings.endWidth,
             EasingFunctions[widthEase](ratio))
-        * 0.5f;
+        * EffectConfig::Spline::kHalfMultiplier;
 
     return seg;
 }
@@ -123,7 +125,7 @@ void CreateMeshFromTireSpline::UpdateEntity(OriGine::EntityHandle _handle) {
         return;
     }
 
-    if (splineComp->points.size() < 4) {
+    if (splineComp->points.size() < EffectConfig::TireSpline::kMinPoints) {
         planeRendererComp->SetIsRender(false);
         return;
     }

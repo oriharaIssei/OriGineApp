@@ -123,20 +123,29 @@ void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
 
     status->UpdateWallRunInterval(deltaTime);
     status->UpdateWheelieInterval(deltaTime);
+    status->UpdateRailInterval(deltaTime);
 
-    ///! Penalty専用のエフェクトシステムを作る
     // ペナルティ時間 更新
     state->SubtractPenaltyTime(deltaTime);
     float currentInvisibleTime = state->GetInvincibilityTime();
     if (currentInvisibleTime > 0.f) {
-        constexpr float kAmplitude = 13.f;
         state->SubtractInvincibilityTime(deltaTime);
 
         // animation 更新
         Material* material = GetComponent<Material>(_handle);
-        float t            = currentInvisibleTime / status->GetInvincibilityTime();
+        // 残り時間の割合 (1.0 → 0.0 に減少)
+        float t = currentInvisibleTime / status->GetInvincibilityTime();
+
+        // 点滅の振幅を残り時間に応じて変化させる
+        // t が小さくなる(終わりに近づく)ほど amplitude が大きくなる
+        float baseAmplitude = effectParam->GetInvincibleBlinkBaseAmplitude();
+        float maxAmplitude  = effectParam->GetInvincibleBlinkMaxAmplitude();
+        float amplitude     = std::lerp(maxAmplitude, baseAmplitude, t);
+
+        // 経過時間を使って点滅を計算（残り時間ではなく経過時間のほうが安定）
+        float elapsedTime = status->GetInvincibilityTime() - currentInvisibleTime;
         // 0~1 の間で 点滅させる
-        material->color_[A] = std::clamp(EaseInSine((sinf(t * kAmplitude) * 0.5f) + 0.5f), 0.f, 1.f);
+        material->color_[A] = std::clamp(EaseInSine((sinf(elapsedTime * amplitude) * 0.5f) + 0.5f), 0.f, 1.f);
     } else {
         Material* material  = GetComponent<Material>(_handle);
         material->color_[A] = 1.f;

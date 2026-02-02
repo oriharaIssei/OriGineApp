@@ -1,5 +1,7 @@
 #include "CreateMeshFromSpline.h"
 
+#include "EffectConfig.h"
+
 /// math
 #include "math/mathEnv.h"
 #include <math/MyEasing.h>
@@ -43,7 +45,7 @@ static SplineSegment BuildSplineSegment(
     Vec3f rawDir = p1 - p0;
 
     seg.dir   = rawDir.normalize(); // 進行方向
-    seg.up    = settings.upVector; 
+    seg.up    = settings.upVector;
     seg.right = seg.up.cross(seg.dir).normalize();
     seg.up    = seg.dir.cross(seg.right).normalize();
 
@@ -69,8 +71,8 @@ static SplineSegment BuildSplineSegment(
     seg.uv[2] = {seg.uv[0][X], seg.uv[3][Y]};
 
     int widthEase    = static_cast<int>(settings.widthEaseType);
-    seg.minWidthHalf = std::lerp(settings.startWidth, settings.endWidth, EasingFunctions[widthEase](prevRatio)) * 0.5f;
-    seg.maxWidthHalf = std::lerp(settings.startWidth, settings.endWidth, EasingFunctions[widthEase](ratio)) * 0.5f;
+    seg.minWidthHalf = std::lerp(settings.startWidth, settings.endWidth, EasingFunctions[widthEase](prevRatio)) * EffectConfig::Spline::kHalfMultiplier;
+    seg.maxWidthHalf = std::lerp(settings.startWidth, settings.endWidth, EasingFunctions[widthEase](ratio)) * EffectConfig::Spline::kHalfMultiplier;
 
     return seg;
 }

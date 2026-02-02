@@ -5,6 +5,9 @@
 // component
 #include "component/ComponentHandle.h"
 
+/// config
+#include "component/ui/UIConfig.h"
+
 /// <summary>
 /// シーン遷移システム(エフェクトの再生管理など)
 /// </summary>
@@ -31,7 +34,7 @@ protected:
     bool enterScene_ = true;
     bool exitScene_  = false;
 
-    const float maxTransitionTime_ = 0.8f; // 最大遷移時間
+    const float maxTransitionTime_ = AppConfig::UI::kMaxSceneTransitionTime; // 最大遷移時間
     float currentTransitionTime_   = 0.0f; // 現在の遷移時間
 
     OriGine::EntityHandle usingEntityHandle_              = OriGine::EntityHandle();

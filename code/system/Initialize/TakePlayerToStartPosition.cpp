@@ -2,6 +2,9 @@
 
 #include "component/transform/Transform.h"
 
+/// config
+#include "component/player/PlayerConfig.h"
+
 using namespace OriGine;
 
 TakePlayerToStartPosition::TakePlayerToStartPosition()
@@ -31,5 +34,5 @@ void TakePlayerToStartPosition::UpdateEntity(EntityHandle _handle) {
     transform->rotate = OriGine::Quaternion::Identity();
 
     // 初期スケールを設定（必要に応じて）
-    transform->scale = {1.0f, 1.0f, 1.0f};
+    transform->scale = {AppConfig::Player::kDefaultScale, AppConfig::Player::kDefaultScale, AppConfig::Player::kDefaultScale};
 }

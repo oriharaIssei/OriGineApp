@@ -38,8 +38,8 @@
                             ],
                             "translate": [
                                 0.0,
-                                65.46666717529297,
-                                685.6790161132813
+                                128.3000030517578,
+                                75.69999694824219
                             ]
                         }
                     }
@@ -82,7 +82,23 @@
                             -0.5963015556335449,
                             -0.7757692337036133
                         ],
-                        "intensity": 0.75,
+                        "intensity": 0.36000001430511475,
+                        "isActive": true
+                    },
+                    {
+                        "Handle": "698dbb79-2de0-4697-943f-0009bc3deb7c",
+                        "angularRadius": 0.0031999999191612005,
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "direction": [
+                            0.0,
+                            -0.9027380347251892,
+                            0.4301907420158386
+                        ],
+                        "intensity": 0.36000001430511475,
                         "isActive": true
                     }
                 ]
@@ -2383,8 +2399,8 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            0.89846271276474,
-                            0.8986555933952332
+                            1.0,
+                            1.0
                         ],
                         "size": [
                             512.0,
@@ -2443,8 +2459,8 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            0.89846271276474,
-                            0.89846271276474
+                            1.0,
+                            1.0
                         ],
                         "size": [
                             256.0,
@@ -2781,8 +2797,8 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            0.89846271276474,
-                            0.8986555933952332
+                            1.0,
+                            1.0
                         ],
                         "size": [
                             512.0,
@@ -2841,8 +2857,8 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            0.89846271276474,
-                            0.89846271276474
+                            1.0,
+                            1.0
                         ],
                         "size": [
                             256.0,
@@ -3652,8 +3668,8 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            0.89846271276474,
-                            0.8986555933952332
+                            1.0,
+                            1.0
                         ],
                         "size": [
                             512.0,
@@ -3712,8 +3728,8 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            0.89846271276474,
-                            0.89846271276474
+                            1.0,
+                            1.0
                         ],
                         "size": [
                             256.0,
@@ -4038,13 +4054,18 @@
             }
         },
         {
+            "ColliderRenderingSystem": {
+                "Priority": 0
+            }
+        },
+        {
             "ApplyMouseConditionSystem": {
                 "Priority": 0
             }
         },
         {
-            "ColliderRenderingSystem": {
-                "Priority": 0
+            "BackFireInitialize": {
+                "Priority": 1
             }
         },
         {
@@ -4053,8 +4074,8 @@
             }
         },
         {
-            "BackFireInitialize": {
-                "Priority": 1
+            "BillboardTransform": {
+                "Priority": 100
             }
         },
         {
@@ -4068,17 +4089,12 @@
             }
         },
         {
-            "BillboardTransform": {
-                "Priority": 100
-            }
-        },
-        {
-            "ChangeSceneByButton": {
+            "CameraMotionBobSystem": {
                 "Priority": 2
             }
         },
         {
-            "CameraMotionBobSystem": {
+            "ChangeSceneByButton": {
                 "Priority": 2
             }
         },
@@ -4088,18 +4104,28 @@
             }
         },
         {
-            "TimeLimitJudgeSystem": {
-                "Priority": 11
-            }
-        },
-        {
             "CameraInputSystem": {
                 "Priority": 3
             }
         },
         {
+            "TimeLimitJudgeSystem": {
+                "Priority": 11
+            }
+        },
+        {
             "CollisionCheckSystem": {
                 "Priority": 0
+            }
+        },
+        {
+            "CollisionPushBackSystem": {
+                "Priority": 5
+            }
+        },
+        {
+            "PlayerInputSystem": {
+                "Priority": 1
             }
         },
         {
@@ -4110,16 +4136,6 @@
         {
             "TakePlayerToStartPosition": {
                 "Priority": 3
-            }
-        },
-        {
-            "PlayerInputSystem": {
-                "Priority": 1
-            }
-        },
-        {
-            "CollisionPushBackSystem": {
-                "Priority": 5
             }
         },
         {
@@ -4138,23 +4154,23 @@
             }
         },
         {
-            "PlayerSpeedFor3dUI": {
-                "Priority": 0
-            }
-        },
-        {
             "DissolveEffect": {
                 "Priority": 100
             }
         },
         {
-            "PenaltySystem": {
+            "PlayerSpeedFor3dUI": {
                 "Priority": 0
             }
         },
         {
             "DistortionEffect": {
                 "Priority": 1
+            }
+        },
+        {
+            "PenaltySystem": {
+                "Priority": 0
             }
         },
         {
@@ -4188,13 +4204,8 @@
             }
         },
         {
-            "SubSceneActivateByButton": {
-                "Priority": 0
-            }
-        },
-        {
-            "TakeToGoalPosition": {
-                "Priority": 1
+            "LookAtFromTransformsSystem": {
+                "Priority": 3
             }
         },
         {
@@ -4213,13 +4224,18 @@
             }
         },
         {
-            "LookAtFromTransformsSystem": {
-                "Priority": 3
+            "SubSceneActivateByButton": {
+                "Priority": 0
             }
         },
         {
-            "StartTimerInitialize": {
-                "Priority": 3
+            "TakeToGoalPosition": {
+                "Priority": 1
+            }
+        },
+        {
+            "MaterialAnimationWorkSystem": {
+                "Priority": 0
             }
         },
         {
@@ -4228,8 +4244,8 @@
             }
         },
         {
-            "MaterialAnimationWorkSystem": {
-                "Priority": 0
+            "StartTimerInitialize": {
+                "Priority": 3
             }
         },
         {
@@ -4243,22 +4259,17 @@
             }
         },
         {
-            "ResolveEntityReferences": {
-                "Priority": -1
-            }
-        },
-        {
             "OverlayRenderSystem": {
                 "Priority": 10
             }
         },
         {
-            "PenaltyTimeSpriteUpdate": {
-                "Priority": 0
+            "ResolveEntityReferences": {
+                "Priority": -1
             }
         },
         {
-            "TexturedMeshRenderSystem": {
+            "PenaltyTimeSpriteUpdate": {
                 "Priority": 0
             }
         },
@@ -4268,18 +4279,23 @@
             }
         },
         {
+            "TexturedMeshRenderSystem": {
+                "Priority": 0
+            }
+        },
+        {
             "PlayerOnCollision": {
                 "Priority": 10
             }
         },
         {
-            "SkeletonRenderSystem": {
-                "Priority": 0
+            "PlayerPathSplineGenerator": {
+                "Priority": 100
             }
         },
         {
-            "PlayerPathSplineGenerator": {
-                "Priority": 100
+            "SkeletonRenderSystem": {
+                "Priority": 0
             }
         },
         {
@@ -4308,11 +4324,6 @@
             }
         },
         {
-            "SpriteAnimationSystem": {
-                "Priority": 1
-            }
-        },
-        {
             "VelocityRenderingSystem": {
                 "Priority": 0
             }
@@ -4320,6 +4331,11 @@
         {
             "SettingGameCameraTarget": {
                 "Priority": 5
+            }
+        },
+        {
+            "SpriteAnimationSystem": {
+                "Priority": 1
             }
         },
         {
@@ -4415,11 +4431,6 @@
         {
             "PlayerStateOverrideSystem": {
                 "Priority": 6
-            }
-        },
-        {
-            "PlacementEntityByProcedural": {
-                "Priority": 0
             }
         }
     ]

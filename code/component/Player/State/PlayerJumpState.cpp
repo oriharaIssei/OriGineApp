@@ -62,7 +62,10 @@ PlayerMoveState PlayerJumpState::TransitionState() const {
     auto state       = scene_->GetComponent<PlayerState>(playerEntityHandle_);
     auto playerInput = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
 
-    if (state->IsCollisionWithWall()) {
+    // Rail上にいる場合
+    if (state->IsOnRail()) {
+        return PlayerMoveState::RUN_ON_RAIL;
+    } else if (state->IsCollisionWithWall()) {
         if (state->IsWheelie()) {
             return PlayerMoveState::WHEELIE_RUN;
         }

@@ -74,6 +74,7 @@ void PlayerInputSystem::HandleJump(
 
     // wallJumpは 常にTrigger
     input->SetWallJumpInput(false);
+    input->SetRailJumpInput(false);
 
     if (input->IsJumpInput()) {
         // JUMP 状態以外は押しっぱなし無効
@@ -106,6 +107,8 @@ void PlayerInputSystem::HandleJump(
             // wallJump 判定
             bool hitWall = (state->GetStateEnum() == PlayerMoveState::WALL_RUN || state->GetStateEnum() == PlayerMoveState::WHEELIE_RUN);
             input->SetWallJumpInput(hitWall);
+            bool railJump = (state->GetStateEnum() == PlayerMoveState::RUN_ON_RAIL);
+            input->SetRailJumpInput(railJump);
         }
     }
 }

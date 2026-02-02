@@ -9,6 +9,9 @@
 #include "component/player/PlayerStatus.h"
 #include "component/player/state/PlayerState.h"
 
+#include "component/gimmick/Obstacle.h"
+#include "component/gimmick/RailPoints.h"
+
 #include "component/TimerComponent.h"
 
 /// math
@@ -32,15 +35,18 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
     if (state == nullptr || pushBackInfo == nullptr || rigidbody == nullptr || sphereCollider == nullptr) {
         return;
     }
+
     const auto& collisionStateMap = sphereCollider->GetCollisionStateMap();
+    const auto& collisionInfoMap  = pushBackInfo->GetCollisionInfoMap();
 
     // 毎フレーム、地面・壁との衝突状態をリセット
     bool isPreWheelie             = state->IsWheelie(); // 前フレームのウィリー状態を保持
     EntityHandle wallEntityHandle = state->GetWallEntityIndex();
     state->OffCollisionGround();
     state->OffCollisionWall();
+    state->OffCollisionRail();
 
-    for (auto& [entityId, info] : pushBackInfo->GetCollisionInfoMap()) {
+    for (auto& [entityId, collisionState] : collisionStateMap) {
         OriGine::Entity* collEnt = GetEntity(entityId);
         // ゴール と 衝突したか
         if (collEnt->GetDataType().find("Goal") != std::string::npos) {
@@ -56,6 +62,32 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
             continue;
         }
 
+        // レールポイント と 衝突したか
+        {
+            RailPoints* railPoints = GetComponent<RailPoints>(entityId);
+            if (railPoints && status->CanRideRail()) {
+                state->OnCollisionRail(entityId);
+                continue;
+            }
+        }
+        // 障害物 と 衝突したか
+        {
+            Obstacle* obstacle = GetComponent<Obstacle>(entityId);
+            if (obstacle) {
+                float penaltyTime       = obstacle->GetPenaltyTime();
+                float invincibilityTime = obstacle->GetInvincibilityTimeOnCollision();
+                state->OnCollisionObstacle(penaltyTime, invincibilityTime);
+                continue;
+            }
+        }
+
+        // 衝突情報を取得(壁の処理にはInfoがないとできない)
+        auto infoItr = collisionInfoMap.find(entityId);
+        if (infoItr == collisionInfoMap.end()) {
+            continue;
+        }
+
+        const CollisionPushBackInfo::Info& info = infoItr->second;
         // 壁、床と 衝突したか
         if (info.pushBackType != CollisionPushBackType::PushBack) {
             continue;

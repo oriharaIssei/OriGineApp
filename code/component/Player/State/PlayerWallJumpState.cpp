@@ -78,7 +78,10 @@ PlayerMoveState PlayerWallJumpState::TransitionState() const {
     if (playerState->IsOnGround()) {
         return PlayerMoveState::DASH;
     }
-    if (playerState->IsCollisionWithWall()) {
+    // Rail上にいる場合
+    if (playerState->IsOnRail()) {
+        return PlayerMoveState::RUN_ON_RAIL;
+    } else if (playerState->IsCollisionWithWall()) {
         return PlayerMoveState::WALL_RUN;
     }
 

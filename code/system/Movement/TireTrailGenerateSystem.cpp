@@ -1,5 +1,7 @@
 #include "TireTrailGenerateSystem.h"
 
+#include "system/effect/EffectConfig.h"
+
 /// engine
 #include "Engine.h"
 
@@ -94,7 +96,7 @@ bool TireTrailGenerateSystem::BuildGenerateContext(
 
     float bank = std::abs(transform->rotate[Z]);
     if (bank >= spline.thresholdBankAngle) {
-        constexpr float kMaxBankAngle = 0.74f;
+        constexpr float kMaxBankAngle = EffectConfig::TireTrail::kMaxBankAngle;
         float bankT                   = (bank - spline.thresholdBankAngle) / kMaxBankAngle;
         out.alpha +=
             std::lerp(spline.minBankFactor, spline.maxBankFactor, bankT) * speedFactor;
@@ -112,7 +114,7 @@ bool TireTrailGenerateSystem::BuildGenerateContext(
 void TireTrailGenerateSystem::EnsureMinimumControlPoints(
     TireSplinePoints& spline,
     const GenerateContext& ctx) {
-    constexpr int32_t kMinPoints = 4;
+    constexpr int32_t kMinPoints = EffectConfig::TireSpline::kMinPoints;
 
     if (spline.points.size() >= kMinPoints) {
         return;
@@ -133,7 +135,7 @@ void TireTrailGenerateSystem::AppendNewPoints(
     Vec3f delta      = ctx.position - last.position;
     float dist       = delta.length();
 
-    constexpr float kThreshold = 0.3f;
+    constexpr float kThreshold = EffectConfig::TireTrail::kPointThreshold;
     if (dist - ctx.segmentLength < kThreshold) {
         return;
     }
@@ -143,7 +145,7 @@ void TireTrailGenerateSystem::AppendNewPoints(
         dir = delta / dist;
     }
 
-    constexpr int32_t kMaxSplit = 18;
+    constexpr int32_t kMaxSplit = EffectConfig::TireTrail::kMaxSplit;
     int32_t count =
         static_cast<int32_t>(dist / ctx.segmentLength);
 

@@ -25,6 +25,7 @@ enum class PlayerMoveState {
     WALL_RUN    = 1 << 4, // 壁走り
     WALL_JUMP   = 1 << 5, // 壁ジャンプ
     WHEELIE_RUN = 1 << 6, // ウィリー走行
+    RUN_ON_RAIL = 1 << 7, // レール上移動
 
     Count = 7
 };
@@ -36,6 +37,7 @@ static std::map<PlayerMoveState, const char*> moveStateName = {
     {PlayerMoveState::WALL_RUN, "WALL_RUN"},
     {PlayerMoveState::WALL_JUMP, "WALL_JUMP"},
     {PlayerMoveState::WHEELIE_RUN, "WHEELIE_RUN"},
+    {PlayerMoveState::RUN_ON_RAIL, "RUN_ON_RAIL"},
 };
 
 enum class PlayerStateFlag {
@@ -47,6 +49,7 @@ enum class PlayerStateFlag {
     IS_GOAL    = 1 << 4, // ゴールした
     IS_PENALTY = 1 << 5, // ペナルティを受けている
     IS_RESTART = 1 << 6, // リスタート中
+    ON_RAIL    = 1 << 7, // レール上にいる
 
     Count = 7
 };
@@ -97,6 +100,9 @@ public:
     /// </summary>
     void OffCollisionWall();
 
+    void OnCollisionRail(OriGine::EntityHandle _entityHandle);
+    void OffCollisionRail();
+
     /// <summary>
     /// 地面と接触したときの処理
     /// </summary>
@@ -110,7 +116,7 @@ public:
     /// </summary>
     /// <param name="_penaltyTime">ペナルティー時間</param>
     /// <param name="_invincibility"></param>
-    void OnCollisionObstacle(float _penaltyTime, float _invincibility);
+    void OnCollisionObstacle(float _penaltyTime, float _invincibilityTime);
     /// <summary>
     /// ペナルティを受ける
     /// </summary>
@@ -119,6 +125,7 @@ public:
 
 private:
     OriGine::EntityHandle followCameraEntityHandle_ = OriGine::EntityHandle(); // カメラのエンティティID
+    OriGine::EntityHandle railEntityHandle_         = OriGine::EntityHandle(); // カメラのエンティティID
 
     // TransitionPlayerState で更新される
     std::shared_ptr<IPlayerMoveState> moveState_ = nullptr;
@@ -142,6 +149,10 @@ public:
     }
     void SetCameraEntityHandle(OriGine::EntityHandle _handle) {
         followCameraEntityHandle_ = _handle;
+    }
+
+    OriGine::EntityHandle GetRailEntityHandle() const {
+        return railEntityHandle_;
     }
 
     PlayerMoveState GetStateEnum() const {
@@ -180,6 +191,10 @@ public:
 
     bool IsOnGround() const {
         return stateFlag_.Current().HasFlag(PlayerStateFlag::ON_GROUND);
+    }
+
+    bool IsOnRail() const {
+        return stateFlag_.Current().HasFlag(PlayerStateFlag::ON_RAIL);
     }
 
     bool IsCollisionWithWall() const {

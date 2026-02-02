@@ -20,6 +20,8 @@
 #include "component/player/PlayerStatus.h"
 #include "component/player/state/PlayerState.h"
 
+#include "component/player/PlayerConfig.h"
+
 /// math
 #include <math/MyEasing.h>
 
@@ -64,7 +66,7 @@ void EffectOnPlayerGearup::UpdateEntity(OriGine::EntityHandle _handle) {
         }
 
         // GearLevelに応じて衝撃波を発生
-        if (state->GetGearLevel() >= 2) {
+        if (state->GetGearLevel() >= AppConfig::Player::kGearUpEffectShockWaveThresholdGearLevel) {
             shockWaveState_.playState.SetCurrent(true);
             shockWaveState_.currentTime = 0.f;
         }
@@ -75,22 +77,6 @@ void EffectOnPlayerGearup::UpdateEntity(OriGine::EntityHandle _handle) {
         if (effectControlParam) {
             OriGine::Vec4f trailColor = effectControlParam->GetTrailColorByGearLevel(state->GetGearLevel());
 
-            constexpr int32_t trailAnimationOnGearUpIndex = 1;
-            OriGine::EntityHandle trailEntity             = GetUniqueEntity("Trail");
-            MaterialAnimation* trailMaterialAnimation     = GetComponent<MaterialAnimation>(trailEntity, trailAnimationOnGearUpIndex);
-
-            // GearUp時にアニメーションを再生
-            if (trailMaterialAnimation) {
-                for (auto& colorKey : trailMaterialAnimation->GetColorCurve()) {
-                    // alpha値は変えない
-                    // rgbは trailColor に合わせる
-                    colorKey = Keyframe(colorKey.time, Vec4f(trailColor[X], trailColor[Y], trailColor[Z], colorKey.value[W]));
-                }
-                // アニメーションを最初から再生
-                trailMaterialAnimation->PlayStart();
-            }
-
-            // BackFire の色をGearLevelに応じて変化
             OriGine::EntityHandle backFireEntity         = GetUniqueEntity("BackFire");
             MaterialAnimation* backFireMaterialAnimation = GetComponent<MaterialAnimation>(backFireEntity);
 

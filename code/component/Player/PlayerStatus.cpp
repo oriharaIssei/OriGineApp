@@ -130,6 +130,12 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityH
 
     ImGui::Spacing();
 
+    DragGuiCommand("RailSpeedRate##" + _parentLabel, railSpeedRate_, 0.01f);
+    DragGuiCommand("RailRampUpTime##" + _parentLabel, railRampUpTime_, 0.01f);
+    DragGuiVectorCommand<3, float>("RailJumpOffset##" + _parentLabel, railJumpOffset_, 0.01f);
+    DragGuiCommand("RailInterval##" + _parentLabel, railInterval_, 0.01f);
+
+    ImGui::Spacing();
     DragGuiCommand("Default Mass##" + _parentLabel, defaultMass_, 0.01f);
     DragGuiCommand("Mass On Wall Run##" + _parentLabel, massOnWallRun_, 0.01f);
 
@@ -224,7 +230,7 @@ void to_json(nlohmann::json& _j, const PlayerStatus& _playerStatus) {
     _j["baseSpeed"] = _playerStatus.baseSpeed_;
 
     _j["wallRunRate"]       = _playerStatus.wallRunRate_;
-    _j["wallRunRumpUpTime"] = _playerStatus.wallRunRampUpTime_;
+    _j["wallRunRampUpTime"] = _playerStatus.wallRunRampUpTime_;
     _j["wallJumpOffset"]    = _playerStatus.wallJumpOffset_;
 
     _j["jumpHoldVelocityEaseType"] = static_cast<int>(_playerStatus.jumpHoldVelocityEaseType_);
@@ -254,6 +260,11 @@ void to_json(nlohmann::json& _j, const PlayerStatus& _playerStatus) {
     _j["massOnWallRun"] = _playerStatus.massOnWallRun_;
 
     _j["wallRunInterval"] = _playerStatus.wallRunInterval_;
+
+    _j["railSpeedRate"]  = _playerStatus.railSpeedRate_;
+    _j["railRampUpTime"] = _playerStatus.railRampUpTime_;
+    _j["railJumpOffset"] = _playerStatus.railJumpOffset_;
+    _j["railInterval"]   = _playerStatus.railInterval_;
 }
 void from_json(const nlohmann::json& _j, PlayerStatus& _playerStatus) {
     _j.at("baseSpeed").get_to(_playerStatus.baseSpeed_);
@@ -273,7 +284,7 @@ void from_json(const nlohmann::json& _j, PlayerStatus& _playerStatus) {
     _j.at("fallingGravityRate").get_to(_playerStatus.fallingGravityRate_);
 
     _j.at("wallRunRate").get_to(_playerStatus.wallRunRate_);
-    _j.at("wallRunRumpUpTime").get_to(_playerStatus.wallRunRampUpTime_);
+    _j.at("wallRunRampUpTime").get_to(_playerStatus.wallRunRampUpTime_);
     _j.at("wallJumpOffset").get_to(_playerStatus.wallJumpOffset_);
     _j.at("gearUpCoolTime").get_to(_playerStatus.baseGearupCoolTime_);
     _j.at("directionInterpolateRate").get_to(_playerStatus.directionInterpolateRate_);
@@ -282,6 +293,16 @@ void from_json(const nlohmann::json& _j, PlayerStatus& _playerStatus) {
     _j.at("speedUpRateCommonRate").get_to(_playerStatus.speedUpRateCommonRate_);
     _j.at("coolTimeAddRateBase").get_to(_playerStatus.coolTimeAddRateBase_);
     _j.at("coolTimeAddRateCommonRate").get_to(_playerStatus.coolTimeAddRateCommonRate_);
+
+    if (_j.contains("railRampUpTime")) {
+        _j.at("railRampUpTime").get_to(_playerStatus.railRampUpTime_);
+    }
+    if (_j.contains("railSpeedRate")) {
+        _j.at("railSpeedRate").get_to(_playerStatus.railSpeedRate_);
+    }
+    if (_j.contains("railJumpOffset")) {
+        _j.at("railJumpOffset").get_to(_playerStatus.railJumpOffset_);
+    }
 
     if (_j.contains("wheelieJumpOffset")) {
         _j.at("wheelieJumpOffset").get_to(_playerStatus.wheelieJumpOffset_);
@@ -303,5 +324,8 @@ void from_json(const nlohmann::json& _j, PlayerStatus& _playerStatus) {
 
     if (_j.contains("wallRunInterval")) {
         _j.at("wallRunInterval").get_to(_playerStatus.wallRunInterval_);
+    }
+    if (_j.contains("railInterval")) {
+        _j.at("railInterval").get_to(_playerStatus.railInterval_);
     }
 }
