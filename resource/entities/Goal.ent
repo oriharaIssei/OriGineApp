@@ -8,11 +8,13 @@
                     16.0,
                     0.0
                 ],
+                "collisionCategory": "StageObject",
                 "halfSize": [
                     48.0,
                     64.0,
                     48.0
                 ],
+                "isActive": true,
                 "transform": {
                     "rotate": [
                         0.0,
@@ -31,12 +33,6 @@
                         0.0
                     ]
                 }
-            }
-        ],
-        "CollisionPushBackInfo": [
-            {
-                "Handle": "77be14ce-f9e3-4b1e-a6ee-9ce99d624293",
-                "pushBackType": 0
             }
         ],
         "Material": [
@@ -135,9 +131,9 @@
                 "intensity": 1.850000023841858,
                 "isActive": true,
                 "pos": [
-                    -61.0,
-                    93.0,
-                    1104.469970703125
+                    0.0,
+                    66.06553649902344,
+                    981.1402587890625
                 ],
                 "radius": 100.0
             }
@@ -157,9 +153,9 @@
                     1.0
                 ],
                 "translate": [
-                    -61.0,
-                    93.0,
-                    1104.47021484375
+                    0.0,
+                    66.06553649902344,
+                    981.1402587890625
                 ]
             }
         ]
@@ -174,16 +170,16 @@
             "SystemName": "CollisionCheckSystem"
         },
         {
+            "SystemCategory": 0,
+            "SystemName": "TakeToGoalPosition"
+        },
+        {
             "SystemCategory": 6,
             "SystemName": "ParticleRenderSystem"
         },
         {
             "SystemCategory": 6,
             "SystemName": "TexturedMeshRenderSystem"
-        },
-        {
-            "SystemCategory": 0,
-            "SystemName": "TakeToGoalPosition"
         }
     ],
     "isUnique": true

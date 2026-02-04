@@ -383,6 +383,8 @@
                     0.0,
                     0.0
                 ],
+                "collisionCategory": "Player",
+                "isActive": true,
                 "radius": 1.0700000524520874,
                 "transform": {
                     "rotate": [
@@ -421,7 +423,7 @@
                 "translate": [
                     0.0,
                     2.0,
-                    0.0
+                    6.0
                 ]
             }
         ]
@@ -433,19 +435,19 @@
     "Systems": [
         {
             "SystemCategory": 4,
-            "SystemName": "CollisionPushBackSystem"
-        },
-        {
-            "SystemCategory": 1,
-            "SystemName": "PlayerInputSystem"
+            "SystemName": "CollisionCheckSystem"
         },
         {
             "SystemCategory": 0,
             "SystemName": "TakePlayerToStartPosition"
         },
         {
+            "SystemCategory": 1,
+            "SystemName": "PlayerInputSystem"
+        },
+        {
             "SystemCategory": 4,
-            "SystemName": "CollisionCheckSystem"
+            "SystemName": "CollisionPushBackSystem"
         },
         {
             "SystemCategory": 7,
@@ -468,12 +470,12 @@
             "SystemName": "MoveSystemByRigidBody"
         },
         {
-            "SystemCategory": 3,
-            "SystemName": "PlayerMoveSystem"
-        },
-        {
             "SystemCategory": 6,
             "SystemName": "TexturedMeshRenderSystem"
+        },
+        {
+            "SystemCategory": 3,
+            "SystemName": "PlayerMoveSystem"
         },
         {
             "SystemCategory": 4,
@@ -481,11 +483,11 @@
         },
         {
             "SystemCategory": 2,
-            "SystemName": "TransitionPlayerState"
+            "SystemName": "SceneTransition"
         },
         {
             "SystemCategory": 2,
-            "SystemName": "SceneTransition"
+            "SystemName": "TransitionPlayerState"
         }
     ],
     "isUnique": true

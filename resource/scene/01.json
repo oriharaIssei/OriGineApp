@@ -290,11 +290,13 @@
                             0.0,
                             0.0
                         ],
+                        "collisionCategory": "StageObject",
                         "halfSize": [
                             1.0,
                             1.0,
                             1.0
                         ],
+                        "isActive": true,
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -666,11 +668,13 @@
                             0.0,
                             0.0
                         ],
+                        "collisionCategory": "StageObject",
                         "halfSize": [
                             1.0,
                             1.0,
                             1.0
                         ],
+                        "isActive": true,
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -805,11 +809,13 @@
                             0.0,
                             0.0
                         ],
+                        "collisionCategory": "StageObject",
                         "halfSize": [
                             1.0,
                             1.0,
                             1.0
                         ],
+                        "isActive": true,
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -944,11 +950,13 @@
                             0.0,
                             0.0
                         ],
+                        "collisionCategory": "StageObject",
                         "halfSize": [
                             1.0,
                             1.0,
                             1.0
                         ],
+                        "isActive": true,
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -1083,11 +1091,13 @@
                             0.0,
                             0.0
                         ],
+                        "collisionCategory": "StageObject",
                         "halfSize": [
                             1.0,
                             1.0,
                             1.0
                         ],
+                        "isActive": true,
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -2796,11 +2806,13 @@
                             0.0,
                             0.0
                         ],
+                        "collisionCategory": "StageObject",
                         "halfSize": [
                             1.0,
                             1.0,
                             1.0
                         ],
+                        "isActive": true,
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -2935,11 +2947,13 @@
                             0.0,
                             0.0
                         ],
+                        "collisionCategory": "StageObject",
                         "halfSize": [
                             1.0,
                             1.0,
                             1.0
                         ],
+                        "isActive": true,
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -3074,11 +3088,13 @@
                             0.0,
                             0.0
                         ],
+                        "collisionCategory": "StageObject",
                         "halfSize": [
                             1.0,
                             1.0,
                             1.0
                         ],
+                        "isActive": true,
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -3213,11 +3229,13 @@
                             0.0,
                             0.0
                         ],
+                        "collisionCategory": "StageObject",
                         "halfSize": [
                             1.0,
                             1.0,
                             1.0
                         ],
+                        "isActive": true,
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -3796,11 +3814,13 @@
                             0.0,
                             0.0
                         ],
+                        "collisionCategory": "StageObject",
                         "halfSize": [
                             1.0,
                             1.0,
                             1.0
                         ],
+                        "isActive": true,
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -4251,11 +4271,13 @@
                             0.0,
                             0.0
                         ],
+                        "collisionCategory": "StageObject",
                         "halfSize": [
                             1.0,
                             1.0,
                             1.0
                         ],
+                        "isActive": true,
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -4390,11 +4412,13 @@
                             0.0,
                             0.0
                         ],
+                        "collisionCategory": "StageObject",
                         "halfSize": [
                             1.0,
                             1.0,
                             1.0
                         ],
+                        "isActive": true,
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -4529,11 +4553,13 @@
                             0.0,
                             0.0
                         ],
+                        "collisionCategory": "StageObject",
                         "halfSize": [
                             1.0,
                             1.0,
                             1.0
                         ],
+                        "isActive": true,
                         "transform": {
                             "rotate": [
                                 0.0,
@@ -4666,13 +4692,13 @@
             }
         },
         {
-            "ApplyMouseConditionSystem": {
-                "Priority": 0
+            "ColliderRenderingSystem": {
+                "Priority": 100
             }
         },
         {
-            "ColliderRenderingSystem": {
-                "Priority": 100
+            "ApplyMouseConditionSystem": {
+                "Priority": 0
             }
         },
         {
@@ -4686,11 +4712,6 @@
             }
         },
         {
-            "ButtonInputSystem": {
-                "Priority": 1
-            }
-        },
-        {
             "ChangeSceneByButton": {
                 "Priority": 1
             }
@@ -4701,18 +4722,8 @@
             }
         },
         {
-            "CameraActionSystem": {
-                "Priority": 0
-            }
-        },
-        {
-            "TakePlayerToStartPosition": {
-                "Priority": 3
-            }
-        },
-        {
-            "PlayerInputSystem": {
-                "Priority": 3
+            "ButtonInputSystem": {
+                "Priority": 1
             }
         },
         {
@@ -4726,8 +4737,18 @@
             }
         },
         {
-            "TimeLimitJudgeSystem": {
-                "Priority": 10
+            "PlayerInputSystem": {
+                "Priority": 3
+            }
+        },
+        {
+            "CameraActionSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "TakePlayerToStartPosition": {
+                "Priority": 3
             }
         },
         {
@@ -4736,13 +4757,18 @@
             }
         },
         {
-            "CreatePlaneFromSpeed": {
+            "TimeLimitJudgeSystem": {
                 "Priority": 10
             }
         },
         {
             "CameraShake": {
                 "Priority": 0
+            }
+        },
+        {
+            "CreatePlaneFromSpeed": {
+                "Priority": 10
             }
         },
         {
@@ -4766,18 +4792,13 @@
             }
         },
         {
-            "PlayerSpeedFor3dUI": {
-                "Priority": 1
-            }
-        },
-        {
             "DissolveEffect": {
                 "Priority": 100
             }
         },
         {
-            "PenaltySystem": {
-                "Priority": 0
+            "PlayerSpeedFor3dUI": {
+                "Priority": 1
             }
         },
         {
@@ -4788,6 +4809,11 @@
         {
             "GhostInitializeSystem": {
                 "Priority": 6
+            }
+        },
+        {
+            "PenaltySystem": {
+                "Priority": 0
             }
         },
         {
@@ -4826,8 +4852,8 @@
             }
         },
         {
-            "StartTimerInitialize": {
-                "Priority": 3
+            "MaterialAnimationWorkSystem": {
+                "Priority": 0
             }
         },
         {
@@ -4836,8 +4862,8 @@
             }
         },
         {
-            "MaterialAnimationWorkSystem": {
-                "Priority": 0
+            "StartTimerInitialize": {
+                "Priority": 3
             }
         },
         {
@@ -4851,13 +4877,13 @@
             }
         },
         {
-            "ResolveEntityReferences": {
-                "Priority": -2
+            "OverlayRenderSystem": {
+                "Priority": 100
             }
         },
         {
-            "OverlayRenderSystem": {
-                "Priority": 100
+            "ResolveEntityReferences": {
+                "Priority": -2
             }
         },
         {
@@ -4871,6 +4897,11 @@
             }
         },
         {
+            "PlayerPathSplineGenerator": {
+                "Priority": 100
+            }
+        },
+        {
             "PlayRecorderInitialize": {
                 "Priority": 0
             }
@@ -4881,18 +4912,13 @@
             }
         },
         {
-            "PlayerPathSplineGenerator": {
-                "Priority": 100
+            "PlayerMoveSystem": {
+                "Priority": 3
             }
         },
         {
             "TexturedMeshRenderSystem": {
                 "Priority": 0
-            }
-        },
-        {
-            "PlayerMoveSystem": {
-                "Priority": 3
             }
         },
         {
@@ -4921,11 +4947,6 @@
             }
         },
         {
-            "SpriteAnimationSystem": {
-                "Priority": 1
-            }
-        },
-        {
             "VelocityRenderingSystem": {
                 "Priority": 0
             }
@@ -4933,6 +4954,11 @@
         {
             "SettingGameCameraTarget": {
                 "Priority": 5
+            }
+        },
+        {
+            "SpriteAnimationSystem": {
+                "Priority": 1
             }
         },
         {
@@ -4961,6 +4987,16 @@
             }
         },
         {
+            "TakeToGoalPosition": {
+                "Priority": 1
+            }
+        },
+        {
+            "SubSceneActivateByButton": {
+                "Priority": 0
+            }
+        },
+        {
             "StartSequenceSystem": {
                 "Priority": 1
             }
@@ -4973,16 +5009,6 @@
         {
             "SubSceneRender": {
                 "Priority": 10
-            }
-        },
-        {
-            "SubSceneActivateByButton": {
-                "Priority": 0
-            }
-        },
-        {
-            "TakeToGoalPosition": {
-                "Priority": 1
             }
         },
         {
