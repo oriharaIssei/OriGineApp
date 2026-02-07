@@ -78,7 +78,7 @@ void PlayerInputSystem::HandleJump(
 
     if (input->IsJumpInput()) {
         // JUMP 状態以外は押しっぱなし無効
-        if (state->GetStateEnum() != PlayerMoveState::JUMP) {
+        if (state->GetStateEnum() != PlayerMoveState::JUMP || state->GetStateEnum() != PlayerMoveState::WALL_JUMP) {
             input->SetJumpInput(false);
             input->SetJumpInputTime(0.0f);
             return;

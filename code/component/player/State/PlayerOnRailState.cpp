@@ -33,11 +33,8 @@ void PlayerOnRailState::Initialize() {
     auto* railTransform = scene_->GetComponent<Transform>(playerState->GetRailEntityHandle());
 
     // 移動は全て こちらで行うため、更新されないように速度情報を抜く
-    rigidbody->SetUseGravity(false);
-    rigidbody->SetVelocity(Vec3f());
-    rigidbody->SetAcceleration(Vec3f());
-    baseSpeed_ = rigidbody->GetMaxXZSpeed();
-    rigidbody->SetMaxXZSpeed(baseSpeed_ * playerStatus->GetRailSpeedRate());
+    rigidbody->SetIsActive(false);
+    baseSpeed_               = playerStatus->GetCurrentMaxSpeed();
     defaultMaxFallDownSpeed_ = rigidbody->MaxFallSpeed();
     rigidbody->SetMaxFallSpeed(baseSpeed_ * playerStatus->GetRailSpeedRate());
 
@@ -67,6 +64,7 @@ void PlayerOnRailState::Update(float _deltaTime) {
     auto* playerState  = scene_->GetComponent<PlayerState>(playerEntityHandle_);
     auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
     auto* transform    = scene_->GetComponent<Transform>(playerEntityHandle_);
+    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
 
     auto* railPoints    = scene_->GetComponent<RailPoints>(playerState->GetRailEntityHandle());
     auto* railTransform = scene_->GetComponent<Transform>(playerState->GetRailEntityHandle());
@@ -103,6 +101,8 @@ void PlayerOnRailState::Update(float _deltaTime) {
     // transform の更新
     transform->translate = CalcPointOnSplineByDistance(railPoints->points, traveledDistance_) * railTransform->worldMat;
     transform->rotate    = Quaternion::LookAt(front, axisY);
+
+    rigidbody->SetVelocity(front * currentSpeed_);
 }
 
 void PlayerOnRailState::Finalize() {
@@ -113,9 +113,10 @@ void PlayerOnRailState::Finalize() {
 
     playerStatus->SetupRailInterval();
 
-    rigidbody->SetUseGravity(true);
+    rigidbody->SetIsActive(true);
     rigidbody->SetMaxFallSpeed(defaultMaxFallDownSpeed_);
 
+    //! TODO : RailJump State を作成する
     float inputX            = playerInput->GetInputDirection()[X];
     const Vec3f& jumpOffset = playerStatus->GetRailJumpOffset();
     Vec3f jumpVelo          = jumpOffset * currentSpeed_;

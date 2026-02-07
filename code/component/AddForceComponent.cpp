@@ -14,7 +14,7 @@ void AddForceComponent::Finalize() {}
 
 void AddForceComponent::Edit(Scene* /*_scene*/, EntityHandle /*_owner*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
-    DragGuiCommand("Add Force##" + _parentLabel, addForce_, 0.01f);
+    DragGuiVectorCommand("Add Force##" + _parentLabel, addForce_, 0.01f);
 #endif // _DEBUG
 }
 

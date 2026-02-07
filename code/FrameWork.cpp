@@ -8,6 +8,7 @@
 #include <EngineInclude.h>
 
 // application component
+#include "component/AddForceComponent.h"
 #include "component/Camera/CameraController.h"
 #include "component/camera/CameraMotionBob.h"
 #include "component/Camera/CameraShakeSourceComponent.h"
@@ -22,7 +23,6 @@
 #include "component/player/PlayerStatus.h"
 #include "component/player/state/PlayerState.h"
 #include "component/PlayerStateOverrideCondition.h"
-#include "component/PointPlacementParams.h"
 #include "component/SceneChanger.h"
 #include "component/spline/SplinePoints.h"
 #include "component/spline/TireSplinePoints.h"
@@ -31,10 +31,13 @@
 #include "component/ui/Button.h"
 #include "component/ui/ButtonGroup.h"
 #include "component/ui/SpeedFor3dUIComponent.h"
+#include "component/VelocityOverrideComponent.h"
 
 // application system
+#include "system/collision/AddForceTriggerSystem.h"
 #include "system/collision/PlayerOnCollision.h"
 #include "system/collision/TutorialColliderOnCollision.h"
+#include "system/collision/VelocityOverrideTriggerSystem.h"
 #include "system/effect/CameraShake.h"
 #include "system/effect/CreateMeshFromSpline.h"
 #include "system/effect/CreateMeshFromTireSpline.h"
@@ -49,7 +52,6 @@
 #include "system/initialize/GetClearTime.h"
 #include "system/Initialize/GhostInitializeSystem.h"
 #include "system/Initialize/InitializeMouseCondition.h"
-#include "system/Initialize/PlacementEntityByProcedural.h"
 #include "system/Initialize/PlayRecorderInitialize.h"
 #include "system/Initialize/RailInitializeSystem.h"
 #include "system/Initialize/SelectPreviewSceneInitialize.h"
@@ -129,7 +131,9 @@ void RegisterUsingComponents() {
 
     componentRegistry->RegisterComponent<RailPoints>();
     componentRegistry->RegisterComponent<Obstacle>();
-    
+    componentRegistry->RegisterComponent<VelocityOverrideComponent>();
+    componentRegistry->RegisterComponent<AddForceComponent>();
+
     componentRegistry->RegisterComponent<GhostReplayComponent>();
     componentRegistry->RegisterComponent<PlayRecordeComponent>();
 
@@ -301,6 +305,8 @@ void RegisterUsingSystems() {
 
     systemRegistry->RegisterSystem<PlayerOnCollision>();
     systemRegistry->RegisterSystem<TutorialColliderOnCollision>();
+    systemRegistry->RegisterSystem<VelocityOverrideTriggerSystem>();
+    systemRegistry->RegisterSystem<AddForceTriggerSystem>();
 
     /// =================================================================================================
     // Effect

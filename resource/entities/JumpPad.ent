@@ -1,0 +1,189 @@
+{
+    "Components": {
+        "AABBCollider": [
+            {
+                "Handle": "b13ee3f3-ab1a-4ab8-bb53-a9dc65406b0c",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "collisionCategory": "Default",
+                "halfSize": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "isActive": true,
+                "transform": {
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1.0,
+                        0.20000000298023224,
+                        1.0
+                    ],
+                    "translate": [
+                        0.0,
+                        0.20000000298023224,
+                        0.0
+                    ]
+                }
+            }
+        ],
+        "CylinderRenderer": [
+            {
+                "Handle": "00bfb994-11e0-441e-857f-373b46de9d37",
+                "blendMode": 1,
+                "bottomRadius": [
+                    1.0,
+                    1.0
+                ],
+                "height": 0.5,
+                "heightDivisions": 8,
+                "isCulling": false,
+                "isRenderer": true,
+                "materialIndex": 0,
+                "radialDivisions": 36,
+                "radiusEaseType": 0,
+                "textureFilePath": "./application/resource/Texture/arrow.png",
+                "topRadius": [
+                    0.5,
+                    0.5
+                ],
+                "transform": {
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "translate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                }
+            }
+        ],
+        "Material": [
+            {
+                "Handle": "c0513ba8-c6a7-4e12-ad9d-ce8a59b2769c",
+                "color": [
+                    0.16578538715839386,
+                    0.7111458778381348,
+                    0.8185653686523438,
+                    1.0
+                ],
+                "enableLighting": false,
+                "shininess": 0.0,
+                "specularColor": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "uvRotate": 0.0,
+                "uvScale": [
+                    4.0,
+                    -2.0
+                ],
+                "uvTranslate": [
+                    0.0,
+                    0.8820949792861938
+                ]
+            }
+        ],
+        "MaterialAnimation": [
+            {
+                "Handle": "06d2d989-e00b-4f60-89af-62bd60224b7a",
+                "InterpolationType": 0,
+                "colorCurve": [],
+                "duration": 1.2999999523162842,
+                "isLoop": true,
+                "isPlay": false,
+                "uvRotateCurve": [],
+                "uvScaleCurve": [],
+                "uvTranslateCurve": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 1.2999999523162842,
+                        "value": [
+                            0.0,
+                            3.0
+                        ]
+                    }
+                ]
+            }
+        ],
+        "Transform": [
+            {
+                "Handle": "ddad81ff-297d-4a7f-9b0a-f7e1979f41f3",
+                "rotate": [
+                    -0.0,
+                    0.0,
+                    -0.0,
+                    1.0
+                ],
+                "scale": [
+                    2.0,
+                    2.0,
+                    2.0
+                ],
+                "translate": [
+                    -3.703057050704956,
+                    0.2199999988079071,
+                    54.57038879394531
+                ]
+            }
+        ],
+        "VelocityOverrideComponent": [
+            {
+                "Handle": "574b30ac-d340-4d12-b785-b8ee2bdc4b47",
+                "forcedMovementVector": [
+                    0.0,
+                    36.0,
+                    0.0
+                ],
+                "stunTime": 0.4300000071525574
+            }
+        ]
+    },
+    "Handle": {
+        "uuid": "cb1f2dcf-f65e-4e29-a002-20f64e7743c8"
+    },
+    "Name": "JumpPad",
+    "Systems": [
+        {
+            "SystemCategory": 4,
+            "SystemName": "CollisionCheckSystem"
+        },
+        {
+            "SystemCategory": 5,
+            "SystemName": "MaterialAnimationWorkSystem"
+        },
+        {
+            "SystemCategory": 6,
+            "SystemName": "TexturedMeshRenderSystem"
+        },
+        {
+            "SystemCategory": 4,
+            "SystemName": "VelocityOverrideTriggerSystem"
+        }
+    ],
+    "isUnique": false
+}

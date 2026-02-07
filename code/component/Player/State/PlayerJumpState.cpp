@@ -1,6 +1,7 @@
 #include "PlayerJumpState.h"
 
-/// component
+/// ECS
+// component
 #include "component/physics/Rigidbody.h"
 #include "component/player/PlayerInput.h"
 #include "component/player/PlayerStatus.h"

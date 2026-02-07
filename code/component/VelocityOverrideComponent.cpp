@@ -14,7 +14,7 @@ void VelocityOverrideComponent::Finalize() {}
 
 void VelocityOverrideComponent::Edit(OriGine::Scene* /*_scene*/, OriGine::EntityHandle /*_owner*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
-    DragGuiCommand("Forced Movement Vector##" + _parentLabel, forcedMovementVector_, 0.01f);
+    DragGuiVectorCommand("Forced Movement Vector##" + _parentLabel, forcedMovementVector_, 0.01f);
     DragGuiCommand("Stun Time##" + _parentLabel, stunTime_, 0.01f);
 #endif // _DEBUG
 }

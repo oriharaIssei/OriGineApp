@@ -113,6 +113,9 @@ private:
     // currentMaxSpeed は gearLevel に応じて変化する
     float currentMaxSpeed_ = 0.0f; // 現在の最大速度
 
+    // 速度を元に戻すための補間率
+    float speedRestoreLerpRate_ = 0.1f;
+
     OriGine::EaseType jumpHoldVelocityEaseType_ = OriGine::EaseType::Linear;
     OriGine::EaseType jumpChargeRateEaseType_   = OriGine::EaseType::Linear;
     float minJumpHoldVelocity_                  = 0.0f; // 最低ジャンプのパワー

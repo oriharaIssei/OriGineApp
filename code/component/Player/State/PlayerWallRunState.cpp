@@ -6,7 +6,7 @@
 /// ECS
 // component
 #include "component/physics/Rigidbody.h"
-#include "component/renderer/MeshRenderer.h"
+#include "component/renderer/ModelMeshRenderer.h"
 #include "component/spline/SplinePoints.h"
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
@@ -80,8 +80,7 @@ void PlayerWallRunState::Initialize() {
         playerStatus->SetCurrentMaxSpeed(
             playerStatus->CalculateSpeedByGearLevel(addedGearLevel));
 
-        rigidbody->SetMaxXZSpeed(playerStatus->GetCurrentMaxSpeed());
-        playerSpeed_ = rigidbody->GetMaxXZSpeed();
+        playerSpeed_ = playerStatus->GetCurrentMaxSpeed();
     }
 
     // ===== 移動 =====
@@ -178,7 +177,6 @@ void PlayerWallRunState::Update(float _deltaTime) {
     OriGine::Vec3f direction = rigidbody->GetVelocity().normalize();
     OriGine::Vec3f newVelo   = direction * (playerSpeed_ * currentSpeedRate);
     rigidbody->SetVelocity(newVelo);
-    rigidbody->SetMaxXZSpeed(newVelo.length());
 
     gravityApplyDelay_ -= _deltaTime;
     if (gravityApplyDelay_ <= 0.0f) {

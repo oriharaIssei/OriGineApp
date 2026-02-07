@@ -41,7 +41,7 @@ void PlayerWallJumpState::Initialize() {
         jumpDirWorld =
             wallNormal * wallJumpDirection[X] + axisY * wallJumpDirection[Y] + velocityDirection * wallJumpDirection[Z];
         // wallRun後は maxXZSpeedを使用する
-        jumpSpeed = rigidbody->GetMaxXZSpeed() * playerStatus->GetWallRunRate();
+        jumpSpeed = playerStatus->GetCurrentMaxSpeed() * playerStatus->GetWallRunRate();
     } else {
         const OriGine::Vec3f& wallJumpDirection = playerStatus->GetWheelieJumpOffset();
         // --- 壁ローカル → ワールド変換 ---

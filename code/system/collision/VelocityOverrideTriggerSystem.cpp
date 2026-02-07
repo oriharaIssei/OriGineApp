@@ -58,7 +58,7 @@ void VelocityOverrideTriggerSystem::UpdateEntity(OriGine::EntityHandle _handle) 
     for (const auto& otherHandle : collidedEntities) {
         auto rigidbodyComp = GetComponent<Rigidbody>(otherHandle);
         if (rigidbodyComp) {
-            // 上方向にジャンプ力を加える
+            // 速度を強制的に上書き
             rigidbodyComp->SetVelocity(velocityOverrideComp->forcedMovementVector_);
         }
     }

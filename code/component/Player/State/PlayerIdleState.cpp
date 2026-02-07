@@ -72,7 +72,6 @@ void PlayerIdleState::Finalize() {
     auto* rigidbody   = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
 
     playerStatus->SetCurrentMaxSpeed(playerStatus->GetBaseSpeed());
-    rigidbody->SetMaxXZSpeed(playerStatus->GetBaseSpeed());
     // Jump がおかしくなるため しっかりと ゼロ にする
     rigidbody->SetVelocity({0.0f, 0.0f, 0.0f});
 }

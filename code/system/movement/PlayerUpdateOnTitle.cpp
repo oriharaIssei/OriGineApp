@@ -73,7 +73,6 @@ void PlayerUpdateOnTitle::UpdateEntity(OriGine::EntityHandle _handle) {
             playerStatus->SetGearUpCoolTime(playerStatus->CalculateCoolTimeByGearLevel(gearLevel));
 
             playerStatus->SetCurrentMaxSpeed(playerStatus->CalculateSpeedByGearLevel(gearLevel));
-            rigidbody->SetMaxXZSpeed(playerStatus->GetCurrentMaxSpeed());
         }
     }
 

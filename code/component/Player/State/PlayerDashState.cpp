@@ -12,20 +12,31 @@
 #include "component/player/PlayerInput.h"
 #include "component/player/PlayerStatus.h"
 #include "component/player/state/PlayerState.h"
-#include "component/renderer/MeshRenderer.h"
 
 /// math
 #include "MyEasing.h"
+#include <mathEnv.h>
 
 using namespace OriGine;
 
 void PlayerDashState::Initialize() {
-    auto* status = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
+    auto* state        = scene_->GetComponent<PlayerState>(playerEntityHandle_);
+    auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
+    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
+    auto* transform    = scene_->GetComponent<OriGine::Transform>(playerEntityHandle_);
 
-    // 移動速度の設定
-    auto* rigidbody = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
-    rigidbody->SetMaxXZSpeed(status->GetCurrentMaxSpeed());
+    // 速度を初期化
+    int32_t gearLevel  = state->GetGearLevel();
+    float currentMaxSpeed = playerStatus->CalculateSpeedByGearLevel(gearLevel);
+    playerStatus->SetCurrentMaxSpeed(currentMaxSpeed);
+    // プレイヤーの向いている方向に速度を設定
+    Vec3f forwardDir = transform->CalculateWorldRotate().RotateVector(axisZ);
+    forwardDir[Y]    = 0.f;
+    forwardDir       = forwardDir.normalize();
+    rigidbody->SetVelocity(forwardDir * currentMaxSpeed);
 
+
+    // 落下タイマーをリセット
     cameraOffsetLerpTimer_ = 0.f;
 }
 
@@ -55,7 +66,6 @@ void PlayerDashState::Update(float _deltaTime) {
             playerStatus->SetGearUpCoolTime(playerStatus->CalculateCoolTimeByGearLevel(gearLevel));
 
             playerStatus->SetCurrentMaxSpeed(playerStatus->CalculateSpeedByGearLevel(gearLevel));
-            rigidbody->SetMaxXZSpeed(playerStatus->GetCurrentMaxSpeed());
         }
     }
 
@@ -109,10 +119,16 @@ void PlayerDashState::Finalize() {
 PlayerMoveState PlayerDashState::TransitionState() const {
     auto state       = scene_->GetComponent<PlayerState>(playerEntityHandle_);
     auto playerInput = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
+    auto rigidbody   = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
 
     // 入力がない場合はアイドル状態に遷移
     if (playerInput->GetInputDirection().lengthSq() <= 0.f) {
         return PlayerMoveState::IDLE;
+    }
+
+    // 上昇速度がある場合は落下状態に遷移
+    if (rigidbody->GetVelocity()[Y] > kEpsilon) {
+        return PlayerMoveState::FALL_DOWN;
     }
 
     // Rail上にいる場合

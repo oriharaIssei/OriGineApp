@@ -8,7 +8,7 @@
 
 /// ECS
 // component
-#include "component/renderer/MeshRenderer.h"
+#include "component/renderer/ModelMeshRenderer.h"
 #include "component/renderer/primitive/CylinderRenderer.h"
 
 #include "component/effect/post/SpeedlineEffectParam.h"

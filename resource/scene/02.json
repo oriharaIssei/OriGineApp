@@ -4113,148 +4113,6 @@
                         "translate": [
                             0.0,
                             2.0,
-                            1690.3104248046875
-                        ]
-                    }
-                ]
-            },
-            "Handle": {
-                "uuid": "e8a0ce0d-80fb-4f08-952e-587accd6c95d"
-            },
-            "Name": "Obstacle",
-            "Systems": [
-                {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
-                },
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "TexturedMeshRenderSystem"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "AABBCollider": [
-                    {
-                        "Handle": "7b0d7880-8ecc-404a-85a7-342db9ab448d",
-                        "center": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "collisionCategory": "StageObject",
-                        "halfSize": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "isActive": true,
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "BoxRenderer": [
-                    {
-                        "Handle": "f16f47df-12f3-4b03-98fd-520601e10560",
-                        "blendMode": 1,
-                        "isCulling": true,
-                        "isRenderer": true,
-                        "materialIndex": 0,
-                        "size": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "textureFilePath": "./application/resource/Texture/Obstacle.png",
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "Material": [
-                    {
-                        "Handle": "796f186f-2eb8-4424-b43d-db82cd1743fd",
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "enableLighting": false,
-                        "shininess": 0.0,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            0.12999999523162842,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "Obstacle": [
-                    {
-                        "Handle": "5eaf1c16-ce4e-4b6b-955a-bada486ceb73",
-                        "invincibilityTimeOnCollision": 1.0,
-                        "penaltyTime": 1.5
-                    }
-                ],
-                "Transform": [
-                    {
-                        "Handle": "5e78a81c-cf1d-42b0-8fb8-233c490b6d37",
-                        "rotate": [
-                            -0.0,
-                            0.0,
-                            -0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            24.0,
-                            2.0,
-                            2.0
-                        ],
-                        "translate": [
-                            0.0,
-                            2.0,
                             1766.3885498046875
                         ]
                     }
@@ -4426,13 +4284,13 @@
             }
         },
         {
-            "ColliderRenderingSystem": {
-                "Priority": 100
+            "ApplyMouseConditionSystem": {
+                "Priority": 0
             }
         },
         {
-            "ApplyMouseConditionSystem": {
-                "Priority": 0
+            "ColliderRenderingSystem": {
+                "Priority": 100
             }
         },
         {
@@ -4446,6 +4304,11 @@
             }
         },
         {
+            "ButtonInputSystem": {
+                "Priority": 1
+            }
+        },
+        {
             "ChangeSceneByButton": {
                 "Priority": 1
             }
@@ -4453,26 +4316,6 @@
         {
             "CameraMotionBobSystem": {
                 "Priority": 1
-            }
-        },
-        {
-            "ButtonInputSystem": {
-                "Priority": 1
-            }
-        },
-        {
-            "SceneTransitionRequestSenderSystem": {
-                "Priority": -1
-            }
-        },
-        {
-            "CollisionPushBackSystem": {
-                "Priority": 5
-            }
-        },
-        {
-            "PlayerInputSystem": {
-                "Priority": 3
             }
         },
         {
@@ -4486,8 +4329,18 @@
             }
         },
         {
-            "CameraInputSystem": {
-                "Priority": 2
+            "PlayerInputSystem": {
+                "Priority": 3
+            }
+        },
+        {
+            "SceneTransitionRequestSenderSystem": {
+                "Priority": -1
+            }
+        },
+        {
+            "CollisionPushBackSystem": {
+                "Priority": 5
             }
         },
         {
@@ -4496,13 +4349,18 @@
             }
         },
         {
-            "CameraShake": {
-                "Priority": 0
+            "CameraInputSystem": {
+                "Priority": 2
             }
         },
         {
             "CreatePlaneFromSpeed": {
                 "Priority": 10
+            }
+        },
+        {
+            "CameraShake": {
+                "Priority": 0
             }
         },
         {
@@ -4526,12 +4384,17 @@
             }
         },
         {
+            "PlayerSpeedFor3dUI": {
+                "Priority": 1
+            }
+        },
+        {
             "DissolveEffect": {
                 "Priority": 100
             }
         },
         {
-            "PlayerSpeedFor3dUI": {
+            "PenaltySystem": {
                 "Priority": 1
             }
         },
@@ -4543,11 +4406,6 @@
         {
             "GhostInitializeSystem": {
                 "Priority": 6
-            }
-        },
-        {
-            "PenaltySystem": {
-                "Priority": 1
             }
         },
         {
@@ -4586,8 +4444,8 @@
             }
         },
         {
-            "MaterialAnimationWorkSystem": {
-                "Priority": 0
+            "StartTimerInitialize": {
+                "Priority": 3
             }
         },
         {
@@ -4596,8 +4454,8 @@
             }
         },
         {
-            "StartTimerInitialize": {
-                "Priority": 3
+            "MaterialAnimationWorkSystem": {
+                "Priority": 0
             }
         },
         {
@@ -4611,13 +4469,13 @@
             }
         },
         {
-            "OverlayRenderSystem": {
-                "Priority": 100
+            "ResolveEntityReferences": {
+                "Priority": -2
             }
         },
         {
-            "ResolveEntityReferences": {
-                "Priority": -2
+            "OverlayRenderSystem": {
+                "Priority": 100
             }
         },
         {
@@ -4631,11 +4489,6 @@
             }
         },
         {
-            "PlayerPathSplineGenerator": {
-                "Priority": 100
-            }
-        },
-        {
             "PlayRecorderInitialize": {
                 "Priority": 0
             }
@@ -4646,13 +4499,18 @@
             }
         },
         {
-            "PlayerMoveSystem": {
-                "Priority": 3
+            "PlayerPathSplineGenerator": {
+                "Priority": 100
             }
         },
         {
             "TexturedMeshRenderSystem": {
                 "Priority": 0
+            }
+        },
+        {
+            "PlayerMoveSystem": {
+                "Priority": 3
             }
         },
         {
@@ -4681,6 +4539,11 @@
             }
         },
         {
+            "SpriteAnimationSystem": {
+                "Priority": 1
+            }
+        },
+        {
             "VelocityRenderingSystem": {
                 "Priority": 0
             }
@@ -4688,11 +4551,6 @@
         {
             "SettingGameCameraTarget": {
                 "Priority": 5
-            }
-        },
-        {
-            "SpriteAnimationSystem": {
-                "Priority": 1
             }
         },
         {
@@ -4721,12 +4579,7 @@
             }
         },
         {
-            "SubSceneActivateByButton": {
-                "Priority": 0
-            }
-        },
-        {
-            "TakeToGoalPosition": {
+            "StartSequenceSystem": {
                 "Priority": 1
             }
         },
@@ -4741,7 +4594,12 @@
             }
         },
         {
-            "StartSequenceSystem": {
+            "SubSceneActivateByButton": {
+                "Priority": 0
+            }
+        },
+        {
+            "TakeToGoalPosition": {
                 "Priority": 1
             }
         },
@@ -4756,13 +4614,13 @@
             }
         },
         {
-            "TimerForSprite": {
-                "Priority": 1
+            "CreateRailMesh": {
+                "Priority": 0
             }
         },
         {
-            "CreateRailMesh": {
-                "Priority": 0
+            "TimerForSprite": {
+                "Priority": 1
             }
         },
         {
