@@ -24,6 +24,7 @@
 #include "component/player/state/PlayerState.h"
 #include "component/PlayerStateOverrideCondition.h"
 #include "component/SceneChanger.h"
+#include "component/SpeedModifiers.h"
 #include "component/spline/SplinePoints.h"
 #include "component/spline/TireSplinePoints.h"
 #include "component/stage/StageData.h"
@@ -35,6 +36,7 @@
 
 // application system
 #include "system/collision/AddForceTriggerSystem.h"
+#include "system/collision/OnCollisionModifierTargetSystem.h"
 #include "system/collision/PlayerOnCollision.h"
 #include "system/collision/TutorialColliderOnCollision.h"
 #include "system/collision/VelocityOverrideTriggerSystem.h"
@@ -65,6 +67,8 @@
 #include "system/Input/GhostInputUpdate.h"
 #include "system/input/PlayerInputSystem.h"
 #include "system/Input/PlayRecordSystem.h"
+#include "system/movement/ApplyAddForceSystem.h"
+#include "system/Movement/ApplySpeedModifiers.h"
 #include "system/movement/BillboardTransform.h"
 #include "system/Movement/CreateRailMesh.h"
 #include "system/movement/FollowCameraUpdateSystem.h"
@@ -79,6 +83,7 @@
 #include "system/movement/StartSequenceSystem.h"
 #include "system/Movement/TireTrailGenerateSystem.h"
 #include "system/Movement/Ui3dUpdateSystem.h"
+#include "system/Movement/VelocityOverrideSystem.h"
 #include "system/transition/ApplyMouseConditionSystem.h"
 #include "system/transition/ButtonGroupSystem.h"
 #include "system/transition/ButtonScenePreviewSystem.h"
@@ -159,6 +164,8 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<RayCollider>();
 
     componentRegistry->RegisterComponent<CollisionPushBackInfo>();
+
+    componentRegistry->RegisterComponent<SpeedModifiers>();
     componentRegistry->RegisterComponent<Rigidbody>();
 
     componentRegistry->RegisterComponent<Emitter>();
@@ -290,6 +297,10 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<SceneTransitionRequestSenderSystem>();
     systemRegistry->RegisterSystem<SceneTransitionRequestReceiverSystem>();
 
+    systemRegistry->RegisterSystem<ApplySpeedModifiers>();
+    systemRegistry->RegisterSystem<ApplyAddForceSystem>();
+    systemRegistry->RegisterSystem<VelocityOverrideSystem>();
+
     systemRegistry->RegisterSystem<SubSceneUpdate>();
     systemRegistry->RegisterSystem<RestartSystem>();
     systemRegistry->RegisterSystem<PauseMainSceneSystem>();
@@ -307,6 +318,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<TutorialColliderOnCollision>();
     systemRegistry->RegisterSystem<VelocityOverrideTriggerSystem>();
     systemRegistry->RegisterSystem<AddForceTriggerSystem>();
+    systemRegistry->RegisterSystem<OnCollisionModifierTargetSystem>();
 
     /// =================================================================================================
     // Effect

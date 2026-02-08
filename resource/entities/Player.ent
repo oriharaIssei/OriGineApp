@@ -323,14 +323,14 @@
                 "minJumpHoldVelocity": 4.739999771118164,
                 "railInterval": 0.17000000178813934,
                 "railJumpOffset": [
-                    0.5773502588272095,
-                    0.5773502588272095,
-                    0.5773502588272095
+                    0.5773503184318542,
+                    0.5773503184318542,
+                    0.5773503184318542
                 ],
                 "railRampUpTime": 0.25,
                 "railSpeedRate": 1.2200000286102295,
                 "risingGravityRate": 1.0,
-                "speedRestoreLerpRate": 68.0,
+                "speedRestoreLerpRate": 36.0,
                 "speedUpRateBase": 8.510000228881836,
                 "speedUpRateCommonRate": -0.1599999964237213,
                 "wallJumpOffset": [
@@ -357,6 +357,7 @@
                     0.0,
                     0.0
                 ],
+                "isActive": true,
                 "isUsingLocalDeltaTime": true,
                 "localDeltaTimeName": "Player",
                 "mass": 0.14000000059604645,
@@ -435,16 +436,16 @@
     "Name": "Player",
     "Systems": [
         {
-            "SystemCategory": 4,
-            "SystemName": "CollisionPushBackSystem"
+            "SystemCategory": 0,
+            "SystemName": "TakePlayerToStartPosition"
         },
         {
             "SystemCategory": 1,
             "SystemName": "PlayerInputSystem"
         },
         {
-            "SystemCategory": 0,
-            "SystemName": "TakePlayerToStartPosition"
+            "SystemCategory": 4,
+            "SystemName": "CollisionPushBackSystem"
         },
         {
             "SystemCategory": 4,
@@ -471,12 +472,12 @@
             "SystemName": "MoveSystemByRigidBody"
         },
         {
-            "SystemCategory": 3,
-            "SystemName": "PlayerMoveSystem"
-        },
-        {
             "SystemCategory": 6,
             "SystemName": "TexturedMeshRenderSystem"
+        },
+        {
+            "SystemCategory": 3,
+            "SystemName": "PlayerMoveSystem"
         },
         {
             "SystemCategory": 4,

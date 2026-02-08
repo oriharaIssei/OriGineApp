@@ -153,6 +153,11 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="code\component\SpeedModifiers.h" />
+    <ClInclude Include="code\system\collision\OnCollisionModifierTargetSystem.h" />
+    <ClInclude Include="code\system\Movement\ApplyAddForceSystem.h" />
+    <ClInclude Include="code\event\AddForceEvent.h" />
+    <ClInclude Include="code\event\VelocityOverrideEvent.h" />
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\MyEditor.h" />
     <ClInclude Include="code\MyGame.h" />
@@ -219,6 +224,7 @@
     <ClInclude Include="code\system\Input\GhostInputUpdate.h" />
     <ClInclude Include="code\system\Input\PlayRecordSystem.h" />
     <ClInclude Include="code\system\Input\PlayerInputSystem.h" />
+    <ClInclude Include="code\system\Movement\ApplySpeedModifiers.h" />
     <ClInclude Include="code\system\Movement\BillboardTransform.h" />
     <ClInclude Include="code\system\Movement\CreateRailMesh.h" />
     <ClInclude Include="code\system\Movement\FollowCameraUpdateSystem.h" />
@@ -265,8 +271,12 @@
     <ClInclude Include="code\system\effect\PenaltyTimeSpriteUpdate.h" />
     <ClInclude Include="code\system\effect\PlayerSpeedFor3dUI.h" />
     <ClInclude Include="code\system\effect\TimerForSprite.h" />
+    <ClInclude Include="code\system\Movement\VelocityOverrideSystem.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\component\SpeedModifiers.cpp" />
+    <ClCompile Include="code\system\collision\OnCollisionModifierTargetSystem.cpp" />
+    <ClCompile Include="code\system\Movement\ApplyAddForceSystem.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\MyEditor.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
@@ -328,6 +338,7 @@
     <ClCompile Include="code\system\Input\GhostInputUpdate.cpp" />
     <ClCompile Include="code\system\Input\PlayRecordSystem.cpp" />
     <ClCompile Include="code\system\Input\PlayerInputSystem.cpp" />
+    <ClCompile Include="code\system\Movement\ApplySpeedModifiers.cpp" />
     <ClCompile Include="code\system\Movement\BillboardTransform.cpp" />
     <ClCompile Include="code\system\Movement\CreateRailMesh.cpp" />
     <ClCompile Include="code\system\Movement\FollowCameraUpdateSystem.cpp" />
@@ -373,6 +384,7 @@
     <ClCompile Include="code\system\effect\PenaltyTimeSpriteUpdate.cpp" />
     <ClCompile Include="code\system\effect\PlayerSpeedFor3dUI.cpp" />
     <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
+    <ClCompile Include="code\system\Movement\VelocityOverrideSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">

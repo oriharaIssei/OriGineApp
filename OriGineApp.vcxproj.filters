@@ -387,6 +387,13 @@
     <ClInclude Include="code\system\effect\TimerForSprite.h">
       <Filter>system\effect</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Movement\VelocityOverrideSystem.h" />
+    <ClInclude Include="code\event\VelocityOverrideEvent.h" />
+    <ClInclude Include="code\event\AddForceEvent.h" />
+    <ClInclude Include="code\system\Movement\ApplyAddForceSystem.h" />
+    <ClInclude Include="code\component\SpeedModifiers.h" />
+    <ClInclude Include="code\system\Movement\ApplySpeedModifiers.h" />
+    <ClInclude Include="code\system\collision\OnCollisionModifierTargetSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -699,5 +706,10 @@
     <ClCompile Include="code\system\effect\TimerForSprite.cpp">
       <Filter>system\effect</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\Movement\VelocityOverrideSystem.cpp" />
+    <ClCompile Include="code\system\Movement\ApplyAddForceSystem.cpp" />
+    <ClCompile Include="code\component\SpeedModifiers.cpp" />
+    <ClCompile Include="code\system\Movement\ApplySpeedModifiers.cpp" />
+    <ClCompile Include="code\system\collision\OnCollisionModifierTargetSystem.cpp" />
   </ItemGroup>
 </Project>

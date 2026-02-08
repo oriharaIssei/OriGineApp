@@ -3,14 +3,19 @@
 /// stl
 #include <unordered_set>
 
+/// engine
+#include "messageBus/MessageBus.h"
+
 /// ECS
 // component
-
 #include "component/VelocityOverrideComponent.h"
 #include "component/collision/collider/AABBCollider.h"
 #include "component/collision/collider/ObbCollider.h"
 #include "component/collision/collider/SphereCollider.h"
 #include "component/physics/Rigidbody.h"
+
+/// event
+#include "event/VelocityOverrideEvent.h"
 
 using namespace OriGine;
 
@@ -59,7 +64,8 @@ void VelocityOverrideTriggerSystem::UpdateEntity(OriGine::EntityHandle _handle) 
         auto rigidbodyComp = GetComponent<Rigidbody>(otherHandle);
         if (rigidbodyComp) {
             // 速度を強制的に上書き
-            rigidbodyComp->SetVelocity(velocityOverrideComp->forcedMovementVector_);
+            VelocityOverrideEvent event(rigidbodyComp->GetHandle(), velocityOverrideComp->forcedMovementVector_);
+            MessageBus::GetInstance()->Emit<VelocityOverrideEvent>(event);
         }
     }
 }
