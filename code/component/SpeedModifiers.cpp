@@ -41,7 +41,7 @@ void SpeedModifiers::Edit(Scene* /*_scene*/, EntityHandle /*_owner*/, [[maybe_un
     EasingComboGui("Additive Lerp Ease Type##" + _parentLabel, additiveLerpEaseType);
     ImGui::Spacing();
 
-    DragGuiCommand("Additive Target##" + _parentLabel, additiveTarget, 0.01f);
+    DragGuiVectorCommand("Additive Target##" + _parentLabel, additiveTarget, 0.01f);
     DragGuiCommand("Additive Duration##" + _parentLabel, additiveDuration, 0.01f);
     DragGuiCommand("Additive Lerp Duration##" + _parentLabel, additiveLerpDuration, 0.01f);
 
@@ -52,7 +52,7 @@ void SpeedModifiers::Edit(Scene* /*_scene*/, EntityHandle /*_owner*/, [[maybe_un
     EasingComboGui("Multiplier Lerp Ease Type##" + _parentLabel, multiplierLerpEaseType);
     ImGui::Spacing();
 
-    DragGuiCommand("Multiplier Target##" + _parentLabel, multiplierTarget, 0.01f);
+    DragGuiVectorCommand("Multiplier Target##" + _parentLabel, multiplierTarget, 0.01f);
     DragGuiCommand("Multiplier Duration##" + _parentLabel, multiplierDuration, 0.01f);
     DragGuiCommand("Multiplier Lerp Duration##" + _parentLabel, multiplierLerpDuration, 0.01f);
 #endif // _DEBUG

@@ -394,6 +394,7 @@
     <ClInclude Include="code\component\SpeedModifiers.h" />
     <ClInclude Include="code\system\Movement\ApplySpeedModifiers.h" />
     <ClInclude Include="code\system\collision\OnCollisionModifierTargetSystem.h" />
+    <ClInclude Include="code\component\player\PlayerMoveUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -711,5 +712,6 @@
     <ClCompile Include="code\component\SpeedModifiers.cpp" />
     <ClCompile Include="code\system\Movement\ApplySpeedModifiers.cpp" />
     <ClCompile Include="code\system\collision\OnCollisionModifierTargetSystem.cpp" />
+    <ClCompile Include="code\component\player\PlayerMoveUtils.cpp" />
   </ItemGroup>
 </Project>

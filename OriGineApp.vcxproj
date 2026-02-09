@@ -153,6 +153,7 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="code\component\player\PlayerMoveUtils.h" />
     <ClInclude Include="code\component\SpeedModifiers.h" />
     <ClInclude Include="code\system\collision\OnCollisionModifierTargetSystem.h" />
     <ClInclude Include="code\system\Movement\ApplyAddForceSystem.h" />
@@ -385,6 +386,7 @@
     <ClCompile Include="code\system\effect\PlayerSpeedFor3dUI.cpp" />
     <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
     <ClCompile Include="code\system\Movement\VelocityOverrideSystem.cpp" />
+    <ClCompile Include="code\component\player\PlayerMoveUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">

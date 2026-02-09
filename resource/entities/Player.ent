@@ -248,8 +248,10 @@
                 "Handle": "eba370f8-fa85-4975-83cf-21231ea46835",
                 "invincibleBlinkBaseAmplitude": 8.0,
                 "invincibleBlinkMaxAmplitude": 40.0,
+                "maxTiltOnRailRun": -0.7300000190734863,
                 "maxWheelSpinSpeed": 0.18700000643730164,
                 "rotateOffsetOnWallRun": 0.5699999928474426,
+                "tiltSpeedOnRailRun": 12.0,
                 "trailColorByGearLevel": [
                     [
                         0.1051647737622261,
@@ -314,25 +316,28 @@
                 "fallingGravityRate": 1.0,
                 "gearUpCoolTime": 0.5699999928474426,
                 "gravityApplyDelayOnWallRun": 0.36000001430511475,
+                "groundCheckThreshold": 0.699999988079071,
                 "jumpChargeRateEaseType": 11,
                 "jumpHoldVelocityEaseType": 7,
                 "massOnWallRun": 0.019999999552965164,
                 "maxJumpChargeRate": 67.37999725341797,
                 "maxJumpHoldVelocity": 8.220000267028809,
+                "maxWheelieFallSpeed": -1.2999999523162842,
                 "minJumpChargeRate": 41.38999938964844,
                 "minJumpHoldVelocity": 4.739999771118164,
                 "railInterval": 0.17000000178813934,
                 "railJumpOffset": [
-                    0.5773503184318542,
-                    0.5773503184318542,
-                    0.5773503184318542
+                    0.5773502588272095,
+                    0.5773502588272095,
+                    0.5773502588272095
                 ],
                 "railRampUpTime": 0.25,
                 "railSpeedRate": 1.2200000286102295,
                 "risingGravityRate": 1.0,
-                "speedRestoreLerpRate": 36.0,
+                "speedRestoreLerpRate": 64.0,
                 "speedUpRateBase": 8.510000228881836,
                 "speedUpRateCommonRate": -0.1599999964237213,
+                "wallCheckThreshold": 0.41999998688697815,
                 "wallJumpOffset": [
                     0.5350648760795593,
                     0.5490370392799377,
