@@ -13,7 +13,7 @@
                 ],
                 "isActive": true,
                 "materialIndex": 0,
-                "texturePath": "./application/resource/Texture/Perlin 7 - 256x256.png",
+                "texturePath": "./application/resource/Texture/Perlin7-256x256.png",
                 "use3dObjectList": false
             }
         ],

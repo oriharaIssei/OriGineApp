@@ -76,7 +76,7 @@
         "MaterialEffectPipeLine": [
             {
                 "Handle": "11ddb139-15b7-4c16-aad2-572bce5266ee",
-                "baseTexturePath": "./application/resource/Texture/Voronoi 3 - 256x256.png",
+                "baseTexturePath": "./application/resource/Texture/Voronoi3-256x256.png",
                 "effectEntityIdList": [
                     {
                         "effectType": 1,

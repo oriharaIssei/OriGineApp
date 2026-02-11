@@ -80,7 +80,7 @@ public:
     /// テクスチャ読み込み時の設定
     /// </summary>
     /// <param name="_texIdx"></param>
-    void SettingOnLoadTexture(uint32_t _texIdx);
+    void SettingOnLoadTexture(size_t _texIdx);
 
 private:
     OriGine::EntityHandle spriteEntityHandle_ = OriGine::EntityHandle(); // スプライトを持つエンティティID
@@ -88,7 +88,7 @@ public:
     int32_t digitInteger = 0; // 整数部の桁数
     int32_t digitDecimal = 0; // 小数部の桁数
 
-    uint32_t textureIndex             = 0; // 数字のテクスチャインデックス
+    size_t textureIndex               = 0; // 数字のテクスチャインデックス
     std::string numbersTexturePath    = ""; // 数字のテクスチャ名
     OriGine::Vec2f numbersTextureSize = {0.f, 0.f}; // 数字のテクスチャサイズ
     OriGine::Vec2f numberTileSize     = {0.f, 0.f}; // 数字のタイルサイズ

@@ -153,12 +153,6 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="code\component\player\PlayerMoveUtils.h" />
-    <ClInclude Include="code\component\SpeedModifiers.h" />
-    <ClInclude Include="code\system\collision\OnCollisionModifierTargetSystem.h" />
-    <ClInclude Include="code\system\Movement\ApplyAddForceSystem.h" />
-    <ClInclude Include="code\event\AddForceEvent.h" />
-    <ClInclude Include="code\event\VelocityOverrideEvent.h" />
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\MyEditor.h" />
     <ClInclude Include="code\MyGame.h" />
@@ -168,6 +162,7 @@
     <ClInclude Include="code\component\PlayerStateOverrideCondition.h" />
     <ClInclude Include="code\component\PointPlacementParams.h" />
     <ClInclude Include="code\component\SceneChanger.h" />
+    <ClInclude Include="code\component\SpeedModifiers.h" />
     <ClInclude Include="code\component\TimerComponent.h" />
     <ClInclude Include="code\component\VelocityOverrideComponent.h" />
     <ClInclude Include="code\component\camera\CameraConfig.h" />
@@ -182,6 +177,7 @@
     <ClInclude Include="code\component\player\PlayerEffectControlParam.h" />
     <ClInclude Include="code\component\player\PlayerInput.h" />
     <ClInclude Include="code\component\player\PlayerInputDevice.h" />
+    <ClInclude Include="code\component\player\PlayerMoveUtils.h" />
     <ClInclude Include="code\component\player\PlayerStatus.h" />
     <ClInclude Include="code\component\player\State\IPlayerMoveState.h" />
     <ClInclude Include="code\component\player\State\PlayerDashState.h" />
@@ -201,9 +197,11 @@
     <ClInclude Include="code\component\ui\ButtonGroup.h" />
     <ClInclude Include="code\component\ui\SpeedFor3dUIComponent.h" />
     <ClInclude Include="code\component\ui\UIConfig.h" />
+    <ClInclude Include="code\event\AddForceEvent.h" />
     <ClInclude Include="code\event\GamefailedEvent.h" />
     <ClInclude Include="code\event\RestartEvent.h" />
     <ClInclude Include="code\event\SceneChangeRequest.h" />
+    <ClInclude Include="code\event\VelocityOverrideEvent.h" />
     <ClInclude Include="code\manager\PlayerProgressStore.h" />
     <ClInclude Include="code\system\Initialize\BackFireInitialize.h" />
     <ClInclude Include="code\system\Initialize\CreatePlaneFromSpeed.h" />
@@ -225,6 +223,7 @@
     <ClInclude Include="code\system\Input\GhostInputUpdate.h" />
     <ClInclude Include="code\system\Input\PlayRecordSystem.h" />
     <ClInclude Include="code\system\Input\PlayerInputSystem.h" />
+    <ClInclude Include="code\system\Movement\ApplyAddForceSystem.h" />
     <ClInclude Include="code\system\Movement\ApplySpeedModifiers.h" />
     <ClInclude Include="code\system\Movement\BillboardTransform.h" />
     <ClInclude Include="code\system\Movement\CreateRailMesh.h" />
@@ -240,6 +239,7 @@
     <ClInclude Include="code\system\Movement\StartSequenceSystem.h" />
     <ClInclude Include="code\system\Movement\TireTrailGenerateSystem.h" />
     <ClInclude Include="code\system\Movement\Ui3dUpdateSystem.h" />
+    <ClInclude Include="code\system\Movement\VelocityOverrideSystem.h" />
     <ClInclude Include="code\system\Transition\ApplyMouseConditionSystem.h" />
     <ClInclude Include="code\system\Transition\ButtonGroupSystem.h" />
     <ClInclude Include="code\system\Transition\ButtonScenePreviewSystem.h" />
@@ -260,6 +260,7 @@
     <ClInclude Include="code\system\Transition\TransitionPlayerState.h" />
     <ClInclude Include="code\system\Transition\UpdateButtonColorByState.h" />
     <ClInclude Include="code\system\collision\AddForceTriggerSystem.h" />
+    <ClInclude Include="code\system\collision\OnCollisionModifierTargetSystem.h" />
     <ClInclude Include="code\system\collision\PlayerOnCollision.h" />
     <ClInclude Include="code\system\collision\TutorialColliderOnCollision.h" />
     <ClInclude Include="code\system\collision\VelocityOverrideTriggerSystem.h" />
@@ -272,12 +273,8 @@
     <ClInclude Include="code\system\effect\PenaltyTimeSpriteUpdate.h" />
     <ClInclude Include="code\system\effect\PlayerSpeedFor3dUI.h" />
     <ClInclude Include="code\system\effect\TimerForSprite.h" />
-    <ClInclude Include="code\system\Movement\VelocityOverrideSystem.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="code\component\SpeedModifiers.cpp" />
-    <ClCompile Include="code\system\collision\OnCollisionModifierTargetSystem.cpp" />
-    <ClCompile Include="code\system\Movement\ApplyAddForceSystem.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\MyEditor.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
@@ -287,6 +284,7 @@
     <ClCompile Include="code\component\PlayerStateOverrideCondition.cpp" />
     <ClCompile Include="code\component\PointPlacementParams.cpp" />
     <ClCompile Include="code\component\SceneChanger.cpp" />
+    <ClCompile Include="code\component\SpeedModifiers.cpp" />
     <ClCompile Include="code\component\TimerComponent.cpp" />
     <ClCompile Include="code\component\VelocityOverrideComponent.cpp" />
     <ClCompile Include="code\component\camera\CameraController.cpp" />
@@ -299,6 +297,7 @@
     <ClCompile Include="code\component\player\PlayerEffectControlParam.cpp" />
     <ClCompile Include="code\component\player\PlayerInput.cpp" />
     <ClCompile Include="code\component\player\PlayerInputDevice.cpp" />
+    <ClCompile Include="code\component\player\PlayerMoveUtils.cpp" />
     <ClCompile Include="code\component\player\PlayerStatus.cpp" />
     <ClCompile Include="code\component\player\State\IPlayerMoveState.cpp" />
     <ClCompile Include="code\component\player\State\PlayerDashState.cpp" />
@@ -339,6 +338,7 @@
     <ClCompile Include="code\system\Input\GhostInputUpdate.cpp" />
     <ClCompile Include="code\system\Input\PlayRecordSystem.cpp" />
     <ClCompile Include="code\system\Input\PlayerInputSystem.cpp" />
+    <ClCompile Include="code\system\Movement\ApplyAddForceSystem.cpp" />
     <ClCompile Include="code\system\Movement\ApplySpeedModifiers.cpp" />
     <ClCompile Include="code\system\Movement\BillboardTransform.cpp" />
     <ClCompile Include="code\system\Movement\CreateRailMesh.cpp" />
@@ -354,6 +354,7 @@
     <ClCompile Include="code\system\Movement\StartSequenceSystem.cpp" />
     <ClCompile Include="code\system\Movement\TireTrailGenerateSystem.cpp" />
     <ClCompile Include="code\system\Movement\Ui3dUpdateSystem.cpp" />
+    <ClCompile Include="code\system\Movement\VelocityOverrideSystem.cpp" />
     <ClCompile Include="code\system\Transition\ApplyMouseConditionSystem.cpp" />
     <ClCompile Include="code\system\Transition\ButtonGroupSystem.cpp" />
     <ClCompile Include="code\system\Transition\ButtonScenePreviewSystem.cpp" />
@@ -374,6 +375,7 @@
     <ClCompile Include="code\system\Transition\TransitionPlayerState.cpp" />
     <ClCompile Include="code\system\Transition\UpdateButtonColorByState.cpp" />
     <ClCompile Include="code\system\collision\AddForceTriggerSystem.cpp" />
+    <ClCompile Include="code\system\collision\OnCollisionModifierTargetSystem.cpp" />
     <ClCompile Include="code\system\collision\PlayerOnCollision.cpp" />
     <ClCompile Include="code\system\collision\TutorialColliderOnCollision.cpp" />
     <ClCompile Include="code\system\collision\VelocityOverrideTriggerSystem.cpp" />
@@ -385,8 +387,6 @@
     <ClCompile Include="code\system\effect\PenaltyTimeSpriteUpdate.cpp" />
     <ClCompile Include="code\system\effect\PlayerSpeedFor3dUI.cpp" />
     <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
-    <ClCompile Include="code\system\Movement\VelocityOverrideSystem.cpp" />
-    <ClCompile Include="code\component\player\PlayerMoveUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">

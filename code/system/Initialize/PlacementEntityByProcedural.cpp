@@ -4,7 +4,9 @@
 #include "Engine.h"
 #include "scene/SceneFactory.h"
 #include "scene/SceneJsonRegistry.h"
-#include "texture/TextureManager.h"
+#include "asset/AssetSystem.h"
+// asset
+#include "asset/TextureAsset.h"
 // directX12
 #include "directX12/DxDevice.h"
 #include "directX12/DxFence.h"
@@ -171,13 +173,13 @@ void PlacementEntityByProcedural::UpdateEntity(OriGine::EntityHandle _handle) {
         // テクスチャの設定
         commandList->SetComputeRootDescriptorTable(
             static_cast<uint32_t>(pointDensityBuffIndex_),
-            TextureManager::GetDescriptorGpuHandle(pointPlacementParams.GetPointDensityTextureIndex()));
+            AssetSystem::GetInstance()->GetManager<TextureAsset>()->GetAsset(pointPlacementParams.GetPointDensityTextureIndex()).srv.GetGpuHandle());
         commandList->SetComputeRootDescriptorTable(
             static_cast<uint32_t>(pointVolumeBuffIndex_),
-            TextureManager::GetDescriptorGpuHandle(pointPlacementParams.GetPointVolumeTextureIndex()));
+            AssetSystem::GetInstance()->GetManager<TextureAsset>()->GetAsset(pointPlacementParams.GetPointVolumeTextureIndex()).srv.GetGpuHandle());
         commandList->SetComputeRootDescriptorTable(
             static_cast<uint32_t>(pointMaskBuffIndex_),
-            TextureManager::GetDescriptorGpuHandle(pointPlacementParams.GetPointMaskTextureIndex()));
+            AssetSystem::GetInstance()->GetManager<TextureAsset>()->GetAsset(pointPlacementParams.GetPointMaskTextureIndex()).srv.GetGpuHandle());
 
         // Dispatch
         uint32_t res = pointPlacementParams.GetParamData().openData_.placementResolution;

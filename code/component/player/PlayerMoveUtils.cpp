@@ -10,7 +10,6 @@ WallContactResult EvaluateWallContact(float _parallelFactor, const Rigidbody* _r
             return WallContactResult::WallRun;
         }
     } else { // 基準値以下なら
-        constexpr float kWheelieThresholdFallSpeed = -1.3f; // ウィリーになるための落下速度閾値
         if (_rigidbody->GetVelocity()[Y] > _status->GetMaxWheelieFallSpeed()) {
             if (_status->CanWheelie()) {
                 return WallContactResult::Wheelie;
