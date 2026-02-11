@@ -14,6 +14,9 @@
 
 #include "component/TimerComponent.h"
 
+/// util
+#include "component/player/PlayerMoveUtils.h"
+
 /// math
 #include "math/mathEnv.h"
 
@@ -131,19 +134,9 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
             }
 
             if (isFirstCollision) {
-                // 壁に沿って移動している場合は壁衝突とみなす
-                // 正面衝突の場合はペナルティを与える
-                if (parallelFactor > kWallCheckThreshold) {
-                    if (status->CanWallRun()) {
-                        state->OnCollisionWall(collNormal, entityId);
-                    }
-                } else { // 基準値以下なら
-                    constexpr float kWheelieThresholdFallSpeed = -1.3f; // ウィリーになるための落下速度閾値
-                    if (rigidbody->GetVelocity()[Y] > kWheelieThresholdFallSpeed) {
-                        if (status->CanWheelie()) {
-                            state->OnCollisionWall(collNormal, entityId, true);
-                        }
-                    }
+                PlayerMoveUtils::WallContactResult wallContactResult = PlayerMoveUtils::EvaluateWallContact(parallelFactor, rigidbody, status);
+                if (wallContactResult != PlayerMoveUtils::WallContactResult::WallHit) {
+                    state->OnCollisionWall(collNormal, wallEntityHandle, wallContactResult == PlayerMoveUtils::WallContactResult::Wheelie);
                 }
             } else {
                 bool canContinue = false;

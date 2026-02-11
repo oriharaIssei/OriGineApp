@@ -4,7 +4,9 @@
 #define RESOURCE_DIRECTORY
 #include "EngineInclude.h"
 
-#include "texture/TextureManager.h"
+#include "asset/AssetSystem.h"
+// asset
+#include "asset/TextureAsset.h"
 
 #ifdef DEBUG
 #include "myFileSystem/MyFileSystem.h"
@@ -69,9 +71,8 @@ void from_json(const nlohmann::json& j, TimerForSpriteComponent& c) {
 
 void TimerForSpriteComponent::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {
     if (!this->numbersTexturePath.empty()) {
-        textureIndex = TextureManager::LoadTexture(this->numbersTexturePath, [this](uint32_t newIdx) {
-            this->SettingOnLoadTexture(newIdx);
-        });
+        textureIndex = AssetSystem::GetInstance()->GetManager<TextureAsset>()->LoadAsset(this->numbersTexturePath);
+        this->SettingOnLoadTexture(textureIndex);
     }
 }
 
@@ -102,7 +103,7 @@ void TimerForSpriteComponent::Edit(Scene* /*_scene*/, EntityHandle /*_owner*/, [
         std::string label = "Load Texture##" + parentLabel;
         askLoad           = ImGui::Button(label.c_str());
         askLoad |= ImGui::ImageButton(
-            reinterpret_cast<ImTextureID>(TextureManager::GetDescriptorGpuHandle(textureIndex).ptr),
+            reinterpret_cast<ImTextureID>(AssetSystem::GetInstance()->GetManager<TextureAsset>()->GetAsset(textureIndex).srv.GetGpuHandle().ptr),
             ImVec2(18, 18), ImVec2(0, 0), ImVec2(1, 1), 6);
         return askLoad;
     };
@@ -113,9 +114,11 @@ void TimerForSpriteComponent::Edit(Scene* /*_scene*/, EntityHandle /*_owner*/, [
             auto command = std::make_unique<SetterCommand<std::string>>(
                 &this->numbersTexturePath,
                 textureDefaultDirectory + "/" + directory + "/" + fileName,
-                [this](std::string*) { textureIndex = TextureManager::LoadTexture(this->numbersTexturePath, [this](uint32_t newIdx) {
-                                           this->SettingOnLoadTexture(newIdx);
-                                       }); }, true);
+                [this](std::string*) {
+                    textureIndex = AssetSystem::GetInstance()->GetManager<TextureAsset>()->LoadAsset(this->numbersTexturePath);
+                    this->SettingOnLoadTexture(textureIndex);
+                },
+                true);
 
             OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
         }
@@ -132,8 +135,8 @@ void TimerForSpriteComponent::Edit(Scene* /*_scene*/, EntityHandle /*_owner*/, [
 #endif
 }
 
-void TimerForSpriteComponent::SettingOnLoadTexture(uint32_t texIdx) {
-    const auto& metaData = TextureManager::GetTexMetadata(texIdx);
+void TimerForSpriteComponent::SettingOnLoadTexture(size_t texIdx) {
+    const auto& metaData = AssetSystem::GetInstance()->GetManager<TextureAsset>()->GetAsset(texIdx).metaData;
 
     if (metaData.width == 0 || metaData.height == 0) {
         LOG_ERROR("Texture metadata is invalid. Width or height is zero.");

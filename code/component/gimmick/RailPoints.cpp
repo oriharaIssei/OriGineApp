@@ -2,7 +2,9 @@
 
 /// engine
 #include "scene/Scene.h"
-#include "texture/TextureManager.h"
+#include "asset/AssetSystem.h"
+// asset
+#include "asset/TextureAsset.h"
 
 /// math
 #include "math/Spline.h"
@@ -41,7 +43,7 @@ RailPoints::~RailPoints() {}
 void RailPoints::Initialize(OriGine::Scene* /*_scene*/, OriGine::EntityHandle /*_owner*/) {
     totalLength = CalcSplineLength(points);
     if (!texturePath.empty()) {
-        textureIndex = TextureManager::LoadTexture(texturePath);
+        textureIndex = AssetSystem::GetInstance()->GetManager<TextureAsset>()->LoadAsset(texturePath);
     }
 }
 void RailPoints::Finalize() {}

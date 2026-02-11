@@ -1,7 +1,9 @@
 #include "PointPlacementParams.h"
 
 /// Engine
-#include "texture/TextureManager.h"
+#include "asset/AssetSystem.h"
+// asset
+#include "asset/TextureAsset.h"
 
 // dreictX12
 #include "directX12/DxDevice.h"
@@ -10,6 +12,7 @@
 /// Engine
 #define RESOURCE_DIRECTORY
 #include "EngineInclude.h"
+
 /// util
 #include "myFileSystem/MyFileSystem.h"
 #include "myGui/MyGui.h"
@@ -28,13 +31,13 @@ void PointPlacementParams::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/
 
     // テクスチャの読み込み
     if (!pointDensityTexturePath_.empty()) {
-        pointDensityTextureIndex_ = TextureManager::LoadTexture(pointDensityTexturePath_);
+        pointDensityTextureIndex_ = AssetSystem::GetInstance()->GetManager<TextureAsset>()->LoadAsset(pointDensityTexturePath_);
     }
     if (!pointVolumeTexturePath_.empty()) {
-        pointVolumeTextureIndex_ = TextureManager::LoadTexture(pointVolumeTexturePath_);
+        pointVolumeTextureIndex_ = AssetSystem::GetInstance()->GetManager<TextureAsset>()->LoadAsset(pointVolumeTexturePath_);
     }
     if (!pointMaskTexturePath_.empty()) {
-        pointMaskTextureIndex_ = TextureManager::LoadTexture(pointMaskTexturePath_);
+        pointMaskTextureIndex_ = AssetSystem::GetInstance()->GetManager<TextureAsset>()->LoadAsset(pointMaskTexturePath_);
     }
 }
 
@@ -75,7 +78,7 @@ void PointPlacementParams::Edit(Scene* /*_scene*/, EntityHandle /*_owner*/, [[ma
                 kApplicationResourceDirectory + "/" + directory + "/" + fileName,
                 [this](std::string* _newPath) {
                     // テクスチャを読み込んでインデックスを更新する
-                    pointDensityTextureIndex_ = TextureManager::LoadTexture(*_newPath);
+                    pointDensityTextureIndex_ = AssetSystem::GetInstance()->GetManager<TextureAsset>()->LoadAsset(*_newPath);
                 });
 
             OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
@@ -96,7 +99,7 @@ void PointPlacementParams::Edit(Scene* /*_scene*/, EntityHandle /*_owner*/, [[ma
                 kApplicationResourceDirectory + "/" + directory + "/" + fileName,
                 [this](std::string* _newPath) {
                     // テクスチャを読み込んでインデックスを更新する
-                    pointVolumeTextureIndex_ = TextureManager::LoadTexture(*_newPath);
+                    pointVolumeTextureIndex_ = AssetSystem::GetInstance()->GetManager<TextureAsset>()->LoadAsset(*_newPath);
                 });
 
             OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
@@ -118,7 +121,7 @@ void PointPlacementParams::Edit(Scene* /*_scene*/, EntityHandle /*_owner*/, [[ma
                 kApplicationResourceDirectory + "/" + directory + "/" + fileName,
                 [this](std::string* _newPath) {
                     // テクスチャを読み込んでインデックスを更新する
-                    pointMaskTextureIndex_ = TextureManager::LoadTexture(*_newPath);
+                    pointMaskTextureIndex_ = AssetSystem::GetInstance()->GetManager<TextureAsset>()->LoadAsset(*_newPath);
                 });
 
             OriGine::EditorController::GetInstance()->PushCommand(std::move(command));

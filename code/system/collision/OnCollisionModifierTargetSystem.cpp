@@ -1,33 +1,35 @@
-#include "AddForceTriggerSystem.h"
+#include "OnCollisionModifierTargetSystem.h"
 
 /// stl
 #include <unordered_set>
 
 /// engine
-#include "messageBus/MessageBus.h"
+#include "scene/Scene.h"
 
 /// ECS
 // component
-#include "component/AddForceComponent.h"
 #include "component/collision/collider/AABBCollider.h"
 #include "component/collision/collider/ObbCollider.h"
 #include "component/collision/collider/SphereCollider.h"
 #include "component/physics/Rigidbody.h"
+#include "component/SpeedModifiers.h"
+// system
+#include "system/Movement/ApplySpeedModifiers.h"
 
 /// event
 #include "event/AddForceEvent.h"
 
 using namespace OriGine;
 
-AddForceTriggerSystem::AddForceTriggerSystem() : ISystem(SystemCategory::Collision) {}
-AddForceTriggerSystem::~AddForceTriggerSystem() {}
+OnCollisionModifierTargetSystem::OnCollisionModifierTargetSystem() : ISystem(SystemCategory::Collision) {}
+OnCollisionModifierTargetSystem::~OnCollisionModifierTargetSystem() {}
 
-void AddForceTriggerSystem::Initialize() {}
-void AddForceTriggerSystem::Finalize() {}
+void OnCollisionModifierTargetSystem::Initialize() {}
+void OnCollisionModifierTargetSystem::Finalize() {}
 
-void AddForceTriggerSystem::UpdateEntity(OriGine::EntityHandle _handle) {
-    auto addForceComp = GetComponent<AddForceComponent>(_handle);
-    if (!addForceComp) {
+void OnCollisionModifierTargetSystem::UpdateEntity(OriGine::EntityHandle _handle) {
+    auto speedModifiers = GetComponent<SpeedModifiers>(_handle);
+    if (!speedModifiers) {
         return;
     }
 
@@ -59,12 +61,21 @@ void AddForceTriggerSystem::UpdateEntity(OriGine::EntityHandle _handle) {
         }
     }
 
-    // 衝突したエンティティにジャンプ力を加える
+    // 衝突したエンティティのRigidbodyに対してSpeedModifierを適応するEntityを作成する
     for (const auto& otherHandle : collidedEntities) {
         auto rigidbodyComp = GetComponent<Rigidbody>(otherHandle);
         if (rigidbodyComp) {
-            AddForceEvent event(rigidbodyComp->GetHandle(), addForceComp->addForce_);
-            MessageBus::GetInstance()->Emit<AddForceEvent>(event);
+            EntityHandle createdEntity = CreateEntity("SpeedModifier");
+            ComponentHandle modifier   = AddComponent<SpeedModifiers>(createdEntity);
+            auto* modifierComp         = GetComponent<SpeedModifiers>(modifier);
+            if (modifierComp) {
+                *modifierComp                       = *speedModifiers;
+                modifierComp->targetRigidbodyHandle = rigidbodyComp->GetHandle();
+                modifierComp->beforeSpeed           = rigidbodyComp->GetVelocity().length();
+
+                // systemに登録
+                GetScene()->GetSystem(nameof<ApplySpeedModifiers>())->AddEntity(createdEntity);
+            }
         }
     }
 }

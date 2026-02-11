@@ -7,12 +7,14 @@
 // component
 #include "component/gimmick/RailPoints.h"
 #include "component/physics/Rigidbody.h"
+#include "component/player/PlayerEffectControlParam.h"
 #include "component/player/PlayerInput.h"
 #include "component/player/PlayerStatus.h"
 #include "component/player/State/PlayerState.h"
 #include "component/transform/Transform.h"
 
 /// math
+#include "math/Interpolation.h"
 #include "math/mathEnv.h"
 #include "math/MyEasing.h"
 #include "math/Spline.h"
@@ -61,10 +63,12 @@ void PlayerOnRailState::Initialize() {
 }
 
 void PlayerOnRailState::Update(float _deltaTime) {
-    auto* playerState  = scene_->GetComponent<PlayerState>(playerEntityHandle_);
-    auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
-    auto* transform    = scene_->GetComponent<Transform>(playerEntityHandle_);
-    auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
+    constexpr Vec3f kPlayerOffsetOnRail = Vec3f(0.f, 2.f, 0.f);
+    auto* playerState                   = scene_->GetComponent<PlayerState>(playerEntityHandle_);
+    auto* playerInput                   = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
+    auto* playerStatus                  = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
+    auto* transform                     = scene_->GetComponent<Transform>(playerEntityHandle_);
+    auto* rigidbody                     = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
 
     auto* railPoints    = scene_->GetComponent<RailPoints>(playerState->GetRailEntityHandle());
     auto* railTransform = scene_->GetComponent<Transform>(playerState->GetRailEntityHandle());
@@ -101,6 +105,19 @@ void PlayerOnRailState::Update(float _deltaTime) {
     // transform の更新
     transform->translate = CalcPointOnSplineByDistance(railPoints->points, traveledDistance_) * railTransform->worldMat;
     transform->rotate    = Quaternion::LookAt(front, axisY);
+    // 傾きの補正
+    auto* effectControlParam = scene_->GetComponent<PlayerEffectControlParam>(playerEntityHandle_);
+    if (effectControlParam) {
+        float maxTiltAngle   = effectControlParam->GetMaxTiltOnRailRun();
+        float tiltSpeed      = effectControlParam->GetTiltSpeedOnRailRun();
+        t              = (playerInput->GetInputDirection()[X] + 1.0f) * 0.5f; // -1~1 を 0～1で表現
+        transform->rotate[Z] = LerpByDeltaTime(transform->rotate[Z], std::lerp(-maxTiltAngle, maxTiltAngle, t), _deltaTime, tiltSpeed);
+    }
+    transform->rotate = transform->rotate.normalize();
+
+    // プレイヤーの高さ補正
+    Vec3f offset = transform->rotate.RotateVector(kPlayerOffsetOnRail);
+    transform->translate += offset;
 
     rigidbody->SetVelocity(front * currentSpeed_);
 }
@@ -125,9 +142,9 @@ void PlayerOnRailState::Finalize() {
     // -1$ ～ -0.333... の範囲なら 補正を左に
     // -0.333... ～ 0.333...の範囲なら 補正を正面に
     // 0.333... ～ 1 の範囲なら 補正を右に(通常状態)
-    if (inputX > -1.f && inputX < -0.3333f) {
+    if (inputX >= -1.f && inputX <= -0.3333f) {
         jumpVelo[X] *= -1.f;
-    } else if (inputX > -0.333f && inputX < 0.3333f) {
+    } else if (inputX > -0.333f && inputX <= 0.3333f) {
         jumpVelo += Vec3f(0.f, 0.5f, 0.5f) * jumpVelo[X];
         jumpVelo[X] = 0.f;
     }

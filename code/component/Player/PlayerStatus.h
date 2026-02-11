@@ -97,6 +97,11 @@ private:
     float speedUpRateBase_       = 1.0f; // ギアアップ時の速度上昇率の基本値
     float speedUpRateCommonRate_ = 1.f; // ギアアップ時の速度上昇率の共通値
 
+    // チェック系
+    float groundCheckThreshold_ = 0.0f;
+    float wallCheckThreshold_   = 0.0f;
+    float maxWheelieFallSpeed_  = 0.0f; // ウィリー中に許容される最大落下速度
+
     // 壁系
     float wallRunRate_                = 0.0f; // 壁走りの速度倍率
     float wallRunRampUpTime_          = AppConfig::Player::kDefaultWallRunRampUpTime; // 壁走りの速度倍率が最大になるまでの時間
@@ -142,6 +147,10 @@ private:
     float currentRailInterval_    = 0.f;
 
 public:
+    float GetGroundCheckThreshold() const { return groundCheckThreshold_; }
+    float GetWallCheckThreshold() const { return wallCheckThreshold_; }
+    float GetMaxWheelieFallSpeed() const { return maxWheelieFallSpeed_; }
+
     float GetDirectionInterpolateRate() const { return directionInterpolateRate_; }
 
     float GetBaseSpeed() const { return baseSpeed_; }

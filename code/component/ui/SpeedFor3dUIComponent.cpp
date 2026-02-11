@@ -2,8 +2,10 @@
 
 /// engine
 #define RESOURCE_DIRECTORY
+#include "asset/AssetSystem.h"
 #include "EngineInclude.h"
-#include "texture/TextureManager.h"
+// asset
+#include "asset/TextureAsset.h"
 
 #ifdef DEBUG
 /// editor
@@ -44,9 +46,8 @@ void from_json(const nlohmann::json& j, SpeedFor3dUIComponent& c) {
 
 void SpeedFor3dUIComponent::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {
     if (!this->numbersTexturePath.empty()) {
-        textureIndex = TextureManager::LoadTexture(this->numbersTexturePath, [this](uint32_t newIdx) {
-            this->SettingOnLoadTexture(newIdx);
-        });
+        textureIndex = AssetSystem::GetInstance()->GetManager<TextureAsset>()->LoadAsset(this->numbersTexturePath);
+        this->SettingOnLoadTexture(textureIndex);
     }
 }
 
@@ -74,7 +75,7 @@ void SpeedFor3dUIComponent::Edit(OriGine::Scene* /*scene*/, OriGine::EntityHandl
         std::string label = "Load Texture##" + parentLabel;
         askLoad           = ImGui::Button(label.c_str());
         askLoad |= ImGui::ImageButton(
-            reinterpret_cast<ImTextureID>(TextureManager::GetDescriptorGpuHandle(textureIndex).ptr),
+            reinterpret_cast<ImTextureID>(AssetSystem::GetInstance()->GetManager<TextureAsset>()->GetAsset(textureIndex).srv.GetGpuHandle().ptr),
             ImVec2(18, 18), ImVec2(0, 0), ImVec2(1, 1), 6);
         return askLoad;
     };
@@ -85,9 +86,11 @@ void SpeedFor3dUIComponent::Edit(OriGine::Scene* /*scene*/, OriGine::EntityHandl
             auto command = std::make_unique<SetterCommand<std::string>>(
                 &this->numbersTexturePath,
                 textureDefaultDirectory + "/" + directory + "/" + fileName,
-                [this](std::string*) { textureIndex = TextureManager::LoadTexture(this->numbersTexturePath, [this](uint32_t newIdx) {
-                                           this->SettingOnLoadTexture(newIdx);
-                                       }); }, true);
+                [this](std::string*) {
+                    textureIndex = AssetSystem::GetInstance()->GetManager<TextureAsset>()->LoadAsset(this->numbersTexturePath);
+                    this->SettingOnLoadTexture(textureIndex);
+                },
+                true);
 
             OriGine::EditorController::GetInstance()->PushCommand(std::move(command));
         }
@@ -103,8 +106,8 @@ void SpeedFor3dUIComponent::Edit(OriGine::Scene* /*scene*/, OriGine::EntityHandl
 #endif
 }
 
-void SpeedFor3dUIComponent::SettingOnLoadTexture(uint32_t texIdx) {
-    const auto& metaData = TextureManager::GetTexMetadata(texIdx);
+void SpeedFor3dUIComponent::SettingOnLoadTexture(size_t texIdx) {
+    const auto& metaData = AssetSystem::GetInstance()->GetManager<TextureAsset>()->GetAsset(texIdx).metaData;
 
     if (metaData.width == 0 || metaData.height == 0) {
         LOG_ERROR("Texture metadata is invalid. Width or height is zero.");

@@ -2,7 +2,7 @@
     "Components": {
         "AABBCollider": [
             {
-                "Handle": "2665d3ef-9b80-4c4a-a884-3b3bf16ff10b",
+                "Handle": "b13ee3f3-ab1a-4ab8-bb53-a9dc65406b0c",
                 "center": [
                     0.0,
                     0.0,
@@ -11,8 +11,8 @@
                 "collisionCategory": "Default",
                 "halfSize": [
                     1.0,
-                    0.10000000149011612,
-                    1.0
+                    1.0,
+                    0.20000000298023224
                 ],
                 "isActive": true,
                 "transform": {
@@ -29,7 +29,47 @@
                     ],
                     "translate": [
                         0.0,
-                        0.10000000149011612,
+                        0.0,
+                        0.0
+                    ]
+                }
+            }
+        ],
+        "CylinderRenderer": [
+            {
+                "Handle": "00bfb994-11e0-441e-857f-373b46de9d37",
+                "blendMode": 1,
+                "bottomRadius": [
+                    1.0,
+                    1.0
+                ],
+                "height": 0.23000000417232513,
+                "heightDivisions": 4,
+                "isCulling": false,
+                "isRenderer": true,
+                "materialIndex": 0,
+                "radialDivisions": 32,
+                "radiusEaseType": 0,
+                "textureFilePath": "./application/resource/Texture/arrow.png",
+                "topRadius": [
+                    0.800000011920929,
+                    0.800000011920929
+                ],
+                "transform": {
+                    "rotate": [
+                        0.7065556049346924,
+                        0.0,
+                        0.0,
+                        0.7076575756072998
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "translate": [
+                        0.0,
+                        0.0,
                         0.0
                     ]
                 }
@@ -37,7 +77,7 @@
         ],
         "Material": [
             {
-                "Handle": "b41dfcb6-3d41-44fa-9618-1716dc3d0165",
+                "Handle": "c0513ba8-c6a7-4e12-ad9d-ce8a59b2769c",
                 "color": [
                     0.16578538715839386,
                     0.7111458778381348,
@@ -53,18 +93,18 @@
                 ],
                 "uvRotate": 0.0,
                 "uvScale": [
-                    4.0,
-                    1.0
+                    12.0,
+                    -2.0
                 ],
                 "uvTranslate": [
                     0.0,
-                    0.5254517793655396
+                    1.8461544513702393
                 ]
             }
         ],
         "MaterialAnimation": [
             {
-                "Handle": "c064da23-21ab-45a4-b9bf-cc2c74f38502",
+                "Handle": "06d2d989-e00b-4f60-89af-62bd60224b7a",
                 "InterpolationType": 0,
                 "colorCurve": [],
                 "duration": 1.2999999523162842,
@@ -90,45 +130,17 @@
                 ]
             }
         ],
-        "PlaneRenderer": [
-            {
-                "Handle": "843e7bef-680b-4351-8947-81fe5b2f7577",
-                "blendMode": 1,
-                "isCulling": true,
-                "isRenderer": true,
-                "materialIndex": 0,
-                "textureFilePath": "./application/resource/Texture/arrow.png",
-                "transform": {
-                    "rotate": [
-                        0.7065556049346924,
-                        0.0,
-                        0.0,
-                        0.7076575756072998
-                    ],
-                    "scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "translate": [
-                        0.0,
-                        0.0,
-                        0.0
-                    ]
-                }
-            }
-        ],
         "SpeedModifiers": [
             {
-                "Handle": "ab166d63-fbff-4285-9c5e-82ef38377334",
+                "Handle": "fa5e490a-6e2a-435f-9e2f-4029d261172b",
                 "additiveDuration": 0.800000011920929,
-                "additiveLerpDuration": 0.20000000298023224,
                 "additiveLerpEaseType": 10,
                 "additiveTarget": [
                     0.0,
                     0.0,
                     32.0
                 ],
+                "additiveLerpDuration": 0.20000000298023224,
                 "isAutoDestroyed": true,
                 "multiplierDuration": 0.0,
                 "multiplierLerpDuration": 0.0,
@@ -143,7 +155,7 @@
         ],
         "Transform": [
             {
-                "Handle": "cfe1459b-f499-4278-9fc4-b82809854aad",
+                "Handle": "ddad81ff-297d-4a7f-9b0a-f7e1979f41f3",
                 "rotate": [
                     -0.0,
                     0.0,
@@ -152,21 +164,21 @@
                 ],
                 "scale": [
                     24.0,
-                    8.0,
+                    24.0,
                     12.0
                 ],
                 "translate": [
-                    -0.43187522888183594,
-                    64.0199966430664,
-                    1595.048095703125
+                    39.80291748046875,
+                    165.12405395507813,
+                    1683.504638671875
                 ]
             }
         ]
     },
     "Handle": {
-        "uuid": "24f07598-a90b-4fba-b1da-f831026ab362"
+        "uuid": "a2a7d6b0-8ac4-4247-a8d5-396da5145e69"
     },
-    "Name": "DashPanel",
+    "Name": "SpeedRing",
     "Systems": [
         {
             "SystemCategory": 4,

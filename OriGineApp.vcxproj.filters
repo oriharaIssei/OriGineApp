@@ -78,6 +78,9 @@
     <ClInclude Include="code\component\SceneChanger.h">
       <Filter>component</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\SpeedModifiers.h">
+      <Filter>component</Filter>
+    </ClInclude>
     <ClInclude Include="code\component\TimerComponent.h">
       <Filter>component</Filter>
     </ClInclude>
@@ -118,6 +121,9 @@
       <Filter>component\player</Filter>
     </ClInclude>
     <ClInclude Include="code\component\player\PlayerInputDevice.h">
+      <Filter>component\player</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\player\PlayerMoveUtils.h">
       <Filter>component\player</Filter>
     </ClInclude>
     <ClInclude Include="code\component\player\PlayerStatus.h">
@@ -177,6 +183,9 @@
     <ClInclude Include="code\component\ui\UIConfig.h">
       <Filter>component\ui</Filter>
     </ClInclude>
+    <ClInclude Include="code\event\AddForceEvent.h">
+      <Filter>event</Filter>
+    </ClInclude>
     <ClInclude Include="code\event\GamefailedEvent.h">
       <Filter>event</Filter>
     </ClInclude>
@@ -184,6 +193,9 @@
       <Filter>event</Filter>
     </ClInclude>
     <ClInclude Include="code\event\SceneChangeRequest.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="code\event\VelocityOverrideEvent.h">
       <Filter>event</Filter>
     </ClInclude>
     <ClInclude Include="code\manager\PlayerProgressStore.h">
@@ -249,6 +261,12 @@
     <ClInclude Include="code\system\Input\PlayerInputSystem.h">
       <Filter>system\Input</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Movement\ApplyAddForceSystem.h">
+      <Filter>system\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Movement\ApplySpeedModifiers.h">
+      <Filter>system\Movement</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\Movement\BillboardTransform.h">
       <Filter>system\Movement</Filter>
     </ClInclude>
@@ -289,6 +307,9 @@
       <Filter>system\Movement</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Movement\Ui3dUpdateSystem.h">
+      <Filter>system\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Movement\VelocityOverrideSystem.h">
       <Filter>system\Movement</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Transition\ApplyMouseConditionSystem.h">
@@ -351,6 +372,9 @@
     <ClInclude Include="code\system\collision\AddForceTriggerSystem.h">
       <Filter>system\collision</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\collision\OnCollisionModifierTargetSystem.h">
+      <Filter>system\collision</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\collision\PlayerOnCollision.h">
       <Filter>system\collision</Filter>
     </ClInclude>
@@ -410,6 +434,9 @@
     <ClCompile Include="code\component\SceneChanger.cpp">
       <Filter>component</Filter>
     </ClCompile>
+    <ClCompile Include="code\component\SpeedModifiers.cpp">
+      <Filter>component</Filter>
+    </ClCompile>
     <ClCompile Include="code\component\TimerComponent.cpp">
       <Filter>component</Filter>
     </ClCompile>
@@ -444,6 +471,9 @@
       <Filter>component\player</Filter>
     </ClCompile>
     <ClCompile Include="code\component\player\PlayerInputDevice.cpp">
+      <Filter>component\player</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\player\PlayerMoveUtils.cpp">
       <Filter>component\player</Filter>
     </ClCompile>
     <ClCompile Include="code\component\player\PlayerStatus.cpp">
@@ -564,6 +594,12 @@
     <ClCompile Include="code\system\Input\PlayerInputSystem.cpp">
       <Filter>system\Input</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\Movement\ApplyAddForceSystem.cpp">
+      <Filter>system\Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Movement\ApplySpeedModifiers.cpp">
+      <Filter>system\Movement</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\Movement\BillboardTransform.cpp">
       <Filter>system\Movement</Filter>
     </ClCompile>
@@ -604,6 +640,9 @@
       <Filter>system\Movement</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Movement\Ui3dUpdateSystem.cpp">
+      <Filter>system\Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Movement\VelocityOverrideSystem.cpp">
       <Filter>system\Movement</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Transition\ApplyMouseConditionSystem.cpp">
@@ -664,6 +703,9 @@
       <Filter>system\Transition</Filter>
     </ClCompile>
     <ClCompile Include="code\system\collision\AddForceTriggerSystem.cpp">
+      <Filter>system\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\collision\OnCollisionModifierTargetSystem.cpp">
       <Filter>system\collision</Filter>
     </ClCompile>
     <ClCompile Include="code\system\collision\PlayerOnCollision.cpp">

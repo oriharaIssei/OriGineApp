@@ -143,6 +143,12 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityH
     DragGuiCommand("Default Mass##" + _parentLabel, defaultMass_, 0.01f);
     DragGuiCommand("Mass On Wall Run##" + _parentLabel, massOnWallRun_, 0.01f);
 
+    ImGui::Spacing();
+
+    DragGuiCommand("Ground Check Threshold##" + _parentLabel, groundCheckThreshold_, 0.01f);
+    DragGuiCommand("Wall Check Threshold##" + _parentLabel, wallCheckThreshold_, 0.01f);
+    DragGuiCommand("Max Wheelie Fall Speed##" + _parentLabel, maxWheelieFallSpeed_, 0.01f);
+
 #endif // _DEBUG
 }
 
@@ -284,6 +290,10 @@ void to_json(nlohmann::json& _j, const PlayerStatus& _playerStatus) {
     _j["railRampUpTime"] = _playerStatus.railRampUpTime_;
     _j["railJumpOffset"] = _playerStatus.railJumpOffset_;
     _j["railInterval"]   = _playerStatus.railInterval_;
+
+    _j["groundCheckThreshold"] = _playerStatus.groundCheckThreshold_;
+    _j["wallCheckThreshold"]   = _playerStatus.wallCheckThreshold_;
+    _j["maxWheelieFallSpeed"]  = _playerStatus.maxWheelieFallSpeed_;
 }
 void from_json(const nlohmann::json& _j, PlayerStatus& _playerStatus) {
     _j.at("baseSpeed").get_to(_playerStatus.baseSpeed_);
@@ -350,5 +360,15 @@ void from_json(const nlohmann::json& _j, PlayerStatus& _playerStatus) {
     }
     if (_j.contains("railInterval")) {
         _j.at("railInterval").get_to(_playerStatus.railInterval_);
+    }
+
+    if (_j.contains("groundCheckThreshold")) {
+        _j.at("groundCheckThreshold").get_to(_playerStatus.groundCheckThreshold_);
+    }
+    if (_j.contains("wallCheckThreshold")) {
+        _j.at("wallCheckThreshold").get_to(_playerStatus.wallCheckThreshold_);
+    }
+    if (_j.contains("maxWheelieFallSpeed")) {
+        _j.at("maxWheelieFallSpeed").get_to(_playerStatus.maxWheelieFallSpeed_);
     }
 }

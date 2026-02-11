@@ -30,6 +30,6 @@ public:
     float radius            = 0.5f;
     int32_t segmentDivide   = 8; // Catmull-Romスプラインのセグメントあたりの分割数
     std::string texturePath = "";
-    uint32_t textureIndex   = 0;
+    size_t textureIndex   = 0;
     float totalLength       = 0.0f;
 };

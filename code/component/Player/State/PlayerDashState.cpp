@@ -35,13 +35,11 @@ void PlayerDashState::Initialize() {
     forwardDir       = forwardDir.normalize();
     rigidbody->SetVelocity(forwardDir * currentMaxSpeed);
 
-
     // 落下タイマーをリセット
     cameraOffsetLerpTimer_ = 0.f;
 }
 
 void PlayerDashState::Update(float _deltaTime) {
-
     auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
     auto* state        = scene_->GetComponent<PlayerState>(playerEntityHandle_);
     auto* playerInput  = scene_->GetComponent<PlayerInput>(playerEntityHandle_);

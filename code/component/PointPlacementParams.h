@@ -112,11 +112,11 @@ private:
     std::pair<std::string, std::string> originalEntityFilePath_ = {};
 
     std::string pointDensityTexturePath_ = "";
-    int32_t pointDensityTextureIndex_    = 0;
+    size_t pointDensityTextureIndex_     = 0;
     std::string pointVolumeTexturePath_  = "";
-    int32_t pointVolumeTextureIndex_     = 0;
+    size_t pointVolumeTextureIndex_      = 0;
     std::string pointMaskTexturePath_    = "";
-    int32_t pointMaskTextureIndex_       = 0;
+    size_t pointMaskTextureIndex_        = 0;
 
 public:
     OriGine::IConstantBuffer<PointPlacementParamsData>& GetParamData() { return paramData_; }
@@ -124,9 +124,9 @@ public:
 
     const OriGine::Vec3f& GetDefaultScale() const { return defaultScale_; }
 
-    int32_t GetPointDensityTextureIndex() const { return pointDensityTextureIndex_; }
-    int32_t GetPointVolumeTextureIndex() const { return pointVolumeTextureIndex_; }
-    int32_t GetPointMaskTextureIndex() const { return pointMaskTextureIndex_; }
+    size_t GetPointDensityTextureIndex() const { return pointDensityTextureIndex_; }
+    size_t GetPointVolumeTextureIndex() const { return pointVolumeTextureIndex_; }
+    size_t GetPointMaskTextureIndex() const { return pointMaskTextureIndex_; }
 
     const std::string& GetPointDensityTexturePath() const { return pointDensityTexturePath_; }
     const std::string& GetPointVolumeTexturePath() const { return pointVolumeTexturePath_; }

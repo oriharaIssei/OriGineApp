@@ -47,6 +47,9 @@ private:
     // 最大傾き角度の加速度
     float wheelTiltAngleMaxAccel_ = 0.0f;
 
+    float maxTiltOnRailRun_   = 0.f;
+    float tiltSpeedOnRailRun_ = 0.f;
+
     // 無敵時点滅エフェクトの基本振幅（開始時の点滅速度）
     float invincibleBlinkBaseAmplitude_ = 8.0f;
     // 無敵時点滅エフェクトの最大振幅（終了間際の点滅速度）
@@ -69,6 +72,13 @@ public:
     }
     float GetWheelTiltAngleMaxAccel() const {
         return wheelTiltAngleMaxAccel_;
+    }
+
+    float GetMaxTiltOnRailRun() const {
+        return maxTiltOnRailRun_;
+    }
+    float GetTiltSpeedOnRailRun() const {
+        return tiltSpeedOnRailRun_;
     }
 
     float GetInvincibleBlinkBaseAmplitude() const {

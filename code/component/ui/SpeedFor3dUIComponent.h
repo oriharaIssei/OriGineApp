@@ -24,7 +24,7 @@ public:
     /// <summary>
     /// 数字テクスチャを読み込んだ際の設定
     /// </summary>
-    void SettingOnLoadTexture(uint32_t _texIdx);
+    void SettingOnLoadTexture(size_t _texIdx);
 
 private:
     OriGine::EntityHandle planeEntityHandle = OriGine::EntityHandle(); // 速度表示PlaneのエンティティID
@@ -39,7 +39,7 @@ public:
     //
     // --- テクスチャ設定 ---
     //
-    uint32_t textureIndex             = 0; // 数字テクスチャのインデックス
+    size_t textureIndex               = 0; // 数字テクスチャのインデックス
     std::string numbersTexturePath    = ""; // 数字テクスチャファイルパス
     OriGine::Vec2f numbersTextureSize = {0.f, 0.f}; // テクスチャ全体サイズ
     OriGine::Vec2f numberTileSize     = {0.f, 0.f}; // 各数字のタイルサイズ（0～9）
