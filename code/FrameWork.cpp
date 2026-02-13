@@ -29,6 +29,7 @@
 #include "component/spline/TireSplinePoints.h"
 #include "component/stage/StageData.h"
 #include "component/TimerComponent.h"
+#include "component/TimerForSpriteComponent.h"
 #include "component/ui/Button.h"
 #include "component/ui/ButtonGroup.h"
 #include "component/ui/SpeedFor3dUIComponent.h"
@@ -101,6 +102,7 @@
 #include "system/transition/SubSceneDeactivateByButton.h"
 #include "system/transition/TimeLimitJudgeSystem.h"
 #include "system/transition/TimerCountDown.h"
+#include "system/Transition/TimerCountUp.h"
 #include "system/transition/TransitionPlayerState.h"
 #include "system/transition/UpdateButtonColorByState.h"
 
@@ -261,6 +263,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<TransitionPlayerState>();
     systemRegistry->RegisterSystem<UpdateButtonColorByState>();
     systemRegistry->RegisterSystem<ButtonGroupSystem>();
+    systemRegistry->RegisterSystem<TimerCountUp>();
     systemRegistry->RegisterSystem<TimerCountDown>();
     systemRegistry->RegisterSystem<TimeLimitJudgeSystem>();
     systemRegistry->RegisterSystem<ShowGameUIByInputDevice>();

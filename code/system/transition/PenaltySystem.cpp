@@ -11,6 +11,7 @@
 #include "component/player/state/PlayerState.h"
 #include "component/renderer/Sprite.h"
 #include "component/TimerComponent.h"
+#include "component/TimerForSpriteComponent.h"
 
 /// system
 #include "system/SystemRunner.h"

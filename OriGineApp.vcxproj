@@ -153,6 +153,7 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="code\component\TimerForSpriteComponent.h" />
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\MyEditor.h" />
     <ClInclude Include="code\MyGame.h" />
@@ -257,6 +258,7 @@
     <ClInclude Include="code\system\Transition\SubSceneDeactivateByButton.h" />
     <ClInclude Include="code\system\Transition\TimeLimitJudgeSystem.h" />
     <ClInclude Include="code\system\Transition\TimerCountDown.h" />
+    <ClInclude Include="code\system\Transition\TimerCountUp.h" />
     <ClInclude Include="code\system\Transition\TransitionPlayerState.h" />
     <ClInclude Include="code\system\Transition\UpdateButtonColorByState.h" />
     <ClInclude Include="code\system\collision\AddForceTriggerSystem.h" />
@@ -275,6 +277,7 @@
     <ClInclude Include="code\system\effect\TimerForSprite.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\component\TimerForSpriteComponent.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\MyEditor.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
@@ -372,6 +375,7 @@
     <ClCompile Include="code\system\Transition\SubSceneDeactivateByButton.cpp" />
     <ClCompile Include="code\system\Transition\TimeLimitJudgeSystem.cpp" />
     <ClCompile Include="code\system\Transition\TimerCountDown.cpp" />
+    <ClCompile Include="code\system\Transition\TimerCountUp.cpp" />
     <ClCompile Include="code\system\Transition\TransitionPlayerState.cpp" />
     <ClCompile Include="code\system\Transition\UpdateButtonColorByState.cpp" />
     <ClCompile Include="code\system\collision\AddForceTriggerSystem.cpp" />

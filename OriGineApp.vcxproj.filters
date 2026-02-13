@@ -411,6 +411,8 @@
     <ClInclude Include="code\system\effect\TimerForSprite.h">
       <Filter>system\effect</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Transition\TimerCountUp.h" />
+    <ClInclude Include="code\component\TimerForSpriteComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -741,5 +743,7 @@
     <ClCompile Include="code\system\effect\TimerForSprite.cpp">
       <Filter>system\effect</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\Transition\TimerCountUp.cpp" />
+    <ClCompile Include="code\component\TimerForSpriteComponent.cpp" />
   </ItemGroup>
 </Project>

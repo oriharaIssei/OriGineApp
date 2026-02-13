@@ -4609,6 +4609,11 @@
             }
         },
         {
+            "TimerCountUp": {
+                "Priority": 7
+            }
+        },
+        {
             "TimerCountDown": {
                 "Priority": 7
             }
