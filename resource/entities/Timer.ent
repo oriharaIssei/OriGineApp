@@ -2,7 +2,7 @@
     "Components": {
         "DissolveEffectParam": [
             {
-                "Handle": "94e7f661-4b43-4bee-a9e2-056d7e870b6d",
+                "Handle": "ae2441cf-8497-460f-bfdc-7dc2adf3159a",
                 "edgeWidth": 0.00800000037997961,
                 "isActive": false,
                 "materialIndex": 0,
@@ -18,7 +18,7 @@
         ],
         "Material": [
             {
-                "Handle": "f644d6e7-59b8-4e18-b11f-3e354aaa873b",
+                "Handle": "8fe875ab-8057-4fa4-b454-df2265f7e24b",
                 "color": [
                     1.0,
                     1.0,
@@ -45,22 +45,22 @@
         ],
         "SceneChanger": [
             {
-                "Handle": "d93bb961-f360-4a2f-8a03-7ba306a976d2",
+                "Handle": "f377d22c-67f4-456e-879c-59171ad4e029",
                 "nextSceneName": "Result"
             }
         ],
         "TimerComponent": [
             {
-                "Handle": "756661b8-9d7c-4eb1-8f86-f044066b06b7",
-                "isStarted": true,
-                "maxTime": 320.0
+                "Handle": "c8daac07-ed8b-4a1b-871f-9354818c352c",
+                "isStarted": false,
+                "maxTime": 999.0
             }
         ],
         "TimerForSpriteComponent": [
             {
-                "Handle": "f80b1a19-9e47-4a28-bbf9-35cd15f7db52",
+                "Handle": "7a6a6064-1eba-40fd-a524-6eab5a3fc9eb",
                 "anchorOnWindow": [
-                    0.5199999809265137,
+                    0.5,
                     0.11999999731779099
                 ],
                 "digitDecimal": 2,
@@ -75,11 +75,11 @@
                     0.0
                 ],
                 "spriteMarginDecimal": [
-                    -0.30000001192092896,
+                    -3.0,
                     0.0
                 ],
                 "spriteMarginInteger": [
-                    -0.8999999761581421,
+                    0.0,
                     0.0
                 ],
                 "spriteSizeDecimal": [
@@ -87,14 +87,14 @@
                     32.0
                 ],
                 "spriteSizeInteger": [
-                    52.0,
-                    52.0
+                    58.0,
+                    58.0
                 ]
             }
         ]
     },
     "Handle": {
-        "uuid": "4382f5c6-20af-46cb-8ddd-3f9bb9ff8375"
+        "uuid": "ff2ce015-4c2c-4a85-a509-11f355f00906"
     },
     "Name": "Timer",
     "Systems": [
@@ -115,12 +115,12 @@
             "SystemName": "SceneTransition"
         },
         {
-            "SystemCategory": 2,
-            "SystemName": "TimerCountDown"
-        },
-        {
             "SystemCategory": 5,
             "SystemName": "TimerForSprite"
+        },
+        {
+            "SystemCategory": 2,
+            "SystemName": "TimerCountUp"
         }
     ],
     "isUnique": true

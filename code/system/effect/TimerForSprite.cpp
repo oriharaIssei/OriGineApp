@@ -8,6 +8,7 @@
 // component
 #include "component/renderer/Sprite.h"
 #include "component/TimerComponent.h"
+#include "component/TimerForSpriteComponent.h"
 
 /// math
 #include "math/mathEnv.h"
