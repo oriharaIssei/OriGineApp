@@ -413,6 +413,7 @@
     </ClInclude>
     <ClInclude Include="code\system\Transition\TimerCountUp.h" />
     <ClInclude Include="code\component\TimerForSpriteComponent.h" />
+    <ClInclude Include="code\system\Initialize\ClearSceneRankingBuildSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -745,5 +746,6 @@
     </ClCompile>
     <ClCompile Include="code\system\Transition\TimerCountUp.cpp" />
     <ClCompile Include="code\component\TimerForSpriteComponent.cpp" />
+    <ClCompile Include="code\system\Initialize\ClearSceneRankingBuildSystem.cpp" />
   </ItemGroup>
 </Project>

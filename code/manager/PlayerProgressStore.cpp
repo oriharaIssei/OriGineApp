@@ -25,25 +25,30 @@ void PlayerProgressStore::Finalize() {
     progressDataMap_.clear();
 }
 
-void PlayerProgressStore::StageCleared(ReplayRecorder* _recorder, int32_t _stageNum, int32_t _difficulty, float _clearTime) {
+void PlayerProgressStore::StageCleared(ReplayRecorder* _recorder, int32_t _stageNum, float _clearTime) {
     lastPlayStageNumber_ = _stageNum;
 
-    PlayerProgressData newData;
-    newData.stageNumber = _stageNum;
-    newData.difficulty  = _difficulty;
-    newData.isCleared   = true;
-    newData.clearTime   = _clearTime;
-
-    lastPlayStageProgressData_ = newData;
+    lastPlayClearTime_ = _clearTime;
 
     // 進行状況データを更新する
     auto itr = progressDataMap_.find(_stageNum);
     if (itr != progressDataMap_.end()) {
-        PlayerProgressData& existingData = itr->second;
-        existingData.isCleared           = true;
+        StageProgress& existingData = itr->second;
+        existingData.isCleared      = true;
+
         // 既存のデータがある場合、クリアタイムを比較して更新する
-        if (_clearTime > existingData.clearTime || !existingData.isCleared) {
-            existingData.clearTime = _clearTime;
+        bool isInRanking = false;
+        int rankingIndex = 1; // 順位は1から始まる
+        for (auto& timeEntry : existingData.ranking.times) {
+            if (!timeEntry || _clearTime < *timeEntry) {
+                timeEntry      = _clearTime;
+                lastInRanking_ = rankingIndex;
+                isInRanking    = true;
+                break;
+            }
+            ++rankingIndex;
+        }
+        if (isInRanking) {
             if (_recorder) {
                 SaveBestPlayData(_stageNum, _recorder);
                 SaveProgressData();
@@ -53,7 +58,10 @@ void PlayerProgressStore::StageCleared(ReplayRecorder* _recorder, int32_t _stage
     }
 
     // データが存在しない場合、新しいデータを追加する
-    progressDataMap_.emplace(_stageNum, newData);
+    progressDataMap_.emplace(_stageNum, StageProgress());
+    StageProgress& newData   = progressDataMap_.at(_stageNum);
+    newData.isCleared        = true;
+    newData.ranking.times[0] = _clearTime;
 
     SaveProgressData();
     if (_recorder) {
@@ -70,15 +78,14 @@ void PlayerProgressStore::LoadProgressData() {
     nlohmann::json jsonData;
     ifs >> jsonData;
     ifs.close();
-    auto& stagesJson   = jsonData["Stages"];
+    auto& stagesJson = jsonData["Stages"];
     // ステージごとの進行状況データを読み込む
     for (const auto& stageData : stagesJson) {
-        PlayerProgressData progressData;
-        progressData.stageNumber = stageData["StageNumber"];
-        progressData.difficulty  = stageData["Difficulty"];
-        progressData.isCleared   = stageData["IsCleared"];
-        progressData.clearTime   = stageData["ClearTime"];
-        progressDataMap_.emplace(progressData.stageNumber, progressData);
+        StageProgress progressData;
+        int32_t stageNum       = stageData["StageNumber"];
+        progressData.isCleared = stageData["IsCleared"];
+        progressData.ranking   = stageData["ClearTimeRanking"].get<ClearTimeRanking>();
+        progressDataMap_.emplace(stageNum, progressData);
     }
 }
 
@@ -89,11 +96,10 @@ void PlayerProgressStore::SaveProgressData() {
     auto& stagesJson        = jsonData["Stages"];
     // ステージごとの進行状況データを読み込む
     for (const auto& [stageNumber, progressData] : progressDataMap_) {
-        nlohmann::json stageData = nlohmann::json::object();
-        stageData["StageNumber"] = progressData.stageNumber;
-        stageData["Difficulty"]  = progressData.difficulty;
-        stageData["IsCleared"]   = progressData.isCleared;
-        stageData["ClearTime"]   = progressData.clearTime;
+        nlohmann::json stageData      = nlohmann::json::object();
+        stageData["StageNumber"]      = stageNumber;
+        stageData["IsCleared"]        = progressData.isCleared;
+        stageData["ClearTimeRanking"] = progressData.ranking;
         stagesJson.push_back(stageData);
     }
 

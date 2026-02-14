@@ -7,6 +7,7 @@
 
 /// ECS
 // component
+#include "component/animation/SpriteAnimation.h"
 #include "component/renderer/Sprite.h"
 #include "component/TimerComponent.h"
 #include "component/TimerForSpriteComponent.h"
@@ -24,16 +25,22 @@ void CreateSpriteFromTimer::Initialize() {}
 void CreateSpriteFromTimer::Finalize() {}
 
 void CreateSpriteFromTimer::UpdateEntity(OriGine::EntityHandle _handle) {
-    auto timerForSpriteComponent = GetComponent<TimerForSpriteComponent>(_handle);
-    if (!timerForSpriteComponent) {
+    auto& timerForSpriteComponent   = GetComponents<TimerForSpriteComponent>(_handle);
+    auto& spriteAnimationComponents = GetComponents<SpriteAnimation>(_handle);
+
+    if (timerForSpriteComponent.empty()) {
         return; // タイマーコンポーネントがない場合は何もしない
     }
 
-    // Sprite用のEntityを作成
-    EntityHandle spriteEntityId   = CreateEntity("TimerForSprite_Sprites", false);
-    OriGine::Entity* spriteEntity = GetEntity(spriteEntityId);
-    spriteEntity->SetShouldSave(false); // セーブしない
-    CreateSprites(spriteEntityId, timerForSpriteComponent);
+    for (auto& comp : timerForSpriteComponent) {
+        // Sprite用のEntityを作成
+        EntityHandle spriteEntityId   = CreateEntity("TimerForSprite_Sprites", false);
+        OriGine::Entity* spriteEntity = GetEntity(spriteEntityId);
+        spriteEntity->SetShouldSave(false); // セーブしない
+
+        // sprite の生成と配置
+        CreateSprites(spriteEntityId, &comp);
+    }
 }
 
 void CreateSpriteFromTimer::CreateSprites(OriGine::EntityHandle _handle, TimerForSpriteComponent* _forSpriteComp) {

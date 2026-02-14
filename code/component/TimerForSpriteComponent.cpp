@@ -161,7 +161,7 @@ void TimerForSpriteComponent::RelocationSprites(OriGine::Scene* _scene) {
 
     // 整数部の合計幅
     float widthInteger =
-        digitInteger * spriteSizeInteger[X] + (digitInteger > 0 ? (digitInteger - 1) * spriteMarginInteger[X] : 0);
+        (digitInteger - 1) * spriteSizeInteger[X] + (digitInteger > 0 ? (digitInteger - 1) * spriteMarginInteger[X] : 0);
 
     // origin は区切り中央
     // 整数部右端 = origin - widthBetween * 0.5f
@@ -171,7 +171,7 @@ void TimerForSpriteComponent::RelocationSprites(OriGine::Scene* _scene) {
     float integerLeft = integerRight - widthInteger;
 
     // 最初のスプライト中心
-    pos[X] = integerLeft + spriteSizeInteger[X] * 0.5f;
+    pos[X] = integerLeft;
 
     // 整数部
     for (int i = 0; i < digitInteger; ++i) {

@@ -1,6 +1,9 @@
 #pragma once
 #include "component/IComponent.h"
 
+/// stl
+#include <string>
+
 /// math
 #include <cstdint>
 #include <math/Vector2.h>
@@ -46,6 +49,9 @@ private:
     /// </summary>
     bool isStarted_ = false;
 
+    bool isUsingLocalDeltaTime_ = false; // ローカルデルタタイムを使用するかどうか
+    std::string timerTag_; // タイマーのタグ名
+
     float maxTime_     = 0.f;
     float currentTime_ = 0.f;
 
@@ -53,13 +59,14 @@ private:
 
 public:
     bool IsStarted() const { return isStarted_; }
-    void SetStarted(bool started) { isStarted_ = started; }
+    void SetStarted(bool _started) { isStarted_ = _started; }
+
+    bool IsUsingLocalDeltaTime() const { return isUsingLocalDeltaTime_; }
+    void SetIsUsingLocalDeltaTime(bool _useLocal) { isUsingLocalDeltaTime_ = _useLocal; }
 
     float GetMaxTime() const { return maxTime_; }
-    void SetMaxTime(float time) { maxTime_ = time; }
+    void SetMaxTime(float _time) { maxTime_ = _time; }
 
     float GetTime() const { return currentTime_; }
-    void SetCurrentTime(float time) { currentTime_ = time; }
-
-    void ResetCurrentTime() { currentTime_ = maxTime_; }
+    void SetCurrentTime(float _time) { currentTime_ = _time; }
 };

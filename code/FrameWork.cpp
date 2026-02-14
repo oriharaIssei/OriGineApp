@@ -50,6 +50,7 @@
 #include "system/effect/PlayerSpeedFor3dUI.h"
 #include "system/effect/TimerForSprite.h"
 #include "system/initialize/BackFireInitialize.h"
+#include "system/Initialize/ClearSceneRankingBuildSystem.h"
 #include "system/Initialize/CreatePlaneFromSpeed.h"
 #include "system/initialize/CreateSpriteFromTimer.h"
 #include "system/initialize/GetClearTime.h"
@@ -242,6 +243,8 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<PlayRecorderInitialize>();
 
     systemRegistry->RegisterSystem<RailInitializeSystem>();
+
+    systemRegistry->RegisterSystem<ClearSceneRankingBuildSystem>();
 
     /// ===================================================================================================
     // Input

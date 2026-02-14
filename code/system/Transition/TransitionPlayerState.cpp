@@ -61,7 +61,10 @@ void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
             PlayRecordeComponent* playRecorder = GetComponent<PlayRecordeComponent>(recorderEntityHandle);
 
             if (timer != nullptr && stageData != nullptr) {
-                progressStore->StageCleared(playRecorder != nullptr ? playRecorder->replayRecorder_.get() : nullptr, stageData->GetStageNumber(), stageData->GetDifficulty(), timer->GetTime());
+                progressStore->StageCleared(
+                    playRecorder != nullptr ? playRecorder->replayRecorder_.get() : nullptr,
+                    stageData->GetStageNumber(),
+                    timer->GetTime());
             }
         }
 
