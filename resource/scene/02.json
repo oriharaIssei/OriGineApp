@@ -4479,6 +4479,11 @@
             }
         },
         {
+            "SweepColliderBuildSystem": {
+                "Priority": -1
+            }
+        },
+        {
             "PenaltyTimeSpriteUpdate": {
                 "Priority": 0
             }

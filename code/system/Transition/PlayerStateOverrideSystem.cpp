@@ -17,7 +17,12 @@ using namespace OriGine;
 PlayerStateOverrideSystem::PlayerStateOverrideSystem() : ISystem(SystemCategory::StateTransition) {}
 PlayerStateOverrideSystem::~PlayerStateOverrideSystem() {}
 
-void PlayerStateOverrideSystem::Initialize() {}
+void PlayerStateOverrideSystem::Initialize() {
+    Engine* engine = Engine::GetInstance();
+    engine->GetDeltaTimer()->SetTimeScale("Player", 1.f);
+    engine->GetDeltaTimer()->SetTimeScale("Effect", 1.f);
+    engine->GetDeltaTimer()->SetTimeScale("Camera", 1.f);
+}
 void PlayerStateOverrideSystem::Finalize() {
     Engine* engine = Engine::GetInstance();
     engine->GetDeltaTimer()->SetTimeScale("Player", 1.f);

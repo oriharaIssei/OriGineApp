@@ -414,6 +414,8 @@
     <ClInclude Include="code\system\Transition\TimerCountUp.h" />
     <ClInclude Include="code\component\TimerForSpriteComponent.h" />
     <ClInclude Include="code\system\Initialize\ClearSceneRankingBuildSystem.h" />
+    <ClInclude Include="code\component\gimmick\TimeScaleEffectComponent.h" />
+    <ClInclude Include="code\system\effect\TimeScaleEffectSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -747,5 +749,7 @@
     <ClCompile Include="code\system\Transition\TimerCountUp.cpp" />
     <ClCompile Include="code\component\TimerForSpriteComponent.cpp" />
     <ClCompile Include="code\system\Initialize\ClearSceneRankingBuildSystem.cpp" />
+    <ClCompile Include="code\component\gimmick\TimeScaleEffectComponent.cpp" />
+    <ClCompile Include="code\system\effect\TimeScaleEffectSystem.cpp" />
   </ItemGroup>
 </Project>

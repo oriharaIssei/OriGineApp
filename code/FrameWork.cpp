@@ -16,6 +16,7 @@
 #include "component/ghost/PlayRecordeComponent.h"
 #include "component/gimmick/Obstacle.h"
 #include "component/gimmick/RailPoints.h"
+#include "component/gimmick/TimeScaleEffectComponent.h"
 #include "component/LookAtFromTransforms.h"
 #include "component/MouseCondition.h"
 #include "component/player/PlayerEffectControlParam.h"
@@ -49,6 +50,7 @@
 #include "system/effect/PenaltyTimeSpriteUpdate.h"
 #include "system/effect/PlayerSpeedFor3dUI.h"
 #include "system/effect/TimerForSprite.h"
+#include "system/effect/TimeScaleEffectSystem.h"
 #include "system/initialize/BackFireInitialize.h"
 #include "system/Initialize/ClearSceneRankingBuildSystem.h"
 #include "system/Initialize/CreatePlaneFromSpeed.h"
@@ -139,6 +141,7 @@ void RegisterUsingComponents() {
 
     componentRegistry->RegisterComponent<RailPoints>();
     componentRegistry->RegisterComponent<Obstacle>();
+    componentRegistry->RegisterComponent<TimeScaleEffectComponent>();
     componentRegistry->RegisterComponent<VelocityOverrideComponent>();
     componentRegistry->RegisterComponent<AddForceComponent>();
 
@@ -181,6 +184,7 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<SpeedlineEffectParam>();
     componentRegistry->RegisterComponent<MaterialEffectPipeLine>();
     componentRegistry->RegisterComponent<GradationComponent>();
+    componentRegistry->RegisterComponent<GrayscaleComponent>();
 
     componentRegistry->RegisterComponent<ModelMeshRenderer>();
     componentRegistry->RegisterComponent<LineRenderer>();
@@ -341,6 +345,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<DissolveAnimationSystem>();
 
     systemRegistry->RegisterSystem<CameraShake>();
+    systemRegistry->RegisterSystem<TimeScaleEffectSystem>();
 
     systemRegistry->RegisterSystem<MaterialEffect>();
     systemRegistry->RegisterSystem<CreateMeshFromSpline>();

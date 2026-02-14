@@ -25,14 +25,13 @@ void CreateSpriteFromTimer::Initialize() {}
 void CreateSpriteFromTimer::Finalize() {}
 
 void CreateSpriteFromTimer::UpdateEntity(OriGine::EntityHandle _handle) {
-    auto& timerForSpriteComponent   = GetComponents<TimerForSpriteComponent>(_handle);
-    auto& spriteAnimationComponents = GetComponents<SpriteAnimation>(_handle);
+    auto& timerForSpriteComponents   = GetComponents<TimerForSpriteComponent>(_handle);
 
-    if (timerForSpriteComponent.empty()) {
+    if (timerForSpriteComponents.empty()) {
         return; // タイマーコンポーネントがない場合は何もしない
     }
 
-    for (auto& comp : timerForSpriteComponent) {
+    for (auto& comp : timerForSpriteComponents) {
         // Sprite用のEntityを作成
         EntityHandle spriteEntityId   = CreateEntity("TimerForSprite_Sprites", false);
         OriGine::Entity* spriteEntity = GetEntity(spriteEntityId);

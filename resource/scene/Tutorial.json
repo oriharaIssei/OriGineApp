@@ -4145,6 +4145,11 @@
             }
         },
         {
+            "SweepColliderBuildSystem": {
+                "Priority": -1
+            }
+        },
+        {
             "CollisionPushBackSystem": {
                 "Priority": 5
             }

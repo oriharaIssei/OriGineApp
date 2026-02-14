@@ -49,12 +49,12 @@ void TimerForSprite::UpdateEntity(OriGine::EntityHandle _handle) {
         OriGine::Vec2f windowSize = Engine::GetInstance()->GetWinApp()->GetWindowSize();
 
         // 各スプライトに数字を適用
-        for (int32_t i = 0; i < timerForSpriteComp.digitInteger + timerForSpriteComp.digitDecimal; ++i) {
-            if (int32_t(digits.size()) <= i) {
+        for (int32_t j = 0; j < timerForSpriteComp.digitInteger + timerForSpriteComp.digitDecimal; ++j) {
+            if (int32_t(digits.size()) <= j) {
                 break;
             }
 
-            auto sprite = GetComponent<SpriteRenderer>(timerSpritesEntity->GetHandle(), i);
+            auto sprite = GetComponent<SpriteRenderer>(timerSpritesEntity->GetHandle(), j);
             if (!sprite) {
                 continue; // スプライトがない場合は何もしない
             }
@@ -62,7 +62,7 @@ void TimerForSprite::UpdateEntity(OriGine::EntityHandle _handle) {
             float spriteTextureSizeX = sprite->GetTextureSize()[X];
 
             sprite->SetTextureLeftTop(
-                {spriteTextureSizeX * digits[i], spriteLeftTopY});
+                {spriteTextureSizeX * digits[j], spriteLeftTopY});
 
             sprite->CalculatePosRatioAndSizeRatio(windowSize);
         }

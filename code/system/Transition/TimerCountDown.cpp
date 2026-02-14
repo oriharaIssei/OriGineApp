@@ -19,7 +19,7 @@ void TimerCountDown::Finalize() {}
 
 void TimerCountDown::UpdateEntity(EntityHandle _handle) {
     auto& timerComponents = GetComponents<TimerComponent>(_handle);
-    const float deltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("World");
+    const float deltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Timer");
     for (auto& timerComponent : timerComponents) {
         if (timerComponent.IsStarted()) {
             timerComponent.SetCurrentTime(timerComponent.GetTime() - deltaTime);

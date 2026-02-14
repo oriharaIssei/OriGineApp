@@ -26,7 +26,7 @@ void TimerCountUp::UpdateEntity(OriGine::EntityHandle _handle) {
     }
 
     // タイマーコンポーネントの時間をカウントアップ
-    float deltaTime = Engine::GetInstance()->GetDeltaTime();
+    const float deltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Timer");
     for (auto& timerComponent : timerComponents) {
         // 開始していないタイマーはスキップ
         if (!timerComponent.IsStarted()) {

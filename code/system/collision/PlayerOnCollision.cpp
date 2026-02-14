@@ -11,8 +11,11 @@
 
 #include "component/gimmick/Obstacle.h"
 #include "component/gimmick/RailPoints.h"
+#include "component/gimmick/TimeScaleEffectComponent.h"
 
 #include "component/TimerComponent.h"
+
+#include "component/material/Material.h"
 
 /// util
 #include "component/player/PlayerMoveUtils.h"
@@ -81,6 +84,25 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
                 float invincibilityTime = obstacle->GetInvincibilityTimeOnCollision();
                 state->OnCollisionObstacle(penaltyTime, invincibilityTime);
                 continue;
+            }
+        }
+
+        // タイムスケールエフェクト と 衝突したか
+        {
+            TimeScaleEffectComponent* timeScaleEffect = GetComponent<TimeScaleEffectComponent>(entityId);
+            if (timeScaleEffect) {
+                // 当たり判定を消す。
+                SphereCollider* collider = GetComponent<SphereCollider>(entityId);
+                if (collider) {
+                    collider->SetActive(false);
+                }
+                // scaleEffectを有効化
+                timeScaleEffect->SetActive(true);
+
+                Material* material = GetComponent<Material>(entityId);
+                if (material) {
+                    material->color_[A] = 0.f; // 透明にする
+                }
             }
         }
 

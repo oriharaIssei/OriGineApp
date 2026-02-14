@@ -276,6 +276,8 @@
     <ClInclude Include="code\system\effect\PenaltyTimeSpriteUpdate.h" />
     <ClInclude Include="code\system\effect\PlayerSpeedFor3dUI.h" />
     <ClInclude Include="code\system\effect\TimerForSprite.h" />
+    <ClInclude Include="code\component\gimmick\TimeScaleEffectComponent.h" />
+    <ClInclude Include="code\system\effect\TimeScaleEffectSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\system\Initialize\ClearSceneRankingBuildSystem.cpp" />
@@ -393,6 +395,8 @@
     <ClCompile Include="code\system\effect\PenaltyTimeSpriteUpdate.cpp" />
     <ClCompile Include="code\system\effect\PlayerSpeedFor3dUI.cpp" />
     <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
+    <ClCompile Include="code\component\gimmick\TimeScaleEffectComponent.cpp" />
+    <ClCompile Include="code\system\effect\TimeScaleEffectSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">
