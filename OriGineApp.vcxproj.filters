@@ -416,6 +416,8 @@
     <ClInclude Include="code\system\Initialize\ClearSceneRankingBuildSystem.h" />
     <ClInclude Include="code\component\gimmick\TimeScaleEffectComponent.h" />
     <ClInclude Include="code\system\effect\TimeScaleEffectSystem.h" />
+    <ClInclude Include="code\system\Movement\PlayerFollowSystem.h" />
+    <ClInclude Include="code\system\collision\PlayerAheadCollisionReactionSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -751,5 +753,7 @@
     <ClCompile Include="code\system\Initialize\ClearSceneRankingBuildSystem.cpp" />
     <ClCompile Include="code\component\gimmick\TimeScaleEffectComponent.cpp" />
     <ClCompile Include="code\system\effect\TimeScaleEffectSystem.cpp" />
+    <ClCompile Include="code\system\Movement\PlayerFollowSystem.cpp" />
+    <ClCompile Include="code\system\collision\PlayerAheadCollisionReactionSystem.cpp" />
   </ItemGroup>
 </Project>

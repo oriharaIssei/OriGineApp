@@ -153,6 +153,7 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="code\system\collision\PlayerAheadCollisionReactionSystem.h" />
     <ClInclude Include="code\system\Initialize\ClearSceneRankingBuildSystem.h" />
     <ClInclude Include="code\component\TimerForSpriteComponent.h" />
     <ClInclude Include="code\FrameWork.h" />
@@ -232,6 +233,7 @@
     <ClInclude Include="code\system\Movement\FollowCameraUpdateSystem.h" />
     <ClInclude Include="code\system\Movement\LookAtFromTransformsSystem.h" />
     <ClInclude Include="code\system\Movement\PauseMainSceneSystem.h" />
+    <ClInclude Include="code\system\Movement\PlayerFollowSystem.h" />
     <ClInclude Include="code\system\Movement\PlayerMoveSystem.h" />
     <ClInclude Include="code\system\Movement\PlayerPathSplineGenerator.h" />
     <ClInclude Include="code\system\Movement\PlayerUpdateOnTitle.h" />
@@ -280,6 +282,7 @@
     <ClInclude Include="code\system\effect\TimeScaleEffectSystem.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\system\collision\PlayerAheadCollisionReactionSystem.cpp" />
     <ClCompile Include="code\system\Initialize\ClearSceneRankingBuildSystem.cpp" />
     <ClCompile Include="code\component\TimerForSpriteComponent.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
@@ -352,6 +355,7 @@
     <ClCompile Include="code\system\Movement\FollowCameraUpdateSystem.cpp" />
     <ClCompile Include="code\system\Movement\LookAtFromTransformsSystem.cpp" />
     <ClCompile Include="code\system\Movement\PauseMainSceneSystem.cpp" />
+    <ClCompile Include="code\system\Movement\PlayerFollowSystem.cpp" />
     <ClCompile Include="code\system\Movement\PlayerMoveSystem.cpp" />
     <ClCompile Include="code\system\Movement\PlayerPathSplineGenerator.cpp" />
     <ClCompile Include="code\system\Movement\PlayerUpdateOnTitle.cpp" />

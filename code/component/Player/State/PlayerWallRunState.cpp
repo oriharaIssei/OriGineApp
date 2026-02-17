@@ -22,13 +22,13 @@
 #include "logger/Logger.h"
 
 /// util
+#include "component/player/PlayerConfig.h"
+#include "component/player/PlayerMoveUtils.h"
 #include "util/globalVariables/SerializedField.h"
 
 /// math
 #include "math/mathEnv.h"
 #include "MyEasing.h"
-
-#include "component/player/PlayerConfig.h"
 
 using namespace OriGine;
 
@@ -52,7 +52,7 @@ void PlayerWallRunState::Initialize() {
     wallNormal_ = state->GetWallCollisionNormal().normalize();
 
     // ===== 進行方向を「速度を壁面に投影して」求める =====
-    OriGine::Vec3f direction = prevVelo_ - wallNormal_ * OriGine::Vec3f::Dot(prevVelo_, wallNormal_);
+    OriGine::Vec3f direction = PlayerMoveUtils::ComputeWallRunDirection(prevVelo_, wallNormal_);
     direction[Y]             = 0.0f;
 
     if (direction.lengthSq() > kEpsilon) {
@@ -95,16 +95,14 @@ void PlayerWallRunState::Initialize() {
 
     // ===== 向きとロール =====
     PlayerEffectControlParam* effectParam = scene_->GetComponent<PlayerEffectControlParam>(playerEntityHandle_);
-    bool isRightWall                      = Vec3f::Dot(Vec3f::Cross(axisY, wallNormal_), direction) > 0.0f;
+    bool isRightWall                      = PlayerMoveUtils::IsWallRight(direction, wallNormal_);
 
     float rotateZOffsetOnWallRun = effectParam->GetRotateOffsetOnWallRun();
     // プレイヤーの向きを移動方向に合わせる
     Quaternion lookForward = Quaternion::LookAt(direction, axisY);
-    transform->rotate      = lookForward;
     // 回転アニメーションのゴール地点を設定
     Quaternion angleOffset = Quaternion::RotateAxisAngle(axisZ, isRightWall ? rotateZOffsetOnWallRun : -rotateZOffsetOnWallRun);
-    playerBeforeRotate_    = lookForward;
-    playerRotateTarget_    = lookForward * angleOffset;
+    transform->rotate      = lookForward * angleOffset;
 
     // ===== スピード制御 =====
     speedRate_        = playerStatus->GetWallRunRate();
@@ -150,13 +148,6 @@ void PlayerWallRunState::Update(float _deltaTime) {
 
     // 衝突が途切れないようにめり込ませる
     transform->translate -= wallNormal_ * kOffsetRate;
-
-    // 回転アニメーション
-    rotateTimer_ += _deltaTime;
-    float rotateT     = (std::min)(rotateTimer_ / kRotateTime_, 1.f);
-    transform->rotate = Slerp(playerBeforeRotate_, playerRotateTarget_, EaseOutQuad(rotateT));
-
-    transform->UpdateMatrix();
 
     // 壁との衝突判定の残り時間を更新
     // これが0以下になると 壁から離れた と判定される

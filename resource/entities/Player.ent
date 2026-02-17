@@ -246,6 +246,8 @@
         "PlayerEffectControlParam": [
             {
                 "Handle": "eba370f8-fa85-4975-83cf-21231ea46835",
+                "aheadCollisionTiltAngle": 0.052000001072883606,
+                "aheadCollisionTiltSpeed": 0.0,
                 "invincibleBlinkBaseAmplitude": 8.0,
                 "invincibleBlinkMaxAmplitude": 40.0,
                 "maxTiltOnRailRun": -0.7300000190734863,
@@ -312,7 +314,7 @@
                 "coolTimeAddRateBase": 1.9299999475479126,
                 "coolTimeAddRateCommonRate": -0.09000000357627869,
                 "defaultMass": 0.09000000357627869,
-                "directionInterpolateRate": 33.04999923706055,
+                "directionInterpolateRate": 8.0,
                 "fallingGravityRate": 1.0,
                 "gearUpCoolTime": 0.5699999928474426,
                 "gravityApplyDelayOnWallRun": 0.36000001430511475,

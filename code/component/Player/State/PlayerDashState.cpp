@@ -26,7 +26,7 @@ void PlayerDashState::Initialize() {
     auto* transform    = scene_->GetComponent<OriGine::Transform>(playerEntityHandle_);
 
     // 速度を初期化
-    int32_t gearLevel  = state->GetGearLevel();
+    int32_t gearLevel     = state->GetGearLevel();
     float currentMaxSpeed = playerStatus->CalculateSpeedByGearLevel(gearLevel);
     playerStatus->SetCurrentMaxSpeed(currentMaxSpeed);
     // プレイヤーの向いている方向に速度を設定
@@ -69,10 +69,12 @@ void PlayerDashState::Update(float _deltaTime) {
 
     // 速度更新
     CameraTransform* cameraTransform = scene_->GetComponent<CameraTransform>(state->GetCameraEntityHandle());
-    Vec3f worldInputDir              = playerInput->CalculateWorldInputDirection(cameraTransform->rotate);
-    Vec3f forwardDirection           = playerStatus->ComputeSmoothedDirection(worldInputDir, rigidbody, transform, _deltaTime);
-    transform->rotate                = Quaternion::LookAt(forwardDirection, axisY);
-    playerStatus->UpdateAccel(_deltaTime, forwardDirection, rigidbody);
+    if (cameraTransform) {
+        Vec3f worldInputDir    = playerInput->CalculateWorldInputDirection(cameraTransform->rotate);
+        Vec3f forwardDirection = playerStatus->ComputeSmoothedDirection(worldInputDir, rigidbody, transform, _deltaTime);
+        transform->rotate      = Quaternion::LookAt(forwardDirection, axisY);
+        rigidbody->SetVelocity(playerStatus->GetCurrentMaxSpeed() * forwardDirection);
+    }
 
     // 落下時間を更新
     if (state->IsOnGround()) {

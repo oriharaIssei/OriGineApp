@@ -28,9 +28,6 @@ using namespace OriGine;
 void PlayerOnCollision::Initialize() {}
 void PlayerOnCollision::Finalize() {}
 
-static const float kGroundCheckThreshold = 0.7f; // 地面と判断するための閾値
-static const float kWallCheckThreshold   = 0.42f; // 壁と判断するための閾値
-
 void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
     auto* state          = GetComponent<PlayerState>(_handle);
     auto* status         = GetComponent<PlayerStatus>(_handle);
@@ -118,11 +115,9 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
             continue;
         }
 
-        OriGine::Vec3f collNormal = info.collFaceNormal.normalize();
+        OriGine::Vec3f collisionNormal = info.collFaceNormal.normalize();
 
-        float absCollNXZ = std::abs(collNormal[X]) + std::abs(collNormal[Z]);
-
-        if (collNormal[Y] > kGroundCheckThreshold) {
+        if (PlayerMoveUtils::IsHitGround(collisionNormal)) {
             // 上方向に衝突した場合は、地面にいると判断する
             state->OnCollisionGround();
 
@@ -136,9 +131,9 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
             rigidbody->SetAcceleration(acceleration);
 
             rigidbody->SetVelocity(Y, 0.f);
-        } else if (absCollNXZ > kGroundCheckThreshold) {
+        } else {
             // 壁と衝突した場合
-            float dotVN = rigidbody->GetVelocity().normalize().dot(collNormal);
+            float dotVN = rigidbody->GetVelocity().normalize().dot(collisionNormal);
 
             // どれくらい平行に動いているか (1.0 = 完全に平行, 0.0 = 完全に垂直)
             float parallelFactor = 1.f - std::fabs(dotVN);
@@ -148,8 +143,7 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
             if (entityId == wallEntityHandle) {
                 auto collisionStateItr = collisionStateMap.find(entityId);
                 if (collisionStateItr != collisionStateMap.end()) {
-                    CollisionState collState = collisionStateItr->second;
-                    if (collState == CollisionState::Stay) {
+                    if (collisionStateItr->second == CollisionState::Stay) {
                         isFirstCollision = false;
                     }
                 }
@@ -157,15 +151,17 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
 
             if (isFirstCollision) {
                 PlayerMoveUtils::WallContactResult wallContactResult = PlayerMoveUtils::EvaluateWallContact(parallelFactor, rigidbody, status);
-                if (wallContactResult != PlayerMoveUtils::WallContactResult::WallHit) {
-                    state->OnCollisionWall(collNormal, wallEntityHandle, wallContactResult == PlayerMoveUtils::WallContactResult::Wheelie);
+                switch (wallContactResult) {
+                case PlayerMoveUtils::WallContactResult::WallRun:
+                case PlayerMoveUtils::WallContactResult::Wheelie:
+                    state->OnCollisionWall(collisionNormal, entityId, wallContactResult == PlayerMoveUtils::WallContactResult::Wheelie);
+                    break;
+                default:
+                    break;
                 }
             } else {
-                bool canContinue = false;
-                canContinue      = isPreWheelie ? status->CanWheelie() : status->CanWallRun();
-                if (canContinue) {
-                    state->OnCollisionWall(collNormal, wallEntityHandle, isPreWheelie);
-                }
+                // 前フレームから引き続き壁と接触している場合は、ウィリー状態を維持するかどうかを判断する
+                state->OnCollisionWall(collisionNormal, wallEntityHandle, isPreWheelie);
             }
         }
     }

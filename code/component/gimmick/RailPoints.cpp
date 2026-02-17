@@ -1,8 +1,8 @@
 #include "RailPoints.h"
 
 /// engine
-#include "scene/Scene.h"
 #include "asset/AssetSystem.h"
+#include "scene/Scene.h"
 // asset
 #include "asset/TextureAsset.h"
 
@@ -25,15 +25,18 @@ void to_json(nlohmann::json& _j, const RailPoints& _c) {
         {"radius", _c.radius},
         {"segmentDivide", _c.segmentDivide},
         {"texturePath", _c.texturePath},
+        {"collisionRadiusOffset", _c.collisionRadiusOffset},
     };
 }
 
 void from_json(const nlohmann::json& _j, RailPoints& _c) {
     _j.at("points").get_to(_c.points);
     _j.at("radius").get_to(_c.radius);
-    if (_j.contains("segmentDivide")) {
-        _j.at("segmentDivide").get_to(_c.segmentDivide);
+    if (_j.contains("collisionRadiusOffset")) {
+        _j.at("collisionRadiusOffset").get_to(_c.collisionRadiusOffset);
     }
+    _j.at("segmentDivide").get_to(_c.segmentDivide);
+
     _j.at("texturePath").get_to(_c.texturePath);
 }
 
@@ -48,10 +51,11 @@ void RailPoints::Initialize(OriGine::Scene* /*_scene*/, OriGine::EntityHandle /*
 }
 void RailPoints::Finalize() {}
 
-void RailPoints::Edit(OriGine::Scene* /*_scene*/, OriGine::EntityHandle /*_owner*/,[[maybe_unused]] const std::string& _parentLabel) {
+void RailPoints::Edit(OriGine::Scene* /*_scene*/, OriGine::EntityHandle /*_owner*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
 
     DragGuiCommand<float>("Radius##" + _parentLabel, radius, 0.01f);
+    DragGuiCommand<float>("Collision Radius Offset##" + _parentLabel, collisionRadiusOffset, 0.01f);
     DragGuiCommand<int32_t>("Segment Divide##" + _parentLabel, segmentDivide, 1, 1, 64);
 
     // --- ポイント追加ボタン ---

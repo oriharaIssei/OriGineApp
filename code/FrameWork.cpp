@@ -39,6 +39,7 @@
 // application system
 #include "system/collision/AddForceTriggerSystem.h"
 #include "system/collision/OnCollisionModifierTargetSystem.h"
+#include "system/collision/PlayerAheadCollisionReactionSystem.h"
 #include "system/collision/PlayerOnCollision.h"
 #include "system/collision/TutorialColliderOnCollision.h"
 #include "system/collision/VelocityOverrideTriggerSystem.h"
@@ -78,6 +79,7 @@
 #include "system/movement/FollowCameraUpdateSystem.h"
 #include "system/Movement/LookAtFromTransformsSystem.h"
 #include "system/movement/PauseMainSceneSystem.h"
+#include "system/Movement/PlayerFollowSystem.h"
 #include "system/movement/PlayerMoveSystem.h"
 #include "system/movement/PlayerPathSplineGenerator.h"
 #include "system/movement/PlayerUpdateOnTitle.h"
@@ -315,6 +317,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<RestartSystem>();
     systemRegistry->RegisterSystem<PauseMainSceneSystem>();
 
+    systemRegistry->RegisterSystem<PlayerFollowSystem>();
     systemRegistry->RegisterSystem<LookAtFromTransformsSystem>();
     systemRegistry->RegisterSystem<Ui3dUpdateSystem>();
 
@@ -329,6 +332,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<VelocityOverrideTriggerSystem>();
     systemRegistry->RegisterSystem<AddForceTriggerSystem>();
     systemRegistry->RegisterSystem<OnCollisionModifierTargetSystem>();
+    systemRegistry->RegisterSystem<PlayerAheadCollisionReactionSystem>();
 
     /// =================================================================================================
     // Effect

@@ -90,7 +90,6 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityH
     ImGui::Spacing();
 
     DragGuiCommand("Direction Interpolate Rate##" + _parentLabel, directionInterpolateRate_, 0.01f);
-    DragGuiCommand("Speed Restore Lerp Rate##" + _parentLabel, speedRestoreLerpRate_, 0.01f);
 
     ImGui::Spacing();
 
@@ -113,11 +112,6 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityH
 
         ImGui::TreePop();
     }
-
-    ImGui::Spacing();
-
-    DragGuiCommand("RisingGravityRate##" + _parentLabel, risingGravityRate_, 0.01f);
-    DragGuiCommand("FallingGravityRate##" + _parentLabel, fallingGravityRate_, 0.01f);
 
     ImGui::Spacing();
 
@@ -160,7 +154,6 @@ void PlayerStatus::Debug(Scene* /*_scene*/, EntityHandle /*_handle*/, const std:
     ImGui::Spacing();
     ImGui::Text("Base Speed             : %.2f", baseSpeed_);
     ImGui::Text("CurrentMax Speed       : %.2f", currentMaxSpeed_);
-    ImGui::Text("Speed Restore Lerp Rate: %.2f", speedRestoreLerpRate_);
 
     if (ImGui::TreeNode("JumpHoldVelocity")) {
         ImGui::Text("EaseType : %s", EasingNames[jumpHoldVelocityEaseType_].c_str());
@@ -178,9 +171,6 @@ void PlayerStatus::Debug(Scene* /*_scene*/, EntityHandle /*_handle*/, const std:
 
         ImGui::TreePop();
     }
-
-    ImGui::Text("Rising Gravity Rate  : %.2f", risingGravityRate_);
-    ImGui::Text("Falling Gravity Rate : %.2f", fallingGravityRate_);
 
     ImGui::Spacing();
     ImGui::Text("Speed Up Rate Base        : %.2f", speedUpRateBase_);
@@ -212,27 +202,6 @@ float PlayerStatus::CalculateCoolTimeByGearLevel(int32_t _gearLevel) const {
         _gearLevel);
 }
 
-void PlayerStatus::UpdateAccel(float _deltaTime, const Vec3f& _newDirection, Rigidbody* _rigidbody) {
-    constexpr float kPlayerAccelRate = 8.0f;
-
-    Vec2f xzVelo       = Vec2f(_rigidbody->GetVelocity()[X], _rigidbody->GetVelocity()[Z]);
-    float currentSpeed = xzVelo.length();
-    if (currentSpeed >= currentMaxSpeed_) {
-        // 速度が最大速度以上の場合、加速度を減少させる
-        currentSpeed = LerpByDeltaTime(currentSpeed, currentMaxSpeed_, _deltaTime, speedRestoreLerpRate_);
-        xzVelo       = xzVelo.normalize() * currentSpeed;
-
-        _rigidbody->SetVelocity(X, xzVelo[X]);
-        _rigidbody->SetVelocity(Z, xzVelo[Y]);
-    } else if (currentSpeed <= 0.f) {
-        currentSpeed = currentMaxSpeed_;
-    }
-
-    // 移動加速度を設定
-    Vec3f accel = _newDirection * (currentSpeed * kPlayerAccelRate);
-    _rigidbody->SetAcceleration(X, accel[X]);
-    _rigidbody->SetAcceleration(Z, accel[Z]);
-}
 
 Vec3f PlayerStatus::ComputeSmoothedDirection(const Vec3f& _targetDir, const Rigidbody* _rigidbody, const Transform* _transform, float _deltaTime) const {
     // 現在のXZ平面の速度を取得
@@ -264,12 +233,8 @@ void to_json(nlohmann::json& _j, const PlayerStatus& _playerStatus) {
     _j["minJumpChargeRate"]        = _playerStatus.minJumpChargeRate_;
     _j["maxJumpChargeRate"]        = _playerStatus.maxJumpChargeRate_;
 
-    _j["risingGravityRate"]  = _playerStatus.risingGravityRate_;
-    _j["fallingGravityRate"] = _playerStatus.fallingGravityRate_;
-
     _j["gearUpCoolTime"]           = _playerStatus.baseGearupCoolTime_;
     _j["directionInterpolateRate"] = _playerStatus.directionInterpolateRate_;
-    _j["speedRestoreLerpRate"]     = _playerStatus.speedRestoreLerpRate_;
 
     _j["speedUpRateBase"]           = _playerStatus.speedUpRateBase_;
     _j["speedUpRateCommonRate"]     = _playerStatus.speedUpRateCommonRate_;
@@ -309,18 +274,12 @@ void from_json(const nlohmann::json& _j, PlayerStatus& _playerStatus) {
     _j.at("minJumpChargeRate").get_to(_playerStatus.minJumpChargeRate_);
     _j.at("maxJumpChargeRate").get_to(_playerStatus.maxJumpChargeRate_);
 
-    _j.at("risingGravityRate").get_to(_playerStatus.risingGravityRate_);
-    _j.at("fallingGravityRate").get_to(_playerStatus.fallingGravityRate_);
-
     _j.at("wallRunRate").get_to(_playerStatus.wallRunRate_);
     _j.at("wallRunRampUpTime").get_to(_playerStatus.wallRunRampUpTime_);
     _j.at("wallJumpOffset").get_to(_playerStatus.wallJumpOffset_);
     _j.at("gearUpCoolTime").get_to(_playerStatus.baseGearupCoolTime_);
 
     _j.at("directionInterpolateRate").get_to(_playerStatus.directionInterpolateRate_);
-    if (_j.contains("speedRestoreLerpRate")) {
-        _j.at("speedRestoreLerpRate").get_to(_playerStatus.speedRestoreLerpRate_);
-    }
 
     _j.at("speedUpRateBase").get_to(_playerStatus.speedUpRateBase_);
     _j.at("speedUpRateCommonRate").get_to(_playerStatus.speedUpRateCommonRate_);

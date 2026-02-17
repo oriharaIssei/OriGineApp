@@ -69,14 +69,6 @@ public:
     float CalculateCoolTimeByGearLevel(int32_t _gearLevel) const;
 
     /// <summary>
-    /// 加速度の更新
-    /// </summary>
-    /// <param name="_deltaTime"></param>
-    /// <param name="_newDirection"></param>
-    /// <param name="_rigidbody"></param>
-    void UpdateAccel(float _deltaTime, const OriGine::Vec3f& _newDirection, OriGine::Rigidbody* _rigidbody);
-
-    /// <summary>
     /// 現在の移動方向を滑らかにする
     /// </summary>
     /// <param name="_rigidbody"></param>
@@ -118,18 +110,12 @@ private:
     // currentMaxSpeed は gearLevel に応じて変化する
     float currentMaxSpeed_ = 0.0f; // 現在の最大速度
 
-    // 速度を元に戻すための補間率
-    float speedRestoreLerpRate_ = 0.1f;
-
     OriGine::EaseType jumpHoldVelocityEaseType_ = OriGine::EaseType::Linear;
     OriGine::EaseType jumpChargeRateEaseType_   = OriGine::EaseType::Linear;
     float minJumpHoldVelocity_                  = 0.0f; // 最低ジャンプのパワー
     float maxJumpHoldVelocity_                  = 0.0f; // 最大ジャンプのパワー
     float minJumpChargeRate_                    = 0.0f; // 最低落下のパワー
     float maxJumpChargeRate_                    = 0.0f; // 最大落下のパワー
-
-    float risingGravityRate_  = 1.0f; // 上昇時の重力倍率
-    float fallingGravityRate_ = 1.0f; // 下降時の重力倍率
 
     float directionInterpolateRate_ = 0.1f;
 
@@ -162,9 +148,6 @@ public:
     float GetMaxJumpHoldVelocity() const { return minJumpHoldVelocity_; }
     float GetMinJumpChargeRate() const { return minJumpChargeRate_; }
     float GetMaxJumpChargeRate() const { return maxJumpChargeRate_; }
-
-    float GetRisingGravityRate() const { return risingGravityRate_; }
-    float GetFallingGravityRate() const { return fallingGravityRate_; }
 
     float GetCurrentMaxSpeed() const { return currentMaxSpeed_; }
     void SetCurrentMaxSpeed(float _currentMaxSpeed) { currentMaxSpeed_ = _currentMaxSpeed; }

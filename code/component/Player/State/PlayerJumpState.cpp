@@ -45,7 +45,10 @@ void PlayerJumpState::Update(float _deltaTime) {
     Vec3f worldInputDir              = playerInput->CalculateWorldInputDirection(cameraTransform->rotate);
     Vec3f forwardDirection           = playerStatus->ComputeSmoothedDirection(worldInputDir, rigidbody, transform, _deltaTime);
     transform->rotate                = Quaternion::LookAt(forwardDirection, axisY);
-    playerStatus->UpdateAccel(_deltaTime, forwardDirection, rigidbody);
+
+    Vec3f newVelo                    = playerStatus->GetCurrentMaxSpeed() * forwardDirection;
+    newVelo[Y]                       = rigidbody->GetVelocity(Y);
+    rigidbody->SetVelocity(newVelo);
 
     // ジャンプ力の蓄積
     releaseJumpPower_ += chargePower_ * _deltaTime;

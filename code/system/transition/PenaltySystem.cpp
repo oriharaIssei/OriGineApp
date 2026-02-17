@@ -73,7 +73,7 @@ void PenaltySystem::UpdateEntity(OriGine::EntityHandle _handle) {
         return;
     }
 
-    timer->SetCurrentTime(timer->GetTime() - penaltyTime);
+    timer->SetCurrentTime(timer->GetTime() + penaltyTime);
 
     /// ペナルティー時間を表示する
 

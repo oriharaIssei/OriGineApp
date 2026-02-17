@@ -140,6 +140,10 @@
                             [
                                 "./application/resource/entities",
                                 "ChargeEffect"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "PlayerAheadCollision"
                             ]
                         ]
                     }
@@ -4284,13 +4288,13 @@
             }
         },
         {
-            "ApplyMouseConditionSystem": {
-                "Priority": 0
+            "ColliderRenderingSystem": {
+                "Priority": 100
             }
         },
         {
-            "ColliderRenderingSystem": {
-                "Priority": 100
+            "ApplyMouseConditionSystem": {
+                "Priority": 0
             }
         },
         {
@@ -4304,11 +4308,6 @@
             }
         },
         {
-            "ButtonInputSystem": {
-                "Priority": 1
-            }
-        },
-        {
             "ChangeSceneByButton": {
                 "Priority": 1
             }
@@ -4319,18 +4318,8 @@
             }
         },
         {
-            "CameraActionSystem": {
-                "Priority": 0
-            }
-        },
-        {
-            "TakePlayerToStartPosition": {
-                "Priority": 3
-            }
-        },
-        {
-            "PlayerInputSystem": {
-                "Priority": 3
+            "ButtonInputSystem": {
+                "Priority": 1
             }
         },
         {
@@ -4344,8 +4333,18 @@
             }
         },
         {
-            "TimeLimitJudgeSystem": {
-                "Priority": 10
+            "PlayerInputSystem": {
+                "Priority": 3
+            }
+        },
+        {
+            "CameraActionSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "TakePlayerToStartPosition": {
+                "Priority": 3
             }
         },
         {
@@ -4354,13 +4353,18 @@
             }
         },
         {
-            "CreatePlaneFromSpeed": {
+            "TimeLimitJudgeSystem": {
                 "Priority": 10
             }
         },
         {
             "CameraShake": {
                 "Priority": 0
+            }
+        },
+        {
+            "CreatePlaneFromSpeed": {
+                "Priority": 10
             }
         },
         {
@@ -4384,17 +4388,12 @@
             }
         },
         {
-            "PlayerSpeedFor3dUI": {
-                "Priority": 1
-            }
-        },
-        {
             "DissolveEffect": {
                 "Priority": 100
             }
         },
         {
-            "PenaltySystem": {
+            "PlayerSpeedFor3dUI": {
                 "Priority": 1
             }
         },
@@ -4406,6 +4405,11 @@
         {
             "GhostInitializeSystem": {
                 "Priority": 6
+            }
+        },
+        {
+            "PenaltySystem": {
+                "Priority": 1
             }
         },
         {
@@ -4444,8 +4448,8 @@
             }
         },
         {
-            "StartTimerInitialize": {
-                "Priority": 3
+            "MaterialAnimationWorkSystem": {
+                "Priority": 0
             }
         },
         {
@@ -4454,8 +4458,8 @@
             }
         },
         {
-            "MaterialAnimationWorkSystem": {
-                "Priority": 0
+            "StartTimerInitialize": {
+                "Priority": 3
             }
         },
         {
@@ -4469,18 +4473,13 @@
             }
         },
         {
-            "ResolveEntityReferences": {
-                "Priority": -2
-            }
-        },
-        {
             "OverlayRenderSystem": {
                 "Priority": 100
             }
         },
         {
-            "SweepColliderBuildSystem": {
-                "Priority": -1
+            "ResolveEntityReferences": {
+                "Priority": -2
             }
         },
         {
@@ -4494,6 +4493,11 @@
             }
         },
         {
+            "PlayerPathSplineGenerator": {
+                "Priority": 100
+            }
+        },
+        {
             "PlayRecorderInitialize": {
                 "Priority": 0
             }
@@ -4504,18 +4508,13 @@
             }
         },
         {
-            "PlayerPathSplineGenerator": {
-                "Priority": 100
+            "PlayerMoveSystem": {
+                "Priority": 3
             }
         },
         {
             "TexturedMeshRenderSystem": {
                 "Priority": 0
-            }
-        },
-        {
-            "PlayerMoveSystem": {
-                "Priority": 3
             }
         },
         {
@@ -4544,11 +4543,6 @@
             }
         },
         {
-            "SpriteAnimationSystem": {
-                "Priority": 1
-            }
-        },
-        {
             "VelocityRenderingSystem": {
                 "Priority": 0
             }
@@ -4556,6 +4550,11 @@
         {
             "SettingGameCameraTarget": {
                 "Priority": 5
+            }
+        },
+        {
+            "SpriteAnimationSystem": {
+                "Priority": 1
             }
         },
         {
@@ -4584,6 +4583,16 @@
             }
         },
         {
+            "TakeToGoalPosition": {
+                "Priority": 1
+            }
+        },
+        {
+            "SubSceneActivateByButton": {
+                "Priority": 0
+            }
+        },
+        {
             "StartSequenceSystem": {
                 "Priority": 1
             }
@@ -4596,16 +4605,6 @@
         {
             "SubSceneRender": {
                 "Priority": 10
-            }
-        },
-        {
-            "SubSceneActivateByButton": {
-                "Priority": 0
-            }
-        },
-        {
-            "TakeToGoalPosition": {
-                "Priority": 1
             }
         },
         {
@@ -4624,13 +4623,13 @@
             }
         },
         {
-            "CreateRailMesh": {
-                "Priority": 0
+            "TimerForSprite": {
+                "Priority": 1
             }
         },
         {
-            "TimerForSprite": {
-                "Priority": 1
+            "CreateRailMesh": {
+                "Priority": 0
             }
         },
         {
@@ -4656,6 +4655,11 @@
         {
             "GameFailedSceneLaunchSystem": {
                 "Priority": 0
+            }
+        },
+        {
+            "PlayerAheadCollisionReactionSystem": {
+                "Priority": 6
             }
         },
         {
@@ -4691,6 +4695,11 @@
         {
             "RailInitializeSystem": {
                 "Priority": 0
+            }
+        },
+        {
+            "PlayerFollowSystem": {
+                "Priority": 100
             }
         }
     ]
