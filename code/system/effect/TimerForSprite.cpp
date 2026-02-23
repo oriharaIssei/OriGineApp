@@ -11,7 +11,7 @@
 #include "component/TimerForSpriteComponent.h"
 
 /// math
-#include "math/mathEnv.h"
+#include "math/MathEnv.h"
 
 using namespace OriGine;
 

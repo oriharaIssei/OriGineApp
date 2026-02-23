@@ -1,6 +1,6 @@
 #pragma once
 
-#include "math/mathEnv.h"
+#include "math/MathEnv.h"
 #include "math/Vector2.h"
 #include "math/Vector3.h"
 

@@ -15,7 +15,7 @@
 #include "component/transform/Transform.h"
 
 /// math
-#include <math/mathEnv.h>
+#include <math/MathEnv.h>
 #include <MyEasing.h>
 
 using namespace OriGine;

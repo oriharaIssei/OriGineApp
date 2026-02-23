@@ -3,7 +3,7 @@
 #include "EffectConfig.h"
 
 /// math
-#include "math/mathEnv.h"
+#include "math/MathEnv.h"
 #include <math/MyEasing.h>
 #include <math/Spline.h>
 #include <math/Vector3.h>

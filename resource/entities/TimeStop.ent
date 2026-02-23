@@ -34,6 +34,43 @@
                 ]
             }
         ],
+        "ModelMeshRenderer": [
+            {
+                "Handle": "3248374f-00e7-4cfb-8d4e-6ed2e707e98a",
+                "blendMode": 1,
+                "directory": "./application/resource/Models\\stopWatch",
+                "fileName": "stopWatch.obj",
+                "isRender": true,
+                "materialIndexDatas": [
+                    {
+                        "Handle": "00000000-0000-0000-0000-000000000000"
+                    }
+                ],
+                "textureFilePath": [
+                    ""
+                ],
+                "transformBufferDatas": [
+                    {
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            }
+        ],
         "SphereCollider": [
             {
                 "Handle": "837c5b59-a84e-4bf4-89a5-53b5370bcb2f",
@@ -114,9 +151,9 @@
             {
                 "Handle": "5f362f23-bf54-40a2-982d-0a555363bd3d",
                 "rotate": [
+                    -0.0,
                     0.0,
-                    0.0,
-                    0.0,
+                    -0.0,
                     1.0
                 ],
                 "scale": [
@@ -126,8 +163,8 @@
                 ],
                 "translate": [
                     0.0,
-                    2.430000066757202,
-                    70.0
+                    -10.189783096313477,
+                    73.0
                 ]
             }
         ]

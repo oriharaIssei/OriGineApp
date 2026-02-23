@@ -12,7 +12,7 @@
 #include "component/TimerComponent.h"
 
 /// math
-#include "math/mathEnv.h"
+#include "math/MathEnv.h"
 
 using namespace OriGine;
 

@@ -70,6 +70,7 @@ public:
     OriGine::Vec3f currentTargetOffset   = {0.0f, 0.0f, 0.0f};
     OriGine::Vec3f firstTargetOffset     = AppConfig::Camera::kFirstTargetOffset;
     OriGine::Vec3f targetOffsetOnDash    = AppConfig::Camera::kTargetOffsetOnDash;
+    float minTargetOffsetXOnWallRun      = 0.0f;
     OriGine::Vec3f targetOffsetOnWallRun = AppConfig::Camera::kTargetOffsetOnDash;
     /// <summary>
     /// 注視点との距離のOffset

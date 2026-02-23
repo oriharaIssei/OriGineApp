@@ -21,7 +21,7 @@
 #include "system/effect/TimerForSprite.h"
 
 /// math
-#include "math/mathEnv.h"
+#include "math/MathEnv.h"
 
 /// config
 #include "component/player/PlayerConfig.h"
