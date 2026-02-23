@@ -8,7 +8,6 @@
 #include "component/physics/Rigidbody.h"
 #include "component/renderer/ModelMeshRenderer.h"
 #include "component/spline/SplinePoints.h"
-#include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
 
 #include "component/player/PlayerEffectControlParam.h"
@@ -27,7 +26,8 @@
 #include "util/globalVariables/SerializedField.h"
 
 /// math
-#include "math/mathEnv.h"
+#include "Interpolation.h"
+#include "math/MathEnv.h"
 #include "MyEasing.h"
 
 using namespace OriGine;
@@ -95,13 +95,13 @@ void PlayerWallRunState::Initialize() {
 
     // ===== 向きとロール =====
     PlayerEffectControlParam* effectParam = scene_->GetComponent<PlayerEffectControlParam>(playerEntityHandle_);
-    bool isRightWall                      = PlayerMoveUtils::IsWallRight(direction, wallNormal_);
+    isRightWall_                          = PlayerMoveUtils::IsWallRight(direction, wallNormal_);
 
     float rotateZOffsetOnWallRun = effectParam->GetRotateOffsetOnWallRun();
     // プレイヤーの向きを移動方向に合わせる
     Quaternion lookForward = Quaternion::LookAt(direction, axisY);
     // 回転アニメーションのゴール地点を設定
-    Quaternion angleOffset = Quaternion::RotateAxisAngle(axisZ, isRightWall ? rotateZOffsetOnWallRun : -rotateZOffsetOnWallRun);
+    Quaternion angleOffset = Quaternion::RotateAxisAngle(axisZ, isRightWall_ ? rotateZOffsetOnWallRun : -rotateZOffsetOnWallRun);
     transform->rotate      = lookForward * angleOffset;
 
     // ===== スピード制御 =====
@@ -117,7 +117,7 @@ void PlayerWallRunState::Initialize() {
     auto* modelRenderer = scene_->GetComponent<ModelMeshRenderer>(playerEntityHandle_);
     if (modelRenderer) {
         for (auto& mesh : modelRenderer->GetAllTransformBuffRef()) {
-            mesh.openData_.translate -= isRightWall ? -wallNormal_ * kMeshOffsetRate : wallNormal_ * kMeshOffsetRate;
+            mesh.openData_.translate -= isRightWall_ ? -wallNormal_ * kMeshOffsetRate : wallNormal_ * kMeshOffsetRate;
         }
     }
 
@@ -125,15 +125,17 @@ void PlayerWallRunState::Initialize() {
     CameraController* cameraController = scene_->GetComponent<CameraController>(state->GetCameraEntityHandle());
 
     // 左壁想定のオフセットを取得
-    cameraTargetOffsetOnWallRun_ = cameraController->targetOffsetOnWallRun;
+    cameraTargetOffsetOnWallRun_     = cameraController->targetOffsetOnWallRun;
+    minCameraTargetOffsetXOnWallRun_ = cameraController->minTargetOffsetXOnWallRun;
 
     cameraOffsetOnWallRun_ = cameraController->offsetOnWallRun;
 
     // 左壁想定の回転角度を取得
     cameraRotateZOnWallRun_ = cameraController->rotateZOnWallRun;
     // ===== 右壁なら左右反転 =====
-    if (!isRightWall) {
+    if (!isRightWall_) {
         cameraTargetOffsetOnWallRun_[X] *= -1.0f;
+        minCameraTargetOffsetXOnWallRun_ *= -1.0f;
         cameraOffsetOnWallRun_[X] *= -1.0f;
 
         cameraRotateZOnWallRun_ *= -1.f;
@@ -143,8 +145,9 @@ void PlayerWallRunState::Initialize() {
 }
 
 void PlayerWallRunState::Update(float _deltaTime) {
-    auto* state     = scene_->GetComponent<PlayerState>(playerEntityHandle_);
-    auto* transform = scene_->GetComponent<OriGine::Transform>(playerEntityHandle_);
+    auto* state       = scene_->GetComponent<PlayerState>(playerEntityHandle_);
+    auto* playerInput = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
+    auto* transform   = scene_->GetComponent<OriGine::Transform>(playerEntityHandle_);
 
     // 衝突が途切れないようにめり込ませる
     transform->translate -= wallNormal_ * kOffsetRate;
@@ -180,27 +183,30 @@ void PlayerWallRunState::Update(float _deltaTime) {
     float cameraDeltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Camera");
     cameraAngleLerpTimer_ += cameraDeltaTime;
     float t = cameraAngleLerpTimer_ / kCameraAngleLerpTime_;
-    t       = std::clamp(t, 0.f, 1.f);
 
     // 一度だけ実行
     CameraController* cameraController = scene_->GetComponent<CameraController>(state->GetCameraEntityHandle());
     if (!cameraController) {
         return;
     }
-    if (t >= 1) {
-        cameraController->currentOffset       = cameraOffsetOnWallRun_;
-        cameraController->currentTargetOffset = cameraTargetOffsetOnWallRun_;
-
-        cameraController->currentRotateZ = cameraRotateZOnWallRun_;
-        return;
-    }
-
-    if (cameraController) {
+    if (t <= 1) {
         cameraController->currentOffset       = Lerp<3, float>(cameraController->currentOffset, cameraOffsetOnWallRun_, EaseOutCubic(t));
         cameraController->currentTargetOffset = Lerp<3, float>(cameraController->currentTargetOffset, cameraTargetOffsetOnWallRun_, EaseOutCubic(t));
-
-        cameraController->currentRotateZ = std::lerp(0.f, cameraRotateZOnWallRun_, EaseOutCubic(t));
+        cameraController->currentRotateZ      = std::lerp(0.f, cameraRotateZOnWallRun_, EaseOutCubic(t));
+    } else {
+        cameraController->currentOffset       = cameraOffsetOnWallRun_;
+        cameraController->currentTargetOffset = cameraTargetOffsetOnWallRun_;
+        cameraController->currentRotateZ      = cameraRotateZOnWallRun_;
     }
+
+    // 移動方向に応じて、カメラのオフセットのX成分の目標値を変える
+    float inputXNormalized = (playerInput->GetInputDirection()[X] + 1) * 0.5f; // [-1, 1] -> [0, 1]
+    if (isRightWall_) {
+        inputXNormalized = 1 - inputXNormalized; // 右壁なら反転して [0, 1] -> [1, 0]
+    }
+    inputXNormalized                         = EasingFunctions[static_cast<int>(EaseType::EaseInCubic)](inputXNormalized); // 入力に応じてオフセットの変化を緩やかにする
+
+    cameraController->currentTargetOffset[X] = std::lerp(minCameraTargetOffsetXOnWallRun_, cameraTargetOffsetOnWallRun_[X], inputXNormalized);
 }
 
 void PlayerWallRunState::Finalize() {

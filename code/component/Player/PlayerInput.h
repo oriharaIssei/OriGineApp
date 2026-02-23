@@ -61,6 +61,7 @@ public:
     OriGine::Vec3f CalculateWorldInputDirection(const OriGine::Quaternion& _cameraRotation);
 
 private:
+    // 入力方向(加工前)
     OriGine::Vec2f inputDirection_ = {0.0f, 0.0f};
     // effectに使う
     OriGine::Vec3f worldInputDirection_ = {0.0f, 0.0f, 0.0f};

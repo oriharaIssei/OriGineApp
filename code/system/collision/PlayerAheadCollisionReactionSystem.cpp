@@ -13,7 +13,7 @@
 #include "component/player/PlayerMoveUtils.h"
 
 /// math
-#include "math/mathEnv.h"
+#include "math/MathEnv.h"
 
 using namespace OriGine;
 
@@ -74,8 +74,20 @@ void PlayerAheadCollisionReactionSystem::UpdateEntity(OriGine::EntityHandle _han
         }
     }
 
+    // wallRunの時の処理
+    float maxAngle = effectControlParam->GetAheadCollisionTiltAngle();
+
+    float currAngle  = effectControlParam->GetAheadCollisionCurrentAngle();
+    float afterAngle = 0.f;
+    float tiltSpeed  = effectControlParam->GetAheadCollisionTiltSpeed() * Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime(playerRigidbody->GetLocalDeltaTimeName());
+    float deltaAngle = 0.f;
+
+    Vec3f wallFrontDir = PlayerMoveUtils::ComputeWallRunDirection(playerRigidbody->GetVelocity(), collNormal);
+    bool isRightWall   = PlayerMoveUtils::IsWallRight(wallFrontDir, collNormal);
+
     if (penetrationDepth >= OriGine::kEpsilon) {
         float t = std::clamp(penetrationDepth / radiusDiff, 0.f, 1.f);
+
         // wheelieの時の処理
         if (isWheelie) {
             Vec3f wheelieDir = PlayerMoveUtils::ComputeWheelieDirection(collNormal, axisY);
@@ -100,15 +112,13 @@ void PlayerAheadCollisionReactionSystem::UpdateEntity(OriGine::EntityHandle _han
             targetRotation = Slerp(playerTransform->rotate, playerTransform->rotate * targetRotation, t);
         } else {
             // wallRunの時の処理
-            float rotateZOffsetOnWallRun = effectControlParam->GetRotateOffsetOnWallRun();
-
-            rotateZOffsetOnWallRun = std::lerp(0.f, rotateZOffsetOnWallRun, EaseOutCubic(t));
-
-            Vec3f wallFrontDir = PlayerMoveUtils::ComputeWallRunDirection(playerRigidbody->GetVelocity(), collNormal);
-            bool isRightWall   = PlayerMoveUtils::IsWallRight(wallFrontDir, collNormal);
-
-            Quaternion angleOffset = Quaternion::RotateAxisAngle(axisZ, isRightWall ? rotateZOffsetOnWallRun : -rotateZOffsetOnWallRun);
-            playerTransform->rotate *= angleOffset;
+            afterAngle = std::lerp(currAngle, isRightWall ? maxAngle : -maxAngle, EaseOutCubic(t));
         }
     }
+    deltaAngle = std::clamp(afterAngle - currAngle, -tiltSpeed, tiltSpeed);
+    currAngle += deltaAngle;
+    effectControlParam->SetAheadCollisionCurrentAngle(currAngle);
+
+    Quaternion angleOffset = Quaternion::RotateAxisAngle(axisZ, currAngle);
+    playerTransform->rotate *= angleOffset;
 }

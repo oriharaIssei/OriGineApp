@@ -11,12 +11,12 @@
                 "Handle": "68729c0e-6fbb-4303-ab87-083d60c04d5e",
                 "center": [
                     0.0,
-                    0.0,
+                    0.75,
                     0.0
                 ],
                 "collisionCategory": "Player",
                 "isActive": true,
-                "radius": 5.400000095367432,
+                "radius": 8.630000114440918,
                 "transform": {
                     "rotate": [
                         0.0,

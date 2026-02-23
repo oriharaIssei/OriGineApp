@@ -32,7 +32,7 @@
 #include "component/ghost/PlayRecordeComponent.h"
 
 /// math
-#include "math/mathEnv.h"
+#include "math/MathEnv.h"
 #include "math/MyEasing.h"
 
 using namespace OriGine;

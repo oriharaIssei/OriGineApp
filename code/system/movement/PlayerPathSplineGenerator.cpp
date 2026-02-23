@@ -10,7 +10,7 @@
 #include "component/transform/Transform.h"
 
 /// math
-#include <math/mathEnv.h>
+#include <math/MathEnv.h>
 
 using namespace OriGine;
 
@@ -82,7 +82,7 @@ void PlayerPathSplineGenerator::AppendNewPoints(SplinePoints* _splinePoints, con
 
     // 距離が離れていたら補間して点を追加
     if (distLen - segLen >= kThresholdSplitOrMerger) {
-        Vec3f direction = (distLen > kEpsilon) ? distanceVec.normalize() : Vec3f(0.0f, 0.0f, 0.0f);
+        Vec3f direction = distanceVec.normalize();
 
         // あまりにも離れている場合は制限をかける
         constexpr int32_t kSkipThreshold = 18;
@@ -118,7 +118,7 @@ void PlayerPathSplineGenerator::RefineSplinePoints(SplinePoints* _splinePoints) 
         if (len - segLen > segLen * kThresholdSplitOrMerger) {
             // 長すぎる → 分割して補間点を追加
             int divs  = (std::max)(1, static_cast<int>(len / segLen));
-            Vec3f dir = (len > kEpsilon) ? delta.normalize() : Vec3f(0.0f, 0.0f, 0.0f);
+            Vec3f dir = delta.normalize();
 
             for (int j = 1; j < divs; ++j) {
                 newPoints.push_back(current + dir * (segLen * static_cast<float>(j)));

@@ -6,17 +6,16 @@
 #endif // _DEBUG
 
 /// math
-#include "math/mathEnv.h"
+#include "math/MathEnv.h"
 #include "math/Matrix4x4.h"
 
 using namespace OriGine;
 
-void PlayerInput::Initialize(Scene* /*_scene*/, EntityHandle /* _handle */) {
-}
+void PlayerInput::Initialize(Scene* /*_scene*/, EntityHandle /* _handle */) {}
 
 void PlayerInput::Edit(Scene* /*_scene*/, EntityHandle /* _handle */, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
-    DragGuiCommand("MaxJumpInputTime" + _parentLabel, maxJumpTime_, 0.01f, 0.01f);
+    DragGuiCommand("MaxJumpInputTime##" + _parentLabel, maxJumpTime_, 0.01f, 0.01f);
 #endif // _DEBUG
 }
 
@@ -42,10 +41,10 @@ Vec3f PlayerInput::CalculateWorldInputDirection(const Quaternion& _cameraRotatio
     return worldInputDirection_;
 }
 
-void to_json(nlohmann::json& j, const PlayerInput& _input) {
-    j["MaxJumpInputTime"] = _input.maxJumpTime_;
+void to_json(nlohmann::json& _j, const PlayerInput& _input) {
+    _j["MaxJumpInputTime"] = _input.maxJumpTime_;
 }
 
-void from_json(const nlohmann::json& j, PlayerInput& _input) {
-    _input.maxJumpTime_ = j["MaxJumpInputTime"].get<float>();
+void from_json(const nlohmann::json& _j, PlayerInput& _input) {
+    _input.maxJumpTime_ = _j["MaxJumpInputTime"].get<float>();
 }
