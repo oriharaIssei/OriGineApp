@@ -13,8 +13,9 @@
 #endif // _DEBUG
 
 /// math
+#include "math/SpringDamper.h"
 #include <math/Interpolation.h>
-#include <math/mathEnv.h>
+#include <math/MathEnv.h>
 #include <math/Quaternion.h>
 #include <math/Sequence.h>
 
@@ -54,8 +55,45 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityH
             }
             ImGui::EndTable();
         }
+
+        ImGui::Spacing();
+
+        ImGui::SeparatorText("Directional Speed");
+        DragGuiVectorCommand<2, float>("baseDirectionalSpeed##" + _parentLabel, baseDirectionalSpeed_, 0.01f);
+        DragGuiVectorCommand<2, float>("directionalSpeedUpRateBase##" + _parentLabel, directionalSpeedUpRateBase_, 0.01f);
+        DragGuiVectorCommand<2, float>("directionalSpeedUpRateCommonRate##" + _parentLabel, directionalSpeedUpRateCommonRate_, 0.01f);
+
+        label = "DirectionalSpeedByGearLevel##" + _parentLabel;
+        if (ImGui::BeginTable(label.c_str(), 3, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg)) {
+            ImGui::TableSetupColumn("Gear Level");
+            ImGui::TableSetupColumn("Forward/Backward Speed");
+            ImGui::TableSetupColumn("Left/Right Speed");
+            ImGui::TableHeadersRow();
+            for (int level = 1; level <= kMaxPlayerGearLevel; ++level) {
+                ImGui::TableNextRow();
+                ImGui::TableSetColumnIndex(0);
+                ImGui::Text("%d", level);
+                OriGine::Vec2f directionalSpeed = CalculateCurrentMaxDirectionalSpeed(level);
+                ImGui::TableSetColumnIndex(1);
+                ImGui::Text("%.2f", directionalSpeed[X]);
+                ImGui::TableSetColumnIndex(2);
+                ImGui::Text("%.2f", directionalSpeed[Y]);
+            }
+            ImGui::EndTable();
+        }
+
         ImGui::TreePop();
     }
+
+    ImGui::Spacing();
+
+    DragGuiVectorCommand("Min Smooth Time##" + _parentLabel, minSmoothTime_, 0.01f);
+    DragGuiVectorCommand("Max Smooth Time##" + _parentLabel, maxSmoothTime_, 0.01f);
+
+    ImGui::Spacing();
+
+    DragGuiVectorCommand("Min Limit Directional Accel##" + _parentLabel, minLimitDirectionalAccel_, 0.01f);
+    DragGuiVectorCommand("Max Limit Directional Accel##" + _parentLabel, maxLimitDirectionalAccel_, 0.01f);
 
     ImGui::Spacing();
 
@@ -117,6 +155,8 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityH
 
     DragGuiCommand("WallRunRate##" + _parentLabel, wallRunRate_, 0.01f);
     DragGuiCommand("WallRunRampUpTime##" + _parentLabel, wallRunRampUpTime_, 0.01f);
+
+    DragGuiCommand("MinWallJumpOffsetX##" + _parentLabel, minWallJumpOffsetX_, 0.01f, 0.f, wallJumpOffset_[X]);
     DragGuiVectorCommand<3, float>("WallJumpOffset##" + _parentLabel, wallJumpOffset_, 0.01f);
     wallJumpOffset_ = wallJumpOffset_.normalize();
 
@@ -202,6 +242,23 @@ float PlayerStatus::CalculateCoolTimeByGearLevel(int32_t _gearLevel) const {
         _gearLevel);
 }
 
+OriGine::Vec2f PlayerStatus::CalculateCurrentMaxDirectionalSpeed(int32_t _gearLevel) const {
+    return {
+        ArithmeticSequence(
+            baseDirectionalSpeed_[X],
+            ArithmeticSequence(directionalSpeedUpRateBase_[X], directionalSpeedUpRateCommonRate_[X], _gearLevel - 1),
+            _gearLevel),
+        ArithmeticSequence(
+            baseDirectionalSpeed_[Y],
+            ArithmeticSequence(directionalSpeedUpRateBase_[Y], directionalSpeedUpRateCommonRate_[Y], _gearLevel - 1),
+            _gearLevel)};
+}
+
+void PlayerStatus::SetupOnGearUp(int32_t _gearLevel) {
+    gearUpCoolTime_             = CalculateCoolTimeByGearLevel(_gearLevel);
+    currentMaxSpeed_            = CalculateSpeedByGearLevel(_gearLevel);
+    currentMaxDirectionalSpeed_ = CalculateCurrentMaxDirectionalSpeed(_gearLevel);
+}
 
 Vec3f PlayerStatus::ComputeSmoothedDirection(const Vec3f& _targetDir, const Rigidbody* _rigidbody, const Transform* _transform, float _deltaTime) const {
     // 現在のXZ平面の速度を取得
@@ -220,11 +277,26 @@ Vec3f PlayerStatus::ComputeSmoothedDirection(const Vec3f& _targetDir, const Rigi
 }
 
 void to_json(nlohmann::json& _j, const PlayerStatus& _playerStatus) {
-    _j["baseSpeed"] = _playerStatus.baseSpeed_;
+    _j["baseSpeed"]             = _playerStatus.baseSpeed_;
+    _j["speedUpRateBase"]       = _playerStatus.speedUpRateBase_;
+    _j["speedUpRateCommonRate"] = _playerStatus.speedUpRateCommonRate_;
 
-    _j["wallRunRate"]       = _playerStatus.wallRunRate_;
-    _j["wallRunRampUpTime"] = _playerStatus.wallRunRampUpTime_;
-    _j["wallJumpOffset"]    = _playerStatus.wallJumpOffset_;
+    _j["baseDirectionalSpeed"]             = _playerStatus.baseDirectionalSpeed_;
+    _j["directionalSpeedUpRateBase"]       = _playerStatus.directionalSpeedUpRateBase_;
+    _j["directionalSpeedUpRateCommonRate"] = _playerStatus.directionalSpeedUpRateCommonRate_;
+
+    _j["minSmoothTime"]            = _playerStatus.minSmoothTime_;
+    _j["maxSmoothTime"]            = _playerStatus.maxSmoothTime_;
+    _j["minLimitDirectionalAccel"] = _playerStatus.minLimitDirectionalAccel_;
+    _j["maxLimitDirectionalAccel"] = _playerStatus.maxLimitDirectionalAccel_;
+
+    _j["coolTimeAddRateBase"]       = _playerStatus.coolTimeAddRateBase_;
+    _j["coolTimeAddRateCommonRate"] = _playerStatus.coolTimeAddRateCommonRate_;
+
+    _j["wallRunRate"]        = _playerStatus.wallRunRate_;
+    _j["wallRunRampUpTime"]  = _playerStatus.wallRunRampUpTime_;
+    _j["minWallJumpOffsetX"] = _playerStatus.minWallJumpOffsetX_;
+    _j["wallJumpOffset"]     = _playerStatus.wallJumpOffset_;
 
     _j["jumpHoldVelocityEaseType"] = static_cast<int>(_playerStatus.jumpHoldVelocityEaseType_);
     _j["minJumpHoldVelocity"]      = _playerStatus.minJumpHoldVelocity_;
@@ -235,11 +307,6 @@ void to_json(nlohmann::json& _j, const PlayerStatus& _playerStatus) {
 
     _j["gearUpCoolTime"]           = _playerStatus.baseGearupCoolTime_;
     _j["directionInterpolateRate"] = _playerStatus.directionInterpolateRate_;
-
-    _j["speedUpRateBase"]           = _playerStatus.speedUpRateBase_;
-    _j["speedUpRateCommonRate"]     = _playerStatus.speedUpRateCommonRate_;
-    _j["coolTimeAddRateBase"]       = _playerStatus.coolTimeAddRateBase_;
-    _j["coolTimeAddRateCommonRate"] = _playerStatus.coolTimeAddRateCommonRate_;
 
     _j["wheelieJumpOffset"] = _playerStatus.wheelieJumpOffset_;
 
@@ -262,6 +329,35 @@ void to_json(nlohmann::json& _j, const PlayerStatus& _playerStatus) {
 }
 void from_json(const nlohmann::json& _j, PlayerStatus& _playerStatus) {
     _j.at("baseSpeed").get_to(_playerStatus.baseSpeed_);
+    _j.at("speedUpRateBase").get_to(_playerStatus.speedUpRateBase_);
+    _j.at("speedUpRateCommonRate").get_to(_playerStatus.speedUpRateCommonRate_);
+
+    if (_j.contains("baseDirectionalSpeed")) {
+        _j.at("baseDirectionalSpeed").get_to(_playerStatus.baseDirectionalSpeed_);
+    }
+    if (_j.contains("directionalSpeedUpRateBase")) {
+        _j.at("directionalSpeedUpRateBase").get_to(_playerStatus.directionalSpeedUpRateBase_);
+    }
+    if (_j.contains("directionalSpeedUpRateCommonRate")) {
+        _j.at("directionalSpeedUpRateCommonRate").get_to(_playerStatus.directionalSpeedUpRateCommonRate_);
+    }
+
+    if (_j.contains("minSmoothTime")) {
+        _j.at("minSmoothTime").get_to(_playerStatus.minSmoothTime_);
+    }
+    if (_j.contains("maxSmoothTime")) {
+        _j.at("maxSmoothTime").get_to(_playerStatus.maxSmoothTime_);
+    }
+
+    if (_j.contains("minLimitDirectionalAccel")) {
+        _j.at("minLimitDirectionalAccel").get_to(_playerStatus.minLimitDirectionalAccel_);
+    }
+    if (_j.contains("maxLimitDirectionalAccel")) {
+        _j.at("maxLimitDirectionalAccel").get_to(_playerStatus.maxLimitDirectionalAccel_);
+    }
+
+    _j.at("coolTimeAddRateBase").get_to(_playerStatus.coolTimeAddRateBase_);
+    _j.at("coolTimeAddRateCommonRate").get_to(_playerStatus.coolTimeAddRateCommonRate_);
 
     int easetype = 0;
     _j.at("jumpHoldVelocityEaseType").get_to(easetype);
@@ -277,14 +373,12 @@ void from_json(const nlohmann::json& _j, PlayerStatus& _playerStatus) {
     _j.at("wallRunRate").get_to(_playerStatus.wallRunRate_);
     _j.at("wallRunRampUpTime").get_to(_playerStatus.wallRunRampUpTime_);
     _j.at("wallJumpOffset").get_to(_playerStatus.wallJumpOffset_);
+    if (_j.contains("minWallJumpOffsetX")) {
+        _j.at("minWallJumpOffsetX").get_to(_playerStatus.minWallJumpOffsetX_);
+    }
     _j.at("gearUpCoolTime").get_to(_playerStatus.baseGearupCoolTime_);
 
     _j.at("directionInterpolateRate").get_to(_playerStatus.directionInterpolateRate_);
-
-    _j.at("speedUpRateBase").get_to(_playerStatus.speedUpRateBase_);
-    _j.at("speedUpRateCommonRate").get_to(_playerStatus.speedUpRateCommonRate_);
-    _j.at("coolTimeAddRateBase").get_to(_playerStatus.coolTimeAddRateBase_);
-    _j.at("coolTimeAddRateCommonRate").get_to(_playerStatus.coolTimeAddRateCommonRate_);
 
     if (_j.contains("railRampUpTime")) {
         _j.at("railRampUpTime").get_to(_playerStatus.railRampUpTime_);

@@ -10,12 +10,14 @@
 #include "component/Camera/CameraController.h"
 #include "component/physics/Rigidbody.h"
 #include "component/player/PlayerInput.h"
+#include "component/player/PlayerMoveUtils.h"
 #include "component/player/PlayerStatus.h"
 #include "component/player/state/PlayerState.h"
 
 /// math
 #include "MyEasing.h"
-#include <mathEnv.h>
+#include "SpringDamper.h"
+#include <MathEnv.h>
 
 using namespace OriGine;
 
@@ -63,7 +65,7 @@ void PlayerDashState::Update(float _deltaTime) {
 
             playerStatus->SetGearUpCoolTime(playerStatus->CalculateCoolTimeByGearLevel(gearLevel));
 
-            playerStatus->SetCurrentMaxSpeed(playerStatus->CalculateSpeedByGearLevel(gearLevel));
+            playerStatus->SetupOnGearUp(gearLevel);
         }
     }
 
@@ -72,8 +74,11 @@ void PlayerDashState::Update(float _deltaTime) {
     if (cameraTransform) {
         Vec3f worldInputDir    = playerInput->CalculateWorldInputDirection(cameraTransform->rotate);
         Vec3f forwardDirection = playerStatus->ComputeSmoothedDirection(worldInputDir, rigidbody, transform, _deltaTime);
-        transform->rotate      = Quaternion::LookAt(forwardDirection, axisY);
-        rigidbody->SetVelocity(playerStatus->GetCurrentMaxSpeed() * forwardDirection);
+
+        rigidbody->SetVelocity(
+            PlayerMoveUtils::UpdatePlanarVelocity(playerStatus, rigidbody->GetVelocity(), playerInput->GetInputDirection()[X], forwardDirection, _deltaTime));
+
+        transform->rotate = Quaternion::LookAt(rigidbody->GetVelocity().normalize(), axisY);
     }
 
     // 落下時間を更新

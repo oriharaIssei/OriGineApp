@@ -4,6 +4,7 @@
 // component
 #include "component/physics/Rigidbody.h"
 #include "component/player/PlayerInput.h"
+#include "component/player/PlayerMoveUtils.h"
 #include "component/player/PlayerStatus.h"
 #include "component/player/State/PlayerState.h"
 #include "component/transform/CameraTransform.h"
@@ -44,11 +45,11 @@ void PlayerJumpState::Update(float _deltaTime) {
     CameraTransform* cameraTransform = scene_->GetComponent<CameraTransform>(state->GetCameraEntityHandle());
     Vec3f worldInputDir              = playerInput->CalculateWorldInputDirection(cameraTransform->rotate);
     Vec3f forwardDirection           = playerStatus->ComputeSmoothedDirection(worldInputDir, rigidbody, transform, _deltaTime);
-    transform->rotate                = Quaternion::LookAt(forwardDirection, axisY);
 
-    Vec3f newVelo                    = playerStatus->GetCurrentMaxSpeed() * forwardDirection;
-    newVelo[Y]                       = rigidbody->GetVelocity(Y);
-    rigidbody->SetVelocity(newVelo);
+    rigidbody->SetVelocity(
+        PlayerMoveUtils::UpdatePlanarVelocity(playerStatus, rigidbody->GetVelocity(), playerInput->GetInputDirection()[X], forwardDirection, _deltaTime));
+
+    transform->rotate = Quaternion::LookAt(forwardDirection, axisY);
 
     // ジャンプ力の蓄積
     releaseJumpPower_ += chargePower_ * _deltaTime;
