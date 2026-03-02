@@ -38,7 +38,6 @@ WallContactResult EvaluateWallContact(
     const OriGine::Rigidbody* _rigidbody,
     const PlayerStatus* _status);
 
-
 /// <summary>
 /// 壁走りの移動方向を計算する
 /// </summary>
@@ -62,7 +61,22 @@ OriGine::Vec3f ComputeWheelieDirection(const OriGine::Vec3f& _wallNormal, const 
 /// <param name="_wallNormal"></param>
 /// <param name="_up"></param>
 /// <returns>壁が右側</returns>
-bool IsWallRight(const OriGine::Vec3f& _direction,const OriGine::Vec3f& _wallNormal,const OriGine::Vec3f& _up = OriGine::axisY);
+bool IsWallRight(const OriGine::Vec3f& _direction, const OriGine::Vec3f& _wallNormal, const OriGine::Vec3f& _up = OriGine::axisY);
 
+/// <summary>
+/// XZ 平面の速度を更新する
+/// </summary>
+/// <param name="_playerStatus"></param>
+/// <param name="_velocity">現在の速度</param>
+/// <param name="_sideInput">横入力</param>
+/// <param name="_forwardDirection">現在の正面方向</param>
+/// <param name="_deltaTime"></param>
+/// <returns></returns>
+OriGine::Vec3f UpdatePlanarVelocity(
+    PlayerStatus* _playerStatus,
+    const OriGine::Vec3f& _velocity,
+    float _sideInput,
+    const OriGine::Vec3f& _forwardDirection,
+    float _deltaTime);
 
 } // namespace PlayerMoveUtils

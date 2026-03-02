@@ -320,11 +320,11 @@
                 "defaultMass": 0.09000000357627869,
                 "directionInterpolateRate": 86.0,
                 "directionalSpeedUpRateBase": [
-                    -5.139999866485596,
+                    5.130000114440918,
                     8.510000228881836
                 ],
                 "directionalSpeedUpRateCommonRate": [
-                    0.5199999809265137,
+                    -0.6200000047683716,
                     -0.07999999821186066
                 ],
                 "gearUpCoolTime": 0.5699999928474426,
@@ -336,22 +336,22 @@
                 "maxJumpChargeRate": 67.37999725341797,
                 "maxJumpHoldVelocity": 8.220000267028809,
                 "maxLimitDirectionalAccel": [
-                    0.09000000357627869,
-                    0.17000000178813934
+                    50.0,
+                    100.0
                 ],
                 "maxSmoothTime": [
-                    0.949999988079071,
+                    0.20999999344348907,
                     0.14000000059604645
                 ],
                 "maxWheelieFallSpeed": -1.2999999523162842,
                 "minJumpChargeRate": 41.38999938964844,
                 "minJumpHoldVelocity": 4.739999771118164,
                 "minLimitDirectionalAccel": [
-                    0.019999999552965164,
-                    0.07999999821186066
+                    27.0,
+                    30.0
                 ],
                 "minSmoothTime": [
-                    0.14000000059604645,
+                    0.05000000074505806,
                     0.05000000074505806
                 ],
                 "minWallJumpOffsetX": 0.20999999344348907,
@@ -469,16 +469,16 @@
     "Name": "Player",
     "Systems": [
         {
-            "SystemCategory": 0,
-            "SystemName": "TakePlayerToStartPosition"
+            "SystemCategory": 4,
+            "SystemName": "CollisionPushBackSystem"
         },
         {
             "SystemCategory": 1,
             "SystemName": "PlayerInputSystem"
         },
         {
-            "SystemCategory": 4,
-            "SystemName": "CollisionPushBackSystem"
+            "SystemCategory": 0,
+            "SystemName": "TakePlayerToStartPosition"
         },
         {
             "SystemCategory": 4,
@@ -505,12 +505,12 @@
             "SystemName": "MoveSystemByRigidBody"
         },
         {
-            "SystemCategory": 6,
-            "SystemName": "TexturedMeshRenderSystem"
-        },
-        {
             "SystemCategory": 3,
             "SystemName": "PlayerMoveSystem"
+        },
+        {
+            "SystemCategory": 6,
+            "SystemName": "TexturedMeshRenderSystem"
         },
         {
             "SystemCategory": 4,
