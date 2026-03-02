@@ -98,7 +98,7 @@
                 ],
                 "uvTranslate": [
                     0.0,
-                    0.8820949792861938
+                    1.4207487106323242
                 ]
             }
         ],
@@ -109,7 +109,7 @@
                 "colorCurve": [],
                 "duration": 1.2999999523162842,
                 "isLoop": true,
-                "isPlay": false,
+                "isPlay": true,
                 "uvRotateCurve": [],
                 "uvScaleCurve": [],
                 "uvTranslateCurve": [
@@ -140,14 +140,14 @@
                     1.0
                 ],
                 "scale": [
-                    2.0,
-                    2.0,
-                    2.0
+                    6.0,
+                    6.0,
+                    6.0
                 ],
                 "translate": [
-                    -3.703057050704956,
-                    0.2199999988079071,
-                    54.57038879394531
+                    14.652728080749512,
+                    68.0,
+                    1151.2159423828125
                 ]
             }
         ],
@@ -156,8 +156,13 @@
                 "Handle": "574b30ac-d340-4d12-b785-b8ee2bdc4b47",
                 "forcedMovementVector": [
                     0.0,
-                    36.0,
+                    256.0,
                     0.0
+                ],
+                "isOverrideAxis": [
+                    false,
+                    true,
+                    false
                 ],
                 "stunTime": 0.4300000071525574
             }
@@ -183,6 +188,10 @@
         {
             "SystemCategory": 4,
             "SystemName": "VelocityOverrideTriggerSystem"
+        },
+        {
+            "SystemCategory": 3,
+            "SystemName": "VelocityOverrideSystem"
         }
     ],
     "isUnique": false

@@ -176,6 +176,7 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<SpeedModifiers>();
     componentRegistry->RegisterComponent<Rigidbody>();
 
+    componentRegistry->RegisterComponent<SquashStretchComponent>();
     componentRegistry->RegisterComponent<Emitter>();
     componentRegistry->RegisterComponent<GpuParticleEmitter>();
     componentRegistry->RegisterComponent<DissolveEffectParam>();
@@ -350,6 +351,8 @@ void RegisterUsingSystems() {
 
     systemRegistry->RegisterSystem<CameraShake>();
     systemRegistry->RegisterSystem<TimeScaleEffectSystem>();
+
+    systemRegistry->RegisterSystem<ScaleDeformSystem>();
 
     systemRegistry->RegisterSystem<MaterialEffect>();
     systemRegistry->RegisterSystem<CreateMeshFromSpline>();

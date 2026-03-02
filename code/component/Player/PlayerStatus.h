@@ -91,6 +91,7 @@ public:
 private:
     /// ==========================================
     // 能力値
+    float decelerationFactor_        = 0.f; // 減速の係数 (0以上1以下の値で、1に近いほど減速しにくい)
     float baseGearupCoolTime_        = AppConfig::Player::kDefaultBaseGearupCoolTime; // ギアアップの基本クールタイム (秒単位)
     float gearUpCoolTime_            = 0.0f; // ギアレベルが上がるまでの時間
     float coolTimeAddRateBase_       = 1.0f;
@@ -157,6 +158,7 @@ private:
     float currentRailInterval_    = 0.f;
 
 public:
+    float GetDecelerationFactor() const { return decelerationFactor_; }
     float GetGroundCheckThreshold() const { return groundCheckThreshold_; }
     float GetWallCheckThreshold() const { return wallCheckThreshold_; }
     float GetMaxWheelieFallSpeed() const { return maxWheelieFallSpeed_; }

@@ -13,7 +13,7 @@
 #include "component/player/PlayerConfig.h"
 
 /// math
-#include "math/Interpolation.h"
+#include "MathEnv.h"
 #include "MyEasing.h"
 
 using namespace OriGine;
@@ -38,12 +38,20 @@ void PlayerIdleState::Initialize() {
 }
 
 void PlayerIdleState::Update(float _deltaTime) {
-    const float kDecelerationRate = AppConfig::Player::kDefaultDecelerationRate;
-
     auto* rigidbody = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
+    auto* status    = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
+
+    float deltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Player");
 
     // 減速
-    rigidbody->SetVelocity(LerpByDeltaTime(rigidbody->GetVelocity(), OriGine::Vec3f(), _deltaTime, kDecelerationRate));
+    Vec3f velo = rigidbody->GetVelocity();
+    if (velo.lengthSq() > kEpsilon) {
+        velo *= std::powf(status->GetDecelerationFactor(), deltaTime); // 減速係数を時間で累乗して適用(1秒単位で適応する)
+    } else {
+        velo = Vec3f(0.f, velo[Y], 0.f); // 完全に停止させる。ただしY軸の速度は落とさない
+    }
+
+    rigidbody->SetVelocity(velo);
 
     // 落下時間を更新
     auto* state = scene_->GetComponent<PlayerState>(playerEntityHandle_);

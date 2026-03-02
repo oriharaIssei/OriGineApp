@@ -37,7 +37,11 @@ void VelocityOverrideSystem::Update() {
             continue;
         }
         // 速度を上書き
-        rigidbodyComp->SetVelocity(event.newVelocity);
+        for (int i = 0; i < Vec3f::dim; ++i) {
+            if (event.isOverrideAxis[i]) {
+                rigidbodyComp->SetVelocity(i, event.newVelocity[i]);
+            }
+        }
     }
     // 保留中のイベントをクリア
     velocityOverrides_.clear();

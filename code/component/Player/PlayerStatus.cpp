@@ -35,6 +35,10 @@ void PlayerStatus::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {
 void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityHandle _owner, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
 
+    DragGuiCommand("Deceleration Factor##" + _parentLabel, decelerationFactor_, 0.01f, 0.f, 1.f);
+
+    ImGui::Spacing();
+
     std::string label = "Speed##" + _parentLabel;
     if (ImGui::TreeNode(label.c_str())) {
         DragGuiCommand("baseSpeed##" + _parentLabel, baseSpeed_, 0.01f);
@@ -242,24 +246,6 @@ float PlayerStatus::CalculateCoolTimeByGearLevel(int32_t _gearLevel) const {
         _gearLevel);
 }
 
-OriGine::Vec2f PlayerStatus::CalculateCurrentMaxDirectionalSpeed(int32_t _gearLevel) const {
-    return {
-        ArithmeticSequence(
-            baseDirectionalSpeed_[X],
-            ArithmeticSequence(directionalSpeedUpRateBase_[X], directionalSpeedUpRateCommonRate_[X], _gearLevel - 1),
-            _gearLevel),
-        ArithmeticSequence(
-            baseDirectionalSpeed_[Y],
-            ArithmeticSequence(directionalSpeedUpRateBase_[Y], directionalSpeedUpRateCommonRate_[Y], _gearLevel - 1),
-            _gearLevel)};
-}
-
-void PlayerStatus::SetupOnGearUp(int32_t _gearLevel) {
-    gearUpCoolTime_             = CalculateCoolTimeByGearLevel(_gearLevel);
-    currentMaxSpeed_            = CalculateSpeedByGearLevel(_gearLevel);
-    currentMaxDirectionalSpeed_ = CalculateCurrentMaxDirectionalSpeed(_gearLevel);
-}
-
 Vec3f PlayerStatus::ComputeSmoothedDirection(const Vec3f& _targetDir, const Rigidbody* _rigidbody, const Transform* _transform, float _deltaTime) const {
     // 現在のXZ平面の速度を取得
     Vec3f currentDir = _rigidbody->GetVelocity();
@@ -277,6 +263,7 @@ Vec3f PlayerStatus::ComputeSmoothedDirection(const Vec3f& _targetDir, const Rigi
 }
 
 void to_json(nlohmann::json& _j, const PlayerStatus& _playerStatus) {
+    _j["decelerationFactor"]    = _playerStatus.decelerationFactor_;
     _j["baseSpeed"]             = _playerStatus.baseSpeed_;
     _j["speedUpRateBase"]       = _playerStatus.speedUpRateBase_;
     _j["speedUpRateCommonRate"] = _playerStatus.speedUpRateCommonRate_;
@@ -328,6 +315,10 @@ void to_json(nlohmann::json& _j, const PlayerStatus& _playerStatus) {
     _j["maxWheelieFallSpeed"]  = _playerStatus.maxWheelieFallSpeed_;
 }
 void from_json(const nlohmann::json& _j, PlayerStatus& _playerStatus) {
+    if (_j.contains("decelerationFactor")) {
+        _j.at("decelerationFactor").get_to(_playerStatus.decelerationFactor_);
+    }
+
     _j.at("baseSpeed").get_to(_playerStatus.baseSpeed_);
     _j.at("speedUpRateBase").get_to(_playerStatus.speedUpRateBase_);
     _j.at("speedUpRateCommonRate").get_to(_playerStatus.speedUpRateCommonRate_);
