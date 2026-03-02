@@ -32,7 +32,7 @@ void PlayerDashState::Initialize() {
     float currentMaxSpeed = playerStatus->CalculateSpeedByGearLevel(gearLevel);
     playerStatus->SetCurrentMaxSpeed(currentMaxSpeed);
     // プレイヤーの向いている方向に速度を設定
-    Vec3f forwardDir = transform->CalculateWorldRotate().RotateVector(axisZ);
+    Vec3f forwardDir = transform->FrontVector();
     forwardDir[Y]    = 0.f;
     forwardDir       = forwardDir.normalize();
     rigidbody->SetVelocity(forwardDir * currentMaxSpeed);
@@ -78,7 +78,13 @@ void PlayerDashState::Update(float _deltaTime) {
         rigidbody->SetVelocity(
             PlayerMoveUtils::UpdatePlanarVelocity(playerStatus, rigidbody->GetVelocity(), playerInput->GetInputDirection()[X], forwardDirection, _deltaTime));
 
-        transform->rotate = Quaternion::LookAt(rigidbody->GetVelocity().normalize(), axisY);
+        // プレイヤーの向きを速度方向に回転させる
+        Vec3f dir = rigidbody->GetVelocity();
+        if (Vec2f(dir[X], dir[Z]).lengthSq() > 0.f) {
+            dir[Y]            = 0.f;
+            dir               = dir.normalize();
+            transform->rotate = Quaternion::LookAt(dir, axisY);
+        }
     }
 
     // 落下時間を更新

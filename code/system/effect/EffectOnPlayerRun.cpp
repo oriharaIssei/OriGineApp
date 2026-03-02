@@ -53,7 +53,7 @@ void EffectOnPlayerRun::UpdateEntity(EntityHandle _entity) {
     // タイヤの回転
     ModelMeshRenderer* modelMeshRenderer = GetComponent<ModelMeshRenderer>(_entity);
     if (modelMeshRenderer) {
-        Transform& meshTransform = modelMeshRenderer->GetTransform(0);
+        Transform& meshTransform = modelMeshRenderer->GetTransformRef(0);
 
         auto playerInput        = GetComponent<PlayerInput>(_entity);
         OriGine::Vec3f inputDir = playerInput->GetWorldInputDirection();

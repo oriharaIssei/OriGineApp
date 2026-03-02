@@ -31,43 +31,37 @@ void TimeScaleEffectSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     }
 
     DeltaTimer* deltaTimer = Engine::GetInstance()->GetDeltaTimer();
-    float deltaTime        = deltaTimer->GetDeltaTime();
-
-    float elapsed = timeScaleEffect->GetTimeScaleElapsed() + deltaTime;
 
     // タイムスケールの更新
     for (auto& key : timeScaleEffect->GetTimeScaleTags()) {
-        deltaTimer->SetTimeScale(key, timeScaleEffect->GetTimeScale());
+        stopTimesByTimeScale_[key].timeScale = timeScaleEffect->GetTimeScale();
+        stopTimesByTimeScale_[key].scaleTimer += timeScaleEffect->GetTimeScaleDuration();
     }
 
-    // effectの更新
-    GrayscaleComponent* grayscaleEffect = GetComponent<GrayscaleComponent>(_handle);
-    if (grayscaleEffect) {
-        float fadeInDuration  = timeScaleEffect->GetFadeInDuration();
-        float fadeOutDuration = timeScaleEffect->GetFadeOutDuration();
-        float totalDuration   = timeScaleEffect->GetTimeScaleDuration();
+    // エンティティの削除
+    GetScene()->AddDeleteEntity(_handle);
+}
 
-        float fadeOutStart = totalDuration - fadeOutDuration;
+void TimeScaleEffectSystem::Update() {
+    if (!entities_.empty()) {
+        EraseDeadEntity();
 
-        if (elapsed < fadeInDuration) {
-            float t = elapsed / fadeInDuration;
-            grayscaleEffect->SetAmount(std::clamp(t, 0.0f, 1.0f));
-        } else if (elapsed >= fadeOutStart) {
-            float t = (elapsed - fadeOutStart) / fadeOutDuration;
-            grayscaleEffect->SetAmount(std::clamp(1.0f - t, 0.0f, 1.0f));
-        } else {
-            grayscaleEffect->SetAmount(1.0f);
+        for (auto& entityID : entities_) {
+            UpdateEntity(entityID);
         }
     }
 
-    timeScaleEffect->SetTimeScaleElapsed(elapsed);
-    float t = elapsed / timeScaleEffect->GetTimeScaleDuration();
-    if (t >= 1.0f) {
-        // タイムスケールのリセット
-        for (auto& key : timeScaleEffect->GetTimeScaleTags()) {
+    // タイムスケールの適用
+    DeltaTimer* deltaTimer = Engine::GetInstance()->GetDeltaTimer();
+    for (const auto& [key, timeScaleComponent] : stopTimesByTimeScale_) {
+        if (timeScaleComponent.scaleTimer > 0.f) {
+            deltaTimer->SetTimeScale(key, timeScaleComponent.timeScale);
+            // 経過時間を減らす
+            stopTimesByTimeScale_[key].scaleTimer -= deltaTimer->GetDeltaTime();
+        } else {
+            // タイムスケールのリセット
+            stopTimesByTimeScale_[key].scaleTimer = 0.f;
             deltaTimer->SetTimeScale(key, 1.0f);
         }
-        // エンティティの削除
-        GetScene()->AddDeleteEntity(_handle);
     }
 }

@@ -43,13 +43,21 @@ void PlayerJumpState::Update(float _deltaTime) {
 
     // 移動処理
     CameraTransform* cameraTransform = scene_->GetComponent<CameraTransform>(state->GetCameraEntityHandle());
-    Vec3f worldInputDir              = playerInput->CalculateWorldInputDirection(cameraTransform->rotate);
-    Vec3f forwardDirection           = playerStatus->ComputeSmoothedDirection(worldInputDir, rigidbody, transform, _deltaTime);
+    if (cameraTransform) {
+        Vec3f worldInputDir    = playerInput->CalculateWorldInputDirection(cameraTransform->rotate);
+        Vec3f forwardDirection = playerStatus->ComputeSmoothedDirection(worldInputDir, rigidbody, transform, _deltaTime);
 
-    rigidbody->SetVelocity(
-        PlayerMoveUtils::UpdatePlanarVelocity(playerStatus, rigidbody->GetVelocity(), playerInput->GetInputDirection()[X], forwardDirection, _deltaTime));
+        rigidbody->SetVelocity(
+            PlayerMoveUtils::UpdatePlanarVelocity(playerStatus, rigidbody->GetVelocity(), playerInput->GetInputDirection()[X], forwardDirection, _deltaTime));
 
-    transform->rotate = Quaternion::LookAt(forwardDirection, axisY);
+        // プレイヤーの向きを速度方向に回転させる
+        Vec3f dir = rigidbody->GetVelocity();
+        if (Vec2f(dir[X], dir[Z]).lengthSq() > 0.f) {
+            dir[Y]            = 0.f;
+            dir               = dir.normalize();
+            transform->rotate = Quaternion::LookAt(dir, axisY);
+        }
+    }
 
     // ジャンプ力の蓄積
     releaseJumpPower_ += chargePower_ * _deltaTime;

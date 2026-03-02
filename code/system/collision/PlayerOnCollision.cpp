@@ -51,6 +51,9 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
 
     for (auto& [entityId, collisionState] : collisionStateMap) {
         OriGine::Entity* collEnt = GetEntity(entityId);
+        if (!collEnt) {
+            continue;
+        }
         // ゴール と 衝突したか
         if (collEnt->GetDataType().find("Goal") != std::string::npos) {
             // 時間を更新しないようにする
