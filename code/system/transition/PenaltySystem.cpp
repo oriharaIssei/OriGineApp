@@ -11,6 +11,7 @@
 #include "component/player/state/PlayerState.h"
 #include "component/renderer/Sprite.h"
 #include "component/TimerComponent.h"
+#include "component/TimerForSpriteComponent.h"
 
 /// system
 #include "system/SystemRunner.h"
@@ -20,7 +21,7 @@
 #include "system/effect/TimerForSprite.h"
 
 /// math
-#include "math/mathEnv.h"
+#include "math/MathEnv.h"
 
 /// config
 #include "component/player/PlayerConfig.h"
@@ -72,7 +73,7 @@ void PenaltySystem::UpdateEntity(OriGine::EntityHandle _handle) {
         return;
     }
 
-    timer->SetCurrentTime(timer->GetTime() - penaltyTime);
+    timer->SetCurrentTime(timer->GetTime() + penaltyTime);
 
     /// ペナルティー時間を表示する
 

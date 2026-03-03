@@ -6,6 +6,7 @@
 /// component
 #include "component/effect/CameraAction.h"
 #include "component/renderer/Sprite.h"
+#include "component/TimerForSpriteComponent.h"
 #include "component/transform/CameraTransform.h"
 #include "component/ui/Button.h"
 

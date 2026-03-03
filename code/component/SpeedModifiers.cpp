@@ -41,7 +41,7 @@ void SpeedModifiers::Edit(Scene* /*_scene*/, EntityHandle /*_owner*/, [[maybe_un
     EasingComboGui("Additive Lerp Ease Type##" + _parentLabel, additiveLerpEaseType);
     ImGui::Spacing();
 
-    DragGuiVectorCommand("Additive Target##" + _parentLabel, additiveTarget, 0.01f);
+    DragGuiCommand("Additive Target##" + _parentLabel, additiveTarget, 0.01f);
     DragGuiCommand("Additive Duration##" + _parentLabel, additiveDuration, 0.01f);
     DragGuiCommand("Additive Lerp Duration##" + _parentLabel, additiveLerpDuration, 0.01f);
 
@@ -52,20 +52,20 @@ void SpeedModifiers::Edit(Scene* /*_scene*/, EntityHandle /*_owner*/, [[maybe_un
     EasingComboGui("Multiplier Lerp Ease Type##" + _parentLabel, multiplierLerpEaseType);
     ImGui::Spacing();
 
-    DragGuiVectorCommand("Multiplier Target##" + _parentLabel, multiplierTarget, 0.01f);
+    DragGuiCommand("Multiplier Target##" + _parentLabel, multiplierTarget, 0.01f);
     DragGuiCommand("Multiplier Duration##" + _parentLabel, multiplierDuration, 0.01f);
     DragGuiCommand("Multiplier Lerp Duration##" + _parentLabel, multiplierLerpDuration, 0.01f);
 #endif // _DEBUG
 }
 
 void SpeedModifiers::Reset() {
-    additiveTarget       = kZeroVec3f;
+    additiveTarget       = 0.f;
     additiveDuration     = 0.0f;
     additiveTimer        = 0.0f;
     additiveLerpDuration = 0.0f;
     additiveLerpTimer    = 0.0f;
 
-    multiplierTarget       = kOneVec3f;
+    multiplierTarget       = 0.f;
     multiplierDuration     = 0.0f;
     multiplierTimer        = 0.0f;
     multiplierLerpDuration = 0.0f;
@@ -73,7 +73,7 @@ void SpeedModifiers::Reset() {
 }
 
 void SpeedModifiers::StartAdditiveEffect(
-    const OriGine::Vec3f& _target,
+    float _target,
     float _lerpDuration,
     float _effectDuration,
     OriGine::EaseType _easeType,
@@ -91,7 +91,7 @@ void SpeedModifiers::StartAdditiveEffect(
 }
 
 void SpeedModifiers::StartMultiplierEffect(
-    const OriGine::Vec3f& _target,
+    float _target,
     float _lerpDuration,
     float _effectDuration,
     OriGine::EaseType _easeType,

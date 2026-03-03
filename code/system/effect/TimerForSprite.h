@@ -11,8 +11,6 @@ public:
     ~TimerForSprite() override;
 
     virtual void Initialize();
-    // virtual void Update();
-    // virtual void Edit();
     virtual void Finalize();
 
 protected:

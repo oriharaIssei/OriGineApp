@@ -42,30 +42,31 @@ void ApplySpeedModifiers::UpdateEntity(OriGine::EntityHandle _handle) {
         }
 
         float t               = 0.f;
-        Vec3f additiveSpeed   = kZeroVec3f;
-        Vec3f multiplierSpeed = kOneVec3f;
+        float additiveSpeed   = 0.f;
+        float multiplierSpeed = 1.f;
 
         speedModifier.additiveTimer += deltaTime;
         speedModifier.additiveLerpTimer += deltaTime;
         if (speedModifier.additiveLerpTimer <= speedModifier.additiveLerpDuration) {
-            t             = std::min(speedModifier.additiveLerpTimer / speedModifier.additiveLerpDuration, 1.0f);
-            additiveSpeed = Lerp<3, float>(kZeroVec3f, speedModifier.additiveTarget, EasingFunctions[static_cast<int>(speedModifier.additiveLerpEaseType)](t));
+            t             = (std::min)(speedModifier.additiveLerpTimer / speedModifier.additiveLerpDuration, 1.0f);
+            additiveSpeed = std::lerp(0.f, speedModifier.additiveTarget, EasingFunctions[static_cast<int>(speedModifier.additiveLerpEaseType)](t));
         } else {
-            additiveSpeed = LerpByDeltaTime<Vec3f>(speedModifier.additiveTarget, kZeroVec3f, deltaTime, speedModifier.restoreSpeed);
+            additiveSpeed = LerpByDeltaTime(speedModifier.additiveTarget, 0.f, deltaTime, speedModifier.restoreSpeed);
         }
 
         speedModifier.multiplierTimer += deltaTime;
         speedModifier.multiplierLerpTimer += deltaTime;
         if (speedModifier.multiplierLerpTimer <= speedModifier.multiplierLerpDuration) {
-            t               = std::min(speedModifier.multiplierTimer / speedModifier.multiplierLerpDuration, 1.0f);
-            multiplierSpeed = Lerp<3, float>(kOneVec3f, speedModifier.multiplierTarget, EasingFunctions[static_cast<int>(speedModifier.multiplierLerpEaseType)](t));
+            t               = (std::min)(speedModifier.multiplierTimer / speedModifier.multiplierLerpDuration, 1.0f);
+            multiplierSpeed = std::lerp(1.f, speedModifier.multiplierTarget, EasingFunctions[static_cast<int>(speedModifier.multiplierLerpEaseType)](t));
         } else {
-            multiplierSpeed = LerpByDeltaTime<Vec3f>(speedModifier.multiplierTarget, kOneVec3f, deltaTime, speedModifier.restoreSpeed);
+            multiplierSpeed = LerpByDeltaTime(speedModifier.multiplierTarget, 1.f, deltaTime, speedModifier.restoreSpeed);
         }
 
-        Vec3f effectiveSpeed = (speedModifier.beforeSpeed * multiplierSpeed) + additiveSpeed;
-        rigidbodyComp->SetMaxXZSpeed(effectiveSpeed.length());
-        rigidbodyComp->SetVelocity(rigidbodyComp->GetVelocity().normalize() * effectiveSpeed);
+        Vec3f effectiveSpeed = ((speedModifier.beforeSpeed * multiplierSpeed) + additiveSpeed) * rigidbodyComp->GetVelocity().normalize();
+        float maxSpeed       = (std::max)(effectiveSpeed.length(), rigidbodyComp->GetMaxXZSpeed());
+        rigidbodyComp->SetMaxXZSpeed(maxSpeed);
+        rigidbodyComp->SetVelocity(effectiveSpeed);
 
         // 自動削除
         if (speedModifier.isAutoDestroyed) {

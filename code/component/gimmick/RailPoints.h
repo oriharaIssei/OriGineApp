@@ -27,9 +27,10 @@ public:
 
 public:
     std::deque<OriGine::Vec3f> points; // レールの制御点リスト
-    float radius            = 0.5f;
-    int32_t segmentDivide   = 8; // Catmull-Romスプラインのセグメントあたりの分割数
-    std::string texturePath = "";
-    size_t textureIndex   = 0;
-    float totalLength       = 0.0f;
+    float radius                = 0.5f;
+    float collisionRadiusOffset = 0.0f; // 衝突判定用の半径オフセット (正の値で半径を大きく、負の値で小さくする)
+    int32_t segmentDivide       = 8; // Catmull-Romスプラインのセグメントあたりの分割数
+    std::string texturePath     = "";
+    size_t textureIndex         = 0;
+    float totalLength           = 0.0f;
 };

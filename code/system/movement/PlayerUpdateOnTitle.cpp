@@ -13,7 +13,7 @@
 
 /// math
 #include "math/Interpolation.h"
-#include "math/mathEnv.h"
+#include "math/MathEnv.h"
 
 using namespace OriGine;
 
@@ -80,7 +80,7 @@ void PlayerUpdateOnTitle::UpdateEntity(OriGine::EntityHandle _handle) {
     Vec3f worldInputDir    = playerInput->CalculateWorldInputDirection(Quaternion::Identity());
     Vec3f forwardDirection = playerStatus->ComputeSmoothedDirection(worldInputDir, rigidbody, transform, deltaTime);
     transform->rotate      = Quaternion::LookAt(forwardDirection, axisY);
-    playerStatus->UpdateAccel(deltaTime, forwardDirection, rigidbody);
+    rigidbody->SetVelocity(playerStatus->GetCurrentMaxSpeed() * forwardDirection);
 
     if (playerInput->GetInputDirection().length() >= kEpsilon) {
         OriGine::Vec3f newVelo = rigidbody->GetVelocity() + rigidbody->GetAcceleration() * deltaTime;

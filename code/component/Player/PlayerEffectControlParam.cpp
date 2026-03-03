@@ -71,13 +71,22 @@ void PlayerEffectControlParam::Edit(OriGine::Scene* /*_scene*/, OriGine::EntityH
     // ホイール傾き角度の最大加速度
     DragGuiCommand("wheelTiltAngleMaxAccel##" + _parentLabel, wheelTiltAngleMaxAccel_, 0.01f);
 
+    ImGui::Spacing();
+
     // レール走行時の最大傾き角度
     DragGuiCommand("max tilt on rail run##" + _parentLabel, maxTiltOnRailRun_, 0.01f);
     DragGuiCommand("tilt speed on rail run##" + _parentLabel, tiltSpeedOnRailRun_, 0.01f);
 
+    ImGui::Spacing();
+
     // 無敵時点滅エフェクト
     DragGuiCommand("invincibleBlinkBaseAmplitude##" + _parentLabel, invincibleBlinkBaseAmplitude_, 0.1f);
     DragGuiCommand("invincibleBlinkMaxAmplitude##" + _parentLabel, invincibleBlinkMaxAmplitude_, 0.1f);
+
+    ImGui::Spacing();
+
+    DragGuiCommand("aheadCollisionTiltAngle##" + _parentLabel, aheadCollisionTiltAngle_, 0.001f, {}, {}, "%.4f");
+    DragGuiCommand("aheadCollisionTiltSpeed##" + _parentLabel, aheadCollisionTiltSpeed_, 0.001f, {}, {}, "%.4f");
 
 #endif // _DEBUG
 }
@@ -92,7 +101,10 @@ void to_json(nlohmann::json& j, const PlayerEffectControlParam& _p) {
         {"maxTiltOnRailRun", _p.maxTiltOnRailRun_},
         {"tiltSpeedOnRailRun", _p.tiltSpeedOnRailRun_},
         {"invincibleBlinkBaseAmplitude", _p.invincibleBlinkBaseAmplitude_},
-        {"invincibleBlinkMaxAmplitude", _p.invincibleBlinkMaxAmplitude_}};
+        {"invincibleBlinkMaxAmplitude", _p.invincibleBlinkMaxAmplitude_},
+        {"aheadCollisionTiltAngle", _p.aheadCollisionTiltAngle_},
+        {"aheadCollisionTiltSpeed", _p.aheadCollisionTiltSpeed_},
+    };
 }
 
 void from_json(const nlohmann::json& j, PlayerEffectControlParam& _p) {
@@ -123,5 +135,11 @@ void from_json(const nlohmann::json& j, PlayerEffectControlParam& _p) {
     }
     if (j.contains("invincibleBlinkMaxAmplitude")) {
         j.at("invincibleBlinkMaxAmplitude").get_to(_p.invincibleBlinkMaxAmplitude_);
+    }
+    if (j.contains("aheadCollisionTiltAngle")) {
+        j.at("aheadCollisionTiltAngle").get_to(_p.aheadCollisionTiltAngle_);
+    }
+    if (j.contains("aheadCollisionTiltSpeed")) {
+        j.at("aheadCollisionTiltSpeed").get_to(_p.aheadCollisionTiltSpeed_);
     }
 }

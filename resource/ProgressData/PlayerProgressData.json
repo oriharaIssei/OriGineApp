@@ -1,0 +1,14 @@
+{
+    "StageCount": 1,
+    "Stages": [
+        {
+            "ClearTimeRanking": {
+                "Time1": 57.95597457885742,
+                "Time2": 57.95597457885742,
+                "Time3": 57.95597457885742
+            },
+            "IsCleared": true,
+            "StageNumber": 1
+        }
+    ]
+}

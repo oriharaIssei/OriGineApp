@@ -11,22 +11,22 @@
 
 #include "component/gimmick/Obstacle.h"
 #include "component/gimmick/RailPoints.h"
+#include "component/gimmick/TimeScaleEffectComponent.h"
 
 #include "component/TimerComponent.h"
+
+#include "component/material/Material.h"
 
 /// util
 #include "component/player/PlayerMoveUtils.h"
 
 /// math
-#include "math/mathEnv.h"
+#include "math/MathEnv.h"
 
 using namespace OriGine;
 
 void PlayerOnCollision::Initialize() {}
 void PlayerOnCollision::Finalize() {}
-
-static const float kGroundCheckThreshold = 0.7f; // 地面と判断するための閾値
-static const float kWallCheckThreshold   = 0.42f; // 壁と判断するための閾値
 
 void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
     auto* state          = GetComponent<PlayerState>(_handle);
@@ -51,6 +51,9 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
 
     for (auto& [entityId, collisionState] : collisionStateMap) {
         OriGine::Entity* collEnt = GetEntity(entityId);
+        if (!collEnt) {
+            continue;
+        }
         // ゴール と 衝突したか
         if (collEnt->GetDataType().find("Goal") != std::string::npos) {
             // 時間を更新しないようにする
@@ -84,6 +87,25 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
             }
         }
 
+        // タイムスケールエフェクト と 衝突したか
+        {
+            TimeScaleEffectComponent* timeScaleEffect = GetComponent<TimeScaleEffectComponent>(entityId);
+            if (timeScaleEffect) {
+                // 当たり判定を消す。
+                SphereCollider* collider = GetComponent<SphereCollider>(entityId);
+                if (collider) {
+                    collider->SetActive(false);
+                }
+                // scaleEffectを有効化
+                timeScaleEffect->SetActive(true);
+
+                Material* material = GetComponent<Material>(entityId);
+                if (material) {
+                    material->color_[A] = 0.f; // 透明にする
+                }
+            }
+        }
+
         // 衝突情報を取得(壁の処理にはInfoがないとできない)
         auto infoItr = collisionInfoMap.find(entityId);
         if (infoItr == collisionInfoMap.end()) {
@@ -96,11 +118,9 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
             continue;
         }
 
-        OriGine::Vec3f collNormal = info.collFaceNormal.normalize();
+        OriGine::Vec3f collisionNormal = info.collFaceNormal.normalize();
 
-        float absCollNXZ = std::abs(collNormal[X]) + std::abs(collNormal[Z]);
-
-        if (collNormal[Y] > kGroundCheckThreshold) {
+        if (PlayerMoveUtils::IsHitGround(collisionNormal)) {
             // 上方向に衝突した場合は、地面にいると判断する
             state->OnCollisionGround();
 
@@ -114,9 +134,9 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
             rigidbody->SetAcceleration(acceleration);
 
             rigidbody->SetVelocity(Y, 0.f);
-        } else if (absCollNXZ > kGroundCheckThreshold) {
+        } else {
             // 壁と衝突した場合
-            float dotVN = rigidbody->GetVelocity().normalize().dot(collNormal);
+            float dotVN = rigidbody->GetVelocity().normalize().dot(collisionNormal);
 
             // どれくらい平行に動いているか (1.0 = 完全に平行, 0.0 = 完全に垂直)
             float parallelFactor = 1.f - std::fabs(dotVN);
@@ -126,8 +146,7 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
             if (entityId == wallEntityHandle) {
                 auto collisionStateItr = collisionStateMap.find(entityId);
                 if (collisionStateItr != collisionStateMap.end()) {
-                    CollisionState collState = collisionStateItr->second;
-                    if (collState == CollisionState::Stay) {
+                    if (collisionStateItr->second == CollisionState::Stay) {
                         isFirstCollision = false;
                     }
                 }
@@ -135,15 +154,17 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
 
             if (isFirstCollision) {
                 PlayerMoveUtils::WallContactResult wallContactResult = PlayerMoveUtils::EvaluateWallContact(parallelFactor, rigidbody, status);
-                if (wallContactResult != PlayerMoveUtils::WallContactResult::WallHit) {
-                    state->OnCollisionWall(collNormal, wallEntityHandle, wallContactResult == PlayerMoveUtils::WallContactResult::Wheelie);
+                switch (wallContactResult) {
+                case PlayerMoveUtils::WallContactResult::WallRun:
+                case PlayerMoveUtils::WallContactResult::Wheelie:
+                    state->OnCollisionWall(collisionNormal, entityId, wallContactResult == PlayerMoveUtils::WallContactResult::Wheelie);
+                    break;
+                default:
+                    break;
                 }
             } else {
-                bool canContinue = false;
-                canContinue      = isPreWheelie ? status->CanWheelie() : status->CanWallRun();
-                if (canContinue) {
-                    state->OnCollisionWall(collNormal, wallEntityHandle, isPreWheelie);
-                }
+                // 前フレームから引き続き壁と接触している場合は、ウィリー状態を維持するかどうかを判断する
+                state->OnCollisionWall(collisionNormal, wallEntityHandle, isPreWheelie);
             }
         }
     }

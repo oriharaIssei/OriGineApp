@@ -6,6 +6,7 @@
 
 #include "component/physics/Rigidbody.h"
 #include "component/player/PlayerInput.h"
+#include "component/player/PlayerMoveUtils.h"
 #include "component/player/PlayerStatus.h"
 #include "component/player/state/PlayerState.h"
 
@@ -27,10 +28,21 @@ void PlayerFallDownState::Update(float _deltaTime) {
 
     // 速度更新
     CameraTransform* cameraTransform = scene_->GetComponent<CameraTransform>(playerState->GetCameraEntityHandle());
-    Vec3f worldInputDir              = playerInput->CalculateWorldInputDirection(cameraTransform->rotate);
-    Vec3f forwardDirection           = playerStatus->ComputeSmoothedDirection(worldInputDir, rigidbody, transform, _deltaTime);
-    transform->rotate                = Quaternion::LookAt(forwardDirection, axisY);
-    playerStatus->UpdateAccel(_deltaTime, forwardDirection, rigidbody);
+    if (cameraTransform) {
+        Vec3f worldInputDir    = playerInput->CalculateWorldInputDirection(cameraTransform->rotate);
+        Vec3f forwardDirection = playerStatus->ComputeSmoothedDirection(worldInputDir, rigidbody, transform, _deltaTime);
+
+        rigidbody->SetVelocity(
+            PlayerMoveUtils::UpdatePlanarVelocity(playerStatus, rigidbody->GetVelocity(), playerInput->GetInputDirection()[X], forwardDirection, _deltaTime));
+
+        // プレイヤーの向きを速度方向に回転させる
+        Vec3f dir = rigidbody->GetVelocity();
+        if (Vec2f(dir[X], dir[Z]).lengthSq() > 0.f) {
+            dir[Y]            = 0.f;
+            dir               = dir.normalize();
+            transform->rotate = Quaternion::LookAt(dir, axisY);
+        }
+    }
 
     ///! TODO : ここにカメラの処理を書くべきではない
     CameraController* cameraController = scene_->GetComponent<CameraController>(playerState->GetCameraEntityHandle());

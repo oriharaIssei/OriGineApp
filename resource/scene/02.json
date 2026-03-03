@@ -140,6 +140,10 @@
                             [
                                 "./application/resource/entities",
                                 "ChargeEffect"
+                            ],
+                            [
+                                "./application/resource/entities",
+                                "PlayerAheadCollision"
                             ]
                         ]
                     }
@@ -4579,6 +4583,11 @@
             }
         },
         {
+            "SubSceneRender": {
+                "Priority": 10
+            }
+        },
+        {
             "StartSequenceSystem": {
                 "Priority": 1
             }
@@ -4589,8 +4598,8 @@
             }
         },
         {
-            "SubSceneRender": {
-                "Priority": 10
+            "TakeToGoalPosition": {
+                "Priority": 1
             }
         },
         {
@@ -4599,13 +4608,13 @@
             }
         },
         {
-            "TakeToGoalPosition": {
-                "Priority": 1
+            "SubSceneUpdate": {
+                "Priority": 0
             }
         },
         {
-            "SubSceneUpdate": {
-                "Priority": 0
+            "TimerCountUp": {
+                "Priority": 7
             }
         },
         {
@@ -4654,6 +4663,11 @@
             }
         },
         {
+            "PlayerAheadCollisionReactionSystem": {
+                "Priority": 6
+            }
+        },
+        {
             "CreateMeshFromTireSpline": {
                 "Priority": 0
             }
@@ -4680,6 +4694,21 @@
         },
         {
             "RailInitializeSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "PlayerFollowSystem": {
+                "Priority": 100
+            }
+        },
+        {
+            "ScaleDeformSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "LookAtFromTransformsSystem": {
                 "Priority": 0
             }
         }

@@ -49,7 +49,7 @@ void RailInitializeSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     }
     segmentCount = static_cast<int32_t>(points.size()) - 1;
 
-    int32_t diff = segmentCount -  static_cast<int32_t>(colliders.size());
+    int32_t diff = segmentCount - static_cast<int32_t>(colliders.size());
     if (diff > 0) {
         // 足りない分を追加
         for (size_t i = 0; i < static_cast<size_t>(diff); ++i) {
@@ -72,7 +72,7 @@ void RailInitializeSystem::UpdateEntity(OriGine::EntityHandle _handle) {
         if (capsuleCollider) {
             capsuleCollider->SetLocalStart(segmentStart);
             capsuleCollider->SetLocalEnd(segmentEnd);
-            capsuleCollider->SetLocalRadius(railPoints->radius);
+            capsuleCollider->SetLocalRadius(railPoints->radius + railPoints->collisionRadiusOffset);
             capsuleCollider->CalculateWorldShape();
 
             // 衝突カテゴリを設定

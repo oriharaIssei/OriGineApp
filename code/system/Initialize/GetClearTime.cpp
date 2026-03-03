@@ -19,8 +19,8 @@ void GetClearTime::UpdateEntity(OriGine::EntityHandle _handle) {
     }
 
     PlayerProgressStore* progressStore = PlayerProgressStore::GetInstance();
-    float clearTime                    = progressStore->GetLastPlayStageProgressData().clearTime;
+    float clearTime                    = progressStore->GetLastPlayStageProgressData();
 
     timerComp->SetMaxTime(clearTime);
-    timerComp->ResetCurrentTime();
+    timerComp->SetCurrentTime(clearTime);
 }

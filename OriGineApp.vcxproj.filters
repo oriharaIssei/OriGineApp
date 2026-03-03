@@ -411,6 +411,14 @@
     <ClInclude Include="code\system\effect\TimerForSprite.h">
       <Filter>system\effect</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Transition\TimerCountUp.h" />
+    <ClInclude Include="code\component\TimerForSpriteComponent.h" />
+    <ClInclude Include="code\system\Initialize\ClearSceneRankingBuildSystem.h" />
+    <ClInclude Include="code\component\gimmick\TimeScaleEffectComponent.h" />
+    <ClInclude Include="code\system\effect\TimeScaleEffectSystem.h" />
+    <ClInclude Include="code\system\Movement\PlayerFollowSystem.h" />
+    <ClInclude Include="code\system\collision\PlayerAheadCollisionReactionSystem.h" />
+    <ClInclude Include="code\system\effect\TimeStopEffect.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -741,5 +749,13 @@
     <ClCompile Include="code\system\effect\TimerForSprite.cpp">
       <Filter>system\effect</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\Transition\TimerCountUp.cpp" />
+    <ClCompile Include="code\component\TimerForSpriteComponent.cpp" />
+    <ClCompile Include="code\system\Initialize\ClearSceneRankingBuildSystem.cpp" />
+    <ClCompile Include="code\component\gimmick\TimeScaleEffectComponent.cpp" />
+    <ClCompile Include="code\system\effect\TimeScaleEffectSystem.cpp" />
+    <ClCompile Include="code\system\Movement\PlayerFollowSystem.cpp" />
+    <ClCompile Include="code\system\collision\PlayerAheadCollisionReactionSystem.cpp" />
+    <ClCompile Include="code\system\effect\TimeStopEffect.cpp" />
   </ItemGroup>
 </Project>

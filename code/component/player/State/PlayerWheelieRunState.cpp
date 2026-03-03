@@ -6,8 +6,11 @@
 #include "component/player/PlayerStatus.h"
 #include "component/player/State/PlayerState.h"
 
+/// util
+#include "component/player/PlayerMoveUtils.h"
+
 /// math
-#include "math/mathEnv.h"
+#include "math/MathEnv.h"
 
 /// config
 #include "component/player/PlayerConfig.h"
@@ -21,9 +24,7 @@ void PlayerWheelieRunState::Initialize() {
 
     // 投影
     wallNormal_          = playerState->GetWallCollisionNormal().normalize();
-    float dot            = Vec3f::Dot(wallNormal_, axisY);
-    Vec3f climbDirection = axisY - (wallNormal_ * dot);
-    climbDirection       = climbDirection.normalize();
+    Vec3f climbDirection = PlayerMoveUtils::ComputeWheelieDirection(wallNormal_, axisY);
 
     // 回転を適用
     Quaternion targetRotation;

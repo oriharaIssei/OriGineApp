@@ -2,6 +2,9 @@
 
 #include "component/IComponent.h"
 
+/// stl
+#include <array>
+
 /// math
 #include "math/Vector3.h"
 
@@ -38,6 +41,9 @@ public:
 public:
     // 強制移動ベクトル
     OriGine::Vec3f forcedMovementVector_ = OriGine::Vec3f();
+
+    std::array<bool, OriGine::Vec3f::dim> isOverrideAxis_ = {false, false, false};
+
     // 硬直時間
     float stunTime_ = 0.f;
 };

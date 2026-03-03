@@ -16,6 +16,7 @@
 #include "component/ghost/PlayRecordeComponent.h"
 #include "component/gimmick/Obstacle.h"
 #include "component/gimmick/RailPoints.h"
+#include "component/gimmick/TimeScaleEffectComponent.h"
 #include "component/LookAtFromTransforms.h"
 #include "component/MouseCondition.h"
 #include "component/player/PlayerEffectControlParam.h"
@@ -29,6 +30,7 @@
 #include "component/spline/TireSplinePoints.h"
 #include "component/stage/StageData.h"
 #include "component/TimerComponent.h"
+#include "component/TimerForSpriteComponent.h"
 #include "component/ui/Button.h"
 #include "component/ui/ButtonGroup.h"
 #include "component/ui/SpeedFor3dUIComponent.h"
@@ -37,6 +39,7 @@
 // application system
 #include "system/collision/AddForceTriggerSystem.h"
 #include "system/collision/OnCollisionModifierTargetSystem.h"
+#include "system/collision/PlayerAheadCollisionReactionSystem.h"
 #include "system/collision/PlayerOnCollision.h"
 #include "system/collision/TutorialColliderOnCollision.h"
 #include "system/collision/VelocityOverrideTriggerSystem.h"
@@ -48,7 +51,10 @@
 #include "system/effect/PenaltyTimeSpriteUpdate.h"
 #include "system/effect/PlayerSpeedFor3dUI.h"
 #include "system/effect/TimerForSprite.h"
+#include "system/effect/TimeScaleEffectSystem.h"
+#include "system/effect/TimeStopEffect.h"
 #include "system/initialize/BackFireInitialize.h"
+#include "system/Initialize/ClearSceneRankingBuildSystem.h"
 #include "system/Initialize/CreatePlaneFromSpeed.h"
 #include "system/initialize/CreateSpriteFromTimer.h"
 #include "system/initialize/GetClearTime.h"
@@ -74,6 +80,7 @@
 #include "system/movement/FollowCameraUpdateSystem.h"
 #include "system/Movement/LookAtFromTransformsSystem.h"
 #include "system/movement/PauseMainSceneSystem.h"
+#include "system/Movement/PlayerFollowSystem.h"
 #include "system/movement/PlayerMoveSystem.h"
 #include "system/movement/PlayerPathSplineGenerator.h"
 #include "system/movement/PlayerUpdateOnTitle.h"
@@ -101,6 +108,7 @@
 #include "system/transition/SubSceneDeactivateByButton.h"
 #include "system/transition/TimeLimitJudgeSystem.h"
 #include "system/transition/TimerCountDown.h"
+#include "system/Transition/TimerCountUp.h"
 #include "system/transition/TransitionPlayerState.h"
 #include "system/transition/UpdateButtonColorByState.h"
 
@@ -136,6 +144,7 @@ void RegisterUsingComponents() {
 
     componentRegistry->RegisterComponent<RailPoints>();
     componentRegistry->RegisterComponent<Obstacle>();
+    componentRegistry->RegisterComponent<TimeScaleEffectComponent>();
     componentRegistry->RegisterComponent<VelocityOverrideComponent>();
     componentRegistry->RegisterComponent<AddForceComponent>();
 
@@ -168,6 +177,7 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<SpeedModifiers>();
     componentRegistry->RegisterComponent<Rigidbody>();
 
+    componentRegistry->RegisterComponent<SquashStretchComponent>();
     componentRegistry->RegisterComponent<Emitter>();
     componentRegistry->RegisterComponent<GpuParticleEmitter>();
     componentRegistry->RegisterComponent<DissolveEffectParam>();
@@ -178,6 +188,7 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<SpeedlineEffectParam>();
     componentRegistry->RegisterComponent<MaterialEffectPipeLine>();
     componentRegistry->RegisterComponent<GradationComponent>();
+    componentRegistry->RegisterComponent<GrayscaleComponent>();
 
     componentRegistry->RegisterComponent<ModelMeshRenderer>();
     componentRegistry->RegisterComponent<LineRenderer>();
@@ -241,6 +252,8 @@ void RegisterUsingSystems() {
 
     systemRegistry->RegisterSystem<RailInitializeSystem>();
 
+    systemRegistry->RegisterSystem<ClearSceneRankingBuildSystem>();
+
     /// ===================================================================================================
     // Input
     /// ===================================================================================================
@@ -261,6 +274,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<TransitionPlayerState>();
     systemRegistry->RegisterSystem<UpdateButtonColorByState>();
     systemRegistry->RegisterSystem<ButtonGroupSystem>();
+    systemRegistry->RegisterSystem<TimerCountUp>();
     systemRegistry->RegisterSystem<TimerCountDown>();
     systemRegistry->RegisterSystem<TimeLimitJudgeSystem>();
     systemRegistry->RegisterSystem<ShowGameUIByInputDevice>();
@@ -305,6 +319,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<RestartSystem>();
     systemRegistry->RegisterSystem<PauseMainSceneSystem>();
 
+    systemRegistry->RegisterSystem<PlayerFollowSystem>();
     systemRegistry->RegisterSystem<LookAtFromTransformsSystem>();
     systemRegistry->RegisterSystem<Ui3dUpdateSystem>();
 
@@ -319,6 +334,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<VelocityOverrideTriggerSystem>();
     systemRegistry->RegisterSystem<AddForceTriggerSystem>();
     systemRegistry->RegisterSystem<OnCollisionModifierTargetSystem>();
+    systemRegistry->RegisterSystem<PlayerAheadCollisionReactionSystem>();
 
     /// =================================================================================================
     // Effect
@@ -335,6 +351,9 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<DissolveAnimationSystem>();
 
     systemRegistry->RegisterSystem<CameraShake>();
+    systemRegistry->RegisterSystem<TimeScaleEffectSystem>();
+
+    systemRegistry->RegisterSystem<ScaleDeformSystem>();
 
     systemRegistry->RegisterSystem<MaterialEffect>();
     systemRegistry->RegisterSystem<CreateMeshFromSpline>();
@@ -348,6 +367,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<EffectOnPlayerRun>();
 
     systemRegistry->RegisterSystem<PenaltyTimeSpriteUpdate>();
+    systemRegistry->RegisterSystem<TimeStopEffect>();
 
     /// =================================================================================================
     // Render

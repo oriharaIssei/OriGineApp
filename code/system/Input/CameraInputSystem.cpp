@@ -13,7 +13,7 @@
 // component
 #include "component/Camera/CameraController.h"
 /// math
-#include "math/mathEnv.h"
+#include "math/MathEnv.h"
 #include <numbers>
 
 using namespace OriGine;

@@ -12,6 +12,7 @@
 #include "system/Transition/ApplyMouseConditionSystem.h"
 #include "system/Transition/ButtonGroupSystem.h"
 #include "system/Transition/TimerCountDown.h"
+#include "system/Transition/TimerCountUp.h"
 #include "system/Transition/TransitionPlayerState.h"
 
 /// util
@@ -30,6 +31,7 @@ void PauseMainSceneSystem::Initialize() {
         nameof<ApplyMouseConditionSystem>(),
         nameof<ButtonGroupSystem>(),
         nameof<TimerCountDown>(),
+        nameof<TimerCountUp>(),
         nameof<TransitionPlayerState>(),
         nameof<SpriteRenderSystem>()};
 }

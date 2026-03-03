@@ -153,6 +153,9 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="code\system\collision\PlayerAheadCollisionReactionSystem.h" />
+    <ClInclude Include="code\system\Initialize\ClearSceneRankingBuildSystem.h" />
+    <ClInclude Include="code\component\TimerForSpriteComponent.h" />
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\MyEditor.h" />
     <ClInclude Include="code\MyGame.h" />
@@ -230,6 +233,7 @@
     <ClInclude Include="code\system\Movement\FollowCameraUpdateSystem.h" />
     <ClInclude Include="code\system\Movement\LookAtFromTransformsSystem.h" />
     <ClInclude Include="code\system\Movement\PauseMainSceneSystem.h" />
+    <ClInclude Include="code\system\Movement\PlayerFollowSystem.h" />
     <ClInclude Include="code\system\Movement\PlayerMoveSystem.h" />
     <ClInclude Include="code\system\Movement\PlayerPathSplineGenerator.h" />
     <ClInclude Include="code\system\Movement\PlayerUpdateOnTitle.h" />
@@ -257,6 +261,7 @@
     <ClInclude Include="code\system\Transition\SubSceneDeactivateByButton.h" />
     <ClInclude Include="code\system\Transition\TimeLimitJudgeSystem.h" />
     <ClInclude Include="code\system\Transition\TimerCountDown.h" />
+    <ClInclude Include="code\system\Transition\TimerCountUp.h" />
     <ClInclude Include="code\system\Transition\TransitionPlayerState.h" />
     <ClInclude Include="code\system\Transition\UpdateButtonColorByState.h" />
     <ClInclude Include="code\system\collision\AddForceTriggerSystem.h" />
@@ -273,8 +278,14 @@
     <ClInclude Include="code\system\effect\PenaltyTimeSpriteUpdate.h" />
     <ClInclude Include="code\system\effect\PlayerSpeedFor3dUI.h" />
     <ClInclude Include="code\system\effect\TimerForSprite.h" />
+    <ClInclude Include="code\component\gimmick\TimeScaleEffectComponent.h" />
+    <ClInclude Include="code\system\effect\TimeScaleEffectSystem.h" />
+    <ClInclude Include="code\system\effect\TimeStopEffect.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\system\collision\PlayerAheadCollisionReactionSystem.cpp" />
+    <ClCompile Include="code\system\Initialize\ClearSceneRankingBuildSystem.cpp" />
+    <ClCompile Include="code\component\TimerForSpriteComponent.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\MyEditor.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
@@ -345,6 +356,7 @@
     <ClCompile Include="code\system\Movement\FollowCameraUpdateSystem.cpp" />
     <ClCompile Include="code\system\Movement\LookAtFromTransformsSystem.cpp" />
     <ClCompile Include="code\system\Movement\PauseMainSceneSystem.cpp" />
+    <ClCompile Include="code\system\Movement\PlayerFollowSystem.cpp" />
     <ClCompile Include="code\system\Movement\PlayerMoveSystem.cpp" />
     <ClCompile Include="code\system\Movement\PlayerPathSplineGenerator.cpp" />
     <ClCompile Include="code\system\Movement\PlayerUpdateOnTitle.cpp" />
@@ -372,6 +384,7 @@
     <ClCompile Include="code\system\Transition\SubSceneDeactivateByButton.cpp" />
     <ClCompile Include="code\system\Transition\TimeLimitJudgeSystem.cpp" />
     <ClCompile Include="code\system\Transition\TimerCountDown.cpp" />
+    <ClCompile Include="code\system\Transition\TimerCountUp.cpp" />
     <ClCompile Include="code\system\Transition\TransitionPlayerState.cpp" />
     <ClCompile Include="code\system\Transition\UpdateButtonColorByState.cpp" />
     <ClCompile Include="code\system\collision\AddForceTriggerSystem.cpp" />
@@ -387,6 +400,9 @@
     <ClCompile Include="code\system\effect\PenaltyTimeSpriteUpdate.cpp" />
     <ClCompile Include="code\system\effect\PlayerSpeedFor3dUI.cpp" />
     <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
+    <ClCompile Include="code\component\gimmick\TimeScaleEffectComponent.cpp" />
+    <ClCompile Include="code\system\effect\TimeScaleEffectSystem.cpp" />
+    <ClCompile Include="code\system\effect\TimeStopEffect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">

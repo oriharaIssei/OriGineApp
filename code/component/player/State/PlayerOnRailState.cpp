@@ -15,7 +15,7 @@
 
 /// math
 #include "math/Interpolation.h"
-#include "math/mathEnv.h"
+#include "math/MathEnv.h"
 #include "math/MyEasing.h"
 #include "math/Spline.h"
 

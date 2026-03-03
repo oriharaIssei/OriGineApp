@@ -85,7 +85,7 @@
                         ]
                     }
                 ],
-                "spriteComponentIndex": -1,
+                "spriteComponentHandle": "00000000-0000-0000-0000-000000000000",
                 "transformAnimationState": {
                     "isLoop": true,
                     "isPlay": false
@@ -113,7 +113,7 @@
             {
                 "Handle": "2bbff1e9-4d6d-451f-b08b-48f4e247ee40",
                 "anchorOnWindow": [
-                    0.6700000166893005,
+                    0.5,
                     0.5
                 ],
                 "digitDecimal": 0,
@@ -156,16 +156,16 @@
             "SystemName": "CreateSpriteFromTimer"
         },
         {
+            "SystemCategory": 3,
+            "SystemName": "StartSequenceSystem"
+        },
+        {
             "SystemCategory": 0,
             "SystemName": "StartTimerInitialize"
         },
         {
             "SystemCategory": 5,
             "SystemName": "SpriteAnimationSystem"
-        },
-        {
-            "SystemCategory": 3,
-            "SystemName": "StartSequenceSystem"
         },
         {
             "SystemCategory": 2,

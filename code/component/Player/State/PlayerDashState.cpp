@@ -10,12 +10,14 @@
 #include "component/Camera/CameraController.h"
 #include "component/physics/Rigidbody.h"
 #include "component/player/PlayerInput.h"
+#include "component/player/PlayerMoveUtils.h"
 #include "component/player/PlayerStatus.h"
 #include "component/player/state/PlayerState.h"
 
 /// math
 #include "MyEasing.h"
-#include <mathEnv.h>
+#include "SpringDamper.h"
+#include <MathEnv.h>
 
 using namespace OriGine;
 
@@ -26,11 +28,11 @@ void PlayerDashState::Initialize() {
     auto* transform    = scene_->GetComponent<OriGine::Transform>(playerEntityHandle_);
 
     // 速度を初期化
-    int32_t gearLevel  = state->GetGearLevel();
+    int32_t gearLevel     = state->GetGearLevel();
     float currentMaxSpeed = playerStatus->CalculateSpeedByGearLevel(gearLevel);
     playerStatus->SetCurrentMaxSpeed(currentMaxSpeed);
     // プレイヤーの向いている方向に速度を設定
-    Vec3f forwardDir = transform->CalculateWorldRotate().RotateVector(axisZ);
+    Vec3f forwardDir = transform->FrontVector();
     forwardDir[Y]    = 0.f;
     forwardDir       = forwardDir.normalize();
     rigidbody->SetVelocity(forwardDir * currentMaxSpeed);
@@ -63,16 +65,27 @@ void PlayerDashState::Update(float _deltaTime) {
 
             playerStatus->SetGearUpCoolTime(playerStatus->CalculateCoolTimeByGearLevel(gearLevel));
 
-            playerStatus->SetCurrentMaxSpeed(playerStatus->CalculateSpeedByGearLevel(gearLevel));
+            playerStatus->SetupOnGearUp(gearLevel);
         }
     }
 
     // 速度更新
     CameraTransform* cameraTransform = scene_->GetComponent<CameraTransform>(state->GetCameraEntityHandle());
-    Vec3f worldInputDir              = playerInput->CalculateWorldInputDirection(cameraTransform->rotate);
-    Vec3f forwardDirection           = playerStatus->ComputeSmoothedDirection(worldInputDir, rigidbody, transform, _deltaTime);
-    transform->rotate                = Quaternion::LookAt(forwardDirection, axisY);
-    playerStatus->UpdateAccel(_deltaTime, forwardDirection, rigidbody);
+    if (cameraTransform) {
+        Vec3f worldInputDir    = playerInput->CalculateWorldInputDirection(cameraTransform->rotate);
+        Vec3f forwardDirection = playerStatus->ComputeSmoothedDirection(worldInputDir, rigidbody, transform, _deltaTime);
+
+        rigidbody->SetVelocity(
+            PlayerMoveUtils::UpdatePlanarVelocity(playerStatus, rigidbody->GetVelocity(), playerInput->GetInputDirection()[X], forwardDirection, _deltaTime));
+
+        // プレイヤーの向きを速度方向に回転させる
+        Vec3f dir = rigidbody->GetVelocity();
+        if (Vec2f(dir[X], dir[Z]).lengthSq() > 0.f) {
+            dir[Y]            = 0.f;
+            dir               = dir.normalize();
+            transform->rotate = Quaternion::LookAt(dir, axisY);
+        }
+    }
 
     // 落下時間を更新
     if (state->IsOnGround()) {

@@ -21,6 +21,7 @@ void PlayerWallJumpState::Initialize() {
     auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
     auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
     auto* playerState  = scene_->GetComponent<PlayerState>(playerEntityHandle_);
+    auto* playerInput  = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
 
     rigidbody->SetAcceleration({0.0f, 0.0f, 0.0f});
     rigidbody->SetUseGravity(false);
@@ -35,7 +36,13 @@ void PlayerWallJumpState::Initialize() {
     velocityDirection                = velocityDirection.normalize();
 
     if (playerState->GetPreStateEnum() == PlayerMoveState::WALL_RUN) {
-        const OriGine::Vec3f& wallJumpDirection = playerStatus->GetWallJumpOffset();
+        OriGine::Vec3f wallJumpDirection = playerStatus->GetWallJumpOffset();
+        // -1 ~ 1 を 0 ~ 1 に変換
+        float inputXNormalized = (playerInput->GetInputDirection()[X] + 1) * 0.5f;
+        inputXNormalized       = EasingFunctions[static_cast<int>(EaseType::EaseInQuad)](inputXNormalized);
+
+        wallJumpDirection[X] = std::lerp(playerStatus->GetMinWallJumpOffsetX(), wallJumpDirection[X], inputXNormalized);
+
         // --- 壁ローカル → ワールド変換 ---
         // wallJumpDirection = (x:外, y:上, z:沿う)
         jumpDirWorld =

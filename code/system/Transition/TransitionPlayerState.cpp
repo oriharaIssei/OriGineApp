@@ -32,7 +32,7 @@
 #include "component/ghost/PlayRecordeComponent.h"
 
 /// math
-#include "math/mathEnv.h"
+#include "math/MathEnv.h"
 #include "math/MyEasing.h"
 
 using namespace OriGine;
@@ -61,7 +61,10 @@ void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
             PlayRecordeComponent* playRecorder = GetComponent<PlayRecordeComponent>(recorderEntityHandle);
 
             if (timer != nullptr && stageData != nullptr) {
-                progressStore->StageCleared(playRecorder != nullptr ? playRecorder->replayRecorder_.get() : nullptr, stageData->GetStageNumber(), stageData->GetDifficulty(), timer->GetTime());
+                progressStore->StageCleared(
+                    playRecorder != nullptr ? playRecorder->replayRecorder_.get() : nullptr,
+                    stageData->GetStageNumber(),
+                    timer->GetTime());
             }
         }
 

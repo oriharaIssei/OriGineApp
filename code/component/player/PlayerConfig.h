@@ -7,7 +7,6 @@ namespace Player {
 constexpr float kDefaultHeight             = 2.0f;
 constexpr float kDefaultBaseGearupCoolTime = 1.0f;
 constexpr float kDefaultWallRunRampUpTime  = 0.2f;
-constexpr float kDefaultDecelerationRate   = 1.8f;
 constexpr float kDefaultScale              = 1.0f;
 constexpr float kWallRunOffsetRate         = 0.1f;
 constexpr float kWallRunMeshOffsetRate     = 0.26f;

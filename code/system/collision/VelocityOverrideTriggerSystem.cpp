@@ -64,7 +64,7 @@ void VelocityOverrideTriggerSystem::UpdateEntity(OriGine::EntityHandle _handle) 
         auto rigidbodyComp = GetComponent<Rigidbody>(otherHandle);
         if (rigidbodyComp) {
             // 速度を強制的に上書き
-            VelocityOverrideEvent event(rigidbodyComp->GetHandle(), velocityOverrideComp->forcedMovementVector_);
+            VelocityOverrideEvent event(rigidbodyComp->GetHandle(), velocityOverrideComp->forcedMovementVector_, velocityOverrideComp->isOverrideAxis_);
             MessageBus::GetInstance()->Emit<VelocityOverrideEvent>(event);
         }
     }

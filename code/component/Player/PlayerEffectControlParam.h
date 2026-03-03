@@ -44,6 +44,12 @@ private:
     float maxWheelSpinSpeed_                           = 0.001f;
     float wheelTiltAngleRate_                          = 0.0f;
     float preWheelTiltAngle_                           = 0.0f;
+
+    // 障害物衝突時のホイールの傾き角度と傾き速度
+    float aheadCollisionCurrentAngle_ = 0.f;
+    float aheadCollisionTiltAngle_    = 0.0f;
+    float aheadCollisionTiltSpeed_    = 0.0f;
+
     // 最大傾き角度の加速度
     float wheelTiltAngleMaxAccel_ = 0.0f;
 
@@ -100,5 +106,23 @@ public:
     }
     void SetTireTrailSplineEntityId(OriGine::EntityHandle _handle) {
         tireTrailSplineEntityHandle_ = _handle;
+    }
+
+    float GetAheadCollisionTiltAngle() const {
+        return aheadCollisionTiltAngle_;
+    }
+    void SetAheadCollisionTiltAngle(float _angle) {
+        aheadCollisionTiltAngle_ = _angle;
+    }
+
+    float GetAheadCollisionTiltSpeed() const {
+        return aheadCollisionTiltSpeed_;
+    }
+
+    float GetAheadCollisionCurrentAngle() const {
+        return aheadCollisionCurrentAngle_;
+    }
+    void SetAheadCollisionCurrentAngle(float _angle) {
+        aheadCollisionCurrentAngle_ = _angle;
     }
 };

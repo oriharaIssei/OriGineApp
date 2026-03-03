@@ -7,7 +7,7 @@
 #include "component/ui/SpeedFor3dUIComponent.h"
 
 /// math
-#include "math/mathEnv.h"
+#include "math/MathEnv.h"
 
 using namespace OriGine;
 

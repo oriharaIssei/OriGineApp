@@ -33,6 +33,7 @@ void CameraController::Edit(Scene* /*_scene*/, EntityHandle /*_OriGine::Entity*/
     if (ImGui::TreeNode(label.c_str())) {
         DragGuiVectorCommand("FirstTargetOffset##" + _parentLabel, firstTargetOffset, 0.01f);
         DragGuiVectorCommand("TargetOffsetOnDash##" + _parentLabel, targetOffsetOnDash, 0.01f);
+        DragGuiCommand("MinTargetOffsetXOnWallRun##" + _parentLabel, minTargetOffsetXOnWallRun, 0.01f, 0.f, targetOffsetOnWallRun[X]);
         DragGuiVectorCommand("TargetOffsetOnWallRun##" + _parentLabel, targetOffsetOnWallRun, 0.01f);
 
         ImGui::Spacing();
@@ -100,51 +101,53 @@ float CameraController::CalculateFovYByPlayerGearLevel(int32_t _level) const {
         _level);
 }
 
-void to_json(nlohmann::json& j, const CameraController& c) {
-    j["forward"]                  = c.forward;
-    j["angleLimitY"]              = c.angleLimitY;
-    j["firstOffset"]              = c.firstOffset;
-    j["offsetOnDash"]             = c.offsetOnDash;
-    j["offsetOnWallRun"]          = c.offsetOnWallRun;
-    j["firstTargetOffset"]        = c.firstTargetOffset;
-    j["targetOffsetOnDash"]       = c.targetOffsetOnDash;
-    j["targetOffsetOnWallRun"]    = c.targetOffsetOnWallRun;
-    j["rotateZOnWallRun"]         = c.rotateZOnWallRun;
-    j["rotateSpeedPadStick"]      = c.rotateSpeedPadStick;
-    j["rotateSpeedMouse"]         = c.rotateSpeedMouse;
-    j["rotateSensitivity"]        = c.rotateSensitivity;
-    j["interTargetInterpolation"] = c.interTargetInterpolation;
-    j["maxRotateX"]               = c.maxRotateX;
-    j["minRotateX"]               = c.minRotateX;
-    j["baseFovY"]                 = c.baseFovY;
-    j["fovYRate"]                 = c.fovYRateBase;
-    j["fovYRateCommonRate"]       = c.fovYRateCommonRate;
-    j["fovYInterpolate"]          = c.fovYInterpolate;
-    j["fixForForwardSpeed"]       = c.fixForForwardSpeed;
+void to_json(nlohmann::json& _j, const CameraController& _c) {
+    _j["forward"]                   = _c.forward;
+    _j["angleLimitY"]               = _c.angleLimitY;
+    _j["firstOffset"]               = _c.firstOffset;
+    _j["offsetOnDash"]              = _c.offsetOnDash;
+    _j["offsetOnWallRun"]           = _c.offsetOnWallRun;
+    _j["firstTargetOffset"]         = _c.firstTargetOffset;
+    _j["targetOffsetOnDash"]        = _c.targetOffsetOnDash;
+    _j["minTargetOffsetXOnWallRun"] = _c.minTargetOffsetXOnWallRun;
+    _j["targetOffsetOnWallRun"]     = _c.targetOffsetOnWallRun;
+    _j["rotateZOnWallRun"]          = _c.rotateZOnWallRun;
+    _j["rotateSpeedPadStick"]       = _c.rotateSpeedPadStick;
+    _j["rotateSpeedMouse"]          = _c.rotateSpeedMouse;
+    _j["rotateSensitivity"]         = _c.rotateSensitivity;
+    _j["interTargetInterpolation"]  = _c.interTargetInterpolation;
+    _j["maxRotateX"]                = _c.maxRotateX;
+    _j["minRotateX"]                = _c.minRotateX;
+    _j["baseFovY"]                  = _c.baseFovY;
+    _j["fovYRate"]                  = _c.fovYRateBase;
+    _j["fovYRateCommonRate"]        = _c.fovYRateCommonRate;
+    _j["fovYInterpolate"]           = _c.fovYInterpolate;
+    _j["fixForForwardSpeed"]        = _c.fixForForwardSpeed;
 }
 
-void from_json(const nlohmann::json& j, CameraController& c) {
-    j.at("forward").get_to(c.forward);
-    j.at("angleLimitY").get_to(c.angleLimitY);
+void from_json(const nlohmann::json& _j, CameraController& _c) {
+    _j.at("forward").get_to(_c.forward);
+    _j.at("angleLimitY").get_to(_c.angleLimitY);
 
-    j.at("firstOffset").get_to(c.firstOffset);
-    j.at("offsetOnDash").get_to(c.offsetOnDash);
-    j.at("offsetOnWallRun").get_to(c.offsetOnWallRun);
+    _j.at("firstOffset").get_to(_c.firstOffset);
+    _j.at("offsetOnDash").get_to(_c.offsetOnDash);
+    _j.at("offsetOnWallRun").get_to(_c.offsetOnWallRun);
 
-    j.at("firstTargetOffset").get_to(c.firstTargetOffset);
-    j.at("targetOffsetOnDash").get_to(c.targetOffsetOnDash);
-    j.at("targetOffsetOnWallRun").get_to(c.targetOffsetOnWallRun);
-    j.at("rotateZOnWallRun").get_to(c.rotateZOnWallRun);
+    _j.at("firstTargetOffset").get_to(_c.firstTargetOffset);
+    _j.at("minTargetOffsetXOnWallRun").get_to(_c.minTargetOffsetXOnWallRun);
+    _j.at("targetOffsetOnDash").get_to(_c.targetOffsetOnDash);
+    _j.at("targetOffsetOnWallRun").get_to(_c.targetOffsetOnWallRun);
+    _j.at("rotateZOnWallRun").get_to(_c.rotateZOnWallRun);
 
-    j.at("rotateSpeedPadStick").get_to(c.rotateSpeedPadStick);
-    j.at("rotateSpeedMouse").get_to(c.rotateSpeedMouse);
-    j.at("rotateSensitivity").get_to(c.rotateSensitivity);
-    j.at("interTargetInterpolation").get_to(c.interTargetInterpolation);
-    j.at("maxRotateX").get_to(c.maxRotateX);
-    j.at("minRotateX").get_to(c.minRotateX);
-    j.at("baseFovY").get_to(c.baseFovY);
-    j.at("fovYRate").get_to(c.fovYRateBase);
-    j.at("fovYRateCommonRate").get_to(c.fovYRateCommonRate);
-    j.at("fovYInterpolate").get_to(c.fovYInterpolate);
-    j.at("fixForForwardSpeed").get_to(c.fixForForwardSpeed);
+    _j.at("rotateSpeedPadStick").get_to(_c.rotateSpeedPadStick);
+    _j.at("rotateSpeedMouse").get_to(_c.rotateSpeedMouse);
+    _j.at("rotateSensitivity").get_to(_c.rotateSensitivity);
+    _j.at("interTargetInterpolation").get_to(_c.interTargetInterpolation);
+    _j.at("maxRotateX").get_to(_c.maxRotateX);
+    _j.at("minRotateX").get_to(_c.minRotateX);
+    _j.at("baseFovY").get_to(_c.baseFovY);
+    _j.at("fovYRate").get_to(_c.fovYRateBase);
+    _j.at("fovYRateCommonRate").get_to(_c.fovYRateCommonRate);
+    _j.at("fovYInterpolate").get_to(_c.fovYInterpolate);
+    _j.at("fixForForwardSpeed").get_to(_c.fixForForwardSpeed);
 }

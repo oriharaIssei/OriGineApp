@@ -41,7 +41,7 @@ public:
     /// <param name="_effectDuration"></param>
     /// <param name="_easeType"></param>
     /// <param name="_beforeSpeed"></param>
-    void StartAdditiveEffect(const OriGine::Vec3f& _target, float _lerpDuration, float _effectDuration, OriGine::EaseType _easeType, float _beforeSpeed, float _restoreSpeed);
+    void StartAdditiveEffect(float _target, float _lerpDuration, float _effectDuration, OriGine::EaseType _easeType, float _beforeSpeed, float _restoreSpeed);
     /// <summary>
     /// 乗算効果の開始
     /// </summary>
@@ -50,7 +50,7 @@ public:
     /// <param name="_effectDuration"></param>
     /// <param name="_easeType"></param>
     /// <param name="_beforeSpeed"></param>
-    void StartMultiplierEffect(const OriGine::Vec3f&  _target, float _lerpDuration, float _effectDuration, OriGine::EaseType _easeType, float _beforeSpeed, float _restoreSpeed);
+    void StartMultiplierEffect(float _target, float _lerpDuration, float _effectDuration, OriGine::EaseType _easeType, float _beforeSpeed, float _restoreSpeed);
 
     bool IsAdditiveEffectActive() const {
         return additiveTimer < additiveDuration;
@@ -65,7 +65,7 @@ public:
     OriGine::ComponentHandle targetRigidbodyHandle{};
 
     // Additive
-    OriGine::Vec3f additiveTarget          = OriGine::Vec3f();
+    float additiveTarget                   = 0.f;
     float additiveLerpTimer                = 0.0f;
     float additiveLerpDuration             = 0.0f;
     float additiveDuration                 = 0.0f;
@@ -73,7 +73,7 @@ public:
     OriGine::EaseType additiveLerpEaseType = OriGine::EaseType::Linear;
 
     // Multiplier
-    OriGine::Vec3f multiplierTarget          = {1.f, 1.f, 1.f};
+    float multiplierTarget                   = 1.f;
     float multiplierLerpTimer                = 0.0f;
     float multiplierLerpDuration             = 0.0f;
     float multiplierDuration                 = 0.0f;
