@@ -280,6 +280,7 @@
     <ClInclude Include="code\system\effect\TimerForSprite.h" />
     <ClInclude Include="code\component\gimmick\TimeScaleEffectComponent.h" />
     <ClInclude Include="code\system\effect\TimeScaleEffectSystem.h" />
+    <ClInclude Include="code\system\effect\TimeStopEffect.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\system\collision\PlayerAheadCollisionReactionSystem.cpp" />
@@ -401,6 +402,7 @@
     <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
     <ClCompile Include="code\component\gimmick\TimeScaleEffectComponent.cpp" />
     <ClCompile Include="code\system\effect\TimeScaleEffectSystem.cpp" />
+    <ClCompile Include="code\system\effect\TimeStopEffect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">

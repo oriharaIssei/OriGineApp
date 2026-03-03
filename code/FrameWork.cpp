@@ -52,6 +52,7 @@
 #include "system/effect/PlayerSpeedFor3dUI.h"
 #include "system/effect/TimerForSprite.h"
 #include "system/effect/TimeScaleEffectSystem.h"
+#include "system/effect/TimeStopEffect.h"
 #include "system/initialize/BackFireInitialize.h"
 #include "system/Initialize/ClearSceneRankingBuildSystem.h"
 #include "system/Initialize/CreatePlaneFromSpeed.h"
@@ -366,6 +367,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<EffectOnPlayerRun>();
 
     systemRegistry->RegisterSystem<PenaltyTimeSpriteUpdate>();
+    systemRegistry->RegisterSystem<TimeStopEffect>();
 
     /// =================================================================================================
     // Render

@@ -30,8 +30,6 @@ void TimeScaleEffectSystem::UpdateEntity(OriGine::EntityHandle _handle) {
         return;
     }
 
-    DeltaTimer* deltaTimer = Engine::GetInstance()->GetDeltaTimer();
-
     // タイムスケールの更新
     for (auto& key : timeScaleEffect->GetTimeScaleTags()) {
         stopTimesByTimeScale_[key].timeScale = timeScaleEffect->GetTimeScale();

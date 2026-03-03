@@ -10516,133 +10516,6 @@
                 }
             ],
             "isUnique": false
-        },
-        {
-            "Components": {
-                "DissolveEffectParam": [
-                    {
-                        "Handle": "e7a95558-8681-44e2-bdc1-c2e8f7abff92",
-                        "edgeWidth": 0.00800000037997961,
-                        "isActive": false,
-                        "materialIndex": 0,
-                        "outLineColor": [
-                            0.1314782202243805,
-                            0.6885846257209778,
-                            0.8902953863143921,
-                            1.0
-                        ],
-                        "textureFilePath": "./application/resource/Texture/waveNoise.png",
-                        "threshold": 0.0
-                    }
-                ],
-                "Material": [
-                    {
-                        "Handle": "f16ac670-5243-433b-b359-46dc1913b797",
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "enableLighting": false,
-                        "shininess": 0.0,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "SceneChanger": [
-                    {
-                        "Handle": "f18e4666-d7d3-48fa-b907-c46181b54d37",
-                        "nextSceneName": "Result"
-                    }
-                ],
-                "TimerComponent": [
-                    {
-                        "Handle": "7bfa8173-1b0a-4546-ae70-f62e19eb648c",
-                        "isStarted": false,
-                        "maxTime": 999.0
-                    }
-                ],
-                "TimerForSpriteComponent": [
-                    {
-                        "Handle": "33629c37-b708-49c4-9d20-565a795934c9",
-                        "anchorOnWindow": [
-                            0.5,
-                            0.11999999731779099
-                        ],
-                        "digitDecimal": 2,
-                        "digitInteger": 3,
-                        "marginBetweenIntegerAndDecimal": [
-                            0.0,
-                            10.0
-                        ],
-                        "numbersTexturePath": "./application/resource/Texture//NumbersUI.png",
-                        "offset": [
-                            0.0,
-                            0.0
-                        ],
-                        "spriteMarginDecimal": [
-                            -3.0,
-                            0.0
-                        ],
-                        "spriteMarginInteger": [
-                            0.0,
-                            0.0
-                        ],
-                        "spriteSizeDecimal": [
-                            32.0,
-                            32.0
-                        ],
-                        "spriteSizeInteger": [
-                            58.0,
-                            58.0
-                        ]
-                    }
-                ]
-            },
-            "Handle": {
-                "uuid": "6f012ee6-b38c-423e-95c0-0597032bb53f"
-            },
-            "Name": "Timer",
-            "Systems": [
-                {
-                    "SystemCategory": 2,
-                    "SystemName": "TimeLimitJudgeSystem"
-                },
-                {
-                    "SystemCategory": 0,
-                    "SystemName": "CreateSpriteFromTimer"
-                },
-                {
-                    "SystemCategory": 7,
-                    "SystemName": "DissolveEffect"
-                },
-                {
-                    "SystemCategory": 2,
-                    "SystemName": "SceneTransition"
-                },
-                {
-                    "SystemCategory": 5,
-                    "SystemName": "TimerForSprite"
-                },
-                {
-                    "SystemCategory": 2,
-                    "SystemName": "TimerCountUp"
-                }
-            ],
-            "isUnique": true
         }
     ],
     "Systems": [
@@ -10957,11 +10830,6 @@
             }
         },
         {
-            "StartSequenceSystem": {
-                "Priority": 2
-            }
-        },
-        {
             "SubSceneRender": {
                 "Priority": 10
             }
@@ -10969,6 +10837,11 @@
         {
             "TireTrailGenerateSystem": {
                 "Priority": 100
+            }
+        },
+        {
+            "StartSequenceSystem": {
+                "Priority": 2
             }
         },
         {
@@ -11113,6 +10986,11 @@
         },
         {
             "ScaleDeformSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "TimeStopEffect": {
                 "Priority": 0
             }
         }

@@ -246,6 +246,24 @@ float PlayerStatus::CalculateCoolTimeByGearLevel(int32_t _gearLevel) const {
         _gearLevel);
 }
 
+OriGine::Vec2f PlayerStatus::CalculateCurrentMaxDirectionalSpeed(int32_t _gearLevel) const {
+    float forwardBackwardSpeed = ArithmeticSequence<float>(
+        baseDirectionalSpeed_[X],
+        ArithmeticSequence<float>(directionalSpeedUpRateBase_[X], directionalSpeedUpRateCommonRate_[X], _gearLevel - 1),
+        _gearLevel);
+    float leftRightSpeed = ArithmeticSequence<float>(
+        baseDirectionalSpeed_[Y],
+        ArithmeticSequence<float>(directionalSpeedUpRateBase_[Y], directionalSpeedUpRateCommonRate_[Y], _gearLevel - 1),
+        _gearLevel);
+    return {forwardBackwardSpeed, leftRightSpeed};
+}
+
+void PlayerStatus::SetupOnGearUp(int32_t _gearLevel) {
+    currentMaxSpeed_            = CalculateSpeedByGearLevel(_gearLevel);
+    gearUpCoolTime_             = CalculateCoolTimeByGearLevel(_gearLevel);
+    currentMaxDirectionalSpeed_ = CalculateCurrentMaxDirectionalSpeed(_gearLevel);
+}
+
 Vec3f PlayerStatus::ComputeSmoothedDirection(const Vec3f& _targetDir, const Rigidbody* _rigidbody, const Transform* _transform, float _deltaTime) const {
     // 現在のXZ平面の速度を取得
     Vec3f currentDir = _rigidbody->GetVelocity();
