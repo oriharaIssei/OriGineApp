@@ -8,7 +8,7 @@
 
 /// ECS
 // component
-#include "component/SceneChanger.h"
+#include "component/scene/SceneChanger.h"
 #include "component/TimerComponent.h"
 
 /// math

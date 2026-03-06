@@ -8,7 +8,7 @@
 /// ECS
 // component
 #include "component/effect/post/DissolveEffectParam.h"
-#include "component/SceneChanger.h"
+#include "component/scene/SceneChanger.h"
 
 /// math
 #include "math/MyEasing.h"

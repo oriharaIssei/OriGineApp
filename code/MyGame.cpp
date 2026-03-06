@@ -25,10 +25,6 @@
 #include "debugReplayer/ReplayRecorder.h"
 #endif // _DEVELOP
 
-/// component
-#include "component/renderer/Sprite.h"
-#include "component/SubScene.h"
-
 /// util
 #include "globalVariables/GlobalVariables.h"
 

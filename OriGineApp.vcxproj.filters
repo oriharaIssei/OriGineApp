@@ -63,6 +63,9 @@
     <ClInclude Include="code\component\AddForceComponent.h">
       <Filter>component</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\BillboardComponent.h">
+      <Filter>component</Filter>
+    </ClInclude>
     <ClInclude Include="code\component\LookAtFromTransforms.h">
       <Filter>component</Filter>
     </ClInclude>
@@ -75,13 +78,13 @@
     <ClInclude Include="code\component\PointPlacementParams.h">
       <Filter>component</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\SceneChanger.h">
-      <Filter>component</Filter>
-    </ClInclude>
     <ClInclude Include="code\component\SpeedModifiers.h">
       <Filter>component</Filter>
     </ClInclude>
     <ClInclude Include="code\component\TimerComponent.h">
+      <Filter>component</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\TimerForSpriteComponent.h">
       <Filter>component</Filter>
     </ClInclude>
     <ClInclude Include="code\component\VelocityOverrideComponent.h">
@@ -109,6 +112,9 @@
       <Filter>component\gimmick</Filter>
     </ClInclude>
     <ClInclude Include="code\component\gimmick\RailPoints.h">
+      <Filter>component\gimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\gimmick\TimeScaleEffectComponent.h">
       <Filter>component\gimmick</Filter>
     </ClInclude>
     <ClInclude Include="code\component\player\PlayerConfig.h">
@@ -204,6 +210,9 @@
     <ClInclude Include="code\system\Initialize\BackFireInitialize.h">
       <Filter>system\Initialize</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Initialize\ClearSceneRankingBuildSystem.h">
+      <Filter>system\Initialize</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\Initialize\CreatePlaneFromSpeed.h">
       <Filter>system\Initialize</Filter>
     </ClInclude>
@@ -280,6 +289,9 @@
       <Filter>system\Movement</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Movement\PauseMainSceneSystem.h">
+      <Filter>system\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Movement\PlayerFollowSystem.h">
       <Filter>system\Movement</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Movement\PlayerMoveSystem.h">
@@ -363,6 +375,9 @@
     <ClInclude Include="code\system\Transition\TimerCountDown.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Transition\TimerCountUp.h">
+      <Filter>system\Transition</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\Transition\TransitionPlayerState.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
@@ -373,6 +388,9 @@
       <Filter>system\collision</Filter>
     </ClInclude>
     <ClInclude Include="code\system\collision\OnCollisionModifierTargetSystem.h">
+      <Filter>system\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\collision\PlayerAheadCollisionReactionSystem.h">
       <Filter>system\collision</Filter>
     </ClInclude>
     <ClInclude Include="code\system\collision\PlayerOnCollision.h">
@@ -408,23 +426,27 @@
     <ClInclude Include="code\system\effect\PlayerSpeedFor3dUI.h">
       <Filter>system\effect</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\effect\TimeScaleEffectSystem.h">
+      <Filter>system\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\effect\TimeStopEffect.h">
+      <Filter>system\effect</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\effect\TimerForSprite.h">
       <Filter>system\effect</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Transition\TimerCountUp.h" />
-    <ClInclude Include="code\component\TimerForSpriteComponent.h" />
-    <ClInclude Include="code\system\Initialize\ClearSceneRankingBuildSystem.h" />
-    <ClInclude Include="code\component\gimmick\TimeScaleEffectComponent.h" />
-    <ClInclude Include="code\system\effect\TimeScaleEffectSystem.h" />
-    <ClInclude Include="code\system\Movement\PlayerFollowSystem.h" />
-    <ClInclude Include="code\system\collision\PlayerAheadCollisionReactionSystem.h" />
-    <ClInclude Include="code\system\effect\TimeStopEffect.h" />
+    <ClInclude Include="code\system\Transition\AttractModeSystem.h">
+      <Filter>system\effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\MyEditor.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
     <ClCompile Include="code\component\AddForceComponent.cpp">
+      <Filter>component</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\BillboardComponent.cpp">
       <Filter>component</Filter>
     </ClCompile>
     <ClCompile Include="code\component\LookAtFromTransforms.cpp">
@@ -439,13 +461,13 @@
     <ClCompile Include="code\component\PointPlacementParams.cpp">
       <Filter>component</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\SceneChanger.cpp">
-      <Filter>component</Filter>
-    </ClCompile>
     <ClCompile Include="code\component\SpeedModifiers.cpp">
       <Filter>component</Filter>
     </ClCompile>
     <ClCompile Include="code\component\TimerComponent.cpp">
+      <Filter>component</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\TimerForSpriteComponent.cpp">
       <Filter>component</Filter>
     </ClCompile>
     <ClCompile Include="code\component\VelocityOverrideComponent.cpp">
@@ -470,6 +492,9 @@
       <Filter>component\gimmick</Filter>
     </ClCompile>
     <ClCompile Include="code\component\gimmick\RailPoints.cpp">
+      <Filter>component\gimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\gimmick\TimeScaleEffectComponent.cpp">
       <Filter>component\gimmick</Filter>
     </ClCompile>
     <ClCompile Include="code\component\player\PlayerEffectControlParam.cpp">
@@ -543,6 +568,9 @@
       <Filter>manager</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Initialize\BackFireInitialize.cpp">
+      <Filter>system\Initialize</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Initialize\ClearSceneRankingBuildSystem.cpp">
       <Filter>system\Initialize</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Initialize\CreatePlaneFromSpeed.cpp">
@@ -623,6 +651,9 @@
     <ClCompile Include="code\system\Movement\PauseMainSceneSystem.cpp">
       <Filter>system\Movement</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\Movement\PlayerFollowSystem.cpp">
+      <Filter>system\Movement</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\Movement\PlayerMoveSystem.cpp">
       <Filter>system\Movement</Filter>
     </ClCompile>
@@ -654,6 +685,9 @@
       <Filter>system\Movement</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Transition\ApplyMouseConditionSystem.cpp">
+      <Filter>system\Transition</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Transition\AttractModeSystem.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Transition\ButtonGroupSystem.cpp">
@@ -704,6 +738,9 @@
     <ClCompile Include="code\system\Transition\TimerCountDown.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\Transition\TimerCountUp.cpp">
+      <Filter>system\Transition</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\Transition\TransitionPlayerState.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
@@ -714,6 +751,9 @@
       <Filter>system\collision</Filter>
     </ClCompile>
     <ClCompile Include="code\system\collision\OnCollisionModifierTargetSystem.cpp">
+      <Filter>system\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\collision\PlayerAheadCollisionReactionSystem.cpp">
       <Filter>system\collision</Filter>
     </ClCompile>
     <ClCompile Include="code\system\collision\PlayerOnCollision.cpp">
@@ -746,16 +786,14 @@
     <ClCompile Include="code\system\effect\PlayerSpeedFor3dUI.cpp">
       <Filter>system\effect</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\effect\TimeScaleEffectSystem.cpp">
+      <Filter>system\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\effect\TimeStopEffect.cpp">
+      <Filter>system\effect</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\effect\TimerForSprite.cpp">
       <Filter>system\effect</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Transition\TimerCountUp.cpp" />
-    <ClCompile Include="code\component\TimerForSpriteComponent.cpp" />
-    <ClCompile Include="code\system\Initialize\ClearSceneRankingBuildSystem.cpp" />
-    <ClCompile Include="code\component\gimmick\TimeScaleEffectComponent.cpp" />
-    <ClCompile Include="code\system\effect\TimeScaleEffectSystem.cpp" />
-    <ClCompile Include="code\system\Movement\PlayerFollowSystem.cpp" />
-    <ClCompile Include="code\system\collision\PlayerAheadCollisionReactionSystem.cpp" />
-    <ClCompile Include="code\system\effect\TimeStopEffect.cpp" />
   </ItemGroup>
 </Project>

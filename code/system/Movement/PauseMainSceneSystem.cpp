@@ -1,7 +1,7 @@
 #include "PauseMainSceneSystem.h"
 
 /// component
-#include "component/SubScene.h"
+#include "component/scene/SubScene.h"
 /// system
 #include "system/SystemRunner.h"
 

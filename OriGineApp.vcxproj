@@ -153,20 +153,18 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="code\system\collision\PlayerAheadCollisionReactionSystem.h" />
-    <ClInclude Include="code\system\Initialize\ClearSceneRankingBuildSystem.h" />
-    <ClInclude Include="code\component\TimerForSpriteComponent.h" />
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\MyEditor.h" />
     <ClInclude Include="code\MyGame.h" />
     <ClInclude Include="code\component\AddForceComponent.h" />
+    <ClInclude Include="code\component\BillboardComponent.h" />
     <ClInclude Include="code\component\LookAtFromTransforms.h" />
     <ClInclude Include="code\component\MouseCondition.h" />
     <ClInclude Include="code\component\PlayerStateOverrideCondition.h" />
     <ClInclude Include="code\component\PointPlacementParams.h" />
-    <ClInclude Include="code\component\SceneChanger.h" />
     <ClInclude Include="code\component\SpeedModifiers.h" />
     <ClInclude Include="code\component\TimerComponent.h" />
+    <ClInclude Include="code\component\TimerForSpriteComponent.h" />
     <ClInclude Include="code\component\VelocityOverrideComponent.h" />
     <ClInclude Include="code\component\camera\CameraConfig.h" />
     <ClInclude Include="code\component\camera\CameraController.h" />
@@ -176,6 +174,7 @@
     <ClInclude Include="code\component\ghost\PlayRecordeComponent.h" />
     <ClInclude Include="code\component\gimmick\Obstacle.h" />
     <ClInclude Include="code\component\gimmick\RailPoints.h" />
+    <ClInclude Include="code\component\gimmick\TimeScaleEffectComponent.h" />
     <ClInclude Include="code\component\player\PlayerConfig.h" />
     <ClInclude Include="code\component\player\PlayerEffectControlParam.h" />
     <ClInclude Include="code\component\player\PlayerInput.h" />
@@ -207,6 +206,7 @@
     <ClInclude Include="code\event\VelocityOverrideEvent.h" />
     <ClInclude Include="code\manager\PlayerProgressStore.h" />
     <ClInclude Include="code\system\Initialize\BackFireInitialize.h" />
+    <ClInclude Include="code\system\Initialize\ClearSceneRankingBuildSystem.h" />
     <ClInclude Include="code\system\Initialize\CreatePlaneFromSpeed.h" />
     <ClInclude Include="code\system\Initialize\CreateSpriteFromTimer.h" />
     <ClInclude Include="code\system\Initialize\GetClearTime.h" />
@@ -245,6 +245,7 @@
     <ClInclude Include="code\system\Movement\Ui3dUpdateSystem.h" />
     <ClInclude Include="code\system\Movement\VelocityOverrideSystem.h" />
     <ClInclude Include="code\system\Transition\ApplyMouseConditionSystem.h" />
+    <ClInclude Include="code\system\Transition\AttractModeSystem.h" />
     <ClInclude Include="code\system\Transition\ButtonGroupSystem.h" />
     <ClInclude Include="code\system\Transition\ButtonScenePreviewSystem.h" />
     <ClInclude Include="code\system\Transition\CameraMotionBobSystem.h" />
@@ -266,6 +267,7 @@
     <ClInclude Include="code\system\Transition\UpdateButtonColorByState.h" />
     <ClInclude Include="code\system\collision\AddForceTriggerSystem.h" />
     <ClInclude Include="code\system\collision\OnCollisionModifierTargetSystem.h" />
+    <ClInclude Include="code\system\collision\PlayerAheadCollisionReactionSystem.h" />
     <ClInclude Include="code\system\collision\PlayerOnCollision.h" />
     <ClInclude Include="code\system\collision\TutorialColliderOnCollision.h" />
     <ClInclude Include="code\system\collision\VelocityOverrideTriggerSystem.h" />
@@ -277,26 +279,23 @@
     <ClInclude Include="code\system\effect\EffectOnPlayerRun.h" />
     <ClInclude Include="code\system\effect\PenaltyTimeSpriteUpdate.h" />
     <ClInclude Include="code\system\effect\PlayerSpeedFor3dUI.h" />
-    <ClInclude Include="code\system\effect\TimerForSprite.h" />
-    <ClInclude Include="code\component\gimmick\TimeScaleEffectComponent.h" />
     <ClInclude Include="code\system\effect\TimeScaleEffectSystem.h" />
     <ClInclude Include="code\system\effect\TimeStopEffect.h" />
+    <ClInclude Include="code\system\effect\TimerForSprite.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="code\system\collision\PlayerAheadCollisionReactionSystem.cpp" />
-    <ClCompile Include="code\system\Initialize\ClearSceneRankingBuildSystem.cpp" />
-    <ClCompile Include="code\component\TimerForSpriteComponent.cpp" />
     <ClCompile Include="code\FrameWork.cpp" />
     <ClCompile Include="code\MyEditor.cpp" />
     <ClCompile Include="code\MyGame.cpp" />
     <ClCompile Include="code\component\AddForceComponent.cpp" />
+    <ClCompile Include="code\component\BillboardComponent.cpp" />
     <ClCompile Include="code\component\LookAtFromTransforms.cpp" />
     <ClCompile Include="code\component\MouseCondition.cpp" />
     <ClCompile Include="code\component\PlayerStateOverrideCondition.cpp" />
     <ClCompile Include="code\component\PointPlacementParams.cpp" />
-    <ClCompile Include="code\component\SceneChanger.cpp" />
     <ClCompile Include="code\component\SpeedModifiers.cpp" />
     <ClCompile Include="code\component\TimerComponent.cpp" />
+    <ClCompile Include="code\component\TimerForSpriteComponent.cpp" />
     <ClCompile Include="code\component\VelocityOverrideComponent.cpp" />
     <ClCompile Include="code\component\camera\CameraController.cpp" />
     <ClCompile Include="code\component\camera\CameraMotionBob.cpp" />
@@ -305,6 +304,7 @@
     <ClCompile Include="code\component\ghost\PlayRecordeComponent.cpp" />
     <ClCompile Include="code\component\gimmick\Obstacle.cpp" />
     <ClCompile Include="code\component\gimmick\RailPoints.cpp" />
+    <ClCompile Include="code\component\gimmick\TimeScaleEffectComponent.cpp" />
     <ClCompile Include="code\component\player\PlayerEffectControlParam.cpp" />
     <ClCompile Include="code\component\player\PlayerInput.cpp" />
     <ClCompile Include="code\component\player\PlayerInputDevice.cpp" />
@@ -330,6 +330,7 @@
     <ClCompile Include="code\main.cpp" />
     <ClCompile Include="code\manager\PlayerProgressStore.cpp" />
     <ClCompile Include="code\system\Initialize\BackFireInitialize.cpp" />
+    <ClCompile Include="code\system\Initialize\ClearSceneRankingBuildSystem.cpp" />
     <ClCompile Include="code\system\Initialize\CreatePlaneFromSpeed.cpp" />
     <ClCompile Include="code\system\Initialize\CreateSpriteFromTimer.cpp" />
     <ClCompile Include="code\system\Initialize\GetClearTime.cpp" />
@@ -368,6 +369,7 @@
     <ClCompile Include="code\system\Movement\Ui3dUpdateSystem.cpp" />
     <ClCompile Include="code\system\Movement\VelocityOverrideSystem.cpp" />
     <ClCompile Include="code\system\Transition\ApplyMouseConditionSystem.cpp" />
+    <ClCompile Include="code\system\Transition\AttractModeSystem.cpp" />
     <ClCompile Include="code\system\Transition\ButtonGroupSystem.cpp" />
     <ClCompile Include="code\system\Transition\ButtonScenePreviewSystem.cpp" />
     <ClCompile Include="code\system\Transition\CameraMotionBobSystem.cpp" />
@@ -389,6 +391,7 @@
     <ClCompile Include="code\system\Transition\UpdateButtonColorByState.cpp" />
     <ClCompile Include="code\system\collision\AddForceTriggerSystem.cpp" />
     <ClCompile Include="code\system\collision\OnCollisionModifierTargetSystem.cpp" />
+    <ClCompile Include="code\system\collision\PlayerAheadCollisionReactionSystem.cpp" />
     <ClCompile Include="code\system\collision\PlayerOnCollision.cpp" />
     <ClCompile Include="code\system\collision\TutorialColliderOnCollision.cpp" />
     <ClCompile Include="code\system\collision\VelocityOverrideTriggerSystem.cpp" />
@@ -399,10 +402,9 @@
     <ClCompile Include="code\system\effect\EffectOnPlayerRun.cpp" />
     <ClCompile Include="code\system\effect\PenaltyTimeSpriteUpdate.cpp" />
     <ClCompile Include="code\system\effect\PlayerSpeedFor3dUI.cpp" />
-    <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
-    <ClCompile Include="code\component\gimmick\TimeScaleEffectComponent.cpp" />
     <ClCompile Include="code\system\effect\TimeScaleEffectSystem.cpp" />
     <ClCompile Include="code\system\effect\TimeStopEffect.cpp" />
+    <ClCompile Include="code\system\effect\TimerForSprite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OriGine.vcxproj">

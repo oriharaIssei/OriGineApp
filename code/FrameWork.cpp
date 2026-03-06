@@ -9,6 +9,7 @@
 
 // application component
 #include "component/AddForceComponent.h"
+#include "component/BillboardComponent.h"
 #include "component/Camera/CameraController.h"
 #include "component/camera/CameraMotionBob.h"
 #include "component/Camera/CameraShakeSourceComponent.h"
@@ -24,7 +25,6 @@
 #include "component/player/PlayerStatus.h"
 #include "component/player/state/PlayerState.h"
 #include "component/PlayerStateOverrideCondition.h"
-#include "component/SceneChanger.h"
 #include "component/SpeedModifiers.h"
 #include "component/spline/SplinePoints.h"
 #include "component/spline/TireSplinePoints.h"
@@ -91,6 +91,7 @@
 #include "system/Movement/TireTrailGenerateSystem.h"
 #include "system/Movement/Ui3dUpdateSystem.h"
 #include "system/Movement/VelocityOverrideSystem.h"
+#include "system/transition/AttractModeSystem.h"
 #include "system/transition/ApplyMouseConditionSystem.h"
 #include "system/transition/ButtonGroupSystem.h"
 #include "system/transition/ButtonScenePreviewSystem.h"
@@ -219,6 +220,8 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<SceneChanger>();
 
     componentRegistry->RegisterComponent<PlayerStateOverrideCondition>();
+
+    componentRegistry->RegisterComponent<BillboardComponent>();
 }
 
 void RegisterUsingSystems() {
@@ -329,6 +332,8 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<CollisionCheckSystem>();
     systemRegistry->RegisterSystem<CollisionPushBackSystem>();
 
+    systemRegistry->RegisterSystem<CollisionTriggeredSceneTransition>();
+
     systemRegistry->RegisterSystem<PlayerOnCollision>();
     systemRegistry->RegisterSystem<TutorialColliderOnCollision>();
     systemRegistry->RegisterSystem<VelocityOverrideTriggerSystem>();
@@ -368,6 +373,8 @@ void RegisterUsingSystems() {
 
     systemRegistry->RegisterSystem<PenaltyTimeSpriteUpdate>();
     systemRegistry->RegisterSystem<TimeStopEffect>();
+
+    systemRegistry->RegisterSystem<AttractModeSystem>();
 
     /// =================================================================================================
     // Render

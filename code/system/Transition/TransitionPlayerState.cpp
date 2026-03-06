@@ -12,7 +12,7 @@
 #include "manager/PlayerProgressStore.h"
 
 // component
-#include "component/SceneChanger.h"
+#include "component/scene/SceneChanger.h"
 #include "component/TimerComponent.h"
 
 #include "component/spline/TireSplinePoints.h"

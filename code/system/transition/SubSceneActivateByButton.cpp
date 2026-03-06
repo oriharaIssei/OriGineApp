@@ -1,7 +1,7 @@
 #include "SubSceneActivateByButton.h"
 
 // component
-#include "component/SubScene.h"
+#include "component/scene/SubScene.h"
 #include "component/ui/Button.h"
 
 using namespace OriGine;

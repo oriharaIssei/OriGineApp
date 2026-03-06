@@ -34,6 +34,13 @@ void CameraShakeSourceComponent::StartShake() {
     }
 
     elapsedTime = 0.0f;
+
+    // Spring 用初期化
+    springVelocity = Vec3f(0.0f, 0.0f, 0.0f);
+    for (size_t i = 0; i < 3; ++i) {
+        float sign        = MyRandom::Float(-1.f, 1.f).Get() >= 0.f ? 1.f : -1.f;
+        springPosition[i] = sign * axisParameters[i].amplitude;
+    }
 }
 
 void CameraShakeSourceComponent::StopShake() {
@@ -47,7 +54,7 @@ void CameraShakeSourceComponent::Edit([[maybe_unused]] OriGine::Scene* _scene, [
 
     // シェイクの種類
     {
-        const char* items[] = {"SinCurve", "Noise"};
+        const char* items[] = {"SinCurve", "Noise", "Spring"};
         int currentItem     = static_cast<int>(type);
 
         ImGui::Text("Shake Type :");

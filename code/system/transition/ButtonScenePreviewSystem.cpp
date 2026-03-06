@@ -1,7 +1,7 @@
 #include "ButtonScenePreviewSystem.h"
 
 /// component
-#include "component/SubScene.h"
+#include "component/scene/SubScene.h"
 #include "component/ui/ButtonGroup.h"
 
 using namespace OriGine;

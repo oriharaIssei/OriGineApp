@@ -10,7 +10,8 @@
 /// </summary>
 enum class ShakeSourceType {
     SinCurve, // サインカーブ
-    Noise // ノイズ
+    Noise, // ノイズ
+    Spring // バネ
 };
 
 /// <summary>
@@ -58,4 +59,8 @@ public:
 
     OriGine::Vec2f fragCoord  = OriGine::Vec2f(0.0f, 0.0f); // フラグメント座標
     OriGine::Vec2f resolution = OriGine::Vec2f(1920.0f, 1080.0f); // 解像度
+
+    // Spring 用の状態 (ランタイムのみ・シリアライズ不要)
+    OriGine::Vec3f springPosition = OriGine::Vec3f(0.0f, 0.0f, 0.0f); // バネの現在変位
+    OriGine::Vec3f springVelocity = OriGine::Vec3f(0.0f, 0.0f, 0.0f); // バネの現在速度
 };

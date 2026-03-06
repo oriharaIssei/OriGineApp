@@ -12,6 +12,7 @@
 
 /// math
 #include "math/Noise.h"
+#include "math/SpringDamper.h"
 
 #include "EffectConfig.h"
 
@@ -74,6 +75,26 @@ void CameraShake::UpdateEntity(OriGine::EntityHandle _handle) {
                 float f = FbmNoise::Fbm(st) - EffectConfig::CameraShake::kNoiseOffset;
 
                 shakeOffset[i] = f * cameraShakeSource.axisParameters[i].amplitude;
+            }
+            break;
+        case ShakeSourceType::Spring:
+            for (size_t i = 0; i < 3; ++i) {
+                // frequency を smoothTime に変換 (高い frequency = 速い収束)
+                float smoothTime                    = (cameraShakeSource.axisParameters[i].frequency > 0.0f)
+                                                          ? 1.0f / cameraShakeSource.axisParameters[i].frequency
+                                                          : 1.0f;
+                cameraShakeSource.springPosition[i] = OriGine::SmoothDamp(
+                    cameraShakeSource.springPosition[i],
+                    0.0f,
+                    cameraShakeSource.springVelocity[i],
+                    smoothTime,
+                    deltaTime,
+                    OriGine::kInfinity);
+                shakeOffset[i] = cameraShakeSource.springPosition[i];
+            }
+            // バネのエネルギーが十分小さい場合は自動停止
+            if (cameraShakeSource.springPosition.length() < 1e-4f && cameraShakeSource.springVelocity.length() < 1e-4f) {
+                cameraShakeSource.isActive = false;
             }
             break;
         default:

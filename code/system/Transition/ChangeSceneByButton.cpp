@@ -8,7 +8,7 @@
 /// application
 // component
 #include "component/ui/Button.h"
-#include "component/SceneChanger.h"
+#include "component/scene/SceneChanger.h"
 
 ChangeSceneByButton::ChangeSceneByButton()
     : ISystem(OriGine::SystemCategory::StateTransition) {}
