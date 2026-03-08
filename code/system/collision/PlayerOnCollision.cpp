@@ -43,6 +43,7 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
     const auto& collisionInfoMap  = pushBackInfo->GetCollisionInfoMap();
 
     // 毎フレーム、地面・壁との衝突状態をリセット
+    bool isPreOnGround            = state->IsOnGround(); // 前フレームの地面接触状態を保持
     bool isPreWheelie             = state->IsWheelie(); // 前フレームのウィリー状態を保持
     EntityHandle wallEntityHandle = state->GetWallEntityIndex();
     state->OffCollisionGround();
@@ -122,6 +123,10 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
 
         if (PlayerMoveUtils::IsHitGround(collisionNormal)) {
             // 上方向に衝突した場合は、地面にいると判断する
+            if (!isPreOnGround) {
+                // 前フレームは地面に居なかった → 着地した瞬間
+                state->OnJustLanded();
+            }
             state->OnCollisionGround();
 
             status->ResetWallRunInterval();

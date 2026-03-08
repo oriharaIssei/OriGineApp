@@ -80,6 +80,7 @@ void PlayerState::OnCollisionGround() {
 }
 void PlayerState::OffCollisionGround() {
     stateFlag_.CurrentRef().ClearFlag(PlayerStateFlag::ON_GROUND);
+    stateFlag_.CurrentRef().ClearFlag(PlayerStateFlag::JUST_LANDED);
 }
 
 void PlayerState::OnCollisionObstacle(float _penaltyTime, float _invincibility) {

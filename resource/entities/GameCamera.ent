@@ -85,24 +85,36 @@
             {
                 "Handle": "386b47fe-452d-4443-a7e7-ea7d46ba74e0",
                 "X_Parameter_Amplitude": 0.36000001430511475,
+                "X_Parameter_DampingRatio": 0.30000001192092896,
                 "X_Parameter_Frequency": 14.039999961853027,
                 "Y_Parameter_Amplitude": 0.4300000071525574,
+                "Y_Parameter_DampingRatio": 0.30000001192092896,
                 "Y_Parameter_Frequency": 9.149999618530273,
                 "Z_Parameter_Amplitude": 0.46000000834465027,
+                "Z_Parameter_DampingRatio": 0.30000001192092896,
                 "Z_Parameter_Frequency": 1.0,
                 "cameraTransformIndex": 0,
                 "duration": 1.0,
-                "fragCoord": [
-                    631.16455078125,
-                    194.4982452392578
-                ],
                 "isActive": false,
                 "isLoop": true,
-                "resolution": [
-                    1920.0,
-                    1080.0
-                ],
                 "type": 1
+            },
+            {
+                "Handle": "2ef489cf-93a2-474d-b83a-4df1829c6816",
+                "X_Parameter_Amplitude": 0.0,
+                "X_Parameter_DampingRatio": 0.0,
+                "X_Parameter_Frequency": 0.0,
+                "Y_Parameter_Amplitude": 1.9600000381469727,
+                "Y_Parameter_DampingRatio": 0.4099999964237213,
+                "Y_Parameter_Frequency": 4.199999809265137,
+                "Z_Parameter_Amplitude": 0.0,
+                "Z_Parameter_DampingRatio": 0.0,
+                "Z_Parameter_Frequency": 0.0,
+                "cameraTransformIndex": 0,
+                "duration": 1.0,
+                "isActive": false,
+                "isLoop": false,
+                "type": 2
             }
         ],
         "CameraTransform": [
@@ -120,7 +132,7 @@
                 ],
                 "translate": [
                     0.0,
-                    4.0,
+                    5.944753646850586,
                     -5.0
                 ]
             }
@@ -157,12 +169,12 @@
             "SystemName": "CameraMotionBobSystem"
         },
         {
-            "SystemCategory": 1,
-            "SystemName": "CameraInputSystem"
-        },
-        {
             "SystemCategory": 5,
             "SystemName": "CameraShake"
+        },
+        {
+            "SystemCategory": 1,
+            "SystemName": "CameraInputSystem"
         },
         {
             "SystemCategory": 3,

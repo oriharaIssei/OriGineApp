@@ -11,8 +11,8 @@
 #include "component/transform/CameraTransform.h"
 
 /// math
+#include "math/MathEnv.h"
 #include "math/Noise.h"
-#include "math/SpringDamper.h"
 
 #include "EffectConfig.h"
 
@@ -79,21 +79,21 @@ void CameraShake::UpdateEntity(OriGine::EntityHandle _handle) {
             break;
         case ShakeSourceType::Spring:
             for (size_t i = 0; i < 3; ++i) {
-                // frequency を smoothTime に変換 (高い frequency = 速い収束)
-                float smoothTime                    = (cameraShakeSource.axisParameters[i].frequency > 0.0f)
-                                                          ? 1.0f / cameraShakeSource.axisParameters[i].frequency
-                                                          : 1.0f;
-                cameraShakeSource.springPosition[i] = OriGine::SmoothDamp(
-                    cameraShakeSource.springPosition[i],
-                    0.0f,
-                    cameraShakeSource.springVelocity[i],
-                    smoothTime,
-                    deltaTime,
-                    OriGine::kInfinity);
+                // ω = 2π * frequency (固有角振動数)
+                float omega = OriGine::kTau * cameraShakeSource.axisParameters[i].frequency;
+                // 減衰比 ζ (0 < ζ < 1 で振動する)
+                float zeta = cameraShakeSource.axisParameters[i].dampingRatio;
+
+                // バネ-ダンパー加速度: a = -ω²x - 2ζωv
+                float acc = -(omega * omega) * cameraShakeSource.springPosition[i]
+                            - 2.0f * zeta * omega * cameraShakeSource.springVelocity[i];
+                cameraShakeSource.springVelocity[i] += acc * deltaTime;
+                cameraShakeSource.springPosition[i] += cameraShakeSource.springVelocity[i] * deltaTime;
+
                 shakeOffset[i] = cameraShakeSource.springPosition[i];
             }
-            // バネのエネルギーが十分小さい場合は自動停止
-            if (cameraShakeSource.springPosition.length() < 1e-4f && cameraShakeSource.springVelocity.length() < 1e-4f) {
+            // バネのエネルギーが十分小さい場合は自動停止 (Loop == false の場合のみ)
+            if (!cameraShakeSource.isLoop && cameraShakeSource.springPosition.length() < kEpsilon && cameraShakeSource.springVelocity.length() < kEpsilon) {
                 cameraShakeSource.isActive = false;
             }
             break;

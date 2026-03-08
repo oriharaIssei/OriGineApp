@@ -6,7 +6,6 @@
 #include "EngineInclude.h"
 
 #include "scene/SceneFactory.h"
-#include "scene/SceneManager.h"
 
 /// application
 #include "manager/PlayerProgressStore.h"
@@ -27,6 +26,8 @@
 #include "component/player/state/PlayerState.h"
 
 #include "component/Camera/CameraController.h"
+#include "component/camera/CameraShakeSourceComponent.h"
+#include "component/effect/SquashStretchComponent.h"
 #include "component/transform/CameraTransform.h"
 
 #include "component/ghost/PlayRecordeComponent.h"
@@ -40,6 +41,8 @@ using namespace OriGine;
 void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
     PlayerState* state   = GetComponent<PlayerState>(_handle);
     PlayerStatus* status = GetComponent<PlayerStatus>(_handle);
+    Rigidbody* rigidbody = GetComponent<Rigidbody>(_handle);
+    Transform* transform = GetComponent<Transform>(_handle);
 
     const float deltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Player");
 
@@ -168,5 +171,24 @@ void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
         if (cameraTransform) {
             cameraTransform->fovAngleY = std::lerp(cameraTransform->fovAngleY, cameraController->CalculateFovYByPlayerGearLevel(state->GetGearLevel()), cameraController->fovYInterpolate);
         };
+    }
+
+    // 着地時のカメラシェイク
+    auto shakeSource = GetComponent<CameraShakeSourceComponent>(gameCamera->GetHandle(), 1);
+    if (shakeSource) {
+        if (state->IsJustLanded()) {
+            constexpr float kShakeThreshold = 0.184f; // シェイクを発生させる最低着地衝撃値
+            constexpr float kShakeScale     = 1.31f; // 着地衝撃をシェイクの強さに変換するスケール
+
+            const Vec3f& prePos = rigidbody->GetPrePos();
+            const Vec3f& pos    = transform->GetWorldTranslate();
+            float deltaY        = prePos[Y] - pos[Y];
+
+            if (std::abs(deltaY) < kShakeThreshold) {
+                return;
+            }
+            shakeSource->StartShake();
+            shakeSource->springVelocity[Y] = -deltaY * kShakeScale;
+        }
     }
 }

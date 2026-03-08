@@ -38,8 +38,9 @@ public:
     /// シェイクのパラメータを設定する構造体
     /// </summary>
     struct ShakeParameters {
-        float amplitude; // シェイクの強さ
-        float frequency; // シェイクの速さ
+        float amplitude    = 1.0f; // シェイクの強さ
+        float frequency    = 1.0f; // シェイクの速さ (Hz)
+        float dampingRatio = 0.3f; // 減衰比 (0<ζ<1 で振動する、1で臨界減衰)
     };
 
 public:
@@ -56,9 +57,6 @@ public:
     bool isLoop       = true; // シェイクのループ有無
     float duration    = 1.0f; // シェイクの継続時間
     float elapsedTime = 0.0f; // 経過時間
-
-    OriGine::Vec2f fragCoord  = OriGine::Vec2f(0.0f, 0.0f); // フラグメント座標
-    OriGine::Vec2f resolution = OriGine::Vec2f(1920.0f, 1080.0f); // 解像度
 
     // Spring 用の状態 (ランタイムのみ・シリアライズ不要)
     OriGine::Vec3f springPosition = OriGine::Vec3f(0.0f, 0.0f, 0.0f); // バネの現在変位

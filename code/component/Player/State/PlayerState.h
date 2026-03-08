@@ -41,17 +41,18 @@ static std::map<PlayerMoveState, const char*> moveStateName = {
 };
 
 enum class PlayerStateFlag {
-    NONE       = 0,
-    ON_GROUND  = 1 << 0, // 地面に接地している
-    ON_WALL    = 1 << 1, // 壁に接触している
-    WHEELIE    = 1 << 2, // ウィリーしている
-    GEAR_UP    = 1 << 3, // ギアアップしている
-    IS_GOAL    = 1 << 4, // ゴールした
-    IS_PENALTY = 1 << 5, // ペナルティを受けている
-    IS_RESTART = 1 << 6, // リスタート中
-    ON_RAIL    = 1 << 7, // レール上にいる
+    NONE        = 0,
+    ON_GROUND   = 1 << 0, // 地面に接地している
+    ON_WALL     = 1 << 1, // 壁に接触している
+    WHEELIE     = 1 << 2, // ウィリーしている
+    GEAR_UP     = 1 << 3, // ギアアップしている
+    IS_GOAL     = 1 << 4, // ゴールした
+    IS_PENALTY  = 1 << 5, // ペナルティを受けている
+    IS_RESTART  = 1 << 6, // リスタート中
+    ON_RAIL     = 1 << 7, // レール上にいる
+    JUST_LANDED = 1 << 8, // 着地した瞬間 (1フレームのみ立つ)
 
-    Count = 7
+    Count = 8
 };
 
 constexpr int32_t kDefaultPlayerGearLevel = 1; // デフォルトのギアレベル
@@ -191,6 +192,16 @@ public:
 
     bool IsOnGround() const {
         return stateFlag_.Current().HasFlag(PlayerStateFlag::ON_GROUND);
+    }
+    bool PreIsOnGround() const {
+        return stateFlag_.Prev().HasFlag(PlayerStateFlag::ON_GROUND);
+    }
+
+    bool IsJustLanded() const {
+        return stateFlag_.Current().HasFlag(PlayerStateFlag::JUST_LANDED);
+    }
+    void OnJustLanded() {
+        stateFlag_.CurrentRef().SetFlag(PlayerStateFlag::JUST_LANDED);
     }
 
     bool IsOnRail() const {
