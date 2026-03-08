@@ -1,14 +1,11 @@
 #include "CameraController.h"
 
 #ifdef _DEBUG
-/// copmonent
-#include "component/player/state/PlayerState.h"
 /// gui
 #include "myGui/MyGui.h"
 #endif // _DEBUG
 
 /// math
-#include "math/Sequence.h"
 #include <numbers>
 
 using namespace OriGine;
@@ -67,24 +64,11 @@ void CameraController::Edit(Scene* /*_scene*/, EntityHandle /*_OriGine::Entity*/
     label = "Fov##" + _parentLabel;
     if (ImGui::TreeNode(label.c_str())) {
         DragGuiCommand("fovYInterpolate##" + _parentLabel, fovYInterpolate, 0.001f);
-        DragGuiCommand("baseFovY##" + _parentLabel, baseFovY, 0.01f);
-        DragGuiCommand("fovYRateBase##" + _parentLabel, fovYRateBase, 0.001f);
-        DragGuiCommand("fovYRateCommonRate##" + _parentLabel, fovYRateCommonRate, 0.001f);
-
-        label = "FovY By Gear Level##" + _parentLabel;
-        if (ImGui::BeginTable(label.c_str(), 2, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg)) {
-            ImGui::TableSetupColumn("Gear Level");
-            ImGui::TableSetupColumn("FovY");
-            ImGui::TableHeadersRow();
-            for (int level = 1; level <= kMaxPlayerGearLevel; ++level) {
-                ImGui::TableNextRow();
-                ImGui::TableSetColumnIndex(0);
-                ImGui::Text("%d", level);
-                ImGui::TableSetColumnIndex(1);
-                ImGui::Text("%.2f", CalculateFovYByPlayerGearLevel(level));
-            }
-            ImGui::EndTable();
-        }
+        DragGuiCommand("fovMin##" + _parentLabel, fovMin, 0.001f);
+        DragGuiCommand("fovMax##" + _parentLabel, fovMax, 0.001f);
+        DragGuiCommand("fovMinSpeed##" + _parentLabel, fovMinSpeed, 0.1f);
+        DragGuiCommand("fovMaxSpeed##" + _parentLabel, fovMaxSpeed, 0.1f);
+        EasingComboGui("fovEaseType##" + _parentLabel, fovEaseType);
         ImGui::TreePop();
     }
 
@@ -94,11 +78,13 @@ void CameraController::Edit(Scene* /*_scene*/, EntityHandle /*_OriGine::Entity*/
 void CameraController::Finalize() {
 }
 
-float CameraController::CalculateFovYByPlayerGearLevel(int32_t _level) const {
-    return ArithmeticSequence<float>(
-        baseFovY,
-        ArithmeticSequence<float>(fovYRateBase, fovYRateCommonRate, _level - 1),
-        _level);
+float CameraController::CalculateFovYBySpeed(float _xzSpeed) const {
+    if (fovMaxSpeed <= fovMinSpeed) {
+        return fovMin;
+    }
+    float t      = std::clamp((_xzSpeed - fovMinSpeed) / (fovMaxSpeed - fovMinSpeed), 0.f, 1.f);
+    float easedT = EasingFunctions[static_cast<int>(fovEaseType)](t);
+    return std::lerp(fovMin, fovMax, easedT);
 }
 
 void to_json(nlohmann::json& _j, const CameraController& _c) {
@@ -118,10 +104,12 @@ void to_json(nlohmann::json& _j, const CameraController& _c) {
     _j["interTargetInterpolation"]  = _c.interTargetInterpolation;
     _j["maxRotateX"]                = _c.maxRotateX;
     _j["minRotateX"]                = _c.minRotateX;
-    _j["baseFovY"]                  = _c.baseFovY;
-    _j["fovYRate"]                  = _c.fovYRateBase;
-    _j["fovYRateCommonRate"]        = _c.fovYRateCommonRate;
     _j["fovYInterpolate"]           = _c.fovYInterpolate;
+    _j["fovMin"]                    = _c.fovMin;
+    _j["fovMax"]                    = _c.fovMax;
+    _j["fovMinSpeed"]               = _c.fovMinSpeed;
+    _j["fovMaxSpeed"]               = _c.fovMaxSpeed;
+    _j["fovEaseType"]               = static_cast<int>(_c.fovEaseType);
     _j["fixForForwardSpeed"]        = _c.fixForForwardSpeed;
 }
 
@@ -145,9 +133,11 @@ void from_json(const nlohmann::json& _j, CameraController& _c) {
     _j.at("interTargetInterpolation").get_to(_c.interTargetInterpolation);
     _j.at("maxRotateX").get_to(_c.maxRotateX);
     _j.at("minRotateX").get_to(_c.minRotateX);
-    _j.at("baseFovY").get_to(_c.baseFovY);
-    _j.at("fovYRate").get_to(_c.fovYRateBase);
-    _j.at("fovYRateCommonRate").get_to(_c.fovYRateCommonRate);
     _j.at("fovYInterpolate").get_to(_c.fovYInterpolate);
+    _c.fovMin      = _j.value("fovMin", AppConfig::Camera::kDefaultFovMin);
+    _c.fovMax      = _j.value("fovMax", AppConfig::Camera::kDefaultFovMax);
+    _c.fovMinSpeed = _j.value("fovMinSpeed", AppConfig::Camera::kDefaultFovMinSpeed);
+    _c.fovMaxSpeed = _j.value("fovMaxSpeed", AppConfig::Camera::kDefaultFovMaxSpeed);
+    _c.fovEaseType = static_cast<OriGine::EaseType>(_j.value("fovEaseType", 0));
     _j.at("fixForForwardSpeed").get_to(_c.fixForForwardSpeed);
 }

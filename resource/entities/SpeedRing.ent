@@ -85,6 +85,7 @@
                     1.0
                 ],
                 "enableLighting": false,
+                "environmentCoefficient": 0.10000000149011612,
                 "shininess": 0.0,
                 "specularColor": [
                     1.0,
@@ -98,7 +99,7 @@
                 ],
                 "uvTranslate": [
                     0.0,
-                    1.8461544513702393
+                    2.2307701110839844
                 ]
             }
         ],
@@ -133,23 +134,26 @@
         "SpeedModifiers": [
             {
                 "Handle": "fa5e490a-6e2a-435f-9e2f-4029d261172b",
+                "additiveAxisX": true,
+                "additiveAxisY": true,
+                "additiveAxisZ": true,
                 "additiveDuration": 0.800000011920929,
+                "additiveFadeInDuration": 0.20000000298023224,
+                "additiveFadeOutDuration": 0.0,
+                "additiveFadeOutEaseType": 0,
                 "additiveLerpEaseType": 10,
-                "additiveTarget": [
-                    0.0,
-                    0.0,
-                    32.0
-                ],
-                "additiveLerpDuration": 0.20000000298023224,
+                "additiveTarget": 32.0,
+                "axesSpace": 0,
                 "isAutoDestroyed": true,
+                "multiplierAxisX": true,
+                "multiplierAxisY": true,
+                "multiplierAxisZ": true,
                 "multiplierDuration": 0.0,
-                "multiplierLerpDuration": 0.0,
+                "multiplierFadeInDuration": 0.0,
+                "multiplierFadeOutDuration": 0.0,
+                "multiplierFadeOutEaseType": 0,
                 "multiplierLerpEaseType": 0,
-                "multiplierTarget": [
-                    1.0,
-                    1.0,
-                    1.0
-                ],
+                "multiplierTarget": 1.0,
                 "restoreSpeed": 68.0
             }
         ],
@@ -169,8 +173,8 @@
                 ],
                 "translate": [
                     39.80291748046875,
-                    165.12405395507813,
-                    1683.504638671875
+                    158.49513244628906,
+                    1656.9892578125
                 ]
             }
         ]

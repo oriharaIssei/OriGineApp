@@ -607,44 +607,6 @@
             "Components": {
                 "EntityReferenceList": [
                     {
-                        "Handle": "ec4272a7-913f-4fd0-9e5a-811b4151ec5f",
-                        "entityFileList": [
-                            [
-                                "./application/resource/entities",
-                                "SpeedWave"
-                            ],
-                            [
-                                "./application/resource/entities",
-                                "SpeedWave_Diss"
-                            ],
-                            [
-                                "./application/resource/entities",
-                                "SpeedWave_Gradation_Bottom"
-                            ],
-                            [
-                                "./application/resource/entities",
-                                "SpeedWave_Gradation_Upper"
-                            ]
-                        ]
-                    }
-                ]
-            },
-            "Handle": {
-                "uuid": "ba532d93-2c0f-4aeb-a741-42918f15e20d"
-            },
-            "Name": "SpeedWaveRecipe",
-            "Systems": [
-                {
-                    "SystemCategory": 0,
-                    "SystemName": "ResolveEntityReferences"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "EntityReferenceList": [
-                    {
                         "Handle": "cab45c3b-5eb1-42ce-99fd-2c1f26b3c001",
                         "entityFileList": [
                             [
@@ -1841,44 +1803,6 @@
                 {
                     "SystemCategory": 3,
                     "SystemName": "SceneTransitionRequestReceiverSystem"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "EntityReferenceList": [
-                    {
-                        "Handle": "56770368-2386-47ae-bc0e-3357f0d3e575",
-                        "entityFileList": [
-                            [
-                                "./application/resource/entities",
-                                "SpeedWave"
-                            ],
-                            [
-                                "./application/resource/entities",
-                                "SpeedWave_Diss"
-                            ],
-                            [
-                                "./application/resource/entities",
-                                "SpeedWave_Gradation_Bottom"
-                            ],
-                            [
-                                "./application/resource/entities",
-                                "SpeedWave_Gradation_Upper"
-                            ]
-                        ]
-                    }
-                ]
-            },
-            "Handle": {
-                "uuid": "4663f018-b602-47c3-9fae-8ed9781ed869"
-            },
-            "Name": "SpeedWaveRecipe",
-            "Systems": [
-                {
-                    "SystemCategory": 0,
-                    "SystemName": "ResolveEntityReferences"
                 }
             ],
             "isUnique": false

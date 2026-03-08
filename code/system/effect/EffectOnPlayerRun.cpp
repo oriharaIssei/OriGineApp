@@ -165,29 +165,4 @@ void EffectOnPlayerRun::UpdateEntity(EntityHandle _entity) {
             paramData.intensity = std::lerp(paramData.intensity, intensity, 0.1f);
         }
     }
-
-    // スピードウェーブエフェクトを発生させる
-    EntityHandle speedWaveEntityHandle = GetUniqueEntity("SpeedWave");
-    if (speedWaveEntityHandle.IsValid()) {
-        Transform* speedWaveTransform = GetComponent<Transform>(speedWaveEntityHandle);
-        speedWaveTransform->parent    = GetComponent<Transform>(_entity);
-
-        Material* speedWaveMaterial = GetComponent<Material>(speedWaveEntityHandle);
-        float newAlpha              = 0.f;
-        if (speedWaveMaterial != nullptr) {
-            if (currentXZSpeed <= kThresholdSpeedForSpeedWave_) {
-                newAlpha = 0.f;
-            } else {
-                newAlpha = 1.f;
-            }
-        }
-        // alphaを徐々に変化させる
-        static constexpr float kAlphaLerpSpeed = 38.f;
-        speedWaveMaterial->color_[A]           = LerpByDeltaTime(speedWaveMaterial->color_[A], newAlpha, deltaTime, kAlphaLerpSpeed);
-    }
-
-    auto& speedWaveCylinders = GetComponents<CylinderRenderer>(speedWaveEntityHandle);
-    for (auto& speedWaveCylinder : speedWaveCylinders) {
-        speedWaveCylinder.SetIsCulling(true);
-    }
 }

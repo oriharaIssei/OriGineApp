@@ -11,9 +11,9 @@
 #include "CameraConfig.h"
 
 /// math
+#include "math/MyEasing.h"
 #include "math/Vector2.h"
 #include "math/Vector3.h"
-#include <numbers>
 
 /// <summary>
 /// カメラの挙動を制御するためのデータ
@@ -48,11 +48,11 @@ public:
     void Edit(OriGine::Scene* _scene, OriGine::EntityHandle _owner, const std::string& _parentLabel) override;
 
     /// <summary>
-    /// PlayerのギアレベルからFovYを計算する
+    /// XZ平面の速度からFovYを計算する
     /// </summary>
-    /// <param name="_level"></param>
+    /// <param name="_xzSpeed">XZ平面の速度</param>
     /// <returns></returns>
-    float CalculateFovYByPlayerGearLevel(int32_t _level) const;
+    float CalculateFovYBySpeed(float _xzSpeed) const;
 
 public:
     OriGine::Transform* followTarget = nullptr;
@@ -93,9 +93,11 @@ public:
     float maxRotateX = 0.0f;
     float minRotateX = 0.0f;
 
-    float fovYInterpolate    = AppConfig::Camera::kDefaultFovYInterpolate;
-    float baseFovY           = AppConfig::Camera::kDefaultBaseFovY * std::numbers::pi_v<float> / 180.0f; // 基準のFovY
-    float fovYRateBase       = AppConfig::Camera::kDefaultFovYRateBase; // FovYの倍率
-    float fovYRateCommonRate = AppConfig::Camera::kDefaultFovYRateCommonRate; // FovYの倍率の共通値
-    float fixForForwardSpeed = AppConfig::Camera::kFixForForwardSpeed; // 正面方向への 補正速度
+    float fovYInterpolate         = AppConfig::Camera::kDefaultFovYInterpolate;
+    float fovMin                  = AppConfig::Camera::kDefaultFovMin; // FovYの最小値
+    float fovMax                  = AppConfig::Camera::kDefaultFovMax; // FovYの最大値
+    float fovMinSpeed             = AppConfig::Camera::kDefaultFovMinSpeed; // FovY最小になる速度
+    float fovMaxSpeed             = AppConfig::Camera::kDefaultFovMaxSpeed; // FovY最大になる速度
+    OriGine::EaseType fovEaseType = OriGine::EaseType::Linear; // 速度→FovY のイージング
+    float fixForForwardSpeed      = AppConfig::Camera::kFixForForwardSpeed; // 正面方向への 補正速度
 };

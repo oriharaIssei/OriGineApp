@@ -4,7 +4,6 @@
             {
                 "Handle": "bcc6aef7-8b4a-44dd-a721-4639d89f68ff",
                 "angleLimitY": 1.5707963705062866,
-                "baseFovY": 0.8050000071525574,
                 "firstOffset": [
                     0.0,
                     3.3399999141693115,
@@ -21,9 +20,12 @@
                     0.0,
                     1.0
                 ],
+                "fovEaseType": 5,
+                "fovMax": 1.6260000467300415,
+                "fovMaxSpeed": 100.0,
+                "fovMin": 0.7853981852531433,
+                "fovMinSpeed": 24.0,
                 "fovYInterpolate": 0.11400000005960464,
-                "fovYRate": 0.14900000393390656,
-                "fovYRateCommonRate": -0.004000000189989805,
                 "interTargetInterpolation": 19.829999923706055,
                 "maxRotateX": 0.5899999737739563,
                 "minRotateX": -0.7699999809265137,
@@ -132,7 +134,7 @@
                 ],
                 "translate": [
                     0.0,
-                    5.944753646850586,
+                    4.0,
                     -5.0
                 ]
             }

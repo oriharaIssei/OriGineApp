@@ -628,44 +628,6 @@
         },
         {
             "Components": {
-                "EntityReferenceList": [
-                    {
-                        "Handle": "ec4272a7-913f-4fd0-9e5a-811b4151ec5f",
-                        "entityFileList": [
-                            [
-                                "./application/resource/entities",
-                                "SpeedWave"
-                            ],
-                            [
-                                "./application/resource/entities",
-                                "SpeedWave_Diss"
-                            ],
-                            [
-                                "./application/resource/entities",
-                                "SpeedWave_Gradation_Bottom"
-                            ],
-                            [
-                                "./application/resource/entities",
-                                "SpeedWave_Gradation_Upper"
-                            ]
-                        ]
-                    }
-                ]
-            },
-            "Handle": {
-                "uuid": "ba532d93-2c0f-4aeb-a741-42918f15e20d"
-            },
-            "Name": "SpeedWaveRecipe",
-            "Systems": [
-                {
-                    "SystemCategory": 0,
-                    "SystemName": "ResolveEntityReferences"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
                 "AABBCollider": [
                     {
                         "Handle": "88c6bf69-93e1-4992-91c6-818aa1027dfd",
@@ -4893,13 +4855,24 @@
                 "SpeedModifiers": [
                     {
                         "Handle": "fa5e490a-6e2a-435f-9e2f-4029d261172b",
-                        "additiveDuration": 0.800000011920929,
-                        "additiveLerpDuration": 0.20000000298023224,
+                        "additiveAxisX": true,
+                        "additiveAxisY": false,
+                        "additiveAxisZ": true,
+                        "additiveDuration": 1.0,
+                        "additiveFadeInDuration": 0.11999999731779099,
+                        "additiveFadeOutDuration": 0.07000000029802322,
+                        "additiveFadeOutEaseType": 0,
                         "additiveLerpEaseType": 10,
                         "additiveTarget": 32.0,
+                        "axesSpace": 0,
                         "isAutoDestroyed": true,
+                        "multiplierAxisX": true,
+                        "multiplierAxisY": false,
+                        "multiplierAxisZ": true,
                         "multiplierDuration": 0.0,
-                        "multiplierLerpDuration": 0.0,
+                        "multiplierFadeInDuration": 0.0,
+                        "multiplierFadeOutDuration": 0.0,
+                        "multiplierFadeOutEaseType": 0,
                         "multiplierLerpEaseType": 0,
                         "multiplierTarget": 1.0,
                         "restoreSpeed": 68.0
@@ -5221,13 +5194,24 @@
                 "SpeedModifiers": [
                     {
                         "Handle": "ab166d63-fbff-4285-9c5e-82ef38377334",
+                        "additiveAxisX": true,
+                        "additiveAxisY": false,
+                        "additiveAxisZ": true,
                         "additiveDuration": 1.0,
-                        "additiveLerpDuration": 0.4000000059604645,
+                        "additiveFadeInDuration": 0.11999999731779099,
+                        "additiveFadeOutDuration": 0.07000000029802322,
+                        "additiveFadeOutEaseType": 0,
                         "additiveLerpEaseType": 10,
                         "additiveTarget": 32.0,
+                        "axesSpace": 0,
                         "isAutoDestroyed": true,
+                        "multiplierAxisX": true,
+                        "multiplierAxisY": false,
+                        "multiplierAxisZ": false,
                         "multiplierDuration": 0.0,
-                        "multiplierLerpDuration": 0.0,
+                        "multiplierFadeInDuration": 0.0,
+                        "multiplierFadeOutDuration": 0.0,
+                        "multiplierFadeOutEaseType": 0,
                         "multiplierLerpEaseType": 0,
                         "multiplierTarget": 1.0,
                         "restoreSpeed": 68.0
@@ -6262,13 +6246,24 @@
                 "SpeedModifiers": [
                     {
                         "Handle": "2e05bd21-663f-44f2-906c-9ef809160cae",
+                        "additiveAxisX": true,
+                        "additiveAxisY": false,
+                        "additiveAxisZ": true,
                         "additiveDuration": 1.0,
-                        "additiveLerpDuration": 0.4000000059604645,
+                        "additiveFadeInDuration": 0.11999999731779099,
+                        "additiveFadeOutDuration": 0.07000000029802322,
+                        "additiveFadeOutEaseType": 0,
                         "additiveLerpEaseType": 10,
                         "additiveTarget": 32.0,
+                        "axesSpace": 0,
                         "isAutoDestroyed": true,
+                        "multiplierAxisX": true,
+                        "multiplierAxisY": false,
+                        "multiplierAxisZ": false,
                         "multiplierDuration": 0.0,
-                        "multiplierLerpDuration": 0.0,
+                        "multiplierFadeInDuration": 0.0,
+                        "multiplierFadeOutDuration": 0.0,
+                        "multiplierFadeOutEaseType": 0,
                         "multiplierLerpEaseType": 0,
                         "multiplierTarget": 1.0,
                         "restoreSpeed": 68.0
@@ -7325,13 +7320,24 @@
                 "SpeedModifiers": [
                     {
                         "Handle": "79d2f1a5-0ad1-4dbb-82bc-a2e85ec7bfca",
-                        "additiveDuration": 0.800000011920929,
-                        "additiveLerpDuration": 0.20000000298023224,
+                        "additiveAxisX": true,
+                        "additiveAxisY": false,
+                        "additiveAxisZ": true,
+                        "additiveDuration": 1.0,
+                        "additiveFadeInDuration": 0.11999999731779099,
+                        "additiveFadeOutDuration": 0.07000000029802322,
+                        "additiveFadeOutEaseType": 0,
                         "additiveLerpEaseType": 10,
                         "additiveTarget": 32.0,
+                        "axesSpace": 0,
                         "isAutoDestroyed": true,
+                        "multiplierAxisX": true,
+                        "multiplierAxisY": false,
+                        "multiplierAxisZ": true,
                         "multiplierDuration": 0.0,
-                        "multiplierLerpDuration": 0.0,
+                        "multiplierFadeInDuration": 0.0,
+                        "multiplierFadeOutDuration": 0.0,
+                        "multiplierFadeOutEaseType": 0,
                         "multiplierLerpEaseType": 0,
                         "multiplierTarget": 1.0,
                         "restoreSpeed": 68.0
@@ -10906,23 +10912,23 @@
             }
         },
         {
-            "CreateRailMesh": {
-                "Priority": 0
-            }
-        },
-        {
             "TimerForSprite": {
                 "Priority": 1
             }
         },
         {
-            "ApplySpeedModifiers": {
-                "Priority": 4
+            "CreateRailMesh": {
+                "Priority": 0
             }
         },
         {
             "AddForceTriggerSystem": {
                 "Priority": 13
+            }
+        },
+        {
+            "ApplySpeedModifiers": {
+                "Priority": 4
             }
         },
         {

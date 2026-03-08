@@ -88,6 +88,10 @@ void PlayerEffectControlParam::Edit(OriGine::Scene* /*_scene*/, OriGine::EntityH
     DragGuiCommand("aheadCollisionTiltAngle##" + _parentLabel, aheadCollisionTiltAngle_, 0.001f, {}, {}, "%.4f");
     DragGuiCommand("aheadCollisionTiltSpeed##" + _parentLabel, aheadCollisionTiltSpeed_, 0.001f, {}, {}, "%.4f");
 
+    ImGui::Spacing();
+
+    DragGuiCommand("thresholdSpeedlineParticle##" + _parentLabel, thresholdSpeedlineParticle_, 0.1f);
+
 #endif // _DEBUG
 }
 
@@ -104,6 +108,7 @@ void to_json(nlohmann::json& j, const PlayerEffectControlParam& _p) {
         {"invincibleBlinkMaxAmplitude", _p.invincibleBlinkMaxAmplitude_},
         {"aheadCollisionTiltAngle", _p.aheadCollisionTiltAngle_},
         {"aheadCollisionTiltSpeed", _p.aheadCollisionTiltSpeed_},
+        {"thresholdSpeedlineParticle", _p.thresholdSpeedlineParticle_},
     };
 }
 
@@ -141,5 +146,8 @@ void from_json(const nlohmann::json& j, PlayerEffectControlParam& _p) {
     }
     if (j.contains("aheadCollisionTiltSpeed")) {
         j.at("aheadCollisionTiltSpeed").get_to(_p.aheadCollisionTiltSpeed_);
+    }
+    if (j.contains("thresholdSpeedlineParticle")) {
+        j.at("thresholdSpeedlineParticle").get_to(_p.thresholdSpeedlineParticle_);
     }
 }

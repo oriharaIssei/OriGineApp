@@ -61,6 +61,9 @@ private:
     // 無敵時点滅エフェクトの最大振幅（終了間際の点滅速度）
     float invincibleBlinkMaxAmplitude_ = 40.0f;
 
+    // 速度線エフェクトの表示開始速度
+    float thresholdSpeedlineParticle_ = 0.f;
+
     OriGine::EntityHandle tireTrailSplineEntityHandle_ = OriGine::EntityHandle();
 
 public:
@@ -99,6 +102,10 @@ public:
     }
     void SetPreWheelTiltAngle(float _angle) {
         preWheelTiltAngle_ = _angle;
+    }
+
+    float GetThresholdSpeedlineParticle() const {
+        return thresholdSpeedlineParticle_;
     }
 
     OriGine::EntityHandle GetTireTrailSplineEntityHandle() const {

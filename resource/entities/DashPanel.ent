@@ -45,6 +45,7 @@
                     1.0
                 ],
                 "enableLighting": false,
+                "environmentCoefficient": 0.10000000149011612,
                 "shininess": 0.0,
                 "specularColor": [
                     1.0,
@@ -121,23 +122,26 @@
         "SpeedModifiers": [
             {
                 "Handle": "ab166d63-fbff-4285-9c5e-82ef38377334",
-                "additiveDuration": 0.800000011920929,
-                "additiveLerpDuration": 0.20000000298023224,
+                "additiveAxisX": true,
+                "additiveAxisY": true,
+                "additiveAxisZ": true,
+                "additiveDuration": 1.0,
+                "additiveFadeInDuration": 0.4000000059604645,
+                "additiveFadeOutDuration": 0.0,
+                "additiveFadeOutEaseType": 0,
                 "additiveLerpEaseType": 10,
-                "additiveTarget": [
-                    0.0,
-                    0.0,
-                    32.0
-                ],
+                "additiveTarget": 32.0,
+                "axesSpace": 0,
                 "isAutoDestroyed": true,
+                "multiplierAxisX": true,
+                "multiplierAxisY": true,
+                "multiplierAxisZ": true,
                 "multiplierDuration": 0.0,
-                "multiplierLerpDuration": 0.0,
+                "multiplierFadeInDuration": 0.0,
+                "multiplierFadeOutDuration": 0.0,
+                "multiplierFadeOutEaseType": 0,
                 "multiplierLerpEaseType": 0,
-                "multiplierTarget": [
-                    1.0,
-                    1.0,
-                    1.0
-                ],
+                "multiplierTarget": 1.0,
                 "restoreSpeed": 68.0
             }
         ],
