@@ -91,14 +91,15 @@
 #include "system/Movement/TireTrailGenerateSystem.h"
 #include "system/Movement/Ui3dUpdateSystem.h"
 #include "system/Movement/VelocityOverrideSystem.h"
-#include "system/transition/AttractModeSystem.h"
 #include "system/transition/ApplyMouseConditionSystem.h"
+#include "system/transition/AttractModeSystem.h"
 #include "system/transition/ButtonGroupSystem.h"
 #include "system/transition/ButtonScenePreviewSystem.h"
 #include "system/Transition/CameraMotionBobSystem.h"
 #include "system/transition/ChangeSceneByButton.h"
 #include "system/transition/ExitApplicationByButton.h"
-#include "system/transition/FallDetectionSystem.h"
+#include "system/transition/FallToFailedSystem.h"
+#include "system/transition/FallToRestartSystem.h"
 #include "system/transition/GameFailedSceneLaunchSystem.h"
 #include "system/transition/PenaltySystem.h"
 #include "system/Transition/PlayerStateOverrideSystem.h"
@@ -272,7 +273,8 @@ void RegisterUsingSystems() {
     /// ===================================================================================================
     systemRegistry->RegisterSystem<EffectAutoDestroySystem>();
     systemRegistry->RegisterSystem<ChangeSceneByButton>();
-    systemRegistry->RegisterSystem<FallDetectionSystem>();
+    systemRegistry->RegisterSystem<FallToFailedSystem>();
+    systemRegistry->RegisterSystem<FallToRestartSystem>();
     systemRegistry->RegisterSystem<SceneTransition>();
     systemRegistry->RegisterSystem<TransitionPlayerState>();
     systemRegistry->RegisterSystem<UpdateButtonColorByState>();

@@ -327,6 +327,9 @@
     <ClInclude Include="code\system\Transition\ApplyMouseConditionSystem.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Transition\AttractModeSystem.h">
+      <Filter>system\Transition</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\Transition\ButtonGroupSystem.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
@@ -343,6 +346,12 @@
       <Filter>system\Transition</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Transition\FallDetectionSystem.h">
+      <Filter>system\Transition</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Transition\FallToFailedSystem.h">
+      <Filter>system\Transition</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Transition\FallToRestartSystem.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Transition\GameFailedSceneLaunchSystem.h">
@@ -433,9 +442,6 @@
       <Filter>system\effect</Filter>
     </ClInclude>
     <ClInclude Include="code\system\effect\TimerForSprite.h">
-      <Filter>system\effect</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Transition\AttractModeSystem.h">
       <Filter>system\effect</Filter>
     </ClInclude>
   </ItemGroup>
@@ -706,6 +712,12 @@
       <Filter>system\Transition</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Transition\FallDetectionSystem.cpp">
+      <Filter>system\Transition</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Transition\FallToFailedSystem.cpp">
+      <Filter>system\Transition</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Transition\FallToRestartSystem.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Transition\GameFailedSceneLaunchSystem.cpp">

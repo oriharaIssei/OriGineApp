@@ -32,6 +32,7 @@
                     1.0
                 ],
                 "enableLighting": true,
+                "environmentCoefficient": 0.10000000149011612,
                 "shininess": 100.0,
                 "specularColor": [
                     1.0,
@@ -57,6 +58,7 @@
                     1.0
                 ],
                 "enableLighting": true,
+                "environmentCoefficient": 0.10000000149011612,
                 "shininess": 28.190000534057617,
                 "specularColor": [
                     1.0,
@@ -496,7 +498,7 @@
                 ],
                 "translate": [
                     0.0,
-                    2.0,
+                    0.0,
                     0.0
                 ]
             }
@@ -508,16 +510,16 @@
     "Name": "Player",
     "Systems": [
         {
-            "SystemCategory": 4,
-            "SystemName": "CollisionPushBackSystem"
+            "SystemCategory": 0,
+            "SystemName": "TakePlayerToStartPosition"
         },
         {
             "SystemCategory": 1,
             "SystemName": "PlayerInputSystem"
         },
         {
-            "SystemCategory": 0,
-            "SystemName": "TakePlayerToStartPosition"
+            "SystemCategory": 4,
+            "SystemName": "CollisionPushBackSystem"
         },
         {
             "SystemCategory": 4,
@@ -528,28 +530,24 @@
             "SystemName": "DissolveEffect"
         },
         {
-            "SystemCategory": 2,
-            "SystemName": "PenaltySystem"
-        },
-        {
             "SystemCategory": 5,
             "SystemName": "EffectOnPlayerRun"
         },
         {
             "SystemCategory": 2,
-            "SystemName": "FallDetectionSystem"
+            "SystemName": "FallToRestartSystem"
         },
         {
             "SystemCategory": 3,
             "SystemName": "MoveSystemByRigidBody"
         },
         {
-            "SystemCategory": 3,
-            "SystemName": "PlayerMoveSystem"
-        },
-        {
             "SystemCategory": 6,
             "SystemName": "TexturedMeshRenderSystem"
+        },
+        {
+            "SystemCategory": 3,
+            "SystemName": "PlayerMoveSystem"
         },
         {
             "SystemCategory": 4,
@@ -566,6 +564,10 @@
         {
             "SystemCategory": 5,
             "SystemName": "ScaleDeformSystem"
+        },
+        {
+            "SystemCategory": 2,
+            "SystemName": "FallToFailedSystem"
         }
     ],
     "isUnique": true

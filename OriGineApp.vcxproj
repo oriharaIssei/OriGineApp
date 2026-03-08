@@ -252,6 +252,8 @@
     <ClInclude Include="code\system\Transition\ChangeSceneByButton.h" />
     <ClInclude Include="code\system\Transition\ExitApplicationByButton.h" />
     <ClInclude Include="code\system\Transition\FallDetectionSystem.h" />
+    <ClInclude Include="code\system\Transition\FallToFailedSystem.h" />
+    <ClInclude Include="code\system\Transition\FallToRestartSystem.h" />
     <ClInclude Include="code\system\Transition\GameFailedSceneLaunchSystem.h" />
     <ClInclude Include="code\system\Transition\PenaltySystem.h" />
     <ClInclude Include="code\system\Transition\PlayerStateOverrideSystem.h" />
@@ -376,6 +378,8 @@
     <ClCompile Include="code\system\Transition\ChangeSceneByButton.cpp" />
     <ClCompile Include="code\system\Transition\ExitApplicationByButton.cpp" />
     <ClCompile Include="code\system\Transition\FallDetectionSystem.cpp" />
+    <ClCompile Include="code\system\Transition\FallToFailedSystem.cpp" />
+    <ClCompile Include="code\system\Transition\FallToRestartSystem.cpp" />
     <ClCompile Include="code\system\Transition\GameFailedSceneLaunchSystem.cpp" />
     <ClCompile Include="code\system\Transition\PenaltySystem.cpp" />
     <ClCompile Include="code\system\Transition\PlayerStateOverrideSystem.cpp" />

@@ -42,14 +42,14 @@ void StartSequenceSystem::Initialize() {
         nameof<PenaltySystem>()};
 
     isInitializeState_ = false;
-    // ステージ紹介シーケンスを開始する
-    StageIntroductionSequence();
 }
 
 void StartSequenceSystem::Finalize() {}
 
 void StartSequenceSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     if (!isInitializeState_) {
+        // ステージ紹介シーケンスを開始する
+        StageIntroductionSequence();
         ChangeState(stateType_, _handle);
         isInitializeState_ = true;
     }

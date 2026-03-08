@@ -18,5 +18,6 @@ public:
 
 private:
     float chargePower_      = 0.0f; // ジャンプ力の蓄積量
+    float maxChargePower_   = 0.0f; // ジャンプ力の最大値
     float releaseJumpPower_ = 0.0f; // ジャンプボタンを離した時のジャンプパワー
 };

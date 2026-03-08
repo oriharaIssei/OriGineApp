@@ -20,8 +20,8 @@ void PlayerJumpState::Initialize() {
 
     auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
     auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
-
-    auto* playerState = scene_->GetComponent<PlayerState>(playerEntityHandle_);
+    auto* playerInput  = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
+    auto* playerState  = scene_->GetComponent<PlayerState>(playerEntityHandle_);
 
     rigidbody->SetUseGravity(false);
 
@@ -32,6 +32,8 @@ void PlayerJumpState::Initialize() {
 
     easedT       = EasingFunctions[static_cast<int32_t>(playerStatus->GetJumpChargeRateEaseType())](t);
     chargePower_ = std::lerp(playerStatus->GetMinJumpChargeRate(), playerStatus->GetMaxJumpChargeRate(), easedT);
+
+    maxChargePower_ = chargePower_ * playerInput->GetMaxJumpTime(); // ジャンプ力の最大値を計算
 }
 
 void PlayerJumpState::Update(float _deltaTime) {
@@ -67,8 +69,9 @@ void PlayerJumpState::Finalize() {
     auto* rigidbody = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
 
     rigidbody->SetUseGravity(true);
+
     // 蓄えたジャンプ力を適用
-    rigidbody->SetVelocity(Y, rigidbody->GetVelocity()[Y] + releaseJumpPower_);
+    rigidbody->SetVelocity(Y, rigidbody->GetVelocity()[Y] + std::clamp(releaseJumpPower_, 0.f, maxChargePower_));
 }
 
 PlayerMoveState PlayerJumpState::TransitionState() const {
@@ -91,7 +94,7 @@ PlayerMoveState PlayerJumpState::TransitionState() const {
         }
         return PlayerMoveState::IDLE;
     } else {
-        if (!playerInput->IsJumpInput()) {
+        if (!playerInput->IsJumpInput() || releaseJumpPower_ >= maxChargePower_) {
             // ジャンプ入力がない場合は落下状態に遷移
             return PlayerMoveState::FALL_DOWN;
         }
