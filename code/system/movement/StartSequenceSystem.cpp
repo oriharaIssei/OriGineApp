@@ -4,6 +4,7 @@
 #include "scene/Scene.h"
 
 /// component
+#include "component/animation/SpriteAnimation.h"
 #include "component/effect/CameraAction.h"
 #include "component/renderer/Sprite.h"
 #include "component/TimerForSpriteComponent.h"
@@ -42,6 +43,10 @@ void StartSequenceSystem::Initialize() {
         nameof<PenaltySystem>()};
 
     isInitializeState_ = false;
+
+#ifndef _DEBUG
+    StageIntroductionSequence();
+#endif // ! _DEBUG
 }
 
 void StartSequenceSystem::Finalize() {}
@@ -49,7 +54,6 @@ void StartSequenceSystem::Finalize() {}
 void StartSequenceSystem::UpdateEntity(OriGine::EntityHandle _handle) {
     if (!isInitializeState_) {
         // ステージ紹介シーケンスを開始する
-        StageIntroductionSequence();
         ChangeState(stateType_, _handle);
         isInitializeState_ = true;
     }
@@ -117,21 +121,6 @@ void StartSequenceSystem::StopGameTimer() {
     }
 }
 
-void StartSequenceSystem::UpdateIntroductionSequence(OriGine::EntityHandle _handle, TimerComponent& _timerComp) {
-    DisableGameCamera();
-    _timerComp.SetStarted(false);
-
-    SetStartSpriteVisible(_handle, false);
-
-    if (IsIntroductionCameraEnd()) {
-        SetStartSpriteVisible(_handle, true);
-        EnableGameCamera();
-
-        TimerStartSequence();
-        _timerComp.SetStarted(true);
-    }
-}
-
 void StartSequenceSystem::DisableGameCamera() {
     EntityHandle gameCamera = GetUniqueEntity("GameCamera");
     if (auto* cam = GetComponent<CameraTransform>(gameCamera)) {
@@ -175,22 +164,16 @@ void StartSequenceSystem::SetStartSpriteVisible(OriGine::EntityHandle _handle, b
     for (auto& sprite : sprites) {
         sprite.SetIsRender(_visible);
     }
-}
+    // trueならAnimationも再生する
+    if (_visible) {
+        auto& spriteAnimations = GetComponents<SpriteAnimation>(spriteEntity->GetHandle());
+        for (auto& spriteAnimation : spriteAnimations) {
+            spriteAnimation.PlayColorAnimation();
+            spriteAnimation.PlayTransformAnimation();
+            spriteAnimation.PlayUVAnimation();
+        }
 
-void StartSequenceSystem::UpdateStartTimerSequence(OriGine::EntityHandle _handle, TimerComponent& _timerComp) {
-    if (_timerComp.GetTime() > 0.f) {
-        return;
     }
-
-    GameStartSequence();
-
-    if (auto* gameTimer = GetComponent<TimerComponent>(GetUniqueEntity("Timer"))) {
-        gameTimer->SetStarted(true);
-    }
-
-    isStarted_ = true;
-
-    CleanupEntities(_handle);
 }
 
 void StartSequenceSystem::CleanupEntities(OriGine::EntityHandle _handle) {

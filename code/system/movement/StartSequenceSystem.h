@@ -64,13 +64,6 @@ private:
     void StopGameTimer();
 
     /// <summary>
-    /// ステージ紹介シーケンスの更新処理
-    /// </summary>
-    /// <param name="_handle"></param>
-    /// <param name="_timerComp"></param>
-    void UpdateIntroductionSequence(OriGine::EntityHandle _handle, TimerComponent& _timerComp);
-
-    /// <summary>
     /// ゲームカメラを無効化する
     /// </summary>
     void DisableGameCamera();
@@ -91,12 +84,7 @@ private:
     /// <param name="_handle"></param>
     /// <param name="_visible"></param>
     void SetStartSpriteVisible(OriGine::EntityHandle _handle, bool _visible);
-    /// <summary>
-    /// スタートタイマーシーケンスの更新処理
-    /// </summary>
-    /// <param name="_handle"></param>
-    /// <param name="_timerComp"></param>
-    void UpdateStartTimerSequence(OriGine::EntityHandle _handle, TimerComponent& _timerComp);
+
     /// <summary>
     /// 不要なエンティティのクリーンアップ処理
     /// </summary>
