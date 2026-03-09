@@ -12,8 +12,12 @@ using namespace OriGine;
 FallDetectionSystem::FallDetectionSystem() : ISystem(OriGine::SystemCategory::StateTransition) {}
 FallDetectionSystem::~FallDetectionSystem() {}
 
-void FallDetectionSystem::UpdateEntity(OriGine::EntityHandle _handle) {
-    Transform* transform = GetComponent<Transform>(_handle);
+void FallDetectionSystem::Update() {
+    EntityHandle playerEntity = GetUniqueEntity("Player");
+    if (!playerEntity.IsValid()) {
+        return;
+    }
+    Transform* transform = GetComponent<Transform>(playerEntity);
 
     if (!transform) {
         return;

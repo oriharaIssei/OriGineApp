@@ -16,7 +16,10 @@ public:
     virtual void Finalize() override {}
 
 protected:
-    virtual void UpdateEntity(OriGine::EntityHandle _handle) override;
+    /// <summary>
+    /// 落下検出の処理。Playerのみを対象とするため、UpdateEntityではなく、PlayerのEntityを直接取得して処理する。
+    /// </summary>
+    void Update();
 
     /// <summary>
     /// 落下検出時に呼ばれる。派生クラスでイベントを発火する。
