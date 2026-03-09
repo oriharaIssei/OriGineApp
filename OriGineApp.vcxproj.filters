@@ -168,9 +168,6 @@
     <ClInclude Include="code\component\player\State\PlayerWallRunState.h">
       <Filter>component\player\State</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\player\State\PlayerWheelieRunState.h">
-      <Filter>component\player\State</Filter>
-    </ClInclude>
     <ClInclude Include="code\component\spline\SplinePoints.h">
       <Filter>component\spline</Filter>
     </ClInclude>
@@ -555,9 +552,6 @@
       <Filter>component\player\State</Filter>
     </ClCompile>
     <ClCompile Include="code\component\player\State\PlayerWallRunState.cpp">
-      <Filter>component\player\State</Filter>
-    </ClCompile>
-    <ClCompile Include="code\component\player\State\PlayerWheelieRunState.cpp">
       <Filter>component\player\State</Filter>
     </ClCompile>
     <ClCompile Include="code\component\spline\SplinePoints.cpp">

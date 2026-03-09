@@ -24,10 +24,9 @@ enum class PlayerMoveState {
     JUMP        = 1 << 3, // ジャンプ
     WALL_RUN    = 1 << 4, // 壁走り
     WALL_JUMP   = 1 << 5, // 壁ジャンプ
-    WHEELIE_RUN = 1 << 6, // ウィリー走行
-    RUN_ON_RAIL = 1 << 7, // レール上移動
+    RUN_ON_RAIL = 1 << 6, // レール上移動
 
-    Count = 7
+    Count = 6
 };
 static std::map<PlayerMoveState, const char*> moveStateName = {
     {PlayerMoveState::IDLE, "IDLE"},
@@ -36,7 +35,6 @@ static std::map<PlayerMoveState, const char*> moveStateName = {
     {PlayerMoveState::JUMP, "JUMP"},
     {PlayerMoveState::WALL_RUN, "WALL_RUN"},
     {PlayerMoveState::WALL_JUMP, "WALL_JUMP"},
-    {PlayerMoveState::WHEELIE_RUN, "WHEELIE_RUN"},
     {PlayerMoveState::RUN_ON_RAIL, "RUN_ON_RAIL"},
 };
 
@@ -44,7 +42,6 @@ enum class PlayerStateFlag {
     NONE        = 0,
     ON_GROUND   = 1 << 0, // 地面に接地している
     ON_WALL     = 1 << 1, // 壁に接触している
-    WHEELIE     = 1 << 2, // ウィリーしている
     GEAR_UP     = 1 << 3, // ギアアップしている
     IS_GOAL     = 1 << 4, // ゴールした
     IS_PENALTY  = 1 << 5, // ペナルティを受けている
@@ -94,8 +91,7 @@ public:
     /// </summary>
     /// <param name="_collisionNormal">衝突法線</param>
     /// <param name="_entityHandle">衝突相手のエンティティハンドル</param>
-    /// <param name="_isWheelie">ウィリー中かどうか</param>
-    void OnCollisionWall(const OriGine::Vec3f& _collisionNormal, OriGine::EntityHandle _entityHandle, bool _isWheelie = false);
+    void OnCollisionWall(const OriGine::Vec3f& _collisionNormal, OriGine::EntityHandle _entityHandle);
     /// <summary>
     /// 壁との接触がなくなったときの処理
     /// </summary>
@@ -246,10 +242,6 @@ public:
 
     bool IsPenalty() const {
         return stateFlag_.Current().HasFlag(PlayerStateFlag::IS_PENALTY);
-    }
-
-    bool IsWheelie() const {
-        return stateFlag_.Current().HasFlag(PlayerStateFlag::WHEELIE);
     }
 
     bool IsRestart() const {

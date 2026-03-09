@@ -24,7 +24,6 @@ bool IsHitGround(const OriGine::Vec3f& _collNormal);
 /// </summary>
 enum class WallContactResult {
     WallRun,
-    Wheelie,
     WallHit
 };
 
@@ -35,7 +34,6 @@ enum class WallContactResult {
 /// <returns></returns>
 WallContactResult EvaluateWallContact(
     float _parallelFactor,
-    const OriGine::Rigidbody* _rigidbody,
     const PlayerStatus* _status);
 
 /// <summary>
@@ -45,14 +43,6 @@ WallContactResult EvaluateWallContact(
 /// <param name="_wallNormal"></param>
 /// <returns> 壁走りの移動方向 </returns>
 OriGine::Vec3f ComputeWallRunDirection(const OriGine::Vec3f& _velocity, const OriGine::Vec3f& _wallNormal);
-
-/// <summary>
-/// ウィリーの移動方向を計算する
-/// </summary>
-/// <param name="_wallNormal"></param>
-/// <param name="_up"></param>
-/// <returns></returns>
-OriGine::Vec3f ComputeWheelieDirection(const OriGine::Vec3f& _wallNormal, const OriGine::Vec3f& _up = OriGine::axisY);
 
 /// <summary>
 /// 壁が右側にあるかを判定する

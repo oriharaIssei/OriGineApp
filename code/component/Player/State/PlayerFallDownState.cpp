@@ -96,9 +96,6 @@ PlayerMoveState PlayerFallDownState::TransitionState() const {
     }
     // 壁走り判定
     if (state->IsCollisionWithWall()) {
-        if (state->IsWheelie()) {
-            return PlayerMoveState::WHEELIE_RUN;
-        }
         return PlayerMoveState::WALL_RUN;
     }
 
