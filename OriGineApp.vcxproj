@@ -192,7 +192,6 @@
     <ClInclude Include="code\component\player\State\PlayerState.h" />
     <ClInclude Include="code\component\player\State\PlayerWallJumpState.h" />
     <ClInclude Include="code\component\player\State\PlayerWallRunState.h" />
-    <ClInclude Include="code\component\player\State\PlayerWheelieRunState.h" />
     <ClInclude Include="code\component\spline\SplinePoints.h" />
     <ClInclude Include="code\component\spline\TireSplinePoints.h" />
     <ClInclude Include="code\component\stage\StageData.h" />
@@ -325,7 +324,6 @@
     <ClCompile Include="code\component\player\State\PlayerState.cpp" />
     <ClCompile Include="code\component\player\State\PlayerWallJumpState.cpp" />
     <ClCompile Include="code\component\player\State\PlayerWallRunState.cpp" />
-    <ClCompile Include="code\component\player\State\PlayerWheelieRunState.cpp" />
     <ClCompile Include="code\component\spline\SplinePoints.cpp" />
     <ClCompile Include="code\component\spline\TireSplinePoints.cpp" />
     <ClCompile Include="code\component\stage\StageData.cpp" />

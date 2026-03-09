@@ -82,10 +82,9 @@ PlayerMoveState PlayerJumpState::TransitionState() const {
     // Rail上にいる場合
     if (state->IsOnRail()) {
         return PlayerMoveState::RUN_ON_RAIL;
-    } else if (state->IsCollisionWithWall()) {
-        if (state->IsWheelie()) {
-            return PlayerMoveState::WHEELIE_RUN;
-        }
+    }
+
+    if (state->IsCollisionWithWall()) {
         return PlayerMoveState::WALL_RUN;
     }
 

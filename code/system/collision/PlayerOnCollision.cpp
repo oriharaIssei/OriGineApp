@@ -44,7 +44,6 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
 
     // 毎フレーム、地面・壁との衝突状態をリセット
     bool isPreOnGround            = state->IsOnGround(); // 前フレームの地面接触状態を保持
-    bool isPreWheelie             = state->IsWheelie(); // 前フレームのウィリー状態を保持
     EntityHandle wallEntityHandle = state->GetWallEntityIndex();
     state->OffCollisionGround();
     state->OffCollisionWall();
@@ -130,7 +129,6 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
             state->OnCollisionGround();
 
             status->ResetWallRunInterval();
-            status->ResetWheelieInterval();
 
             OriGine::Vec3f acceleration = rigidbody->GetAcceleration();
 
@@ -158,18 +156,17 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
             }
 
             if (isFirstCollision) {
-                PlayerMoveUtils::WallContactResult wallContactResult = PlayerMoveUtils::EvaluateWallContact(parallelFactor, rigidbody, status);
+                PlayerMoveUtils::WallContactResult wallContactResult = PlayerMoveUtils::EvaluateWallContact(parallelFactor, status);
                 switch (wallContactResult) {
                 case PlayerMoveUtils::WallContactResult::WallRun:
-                case PlayerMoveUtils::WallContactResult::Wheelie:
-                    state->OnCollisionWall(collisionNormal, entityId, wallContactResult == PlayerMoveUtils::WallContactResult::Wheelie);
+                    state->OnCollisionWall(collisionNormal, entityId);
                     break;
                 default:
                     break;
                 }
             } else {
                 // 前フレームから引き続き壁と接触している場合は、ウィリー状態を維持するかどうかを判断する
-                state->OnCollisionWall(collisionNormal, wallEntityHandle, isPreWheelie);
+                state->OnCollisionWall(collisionNormal, wallEntityHandle);
             }
         }
     }
