@@ -29,7 +29,7 @@ void PlayerStatus::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {
     currentMaxSpeed_ = baseSpeed_;
 
     currentWallRunInterval_ = 0.f;
-    currentWheelieInterval_ = 0.f;
+    currentRailInterval_    = 0.f;
 }
 
 void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityHandle _owner, [[maybe_unused]] const std::string& _parentLabel) {
@@ -164,8 +164,6 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityH
     DragGuiVectorCommand<3, float>("WallJumpOffset##" + _parentLabel, wallJumpOffset_, 0.01f);
     wallJumpOffset_ = wallJumpOffset_.normalize();
 
-    DragGuiVectorCommand<3, float>("WheelieJumpOffset##" + _parentLabel, wheelieJumpOffset_, 0.01f);
-    wheelieJumpOffset_ = wheelieJumpOffset_.normalize();
     DragGuiCommand("GravityApplyDelay On WallRun##" + _parentLabel, gravityApplyDelayOnWallRun_, 0.01f);
     DragGuiCommand("WallRunDetachSpeed##" + _parentLabel, wallRunDetachSpeed_, 0.01f);
 
@@ -185,7 +183,6 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityH
 
     DragGuiCommand("Ground Check Threshold##" + _parentLabel, groundCheckThreshold_, 0.01f);
     DragGuiCommand("Wall Check Threshold##" + _parentLabel, wallCheckThreshold_, 0.01f);
-    DragGuiCommand("Max Wheelie Fall Speed##" + _parentLabel, maxWheelieFallSpeed_, 0.01f);
 
 #endif // _DEBUG
 }
@@ -313,8 +310,6 @@ void to_json(nlohmann::json& _j, const PlayerStatus& _playerStatus) {
     _j["gearUpCoolTime"]           = _playerStatus.baseGearupCoolTime_;
     _j["directionInterpolateRate"] = _playerStatus.directionInterpolateRate_;
 
-    _j["wheelieJumpOffset"] = _playerStatus.wheelieJumpOffset_;
-
     _j["gravityApplyDelayOnWallRun"] = _playerStatus.gravityApplyDelayOnWallRun_;
     _j["wallRunDetachSpeed"]         = _playerStatus.wallRunDetachSpeed_;
 
@@ -330,7 +325,6 @@ void to_json(nlohmann::json& _j, const PlayerStatus& _playerStatus) {
 
     _j["groundCheckThreshold"] = _playerStatus.groundCheckThreshold_;
     _j["wallCheckThreshold"]   = _playerStatus.wallCheckThreshold_;
-    _j["maxWheelieFallSpeed"]  = _playerStatus.maxWheelieFallSpeed_;
 }
 void from_json(const nlohmann::json& _j, PlayerStatus& _playerStatus) {
     if (_j.contains("decelerationFactor")) {
@@ -399,10 +393,6 @@ void from_json(const nlohmann::json& _j, PlayerStatus& _playerStatus) {
         _j.at("railJumpOffset").get_to(_playerStatus.railJumpOffset_);
     }
 
-    if (_j.contains("wheelieJumpOffset")) {
-        _j.at("wheelieJumpOffset").get_to(_playerStatus.wheelieJumpOffset_);
-    }
-
     if (_j.contains("gravityApplyDelayOnWallRun")) {
         _j.at("gravityApplyDelayOnWallRun").get_to(_playerStatus.gravityApplyDelayOnWallRun_);
     }
@@ -429,8 +419,5 @@ void from_json(const nlohmann::json& _j, PlayerStatus& _playerStatus) {
     }
     if (_j.contains("wallCheckThreshold")) {
         _j.at("wallCheckThreshold").get_to(_playerStatus.wallCheckThreshold_);
-    }
-    if (_j.contains("maxWheelieFallSpeed")) {
-        _j.at("maxWheelieFallSpeed").get_to(_playerStatus.maxWheelieFallSpeed_);
     }
 }
