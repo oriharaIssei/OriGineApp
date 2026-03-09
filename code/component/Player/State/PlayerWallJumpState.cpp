@@ -35,28 +35,20 @@ void PlayerWallJumpState::Initialize() {
     OriGine::Vec3f velocityDirection = rigidbody->GetVelocity();
     velocityDirection                = velocityDirection.normalize();
 
-    if (playerState->GetPreStateEnum() == PlayerMoveState::WALL_RUN) {
-        OriGine::Vec3f wallJumpDirection = playerStatus->GetWallJumpOffset();
-        // -1 ~ 1 を 0 ~ 1 に変換
-        float inputXNormalized = (playerInput->GetInputDirection()[X] + 1) * 0.5f;
-        inputXNormalized       = EasingFunctions[static_cast<int>(EaseType::EaseInQuad)](inputXNormalized);
+    OriGine::Vec3f wallJumpDirection = playerStatus->GetWallJumpOffset();
+    // -1 ~ 1 を 0 ~ 1 に変換
+    float inputXNormalized = (playerInput->GetInputDirection()[X] + 1) * 0.5f;
+    inputXNormalized       = EasingFunctions[static_cast<int>(EaseType::EaseInQuad)](inputXNormalized);
 
-        wallJumpDirection[X] = std::lerp(playerStatus->GetMinWallJumpOffsetX(), wallJumpDirection[X], inputXNormalized);
+    wallJumpDirection[X] = std::lerp(playerStatus->GetMinWallJumpOffsetX(), wallJumpDirection[X], inputXNormalized);
 
-        // --- 壁ローカル → ワールド変換 ---
-        // wallJumpDirection = (x:外, y:上, z:沿う)
-        jumpDirWorld =
-            wallNormal * wallJumpDirection[X] + axisY * wallJumpDirection[Y] + velocityDirection * wallJumpDirection[Z];
-        // wallRun後は maxXZSpeedを使用する
-        jumpSpeed = playerStatus->GetCurrentMaxSpeed() * playerStatus->GetWallRunRate();
-    } else {
-        const OriGine::Vec3f& wallJumpDirection = playerStatus->GetWheelieJumpOffset();
-        // --- 壁ローカル → ワールド変換 ---
-        jumpDirWorld =
-            velocityDirection * wallJumpDirection[Y] + wallNormal * wallJumpDirection[Z];
-        // whellie後は velocityをそのまま使用する
-        jumpSpeed = rigidbody->GetVelocity().length();
-    }
+    // --- 壁ローカル → ワールド変換 ---
+    // wallJumpDirection = (x:外, y:上, z:沿う)
+    jumpDirWorld =
+        wallNormal * wallJumpDirection[X] + axisY * wallJumpDirection[Y] + velocityDirection * wallJumpDirection[Z];
+    // wallRun後は maxXZSpeedを使用する
+    jumpSpeed = playerStatus->GetCurrentMaxSpeed() * playerStatus->GetWallRunRate();
+
     jumpDirWorld = jumpDirWorld.normalize();
 
     // --- 最終速度設定 ---

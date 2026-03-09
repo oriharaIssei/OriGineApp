@@ -128,7 +128,6 @@ void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
     state->GetStateFlagRef().Set(newFlag);
 
     status->UpdateWallRunInterval(deltaTime);
-    status->UpdateWheelieInterval(deltaTime);
     status->UpdateRailInterval(deltaTime);
 
     // ペナルティ時間 更新

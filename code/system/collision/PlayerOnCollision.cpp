@@ -129,7 +129,6 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
             state->OnCollisionGround();
 
             status->ResetWallRunInterval();
-            status->ResetWheelieInterval();
 
             OriGine::Vec3f acceleration = rigidbody->GetAcceleration();
 
