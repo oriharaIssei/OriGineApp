@@ -20,6 +20,7 @@
 #include "component/gimmick/TimeScaleEffectComponent.h"
 #include "component/LookAtFromTransforms.h"
 #include "component/MouseCondition.h"
+#include "component/gimmick/ObstacleSpawnGroupComponent.h"
 #include "component/player/PlayerEffectControlParam.h"
 #include "component/player/PlayerInput.h"
 #include "component/player/PlayerStatus.h"
@@ -38,6 +39,7 @@
 
 // application system
 #include "system/collision/AddForceTriggerSystem.h"
+#include "system/collision/ObstacleSpawnEventTriggerSystem.h"
 #include "system/collision/OnCollisionModifierTargetSystem.h"
 #include "system/collision/PlayerAheadCollisionReactionSystem.h"
 #include "system/collision/PlayerOnCollision.h"
@@ -220,6 +222,8 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<ButtonGroup>();
     componentRegistry->RegisterComponent<SceneChanger>();
 
+    componentRegistry->RegisterComponent<ObstacleSpawnGroupComponent>();
+
     componentRegistry->RegisterComponent<PlayerStateOverrideCondition>();
 
     componentRegistry->RegisterComponent<BillboardComponent>();
@@ -335,6 +339,8 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<CollisionPushBackSystem>();
 
     systemRegistry->RegisterSystem<CollisionTriggeredSceneTransition>();
+
+    systemRegistry->RegisterSystem<ObstacleSpawnEventTriggerSystem>();
 
     systemRegistry->RegisterSystem<PlayerOnCollision>();
     systemRegistry->RegisterSystem<TutorialColliderOnCollision>();

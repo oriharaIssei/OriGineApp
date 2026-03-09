@@ -255,6 +255,7 @@
                 "maxTiltOnRailRun": -0.7300000190734863,
                 "maxWheelSpinSpeed": 0.18700000643730164,
                 "rotateOffsetOnWallRun": 0.5699999928474426,
+                "thresholdSpeedlineParticle": 0.0,
                 "tiltSpeedOnRailRun": 12.0,
                 "trailColorByGearLevel": [
                     [
@@ -498,7 +499,7 @@
                 ],
                 "translate": [
                     0.0,
-                    0.0,
+                    2.0,
                     0.0
                 ]
             }
@@ -512,10 +513,6 @@
         {
             "SystemCategory": 0,
             "SystemName": "TakePlayerToStartPosition"
-        },
-        {
-            "SystemCategory": 1,
-            "SystemName": "PlayerInputSystem"
         },
         {
             "SystemCategory": 4,
@@ -535,7 +532,7 @@
         },
         {
             "SystemCategory": 2,
-            "SystemName": "FallToRestartSystem"
+            "SystemName": "FallToFailedSystem"
         },
         {
             "SystemCategory": 3,
@@ -544,10 +541,6 @@
         {
             "SystemCategory": 6,
             "SystemName": "TexturedMeshRenderSystem"
-        },
-        {
-            "SystemCategory": 3,
-            "SystemName": "PlayerMoveSystem"
         },
         {
             "SystemCategory": 4,
@@ -566,8 +559,16 @@
             "SystemName": "ScaleDeformSystem"
         },
         {
+            "SystemCategory": 1,
+            "SystemName": "PlayerInputSystem"
+        },
+        {
+            "SystemCategory": 3,
+            "SystemName": "PlayerMoveSystem"
+        },
+        {
             "SystemCategory": 2,
-            "SystemName": "FallToFailedSystem"
+            "SystemName": "PenaltySystem"
         }
     ],
     "isUnique": true

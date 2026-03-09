@@ -1033,14 +1033,14 @@
                             1.0
                         ],
                         "scale": [
-                            64.0,
+                            264.5720520019531,
                             64.0,
                             97.27999877929688
                         ],
                         "translate": [
                             0.0,
                             0.0,
-                            73.22200012207031
+                            126.36126708984375
                         ]
                     }
                 ]
@@ -1184,7 +1184,7 @@
                             1.0,
                             1.0,
                             1.0,
-                            0.7015570998191833
+                            0.98060142993927
                         ],
                         "defaultWindowSize": [
                             1920.0,
@@ -1196,8 +1196,8 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            0.7115384340286255,
-                            0.7115384340286255
+                            0.9803904294967651,
+                            0.9803904294967651
                         ],
                         "size": [
                             384.0,
@@ -2038,7 +2038,7 @@
                             1.0
                         ],
                         "uvTranslate": [
-                            0.8815783262252808,
+                            0.3596489727497101,
                             0.0
                         ],
                         "windowRatioPos": [
@@ -2188,12 +2188,12 @@
                         "scale": [
                             32.0,
                             32.0,
-                            256.0
+                            232.0
                         ],
                         "translate": [
                             0.0,
                             -33.0,
-                            762.4114379882813
+                            721.5822143554688
                         ]
                     }
                 ]
@@ -2333,9 +2333,9 @@
                             64.0
                         ],
                         "translate": [
-                            -41.16743850708008,
+                            -41.16699981689453,
                             32.0,
-                            1086.17724609375
+                            1018.5714111328125
                         ]
                     }
                 ]
@@ -2477,7 +2477,7 @@
                         "translate": [
                             0.0,
                             -33.0,
-                            1326.1143798828125
+                            1244.327392578125
                         ]
                     }
                 ]
@@ -2617,9 +2617,9 @@
                             64.0
                         ],
                         "translate": [
-                            41.16699981689453,
-                            32.0,
-                            1550.9923095703125
+                            40.53935241699219,
+                            32.021636962890625,
+                            1466.89501953125
                         ]
                     }
                 ]
@@ -2756,12 +2756,12 @@
                         "scale": [
                             32.0,
                             32.0,
-                            124.0
+                            119.11000061035156
                         ],
                         "translate": [
                             0.0,
                             -33.0,
-                            1747.971435546875
+                            1663.8583984375
                         ]
                     }
                 ]
@@ -2903,7 +2903,7 @@
                         "translate": [
                             0.0,
                             -26.001556396484375,
-                            2148.450439453125
+                            2060.21826171875
                         ]
                     }
                 ]
@@ -3133,8 +3133,8 @@
                             0.800000011920929
                         ],
                         "size": [
-                            769.5,
-                            837.0
+                            513.0,
+                            417.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -3178,7 +3178,7 @@
                             1.0
                         ],
                         "scale": [
-                            64.0,
+                            281.1957092285156,
                             64.0,
                             86.0
                         ],
@@ -3423,8 +3423,8 @@
                             0.800000011920929
                         ],
                         "size": [
-                            769.5,
-                            837.0
+                            512.0,
+                            254.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -3470,12 +3470,12 @@
                         "scale": [
                             64.0,
                             64.0,
-                            365.0
+                            507.92999267578125
                         ],
                         "translate": [
                             0.0,
                             0.0,
-                            1227.1512451171875
+                            1135.2718505859375
                         ]
                     }
                 ]
@@ -3512,13 +3512,13 @@
             }
         },
         {
-            "ColliderRenderingSystem": {
-                "Priority": 100
+            "ApplyMouseConditionSystem": {
+                "Priority": 0
             }
         },
         {
-            "ApplyMouseConditionSystem": {
-                "Priority": 0
+            "ColliderRenderingSystem": {
+                "Priority": 100
             }
         },
         {
@@ -3532,6 +3532,11 @@
             }
         },
         {
+            "ButtonInputSystem": {
+                "Priority": 1
+            }
+        },
+        {
             "ChangeSceneByButton": {
                 "Priority": 1
             }
@@ -3539,26 +3544,6 @@
         {
             "CameraMotionBobSystem": {
                 "Priority": 1
-            }
-        },
-        {
-            "ButtonInputSystem": {
-                "Priority": 1
-            }
-        },
-        {
-            "SceneTransitionRequestSenderSystem": {
-                "Priority": -1
-            }
-        },
-        {
-            "CollisionPushBackSystem": {
-                "Priority": 5
-            }
-        },
-        {
-            "PlayerInputSystem": {
-                "Priority": 3
             }
         },
         {
@@ -3572,8 +3557,18 @@
             }
         },
         {
-            "CameraInputSystem": {
-                "Priority": 2
+            "PlayerInputSystem": {
+                "Priority": 3
+            }
+        },
+        {
+            "SceneTransitionRequestSenderSystem": {
+                "Priority": -1
+            }
+        },
+        {
+            "CollisionPushBackSystem": {
+                "Priority": 5
             }
         },
         {
@@ -3582,13 +3577,18 @@
             }
         },
         {
-            "CameraShake": {
-                "Priority": 0
+            "CameraInputSystem": {
+                "Priority": 2
             }
         },
         {
             "CreatePlaneFromSpeed": {
                 "Priority": 10
+            }
+        },
+        {
+            "CameraShake": {
+                "Priority": 0
             }
         },
         {
@@ -3612,13 +3612,13 @@
             }
         },
         {
-            "DissolveEffect": {
-                "Priority": 100
+            "PlayerSpeedFor3dUI": {
+                "Priority": 1
             }
         },
         {
-            "PlayerSpeedFor3dUI": {
-                "Priority": 1
+            "DissolveEffect": {
+                "Priority": 100
             }
         },
         {
@@ -3662,8 +3662,8 @@
             }
         },
         {
-            "MaterialAnimationWorkSystem": {
-                "Priority": 0
+            "StartTimerInitialize": {
+                "Priority": 3
             }
         },
         {
@@ -3672,8 +3672,8 @@
             }
         },
         {
-            "StartTimerInitialize": {
-                "Priority": 3
+            "MaterialAnimationWorkSystem": {
+                "Priority": 0
             }
         },
         {
@@ -3687,13 +3687,13 @@
             }
         },
         {
-            "OverlayRenderSystem": {
-                "Priority": 100
+            "ResolveEntityReferences": {
+                "Priority": -2
             }
         },
         {
-            "ResolveEntityReferences": {
-                "Priority": -2
+            "OverlayRenderSystem": {
+                "Priority": 100
             }
         },
         {
@@ -3707,11 +3707,6 @@
             }
         },
         {
-            "PlayerPathSplineGenerator": {
-                "Priority": 100
-            }
-        },
-        {
             "PlayRecorderInitialize": {
                 "Priority": 0
             }
@@ -3722,13 +3717,18 @@
             }
         },
         {
-            "PlayerMoveSystem": {
-                "Priority": 3
+            "PlayerPathSplineGenerator": {
+                "Priority": 100
             }
         },
         {
             "TexturedMeshRenderSystem": {
                 "Priority": 0
+            }
+        },
+        {
+            "PlayerMoveSystem": {
+                "Priority": 3
             }
         },
         {
@@ -3757,6 +3757,11 @@
             }
         },
         {
+            "SpriteAnimationSystem": {
+                "Priority": 1
+            }
+        },
+        {
             "VelocityRenderingSystem": {
                 "Priority": 0
             }
@@ -3764,11 +3769,6 @@
         {
             "SettingGameCameraTarget": {
                 "Priority": 5
-            }
-        },
-        {
-            "SpriteAnimationSystem": {
-                "Priority": 1
             }
         },
         {
@@ -3797,16 +3797,6 @@
             }
         },
         {
-            "SubSceneActivateByButton": {
-                "Priority": 0
-            }
-        },
-        {
-            "TakeToGoalPosition": {
-                "Priority": 1
-            }
-        },
-        {
             "TireTrailGenerateSystem": {
                 "Priority": 100
             }
@@ -3814,6 +3804,16 @@
         {
             "SubSceneRender": {
                 "Priority": 10
+            }
+        },
+        {
+            "SubSceneActivateByButton": {
+                "Priority": 0
+            }
+        },
+        {
+            "TakeToGoalPosition": {
+                "Priority": 1
             }
         },
         {
@@ -3832,13 +3832,13 @@
             }
         },
         {
-            "TimerForSprite": {
-                "Priority": 1
+            "CreateRailMesh": {
+                "Priority": 0
             }
         },
         {
-            "CreateRailMesh": {
-                "Priority": 0
+            "TimerForSprite": {
+                "Priority": 1
             }
         },
         {
@@ -3862,13 +3862,13 @@
             }
         },
         {
-            "PlayerAheadCollisionReactionSystem": {
-                "Priority": 6
+            "SceneTransitionRequestReceiverSystem": {
+                "Priority": 0
             }
         },
         {
-            "SceneTransitionRequestReceiverSystem": {
-                "Priority": 0
+            "PlayerAheadCollisionReactionSystem": {
+                "Priority": 6
             }
         },
         {

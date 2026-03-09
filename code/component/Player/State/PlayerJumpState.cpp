@@ -77,6 +77,7 @@ void PlayerJumpState::Finalize() {
 PlayerMoveState PlayerJumpState::TransitionState() const {
     auto state       = scene_->GetComponent<PlayerState>(playerEntityHandle_);
     auto playerInput = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
+    auto* rigidbody  = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
 
     // Rail上にいる場合
     if (state->IsOnRail()) {
@@ -94,7 +95,7 @@ PlayerMoveState PlayerJumpState::TransitionState() const {
         }
         return PlayerMoveState::IDLE;
     } else {
-        if (!playerInput->IsJumpInput() || releaseJumpPower_ >= maxChargePower_) {
+        if (!playerInput->IsJumpInput() || releaseJumpPower_ >= maxChargePower_ || rigidbody->GetVelocity(Y) >= maxChargePower_) {
             // ジャンプ入力がない場合は落下状態に遷移
             return PlayerMoveState::FALL_DOWN;
         }
