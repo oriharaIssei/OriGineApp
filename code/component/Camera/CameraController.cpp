@@ -52,7 +52,11 @@ void CameraController::Edit(Scene* /*_scene*/, EntityHandle /*_OriGine::Entity*/
     DragGuiCommand("rotateSpeedMouse##" + _parentLabel, rotateSpeedMouse, 0.01f);
 
     DragGuiCommand("rotateSensitivity##" + _parentLabel, rotateSensitivity, 0.01f);
-    DragGuiCommand("interTargetInterpolation##" + _parentLabel, interTargetInterpolation, 0.01f);
+
+    ImGui::Spacing();
+
+    DragGuiVectorCommand("interTargetInterpolation##" + _parentLabel, interTargetInterpolation, 0.01f);
+    DragGuiVectorCommand("interLookAtTargetInterpolation##" + _parentLabel, interLookAtTargetInterpolation, 0.01f);
 
     ImGui::Spacing();
 
@@ -88,29 +92,30 @@ float CameraController::CalculateFovYBySpeed(float _xzSpeed) const {
 }
 
 void to_json(nlohmann::json& _j, const CameraController& _c) {
-    _j["forward"]                   = _c.forward;
-    _j["angleLimitY"]               = _c.angleLimitY;
-    _j["firstOffset"]               = _c.firstOffset;
-    _j["offsetOnDash"]              = _c.offsetOnDash;
-    _j["offsetOnWallRun"]           = _c.offsetOnWallRun;
-    _j["firstTargetOffset"]         = _c.firstTargetOffset;
-    _j["targetOffsetOnDash"]        = _c.targetOffsetOnDash;
-    _j["minTargetOffsetXOnWallRun"] = _c.minTargetOffsetXOnWallRun;
-    _j["targetOffsetOnWallRun"]     = _c.targetOffsetOnWallRun;
-    _j["rotateZOnWallRun"]          = _c.rotateZOnWallRun;
-    _j["rotateSpeedPadStick"]       = _c.rotateSpeedPadStick;
-    _j["rotateSpeedMouse"]          = _c.rotateSpeedMouse;
-    _j["rotateSensitivity"]         = _c.rotateSensitivity;
-    _j["interTargetInterpolation"]  = _c.interTargetInterpolation;
-    _j["maxRotateX"]                = _c.maxRotateX;
-    _j["minRotateX"]                = _c.minRotateX;
-    _j["fovYInterpolate"]           = _c.fovYInterpolate;
-    _j["fovMin"]                    = _c.fovMin;
-    _j["fovMax"]                    = _c.fovMax;
-    _j["fovMinSpeed"]               = _c.fovMinSpeed;
-    _j["fovMaxSpeed"]               = _c.fovMaxSpeed;
-    _j["fovEaseType"]               = static_cast<int>(_c.fovEaseType);
-    _j["fixForForwardSpeed"]        = _c.fixForForwardSpeed;
+    _j["forward"]                        = _c.forward;
+    _j["angleLimitY"]                    = _c.angleLimitY;
+    _j["firstOffset"]                    = _c.firstOffset;
+    _j["offsetOnDash"]                   = _c.offsetOnDash;
+    _j["offsetOnWallRun"]                = _c.offsetOnWallRun;
+    _j["firstTargetOffset"]              = _c.firstTargetOffset;
+    _j["targetOffsetOnDash"]             = _c.targetOffsetOnDash;
+    _j["minTargetOffsetXOnWallRun"]      = _c.minTargetOffsetXOnWallRun;
+    _j["targetOffsetOnWallRun"]          = _c.targetOffsetOnWallRun;
+    _j["rotateZOnWallRun"]               = _c.rotateZOnWallRun;
+    _j["rotateSpeedPadStick"]            = _c.rotateSpeedPadStick;
+    _j["rotateSpeedMouse"]               = _c.rotateSpeedMouse;
+    _j["rotateSensitivity"]              = _c.rotateSensitivity;
+    _j["interTargetInterpolation"]       = _c.interTargetInterpolation;
+    _j["interLookAtTargetInterpolation"] = _c.interLookAtTargetInterpolation;
+    _j["maxRotateX"]                     = _c.maxRotateX;
+    _j["minRotateX"]                     = _c.minRotateX;
+    _j["fovYInterpolate"]                = _c.fovYInterpolate;
+    _j["fovMin"]                         = _c.fovMin;
+    _j["fovMax"]                         = _c.fovMax;
+    _j["fovMinSpeed"]                    = _c.fovMinSpeed;
+    _j["fovMaxSpeed"]                    = _c.fovMaxSpeed;
+    _j["fovEaseType"]                    = static_cast<int>(_c.fovEaseType);
+    _j["fixForForwardSpeed"]             = _c.fixForForwardSpeed;
 }
 
 void from_json(const nlohmann::json& _j, CameraController& _c) {
@@ -130,7 +135,10 @@ void from_json(const nlohmann::json& _j, CameraController& _c) {
     _j.at("rotateSpeedPadStick").get_to(_c.rotateSpeedPadStick);
     _j.at("rotateSpeedMouse").get_to(_c.rotateSpeedMouse);
     _j.at("rotateSensitivity").get_to(_c.rotateSensitivity);
+
     _j.at("interTargetInterpolation").get_to(_c.interTargetInterpolation);
+    _j.at("interLookAtTargetInterpolation").get_to(_c.interLookAtTargetInterpolation);
+
     _j.at("maxRotateX").get_to(_c.maxRotateX);
     _j.at("minRotateX").get_to(_c.minRotateX);
     _j.at("fovYInterpolate").get_to(_c.fovYInterpolate);

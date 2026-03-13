@@ -72,6 +72,7 @@ public:
     OriGine::Vec3f targetOffsetOnDash    = AppConfig::Camera::kTargetOffsetOnDash;
     float minTargetOffsetXOnWallRun      = 0.0f;
     OriGine::Vec3f targetOffsetOnWallRun = AppConfig::Camera::kTargetOffsetOnDash;
+
     /// <summary>
     /// 注視点との距離のOffset
     /// </summary>
@@ -83,12 +84,14 @@ public:
     float currentRotateZ   = 0.0f;
     float rotateZOnWallRun = 0.0f;
 
-    OriGine::Vec3f interTarget        = {0.0f, 0.0f, 0.0f};
-    OriGine::Vec2f destinationAngleXY = AppConfig::Camera::kDefaultDestinationAngle;
-    float rotateSpeedPadStick         = 0.0f;
-    float rotateSpeedMouse            = 0.0f;
-    float rotateSensitivity           = AppConfig::Camera::kDefaultRotateSensitivity;
-    float interTargetInterpolation    = AppConfig::Camera::kDefaultInterTargetInterpolation;
+    OriGine::Vec3f interTarget                    = {0.0f, 0.0f, 0.0f};
+    OriGine::Vec3f interLookAtTarget              = {0.0f, 0.0f, 0.0f}; // XY注視用補間値（カメラ位置は動かさず回転のみ）
+    OriGine::Vec2f destinationAngleXY             = AppConfig::Camera::kDefaultDestinationAngle;
+    float rotateSpeedPadStick                     = 0.0f;
+    float rotateSpeedMouse                        = 0.0f;
+    float rotateSensitivity                       = AppConfig::Camera::kDefaultRotateSensitivity;
+    OriGine::Vec3f interTargetInterpolation       = AppConfig::Camera::kDefaultInterTargetInterpolation;
+    OriGine::Vec3f interLookAtTargetInterpolation = AppConfig::Camera::kDefaultInterTargetInterpolation;
 
     float maxRotateX = 0.0f;
     float minRotateX = 0.0f;

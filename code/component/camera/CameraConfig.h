@@ -7,9 +7,9 @@
 namespace AppConfig {
 namespace Camera {
 
-constexpr float kDefaultTilt                     = 0.33f;
-constexpr float kDefaultInterTargetInterpolation = 5.0f;
-constexpr float kDefaultRotateSensitivity        = 10.0f;
+constexpr float kDefaultTilt                              = 0.33f;
+constexpr OriGine::Vec3f kDefaultInterTargetInterpolation = {5.0f, 5.0f, 5.0f};
+constexpr float kDefaultRotateSensitivity                 = 10.0f;
 
 // Offsets
 constexpr OriGine::Vec3f kFirstOffset       = {0.0f, 0.0f, -10.0f};

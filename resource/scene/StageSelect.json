@@ -747,8 +747,8 @@
                         "rotate": [
                             -0.0,
                             0.0,
-                            -0.0038909614086151123,
-                            0.9999924302101135
+                            0.0,
+                            1.0
                         ],
                         "scale": [
                             117.8052978515625,
@@ -1184,7 +1184,7 @@
                             1.0,
                             1.0,
                             1.0,
-                            1.0
+                            0.9429642558097839
                         ],
                         "defaultWindowSize": [
                             1920.0,
@@ -1196,8 +1196,8 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            1.0,
-                            1.0
+                            0.8782050609588623,
+                            0.8782050609588623
                         ],
                         "size": [
                             384.0,
@@ -1433,7 +1433,7 @@
                         "isActive": true,
                         "pos": [
                             0.0,
-                            54.13999938964844,
+                            33.5,
                             1530.427001953125
                         ],
                         "radius": 100.0
@@ -1461,7 +1461,7 @@
                         ],
                         "translate": [
                             0.0,
-                            23.0,
+                            -0.7815418243408203,
                             1530.4273681640625
                         ]
                     }
@@ -2038,7 +2038,7 @@
                             1.0
                         ],
                         "uvTranslate": [
-                            0.06929729133844376,
+                            0.952929675579071,
                             0.0
                         ],
                         "windowRatioPos": [
@@ -2897,13 +2897,13 @@
                         ],
                         "scale": [
                             128.0,
-                            64.0,
+                            36.0,
                             128.0
                         ],
                         "translate": [
                             0.0,
-                            -40.443695068359375,
-                            1473.889892578125
+                            -36.0,
+                            1492.1326904296875
                         ]
                     }
                 ]
@@ -3512,13 +3512,13 @@
             }
         },
         {
-            "ColliderRenderingSystem": {
-                "Priority": 100
+            "ApplyMouseConditionSystem": {
+                "Priority": 0
             }
         },
         {
-            "ApplyMouseConditionSystem": {
-                "Priority": 0
+            "ColliderRenderingSystem": {
+                "Priority": 100
             }
         },
         {
@@ -3532,6 +3532,11 @@
             }
         },
         {
+            "ButtonInputSystem": {
+                "Priority": 1
+            }
+        },
+        {
             "ChangeSceneByButton": {
                 "Priority": 1
             }
@@ -3539,26 +3544,6 @@
         {
             "CameraMotionBobSystem": {
                 "Priority": 1
-            }
-        },
-        {
-            "ButtonInputSystem": {
-                "Priority": 1
-            }
-        },
-        {
-            "SceneTransitionRequestSenderSystem": {
-                "Priority": -1
-            }
-        },
-        {
-            "CollisionPushBackSystem": {
-                "Priority": 5
-            }
-        },
-        {
-            "PlayerInputSystem": {
-                "Priority": 3
             }
         },
         {
@@ -3572,8 +3557,18 @@
             }
         },
         {
-            "CameraInputSystem": {
-                "Priority": 2
+            "PlayerInputSystem": {
+                "Priority": 3
+            }
+        },
+        {
+            "SceneTransitionRequestSenderSystem": {
+                "Priority": -1
+            }
+        },
+        {
+            "CollisionPushBackSystem": {
+                "Priority": 5
             }
         },
         {
@@ -3582,13 +3577,18 @@
             }
         },
         {
-            "CameraShake": {
-                "Priority": 0
+            "CameraInputSystem": {
+                "Priority": 2
             }
         },
         {
             "CreatePlaneFromSpeed": {
                 "Priority": 10
+            }
+        },
+        {
+            "CameraShake": {
+                "Priority": 0
             }
         },
         {
@@ -3612,13 +3612,13 @@
             }
         },
         {
-            "DissolveEffect": {
-                "Priority": 100
+            "PlayerSpeedFor3dUI": {
+                "Priority": 1
             }
         },
         {
-            "PlayerSpeedFor3dUI": {
-                "Priority": 1
+            "DissolveEffect": {
+                "Priority": 100
             }
         },
         {
@@ -3662,8 +3662,8 @@
             }
         },
         {
-            "MaterialAnimationWorkSystem": {
-                "Priority": 0
+            "StartTimerInitialize": {
+                "Priority": 3
             }
         },
         {
@@ -3672,8 +3672,8 @@
             }
         },
         {
-            "StartTimerInitialize": {
-                "Priority": 3
+            "MaterialAnimationWorkSystem": {
+                "Priority": 0
             }
         },
         {
@@ -3687,13 +3687,13 @@
             }
         },
         {
-            "OverlayRenderSystem": {
-                "Priority": 100
+            "ResolveEntityReferences": {
+                "Priority": -2
             }
         },
         {
-            "ResolveEntityReferences": {
-                "Priority": -2
+            "OverlayRenderSystem": {
+                "Priority": 100
             }
         },
         {
@@ -3707,11 +3707,6 @@
             }
         },
         {
-            "PlayerPathSplineGenerator": {
-                "Priority": 100
-            }
-        },
-        {
             "PlayRecorderInitialize": {
                 "Priority": 0
             }
@@ -3722,13 +3717,18 @@
             }
         },
         {
-            "PlayerMoveSystem": {
-                "Priority": 3
+            "PlayerPathSplineGenerator": {
+                "Priority": 100
             }
         },
         {
             "TexturedMeshRenderSystem": {
                 "Priority": 0
+            }
+        },
+        {
+            "PlayerMoveSystem": {
+                "Priority": 3
             }
         },
         {
@@ -3757,6 +3757,11 @@
             }
         },
         {
+            "SpriteAnimationSystem": {
+                "Priority": 1
+            }
+        },
+        {
             "VelocityRenderingSystem": {
                 "Priority": 0
             }
@@ -3764,11 +3769,6 @@
         {
             "SettingGameCameraTarget": {
                 "Priority": 5
-            }
-        },
-        {
-            "SpriteAnimationSystem": {
-                "Priority": 1
             }
         },
         {
@@ -3797,16 +3797,6 @@
             }
         },
         {
-            "SubSceneActivateByButton": {
-                "Priority": 0
-            }
-        },
-        {
-            "TakeToGoalPosition": {
-                "Priority": 1
-            }
-        },
-        {
             "TireTrailGenerateSystem": {
                 "Priority": 100
             }
@@ -3814,6 +3804,16 @@
         {
             "SubSceneRender": {
                 "Priority": 10
+            }
+        },
+        {
+            "SubSceneActivateByButton": {
+                "Priority": 0
+            }
+        },
+        {
+            "TakeToGoalPosition": {
+                "Priority": 1
             }
         },
         {
@@ -3832,13 +3832,13 @@
             }
         },
         {
-            "TimerForSprite": {
-                "Priority": 1
+            "CreateRailMesh": {
+                "Priority": 0
             }
         },
         {
-            "CreateRailMesh": {
-                "Priority": 0
+            "TimerForSprite": {
+                "Priority": 1
             }
         },
         {
@@ -3862,13 +3862,13 @@
             }
         },
         {
-            "PlayerAheadCollisionReactionSystem": {
-                "Priority": 6
+            "SceneTransitionRequestReceiverSystem": {
+                "Priority": 0
             }
         },
         {
-            "SceneTransitionRequestReceiverSystem": {
-                "Priority": 0
+            "PlayerAheadCollisionReactionSystem": {
+                "Priority": 6
             }
         },
         {
