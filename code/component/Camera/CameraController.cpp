@@ -18,14 +18,6 @@ void CameraController::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {
 void CameraController::Edit(Scene* /*_scene*/, EntityHandle /*_OriGine::Entity*/, [[maybe_unused]] const std::string& _parentLabel) {
 #ifdef _DEBUG
 
-    if (DragGuiVectorCommand<3, float>("forward##" + _parentLabel, forward, 0.01f, -1.f, 1.f, "%.3f", [this](Vector<3, float>* _v) {
-            *_v = OriGine::Vec3f::Normalize(OriGine::Vec3f(_v->v[X], _v->v[Y], _v->v[Z]));
-        })) {
-        forward = OriGine::Vec3f::Normalize(forward); // 正規化
-    }
-    DragGuiCommand("Fix For Forward Speed##" + _parentLabel, fixForForwardSpeed, 0.01f, 0.0f);
-    DragGuiCommand("angleLimitY##" + _parentLabel, angleLimitY, 0.01f, 0.00001f, std::numbers::pi_v<float> * 2.f, "%.3f");
-
     std::string label = "Offset##" + _parentLabel;
     if (ImGui::TreeNode(label.c_str())) {
         DragGuiVectorCommand("FirstTargetOffset##" + _parentLabel, firstTargetOffset, 0.01f);
@@ -38,13 +30,11 @@ void CameraController::Edit(Scene* /*_scene*/, EntityHandle /*_OriGine::Entity*/
         DragGuiVectorCommand("firstOffset##" + _parentLabel, firstOffset, 0.01f);
         DragGuiVectorCommand("offsetOnDash##" + _parentLabel, offsetOnDash, 0.01f);
         DragGuiVectorCommand("offsetOnWallRun##" + _parentLabel, offsetOnWallRun, 0.01f);
-
-        ImGui::Spacing();
-
-        DragGuiCommand("rotateZ OnWallRun##" + _parentLabel, rotateZOnWallRun, 0.01f);
-
-        ImGui::TreePop();
     }
+
+    ImGui::Spacing();
+
+    DragGuiCommand("rotateZ OnWallRun##" + _parentLabel, rotateZOnWallRun, 0.01f);
 
     ImGui::Spacing();
 
@@ -92,8 +82,6 @@ float CameraController::CalculateFovYBySpeed(float _xzSpeed) const {
 }
 
 void to_json(nlohmann::json& _j, const CameraController& _c) {
-    _j["forward"]                        = _c.forward;
-    _j["angleLimitY"]                    = _c.angleLimitY;
     _j["firstOffset"]                    = _c.firstOffset;
     _j["offsetOnDash"]                   = _c.offsetOnDash;
     _j["offsetOnWallRun"]                = _c.offsetOnWallRun;
@@ -119,9 +107,6 @@ void to_json(nlohmann::json& _j, const CameraController& _c) {
 }
 
 void from_json(const nlohmann::json& _j, CameraController& _c) {
-    _j.at("forward").get_to(_c.forward);
-    _j.at("angleLimitY").get_to(_c.angleLimitY);
-
     _j.at("firstOffset").get_to(_c.firstOffset);
     _j.at("offsetOnDash").get_to(_c.offsetOnDash);
     _j.at("offsetOnWallRun").get_to(_c.offsetOnWallRun);

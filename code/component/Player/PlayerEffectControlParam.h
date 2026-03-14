@@ -52,6 +52,7 @@ private:
 
     // 最大傾き角度の加速度
     float wheelTiltAngleMaxAccel_ = 0.0f;
+    float maxWheelTiltAngle_      = 0.0f; // ホイールの最大傾き角度
 
     float maxTiltOnRailRun_   = 0.f;
     float tiltSpeedOnRailRun_ = 0.f;
@@ -81,6 +82,9 @@ public:
     }
     float GetWheelTiltAngleMaxAccel() const {
         return wheelTiltAngleMaxAccel_;
+    }
+    float GetMaxWheelTiltAngle() const {
+        return maxWheelTiltAngle_;
     }
 
     float GetMaxTiltOnRailRun() const {

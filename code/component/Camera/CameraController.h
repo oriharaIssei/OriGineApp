@@ -60,8 +60,6 @@ public:
     // 演出用の回転と分けるための基準回転
     OriGine::Quaternion baseRotate = OriGine::Quaternion::Identity();
 
-    OriGine::Vec3f forward  = {0.0f, 0.0f, 1.0f}; // カメラの前方向
-    float angleLimitY       = 0.0f;
     bool isAutoLookAtPlayer = true; // 自動でプレイヤーを注視するかどうか
 
     /// <summary>
@@ -82,7 +80,7 @@ public:
     OriGine::Vec3f offsetOnWallRun = AppConfig::Camera::kOffsetOnDash;
 
     float currentRotateZ   = 0.0f;
-    float rotateZOnWallRun = 0.0f;
+    float rotateZOnWallRun = 0.0f; // 壁走り中のZ回転量
 
     OriGine::Vec3f interTarget                    = {0.0f, 0.0f, 0.0f};
     OriGine::Vec3f interLookAtTarget              = {0.0f, 0.0f, 0.0f}; // XY注視用補間値（カメラ位置は動かさず回転のみ）

@@ -99,7 +99,8 @@ void PlayerDashState::Update(float _deltaTime) {
     }
 
     ///! TODO : ここにカメラの処理を書くべきではない
-    CameraController* cameraController = scene_->GetComponent<CameraController>(state->GetCameraEntityHandle());
+    EntityHandle cameraEntityHandle    = state->GetCameraEntityHandle();
+    CameraController* cameraController = scene_->GetComponent<CameraController>(cameraEntityHandle);
 
     if (cameraController) {
         float cameraDeltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Camera");

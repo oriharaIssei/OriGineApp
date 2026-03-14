@@ -254,6 +254,7 @@
                 "invincibleBlinkMaxAmplitude": 40.0,
                 "maxTiltOnRailRun": -0.7300000190734863,
                 "maxWheelSpinSpeed": 0.18700000643730164,
+                "maxWheelTiltAngle": 0.6679999828338623,
                 "rotateOffsetOnWallRun": 0.5699999928474426,
                 "thresholdSpeedlineParticle": 0.0,
                 "tiltSpeedOnRailRun": 12.0,
@@ -295,8 +296,8 @@
                         1.0
                     ]
                 ],
-                "wheelTiltAngleMaxAccel": 1.440000057220459,
-                "wheelTiltAngleRate": 0.44999998807907104
+                "wheelTiltAngleMaxAccel": 1.434999942779541,
+                "wheelTiltAngleRate": 0.4429999887943268
             }
         ],
         "PlayerInput": [
@@ -322,7 +323,7 @@
                 "coolTimeAddRateCommonRate": -0.09000000357627869,
                 "decelerationFactor": 0.1599999964237213,
                 "defaultMass": 0.09000000357627869,
-                "directionInterpolateRate": 86.0,
+                "directionInterpolateRate": 15.109999656677246,
                 "directionalSpeedUpRateBase": [
                     -0.6600000262260437,
                     8.510000228881836
@@ -347,7 +348,6 @@
                     0.23999999463558197,
                     0.1599999964237213
                 ],
-                "maxWheelieFallSpeed": -1.2999999523162842,
                 "minJumpChargeRate": 62.0,
                 "minJumpHoldVelocity": 8.0,
                 "minLimitDirectionalAccel": [
@@ -378,12 +378,7 @@
                 "wallRunDetachSpeed": -15.0,
                 "wallRunInterval": 0.5600000023841858,
                 "wallRunRampUpTime": 0.7400000095367432,
-                "wallRunRate": 1.159999966621399,
-                "wheelieJumpOffset": [
-                    0.0,
-                    0.8663552403450012,
-                    0.49942830204963684
-                ]
+                "wallRunRate": 1.159999966621399
             }
         ],
         "Rigidbody": [
@@ -499,7 +494,7 @@
                 ],
                 "translate": [
                     0.0,
-                    2.0,
+                    0.0,
                     0.0
                 ]
             }
@@ -513,6 +508,10 @@
         {
             "SystemCategory": 0,
             "SystemName": "TakePlayerToStartPosition"
+        },
+        {
+            "SystemCategory": 1,
+            "SystemName": "PlayerInputSystem"
         },
         {
             "SystemCategory": 4,
@@ -531,16 +530,16 @@
             "SystemName": "EffectOnPlayerRun"
         },
         {
-            "SystemCategory": 2,
-            "SystemName": "FallToFailedSystem"
-        },
-        {
             "SystemCategory": 3,
             "SystemName": "MoveSystemByRigidBody"
         },
         {
             "SystemCategory": 6,
             "SystemName": "TexturedMeshRenderSystem"
+        },
+        {
+            "SystemCategory": 3,
+            "SystemName": "PlayerMoveSystem"
         },
         {
             "SystemCategory": 4,
@@ -557,18 +556,6 @@
         {
             "SystemCategory": 5,
             "SystemName": "ScaleDeformSystem"
-        },
-        {
-            "SystemCategory": 1,
-            "SystemName": "PlayerInputSystem"
-        },
-        {
-            "SystemCategory": 3,
-            "SystemName": "PlayerMoveSystem"
-        },
-        {
-            "SystemCategory": 2,
-            "SystemName": "PenaltySystem"
         }
     ],
     "isUnique": true

@@ -81,12 +81,16 @@ void EffectOnPlayerRun::UpdateEntity(EntityHandle _entity) {
                 float maxAngleChange    = effectControlParam->GetWheelTiltAngleMaxAccel() * deltaTime;
                 wheelTiltAngle          = preWheelTiltAngle + std::clamp(angleDiff, -maxAngleChange, maxAngleChange);
 
+                wheelTiltAngle = std::clamp(wheelTiltAngle, -effectControlParam->GetMaxWheelTiltAngle(), effectControlParam->GetMaxWheelTiltAngle());
+
                 // 傾きを適用
                 hostTransform->rotate *= Quaternion::RotateAxisAngle(axisZ, wheelTiltAngle);
                 hostTransform->UpdateMatrix();
 
                 effectControlParam->SetPreWheelTiltAngle(wheelTiltAngle);
             }
+        } else {
+            effectControlParam->SetPreWheelTiltAngle(0.f);
         }
     }
 
