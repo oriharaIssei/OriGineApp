@@ -4,7 +4,7 @@
 #include "system/ISystem.h"
 
 namespace OriGine {
-/// enigne
+/// engine
 // input
 class GamepadInput;
 class MouseInput;

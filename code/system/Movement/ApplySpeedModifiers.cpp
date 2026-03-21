@@ -11,6 +11,7 @@
 
 /// math
 #include "math/Interpolation.h"
+#include "MathEnv.h"
 #include <MyEasing.h>
 #include <Vector3.h>
 
@@ -94,7 +95,6 @@ void ApplySpeedModifiers::UpdateEntity(OriGine::EntityHandle _handle) {
         if (speedModifier.axesSpace == SpeedModifiers::AxesSpace::Velocity) {
             // --- 速度相対空間 (Front, Side, Up) ---
             // Front = 速度方向, Side = 水平垂直, Up = 右手系完成方向
-            constexpr float kEpsilon = 1e-6f;
             if (velLen < kEpsilon) {
                 // 速度がほぼゼロの場合は変更なし
                 effectiveSpeed = vel;

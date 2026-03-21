@@ -10,7 +10,7 @@
 #ifdef DEBUG
 /// editor
 #include "myGui/MyGui.h"
-/// uitil
+/// util
 #include "myFileSystem/MyFileSystem.h"
 #endif // DEBUG
 

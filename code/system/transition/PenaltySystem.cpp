@@ -95,9 +95,9 @@ void PenaltySystem::UpdateEntity(OriGine::EntityHandle _handle) {
 
     /// コンポーネントを追加
     ComponentHandle timerHandle = AddComponent<TimerComponent>(penaltyTimeUIEntityHandle);
-    TimerComponent* tiemrComp   = GetComponent<TimerComponent>(penaltyTimeUIEntityHandle);
-    *tiemrComp                  = penaltyTimer;
-    tiemrComp->SetHandle(timerHandle); // ハンドルを戻す
+    TimerComponent* timerComp   = GetComponent<TimerComponent>(penaltyTimeUIEntityHandle);
+    *timerComp                  = penaltyTimer;
+    timerComp->SetHandle(timerHandle); // ハンドルを戻す
 
     ComponentHandle timer4SpriteHandle           = AddComponent<TimerForSpriteComponent>(penaltyTimeUIEntityHandle);
     TimerForSpriteComponent* timer4SpriteCompPtr = GetComponent<TimerForSpriteComponent>(penaltyTimeUIEntityHandle);

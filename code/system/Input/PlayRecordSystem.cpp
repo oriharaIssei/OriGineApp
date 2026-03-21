@@ -6,7 +6,7 @@
 
 /// ECS
 // component
-#include "component/ghost/PlayRecordeComponent.h"
+#include "component/ghost/PlayRecorderComponent.h"
 
 using namespace OriGine;
 
@@ -17,7 +17,7 @@ void PlayRecordSystem::Initialize() {}
 void PlayRecordSystem::Finalize() {}
 
 void PlayRecordSystem::UpdateEntity(OriGine::EntityHandle _handle) {
-    auto recorder = GetComponent<PlayRecordeComponent>(_handle);
+    auto recorder = GetComponent<PlayRecorderComponent>(_handle);
 
     if (!recorder) {
         return;

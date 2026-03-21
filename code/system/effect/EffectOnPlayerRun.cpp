@@ -17,7 +17,7 @@
 #include "component/animation/MaterialAnimation.h"
 
 #include "component/physics/Rigidbody.h"
-#include "component/transform/Transform.h"
+#include "component/transform/Transform.h" 
 
 #include "component/player/PlayerInput.h"
 #include "component/player/PlayerStatus.h"

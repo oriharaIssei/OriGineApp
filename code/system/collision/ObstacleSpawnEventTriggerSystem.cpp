@@ -25,7 +25,7 @@ void ObstacleSpawnEventTriggerSystem::UpdateEntity(OriGine::EntityHandle _handle
         return;
     }
 
-    bool isTirrgered = false;
+    bool isTriggered = false;
     for (const auto& [handle, state] : collider->GetCollisionStateMap()) {
         if (state == CollisionState::Enter) {
             // 衝突してたら発火
@@ -38,13 +38,13 @@ void ObstacleSpawnEventTriggerSystem::UpdateEntity(OriGine::EntityHandle _handle
                     dissAnimation->PlayStart();
                 }
             }
-            isTirrgered = true;
+            isTriggered = true;
             break;
         }
     }
 
     // 発火したら自分は削除予約
-    if (isTirrgered) {
+    if (isTriggered) {
         GetScene()->AddDeleteEntity(_handle);
     }
 }

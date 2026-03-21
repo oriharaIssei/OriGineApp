@@ -5,7 +5,7 @@
 #include "EngineInclude.h"
 
 #include "scene/Scene.h"
-// ingput
+// input
 #include "input/GamepadInput.h"
 #include "input/KeyboardInput.h"
 #include "input/MouseInput.h"

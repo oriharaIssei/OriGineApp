@@ -7,7 +7,7 @@
 #include <unordered_map>
 
 /// ECS
-// enttiy
+// entity
 #include "entity/EntityHandle.h"
 
 /// <summary>

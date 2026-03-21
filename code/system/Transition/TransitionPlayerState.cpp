@@ -30,7 +30,7 @@
 #include "component/effect/SquashStretchComponent.h"
 #include "component/transform/CameraTransform.h"
 
-#include "component/ghost/PlayRecordeComponent.h"
+#include "component/ghost/PlayRecorderComponent.h"
 
 /// math
 #include "math/MathEnv.h"
@@ -61,7 +61,7 @@ void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
             TimerComponent* timer = GetComponent<TimerComponent>(timerEntityHandle);
 
             EntityHandle recorderEntityHandle  = GetUniqueEntity("Recorder");
-            PlayRecordeComponent* playRecorder = GetComponent<PlayRecordeComponent>(recorderEntityHandle);
+            PlayRecorderComponent* playRecorder = GetComponent<PlayRecorderComponent>(recorderEntityHandle);
 
             if (timer != nullptr && stageData != nullptr) {
                 progressStore->StageCleared(
