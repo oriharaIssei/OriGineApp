@@ -105,13 +105,16 @@
     <ClInclude Include="code\component\ghost\GhostReplayComponent.h">
       <Filter>component\ghost</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\ghost\PlayRecordeComponent.h">
+    <ClInclude Include="code\component\ghost\PlayRecorderComponent.h">
       <Filter>component\ghost</Filter>
     </ClInclude>
     <ClInclude Include="code\component\gimmick\Obstacle.h">
       <Filter>component\gimmick</Filter>
     </ClInclude>
     <ClInclude Include="code\component\gimmick\ObstacleSpawnGroupComponent.h">
+      <Filter>component\gimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\gimmick\PathController.h">
       <Filter>component\gimmick</Filter>
     </ClInclude>
     <ClInclude Include="code\component\gimmick\RailPoints.h">
@@ -288,6 +291,12 @@
     <ClInclude Include="code\system\Movement\LookAtFromTransformsSystem.h">
       <Filter>system\Movement</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Movement\PathControllerRenderingSystem.h">
+      <Filter>system\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Movement\PathControllerSystem.h">
+      <Filter>system\Movement</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\Movement\PauseMainSceneSystem.h">
       <Filter>system\Movement</Filter>
     </ClInclude>
@@ -396,6 +405,9 @@
     <ClInclude Include="code\system\collision\AddForceTriggerSystem.h">
       <Filter>system\collision</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\collision\ObstacleSpawnEventTriggerSystem.h">
+      <Filter>system\collision</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\collision\OnCollisionModifierTargetSystem.h">
       <Filter>system\collision</Filter>
     </ClInclude>
@@ -444,9 +456,6 @@
     <ClInclude Include="code\system\effect\TimerForSprite.h">
       <Filter>system\effect</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\collision\ObstacleSpawnEventTriggerSystem.h">
-      <Filter>system\collision</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -494,13 +503,16 @@
     <ClCompile Include="code\component\ghost\GhostReplayComponent.cpp">
       <Filter>component\ghost</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\ghost\PlayRecordeComponent.cpp">
+    <ClCompile Include="code\component\ghost\PlayRecorderComponent.cpp">
       <Filter>component\ghost</Filter>
     </ClCompile>
     <ClCompile Include="code\component\gimmick\Obstacle.cpp">
       <Filter>component\gimmick</Filter>
     </ClCompile>
     <ClCompile Include="code\component\gimmick\ObstacleSpawnGroupComponent.cpp">
+      <Filter>component\gimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\gimmick\PathController.cpp">
       <Filter>component\gimmick</Filter>
     </ClCompile>
     <ClCompile Include="code\component\gimmick\RailPoints.cpp">
@@ -657,6 +669,12 @@
     <ClCompile Include="code\system\Movement\LookAtFromTransformsSystem.cpp">
       <Filter>system\Movement</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\Movement\PathControllerRenderingSystem.cpp">
+      <Filter>system\Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Movement\PathControllerSystem.cpp">
+      <Filter>system\Movement</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\Movement\PauseMainSceneSystem.cpp">
       <Filter>system\Movement</Filter>
     </ClCompile>
@@ -765,6 +783,9 @@
     <ClCompile Include="code\system\collision\AddForceTriggerSystem.cpp">
       <Filter>system\collision</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\collision\ObstacleSpawnEventTriggerSystem.cpp">
+      <Filter>system\collision</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\collision\OnCollisionModifierTargetSystem.cpp">
       <Filter>system\collision</Filter>
     </ClCompile>
@@ -809,9 +830,6 @@
     </ClCompile>
     <ClCompile Include="code\system\effect\TimerForSprite.cpp">
       <Filter>system\effect</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\collision\ObstacleSpawnEventTriggerSystem.cpp">
-      <Filter>system\collision</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

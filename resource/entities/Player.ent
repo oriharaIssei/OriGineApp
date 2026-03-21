@@ -323,21 +323,21 @@
                 "coolTimeAddRateCommonRate": -0.09000000357627869,
                 "decelerationFactor": 0.1599999964237213,
                 "defaultMass": 0.09000000357627869,
-                "directionInterpolateRate": 15.109999656677246,
+                "directionInterpolateRate": 16.25,
                 "directionalSpeedUpRateBase": [
                     -0.6600000262260437,
                     8.510000228881836
                 ],
                 "directionalSpeedUpRateCommonRate": [
-                    -0.4300000071525574,
+                    -0.5600000023841858,
                     -0.07999999821186066
                 ],
                 "gearUpCoolTime": 0.5699999928474426,
-                "gravityApplyDelayOnWallRun": 0.36000001430511475,
+                "gravityApplyDelayOnWallRun": 0.5799999833106995,
                 "groundCheckThreshold": 0.699999988079071,
                 "jumpChargeRateEaseType": 11,
                 "jumpHoldVelocityEaseType": 7,
-                "massOnWallRun": 0.05999999865889549,
+                "massOnWallRun": 0.05000000074505806,
                 "maxJumpChargeRate": 120.0,
                 "maxJumpHoldVelocity": 11.430000305175781,
                 "maxLimitDirectionalAccel": [
@@ -361,24 +361,24 @@
                 "minWallJumpOffsetX": 0.20999999344348907,
                 "railInterval": 0.17000000178813934,
                 "railJumpOffset": [
-                    0.5773502588272095,
-                    0.5773502588272095,
-                    0.5773502588272095
+                    0.5773503184318542,
+                    0.5773503184318542,
+                    0.5773503184318542
                 ],
                 "railRampUpTime": 0.25,
                 "railSpeedRate": 1.2200000286102295,
                 "speedUpRateBase": 8.510000228881836,
                 "speedUpRateCommonRate": -0.1599999964237213,
-                "wallCheckThreshold": 0.41999998688697815,
+                "wallCheckThreshold": 0.12999999523162842,
                 "wallJumpOffset": [
-                    0.4842533767223358,
-                    0.5552374124526978,
-                    0.6761730909347534
+                    0.5490399599075317,
+                    0.33290305733680725,
+                    0.7666359543800354
                 ],
                 "wallRunDetachSpeed": -15.0,
                 "wallRunInterval": 0.5600000023841858,
-                "wallRunRampUpTime": 0.7400000095367432,
-                "wallRunRate": 1.159999966621399
+                "wallRunRampUpTime": 0.6200000047683716,
+                "wallRunRate": 1.25
             }
         ],
         "Rigidbody": [
@@ -494,8 +494,82 @@
                 ],
                 "translate": [
                     0.0,
-                    0.0,
+                    2.0,
                     0.0
+                ]
+            }
+        ],
+        "TransformAnimation": [
+            {
+                "Handle": "cd6a486c-8510-4046-81b8-072d2ba15244",
+                "InterpolationType": 0,
+                "duration": 0.4000000059604645,
+                "isLoop": false,
+                "isPlay": false,
+                "rotateCurve": [
+                    {
+                        "time": 0.0,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.5703774094581604,
+                            0.8213828206062317
+                        ]
+                    },
+                    {
+                        "time": 0.09870129823684692,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ]
+                    },
+                    {
+                        "time": 0.23376622796058655,
+                        "value": [
+                            0.0,
+                            0.0,
+                            -1.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "time": 0.3298701345920563,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.5432038903236389,
+                            0.8396008610725403
+                        ]
+                    },
+                    {
+                        "time": 0.4000000059604645,
+                        "value": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ]
+                    }
+                ],
+                "rotateFlip": [
+                    false,
+                    false,
+                    false
+                ],
+                "scaleCurve": [],
+                "scaleFlip": [
+                    false,
+                    false,
+                    false
+                ],
+                "targetTransformIndex": 0,
+                "translateCurve": [],
+                "translateFlip": [
+                    false,
+                    false,
+                    false
                 ]
             }
         ]
@@ -508,10 +582,6 @@
         {
             "SystemCategory": 0,
             "SystemName": "TakePlayerToStartPosition"
-        },
-        {
-            "SystemCategory": 1,
-            "SystemName": "PlayerInputSystem"
         },
         {
             "SystemCategory": 4,
@@ -538,10 +608,6 @@
             "SystemName": "TexturedMeshRenderSystem"
         },
         {
-            "SystemCategory": 3,
-            "SystemName": "PlayerMoveSystem"
-        },
-        {
             "SystemCategory": 4,
             "SystemName": "PlayerOnCollision"
         },
@@ -555,7 +621,23 @@
         },
         {
             "SystemCategory": 5,
+            "SystemName": "TransformAnimationWorkSystem"
+        },
+        {
+            "SystemCategory": 5,
             "SystemName": "ScaleDeformSystem"
+        },
+        {
+            "SystemCategory": 1,
+            "SystemName": "PlayerInputSystem"
+        },
+        {
+            "SystemCategory": 3,
+            "SystemName": "PlayerMoveSystem"
+        },
+        {
+            "SystemCategory": 2,
+            "SystemName": "PenaltySystem"
         }
     ],
     "isUnique": true

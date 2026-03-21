@@ -79,10 +79,6 @@ void LookAtFromTransforms::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]]
         for (auto& [compHandle, locationData] : componentLocationMap) {
             auto& compSlot = slots[locationData.entitySlot];
 
-            if (!compSlot.alive) {
-                continue;
-            }
-
             Entity* entity = _scene->GetEntity(compSlot.owner);
             if (!entity) {
                 continue;
@@ -114,10 +110,6 @@ void LookAtFromTransforms::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]]
     if (ImGui::BeginCombo(label.c_str(), entityLabel.c_str())) {
         for (auto& [compHandle, locationData] : componentLocationMap) {
             auto& compSlot = slots[locationData.entitySlot];
-
-            if (!compSlot.alive) {
-                continue;
-            }
 
             Entity* entity = _scene->GetEntity(compSlot.owner);
             if (!entity) {

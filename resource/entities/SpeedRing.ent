@@ -2,13 +2,13 @@
     "Components": {
         "AABBCollider": [
             {
-                "Handle": "b13ee3f3-ab1a-4ab8-bb53-a9dc65406b0c",
+                "Handle": "21d3846f-ee6c-40cb-a464-52f6ec237186",
                 "center": [
                     0.0,
                     0.0,
                     0.0
                 ],
-                "collisionCategory": "Default",
+                "collisionCategory": "StageObject",
                 "halfSize": [
                     1.0,
                     1.0,
@@ -37,13 +37,13 @@
         ],
         "CylinderRenderer": [
             {
-                "Handle": "00bfb994-11e0-441e-857f-373b46de9d37",
+                "Handle": "fedaafa8-984e-4573-b896-fbea2b7422ab",
                 "blendMode": 1,
                 "bottomRadius": [
                     1.0,
                     1.0
                 ],
-                "height": 0.23000000417232513,
+                "height": 0.38999998569488525,
                 "heightDivisions": 4,
                 "isCulling": false,
                 "isRenderer": true,
@@ -73,11 +73,49 @@
                         0.0
                     ]
                 }
+            },
+            {
+                "Handle": "8e55ada5-a8b4-49cd-a681-272227ac6698",
+                "blendMode": 1,
+                "bottomRadius": [
+                    1.0,
+                    1.0
+                ],
+                "height": 0.38999998569488525,
+                "heightDivisions": 4,
+                "isCulling": false,
+                "isRenderer": true,
+                "materialIndex": 0,
+                "radialDivisions": 32,
+                "radiusEaseType": 0,
+                "textureFilePath": "./application/resource/Texture/arrow.png",
+                "topRadius": [
+                    0.800000011920929,
+                    0.800000011920929
+                ],
+                "transform": {
+                    "rotate": [
+                        0.7066552042961121,
+                        0.0,
+                        0.0,
+                        0.7075580954551697
+                    ],
+                    "scale": [
+                        -1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "translate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                }
             }
         ],
         "Material": [
             {
-                "Handle": "c0513ba8-c6a7-4e12-ad9d-ce8a59b2769c",
+                "Handle": "689b9a11-e996-4cd1-9842-ed5ca26bca0a",
                 "color": [
                     0.16578538715839386,
                     0.7111458778381348,
@@ -99,13 +137,13 @@
                 ],
                 "uvTranslate": [
                     0.0,
-                    2.2307701110839844
+                    1.076923131942749
                 ]
             }
         ],
         "MaterialAnimation": [
             {
-                "Handle": "06d2d989-e00b-4f60-89af-62bd60224b7a",
+                "Handle": "1696d4cc-052b-4a6d-bb9d-322254fc52ed",
                 "InterpolationType": 0,
                 "colorCurve": [],
                 "duration": 1.2999999523162842,
@@ -133,20 +171,20 @@
         ],
         "SpeedModifiers": [
             {
-                "Handle": "fa5e490a-6e2a-435f-9e2f-4029d261172b",
+                "Handle": "79d2f1a5-0ad1-4dbb-82bc-a2e85ec7bfca",
                 "additiveAxisX": true,
-                "additiveAxisY": true,
+                "additiveAxisY": false,
                 "additiveAxisZ": true,
-                "additiveDuration": 0.800000011920929,
-                "additiveFadeInDuration": 0.20000000298023224,
-                "additiveFadeOutDuration": 0.0,
+                "additiveDuration": 1.0,
+                "additiveFadeInDuration": 0.11999999731779099,
+                "additiveFadeOutDuration": 0.07000000029802322,
                 "additiveFadeOutEaseType": 0,
                 "additiveLerpEaseType": 10,
                 "additiveTarget": 32.0,
                 "axesSpace": 0,
                 "isAutoDestroyed": true,
                 "multiplierAxisX": true,
-                "multiplierAxisY": true,
+                "multiplierAxisY": false,
                 "multiplierAxisZ": true,
                 "multiplierDuration": 0.0,
                 "multiplierFadeInDuration": 0.0,
@@ -159,7 +197,7 @@
         ],
         "Transform": [
             {
-                "Handle": "ddad81ff-297d-4a7f-9b0a-f7e1979f41f3",
+                "Handle": "98348815-a3c0-4c43-83f0-0e780b4cb95b",
                 "rotate": [
                     -0.0,
                     0.0,
@@ -172,15 +210,15 @@
                     12.0
                 ],
                 "translate": [
-                    39.80291748046875,
-                    158.49513244628906,
-                    1656.9892578125
+                    0.15000000596046448,
+                    169.77867126464844,
+                    2947.88671875
                 ]
             }
         ]
     },
     "Handle": {
-        "uuid": "a2a7d6b0-8ac4-4247-a8d5-396da5145e69"
+        "uuid": "b4d54e8b-2753-4a60-8e3e-1be69683b94a"
     },
     "Name": "SpeedRing",
     "Systems": [

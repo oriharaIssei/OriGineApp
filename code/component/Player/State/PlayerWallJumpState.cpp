@@ -1,13 +1,14 @@
 #include "PlayerWallJumpState.h"
 
 /// component
-#include "component/animation/SkinningAnimationComponent.h"
+#include "component/animation/TransformAnimation.h"
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
 
 #include "component/camera/CameraController.h"
 #include "component/physics/Rigidbody.h"
 #include "component/player/PlayerInput.h"
+#include "component/player/PlayerMoveUtils.h"
 #include "component/player/PlayerStatus.h"
 
 /// log
@@ -55,6 +56,28 @@ void PlayerWallJumpState::Initialize() {
     velo_ = jumpDirWorld * jumpSpeed;
 
     rigidbody->SetVelocity(velo_);
+
+    // animation
+    TransformAnimation* transformAnimation = scene_->GetComponent<TransformAnimation>(playerEntityHandle_);
+    if (transformAnimation) {
+        OriGine::Vec3f sideJudgeDirection = velocityDirection;
+        sideJudgeDirection[Y]             = 0.0f;
+        if (sideJudgeDirection.lengthSq() <= 0.0f) {
+            sideJudgeDirection = axisZ;
+        }
+
+        const bool isRightWall = PlayerMoveUtils::IsWallRight(sideJudgeDirection.normalize(), wallNormal);
+
+        auto rotateFlip = transformAnimation->GetRotateFlip();
+        auto scaleFlip  = transformAnimation->GetScaleFlip();
+
+        rotateFlip.z = isRightWall;
+
+        transformAnimation->SetRotateFlip(rotateFlip);
+        transformAnimation->SetScaleFlip(scaleFlip);
+
+        transformAnimation->PlayStart();
+    }
 
     forceJumpTimer_ = 0.f;
 }

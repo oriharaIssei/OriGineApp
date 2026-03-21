@@ -8,7 +8,7 @@
                     0.0,
                     0.0
                 ],
-                "collisionCategory": "Default",
+                "collisionCategory": "StageObject",
                 "halfSize": [
                     1.0,
                     0.10000000149011612,
@@ -123,19 +123,19 @@
             {
                 "Handle": "ab166d63-fbff-4285-9c5e-82ef38377334",
                 "additiveAxisX": true,
-                "additiveAxisY": true,
+                "additiveAxisY": false,
                 "additiveAxisZ": true,
                 "additiveDuration": 1.0,
-                "additiveFadeInDuration": 0.4000000059604645,
-                "additiveFadeOutDuration": 0.0,
+                "additiveFadeInDuration": 0.11999999731779099,
+                "additiveFadeOutDuration": 0.07000000029802322,
                 "additiveFadeOutEaseType": 0,
                 "additiveLerpEaseType": 10,
                 "additiveTarget": 32.0,
                 "axesSpace": 0,
                 "isAutoDestroyed": true,
                 "multiplierAxisX": true,
-                "multiplierAxisY": true,
-                "multiplierAxisZ": true,
+                "multiplierAxisY": false,
+                "multiplierAxisZ": false,
                 "multiplierDuration": 0.0,
                 "multiplierFadeInDuration": 0.0,
                 "multiplierFadeOutDuration": 0.0,
@@ -161,8 +161,8 @@
                 ],
                 "translate": [
                     -0.43187522888183594,
-                    64.0199966430664,
-                    1595.048095703125
+                    8.100000381469727,
+                    1481.4879150390625
                 ]
             }
         ]

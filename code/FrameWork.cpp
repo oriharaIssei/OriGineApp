@@ -14,13 +14,14 @@
 #include "component/camera/CameraMotionBob.h"
 #include "component/Camera/CameraShakeSourceComponent.h"
 #include "component/ghost/GhostReplayComponent.h"
-#include "component/ghost/PlayRecordeComponent.h"
+#include "component/ghost/PlayRecorderComponent.h"
 #include "component/gimmick/Obstacle.h"
+#include "component/gimmick/ObstacleSpawnGroupComponent.h"
+#include "component/gimmick/PathController.h"
 #include "component/gimmick/RailPoints.h"
 #include "component/gimmick/TimeScaleEffectComponent.h"
 #include "component/LookAtFromTransforms.h"
 #include "component/MouseCondition.h"
-#include "component/gimmick/ObstacleSpawnGroupComponent.h"
 #include "component/player/PlayerEffectControlParam.h"
 #include "component/player/PlayerInput.h"
 #include "component/player/PlayerStatus.h"
@@ -81,6 +82,8 @@
 #include "system/Movement/CreateRailMesh.h"
 #include "system/movement/FollowCameraUpdateSystem.h"
 #include "system/Movement/LookAtFromTransformsSystem.h"
+#include "system/movement/PathControllerRenderingSystem.h"
+#include "system/movement/PathControllerSystem.h"
 #include "system/movement/PauseMainSceneSystem.h"
 #include "system/Movement/PlayerFollowSystem.h"
 #include "system/movement/PlayerMoveSystem.h"
@@ -147,13 +150,14 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<TireSplinePoints>();
 
     componentRegistry->RegisterComponent<RailPoints>();
+    componentRegistry->RegisterComponent<PathController>();
     componentRegistry->RegisterComponent<Obstacle>();
     componentRegistry->RegisterComponent<TimeScaleEffectComponent>();
     componentRegistry->RegisterComponent<VelocityOverrideComponent>();
     componentRegistry->RegisterComponent<AddForceComponent>();
 
     componentRegistry->RegisterComponent<GhostReplayComponent>();
-    componentRegistry->RegisterComponent<PlayRecordeComponent>();
+    componentRegistry->RegisterComponent<PlayRecorderComponent>();
 
     componentRegistry->RegisterComponent<Material>();
     componentRegistry->RegisterComponent<DirectionalLight>();
@@ -181,9 +185,11 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<SpeedModifiers>();
     componentRegistry->RegisterComponent<Rigidbody>();
 
-    componentRegistry->RegisterComponent<SquashStretchComponent>();
     componentRegistry->RegisterComponent<Emitter>();
     componentRegistry->RegisterComponent<GpuParticleEmitter>();
+    componentRegistry->RegisterComponent<EntitySpawner>();
+
+    componentRegistry->RegisterComponent<SquashStretchComponent>();
     componentRegistry->RegisterComponent<DissolveEffectParam>();
     componentRegistry->RegisterComponent<DistortionEffectParam>();
     componentRegistry->RegisterComponent<RadialBlurParam>();
@@ -324,6 +330,8 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<ApplyAddForceSystem>();
     systemRegistry->RegisterSystem<VelocityOverrideSystem>();
 
+    systemRegistry->RegisterSystem<PathControllerSystem>();
+
     systemRegistry->RegisterSystem<SubSceneUpdate>();
     systemRegistry->RegisterSystem<RestartSystem>();
     systemRegistry->RegisterSystem<PauseMainSceneSystem>();
@@ -331,6 +339,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<PlayerFollowSystem>();
     systemRegistry->RegisterSystem<LookAtFromTransformsSystem>();
     systemRegistry->RegisterSystem<Ui3dUpdateSystem>();
+    systemRegistry->RegisterSystem<ColliderRenderingSystem>();
 
     /// =================================================================================================
     // Collision
@@ -354,6 +363,8 @@ void RegisterUsingSystems() {
     /// =================================================================================================
     systemRegistry->RegisterSystem<EmitterWorkSystem>();
     systemRegistry->RegisterSystem<GpuParticleEmitterWorkSystem>();
+
+    systemRegistry->RegisterSystem<EntitySpawnerWorkSystem>();
 
     systemRegistry->RegisterSystem<PrimitiveNodeAnimationWorkSystem>();
     systemRegistry->RegisterSystem<SkinningAnimationSystem>();
@@ -400,8 +411,10 @@ void RegisterUsingSystems() {
 #ifndef _RELEASE
     systemRegistry->RegisterSystem<SkeletonRenderSystem>();
     systemRegistry->RegisterSystem<ColliderRenderingSystem>();
+    systemRegistry->RegisterSystem<EmitterShapeRenderingSystem>();
     systemRegistry->RegisterSystem<VelocityRenderingSystem>();
     systemRegistry->RegisterSystem<LightDebugRenderingSystem>();
+    systemRegistry->RegisterSystem<PathControllerRenderingSystem>();
 #endif // _RELEASE
 
     /// =================================================================================================

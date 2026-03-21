@@ -1,5 +1,47 @@
 {
     "Components": {
+        "CapsuleCollider": [
+            {
+                "Handle": "f206dcc6-1109-42e1-b9d0-29a3bdc673ad",
+                "collisionCategory": "StageObject",
+                "end": [
+                    0.0,
+                    0.0,
+                    256.0
+                ],
+                "isActive": true,
+                "radius": 1.5,
+                "start": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "transform": {
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "translate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                }
+            }
+        ],
+        "CollisionPushBackInfo": [
+            {
+                "Handle": "65f1bcde-20d1-4222-935e-b5a6be887a63",
+                "pushBackType": 0
+            }
+        ],
         "CylinderRenderer": [
             {
                 "Handle": "bbdaa337-be4d-4c61-92f6-da2b1f657fdf",
@@ -50,6 +92,7 @@
                     1.0
                 ],
                 "enableLighting": false,
+                "environmentCoefficient": 0.10000000149011612,
                 "shininess": 0.0,
                 "specularColor": [
                     1.0,
@@ -70,6 +113,7 @@
         "RailPoints": [
             {
                 "Handle": "c80b3b81-71fa-48fb-ae86-93d0478820c5",
+                "collisionRadiusOffset": 0.5,
                 "points": [
                     [
                         0.0,
@@ -79,20 +123,10 @@
                     [
                         0.0,
                         0.0,
-                        3.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        6.0
-                    ],
-                    [
-                        0.0,
-                        0.0,
-                        9.0
+                        256.0
                     ]
                 ],
-                "radius": 0.2199999988079071,
+                "radius": 1.0,
                 "segmentDivide": 8,
                 "texturePath": ""
             }
@@ -106,7 +140,7 @@
                 "isCulling": true,
                 "isRenderer": true,
                 "materialIndex": 0,
-                "radius": 1.0,
+                "radius": 2.0,
                 "textureFilePath": "",
                 "transform": {
                     "rotate": [
@@ -135,7 +169,7 @@
                 "isCulling": true,
                 "isRenderer": true,
                 "materialIndex": 0,
-                "radius": 1.0,
+                "radius": 2.0,
                 "textureFilePath": "",
                 "transform": {
                     "rotate": [
@@ -152,7 +186,7 @@
                     "translate": [
                         0.0,
                         0.0,
-                        9.0
+                        256.0
                     ]
                 }
             }
@@ -172,9 +206,9 @@
                     1.0
                 ],
                 "translate": [
-                    -17.684099197387695,
-                    1.179197072982788,
-                    0.0
+                    0.0,
+                    122.92375946044922,
+                    2677.656494140625
                 ]
             }
         ]
@@ -184,6 +218,10 @@
     },
     "Name": "Rail",
     "Systems": [
+        {
+            "SystemCategory": 4,
+            "SystemName": "CollisionCheckSystem"
+        },
         {
             "SystemCategory": 6,
             "SystemName": "TexturedMeshRenderSystem"
