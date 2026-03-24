@@ -56,6 +56,8 @@ public:
     bool isActive        = true; ///< 再生するかどうか
     bool isReversed      = false; ///< 逆再生中かどうか（PingPong時の内部状態）
     bool isPlaying       = false; ///< 再生中かどうか（isActiveとは別に再生状態を管理）
+    int32_t startIndex      = 0; ///< 開始位置のインデックス
+    float   startProgress   = 0.0f; ///< 開始位置の区間内進行度（0.0〜1.0）
     int32_t currentIndex = 0; ///< 現在の区間の始点インデックス
 
     float speed    = 1.0f; ///< 再生速度

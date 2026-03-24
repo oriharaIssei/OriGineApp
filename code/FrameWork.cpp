@@ -114,6 +114,7 @@
 #include "system/transition/SubSceneActivateByButton.h"
 #include "system/transition/SubSceneDeactivateByButton.h"
 #include "system/transition/TimeLimitJudgeSystem.h"
+#include "system/Transition/TimerAutoDestroySystem.h"
 #include "system/transition/TimerCountDown.h"
 #include "system/Transition/TimerCountUp.h"
 #include "system/transition/TransitionPlayerState.h"
@@ -185,7 +186,7 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<SpeedModifiers>();
     componentRegistry->RegisterComponent<Rigidbody>();
 
-    componentRegistry->RegisterComponent<Emitter>();
+    componentRegistry->RegisterComponent<ParticleSystem>();
     componentRegistry->RegisterComponent<GpuParticleEmitter>();
     componentRegistry->RegisterComponent<EntitySpawner>();
 
@@ -282,6 +283,7 @@ void RegisterUsingSystems() {
     // StateTransition
     /// ===================================================================================================
     systemRegistry->RegisterSystem<EffectAutoDestroySystem>();
+    systemRegistry->RegisterSystem<TimerAutoDestroySystem>();
     systemRegistry->RegisterSystem<ChangeSceneByButton>();
     systemRegistry->RegisterSystem<FallToFailedSystem>();
     systemRegistry->RegisterSystem<FallToRestartSystem>();
@@ -318,7 +320,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<PlayerMoveSystem>();
 
     systemRegistry->RegisterSystem<PlayerPathSplineGenerator>();
-    systemRegistry->RegisterSystem<TireTrailGenerateSystem>();
+    // systemRegistry->RegisterSystem<TireTrailGenerateSystem>();
     systemRegistry->RegisterSystem<PlayerUpdateOnTitle>();
 
     systemRegistry->RegisterSystem<StartSequenceSystem>();
@@ -339,7 +341,6 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<PlayerFollowSystem>();
     systemRegistry->RegisterSystem<LookAtFromTransformsSystem>();
     systemRegistry->RegisterSystem<Ui3dUpdateSystem>();
-    systemRegistry->RegisterSystem<ColliderRenderingSystem>();
 
     /// =================================================================================================
     // Collision
@@ -361,7 +362,7 @@ void RegisterUsingSystems() {
     /// =================================================================================================
     // Effect
     /// =================================================================================================
-    systemRegistry->RegisterSystem<EmitterWorkSystem>();
+    systemRegistry->RegisterSystem<ParticleSystemWorkSystem>();
     systemRegistry->RegisterSystem<GpuParticleEmitterWorkSystem>();
 
     systemRegistry->RegisterSystem<EntitySpawnerWorkSystem>();
@@ -381,7 +382,7 @@ void RegisterUsingSystems() {
 
     systemRegistry->RegisterSystem<MaterialEffect>();
     systemRegistry->RegisterSystem<CreateMeshFromSpline>();
-    systemRegistry->RegisterSystem<CreateMeshFromTireSpline>();
+    // systemRegistry->RegisterSystem<CreateMeshFromTireSpline>();
     systemRegistry->RegisterSystem<CreateRailMesh>();
 
     systemRegistry->RegisterSystem<PlayerSpeedFor3dUI>();

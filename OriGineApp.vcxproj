@@ -266,6 +266,7 @@
     <ClInclude Include="code\system\Transition\SubSceneActivateByButton.h" />
     <ClInclude Include="code\system\Transition\SubSceneDeactivateByButton.h" />
     <ClInclude Include="code\system\Transition\TimeLimitJudgeSystem.h" />
+    <ClInclude Include="code\system\Transition\TimerAutoDestroySystem.h" />
     <ClInclude Include="code\system\Transition\TimerCountDown.h" />
     <ClInclude Include="code\system\Transition\TimerCountUp.h" />
     <ClInclude Include="code\system\Transition\TransitionPlayerState.h" />
@@ -396,6 +397,7 @@
     <ClCompile Include="code\system\Transition\SubSceneActivateByButton.cpp" />
     <ClCompile Include="code\system\Transition\SubSceneDeactivateByButton.cpp" />
     <ClCompile Include="code\system\Transition\TimeLimitJudgeSystem.cpp" />
+    <ClCompile Include="code\system\Transition\TimerAutoDestroySystem.cpp" />
     <ClCompile Include="code\system\Transition\TimerCountDown.cpp" />
     <ClCompile Include="code\system\Transition\TimerCountUp.cpp" />
     <ClCompile Include="code\system\Transition\TransitionPlayerState.cpp" />

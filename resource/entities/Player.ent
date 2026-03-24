@@ -361,9 +361,9 @@
                 "minWallJumpOffsetX": 0.20999999344348907,
                 "railInterval": 0.17000000178813934,
                 "railJumpOffset": [
-                    0.5773503184318542,
-                    0.5773503184318542,
-                    0.5773503184318542
+                    0.7460753917694092,
+                    0.29185834527015686,
+                    0.5984899401664734
                 ],
                 "railRampUpTime": 0.25,
                 "railSpeedRate": 1.2200000286102295,
@@ -580,12 +580,12 @@
     "Name": "Player",
     "Systems": [
         {
-            "SystemCategory": 0,
-            "SystemName": "TakePlayerToStartPosition"
-        },
-        {
             "SystemCategory": 4,
             "SystemName": "CollisionPushBackSystem"
+        },
+        {
+            "SystemCategory": 0,
+            "SystemName": "TakePlayerToStartPosition"
         },
         {
             "SystemCategory": 4,

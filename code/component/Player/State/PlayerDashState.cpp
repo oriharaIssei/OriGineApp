@@ -31,6 +31,8 @@ void PlayerDashState::Initialize() {
     int32_t gearLevel     = state->GetGearLevel();
     float currentMaxSpeed = playerStatus->CalculateSpeedByGearLevel(gearLevel);
     playerStatus->SetCurrentMaxSpeed(currentMaxSpeed);
+    playerStatus->SetCurrentMaxDirectionalSpeed(playerStatus->CalculateCurrentMaxDirectionalSpeed(gearLevel));
+    playerStatus->SetCurrentDirectionalSpeed({0.f, 0.f});
     // プレイヤーの向いている方向に速度を設定
     Vec3f forwardDir = transform->FrontVector();
     forwardDir[Y]    = 0.f;

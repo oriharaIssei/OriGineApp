@@ -120,6 +120,8 @@ void CreateMeshFromSpline::UpdateEntity(OriGine::EntityHandle _handle) {
         return;
     }
 
+    planeRendererComp->SetIsCulling(true);
+    planeRendererComp->SetInstancing(false); // インスタンシングは使用しない
     for (auto& splinePointsComp : splinePointsComps) {
         if (splinePointsComp.commonSettings.isCrossMesh) {
             CreateCrossPlaneMesh(planeRendererComp, &splinePointsComp);

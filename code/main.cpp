@@ -23,9 +23,9 @@
 std::vector<std::string> ParseCommandLine();
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
-#ifdef _DEBUG
+#if defined(_DEBUG) || defined(DEBUG_REPLAY)
     OriGine::DxDebug::GetInstance()->InitializeDebugger();
-#endif // DEBUG
+#endif // _DEBUG || DEBUG_REPLAY
 
     std::vector<std::string> cmdLines = ParseCommandLine();
 
@@ -35,7 +35,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
     // debug時は editor
     // develop ,release では Game を起動する
-#ifdef DEBUG
+#if defined(DEBUG) || defined(DEBUG_REPLAY)
     {
         application = std::make_unique<MyEditor>();
     }
@@ -43,13 +43,13 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
     {
         application = std::make_unique<MyGame>();
     }
-#endif // DEBUG
+#endif // DEBUG || DEBUG_REPLAY
 
     application->Initialize(cmdLines);
 
-#ifdef _DEBUG
+#if defined(_DEBUG) || defined(DEBUG_REPLAY)
     OriGine::DxDebug::GetInstance()->CreateInfoQueue();
-#endif // DEBUG
+#endif // _DEBUG || DEBUG_REPLAY
 
     application->Run();
 

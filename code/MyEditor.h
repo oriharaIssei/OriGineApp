@@ -1,6 +1,6 @@
 #pragma once
 #include "FrameWork.h"
-#ifdef _DEBUG
+#if defined(_DEBUG) || defined(DEBUG_REPLAY)
 
 namespace OriGine {
 class EditorController;
@@ -38,4 +38,4 @@ public:
     void SetEndRequest(bool endRequest) { isEndRequest_ = endRequest; }
 };
 
-#endif // _DEBUG
+#endif // _DEBUG || DEBUG_REPLAY

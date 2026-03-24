@@ -4385,7 +4385,7 @@
             }
         },
         {
-            "EmitterWorkSystem": {
+            "ParticleSystemWorkSystem": {
                 "Priority": 1
             }
         },

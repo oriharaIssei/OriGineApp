@@ -262,6 +262,18 @@ void PlayerStatus::SetupOnGearUp(int32_t _gearLevel) {
 }
 
 Vec3f PlayerStatus::ComputeSmoothedDirection(const Vec3f& _targetDir, const Rigidbody* _rigidbody, const Transform* _transform, float _deltaTime) const {
+    constexpr float kMaxRate = 2.34f; // 逆向きのときの最大補間速度倍率
+
+    // 入力がない場合は現在の向きを維持
+    if (_targetDir.lengthSq() <= kEpsilon) {
+        Vec3f currentDir = _rigidbody->GetVelocity();
+        currentDir[Y]    = 0.0f;
+        if (currentDir.lengthSq() <= kEpsilon) {
+            currentDir = axisZ * MakeMatrix4x4::RotateQuaternion(_transform->rotate);
+        }
+        return currentDir.normalize();
+    }
+
     // 現在のXZ平面の速度を取得
     Vec3f currentDir = _rigidbody->GetVelocity();
     currentDir[Y]    = 0.0f;
@@ -272,8 +284,16 @@ Vec3f PlayerStatus::ComputeSmoothedDirection(const Vec3f& _targetDir, const Rigi
     }
     currentDir = currentDir.normalize();
 
+    // 現在の方向と目標方向の内積に応じて補間速度を調整
+    float dot  = Vec3f::Dot(currentDir, _targetDir);
+    float rate = directionInterpolateRate_;
+    if (dot < 0.0f) {
+        // 逆向きほど補間速度を上げる (dot=-1 で最大倍率)
+        rate *= std::lerp(1.0f, kMaxRate, -dot);
+    }
+
     // 補間計算
-    Vec3f resultDir = LerpByDeltaTime(currentDir, _targetDir, _deltaTime, directionInterpolateRate_);
+    Vec3f resultDir = LerpByDeltaTime(currentDir, _targetDir, _deltaTime, rate);
     return resultDir.normalize();
 }
 

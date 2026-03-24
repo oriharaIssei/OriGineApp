@@ -128,7 +128,10 @@ void PathControllerSystem::UpdateEntity(OriGine::EntityHandle _handle) {
 
     // --- 進行度を更新 ---
     const float deltaTime = Engine::GetInstance()->GetDeltaTime();
-    const float step      = pathController->speed * deltaTime;
+
+    // 現在区間の長さを求めて、速度を距離ベースに変換
+    const float segmentLength = Vec3f(pts[pathController->currentIndex + 1] - pts[pathController->currentIndex]).length();
+    const float step          = (segmentLength > kEpsilon) ? (pathController->speed * deltaTime / segmentLength) : 0.0f;
 
     if (pathController->isReversed) {
         pathController->progress -= step;

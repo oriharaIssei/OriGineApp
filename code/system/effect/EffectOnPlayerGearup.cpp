@@ -13,7 +13,7 @@
 
 #include "component/renderer/primitive/RingRenderer.h"
 
-#include "component/effect/particle/emitter/Emitter.h"
+#include "component/effect/particle/emitter/ParticleSystem.h"
 #include "component/effect/post/DistortionEffectParam.h"
 
 #include "component/player/PlayerEffectControlParam.h"
@@ -59,7 +59,7 @@ void EffectOnPlayerGearup::UpdateEntity(OriGine::EntityHandle _handle) {
         transform->translate          = playerTransform->translate; // Playerの位置に合わせる
 
         // Emitterの再生
-        auto& emitters = GetComponents<Emitter>(_handle);
+        auto& emitters = GetComponents<ParticleSystem>(_handle);
         for (auto& emitter : emitters) {
             emitter.SetOriginPos(emitterOffset_);
             emitter.PlayStart();

@@ -1,5 +1,11 @@
 #include "PlayerOnCollision.h"
 
+/// engine
+#include "messageBus/MessageBus.h"
+
+// event
+#include "event/GamefailedEvent.h"
+
 /// ECS
 // component
 #include "component/collision/collider/SphereCollider.h"
@@ -80,9 +86,11 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
         {
             Obstacle* obstacle = GetComponent<Obstacle>(entityId);
             if (obstacle) {
-                float penaltyTime       = obstacle->GetPenaltyTime();
+
+                MessageBus::GetInstance()->Emit<GamefailedEvent>(GamefailedEvent());
+                /*float penaltyTime       = obstacle->GetPenaltyTime();
                 float invincibilityTime = obstacle->GetInvincibilityTimeOnCollision();
-                state->OnCollisionObstacle(penaltyTime, invincibilityTime);
+                state->OnCollisionObstacle(penaltyTime, invincibilityTime);*/
                 continue;
             }
         }

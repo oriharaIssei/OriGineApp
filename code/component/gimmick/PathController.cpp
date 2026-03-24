@@ -10,7 +10,10 @@
 
 using namespace OriGine;
 
-void PathController::Initialize(OriGine::Scene* /*_scene*/, OriGine::EntityHandle /*_owner*/) {}
+void PathController::Initialize(OriGine::Scene* /*_scene*/, OriGine::EntityHandle /*_owner*/) {
+    currentIndex = startIndex;
+    progress     = startProgress;
+}
 void PathController::Finalize() {}
 
 void PathController::Edit(OriGine::Scene* /*_scene*/, OriGine::EntityHandle /*_owner*/, [[maybe_unused]] const std::string& _parentLabel) {
@@ -19,6 +22,8 @@ void PathController::Edit(OriGine::Scene* /*_scene*/, OriGine::EntityHandle /*_o
     CheckBoxCommand("Is Active##" + _parentLabel, isActive);
     CheckBoxCommand("Is Playing##" + _parentLabel, isPlaying);
     DragGuiCommand("Speed##" + _parentLabel, speed, 0.01f, 0.f);
+    DragGuiCommand<int32_t>("Start Index##" + _parentLabel, startIndex, 1, 0, static_cast<int32_t>(points.size()) - 2, "%d");
+    DragGuiCommand("Start Progress##" + _parentLabel, startProgress, 0.01f, 0.0f, 1.0f);
 
     ImGui::Spacing();
 
@@ -100,6 +105,8 @@ void to_json(nlohmann::json& _j, const PathController& _c) {
         {"isReversed", _c.isReversed},
         {"isPlaying", _c.isPlaying},
         {"speed", _c.speed},
+        {"startIndex", _c.startIndex},
+        {"startProgress", _c.startProgress},
         {"currentIndex", _c.currentIndex},
         {"progress", _c.progress},
         {"playOption", static_cast<int>(_c.playOption)},
@@ -115,11 +122,13 @@ void from_json(const nlohmann::json& _j, PathController& _c) {
     _j.at("isReversed").get_to(_c.isReversed);
     _j.at("isPlaying").get_to(_c.isPlaying);
     _j.at("speed").get_to(_c.speed);
+    _c.startIndex    = _j.value("startIndex", 0);
+    _c.startProgress = _j.value("startProgress", 0.0f);
     _j.at("currentIndex").get_to(_c.currentIndex);
     _j.at("progress").get_to(_c.progress);
-    _c.playOption         = static_cast<PathController::PlayOptions>(_j.value("playOption", 0));
-    _c.interpolation      = static_cast<PathController::InterpolationType>(_j.value("interpolation", 0));
-    _c.rotationMode       = static_cast<PathController::RotationMode>(_j.value("rotationMode", 0));
+    _c.playOption          = static_cast<PathController::PlayOptions>(_j.value("playOption", 0));
+    _c.interpolation       = static_cast<PathController::InterpolationType>(_j.value("interpolation", 0));
+    _c.rotationMode        = static_cast<PathController::RotationMode>(_j.value("rotationMode", 0));
     _c.rotationSmoothSpeed = _j.value("rotationSmoothSpeed", 5.0f);
     _j.at("points").get_to(_c.points);
 }

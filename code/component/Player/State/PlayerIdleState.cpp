@@ -2,7 +2,7 @@
 
 /// component
 #include "component/animation/SkinningAnimationComponent.h"
-#include "component/effect/particle/emitter/Emitter.h"
+#include "component/effect/particle/emitter/ParticleSystem.h"
 #include "component/physics/Rigidbody.h"
 
 #include "component/Camera/CameraController.h"

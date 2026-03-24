@@ -390,6 +390,9 @@
     <ClInclude Include="code\system\Transition\TimeLimitJudgeSystem.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\Transition\TimerAutoDestroySystem.h">
+      <Filter>system\Transition</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\Transition\TimerCountDown.h">
       <Filter>system\Transition</Filter>
     </ClInclude>
@@ -766,6 +769,9 @@
       <Filter>system\Transition</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Transition\TimeLimitJudgeSystem.cpp">
+      <Filter>system\Transition</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Transition\TimerAutoDestroySystem.cpp">
       <Filter>system\Transition</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Transition\TimerCountDown.cpp">
