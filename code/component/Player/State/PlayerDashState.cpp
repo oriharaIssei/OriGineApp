@@ -7,7 +7,6 @@
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
 
-#include "component/Camera/CameraController.h"
 #include "component/physics/Rigidbody.h"
 #include "component/player/PlayerInput.h"
 #include "component/player/PlayerMoveUtils.h"
@@ -39,8 +38,6 @@ void PlayerDashState::Initialize() {
     forwardDir       = forwardDir.normalize();
     rigidbody->SetVelocity(forwardDir * currentMaxSpeed);
 
-    // 落下タイマーをリセット
-    cameraOffsetLerpTimer_ = 0.f;
 }
 
 void PlayerDashState::Update(float _deltaTime) {
@@ -96,24 +93,6 @@ void PlayerDashState::Update(float _deltaTime) {
         fallDownTimer_ -= _deltaTime;
     }
 
-    if (kThresholdGearLevelOfCameraOffset_ >= gearLevel) {
-        return;
-    }
-
-    ///! TODO : ここにカメラの処理を書くべきではない
-    EntityHandle cameraEntityHandle    = state->GetCameraEntityHandle();
-    CameraController* cameraController = scene_->GetComponent<CameraController>(cameraEntityHandle);
-
-    if (cameraController) {
-        float cameraDeltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Camera");
-        // カメラのオフセットを徐々に元に戻す
-        cameraOffsetLerpTimer_ += cameraDeltaTime;
-        float t = cameraOffsetLerpTimer_ / kCameraOffsetLerpTime_;
-        t       = std::clamp(t, 0.f, 1.f);
-
-        cameraController->currentOffset       = Lerp<3, float>(cameraController->currentOffset, cameraController->offsetOnDash, EaseOutCubic(t));
-        cameraController->currentTargetOffset = Lerp<3, float>(cameraController->currentTargetOffset, cameraController->targetOffsetOnDash, EaseOutCubic(t));
-    }
 }
 
 void PlayerDashState::Finalize() {

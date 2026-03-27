@@ -35,10 +35,10 @@ void CameraInputSystem::UpdateEntity(OriGine::EntityHandle _handle) {
 }
 
 void CameraInputSystem::InputUpdate(float _deltaTime, MouseInput* _mouseInput, GamepadInput* _padInput, CameraController* _cameraController) {
-
+    Transform* followTargetTransform  = GetComponent<Transform>(_cameraController->followTargetEntity);
     OriGine::Vec2f destinationAngleXY = _cameraController->destinationAngleXY;
 
-    if (_cameraController->followTarget) {
+    if (followTargetTransform) {
         OriGine::Vec2f rotateVelocity = {0.f, 0.f};
         if (_padInput->IsActive()) { /// GamePad
             rotateVelocity = _padInput->GetRightStick() * _cameraController->rotateSpeedPadStick;

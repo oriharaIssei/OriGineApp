@@ -57,9 +57,6 @@ protected:
     float minCameraTargetOffsetXOnWallRun_      = 0.f;
     OriGine::Vec3f cameraOffsetOnWallRun_       = OriGine::Vec3f(0.0f, 0.0f, 0.0f);
 
-    float cameraRotateZOnWallRun_ = 0.f; // カメラのZ回転角度
-    float currentCameraRotateZ_   = 0.f; // カメラのZ回転角度
-
     const float kCameraAngleLerpTime_ = 1.8f;
     float cameraAngleLerpTimer_       = 0.0f;
 };

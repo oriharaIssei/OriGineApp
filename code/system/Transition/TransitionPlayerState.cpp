@@ -7,6 +7,8 @@
 
 #include "scene/SceneFactory.h"
 
+#include "messageBus/MessageBus.h"
+
 /// application
 #include "manager/PlayerProgressStore.h"
 
@@ -27,10 +29,10 @@
 
 #include "component/Camera/CameraController.h"
 #include "component/camera/CameraShakeSourceComponent.h"
-#include "component/effect/SquashStretchComponent.h"
 #include "component/transform/CameraTransform.h"
 
-#include "component/ghost/PlayRecorderComponent.h"
+/// event
+#include "event/PlayerStateChangedEvent.h"
 
 /// math
 #include "math/MathEnv.h"
@@ -60,12 +62,10 @@ void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
             StageData* stageData  = GetComponent<StageData>(stageDataEntityHandle);
             TimerComponent* timer = GetComponent<TimerComponent>(timerEntityHandle);
 
-            EntityHandle recorderEntityHandle  = GetUniqueEntity("Recorder");
-            PlayRecorderComponent* playRecorder = GetComponent<PlayRecorderComponent>(recorderEntityHandle);
+            EntityHandle recorderEntityHandle = GetUniqueEntity("Recorder");
 
             if (timer != nullptr && stageData != nullptr) {
                 progressStore->StageCleared(
-                    playRecorder != nullptr ? playRecorder->replayRecorder_.get() : nullptr,
                     stageData->GetStageNumber(),
                     timer->GetTime());
             }
@@ -99,6 +99,13 @@ void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
 
         state->SetPlayerMoveState(CreatePlayerMoveStateByEnum(moveStateFlag.Current().ToEnum(), this->GetScene(), _handle));
         state->GetPlayerMoveState()->Initialize();
+
+        // event を発行
+        PlayerStateChangedEvent event;
+        event.playerEntityHandle = _handle;
+        event.previousMoveState  = moveStateFlag.Prev().ToEnum();
+        event.currentMoveState   = moveStateFlag.Current().ToEnum();
+        MessageBus::GetInstance()->Emit<PlayerStateChangedEvent>(event);
     }
 
     PlayerEffectControlParam* effectParam = GetComponent<PlayerEffectControlParam>(_handle);

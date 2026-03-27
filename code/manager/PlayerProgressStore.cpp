@@ -12,11 +12,6 @@
 /// util
 #include "myFileSystem/MyFileSystem.h"
 
-/// externals
-#include <nlohmann/json.hpp>
-
-using namespace OriGine;
-
 void PlayerProgressStore::Initialize() {
     progressDataMap_.clear();
 }
@@ -25,7 +20,7 @@ void PlayerProgressStore::Finalize() {
     progressDataMap_.clear();
 }
 
-void PlayerProgressStore::StageCleared(ReplayRecorder* _recorder, int32_t _stageNum, float _clearTime) {
+void PlayerProgressStore::StageCleared(int32_t _stageNum, float _clearTime) {
     lastPlayStageNumber_ = _stageNum;
 
     lastPlayClearTime_ = _clearTime;
@@ -49,10 +44,7 @@ void PlayerProgressStore::StageCleared(ReplayRecorder* _recorder, int32_t _stage
             ++rankingIndex;
         }
         if (isInRanking) {
-            if (_recorder) {
-                SaveBestPlayData(_stageNum, _recorder);
-                SaveProgressData();
-            }
+            SaveProgressData();
         }
         return;
     }
@@ -64,9 +56,6 @@ void PlayerProgressStore::StageCleared(ReplayRecorder* _recorder, int32_t _stage
     newData.ranking.times[0] = _clearTime;
 
     SaveProgressData();
-    if (_recorder) {
-        SaveBestPlayData(_stageNum, _recorder);
-    }
 }
 
 void PlayerProgressStore::LoadProgressData() {
@@ -113,18 +102,4 @@ void PlayerProgressStore::SaveProgressData() {
     }
     ofs << std::setw(4) << jsonData << std::endl;
     ofs.close();
-}
-
-bool PlayerProgressStore::LoadBestPlayData(int32_t _stageNum, OriGine::ReplayPlayer* _replayer) {
-    std::string stageFilePath = kApplicationResourceDirectory + "/" + kBestPlayDataFolder_ + "/Stage_" + std::to_string(_stageNum) + '.' + kReplayFileExtension;
-    return _replayer->LoadFromFile(stageFilePath);
-}
-
-void PlayerProgressStore::SaveBestPlayData(int32_t _stageNum, ReplayRecorder* _recorder) {
-    std::string directory = kApplicationResourceDirectory + "/" + kBestPlayDataFolder_;
-    std::string filename  = "Stage_" + std::to_string(_stageNum);
-    myFs::CreateFolder(directory);
-    myFs::DeleteMyFile(directory + "/" + filename); // 古いファイルを削除してから保存
-
-    _recorder->SaveToFile(directory, filename);
 }

@@ -24,9 +24,9 @@ void SettingGameCameraTarget::Update() {
     if (!cameraController || !cameraTransform) {
         return;
     }
-    Transform* playerTransform     = GetComponent<OriGine::Transform>(playerEntityHandle);
-    cameraController->followTarget = playerTransform;
+    cameraController->followTargetEntity = playerEntityHandle;
 
+    Transform* playerTransform = GetComponent<OriGine::Transform>(playerEntityHandle);
     if (playerTransform) {
         playerTransform->UpdateMatrix();
         OriGine::Vec3f playerPos   = playerTransform->GetWorldTranslate();
@@ -35,13 +35,14 @@ void SettingGameCameraTarget::Update() {
     } else {
         LOG_ERROR("Player Transform is not found.");
     }
-
-    CameraManager::GetInstance()->SetTransform(GetScene(), *cameraTransform);
-
-    auto playerState = GetComponent<PlayerState>(playerEntityHandle);
+    PlayerState* playerState = GetComponent<PlayerState>(playerEntityHandle);
     if (playerState) {
         playerState->SetCameraEntityHandle(cameraEntityHandle);
+    } else {
+        LOG_ERROR("PlayerState is not found.");
     }
+
+    CameraManager::GetInstance()->SetTransform(GetScene(), *cameraTransform);
 }
 
 void SettingGameCameraTarget::Finalize() {}

@@ -14,7 +14,6 @@
 /// system
 #include "system/SystemRunner.h"
 
-#include "system/Input/GhostInputUpdate.h"
 #include "system/Input/PlayerInputSystem.h"
 #include "system/Movement/PlayerMoveSystem.h"
 #include "system/Transition/PenaltySystem.h"
@@ -37,7 +36,6 @@ void StartSequenceSystem::Initialize() {
     };
 
     stopSystems_ = {
-        nameof<GhostInputUpdate>(),
         nameof<PlayerMoveSystem>(),
         nameof<PlayerInputSystem>(),
         nameof<PenaltySystem>()};

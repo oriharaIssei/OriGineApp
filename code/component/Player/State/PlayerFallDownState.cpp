@@ -10,8 +10,6 @@
 #include "component/player/PlayerStatus.h"
 #include "component/player/state/PlayerState.h"
 
-#include "component/Camera/CameraController.h"
-
 /// math
 #include "MyEasing.h"
 
@@ -44,31 +42,6 @@ void PlayerFallDownState::Update(float _deltaTime) {
         }
     }
 
-    ///! TODO : ここにカメラの処理を書くべきではない
-    CameraController* cameraController = scene_->GetComponent<CameraController>(playerState->GetCameraEntityHandle());
-
-    if (!cameraController) {
-        return;
-    }
-    // カメラのオフセットを徐々に元に戻す
-
-    float cameraDeltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Camera");
-    cameraOffsetLerpTimer_ += cameraDeltaTime;
-    float t = cameraOffsetLerpTimer_ / kCameraOffsetLerpTime_;
-    t       = std::clamp(t, 0.f, 1.f);
-
-    OriGine::Vec3f targetOffset;
-    OriGine::Vec3f targetTargetOffset;
-    if (playerState->GetGearLevel() >= kThresholdGearLevelOfCameraOffset_) {
-        targetOffset       = cameraController->offsetOnDash;
-        targetTargetOffset = cameraController->targetOffsetOnDash;
-    } else {
-        targetOffset       = cameraController->firstOffset;
-        targetTargetOffset = cameraController->firstTargetOffset;
-    }
-
-    cameraController->currentOffset       = Lerp<3, float>(cameraController->currentOffset, targetOffset, EaseOutCubic(t));
-    cameraController->currentTargetOffset = Lerp<3, float>(cameraController->currentTargetOffset, targetTargetOffset, EaseOutCubic(t));
 }
 
 void PlayerFallDownState::Finalize() {

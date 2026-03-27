@@ -153,6 +153,7 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="code\event\PlayerStateChangedEvent.h" />
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\MyEditor.h" />
     <ClInclude Include="code\MyGame.h" />
@@ -170,8 +171,11 @@
     <ClInclude Include="code\component\camera\CameraController.h" />
     <ClInclude Include="code\component\camera\CameraMotionBob.h" />
     <ClInclude Include="code\component\camera\CameraShakeSourceComponent.h" />
-    <ClInclude Include="code\component\ghost\GhostReplayComponent.h" />
-    <ClInclude Include="code\component\ghost\PlayRecorderComponent.h" />
+    <ClInclude Include="code\component\camera\CameraStateParams.h" />
+    <ClInclude Include="code\component\camera\state\CameraFollowState.h" />
+    <ClInclude Include="code\component\camera\state\CameraIdleState.h" />
+    <ClInclude Include="code\component\camera\state\CameraWallRunState.h" />
+    <ClInclude Include="code\component\camera\state\ICameraState.h" />
     <ClInclude Include="code\component\gimmick\Obstacle.h" />
     <ClInclude Include="code\component\gimmick\ObstacleSpawnGroupComponent.h" />
     <ClInclude Include="code\component\gimmick\PathController.h" />
@@ -211,10 +215,8 @@
     <ClInclude Include="code\system\Initialize\CreatePlaneFromSpeed.h" />
     <ClInclude Include="code\system\Initialize\CreateSpriteFromTimer.h" />
     <ClInclude Include="code\system\Initialize\GetClearTime.h" />
-    <ClInclude Include="code\system\Initialize\GhostInitializeSystem.h" />
     <ClInclude Include="code\system\Initialize\InitializeMouseCondition.h" />
     <ClInclude Include="code\system\Initialize\PlacementEntityByProcedural.h" />
-    <ClInclude Include="code\system\Initialize\PlayRecorderInitialize.h" />
     <ClInclude Include="code\system\Initialize\RailInitializeSystem.h" />
     <ClInclude Include="code\system\Initialize\SelectPreviewSceneInitialize.h" />
     <ClInclude Include="code\system\Initialize\SettingGameCameraTarget.h" />
@@ -224,8 +226,6 @@
     <ClInclude Include="code\system\Initialize\Ui3dObjectInitialize.h" />
     <ClInclude Include="code\system\Input\ButtonInputSystem.h" />
     <ClInclude Include="code\system\Input\CameraInputSystem.h" />
-    <ClInclude Include="code\system\Input\GhostInputUpdate.h" />
-    <ClInclude Include="code\system\Input\PlayRecordSystem.h" />
     <ClInclude Include="code\system\Input\PlayerInputSystem.h" />
     <ClInclude Include="code\system\Movement\ApplyAddForceSystem.h" />
     <ClInclude Include="code\system\Movement\ApplySpeedModifiers.h" />
@@ -307,8 +307,9 @@
     <ClCompile Include="code\component\camera\CameraController.cpp" />
     <ClCompile Include="code\component\camera\CameraMotionBob.cpp" />
     <ClCompile Include="code\component\camera\CameraShakeSourceComponent.cpp" />
-    <ClCompile Include="code\component\ghost\GhostReplayComponent.cpp" />
-    <ClCompile Include="code\component\ghost\PlayRecorderComponent.cpp" />
+    <ClCompile Include="code\component\camera\state\CameraFollowState.cpp" />
+    <ClCompile Include="code\component\camera\state\CameraIdleState.cpp" />
+    <ClCompile Include="code\component\camera\state\CameraWallRunState.cpp" />
     <ClCompile Include="code\component\gimmick\Obstacle.cpp" />
     <ClCompile Include="code\component\gimmick\ObstacleSpawnGroupComponent.cpp" />
     <ClCompile Include="code\component\gimmick\PathController.cpp" />
@@ -342,10 +343,8 @@
     <ClCompile Include="code\system\Initialize\CreatePlaneFromSpeed.cpp" />
     <ClCompile Include="code\system\Initialize\CreateSpriteFromTimer.cpp" />
     <ClCompile Include="code\system\Initialize\GetClearTime.cpp" />
-    <ClCompile Include="code\system\Initialize\GhostInitializeSystem.cpp" />
     <ClCompile Include="code\system\Initialize\InitializeMouseCondition.cpp" />
     <ClCompile Include="code\system\Initialize\PlacementEntityByProcedural.cpp" />
-    <ClCompile Include="code\system\Initialize\PlayRecorderInitialize.cpp" />
     <ClCompile Include="code\system\Initialize\RailInitializeSystem.cpp" />
     <ClCompile Include="code\system\Initialize\SelectPreviewSceneInitialize.cpp" />
     <ClCompile Include="code\system\Initialize\SettingGameCameraTarget.cpp" />
@@ -355,8 +354,6 @@
     <ClCompile Include="code\system\Initialize\Ui3dObjectInitialize.cpp" />
     <ClCompile Include="code\system\Input\ButtonInputSystem.cpp" />
     <ClCompile Include="code\system\Input\CameraInputSystem.cpp" />
-    <ClCompile Include="code\system\Input\GhostInputUpdate.cpp" />
-    <ClCompile Include="code\system\Input\PlayRecordSystem.cpp" />
     <ClCompile Include="code\system\Input\PlayerInputSystem.cpp" />
     <ClCompile Include="code\system\Movement\ApplyAddForceSystem.cpp" />
     <ClCompile Include="code\system\Movement\ApplySpeedModifiers.cpp" />

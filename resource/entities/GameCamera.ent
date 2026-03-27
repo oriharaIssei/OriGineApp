@@ -3,16 +3,28 @@
         "CameraController": [
             {
                 "Handle": "bcc6aef7-8b4a-44dd-a721-4639d89f68ff",
-                "firstOffset": [
-                    0.0,
-                    2.5199999809265137,
-                    -5.599999904632568
-                ],
-                "firstTargetOffset": [
-                    0.0,
-                    0.1899999976158142,
-                    2.930000066757202
-                ],
+                "dashParams": {
+                    "interLookAtTargetInterpolation": [
+                        32.0,
+                        53.400001525878906,
+                        12.0
+                    ],
+                    "interTargetInterpolation": [
+                        52.0,
+                        9.119999885559082,
+                        8.979999542236328
+                    ],
+                    "offset": [
+                        0.0,
+                        4.510000228881836,
+                        -5.050000190734863
+                    ],
+                    "targetOffset": [
+                        0.0,
+                        -1.8300000429153442,
+                        8.329999923706055
+                    ]
+                },
                 "fixForForwardSpeed": 0.33000001311302185,
                 "fovEaseType": 5,
                 "fovMax": 1.937999963760376,
@@ -20,43 +32,56 @@
                 "fovMin": 0.7839999794960022,
                 "fovMinSpeed": 28.399999618530273,
                 "fovYInterpolate": 0.11400000005960464,
-                "interLookAtTargetInterpolation": [
-                    32.0,
-                    47.13999938964844,
-                    12.0
-                ],
-                "interTargetInterpolation": [
-                    52.0,
-                    9.399999618530273,
-                    8.979999542236328
-                ],
+                "idleParams": {
+                    "interLookAtTargetInterpolation": [
+                        32.0,
+                        47.13999938964844,
+                        12.0
+                    ],
+                    "interTargetInterpolation": [
+                        52.0,
+                        11.680000305175781,
+                        12.149999618530273
+                    ],
+                    "offset": [
+                        0.0,
+                        2.5199999809265137,
+                        -5.599999904632568
+                    ],
+                    "targetOffset": [
+                        0.0,
+                        0.1899999976158142,
+                        2.930000066757202
+                    ]
+                },
                 "maxRotateX": 0.5270000100135803,
                 "minRotateX": -0.296999990940094,
                 "minTargetOffsetXOnWallRun": -2.2899999618530273,
-                "offsetOnDash": [
-                    0.0,
-                    4.510000228881836,
-                    -5.050000190734863
-                ],
-                "offsetOnWallRun": [
-                    -0.8600000143051147,
-                    1.0700000524520874,
-                    0.05999999865889549
-                ],
                 "rotateSensitivity": 86.0,
                 "rotateSpeedMouse": 0.0,
                 "rotateSpeedPadStick": 0.0,
-                "rotateZOnWallRun": 0.36000001430511475,
-                "targetOffsetOnDash": [
-                    0.0,
-                    -1.8300000429153442,
-                    8.329999923706055
-                ],
-                "targetOffsetOnWallRun": [
-                    -0.15000000596046448,
-                    0.009999999776482582,
-                    9.550000190734863
-                ]
+                "wallRunParams": {
+                    "interLookAtTargetInterpolation": [
+                        86.0,
+                        86.0,
+                        256.0
+                    ],
+                    "interTargetInterpolation": [
+                        86.0,
+                        86.0,
+                        256.0
+                    ],
+                    "offset": [
+                        -2.5999999046325684,
+                        0.550000011920929,
+                        5.329999923706055
+                    ],
+                    "targetOffset": [
+                        0.12999999523162842,
+                        0.009999999776482582,
+                        9.550000190734863
+                    ]
+                }
             }
         ],
         "CameraMotionBob": [

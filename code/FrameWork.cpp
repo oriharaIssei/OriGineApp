@@ -13,8 +13,6 @@
 #include "component/Camera/CameraController.h"
 #include "component/camera/CameraMotionBob.h"
 #include "component/Camera/CameraShakeSourceComponent.h"
-#include "component/ghost/GhostReplayComponent.h"
-#include "component/ghost/PlayRecorderComponent.h"
 #include "component/gimmick/Obstacle.h"
 #include "component/gimmick/ObstacleSpawnGroupComponent.h"
 #include "component/gimmick/PathController.h"
@@ -61,9 +59,7 @@
 #include "system/Initialize/CreatePlaneFromSpeed.h"
 #include "system/initialize/CreateSpriteFromTimer.h"
 #include "system/initialize/GetClearTime.h"
-#include "system/Initialize/GhostInitializeSystem.h"
 #include "system/Initialize/InitializeMouseCondition.h"
-#include "system/Initialize/PlayRecorderInitialize.h"
 #include "system/Initialize/RailInitializeSystem.h"
 #include "system/Initialize/SelectPreviewSceneInitialize.h"
 #include "system/initialize/SettingGameCameraTarget.h"
@@ -73,9 +69,7 @@
 #include "system/Initialize/Ui3dObjectInitialize.h"
 #include "system/input/ButtonInputSystem.h"
 #include "system/input/CameraInputSystem.h"
-#include "system/Input/GhostInputUpdate.h"
 #include "system/input/PlayerInputSystem.h"
-#include "system/Input/PlayRecordSystem.h"
 #include "system/movement/ApplyAddForceSystem.h"
 #include "system/Movement/ApplySpeedModifiers.h"
 #include "system/movement/BillboardTransform.h"
@@ -156,9 +150,6 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<TimeScaleEffectComponent>();
     componentRegistry->RegisterComponent<VelocityOverrideComponent>();
     componentRegistry->RegisterComponent<AddForceComponent>();
-
-    componentRegistry->RegisterComponent<GhostReplayComponent>();
-    componentRegistry->RegisterComponent<PlayRecorderComponent>();
 
     componentRegistry->RegisterComponent<Material>();
     componentRegistry->RegisterComponent<DirectionalLight>();
@@ -262,9 +253,6 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<TakeToGoalPosition>();
     systemRegistry->RegisterSystem<CreatePlaneFromSpeed>();
 
-    systemRegistry->RegisterSystem<GhostInitializeSystem>();
-    systemRegistry->RegisterSystem<PlayRecorderInitialize>();
-
     systemRegistry->RegisterSystem<RailInitializeSystem>();
 
     systemRegistry->RegisterSystem<ClearSceneRankingBuildSystem>();
@@ -275,9 +263,6 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<ButtonInputSystem>();
     systemRegistry->RegisterSystem<CameraInputSystem>();
     systemRegistry->RegisterSystem<PlayerInputSystem>();
-
-    systemRegistry->RegisterSystem<PlayRecordSystem>();
-    systemRegistry->RegisterSystem<GhostInputUpdate>();
 
     /// ===================================================================================================
     // StateTransition

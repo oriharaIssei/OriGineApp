@@ -3,12 +3,19 @@
 /// parent
 #include "component/IComponent.h"
 
+/// stl
+#include <memory>
+
 /// engine
 // component
 #include "component/transform/Transform.h"
 
 /// application
 #include "CameraConfig.h"
+#include "CameraStateParams.h"
+
+/// state
+#include "state/ICameraState.h"
 
 /// math
 #include "math/MyEasing.h"
@@ -55,32 +62,42 @@ public:
     float CalculateFovYBySpeed(float _xzSpeed) const;
 
 public:
-    OriGine::Transform* followTarget = nullptr;
+    OriGine::EntityHandle followTargetEntity = OriGine::EntityHandle();
 
     // 演出用の回転と分けるための基準回転
     OriGine::Quaternion baseRotate = OriGine::Quaternion::Identity();
+    float currentRotateZ           = 0.0f; // カメラのZ回転（ロール） 現在値
 
     bool isAutoLookAtPlayer = true; // 自動でプレイヤーを注視するかどうか
 
     /// <summary>
-    /// 注視点のOffset
+    /// 現在のカメラステートパラメータ (補間後)
     /// </summary>
-    OriGine::Vec3f currentTargetOffset   = {0.0f, 0.0f, 0.0f};
-    OriGine::Vec3f firstTargetOffset     = AppConfig::Camera::kFirstTargetOffset;
-    OriGine::Vec3f targetOffsetOnDash    = AppConfig::Camera::kTargetOffsetOnDash;
-    float minTargetOffsetXOnWallRun      = 0.0f;
-    OriGine::Vec3f targetOffsetOnWallRun = AppConfig::Camera::kTargetOffsetOnDash;
+    OriGine::Vec3f currentTargetOffset = {0.0f, 0.0f, 0.0f};
+    OriGine::Vec3f currentOffset       = {0.0f, 0.0f, 0.0f};
 
     /// <summary>
-    /// 注視点との距離のOffset
+    /// ステートごとのパラメータ
     /// </summary>
-    OriGine::Vec3f currentOffset   = {0.0f, 0.0f, 0.0f};
-    OriGine::Vec3f firstOffset     = AppConfig::Camera::kFirstOffset;
-    OriGine::Vec3f offsetOnDash    = AppConfig::Camera::kOffsetOnDash;
-    OriGine::Vec3f offsetOnWallRun = AppConfig::Camera::kOffsetOnDash;
+    CameraStateParams idleParams{
+        AppConfig::Camera::kFirstTargetOffset,
+        AppConfig::Camera::kFirstOffset,
+        AppConfig::Camera::kDefaultInterTargetInterpolation,
+        AppConfig::Camera::kDefaultInterTargetInterpolation};
+    CameraStateParams dashParams{
+        AppConfig::Camera::kTargetOffsetOnDash,
+        AppConfig::Camera::kOffsetOnDash,
+        AppConfig::Camera::kDefaultInterTargetInterpolation,
+        AppConfig::Camera::kDefaultInterTargetInterpolation};
+    CameraStateParams wallRunParams{
+        AppConfig::Camera::kTargetOffsetOnDash,
+        AppConfig::Camera::kOffsetOnDash,
+        AppConfig::Camera::kDefaultInterTargetInterpolation,
+        AppConfig::Camera::kDefaultInterTargetInterpolation};
 
-    float currentRotateZ   = 0.0f;
-    float rotateZOnWallRun = 0.0f; // 壁走り中のZ回転量
+    float minTargetOffsetXOnWallRun = 0.0f;
+
+
 
     OriGine::Vec3f interTarget                    = {0.0f, 0.0f, 0.0f};
     OriGine::Vec3f interLookAtTarget              = {0.0f, 0.0f, 0.0f}; // XY注視用補間値（カメラ位置は動かさず回転のみ）
@@ -101,4 +118,10 @@ public:
     float fovMaxSpeed             = AppConfig::Camera::kDefaultFovMaxSpeed; // FovY最大になる速度
     OriGine::EaseType fovEaseType = OriGine::EaseType::Linear; // 速度→FovY のイージング
     float fixForForwardSpeed      = AppConfig::Camera::kFixForForwardSpeed; // 正面方向への 補正速度
+
+    /// <summary>
+    /// カメラステート
+    /// </summary>
+    std::shared_ptr<ICameraState> cameraState_ = nullptr;
+    CameraMoveState currentCameraStateType_    = CameraMoveState::IDLE;
 };

@@ -7,6 +7,9 @@
     <Filter Include="component\camera">
       <UniqueIdentifier>{B0BB0A81-9CB4-29D3-C5E6-0E58B13E09DF}</UniqueIdentifier>
     </Filter>
+    <Filter Include="component\camera\state">
+      <UniqueIdentifier>{207FF9CC-0C79-221F-F5E5-B82FE17E888B}</UniqueIdentifier>
+    </Filter>
     <Filter Include="component\ghost">
       <UniqueIdentifier>{6C503504-D8DB-A2C8-E1EC-25BD4DF7FEC8}</UniqueIdentifier>
     </Filter>
@@ -102,11 +105,20 @@
     <ClInclude Include="code\component\camera\CameraShakeSourceComponent.h">
       <Filter>component\camera</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\ghost\GhostReplayComponent.h">
-      <Filter>component\ghost</Filter>
+    <ClInclude Include="code\component\camera\CameraStateParams.h">
+      <Filter>component\camera</Filter>
     </ClInclude>
-    <ClInclude Include="code\component\ghost\PlayRecorderComponent.h">
-      <Filter>component\ghost</Filter>
+    <ClInclude Include="code\component\camera\state\CameraFollowState.h">
+      <Filter>component\camera\state</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\camera\state\CameraIdleState.h">
+      <Filter>component\camera\state</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\camera\state\CameraWallRunState.h">
+      <Filter>component\camera\state</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\camera\state\ICameraState.h">
+      <Filter>component\camera\state</Filter>
     </ClInclude>
     <ClInclude Include="code\component\gimmick\Obstacle.h">
       <Filter>component\gimmick</Filter>
@@ -225,16 +237,10 @@
     <ClInclude Include="code\system\Initialize\GetClearTime.h">
       <Filter>system\Initialize</Filter>
     </ClInclude>
-    <ClInclude Include="code\system\Initialize\GhostInitializeSystem.h">
-      <Filter>system\Initialize</Filter>
-    </ClInclude>
     <ClInclude Include="code\system\Initialize\InitializeMouseCondition.h">
       <Filter>system\Initialize</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Initialize\PlacementEntityByProcedural.h">
-      <Filter>system\Initialize</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Initialize\PlayRecorderInitialize.h">
       <Filter>system\Initialize</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Initialize\RailInitializeSystem.h">
@@ -262,12 +268,6 @@
       <Filter>system\Input</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Input\CameraInputSystem.h">
-      <Filter>system\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Input\GhostInputUpdate.h">
-      <Filter>system\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="code\system\Input\PlayRecordSystem.h">
       <Filter>system\Input</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Input\PlayerInputSystem.h">
@@ -459,6 +459,7 @@
     <ClInclude Include="code\system\effect\TimerForSprite.h">
       <Filter>system\effect</Filter>
     </ClInclude>
+    <ClInclude Include="code\event\PlayerStateChangedEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -503,11 +504,14 @@
     <ClCompile Include="code\component\camera\CameraShakeSourceComponent.cpp">
       <Filter>component\camera</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\ghost\GhostReplayComponent.cpp">
-      <Filter>component\ghost</Filter>
+    <ClCompile Include="code\component\camera\state\CameraFollowState.cpp">
+      <Filter>component\camera\state</Filter>
     </ClCompile>
-    <ClCompile Include="code\component\ghost\PlayRecorderComponent.cpp">
-      <Filter>component\ghost</Filter>
+    <ClCompile Include="code\component\camera\state\CameraIdleState.cpp">
+      <Filter>component\camera\state</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\camera\state\CameraWallRunState.cpp">
+      <Filter>component\camera\state</Filter>
     </ClCompile>
     <ClCompile Include="code\component\gimmick\Obstacle.cpp">
       <Filter>component\gimmick</Filter>
@@ -606,16 +610,10 @@
     <ClCompile Include="code\system\Initialize\GetClearTime.cpp">
       <Filter>system\Initialize</Filter>
     </ClCompile>
-    <ClCompile Include="code\system\Initialize\GhostInitializeSystem.cpp">
-      <Filter>system\Initialize</Filter>
-    </ClCompile>
     <ClCompile Include="code\system\Initialize\InitializeMouseCondition.cpp">
       <Filter>system\Initialize</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Initialize\PlacementEntityByProcedural.cpp">
-      <Filter>system\Initialize</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Initialize\PlayRecorderInitialize.cpp">
       <Filter>system\Initialize</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Initialize\RailInitializeSystem.cpp">
@@ -643,12 +641,6 @@
       <Filter>system\Input</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Input\CameraInputSystem.cpp">
-      <Filter>system\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Input\GhostInputUpdate.cpp">
-      <Filter>system\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="code\system\Input\PlayRecordSystem.cpp">
       <Filter>system\Input</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Input\PlayerInputSystem.cpp">

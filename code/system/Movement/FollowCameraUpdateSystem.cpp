@@ -8,10 +8,18 @@
 #include "Engine.h"
 
 #include "camera/CameraManager.h"
+#include "messageBus/MessageBus.h"
 // component
 #include "component/Camera/CameraController.h"
+#include "component/camera/state/ICameraState.h"
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
+// state
+#include "component/camera/state/CameraFollowState.h"
+#include "component/camera/state/CameraIdleState.h"
+#include "component/camera/state/CameraWallRunState.h"
+
+#include "component/player/state/PlayerState.h"
 
 /// math
 #include "math/Interpolation.h"
@@ -19,9 +27,16 @@
 
 using namespace OriGine;
 
-void FollowCameraUpdateSystem::Initialize() {}
+void FollowCameraUpdateSystem::Initialize() {
+    playerStateChangedEventId_ = MessageBus::GetInstance()->Subscribe<PlayerStateChangedEvent>([this](const PlayerStateChangedEvent& event) {
+        latestPlayerStateChangedEvent_ = event;
+        hasStateChangeRequest_         = true;
+    });
+}
 
-void FollowCameraUpdateSystem::Finalize() {}
+void FollowCameraUpdateSystem::Finalize() {
+    MessageBus::GetInstance()->Unsubscribe<PlayerStateChangedEvent>(playerStateChangedEventId_);
+}
 
 void FollowCameraUpdateSystem::UpdateEntity(EntityHandle _handle) {
     auto* cameraController = GetComponent<CameraController>(_handle);
@@ -30,10 +45,24 @@ void FollowCameraUpdateSystem::UpdateEntity(EntityHandle _handle) {
 
     const float deltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Camera");
 
-    if (cameraController->followTarget) {
+    /// プレイヤーの状態変化イベントがあれば、カメラステートを切り替える
+    CameraStateTransition(_handle, cameraController);
+
+    if (cameraController->cameraState_) {
+        cameraController->cameraState_->Update();
+    } else {
+        cameraController->cameraState_ = CreateCameraState(
+            ConvertToCameraState(latestPlayerStateChangedEvent_.currentMoveState),
+            GetScene(),
+            _handle,
+            latestPlayerStateChangedEvent_.playerEntityHandle);
+    }
+
+    auto* targetTranslate = GetComponent<Transform>(cameraController->followTargetEntity);
+    if (targetTranslate) {
         // 自動注視処理
         if (cameraController->isAutoLookAtPlayer) {
-            Vec3f toTarget     = Vec3f::Normalize(cameraController->followTarget->GetWorldTranslate() - cameraTransform->translate);
+            Vec3f toTarget     = Vec3f::Normalize(targetTranslate->GetWorldTranslate() - cameraTransform->translate);
             float targetAngleY = std::atan2(toTarget[X], toTarget[Z]);
 
             float currentY                          = cameraController->destinationAngleXY[Y];
@@ -43,7 +72,7 @@ void FollowCameraUpdateSystem::UpdateEntity(EntityHandle _handle) {
         Matrix4x4 cameraRotateMat = MakeMatrix4x4::RotateX(cameraController->destinationAngleXY[X]) * MakeMatrix4x4::RotateY(cameraController->destinationAngleXY[Y]);
 
         // ======== ターゲット追従補間 ======== //
-        Vec3f followTargetPosition = Vec3f(cameraController->followTarget->GetWorldTranslate());
+        Vec3f followTargetPosition = Vec3f(targetTranslate->GetWorldTranslate());
 
         Vec3f worldDelta = followTargetPosition - cameraController->interTarget;
         // 純回転行列の逆行列 = 転置
@@ -89,6 +118,7 @@ void FollowCameraUpdateSystem::UpdateEntity(EntityHandle _handle) {
             deltaTime,
             cameraController->rotateSensitivity)
                                            .normalize();
+
         cameraTransform->rotate = cameraController->baseRotate * Quaternion::RotateAxisAngle(axisZ, cameraController->currentRotateZ);
 
         // transform に同期
@@ -100,4 +130,75 @@ void FollowCameraUpdateSystem::UpdateEntity(EntityHandle _handle) {
     cameraTransform->UpdateMatrix();
     CameraManager::GetInstance()->SetTransform(GetScene(), *cameraTransform);
     CameraManager::GetInstance()->DataConvertToBuffer(GetScene());
+}
+
+void FollowCameraUpdateSystem::CameraStateTransition(OriGine::EntityHandle _handle, CameraController* _cameraController) {
+    if (!hasStateChangeRequest_) {
+        return;
+    }
+    hasStateChangeRequest_ = false;
+
+    if (_cameraController->followTargetEntity != latestPlayerStateChangedEvent_.playerEntityHandle) {
+        return;
+    }
+
+    auto nextType = ConvertToCameraState(
+        latestPlayerStateChangedEvent_.currentMoveState);
+
+    // ★ 同じなら何もしない
+    if (nextType == _cameraController->currentCameraStateType_) {
+        return;
+    }
+
+    _cameraController->currentCameraStateType_ = nextType;
+
+    if (_cameraController->cameraState_) {
+        _cameraController->cameraState_->Finalize();
+    }
+
+    _cameraController->cameraState_ = CreateCameraState(
+        nextType,
+        GetScene(),
+        _handle,
+        latestPlayerStateChangedEvent_.playerEntityHandle);
+
+    _cameraController->cameraState_->Initialize();
+}
+
+CameraMoveState FollowCameraUpdateSystem::ConvertToCameraState(PlayerMoveState _state) {
+    switch (_state) {
+    case PlayerMoveState::IDLE:
+        return CameraMoveState::IDLE;
+
+    case PlayerMoveState::DASH:
+    case PlayerMoveState::FALL_DOWN:
+    case PlayerMoveState::JUMP:
+    case PlayerMoveState::WALL_JUMP:
+    case PlayerMoveState::RUN_ON_RAIL:
+        return CameraMoveState::FOLLOW;
+    case PlayerMoveState::WALL_RUN:
+        return CameraMoveState::WALL_RUN;
+
+    default:
+        return CameraMoveState::IDLE;
+    }
+}
+
+std::shared_ptr<ICameraState> FollowCameraUpdateSystem::CreateCameraState(
+    CameraMoveState _type,
+    Scene* _scene,
+    EntityHandle _camera,
+    EntityHandle _player) {
+    switch (_type) {
+    case CameraMoveState::IDLE:
+        return std::make_unique<CameraIdleState>(_scene, _camera, _player);
+
+    case CameraMoveState::FOLLOW:
+        return std::make_unique<CameraFollowState>(_scene, _camera, _player);
+
+    case CameraMoveState::WALL_RUN:
+        return std::make_unique<CameraWallRunState>(_scene, _camera, _player);
+    }
+
+    return nullptr;
 }
