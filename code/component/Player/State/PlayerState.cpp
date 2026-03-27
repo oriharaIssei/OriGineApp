@@ -71,6 +71,15 @@ void PlayerState::OffCollisionRail() {
     stateFlag_.CurrentRef().ClearFlag(PlayerStateFlag::ON_RAIL);
 }
 
+void PlayerState::OnCollisionShield(OriGine::EntityHandle shieldEntityHandle) {
+    stateFlag_.CurrentRef().SetFlag(PlayerStateFlag::HAS_SHIELD);
+    shieldEntityHandle_ = shieldEntityHandle;
+}
+
+void PlayerState::ClearHasShieldFlag() {
+    stateFlag_.CurrentRef().ClearFlag(PlayerStateFlag::HAS_SHIELD);
+}
+
 void PlayerState::OnCollisionGround() {
     stateFlag_.CurrentRef().SetFlag(PlayerStateFlag::ON_GROUND);
 }

@@ -13,7 +13,9 @@
 #include "component/Camera/CameraController.h"
 #include "component/camera/CameraMotionBob.h"
 #include "component/Camera/CameraShakeSourceComponent.h"
+#include "component/FollowTransformComponent.h"
 #include "component/gimmick/Obstacle.h"
+#include "component/gimmick/ObstacleShieldComponent.h"
 #include "component/gimmick/ObstacleSpawnGroupComponent.h"
 #include "component/gimmick/PathController.h"
 #include "component/gimmick/RailPoints.h"
@@ -75,6 +77,7 @@
 #include "system/movement/BillboardTransform.h"
 #include "system/Movement/CreateRailMesh.h"
 #include "system/movement/FollowCameraUpdateSystem.h"
+#include "system/Movement/FollowTransformSystem.h"
 #include "system/Movement/LookAtFromTransformsSystem.h"
 #include "system/movement/PathControllerRenderingSystem.h"
 #include "system/movement/PathControllerSystem.h"
@@ -143,13 +146,6 @@ void RegisterUsingComponents() {
 
     componentRegistry->RegisterComponent<SplinePoints>();
     componentRegistry->RegisterComponent<TireSplinePoints>();
-
-    componentRegistry->RegisterComponent<RailPoints>();
-    componentRegistry->RegisterComponent<PathController>();
-    componentRegistry->RegisterComponent<Obstacle>();
-    componentRegistry->RegisterComponent<TimeScaleEffectComponent>();
-    componentRegistry->RegisterComponent<VelocityOverrideComponent>();
-    componentRegistry->RegisterComponent<AddForceComponent>();
 
     componentRegistry->RegisterComponent<Material>();
     componentRegistry->RegisterComponent<DirectionalLight>();
@@ -225,6 +221,17 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<PlayerStateOverrideCondition>();
 
     componentRegistry->RegisterComponent<BillboardComponent>();
+
+    componentRegistry->RegisterComponent<FollowTransformComponent>();
+
+    // ギミック系
+    componentRegistry->RegisterComponent<RailPoints>();
+    componentRegistry->RegisterComponent<PathController>();
+    componentRegistry->RegisterComponent<Obstacle>();
+    componentRegistry->RegisterComponent<TimeScaleEffectComponent>();
+    componentRegistry->RegisterComponent<VelocityOverrideComponent>();
+    componentRegistry->RegisterComponent<AddForceComponent>();
+    componentRegistry->RegisterComponent<ObstacleShieldComponent>();
 }
 
 void RegisterUsingSystems() {
@@ -323,6 +330,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<RestartSystem>();
     systemRegistry->RegisterSystem<PauseMainSceneSystem>();
 
+    systemRegistry->RegisterSystem<FollowTransformSystem>();
     systemRegistry->RegisterSystem<PlayerFollowSystem>();
     systemRegistry->RegisterSystem<LookAtFromTransformsSystem>();
     systemRegistry->RegisterSystem<Ui3dUpdateSystem>();

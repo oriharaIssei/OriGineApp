@@ -62,8 +62,6 @@ void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
             StageData* stageData  = GetComponent<StageData>(stageDataEntityHandle);
             TimerComponent* timer = GetComponent<TimerComponent>(timerEntityHandle);
 
-            EntityHandle recorderEntityHandle = GetUniqueEntity("Recorder");
-
             if (timer != nullptr && stageData != nullptr) {
                 progressStore->StageCleared(
                     stageData->GetStageNumber(),

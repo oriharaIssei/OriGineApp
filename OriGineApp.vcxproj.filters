@@ -10,9 +10,6 @@
     <Filter Include="component\camera\state">
       <UniqueIdentifier>{207FF9CC-0C79-221F-F5E5-B82FE17E888B}</UniqueIdentifier>
     </Filter>
-    <Filter Include="component\ghost">
-      <UniqueIdentifier>{6C503504-D8DB-A2C8-E1EC-25BD4DF7FEC8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="component\gimmick">
       <UniqueIdentifier>{28A7F8E8-94BD-F67E-DD34-82A0498AC706}</UniqueIdentifier>
     </Filter>
@@ -69,6 +66,9 @@
     <ClInclude Include="code\component\BillboardComponent.h">
       <Filter>component</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\FollowTransformComponent.h">
+      <Filter>component</Filter>
+    </ClInclude>
     <ClInclude Include="code\component\LookAtFromTransforms.h">
       <Filter>component</Filter>
     </ClInclude>
@@ -121,6 +121,9 @@
       <Filter>component\camera\state</Filter>
     </ClInclude>
     <ClInclude Include="code\component\gimmick\Obstacle.h">
+      <Filter>component\gimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\gimmick\ObstacleShieldComponent.h">
       <Filter>component\gimmick</Filter>
     </ClInclude>
     <ClInclude Include="code\component\gimmick\ObstacleSpawnGroupComponent.h">
@@ -210,6 +213,9 @@
     <ClInclude Include="code\event\GamefailedEvent.h">
       <Filter>event</Filter>
     </ClInclude>
+    <ClInclude Include="code\event\PlayerStateChangedEvent.h">
+      <Filter>event</Filter>
+    </ClInclude>
     <ClInclude Include="code\event\RestartEvent.h">
       <Filter>event</Filter>
     </ClInclude>
@@ -286,6 +292,9 @@
       <Filter>system\Movement</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Movement\FollowCameraUpdateSystem.h">
+      <Filter>system\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\Movement\FollowTransformSystem.h">
       <Filter>system\Movement</Filter>
     </ClInclude>
     <ClInclude Include="code\system\Movement\LookAtFromTransformsSystem.h">
@@ -459,7 +468,6 @@
     <ClInclude Include="code\system\effect\TimerForSprite.h">
       <Filter>system\effect</Filter>
     </ClInclude>
-    <ClInclude Include="code\event\PlayerStateChangedEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\FrameWork.cpp" />
@@ -469,6 +477,9 @@
       <Filter>component</Filter>
     </ClCompile>
     <ClCompile Include="code\component\BillboardComponent.cpp">
+      <Filter>component</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\FollowTransformComponent.cpp">
       <Filter>component</Filter>
     </ClCompile>
     <ClCompile Include="code\component\LookAtFromTransforms.cpp">
@@ -514,6 +525,9 @@
       <Filter>component\camera\state</Filter>
     </ClCompile>
     <ClCompile Include="code\component\gimmick\Obstacle.cpp">
+      <Filter>component\gimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\gimmick\ObstacleShieldComponent.cpp">
       <Filter>component\gimmick</Filter>
     </ClCompile>
     <ClCompile Include="code\component\gimmick\ObstacleSpawnGroupComponent.cpp">
@@ -659,6 +673,9 @@
       <Filter>system\Movement</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Movement\FollowCameraUpdateSystem.cpp">
+      <Filter>system\Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\Movement\FollowTransformSystem.cpp">
       <Filter>system\Movement</Filter>
     </ClCompile>
     <ClCompile Include="code\system\Movement\LookAtFromTransformsSystem.cpp">

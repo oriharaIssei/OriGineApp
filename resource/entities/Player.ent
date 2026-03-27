@@ -395,6 +395,7 @@
                 "mass": 0.07999999821186066,
                 "maxFallSpeed": 100.0,
                 "maxXZSpeed": 200.0,
+                "restitution": 0.0,
                 "useGravity": true,
                 "velocity": [
                     0.0,

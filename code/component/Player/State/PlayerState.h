@@ -48,8 +48,9 @@ enum class PlayerStateFlag {
     IS_RESTART  = 1 << 6, // リスタート中
     ON_RAIL     = 1 << 7, // レール上にいる
     JUST_LANDED = 1 << 8, // 着地した瞬間 (1フレームのみ立つ)
+    HAS_SHIELD  = 1 << 9, // シールドを持っている
 
-    Count = 8
+    Count = 9
 };
 
 constexpr int32_t kDefaultPlayerGearLevel = 1; // デフォルトのギアレベル
@@ -101,6 +102,15 @@ public:
     void OffCollisionRail();
 
     /// <summary>
+    /// シールドと接触したときの処理
+    /// </summary>
+    void OnCollisionShield(OriGine::EntityHandle shieldEntityHandle);
+    /// <summary>
+    /// シールドとの接触がなくなったときの処理
+    /// </summary>
+    void ClearHasShieldFlag();
+
+    /// <summary>
     /// 地面と接触したときの処理
     /// </summary>
     void OnCollisionGround();
@@ -122,7 +132,8 @@ public:
 
 private:
     OriGine::EntityHandle followCameraEntityHandle_ = OriGine::EntityHandle(); // カメラのエンティティID
-    OriGine::EntityHandle railEntityHandle_         = OriGine::EntityHandle(); // カメラのエンティティID
+    OriGine::EntityHandle railEntityHandle_         = OriGine::EntityHandle(); // レールのエンティティID
+    OriGine::EntityHandle shieldEntityHandle_       = OriGine::EntityHandle(); // シールドのエンティティID
 
     // TransitionPlayerState で更新される
     std::shared_ptr<IPlayerMoveState> moveState_ = nullptr;
@@ -150,6 +161,10 @@ public:
 
     OriGine::EntityHandle GetRailEntityHandle() const {
         return railEntityHandle_;
+    }
+
+    OriGine::EntityHandle GetShieldEntityHandle() const {
+        return shieldEntityHandle_;
     }
 
     PlayerMoveState GetStateEnum() const {
@@ -238,6 +253,10 @@ public:
         if (invincibility_ < 0.0f) {
             invincibility_ = 0.0f;
         }
+    }
+
+    bool HasShield() const {
+        return stateFlag_.Current().HasFlag(PlayerStateFlag::HAS_SHIELD);
     }
 
     bool IsPenalty() const {

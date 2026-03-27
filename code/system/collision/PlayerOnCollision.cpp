@@ -16,7 +16,10 @@
 #include "component/player/state/PlayerState.h"
 
 #include "component/gimmick/Obstacle.h"
+#include "component/gimmick/ObstacleShieldComponent.h"
 #include "component/gimmick/RailPoints.h"
+
+#include "component/FollowTransformComponent.h"
 #include "component/gimmick/TimeScaleEffectComponent.h"
 
 #include "component/TimerComponent.h"
@@ -60,6 +63,7 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
         if (!collEnt) {
             continue;
         }
+
         // ゴール と 衝突したか
         if (collEnt->GetDataType().find("Goal") != std::string::npos) {
             // 時間を更新しないようにする
@@ -82,15 +86,43 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
                 continue;
             }
         }
+
+        // シールド と 衝突したか
+        {
+            ObstacleShieldComponent* shield = GetComponent<ObstacleShieldComponent>(entityId);
+            if (shield) {
+                if (!state->HasShield()) {
+                    // FollowTransformComponent で プレイヤーに追従させる
+                    FollowTransformComponent* follow = GetComponent<FollowTransformComponent>(entityId);
+                    if (follow) {
+                        follow->SetTarget(_handle);
+                    }
+                    // シールドと衝突した場合は、シールドを持っていると判断する
+                    state->OnCollisionShield(entityId);
+                }
+            }
+        }
+
         // 障害物 と 衝突したか
         {
             Obstacle* obstacle = GetComponent<Obstacle>(entityId);
             if (obstacle) {
 
-                MessageBus::GetInstance()->Emit<GamefailedEvent>(GamefailedEvent());
-                /*float penaltyTime       = obstacle->GetPenaltyTime();
-                float invincibilityTime = obstacle->GetInvincibilityTimeOnCollision();
-                state->OnCollisionObstacle(penaltyTime, invincibilityTime);*/
+                // シールドを持っている場合はペナルティを受けるが、ゲームオーバーにはならない
+                if (state->HasShield()) {
+                    float penaltyTime       = obstacle->GetPenaltyTime();
+                    float invincibilityTime = obstacle->GetInvincibilityTimeOnCollision();
+                    state->OnCollisionObstacle(penaltyTime, invincibilityTime);
+
+                    // シールドは消す
+                    state->ClearHasShieldFlag();
+                    GetScene()->AddDeleteEntity(state->GetShieldEntityHandle());
+
+                } else if (state->GetInvincibilityTime() < 0.f) {
+                    // シールドを持っていない場合はゲームオーバー
+                    MessageBus::GetInstance()->Emit<GamefailedEvent>(GamefailedEvent());
+                }
+
                 continue;
             }
         }

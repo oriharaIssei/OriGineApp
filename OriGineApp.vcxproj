@@ -153,12 +153,12 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="code\event\PlayerStateChangedEvent.h" />
     <ClInclude Include="code\FrameWork.h" />
     <ClInclude Include="code\MyEditor.h" />
     <ClInclude Include="code\MyGame.h" />
     <ClInclude Include="code\component\AddForceComponent.h" />
     <ClInclude Include="code\component\BillboardComponent.h" />
+    <ClInclude Include="code\component\FollowTransformComponent.h" />
     <ClInclude Include="code\component\LookAtFromTransforms.h" />
     <ClInclude Include="code\component\MouseCondition.h" />
     <ClInclude Include="code\component\PlayerStateOverrideCondition.h" />
@@ -177,6 +177,7 @@
     <ClInclude Include="code\component\camera\state\CameraWallRunState.h" />
     <ClInclude Include="code\component\camera\state\ICameraState.h" />
     <ClInclude Include="code\component\gimmick\Obstacle.h" />
+    <ClInclude Include="code\component\gimmick\ObstacleShieldComponent.h" />
     <ClInclude Include="code\component\gimmick\ObstacleSpawnGroupComponent.h" />
     <ClInclude Include="code\component\gimmick\PathController.h" />
     <ClInclude Include="code\component\gimmick\RailPoints.h" />
@@ -206,6 +207,7 @@
     <ClInclude Include="code\component\ui\UIConfig.h" />
     <ClInclude Include="code\event\AddForceEvent.h" />
     <ClInclude Include="code\event\GamefailedEvent.h" />
+    <ClInclude Include="code\event\PlayerStateChangedEvent.h" />
     <ClInclude Include="code\event\RestartEvent.h" />
     <ClInclude Include="code\event\SceneChangeRequest.h" />
     <ClInclude Include="code\event\VelocityOverrideEvent.h" />
@@ -232,6 +234,7 @@
     <ClInclude Include="code\system\Movement\BillboardTransform.h" />
     <ClInclude Include="code\system\Movement\CreateRailMesh.h" />
     <ClInclude Include="code\system\Movement\FollowCameraUpdateSystem.h" />
+    <ClInclude Include="code\system\Movement\FollowTransformSystem.h" />
     <ClInclude Include="code\system\Movement\LookAtFromTransformsSystem.h" />
     <ClInclude Include="code\system\Movement\PathControllerRenderingSystem.h" />
     <ClInclude Include="code\system\Movement\PathControllerSystem.h" />
@@ -296,6 +299,7 @@
     <ClCompile Include="code\MyGame.cpp" />
     <ClCompile Include="code\component\AddForceComponent.cpp" />
     <ClCompile Include="code\component\BillboardComponent.cpp" />
+    <ClCompile Include="code\component\FollowTransformComponent.cpp" />
     <ClCompile Include="code\component\LookAtFromTransforms.cpp" />
     <ClCompile Include="code\component\MouseCondition.cpp" />
     <ClCompile Include="code\component\PlayerStateOverrideCondition.cpp" />
@@ -311,6 +315,7 @@
     <ClCompile Include="code\component\camera\state\CameraIdleState.cpp" />
     <ClCompile Include="code\component\camera\state\CameraWallRunState.cpp" />
     <ClCompile Include="code\component\gimmick\Obstacle.cpp" />
+    <ClCompile Include="code\component\gimmick\ObstacleShieldComponent.cpp" />
     <ClCompile Include="code\component\gimmick\ObstacleSpawnGroupComponent.cpp" />
     <ClCompile Include="code\component\gimmick\PathController.cpp" />
     <ClCompile Include="code\component\gimmick\RailPoints.cpp" />
@@ -360,6 +365,7 @@
     <ClCompile Include="code\system\Movement\BillboardTransform.cpp" />
     <ClCompile Include="code\system\Movement\CreateRailMesh.cpp" />
     <ClCompile Include="code\system\Movement\FollowCameraUpdateSystem.cpp" />
+    <ClCompile Include="code\system\Movement\FollowTransformSystem.cpp" />
     <ClCompile Include="code\system\Movement\LookAtFromTransformsSystem.cpp" />
     <ClCompile Include="code\system\Movement\PathControllerRenderingSystem.cpp" />
     <ClCompile Include="code\system\Movement\PathControllerSystem.cpp" />
