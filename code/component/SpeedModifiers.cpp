@@ -31,6 +31,17 @@ void SpeedModifiers::Edit(Scene* /*_scene*/, EntityHandle /*_owner*/, [[maybe_un
 
     ImGui::Spacing();
 
+    // Trigger Mode
+    {
+        const char* triggerModeItems[] = {"OnEnter", "WhileColliding"};
+        int triggerModeInt             = static_cast<int>(triggerMode);
+        if (ImGui::Combo(("Trigger Mode##" + _parentLabel).c_str(), &triggerModeInt, triggerModeItems, 2)) {
+            triggerMode = static_cast<TriggerMode>(triggerModeInt);
+        }
+    }
+
+    ImGui::Spacing();
+
     DragGuiCommand("Restore Speed##" + _parentLabel, restoreSpeed, 0.01f);
 
     ImGui::Spacing();
@@ -112,7 +123,8 @@ void SpeedModifiers::Reset() {
     multiplierFadeOutTimer    = 0.0f;
     multiplierAxes            = {true, true, true};
 
-    axesSpace = AxesSpace::World;
+    axesSpace   = AxesSpace::World;
+    triggerMode = TriggerMode::OnEnter;
 }
 
 void SpeedModifiers::StartAdditiveEffect(
@@ -164,6 +176,7 @@ void SpeedModifiers::StartMultiplierEffect(
 void to_json(nlohmann::json& _j, const SpeedModifiers& _c) {
     _j = nlohmann::json{
         {"isAutoDestroyed", _c.isAutoDestroyed},
+        {"triggerMode", static_cast<int>(_c.triggerMode)},
         {"axesSpace", static_cast<int>(_c.axesSpace)},
         {"additiveTarget", _c.additiveTarget},
         {"additiveDuration", _c.additiveDuration},
@@ -188,7 +201,8 @@ void to_json(nlohmann::json& _j, const SpeedModifiers& _c) {
 
 void from_json(const nlohmann::json& _j, SpeedModifiers& _c) {
     _j.at("isAutoDestroyed").get_to(_c.isAutoDestroyed);
-    _c.axesSpace = static_cast<SpeedModifiers::AxesSpace>(_j.value("axesSpace", 0));
+    _c.triggerMode = static_cast<SpeedModifiers::TriggerMode>(_j.value("triggerMode", 0));
+    _c.axesSpace   = static_cast<SpeedModifiers::AxesSpace>(_j.value("axesSpace", 0));
     _j.at("additiveTarget").get_to(_c.additiveTarget);
     _j.at("additiveDuration").get_to(_c.additiveDuration);
     _j.at("additiveFadeInDuration").get_to(_c.additiveFadeInDuration);

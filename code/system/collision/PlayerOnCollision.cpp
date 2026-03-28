@@ -18,6 +18,7 @@
 #include "component/gimmick/Obstacle.h"
 #include "component/gimmick/ObstacleShieldComponent.h"
 #include "component/gimmick/RailPoints.h"
+#include "component/gimmick/WallRunnableComponent.h"
 
 #include "component/FollowTransformComponent.h"
 #include "component/gimmick/TimeScaleEffectComponent.h"
@@ -179,6 +180,18 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
             rigidbody->SetVelocity(Y, 0.f);
         } else {
             // 壁と衝突した場合
+
+            // 壁走り可能コンポーネントの確認
+            WallRunnableComponent* wallRunnable = GetComponent<WallRunnableComponent>(entityId);
+            if (!wallRunnable) {
+                continue; // WallRunnableComponentがなければ壁走り不可
+            }
+
+            // 衝突法線が許可された方向かチェック
+            if (!wallRunnable->IsNormalAllowed(collisionNormal)) {
+                continue;
+            }
+
             float dotVN = rigidbody->GetVelocity().normalize().dot(collisionNormal);
 
             // どれくらい平行に動いているか (1.0 = 完全に平行, 0.0 = 完全に垂直)

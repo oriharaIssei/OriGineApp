@@ -182,6 +182,7 @@
     <ClInclude Include="code\component\gimmick\PathController.h" />
     <ClInclude Include="code\component\gimmick\RailPoints.h" />
     <ClInclude Include="code\component\gimmick\TimeScaleEffectComponent.h" />
+    <ClInclude Include="code\component\gimmick\WallRunnableComponent.h" />
     <ClInclude Include="code\component\player\PlayerConfig.h" />
     <ClInclude Include="code\component\player\PlayerEffectControlParam.h" />
     <ClInclude Include="code\component\player\PlayerInput.h" />
@@ -320,6 +321,7 @@
     <ClCompile Include="code\component\gimmick\PathController.cpp" />
     <ClCompile Include="code\component\gimmick\RailPoints.cpp" />
     <ClCompile Include="code\component\gimmick\TimeScaleEffectComponent.cpp" />
+    <ClCompile Include="code\component\gimmick\WallRunnableComponent.cpp" />
     <ClCompile Include="code\component\player\PlayerEffectControlParam.cpp" />
     <ClCompile Include="code\component\player\PlayerInput.cpp" />
     <ClCompile Include="code\component\player\PlayerInputDevice.cpp" />

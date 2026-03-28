@@ -138,6 +138,9 @@
     <ClInclude Include="code\component\gimmick\TimeScaleEffectComponent.h">
       <Filter>component\gimmick</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\gimmick\WallRunnableComponent.h">
+      <Filter>component\gimmick</Filter>
+    </ClInclude>
     <ClInclude Include="code\component\player\PlayerConfig.h">
       <Filter>component\player</Filter>
     </ClInclude>
@@ -540,6 +543,9 @@
       <Filter>component\gimmick</Filter>
     </ClCompile>
     <ClCompile Include="code\component\gimmick\TimeScaleEffectComponent.cpp">
+      <Filter>component\gimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\gimmick\WallRunnableComponent.cpp">
       <Filter>component\gimmick</Filter>
     </ClCompile>
     <ClCompile Include="code\component\player\PlayerEffectControlParam.cpp">

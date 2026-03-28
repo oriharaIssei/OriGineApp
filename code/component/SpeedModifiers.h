@@ -68,6 +68,15 @@ public:
     OriGine::ComponentHandle targetRigidbodyHandle{};
 
     /// <summary>
+    /// トリガーモード
+    /// </summary>
+    enum class TriggerMode : int {
+        OnEnter        = 0, ///< 衝突開始時に1回生成、タイマーで管理
+        WhileColliding = 1, ///< 衝突中ずっと適用、Exit時にFadeOut開始
+    };
+    TriggerMode triggerMode = TriggerMode::OnEnter;
+
+    /// <summary>
     /// 軸の空間
     /// </summary>
     enum class AxesSpace : int {

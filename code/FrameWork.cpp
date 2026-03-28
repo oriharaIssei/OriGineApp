@@ -20,6 +20,7 @@
 #include "component/gimmick/PathController.h"
 #include "component/gimmick/RailPoints.h"
 #include "component/gimmick/TimeScaleEffectComponent.h"
+#include "component/gimmick/WallRunnableComponent.h"
 #include "component/LookAtFromTransforms.h"
 #include "component/MouseCondition.h"
 #include "component/player/PlayerEffectControlParam.h"
@@ -232,6 +233,7 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<VelocityOverrideComponent>();
     componentRegistry->RegisterComponent<AddForceComponent>();
     componentRegistry->RegisterComponent<ObstacleShieldComponent>();
+    componentRegistry->RegisterComponent<WallRunnableComponent>();
 }
 
 void RegisterUsingSystems() {

@@ -1,6 +1,7 @@
 #include "OnCollisionModifierTargetSystem.h"
 
 /// stl
+#include <cfloat>
 #include <unordered_set>
 
 /// engine
@@ -33,49 +34,86 @@ void OnCollisionModifierTargetSystem::UpdateEntity(OriGine::EntityHandle _handle
         return;
     }
 
-    // ジャンプパッドと衝突したエンティティを取得
+    // コライダーから衝突状態を収集
     auto& sphereColliders = GetComponents<SphereCollider>(_handle);
     auto& aabbColliders   = GetComponents<AABBCollider>(_handle);
     auto& obbColliders    = GetComponents<OBBCollider>(_handle);
 
-    std::unordered_set<EntityHandle> collidedEntities;
-    for (auto& collider : sphereColliders) {
-        for (const auto& [otherHandle, state] : collider.GetCollisionStateMap()) {
-            if (state == CollisionState::Enter) {
-                collidedEntities.insert(otherHandle);
-            }
-        }
-    }
-    for (auto& collider : aabbColliders) {
-        for (const auto& [otherHandle, state] : collider.GetCollisionStateMap()) {
-            if (state == CollisionState::Enter) {
-                collidedEntities.insert(otherHandle);
-            }
-        }
-    }
-    for (auto& collider : obbColliders) {
-        for (const auto& [otherHandle, state] : collider.GetCollisionStateMap()) {
-            if (state == CollisionState::Enter) {
-                collidedEntities.insert(otherHandle);
-            }
-        }
-    }
+    // 衝突状態ごとにエンティティを分類
+    std::unordered_set<EntityHandle> enterEntities;
+    std::unordered_set<EntityHandle> exitEntities;
 
-    // 衝突したエンティティのRigidbodyに対してSpeedModifierを適応するEntityを作成する
-    for (const auto& otherHandle : collidedEntities) {
+    auto collectStates = [&](auto& _colliders) {
+        for (auto& collider : _colliders) {
+            for (const auto& [otherHandle, state] : collider.GetCollisionStateMap()) {
+                if (state == CollisionState::Enter) {
+                    enterEntities.insert(otherHandle);
+                } else if (state == CollisionState::Exit) {
+                    exitEntities.insert(otherHandle);
+                }
+            }
+        }
+    };
+    collectStates(sphereColliders);
+    collectStates(aabbColliders);
+    collectStates(obbColliders);
+
+    const bool isWhileColliding = (speedModifiers->triggerMode == SpeedModifiers::TriggerMode::WhileColliding);
+
+    // --- Enter 処理 ---
+    for (const auto& otherHandle : enterEntities) {
+        // WhileCollidingモードで既にModifierが存在する場合はスキップ
+        if (isWhileColliding) {
+            auto key = std::make_pair(_handle, otherHandle);
+            if (activeModifiers_.count(key) > 0) {
+                continue;
+            }
+        }
+
         auto rigidbodyComp = GetComponent<Rigidbody>(otherHandle);
-        if (rigidbodyComp) {
-            EntityHandle createdEntity = CreateEntity("SpeedModifier");
-            ComponentHandle modifier   = AddComponent<SpeedModifiers>(createdEntity);
-            auto* modifierComp         = GetComponent<SpeedModifiers>(modifier);
-            if (modifierComp) {
-                *modifierComp                       = *speedModifiers;
-                modifierComp->targetRigidbodyHandle = rigidbodyComp->GetHandle();
-                modifierComp->beforeSpeed           = rigidbodyComp->GetVelocity().length();
+        if (!rigidbodyComp) {
+            continue;
+        }
 
-                // systemに登録
-                GetScene()->GetSystem(nameof<ApplySpeedModifiers>())->AddEntity(createdEntity);
+        EntityHandle createdEntity = CreateEntity("SpeedModifier");
+        ComponentHandle modifier   = AddComponent<SpeedModifiers>(createdEntity);
+        auto* modifierComp         = GetComponent<SpeedModifiers>(modifier);
+        if (modifierComp) {
+            *modifierComp                       = *speedModifiers;
+            modifierComp->targetRigidbodyHandle = rigidbodyComp->GetHandle();
+            modifierComp->beforeSpeed           = rigidbodyComp->GetVelocity().length();
+
+            // WhileCollidingモードではdurationを無限にしてHoldフェーズに留まらせる
+            if (isWhileColliding) {
+                modifierComp->additiveDuration   = FLT_MAX;
+                modifierComp->multiplierDuration = FLT_MAX;
+                modifierComp->isAutoDestroyed    = true;
+
+                activeModifiers_[std::make_pair(_handle, otherHandle)] = createdEntity;
             }
+
+            // systemに登録
+            GetScene()->GetSystem(nameof<ApplySpeedModifiers>())->AddEntity(createdEntity);
+        }
+    }
+
+    // --- Exit 処理 (WhileCollidingモードのみ) ---
+    if (isWhileColliding) {
+        for (const auto& otherHandle : exitEntities) {
+            auto key = std::make_pair(_handle, otherHandle);
+            auto it  = activeModifiers_.find(key);
+            if (it == activeModifiers_.end()) {
+                continue;
+            }
+
+            // ModifierエンティティのタイマーをFadeOutフェーズに移行させる
+            auto& modifiers = GetComponents<SpeedModifiers>(it->second);
+            for (auto& mod : modifiers) {
+                mod.additiveTimer   = mod.additiveDuration;
+                mod.multiplierTimer = mod.multiplierDuration;
+            }
+
+            activeModifiers_.erase(it);
         }
     }
 }
