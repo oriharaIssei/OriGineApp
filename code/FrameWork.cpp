@@ -53,6 +53,7 @@
 #include "system/effect/EffectOnPlayerGearup.h"
 #include "system/effect/EffectOnPlayerRun.h"
 #include "system/effect/PenaltyTimeSpriteUpdate.h"
+#include "system/effect/PlayerExplosionEffectSystem.h"
 #include "system/effect/PlayerSpeedFor3dUI.h"
 #include "system/effect/TimerForSprite.h"
 #include "system/effect/TimeScaleEffectSystem.h"
@@ -157,6 +158,7 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<ModelNodeAnimation>();
     componentRegistry->RegisterComponent<PrimitiveNodeAnimation>();
     componentRegistry->RegisterComponent<TransformAnimation>();
+    componentRegistry->RegisterComponent<TransformRateAnimation>();
     componentRegistry->RegisterComponent<DissolveAnimation>();
     componentRegistry->RegisterComponent<SkinningAnimationComponent>();
     componentRegistry->RegisterComponent<SpriteAnimation>();
@@ -368,6 +370,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<MaterialAnimationWorkSystem>();
     systemRegistry->RegisterSystem<CameraActionSystem>();
     systemRegistry->RegisterSystem<TransformAnimationWorkSystem>();
+    systemRegistry->RegisterSystem<TransformRateAnimationWorkSystem>();
     systemRegistry->RegisterSystem<DissolveAnimationSystem>();
 
     systemRegistry->RegisterSystem<CameraShake>();
@@ -390,6 +393,8 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<TimeStopEffect>();
 
     systemRegistry->RegisterSystem<AttractModeSystem>();
+
+    systemRegistry->RegisterSystem<PlayerExplosionEffectSystem>();
 
     /// =================================================================================================
     // Render

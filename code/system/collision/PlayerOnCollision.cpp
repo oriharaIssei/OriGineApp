@@ -5,6 +5,7 @@
 
 // event
 #include "event/GamefailedEvent.h"
+#include "event/PlayerExplosionEffectEvent.h"
 
 /// ECS
 // component
@@ -34,6 +35,11 @@
 #include "math/MathEnv.h"
 
 using namespace OriGine;
+
+namespace {
+/// 壁・床への衝突でゲームオーバーになる法線方向速度の閾値（m/s）
+constexpr float kCrashNormalSpeedThreshold = 40.0f;
+} // namespace
 
 void PlayerOnCollision::Initialize() {}
 void PlayerOnCollision::Finalize() {}
@@ -119,9 +125,19 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
                     state->ClearHasShieldFlag();
                     GetScene()->AddDeleteEntity(state->GetShieldEntityHandle());
 
-                } else if (state->GetInvincibilityTime() < 0.f) {
+                } else if (state->GetInvincibilityTime() <= 0.f) {
+                    auto* transform = GetComponent<Transform>(_handle);
+                    if (transform) {
+                        PlayerExplosionEffectEvent event{};
+                        event.position = transform->GetWorldTranslate();
+                        MessageBus::GetInstance()->Emit<PlayerExplosionEffectEvent>(event);
+                    }
+
                     // シールドを持っていない場合はゲームオーバー
-                    MessageBus::GetInstance()->Emit<GamefailedEvent>(GamefailedEvent());
+                    // 上記Evedntの分Delay
+                    MessageBus::GetInstance()->EmitDelayed<GamefailedEvent>(GamefailedEvent(), 1.5f);
+                    // プレイヤーを削除
+                    GetScene()->AddDeleteEntity(_handle);
                 }
 
                 continue;
@@ -161,6 +177,20 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
 
         OriGine::Vec3f collisionNormal = info.collFaceNormal.normalize();
 
+        // 法線方向の速度成分が閾値以上ならクラッシュ → ゲームオーバー
+        float normalSpeed = std::fabs(rigidbody->GetVelocity().dot(collisionNormal));
+        if (normalSpeed >= kCrashNormalSpeedThreshold) {
+            auto* transform = GetComponent<Transform>(_handle);
+            if (transform) {
+                PlayerExplosionEffectEvent event{};
+                event.position = transform->GetWorldTranslate();
+                MessageBus::GetInstance()->Emit<PlayerExplosionEffectEvent>(event);
+            }
+            MessageBus::GetInstance()->EmitDelayed<GamefailedEvent>(GamefailedEvent(), 1.5f);
+            GetScene()->AddDeleteEntity(_handle);
+            return;
+        }
+
         if (PlayerMoveUtils::IsHitGround(collisionNormal)) {
             // 上方向に衝突した場合は、地面にいると判断する
             if (!isPreOnGround) {
@@ -180,7 +210,6 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
             rigidbody->SetVelocity(Y, 0.f);
         } else {
             // 壁と衝突した場合
-
             // 壁走り可能コンポーネントの確認
             WallRunnableComponent* wallRunnable = GetComponent<WallRunnableComponent>(entityId);
             if (!wallRunnable) {

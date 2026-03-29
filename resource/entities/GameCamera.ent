@@ -134,14 +134,31 @@
                 "X_Parameter_Amplitude": 0.0,
                 "X_Parameter_DampingRatio": 0.0,
                 "X_Parameter_Frequency": 0.0,
-                "Y_Parameter_Amplitude": 1.9600000381469727,
-                "Y_Parameter_DampingRatio": 0.4099999964237213,
-                "Y_Parameter_Frequency": 4.199999809265137,
+                "Y_Parameter_Amplitude": 3.759999990463257,
+                "Y_Parameter_DampingRatio": 0.5400000214576721,
+                "Y_Parameter_Frequency": 2.450000047683716,
                 "Z_Parameter_Amplitude": 0.0,
                 "Z_Parameter_DampingRatio": 0.0,
                 "Z_Parameter_Frequency": 0.0,
                 "cameraTransformIndex": 0,
                 "duration": 1.0,
+                "isActive": false,
+                "isLoop": false,
+                "type": 2
+            },
+            {
+                "Handle": "a400ca33-659d-4a2b-98b0-518d263010d6",
+                "X_Parameter_Amplitude": 3.4000000953674316,
+                "X_Parameter_DampingRatio": 0.25,
+                "X_Parameter_Frequency": 1.0399999618530273,
+                "Y_Parameter_Amplitude": 3.3499999046325684,
+                "Y_Parameter_DampingRatio": 0.3799999952316284,
+                "Y_Parameter_Frequency": 1.940000057220459,
+                "Z_Parameter_Amplitude": 0.0,
+                "Z_Parameter_DampingRatio": 0.0,
+                "Z_Parameter_Frequency": 0.0,
+                "cameraTransformIndex": 0,
+                "duration": 1.5399999618530273,
                 "isActive": false,
                 "isLoop": false,
                 "type": 2
@@ -162,8 +179,8 @@
                 ],
                 "translate": [
                     0.0,
-                    4.0,
-                    -5.0
+                    0.0,
+                    0.0
                 ]
             }
         ],

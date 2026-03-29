@@ -208,6 +208,7 @@
     <ClInclude Include="code\component\ui\UIConfig.h" />
     <ClInclude Include="code\event\AddForceEvent.h" />
     <ClInclude Include="code\event\GamefailedEvent.h" />
+    <ClInclude Include="code\event\PlayerExplosionEffectEvent.h" />
     <ClInclude Include="code\event\PlayerStateChangedEvent.h" />
     <ClInclude Include="code\event\RestartEvent.h" />
     <ClInclude Include="code\event\SceneChangeRequest.h" />
@@ -289,6 +290,7 @@
     <ClInclude Include="code\system\effect\EffectOnPlayerGearup.h" />
     <ClInclude Include="code\system\effect\EffectOnPlayerRun.h" />
     <ClInclude Include="code\system\effect\PenaltyTimeSpriteUpdate.h" />
+    <ClInclude Include="code\system\effect\PlayerExplosionEffectSystem.h" />
     <ClInclude Include="code\system\effect\PlayerSpeedFor3dUI.h" />
     <ClInclude Include="code\system\effect\TimeScaleEffectSystem.h" />
     <ClInclude Include="code\system\effect\TimeStopEffect.h" />
@@ -420,6 +422,7 @@
     <ClCompile Include="code\system\effect\EffectOnPlayerGearup.cpp" />
     <ClCompile Include="code\system\effect\EffectOnPlayerRun.cpp" />
     <ClCompile Include="code\system\effect\PenaltyTimeSpriteUpdate.cpp" />
+    <ClCompile Include="code\system\effect\PlayerExplosionEffectSystem.cpp" />
     <ClCompile Include="code\system\effect\PlayerSpeedFor3dUI.cpp" />
     <ClCompile Include="code\system\effect\TimeScaleEffectSystem.cpp" />
     <ClCompile Include="code\system\effect\TimeStopEffect.cpp" />

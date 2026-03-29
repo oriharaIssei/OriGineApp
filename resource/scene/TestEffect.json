@@ -12,8 +12,27 @@
     "Entities": [
         {
             "Components": {
+                "DirectionalLight": [
+                    {
+                        "Handle": "a3c6e1da-e4de-4c3b-b712-e366e7cf9f07",
+                        "angularRadius": 0.0,
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "direction": [
+                            0.0,
+                            -1.0,
+                            0.0
+                        ],
+                        "intensity": 1.1200000047683716,
+                        "isActive": true
+                    }
+                ],
                 "SkyboxRenderer": [
                     {
+                        "Handle": "5983213f-2e05-4443-a83e-0ccfc43fb2f4",
                         "filePath": "application/resource/Texture/output_skybox.dds",
                         "materialBuff": {
                             "color": [
@@ -38,11 +57,14 @@
                             "translate": [
                                 0.0,
                                 0.0,
-                                0.0
+                                -9.399999618530273
                             ]
                         }
                     }
                 ]
+            },
+            "Handle": {
+                "uuid": "a1a31947-d66a-4b2e-a216-7f3acda4d16b"
             },
             "Name": "Skybox",
             "Systems": [
@@ -57,14 +79,16 @@
             "Components": {
                 "Material": [
                     {
+                        "Handle": "08c66710-e2cf-4c86-b87f-996028a63d96",
                         "color": [
-                            1.0,
-                            1.0,
-                            1.0,
+                            0.18143457174301147,
+                            0.18143457174301147,
+                            0.18143457174301147,
                             1.0
                         ],
-                        "enableLighting": false,
-                        "shininess": 0.0,
+                        "enableLighting": true,
+                        "environmentCoefficient": 0.009999999776482582,
+                        "shininess": 80.0,
                         "specularColor": [
                             1.0,
                             1.0,
@@ -81,83 +105,73 @@
                         ]
                     }
                 ],
-                "MaterialEffectPipeLine": [
+                "ModelMeshRenderer": [
                     {
-                        "baseTexturePath": "./application/resource/..\\..\\engine\\resource\\Texture/uvChecker.png",
-                        "effectEntityIdList": [
+                        "Handle": "97f918c9-17df-4b5d-830c-fa2e3d152952",
+                        "blendMode": 1,
+                        "directory": "./application/resource/Models\\player\\parts",
+                        "fileName": "Muffler_R01.obj",
+                        "isRender": true,
+                        "materialIndexDatas": [
                             {
-                                "effectType": 0,
-                                "entityID": 2
+                                "Handle": "08c66710-e2cf-4c86-b87f-996028a63d96"
                             }
                         ],
+                        "textureFilePath": [
+                            ""
+                        ],
+                        "transformBufferDatas": [
+                            {
+                                "rotate": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "scale": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "translate": [
+                                    0.6299999952316284,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "Rigidbody": [
+                    {
+                        "Handle": "3d91963b-168e-4968-9d0c-e51b9b0a1b0a",
+                        "acceleration": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
                         "isActive": true,
-                        "materialIndex": 0,
-                        "priority": 5
-                    }
-                ],
-                "PlaneRenderer": [
-                    {
-                        "blendMode": 1,
-                        "isCulling": false,
-                        "isRenderer": true,
-                        "materialIndex": 0,
-                        "textureFilePath": "./application/resource/..\\..\\engine\\resource\\Texture/uvChecker.png",
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                -2.309999942779541,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "SphereRenderer": [
-                    {
-                        "blendMode": 1,
-                        "divisionLatitude": 8,
-                        "divisionLongitude": 16,
-                        "isCulling": false,
-                        "isRenderer": true,
-                        "materialIndex": 0,
-                        "radius": 1.0,
-                        "textureFilePath": "./application/resource/..\\..\\engine\\resource\\Texture/uvChecker.png",
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                2.309999942779541,
-                                0.0,
-                                0.0
-                            ]
-                        }
+                        "isUsingLocalDeltaTime": false,
+                        "localDeltaTimeName": "",
+                        "mass": 0.6000000238418579,
+                        "maxFallSpeed": 64.0,
+                        "maxXZSpeed": 100.0,
+                        "restitution": 0.0,
+                        "useGravity": true,
+                        "velocity": [
+                            0.0,
+                            128.0,
+                            0.0
+                        ]
                     }
                 ],
                 "Transform": [
                     {
+                        "Handle": "e53aed8d-5de1-4b5a-88cd-27906a2286b3",
                         "rotate": [
-                            -0.0,
                             0.0,
-                            -0.0,
+                            0.0,
+                            0.0,
                             1.0
                         ],
                         "scale": [
@@ -166,152 +180,90 @@
                             1.0
                         ],
                         "translate": [
-                            -2.9802322387695313e-08,
-                            -0.503124475479126,
-                            8.979999542236328
+                            0.0,
+                            0.0,
+                            0.0
                         ]
+                    }
+                ],
+                "TransformRateAnimation": [
+                    {
+                        "Handle": "a206db19-d592-4e30-897a-c032fd8152e6",
+                        "isPlay": true,
+                        "rotateRate": {
+                            "acceleration": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "velocity": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "scaleRate": {
+                            "acceleration": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "velocity": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "targetTransformIndex": 0,
+                        "translateRate": {
+                            "acceleration": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "velocity": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
                     }
                 ]
             },
-            "Name": "Entity",
+            "Handle": {
+                "uuid": "86dcbbdc-edf2-4cfa-a838-4da7484c07e7"
+            },
+            "Name": "PlayerPartsMufflerR",
             "Systems": [
                 {
-                    "SystemCategory": 5,
-                    "SystemName": "MaterialEffect"
+                    "SystemCategory": 3,
+                    "SystemName": "MoveSystemByRigidBody"
                 },
                 {
                     "SystemCategory": 6,
                     "SystemName": "TexturedMeshRenderSystem"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "DissolveEffectParam": [
-                    {
-                        "edgeWidth": 0.006000000052154064,
-                        "isActive": true,
-                        "materialIndex": 0,
-                        "outLineColor": [
-                            0.0,
-                            0.5634781122207642,
-                            0.8902953863143921,
-                            1.0
-                        ],
-                        "textureFilePath": "",
-                        "threshold": 0.014000000432133675
-                    }
-                ],
-                "Material": [
-                    {
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "enableLighting": false,
-                        "shininess": 0.0,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.07999999821186066,
-                            -0.49000000953674316
-                        ]
-                    }
-                ],
-                "MaterialAnimation": [
-                    {
-                        "InterpolationType": 0,
-                        "colorCurve": [],
-                        "duration": 3.799999952316284,
-                        "isLoop": true,
-                        "isPlay": false,
-                        "uvRotateCurve": [],
-                        "uvScaleCurve": [],
-                        "uvTranslateCurve": [
-                            {
-                                "time": 0.0,
-                                "value": [
-                                    0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 3.799999952316284,
-                                "value": [
-                                    1.0,
-                                    0.0
-                                ]
-                            }
-                        ]
-                    }
-                ],
-                "MaterialEffectPipeLine": [
-                    {
-                        "baseTexturePath": "./application/resource/Texture/gradationLine.png",
-                        "effectEntityIdList": [
-                            {
-                                "effectType": 1,
-                                "entityID": 3
-                            }
-                        ],
-                        "isActive": true,
-                        "materialIndex": 0,
-                        "priority": 0
-                    }
-                ]
-            },
-            "Name": "Diss",
-            "Systems": [
-                {
-                    "SystemCategory": 5,
-                    "SystemName": "MaterialEffect"
                 },
                 {
                     "SystemCategory": 5,
-                    "SystemName": "MaterialAnimationWorkSystem"
+                    "SystemName": "TransformRateAnimationWorkSystem"
                 }
             ],
             "isUnique": false
         },
         {
             "Components": {
-                "DistortionEffectParam": [
-                    {
-                        "distortionBias": [
-                            0.3499999940395355,
-                            0.5
-                        ],
-                        "distortionStrength": [
-                            4.150000095367432,
-                            6.989999771118164
-                        ],
-                        "isActive": true,
-                        "materialIndex": 0,
-                        "textuerPath": "./application/resource/Texture/waveNoise.png",
-                        "use3dObjectList": false
-                    }
-                ],
                 "Material": [
                     {
+                        "Handle": "08c66710-e2cf-4c86-b87f-996028a63d96",
                         "color": [
-                            1.0,
-                            1.0,
-                            1.0,
+                            0.18143457174301147,
+                            0.18143457174301147,
+                            0.18143457174301147,
                             1.0
                         ],
-                        "enableLighting": false,
-                        "shininess": 0.0,
+                        "enableLighting": true,
+                        "environmentCoefficient": 0.009999999776482582,
+                        "shininess": 80.0,
                         "specularColor": [
                             1.0,
                             1.0,
@@ -323,44 +275,327 @@
                             1.0
                         ],
                         "uvTranslate": [
-                            0.10790706425905228,
-                            0.10790706425905228
+                            0.0,
+                            0.0
                         ]
                     }
                 ],
-                "MaterialAnimation": [
+                "ModelMeshRenderer": [
                     {
-                        "InterpolationType": 0,
-                        "colorCurve": [],
-                        "duration": 6.800000190734863,
-                        "isLoop": true,
-                        "isPlay": true,
-                        "uvRotateCurve": [],
-                        "uvScaleCurve": [],
-                        "uvTranslateCurve": [
+                        "Handle": "97f918c9-17df-4b5d-830c-fa2e3d152952",
+                        "blendMode": 1,
+                        "directory": "./application/resource/Models\\player\\parts",
+                        "fileName": "Muffler_L01.obj",
+                        "isRender": true,
+                        "materialIndexDatas": [
                             {
-                                "time": 0.0,
-                                "value": [
+                                "Handle": "08c66710-e2cf-4c86-b87f-996028a63d96"
+                            }
+                        ],
+                        "textureFilePath": [
+                            ""
+                        ],
+                        "transformBufferDatas": [
+                            {
+                                "rotate": [
                                     0.0,
-                                    0.0
-                                ]
-                            },
-                            {
-                                "time": 6.800000190734863,
-                                "value": [
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "scale": [
+                                    1.0,
                                     1.0,
                                     1.0
+                                ],
+                                "translate": [
+                                    -0.6299999952316284,
+                                    0.0,
+                                    0.0
                                 ]
                             }
                         ]
                     }
+                ],
+                "Rigidbody": [
+                    {
+                        "Handle": "3d91963b-168e-4968-9d0c-e51b9b0a1b0a",
+                        "acceleration": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "isActive": true,
+                        "isUsingLocalDeltaTime": false,
+                        "localDeltaTimeName": "",
+                        "mass": 0.4000000059604645,
+                        "maxFallSpeed": 32.0,
+                        "maxXZSpeed": 100.0,
+                        "restitution": 0.0,
+                        "useGravity": true,
+                        "velocity": [
+                            0.0,
+                            128.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "e53aed8d-5de1-4b5a-88cd-27906a2286b3",
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "TransformRateAnimation": [
+                    {
+                        "Handle": "be41737c-941f-4b53-9b89-310c7764a3bb",
+                        "isPlay": false,
+                        "rotateRate": {
+                            "acceleration": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "velocity": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "scaleRate": {
+                            "acceleration": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "velocity": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "targetTransformIndex": -1,
+                        "translateRate": {
+                            "acceleration": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "velocity": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
                 ]
             },
-            "Name": "Dist",
+            "Handle": {
+                "uuid": "ac7ff100-1562-4383-a3cb-8abc39cac9a0"
+            },
+            "Name": "PlayerPartsMufflerL",
             "Systems": [
                 {
+                    "SystemCategory": 3,
+                    "SystemName": "MoveSystemByRigidBody"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                },
+                {
                     "SystemCategory": 5,
-                    "SystemName": "MaterialAnimationWorkSystem"
+                    "SystemName": "TransformRateAnimationWorkSystem"
+                }
+            ],
+            "isUnique": false
+        },
+        {
+            "Components": {
+                "Material": [
+                    {
+                        "Handle": "08c66710-e2cf-4c86-b87f-996028a63d96",
+                        "color": [
+                            0.18143457174301147,
+                            0.18143457174301147,
+                            0.18143457174301147,
+                            1.0
+                        ],
+                        "enableLighting": true,
+                        "environmentCoefficient": 0.009999999776482582,
+                        "shininess": 80.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": 0.0,
+                        "uvScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "ModelMeshRenderer": [
+                    {
+                        "Handle": "97f918c9-17df-4b5d-830c-fa2e3d152952",
+                        "blendMode": 1,
+                        "directory": "./application/resource/Models\\player\\parts",
+                        "fileName": "Tire.obj",
+                        "isRender": true,
+                        "materialIndexDatas": [
+                            {
+                                "Handle": "08c66710-e2cf-4c86-b87f-996028a63d96"
+                            }
+                        ],
+                        "textureFilePath": [
+                            ""
+                        ],
+                        "transformBufferDatas": [
+                            {
+                                "rotate": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "scale": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "translate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "Rigidbody": [
+                    {
+                        "Handle": "3d91963b-168e-4968-9d0c-e51b9b0a1b0a",
+                        "acceleration": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "isActive": true,
+                        "isUsingLocalDeltaTime": false,
+                        "localDeltaTimeName": "",
+                        "mass": 0.4000000059604645,
+                        "maxFallSpeed": 32.0,
+                        "maxXZSpeed": 100.0,
+                        "restitution": 0.0,
+                        "useGravity": true,
+                        "velocity": [
+                            0.0,
+                            128.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "Transform": [
+                    {
+                        "Handle": "e53aed8d-5de1-4b5a-88cd-27906a2286b3",
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ],
+                "TransformRateAnimation": [
+                    {
+                        "Handle": "4633b365-f0a5-4894-8ac7-3fc453f04591",
+                        "isPlay": false,
+                        "rotateRate": {
+                            "acceleration": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "velocity": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "scaleRate": {
+                            "acceleration": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "velocity": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "targetTransformIndex": -1,
+                        "translateRate": {
+                            "acceleration": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "velocity": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    }
+                ]
+            },
+            "Handle": {
+                "uuid": "28ad16dc-61df-4b2f-a944-e8da7303ebc6"
+            },
+            "Name": "PlayerPartsTire",
+            "Systems": [
+                {
+                    "SystemCategory": 3,
+                    "SystemName": "MoveSystemByRigidBody"
+                },
+                {
+                    "SystemCategory": 6,
+                    "SystemName": "TexturedMeshRenderSystem"
+                },
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "TransformRateAnimationWorkSystem"
                 }
             ],
             "isUnique": false
@@ -368,12 +603,32 @@
     ],
     "Systems": [
         {
+            "MoveSystemByRigidBody": {
+                "Priority": 0
+            }
+        },
+        {
+            "TransformAnimationWorkSystem": {
+                "Priority": 0
+            }
+        },
+        {
             "SkyboxRender": {
                 "Priority": -2
             }
         },
         {
+            "DissolveAnimationSystem": {
+                "Priority": 0
+            }
+        },
+        {
             "MaterialEffect": {
+                "Priority": 0
+            }
+        },
+        {
+            "EffectAutoDestroySystem": {
                 "Priority": 0
             }
         },
@@ -384,6 +639,11 @@
         },
         {
             "TexturedMeshRenderSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "TransformRateAnimationWorkSystem": {
                 "Priority": 0
             }
         }

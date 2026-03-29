@@ -35,58 +35,18 @@
                 }
             }
         ],
-        "CylinderRenderer": [
-            {
-                "Handle": "d267237a-78ac-44be-b884-cfb24f205155",
-                "blendMode": 1,
-                "bottomRadius": [
-                    1.0,
-                    1.0
-                ],
-                "height": 0.5,
-                "heightDivisions": 8,
-                "isCulling": false,
-                "isRenderer": true,
-                "materialIndex": 0,
-                "radialDivisions": 36,
-                "radiusEaseType": 0,
-                "textureFilePath": "./application/resource/Texture/arrow.png",
-                "topRadius": [
-                    0.5,
-                    0.5
-                ],
-                "transform": {
-                    "rotate": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ],
-                    "scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "translate": [
-                        0.0,
-                        0.0,
-                        0.0
-                    ]
-                }
-            }
-        ],
         "Material": [
             {
                 "Handle": "b78eb27d-3f2c-4bb8-8e3b-baf0056c8c22",
                 "color": [
-                    0.16578538715839386,
-                    0.7111458778381348,
-                    0.8185653686523438,
+                    1.0,
+                    1.0,
+                    1.0,
                     1.0
                 ],
-                "enableLighting": false,
-                "environmentCoefficient": 0.10000000149011612,
-                "shininess": 0.0,
+                "enableLighting": true,
+                "environmentCoefficient": 0.03999999910593033,
+                "shininess": 80.0,
                 "specularColor": [
                     1.0,
                     1.0,
@@ -94,8 +54,8 @@
                 ],
                 "uvRotate": 0.0,
                 "uvScale": [
-                    4.0,
-                    -2.0
+                    1.0,
+                    1.0
                 ],
                 "uvTranslate": [
                     0.0,
@@ -126,6 +86,43 @@
                         "value": [
                             0.0,
                             3.0
+                        ]
+                    }
+                ]
+            }
+        ],
+        "ModelMeshRenderer": [
+            {
+                "Handle": "47d183fc-684b-4f96-9e8c-dc67d601ab76",
+                "blendMode": 1,
+                "directory": "./application/resource/Models",
+                "fileName": "Landingpad.obj",
+                "isRender": true,
+                "materialIndexDatas": [
+                    {
+                        "Handle": "b78eb27d-3f2c-4bb8-8e3b-baf0056c8c22"
+                    }
+                ],
+                "textureFilePath": [
+                    "./application/resource/Texture/landingpad_large.png"
+                ],
+                "transformBufferDatas": [
+                    {
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0,
+                            0.0
                         ]
                     }
                 ]
@@ -187,12 +184,12 @@
             "SystemName": "TexturedMeshRenderSystem"
         },
         {
-            "SystemCategory": 3,
-            "SystemName": "VelocityOverrideSystem"
-        },
-        {
             "SystemCategory": 4,
             "SystemName": "VelocityOverrideTriggerSystem"
+        },
+        {
+            "SystemCategory": 3,
+            "SystemName": "VelocityOverrideSystem"
         }
     ],
     "isUnique": false

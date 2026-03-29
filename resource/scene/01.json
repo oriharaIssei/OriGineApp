@@ -2617,58 +2617,18 @@
                         }
                     }
                 ],
-                "CylinderRenderer": [
-                    {
-                        "Handle": "d267237a-78ac-44be-b884-cfb24f205155",
-                        "blendMode": 1,
-                        "bottomRadius": [
-                            1.0,
-                            1.0
-                        ],
-                        "height": 0.5,
-                        "heightDivisions": 8,
-                        "isCulling": false,
-                        "isRenderer": true,
-                        "materialIndex": 0,
-                        "radialDivisions": 36,
-                        "radiusEaseType": 0,
-                        "textureFilePath": "./application/resource/Texture/arrow.png",
-                        "topRadius": [
-                            0.5,
-                            0.5
-                        ],
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
                 "Material": [
                     {
                         "Handle": "b78eb27d-3f2c-4bb8-8e3b-baf0056c8c22",
                         "color": [
-                            0.16578538715839386,
-                            0.7111458778381348,
-                            0.8185653686523438,
+                            1.0,
+                            1.0,
+                            1.0,
                             1.0
                         ],
-                        "enableLighting": false,
-                        "environmentCoefficient": 0.10000000149011612,
-                        "shininess": 0.0,
+                        "enableLighting": true,
+                        "environmentCoefficient": 0.03999999910593033,
+                        "shininess": 80.0,
                         "specularColor": [
                             1.0,
                             1.0,
@@ -2676,8 +2636,8 @@
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
-                            4.0,
-                            -2.0
+                            1.0,
+                            1.0
                         ],
                         "uvTranslate": [
                             0.0,
@@ -2708,6 +2668,43 @@
                                 "value": [
                                     0.0,
                                     3.0
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "ModelMeshRenderer": [
+                    {
+                        "Handle": "47d183fc-684b-4f96-9e8c-dc67d601ab76",
+                        "blendMode": 1,
+                        "directory": "./application/resource/Models",
+                        "fileName": "Landingpad.obj",
+                        "isRender": true,
+                        "materialIndexDatas": [
+                            {
+                                "Handle": "b78eb27d-3f2c-4bb8-8e3b-baf0056c8c22"
+                            }
+                        ],
+                        "textureFilePath": [
+                            "./application/resource/Texture/landingpad_large.png"
+                        ],
+                        "transformBufferDatas": [
+                            {
+                                "rotate": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "scale": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "translate": [
+                                    0.0,
+                                    0.0,
+                                    0.0
                                 ]
                             }
                         ]
@@ -2769,12 +2766,12 @@
                     "SystemName": "TexturedMeshRenderSystem"
                 },
                 {
-                    "SystemCategory": 3,
-                    "SystemName": "VelocityOverrideSystem"
-                },
-                {
                     "SystemCategory": 4,
                     "SystemName": "VelocityOverrideTriggerSystem"
+                },
+                {
+                    "SystemCategory": 3,
+                    "SystemName": "VelocityOverrideSystem"
                 }
             ],
             "isUnique": false
@@ -3324,249 +3321,6 @@
                 "uuid": "ba215318-eaaa-4403-8348-f9a5bdf56d67"
             },
             "Name": "Wall",
-            "Systems": [
-                {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
-                },
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "TexturedMeshRenderSystem"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "AABBCollider": [
-                    {
-                        "Handle": "91bdb5d9-f9e1-454b-9139-2657e8a6e210",
-                        "center": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "collisionCategory": "StageObject",
-                        "halfSize": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "isActive": true,
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "BoxRenderer": [
-                    {
-                        "Handle": "483f5526-bb2f-4a9b-b04c-add1c16d0b59",
-                        "blendMode": 1,
-                        "isCulling": true,
-                        "isRenderer": true,
-                        "materialIndex": 0,
-                        "size": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "textureFilePath": "",
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "CollisionPushBackInfo": [
-                    {
-                        "Handle": "ee021e5a-6ca8-4783-9cb3-6b9e66647662",
-                        "pushBackType": 1
-                    }
-                ],
-                "Material": [
-                    {
-                        "Handle": "f866cc97-7782-4389-8d9e-3ffb5c6ade61",
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "enableLighting": true,
-                        "environmentCoefficient": 0.10000000149011612,
-                        "shininess": 60.0,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "Transform": [
-                    {
-                        "Handle": "33faea4f-7d37-4f42-8b71-9059bbaf1530",
-                        "rotate": [
-                            -0.0,
-                            0.0,
-                            -0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            6.0,
-                            64.0,
-                            128.0
-                        ],
-                        "translate": [
-                            28.0,
-                            61.29351043701172,
-                            2053.0
-                        ]
-                    }
-                ]
-            },
-            "Handle": {
-                "uuid": "259e0d6b-ec3e-4a64-8a02-e23725f97b96"
-            },
-            "Name": "Wall",
-            "Systems": [
-                {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
-                },
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "TexturedMeshRenderSystem"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "BoxRenderer": [
-                    {
-                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
-                        "blendMode": 1,
-                        "isCulling": true,
-                        "isRenderer": true,
-                        "materialIndex": 0,
-                        "size": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "textureFilePath": "",
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "Material": [
-                    {
-                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "enableLighting": true,
-                        "environmentCoefficient": 0.10000000149011612,
-                        "shininess": 60.0,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "Transform": [
-                    {
-                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
-                        "rotate": [
-                            -0.0,
-                            0.0,
-                            -0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            64.0,
-                            128.0,
-                            64.0
-                        ],
-                        "translate": [
-                            -555.0704345703125,
-                            75.1009292602539,
-                            450.9989929199219
-                        ]
-                    }
-                ]
-            },
-            "Handle": {
-                "uuid": "0b297eef-3aef-4f33-ba5d-96d998b1c75b"
-            },
-            "Name": "Floor",
             "Systems": [
                 {
                     "SystemCategory": 4,
@@ -5084,148 +4838,6 @@
                 "uuid": "ad0f929f-15a5-4421-8a1d-18c190025d6d"
             },
             "Name": "Floor",
-            "Systems": [
-                {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
-                },
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "TexturedMeshRenderSystem"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "AABBCollider": [
-                    {
-                        "Handle": "40120f6d-2183-4eeb-bb0f-2f4e8f7d4780",
-                        "center": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "collisionCategory": "StageObject",
-                        "halfSize": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "isActive": true,
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "BoxRenderer": [
-                    {
-                        "Handle": "823cca3b-9802-416e-a30c-6d4a0440f246",
-                        "blendMode": 1,
-                        "isCulling": true,
-                        "isRenderer": true,
-                        "materialIndex": 0,
-                        "size": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "textureFilePath": "",
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "CollisionPushBackInfo": [
-                    {
-                        "Handle": "45da6c2a-f4df-4ccd-b18b-1b73c14b5a10",
-                        "pushBackType": 1
-                    }
-                ],
-                "Material": [
-                    {
-                        "Handle": "38e967d6-7a1b-427c-9625-6b43f03a707e",
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "enableLighting": true,
-                        "environmentCoefficient": 0.10000000149011612,
-                        "shininess": 60.0,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "Transform": [
-                    {
-                        "Handle": "c123b54b-849d-4fe0-956c-5edf67543348",
-                        "rotate": [
-                            -0.0,
-                            0.0,
-                            -0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            6.0,
-                            64.0,
-                            128.0
-                        ],
-                        "translate": [
-                            -28.0,
-                            61.29351043701172,
-                            2053.0
-                        ]
-                    }
-                ]
-            },
-            "Handle": {
-                "uuid": "f127caf6-bd9f-4558-8c15-b59cbae35d5d"
-            },
-            "Name": "Wall",
             "Systems": [
                 {
                     "SystemCategory": 4,
@@ -7665,192 +7277,6 @@
         },
         {
             "Components": {
-                "AABBCollider": [
-                    {
-                        "Handle": "d3ca9574-c040-4904-ae21-07e326b90abf",
-                        "center": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "collisionCategory": "StageObject",
-                        "halfSize": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "isActive": true,
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "BoxRenderer": [
-                    {
-                        "Handle": "7f1d14fb-bf8a-46c0-aca2-8d60cee35d40",
-                        "blendMode": 1,
-                        "isCulling": true,
-                        "isRenderer": true,
-                        "materialIndex": 0,
-                        "size": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "textureFilePath": "./application/resource/Texture/Obstacle.png",
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "Material": [
-                    {
-                        "Handle": "1ddd66c4-e7f8-432a-af56-178414cc6fc1",
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "enableLighting": false,
-                        "environmentCoefficient": 0.10000000149011612,
-                        "shininess": 0.0,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            0.029999999329447746,
-                            0.6100000143051147
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "Obstacle": [
-                    {
-                        "Handle": "9ffddf91-f8d7-4039-a4cf-c9b83c0606e9",
-                        "invincibilityTimeOnCollision": 1.0,
-                        "penaltyTime": 1.5
-                    }
-                ],
-                "PathController": [
-                    {
-                        "Handle": "0c820faf-5c0d-4436-8e2a-8046a998dc55",
-                        "currentIndex": 0,
-                        "interpolation": 0,
-                        "isActive": true,
-                        "isPlaying": true,
-                        "isReversed": false,
-                        "playOption": 1,
-                        "points": [
-                            [
-                                -20.0,
-                                -54.0,
-                                1920.0
-                            ],
-                            [
-                                -20.0,
-                                45.20000076293945,
-                                1920.0
-                            ],
-                            [
-                                -20.0,
-                                45.20000076293945,
-                                1405.0
-                            ],
-                            [
-                                -20.0,
-                                -54.0,
-                                1406.0
-                            ]
-                        ],
-                        "progress": 0.44999998807907104,
-                        "rotationMode": 0,
-                        "rotationSmoothSpeed": 5.0,
-                        "speed": 36.0,
-                        "startIndex": 0,
-                        "startProgress": 0.44999998807907104
-                    }
-                ],
-                "Transform": [
-                    {
-                        "Handle": "f3ec44a8-2900-4bed-9a2e-eb52577a797c",
-                        "rotate": [
-                            -0.0,
-                            0.0,
-                            -0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            12.0,
-                            1.0,
-                            1.0
-                        ],
-                        "translate": [
-                            -20.0,
-                            45.20000076293945,
-                            1886.6951904296875
-                        ]
-                    }
-                ]
-            },
-            "Handle": {
-                "uuid": "e960c86e-875a-459a-bcc7-c17b5a391555"
-            },
-            "Name": "MoveObstacle",
-            "Systems": [
-                {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
-                },
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "TexturedMeshRenderSystem"
-                },
-                {
-                    "SystemCategory": 3,
-                    "SystemName": "PathControllerSystem"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
                 "Material": [
                     {
                         "Handle": "5db4ade9-87d4-4c7f-b4de-78b3ed8ccc76",
@@ -8943,554 +8369,6 @@
                 {
                     "SystemCategory": 7,
                     "SystemName": "GrayscaleEffect"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "AABBCollider": [
-                    {
-                        "Handle": "bd3dfbf8-939e-4336-a5cc-521766b233f9",
-                        "center": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "collisionCategory": "StageObject",
-                        "halfSize": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "isActive": true,
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "BoxRenderer": [
-                    {
-                        "Handle": "f49423a2-6b07-48ec-a7c7-f7e29e13d0c6",
-                        "blendMode": 1,
-                        "isCulling": true,
-                        "isRenderer": true,
-                        "materialIndex": 0,
-                        "size": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "textureFilePath": "./application/resource/Texture/Obstacle.png",
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "Material": [
-                    {
-                        "Handle": "8e5c17a3-0e2b-4eaf-ab61-5389576b6ebb",
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "enableLighting": false,
-                        "environmentCoefficient": 0.10000000149011612,
-                        "shininess": 0.0,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            0.029999999329447746,
-                            0.6100000143051147
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "Obstacle": [
-                    {
-                        "Handle": "b2fcbd65-3a1d-41de-a06a-266d7ef91dd8",
-                        "invincibilityTimeOnCollision": 1.0,
-                        "penaltyTime": 1.5
-                    }
-                ],
-                "PathController": [
-                    {
-                        "Handle": "8cbe04b9-87c0-45e4-9951-621f3b05a7c2",
-                        "currentIndex": 1,
-                        "interpolation": 0,
-                        "isActive": true,
-                        "isPlaying": true,
-                        "isReversed": false,
-                        "playOption": 1,
-                        "points": [
-                            [
-                                20.0,
-                                -54.0,
-                                1920.0
-                            ],
-                            [
-                                20.0,
-                                45.20000076293945,
-                                1920.0
-                            ],
-                            [
-                                20.0,
-                                45.20000076293945,
-                                1405.0
-                            ],
-                            [
-                                20.0,
-                                -54.0,
-                                1406.0
-                            ]
-                        ],
-                        "progress": 0.0,
-                        "rotationMode": 0,
-                        "rotationSmoothSpeed": 5.0,
-                        "speed": 36.0,
-                        "startIndex": 1,
-                        "startProgress": 0.0
-                    }
-                ],
-                "Transform": [
-                    {
-                        "Handle": "0896a72b-a568-4aae-b4ea-25d80d2a66e6",
-                        "rotate": [
-                            -0.0,
-                            0.0,
-                            -0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            12.0,
-                            1.0,
-                            1.0
-                        ],
-                        "translate": [
-                            20.0,
-                            45.20000076293945,
-                            1901.039794921875
-                        ]
-                    }
-                ]
-            },
-            "Handle": {
-                "uuid": "e17570d7-aac0-45e0-9c6e-e2136a42c82a"
-            },
-            "Name": "MoveObstacle",
-            "Systems": [
-                {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
-                },
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "TexturedMeshRenderSystem"
-                },
-                {
-                    "SystemCategory": 3,
-                    "SystemName": "PathControllerSystem"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "AABBCollider": [
-                    {
-                        "Handle": "65d1d0dd-a03a-47e6-8ee5-e204147d6fa5",
-                        "center": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "collisionCategory": "StageObject",
-                        "halfSize": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "isActive": true,
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "BoxRenderer": [
-                    {
-                        "Handle": "e74d5530-8f2e-4bf8-ae15-1c28fbe8a256",
-                        "blendMode": 1,
-                        "isCulling": true,
-                        "isRenderer": true,
-                        "materialIndex": 0,
-                        "size": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "textureFilePath": "./application/resource/Texture/Obstacle.png",
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "Material": [
-                    {
-                        "Handle": "3a3b708f-6520-49ed-be90-9dd6a7589fe9",
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "enableLighting": false,
-                        "environmentCoefficient": 0.10000000149011612,
-                        "shininess": 0.0,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            0.029999999329447746,
-                            0.6100000143051147
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "Obstacle": [
-                    {
-                        "Handle": "20f5a83a-4295-44b6-8d70-c95b9fa485d6",
-                        "invincibilityTimeOnCollision": 1.0,
-                        "penaltyTime": 1.5
-                    }
-                ],
-                "PathController": [
-                    {
-                        "Handle": "73cc93a2-4fa7-4545-a15b-aa762ba61735",
-                        "currentIndex": 2,
-                        "interpolation": 0,
-                        "isActive": true,
-                        "isPlaying": true,
-                        "isReversed": false,
-                        "playOption": 1,
-                        "points": [
-                            [
-                                0.0,
-                                -54.0,
-                                1920.0
-                            ],
-                            [
-                                0.0,
-                                45.20000076293945,
-                                1920.0
-                            ],
-                            [
-                                0.0,
-                                45.20000076293945,
-                                1405.0
-                            ],
-                            [
-                                0.0,
-                                -54.0,
-                                1406.0
-                            ]
-                        ],
-                        "progress": 0.0,
-                        "rotationMode": 0,
-                        "rotationSmoothSpeed": 5.0,
-                        "speed": 36.0,
-                        "startIndex": 2,
-                        "startProgress": 0.0
-                    }
-                ],
-                "Transform": [
-                    {
-                        "Handle": "f762b402-fd56-44bf-9bcd-1444b82bae44",
-                        "rotate": [
-                            -0.0,
-                            0.0,
-                            -0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            32.0,
-                            1.0,
-                            1.0
-                        ],
-                        "translate": [
-                            0.0,
-                            45.20000076293945,
-                            1920.0
-                        ]
-                    }
-                ]
-            },
-            "Handle": {
-                "uuid": "fe410a92-2eff-4ecc-a505-71b8d838a7ee"
-            },
-            "Name": "MoveObstacle",
-            "Systems": [
-                {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
-                },
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "TexturedMeshRenderSystem"
-                },
-                {
-                    "SystemCategory": 3,
-                    "SystemName": "PathControllerSystem"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "AABBCollider": [
-                    {
-                        "Handle": "49475129-3b0b-471e-ad11-dedf141aa347",
-                        "center": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "collisionCategory": "StageObject",
-                        "halfSize": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "isActive": true,
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "BoxRenderer": [
-                    {
-                        "Handle": "6b55b7b8-ae9b-4509-9e1f-9477cb4d5604",
-                        "blendMode": 1,
-                        "isCulling": true,
-                        "isRenderer": true,
-                        "materialIndex": 0,
-                        "size": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "textureFilePath": "./application/resource/Texture/Obstacle.png",
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "Material": [
-                    {
-                        "Handle": "40d48c3c-2571-4976-8382-b8c60d64693d",
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "enableLighting": false,
-                        "environmentCoefficient": 0.10000000149011612,
-                        "shininess": 0.0,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            0.029999999329447746,
-                            0.6100000143051147
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "Obstacle": [
-                    {
-                        "Handle": "7adf83e4-e2e8-4f62-841d-78126bfd5d78",
-                        "invincibilityTimeOnCollision": 1.0,
-                        "penaltyTime": 1.5
-                    }
-                ],
-                "PathController": [
-                    {
-                        "Handle": "5d7042f4-6aa8-4cc0-9ff2-90bcf4857356",
-                        "currentIndex": 0,
-                        "interpolation": 0,
-                        "isActive": true,
-                        "isPlaying": true,
-                        "isReversed": false,
-                        "playOption": 2,
-                        "points": [
-                            [
-                                0.0,
-                                128.0,
-                                2100.0
-                            ],
-                            [
-                                0.0,
-                                0.0,
-                                2100.0
-                            ]
-                        ],
-                        "progress": 0.0,
-                        "rotationMode": 0,
-                        "rotationSmoothSpeed": 5.0,
-                        "speed": 24.0,
-                        "startIndex": 0,
-                        "startProgress": 0.0
-                    }
-                ],
-                "Transform": [
-                    {
-                        "Handle": "4abe19df-b91c-40a1-842c-e7ff330d1e77",
-                        "rotate": [
-                            -0.0,
-                            0.0,
-                            -0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            21.0,
-                            3.0,
-                            3.0
-                        ],
-                        "translate": [
-                            0.0,
-                            61.29399871826172,
-                            2100.000244140625
-                        ]
-                    }
-                ]
-            },
-            "Handle": {
-                "uuid": "b0eeb693-357f-445f-828c-412b18b43104"
-            },
-            "Name": "MoveObstacle",
-            "Systems": [
-                {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
-                },
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "TexturedMeshRenderSystem"
-                },
-                {
-                    "SystemCategory": 3,
-                    "SystemName": "PathControllerSystem"
                 }
             ],
             "isUnique": false
@@ -11284,468 +10162,6 @@
         },
         {
             "Components": {
-                "AABBCollider": [
-                    {
-                        "Handle": "31547b34-69ab-4765-a1d9-b50145ec072a",
-                        "center": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "collisionCategory": "StageObject",
-                        "halfSize": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "isActive": true,
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "BoxRenderer": [
-                    {
-                        "Handle": "7ffdd05f-a3c0-4f0e-9aeb-2331795ce2bd",
-                        "blendMode": 1,
-                        "isCulling": true,
-                        "isRenderer": true,
-                        "materialIndex": 0,
-                        "size": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "textureFilePath": "./application/resource/Texture/Obstacle.png",
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "Material": [
-                    {
-                        "Handle": "228ef67e-1e08-42c7-828d-d5553ba38f72",
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "enableLighting": false,
-                        "environmentCoefficient": 0.10000000149011612,
-                        "shininess": 14.1899995803833,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            0.20999999344348907,
-                            0.8500000238418579
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "Obstacle": [
-                    {
-                        "Handle": "1f0fa092-2fd9-447c-adfc-8610f653a3d3",
-                        "invincibilityTimeOnCollision": 1.0,
-                        "penaltyTime": 1.5
-                    }
-                ],
-                "Transform": [
-                    {
-                        "Handle": "bf1d211c-ec28-4c92-9239-89e18f5b1d18",
-                        "rotate": [
-                            -0.0,
-                            -1.1913838449117975e-07,
-                            -0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            4.000027179718018,
-                            64.0,
-                            6.0
-                        ],
-                        "translate": [
-                            -21.450000762939453,
-                            61.42848587036133,
-                            2138.615478515625
-                        ]
-                    }
-                ]
-            },
-            "Handle": {
-                "uuid": "fb9780fd-169e-4d19-9848-806070cdecf0"
-            },
-            "Name": "Obstacle",
-            "Systems": [
-                {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
-                },
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "TexturedMeshRenderSystem"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "AABBCollider": [
-                    {
-                        "Handle": "1a1da12d-fdc5-40c2-a259-a1239dc5380d",
-                        "center": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "collisionCategory": "StageObject",
-                        "halfSize": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "isActive": true,
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "BoxRenderer": [
-                    {
-                        "Handle": "81b10b35-1f3f-4d5a-9795-6db5d4391325",
-                        "blendMode": 1,
-                        "isCulling": true,
-                        "isRenderer": true,
-                        "materialIndex": 0,
-                        "size": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "textureFilePath": "./application/resource/Texture/Obstacle.png",
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "Material": [
-                    {
-                        "Handle": "a433b2f4-13f1-4bef-9b8e-fac3638cb319",
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "enableLighting": false,
-                        "environmentCoefficient": 0.10000000149011612,
-                        "shininess": 14.1899995803833,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            0.20999999344348907,
-                            0.8500000238418579
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "Obstacle": [
-                    {
-                        "Handle": "0b89a1d5-ab53-4861-9e52-cbc69a6f3b14",
-                        "invincibilityTimeOnCollision": 1.0,
-                        "penaltyTime": 1.5
-                    }
-                ],
-                "Transform": [
-                    {
-                        "Handle": "55874dcd-5f1d-4485-b4ff-ec087835653f",
-                        "rotate": [
-                            -0.0,
-                            -1.1913838449117975e-07,
-                            -0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            4.000027179718018,
-                            64.0,
-                            6.0
-                        ],
-                        "translate": [
-                            21.449810028076172,
-                            61.42848587036133,
-                            1959.168212890625
-                        ]
-                    }
-                ]
-            },
-            "Handle": {
-                "uuid": "6fb8f672-1191-4a99-ab63-5a40414a6618"
-            },
-            "Name": "Obstacle",
-            "Systems": [
-                {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
-                },
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "TexturedMeshRenderSystem"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
-                "AABBCollider": [
-                    {
-                        "Handle": "d239a050-0709-4bd6-9bd7-59986b1cde29",
-                        "center": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "collisionCategory": "StageObject",
-                        "halfSize": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "isActive": true,
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "BoxRenderer": [
-                    {
-                        "Handle": "e29cb061-4848-4af5-a54e-e9c24aa33831",
-                        "blendMode": 1,
-                        "isCulling": true,
-                        "isRenderer": true,
-                        "materialIndex": 0,
-                        "size": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "textureFilePath": "./application/resource/Texture/Obstacle.png",
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "Material": [
-                    {
-                        "Handle": "e214c30f-d611-4fdf-ace4-3109bd9176f5",
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "enableLighting": false,
-                        "environmentCoefficient": 0.10000000149011612,
-                        "shininess": 0.0,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            0.029999999329447746,
-                            0.6100000143051147
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "Obstacle": [
-                    {
-                        "Handle": "0877fda9-ce93-4a0e-8ef9-909981870235",
-                        "invincibilityTimeOnCollision": 1.0,
-                        "penaltyTime": 1.5
-                    }
-                ],
-                "PathController": [
-                    {
-                        "Handle": "fe878c1c-8806-49d7-8b78-2c719fa6d687",
-                        "currentIndex": 0,
-                        "interpolation": 0,
-                        "isActive": true,
-                        "isPlaying": true,
-                        "isReversed": false,
-                        "playOption": 2,
-                        "points": [
-                            [
-                                0.0,
-                                128.0,
-                                2040.5999755859375
-                            ],
-                            [
-                                0.0,
-                                0.0,
-                                2040.5999755859375
-                            ]
-                        ],
-                        "progress": 0.49000000953674316,
-                        "rotationMode": 0,
-                        "rotationSmoothSpeed": 5.0,
-                        "speed": 24.0,
-                        "startIndex": 0,
-                        "startProgress": 0.49000000953674316
-                    }
-                ],
-                "Transform": [
-                    {
-                        "Handle": "99617af5-f631-4d7c-8d6e-e44641323da3",
-                        "rotate": [
-                            -0.0,
-                            0.0,
-                            -0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            21.0,
-                            3.0,
-                            3.0
-                        ],
-                        "translate": [
-                            0.0,
-                            61.29399871826172,
-                            2100.000244140625
-                        ]
-                    }
-                ]
-            },
-            "Handle": {
-                "uuid": "a1864492-8d77-485e-ab2d-55f4e0283e7c"
-            },
-            "Name": "MoveObstacle",
-            "Systems": [
-                {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
-                },
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "TexturedMeshRenderSystem"
-                },
-                {
-                    "SystemCategory": 3,
-                    "SystemName": "PathControllerSystem"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
                 "FollowTransformComponent": [
                     {
                         "Handle": "c79a71f4-e4e9-4196-9c95-753a45c288d3",
@@ -11896,165 +10312,6 @@
         },
         {
             "Components": {
-                "CollisionPushBackInfo": [
-                    {
-                        "Handle": "b660e090-3818-4050-b584-382c3525e0a2",
-                        "pushBackType": 2
-                    }
-                ],
-                "Material": [
-                    {
-                        "Handle": "18f33ba4-f665-4b54-93f5-88a9a1dbab79",
-                        "color": [
-                            1.0,
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "enableLighting": false,
-                        "environmentCoefficient": 0.10000000149011612,
-                        "shininess": 0.0,
-                        "specularColor": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ],
-                        "uvRotate": 0.0,
-                        "uvScale": [
-                            1.0,
-                            1.0
-                        ],
-                        "uvTranslate": [
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "Rigidbody": [
-                    {
-                        "Handle": "f527e3d6-9f56-4871-b9dd-63b734f820c0",
-                        "acceleration": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "isActive": true,
-                        "isUsingLocalDeltaTime": false,
-                        "localDeltaTimeName": "",
-                        "mass": 1.0,
-                        "maxFallSpeed": 1000.0,
-                        "maxXZSpeed": 100.0,
-                        "restitution": 1.5399999618530273,
-                        "useGravity": false,
-                        "velocity": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ]
-                    }
-                ],
-                "SphereCollider": [
-                    {
-                        "Handle": "164debf4-59ab-44be-95a9-9faaf41693c1",
-                        "center": [
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "collisionCategory": "StageObject",
-                        "isActive": true,
-                        "radius": 3.0,
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "SphereRenderer": [
-                    {
-                        "Handle": "5a80e378-c8df-45a7-a642-a1207b6776d4",
-                        "blendMode": 1,
-                        "divisionLatitude": 8,
-                        "divisionLongitude": 16,
-                        "isCulling": true,
-                        "isRenderer": true,
-                        "materialIndex": 0,
-                        "radius": 1.0,
-                        "textureFilePath": "",
-                        "transform": {
-                            "rotate": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "scale": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "translate": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        }
-                    }
-                ],
-                "Transform": [
-                    {
-                        "Handle": "b91e95d5-c8e9-4e0a-bcf5-da56014a5666",
-                        "rotate": [
-                            -0.0,
-                            0.0,
-                            -0.0,
-                            1.0
-                        ],
-                        "scale": [
-                            3.0,
-                            3.0,
-                            3.0
-                        ],
-                        "translate": [
-                            -12.998610496520996,
-                            0.0,
-                            29.923763275146484
-                        ]
-                    }
-                ]
-            },
-            "Handle": {
-                "uuid": "c2703d10-2ca0-484e-b634-21295283360e"
-            },
-            "Name": "BounceBall",
-            "Systems": [
-                {
-                    "SystemCategory": 4,
-                    "SystemName": "CollisionCheckSystem"
-                },
-                {
-                    "SystemCategory": 6,
-                    "SystemName": "TexturedMeshRenderSystem"
-                }
-            ],
-            "isUnique": false
-        },
-        {
-            "Components": {
                 "AABBCollider": [
                     {
                         "Handle": "5bce64ce-b932-4aac-8b89-516461f2631f",
@@ -12147,12 +10404,12 @@
             }
         },
         {
-            "ColliderRenderingSystem": {
+            "ApplyMouseConditionSystem": {
                 "Priority": 0
             }
         },
         {
-            "ApplyMouseConditionSystem": {
+            "ColliderRenderingSystem": {
                 "Priority": 0
             }
         },
@@ -12167,6 +10424,11 @@
             }
         },
         {
+            "ButtonInputSystem": {
+                "Priority": 1
+            }
+        },
+        {
             "ChangeSceneByButton": {
                 "Priority": 1
             }
@@ -12174,21 +10436,6 @@
         {
             "CameraMotionBobSystem": {
                 "Priority": 1
-            }
-        },
-        {
-            "ButtonInputSystem": {
-                "Priority": 1
-            }
-        },
-        {
-            "SceneTransitionRequestSenderSystem": {
-                "Priority": -1
-            }
-        },
-        {
-            "CollisionPushBackSystem": {
-                "Priority": 0
             }
         },
         {
@@ -12202,18 +10449,28 @@
             }
         },
         {
+            "SceneTransitionRequestSenderSystem": {
+                "Priority": -1
+            }
+        },
+        {
+            "CollisionPushBackSystem": {
+                "Priority": 0
+            }
+        },
+        {
             "TimeLimitJudgeSystem": {
+                "Priority": 10
+            }
+        },
+        {
+            "CreatePlaneFromSpeed": {
                 "Priority": 10
             }
         },
         {
             "CameraShake": {
                 "Priority": 0
-            }
-        },
-        {
-            "CreatePlaneFromSpeed": {
-                "Priority": 10
             }
         },
         {
@@ -12237,23 +10494,23 @@
             }
         },
         {
+            "PlayerSpeedFor3dUI": {
+                "Priority": 1
+            }
+        },
+        {
             "DissolveEffect": {
                 "Priority": 100
             }
         },
         {
-            "PlayerSpeedFor3dUI": {
+            "UpdateButtonColorByState": {
                 "Priority": 1
             }
         },
         {
             "DistortionEffect": {
                 "Priority": 5
-            }
-        },
-        {
-            "UpdateButtonColorByState": {
-                "Priority": 1
             }
         },
         {
@@ -12272,13 +10529,13 @@
             }
         },
         {
-            "ShowGameUIByInputDevice": {
-                "Priority": 0
+            "FallToFailedSystem": {
+                "Priority": 6
             }
         },
         {
-            "FallToFailedSystem": {
-                "Priority": 6
+            "ShowGameUIByInputDevice": {
+                "Priority": 0
             }
         },
         {
@@ -12287,8 +10544,8 @@
             }
         },
         {
-            "MaterialAnimationWorkSystem": {
-                "Priority": 0
+            "StartTimerInitialize": {
+                "Priority": 3
             }
         },
         {
@@ -12297,8 +10554,8 @@
             }
         },
         {
-            "StartTimerInitialize": {
-                "Priority": 3
+            "MaterialAnimationWorkSystem": {
+                "Priority": 0
             }
         },
         {
@@ -12317,13 +10574,13 @@
             }
         },
         {
-            "OverlayRenderSystem": {
-                "Priority": 100
+            "ResolveEntityReferences": {
+                "Priority": -2
             }
         },
         {
-            "ResolveEntityReferences": {
-                "Priority": -2
+            "OverlayRenderSystem": {
+                "Priority": 100
             }
         },
         {
@@ -12332,13 +10589,13 @@
             }
         },
         {
-            "PlayerPathSplineGenerator": {
-                "Priority": 100
+            "SkeletonRenderSystem": {
+                "Priority": 0
             }
         },
         {
-            "SkeletonRenderSystem": {
-                "Priority": 0
+            "PlayerPathSplineGenerator": {
+                "Priority": 100
             }
         },
         {
@@ -12377,6 +10634,11 @@
             }
         },
         {
+            "SpriteAnimationSystem": {
+                "Priority": 1
+            }
+        },
+        {
             "VelocityRenderingSystem": {
                 "Priority": 0
             }
@@ -12384,11 +10646,6 @@
         {
             "SettingGameCameraTarget": {
                 "Priority": 5
-            }
-        },
-        {
-            "SpriteAnimationSystem": {
-                "Priority": 1
             }
         },
         {
@@ -12412,16 +10669,6 @@
             }
         },
         {
-            "StartSequenceSystem": {
-                "Priority": 2
-            }
-        },
-        {
-            "SubSceneRender": {
-                "Priority": 10
-            }
-        },
-        {
             "SubSceneActivateByButton": {
                 "Priority": 0
             }
@@ -12429,6 +10676,16 @@
         {
             "TakeToGoalPosition": {
                 "Priority": 1
+            }
+        },
+        {
+            "StartSequenceSystem": {
+                "Priority": 2
+            }
+        },
+        {
+            "SubSceneRender": {
+                "Priority": 10
             }
         },
         {
@@ -12472,13 +10729,13 @@
             }
         },
         {
-            "PlayerAheadCollisionReactionSystem": {
-                "Priority": 5
+            "SceneTransitionRequestReceiverSystem": {
+                "Priority": 0
             }
         },
         {
-            "SceneTransitionRequestReceiverSystem": {
-                "Priority": 0
+            "PlayerAheadCollisionReactionSystem": {
+                "Priority": 5
             }
         },
         {
@@ -12502,13 +10759,13 @@
             }
         },
         {
-            "VelocityOverrideSystem": {
-                "Priority": 0
+            "VelocityOverrideTriggerSystem": {
+                "Priority": 13
             }
         },
         {
-            "VelocityOverrideTriggerSystem": {
-                "Priority": 13
+            "VelocityOverrideSystem": {
+                "Priority": 0
             }
         },
         {
@@ -12552,12 +10809,12 @@
             }
         },
         {
-            "DissolveAnimationSystem": {
+            "ScaleDeformSystem": {
                 "Priority": 0
             }
         },
         {
-            "ScaleDeformSystem": {
+            "DissolveAnimationSystem": {
                 "Priority": 0
             }
         },
@@ -12614,6 +10871,11 @@
         {
             "FollowTransformSystem": {
                 "Priority": 100
+            }
+        },
+        {
+            "PlayerExplosionEffectSystem": {
+                "Priority": 0
             }
         }
     ]

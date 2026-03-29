@@ -216,6 +216,9 @@
     <ClInclude Include="code\event\GamefailedEvent.h">
       <Filter>event</Filter>
     </ClInclude>
+    <ClInclude Include="code\event\PlayerExplosionEffectEvent.h">
+      <Filter>event</Filter>
+    </ClInclude>
     <ClInclude Include="code\event\PlayerStateChangedEvent.h">
       <Filter>event</Filter>
     </ClInclude>
@@ -457,6 +460,9 @@
       <Filter>system\effect</Filter>
     </ClInclude>
     <ClInclude Include="code\system\effect\PenaltyTimeSpriteUpdate.h">
+      <Filter>system\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\effect\PlayerExplosionEffectSystem.h">
       <Filter>system\effect</Filter>
     </ClInclude>
     <ClInclude Include="code\system\effect\PlayerSpeedFor3dUI.h">
@@ -838,6 +844,9 @@
       <Filter>system\effect</Filter>
     </ClCompile>
     <ClCompile Include="code\system\effect\PenaltyTimeSpriteUpdate.cpp">
+      <Filter>system\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\effect\PlayerExplosionEffectSystem.cpp">
       <Filter>system\effect</Filter>
     </ClCompile>
     <ClCompile Include="code\system\effect\PlayerSpeedFor3dUI.cpp">

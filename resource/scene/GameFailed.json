@@ -26,8 +26,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -39,8 +39,8 @@
                             1.0
                         ],
                         "size": [
-                            758.4000244140625,
-                            131.75999450683594
+                            505.6000061035156,
+                            87.84000396728516
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -52,8 +52,8 @@
                             128.0
                         ],
                         "translate": [
-                            960.0,
-                            180.36000061035156
+                            640.0,
+                            120.23999786376953
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -134,8 +134,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -147,8 +147,8 @@
                             1.0
                         ],
                         "size": [
-                            492.6719970703125,
-                            87.0
+                            328.447998046875,
+                            58.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -160,8 +160,8 @@
                             128.0
                         ],
                         "translate": [
-                            522.4320068359375,
-                            540.0
+                            348.2879943847656,
+                            360.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -264,8 +264,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -277,8 +277,8 @@
                             1.0
                         ],
                         "size": [
-                            594.0,
-                            67.5
+                            396.0,
+                            45.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -290,8 +290,8 @@
                             64.0
                         ],
                         "translate": [
-                            1440.0,
-                            540.0
+                            960.0,
+                            360.0
                         ],
                         "uvRotate": 0.0,
                         "uvScale": [
@@ -319,20 +319,20 @@
             "Name": "toSelect",
             "Systems": [
                 {
-                    "SystemCategory": 3,
-                    "SystemName": "SceneTransitionRequestSenderSystem"
-                },
-                {
                     "SystemCategory": 6,
                     "SystemName": "SpriteRenderSystem"
                 },
                 {
-                    "SystemCategory": 1,
-                    "SystemName": "ButtonInputSystem"
+                    "SystemCategory": 3,
+                    "SystemName": "SceneTransitionRequestSenderSystem"
                 },
                 {
                     "SystemCategory": 2,
                     "SystemName": "ChangeSceneByButton"
+                },
+                {
+                    "SystemCategory": 1,
+                    "SystemName": "ButtonInputSystem"
                 },
                 {
                     "SystemCategory": 2,
@@ -447,18 +447,18 @@
                     {
                         "Handle": "660c1016-559d-400a-a86f-3da36d4205f8",
                         "InterpolationType": 0,
-                        "duration": 0.800000011920929,
+                        "duration": 1.7000000476837158,
                         "edgeWidthCurve": [],
                         "isLoop": false,
-                        "isPlay": true,
+                        "isPlay": false,
                         "outLineColorCurve": [],
                         "thresholdCurve": [
                             {
-                                "time": 0.0,
+                                "time": 0.8885529637336731,
                                 "value": 0.6000000238418579
                             },
                             {
-                                "time": 0.800000011920929,
+                                "time": 1.7000000476837158,
                                 "value": 0.0
                             }
                         ]
@@ -490,6 +490,7 @@
                             1.0
                         ],
                         "enableLighting": false,
+                        "environmentCoefficient": 0.10000000149011612,
                         "shininess": 0.0,
                         "specularColor": [
                             1.0,
@@ -540,8 +541,8 @@
                             1.0
                         ],
                         "defaultWindowSize": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "isFlipX": false,
                         "isFlipY": false,
@@ -553,8 +554,8 @@
                             1.0
                         ],
                         "size": [
-                            1920.0,
-                            1080.0
+                            1280.0,
+                            720.0
                         ],
                         "textureLeftTop": [
                             0.0,
@@ -613,6 +614,7 @@
                             1.0
                         ],
                         "enableLighting": false,
+                        "environmentCoefficient": 0.10000000149011612,
                         "shininess": 0.0,
                         "specularColor": [
                             1.0,
@@ -747,6 +749,7 @@
                             1.0
                         ],
                         "enableLighting": false,
+                        "environmentCoefficient": 0.10000000149011612,
                         "shininess": 0.0,
                         "specularColor": [
                             1.0,
@@ -759,7 +762,7 @@
                             2.0
                         ],
                         "uvTranslate": [
-                            -0.24928368628025055,
+                            -0.08096732944250107,
                             0.0
                         ]
                     }
@@ -855,6 +858,7 @@
                             1.0
                         ],
                         "enableLighting": false,
+                        "environmentCoefficient": 0.10000000149011612,
                         "shininess": 0.0,
                         "specularColor": [
                             1.0,
@@ -944,6 +948,7 @@
                             1.0
                         ],
                         "enableLighting": false,
+                        "environmentCoefficient": 0.10000000149011612,
                         "shininess": 0.0,
                         "specularColor": [
                             1.0,
@@ -972,6 +977,11 @@
     ],
     "Systems": [
         {
+            "SpriteRenderSystem": {
+                "Priority": 10
+            }
+        },
+        {
             "BackGroundSpriteRenderSystem": {
                 "Priority": 0
             }
@@ -979,16 +989,6 @@
         {
             "SceneTransitionRequestSenderSystem": {
                 "Priority": 0
-            }
-        },
-        {
-            "SpriteRenderSystem": {
-                "Priority": 10
-            }
-        },
-        {
-            "RestartOnButtonPressSystem": {
-                "Priority": 1
             }
         },
         {
@@ -1002,8 +1002,8 @@
             }
         },
         {
-            "ButtonInputSystem": {
-                "Priority": 0
+            "RestartOnButtonPressSystem": {
+                "Priority": 1
             }
         },
         {
@@ -1012,18 +1012,23 @@
             }
         },
         {
-            "SceneTransition": {
-                "Priority": 1
+            "ButtonInputSystem": {
+                "Priority": 0
             }
         },
         {
-            "UpdateButtonColorByState": {
+            "SceneTransition": {
                 "Priority": 1
             }
         },
         {
             "DistortionEffect": {
                 "Priority": 0
+            }
+        },
+        {
+            "UpdateButtonColorByState": {
+                "Priority": 1
             }
         },
         {
