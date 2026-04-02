@@ -40,6 +40,8 @@ void CameraController::Edit(Scene* /*_scene*/, EntityHandle /*_OriGine::Entity*/
         editStateParams("Dash", dashParams);
         editStateParams("WallRun", wallRunParams);
         DragGuiCommand("MinTargetOffsetXOnWallRun##" + _parentLabel, minTargetOffsetXOnWallRun, 0.01f, 0.f, wallRunParams.targetOffset[X]);
+        DragGuiCommand("tiltDotOnFollow##" + _parentLabel, tiltDotOnFollow, 0.01f);
+        DragGuiCommand("maxRollAngleOnFollow##" + _parentLabel, maxRollAngleOnFollow, 0.01f);
         ImGui::TreePop();
     }
 
@@ -109,6 +111,8 @@ void to_json(nlohmann::json& _j, const CameraController& _c) {
     _j["dashParams"]                = dashJ;
     _j["wallRunParams"]             = wallRunJ;
     _j["minTargetOffsetXOnWallRun"] = _c.minTargetOffsetXOnWallRun;
+    _j["tiltDotOnFollow"]           = _c.tiltDotOnFollow;
+    _j["maxRollAngleOnFollow"]      = _c.maxRollAngleOnFollow;
     _j["rotateSpeedPadStick"]       = _c.rotateSpeedPadStick;
     _j["rotateSpeedMouse"]          = _c.rotateSpeedMouse;
     _j["rotateSensitivity"]         = _c.rotateSensitivity;
@@ -128,6 +132,8 @@ void from_json(const nlohmann::json& _j, CameraController& _c) {
     stateParamsFromJson(_j.at("dashParams"), _c.dashParams);
     stateParamsFromJson(_j.at("wallRunParams"), _c.wallRunParams);
     _j.at("minTargetOffsetXOnWallRun").get_to(_c.minTargetOffsetXOnWallRun);
+    _c.tiltDotOnFollow      = _j.value("tiltDotOnFollow", 0.f);
+    _c.maxRollAngleOnFollow = _j.value("maxRollAngleOnFollow", 0.f);
 
     _j.at("rotateSpeedPadStick").get_to(_c.rotateSpeedPadStick);
     _j.at("rotateSpeedMouse").get_to(_c.rotateSpeedMouse);

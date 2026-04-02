@@ -23,4 +23,6 @@ private:
     const int32_t kThresholdGearLevel_ = AppConfig::Player::kDashCameraOffsetThresholdGearLevel;
     const float kLerpTime_             = AppConfig::Player::kDashCameraOffsetLerpTime;
     float lerpTimer_                   = 0.0f;
+
+
 };

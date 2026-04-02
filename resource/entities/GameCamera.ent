@@ -54,12 +54,14 @@
                         2.930000066757202
                     ]
                 },
+                "maxRollAngleOnFollow": 0.5600000023841858,
                 "maxRotateX": 0.5270000100135803,
                 "minRotateX": -0.296999990940094,
                 "minTargetOffsetXOnWallRun": -2.2899999618530273,
                 "rotateSensitivity": 86.0,
                 "rotateSpeedMouse": 0.0,
                 "rotateSpeedPadStick": 0.0,
+                "tiltDotOnFollow": 0.6000000238418579,
                 "wallRunParams": {
                     "interLookAtTargetInterpolation": [
                         86.0,
@@ -179,8 +181,8 @@
                 ],
                 "translate": [
                     0.0,
-                    0.0,
-                    0.0
+                    4.0,
+                    -5.0
                 ]
             }
         ],

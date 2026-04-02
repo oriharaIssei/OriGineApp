@@ -97,7 +97,9 @@ public:
 
     float minTargetOffsetXOnWallRun = 0.0f;
 
-
+    // State : Follow で使用するパラメータ
+    float tiltDotOnFollow      = 0.f;
+    float maxRollAngleOnFollow = 0.f;
 
     OriGine::Vec3f interTarget                    = {0.0f, 0.0f, 0.0f};
     OriGine::Vec3f interLookAtTarget              = {0.0f, 0.0f, 0.0f}; // XY注視用補間値（カメラ位置は動かさず回転のみ）
