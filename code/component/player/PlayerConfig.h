@@ -14,7 +14,7 @@ constexpr float kWallRunMeshOffsetRate     = 0.26f;
 // Dash
 constexpr int32_t kDashCameraOffsetThresholdGearLevel = 2;
 constexpr float kDashCameraOffsetLerpTime             = 2.3f;
-constexpr float kDashFallDownThresholdTime            = 0.2f;
+constexpr float kDashFallDownThresholdTime            = 0.3f;
 
 // Status Defaults
 constexpr float kDefaultGravityApplyDelayOnWallRun = 0.2f;

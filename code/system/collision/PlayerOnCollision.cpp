@@ -6,6 +6,7 @@
 // event
 #include "event/GamefailedEvent.h"
 #include "event/PlayerExplosionEffectEvent.h"
+#include "event/RestartEvent.h"
 
 /// ECS
 // component
@@ -135,7 +136,15 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
 
                     // シールドを持っていない場合はゲームオーバー
                     // 上記Evedntの分Delay
-                    MessageBus::GetInstance()->EmitDelayed<GamefailedEvent>(GamefailedEvent(), 1.5f);
+                    EntityHandle failedSceneEntity = GetUniqueEntity("GameFailedScene");
+
+                    // ゲームオーバーシーンが存在する場合はゲームオーバーシーンへ、存在しない場合はリスタートへ遷移する
+                    if (failedSceneEntity.IsValid()) {
+                        MessageBus::GetInstance()->EmitDelayed<GamefailedEvent>(GamefailedEvent(), 1.5f);
+                    } else {
+                        MessageBus::GetInstance()->EmitDelayed<RestartEvent>(RestartEvent(), 1.5f);
+                    }
+
                     // プレイヤーを削除
                     GetScene()->AddDeleteEntity(_handle);
                 }
@@ -177,20 +186,6 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
 
         OriGine::Vec3f collisionNormal = info.collFaceNormal.normalize();
 
-        // 法線方向の速度成分が閾値以上ならクラッシュ → ゲームオーバー
-        float normalSpeed = std::fabs(rigidbody->GetVelocity().dot(collisionNormal));
-        if (normalSpeed >= kCrashNormalSpeedThreshold) {
-            auto* transform = GetComponent<Transform>(_handle);
-            if (transform) {
-                PlayerExplosionEffectEvent event{};
-                event.position = transform->GetWorldTranslate();
-                MessageBus::GetInstance()->Emit<PlayerExplosionEffectEvent>(event);
-            }
-            MessageBus::GetInstance()->EmitDelayed<GamefailedEvent>(GamefailedEvent(), 1.5f);
-            GetScene()->AddDeleteEntity(_handle);
-            return;
-        }
-
         if (PlayerMoveUtils::IsHitGround(collisionNormal)) {
             // 上方向に衝突した場合は、地面にいると判断する
             if (!isPreOnGround) {
@@ -211,13 +206,43 @@ void PlayerOnCollision::UpdateEntity(OriGine::EntityHandle _handle) {
         } else {
             // 壁と衝突した場合
             // 壁走り可能コンポーネントの確認
+
+            bool allowWallRun = true;
+
             WallRunnableComponent* wallRunnable = GetComponent<WallRunnableComponent>(entityId);
             if (!wallRunnable) {
-                continue; // WallRunnableComponentがなければ壁走り不可
+                allowWallRun = false; // WallRunnableComponentがなければ壁走り不可
+            } else {
+                // 衝突法線が許可された方向かチェック
+                if (!wallRunnable->IsNormalAllowed(collisionNormal)) {
+                    allowWallRun = false;
+                }
             }
 
-            // 衝突法線が許可された方向かチェック
-            if (!wallRunnable->IsNormalAllowed(collisionNormal)) {
+            // 衝突法線とプレイヤーの速度ベクトルのなす角が閾値以上かチェック
+            if (!allowWallRun) {
+                // 法線方向の速度成分が閾値以上ならクラッシュ → ゲームオーバー
+                float normalSpeed = std::fabs(rigidbody->GetVelocity().dot(collisionNormal));
+                if (normalSpeed >= kCrashNormalSpeedThreshold) {
+                    auto* transform = GetComponent<Transform>(_handle);
+                    if (transform) {
+                        PlayerExplosionEffectEvent event{};
+                        event.position = transform->GetWorldTranslate();
+                        MessageBus::GetInstance()->Emit<PlayerExplosionEffectEvent>(event);
+                    }
+
+                    EntityHandle failedSceneEntity = GetUniqueEntity("GameFailedScene");
+
+                    // ゲームオーバーシーンが存在する場合はゲームオーバーシーンへ、存在しない場合はリスタートへ遷移する
+                    if (failedSceneEntity.IsValid()) {
+                        MessageBus::GetInstance()->EmitDelayed<GamefailedEvent>(GamefailedEvent(), 1.5f);
+                    } else {
+                        MessageBus::GetInstance()->EmitDelayed<RestartEvent>(RestartEvent(), 1.5f);
+                    }
+
+                    GetScene()->AddDeleteEntity(_handle);
+                    return;
+                }
                 continue;
             }
 

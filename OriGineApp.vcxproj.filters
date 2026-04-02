@@ -120,6 +120,12 @@
     <ClInclude Include="code\component\camera\state\ICameraState.h">
       <Filter>component\camera\state</Filter>
     </ClInclude>
+    <ClInclude Include="code\component\gimmick\BulletSpawner.h">
+      <Filter>component\gimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\gimmick\BulletSpawnerTrigger.h">
+      <Filter>component\gimmick</Filter>
+    </ClInclude>
     <ClInclude Include="code\component\gimmick\Obstacle.h">
       <Filter>component\gimmick</Filter>
     </ClInclude>
@@ -130,6 +136,9 @@
       <Filter>component\gimmick</Filter>
     </ClInclude>
     <ClInclude Include="code\component\gimmick\PathController.h">
+      <Filter>component\gimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="code\component\gimmick\PathControllerTrigger.h">
       <Filter>component\gimmick</Filter>
     </ClInclude>
     <ClInclude Include="code\component\gimmick\RailPoints.h">
@@ -423,10 +432,16 @@
     <ClInclude Include="code\system\collision\AddForceTriggerSystem.h">
       <Filter>system\collision</Filter>
     </ClInclude>
+    <ClInclude Include="code\system\collision\BulletSpawnerTriggerSystem.h">
+      <Filter>system\collision</Filter>
+    </ClInclude>
     <ClInclude Include="code\system\collision\ObstacleSpawnEventTriggerSystem.h">
       <Filter>system\collision</Filter>
     </ClInclude>
     <ClInclude Include="code\system\collision\OnCollisionModifierTargetSystem.h">
+      <Filter>system\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\collision\PathControllerTriggerSystem.h">
       <Filter>system\collision</Filter>
     </ClInclude>
     <ClInclude Include="code\system\collision\PlayerAheadCollisionReactionSystem.h">
@@ -440,6 +455,9 @@
     </ClInclude>
     <ClInclude Include="code\system\collision\VelocityOverrideTriggerSystem.h">
       <Filter>system\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="code\system\effect\BulletSpawnerWorkSystem.h">
+      <Filter>system\effect</Filter>
     </ClInclude>
     <ClInclude Include="code\system\effect\CameraShake.h">
       <Filter>system\effect</Filter>
@@ -533,6 +551,12 @@
     <ClCompile Include="code\component\camera\state\CameraWallRunState.cpp">
       <Filter>component\camera\state</Filter>
     </ClCompile>
+    <ClCompile Include="code\component\gimmick\BulletSpawner.cpp">
+      <Filter>component\gimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\gimmick\BulletSpawnerTrigger.cpp">
+      <Filter>component\gimmick</Filter>
+    </ClCompile>
     <ClCompile Include="code\component\gimmick\Obstacle.cpp">
       <Filter>component\gimmick</Filter>
     </ClCompile>
@@ -543,6 +567,9 @@
       <Filter>component\gimmick</Filter>
     </ClCompile>
     <ClCompile Include="code\component\gimmick\PathController.cpp">
+      <Filter>component\gimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="code\component\gimmick\PathControllerTrigger.cpp">
       <Filter>component\gimmick</Filter>
     </ClCompile>
     <ClCompile Include="code\component\gimmick\RailPoints.cpp">
@@ -810,10 +837,16 @@
     <ClCompile Include="code\system\collision\AddForceTriggerSystem.cpp">
       <Filter>system\collision</Filter>
     </ClCompile>
+    <ClCompile Include="code\system\collision\BulletSpawnerTriggerSystem.cpp">
+      <Filter>system\collision</Filter>
+    </ClCompile>
     <ClCompile Include="code\system\collision\ObstacleSpawnEventTriggerSystem.cpp">
       <Filter>system\collision</Filter>
     </ClCompile>
     <ClCompile Include="code\system\collision\OnCollisionModifierTargetSystem.cpp">
+      <Filter>system\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\collision\PathControllerTriggerSystem.cpp">
       <Filter>system\collision</Filter>
     </ClCompile>
     <ClCompile Include="code\system\collision\PlayerAheadCollisionReactionSystem.cpp">
@@ -827,6 +860,9 @@
     </ClCompile>
     <ClCompile Include="code\system\collision\VelocityOverrideTriggerSystem.cpp">
       <Filter>system\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="code\system\effect\BulletSpawnerWorkSystem.cpp">
+      <Filter>system\effect</Filter>
     </ClCompile>
     <ClCompile Include="code\system\effect\CameraShake.cpp">
       <Filter>system\effect</Filter>

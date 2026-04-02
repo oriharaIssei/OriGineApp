@@ -14,6 +14,9 @@
 #include "component/camera/CameraMotionBob.h"
 #include "component/Camera/CameraShakeSourceComponent.h"
 #include "component/FollowTransformComponent.h"
+#include "component/gimmick/BulletSpawner.h"
+#include "component/gimmick/BulletSpawnerTrigger.h"
+#include "component/gimmick/PathControllerTrigger.h"
 #include "component/gimmick/Obstacle.h"
 #include "component/gimmick/ObstacleShieldComponent.h"
 #include "component/gimmick/ObstacleSpawnGroupComponent.h"
@@ -39,14 +42,17 @@
 #include "component/ui/SpeedFor3dUIComponent.h"
 #include "component/VelocityOverrideComponent.h"
 
-// application system
+// application
 #include "system/collision/AddForceTriggerSystem.h"
+#include "system/collision/BulletSpawnerTriggerSystem.h"
+#include "system/collision/PathControllerTriggerSystem.h"
 #include "system/collision/ObstacleSpawnEventTriggerSystem.h"
 #include "system/collision/OnCollisionModifierTargetSystem.h"
 #include "system/collision/PlayerAheadCollisionReactionSystem.h"
 #include "system/collision/PlayerOnCollision.h"
 #include "system/collision/TutorialColliderOnCollision.h"
 #include "system/collision/VelocityOverrideTriggerSystem.h"
+#include "system/effect/BulletSpawnerWorkSystem.h"
 #include "system/effect/CameraShake.h"
 #include "system/effect/CreateMeshFromSpline.h"
 #include "system/effect/CreateMeshFromTireSpline.h"
@@ -219,8 +225,6 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<ButtonGroup>();
     componentRegistry->RegisterComponent<SceneChanger>();
 
-    componentRegistry->RegisterComponent<ObstacleSpawnGroupComponent>();
-
     componentRegistry->RegisterComponent<PlayerStateOverrideCondition>();
 
     componentRegistry->RegisterComponent<BillboardComponent>();
@@ -236,6 +240,10 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<AddForceComponent>();
     componentRegistry->RegisterComponent<ObstacleShieldComponent>();
     componentRegistry->RegisterComponent<WallRunnableComponent>();
+    componentRegistry->RegisterComponent<BulletSpawner>();
+    componentRegistry->RegisterComponent<ObstacleSpawnGroupComponent>();
+    componentRegistry->RegisterComponent<BulletSpawnerTrigger>();
+    componentRegistry->RegisterComponent<PathControllerTrigger>();
 }
 
 void RegisterUsingSystems() {
@@ -348,6 +356,8 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<CollisionTriggeredSceneTransition>();
 
     systemRegistry->RegisterSystem<ObstacleSpawnEventTriggerSystem>();
+    systemRegistry->RegisterSystem<BulletSpawnerTriggerSystem>();
+    systemRegistry->RegisterSystem<PathControllerTriggerSystem>();
 
     systemRegistry->RegisterSystem<PlayerOnCollision>();
     systemRegistry->RegisterSystem<TutorialColliderOnCollision>();
@@ -363,6 +373,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<GpuParticleEmitterWorkSystem>();
 
     systemRegistry->RegisterSystem<EntitySpawnerWorkSystem>();
+    systemRegistry->RegisterSystem<BulletSpawnerWorkSystem>();
 
     systemRegistry->RegisterSystem<PrimitiveNodeAnimationWorkSystem>();
     systemRegistry->RegisterSystem<SkinningAnimationSystem>();
@@ -371,6 +382,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<CameraActionSystem>();
     systemRegistry->RegisterSystem<TransformAnimationWorkSystem>();
     systemRegistry->RegisterSystem<TransformRateAnimationWorkSystem>();
+    systemRegistry->RegisterSystem<LightTransformSyncSystem>();
     systemRegistry->RegisterSystem<DissolveAnimationSystem>();
 
     systemRegistry->RegisterSystem<CameraShake>();

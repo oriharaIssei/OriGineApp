@@ -3,9 +3,9 @@
     "Stages": [
         {
             "ClearTimeRanking": {
-                "Time1": 38.75541687011719,
-                "Time2": null,
-                "Time3": null
+                "Time1": 51.28997802734375,
+                "Time2": 51.28997802734375,
+                "Time3": 51.28997802734375
             },
             "IsCleared": true,
             "StageNumber": 1

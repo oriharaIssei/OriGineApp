@@ -1184,7 +1184,7 @@
                             1.0,
                             1.0,
                             1.0,
-                            1.0
+                            0.9723035097122192
                         ],
                         "defaultWindowSize": [
                             1920.0,
@@ -1196,8 +1196,8 @@
                         "renderingPriority": 1,
                         "rotate": 0.0,
                         "scale": [
-                            1.0,
-                            1.0
+                            0.9711727499961853,
+                            0.9711727499961853
                         ],
                         "size": [
                             384.0,
@@ -1436,7 +1436,8 @@
                             33.5,
                             1530.427001953125
                         ],
-                        "radius": 100.0
+                        "radius": 100.0,
+                        "targetTransformIndex": -1
                     }
                 ],
                 "SceneChanger": [
@@ -2038,7 +2039,7 @@
                             1.0
                         ],
                         "uvTranslate": [
-                            0.4736839532852173,
+                            0.17038105428218842,
                             0.0
                         ],
                         "windowRatioPos": [
@@ -2218,7 +2219,7 @@
             "Components": {
                 "AABBCollider": [
                     {
-                        "Handle": "4ff4ddc0-8231-4af3-b500-9cb433e0a90b",
+                        "Handle": "88c6bf69-93e1-4992-91c6-818aa1027dfd",
                         "center": [
                             0.0,
                             0.0,
@@ -2253,7 +2254,7 @@
                 ],
                 "BoxRenderer": [
                     {
-                        "Handle": "a99fa8c1-4d9a-4cf1-a875-f7c015435575",
+                        "Handle": "4896778f-c62b-4362-b3e1-b84cfe693017",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -2286,13 +2287,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
-                        "Handle": "363d3c61-38ef-4ae7-a153-bea1d8163e6f",
+                        "Handle": "2efe1ba0-82f4-4bd9-a433-44f37c092c92",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
-                        "Handle": "9b58b64c-7ced-42ac-aea9-4ed5d15d5017",
+                        "Handle": "5bfc3f92-9b1e-4f06-847e-05159e4570da",
                         "color": [
                             1.0,
                             1.0,
@@ -2316,11 +2317,94 @@
                             0.0,
                             0.0
                         ]
+                    },
+                    {
+                        "Handle": "a4e310af-0734-4dd0-b9af-6e854255a8d3",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "environmentCoefficient": 0.10000000149011612,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": -1.5707499980926514,
+                        "uvScale": [
+                            5.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.7380954623222351
+                        ]
+                    }
+                ],
+                "MaterialAnimation": [
+                    {
+                        "Handle": "e4ae7609-9041-451d-8f8e-ea1a6fa85492",
+                        "InterpolationType": 0,
+                        "colorCurve": [],
+                        "duration": 1.399999976158142,
+                        "isLoop": true,
+                        "isPlay": true,
+                        "materialIndex": 1,
+                        "uvRotateCurve": [],
+                        "uvScaleCurve": [],
+                        "uvTranslateCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 1.399999976158142,
+                                "value": [
+                                    0.0,
+                                    1.0
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "PlaneRenderer": [
+                    {
+                        "Handle": "84b143d8-f234-4c3d-b418-27d01f7dd238",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 1,
+                        "textureFilePath": "./application/resource/Texture/arrow.png",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                -0.7067780494689941,
+                                0.0,
+                                0.7074354290962219
+                            ],
+                            "scale": [
+                                1.0,
+                                0.30000001192092896,
+                                1.0
+                            ],
+                            "translate": [
+                                1.0199999809265137,
+                                0.0,
+                                0.0
+                            ]
+                        }
                     }
                 ],
                 "Transform": [
                     {
-                        "Handle": "29d71c78-0913-49c5-9c3e-9327b1876f18",
+                        "Handle": "fe33e449-7147-4b5b-9792-c791f13b798d",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -2328,26 +2412,43 @@
                             1.0
                         ],
                         "scale": [
-                            8.0,
-                            32.0,
+                            3.0,
+                            24.0,
                             64.0
                         ],
                         "translate": [
-                            -41.16699981689453,
-                            32.0,
-                            618.6270141601563
+                            -40.53900146484375,
+                            21.70960235595703,
+                            601.283203125
                         ]
+                    }
+                ],
+                "WallRunnableComponent": [
+                    {
+                        "Handle": "7235dc27-fe11-46e7-bc81-d19d4f317804",
+                        "allowedNormals": [
+                            [
+                                1.0,
+                                0.0,
+                                0.0
+                            ]
+                        ],
+                        "angleTolerance": 176.0
                     }
                 ]
             },
             "Handle": {
-                "uuid": "8f925ea6-3607-41cd-a6d4-e2eff03e722a"
+                "uuid": "4b4e87d9-bb2f-4e5c-bb6f-8451b460bd0a"
             },
-            "Name": "Floor",
+            "Name": "Wall",
             "Systems": [
                 {
                     "SystemCategory": 4,
                     "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "MaterialAnimationWorkSystem"
                 },
                 {
                     "SystemCategory": 6,
@@ -2502,7 +2603,7 @@
             "Components": {
                 "AABBCollider": [
                     {
-                        "Handle": "9611f45c-f82b-40fe-a55e-94a9e05a7eab",
+                        "Handle": "90177837-8d54-429b-b1a6-9a1f05873a1a",
                         "center": [
                             0.0,
                             0.0,
@@ -2537,7 +2638,7 @@
                 ],
                 "BoxRenderer": [
                     {
-                        "Handle": "311876d8-2fb3-4ace-8700-d545289d679a",
+                        "Handle": "1694de47-42b7-491f-90eb-43774b43d877",
                         "blendMode": 1,
                         "isCulling": true,
                         "isRenderer": true,
@@ -2570,13 +2671,13 @@
                 ],
                 "CollisionPushBackInfo": [
                     {
-                        "Handle": "7d4befa3-90c2-4d78-8bef-ab2852b226ca",
+                        "Handle": "ca19c91a-6cd1-47c8-a854-ad0450519617",
                         "pushBackType": 1
                     }
                 ],
                 "Material": [
                     {
-                        "Handle": "33838f9a-0a00-4c4b-9099-0f8d2d938842",
+                        "Handle": "e8c49a25-73a6-423b-81fa-4e93442ada09",
                         "color": [
                             1.0,
                             1.0,
@@ -2600,11 +2701,94 @@
                             0.0,
                             0.0
                         ]
+                    },
+                    {
+                        "Handle": "b6e7ef2c-722a-4df3-b239-d6b26801ebc7",
+                        "color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "enableLighting": false,
+                        "environmentCoefficient": 0.10000000149011612,
+                        "shininess": 0.0,
+                        "specularColor": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "uvRotate": -1.5707499980926514,
+                        "uvScale": [
+                            5.0,
+                            1.0
+                        ],
+                        "uvTranslate": [
+                            0.0,
+                            0.7380954623222351
+                        ]
+                    }
+                ],
+                "MaterialAnimation": [
+                    {
+                        "Handle": "0c5819ce-6b7c-441a-9c9c-b64c195fc48d",
+                        "InterpolationType": 0,
+                        "colorCurve": [],
+                        "duration": 1.399999976158142,
+                        "isLoop": true,
+                        "isPlay": true,
+                        "materialIndex": 1,
+                        "uvRotateCurve": [],
+                        "uvScaleCurve": [],
+                        "uvTranslateCurve": [
+                            {
+                                "time": 0.0,
+                                "value": [
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            {
+                                "time": 1.399999976158142,
+                                "value": [
+                                    0.0,
+                                    1.0
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "PlaneRenderer": [
+                    {
+                        "Handle": "9e41c772-34dc-440e-82ed-0e711e1cb6f5",
+                        "blendMode": 1,
+                        "isCulling": true,
+                        "isRenderer": true,
+                        "materialIndex": 1,
+                        "textureFilePath": "./application/resource/Texture/arrow.png",
+                        "transform": {
+                            "rotate": [
+                                0.0,
+                                -0.7067780494689941,
+                                0.0,
+                                0.7074354290962219
+                            ],
+                            "scale": [
+                                1.0,
+                                -0.30000001192092896,
+                                1.0
+                            ],
+                            "translate": [
+                                -1.0199999809265137,
+                                0.0,
+                                0.0
+                            ]
+                        }
                     }
                 ],
                 "Transform": [
                     {
-                        "Handle": "0b09cc8d-b724-4e65-b08c-8c05460d5190",
+                        "Handle": "557557ed-a33b-4850-bf5e-f90d436170c9",
                         "rotate": [
                             -0.0,
                             0.0,
@@ -2612,26 +2796,43 @@
                             1.0
                         ],
                         "scale": [
-                            8.0,
-                            32.0,
+                            3.0,
+                            24.0,
                             64.0
                         ],
                         "translate": [
-                            40.53935241699219,
-                            32.021636962890625,
-                            980.5467529296875
+                            40.53900146484375,
+                            21.70960235595703,
+                            980.0
                         ]
+                    }
+                ],
+                "WallRunnableComponent": [
+                    {
+                        "Handle": "1ae918c2-da54-478b-babe-a3a2d8a11410",
+                        "allowedNormals": [
+                            [
+                                -1.0,
+                                0.0,
+                                0.0
+                            ]
+                        ],
+                        "angleTolerance": 176.0
                     }
                 ]
             },
             "Handle": {
-                "uuid": "844a7bdc-c82c-491e-9820-a58cdc4635a9"
+                "uuid": "c11802c9-7fbf-43bd-a368-aa72c1ea5321"
             },
-            "Name": "Floor",
+            "Name": "Wall",
             "Systems": [
                 {
                     "SystemCategory": 4,
                     "SystemName": "CollisionCheckSystem"
+                },
+                {
+                    "SystemCategory": 5,
+                    "SystemName": "MaterialAnimationWorkSystem"
                 },
                 {
                     "SystemCategory": 6,
@@ -3512,13 +3713,13 @@
             }
         },
         {
-            "ColliderRenderingSystem": {
-                "Priority": 100
+            "ApplyMouseConditionSystem": {
+                "Priority": 0
             }
         },
         {
-            "ApplyMouseConditionSystem": {
-                "Priority": 0
+            "ColliderRenderingSystem": {
+                "Priority": 100
             }
         },
         {
@@ -3532,6 +3733,11 @@
             }
         },
         {
+            "ButtonInputSystem": {
+                "Priority": 1
+            }
+        },
+        {
             "ChangeSceneByButton": {
                 "Priority": 1
             }
@@ -3539,26 +3745,6 @@
         {
             "CameraMotionBobSystem": {
                 "Priority": 1
-            }
-        },
-        {
-            "ButtonInputSystem": {
-                "Priority": 1
-            }
-        },
-        {
-            "SceneTransitionRequestSenderSystem": {
-                "Priority": -1
-            }
-        },
-        {
-            "CollisionPushBackSystem": {
-                "Priority": 5
-            }
-        },
-        {
-            "PlayerInputSystem": {
-                "Priority": 3
             }
         },
         {
@@ -3572,8 +3758,18 @@
             }
         },
         {
-            "CameraInputSystem": {
-                "Priority": 2
+            "PlayerInputSystem": {
+                "Priority": 3
+            }
+        },
+        {
+            "SceneTransitionRequestSenderSystem": {
+                "Priority": -1
+            }
+        },
+        {
+            "CollisionPushBackSystem": {
+                "Priority": 5
             }
         },
         {
@@ -3582,13 +3778,18 @@
             }
         },
         {
-            "CameraShake": {
-                "Priority": 0
+            "CameraInputSystem": {
+                "Priority": 2
             }
         },
         {
             "CreatePlaneFromSpeed": {
                 "Priority": 10
+            }
+        },
+        {
+            "CameraShake": {
+                "Priority": 0
             }
         },
         {
@@ -3612,23 +3813,18 @@
             }
         },
         {
-            "DissolveEffect": {
-                "Priority": 100
-            }
-        },
-        {
             "PlayerSpeedFor3dUI": {
                 "Priority": 1
             }
         },
         {
-            "DistortionEffect": {
-                "Priority": 1
+            "DissolveEffect": {
+                "Priority": 100
             }
         },
         {
-            "GhostInitializeSystem": {
-                "Priority": 6
+            "DistortionEffect": {
+                "Priority": 1
             }
         },
         {
@@ -3662,8 +3858,8 @@
             }
         },
         {
-            "MaterialAnimationWorkSystem": {
-                "Priority": 0
+            "StartTimerInitialize": {
+                "Priority": 3
             }
         },
         {
@@ -3672,8 +3868,8 @@
             }
         },
         {
-            "StartTimerInitialize": {
-                "Priority": 3
+            "MaterialAnimationWorkSystem": {
+                "Priority": 0
             }
         },
         {
@@ -3687,32 +3883,17 @@
             }
         },
         {
-            "OverlayRenderSystem": {
-                "Priority": 100
-            }
-        },
-        {
             "ResolveEntityReferences": {
                 "Priority": -2
             }
         },
         {
-            "PenaltyTimeSpriteUpdate": {
-                "Priority": 0
-            }
-        },
-        {
-            "PlayRecordSystem": {
-                "Priority": 1
-            }
-        },
-        {
-            "PlayerPathSplineGenerator": {
+            "OverlayRenderSystem": {
                 "Priority": 100
             }
         },
         {
-            "PlayRecorderInitialize": {
+            "PenaltyTimeSpriteUpdate": {
                 "Priority": 0
             }
         },
@@ -3722,13 +3903,18 @@
             }
         },
         {
-            "PlayerMoveSystem": {
-                "Priority": 3
+            "PlayerPathSplineGenerator": {
+                "Priority": 100
             }
         },
         {
             "TexturedMeshRenderSystem": {
                 "Priority": 0
+            }
+        },
+        {
+            "PlayerMoveSystem": {
+                "Priority": 3
             }
         },
         {
@@ -3757,6 +3943,11 @@
             }
         },
         {
+            "SpriteAnimationSystem": {
+                "Priority": 1
+            }
+        },
+        {
             "VelocityRenderingSystem": {
                 "Priority": 0
             }
@@ -3764,11 +3955,6 @@
         {
             "SettingGameCameraTarget": {
                 "Priority": 5
-            }
-        },
-        {
-            "SpriteAnimationSystem": {
-                "Priority": 1
             }
         },
         {
@@ -3797,6 +3983,11 @@
             }
         },
         {
+            "SubSceneRender": {
+                "Priority": 10
+            }
+        },
+        {
             "SubSceneActivateByButton": {
                 "Priority": 0
             }
@@ -3804,16 +3995,6 @@
         {
             "TakeToGoalPosition": {
                 "Priority": 1
-            }
-        },
-        {
-            "TireTrailGenerateSystem": {
-                "Priority": 100
-            }
-        },
-        {
-            "SubSceneRender": {
-                "Priority": 10
             }
         },
         {
@@ -3862,18 +4043,13 @@
             }
         },
         {
-            "PlayerAheadCollisionReactionSystem": {
-                "Priority": 6
-            }
-        },
-        {
             "SceneTransitionRequestReceiverSystem": {
                 "Priority": 0
             }
         },
         {
-            "CreateMeshFromTireSpline": {
-                "Priority": 0
+            "PlayerAheadCollisionReactionSystem": {
+                "Priority": 6
             }
         },
         {
@@ -3938,6 +4114,11 @@
         },
         {
             "PlayerStateOverrideSystem": {
+                "Priority": 0
+            }
+        },
+        {
+            "PlayerExplosionEffectSystem": {
                 "Priority": 0
             }
         }
