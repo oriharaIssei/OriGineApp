@@ -2,6 +2,9 @@
 
 #include "component/IComponent.h"
 
+/// stl
+#include <array>
+
 /// ECS
 // component
 #include "component/ComponentHandle.h"
@@ -41,7 +44,7 @@ public:
     /// <param name="_effectDuration"></param>
     /// <param name="_easeType"></param>
     /// <param name="_beforeSpeed"></param>
-    void StartAdditiveEffect(float _target, float _lerpDuration, float _effectDuration, OriGine::EaseType _easeType, float _beforeSpeed, float _restoreSpeed);
+    void StartAdditiveEffect(float _target, float _lerpDuration, float _effectDuration, OriGine::EaseType _easeType, float _beforeSpeed, float _restoreSpeed, float _fadeOutDuration = 0.f, OriGine::EaseType _fadeOutEaseType = OriGine::EaseType::Linear);
     /// <summary>
     /// 乗算効果の開始
     /// </summary>
@@ -50,13 +53,13 @@ public:
     /// <param name="_effectDuration"></param>
     /// <param name="_easeType"></param>
     /// <param name="_beforeSpeed"></param>
-    void StartMultiplierEffect(float _target, float _lerpDuration, float _effectDuration, OriGine::EaseType _easeType, float _beforeSpeed, float _restoreSpeed);
+    void StartMultiplierEffect(float _target, float _lerpDuration, float _effectDuration, OriGine::EaseType _easeType, float _beforeSpeed, float _restoreSpeed, float _fadeOutDuration = 0.f, OriGine::EaseType _fadeOutEaseType = OriGine::EaseType::Linear);
 
     bool IsAdditiveEffectActive() const {
-        return additiveTimer < additiveDuration;
+        return additiveTimer < additiveDuration || additiveFadeOutTimer < additiveFadeOutDuration;
     }
     bool IsMultiplierEffectActive() const {
-        return multiplierTimer < multiplierDuration;
+        return multiplierTimer < multiplierDuration || multiplierFadeOutTimer < multiplierFadeOutDuration;
     }
 
 public:
@@ -64,21 +67,47 @@ public:
 
     OriGine::ComponentHandle targetRigidbodyHandle{};
 
+    /// <summary>
+    /// トリガーモード
+    /// </summary>
+    enum class TriggerMode : int {
+        OnEnter        = 0, ///< 衝突開始時に1回生成、タイマーで管理
+        WhileColliding = 1, ///< 衝突中ずっと適用、Exit時にFadeOut開始
+    };
+    TriggerMode triggerMode = TriggerMode::OnEnter;
+
+    /// <summary>
+    /// 軸の空間
+    /// </summary>
+    enum class AxesSpace : int {
+        World    = 0, ///< ワールド軸 (X, Y, Z)
+        Velocity = 1, ///< 速度相対軸 (Front, Side, Up)
+    };
+    AxesSpace axesSpace = AxesSpace::World;
+
     // Additive
-    float additiveTarget                   = 0.f;
-    float additiveLerpTimer                = 0.0f;
-    float additiveLerpDuration             = 0.0f;
-    float additiveDuration                 = 0.0f;
-    float additiveTimer                    = 0.0f;
-    OriGine::EaseType additiveLerpEaseType = OriGine::EaseType::Linear;
+    float additiveTarget                      = 0.f;
+    float additiveFadeInTimer                 = 0.0f;
+    float additiveFadeInDuration                = 0.0f;
+    float additiveDuration                    = 0.0f;
+    float additiveTimer                       = 0.0f;
+    float additiveFadeOutDuration             = 0.0f;
+    float additiveFadeOutTimer                = 0.0f;
+    OriGine::EaseType additiveLerpEaseType    = OriGine::EaseType::Linear;
+    OriGine::EaseType additiveFadeOutEaseType = OriGine::EaseType::Linear;
+    std::array<bool, 3> additiveAxes          = {true, true, true}; // 適用する軸 (X, Y, Z)
 
     // Multiplier
-    float multiplierTarget                   = 1.f;
-    float multiplierLerpTimer                = 0.0f;
-    float multiplierLerpDuration             = 0.0f;
-    float multiplierDuration                 = 0.0f;
-    float multiplierTimer                    = 0.0f;
-    OriGine::EaseType multiplierLerpEaseType = OriGine::EaseType::Linear;
+    float multiplierTarget                      = 1.f;
+    float multiplierFadeInTimer                 = 0.0f;
+    float multiplierFadeInDuration                = 0.0f;
+    float multiplierDuration                    = 0.0f;
+    float multiplierTimer                       = 0.0f;
+    float multiplierFadeOutDuration             = 0.0f;
+    float multiplierFadeOutTimer                = 0.0f;
+    OriGine::EaseType multiplierLerpEaseType    = OriGine::EaseType::Linear;
+    OriGine::EaseType multiplierFadeOutEaseType = OriGine::EaseType::Linear;
+    std::array<bool, 3> multiplierAxes          = {true, true, true}; // 適用する軸 (X, Y, Z)
 
     float beforeSpeed  = 0.0f;
     float restoreSpeed = 0.0f;

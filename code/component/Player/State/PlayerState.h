@@ -24,10 +24,9 @@ enum class PlayerMoveState {
     JUMP        = 1 << 3, // ジャンプ
     WALL_RUN    = 1 << 4, // 壁走り
     WALL_JUMP   = 1 << 5, // 壁ジャンプ
-    WHEELIE_RUN = 1 << 6, // ウィリー走行
-    RUN_ON_RAIL = 1 << 7, // レール上移動
+    RUN_ON_RAIL = 1 << 6, // レール上移動
 
-    Count = 7
+    Count = 6
 };
 static std::map<PlayerMoveState, const char*> moveStateName = {
     {PlayerMoveState::IDLE, "IDLE"},
@@ -36,22 +35,22 @@ static std::map<PlayerMoveState, const char*> moveStateName = {
     {PlayerMoveState::JUMP, "JUMP"},
     {PlayerMoveState::WALL_RUN, "WALL_RUN"},
     {PlayerMoveState::WALL_JUMP, "WALL_JUMP"},
-    {PlayerMoveState::WHEELIE_RUN, "WHEELIE_RUN"},
     {PlayerMoveState::RUN_ON_RAIL, "RUN_ON_RAIL"},
 };
 
 enum class PlayerStateFlag {
-    NONE       = 0,
-    ON_GROUND  = 1 << 0, // 地面に接地している
-    ON_WALL    = 1 << 1, // 壁に接触している
-    WHEELIE    = 1 << 2, // ウィリーしている
-    GEAR_UP    = 1 << 3, // ギアアップしている
-    IS_GOAL    = 1 << 4, // ゴールした
-    IS_PENALTY = 1 << 5, // ペナルティを受けている
-    IS_RESTART = 1 << 6, // リスタート中
-    ON_RAIL    = 1 << 7, // レール上にいる
+    NONE        = 0,
+    ON_GROUND   = 1 << 0, // 地面に接地している
+    ON_WALL     = 1 << 1, // 壁に接触している
+    GEAR_UP     = 1 << 3, // ギアアップしている
+    IS_GOAL     = 1 << 4, // ゴールした
+    IS_PENALTY  = 1 << 5, // ペナルティを受けている
+    IS_RESTART  = 1 << 6, // リスタート中
+    ON_RAIL     = 1 << 7, // レール上にいる
+    JUST_LANDED = 1 << 8, // 着地した瞬間 (1フレームのみ立つ)
+    HAS_SHIELD  = 1 << 9, // シールドを持っている
 
-    Count = 7
+    Count = 9
 };
 
 constexpr int32_t kDefaultPlayerGearLevel = 1; // デフォルトのギアレベル
@@ -93,8 +92,7 @@ public:
     /// </summary>
     /// <param name="_collisionNormal">衝突法線</param>
     /// <param name="_entityHandle">衝突相手のエンティティハンドル</param>
-    /// <param name="_isWheelie">ウィリー中かどうか</param>
-    void OnCollisionWall(const OriGine::Vec3f& _collisionNormal, OriGine::EntityHandle _entityHandle, bool _isWheelie = false);
+    void OnCollisionWall(const OriGine::Vec3f& _collisionNormal, OriGine::EntityHandle _entityHandle);
     /// <summary>
     /// 壁との接触がなくなったときの処理
     /// </summary>
@@ -102,6 +100,15 @@ public:
 
     void OnCollisionRail(OriGine::EntityHandle _entityHandle);
     void OffCollisionRail();
+
+    /// <summary>
+    /// シールドと接触したときの処理
+    /// </summary>
+    void OnCollisionShield(OriGine::EntityHandle shieldEntityHandle);
+    /// <summary>
+    /// シールドとの接触がなくなったときの処理
+    /// </summary>
+    void ClearHasShieldFlag();
 
     /// <summary>
     /// 地面と接触したときの処理
@@ -125,7 +132,8 @@ public:
 
 private:
     OriGine::EntityHandle followCameraEntityHandle_ = OriGine::EntityHandle(); // カメラのエンティティID
-    OriGine::EntityHandle railEntityHandle_         = OriGine::EntityHandle(); // カメラのエンティティID
+    OriGine::EntityHandle railEntityHandle_         = OriGine::EntityHandle(); // レールのエンティティID
+    OriGine::EntityHandle shieldEntityHandle_       = OriGine::EntityHandle(); // シールドのエンティティID
 
     // TransitionPlayerState で更新される
     std::shared_ptr<IPlayerMoveState> moveState_ = nullptr;
@@ -153,6 +161,10 @@ public:
 
     OriGine::EntityHandle GetRailEntityHandle() const {
         return railEntityHandle_;
+    }
+
+    OriGine::EntityHandle GetShieldEntityHandle() const {
+        return shieldEntityHandle_;
     }
 
     PlayerMoveState GetStateEnum() const {
@@ -191,6 +203,16 @@ public:
 
     bool IsOnGround() const {
         return stateFlag_.Current().HasFlag(PlayerStateFlag::ON_GROUND);
+    }
+    bool PreIsOnGround() const {
+        return stateFlag_.Prev().HasFlag(PlayerStateFlag::ON_GROUND);
+    }
+
+    bool IsJustLanded() const {
+        return stateFlag_.Current().HasFlag(PlayerStateFlag::JUST_LANDED);
+    }
+    void OnJustLanded() {
+        stateFlag_.CurrentRef().SetFlag(PlayerStateFlag::JUST_LANDED);
     }
 
     bool IsOnRail() const {
@@ -233,12 +255,12 @@ public:
         }
     }
 
-    bool IsPenalty() const {
-        return stateFlag_.Current().HasFlag(PlayerStateFlag::IS_PENALTY);
+    bool HasShield() const {
+        return stateFlag_.Current().HasFlag(PlayerStateFlag::HAS_SHIELD);
     }
 
-    bool IsWheelie() const {
-        return stateFlag_.Current().HasFlag(PlayerStateFlag::WHEELIE);
+    bool IsPenalty() const {
+        return stateFlag_.Current().HasFlag(PlayerStateFlag::IS_PENALTY);
     }
 
     bool IsRestart() const {

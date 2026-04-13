@@ -26,13 +26,13 @@ void PenaltyTimeSpriteUpdate::UpdateEntity(EntityHandle _handle) {
         return;
     }
     // SpriteAnimationが存在しない場合は処理しない
-    auto spriteAnimaiton = GetComponent<SpriteAnimation>(_handle);
-    if (!spriteAnimaiton) {
+    auto spriteAnimation = GetComponent<SpriteAnimation>(_handle);
+    if (!spriteAnimation) {
         return;
     }
 
     // アニメーション終了したらエンティティを削除
-    if (spriteAnimaiton->IsEnded()) {
+    if (spriteAnimation->IsEnded()) {
         GetScene()->AddDeleteEntity(_handle);
     };
 }

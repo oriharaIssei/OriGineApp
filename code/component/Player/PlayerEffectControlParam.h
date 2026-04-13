@@ -52,6 +52,7 @@ private:
 
     // 最大傾き角度の加速度
     float wheelTiltAngleMaxAccel_ = 0.0f;
+    float maxWheelTiltAngle_      = 0.0f; // ホイールの最大傾き角度
 
     float maxTiltOnRailRun_   = 0.f;
     float tiltSpeedOnRailRun_ = 0.f;
@@ -60,6 +61,9 @@ private:
     float invincibleBlinkBaseAmplitude_ = 8.0f;
     // 無敵時点滅エフェクトの最大振幅（終了間際の点滅速度）
     float invincibleBlinkMaxAmplitude_ = 40.0f;
+
+    // 速度線エフェクトの表示開始速度
+    float thresholdSpeedlineParticle_ = 0.f;
 
     OriGine::EntityHandle tireTrailSplineEntityHandle_ = OriGine::EntityHandle();
 
@@ -78,6 +82,9 @@ public:
     }
     float GetWheelTiltAngleMaxAccel() const {
         return wheelTiltAngleMaxAccel_;
+    }
+    float GetMaxWheelTiltAngle() const {
+        return maxWheelTiltAngle_;
     }
 
     float GetMaxTiltOnRailRun() const {
@@ -99,6 +106,10 @@ public:
     }
     void SetPreWheelTiltAngle(float _angle) {
         preWheelTiltAngle_ = _angle;
+    }
+
+    float GetThresholdSpeedlineParticle() const {
+        return thresholdSpeedlineParticle_;
     }
 
     OriGine::EntityHandle GetTireTrailSplineEntityHandle() const {

@@ -289,7 +289,7 @@
     "Systems": [
         {
             "SystemCategory": 5,
-            "SystemName": "EmitterWorkSystem"
+            "SystemName": "ParticleSystemWorkSystem"
         },
         {
             "SystemCategory": 6,

@@ -1,3 +1,4 @@
+
 #include "CameraShakeSourceComponent.h"
 
 #ifdef _DEBUG
@@ -29,11 +30,15 @@ void CameraShakeSourceComponent::Finalize() {}
 
 void CameraShakeSourceComponent::StartShake() {
     isActive = true;
-    for (size_t i = 0; i < 2; ++i) {
-        fragCoord[i] = MyRandom::Float(0.f, resolution[i]).Get();
-    }
 
     elapsedTime = 0.0f;
+
+    // Spring 用初期化
+    springVelocity = Vec3f(0.0f, 0.0f, 0.0f);
+    for (size_t i = 0; i < 3; ++i) {
+        float sign        = MyRandom::Float(-1.f, 1.f).Get() >= 0.f ? 1.f : -1.f;
+        springPosition[i] = sign * axisParameters[i].amplitude;
+    }
 }
 
 void CameraShakeSourceComponent::StopShake() {
@@ -47,7 +52,7 @@ void CameraShakeSourceComponent::Edit([[maybe_unused]] OriGine::Scene* _scene, [
 
     // シェイクの種類
     {
-        const char* items[] = {"SinCurve", "Noise"};
+        const char* items[] = {"SinCurve", "Noise", "Spring"};
         int currentItem     = static_cast<int>(type);
 
         ImGui::Text("Shake Type :");
@@ -71,6 +76,8 @@ void CameraShakeSourceComponent::Edit([[maybe_unused]] OriGine::Scene* _scene, [
         }
     }
 
+    ImGui::Spacing();
+
     auto& cameraTransforms     = _scene->GetComponents<CameraTransform>(_owner);
     int32_t entityMaterialSize = static_cast<int32_t>(cameraTransforms.size());
     // カメラTransformコンポーネントインデックス
@@ -78,11 +85,30 @@ void CameraShakeSourceComponent::Edit([[maybe_unused]] OriGine::Scene* _scene, [
         this->cameraTransformIndex = std::clamp(*_newT, -1, entityMaterialSize - 1);
     });
 
+    ImGui::Spacing();
+
+    label = "Start Shake ##" + _parentLabel;
+    if (ImGui::Button(label.c_str())) {
+        StartShake();
+    }
+
     CheckBoxCommand("Is Active##" + _parentLabel, isActive);
     // ループ有無
     CheckBoxCommand("Loop##" + _parentLabel, isLoop);
     // 継続時間
     DragGuiCommand("Duration##" + _parentLabel, duration, 0.01f);
+
+    ImGui::Spacing();
+
+    label = "Spring Parameters##" + _parentLabel;
+
+    if (ImGui::TreeNode(label.c_str())) {
+        DragVectorGui("Spring Position##" + _parentLabel, springPosition, 0.01f);
+        DragVectorGui("Spring Velocity##" + _parentLabel, springVelocity, 0.01f);
+
+        ImGui::TreePop();
+    }
+
     ImGui::Spacing();
 
     label = "X##" + _parentLabel;
@@ -91,24 +117,36 @@ void CameraShakeSourceComponent::Edit([[maybe_unused]] OriGine::Scene* _scene, [
         DragGuiCommand("Amplitude##X" + _parentLabel, axisParameters[X].amplitude, 0.01f);
         // シェイクの速さ
         DragGuiCommand("Frequency##X" + _parentLabel, axisParameters[X].frequency, 0.01f);
+        // 減衰比 (Spring専用)
+        DragGuiCommand("Damping Ratio##X" + _parentLabel, axisParameters[X].dampingRatio, 0.01f);
 
         ImGui::TreePop();
     }
+
+    ImGui::Spacing();
+
     label = "Y##" + _parentLabel;
     if (ImGui::TreeNode(label.c_str())) {
         // シェイクの強さ
         DragGuiCommand("Amplitude##Y" + _parentLabel, axisParameters[Y].amplitude, 0.01f);
         // シェイクの速さ
         DragGuiCommand("Frequency##Y" + _parentLabel, axisParameters[Y].frequency, 0.01f);
+        // 減衰比 (Spring専用)
+        DragGuiCommand("Damping Ratio##Y" + _parentLabel, axisParameters[Y].dampingRatio, 0.01f);
 
         ImGui::TreePop();
     }
+
+    ImGui::Spacing();
+
     label = "Z##" + _parentLabel;
     if (ImGui::TreeNode(label.c_str())) {
         // シェイクの強さ
         DragGuiCommand("Amplitude##Z" + _parentLabel, axisParameters[Z].amplitude, 0.01f);
         // シェイクの速さ
         DragGuiCommand("Frequency##Z" + _parentLabel, axisParameters[Z].frequency, 0.01f);
+        // 減衰比 (Spring専用)
+        DragGuiCommand("Damping Ratio##Z" + _parentLabel, axisParameters[Z].dampingRatio, 0.01f);
 
         ImGui::TreePop();
     }
@@ -125,12 +163,14 @@ void to_json(nlohmann::json& _j, const CameraShakeSourceComponent& _c) {
         {"duration", _c.duration},
         {"X_Parameter_Amplitude", _c.axisParameters[X].amplitude},
         {"X_Parameter_Frequency", _c.axisParameters[X].frequency},
+        {"X_Parameter_DampingRatio", _c.axisParameters[X].dampingRatio},
         {"Y_Parameter_Amplitude", _c.axisParameters[Y].amplitude},
         {"Y_Parameter_Frequency", _c.axisParameters[Y].frequency},
+        {"Y_Parameter_DampingRatio", _c.axisParameters[Y].dampingRatio},
         {"Z_Parameter_Amplitude", _c.axisParameters[Z].amplitude},
         {"Z_Parameter_Frequency", _c.axisParameters[Z].frequency},
-        {"fragCoord", _c.fragCoord},
-        {"resolution", _c.resolution}};
+        {"Z_Parameter_DampingRatio", _c.axisParameters[Z].dampingRatio},
+    };
 }
 
 void from_json(const nlohmann::json& _j, CameraShakeSourceComponent& _c) {
@@ -143,10 +183,17 @@ void from_json(const nlohmann::json& _j, CameraShakeSourceComponent& _c) {
     _j.at("duration").get_to(_c.duration);
     _j.at("X_Parameter_Amplitude").get_to(_c.axisParameters[X].amplitude);
     _j.at("X_Parameter_Frequency").get_to(_c.axisParameters[X].frequency);
+    if (_j.contains("X_Parameter_DampingRatio")) {
+        _j.at("X_Parameter_DampingRatio").get_to(_c.axisParameters[X].dampingRatio);
+    }
     _j.at("Y_Parameter_Amplitude").get_to(_c.axisParameters[Y].amplitude);
     _j.at("Y_Parameter_Frequency").get_to(_c.axisParameters[Y].frequency);
+    if (_j.contains("Y_Parameter_DampingRatio")) {
+        _j.at("Y_Parameter_DampingRatio").get_to(_c.axisParameters[Y].dampingRatio);
+    }
     _j.at("Z_Parameter_Amplitude").get_to(_c.axisParameters[Z].amplitude);
     _j.at("Z_Parameter_Frequency").get_to(_c.axisParameters[Z].frequency);
-    _j.at("fragCoord").get_to(_c.fragCoord);
-    _j.at("resolution").get_to(_c.resolution);
+    if (_j.contains("Z_Parameter_DampingRatio")) {
+        _j.at("Z_Parameter_DampingRatio").get_to(_c.axisParameters[Z].dampingRatio);
+    }
 }

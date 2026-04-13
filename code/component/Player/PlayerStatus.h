@@ -119,7 +119,6 @@ private:
     // チェック系
     float groundCheckThreshold_ = 0.0f;
     float wallCheckThreshold_   = 0.0f;
-    float maxWheelieFallSpeed_  = 0.0f; // ウィリー中に許容される最大落下速度
 
     // 壁系
     float wallRunRate_                = 0.0f; // 壁走りの速度倍率
@@ -146,14 +145,11 @@ private:
 
     float invincibilityTime_ = AppConfig::Player::kDefaultInvincibilityTime; // 障害物に当たったときの無敵時間 /sec
 
-    OriGine::Vec3f wheelieJumpOffset_ = {0.0f, 1.0f, 0.0f};
-
     float defaultMass_   = AppConfig::Player::kDefaultMass; // 通常時の質量
     float massOnWallRun_ = AppConfig::Player::kDefaultMassOnWallRun; // 壁走り中の質量
 
     float wallRunInterval_        = AppConfig::Player::kDefaultWallRunInterval; // 壁走り&ウィリーが可能になるまでのインターバル時間
     float currentWallRunInterval_ = 0.0f; // 現在の壁走りインターバル時間
-    float currentWheelieInterval_ = 0.0f; // 現在のウィリーインターバル時間
     float railInterval_           = 0.f; // 再びレールに乗れるまでのインターバル(定数)
     float currentRailInterval_    = 0.f;
 
@@ -161,7 +157,6 @@ public:
     float GetDecelerationFactor() const { return decelerationFactor_; }
     float GetGroundCheckThreshold() const { return groundCheckThreshold_; }
     float GetWallCheckThreshold() const { return wallCheckThreshold_; }
-    float GetMaxWheelieFallSpeed() const { return maxWheelieFallSpeed_; }
 
     float GetDirectionInterpolateRate() const { return directionInterpolateRate_; }
 
@@ -208,8 +203,6 @@ public:
 
     float GetInvincibilityTime() const { return invincibilityTime_; }
 
-    const OriGine::Vec3f& GetWheelieJumpOffset() const { return wheelieJumpOffset_; }
-
     float GetDefaultMass() const { return defaultMass_; }
     float GetMassOnWallRun() const { return massOnWallRun_; }
 
@@ -223,12 +216,6 @@ public:
     /// <returns></returns>
     bool CanWallRun() const {
         return currentWallRunInterval_ <= 0.0f;
-    }
-    /// <summary>
-    /// ウィリーが可能かどうか
-    /// </summary>
-    bool CanWheelie() const {
-        return currentWheelieInterval_ <= 0.0f;
     }
 
     /// <summary>
@@ -256,23 +243,6 @@ public:
 
     void SetupWallRunInterval() {
         currentWallRunInterval_ = wallRunInterval_;
-    }
-    /// <summary>
-    /// ウィリーインターバル時間の更新
-    /// </summary>
-    /// <param name="_deltaTime"></param>
-    void UpdateWheelieInterval(float _deltaTime) {
-        currentWheelieInterval_ -= _deltaTime;
-        currentWheelieInterval_ = (std::max)(currentWheelieInterval_, 0.f);
-    }
-    /// <summary>
-    /// ウィリーインターバル時間のリセット
-    /// </summary>
-    void ResetWheelieInterval() {
-        currentWheelieInterval_ = 0.f;
-    }
-    void SetupWheelieInterval() {
-        currentWheelieInterval_ = wallRunInterval_;
     }
 
     void UpdateRailInterval(float _deltaTime) {

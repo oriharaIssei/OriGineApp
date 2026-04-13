@@ -15,8 +15,6 @@
 #include "component/player/PlayerStatus.h"
 #include "component/player/state/PlayerState.h"
 
-#include "component/Camera/CameraController.h"
-
 /// log
 #include "logger/Logger.h"
 
@@ -120,34 +118,11 @@ void PlayerWallRunState::Initialize() {
             mesh.openData_.translate -= isRightWall_ ? -wallNormal_ * kMeshOffsetRate : wallNormal_ * kMeshOffsetRate;
         }
     }
-
-    // ===== カメラ =====
-    CameraController* cameraController = scene_->GetComponent<CameraController>(state->GetCameraEntityHandle());
-
-    // 左壁想定のオフセットを取得
-    cameraTargetOffsetOnWallRun_     = cameraController->targetOffsetOnWallRun;
-    minCameraTargetOffsetXOnWallRun_ = cameraController->minTargetOffsetXOnWallRun;
-
-    cameraOffsetOnWallRun_ = cameraController->offsetOnWallRun;
-
-    // 左壁想定の回転角度を取得
-    cameraRotateZOnWallRun_ = cameraController->rotateZOnWallRun;
-    // ===== 右壁なら左右反転 =====
-    if (!isRightWall_) {
-        cameraTargetOffsetOnWallRun_[X] *= -1.0f;
-        minCameraTargetOffsetXOnWallRun_ *= -1.0f;
-        cameraOffsetOnWallRun_[X] *= -1.0f;
-
-        cameraRotateZOnWallRun_ *= -1.f;
-    }
-
-    cameraAngleLerpTimer_ = 0.0f;
 }
 
 void PlayerWallRunState::Update(float _deltaTime) {
-    auto* state       = scene_->GetComponent<PlayerState>(playerEntityHandle_);
-    auto* playerInput = scene_->GetComponent<PlayerInput>(playerEntityHandle_);
-    auto* transform   = scene_->GetComponent<OriGine::Transform>(playerEntityHandle_);
+    auto* state     = scene_->GetComponent<PlayerState>(playerEntityHandle_);
+    auto* transform = scene_->GetComponent<OriGine::Transform>(playerEntityHandle_);
 
     // 衝突が途切れないようにめり込ませる
     transform->translate -= wallNormal_ * kOffsetRate;
@@ -177,40 +152,9 @@ void PlayerWallRunState::Update(float _deltaTime) {
         rigidbody->SetUseGravity(true);
         gravityApplyDelay_ = 0.f;
     }
-
-    /// TODO: カメラの処理をここに書くべきではない
-    // カメラの傾きを徐々に変える
-    float cameraDeltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Camera");
-    cameraAngleLerpTimer_ += cameraDeltaTime;
-    float t = cameraAngleLerpTimer_ / kCameraAngleLerpTime_;
-
-    // 一度だけ実行
-    CameraController* cameraController = scene_->GetComponent<CameraController>(state->GetCameraEntityHandle());
-    if (!cameraController) {
-        return;
-    }
-    if (t <= 1) {
-        cameraController->currentOffset       = Lerp<3, float>(cameraController->currentOffset, cameraOffsetOnWallRun_, EaseOutCubic(t));
-        cameraController->currentTargetOffset = Lerp<3, float>(cameraController->currentTargetOffset, cameraTargetOffsetOnWallRun_, EaseOutCubic(t));
-        cameraController->currentRotateZ      = std::lerp(0.f, cameraRotateZOnWallRun_, EaseOutCubic(t));
-    } else {
-        cameraController->currentOffset       = cameraOffsetOnWallRun_;
-        cameraController->currentTargetOffset = cameraTargetOffsetOnWallRun_;
-        cameraController->currentRotateZ      = cameraRotateZOnWallRun_;
-    }
-
-    // 移動方向に応じて、カメラのオフセットのX成分の目標値を変える
-    float inputXNormalized = (playerInput->GetInputDirection()[X] + 1) * 0.5f; // [-1, 1] -> [0, 1]
-    if (isRightWall_) {
-        inputXNormalized = 1 - inputXNormalized; // 右壁なら反転して [0, 1] -> [1, 0]
-    }
-    inputXNormalized                         = EasingFunctions[static_cast<int>(EaseType::EaseInCubic)](inputXNormalized); // 入力に応じてオフセットの変化を緩やかにする
-
-    cameraController->currentTargetOffset[X] = std::lerp(minCameraTargetOffsetXOnWallRun_, cameraTargetOffsetOnWallRun_[X], inputXNormalized);
 }
 
 void PlayerWallRunState::Finalize() {
-    auto* state        = scene_->GetComponent<PlayerState>(playerEntityHandle_);
     auto* playerStatus = scene_->GetComponent<PlayerStatus>(playerEntityHandle_);
     auto* rigidbody    = scene_->GetComponent<Rigidbody>(playerEntityHandle_);
     auto* transform    = scene_->GetComponent<OriGine::Transform>(playerEntityHandle_);
@@ -220,15 +164,6 @@ void PlayerWallRunState::Finalize() {
     playerStatus->SetupWallRunInterval();
 
     transform->translate += wallNormal_ * kOffsetRate;
-
-    /// TODO: カメラの処理をここに書くべきではない
-    CameraController* cameraController = scene_->GetComponent<CameraController>(state->GetCameraEntityHandle());
-    if (cameraController) {
-        // onDashに差し替える
-        cameraController->currentOffset       = cameraController->offsetOnWallRun;
-        cameraController->currentTargetOffset = cameraController->targetOffsetOnDash;
-        cameraController->currentRotateZ      = 0.f;
-    }
 
     auto* modelRenderer = scene_->GetComponent<ModelMeshRenderer>(playerEntityHandle_);
     if (modelRenderer) {
@@ -256,61 +191,4 @@ PlayerMoveState PlayerWallRunState::TransitionState() const {
     }
 
     return PlayerMoveState::WALL_RUN;
-}
-
-void PlayerWallRunState::CreateWallRunPathEntity(const Vec3f& _origine, Rigidbody* _rigidbody, const OriGine::Vec3f& _direction) {
-    SceneFactory factory;
-    Entity* pathEntity = factory.BuildEntityFromTemplate(scene_, "WallRunPath");
-    if (!pathEntity) {
-        LOG_ERROR("Failed to create WallRunPath entity.");
-        return;
-    }
-
-    auto* transform      = scene_->GetComponent<OriGine::Transform>(pathEntity->GetHandle());
-    transform->translate = _origine;
-    auto* splinePoints   = scene_->GetComponent<SplinePoints>(pathEntity->GetHandle());
-    if (!splinePoints) {
-        LOG_ERROR("WallRunPath entity does not have SplinePoints component.");
-        return;
-    }
-
-    pathEntityHandle_ = pathEntity->GetHandle();
-
-    SerializedField<float> gravity = SerializedField<float>("Settings", "Physics", "Gravity");
-    float deltaTime                = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Player");
-    splinePoints->points           = SplinePointsSetup(_rigidbody, _direction, *gravity.GetValue(), deltaTime);
-}
-
-std::deque<Vec3f> PlayerWallRunState::SplinePointsSetup(Rigidbody* _rigidbody, const OriGine::Vec3f& _direction, float _gravity, float _deltaTime) {
-    std::deque<Vec3f> splinePoints;
-
-    float forwardSpeed = playerSpeed_;
-    float upwardSpeed  = _rigidbody->GetVelocity()[Y];
-    float accelY       = _rigidbody->GetAcceleration()[Y];
-    float downSpeed    = (std::min)(_gravity * _rigidbody->GetMass(), _rigidbody->MaxFallSpeed());
-
-    Vec3f pos = Vec3f();
-    splinePoints.push_back(pos);
-    while (true) {
-
-        speedRumpUpTimer_ += _deltaTime;
-        float rumpUpT          = speedRumpUpTimer_ / speedRumpUpTime_;
-        rumpUpT                = std::clamp(rumpUpT, 0.f, 1.f);
-        float currentSpeedRate = std::lerp(1.f, speedRate_, EaseOutCubic(rumpUpT));
-        // 壁ジャンプ失敗と判定する速度閾値を下回ったら抜ける
-        if (upwardSpeed < thresholdFailedWallJumpSpeed_) {
-            break;
-        }
-
-        // 位置計算
-        pos += _direction * (forwardSpeed * currentSpeedRate) * _deltaTime;
-
-        accelY -= downSpeed;
-        upwardSpeed += accelY * _deltaTime;
-        pos[Y] += upwardSpeed * _deltaTime;
-
-        splinePoints.push_back(pos);
-    }
-
-    return splinePoints;
 }

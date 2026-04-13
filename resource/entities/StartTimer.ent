@@ -1,5 +1,42 @@
 {
     "Components": {
+        "Button": [
+            {
+                "Handle": "067dd90e-e8d1-45fe-80a8-9c7adca87054",
+                "hoverColor": [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929,
+                    1.0
+                ],
+                "normalColor": [
+                    0.3199999928474426,
+                    0.3199999928474426,
+                    0.3199999928474426,
+                    1.0
+                ],
+                "pressColor": [
+                    0.6000000238418579,
+                    0.6000000238418579,
+                    0.6000000238418579,
+                    1.0
+                ],
+                "releaseColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "shortKeys": [
+                    57,
+                    28
+                ],
+                "shortcutGamepadButton": [
+                    4096,
+                    8192
+                ]
+            }
+        ],
         "SpriteAnimation": [
             {
                 "Handle": "3f247a13-616f-434c-93d0-0582c1b9faa3",
@@ -152,12 +189,12 @@
     "Name": "StartTimer",
     "Systems": [
         {
-            "SystemCategory": 0,
-            "SystemName": "CreateSpriteFromTimer"
+            "SystemCategory": 1,
+            "SystemName": "ButtonInputSystem"
         },
         {
-            "SystemCategory": 3,
-            "SystemName": "StartSequenceSystem"
+            "SystemCategory": 0,
+            "SystemName": "CreateSpriteFromTimer"
         },
         {
             "SystemCategory": 0,
@@ -168,12 +205,16 @@
             "SystemName": "SpriteAnimationSystem"
         },
         {
-            "SystemCategory": 2,
-            "SystemName": "TimerCountDown"
+            "SystemCategory": 3,
+            "SystemName": "StartSequenceSystem"
         },
         {
             "SystemCategory": 5,
             "SystemName": "TimerForSprite"
+        },
+        {
+            "SystemCategory": 2,
+            "SystemName": "TimerCountDown"
         }
     ],
     "isUnique": true

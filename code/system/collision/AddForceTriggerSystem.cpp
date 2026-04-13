@@ -4,6 +4,7 @@
 #include <unordered_set>
 
 /// engine
+#include "Engine.h"
 #include "messageBus/MessageBus.h"
 
 /// ECS
@@ -31,39 +32,47 @@ void AddForceTriggerSystem::UpdateEntity(OriGine::EntityHandle _handle) {
         return;
     }
 
-    // ジャンプパッドと衝突したエンティティを取得
+    const bool isWhileColliding = (addForceComp->triggerMode_ == AddForceComponent::TriggerMode::WhileColliding);
+
+    // コライダーから衝突エンティティを収集
     auto& sphereColliders = GetComponents<SphereCollider>(_handle);
     auto& aabbColliders   = GetComponents<AABBCollider>(_handle);
     auto& obbColliders    = GetComponents<OBBCollider>(_handle);
 
     std::unordered_set<EntityHandle> collidedEntities;
-    for (auto& collider : sphereColliders) {
-        for (const auto& [otherHandle, state] : collider.GetCollisionStateMap()) {
-            if (state == CollisionState::Enter) {
-                collidedEntities.insert(otherHandle);
+    auto collectCollisions = [&](auto& _colliders) {
+        for (auto& collider : _colliders) {
+            for (const auto& [otherHandle, state] : collider.GetCollisionStateMap()) {
+                if (state == CollisionState::Enter) {
+                    collidedEntities.insert(otherHandle);
+                } else if (isWhileColliding && state == CollisionState::Stay) {
+                    collidedEntities.insert(otherHandle);
+                }
             }
         }
-    }
-    for (auto& collider : aabbColliders) {
-        for (const auto& [otherHandle, state] : collider.GetCollisionStateMap()) {
-            if (state == CollisionState::Enter) {
-                collidedEntities.insert(otherHandle);
-            }
-        }
-    }
-    for (auto& collider : obbColliders) {
-        for (const auto& [otherHandle, state] : collider.GetCollisionStateMap()) {
-            if (state == CollisionState::Enter) {
-                collidedEntities.insert(otherHandle);
-            }
-        }
-    }
+    };
+    collectCollisions(sphereColliders);
+    collectCollisions(aabbColliders);
+    collectCollisions(obbColliders);
 
-    // 衝突したエンティティにジャンプ力を加える
+    // 衝突したエンティティに力を加える
     for (const auto& otherHandle : collidedEntities) {
         auto rigidbodyComp = GetComponent<Rigidbody>(otherHandle);
         if (rigidbodyComp) {
-            AddForceEvent event(rigidbodyComp->GetHandle(), addForceComp->addForce_);
+            Vec3f force = addForceComp->addForce_;
+
+            // WhileCollidingモードでは継続力なので deltaTime を掛ける
+            if (isWhileColliding) {
+                float deltaTime;
+                if (rigidbodyComp->IsUsingLocalDeltaTime()) {
+                    deltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime(rigidbodyComp->GetLocalDeltaTimeName());
+                } else {
+                    deltaTime = Engine::GetInstance()->GetDeltaTimer()->GetDeltaTime();
+                }
+                force = force * deltaTime;
+            }
+
+            AddForceEvent event(rigidbodyComp->GetHandle(), force);
             MessageBus::GetInstance()->Emit<AddForceEvent>(event);
         }
     }

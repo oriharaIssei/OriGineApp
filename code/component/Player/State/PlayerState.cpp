@@ -50,18 +50,14 @@ void PlayerState::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityHa
 
 void PlayerState::Finalize() {}
 
-void PlayerState::OnCollisionWall(const Vec3f& _collisionNormal, EntityHandle _wallEntityHandle, bool _isWheelie) {
+void PlayerState::OnCollisionWall(const Vec3f& _collisionNormal, EntityHandle _wallEntityHandle) {
     stateFlag_.CurrentRef().SetFlag(PlayerStateFlag::ON_WALL);
-    if (_isWheelie) {
-        stateFlag_.CurrentRef().SetFlag(PlayerStateFlag::WHEELIE);
-    }
     wallCollisionNormal_ = _collisionNormal;
     wallEntityHandle_    = _wallEntityHandle;
 }
 
 void PlayerState::OffCollisionWall() {
     stateFlag_.CurrentRef().ClearFlag(PlayerStateFlag::ON_WALL);
-    stateFlag_.CurrentRef().ClearFlag(PlayerStateFlag::WHEELIE);
 
     wallCollisionNormal_ = {0.f, 0.f, 0.f};
 }
@@ -75,11 +71,21 @@ void PlayerState::OffCollisionRail() {
     stateFlag_.CurrentRef().ClearFlag(PlayerStateFlag::ON_RAIL);
 }
 
+void PlayerState::OnCollisionShield(OriGine::EntityHandle shieldEntityHandle) {
+    stateFlag_.CurrentRef().SetFlag(PlayerStateFlag::HAS_SHIELD);
+    shieldEntityHandle_ = shieldEntityHandle;
+}
+
+void PlayerState::ClearHasShieldFlag() {
+    stateFlag_.CurrentRef().ClearFlag(PlayerStateFlag::HAS_SHIELD);
+}
+
 void PlayerState::OnCollisionGround() {
     stateFlag_.CurrentRef().SetFlag(PlayerStateFlag::ON_GROUND);
 }
 void PlayerState::OffCollisionGround() {
     stateFlag_.CurrentRef().ClearFlag(PlayerStateFlag::ON_GROUND);
+    stateFlag_.CurrentRef().ClearFlag(PlayerStateFlag::JUST_LANDED);
 }
 
 void PlayerState::OnCollisionObstacle(float _penaltyTime, float _invincibility) {

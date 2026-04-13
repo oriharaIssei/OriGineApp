@@ -7,7 +7,6 @@
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
 
-#include "component/Camera/CameraController.h"
 #include "component/physics/Rigidbody.h"
 #include "component/player/PlayerInput.h"
 #include "component/player/PlayerMoveUtils.h"
@@ -31,14 +30,14 @@ void PlayerDashState::Initialize() {
     int32_t gearLevel     = state->GetGearLevel();
     float currentMaxSpeed = playerStatus->CalculateSpeedByGearLevel(gearLevel);
     playerStatus->SetCurrentMaxSpeed(currentMaxSpeed);
+    playerStatus->SetCurrentMaxDirectionalSpeed(playerStatus->CalculateCurrentMaxDirectionalSpeed(gearLevel));
+    playerStatus->SetCurrentDirectionalSpeed({0.f, 0.f});
     // プレイヤーの向いている方向に速度を設定
     Vec3f forwardDir = transform->FrontVector();
     forwardDir[Y]    = 0.f;
     forwardDir       = forwardDir.normalize();
     rigidbody->SetVelocity(forwardDir * currentMaxSpeed);
 
-    // 落下タイマーをリセット
-    cameraOffsetLerpTimer_ = 0.f;
 }
 
 void PlayerDashState::Update(float _deltaTime) {
@@ -94,23 +93,6 @@ void PlayerDashState::Update(float _deltaTime) {
         fallDownTimer_ -= _deltaTime;
     }
 
-    if (kThresholdGearLevelOfCameraOffset_ >= gearLevel) {
-        return;
-    }
-
-    ///! TODO : ここにカメラの処理を書くべきではない
-    CameraController* cameraController = scene_->GetComponent<CameraController>(state->GetCameraEntityHandle());
-
-    if (cameraController) {
-        float cameraDeltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Camera");
-        // カメラのオフセットを徐々に元に戻す
-        cameraOffsetLerpTimer_ += cameraDeltaTime;
-        float t = cameraOffsetLerpTimer_ / kCameraOffsetLerpTime_;
-        t       = std::clamp(t, 0.f, 1.f);
-
-        cameraController->currentOffset       = Lerp<3, float>(cameraController->currentOffset, cameraController->offsetOnDash, EaseOutCubic(t));
-        cameraController->currentTargetOffset = Lerp<3, float>(cameraController->currentTargetOffset, cameraController->targetOffsetOnDash, EaseOutCubic(t));
-    }
 }
 
 void PlayerDashState::Finalize() {

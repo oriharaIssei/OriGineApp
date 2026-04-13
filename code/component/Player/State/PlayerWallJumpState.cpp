@@ -1,13 +1,14 @@
 #include "PlayerWallJumpState.h"
 
 /// component
-#include "component/animation/SkinningAnimationComponent.h"
+#include "component/animation/TransformAnimation.h"
 #include "component/transform/CameraTransform.h"
 #include "component/transform/Transform.h"
 
 #include "component/camera/CameraController.h"
 #include "component/physics/Rigidbody.h"
 #include "component/player/PlayerInput.h"
+#include "component/player/PlayerMoveUtils.h"
 #include "component/player/PlayerStatus.h"
 
 /// log
@@ -35,34 +36,48 @@ void PlayerWallJumpState::Initialize() {
     OriGine::Vec3f velocityDirection = rigidbody->GetVelocity();
     velocityDirection                = velocityDirection.normalize();
 
-    if (playerState->GetPreStateEnum() == PlayerMoveState::WALL_RUN) {
-        OriGine::Vec3f wallJumpDirection = playerStatus->GetWallJumpOffset();
-        // -1 ~ 1 を 0 ~ 1 に変換
-        float inputXNormalized = (playerInput->GetInputDirection()[X] + 1) * 0.5f;
-        inputXNormalized       = EasingFunctions[static_cast<int>(EaseType::EaseInQuad)](inputXNormalized);
+    OriGine::Vec3f wallJumpDirection = playerStatus->GetWallJumpOffset();
+    // -1 ~ 1 を 0 ~ 1 に変換
+    float inputXNormalized = (playerInput->GetInputDirection()[X] + 1) * 0.5f;
+    inputXNormalized       = EasingFunctions[static_cast<int>(EaseType::EaseInQuad)](inputXNormalized);
 
-        wallJumpDirection[X] = std::lerp(playerStatus->GetMinWallJumpOffsetX(), wallJumpDirection[X], inputXNormalized);
+    wallJumpDirection[X] = std::lerp(playerStatus->GetMinWallJumpOffsetX(), wallJumpDirection[X], inputXNormalized);
 
-        // --- 壁ローカル → ワールド変換 ---
-        // wallJumpDirection = (x:外, y:上, z:沿う)
-        jumpDirWorld =
-            wallNormal * wallJumpDirection[X] + axisY * wallJumpDirection[Y] + velocityDirection * wallJumpDirection[Z];
-        // wallRun後は maxXZSpeedを使用する
-        jumpSpeed = playerStatus->GetCurrentMaxSpeed() * playerStatus->GetWallRunRate();
-    } else {
-        const OriGine::Vec3f& wallJumpDirection = playerStatus->GetWheelieJumpOffset();
-        // --- 壁ローカル → ワールド変換 ---
-        jumpDirWorld =
-            velocityDirection * wallJumpDirection[Y] + wallNormal * wallJumpDirection[Z];
-        // whellie後は velocityをそのまま使用する
-        jumpSpeed = rigidbody->GetVelocity().length();
-    }
+    // --- 壁ローカル → ワールド変換 ---
+    // wallJumpDirection = (x:外, y:上, z:沿う)
+    jumpDirWorld =
+        wallNormal * wallJumpDirection[X] + axisY * wallJumpDirection[Y] + velocityDirection * wallJumpDirection[Z];
+    // wallRun後は maxXZSpeedを使用する
+    jumpSpeed = playerStatus->GetCurrentMaxSpeed() * playerStatus->GetWallRunRate();
+
     jumpDirWorld = jumpDirWorld.normalize();
 
     // --- 最終速度設定 ---
     velo_ = jumpDirWorld * jumpSpeed;
 
     rigidbody->SetVelocity(velo_);
+
+    // animation
+    TransformAnimation* transformAnimation = scene_->GetComponent<TransformAnimation>(playerEntityHandle_);
+    if (transformAnimation) {
+        OriGine::Vec3f sideJudgeDirection = velocityDirection;
+        sideJudgeDirection[Y]             = 0.0f;
+        if (sideJudgeDirection.lengthSq() <= 0.0f) {
+            sideJudgeDirection = axisZ;
+        }
+
+        const bool isRightWall = PlayerMoveUtils::IsWallRight(sideJudgeDirection.normalize(), wallNormal);
+
+        auto rotateFlip = transformAnimation->GetRotateFlip();
+        auto scaleFlip  = transformAnimation->GetScaleFlip();
+
+        rotateFlip.z = isRightWall;
+
+        transformAnimation->SetRotateFlip(rotateFlip);
+        transformAnimation->SetScaleFlip(scaleFlip);
+
+        transformAnimation->PlayStart();
+    }
 
     forceJumpTimer_ = 0.f;
 }

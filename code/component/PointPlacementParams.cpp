@@ -5,7 +5,7 @@
 // asset
 #include "asset/TextureAsset.h"
 
-// dreictX12
+// directX12
 #include "directX12/DxDevice.h"
 
 #ifdef _DEBUG

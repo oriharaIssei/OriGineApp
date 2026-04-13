@@ -8,11 +8,13 @@
                     0.0,
                     0.0
                 ],
+                "collisionCategory": "StageObject",
                 "halfSize": [
                     1.0,
                     1.0,
                     1.0
                 ],
+                "isActive": true,
                 "transform": {
                     "rotate": [
                         0.0,
@@ -82,6 +84,7 @@
                     1.0
                 ],
                 "enableLighting": true,
+                "environmentCoefficient": 0.10000000149011612,
                 "shininess": 60.0,
                 "specularColor": [
                     1.0,
@@ -109,20 +112,20 @@
                     1.0
                 ],
                 "scale": [
-                    64.0,
-                    64.0,
-                    128.0
+                    36.0,
+                    56.0,
+                    256.0
                 ],
                 "translate": [
-                    5.560613632202148,
-                    43.03282165527344,
-                    2004.1031494140625
+                    0.0,
+                    -48.0,
+                    1060.0
                 ]
             }
         ]
     },
     "Handle": {
-        "uuid": "f6cbbfb7-1eb0-4d19-ab55-a9c0029438fd"
+        "uuid": "cc51dbd7-0f3c-459b-af99-558337ea72d3"
     },
     "Name": "Floor",
     "Systems": [

@@ -31,7 +31,6 @@ void StartTimerInitialize::UpdateEntity(OriGine::EntityHandle _handle) {
     if (!timerComp || !timer4Sprite) {
         return;
     }
-    timerComp->SetStarted(true);
 
     // sprite の生成
     OriGine::Entity* spriteEntity = GetEntity(timer4Sprite->GetSpritesEntityHandle());
@@ -52,12 +51,9 @@ void StartTimerInitialize::UpdateEntity(OriGine::EntityHandle _handle) {
         SpriteAnimation* spriteAnimation = GetComponent<SpriteAnimation>(spriteAnimationHandle);
         // コピー
         *spriteAnimation = *originalAnimation;
-        // 再生開始
-        spriteAnimation->PlayColorAnimation();
-        spriteAnimation->PlayTransformAnimation();
+        // SpriteAnimation に SpriteRenderer のハンドルを渡す
         spriteAnimation->SetSpriteComponentHandle(sprite.GetHandle());
-
-        sprite.SetIsRender(true);
     }
+
     GetScene()->GetSystem(nameof<SpriteAnimationSystem>())->AddEntity(spriteEntity->GetHandle());
 }

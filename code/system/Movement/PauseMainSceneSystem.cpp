@@ -1,12 +1,13 @@
 #include "PauseMainSceneSystem.h"
 
 /// component
-#include "component/SubScene.h"
+#include "component/scene/SubScene.h"
 /// system
 #include "system/SystemRunner.h"
 
 #include "system/movement/FollowCameraUpdateSystem.h"
 #include "system/movement/MoveSystemByRigidBody.h"
+#include "system/movement/PathControllerSystem.h"
 #include "system/movement/PlayerMoveSystem.h"
 #include "system/render/SpriteRenderSystem.h"
 #include "system/Transition/ApplyMouseConditionSystem.h"
@@ -33,7 +34,9 @@ void PauseMainSceneSystem::Initialize() {
         nameof<TimerCountDown>(),
         nameof<TimerCountUp>(),
         nameof<TransitionPlayerState>(),
-        nameof<SpriteRenderSystem>()};
+        nameof<SpriteRenderSystem>(),
+        nameof<PathControllerSystem>(),
+    };
 }
 void PauseMainSceneSystem::Finalize() {}
 

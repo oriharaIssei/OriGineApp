@@ -37,6 +37,15 @@ public:
     void Edit(OriGine::Scene* _scene, OriGine::EntityHandle _owner, const std::string& _parentLabel) override;
 
 public:
+    /// <summary>
+    /// トリガーモード
+    /// </summary>
+    enum class TriggerMode : int {
+        OnEnter        = 0, ///< 衝突開始時に1回だけ力を加える (インパルス)
+        WhileColliding = 1, ///< 衝突中は毎フレーム力を加え続ける (継続力)
+    };
+    TriggerMode triggerMode_ = TriggerMode::OnEnter;
+
     // 追加する力
     OriGine::Vec3f addForce_ = OriGine::Vec3f();
 };

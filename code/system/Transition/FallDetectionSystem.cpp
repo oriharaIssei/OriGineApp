@@ -1,14 +1,7 @@
 #include "FallDetectionSystem.h"
 
-/// engine
-#include "messageBus/MessageBus.h"
-
-/// event
-#include "event/GamefailedEvent.h"
-
 /// ECS
 // component
-#include "component/player/state/PlayerState.h"
 #include "component/Transform/Transform.h"
 
 /// config
@@ -19,18 +12,18 @@ using namespace OriGine;
 FallDetectionSystem::FallDetectionSystem() : ISystem(OriGine::SystemCategory::StateTransition) {}
 FallDetectionSystem::~FallDetectionSystem() {}
 
-void FallDetectionSystem::Initialize() {}
-
-void FallDetectionSystem::Finalize() {}
-
-void FallDetectionSystem::UpdateEntity(OriGine::EntityHandle _handle) {
-    Transform* transform = GetComponent<Transform>(_handle);
+void FallDetectionSystem::Update() {
+    EntityHandle playerEntity = GetUniqueEntity("Player");
+    if (!playerEntity.IsValid()) {
+        return;
+    }
+    Transform* transform = GetComponent<Transform>(playerEntity);
 
     if (!transform) {
         return;
     }
 
     if (transform->worldMat[3][Y] < AppConfig::Player::kFallThresholdY) {
-        MessageBus::GetInstance()->Emit<GamefailedEvent>(GamefailedEvent());
+        OnFall();
     }
 }

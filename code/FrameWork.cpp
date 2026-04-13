@@ -9,14 +9,21 @@
 
 // application component
 #include "component/AddForceComponent.h"
+#include "component/BillboardComponent.h"
 #include "component/Camera/CameraController.h"
 #include "component/camera/CameraMotionBob.h"
 #include "component/Camera/CameraShakeSourceComponent.h"
-#include "component/ghost/GhostReplayComponent.h"
-#include "component/ghost/PlayRecordeComponent.h"
+#include "component/FollowTransformComponent.h"
+#include "component/gimmick/BulletSpawner.h"
+#include "component/gimmick/BulletSpawnerTrigger.h"
+#include "component/gimmick/PathControllerTrigger.h"
 #include "component/gimmick/Obstacle.h"
+#include "component/gimmick/ObstacleShieldComponent.h"
+#include "component/gimmick/ObstacleSpawnGroupComponent.h"
+#include "component/gimmick/PathController.h"
 #include "component/gimmick/RailPoints.h"
 #include "component/gimmick/TimeScaleEffectComponent.h"
+#include "component/gimmick/WallRunnableComponent.h"
 #include "component/LookAtFromTransforms.h"
 #include "component/MouseCondition.h"
 #include "component/player/PlayerEffectControlParam.h"
@@ -24,7 +31,6 @@
 #include "component/player/PlayerStatus.h"
 #include "component/player/state/PlayerState.h"
 #include "component/PlayerStateOverrideCondition.h"
-#include "component/SceneChanger.h"
 #include "component/SpeedModifiers.h"
 #include "component/spline/SplinePoints.h"
 #include "component/spline/TireSplinePoints.h"
@@ -36,19 +42,24 @@
 #include "component/ui/SpeedFor3dUIComponent.h"
 #include "component/VelocityOverrideComponent.h"
 
-// application system
+// application
 #include "system/collision/AddForceTriggerSystem.h"
+#include "system/collision/BulletSpawnerTriggerSystem.h"
+#include "system/collision/PathControllerTriggerSystem.h"
+#include "system/collision/ObstacleSpawnEventTriggerSystem.h"
 #include "system/collision/OnCollisionModifierTargetSystem.h"
 #include "system/collision/PlayerAheadCollisionReactionSystem.h"
 #include "system/collision/PlayerOnCollision.h"
 #include "system/collision/TutorialColliderOnCollision.h"
 #include "system/collision/VelocityOverrideTriggerSystem.h"
+#include "system/effect/BulletSpawnerWorkSystem.h"
 #include "system/effect/CameraShake.h"
 #include "system/effect/CreateMeshFromSpline.h"
 #include "system/effect/CreateMeshFromTireSpline.h"
 #include "system/effect/EffectOnPlayerGearup.h"
 #include "system/effect/EffectOnPlayerRun.h"
 #include "system/effect/PenaltyTimeSpriteUpdate.h"
+#include "system/effect/PlayerExplosionEffectSystem.h"
 #include "system/effect/PlayerSpeedFor3dUI.h"
 #include "system/effect/TimerForSprite.h"
 #include "system/effect/TimeScaleEffectSystem.h"
@@ -58,9 +69,7 @@
 #include "system/Initialize/CreatePlaneFromSpeed.h"
 #include "system/initialize/CreateSpriteFromTimer.h"
 #include "system/initialize/GetClearTime.h"
-#include "system/Initialize/GhostInitializeSystem.h"
 #include "system/Initialize/InitializeMouseCondition.h"
-#include "system/Initialize/PlayRecorderInitialize.h"
 #include "system/Initialize/RailInitializeSystem.h"
 #include "system/Initialize/SelectPreviewSceneInitialize.h"
 #include "system/initialize/SettingGameCameraTarget.h"
@@ -70,15 +79,16 @@
 #include "system/Initialize/Ui3dObjectInitialize.h"
 #include "system/input/ButtonInputSystem.h"
 #include "system/input/CameraInputSystem.h"
-#include "system/Input/GhostInputUpdate.h"
 #include "system/input/PlayerInputSystem.h"
-#include "system/Input/PlayRecordSystem.h"
 #include "system/movement/ApplyAddForceSystem.h"
 #include "system/Movement/ApplySpeedModifiers.h"
 #include "system/movement/BillboardTransform.h"
 #include "system/Movement/CreateRailMesh.h"
 #include "system/movement/FollowCameraUpdateSystem.h"
+#include "system/Movement/FollowTransformSystem.h"
 #include "system/Movement/LookAtFromTransformsSystem.h"
+#include "system/movement/PathControllerRenderingSystem.h"
+#include "system/movement/PathControllerSystem.h"
 #include "system/movement/PauseMainSceneSystem.h"
 #include "system/Movement/PlayerFollowSystem.h"
 #include "system/movement/PlayerMoveSystem.h"
@@ -92,12 +102,14 @@
 #include "system/Movement/Ui3dUpdateSystem.h"
 #include "system/Movement/VelocityOverrideSystem.h"
 #include "system/transition/ApplyMouseConditionSystem.h"
+#include "system/transition/AttractModeSystem.h"
 #include "system/transition/ButtonGroupSystem.h"
 #include "system/transition/ButtonScenePreviewSystem.h"
 #include "system/Transition/CameraMotionBobSystem.h"
 #include "system/transition/ChangeSceneByButton.h"
 #include "system/transition/ExitApplicationByButton.h"
-#include "system/transition/FallDetectionSystem.h"
+#include "system/transition/FallToFailedSystem.h"
+#include "system/transition/FallToRestartSystem.h"
 #include "system/transition/GameFailedSceneLaunchSystem.h"
 #include "system/transition/PenaltySystem.h"
 #include "system/Transition/PlayerStateOverrideSystem.h"
@@ -107,6 +119,7 @@
 #include "system/transition/SubSceneActivateByButton.h"
 #include "system/transition/SubSceneDeactivateByButton.h"
 #include "system/transition/TimeLimitJudgeSystem.h"
+#include "system/Transition/TimerAutoDestroySystem.h"
 #include "system/transition/TimerCountDown.h"
 #include "system/Transition/TimerCountUp.h"
 #include "system/transition/TransitionPlayerState.h"
@@ -142,15 +155,6 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<SplinePoints>();
     componentRegistry->RegisterComponent<TireSplinePoints>();
 
-    componentRegistry->RegisterComponent<RailPoints>();
-    componentRegistry->RegisterComponent<Obstacle>();
-    componentRegistry->RegisterComponent<TimeScaleEffectComponent>();
-    componentRegistry->RegisterComponent<VelocityOverrideComponent>();
-    componentRegistry->RegisterComponent<AddForceComponent>();
-
-    componentRegistry->RegisterComponent<GhostReplayComponent>();
-    componentRegistry->RegisterComponent<PlayRecordeComponent>();
-
     componentRegistry->RegisterComponent<Material>();
     componentRegistry->RegisterComponent<DirectionalLight>();
     componentRegistry->RegisterComponent<PointLight>();
@@ -160,6 +164,7 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<ModelNodeAnimation>();
     componentRegistry->RegisterComponent<PrimitiveNodeAnimation>();
     componentRegistry->RegisterComponent<TransformAnimation>();
+    componentRegistry->RegisterComponent<TransformRateAnimation>();
     componentRegistry->RegisterComponent<DissolveAnimation>();
     componentRegistry->RegisterComponent<SkinningAnimationComponent>();
     componentRegistry->RegisterComponent<SpriteAnimation>();
@@ -177,9 +182,11 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<SpeedModifiers>();
     componentRegistry->RegisterComponent<Rigidbody>();
 
-    componentRegistry->RegisterComponent<SquashStretchComponent>();
-    componentRegistry->RegisterComponent<Emitter>();
+    componentRegistry->RegisterComponent<ParticleSystem>();
     componentRegistry->RegisterComponent<GpuParticleEmitter>();
+    componentRegistry->RegisterComponent<EntitySpawner>();
+
+    componentRegistry->RegisterComponent<SquashStretchComponent>();
     componentRegistry->RegisterComponent<DissolveEffectParam>();
     componentRegistry->RegisterComponent<DistortionEffectParam>();
     componentRegistry->RegisterComponent<RadialBlurParam>();
@@ -219,6 +226,24 @@ void RegisterUsingComponents() {
     componentRegistry->RegisterComponent<SceneChanger>();
 
     componentRegistry->RegisterComponent<PlayerStateOverrideCondition>();
+
+    componentRegistry->RegisterComponent<BillboardComponent>();
+
+    componentRegistry->RegisterComponent<FollowTransformComponent>();
+
+    // ギミック系
+    componentRegistry->RegisterComponent<RailPoints>();
+    componentRegistry->RegisterComponent<PathController>();
+    componentRegistry->RegisterComponent<Obstacle>();
+    componentRegistry->RegisterComponent<TimeScaleEffectComponent>();
+    componentRegistry->RegisterComponent<VelocityOverrideComponent>();
+    componentRegistry->RegisterComponent<AddForceComponent>();
+    componentRegistry->RegisterComponent<ObstacleShieldComponent>();
+    componentRegistry->RegisterComponent<WallRunnableComponent>();
+    componentRegistry->RegisterComponent<BulletSpawner>();
+    componentRegistry->RegisterComponent<ObstacleSpawnGroupComponent>();
+    componentRegistry->RegisterComponent<BulletSpawnerTrigger>();
+    componentRegistry->RegisterComponent<PathControllerTrigger>();
 }
 
 void RegisterUsingSystems() {
@@ -247,9 +272,6 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<TakeToGoalPosition>();
     systemRegistry->RegisterSystem<CreatePlaneFromSpeed>();
 
-    systemRegistry->RegisterSystem<GhostInitializeSystem>();
-    systemRegistry->RegisterSystem<PlayRecorderInitialize>();
-
     systemRegistry->RegisterSystem<RailInitializeSystem>();
 
     systemRegistry->RegisterSystem<ClearSceneRankingBuildSystem>();
@@ -261,15 +283,14 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<CameraInputSystem>();
     systemRegistry->RegisterSystem<PlayerInputSystem>();
 
-    systemRegistry->RegisterSystem<PlayRecordSystem>();
-    systemRegistry->RegisterSystem<GhostInputUpdate>();
-
     /// ===================================================================================================
     // StateTransition
     /// ===================================================================================================
     systemRegistry->RegisterSystem<EffectAutoDestroySystem>();
+    systemRegistry->RegisterSystem<TimerAutoDestroySystem>();
     systemRegistry->RegisterSystem<ChangeSceneByButton>();
-    systemRegistry->RegisterSystem<FallDetectionSystem>();
+    systemRegistry->RegisterSystem<FallToFailedSystem>();
+    systemRegistry->RegisterSystem<FallToRestartSystem>();
     systemRegistry->RegisterSystem<SceneTransition>();
     systemRegistry->RegisterSystem<TransitionPlayerState>();
     systemRegistry->RegisterSystem<UpdateButtonColorByState>();
@@ -303,7 +324,7 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<PlayerMoveSystem>();
 
     systemRegistry->RegisterSystem<PlayerPathSplineGenerator>();
-    systemRegistry->RegisterSystem<TireTrailGenerateSystem>();
+    // systemRegistry->RegisterSystem<TireTrailGenerateSystem>();
     systemRegistry->RegisterSystem<PlayerUpdateOnTitle>();
 
     systemRegistry->RegisterSystem<StartSequenceSystem>();
@@ -315,10 +336,13 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<ApplyAddForceSystem>();
     systemRegistry->RegisterSystem<VelocityOverrideSystem>();
 
+    systemRegistry->RegisterSystem<PathControllerSystem>();
+
     systemRegistry->RegisterSystem<SubSceneUpdate>();
     systemRegistry->RegisterSystem<RestartSystem>();
     systemRegistry->RegisterSystem<PauseMainSceneSystem>();
 
+    systemRegistry->RegisterSystem<FollowTransformSystem>();
     systemRegistry->RegisterSystem<PlayerFollowSystem>();
     systemRegistry->RegisterSystem<LookAtFromTransformsSystem>();
     systemRegistry->RegisterSystem<Ui3dUpdateSystem>();
@@ -328,6 +352,12 @@ void RegisterUsingSystems() {
     /// =================================================================================================
     systemRegistry->RegisterSystem<CollisionCheckSystem>();
     systemRegistry->RegisterSystem<CollisionPushBackSystem>();
+
+    systemRegistry->RegisterSystem<CollisionTriggeredSceneTransition>();
+
+    systemRegistry->RegisterSystem<ObstacleSpawnEventTriggerSystem>();
+    systemRegistry->RegisterSystem<BulletSpawnerTriggerSystem>();
+    systemRegistry->RegisterSystem<PathControllerTriggerSystem>();
 
     systemRegistry->RegisterSystem<PlayerOnCollision>();
     systemRegistry->RegisterSystem<TutorialColliderOnCollision>();
@@ -339,8 +369,11 @@ void RegisterUsingSystems() {
     /// =================================================================================================
     // Effect
     /// =================================================================================================
-    systemRegistry->RegisterSystem<EmitterWorkSystem>();
+    systemRegistry->RegisterSystem<ParticleSystemWorkSystem>();
     systemRegistry->RegisterSystem<GpuParticleEmitterWorkSystem>();
+
+    systemRegistry->RegisterSystem<EntitySpawnerWorkSystem>();
+    systemRegistry->RegisterSystem<BulletSpawnerWorkSystem>();
 
     systemRegistry->RegisterSystem<PrimitiveNodeAnimationWorkSystem>();
     systemRegistry->RegisterSystem<SkinningAnimationSystem>();
@@ -348,6 +381,8 @@ void RegisterUsingSystems() {
     systemRegistry->RegisterSystem<MaterialAnimationWorkSystem>();
     systemRegistry->RegisterSystem<CameraActionSystem>();
     systemRegistry->RegisterSystem<TransformAnimationWorkSystem>();
+    systemRegistry->RegisterSystem<TransformRateAnimationWorkSystem>();
+    systemRegistry->RegisterSystem<LightTransformSyncSystem>();
     systemRegistry->RegisterSystem<DissolveAnimationSystem>();
 
     systemRegistry->RegisterSystem<CameraShake>();
@@ -357,7 +392,7 @@ void RegisterUsingSystems() {
 
     systemRegistry->RegisterSystem<MaterialEffect>();
     systemRegistry->RegisterSystem<CreateMeshFromSpline>();
-    systemRegistry->RegisterSystem<CreateMeshFromTireSpline>();
+    // systemRegistry->RegisterSystem<CreateMeshFromTireSpline>();
     systemRegistry->RegisterSystem<CreateRailMesh>();
 
     systemRegistry->RegisterSystem<PlayerSpeedFor3dUI>();
@@ -368,6 +403,10 @@ void RegisterUsingSystems() {
 
     systemRegistry->RegisterSystem<PenaltyTimeSpriteUpdate>();
     systemRegistry->RegisterSystem<TimeStopEffect>();
+
+    systemRegistry->RegisterSystem<AttractModeSystem>();
+
+    systemRegistry->RegisterSystem<PlayerExplosionEffectSystem>();
 
     /// =================================================================================================
     // Render
@@ -385,8 +424,10 @@ void RegisterUsingSystems() {
 #ifndef _RELEASE
     systemRegistry->RegisterSystem<SkeletonRenderSystem>();
     systemRegistry->RegisterSystem<ColliderRenderingSystem>();
+    systemRegistry->RegisterSystem<EmitterShapeRenderingSystem>();
     systemRegistry->RegisterSystem<VelocityRenderingSystem>();
     systemRegistry->RegisterSystem<LightDebugRenderingSystem>();
+    systemRegistry->RegisterSystem<PathControllerRenderingSystem>();
 #endif // _RELEASE
 
     /// =================================================================================================

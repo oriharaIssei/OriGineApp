@@ -2,13 +2,13 @@
     "Components": {
         "AABBCollider": [
             {
-                "Handle": "b13ee3f3-ab1a-4ab8-bb53-a9dc65406b0c",
+                "Handle": "27c3ab4f-7a83-4a2e-b1b0-1d95b667d9c8",
                 "center": [
                     0.0,
                     0.0,
                     0.0
                 ],
-                "collisionCategory": "Default",
+                "collisionCategory": "StageObject",
                 "halfSize": [
                     1.0,
                     1.0,
@@ -35,57 +35,18 @@
                 }
             }
         ],
-        "CylinderRenderer": [
+        "Material": [
             {
-                "Handle": "00bfb994-11e0-441e-857f-373b46de9d37",
-                "blendMode": 1,
-                "bottomRadius": [
+                "Handle": "b78eb27d-3f2c-4bb8-8e3b-baf0056c8c22",
+                "color": [
+                    1.0,
+                    1.0,
                     1.0,
                     1.0
                 ],
-                "height": 0.5,
-                "heightDivisions": 8,
-                "isCulling": false,
-                "isRenderer": true,
-                "materialIndex": 0,
-                "radialDivisions": 36,
-                "radiusEaseType": 0,
-                "textureFilePath": "./application/resource/Texture/arrow.png",
-                "topRadius": [
-                    0.5,
-                    0.5
-                ],
-                "transform": {
-                    "rotate": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ],
-                    "scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "translate": [
-                        0.0,
-                        0.0,
-                        0.0
-                    ]
-                }
-            }
-        ],
-        "Material": [
-            {
-                "Handle": "c0513ba8-c6a7-4e12-ad9d-ce8a59b2769c",
-                "color": [
-                    0.16578538715839386,
-                    0.7111458778381348,
-                    0.8185653686523438,
-                    1.0
-                ],
-                "enableLighting": false,
-                "shininess": 0.0,
+                "enableLighting": true,
+                "environmentCoefficient": 0.03999999910593033,
+                "shininess": 80.0,
                 "specularColor": [
                     1.0,
                     1.0,
@@ -93,8 +54,8 @@
                 ],
                 "uvRotate": 0.0,
                 "uvScale": [
-                    4.0,
-                    -2.0
+                    1.0,
+                    1.0
                 ],
                 "uvTranslate": [
                     0.0,
@@ -104,7 +65,7 @@
         ],
         "MaterialAnimation": [
             {
-                "Handle": "06d2d989-e00b-4f60-89af-62bd60224b7a",
+                "Handle": "131834a7-9fab-4fd4-bbb1-34c5364a8a67",
                 "InterpolationType": 0,
                 "colorCurve": [],
                 "duration": 1.2999999523162842,
@@ -130,9 +91,46 @@
                 ]
             }
         ],
+        "ModelMeshRenderer": [
+            {
+                "Handle": "47d183fc-684b-4f96-9e8c-dc67d601ab76",
+                "blendMode": 1,
+                "directory": "./application/resource/Models",
+                "fileName": "Landingpad.obj",
+                "isRender": true,
+                "materialIndexDatas": [
+                    {
+                        "Handle": "b78eb27d-3f2c-4bb8-8e3b-baf0056c8c22"
+                    }
+                ],
+                "textureFilePath": [
+                    "./application/resource/Texture/landingpad_large.png"
+                ],
+                "transformBufferDatas": [
+                    {
+                        "rotate": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translate": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            }
+        ],
         "Transform": [
             {
-                "Handle": "ddad81ff-297d-4a7f-9b0a-f7e1979f41f3",
+                "Handle": "bb78bb6a-38a4-41a4-bf0d-cac70e7d554d",
                 "rotate": [
                     -0.0,
                     0.0,
@@ -145,15 +143,15 @@
                     6.0
                 ],
                 "translate": [
-                    14.652728080749512,
-                    68.0,
-                    1151.2159423828125
+                    0.0,
+                    8.0,
+                    1330.934326171875
                 ]
             }
         ],
         "VelocityOverrideComponent": [
             {
-                "Handle": "574b30ac-d340-4d12-b785-b8ee2bdc4b47",
+                "Handle": "9271bb98-ac8a-4b1a-828b-0e5a4385976b",
                 "forcedMovementVector": [
                     0.0,
                     256.0,
@@ -169,7 +167,7 @@
         ]
     },
     "Handle": {
-        "uuid": "cb1f2dcf-f65e-4e29-a002-20f64e7743c8"
+        "uuid": "a300f0dd-079f-4ccc-a3d6-cfba03e91808"
     },
     "Name": "JumpPad",
     "Systems": [

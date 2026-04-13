@@ -6,6 +6,10 @@
 #include <string>
 #include <unordered_map>
 
+/// ECS
+// entity
+#include "entity/EntityHandle.h"
+
 /// <summary>
 /// タイムスケールタイマー
 /// </summary>
@@ -29,6 +33,15 @@ private:
     void UpdateEntity(OriGine::EntityHandle _handle) override;
     void Update() override;
 
+    /// <summary>
+    /// タイムスケールタイマーの更新
+    /// </summary>
+    void UpdateScaleTimer();
+
 private:
+    float fadeInTime_        = 0.2f;
+    float fadeOutTime_       = 0.6f;
+    float effectElapsedTime_ = 0.f;
+    OriGine::EntityHandle grayScaleEffectEntityHandle_;
     std::unordered_map<std::string, TimeScaleTimer> stopTimesByTimeScale_;
 };

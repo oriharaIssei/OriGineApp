@@ -13,7 +13,8 @@
 #include "component/player/PlayerMoveUtils.h"
 
 /// math
-#include "math/MathEnv.h"
+#include "MathEnv.h"
+#include "MyEasing.h"
 
 using namespace OriGine;
 
@@ -51,7 +52,6 @@ void PlayerAheadCollisionReactionSystem::UpdateEntity(OriGine::EntityHandle _han
     float radiusDiff       = collider->GetWorldRadius() - playerCollider->GetWorldRadius();
     float penetrationDepth = 0.f;
     Vec3f collNormal       = Vec3f();
-    bool isWheelie         = false;
     for (const auto& [handle, info] : pushBackInfo->GetCollisionInfoMap()) {
         if (info.pushBackType == CollisionPushBackType::None || PlayerMoveUtils::IsHitGround(info.collFaceNormal)) {
             continue;
@@ -60,7 +60,7 @@ void PlayerAheadCollisionReactionSystem::UpdateEntity(OriGine::EntityHandle _han
 
         // どれくらい平行に動いているか (1.0 = 完全に平行, 0.0 = 完全に垂直)
         float parallelFactor                       = 1.f - std::fabs(dotVN);
-        PlayerMoveUtils::WallContactResult contact = PlayerMoveUtils::EvaluateWallContact(parallelFactor, playerRigidbody, playerStatus);
+        PlayerMoveUtils::WallContactResult contact = PlayerMoveUtils::EvaluateWallContact(parallelFactor, playerStatus);
         if (contact == PlayerMoveUtils::WallContactResult::WallHit) {
             continue;
         }
@@ -70,7 +70,6 @@ void PlayerAheadCollisionReactionSystem::UpdateEntity(OriGine::EntityHandle _han
         if (penetrationDepth < info.collVec.length()) {
             collNormal       = info.collFaceNormal.normalize();
             penetrationDepth = info.collVec.length();
-            isWheelie        = (contact == PlayerMoveUtils::WallContactResult::Wheelie);
         }
     }
 
@@ -87,33 +86,8 @@ void PlayerAheadCollisionReactionSystem::UpdateEntity(OriGine::EntityHandle _han
 
     if (penetrationDepth >= OriGine::kEpsilon) {
         float t = std::clamp(penetrationDepth / radiusDiff, 0.f, 1.f);
-
-        // wheelieの時の処理
-        if (isWheelie) {
-            Vec3f wheelieDir = PlayerMoveUtils::ComputeWheelieDirection(collNormal, axisY);
-
-            // 回転を適用
-            Quaternion targetRotation;
-
-            if (wheelieDir.lengthSq() > kEpsilon) {
-                // 正面方向(_forward) = climbDirection (壁に沿って空を目指す方向)
-                // 上方向(up)       = wallNormal     (壁から垂直に出る方向＝バイクの頭上)
-                targetRotation = Quaternion::LookAt(wheelieDir, collNormal);
-            } else {
-                // 床や天井にいる場合（法線が(0,1,0)に近い）
-                Vec3f currentForward = playerRigidbody->GetVelocity().normalize();
-                // 現在の進行方向を壁（床）に沿わせる
-                float fDot           = currentForward.dot(collNormal);
-                Vec3f surfaceForward = currentForward - (collNormal * fDot);
-
-                targetRotation = Quaternion::LookAt(surfaceForward, collNormal);
-            }
-
-            targetRotation = Slerp(playerTransform->rotate, playerTransform->rotate * targetRotation, t);
-        } else {
-            // wallRunの時の処理
-            afterAngle = std::lerp(currAngle, isRightWall ? maxAngle : -maxAngle, EaseOutCubic(t));
-        }
+        // wallRunの時の処理
+        afterAngle = std::lerp(currAngle, isRightWall ? maxAngle : -maxAngle, EaseOutCubic(t));
     }
     deltaAngle = std::clamp(afterAngle - currAngle, -tiltSpeed, tiltSpeed);
     currAngle += deltaAngle;

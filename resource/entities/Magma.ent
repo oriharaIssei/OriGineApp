@@ -28,6 +28,7 @@
                     1.0
                 ],
                 "enableLighting": false,
+                "environmentCoefficient": 0.10000000149011612,
                 "shininess": 12.329999923706055,
                 "specularColor": [
                     1.0,
@@ -53,6 +54,7 @@
                 "duration": 39.20000076293945,
                 "isLoop": true,
                 "isPlay": true,
+                "materialIndex": 0,
                 "uvRotateCurve": [],
                 "uvScaleCurve": [],
                 "uvTranslateCurve": [
@@ -99,7 +101,7 @@
         "PlaneRenderer": [
             {
                 "Handle": "17f57aec-b522-4225-a10a-a65e974a596a",
-                "blendMode": 1,
+                "blendMode": 0,
                 "isCulling": true,
                 "isRenderer": true,
                 "materialIndex": 0,

@@ -29,7 +29,7 @@ void PlayerStatus::Initialize(Scene* /*_scene*/, EntityHandle /*_owner*/) {
     currentMaxSpeed_ = baseSpeed_;
 
     currentWallRunInterval_ = 0.f;
-    currentWheelieInterval_ = 0.f;
+    currentRailInterval_    = 0.f;
 }
 
 void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityHandle _owner, [[maybe_unused]] const std::string& _parentLabel) {
@@ -164,8 +164,6 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityH
     DragGuiVectorCommand<3, float>("WallJumpOffset##" + _parentLabel, wallJumpOffset_, 0.01f);
     wallJumpOffset_ = wallJumpOffset_.normalize();
 
-    DragGuiVectorCommand<3, float>("WheelieJumpOffset##" + _parentLabel, wheelieJumpOffset_, 0.01f);
-    wheelieJumpOffset_ = wheelieJumpOffset_.normalize();
     DragGuiCommand("GravityApplyDelay On WallRun##" + _parentLabel, gravityApplyDelayOnWallRun_, 0.01f);
     DragGuiCommand("WallRunDetachSpeed##" + _parentLabel, wallRunDetachSpeed_, 0.01f);
 
@@ -185,7 +183,6 @@ void PlayerStatus::Edit([[maybe_unused]] Scene* _scene, [[maybe_unused]] EntityH
 
     DragGuiCommand("Ground Check Threshold##" + _parentLabel, groundCheckThreshold_, 0.01f);
     DragGuiCommand("Wall Check Threshold##" + _parentLabel, wallCheckThreshold_, 0.01f);
-    DragGuiCommand("Max Wheelie Fall Speed##" + _parentLabel, maxWheelieFallSpeed_, 0.01f);
 
 #endif // _DEBUG
 }
@@ -265,6 +262,18 @@ void PlayerStatus::SetupOnGearUp(int32_t _gearLevel) {
 }
 
 Vec3f PlayerStatus::ComputeSmoothedDirection(const Vec3f& _targetDir, const Rigidbody* _rigidbody, const Transform* _transform, float _deltaTime) const {
+    constexpr float kMaxRate = 2.34f; // 逆向きのときの最大補間速度倍率
+
+    // 入力がない場合は現在の向きを維持
+    if (_targetDir.lengthSq() <= kEpsilon) {
+        Vec3f currentDir = _rigidbody->GetVelocity();
+        currentDir[Y]    = 0.0f;
+        if (currentDir.lengthSq() <= kEpsilon) {
+            currentDir = axisZ * MakeMatrix4x4::RotateQuaternion(_transform->rotate);
+        }
+        return currentDir.normalize();
+    }
+
     // 現在のXZ平面の速度を取得
     Vec3f currentDir = _rigidbody->GetVelocity();
     currentDir[Y]    = 0.0f;
@@ -275,8 +284,16 @@ Vec3f PlayerStatus::ComputeSmoothedDirection(const Vec3f& _targetDir, const Rigi
     }
     currentDir = currentDir.normalize();
 
+    // 現在の方向と目標方向の内積に応じて補間速度を調整
+    float dot  = Vec3f::Dot(currentDir, _targetDir);
+    float rate = directionInterpolateRate_;
+    if (dot < 0.0f) {
+        // 逆向きほど補間速度を上げる (dot=-1 で最大倍率)
+        rate *= std::lerp(1.0f, kMaxRate, -dot);
+    }
+
     // 補間計算
-    Vec3f resultDir = LerpByDeltaTime(currentDir, _targetDir, _deltaTime, directionInterpolateRate_);
+    Vec3f resultDir = LerpByDeltaTime(currentDir, _targetDir, _deltaTime, rate);
     return resultDir.normalize();
 }
 
@@ -313,8 +330,6 @@ void to_json(nlohmann::json& _j, const PlayerStatus& _playerStatus) {
     _j["gearUpCoolTime"]           = _playerStatus.baseGearupCoolTime_;
     _j["directionInterpolateRate"] = _playerStatus.directionInterpolateRate_;
 
-    _j["wheelieJumpOffset"] = _playerStatus.wheelieJumpOffset_;
-
     _j["gravityApplyDelayOnWallRun"] = _playerStatus.gravityApplyDelayOnWallRun_;
     _j["wallRunDetachSpeed"]         = _playerStatus.wallRunDetachSpeed_;
 
@@ -330,7 +345,6 @@ void to_json(nlohmann::json& _j, const PlayerStatus& _playerStatus) {
 
     _j["groundCheckThreshold"] = _playerStatus.groundCheckThreshold_;
     _j["wallCheckThreshold"]   = _playerStatus.wallCheckThreshold_;
-    _j["maxWheelieFallSpeed"]  = _playerStatus.maxWheelieFallSpeed_;
 }
 void from_json(const nlohmann::json& _j, PlayerStatus& _playerStatus) {
     if (_j.contains("decelerationFactor")) {
@@ -399,10 +413,6 @@ void from_json(const nlohmann::json& _j, PlayerStatus& _playerStatus) {
         _j.at("railJumpOffset").get_to(_playerStatus.railJumpOffset_);
     }
 
-    if (_j.contains("wheelieJumpOffset")) {
-        _j.at("wheelieJumpOffset").get_to(_playerStatus.wheelieJumpOffset_);
-    }
-
     if (_j.contains("gravityApplyDelayOnWallRun")) {
         _j.at("gravityApplyDelayOnWallRun").get_to(_playerStatus.gravityApplyDelayOnWallRun_);
     }
@@ -429,8 +439,5 @@ void from_json(const nlohmann::json& _j, PlayerStatus& _playerStatus) {
     }
     if (_j.contains("wallCheckThreshold")) {
         _j.at("wallCheckThreshold").get_to(_playerStatus.wallCheckThreshold_);
-    }
-    if (_j.contains("maxWheelieFallSpeed")) {
-        _j.at("maxWheelieFallSpeed").get_to(_playerStatus.maxWheelieFallSpeed_);
     }
 }

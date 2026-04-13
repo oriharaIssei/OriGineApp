@@ -3,55 +3,87 @@
         "CameraController": [
             {
                 "Handle": "bcc6aef7-8b4a-44dd-a721-4639d89f68ff",
-                "angleLimitY": 1.5707963705062866,
-                "baseFovY": 0.8050000071525574,
-                "firstOffset": [
-                    0.0,
-                    3.3399999141693115,
-                    -8.760000228881836
-                ],
-                "firstTargetOffset": [
-                    0.0,
-                    0.5799999833106995,
-                    4.369999885559082
-                ],
+                "dashParams": {
+                    "interLookAtTargetInterpolation": [
+                        32.0,
+                        53.400001525878906,
+                        12.0
+                    ],
+                    "interTargetInterpolation": [
+                        52.0,
+                        9.119999885559082,
+                        8.979999542236328
+                    ],
+                    "offset": [
+                        0.0,
+                        4.510000228881836,
+                        -5.050000190734863
+                    ],
+                    "targetOffset": [
+                        0.0,
+                        -1.8300000429153442,
+                        8.329999923706055
+                    ]
+                },
                 "fixForForwardSpeed": 0.33000001311302185,
-                "forward": [
-                    0.0,
-                    0.0,
-                    1.0
-                ],
+                "fovEaseType": 5,
+                "fovMax": 1.937999963760376,
+                "fovMaxSpeed": 100.0,
+                "fovMin": 0.7839999794960022,
+                "fovMinSpeed": 28.399999618530273,
                 "fovYInterpolate": 0.11400000005960464,
-                "fovYRate": 0.14900000393390656,
-                "fovYRateCommonRate": -0.004000000189989805,
-                "interTargetInterpolation": 19.829999923706055,
-                "maxRotateX": 0.5899999737739563,
-                "minRotateX": -0.7699999809265137,
-                "minTargetOffsetXOnWallRun": -2.9200000762939453,
-                "offsetOnDash": [
-                    0.0,
-                    4.610000133514404,
-                    -9.390000343322754
-                ],
-                "offsetOnWallRun": [
-                    -0.9200000166893005,
-                    1.909999966621399,
-                    -5.210000038146973
-                ],
-                "rotateSensitivity": 11.90999984741211,
+                "idleParams": {
+                    "interLookAtTargetInterpolation": [
+                        32.0,
+                        47.13999938964844,
+                        12.0
+                    ],
+                    "interTargetInterpolation": [
+                        52.0,
+                        11.680000305175781,
+                        12.149999618530273
+                    ],
+                    "offset": [
+                        0.0,
+                        2.5199999809265137,
+                        -5.599999904632568
+                    ],
+                    "targetOffset": [
+                        0.0,
+                        0.1899999976158142,
+                        2.930000066757202
+                    ]
+                },
+                "maxRollAngleOnFollow": 0.5600000023841858,
+                "maxRotateX": 0.5270000100135803,
+                "minRotateX": -0.296999990940094,
+                "minTargetOffsetXOnWallRun": -2.2899999618530273,
+                "rotateSensitivity": 86.0,
                 "rotateSpeedMouse": 0.0,
                 "rotateSpeedPadStick": 0.0,
-                "rotateZOnWallRun": 0.05000000074505806,
-                "targetOffsetOnDash": [
-                    0.0,
-                    -1.2000000476837158,
-                    5.860000133514404
-                ],
-                "targetOffsetOnWallRun": [
-                    -4.230000019073486,
-                    0.6600000262260437,
-                    5.050000190734863
-                ]
+                "tiltDotOnFollow": 0.6000000238418579,
+                "wallRunParams": {
+                    "interLookAtTargetInterpolation": [
+                        86.0,
+                        86.0,
+                        256.0
+                    ],
+                    "interTargetInterpolation": [
+                        86.0,
+                        86.0,
+                        256.0
+                    ],
+                    "offset": [
+                        -2.5999999046325684,
+                        0.550000011920929,
+                        5.329999923706055
+                    ],
+                    "targetOffset": [
+                        0.12999999523162842,
+                        0.009999999776482582,
+                        9.550000190734863
+                    ]
+                }
             }
         ],
         "CameraMotionBob": [
@@ -85,24 +117,53 @@
             {
                 "Handle": "386b47fe-452d-4443-a7e7-ea7d46ba74e0",
                 "X_Parameter_Amplitude": 0.36000001430511475,
-                "X_Parameter_Frequency": 14.039999961853027,
+                "X_Parameter_DampingRatio": 0.30000001192092896,
+                "X_Parameter_Frequency": 9.930000305175781,
                 "Y_Parameter_Amplitude": 0.4300000071525574,
-                "Y_Parameter_Frequency": 9.149999618530273,
+                "Y_Parameter_DampingRatio": 0.30000001192092896,
+                "Y_Parameter_Frequency": 8.119999885559082,
                 "Z_Parameter_Amplitude": 0.46000000834465027,
+                "Z_Parameter_DampingRatio": 0.30000001192092896,
                 "Z_Parameter_Frequency": 1.0,
                 "cameraTransformIndex": 0,
                 "duration": 1.0,
-                "fragCoord": [
-                    631.16455078125,
-                    194.4982452392578
-                ],
                 "isActive": false,
                 "isLoop": true,
-                "resolution": [
-                    1920.0,
-                    1080.0
-                ],
                 "type": 1
+            },
+            {
+                "Handle": "2ef489cf-93a2-474d-b83a-4df1829c6816",
+                "X_Parameter_Amplitude": 0.0,
+                "X_Parameter_DampingRatio": 0.0,
+                "X_Parameter_Frequency": 0.0,
+                "Y_Parameter_Amplitude": 3.759999990463257,
+                "Y_Parameter_DampingRatio": 0.5400000214576721,
+                "Y_Parameter_Frequency": 2.450000047683716,
+                "Z_Parameter_Amplitude": 0.0,
+                "Z_Parameter_DampingRatio": 0.0,
+                "Z_Parameter_Frequency": 0.0,
+                "cameraTransformIndex": 0,
+                "duration": 1.0,
+                "isActive": false,
+                "isLoop": false,
+                "type": 2
+            },
+            {
+                "Handle": "a400ca33-659d-4a2b-98b0-518d263010d6",
+                "X_Parameter_Amplitude": 3.4000000953674316,
+                "X_Parameter_DampingRatio": 0.25,
+                "X_Parameter_Frequency": 1.0399999618530273,
+                "Y_Parameter_Amplitude": 3.3499999046325684,
+                "Y_Parameter_DampingRatio": 0.3799999952316284,
+                "Y_Parameter_Frequency": 1.940000057220459,
+                "Z_Parameter_Amplitude": 0.0,
+                "Z_Parameter_DampingRatio": 0.0,
+                "Z_Parameter_Frequency": 0.0,
+                "cameraTransformIndex": 0,
+                "duration": 1.5399999618530273,
+                "isActive": false,
+                "isLoop": false,
+                "type": 2
             }
         ],
         "CameraTransform": [
@@ -157,12 +218,12 @@
             "SystemName": "CameraMotionBobSystem"
         },
         {
-            "SystemCategory": 1,
-            "SystemName": "CameraInputSystem"
-        },
-        {
             "SystemCategory": 5,
             "SystemName": "CameraShake"
+        },
+        {
+            "SystemCategory": 1,
+            "SystemName": "CameraInputSystem"
         },
         {
             "SystemCategory": 3,

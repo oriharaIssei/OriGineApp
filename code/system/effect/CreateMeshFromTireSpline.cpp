@@ -131,6 +131,7 @@ void CreateMeshFromTireSpline::UpdateEntity(OriGine::EntityHandle _handle) {
     }
 
     planeRendererComp->SetIsRender(true);
+    planeRendererComp->SetInstancing(false); // インスタンシングは使用しない
     if (splineComp->commonSettings.isCrossMesh) {
         CreateCrossPlaneMesh(planeRendererComp, splineComp);
     } else {

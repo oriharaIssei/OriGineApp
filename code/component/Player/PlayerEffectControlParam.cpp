@@ -67,9 +67,11 @@ void PlayerEffectControlParam::Edit(OriGine::Scene* /*_scene*/, OriGine::EntityH
     // 移動時の回転速度率
     DragGuiCommand("maxWheelSpinSpeed##" + _parentLabel, maxWheelSpinSpeed_, 0.001f);
     // 移動時のホイール傾き角度
-    DragGuiCommand("wheelTiltAngleRate##" + _parentLabel, wheelTiltAngleRate_, 0.01f);
+    DragGuiCommand("wheelTiltAngleRate##" + _parentLabel, wheelTiltAngleRate_, 0.001f);
     // ホイール傾き角度の最大加速度
-    DragGuiCommand("wheelTiltAngleMaxAccel##" + _parentLabel, wheelTiltAngleMaxAccel_, 0.01f);
+    DragGuiCommand("wheelTiltAngleMaxAccel##" + _parentLabel, wheelTiltAngleMaxAccel_, 0.001f);
+    // ホイール傾き角度の最大加速度
+    DragGuiCommand("maxWheelTiltAngle##" + _parentLabel, maxWheelTiltAngle_, 0.001f);
 
     ImGui::Spacing();
 
@@ -88,6 +90,10 @@ void PlayerEffectControlParam::Edit(OriGine::Scene* /*_scene*/, OriGine::EntityH
     DragGuiCommand("aheadCollisionTiltAngle##" + _parentLabel, aheadCollisionTiltAngle_, 0.001f, {}, {}, "%.4f");
     DragGuiCommand("aheadCollisionTiltSpeed##" + _parentLabel, aheadCollisionTiltSpeed_, 0.001f, {}, {}, "%.4f");
 
+    ImGui::Spacing();
+
+    DragGuiCommand("thresholdSpeedlineParticle##" + _parentLabel, thresholdSpeedlineParticle_, 0.1f);
+
 #endif // _DEBUG
 }
 
@@ -97,6 +103,7 @@ void to_json(nlohmann::json& j, const PlayerEffectControlParam& _p) {
         {"rotateOffsetOnWallRun", _p.rotateOffsetOnWallRun_},
         {"maxWheelSpinSpeed", _p.maxWheelSpinSpeed_},
         {"wheelTiltAngleRate", _p.wheelTiltAngleRate_},
+        {"maxWheelTiltAngle", _p.maxWheelTiltAngle_},
         {"wheelTiltAngleMaxAccel", _p.wheelTiltAngleMaxAccel_},
         {"maxTiltOnRailRun", _p.maxTiltOnRailRun_},
         {"tiltSpeedOnRailRun", _p.tiltSpeedOnRailRun_},
@@ -104,6 +111,7 @@ void to_json(nlohmann::json& j, const PlayerEffectControlParam& _p) {
         {"invincibleBlinkMaxAmplitude", _p.invincibleBlinkMaxAmplitude_},
         {"aheadCollisionTiltAngle", _p.aheadCollisionTiltAngle_},
         {"aheadCollisionTiltSpeed", _p.aheadCollisionTiltSpeed_},
+        {"thresholdSpeedlineParticle", _p.thresholdSpeedlineParticle_},
     };
 }
 
@@ -123,6 +131,10 @@ void from_json(const nlohmann::json& j, PlayerEffectControlParam& _p) {
     j.at("wheelTiltAngleRate").get_to(_p.wheelTiltAngleRate_);
     j.at("wheelTiltAngleMaxAccel").get_to(_p.wheelTiltAngleMaxAccel_);
 
+    if (j.contains("maxWheelTiltAngle")) {
+        j.at("maxWheelTiltAngle").get_to(_p.maxWheelTiltAngle_);
+    }
+
     if (j.contains("maxTiltOnRailRun")) {
         j.at("maxTiltOnRailRun").get_to(_p.maxTiltOnRailRun_);
     }
@@ -141,5 +153,8 @@ void from_json(const nlohmann::json& j, PlayerEffectControlParam& _p) {
     }
     if (j.contains("aheadCollisionTiltSpeed")) {
         j.at("aheadCollisionTiltSpeed").get_to(_p.aheadCollisionTiltSpeed_);
+    }
+    if (j.contains("thresholdSpeedlineParticle")) {
+        j.at("thresholdSpeedlineParticle").get_to(_p.thresholdSpeedlineParticle_);
     }
 }

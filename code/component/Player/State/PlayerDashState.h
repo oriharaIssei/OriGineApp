@@ -21,10 +21,6 @@ public:
     PlayerMoveState TransitionState() const override;
 
 private:
-    const int32_t kThresholdGearLevelOfCameraOffset_ = AppConfig::Player::kDashCameraOffsetThresholdGearLevel;
-    const float kCameraOffsetLerpTime_               = AppConfig::Player::kDashCameraOffsetLerpTime;
-    float cameraOffsetLerpTimer_                     = 0.0f;
-
     const float kFallDownThresholdTime_ = AppConfig::Player::kDashFallDownThresholdTime; // 落下状態に遷移するまでの閾値時間
     float fallDownTimer_                = 0.0f; // 落下時間計測用
 };

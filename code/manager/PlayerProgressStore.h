@@ -6,9 +6,8 @@
 #include <string>
 #include <unordered_map>
 
-/// engine
-#include "debugReplayer/ReplayPlayer.h"
-#include "debugReplayer/ReplayRecorder.h"
+/// externals
+#include <nlohmann/json.hpp>
 
 /// math
 #include <cstdint>
@@ -82,7 +81,7 @@ public:
     /// </summary>
     /// <param name="_stageNum">ステージ番号</param>
     /// <param name="_clearTime">クリアした時間</param>
-    void StageCleared(OriGine::ReplayRecorder* _recorder, int32_t _stageNum, float _clearTime);
+    void StageCleared(int32_t _stageNum, float _clearTime);
 
     /// <summary>
     /// 進行状況データの読み込み
@@ -93,17 +92,6 @@ public:
     /// </summary>
     void SaveProgressData();
 
-    /// <summary>
-    /// ベストプレイデータの読み込み
-    /// </summary>
-    bool LoadBestPlayData(int32_t _stageNum, OriGine::ReplayPlayer* _replayer);
-    /// <summary>
-    /// ベストプレイデータの保存
-    /// </summary>
-    /// <param name="_stageNum"></param>
-    /// <param name="_recorder"></param>
-    void SaveBestPlayData(int32_t _stageNum, OriGine::ReplayRecorder* _recorder);
-
 private:
     PlayerProgressStore()                                      = default;
     ~PlayerProgressStore()                                     = default;
@@ -113,7 +101,6 @@ private:
 private:
     bool isInitialized_                    = false;
     const std::string kProgressDataFolder_ = "ProgressData/";
-    const std::string kBestPlayDataFolder_ = "BestPlayData"; //  kProgressDataFolder_ の下に保存する
     const char* kProgressDataFileName_     = "PlayerProgressData.json";
 
     int32_t lastPlayStageNumber_ = -1; // 最後にプレイしたステージ番号

@@ -6,13 +6,14 @@
 #include "EngineInclude.h"
 
 #include "scene/SceneFactory.h"
-#include "scene/SceneManager.h"
+
+#include "messageBus/MessageBus.h"
 
 /// application
 #include "manager/PlayerProgressStore.h"
 
 // component
-#include "component/SceneChanger.h"
+#include "component/scene/SceneChanger.h"
 #include "component/TimerComponent.h"
 
 #include "component/spline/TireSplinePoints.h"
@@ -27,9 +28,11 @@
 #include "component/player/state/PlayerState.h"
 
 #include "component/Camera/CameraController.h"
+#include "component/camera/CameraShakeSourceComponent.h"
 #include "component/transform/CameraTransform.h"
 
-#include "component/ghost/PlayRecordeComponent.h"
+/// event
+#include "event/PlayerStateChangedEvent.h"
 
 /// math
 #include "math/MathEnv.h"
@@ -40,6 +43,8 @@ using namespace OriGine;
 void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
     PlayerState* state   = GetComponent<PlayerState>(_handle);
     PlayerStatus* status = GetComponent<PlayerStatus>(_handle);
+    Rigidbody* rigidbody = GetComponent<Rigidbody>(_handle);
+    Transform* transform = GetComponent<Transform>(_handle);
 
     const float deltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Player");
 
@@ -57,12 +62,8 @@ void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
             StageData* stageData  = GetComponent<StageData>(stageDataEntityHandle);
             TimerComponent* timer = GetComponent<TimerComponent>(timerEntityHandle);
 
-            EntityHandle recorderEntityHandle  = GetUniqueEntity("Recorder");
-            PlayRecordeComponent* playRecorder = GetComponent<PlayRecordeComponent>(recorderEntityHandle);
-
             if (timer != nullptr && stageData != nullptr) {
                 progressStore->StageCleared(
-                    playRecorder != nullptr ? playRecorder->replayRecorder_.get() : nullptr,
                     stageData->GetStageNumber(),
                     timer->GetTime());
             }
@@ -96,6 +97,13 @@ void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
 
         state->SetPlayerMoveState(CreatePlayerMoveStateByEnum(moveStateFlag.Current().ToEnum(), this->GetScene(), _handle));
         state->GetPlayerMoveState()->Initialize();
+
+        // event を発行
+        PlayerStateChangedEvent event;
+        event.playerEntityHandle = _handle;
+        event.previousMoveState  = moveStateFlag.Prev().ToEnum();
+        event.currentMoveState   = moveStateFlag.Current().ToEnum();
+        MessageBus::GetInstance()->Emit<PlayerStateChangedEvent>(event);
     }
 
     PlayerEffectControlParam* effectParam = GetComponent<PlayerEffectControlParam>(_handle);
@@ -125,7 +133,6 @@ void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
     state->GetStateFlagRef().Set(newFlag);
 
     status->UpdateWallRunInterval(deltaTime);
-    status->UpdateWheelieInterval(deltaTime);
     status->UpdateRailInterval(deltaTime);
 
     // ペナルティ時間 更新
@@ -166,7 +173,27 @@ void TransitionPlayerState::UpdateEntity(EntityHandle _handle) {
         // fov 更新
         CameraTransform* cameraTransform = GetComponent<CameraTransform>(gameCamera->GetHandle());
         if (cameraTransform) {
-            cameraTransform->fovAngleY = std::lerp(cameraTransform->fovAngleY, cameraController->CalculateFovYByPlayerGearLevel(state->GetGearLevel()), cameraController->fovYInterpolate);
+            const float xzSpeed        = Vec2f(rigidbody->GetVelocity(X), rigidbody->GetVelocity(Z)).length();
+            cameraTransform->fovAngleY = std::lerp(cameraTransform->fovAngleY, cameraController->CalculateFovYBySpeed(xzSpeed), cameraController->fovYInterpolate);
         };
+    }
+
+    // 着地時のカメラシェイク
+    auto shakeSource = GetComponent<CameraShakeSourceComponent>(gameCamera->GetHandle(), 1);
+    if (shakeSource) {
+        if (state->IsJustLanded()) {
+            constexpr float kShakeThreshold = 0.184f; // シェイクを発生させる最低着地衝撃値
+            constexpr float kShakeScale     = 1.31f; // 着地衝撃をシェイクの強さに変換するスケール
+
+            const Vec3f& prePos = rigidbody->GetPrePos();
+            const Vec3f& pos    = transform->GetWorldTranslate();
+            float deltaY        = prePos[Y] - pos[Y];
+
+            if (std::abs(deltaY) < kShakeThreshold) {
+                return;
+            }
+            shakeSource->StartShake();
+            shakeSource->springVelocity[Y] = -deltaY * kShakeScale;
+        }
     }
 }

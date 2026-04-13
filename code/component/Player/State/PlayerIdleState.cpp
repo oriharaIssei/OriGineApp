@@ -2,10 +2,9 @@
 
 /// component
 #include "component/animation/SkinningAnimationComponent.h"
-#include "component/effect/particle/emitter/Emitter.h"
+#include "component/effect/particle/emitter/ParticleSystem.h"
 #include "component/physics/Rigidbody.h"
 
-#include "component/Camera/CameraController.h"
 #include "component/player/PlayerInput.h"
 #include "component/player/PlayerStatus.h"
 #include "component/player/state/PlayerState.h"
@@ -14,7 +13,6 @@
 
 /// math
 #include "MathEnv.h"
-#include "MyEasing.h"
 
 using namespace OriGine;
 
@@ -34,7 +32,6 @@ void PlayerIdleState::Initialize() {
     playerStatus->SetGearUpCoolTime(playerStatus->GetBaseGearupCoolTime());
     state->SetGearLevel(kDefaultPlayerGearLevel);
 
-    cameraOffsetLerpTimer_ = 0.0f;
 }
 
 void PlayerIdleState::Update(float _deltaTime) {
@@ -61,18 +58,6 @@ void PlayerIdleState::Update(float _deltaTime) {
         fallDownTimer_ -= _deltaTime;
     }
 
-    ///! TODO : ここにカメラの処理を書くべきではない
-    CameraController* cameraController = scene_->GetComponent<CameraController>(state->GetCameraEntityHandle());
-    if (cameraController) {
-        float cameraDeltaTime = Engine::GetInstance()->GetDeltaTimer()->GetScaledDeltaTime("Camera");
-        // カメラのオフセットを徐々に元に戻す
-        cameraOffsetLerpTimer_ += cameraDeltaTime;
-        float t = cameraOffsetLerpTimer_ / kCameraOffsetLerpTime_;
-        t       = std::clamp(t, 0.f, 1.f);
-
-        cameraController->currentOffset       = Lerp<3, float>(cameraController->currentOffset, cameraController->firstOffset, EaseOutCubic(t));
-        cameraController->currentTargetOffset = Lerp<3, float>(cameraController->currentTargetOffset, cameraController->firstTargetOffset, EaseOutCubic(t));
-    }
 }
 
 void PlayerIdleState::Finalize() {
